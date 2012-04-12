@@ -1,0 +1,1420 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Xml;
+
+namespace CalendarBuilder.BusinessClasses
+{
+    public enum SalesStrategies
+    {
+        InPerson = 0,
+        Email,
+        Fax
+    }
+
+    public enum ColorOptions
+    {
+        BlackWhite = 0,
+        SpotColor,
+        FullColor
+    }
+
+    public class CalendarManager
+    {
+        private static CalendarManager _instance = new CalendarManager();
+        private Calendar _currentCalendar;
+
+        public event EventHandler<SavingingEventArgs> SettingsSaved;
+
+        private CalendarManager()
+        {
+        }
+
+        public static CalendarManager Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        public void OpenCalendar(string scheduleName, bool create)
+        {
+            string calendarFilePath = GetCalendarFileName(scheduleName);
+            if (create && File.Exists(calendarFilePath))
+                if (AppManager.ShowWarningQuestion(string.Format("An older Calendar is already saved with this same file name.\nDo you want to replace this file with a newer calendar?", scheduleName)) == DialogResult.Yes)
+                    File.Delete(calendarFilePath);
+            _currentCalendar = new Calendar(calendarFilePath);
+        }
+
+        public void OpenCalendar(string scheduleFilePath)
+        {
+            _currentCalendar = new Calendar(scheduleFilePath);
+        }
+
+        public string GetCalendarFileName(string calendarName)
+        {
+            return Path.Combine(ConfigurationClasses.SettingsManager.Instance.SaveFolder, calendarName + ".xml");
+        }
+
+        public Calendar GetLocalCalendar()
+        {
+            return new Calendar(_currentCalendar.CalendarFile.FullName);
+        }
+
+        public void SaveCalendar(Calendar localCalendar, bool quickSave, Control sender)
+        {
+            localCalendar.Save();
+            _currentCalendar = localCalendar;
+            using (ToolForms.FormProgress form = new ToolForms.FormProgress())
+            {
+                form.laProgress.Text = "Chill-Out for a few seconds...\nSaving settings...";
+                form.TopMost = true;
+                System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                {
+                    FormMain.Instance.Invoke((MethodInvoker)delegate
+                    {
+                        if (this.SettingsSaved != null)
+                            this.SettingsSaved(sender, new SavingingEventArgs(quickSave));
+                    });
+                }));
+
+                form.Show();
+                System.Windows.Forms.Application.DoEvents();
+
+                thread.Start();
+
+                while (thread.IsAlive)
+                    System.Windows.Forms.Application.DoEvents();
+                form.Close();
+            }
+        }
+
+        public ShortCalendar[] GetShortCalendarList(DirectoryInfo rootFolder)
+        {
+            List<ShortCalendar> calendarList = new List<ShortCalendar>();
+            foreach (var file in rootFolder.GetFiles("*.xml"))
+            {
+                ShortCalendar schedule = new ShortCalendar(file);
+                if (!string.IsNullOrEmpty(schedule.BusinessName))
+                    calendarList.Add(schedule);
+            }
+            return calendarList.ToArray();
+        }
+
+        public void RemoveInstance()
+        {
+            this.SettingsSaved = null;
+        }
+    }
+
+    public class SavingingEventArgs : EventArgs
+    {
+        public SavingingEventArgs(bool quickSave)
+        {
+            this.QuickSave = quickSave;
+        }
+
+        public bool QuickSave { get; set; }
+    }
+
+    public class ShortCalendar
+    {
+        private FileInfo _calendarFile;
+
+        public string BusinessName { get; set; }
+        public string Status { get; set; }
+
+        public string ShortFileName
+        {
+            get
+            {
+                return _calendarFile.Name.Replace(_calendarFile.Extension, "");
+            }
+        }
+
+        public string FullFileName
+        {
+            get
+            {
+                return _calendarFile.FullName;
+            }
+        }
+
+        public DateTime LastModifiedDate
+        {
+            get
+            {
+                return _calendarFile.LastWriteTime;
+            }
+        }
+
+        public ShortCalendar(FileInfo file)
+        {
+            this.BusinessName = string.Empty;
+            this.Status = ListManager.Instance.Statuses.FirstOrDefault();
+            _calendarFile = file;
+            Load();
+        }
+
+        private void Load()
+        {
+            XmlNode node;
+            if (_calendarFile.Exists)
+            {
+                XmlDocument document = new XmlDocument();
+                document.Load(_calendarFile.FullName);
+
+                node = document.SelectSingleNode(@"/Calendar/BusinessName");
+                if (node != null)
+                    this.BusinessName = node.InnerText;
+
+                node = document.SelectSingleNode(@"/Calendar/Status");
+                if (node != null)
+                    this.Status = node.InnerText;
+            }
+        }
+
+        public void Save()
+        {
+            XmlNode node;
+            if (_calendarFile.Exists)
+            {
+                try
+                {
+                    XmlDocument document = new XmlDocument();
+                    document.Load(_calendarFile.FullName);
+
+                    node = document.SelectSingleNode(@"/Calendar/Status");
+                    if (node != null)
+                        node.InnerText = this.Status;
+                    else
+                    {
+                        node = document.SelectSingleNode(@"/Calendar");
+                        if (node != null)
+                            node.InnerXml += (@"<Status>" + (this.Status != null ? this.Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
+                    }
+                    document.Save(_calendarFile.FullName);
+                }
+                catch
+                {
+                }
+            }
+        }
+    }
+
+    public class Calendar
+    {
+        private FileInfo _calendarFile { get; set; }
+        public string BusinessName { get; set; }
+        public string DecisionMaker { get; set; }
+        public string ClientType { get; set; }
+        public string Status { get; set; }
+        public SalesStrategies SalesStrategy { get; set; }
+        public DateTime? PresentationDate { get; set; }
+        public DateTime? FlightDateStart { get; set; }
+        public DateTime? FlightDateEnd { get; set; }
+
+        public List<CalendarMonth> Months { get; private set; }
+        public List<CalendarDay> Days { get; private set; }
+
+        public string Name
+        {
+            get
+            {
+                return _calendarFile.Name.Replace(_calendarFile.Extension, "");
+            }
+            set
+            {
+                _calendarFile = new FileInfo(Path.Combine(_calendarFile.Directory.FullName, value + ".xml"));
+            }
+        }
+
+        public FileInfo CalendarFile
+        {
+            get
+            {
+                return _calendarFile;
+            }
+        }
+
+        public string FlightDates
+        {
+            get
+            {
+                if (this.FlightDateStart.HasValue && this.FlightDateEnd.HasValue)
+                    return this.FlightDateStart.Value.ToString("MM/dd/yy") + " - " + this.FlightDateEnd.Value.ToString("MM/dd/yy");
+                else
+                    return string.Empty;
+            }
+        }
+
+        public Calendar(string fileName)
+        {
+            this.BusinessName = string.Empty;
+            this.DecisionMaker = string.Empty;
+            this.ClientType = string.Empty;
+            this.Status = ListManager.Instance.Statuses.FirstOrDefault();
+            this.Months = new List<CalendarMonth>();
+            this.Days = new List<CalendarDay>();
+
+            _calendarFile = new FileInfo(fileName);
+            if (!File.Exists(fileName))
+            {
+                StringBuilder xml = new StringBuilder();
+                xml.AppendLine(@"<Calendar>");
+                xml.AppendLine(@"<Status>" + (this.Status != null ? this.Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
+                xml.AppendLine(@"</Calendar>");
+                using (StreamWriter sw = new StreamWriter(_calendarFile.FullName, false))
+                {
+                    sw.Write(xml);
+                    sw.Flush();
+                }
+                _calendarFile = new FileInfo(fileName);
+            }
+            else
+                Load();
+
+            UpdateDaysCollection();
+            UpdateMonthCollection();
+        }
+
+        public static DateTime[][] GetDaysByWeek(DateTime start, DateTime end)
+        {
+            List<DateTime[]> weeks = new List<DateTime[]>();
+            List<DateTime> week = new List<DateTime>();
+            while (!(start > end))
+            {
+                week.Add(start);
+                if (start.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    weeks.Add(week.ToArray());
+                    week.Clear();
+                }
+                start = start.AddDays(1);
+            }
+            if (week.Count > 0)
+                weeks.Add(week.ToArray());
+            return weeks.ToArray();
+        }
+
+        private void Load()
+        {
+            int tempInt;
+            DateTime tempDateTime;
+
+            XmlNode node;
+            if (_calendarFile.Exists)
+            {
+                XmlDocument document = new XmlDocument();
+                document.Load(_calendarFile.FullName);
+
+                node = document.SelectSingleNode(@"/Calendar/BusinessName");
+                if (node != null)
+                    this.BusinessName = node.InnerText;
+
+                node = document.SelectSingleNode(@"/Calendar/DecisionMaker");
+                if (node != null)
+                    this.DecisionMaker = node.InnerText;
+
+                node = document.SelectSingleNode(@"/Calendar/ClientType");
+                if (node != null)
+                    this.ClientType = node.InnerText;
+
+                node = document.SelectSingleNode(@"/Calendar/Status");
+                if (node != null)
+                    this.Status = node.InnerText;
+
+                node = document.SelectSingleNode(@"/Calendar/SalesStrategy");
+                if (node != null)
+                    if (int.TryParse(node.InnerText, out tempInt))
+                        this.SalesStrategy = (SalesStrategies)tempInt;
+
+                node = document.SelectSingleNode(@"/Calendar/PresentationDate");
+                if (node != null)
+                    if (DateTime.TryParse(node.InnerText, out tempDateTime))
+                        this.PresentationDate = tempDateTime;
+
+                node = document.SelectSingleNode(@"/Calendar/FlightDateStart");
+                if (node != null)
+                    if (DateTime.TryParse(node.InnerText, out tempDateTime))
+                        this.FlightDateStart = tempDateTime;
+
+                node = document.SelectSingleNode(@"/Calendar/FlightDateEnd");
+                if (node != null)
+                    if (DateTime.TryParse(node.InnerText, out tempDateTime))
+                        this.FlightDateEnd = tempDateTime;
+
+                node = document.SelectSingleNode(@"/Calendar/Days");
+                if (node != null)
+                {
+                    this.Days.Clear();
+                    foreach (XmlNode childNode in node.ChildNodes)
+                    {
+                        CalendarDay day = new CalendarDay();
+                        day.Deserialize(childNode);
+                        this.Days.Add(day);
+                    }
+                }
+
+                node = document.SelectSingleNode(@"/Calendar/Months");
+                if (node != null)
+                {
+                    this.Months.Clear();
+                    foreach (XmlNode childNode in node.ChildNodes)
+                    {
+                        CalendarMonth month = new CalendarMonth(this);
+                        month.Deserialize(childNode);
+                        this.Months.Add(month);
+                    }
+                }
+            }
+        }
+
+        public void Save()
+        {
+            TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+            StringBuilder xml = new StringBuilder();
+
+            xml.AppendLine(@"<Calendar>");
+            xml.AppendLine(@"<BusinessName>" + this.BusinessName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</BusinessName>");
+            if (!ListManager.Instance.Advertisers.Contains(this.BusinessName))
+            {
+                ListManager.Instance.Advertisers.Add(this.BusinessName);
+                ListManager.Instance.SaveAdvertisers();
+            }
+            xml.AppendLine(@"<DecisionMaker>" + this.DecisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
+            if (!ListManager.Instance.DecisionMakers.Contains(this.DecisionMaker))
+            {
+                ListManager.Instance.DecisionMakers.Add(this.DecisionMaker);
+                ListManager.Instance.SaveDecisionMakers();
+            }
+            xml.AppendLine(@"<Status>" + (this.Status != null ? this.Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
+            xml.AppendLine(@"<ClientType>" + this.ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
+            xml.AppendLine(@"<SalesStrategy>" + (int)this.SalesStrategy + @"</SalesStrategy>");
+            if (PresentationDate.HasValue)
+                xml.AppendLine(@"<PresentationDate>" + this.PresentationDate.Value.ToString() + @"</PresentationDate>");
+            if (this.FlightDateStart.HasValue)
+                xml.AppendLine(@"<FlightDateStart>" + this.FlightDateStart.Value.ToString() + @"</FlightDateStart>");
+            if (this.FlightDateEnd.HasValue)
+                xml.AppendLine(@"<FlightDateEnd>" + this.FlightDateEnd.Value.ToString() + @"</FlightDateEnd>");
+
+            xml.AppendLine(@"<Days>");
+            foreach (CalendarDay day in this.Days)
+                xml.AppendLine(@"<Day>" + day.Serialize() + @"</Day>");
+            xml.AppendLine(@"</Days>");
+
+            xml.AppendLine(@"<Months>");
+            foreach (CalendarMonth month in this.Months)
+                xml.AppendLine(@"<Month>" + month.Serialize() + @"</Month>");
+            xml.AppendLine(@"</Months>");
+
+            xml.AppendLine(@"</Calendar>");
+
+            using (StreamWriter sw = new StreamWriter(_calendarFile.FullName, false))
+            {
+                sw.Write(xml);
+                sw.Flush();
+            }
+        }
+
+        private void UpdateDaysCollection()
+        {
+            if (this.FlightDateStart.HasValue && this.FlightDateEnd.HasValue)
+            {
+                List<CalendarDay> days = new List<CalendarDay>();
+                DateTime startDate = new DateTime(this.FlightDateStart.Value.Year, this.FlightDateStart.Value.Month, 1);
+                DateTime endDate = new DateTime(this.FlightDateEnd.Value.Month < 12 ? this.FlightDateEnd.Value.Year : (this.FlightDateEnd.Value.Year + 1), (this.FlightDateEnd.Value.Month < 12 ? this.FlightDateEnd.Value.Month + 1 : 1), 1).AddDays(-1);
+                while (startDate <= endDate)
+                {
+                    CalendarDay day = this.Days.Where(x => x.Date.Equals(startDate)).FirstOrDefault();
+                    if (day == null)
+                    {
+                        day = new CalendarDay();
+                        day.Date = startDate;
+                    }
+                    days.Add(day);
+                    startDate = startDate.AddDays(1);
+                }
+                this.Days.Clear();
+                this.Days.AddRange(days);
+            }
+            else
+                this.Days.Clear();
+        }
+
+        private void UpdateMonthCollection()
+        {
+            if (this.FlightDateStart.HasValue && this.FlightDateEnd.HasValue)
+            {
+                List<CalendarMonth> months = new List<CalendarMonth>();
+                DateTime startDate = new DateTime(this.FlightDateStart.Value.Year, this.FlightDateStart.Value.Month, 1);
+                while (startDate <= this.FlightDateEnd.Value)
+                {
+                    CalendarMonth month = this.Months.Where(x => x.StartDate.Equals(startDate)).FirstOrDefault();
+                    if (month == null)
+                    {
+                        month = new CalendarMonth(this);
+                        month.Date = startDate;
+                    }
+                    month.Days.Clear();
+                    month.Days.AddRange(this.Days.Where(x => x.Date.Year == month.StartDate.Year && x.Date.Month == month.StartDate.Month));
+                    month.OutputData.UpdateLegend();
+                    months.Add(month);
+                    startDate = startDate.AddMonths(1);
+                }
+                this.Months.Clear();
+                this.Months.AddRange(months);
+            }
+            else
+                this.Months.Clear();
+        }
+    }
+
+    public class CalendarMonth
+    {
+        public Calendar Parent { get; private set; }
+        public DateTime Date { get; set; }
+        public List<CalendarDay> Days { get; private set; }
+        public CalendarOutputData OutputData { get; private set; }
+
+        public DateTime StartDate
+        {
+            get
+            {
+                return new DateTime(this.Date.Year, this.Date.Month, 1);
+            }
+        }
+
+        public DateTime EndDate
+        {
+            get
+            {
+                return (new DateTime((this.Date.Month < 12 ? this.Date.Year : this.Date.Year + 1), this.Date.Month < 12 ? this.Date.Month + 1 : 1, 1)).AddDays(-1);
+            }
+        }
+
+        public CalendarMonth(Calendar parent)
+        {
+            this.Parent = parent;
+            this.Days = new List<CalendarDay>();
+            this.OutputData = new CalendarOutputData(this);
+        }
+
+        public string Serialize()
+        {
+            StringBuilder result = new StringBuilder();
+            result.AppendLine(@"<Date>" + this.Date.ToString() + @"</Date>");
+            result.AppendLine(@"<OutputData>" + this.OutputData.Serialize() + @"</OutputData>");
+            return result.ToString();
+        }
+
+        public void Deserialize(XmlNode node)
+        {
+            DateTime tempDate;
+            foreach (XmlNode childNode in node.ChildNodes)
+            {
+                switch (childNode.Name)
+                {
+                    case "Date":
+                        if (DateTime.TryParse(childNode.InnerText, out tempDate))
+                            this.Date = tempDate;
+                        break;
+                    case "OutputData":
+                        this.OutputData.Deserialize(childNode);
+                        break;
+                }
+            }
+        }
+    }
+
+    public class CalendarDay
+    {
+        public DateTime Date { get; set; }
+        public DigitalProperties Digital { get; private set; }
+        public NewspaperProperties Newspaper { get; private set; }
+        public string Comment1 { get; set; }
+        public string Comment2 { get; set; }
+
+
+        public string Summary
+        {
+            get
+            {
+                StringBuilder result = new StringBuilder();
+
+                string temp = this.Digital.Summary;
+                if (!string.IsNullOrEmpty(temp))
+                    result.AppendLine(temp);
+
+                temp = this.Newspaper.Summary;
+                if (!string.IsNullOrEmpty(temp))
+                    result.AppendLine(temp);
+
+                if (!string.IsNullOrEmpty(this.Comment1))
+                    result.AppendLine(this.Comment1);
+
+                if (!string.IsNullOrEmpty(this.Comment2))
+                    result.AppendLine(this.Comment2);
+                return result.ToString();
+            }
+        }
+
+        public bool ContainsData
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(this.Summary);
+            }
+        }
+
+        public CalendarDay()
+        {
+            this.Digital = new DigitalProperties(this);
+            this.Newspaper = new NewspaperProperties(this);
+        }
+
+        public string Serialize()
+        {
+            StringBuilder result = new StringBuilder();
+            result.AppendLine(@"<Date>" + this.Date.ToString() + @"</Date>");
+            result.AppendLine(@"<Digital>" + this.Digital.Serialize() + @"</Digital>");
+            result.AppendLine(@"<Newspaper>" + this.Newspaper.Serialize() + @"</Newspaper>");
+            if (!string.IsNullOrEmpty(this.Comment1))
+                result.AppendLine(@"<Comment1>" + this.Comment1.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comment1>");
+            if (!string.IsNullOrEmpty(this.Comment2))
+                result.AppendLine(@"<Comment2>" + this.Comment2.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comment2>");
+            return result.ToString();
+        }
+
+        public void Deserialize(XmlNode node)
+        {
+            DateTime tempDate;
+            foreach (XmlNode childNode in node.ChildNodes)
+            {
+                switch (childNode.Name)
+                {
+                    case "Date":
+                        if (DateTime.TryParse(childNode.InnerText, out tempDate))
+                            this.Date = tempDate;
+                        break;
+                    case "Digital":
+                        this.Digital.Deserialize(childNode);
+                        break;
+                    case "Newspaper":
+                        this.Newspaper.Deserialize(childNode);
+                        break;
+                    case "Comment1":
+                        this.Comment1 = childNode.InnerText;
+                        break;
+                    case "Comment2":
+                        this.Comment2 = childNode.InnerText;
+                        break;
+                }
+            }
+        }
+
+        public int WeekDayIndex
+        {
+            get
+            {
+                switch (this.Date.DayOfWeek)
+                {
+                    case DayOfWeek.Sunday:
+                        return 1;
+                    case DayOfWeek.Monday:
+                        return 2;
+                    case DayOfWeek.Tuesday:
+                        return 3;
+                    case DayOfWeek.Wednesday:
+                        return 4;
+                    case DayOfWeek.Thursday:
+                        return 5;
+                    case DayOfWeek.Friday:
+                        return 6;
+                    case DayOfWeek.Saturday:
+                        return 7;
+                    default:
+                        return 0;
+                }
+            }
+        }
+    }
+
+    public class DigitalProperties
+    {
+        private CalendarDay _parent = null;
+        public string Category { get; set; }
+        public string SubCategory { get; set; }
+        public string ProductName { get; set; }
+        public string CustomNote { get; set; }
+
+        public bool ShowCategory { get; set; }
+        public bool ShowSubCategory { get; set; }
+        public bool ShowProduct { get; set; }
+
+        public DateTime Day
+        {
+            get
+            {
+                return _parent.Date;
+            }
+        }
+
+        public string Summary
+        {
+            get
+            {
+                List<string> result = new List<string>();
+                if (!string.IsNullOrEmpty(this.CustomNote))
+                    result.Add(this.CustomNote);
+                if (!string.IsNullOrEmpty(this.Category) && this.ShowCategory)
+                    result.Add(this.Category);
+                if (!string.IsNullOrEmpty(this.SubCategory) && this.ShowSubCategory)
+                    result.Add(this.SubCategory);
+                if (!string.IsNullOrEmpty(this.ProductName) && this.ShowProduct)
+                    result.Add(this.ProductName);
+                return string.Join(", ", result.ToArray());
+            }
+        }
+
+        public DigitalProperties(CalendarDay parent)
+        {
+            _parent = parent;
+            this.ShowCategory = true;
+            this.ShowSubCategory = true;
+            this.ShowProduct = true;
+        }
+
+        public string Serialize()
+        {
+            StringBuilder result = new StringBuilder();
+            if (!string.IsNullOrEmpty(this.Category))
+                result.AppendLine(@"<Category>" + this.Category.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Category>");
+            if (!string.IsNullOrEmpty(this.SubCategory))
+                result.AppendLine(@"<SubCategory>" + this.SubCategory.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SubCategory>");
+            if (!string.IsNullOrEmpty(this.ProductName))
+                result.AppendLine(@"<ProductName>" + this.ProductName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ProductName>");
+            if (!string.IsNullOrEmpty(this.CustomNote))
+                result.AppendLine(@"<CustomNote>" + this.CustomNote.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</CustomNote>");
+
+            result.AppendLine(@"<ShowCategory>" + this.ShowCategory.ToString() + @"</ShowCategory>");
+            result.AppendLine(@"<ShowSubCategory>" + this.ShowSubCategory.ToString() + @"</ShowSubCategory>");
+            result.AppendLine(@"<ShowProduct>" + this.ShowProduct.ToString() + @"</ShowProduct>");
+
+            return result.ToString();
+        }
+
+        public void Deserialize(XmlNode node)
+        {
+            bool tempBool;
+            foreach (XmlNode childNode in node.ChildNodes)
+            {
+                switch (childNode.Name)
+                {
+                    case "Category":
+                        this.Category = childNode.InnerText;
+                        break;
+                    case "SubCategory":
+                        this.SubCategory = childNode.InnerText;
+                        break;
+                    case "ProductName":
+                        this.ProductName = childNode.InnerText;
+                        break;
+                    case "CustomNote":
+                        this.CustomNote = childNode.InnerText;
+                        break;
+                    case "ShowCategory":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowCategory = tempBool;
+                        break;
+                    case "ShowSubCategory":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowSubCategory = tempBool;
+                        break;
+                    case "ShowProduct":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowProduct = tempBool;
+                        break;
+                }
+            }
+        }
+    }
+
+    public class NewspaperProperties
+    {
+        private CalendarDay _parent = null;
+        public string PublicationName { get; set; }
+        public string Section { get; set; }
+        public string PageSize { get; set; }
+        public string Color { get; set; }
+        public double? TotalCost { get; set; }
+        public string CustomNote { get; set; }
+
+        public DateTime Day
+        {
+            get
+            {
+                return _parent.Date;
+            }
+        }
+
+        public string SectionAbbreviation
+        {
+            get
+            {
+                PrintSection section = ListManager.Instance.PrintSections.Where(x => x.Name.Equals(this.Section)).FirstOrDefault();
+                if (section != null)
+                    return section.Abbreviation;
+                else if (!string.IsNullOrEmpty(this.Section))
+                    return this.Section.Substring(0, 2);
+                else
+                    return string.Empty;
+            }
+        }
+
+        public string PublicationAbbreviation
+        {
+            get
+            {
+                PrintSource printSource = ListManager.Instance.PrintSources.Where(x => x.Name.Equals(this.PublicationName)).FirstOrDefault();
+                if (printSource != null)
+                    return printSource.Abbreviation;
+                else if (!string.IsNullOrEmpty(this.PublicationName))
+                    return this.PublicationName.Substring(0, 3).ToUpper();
+                else
+                    return string.Empty;
+            }
+        }
+
+        public string Summary
+        {
+            get
+            {
+                List<string> result = new List<string>();
+                if (!string.IsNullOrEmpty(this.CustomNote))
+                    result.Add(this.CustomNote);
+                if (!string.IsNullOrEmpty(this.PublicationAbbreviation))
+                    result.Add(this.PublicationAbbreviation);
+                if (!string.IsNullOrEmpty(this.SectionAbbreviation))
+                    result.Add(this.SectionAbbreviation);
+                if (!string.IsNullOrEmpty(this.PageSize))
+                    result.Add(this.PageSize);
+                if (!string.IsNullOrEmpty(this.Color))
+                    result.Add(this.Color);
+                if (this.TotalCost.HasValue)
+                    result.Add(this.TotalCost.Value.ToString("$#,##0"));
+                return string.Join(", ", result.ToArray());
+            }
+        }
+
+        public NewspaperProperties(CalendarDay parent)
+        {
+            _parent = parent;
+        }
+
+        public string Serialize()
+        {
+            StringBuilder result = new StringBuilder();
+            if (!string.IsNullOrEmpty(this.PublicationName))
+                result.AppendLine(@"<PublicationName>" + this.PublicationName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</PublicationName>");
+            if (!string.IsNullOrEmpty(this.Section))
+                result.AppendLine(@"<Section>" + this.Section.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Section>");
+            if (!string.IsNullOrEmpty(this.PageSize))
+                result.AppendLine(@"<PageSize>" + this.PageSize.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</PageSize>");
+            if (!string.IsNullOrEmpty(this.Color))
+                result.AppendLine(@"<Color>" + this.Color.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Color>");
+            if (this.TotalCost.HasValue)
+                result.AppendLine(@"<TotalCost>" + this.TotalCost.Value.ToString() + @"</TotalCost>");
+            if (!string.IsNullOrEmpty(this.CustomNote))
+                result.AppendLine(@"<CustomNote>" + this.CustomNote.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</CustomNote>");
+            return result.ToString();
+        }
+
+        public void Deserialize(XmlNode node)
+        {
+            double tempDouble;
+            foreach (XmlNode childNode in node.ChildNodes)
+            {
+                switch (childNode.Name)
+                {
+                    case "PublicationName":
+                        this.PublicationName = childNode.InnerText;
+                        break;
+                    case "Section":
+                        this.Section = childNode.InnerText;
+                        break;
+                    case "PageSize":
+                        this.PageSize = childNode.InnerText;
+                        break;
+                    case "Color":
+                        this.Color = childNode.InnerText;
+                        break;
+                    case "TotalCost":
+                        this.TotalCost = null;
+                        if (double.TryParse(childNode.InnerText, out tempDouble))
+                            this.TotalCost = tempDouble;
+                        break;
+                    case "CustomNote":
+                        this.CustomNote = childNode.InnerText;
+                        break;
+                }
+            }
+        }
+    }
+
+    public class CalendarOutputData
+    {
+        public CalendarMonth Parent { get; private set; }
+
+        #region Basic
+        public bool ShowMonth { get; set; }
+        public bool ShowHeader { get; set; }
+        public bool ShowBusinessName { get; set; }
+        public bool ShowDecisionMaker { get; set; }
+        private string _businessName = string.Empty;
+        private string _decisionMaker = string.Empty;
+        public string Header { get; set; }
+        public bool ApplyForAllBasic { get; set; }
+        #endregion
+
+        #region Investment
+        public bool ShowPrintTotalCostManual { get; set; }
+        public bool ShowPrintTotalCostCalculated { get; set; }
+        public bool ShowDigitalTotalCost { get; set; }
+        public bool ShowTVTotalCost { get; set; }
+        public double? PrintTotalCost { get; set; }
+        public double? DigitalTotalCost { get; set; }
+        public double? TVTotalCost { get; set; }
+        public bool ApplyForAllInvestment { get; set; }
+        #endregion
+
+        #region Other Numbers
+        private int? _activeDays;
+        private int? _printAdsNumber;
+        public bool ShowActiveDays { get; set; }
+        public bool ShowPrintAdsNumber { get; set; }
+        public bool ShowImpressions { get; set; }
+        public bool ShowDigitalCPM { get; set; }
+        public double? Impressions { get; set; }
+        public double? DigitalCPM { get; set; }
+        public bool ApplyForAllOtherNumbers { get; set; }
+        #endregion
+
+        #region Custom Comment
+        public bool ShowCustomComment { get; set; }
+        public string CustomComment { get; set; }
+        public bool ApplyForAllCustomComment { get; set; }
+        #endregion
+
+        #region Logo
+        public bool ShowLogo { get; set; }
+        public Image Logo { get; set; }
+        public bool ApplyForAllLogo { get; set; }
+        #endregion
+
+        #region Legend
+        public bool ShowLegend { get; set; }
+        public List<CalendarLegend> Legend { get; private set; }
+        public bool ApplyForAllLegend { get; set; }
+        #endregion
+
+        #region Calculated Options
+        public string BusinessName
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_businessName))
+                    return _businessName;
+                else
+                    return this.Parent.Parent.BusinessName;
+            }
+            set
+            {
+                if (!value.Equals(this.Parent.Parent.BusinessName))
+                    _businessName = value;
+                else
+                    _businessName = string.Empty;
+            }
+        }
+
+        public string DecisionMaker
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_decisionMaker))
+                    return _decisionMaker;
+                else
+                    return this.Parent.Parent.DecisionMaker;
+            }
+            set
+            {
+                if (!value.Equals(this.Parent.Parent.DecisionMaker))
+                    _decisionMaker = value;
+                else
+                    _decisionMaker = string.Empty;
+            }
+        }
+
+        public double PrintTotalCostCalculated
+        {
+            get
+            {
+                return this.Parent.Days.Select(x => x.Newspaper.TotalCost.HasValue ? x.Newspaper.TotalCost.Value : 0).Sum();
+            }
+        }
+
+        public int CalculatedActiveDays
+        {
+            get
+            {
+                return this.Parent.Days.Where(x => x.ContainsData).Count();
+            }
+        }
+
+        public int ActiveDays
+        {
+            get
+            {
+                if (!_activeDays.HasValue)
+                    return this.CalculatedActiveDays;
+                else
+                    return _activeDays.Value;
+            }
+            set
+            {
+                if (this.CalculatedActiveDays != value)
+                    _activeDays = value;
+                else
+                    _activeDays = null;
+            }
+        }
+
+        public int CalculatedPrintAdsNumber
+        {
+            get
+            {
+                return this.Parent.Days.Where(x=>!string.IsNullOrEmpty(x.Newspaper.Summary)).Count();
+            }
+        }
+
+        public int PrintAdsNumber
+        {
+            get
+            {
+                if (!_printAdsNumber.HasValue)
+                    return this.CalculatedPrintAdsNumber;
+                else
+                    return _printAdsNumber.Value;
+            }
+            set
+            {
+                if (this.CalculatedPrintAdsNumber != value)
+                    _printAdsNumber = value;
+                else
+                    _printAdsNumber = null;
+            }
+        }
+
+        #endregion
+
+        public CalendarOutputData(CalendarMonth parent)
+        {
+            this.Parent = parent;
+
+            #region Basic
+            this.ShowMonth = true;
+            this.ShowHeader = true;
+            this.ShowBusinessName = true;
+            this.ShowDecisionMaker = true;
+            this.Header = string.Empty;
+            this.ApplyForAllBasic = true;
+            #endregion
+
+            #region Investment
+            this.ShowPrintTotalCostManual = false;
+            this.ShowPrintTotalCostCalculated = false;
+            this.ShowDigitalTotalCost = false;
+            this.ShowTVTotalCost = false;
+            this.ApplyForAllInvestment = true;
+            #endregion
+
+            #region Other Numbers
+            this.ShowActiveDays = false;
+            this.ShowPrintAdsNumber = false;
+            this.ShowImpressions = false;
+            this.ShowDigitalCPM = false;
+            this.ApplyForAllOtherNumbers = true;
+            #endregion
+
+            #region Custom Comment
+            this.ShowCustomComment = false;
+            this.ApplyForAllCustomComment = true;
+            #endregion
+
+            #region Logo
+            this.ShowLogo = false;
+            this.ApplyForAllLogo = true;
+            #endregion
+
+            #region Legend
+            this.ShowLegend = false;
+            this.Legend = new List<CalendarLegend>();
+            this.ApplyForAllLegend = true;
+            #endregion
+        }
+
+        public string Serialize()
+        {
+            StringBuilder result = new StringBuilder();
+            TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+
+            #region Basic
+            result.AppendLine(@"<ShowMonth>" + this.ShowMonth.ToString() + @"</ShowMonth>");
+            result.AppendLine(@"<ShowHeader>" + this.ShowHeader.ToString() + @"</ShowHeader>");
+            result.AppendLine(@"<ShowBusinessName>" + this.ShowBusinessName.ToString() + @"</ShowBusinessName>");
+            result.AppendLine(@"<ShowDecisionMaker>" + this.ShowDecisionMaker.ToString() + @"</ShowDecisionMaker>");
+            result.AppendLine(@"<Header>" + this.Header.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Header>");
+            result.AppendLine(@"<BusinessName>" + _businessName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</BusinessName>");
+            result.AppendLine(@"<DecisionMaker>" + _decisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
+            result.AppendLine(@"<ApplyForAllBasic>" + this.ApplyForAllBasic.ToString() + @"</ApplyForAllBasic>");
+            #endregion
+
+            #region Investment
+            if (this.PrintTotalCost.HasValue)
+                result.AppendLine(@"<PrintTotalCost>" + this.PrintTotalCost.Value.ToString() + @"</PrintTotalCost>");
+            result.AppendLine(@"<ShowPrintTotalCostManual>" + this.ShowPrintTotalCostManual.ToString() + @"</ShowPrintTotalCostManual>");
+            result.AppendLine(@"<ShowPrintTotalCostCalculated>" + this.ShowPrintTotalCostCalculated.ToString() + @"</ShowPrintTotalCostCalculated>");
+            result.AppendLine(@"<ShowDigitalTotalCost>" + this.ShowDigitalTotalCost.ToString() + @"</ShowDigitalTotalCost>");
+            if (this.DigitalTotalCost.HasValue)
+                result.AppendLine(@"<DigitalTotalCost>" + this.DigitalTotalCost.Value.ToString() + @"</DigitalTotalCost>");
+            result.AppendLine(@"<ShowTVTotalCost>" + this.ShowTVTotalCost.ToString() + @"</ShowTVTotalCost>");
+            if (this.TVTotalCost.HasValue)
+                result.AppendLine(@"<TVTotalCost>" + this.TVTotalCost.Value.ToString() + @"</TVTotalCost>");
+            result.AppendLine(@"<ApplyForAllInvestment>" + this.ApplyForAllInvestment.ToString() + @"</ApplyForAllInvestment>");
+            #endregion
+
+            #region Other Numbers
+            if (_activeDays.HasValue)
+                result.AppendLine(@"<ActiveDays>" + _activeDays.Value.ToString() + @"</ActiveDays>");
+            if (_printAdsNumber.HasValue)
+                result.AppendLine(@"<PrintAdsNumber>" + _printAdsNumber.Value.ToString() + @"</PrintAdsNumber>");
+            result.AppendLine(@"<ShowActiveDays>" + this.ShowActiveDays.ToString() + @"</ShowActiveDays>");
+            result.AppendLine(@"<ShowPrintAdsNumber>" + this.ShowPrintAdsNumber.ToString() + @"</ShowPrintAdsNumber>");
+            result.AppendLine(@"<ShowImpressions>" + this.ShowImpressions.ToString() + @"</ShowImpressions>");
+            result.AppendLine(@"<DigitalCPM>" + this.DigitalCPM.ToString() + @"</DigitalCPM>");
+            result.AppendLine(@"<ApplyForAllOtherNumbers>" + this.ApplyForAllOtherNumbers.ToString() + @"</ApplyForAllOtherNumbers>");
+            if (this.Impressions.HasValue)
+                result.AppendLine(@"<Impressions>" + this.Impressions.Value.ToString() + @"</Impressions>");
+            if (this.DigitalCPM.HasValue)
+                result.AppendLine(@"<DigitalCPM>" + this.DigitalCPM.Value.ToString() + @"</DigitalCPM>");
+            #endregion
+
+            #region Custom Comment
+            result.AppendLine(@"<ShowCustomComment>" + this.ShowCustomComment.ToString() + @"</ShowCustomComment>");
+            if (!string.IsNullOrEmpty(this.CustomComment))
+                result.AppendLine(@"<CustomComment>" + this.CustomComment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</CustomComment>");
+            result.AppendLine(@"<ApplyForAllCustomComment>" + this.ApplyForAllCustomComment.ToString() + @"</ApplyForAllCustomComment>");
+            #endregion
+
+            #region Logo
+            result.AppendLine(@"<ShowLogo>" + this.ShowLogo.ToString() + @"</ShowLogo>");
+            if (this.Logo != null)
+                result.AppendLine(@"<Logo>" + Convert.ToBase64String((byte[])converter.ConvertTo(this.Logo, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
+            result.AppendLine(@"<ApplyForAllLogo>" + this.ApplyForAllLogo.ToString() + @"</ApplyForAllLogo>");
+            #endregion
+
+            #region Legend
+            result.AppendLine(@"<ShowLegend>" + this.ShowLegend.ToString() + @"</ShowLegend>");
+            result.AppendLine(@"<Legends>");
+            foreach (CalendarLegend legend in this.Legend)
+                result.AppendLine(@"<Legend>" + legend.Serialize() + @"</Legend>");
+            result.AppendLine(@"</Legends>");
+            result.AppendLine(@"<ApplyForAllLegend>" + this.ApplyForAllLegend.ToString() + @"</ApplyForAllLegend>");
+            #endregion
+
+            return result.ToString();
+        }
+
+        public void Deserialize(XmlNode node)
+        {
+            bool tempBool = false;
+            double tempDouble;
+            int tempInt;
+
+            foreach (XmlNode childNode in node.ChildNodes)
+            {
+                switch (childNode.Name)
+                {
+                    #region Basic
+                    case "ShowMonth":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowMonth = tempBool;
+                        break;
+                    case "ShowHeader":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowHeader = tempBool;
+                        break;
+                    case "ShowBusinessName":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowBusinessName = tempBool;
+                        break;
+                    case "ShowDecisionMaker":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDecisionMaker = tempBool;
+                        break;
+                    case "Header":
+                        this.Header = childNode.InnerText;
+                        break;
+                    case "BusinessName":
+                        _businessName = childNode.InnerText;
+                        break;
+                    case "DecisionMaker":
+                        _decisionMaker = childNode.InnerText;
+                        break;
+                    case "ApplyForAllBasic":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ApplyForAllBasic = tempBool;
+                        break;
+                    #endregion
+
+                    #region Investment
+                    case "PrintTotalCost":
+                        if (double.TryParse(childNode.InnerText, out tempDouble))
+                            this.PrintTotalCost = tempDouble;
+                        break;
+                    case "ShowPrintTotalCostManual":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPrintTotalCostManual = tempBool;
+                        break;
+                    case "ShowPrintTotalCostCalculated":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPrintTotalCostCalculated = tempBool;
+                        break;
+                    case "ShowDigitalTotalCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDigitalTotalCost = tempBool;
+                        break;
+                    case "DigitalTotalCost":
+                        if (double.TryParse(childNode.InnerText, out tempDouble))
+                            this.DigitalTotalCost = tempDouble;
+                        break;
+                    case "ShowTVTotalCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowTVTotalCost = tempBool;
+                        break;
+                    case "TVTotalCost":
+                        if (double.TryParse(childNode.InnerText, out tempDouble))
+                            this.TVTotalCost = tempDouble;
+                        break;
+                    case "ApplyForAllInvestment":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ApplyForAllInvestment = tempBool;
+                        break;
+                    #endregion
+
+                    #region Other Numbers
+                    case "ActiveDays":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            _activeDays = tempInt;
+                        break;
+                    case "PrintAdsNumber":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            _printAdsNumber = tempInt;
+                        break;
+                    case "ShowActiveDays":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowActiveDays = tempBool;
+                        break;
+                    case "ShowPrintAdsNumber":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPrintAdsNumber = tempBool;
+                        break;
+                    case "ShowImpressions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowImpressions = tempBool;
+                        break;
+                    case "ShowDigitalCPM":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDigitalCPM = tempBool;
+                        break;
+                    case "Impressions":
+                        if (double.TryParse(childNode.InnerText, out tempDouble))
+                            this.Impressions = tempDouble;
+                        break;
+                    case "DigitalCPM":
+                        if (double.TryParse(childNode.InnerText, out tempDouble))
+                            this.DigitalCPM = tempDouble;
+                        break;
+                    case "ApplyForAllOtherNumbers":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ApplyForAllOtherNumbers = tempBool;
+                        break;
+                    #endregion
+
+                    #region Custom Comment
+                    case "ShowCustomComment":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowCustomComment = tempBool;
+                        break;
+                    case "CustomComment":
+                        this.CustomComment = childNode.InnerText;
+                        break;
+                    case "ApplyForAllCustomComment":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ApplyForAllCustomComment = tempBool;
+                        break;
+                    #endregion
+
+                    #region Logo
+                    case "ShowLogo":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowLogo = tempBool;
+                        break;
+                    case "Logo":
+                        if (string.IsNullOrEmpty(childNode.InnerText))
+                            this.Logo = null;
+                        else
+                            this.Logo = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
+                        break;
+                    case "ApplyForAllLogo":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ApplyForAllLogo = tempBool;
+                        break;
+                    #endregion
+
+                    #region Legend
+                    case "ShowLegend":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowLegend = tempBool;
+                        break;
+                    case "Legends":
+                        this.Legend.Clear();
+                        foreach (XmlNode legendNode in childNode.ChildNodes)
+                        {
+                            CalendarLegend legend = new CalendarLegend();
+                            legend.Deserialize(legendNode);
+                            this.Legend.Add(legend);
+                        }
+                        break;
+                    case "ApplyForAllLegend":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ApplyForAllLegend = tempBool;
+                        break;
+                    #endregion
+                }
+            }
+        }
+
+        public void UpdateLegend()
+        {
+            List<CalendarLegend> _newLegends = new List<CalendarLegend>();
+            List<CalendarLegend> _legendsFromDays = new List<CalendarLegend>();
+
+            CalendarLegend legend = new CalendarLegend();
+            legend.Code = "bw";
+            legend.Description = "black and white";
+            _legendsFromDays.Add(legend);
+
+            legend = new CalendarLegend();
+            legend.Code = "sc";
+            legend.Description = "spot color";
+            _legendsFromDays.Add(legend);
+
+            legend = new CalendarLegend();
+            legend.Code = "fc";
+            legend.Description = "full color";
+            _legendsFromDays.Add(legend);
+
+            foreach (CalendarDay day in this.Parent.Days)
+            {
+                if (!string.IsNullOrEmpty(day.Newspaper.PublicationName))
+                {
+                    legend = new CalendarLegend();
+                    legend.Description = day.Newspaper.PublicationName;
+                    legend.Code = day.Newspaper.PublicationAbbreviation;
+                    _legendsFromDays.Add(legend);
+                }
+                if (!string.IsNullOrEmpty(day.Newspaper.Section))
+                {
+                    legend = new CalendarLegend();
+                    legend.Description = day.Newspaper.Section;
+                    legend.Code = day.Newspaper.SectionAbbreviation;
+                    _legendsFromDays.Add(legend);
+                }
+            }
+            _newLegends.AddRange(this.Legend.Where(x => _legendsFromDays.Select(y => y.Description).Contains(x.Description)));
+            _newLegends.AddRange(_legendsFromDays.Where(x => !this.Legend.Select(y => y.Description).Contains(x.Description)));
+            this.Legend.Clear();
+            this.Legend.AddRange(_newLegends);
+        }
+    }
+
+    public class CalendarLegend
+    {
+        public string Code { get; set; }
+        public string Description { get; set; }
+        public bool Visible { get; set; }
+
+        public string StringRepresentation
+        {
+            get
+            {
+                return this.Code + " = " + this.Description;
+            }
+        }
+
+        public CalendarLegend()
+        {
+            this.Code = string.Empty;
+            this.Description = string.Empty;
+            this.Visible = true;
+        }
+
+        public string Serialize()
+        {
+            StringBuilder result = new StringBuilder();
+
+            result.AppendLine(@"<Code>" + this.Code.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Code>");
+            result.AppendLine(@"<Description>" + this.Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Description>");
+            result.AppendLine(@"<Visible>" + this.Visible.ToString() + @"</Visible>");
+            return result.ToString();
+        }
+
+        public void Deserialize(XmlNode node)
+        {
+            bool tempBool = false;
+
+            foreach (XmlNode childNode in node.ChildNodes)
+            {
+                switch (childNode.Name)
+                {
+                    case "Code":
+                        this.Code = childNode.InnerText;
+                        break;
+                    case "Description":
+                        this.Description = childNode.InnerText;
+                        break;
+                    case "Visible":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.Visible = tempBool;
+                        break;
+                }
+            }
+        }
+
+        public CalendarLegend Clone()
+        {
+            CalendarLegend result = new CalendarLegend();
+            result.Code = this.Code;
+            result.Description = this.Description;
+            result.Visible = this.Visible;
+            return result;
+        }
+    }
+}

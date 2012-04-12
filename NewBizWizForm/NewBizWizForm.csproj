@@ -1,0 +1,798 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{26FC7464-A2AC-4555-A8AD-8C91211749FE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NewBizWizForm</RootNamespace>
+    <AssemblyName>adSALESapp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>NewBizWiz.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>NewBizWizForm.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>09D43F4C16BCE002614E6C520BD1FB09C37F5054</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>NLDCertificate.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=7.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppManager.cs" />
+    <Compile Include="BusinessClasses\HelpManager.cs" />
+    <Compile Include="BusinessClasses\ListManager.cs" />
+    <Compile Include="ConfigurationClasses\RegistryHelper.cs" />
+    <Compile Include="BusinessClasses\MasterWizardManager.cs" />
+    <Compile Include="ConfigurationClasses\SettingsManager.cs" />
+    <Compile Include="ConfigurationClasses\ViewSettings.cs" />
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InteropClasses\HomeHelpers\CleanslateHelper.cs" />
+    <Compile Include="InteropClasses\HomeHelpers\SimpleSummaryHelper.cs" />
+    <Compile Include="InteropClasses\HomeHelpers\CoverHelper.cs" />
+    <Compile Include="InteropClasses\PowerPointHelper.cs">
+    </Compile>
+    <Compile Include="InteropClasses\HomeHelpers\ClientGoalsHelper.cs" />
+    <Compile Include="InteropClasses\HomeHelpers\TargetCustomersHelper.cs" />
+    <Compile Include="InteropClasses\HomeHelpers\LeadoffStatementsHelper.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabCableForms\CableOverviewControl.resx">
+      <DependentUpon>CableOverviewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabCableForms\TabCableMainPage.resx">
+      <DependentUpon>TabCableMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabCalendarForms\CalendarBuilderControl.resx">
+      <DependentUpon>CalendarBuilderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabCalendarForms\TabCalendarMainPage.resx">
+      <DependentUpon>TabCalendarMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode30Control.resx">
+      <DependentUpon>DashboardCode30Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode17Control.resx">
+      <DependentUpon>DashboardCode17Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode16Control.resx">
+      <DependentUpon>DashboardCode16Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode15Control.resx">
+      <DependentUpon>DashboardCode15Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode14Control.resx">
+      <DependentUpon>DashboardCode14Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode13Control.resx">
+      <DependentUpon>DashboardCode13Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode12Control.resx">
+      <DependentUpon>DashboardCode12Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode11Control.resx">
+      <DependentUpon>DashboardCode11Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode10Control.resx">
+      <DependentUpon>DashboardCode10Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode9Control.resx">
+      <DependentUpon>DashboardCode9Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode8Control.resx">
+      <DependentUpon>DashboardCode8Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode7Control.resx">
+      <DependentUpon>DashboardCode7Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode6Control.resx">
+      <DependentUpon>DashboardCode6Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode5Control.resx">
+      <DependentUpon>DashboardCode5Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode4Control.resx">
+      <DependentUpon>DashboardCode4Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode3Control.resx">
+      <DependentUpon>DashboardCode3Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode2Control.resx">
+      <DependentUpon>DashboardCode2Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode1Control.resx">
+      <DependentUpon>DashboardCode1Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\SimpleSummaryControl.resx">
+      <DependentUpon>SimpleSummaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\SimpleSummaryOutputControl.resx">
+      <DependentUpon>SimpleSummaryOutputControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\SimpleSummaryOutputContainer.resx">
+      <DependentUpon>SimpleSummaryOutputContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\SimpleSummaryItemControl.resx">
+      <DependentUpon>SimpleSummaryItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\SimpleSummaryItemContainer.resx">
+      <DependentUpon>SimpleSummaryItemContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\CoverControl.resx">
+      <DependentUpon>CoverControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\FormQuotes.resx">
+      <DependentUpon>FormQuotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabiPad\iPadControl.resx">
+      <DependentUpon>iPadControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabOnlineForms\TabOnlineMainPage.resx">
+      <DependentUpon>TabOnlineMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabMobileForms\MobileScheduleBuilderControl.resx">
+      <DependentUpon>MobileScheduleBuilderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabMobileForms\TabMobileMainPage.resx">
+      <DependentUpon>TabMobileMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabNewspaperForms\PrintScheduleBuilderControl.resx">
+      <DependentUpon>PrintScheduleBuilderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabNewspaperForms\TabNewspaperMainPage.resx">
+      <DependentUpon>TabNewspaperMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabOnlineForms\OnlineScheduleBuilderControl.resx">
+      <DependentUpon>OnlineScheduleBuilderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\ClientGoalsControl.resx">
+      <DependentUpon>ClientGoalsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\TargetCustomersControl.resx">
+      <DependentUpon>TargetCustomersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\LeadoffStatementControl.resx">
+      <DependentUpon>LeadoffStatementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\TabHomeMainPage.resx">
+      <DependentUpon>TabHomeMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\TabHomeOverviewControl.resx">
+      <DependentUpon>TabHomeOverviewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabiPad\TabiPadMainPage.resx">
+      <DependentUpon>TabiPadMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabRadioForms\RadioOverviewControl.resx">
+      <DependentUpon>RadioOverviewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabRadioForms\TabRadioMainPage.resx">
+      <DependentUpon>TabRadioMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabTVForms\TVScheduleBuilderControl.resx">
+      <DependentUpon>TVScheduleBuilderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabTVForms\TabTVMainPage.resx">
+      <DependentUpon>TabTVMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormLoadSplash.resx">
+      <DependentUpon>FormLoadSplash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormProgress.resx">
+      <DependentUpon>FormProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormSlideOutput.resx">
+      <DependentUpon>FormSlideOutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\WhiteBorderControlPage.resx">
+      <DependentUpon>WhiteBorderControlPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="InteropClasses\WinAPIHelper.cs" />
+    <Compile Include="TabCableForms\CableOverviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabCableForms\CableOverviewControl.Designer.cs">
+      <DependentUpon>CableOverviewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabCableForms\TabCableMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabCableForms\TabCableMainPage.Designer.cs">
+      <DependentUpon>TabCableMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabCalendarForms\CalendarBuilderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabCalendarForms\CalendarBuilderControl.Designer.cs">
+      <DependentUpon>CalendarBuilderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabCalendarForms\TabCalendarMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabCalendarForms\TabCalendarMainPage.Designer.cs">
+      <DependentUpon>TabCalendarMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode30Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode30Control.Designer.cs">
+      <DependentUpon>DashboardCode30Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode17Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode17Control.Designer.cs">
+      <DependentUpon>DashboardCode17Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode16Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode16Control.Designer.cs">
+      <DependentUpon>DashboardCode16Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode15Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode15Control.Designer.cs">
+      <DependentUpon>DashboardCode15Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode14Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode14Control.Designer.cs">
+      <DependentUpon>DashboardCode14Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode13Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode13Control.Designer.cs">
+      <DependentUpon>DashboardCode13Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode12Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode12Control.Designer.cs">
+      <DependentUpon>DashboardCode12Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode11Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode11Control.Designer.cs">
+      <DependentUpon>DashboardCode11Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode10Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode10Control.Designer.cs">
+      <DependentUpon>DashboardCode10Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode9Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode9Control.Designer.cs">
+      <DependentUpon>DashboardCode9Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode8Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode8Control.Designer.cs">
+      <DependentUpon>DashboardCode8Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode7Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode7Control.Designer.cs">
+      <DependentUpon>DashboardCode7Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode6Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode6Control.Designer.cs">
+      <DependentUpon>DashboardCode6Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode5Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode5Control.Designer.cs">
+      <DependentUpon>DashboardCode5Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode4Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode4Control.Designer.cs">
+      <DependentUpon>DashboardCode4Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode3Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode3Control.Designer.cs">
+      <DependentUpon>DashboardCode3Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode2Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode2Control.Designer.cs">
+      <DependentUpon>DashboardCode2Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode1Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode1Control.Designer.cs">
+      <DependentUpon>DashboardCode1Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\SimpleSummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\SimpleSummaryControl.Designer.cs">
+      <DependentUpon>SimpleSummaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\SimpleSummaryOutputControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\SimpleSummaryOutputControl.Designer.cs">
+      <DependentUpon>SimpleSummaryOutputControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\SimpleSummaryOutputContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\SimpleSummaryOutputContainer.Designer.cs">
+      <DependentUpon>SimpleSummaryOutputContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\SimpleSummaryItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\SimpleSummaryItemControl.Designer.cs">
+      <DependentUpon>SimpleSummaryItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\SimpleSummaryItemContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\SimpleSummaryItemContainer.Designer.cs">
+      <DependentUpon>SimpleSummaryItemContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\CoverControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\CoverControl.Designer.cs">
+      <DependentUpon>CoverControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\FormQuotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\FormQuotes.Designer.cs">
+      <DependentUpon>FormQuotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabiPad\iPadControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabiPad\iPadControl.Designer.cs">
+      <DependentUpon>iPadControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabOnlineForms\TabOnlineMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabOnlineForms\TabOnlineMainPage.Designer.cs">
+      <DependentUpon>TabOnlineMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabMobileForms\MobileScheduleBuilderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabMobileForms\MobileScheduleBuilderControl.Designer.cs">
+      <DependentUpon>MobileScheduleBuilderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabMobileForms\TabMobileMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabMobileForms\TabMobileMainPage.Designer.cs">
+      <DependentUpon>TabMobileMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabNewspaperForms\PrintScheduleBuilderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabNewspaperForms\PrintScheduleBuilderControl.Designer.cs">
+      <DependentUpon>PrintScheduleBuilderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabNewspaperForms\TabNewspaperMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabNewspaperForms\TabNewspaperMainPage.Designer.cs">
+      <DependentUpon>TabNewspaperMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabOnlineForms\OnlineScheduleBuilderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabOnlineForms\OnlineScheduleBuilderControl.Designer.cs">
+      <DependentUpon>OnlineScheduleBuilderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\ClientGoalsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\ClientGoalsControl.Designer.cs">
+      <DependentUpon>ClientGoalsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\TargetCustomersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\TargetCustomersControl.Designer.cs">
+      <DependentUpon>TargetCustomersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\LeadoffStatementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\LeadoffStatementControl.Designer.cs">
+      <DependentUpon>LeadoffStatementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\TabHomeMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\TabHomeMainPage.Designer.cs">
+      <DependentUpon>TabHomeMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\TabHomeOverviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\TabHomeOverviewControl.Designer.cs">
+      <DependentUpon>TabHomeOverviewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabiPad\TabiPadMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabiPad\TabiPadMainPage.Designer.cs">
+      <DependentUpon>TabiPadMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabRadioForms\RadioOverviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabRadioForms\RadioOverviewControl.Designer.cs">
+      <DependentUpon>RadioOverviewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabRadioForms\TabRadioMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabRadioForms\TabRadioMainPage.Designer.cs">
+      <DependentUpon>TabRadioMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabTVForms\TVScheduleBuilderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabTVForms\TVScheduleBuilderControl.Designer.cs">
+      <DependentUpon>TVScheduleBuilderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabTVForms\TabTVMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabTVForms\TabTVMainPage.Designer.cs">
+      <DependentUpon>TabTVMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormLoadSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormLoadSplash.designer.cs">
+      <DependentUpon>FormLoadSplash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormProgress.designer.cs">
+      <DependentUpon>FormProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormSlideOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormSlideOutput.designer.cs">
+      <DependentUpon>FormSlideOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\WhiteBorderControlPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolForms\WhiteBorderControlPage.Designer.cs">
+      <DependentUpon>WhiteBorderControlPage.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.PowerPoint">
+      <Guid>{91493440-5A91-11CF-8700-00AA0060263B}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <Private>True</Private>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\CalendarLittle.png" />
+    <None Include="Resources\DigitalLittle.png" />
+    <None Include="Resources\HomeStar.png" />
+    <None Include="Resources\HomeCalendarSmall.png" />
+    <None Include="Resources\HomeDigitalSmall.png" />
+    <None Include="Resources\HomeDigital.png" />
+    <None Include="Resources\HomeCalendar.png" />
+    <None Include="Resources\HomeRadioBig.png" />
+    <None Include="Resources\HomeTVBig.png" />
+    <None Include="Resources\HomeNewspaperBig.png" />
+    <None Include="Resources\HomeDigitalBig.png" />
+    <None Include="Resources\HomeCableSmall.png" />
+    <None Include="Resources\HomeRadioSmall.png" />
+    <None Include="Resources\HomeMobileSmall.png" />
+    <None Include="Resources\HomeOnlineSmall.png" />
+    <None Include="Resources\HomeTVSmall.png" />
+    <None Include="Resources\HomeNewspaperSmall.png" />
+    <None Include="Resources\SlideSharkLogo.png" />
+    <None Include="Resources\SlideRocketLogo.png" />
+    <None Include="Resources\DropboxLogo.png" />
+    <None Include="Resources\GoogleDocsLogo.png" />
+    <None Include="Resources\EmailiPadLogo.png" />
+    <None Include="Resources\AdConnectionsLogo.png" />
+    <None Include="Resources\WideOrbitLogo.png" />
+    <None Include="Resources\StrataLogo.png" />
+    <None Include="Resources\MarketronLogo.png" />
+    <None Include="Resources\OneDomainLogo.png" />
+    <None Include="Resources\OnlineLogo.png" />
+    <None Include="Resources\MobileLogo.png" />
+    <None Include="Resources\NewspaperLogo.png" />
+    <None Include="Resources\RedWarning.png" />
+    <None Include="Resources\Totals.png" />
+    <None Include="Resources\Date2.png" />
+    <None Include="Resources\SavedFiles.png" />
+    <None Include="Resources\SendSettings.png" />
+    <None Include="Resources\HomeMobileBig.png" />
+    <None Include="Resources\HomeOnlineBig.png" />
+    <None Include="Resources\Help.png" />
+    <None Include="Resources\CableLittle.png" />
+    <None Include="Resources\RadioLittle.png" />
+    <None Include="Resources\TVLittle.png" />
+    <None Include="Resources\CableLogo.png" />
+    <None Include="Resources\MobileScheduleTitle.png" />
+    <None Include="Resources\Advertiser.png" />
+    <None Include="Resources\HomeCable.png" />
+    <None Include="Resources\HomeRadio.png" />
+    <None Include="Resources\HomeTV.png" />
+    <None Include="Resources\Output.png" />
+    <None Include="Resources\DeleteSchedule.png" />
+    <None Include="Resources\NewspaperScheduleTitle.png" />
+    <None Include="Resources\OnlineScheduleTitle.png" />
+    <None Include="Resources\HomeMobile.png" />
+    <None Include="Resources\HomeOnline.png" />
+    <None Include="Resources\HomeNewspaper.png" />
+    <None Include="Resources\HomeHeader.png" />
+    <None Include="Resources\iPadLogo.png" />
+    <None Include="Resources\iPad.png" />
+    <None Include="Resources\CoverMiddle.png" />
+    <None Include="Resources\CleanslateMiddle.png" />
+    <None Include="Resources\SalesQuotes.png" />
+    <None Include="Resources\SalesRep.png" />
+    <None Include="Resources\OpenSchedule.png" />
+    <None Include="Resources\NewSchedule.png" />
+    <None Include="Resources\ScheduleBuilder.png" />
+    <None Include="Resources\Dates.png" />
+    <None Include="Resources\Date.png" />
+    <None Include="Resources\DecisionMaker.png" />
+    <None Include="Resources\ArrowDownGreenSmall.png" />
+    <None Include="Resources\ArrowUpGreenSmall.png" />
+    <None Include="Resources\SimpleSummary.png" />
+    <None Include="Resources\MasterWizardLogo.png" />
+    <None Include="Resources\DeleteTiny.png" />
+    <None Include="Resources\Calendar.png" />
+    <None Include="Resources\NewspaperLittle.png" />
+    <None Include="Resources\MobileLittle.png" />
+    <None Include="Resources\WebLittle.png" />
+    <None Include="Resources\TargetCustomer.png" />
+    <None Include="Resources\ClientGoals.png" />
+    <None Include="Resources\LeadoffStatement.png" />
+    <None Include="Resources\PowerPoint07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AdScheduleBuilder\AdScheduleBuilder.csproj">
+      <Project>{B096C96B-E96F-4223-AE01-B32D3730DC82}</Project>
+      <Name>AdScheduleBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CalendarBuilder\CalendarBuilder.csproj">
+      <Project>{167BC40B-C87E-4972-B8A2-903F6F160B6B}</Project>
+      <Name>CalendarBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MobileScheduleBuilder\MobileScheduleBuilder.csproj">
+      <Project>{F0D62D46-3148-4BC4-93F8-35DC31AC28AA}</Project>
+      <Name>MobileScheduleBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineScheduleBuilder\OnlineScheduleBuilder.csproj">
+      <Project>{1C9B33CD-0FE1-431C-BBC4-88463568F891}</Project>
+      <Name>OnlineScheduleBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TVScheduleBuilder\TVScheduleBuilder.csproj">
+      <Project>{56864914-D91D-4157-A441-E0FE1F95F25E}</Project>
+      <Name>TVScheduleBuilder</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe" sign /f d:\temp\NewBizWiz\NLDCertificate.pfx /t http://timestamp.verisign.com/scripts/timstamp.dll  /p bubbadude adSALESapp.exe</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

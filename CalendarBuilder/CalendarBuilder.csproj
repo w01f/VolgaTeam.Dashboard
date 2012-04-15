@@ -71,6 +71,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraNavBar.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -180,6 +183,7 @@
     </Compile>
     <Compile Include="InteropClasses\ExcelHelper.cs" />
     <Compile Include="InteropClasses\OutlookHelper.cs" />
+    <Compile Include="InteropClasses\OutputHelpers\CalendarHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -219,11 +223,11 @@
     <Compile Include="ToolForms\FormProgress.designer.cs">
       <DependentUpon>FormProgress.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormSelectOutput.cs">
+    <Compile Include="ToolForms\FormSelectPublication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ToolForms\FormSelectOutput.designer.cs">
-      <DependentUpon>FormSelectOutput.cs</DependentUpon>
+    <Compile Include="ToolForms\FormSelectPublication.Designer.cs">
+      <DependentUpon>FormSelectPublication.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormSlideOutput.cs">
       <SubType>Form</SubType>
@@ -302,8 +306,8 @@
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormSelectOutput.resx">
-      <DependentUpon>FormSelectOutput.cs</DependentUpon>
+    <EmbeddedResource Include="ToolForms\FormSelectPublication.resx">
+      <DependentUpon>FormSelectPublication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormSlideOutput.resx">
       <DependentUpon>FormSlideOutput.cs</DependentUpon>
@@ -442,16 +446,10 @@
     <None Include="Resources\RegularEmail.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Excel.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Grid.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Image.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="InteropClasses\OutputHelpers\" />
+    <None Include="Resources\GrayColor.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CloseDayProperties.png" />
@@ -509,6 +507,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TVInvestment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlackColor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlueColor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TealColor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OrangeColor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GreenColor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Calendar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

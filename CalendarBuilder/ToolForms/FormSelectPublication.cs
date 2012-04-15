@@ -2,9 +2,9 @@
 
 namespace CalendarBuilder.ToolForms
 {
-    public partial class FormSelectOutput : Form
+    public partial class FormSelectPublication : Form
     {
-        public FormSelectOutput()
+        public FormSelectPublication()
         {
             InitializeComponent();
         }

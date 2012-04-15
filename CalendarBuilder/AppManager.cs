@@ -20,6 +20,7 @@ namespace CalendarBuilder
                             SetCulture();
                             string fileName = from.ScheduleName.Trim();
                             BusinessClasses.SuccessModelsManager.Instance.Load();
+                            BusinessClasses.OutputManager.Instance.LoadCalendarTemplates();
                             BusinessClasses.CalendarManager.Instance.OpenCalendar(fileName, true);
                             FormMain.Instance.ShowDialog();
                             InteropClasses.PowerPointHelper.Instance.Disconnect();
@@ -50,6 +51,8 @@ namespace CalendarBuilder
                         SetCulture();
                         string fileName = dialog.FileName;
                         ConfigurationClasses.SettingsManager.Instance.SaveFolder = new FileInfo(fileName).Directory.FullName;
+                        BusinessClasses.SuccessModelsManager.Instance.Load();
+                        BusinessClasses.OutputManager.Instance.LoadCalendarTemplates();
                         BusinessClasses.CalendarManager.Instance.OpenCalendar(fileName);
                         FormMain.Instance.ShowDialog();
                         InteropClasses.PowerPointHelper.Instance.Disconnect();
@@ -67,6 +70,7 @@ namespace CalendarBuilder
                 ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                 SetCulture();
                 BusinessClasses.SuccessModelsManager.Instance.Load();
+                BusinessClasses.OutputManager.Instance.LoadCalendarTemplates();
                 BusinessClasses.CalendarManager.Instance.OpenCalendar(fileName);
                 FormMain.Instance.ShowDialog();
                 InteropClasses.PowerPointHelper.Instance.Disconnect();

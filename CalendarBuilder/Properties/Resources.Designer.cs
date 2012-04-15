@@ -67,9 +67,30 @@ namespace CalendarBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap BlackColor {
+            get {
+                object obj = ResourceManager.GetObject("BlackColor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap BlueColor {
+            get {
+                object obj = ResourceManager.GetObject("BlueColor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap BusinessName {
             get {
                 object obj = ResourceManager.GetObject("BusinessName", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Calendar {
+            get {
+                object obj = ResourceManager.GetObject("Calendar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -165,13 +186,6 @@ namespace CalendarBuilder.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Excel {
-            get {
-                object obj = ResourceManager.GetObject("Excel", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap Exit {
             get {
                 object obj = ResourceManager.GetObject("Exit", resourceCulture);
@@ -193,6 +207,20 @@ namespace CalendarBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap GrayColor {
+            get {
+                object obj = ResourceManager.GetObject("GrayColor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap GreenColor {
+            get {
+                object obj = ResourceManager.GetObject("GreenColor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Grid {
             get {
                 object obj = ResourceManager.GetObject("Grid", resourceCulture);
@@ -203,13 +231,6 @@ namespace CalendarBuilder.Properties {
         internal static System.Drawing.Bitmap Help {
             get {
                 object obj = ResourceManager.GetObject("Help", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Image {
-            get {
-                object obj = ResourceManager.GetObject("Image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -245,6 +266,13 @@ namespace CalendarBuilder.Properties {
         internal static System.Drawing.Bitmap NewspaperInvestment {
             get {
                 object obj = ResourceManager.GetObject("NewspaperInvestment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap OrangeColor {
+            get {
+                object obj = ResourceManager.GetObject("OrangeColor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -301,6 +329,13 @@ namespace CalendarBuilder.Properties {
         internal static System.Drawing.Bitmap SlideTitle {
             get {
                 object obj = ResourceManager.GetObject("SlideTitle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap TealColor {
+            get {
+                object obj = ResourceManager.GetObject("TealColor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

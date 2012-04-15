@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.laTitle = new System.Windows.Forms.Label();
-            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager = new DevExpress.XtraBars.BarManager();
             this.barToolbar = new DevExpress.XtraBars.Bar();
             this.barLargeButtonItemApply = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barLargeButtonItemClose = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -39,24 +38,26 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.pnNavbar = new System.Windows.Forms.Panel();
-            this.navBarControlDayProperties = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroupLegend = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarGroupControlContainerLegend = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.pnLegendTop = new System.Windows.Forms.Panel();
-            this.gridControlLegend = new DevExpress.XtraGrid.GridControl();
-            this.gridViewLegend = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumnVisible = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.gridColumnCode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemTextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.gridColumnDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.buttonXLegend = new DevComponents.DotNetBar.ButtonX();
-            this.pnLegendBottom = new System.Windows.Forms.Panel();
-            this.checkEditLegendApplyForAll = new DevExpress.XtraEditors.CheckEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+            this.navBarControlSlideInfo = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroupOtherNumbers = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarGroupControlContainerOtherNumbers = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
+            this.pnOtherNumbersTop = new System.Windows.Forms.Panel();
+            this.xtraScrollableControlOtherNumbers = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.spinEditOtherNumbersActiveDays = new DevExpress.XtraEditors.SpinEdit();
+            this.styleController = new DevExpress.XtraEditors.StyleController();
+            this.spinEditOtherNumbersDigitalCPM = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEditOtherNumbersImpressions = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEditOtherNumbersNewspaperAdsNumber = new DevExpress.XtraEditors.SpinEdit();
+            this.buttonXOtherNumbersDigitalCPM = new DevComponents.DotNetBar.ButtonX();
+            this.buttonXOtherNumbersImpressions = new DevComponents.DotNetBar.ButtonX();
+            this.buttonXOtherNumbersNewspaperAdsNumber = new DevComponents.DotNetBar.ButtonX();
+            this.buttonXOtherNumbersActiveDays = new DevComponents.DotNetBar.ButtonX();
+            this.pnOtherNumbersBottom = new System.Windows.Forms.Panel();
+            this.checkEditOtherNumbersApplyForAll = new DevExpress.XtraEditors.CheckEdit();
             this.navBarGroupControlContainerBasic = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.pnBasicTop = new System.Windows.Forms.Panel();
             this.xtraScrollableControlBasic = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.buttonXBasicBigDate = new DevComponents.DotNetBar.ButtonX();
             this.textEditBasicDecisionMaker = new DevExpress.XtraEditors.TextEdit();
             this.buttonXBasicDecisionMaker = new DevComponents.DotNetBar.ButtonX();
             this.textEditBasicBusinessName = new DevExpress.XtraEditors.TextEdit();
@@ -67,19 +68,6 @@
             this.laBasicCalendarMonth = new System.Windows.Forms.Label();
             this.pnBasicBottom = new System.Windows.Forms.Panel();
             this.checkEditBasicApplyForAll = new DevExpress.XtraEditors.CheckEdit();
-            this.navBarGroupControlContainerOtherNumbers = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.pnOtherNumbersTop = new System.Windows.Forms.Panel();
-            this.xtraScrollableControlOtherNumbers = new DevExpress.XtraEditors.XtraScrollableControl();
-            this.spinEditOtherNumbersActiveDays = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEditOtherNumbersDigitalCPM = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEditOtherNumbersImpressions = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEditOtherNumbersNewspaperAdsNumber = new DevExpress.XtraEditors.SpinEdit();
-            this.buttonXOtherNumbersDigitalCPM = new DevComponents.DotNetBar.ButtonX();
-            this.buttonXOtherNumbersImpressions = new DevComponents.DotNetBar.ButtonX();
-            this.buttonXOtherNumbersNewspaperAdsNumber = new DevComponents.DotNetBar.ButtonX();
-            this.buttonXOtherNumbersActiveDays = new DevComponents.DotNetBar.ButtonX();
-            this.pnOtherNumbersBottom = new System.Windows.Forms.Panel();
-            this.checkEditOtherNumbersApplyForAll = new DevExpress.XtraEditors.CheckEdit();
             this.navBarGroupControlContainerInvestment = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.pnInvestmentTop = new System.Windows.Forms.Panel();
             this.xtraScrollableControlInvestment = new DevExpress.XtraEditors.XtraScrollableControl();
@@ -105,25 +93,49 @@
             this.buttonXLogo = new DevComponents.DotNetBar.ButtonX();
             this.pnLogoBottom = new System.Windows.Forms.Panel();
             this.checkEditLogoApplyForAll = new DevExpress.XtraEditors.CheckEdit();
+            this.navBarGroupControlContainerLegend = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
+            this.pnLegendTop = new System.Windows.Forms.Panel();
+            this.gridControlLegend = new DevExpress.XtraGrid.GridControl();
+            this.gridViewLegend = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumnVisible = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.gridColumnCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemTextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.gridColumnDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.buttonXLegend = new DevComponents.DotNetBar.ButtonX();
+            this.pnLegendBottom = new System.Windows.Forms.Panel();
+            this.checkEditLegendApplyForAll = new DevExpress.XtraEditors.CheckEdit();
+            this.navBarGroupControlContainerThemeColor = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
+            this.pnThemeColorTop = new System.Windows.Forms.Panel();
+            this.buttonXThemeColorGreen = new DevComponents.DotNetBar.ButtonX();
+            this.buttonXThemeColorOrange = new DevComponents.DotNetBar.ButtonX();
+            this.buttonXThemeColorTeal = new DevComponents.DotNetBar.ButtonX();
+            this.buttonXThemeColorBlue = new DevComponents.DotNetBar.ButtonX();
+            this.buttonXThemeColorBlack = new DevComponents.DotNetBar.ButtonX();
+            this.buttonXThemeColorGray = new DevComponents.DotNetBar.ButtonX();
+            this.pnThemeColorBottom = new System.Windows.Forms.Panel();
+            this.checkEditThemeColorApplyForAll = new DevExpress.XtraEditors.CheckEdit();
             this.navBarGroupBasic = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupInvestment = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarGroupOtherNumbers = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupCustomComment = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupLogo = new DevExpress.XtraNavBar.NavBarGroup();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.navBarGroupLegend = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarGroupThemeColor = new DevExpress.XtraNavBar.NavBarGroup();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.pnNavbar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControlDayProperties)).BeginInit();
-            this.navBarControlDayProperties.SuspendLayout();
-            this.navBarGroupControlContainerLegend.SuspendLayout();
-            this.pnLegendTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlLegend)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewLegend)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit)).BeginInit();
-            this.pnLegendBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditLegendApplyForAll.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControlSlideInfo)).BeginInit();
+            this.navBarControlSlideInfo.SuspendLayout();
+            this.navBarGroupControlContainerOtherNumbers.SuspendLayout();
+            this.pnOtherNumbersTop.SuspendLayout();
+            this.xtraScrollableControlOtherNumbers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersActiveDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersDigitalCPM.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersImpressions.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersNewspaperAdsNumber.Properties)).BeginInit();
+            this.pnOtherNumbersBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditOtherNumbersApplyForAll.Properties)).BeginInit();
             this.navBarGroupControlContainerBasic.SuspendLayout();
             this.pnBasicTop.SuspendLayout();
             this.xtraScrollableControlBasic.SuspendLayout();
@@ -132,15 +144,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBasicSlideTitle.Properties)).BeginInit();
             this.pnBasicBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditBasicApplyForAll.Properties)).BeginInit();
-            this.navBarGroupControlContainerOtherNumbers.SuspendLayout();
-            this.pnOtherNumbersTop.SuspendLayout();
-            this.xtraScrollableControlOtherNumbers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersActiveDays.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersDigitalCPM.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersImpressions.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersNewspaperAdsNumber.Properties)).BeginInit();
-            this.pnOtherNumbersBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditOtherNumbersApplyForAll.Properties)).BeginInit();
             this.navBarGroupControlContainerInvestment.SuspendLayout();
             this.pnInvestmentTop.SuspendLayout();
             this.xtraScrollableControlInvestment.SuspendLayout();
@@ -159,6 +162,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureEditLogo.Properties)).BeginInit();
             this.pnLogoBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditLogoApplyForAll.Properties)).BeginInit();
+            this.navBarGroupControlContainerLegend.SuspendLayout();
+            this.pnLegendTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlLegend)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewLegend)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit)).BeginInit();
+            this.pnLegendBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditLegendApplyForAll.Properties)).BeginInit();
+            this.navBarGroupControlContainerThemeColor.SuspendLayout();
+            this.pnThemeColorTop.SuspendLayout();
+            this.pnThemeColorBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditThemeColorApplyForAll.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // laTitle
@@ -253,7 +268,7 @@
             // pnNavbar
             // 
             this.pnNavbar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnNavbar.Controls.Add(this.navBarControlDayProperties);
+            this.pnNavbar.Controls.Add(this.navBarControlSlideInfo);
             this.pnNavbar.Controls.Add(this.barDockControlLeft);
             this.pnNavbar.Controls.Add(this.barDockControlRight);
             this.pnNavbar.Controls.Add(this.barDockControlBottom);
@@ -264,206 +279,115 @@
             this.pnNavbar.Size = new System.Drawing.Size(300, 761);
             this.pnNavbar.TabIndex = 5;
             // 
-            // navBarControlDayProperties
+            // navBarControlSlideInfo
             // 
-            this.navBarControlDayProperties.ActiveGroup = this.navBarGroupLegend;
-            this.navBarControlDayProperties.BackColor = System.Drawing.Color.Transparent;
-            this.navBarControlDayProperties.Controls.Add(this.navBarGroupControlContainerBasic);
-            this.navBarControlDayProperties.Controls.Add(this.navBarGroupControlContainerOtherNumbers);
-            this.navBarControlDayProperties.Controls.Add(this.navBarGroupControlContainerInvestment);
-            this.navBarControlDayProperties.Controls.Add(this.navBarGroupControlContainerCustomComment);
-            this.navBarControlDayProperties.Controls.Add(this.navBarGroupControlContainerLogo);
-            this.navBarControlDayProperties.Controls.Add(this.navBarGroupControlContainerLegend);
-            this.navBarControlDayProperties.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navBarControlDayProperties.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
+            this.navBarControlSlideInfo.ActiveGroup = this.navBarGroupOtherNumbers;
+            this.navBarControlSlideInfo.BackColor = System.Drawing.Color.Transparent;
+            this.navBarControlSlideInfo.Controls.Add(this.navBarGroupControlContainerBasic);
+            this.navBarControlSlideInfo.Controls.Add(this.navBarGroupControlContainerOtherNumbers);
+            this.navBarControlSlideInfo.Controls.Add(this.navBarGroupControlContainerInvestment);
+            this.navBarControlSlideInfo.Controls.Add(this.navBarGroupControlContainerCustomComment);
+            this.navBarControlSlideInfo.Controls.Add(this.navBarGroupControlContainerLogo);
+            this.navBarControlSlideInfo.Controls.Add(this.navBarGroupControlContainerLegend);
+            this.navBarControlSlideInfo.Controls.Add(this.navBarGroupControlContainerThemeColor);
+            this.navBarControlSlideInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navBarControlSlideInfo.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroupBasic,
             this.navBarGroupInvestment,
             this.navBarGroupOtherNumbers,
             this.navBarGroupCustomComment,
             this.navBarGroupLogo,
-            this.navBarGroupLegend});
-            this.navBarControlDayProperties.Location = new System.Drawing.Point(0, 44);
-            this.navBarControlDayProperties.Name = "navBarControlDayProperties";
-            this.navBarControlDayProperties.OptionsNavPane.ExpandedWidth = 212;
-            this.navBarControlDayProperties.OptionsNavPane.ShowExpandButton = false;
-            this.navBarControlDayProperties.OptionsNavPane.ShowOverflowButton = false;
-            this.navBarControlDayProperties.OptionsNavPane.ShowOverflowPanel = false;
-            this.navBarControlDayProperties.OptionsNavPane.ShowSplitter = false;
-            this.navBarControlDayProperties.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.ExplorerBar;
-            this.navBarControlDayProperties.Size = new System.Drawing.Size(296, 713);
-            this.navBarControlDayProperties.TabIndex = 4;
-            this.navBarControlDayProperties.Text = "navBarControl1";
-            this.navBarControlDayProperties.View = new DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator();
+            this.navBarGroupLegend,
+            this.navBarGroupThemeColor});
+            this.navBarControlSlideInfo.Location = new System.Drawing.Point(0, 44);
+            this.navBarControlSlideInfo.Name = "navBarControlSlideInfo";
+            this.navBarControlSlideInfo.OptionsNavPane.ExpandedWidth = 212;
+            this.navBarControlSlideInfo.OptionsNavPane.ShowExpandButton = false;
+            this.navBarControlSlideInfo.OptionsNavPane.ShowOverflowButton = false;
+            this.navBarControlSlideInfo.OptionsNavPane.ShowOverflowPanel = false;
+            this.navBarControlSlideInfo.OptionsNavPane.ShowSplitter = false;
+            this.navBarControlSlideInfo.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.ExplorerBar;
+            this.navBarControlSlideInfo.Size = new System.Drawing.Size(296, 713);
+            this.navBarControlSlideInfo.TabIndex = 4;
+            this.navBarControlSlideInfo.Text = "navBarControl1";
+            this.navBarControlSlideInfo.View = new DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator();
             // 
-            // navBarGroupLegend
+            // navBarGroupOtherNumbers
             // 
-            this.navBarGroupLegend.Appearance.Font = new System.Drawing.Font("Arial", 15.75F);
-            this.navBarGroupLegend.Appearance.Options.UseFont = true;
-            this.navBarGroupLegend.Caption = "Legend Codes";
-            this.navBarGroupLegend.ControlContainer = this.navBarGroupControlContainerLegend;
-            this.navBarGroupLegend.Expanded = true;
-            this.navBarGroupLegend.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Small;
-            this.navBarGroupLegend.GroupClientHeight = 80;
-            this.navBarGroupLegend.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroupLegend.Name = "navBarGroupLegend";
+            this.navBarGroupOtherNumbers.Appearance.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.navBarGroupOtherNumbers.Appearance.Options.UseFont = true;
+            this.navBarGroupOtherNumbers.Caption = "Other Numbers";
+            this.navBarGroupOtherNumbers.ControlContainer = this.navBarGroupControlContainerOtherNumbers;
+            this.navBarGroupOtherNumbers.Expanded = true;
+            this.navBarGroupOtherNumbers.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Small;
+            this.navBarGroupOtherNumbers.GroupClientHeight = 80;
+            this.navBarGroupOtherNumbers.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarGroupOtherNumbers.Name = "navBarGroupOtherNumbers";
             // 
-            // navBarGroupControlContainerLegend
+            // navBarGroupControlContainerOtherNumbers
             // 
-            this.navBarGroupControlContainerLegend.Controls.Add(this.pnLegendTop);
-            this.navBarGroupControlContainerLegend.Controls.Add(this.pnLegendBottom);
-            this.navBarGroupControlContainerLegend.Name = "navBarGroupControlContainerLegend";
-            this.navBarGroupControlContainerLegend.Size = new System.Drawing.Size(294, 457);
-            this.navBarGroupControlContainerLegend.TabIndex = 5;
+            this.navBarGroupControlContainerOtherNumbers.Controls.Add(this.pnOtherNumbersTop);
+            this.navBarGroupControlContainerOtherNumbers.Controls.Add(this.pnOtherNumbersBottom);
+            this.navBarGroupControlContainerOtherNumbers.Name = "navBarGroupControlContainerOtherNumbers";
+            this.navBarGroupControlContainerOtherNumbers.Size = new System.Drawing.Size(294, 418);
+            this.navBarGroupControlContainerOtherNumbers.TabIndex = 0;
             // 
-            // pnLegendTop
+            // pnOtherNumbersTop
             // 
-            this.pnLegendTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.pnLegendTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnLegendTop.Controls.Add(this.gridControlLegend);
-            this.pnLegendTop.Controls.Add(this.buttonXLegend);
-            this.pnLegendTop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnLegendTop.Location = new System.Drawing.Point(0, 0);
-            this.pnLegendTop.Name = "pnLegendTop";
-            this.pnLegendTop.Size = new System.Drawing.Size(294, 405);
-            this.pnLegendTop.TabIndex = 12;
+            this.pnOtherNumbersTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.pnOtherNumbersTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnOtherNumbersTop.Controls.Add(this.xtraScrollableControlOtherNumbers);
+            this.pnOtherNumbersTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnOtherNumbersTop.Location = new System.Drawing.Point(0, 0);
+            this.pnOtherNumbersTop.Name = "pnOtherNumbersTop";
+            this.pnOtherNumbersTop.Size = new System.Drawing.Size(294, 381);
+            this.pnOtherNumbersTop.TabIndex = 7;
             // 
-            // gridControlLegend
+            // xtraScrollableControlOtherNumbers
             // 
-            this.gridControlLegend.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControlLegend.Enabled = false;
-            this.gridControlLegend.Location = new System.Drawing.Point(0, 43);
-            this.gridControlLegend.MainView = this.gridViewLegend;
-            this.gridControlLegend.Name = "gridControlLegend";
-            this.gridControlLegend.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemCheckEdit,
-            this.repositoryItemTextEdit});
-            this.gridControlLegend.Size = new System.Drawing.Size(290, 360);
-            this.gridControlLegend.TabIndex = 2;
-            this.gridControlLegend.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewLegend});
+            this.xtraScrollableControlOtherNumbers.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.xtraScrollableControlOtherNumbers.Appearance.Options.UseBackColor = true;
+            this.xtraScrollableControlOtherNumbers.Controls.Add(this.spinEditOtherNumbersActiveDays);
+            this.xtraScrollableControlOtherNumbers.Controls.Add(this.spinEditOtherNumbersDigitalCPM);
+            this.xtraScrollableControlOtherNumbers.Controls.Add(this.spinEditOtherNumbersImpressions);
+            this.xtraScrollableControlOtherNumbers.Controls.Add(this.spinEditOtherNumbersNewspaperAdsNumber);
+            this.xtraScrollableControlOtherNumbers.Controls.Add(this.buttonXOtherNumbersDigitalCPM);
+            this.xtraScrollableControlOtherNumbers.Controls.Add(this.buttonXOtherNumbersImpressions);
+            this.xtraScrollableControlOtherNumbers.Controls.Add(this.buttonXOtherNumbersNewspaperAdsNumber);
+            this.xtraScrollableControlOtherNumbers.Controls.Add(this.buttonXOtherNumbersActiveDays);
+            this.xtraScrollableControlOtherNumbers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraScrollableControlOtherNumbers.Location = new System.Drawing.Point(0, 0);
+            this.xtraScrollableControlOtherNumbers.Name = "xtraScrollableControlOtherNumbers";
+            this.xtraScrollableControlOtherNumbers.Size = new System.Drawing.Size(290, 377);
+            this.xtraScrollableControlOtherNumbers.TabIndex = 2;
             // 
-            // gridViewLegend
+            // spinEditOtherNumbersActiveDays
             // 
-            this.gridViewLegend.Appearance.HorzLine.BackColor = System.Drawing.Color.Black;
-            this.gridViewLegend.Appearance.HorzLine.Options.UseBackColor = true;
-            this.gridViewLegend.Appearance.Preview.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.gridViewLegend.Appearance.Preview.Options.UseFont = true;
-            this.gridViewLegend.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.gridViewLegend.Appearance.Row.Options.UseFont = true;
-            this.gridViewLegend.Appearance.Row.Options.UseTextOptions = true;
-            this.gridViewLegend.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridViewLegend.Appearance.VertLine.BackColor = System.Drawing.Color.Black;
-            this.gridViewLegend.Appearance.VertLine.Options.UseBackColor = true;
-            this.gridViewLegend.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumnVisible,
-            this.gridColumnCode,
-            this.gridColumnDescription});
-            this.gridViewLegend.GridControl = this.gridControlLegend;
-            this.gridViewLegend.Name = "gridViewLegend";
-            this.gridViewLegend.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridViewLegend.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridViewLegend.OptionsBehavior.AutoPopulateColumns = false;
-            this.gridViewLegend.OptionsCustomization.AllowColumnMoving = false;
-            this.gridViewLegend.OptionsCustomization.AllowColumnResizing = false;
-            this.gridViewLegend.OptionsCustomization.AllowFilter = false;
-            this.gridViewLegend.OptionsCustomization.AllowGroup = false;
-            this.gridViewLegend.OptionsCustomization.AllowQuickHideColumns = false;
-            this.gridViewLegend.OptionsCustomization.AllowSort = false;
-            this.gridViewLegend.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridViewLegend.OptionsSelection.EnableAppearanceFocusedRow = false;
-            this.gridViewLegend.OptionsSelection.EnableAppearanceHideSelection = false;
-            this.gridViewLegend.OptionsView.AutoCalcPreviewLineCount = true;
-            this.gridViewLegend.OptionsView.ShowColumnHeaders = false;
-            this.gridViewLegend.OptionsView.ShowGroupExpandCollapseButtons = false;
-            this.gridViewLegend.OptionsView.ShowGroupPanel = false;
-            this.gridViewLegend.OptionsView.ShowIndicator = false;
-            this.gridViewLegend.OptionsView.ShowPreview = true;
-            this.gridViewLegend.PreviewFieldName = "Description";
-            this.gridViewLegend.PreviewLineCount = 1;
-            this.gridViewLegend.RowHeight = 40;
-            this.gridViewLegend.RowSeparatorHeight = 5;
-            // 
-            // gridColumnVisible
-            // 
-            this.gridColumnVisible.Caption = "Visible";
-            this.gridColumnVisible.ColumnEdit = this.repositoryItemCheckEdit;
-            this.gridColumnVisible.FieldName = "Visible";
-            this.gridColumnVisible.Name = "gridColumnVisible";
-            this.gridColumnVisible.OptionsColumn.FixedWidth = true;
-            this.gridColumnVisible.Visible = true;
-            this.gridColumnVisible.VisibleIndex = 0;
-            this.gridColumnVisible.Width = 63;
-            // 
-            // repositoryItemCheckEdit
-            // 
-            this.repositoryItemCheckEdit.AutoHeight = false;
-            this.repositoryItemCheckEdit.Name = "repositoryItemCheckEdit";
-            // 
-            // gridColumnCode
-            // 
-            this.gridColumnCode.Caption = "Code";
-            this.gridColumnCode.ColumnEdit = this.repositoryItemTextEdit;
-            this.gridColumnCode.FieldName = "Code";
-            this.gridColumnCode.Name = "gridColumnCode";
-            this.gridColumnCode.OptionsColumn.FixedWidth = true;
-            this.gridColumnCode.Visible = true;
-            this.gridColumnCode.VisibleIndex = 1;
-            this.gridColumnCode.Width = 97;
-            // 
-            // repositoryItemTextEdit
-            // 
-            this.repositoryItemTextEdit.AutoHeight = false;
-            this.repositoryItemTextEdit.Name = "repositoryItemTextEdit";
-            // 
-            // gridColumnDescription
-            // 
-            this.gridColumnDescription.Caption = "Description";
-            this.gridColumnDescription.FieldName = "Description";
-            this.gridColumnDescription.Name = "gridColumnDescription";
-            // 
-            // buttonXLegend
-            // 
-            this.buttonXLegend.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonXLegend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonXLegend.AutoCheckOnClick = true;
-            this.buttonXLegend.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXLegend.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonXLegend.Image = global::CalendarBuilder.Properties.Resources.Legend;
-            this.buttonXLegend.Location = new System.Drawing.Point(12, 8);
-            this.buttonXLegend.Name = "buttonXLegend";
-            this.buttonXLegend.Size = new System.Drawing.Size(267, 29);
-            this.buttonXLegend.TabIndex = 0;
-            this.buttonXLegend.Text = "A. Slide Legend Codes";
-            this.buttonXLegend.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.buttonXLegend.CheckedChanged += new System.EventHandler(this.buttonXLegend_CheckedChanged);
-            // 
-            // pnLegendBottom
-            // 
-            this.pnLegendBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.pnLegendBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnLegendBottom.Controls.Add(this.checkEditLegendApplyForAll);
-            this.pnLegendBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnLegendBottom.Location = new System.Drawing.Point(0, 405);
-            this.pnLegendBottom.Name = "pnLegendBottom";
-            this.pnLegendBottom.Size = new System.Drawing.Size(294, 52);
-            this.pnLegendBottom.TabIndex = 11;
-            // 
-            // checkEditLegendApplyForAll
-            // 
-            this.checkEditLegendApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkEditLegendApplyForAll.Location = new System.Drawing.Point(10, 6);
-            this.checkEditLegendApplyForAll.MenuManager = this.barManager;
-            this.checkEditLegendApplyForAll.Name = "checkEditLegendApplyForAll";
-            this.checkEditLegendApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
-            this.checkEditLegendApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.checkEditLegendApplyForAll.Properties.Caption = "Show these EXACT SAME LEGEND CODES on ALL Calendar Slides";
-            this.checkEditLegendApplyForAll.Size = new System.Drawing.Size(277, 37);
-            this.checkEditLegendApplyForAll.StyleController = this.styleController;
-            this.checkEditLegendApplyForAll.TabIndex = 8;
+            this.spinEditOtherNumbersActiveDays.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditOtherNumbersActiveDays.Enabled = false;
+            this.spinEditOtherNumbersActiveDays.Location = new System.Drawing.Point(43, 43);
+            this.spinEditOtherNumbersActiveDays.Name = "spinEditOtherNumbersActiveDays";
+            this.spinEditOtherNumbersActiveDays.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.spinEditOtherNumbersActiveDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEditOtherNumbersActiveDays.Properties.DisplayFormat.FormatString = "#,##0";
+            this.spinEditOtherNumbersActiveDays.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.spinEditOtherNumbersActiveDays.Properties.EditFormat.FormatString = "#,##0";
+            this.spinEditOtherNumbersActiveDays.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.spinEditOtherNumbersActiveDays.Properties.IsFloatValue = false;
+            this.spinEditOtherNumbersActiveDays.Properties.Mask.EditMask = "N00";
+            this.spinEditOtherNumbersActiveDays.Properties.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.spinEditOtherNumbersActiveDays.Size = new System.Drawing.Size(128, 22);
+            this.spinEditOtherNumbersActiveDays.StyleController = this.styleController;
+            this.spinEditOtherNumbersActiveDays.TabIndex = 26;
             // 
             // styleController
             // 
@@ -480,12 +404,182 @@
             this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
             this.styleController.AppearanceReadOnly.Options.UseFont = true;
             // 
+            // spinEditOtherNumbersDigitalCPM
+            // 
+            this.spinEditOtherNumbersDigitalCPM.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditOtherNumbersDigitalCPM.Enabled = false;
+            this.spinEditOtherNumbersDigitalCPM.Location = new System.Drawing.Point(43, 240);
+            this.spinEditOtherNumbersDigitalCPM.Name = "spinEditOtherNumbersDigitalCPM";
+            this.spinEditOtherNumbersDigitalCPM.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.spinEditOtherNumbersDigitalCPM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEditOtherNumbersDigitalCPM.Properties.DisplayFormat.FormatString = "$#,###.0";
+            this.spinEditOtherNumbersDigitalCPM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.spinEditOtherNumbersDigitalCPM.Properties.EditFormat.FormatString = "$#,###.0";
+            this.spinEditOtherNumbersDigitalCPM.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.spinEditOtherNumbersDigitalCPM.Properties.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.spinEditOtherNumbersDigitalCPM.Size = new System.Drawing.Size(128, 22);
+            this.spinEditOtherNumbersDigitalCPM.StyleController = this.styleController;
+            this.spinEditOtherNumbersDigitalCPM.TabIndex = 25;
+            // 
+            // spinEditOtherNumbersImpressions
+            // 
+            this.spinEditOtherNumbersImpressions.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditOtherNumbersImpressions.Enabled = false;
+            this.spinEditOtherNumbersImpressions.Location = new System.Drawing.Point(43, 173);
+            this.spinEditOtherNumbersImpressions.Name = "spinEditOtherNumbersImpressions";
+            this.spinEditOtherNumbersImpressions.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.spinEditOtherNumbersImpressions.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEditOtherNumbersImpressions.Properties.DisplayFormat.FormatString = "#,##0.0";
+            this.spinEditOtherNumbersImpressions.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.spinEditOtherNumbersImpressions.Properties.EditFormat.FormatString = "#,##0.0";
+            this.spinEditOtherNumbersImpressions.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.spinEditOtherNumbersImpressions.Properties.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.spinEditOtherNumbersImpressions.Size = new System.Drawing.Size(128, 22);
+            this.spinEditOtherNumbersImpressions.StyleController = this.styleController;
+            this.spinEditOtherNumbersImpressions.TabIndex = 24;
+            // 
+            // spinEditOtherNumbersNewspaperAdsNumber
+            // 
+            this.spinEditOtherNumbersNewspaperAdsNumber.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditOtherNumbersNewspaperAdsNumber.Enabled = false;
+            this.spinEditOtherNumbersNewspaperAdsNumber.Location = new System.Drawing.Point(43, 107);
+            this.spinEditOtherNumbersNewspaperAdsNumber.Name = "spinEditOtherNumbersNewspaperAdsNumber";
+            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.DisplayFormat.FormatString = "#,##0";
+            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.EditFormat.FormatString = "#,##0";
+            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.IsFloatValue = false;
+            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.Mask.EditMask = "N00";
+            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.spinEditOtherNumbersNewspaperAdsNumber.Size = new System.Drawing.Size(128, 22);
+            this.spinEditOtherNumbersNewspaperAdsNumber.StyleController = this.styleController;
+            this.spinEditOtherNumbersNewspaperAdsNumber.TabIndex = 23;
+            // 
+            // buttonXOtherNumbersDigitalCPM
+            // 
+            this.buttonXOtherNumbersDigitalCPM.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXOtherNumbersDigitalCPM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXOtherNumbersDigitalCPM.AutoCheckOnClick = true;
+            this.buttonXOtherNumbersDigitalCPM.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXOtherNumbersDigitalCPM.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonXOtherNumbersDigitalCPM.Image = global::CalendarBuilder.Properties.Resources.DigitalCPM;
+            this.buttonXOtherNumbersDigitalCPM.Location = new System.Drawing.Point(12, 205);
+            this.buttonXOtherNumbersDigitalCPM.Name = "buttonXOtherNumbersDigitalCPM";
+            this.buttonXOtherNumbersDigitalCPM.Size = new System.Drawing.Size(267, 29);
+            this.buttonXOtherNumbersDigitalCPM.TabIndex = 6;
+            this.buttonXOtherNumbersDigitalCPM.Text = "E. Digital CPM";
+            this.buttonXOtherNumbersDigitalCPM.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXOtherNumbersDigitalCPM.CheckedChanged += new System.EventHandler(this.buttonXOtherNumbersDigitalCPM_CheckedChanged);
+            // 
+            // buttonXOtherNumbersImpressions
+            // 
+            this.buttonXOtherNumbersImpressions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXOtherNumbersImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXOtherNumbersImpressions.AutoCheckOnClick = true;
+            this.buttonXOtherNumbersImpressions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXOtherNumbersImpressions.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonXOtherNumbersImpressions.Image = global::CalendarBuilder.Properties.Resources.DigitalInvestment;
+            this.buttonXOtherNumbersImpressions.Location = new System.Drawing.Point(12, 138);
+            this.buttonXOtherNumbersImpressions.Name = "buttonXOtherNumbersImpressions";
+            this.buttonXOtherNumbersImpressions.Size = new System.Drawing.Size(267, 29);
+            this.buttonXOtherNumbersImpressions.TabIndex = 4;
+            this.buttonXOtherNumbersImpressions.Text = "D. Monthly Impressions";
+            this.buttonXOtherNumbersImpressions.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXOtherNumbersImpressions.CheckedChanged += new System.EventHandler(this.buttonXOtherNumbersImpressions_CheckedChanged);
+            // 
+            // buttonXOtherNumbersNewspaperAdsNumber
+            // 
+            this.buttonXOtherNumbersNewspaperAdsNumber.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXOtherNumbersNewspaperAdsNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXOtherNumbersNewspaperAdsNumber.AutoCheckOnClick = true;
+            this.buttonXOtherNumbersNewspaperAdsNumber.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXOtherNumbersNewspaperAdsNumber.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonXOtherNumbersNewspaperAdsNumber.Image = global::CalendarBuilder.Properties.Resources.NewspaperInvestment;
+            this.buttonXOtherNumbersNewspaperAdsNumber.Location = new System.Drawing.Point(12, 72);
+            this.buttonXOtherNumbersNewspaperAdsNumber.Name = "buttonXOtherNumbersNewspaperAdsNumber";
+            this.buttonXOtherNumbersNewspaperAdsNumber.Size = new System.Drawing.Size(267, 29);
+            this.buttonXOtherNumbersNewspaperAdsNumber.TabIndex = 2;
+            this.buttonXOtherNumbersNewspaperAdsNumber.Text = "B. # of Newspaper Ads";
+            this.buttonXOtherNumbersNewspaperAdsNumber.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXOtherNumbersNewspaperAdsNumber.CheckedChanged += new System.EventHandler(this.buttonXOtherNumbersNewspaperAdsNumber_CheckedChanged);
+            // 
+            // buttonXOtherNumbersActiveDays
+            // 
+            this.buttonXOtherNumbersActiveDays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXOtherNumbersActiveDays.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXOtherNumbersActiveDays.AutoCheckOnClick = true;
+            this.buttonXOtherNumbersActiveDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXOtherNumbersActiveDays.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonXOtherNumbersActiveDays.Image = global::CalendarBuilder.Properties.Resources.NewspaperInvestment;
+            this.buttonXOtherNumbersActiveDays.Location = new System.Drawing.Point(12, 8);
+            this.buttonXOtherNumbersActiveDays.Name = "buttonXOtherNumbersActiveDays";
+            this.buttonXOtherNumbersActiveDays.Size = new System.Drawing.Size(267, 29);
+            this.buttonXOtherNumbersActiveDays.TabIndex = 0;
+            this.buttonXOtherNumbersActiveDays.Text = "A. # of Active Days";
+            this.buttonXOtherNumbersActiveDays.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXOtherNumbersActiveDays.CheckedChanged += new System.EventHandler(this.buttonXOtherNumbersActiveDays_CheckedChanged);
+            // 
+            // pnOtherNumbersBottom
+            // 
+            this.pnOtherNumbersBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.pnOtherNumbersBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnOtherNumbersBottom.Controls.Add(this.checkEditOtherNumbersApplyForAll);
+            this.pnOtherNumbersBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnOtherNumbersBottom.Location = new System.Drawing.Point(0, 381);
+            this.pnOtherNumbersBottom.Name = "pnOtherNumbersBottom";
+            this.pnOtherNumbersBottom.Size = new System.Drawing.Size(294, 37);
+            this.pnOtherNumbersBottom.TabIndex = 6;
+            // 
+            // checkEditOtherNumbersApplyForAll
+            // 
+            this.checkEditOtherNumbersApplyForAll.Location = new System.Drawing.Point(10, 6);
+            this.checkEditOtherNumbersApplyForAll.MenuManager = this.barManager;
+            this.checkEditOtherNumbersApplyForAll.Name = "checkEditOtherNumbersApplyForAll";
+            this.checkEditOtherNumbersApplyForAll.Properties.AutoWidth = true;
+            this.checkEditOtherNumbersApplyForAll.Properties.Caption = "Show on ALL Slides";
+            this.checkEditOtherNumbersApplyForAll.Size = new System.Drawing.Size(140, 21);
+            this.checkEditOtherNumbersApplyForAll.StyleController = this.styleController;
+            this.checkEditOtherNumbersApplyForAll.TabIndex = 8;
+            // 
             // navBarGroupControlContainerBasic
             // 
             this.navBarGroupControlContainerBasic.Controls.Add(this.pnBasicTop);
             this.navBarGroupControlContainerBasic.Controls.Add(this.pnBasicBottom);
             this.navBarGroupControlContainerBasic.Name = "navBarGroupControlContainerBasic";
-            this.navBarGroupControlContainerBasic.Size = new System.Drawing.Size(294, 457);
+            this.navBarGroupControlContainerBasic.Size = new System.Drawing.Size(294, 418);
             this.navBarGroupControlContainerBasic.TabIndex = 1;
             // 
             // pnBasicTop
@@ -496,13 +590,14 @@
             this.pnBasicTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnBasicTop.Location = new System.Drawing.Point(0, 0);
             this.pnBasicTop.Name = "pnBasicTop";
-            this.pnBasicTop.Size = new System.Drawing.Size(294, 420);
+            this.pnBasicTop.Size = new System.Drawing.Size(294, 381);
             this.pnBasicTop.TabIndex = 3;
             // 
             // xtraScrollableControlBasic
             // 
             this.xtraScrollableControlBasic.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.xtraScrollableControlBasic.Appearance.Options.UseBackColor = true;
+            this.xtraScrollableControlBasic.Controls.Add(this.buttonXBasicBigDate);
             this.xtraScrollableControlBasic.Controls.Add(this.textEditBasicDecisionMaker);
             this.xtraScrollableControlBasic.Controls.Add(this.buttonXBasicDecisionMaker);
             this.xtraScrollableControlBasic.Controls.Add(this.textEditBasicBusinessName);
@@ -514,8 +609,24 @@
             this.xtraScrollableControlBasic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraScrollableControlBasic.Location = new System.Drawing.Point(0, 0);
             this.xtraScrollableControlBasic.Name = "xtraScrollableControlBasic";
-            this.xtraScrollableControlBasic.Size = new System.Drawing.Size(290, 416);
+            this.xtraScrollableControlBasic.Size = new System.Drawing.Size(290, 377);
             this.xtraScrollableControlBasic.TabIndex = 2;
+            // 
+            // buttonXBasicBigDate
+            // 
+            this.buttonXBasicBigDate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXBasicBigDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXBasicBigDate.AutoCheckOnClick = true;
+            this.buttonXBasicBigDate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXBasicBigDate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonXBasicBigDate.Image = global::CalendarBuilder.Properties.Resources.CalendarMonth;
+            this.buttonXBasicBigDate.Location = new System.Drawing.Point(12, 273);
+            this.buttonXBasicBigDate.Name = "buttonXBasicBigDate";
+            this.buttonXBasicBigDate.Size = new System.Drawing.Size(267, 29);
+            this.buttonXBasicBigDate.TabIndex = 8;
+            this.buttonXBasicBigDate.Text = "E. Show Big Date";
+            this.buttonXBasicBigDate.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             // 
             // textEditBasicDecisionMaker
             // 
@@ -642,7 +753,7 @@
             this.pnBasicBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnBasicBottom.Controls.Add(this.checkEditBasicApplyForAll);
             this.pnBasicBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnBasicBottom.Location = new System.Drawing.Point(0, 420);
+            this.pnBasicBottom.Location = new System.Drawing.Point(0, 381);
             this.pnBasicBottom.Name = "pnBasicBottom";
             this.pnBasicBottom.Size = new System.Drawing.Size(294, 37);
             this.pnBasicBottom.TabIndex = 4;
@@ -658,247 +769,12 @@
             this.checkEditBasicApplyForAll.StyleController = this.styleController;
             this.checkEditBasicApplyForAll.TabIndex = 8;
             // 
-            // navBarGroupControlContainerOtherNumbers
-            // 
-            this.navBarGroupControlContainerOtherNumbers.Controls.Add(this.pnOtherNumbersTop);
-            this.navBarGroupControlContainerOtherNumbers.Controls.Add(this.pnOtherNumbersBottom);
-            this.navBarGroupControlContainerOtherNumbers.Name = "navBarGroupControlContainerOtherNumbers";
-            this.navBarGroupControlContainerOtherNumbers.Size = new System.Drawing.Size(294, 457);
-            this.navBarGroupControlContainerOtherNumbers.TabIndex = 0;
-            // 
-            // pnOtherNumbersTop
-            // 
-            this.pnOtherNumbersTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.pnOtherNumbersTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnOtherNumbersTop.Controls.Add(this.xtraScrollableControlOtherNumbers);
-            this.pnOtherNumbersTop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnOtherNumbersTop.Location = new System.Drawing.Point(0, 0);
-            this.pnOtherNumbersTop.Name = "pnOtherNumbersTop";
-            this.pnOtherNumbersTop.Size = new System.Drawing.Size(294, 420);
-            this.pnOtherNumbersTop.TabIndex = 7;
-            // 
-            // xtraScrollableControlOtherNumbers
-            // 
-            this.xtraScrollableControlOtherNumbers.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.xtraScrollableControlOtherNumbers.Appearance.Options.UseBackColor = true;
-            this.xtraScrollableControlOtherNumbers.Controls.Add(this.spinEditOtherNumbersActiveDays);
-            this.xtraScrollableControlOtherNumbers.Controls.Add(this.spinEditOtherNumbersDigitalCPM);
-            this.xtraScrollableControlOtherNumbers.Controls.Add(this.spinEditOtherNumbersImpressions);
-            this.xtraScrollableControlOtherNumbers.Controls.Add(this.spinEditOtherNumbersNewspaperAdsNumber);
-            this.xtraScrollableControlOtherNumbers.Controls.Add(this.buttonXOtherNumbersDigitalCPM);
-            this.xtraScrollableControlOtherNumbers.Controls.Add(this.buttonXOtherNumbersImpressions);
-            this.xtraScrollableControlOtherNumbers.Controls.Add(this.buttonXOtherNumbersNewspaperAdsNumber);
-            this.xtraScrollableControlOtherNumbers.Controls.Add(this.buttonXOtherNumbersActiveDays);
-            this.xtraScrollableControlOtherNumbers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraScrollableControlOtherNumbers.Location = new System.Drawing.Point(0, 0);
-            this.xtraScrollableControlOtherNumbers.Name = "xtraScrollableControlOtherNumbers";
-            this.xtraScrollableControlOtherNumbers.Size = new System.Drawing.Size(290, 416);
-            this.xtraScrollableControlOtherNumbers.TabIndex = 2;
-            // 
-            // spinEditOtherNumbersActiveDays
-            // 
-            this.spinEditOtherNumbersActiveDays.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditOtherNumbersActiveDays.Enabled = false;
-            this.spinEditOtherNumbersActiveDays.Location = new System.Drawing.Point(43, 43);
-            this.spinEditOtherNumbersActiveDays.Name = "spinEditOtherNumbersActiveDays";
-            this.spinEditOtherNumbersActiveDays.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.spinEditOtherNumbersActiveDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEditOtherNumbersActiveDays.Properties.DisplayFormat.FormatString = "#,##0";
-            this.spinEditOtherNumbersActiveDays.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.spinEditOtherNumbersActiveDays.Properties.EditFormat.FormatString = "#,##0";
-            this.spinEditOtherNumbersActiveDays.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.spinEditOtherNumbersActiveDays.Properties.IsFloatValue = false;
-            this.spinEditOtherNumbersActiveDays.Properties.Mask.EditMask = "N00";
-            this.spinEditOtherNumbersActiveDays.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.spinEditOtherNumbersActiveDays.Size = new System.Drawing.Size(128, 22);
-            this.spinEditOtherNumbersActiveDays.StyleController = this.styleController;
-            this.spinEditOtherNumbersActiveDays.TabIndex = 26;
-            // 
-            // spinEditOtherNumbersDigitalCPM
-            // 
-            this.spinEditOtherNumbersDigitalCPM.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditOtherNumbersDigitalCPM.Enabled = false;
-            this.spinEditOtherNumbersDigitalCPM.Location = new System.Drawing.Point(43, 240);
-            this.spinEditOtherNumbersDigitalCPM.Name = "spinEditOtherNumbersDigitalCPM";
-            this.spinEditOtherNumbersDigitalCPM.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.spinEditOtherNumbersDigitalCPM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEditOtherNumbersDigitalCPM.Properties.DisplayFormat.FormatString = "$#,###.0";
-            this.spinEditOtherNumbersDigitalCPM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.spinEditOtherNumbersDigitalCPM.Properties.EditFormat.FormatString = "$#,###.0";
-            this.spinEditOtherNumbersDigitalCPM.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.spinEditOtherNumbersDigitalCPM.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.spinEditOtherNumbersDigitalCPM.Size = new System.Drawing.Size(128, 22);
-            this.spinEditOtherNumbersDigitalCPM.StyleController = this.styleController;
-            this.spinEditOtherNumbersDigitalCPM.TabIndex = 25;
-            // 
-            // spinEditOtherNumbersImpressions
-            // 
-            this.spinEditOtherNumbersImpressions.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditOtherNumbersImpressions.Enabled = false;
-            this.spinEditOtherNumbersImpressions.Location = new System.Drawing.Point(43, 173);
-            this.spinEditOtherNumbersImpressions.Name = "spinEditOtherNumbersImpressions";
-            this.spinEditOtherNumbersImpressions.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.spinEditOtherNumbersImpressions.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEditOtherNumbersImpressions.Properties.DisplayFormat.FormatString = "#,##0.0";
-            this.spinEditOtherNumbersImpressions.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.spinEditOtherNumbersImpressions.Properties.EditFormat.FormatString = "#,##0.0";
-            this.spinEditOtherNumbersImpressions.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.spinEditOtherNumbersImpressions.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.spinEditOtherNumbersImpressions.Size = new System.Drawing.Size(128, 22);
-            this.spinEditOtherNumbersImpressions.StyleController = this.styleController;
-            this.spinEditOtherNumbersImpressions.TabIndex = 24;
-            // 
-            // spinEditOtherNumbersNewspaperAdsNumber
-            // 
-            this.spinEditOtherNumbersNewspaperAdsNumber.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditOtherNumbersNewspaperAdsNumber.Enabled = false;
-            this.spinEditOtherNumbersNewspaperAdsNumber.Location = new System.Drawing.Point(43, 107);
-            this.spinEditOtherNumbersNewspaperAdsNumber.Name = "spinEditOtherNumbersNewspaperAdsNumber";
-            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.DisplayFormat.FormatString = "#,##0";
-            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.EditFormat.FormatString = "#,##0";
-            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.IsFloatValue = false;
-            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.Mask.EditMask = "N00";
-            this.spinEditOtherNumbersNewspaperAdsNumber.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.spinEditOtherNumbersNewspaperAdsNumber.Size = new System.Drawing.Size(128, 22);
-            this.spinEditOtherNumbersNewspaperAdsNumber.StyleController = this.styleController;
-            this.spinEditOtherNumbersNewspaperAdsNumber.TabIndex = 23;
-            // 
-            // buttonXOtherNumbersDigitalCPM
-            // 
-            this.buttonXOtherNumbersDigitalCPM.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonXOtherNumbersDigitalCPM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonXOtherNumbersDigitalCPM.AutoCheckOnClick = true;
-            this.buttonXOtherNumbersDigitalCPM.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXOtherNumbersDigitalCPM.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonXOtherNumbersDigitalCPM.Image = global::CalendarBuilder.Properties.Resources.DigitalCPM;
-            this.buttonXOtherNumbersDigitalCPM.Location = new System.Drawing.Point(12, 205);
-            this.buttonXOtherNumbersDigitalCPM.Name = "buttonXOtherNumbersDigitalCPM";
-            this.buttonXOtherNumbersDigitalCPM.Size = new System.Drawing.Size(267, 29);
-            this.buttonXOtherNumbersDigitalCPM.TabIndex = 6;
-            this.buttonXOtherNumbersDigitalCPM.Text = "E. Digital CPM";
-            this.buttonXOtherNumbersDigitalCPM.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.buttonXOtherNumbersDigitalCPM.Click += new System.EventHandler(this.buttonXOtherNumbersDigitalCPM_Click);
-            // 
-            // buttonXOtherNumbersImpressions
-            // 
-            this.buttonXOtherNumbersImpressions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonXOtherNumbersImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonXOtherNumbersImpressions.AutoCheckOnClick = true;
-            this.buttonXOtherNumbersImpressions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXOtherNumbersImpressions.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonXOtherNumbersImpressions.Image = global::CalendarBuilder.Properties.Resources.DigitalInvestment;
-            this.buttonXOtherNumbersImpressions.Location = new System.Drawing.Point(12, 138);
-            this.buttonXOtherNumbersImpressions.Name = "buttonXOtherNumbersImpressions";
-            this.buttonXOtherNumbersImpressions.Size = new System.Drawing.Size(267, 29);
-            this.buttonXOtherNumbersImpressions.TabIndex = 4;
-            this.buttonXOtherNumbersImpressions.Text = "D. Monthly Impressions";
-            this.buttonXOtherNumbersImpressions.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.buttonXOtherNumbersImpressions.Click += new System.EventHandler(this.buttonXOtherNumbersImpressions_Click);
-            // 
-            // buttonXOtherNumbersNewspaperAdsNumber
-            // 
-            this.buttonXOtherNumbersNewspaperAdsNumber.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonXOtherNumbersNewspaperAdsNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonXOtherNumbersNewspaperAdsNumber.AutoCheckOnClick = true;
-            this.buttonXOtherNumbersNewspaperAdsNumber.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXOtherNumbersNewspaperAdsNumber.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonXOtherNumbersNewspaperAdsNumber.Image = global::CalendarBuilder.Properties.Resources.NewspaperInvestment;
-            this.buttonXOtherNumbersNewspaperAdsNumber.Location = new System.Drawing.Point(12, 72);
-            this.buttonXOtherNumbersNewspaperAdsNumber.Name = "buttonXOtherNumbersNewspaperAdsNumber";
-            this.buttonXOtherNumbersNewspaperAdsNumber.Size = new System.Drawing.Size(267, 29);
-            this.buttonXOtherNumbersNewspaperAdsNumber.TabIndex = 2;
-            this.buttonXOtherNumbersNewspaperAdsNumber.Text = "B. # of Newspaper Ads";
-            this.buttonXOtherNumbersNewspaperAdsNumber.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.buttonXOtherNumbersNewspaperAdsNumber.Click += new System.EventHandler(this.buttonXOtherNumbersNewspaperAdsNumber_Click);
-            // 
-            // buttonXOtherNumbersActiveDays
-            // 
-            this.buttonXOtherNumbersActiveDays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonXOtherNumbersActiveDays.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonXOtherNumbersActiveDays.AutoCheckOnClick = true;
-            this.buttonXOtherNumbersActiveDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXOtherNumbersActiveDays.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonXOtherNumbersActiveDays.Image = global::CalendarBuilder.Properties.Resources.NewspaperInvestment;
-            this.buttonXOtherNumbersActiveDays.Location = new System.Drawing.Point(12, 8);
-            this.buttonXOtherNumbersActiveDays.Name = "buttonXOtherNumbersActiveDays";
-            this.buttonXOtherNumbersActiveDays.Size = new System.Drawing.Size(267, 29);
-            this.buttonXOtherNumbersActiveDays.TabIndex = 0;
-            this.buttonXOtherNumbersActiveDays.Text = "A. # of Active Days";
-            this.buttonXOtherNumbersActiveDays.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.buttonXOtherNumbersActiveDays.Click += new System.EventHandler(this.buttonXOtherNumbersActiveDays_Click);
-            // 
-            // pnOtherNumbersBottom
-            // 
-            this.pnOtherNumbersBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.pnOtherNumbersBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnOtherNumbersBottom.Controls.Add(this.checkEditOtherNumbersApplyForAll);
-            this.pnOtherNumbersBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnOtherNumbersBottom.Location = new System.Drawing.Point(0, 420);
-            this.pnOtherNumbersBottom.Name = "pnOtherNumbersBottom";
-            this.pnOtherNumbersBottom.Size = new System.Drawing.Size(294, 37);
-            this.pnOtherNumbersBottom.TabIndex = 6;
-            // 
-            // checkEditOtherNumbersApplyForAll
-            // 
-            this.checkEditOtherNumbersApplyForAll.Location = new System.Drawing.Point(10, 6);
-            this.checkEditOtherNumbersApplyForAll.MenuManager = this.barManager;
-            this.checkEditOtherNumbersApplyForAll.Name = "checkEditOtherNumbersApplyForAll";
-            this.checkEditOtherNumbersApplyForAll.Properties.AutoWidth = true;
-            this.checkEditOtherNumbersApplyForAll.Properties.Caption = "Show on ALL Slides";
-            this.checkEditOtherNumbersApplyForAll.Size = new System.Drawing.Size(140, 21);
-            this.checkEditOtherNumbersApplyForAll.StyleController = this.styleController;
-            this.checkEditOtherNumbersApplyForAll.TabIndex = 8;
-            // 
             // navBarGroupControlContainerInvestment
             // 
             this.navBarGroupControlContainerInvestment.Controls.Add(this.pnInvestmentTop);
             this.navBarGroupControlContainerInvestment.Controls.Add(this.pnInvestmentBottom);
             this.navBarGroupControlContainerInvestment.Name = "navBarGroupControlContainerInvestment";
-            this.navBarGroupControlContainerInvestment.Size = new System.Drawing.Size(294, 457);
+            this.navBarGroupControlContainerInvestment.Size = new System.Drawing.Size(294, 418);
             this.navBarGroupControlContainerInvestment.TabIndex = 2;
             // 
             // pnInvestmentTop
@@ -909,7 +785,7 @@
             this.pnInvestmentTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnInvestmentTop.Location = new System.Drawing.Point(0, 0);
             this.pnInvestmentTop.Name = "pnInvestmentTop";
-            this.pnInvestmentTop.Size = new System.Drawing.Size(294, 420);
+            this.pnInvestmentTop.Size = new System.Drawing.Size(294, 381);
             this.pnInvestmentTop.TabIndex = 6;
             // 
             // xtraScrollableControlInvestment
@@ -927,7 +803,7 @@
             this.xtraScrollableControlInvestment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraScrollableControlInvestment.Location = new System.Drawing.Point(0, 0);
             this.xtraScrollableControlInvestment.Name = "xtraScrollableControlInvestment";
-            this.xtraScrollableControlInvestment.Size = new System.Drawing.Size(290, 416);
+            this.xtraScrollableControlInvestment.Size = new System.Drawing.Size(290, 377);
             this.xtraScrollableControlInvestment.TabIndex = 2;
             // 
             // spinEditInvestmentTV
@@ -1093,7 +969,7 @@
             this.pnInvestmentBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnInvestmentBottom.Controls.Add(this.checkEditInvestmentApplyForAll);
             this.pnInvestmentBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnInvestmentBottom.Location = new System.Drawing.Point(0, 420);
+            this.pnInvestmentBottom.Location = new System.Drawing.Point(0, 381);
             this.pnInvestmentBottom.Name = "pnInvestmentBottom";
             this.pnInvestmentBottom.Size = new System.Drawing.Size(294, 37);
             this.pnInvestmentBottom.TabIndex = 5;
@@ -1189,7 +1065,7 @@
             this.navBarGroupControlContainerLogo.Controls.Add(this.pnLogoTop);
             this.navBarGroupControlContainerLogo.Controls.Add(this.pnLogoBottom);
             this.navBarGroupControlContainerLogo.Name = "navBarGroupControlContainerLogo";
-            this.navBarGroupControlContainerLogo.Size = new System.Drawing.Size(294, 457);
+            this.navBarGroupControlContainerLogo.Size = new System.Drawing.Size(294, 418);
             this.navBarGroupControlContainerLogo.TabIndex = 4;
             // 
             // pnLogoTop
@@ -1201,7 +1077,7 @@
             this.pnLogoTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnLogoTop.Location = new System.Drawing.Point(0, 0);
             this.pnLogoTop.Name = "pnLogoTop";
-            this.pnLogoTop.Size = new System.Drawing.Size(294, 405);
+            this.pnLogoTop.Size = new System.Drawing.Size(294, 366);
             this.pnLogoTop.TabIndex = 10;
             // 
             // pictureEditLogo
@@ -1242,7 +1118,7 @@
             this.pnLogoBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnLogoBottom.Controls.Add(this.checkEditLogoApplyForAll);
             this.pnLogoBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnLogoBottom.Location = new System.Drawing.Point(0, 405);
+            this.pnLogoBottom.Location = new System.Drawing.Point(0, 366);
             this.pnLogoBottom.Name = "pnLogoBottom";
             this.pnLogoBottom.Size = new System.Drawing.Size(294, 52);
             this.pnLogoBottom.TabIndex = 9;
@@ -1260,6 +1136,309 @@
             this.checkEditLogoApplyForAll.Size = new System.Drawing.Size(277, 37);
             this.checkEditLogoApplyForAll.StyleController = this.styleController;
             this.checkEditLogoApplyForAll.TabIndex = 8;
+            // 
+            // navBarGroupControlContainerLegend
+            // 
+            this.navBarGroupControlContainerLegend.Controls.Add(this.pnLegendTop);
+            this.navBarGroupControlContainerLegend.Controls.Add(this.pnLegendBottom);
+            this.navBarGroupControlContainerLegend.Name = "navBarGroupControlContainerLegend";
+            this.navBarGroupControlContainerLegend.Size = new System.Drawing.Size(294, 429);
+            this.navBarGroupControlContainerLegend.TabIndex = 5;
+            // 
+            // pnLegendTop
+            // 
+            this.pnLegendTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.pnLegendTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnLegendTop.Controls.Add(this.gridControlLegend);
+            this.pnLegendTop.Controls.Add(this.buttonXLegend);
+            this.pnLegendTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnLegendTop.Location = new System.Drawing.Point(0, 0);
+            this.pnLegendTop.Name = "pnLegendTop";
+            this.pnLegendTop.Size = new System.Drawing.Size(294, 377);
+            this.pnLegendTop.TabIndex = 12;
+            // 
+            // gridControlLegend
+            // 
+            this.gridControlLegend.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControlLegend.Enabled = false;
+            this.gridControlLegend.Location = new System.Drawing.Point(0, 43);
+            this.gridControlLegend.MainView = this.gridViewLegend;
+            this.gridControlLegend.Name = "gridControlLegend";
+            this.gridControlLegend.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit,
+            this.repositoryItemTextEdit});
+            this.gridControlLegend.Size = new System.Drawing.Size(290, 332);
+            this.gridControlLegend.TabIndex = 2;
+            this.gridControlLegend.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewLegend});
+            // 
+            // gridViewLegend
+            // 
+            this.gridViewLegend.Appearance.HorzLine.BackColor = System.Drawing.Color.Black;
+            this.gridViewLegend.Appearance.HorzLine.Options.UseBackColor = true;
+            this.gridViewLegend.Appearance.Preview.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.gridViewLegend.Appearance.Preview.Options.UseFont = true;
+            this.gridViewLegend.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.gridViewLegend.Appearance.Row.Options.UseFont = true;
+            this.gridViewLegend.Appearance.Row.Options.UseTextOptions = true;
+            this.gridViewLegend.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridViewLegend.Appearance.VertLine.BackColor = System.Drawing.Color.Black;
+            this.gridViewLegend.Appearance.VertLine.Options.UseBackColor = true;
+            this.gridViewLegend.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumnVisible,
+            this.gridColumnCode,
+            this.gridColumnDescription});
+            this.gridViewLegend.GridControl = this.gridControlLegend;
+            this.gridViewLegend.Name = "gridViewLegend";
+            this.gridViewLegend.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewLegend.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewLegend.OptionsBehavior.AutoPopulateColumns = false;
+            this.gridViewLegend.OptionsCustomization.AllowColumnMoving = false;
+            this.gridViewLegend.OptionsCustomization.AllowColumnResizing = false;
+            this.gridViewLegend.OptionsCustomization.AllowFilter = false;
+            this.gridViewLegend.OptionsCustomization.AllowGroup = false;
+            this.gridViewLegend.OptionsCustomization.AllowQuickHideColumns = false;
+            this.gridViewLegend.OptionsCustomization.AllowSort = false;
+            this.gridViewLegend.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridViewLegend.OptionsSelection.EnableAppearanceFocusedRow = false;
+            this.gridViewLegend.OptionsSelection.EnableAppearanceHideSelection = false;
+            this.gridViewLegend.OptionsView.AutoCalcPreviewLineCount = true;
+            this.gridViewLegend.OptionsView.ShowColumnHeaders = false;
+            this.gridViewLegend.OptionsView.ShowGroupExpandCollapseButtons = false;
+            this.gridViewLegend.OptionsView.ShowGroupPanel = false;
+            this.gridViewLegend.OptionsView.ShowIndicator = false;
+            this.gridViewLegend.OptionsView.ShowPreview = true;
+            this.gridViewLegend.PreviewFieldName = "Description";
+            this.gridViewLegend.PreviewLineCount = 1;
+            this.gridViewLegend.RowHeight = 40;
+            this.gridViewLegend.RowSeparatorHeight = 5;
+            // 
+            // gridColumnVisible
+            // 
+            this.gridColumnVisible.Caption = "Visible";
+            this.gridColumnVisible.ColumnEdit = this.repositoryItemCheckEdit;
+            this.gridColumnVisible.FieldName = "Visible";
+            this.gridColumnVisible.Name = "gridColumnVisible";
+            this.gridColumnVisible.OptionsColumn.FixedWidth = true;
+            this.gridColumnVisible.Visible = true;
+            this.gridColumnVisible.VisibleIndex = 0;
+            this.gridColumnVisible.Width = 63;
+            // 
+            // repositoryItemCheckEdit
+            // 
+            this.repositoryItemCheckEdit.AutoHeight = false;
+            this.repositoryItemCheckEdit.Name = "repositoryItemCheckEdit";
+            // 
+            // gridColumnCode
+            // 
+            this.gridColumnCode.Caption = "Code";
+            this.gridColumnCode.ColumnEdit = this.repositoryItemTextEdit;
+            this.gridColumnCode.FieldName = "Code";
+            this.gridColumnCode.Name = "gridColumnCode";
+            this.gridColumnCode.OptionsColumn.FixedWidth = true;
+            this.gridColumnCode.Visible = true;
+            this.gridColumnCode.VisibleIndex = 1;
+            this.gridColumnCode.Width = 97;
+            // 
+            // repositoryItemTextEdit
+            // 
+            this.repositoryItemTextEdit.AutoHeight = false;
+            this.repositoryItemTextEdit.Name = "repositoryItemTextEdit";
+            // 
+            // gridColumnDescription
+            // 
+            this.gridColumnDescription.Caption = "Description";
+            this.gridColumnDescription.FieldName = "Description";
+            this.gridColumnDescription.Name = "gridColumnDescription";
+            // 
+            // buttonXLegend
+            // 
+            this.buttonXLegend.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXLegend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXLegend.AutoCheckOnClick = true;
+            this.buttonXLegend.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXLegend.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonXLegend.Image = global::CalendarBuilder.Properties.Resources.Legend;
+            this.buttonXLegend.Location = new System.Drawing.Point(12, 8);
+            this.buttonXLegend.Name = "buttonXLegend";
+            this.buttonXLegend.Size = new System.Drawing.Size(267, 29);
+            this.buttonXLegend.TabIndex = 0;
+            this.buttonXLegend.Text = "A. Slide Legend Codes";
+            this.buttonXLegend.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXLegend.CheckedChanged += new System.EventHandler(this.buttonXLegend_CheckedChanged);
+            // 
+            // pnLegendBottom
+            // 
+            this.pnLegendBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.pnLegendBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnLegendBottom.Controls.Add(this.checkEditLegendApplyForAll);
+            this.pnLegendBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnLegendBottom.Location = new System.Drawing.Point(0, 377);
+            this.pnLegendBottom.Name = "pnLegendBottom";
+            this.pnLegendBottom.Size = new System.Drawing.Size(294, 52);
+            this.pnLegendBottom.TabIndex = 11;
+            // 
+            // checkEditLegendApplyForAll
+            // 
+            this.checkEditLegendApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkEditLegendApplyForAll.Location = new System.Drawing.Point(10, 6);
+            this.checkEditLegendApplyForAll.MenuManager = this.barManager;
+            this.checkEditLegendApplyForAll.Name = "checkEditLegendApplyForAll";
+            this.checkEditLegendApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
+            this.checkEditLegendApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.checkEditLegendApplyForAll.Properties.Caption = "Show these EXACT SAME LEGEND CODES on ALL Calendar Slides";
+            this.checkEditLegendApplyForAll.Size = new System.Drawing.Size(277, 37);
+            this.checkEditLegendApplyForAll.StyleController = this.styleController;
+            this.checkEditLegendApplyForAll.TabIndex = 8;
+            // 
+            // navBarGroupControlContainerThemeColor
+            // 
+            this.navBarGroupControlContainerThemeColor.Controls.Add(this.pnThemeColorTop);
+            this.navBarGroupControlContainerThemeColor.Controls.Add(this.pnThemeColorBottom);
+            this.navBarGroupControlContainerThemeColor.Name = "navBarGroupControlContainerThemeColor";
+            this.navBarGroupControlContainerThemeColor.Size = new System.Drawing.Size(294, 418);
+            this.navBarGroupControlContainerThemeColor.TabIndex = 6;
+            // 
+            // pnThemeColorTop
+            // 
+            this.pnThemeColorTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.pnThemeColorTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnThemeColorTop.Controls.Add(this.buttonXThemeColorGreen);
+            this.pnThemeColorTop.Controls.Add(this.buttonXThemeColorOrange);
+            this.pnThemeColorTop.Controls.Add(this.buttonXThemeColorTeal);
+            this.pnThemeColorTop.Controls.Add(this.buttonXThemeColorBlue);
+            this.pnThemeColorTop.Controls.Add(this.buttonXThemeColorBlack);
+            this.pnThemeColorTop.Controls.Add(this.buttonXThemeColorGray);
+            this.pnThemeColorTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnThemeColorTop.Location = new System.Drawing.Point(0, 0);
+            this.pnThemeColorTop.Name = "pnThemeColorTop";
+            this.pnThemeColorTop.Size = new System.Drawing.Size(294, 366);
+            this.pnThemeColorTop.TabIndex = 12;
+            // 
+            // buttonXThemeColorGreen
+            // 
+            this.buttonXThemeColorGreen.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXThemeColorGreen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXThemeColorGreen.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXThemeColorGreen.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonXThemeColorGreen.Image = global::CalendarBuilder.Properties.Resources.GreenColor;
+            this.buttonXThemeColorGreen.Location = new System.Drawing.Point(12, 213);
+            this.buttonXThemeColorGreen.Name = "buttonXThemeColorGreen";
+            this.buttonXThemeColorGreen.Size = new System.Drawing.Size(267, 35);
+            this.buttonXThemeColorGreen.TabIndex = 5;
+            this.buttonXThemeColorGreen.Text = "Green";
+            this.buttonXThemeColorGreen.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXThemeColorGreen.Click += new System.EventHandler(this.buttonXThemeColor_Click);
+            // 
+            // buttonXThemeColorOrange
+            // 
+            this.buttonXThemeColorOrange.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXThemeColorOrange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXThemeColorOrange.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXThemeColorOrange.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonXThemeColorOrange.Image = global::CalendarBuilder.Properties.Resources.OrangeColor;
+            this.buttonXThemeColorOrange.Location = new System.Drawing.Point(12, 172);
+            this.buttonXThemeColorOrange.Name = "buttonXThemeColorOrange";
+            this.buttonXThemeColorOrange.Size = new System.Drawing.Size(267, 35);
+            this.buttonXThemeColorOrange.TabIndex = 4;
+            this.buttonXThemeColorOrange.Text = "Orange";
+            this.buttonXThemeColorOrange.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXThemeColorOrange.Click += new System.EventHandler(this.buttonXThemeColor_Click);
+            // 
+            // buttonXThemeColorTeal
+            // 
+            this.buttonXThemeColorTeal.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXThemeColorTeal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXThemeColorTeal.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXThemeColorTeal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonXThemeColorTeal.Image = global::CalendarBuilder.Properties.Resources.TealColor;
+            this.buttonXThemeColorTeal.Location = new System.Drawing.Point(12, 131);
+            this.buttonXThemeColorTeal.Name = "buttonXThemeColorTeal";
+            this.buttonXThemeColorTeal.Size = new System.Drawing.Size(267, 35);
+            this.buttonXThemeColorTeal.TabIndex = 3;
+            this.buttonXThemeColorTeal.Text = "Teal";
+            this.buttonXThemeColorTeal.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXThemeColorTeal.Click += new System.EventHandler(this.buttonXThemeColor_Click);
+            // 
+            // buttonXThemeColorBlue
+            // 
+            this.buttonXThemeColorBlue.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXThemeColorBlue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXThemeColorBlue.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXThemeColorBlue.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonXThemeColorBlue.Image = global::CalendarBuilder.Properties.Resources.BlueColor;
+            this.buttonXThemeColorBlue.Location = new System.Drawing.Point(12, 90);
+            this.buttonXThemeColorBlue.Name = "buttonXThemeColorBlue";
+            this.buttonXThemeColorBlue.Size = new System.Drawing.Size(267, 35);
+            this.buttonXThemeColorBlue.TabIndex = 2;
+            this.buttonXThemeColorBlue.Text = "Blue";
+            this.buttonXThemeColorBlue.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXThemeColorBlue.Click += new System.EventHandler(this.buttonXThemeColor_Click);
+            // 
+            // buttonXThemeColorBlack
+            // 
+            this.buttonXThemeColorBlack.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXThemeColorBlack.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXThemeColorBlack.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXThemeColorBlack.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonXThemeColorBlack.Image = global::CalendarBuilder.Properties.Resources.BlackColor;
+            this.buttonXThemeColorBlack.Location = new System.Drawing.Point(12, 49);
+            this.buttonXThemeColorBlack.Name = "buttonXThemeColorBlack";
+            this.buttonXThemeColorBlack.Size = new System.Drawing.Size(267, 35);
+            this.buttonXThemeColorBlack.TabIndex = 1;
+            this.buttonXThemeColorBlack.Text = "Black";
+            this.buttonXThemeColorBlack.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXThemeColorBlack.Click += new System.EventHandler(this.buttonXThemeColor_Click);
+            // 
+            // buttonXThemeColorGray
+            // 
+            this.buttonXThemeColorGray.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXThemeColorGray.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXThemeColorGray.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXThemeColorGray.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonXThemeColorGray.Image = global::CalendarBuilder.Properties.Resources.GrayColor;
+            this.buttonXThemeColorGray.Location = new System.Drawing.Point(12, 8);
+            this.buttonXThemeColorGray.Name = "buttonXThemeColorGray";
+            this.buttonXThemeColorGray.Size = new System.Drawing.Size(267, 35);
+            this.buttonXThemeColorGray.TabIndex = 0;
+            this.buttonXThemeColorGray.Text = "Gray";
+            this.buttonXThemeColorGray.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXThemeColorGray.Click += new System.EventHandler(this.buttonXThemeColor_Click);
+            // 
+            // pnThemeColorBottom
+            // 
+            this.pnThemeColorBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.pnThemeColorBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnThemeColorBottom.Controls.Add(this.checkEditThemeColorApplyForAll);
+            this.pnThemeColorBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnThemeColorBottom.Location = new System.Drawing.Point(0, 366);
+            this.pnThemeColorBottom.Name = "pnThemeColorBottom";
+            this.pnThemeColorBottom.Size = new System.Drawing.Size(294, 52);
+            this.pnThemeColorBottom.TabIndex = 11;
+            // 
+            // checkEditThemeColorApplyForAll
+            // 
+            this.checkEditThemeColorApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkEditThemeColorApplyForAll.Location = new System.Drawing.Point(10, 6);
+            this.checkEditThemeColorApplyForAll.MenuManager = this.barManager;
+            this.checkEditThemeColorApplyForAll.Name = "checkEditThemeColorApplyForAll";
+            this.checkEditThemeColorApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
+            this.checkEditThemeColorApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.checkEditThemeColorApplyForAll.Properties.Caption = "Use this  SAME Theme Color on ALL Calendar Slides";
+            this.checkEditThemeColorApplyForAll.Size = new System.Drawing.Size(277, 37);
+            this.checkEditThemeColorApplyForAll.StyleController = this.styleController;
+            this.checkEditThemeColorApplyForAll.TabIndex = 8;
             // 
             // navBarGroupBasic
             // 
@@ -1283,17 +1462,6 @@
             this.navBarGroupInvestment.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.navBarGroupInvestment.Name = "navBarGroupInvestment";
             // 
-            // navBarGroupOtherNumbers
-            // 
-            this.navBarGroupOtherNumbers.Appearance.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.navBarGroupOtherNumbers.Appearance.Options.UseFont = true;
-            this.navBarGroupOtherNumbers.Caption = "Other Numbers";
-            this.navBarGroupOtherNumbers.ControlContainer = this.navBarGroupControlContainerOtherNumbers;
-            this.navBarGroupOtherNumbers.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Small;
-            this.navBarGroupOtherNumbers.GroupClientHeight = 80;
-            this.navBarGroupOtherNumbers.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroupOtherNumbers.Name = "navBarGroupOtherNumbers";
-            // 
             // navBarGroupCustomComment
             // 
             this.navBarGroupCustomComment.Appearance.Font = new System.Drawing.Font("Arial", 15.75F);
@@ -1316,6 +1484,28 @@
             this.navBarGroupLogo.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.navBarGroupLogo.Name = "navBarGroupLogo";
             // 
+            // navBarGroupLegend
+            // 
+            this.navBarGroupLegend.Appearance.Font = new System.Drawing.Font("Arial", 15.75F);
+            this.navBarGroupLegend.Appearance.Options.UseFont = true;
+            this.navBarGroupLegend.Caption = "Legend Codes";
+            this.navBarGroupLegend.ControlContainer = this.navBarGroupControlContainerLegend;
+            this.navBarGroupLegend.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Small;
+            this.navBarGroupLegend.GroupClientHeight = 80;
+            this.navBarGroupLegend.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarGroupLegend.Name = "navBarGroupLegend";
+            // 
+            // navBarGroupThemeColor
+            // 
+            this.navBarGroupThemeColor.Appearance.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.navBarGroupThemeColor.Appearance.Options.UseFont = true;
+            this.navBarGroupThemeColor.Caption = "Theme Color";
+            this.navBarGroupThemeColor.ControlContainer = this.navBarGroupControlContainerThemeColor;
+            this.navBarGroupThemeColor.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Small;
+            this.navBarGroupThemeColor.GroupClientHeight = 80;
+            this.navBarGroupThemeColor.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarGroupThemeColor.Name = "navBarGroupThemeColor";
+            // 
             // defaultLookAndFeel
             // 
             this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
@@ -1332,17 +1522,19 @@
             this.Size = new System.Drawing.Size(300, 795);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             this.pnNavbar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControlDayProperties)).EndInit();
-            this.navBarControlDayProperties.ResumeLayout(false);
-            this.navBarGroupControlContainerLegend.ResumeLayout(false);
-            this.pnLegendTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlLegend)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewLegend)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit)).EndInit();
-            this.pnLegendBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditLegendApplyForAll.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControlSlideInfo)).EndInit();
+            this.navBarControlSlideInfo.ResumeLayout(false);
+            this.navBarGroupControlContainerOtherNumbers.ResumeLayout(false);
+            this.pnOtherNumbersTop.ResumeLayout(false);
+            this.xtraScrollableControlOtherNumbers.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersActiveDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersDigitalCPM.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersImpressions.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersNewspaperAdsNumber.Properties)).EndInit();
+            this.pnOtherNumbersBottom.ResumeLayout(false);
+            this.pnOtherNumbersBottom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditOtherNumbersApplyForAll.Properties)).EndInit();
             this.navBarGroupControlContainerBasic.ResumeLayout(false);
             this.pnBasicTop.ResumeLayout(false);
             this.xtraScrollableControlBasic.ResumeLayout(false);
@@ -1353,16 +1545,6 @@
             this.pnBasicBottom.ResumeLayout(false);
             this.pnBasicBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditBasicApplyForAll.Properties)).EndInit();
-            this.navBarGroupControlContainerOtherNumbers.ResumeLayout(false);
-            this.pnOtherNumbersTop.ResumeLayout(false);
-            this.xtraScrollableControlOtherNumbers.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersActiveDays.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersDigitalCPM.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersImpressions.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditOtherNumbersNewspaperAdsNumber.Properties)).EndInit();
-            this.pnOtherNumbersBottom.ResumeLayout(false);
-            this.pnOtherNumbersBottom.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditOtherNumbersApplyForAll.Properties)).EndInit();
             this.navBarGroupControlContainerInvestment.ResumeLayout(false);
             this.pnInvestmentTop.ResumeLayout(false);
             this.xtraScrollableControlInvestment.ResumeLayout(false);
@@ -1383,6 +1565,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureEditLogo.Properties)).EndInit();
             this.pnLogoBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.checkEditLogoApplyForAll.Properties)).EndInit();
+            this.navBarGroupControlContainerLegend.ResumeLayout(false);
+            this.pnLegendTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlLegend)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewLegend)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit)).EndInit();
+            this.pnLegendBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditLegendApplyForAll.Properties)).EndInit();
+            this.navBarGroupControlContainerThemeColor.ResumeLayout(false);
+            this.pnThemeColorTop.ResumeLayout(false);
+            this.pnThemeColorBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditThemeColorApplyForAll.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1400,7 +1594,7 @@
         private DevExpress.XtraEditors.StyleController styleController;
         private System.Windows.Forms.Panel pnNavbar;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemApply;
-        private DevExpress.XtraNavBar.NavBarControl navBarControlDayProperties;
+        private DevExpress.XtraNavBar.NavBarControl navBarControlSlideInfo;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroupInvestment;
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainerInvestment;
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainerBasic;
@@ -1471,5 +1665,17 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnCode;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnDescription;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroupThemeColor;
+        private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainerThemeColor;
+        private System.Windows.Forms.Panel pnThemeColorTop;
+        private DevComponents.DotNetBar.ButtonX buttonXThemeColorGray;
+        private System.Windows.Forms.Panel pnThemeColorBottom;
+        private DevExpress.XtraEditors.CheckEdit checkEditThemeColorApplyForAll;
+        private DevComponents.DotNetBar.ButtonX buttonXThemeColorBlack;
+        private DevComponents.DotNetBar.ButtonX buttonXThemeColorBlue;
+        private DevComponents.DotNetBar.ButtonX buttonXThemeColorTeal;
+        private DevComponents.DotNetBar.ButtonX buttonXThemeColorGreen;
+        private DevComponents.DotNetBar.ButtonX buttonXThemeColorOrange;
+        private DevComponents.DotNetBar.ButtonX buttonXBasicBigDate;
     }
 }

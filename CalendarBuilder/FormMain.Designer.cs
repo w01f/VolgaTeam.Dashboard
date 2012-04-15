@@ -28,19 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
             this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemHomeExit = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarHomeHelp = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemHomeHelp = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarHomeSave = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemHomeSave = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemHomeSaveAs = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
             this.dateEditFlightDatesStart = new DevExpress.XtraEditors.DateEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+            this.styleController = new DevExpress.XtraEditors.StyleController();
             this.dateEditFlightDatesEnd = new DevExpress.XtraEditors.DateEdit();
             this.itemContainerHomeFlightDates = new DevComponents.DotNetBar.ItemContainer();
             this.itemContainerFlightDatesStart = new DevComponents.DotNetBar.ItemContainer();
@@ -57,6 +60,9 @@
             this.labelItemHomePresentationDate = new DevComponents.DotNetBar.LabelItem();
             this.controlContainerItemPresentationDate = new DevComponents.DotNetBar.ControlContainerItem();
             this.itemContainerHomeSaleStrategyType = new DevComponents.DotNetBar.ItemContainer();
+            this.buttonItemHomeSalesStrategyFaceCall = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemHomeSalesStrategyEmail = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemHomeSalesStrategyFax = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarHomeAdvertiser = new DevComponents.DotNetBar.RibbonBar();
             this.comboBoxEditBusinessName = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEditDecisionMaker = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -67,45 +73,38 @@
             this.controlContainerItemClientType = new DevComponents.DotNetBar.ControlContainerItem();
             this.ribbonPanelCalendar = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarCalendarExit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarExit = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarHelp = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarHelp = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarEmail = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarEmail = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarPowerPoint = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarPowerPoint = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarSave = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarSave = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemCalendarSaveAs = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarCalendarGrid = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarGrid = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarSlideInfo = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarSlideInfo = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarsCalendar = new DevComponents.DotNetBar.RibbonBar();
             this.listBoxControlCalendar = new DevExpress.XtraEditors.ImageListBoxControl();
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
+            this.imageList = new System.Windows.Forms.ImageList();
             this.itemContainerCalendarsCalendar = new DevComponents.DotNetBar.ItemContainer();
             this.controlContainerItemCalendar = new DevComponents.DotNetBar.ControlContainerItem();
             this.ribbonPanelSuccessModels = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarSuccessModelsExit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSuccessModelsExit = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSuccessModelsHelp = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSuccessModelsHelp = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSuccessModels = new DevComponents.DotNetBar.RibbonBar();
+            this.labelItemSuccessModels = new DevComponents.DotNetBar.LabelItem();
             this.ribbonTabItemHome = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemCalendar = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemSuccessModels = new DevComponents.DotNetBar.RibbonTabItem();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             this.pnMain = new System.Windows.Forms.Panel();
             this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-            this.ribbonBarCalendarGrid = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemHomeExit = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemHomeHelp = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemHomeSave = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemHomeSaveAs = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemHomeSalesStrategyFaceCall = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemHomeSalesStrategyEmail = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemHomeSalesStrategyFax = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarExit = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarHelp = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarEmail = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarPowerPoint = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarSave = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarSaveAs = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarGrid = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarSlideInfo = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSuccessModelsExit = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSuccessModelsHelp = new DevComponents.DotNetBar.ButtonItem();
-            this.labelItemSuccessModels = new DevComponents.DotNetBar.LabelItem();
             this.ribbonControl.SuspendLayout();
             this.ribbonPanelHome.SuspendLayout();
             this.ribbonBarHomeFlightDates.SuspendLayout();
@@ -132,8 +131,8 @@
             this.ribbonControl.AutoExpand = false;
             this.ribbonControl.CanCustomize = false;
             this.ribbonControl.Controls.Add(this.ribbonPanelHome);
-            this.ribbonControl.Controls.Add(this.ribbonPanelCalendar);
             this.ribbonControl.Controls.Add(this.ribbonPanelSuccessModels);
+            this.ribbonControl.Controls.Add(this.ribbonPanelCalendar);
             this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.ribbonControl.EnableQatPlacement = false;
             this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -180,6 +179,15 @@
             this.ribbonBarHomeExit.TabIndex = 26;
             this.ribbonBarHomeExit.Text = "EXIT";
             // 
+            // buttonItemHomeExit
+            // 
+            this.buttonItemHomeExit.Image = global::CalendarBuilder.Properties.Resources.Exit;
+            this.buttonItemHomeExit.ImagePaddingHorizontal = 8;
+            this.buttonItemHomeExit.Name = "buttonItemHomeExit";
+            this.buttonItemHomeExit.SubItemsExpandWidth = 14;
+            this.buttonItemHomeExit.Text = "buttonItem1";
+            this.buttonItemHomeExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
+            // 
             // ribbonBarHomeHelp
             // 
             this.ribbonBarHomeHelp.AutoOverflowEnabled = true;
@@ -192,6 +200,12 @@
             this.ribbonBarHomeHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarHomeHelp.TabIndex = 25;
             this.ribbonBarHomeHelp.Text = "HELP";
+            // 
+            // buttonItemHomeHelp
+            // 
+            this.buttonItemHomeHelp.Image = global::CalendarBuilder.Properties.Resources.Help;
+            this.buttonItemHomeHelp.ImagePaddingHorizontal = 8;
+            this.buttonItemHomeHelp.Name = "buttonItemHomeHelp";
             // 
             // ribbonBarHomeSave
             // 
@@ -207,6 +221,22 @@
             this.ribbonBarHomeSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarHomeSave.TabIndex = 27;
             this.ribbonBarHomeSave.Text = "Save";
+            // 
+            // buttonItemHomeSave
+            // 
+            this.buttonItemHomeSave.Image = global::CalendarBuilder.Properties.Resources.SaveSmall;
+            this.buttonItemHomeSave.ImagePaddingHorizontal = 8;
+            this.buttonItemHomeSave.Name = "buttonItemHomeSave";
+            this.buttonItemHomeSave.SubItemsExpandWidth = 14;
+            this.buttonItemHomeSave.Text = "Save";
+            // 
+            // buttonItemHomeSaveAs
+            // 
+            this.buttonItemHomeSaveAs.Image = global::CalendarBuilder.Properties.Resources.SaveAs;
+            this.buttonItemHomeSaveAs.ImagePaddingHorizontal = 8;
+            this.buttonItemHomeSaveAs.Name = "buttonItemHomeSaveAs";
+            this.buttonItemHomeSaveAs.SubItemsExpandWidth = 14;
+            this.buttonItemHomeSaveAs.Text = "Save As";
             // 
             // ribbonBarHomeFlightDates
             // 
@@ -232,7 +262,7 @@
             this.dateEditFlightDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditFlightDatesStart.Properties.Appearance.Options.UseFont = true;
             this.dateEditFlightDatesStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
             this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditFlightDatesStart.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -273,7 +303,7 @@
             this.dateEditFlightDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditFlightDatesEnd.Properties.Appearance.Options.UseFont = true;
             this.dateEditFlightDatesEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditFlightDatesEnd.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -376,7 +406,7 @@
             this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
             this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditPresentationDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditPresentationDate.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -432,6 +462,28 @@
             this.buttonItemHomeSalesStrategyFaceCall,
             this.buttonItemHomeSalesStrategyEmail,
             this.buttonItemHomeSalesStrategyFax});
+            // 
+            // buttonItemHomeSalesStrategyFaceCall
+            // 
+            this.buttonItemHomeSalesStrategyFaceCall.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemHomeSalesStrategyFaceCall.Checked = true;
+            this.buttonItemHomeSalesStrategyFaceCall.Image = global::CalendarBuilder.Properties.Resources.FaceCall;
+            this.buttonItemHomeSalesStrategyFaceCall.ImagePaddingHorizontal = 8;
+            this.buttonItemHomeSalesStrategyFaceCall.Name = "buttonItemHomeSalesStrategyFaceCall";
+            // 
+            // buttonItemHomeSalesStrategyEmail
+            // 
+            this.buttonItemHomeSalesStrategyEmail.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemHomeSalesStrategyEmail.Image = global::CalendarBuilder.Properties.Resources.Email;
+            this.buttonItemHomeSalesStrategyEmail.ImagePaddingHorizontal = 8;
+            this.buttonItemHomeSalesStrategyEmail.Name = "buttonItemHomeSalesStrategyEmail";
+            // 
+            // buttonItemHomeSalesStrategyFax
+            // 
+            this.buttonItemHomeSalesStrategyFax.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemHomeSalesStrategyFax.Image = global::CalendarBuilder.Properties.Resources.Fax;
+            this.buttonItemHomeSalesStrategyFax.ImagePaddingHorizontal = 8;
+            this.buttonItemHomeSalesStrategyFax.Name = "buttonItemHomeSalesStrategyFax";
             // 
             // ribbonBarHomeAdvertiser
             // 
@@ -532,10 +584,10 @@
             this.ribbonPanelCalendar.Controls.Add(this.ribbonBarCalendarSlideInfo);
             this.ribbonPanelCalendar.Controls.Add(this.ribbonBarCalendarsCalendar);
             this.ribbonPanelCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelCalendar.Location = new System.Drawing.Point(0, 0);
+            this.ribbonPanelCalendar.Location = new System.Drawing.Point(0, 25);
             this.ribbonPanelCalendar.Name = "ribbonPanelCalendar";
             this.ribbonPanelCalendar.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelCalendar.Size = new System.Drawing.Size(984, 163);
+            this.ribbonPanelCalendar.Size = new System.Drawing.Size(984, 138);
             this.ribbonPanelCalendar.TabIndex = 6;
             this.ribbonPanelCalendar.Visible = false;
             this.ribbonPanelCalendar.Click += new System.EventHandler(this.pnMain_Click);
@@ -548,10 +600,19 @@
             this.buttonItemCalendarExit});
             this.ribbonBarCalendarExit.Location = new System.Drawing.Point(660, 0);
             this.ribbonBarCalendarExit.Name = "ribbonBarCalendarExit";
-            this.ribbonBarCalendarExit.Size = new System.Drawing.Size(84, 160);
+            this.ribbonBarCalendarExit.Size = new System.Drawing.Size(84, 135);
             this.ribbonBarCalendarExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCalendarExit.TabIndex = 19;
             this.ribbonBarCalendarExit.Text = "EXIT";
+            // 
+            // buttonItemCalendarExit
+            // 
+            this.buttonItemCalendarExit.Image = global::CalendarBuilder.Properties.Resources.Exit;
+            this.buttonItemCalendarExit.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarExit.Name = "buttonItemCalendarExit";
+            this.buttonItemCalendarExit.SubItemsExpandWidth = 14;
+            this.buttonItemCalendarExit.Text = "buttonItem1";
+            this.buttonItemCalendarExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
             // 
             // ribbonBarCalendarHelp
             // 
@@ -561,11 +622,18 @@
             this.buttonItemCalendarHelp});
             this.ribbonBarCalendarHelp.Location = new System.Drawing.Point(578, 0);
             this.ribbonBarCalendarHelp.Name = "ribbonBarCalendarHelp";
-            this.ribbonBarCalendarHelp.Size = new System.Drawing.Size(82, 160);
+            this.ribbonBarCalendarHelp.Size = new System.Drawing.Size(82, 135);
             this.ribbonBarCalendarHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCalendarHelp.TabIndex = 11;
             this.ribbonBarCalendarHelp.Text = "HELP";
             this.ribbonBarCalendarHelp.Click += new System.EventHandler(this.pnMain_Click);
+            // 
+            // buttonItemCalendarHelp
+            // 
+            this.buttonItemCalendarHelp.Image = global::CalendarBuilder.Properties.Resources.Help;
+            this.buttonItemCalendarHelp.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarHelp.Name = "buttonItemCalendarHelp";
+            this.buttonItemCalendarHelp.Click += new System.EventHandler(this.pnMain_Click);
             // 
             // ribbonBarCalendarEmail
             // 
@@ -575,10 +643,17 @@
             this.buttonItemCalendarEmail});
             this.ribbonBarCalendarEmail.Location = new System.Drawing.Point(489, 0);
             this.ribbonBarCalendarEmail.Name = "ribbonBarCalendarEmail";
-            this.ribbonBarCalendarEmail.Size = new System.Drawing.Size(89, 160);
+            this.ribbonBarCalendarEmail.Size = new System.Drawing.Size(89, 135);
             this.ribbonBarCalendarEmail.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCalendarEmail.TabIndex = 30;
             this.ribbonBarCalendarEmail.Text = "Email";
+            // 
+            // buttonItemCalendarEmail
+            // 
+            this.buttonItemCalendarEmail.Image = global::CalendarBuilder.Properties.Resources.EmailBig;
+            this.buttonItemCalendarEmail.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarEmail.Name = "buttonItemCalendarEmail";
+            this.buttonItemCalendarEmail.SubItemsExpandWidth = 14;
             // 
             // ribbonBarCalendarPowerPoint
             // 
@@ -588,10 +663,17 @@
             this.buttonItemCalendarPowerPoint});
             this.ribbonBarCalendarPowerPoint.Location = new System.Drawing.Point(405, 0);
             this.ribbonBarCalendarPowerPoint.Name = "ribbonBarCalendarPowerPoint";
-            this.ribbonBarCalendarPowerPoint.Size = new System.Drawing.Size(84, 160);
+            this.ribbonBarCalendarPowerPoint.Size = new System.Drawing.Size(84, 135);
             this.ribbonBarCalendarPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCalendarPowerPoint.TabIndex = 25;
             this.ribbonBarCalendarPowerPoint.Text = "PowerPoint";
+            // 
+            // buttonItemCalendarPowerPoint
+            // 
+            this.buttonItemCalendarPowerPoint.Image = global::CalendarBuilder.Properties.Resources.PowerPoint;
+            this.buttonItemCalendarPowerPoint.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarPowerPoint.Name = "buttonItemCalendarPowerPoint";
+            this.buttonItemCalendarPowerPoint.SubItemsExpandWidth = 14;
             // 
             // ribbonBarCalendarSave
             // 
@@ -603,10 +685,49 @@
             this.ribbonBarCalendarSave.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
             this.ribbonBarCalendarSave.Location = new System.Drawing.Point(338, 0);
             this.ribbonBarCalendarSave.Name = "ribbonBarCalendarSave";
-            this.ribbonBarCalendarSave.Size = new System.Drawing.Size(67, 160);
+            this.ribbonBarCalendarSave.Size = new System.Drawing.Size(67, 135);
             this.ribbonBarCalendarSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCalendarSave.TabIndex = 24;
             this.ribbonBarCalendarSave.Text = "Save";
+            // 
+            // buttonItemCalendarSave
+            // 
+            this.buttonItemCalendarSave.Image = global::CalendarBuilder.Properties.Resources.SaveSmall;
+            this.buttonItemCalendarSave.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarSave.Name = "buttonItemCalendarSave";
+            this.buttonItemCalendarSave.SubItemsExpandWidth = 14;
+            this.buttonItemCalendarSave.Text = "Save";
+            this.buttonItemCalendarSave.Click += new System.EventHandler(this.pnMain_Click);
+            // 
+            // buttonItemCalendarSaveAs
+            // 
+            this.buttonItemCalendarSaveAs.Image = global::CalendarBuilder.Properties.Resources.SaveAs;
+            this.buttonItemCalendarSaveAs.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarSaveAs.Name = "buttonItemCalendarSaveAs";
+            this.buttonItemCalendarSaveAs.SubItemsExpandWidth = 14;
+            this.buttonItemCalendarSaveAs.Text = "Save As";
+            this.buttonItemCalendarSaveAs.Click += new System.EventHandler(this.pnMain_Click);
+            // 
+            // ribbonBarCalendarGrid
+            // 
+            this.ribbonBarCalendarGrid.AutoOverflowEnabled = true;
+            this.ribbonBarCalendarGrid.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarCalendarGrid.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemCalendarGrid});
+            this.ribbonBarCalendarGrid.Location = new System.Drawing.Point(249, 0);
+            this.ribbonBarCalendarGrid.Name = "ribbonBarCalendarGrid";
+            this.ribbonBarCalendarGrid.Size = new System.Drawing.Size(89, 135);
+            this.ribbonBarCalendarGrid.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarCalendarGrid.TabIndex = 38;
+            this.ribbonBarCalendarGrid.Text = "Grid";
+            // 
+            // buttonItemCalendarGrid
+            // 
+            this.buttonItemCalendarGrid.AutoCheckOnClick = true;
+            this.buttonItemCalendarGrid.Image = global::CalendarBuilder.Properties.Resources.Grid;
+            this.buttonItemCalendarGrid.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarGrid.Name = "buttonItemCalendarGrid";
+            this.buttonItemCalendarGrid.SubItemsExpandWidth = 14;
             // 
             // ribbonBarCalendarSlideInfo
             // 
@@ -616,10 +737,18 @@
             this.buttonItemCalendarSlideInfo});
             this.ribbonBarCalendarSlideInfo.Location = new System.Drawing.Point(147, 0);
             this.ribbonBarCalendarSlideInfo.Name = "ribbonBarCalendarSlideInfo";
-            this.ribbonBarCalendarSlideInfo.Size = new System.Drawing.Size(102, 160);
+            this.ribbonBarCalendarSlideInfo.Size = new System.Drawing.Size(102, 135);
             this.ribbonBarCalendarSlideInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCalendarSlideInfo.TabIndex = 37;
             this.ribbonBarCalendarSlideInfo.Text = "Slide Info";
+            // 
+            // buttonItemCalendarSlideInfo
+            // 
+            this.buttonItemCalendarSlideInfo.AutoCheckOnClick = true;
+            this.buttonItemCalendarSlideInfo.Image = global::CalendarBuilder.Properties.Resources.SlideInfo;
+            this.buttonItemCalendarSlideInfo.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarSlideInfo.Name = "buttonItemCalendarSlideInfo";
+            this.buttonItemCalendarSlideInfo.SubItemsExpandWidth = 14;
             // 
             // ribbonBarCalendarsCalendar
             // 
@@ -630,7 +759,7 @@
             this.itemContainerCalendarsCalendar});
             this.ribbonBarCalendarsCalendar.Location = new System.Drawing.Point(3, 0);
             this.ribbonBarCalendarsCalendar.Name = "ribbonBarCalendarsCalendar";
-            this.ribbonBarCalendarsCalendar.Size = new System.Drawing.Size(144, 160);
+            this.ribbonBarCalendarsCalendar.Size = new System.Drawing.Size(144, 135);
             this.ribbonBarCalendarsCalendar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCalendarsCalendar.TabIndex = 36;
             this.ribbonBarCalendarsCalendar.Text = "Calendar";
@@ -675,10 +804,10 @@
             this.ribbonPanelSuccessModels.Controls.Add(this.ribbonBarSuccessModelsHelp);
             this.ribbonPanelSuccessModels.Controls.Add(this.ribbonBarSuccessModels);
             this.ribbonPanelSuccessModels.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelSuccessModels.Location = new System.Drawing.Point(0, 0);
+            this.ribbonPanelSuccessModels.Location = new System.Drawing.Point(0, 25);
             this.ribbonPanelSuccessModels.Name = "ribbonPanelSuccessModels";
             this.ribbonPanelSuccessModels.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelSuccessModels.Size = new System.Drawing.Size(984, 163);
+            this.ribbonPanelSuccessModels.Size = new System.Drawing.Size(984, 138);
             this.ribbonPanelSuccessModels.TabIndex = 8;
             this.ribbonPanelSuccessModels.Visible = false;
             // 
@@ -690,10 +819,19 @@
             this.buttonItemSuccessModelsExit});
             this.ribbonBarSuccessModelsExit.Location = new System.Drawing.Point(636, 0);
             this.ribbonBarSuccessModelsExit.Name = "ribbonBarSuccessModelsExit";
-            this.ribbonBarSuccessModelsExit.Size = new System.Drawing.Size(84, 160);
+            this.ribbonBarSuccessModelsExit.Size = new System.Drawing.Size(84, 135);
             this.ribbonBarSuccessModelsExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSuccessModelsExit.TabIndex = 29;
             this.ribbonBarSuccessModelsExit.Text = "EXIT";
+            // 
+            // buttonItemSuccessModelsExit
+            // 
+            this.buttonItemSuccessModelsExit.Image = global::CalendarBuilder.Properties.Resources.Exit;
+            this.buttonItemSuccessModelsExit.ImagePaddingHorizontal = 8;
+            this.buttonItemSuccessModelsExit.Name = "buttonItemSuccessModelsExit";
+            this.buttonItemSuccessModelsExit.SubItemsExpandWidth = 14;
+            this.buttonItemSuccessModelsExit.Text = "buttonItem1";
+            this.buttonItemSuccessModelsExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
             // 
             // ribbonBarSuccessModelsHelp
             // 
@@ -703,10 +841,18 @@
             this.buttonItemSuccessModelsHelp});
             this.ribbonBarSuccessModelsHelp.Location = new System.Drawing.Point(548, 0);
             this.ribbonBarSuccessModelsHelp.Name = "ribbonBarSuccessModelsHelp";
-            this.ribbonBarSuccessModelsHelp.Size = new System.Drawing.Size(88, 160);
+            this.ribbonBarSuccessModelsHelp.Size = new System.Drawing.Size(88, 135);
             this.ribbonBarSuccessModelsHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSuccessModelsHelp.TabIndex = 28;
             this.ribbonBarSuccessModelsHelp.Text = "HELP";
+            // 
+            // buttonItemSuccessModelsHelp
+            // 
+            this.buttonItemSuccessModelsHelp.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemSuccessModelsHelp.Image")));
+            this.buttonItemSuccessModelsHelp.ImagePaddingHorizontal = 8;
+            this.buttonItemSuccessModelsHelp.Name = "buttonItemSuccessModelsHelp";
+            this.buttonItemSuccessModelsHelp.SubItemsExpandWidth = 14;
+            this.buttonItemSuccessModelsHelp.Text = "buttonItem1";
             // 
             // ribbonBarSuccessModels
             // 
@@ -716,10 +862,15 @@
             this.labelItemSuccessModels});
             this.ribbonBarSuccessModels.Location = new System.Drawing.Point(3, 0);
             this.ribbonBarSuccessModels.Name = "ribbonBarSuccessModels";
-            this.ribbonBarSuccessModels.Size = new System.Drawing.Size(545, 160);
+            this.ribbonBarSuccessModels.Size = new System.Drawing.Size(545, 135);
             this.ribbonBarSuccessModels.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSuccessModels.TabIndex = 0;
             this.ribbonBarSuccessModels.Text = "Quick Calendar Models of Success";
+            // 
+            // labelItemSuccessModels
+            // 
+            this.labelItemSuccessModels.Image = global::CalendarBuilder.Properties.Resources.ModelsOfSuccess;
+            this.labelItemSuccessModels.Name = "labelItemSuccessModels";
             // 
             // ribbonTabItemHome
             // 
@@ -756,158 +907,6 @@
             this.pnMain.Size = new System.Drawing.Size(984, 547);
             this.pnMain.TabIndex = 2;
             this.pnMain.Click += new System.EventHandler(this.pnMain_Click);
-            // 
-            // ribbonBarCalendarGrid
-            // 
-            this.ribbonBarCalendarGrid.AutoOverflowEnabled = true;
-            this.ribbonBarCalendarGrid.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarCalendarGrid.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemCalendarGrid});
-            this.ribbonBarCalendarGrid.Location = new System.Drawing.Point(249, 0);
-            this.ribbonBarCalendarGrid.Name = "ribbonBarCalendarGrid";
-            this.ribbonBarCalendarGrid.Size = new System.Drawing.Size(89, 160);
-            this.ribbonBarCalendarGrid.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarCalendarGrid.TabIndex = 38;
-            this.ribbonBarCalendarGrid.Text = "Grid";
-            // 
-            // buttonItemHomeExit
-            // 
-            this.buttonItemHomeExit.Image = global::CalendarBuilder.Properties.Resources.Exit;
-            this.buttonItemHomeExit.ImagePaddingHorizontal = 8;
-            this.buttonItemHomeExit.Name = "buttonItemHomeExit";
-            this.buttonItemHomeExit.SubItemsExpandWidth = 14;
-            this.buttonItemHomeExit.Text = "buttonItem1";
-            this.buttonItemHomeExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
-            // 
-            // buttonItemHomeHelp
-            // 
-            this.buttonItemHomeHelp.Image = global::CalendarBuilder.Properties.Resources.Help;
-            this.buttonItemHomeHelp.ImagePaddingHorizontal = 8;
-            this.buttonItemHomeHelp.Name = "buttonItemHomeHelp";
-            // 
-            // buttonItemHomeSave
-            // 
-            this.buttonItemHomeSave.Image = global::CalendarBuilder.Properties.Resources.SaveSmall;
-            this.buttonItemHomeSave.ImagePaddingHorizontal = 8;
-            this.buttonItemHomeSave.Name = "buttonItemHomeSave";
-            this.buttonItemHomeSave.SubItemsExpandWidth = 14;
-            this.buttonItemHomeSave.Text = "Save";
-            // 
-            // buttonItemHomeSaveAs
-            // 
-            this.buttonItemHomeSaveAs.Image = global::CalendarBuilder.Properties.Resources.SaveAs;
-            this.buttonItemHomeSaveAs.ImagePaddingHorizontal = 8;
-            this.buttonItemHomeSaveAs.Name = "buttonItemHomeSaveAs";
-            this.buttonItemHomeSaveAs.SubItemsExpandWidth = 14;
-            this.buttonItemHomeSaveAs.Text = "Save As";
-            // 
-            // buttonItemHomeSalesStrategyFaceCall
-            // 
-            this.buttonItemHomeSalesStrategyFaceCall.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemHomeSalesStrategyFaceCall.Checked = true;
-            this.buttonItemHomeSalesStrategyFaceCall.Image = global::CalendarBuilder.Properties.Resources.FaceCall;
-            this.buttonItemHomeSalesStrategyFaceCall.ImagePaddingHorizontal = 8;
-            this.buttonItemHomeSalesStrategyFaceCall.Name = "buttonItemHomeSalesStrategyFaceCall";
-            // 
-            // buttonItemHomeSalesStrategyEmail
-            // 
-            this.buttonItemHomeSalesStrategyEmail.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemHomeSalesStrategyEmail.Image = global::CalendarBuilder.Properties.Resources.Email;
-            this.buttonItemHomeSalesStrategyEmail.ImagePaddingHorizontal = 8;
-            this.buttonItemHomeSalesStrategyEmail.Name = "buttonItemHomeSalesStrategyEmail";
-            // 
-            // buttonItemHomeSalesStrategyFax
-            // 
-            this.buttonItemHomeSalesStrategyFax.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemHomeSalesStrategyFax.Image = global::CalendarBuilder.Properties.Resources.Fax;
-            this.buttonItemHomeSalesStrategyFax.ImagePaddingHorizontal = 8;
-            this.buttonItemHomeSalesStrategyFax.Name = "buttonItemHomeSalesStrategyFax";
-            // 
-            // buttonItemCalendarExit
-            // 
-            this.buttonItemCalendarExit.Image = global::CalendarBuilder.Properties.Resources.Exit;
-            this.buttonItemCalendarExit.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarExit.Name = "buttonItemCalendarExit";
-            this.buttonItemCalendarExit.SubItemsExpandWidth = 14;
-            this.buttonItemCalendarExit.Text = "buttonItem1";
-            this.buttonItemCalendarExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
-            // 
-            // buttonItemCalendarHelp
-            // 
-            this.buttonItemCalendarHelp.Image = global::CalendarBuilder.Properties.Resources.Help;
-            this.buttonItemCalendarHelp.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarHelp.Name = "buttonItemCalendarHelp";
-            this.buttonItemCalendarHelp.Click += new System.EventHandler(this.pnMain_Click);
-            // 
-            // buttonItemCalendarEmail
-            // 
-            this.buttonItemCalendarEmail.Image = global::CalendarBuilder.Properties.Resources.EmailBig;
-            this.buttonItemCalendarEmail.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarEmail.Name = "buttonItemCalendarEmail";
-            this.buttonItemCalendarEmail.SubItemsExpandWidth = 14;
-            // 
-            // buttonItemCalendarPowerPoint
-            // 
-            this.buttonItemCalendarPowerPoint.Image = global::CalendarBuilder.Properties.Resources.PowerPoint;
-            this.buttonItemCalendarPowerPoint.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarPowerPoint.Name = "buttonItemCalendarPowerPoint";
-            this.buttonItemCalendarPowerPoint.SubItemsExpandWidth = 14;
-            // 
-            // buttonItemCalendarSave
-            // 
-            this.buttonItemCalendarSave.Image = global::CalendarBuilder.Properties.Resources.SaveSmall;
-            this.buttonItemCalendarSave.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarSave.Name = "buttonItemCalendarSave";
-            this.buttonItemCalendarSave.SubItemsExpandWidth = 14;
-            this.buttonItemCalendarSave.Text = "Save";
-            this.buttonItemCalendarSave.Click += new System.EventHandler(this.pnMain_Click);
-            // 
-            // buttonItemCalendarSaveAs
-            // 
-            this.buttonItemCalendarSaveAs.Image = global::CalendarBuilder.Properties.Resources.SaveAs;
-            this.buttonItemCalendarSaveAs.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarSaveAs.Name = "buttonItemCalendarSaveAs";
-            this.buttonItemCalendarSaveAs.SubItemsExpandWidth = 14;
-            this.buttonItemCalendarSaveAs.Text = "Save As";
-            this.buttonItemCalendarSaveAs.Click += new System.EventHandler(this.pnMain_Click);
-            // 
-            // buttonItemCalendarGrid
-            // 
-            this.buttonItemCalendarGrid.AutoCheckOnClick = true;
-            this.buttonItemCalendarGrid.Image = global::CalendarBuilder.Properties.Resources.Grid;
-            this.buttonItemCalendarGrid.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarGrid.Name = "buttonItemCalendarGrid";
-            this.buttonItemCalendarGrid.SubItemsExpandWidth = 14;
-            // 
-            // buttonItemCalendarSlideInfo
-            // 
-            this.buttonItemCalendarSlideInfo.AutoCheckOnClick = true;
-            this.buttonItemCalendarSlideInfo.Image = global::CalendarBuilder.Properties.Resources.SlideInfo;
-            this.buttonItemCalendarSlideInfo.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarSlideInfo.Name = "buttonItemCalendarSlideInfo";
-            this.buttonItemCalendarSlideInfo.SubItemsExpandWidth = 14;
-            // 
-            // buttonItemSuccessModelsExit
-            // 
-            this.buttonItemSuccessModelsExit.Image = global::CalendarBuilder.Properties.Resources.Exit;
-            this.buttonItemSuccessModelsExit.ImagePaddingHorizontal = 8;
-            this.buttonItemSuccessModelsExit.Name = "buttonItemSuccessModelsExit";
-            this.buttonItemSuccessModelsExit.SubItemsExpandWidth = 14;
-            this.buttonItemSuccessModelsExit.Text = "buttonItem1";
-            this.buttonItemSuccessModelsExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
-            // 
-            // buttonItemSuccessModelsHelp
-            // 
-            this.buttonItemSuccessModelsHelp.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemSuccessModelsHelp.Image")));
-            this.buttonItemSuccessModelsHelp.ImagePaddingHorizontal = 8;
-            this.buttonItemSuccessModelsHelp.Name = "buttonItemSuccessModelsHelp";
-            this.buttonItemSuccessModelsHelp.SubItemsExpandWidth = 14;
-            this.buttonItemSuccessModelsHelp.Text = "buttonItem1";
-            // 
-            // labelItemSuccessModels
-            // 
-            this.labelItemSuccessModels.Image = global::CalendarBuilder.Properties.Resources.ModelsOfSuccess;
-            this.labelItemSuccessModels.Name = "labelItemSuccessModels";
             // 
             // FormMain
             // 

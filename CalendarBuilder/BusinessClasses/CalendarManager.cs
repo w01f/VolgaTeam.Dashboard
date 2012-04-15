@@ -877,6 +877,7 @@ namespace CalendarBuilder.BusinessClasses
         public bool ShowHeader { get; set; }
         public bool ShowBusinessName { get; set; }
         public bool ShowDecisionMaker { get; set; }
+        public bool ShowBigDate { get; set; }
         private string _businessName = string.Empty;
         private string _decisionMaker = string.Empty;
         public string Header { get; set; }
@@ -924,15 +925,25 @@ namespace CalendarBuilder.BusinessClasses
         public bool ApplyForAllLegend { get; set; }
         #endregion
 
+        #region Theme Color
+        public string SlideColor { get; set; }
+        public bool ApplyForAllThemeColor { get; set; }
+        #endregion
+
         #region Calculated Options
         public string BusinessName
         {
             get
             {
-                if (!string.IsNullOrEmpty(_businessName))
-                    return _businessName;
+                if (this.ShowBusinessName)
+                {
+                    if (!string.IsNullOrEmpty(_businessName))
+                        return _businessName;
+                    else
+                        return this.Parent.Parent.BusinessName;
+                }
                 else
-                    return this.Parent.Parent.BusinessName;
+                    return string.Empty;
             }
             set
             {
@@ -947,10 +958,15 @@ namespace CalendarBuilder.BusinessClasses
         {
             get
             {
-                if (!string.IsNullOrEmpty(_decisionMaker))
-                    return _decisionMaker;
+                if (this.ShowDecisionMaker)
+                {
+                    if (!string.IsNullOrEmpty(_decisionMaker))
+                        return _decisionMaker;
+                    else
+                        return this.Parent.Parent.DecisionMaker;
+                }
                 else
-                    return this.Parent.Parent.DecisionMaker;
+                    return string.Empty;
             }
             set
             {
@@ -999,7 +1015,7 @@ namespace CalendarBuilder.BusinessClasses
         {
             get
             {
-                return this.Parent.Days.Where(x=>!string.IsNullOrEmpty(x.Newspaper.Summary)).Count();
+                return this.Parent.Days.Where(x => !string.IsNullOrEmpty(x.Newspaper.Summary)).Count();
             }
         }
 
@@ -1021,6 +1037,192 @@ namespace CalendarBuilder.BusinessClasses
             }
         }
 
+        #region Slide Output Properties
+        public string SlideName
+        {
+            get
+            {
+                string result = string.Empty;
+                BusinessClasses.CalendarTemplate template = BusinessClasses.OutputManager.Instance.CalendarTemplates.Where(x => x.IsLarge == this.ShowBigDate && x.HasLogo == this.ShowLogo && x.Color.ToLower().Equals(this.SlideColor) && x.Month.ToLower().Equals(this.Parent.StartDate.ToString("MMM-yy").ToLower())).FirstOrDefault();
+                if (template != null)
+                    result = template.TemplateName;
+                return result;
+            }
+        }
+
+        public int SlideRGB
+        {
+            get
+            {
+                int result = Color.Black.ToArgb();
+                switch (this.SlideColor)
+                {
+                    case "black":
+                        result = Microsoft.VisualBasic.Information.RGB(0, 0, 0);
+                        break;
+                    case "blue":
+                        result = Microsoft.VisualBasic.Information.RGB(0, 0, 102);
+                        break;
+                    case "gray":
+                        result = Microsoft.VisualBasic.Information.RGB(0, 0, 0);
+                        break;
+                    case "green":
+                        result = Microsoft.VisualBasic.Information.RGB(0, 51, 0);
+                        break;
+                    case "orange":
+                        result = Microsoft.VisualBasic.Information.RGB(153, 0, 0);
+                        break;
+                    case "teal":
+                        result = Microsoft.VisualBasic.Information.RGB(0, 51, 102);
+                        break;
+                }
+                return result;
+            }
+        }
+
+        public string SlideMasterName
+        {
+            get
+            {
+                string result = string.Empty;
+                BusinessClasses.CalendarTemplate template = BusinessClasses.OutputManager.Instance.CalendarTemplates.Where(x => x.IsLarge == this.ShowBigDate && x.HasLogo == this.ShowLogo && x.Color.ToLower().Equals(this.SlideColor) && x.Month.ToLower().Equals(this.Parent.StartDate.ToString("MMM-yy").ToLower())).FirstOrDefault();
+                if (template != null)
+                    result = template.SlideMaster;
+                return result;
+            }
+        }
+
+        public string LogoFile
+        {
+            get
+            {
+                string result = string.Empty;
+                if (this.ShowLogo && this.Logo != null)
+                {
+                    result = System.IO.Path.GetTempFileName();
+                    this.Logo.Save(result);
+                }
+                return result;
+            }
+        }
+
+        public string SlideTitle
+        {
+            get
+            {
+                return this.ShowHeader ? this.Header : string.Empty;
+            }
+        }
+
+        public string MonthText
+        {
+            get
+            {
+                string result = string.Empty;
+                if (this.ShowMonth)
+                    result = this.Parent.StartDate.ToString("MMMM yyyy");
+                return result;
+            }
+        }
+
+        public string BackgroundSheetName
+        {
+            get
+            {
+                string result = string.Empty;
+                result = this.Parent.StartDate.ToString("MMM").ToLower() + (this.ShowBigDate ? "1" : "2");
+                return result;
+            }
+        }
+
+        public string Comments
+        {
+            get
+            {
+                string result = string.Empty;
+                if (this.ShowCustomComment)
+                    result = this.CustomComment;
+                return result;
+            }
+        }
+
+        public string TagA
+        {
+            get
+            {
+                string result = string.Empty;
+                string[] tagValues = GetTotalTags();
+                if (tagValues.Length > 0)
+                    result = tagValues[0];
+                return result;
+            }
+        }
+
+        public string TagB
+        {
+            get
+            {
+                string result = string.Empty;
+                string[] tagValues = GetTotalTags();
+                if (tagValues.Length > 1)
+                    result = tagValues[1];
+                return result;
+            }
+        }
+
+        public string TagC
+        {
+            get
+            {
+                string result = string.Empty;
+                string[] tagValues = GetTotalTags();
+                if (tagValues.Length > 2)
+                    result = tagValues[2];
+                return result;
+            }
+        }
+
+        public string TagD
+        {
+            get
+            {
+                string result = string.Empty;
+                string[] tagValues = GetTotalTags();
+                if (tagValues.Length > 3)
+                    result = tagValues[3];
+                return result;
+            }
+        }
+
+        public string LegendString
+        {
+            get
+            {
+                string result = string.Empty;
+                if (this.ShowLegend)
+                {
+                    result = string.Join(";  ", this.Legend.Select(x => x.StringRepresentation));
+                }
+                return result;
+            }
+        }
+
+        public string[] DayOutput
+        {
+            get
+            {
+                return this.Parent.Days.Select(x => x.Summary).ToArray();
+            }
+        }
+
+        public float FontSize
+        {
+            get
+            {
+                return 7;
+            }
+        }
+        #endregion
         #endregion
 
         public CalendarOutputData(CalendarMonth parent)
@@ -1032,6 +1234,7 @@ namespace CalendarBuilder.BusinessClasses
             this.ShowHeader = true;
             this.ShowBusinessName = true;
             this.ShowDecisionMaker = true;
+            this.ShowBigDate = true;
             this.Header = string.Empty;
             this.ApplyForAllBasic = true;
             #endregion
@@ -1067,6 +1270,11 @@ namespace CalendarBuilder.BusinessClasses
             this.Legend = new List<CalendarLegend>();
             this.ApplyForAllLegend = true;
             #endregion
+
+            #region Theme Color
+            this.SlideColor = "gray";
+            this.ApplyForAllThemeColor = true;
+            #endregion
         }
 
         public string Serialize()
@@ -1079,6 +1287,7 @@ namespace CalendarBuilder.BusinessClasses
             result.AppendLine(@"<ShowHeader>" + this.ShowHeader.ToString() + @"</ShowHeader>");
             result.AppendLine(@"<ShowBusinessName>" + this.ShowBusinessName.ToString() + @"</ShowBusinessName>");
             result.AppendLine(@"<ShowDecisionMaker>" + this.ShowDecisionMaker.ToString() + @"</ShowDecisionMaker>");
+            result.AppendLine(@"<ShowBigDate>" + this.ShowBigDate + @"</ShowBigDate>");
             result.AppendLine(@"<Header>" + this.Header.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Header>");
             result.AppendLine(@"<BusinessName>" + _businessName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</BusinessName>");
             result.AppendLine(@"<DecisionMaker>" + _decisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
@@ -1107,7 +1316,7 @@ namespace CalendarBuilder.BusinessClasses
             result.AppendLine(@"<ShowActiveDays>" + this.ShowActiveDays.ToString() + @"</ShowActiveDays>");
             result.AppendLine(@"<ShowPrintAdsNumber>" + this.ShowPrintAdsNumber.ToString() + @"</ShowPrintAdsNumber>");
             result.AppendLine(@"<ShowImpressions>" + this.ShowImpressions.ToString() + @"</ShowImpressions>");
-            result.AppendLine(@"<DigitalCPM>" + this.DigitalCPM.ToString() + @"</DigitalCPM>");
+            result.AppendLine(@"<ShowDigitalCPM>" + this.ShowDigitalCPM.ToString() + @"</ShowDigitalCPM>");
             result.AppendLine(@"<ApplyForAllOtherNumbers>" + this.ApplyForAllOtherNumbers.ToString() + @"</ApplyForAllOtherNumbers>");
             if (this.Impressions.HasValue)
                 result.AppendLine(@"<Impressions>" + this.Impressions.Value.ToString() + @"</Impressions>");
@@ -1136,6 +1345,11 @@ namespace CalendarBuilder.BusinessClasses
                 result.AppendLine(@"<Legend>" + legend.Serialize() + @"</Legend>");
             result.AppendLine(@"</Legends>");
             result.AppendLine(@"<ApplyForAllLegend>" + this.ApplyForAllLegend.ToString() + @"</ApplyForAllLegend>");
+            #endregion
+
+            #region Theme Color
+            result.AppendLine(@"<SlideColor>" + this.SlideColor.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideColor>");
+            result.AppendLine(@"<ApplyForAllThemeColor>" + this.ApplyForAllThemeColor.ToString() + @"</ApplyForAllThemeColor>");
             #endregion
 
             return result.ToString();
@@ -1167,6 +1381,10 @@ namespace CalendarBuilder.BusinessClasses
                     case "ShowDecisionMaker":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowDecisionMaker = tempBool;
+                        break;
+                    case "ShowBigDate":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowBigDate = tempBool;
                         break;
                     case "Header":
                         this.Header = childNode.InnerText;
@@ -1307,6 +1525,16 @@ namespace CalendarBuilder.BusinessClasses
                             this.ApplyForAllLegend = tempBool;
                         break;
                     #endregion
+
+                    #region Theme Color
+                    case "SlideColor":
+                        this.SlideColor = childNode.InnerText;
+                        break;
+                    case "ApplyForAllThemeColor":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ApplyForAllThemeColor = tempBool;
+                        break;
+                    #endregion
                 }
             }
         }
@@ -1352,6 +1580,26 @@ namespace CalendarBuilder.BusinessClasses
             _newLegends.AddRange(_legendsFromDays.Where(x => !this.Legend.Select(y => y.Description).Contains(x.Description)));
             this.Legend.Clear();
             this.Legend.AddRange(_newLegends);
+        }
+
+        private string[] GetTotalTags()
+        {
+            List<string> tagValues = new List<string>();
+            if (this.ShowPrintTotalCostCalculated | this.ShowPrintTotalCostManual)
+                tagValues.Add("Newspaper Investment: " + (this.ShowPrintTotalCostCalculated ? this.PrintTotalCostCalculated.ToString("$#,###.00") : (this.PrintTotalCost.HasValue ? this.PrintTotalCost.Value.ToString("$#,###.00") : string.Empty)));
+            if (this.ShowDigitalTotalCost && this.DigitalTotalCost.HasValue)
+                tagValues.Add("Digital Investment: " + this.DigitalTotalCost.Value.ToString("$#,###.00"));
+            if (this.ShowTVTotalCost && this.TVTotalCost.HasValue)
+                tagValues.Add("TV Investment: " + this.TVTotalCost.Value.ToString("$#,###.00"));
+            if (this.ShowActiveDays)
+                tagValues.Add("# of Active Days: " + this.ActiveDays.ToString("#,##0"));
+            if (this.ShowPrintAdsNumber)
+                tagValues.Add("# of Newspaper Ads: " + this.PrintAdsNumber.ToString("#,##0"));
+            if (this.ShowImpressions && this.Impressions.HasValue)
+                tagValues.Add("Monthly Imressions: " + this.Impressions.Value.ToString("#,##0.0"));
+            if (this.ShowDigitalCPM && this.DigitalCPM.HasValue)
+                tagValues.Add("Digital CPM: " + this.DigitalCPM.Value.ToString("$#,###.0"));
+            return tagValues.ToArray();
         }
     }
 

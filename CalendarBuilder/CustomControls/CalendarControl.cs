@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -504,10 +506,137 @@ namespace CalendarBuilder.CustomControls
         #region Output Staff
         public void buttonItemWeeklySchedulePowerPoint_Click(object sender, EventArgs e)
         {
+            if (FormMain.Instance.listBoxControlCalendar.SelectedIndex >= 0)
+            {
+                BusinessClasses.CalendarMonth _selectedMonth = _localCalendar.Months[FormMain.Instance.listBoxControlCalendar.SelectedIndex];
+                using (ToolForms.FormSelectPublication form = new ToolForms.FormSelectPublication())
+                {
+                    form.Text = "Ad Calendar Slide Output";
+                    form.pbLogo.Image = Properties.Resources.Calendar;
+                    form.laTitle.Text = "You have several Calendars available for your presentation…";
+                    form.buttonXCurrentPublication.Text = string.Format("Send ONLY {0} Calendar Slide to PowerPoint", _selectedMonth.StartDate.ToString("MMMM, yyyy"));
+                    form.buttonXSelectedPublications.Text = "Send all of the Selected Calendars to PowerPoint";
+                    foreach (BusinessClasses.CalendarMonth month in _localCalendar.Months.Where(y=>y.Days.Where(z=>z.ContainsData).Count()>0))
+                        form.checkedListBoxControlMonths.Items.Add(month, month.StartDate.ToString("MMMM, yyyy"), CheckState.Checked, true);
+                    ConfigurationClasses.RegistryHelper.MainFormHandle = form.Handle;
+                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                    DialogResult result = form.ShowDialog();
+                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                    ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                    if (result != DialogResult.Cancel)
+                    {
+                        using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
+                        {
+                            formProgress.TopMost = true;
+                            if (result == DialogResult.Yes)
+                            {
+                                formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
+                                if (_selectedMonth.Days.Where(x=>x.ContainsData).Count() == 0)
+                                    if (AppManager.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to send this slide to PowerPoint?", _selectedMonth.StartDate.ToString("MMMM, yyyy"))) == DialogResult.No)
+                                        return;
+                                formProgress.Show();
+                                this.Enabled = false;
+                                InteropClasses.PowerPointHelper.Instance.AppendCalendar(_selectedMonth.OutputData);
+                            }
+                            else if (result == DialogResult.No)
+                            {
+                                formProgress.laProgress.Text = form.checkedListBoxControlMonths.CheckedItems.Count == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Several Calendar slides…\nThis will take a few minutes…";
+                                formProgress.Show();
+                                this.Enabled = false;
+                                foreach (DevExpress.XtraEditors.Controls.CheckedListBoxItem item in form.checkedListBoxControlMonths.Items)
+                                {
+                                    if (item.CheckState == CheckState.Checked)
+                                    {
+                                        BusinessClasses.CalendarMonth month = item.Value as BusinessClasses.CalendarMonth;
+                                        if (month != null)
+                                            InteropClasses.PowerPointHelper.Instance.AppendCalendar(month.OutputData);
+                                            
+                                    }
+                                }
+                            }
+                            this.Enabled = true;
+                            formProgress.Close();
+                        }
+                        using (ToolForms.FormSlideOutput formOutput = new ToolForms.FormSlideOutput())
+                        {
+                            if (formOutput.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                                AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                        }
+                    }
+                }
+            }
         }
 
         public void buttonItemWeeklyScheduleEmail_Click(object sender, EventArgs e)
         {
+            if (FormMain.Instance.listBoxControlCalendar.SelectedIndex >= 0)
+            {
+                BusinessClasses.CalendarMonth _selectedMonth = _localCalendar.Months[FormMain.Instance.listBoxControlCalendar.SelectedIndex];
+
+                using (ToolForms.FormSelectPublication form = new ToolForms.FormSelectPublication())
+                {
+                    form.Text = "Ad Calendar Email Output";
+                    form.pbLogo.Image = Properties.Resources.EmailBig;
+                    form.laTitle.Text = "You have several Calendars that can be ATTACHED to an email…";
+                    form.buttonXCurrentPublication.Text = string.Format("Attach just the {0} Calendar Slide to my email message", _selectedMonth.StartDate.ToString("MMMM, yyyy"));
+                    form.buttonXSelectedPublications.Text = "Attach ALL Selected Calendars to my email message";
+                    foreach (BusinessClasses.CalendarMonth month in _localCalendar.Months.Where(y => y.Days.Where(z => z.ContainsData).Count() > 0))
+                        form.checkedListBoxControlMonths.Items.Add(month, month.StartDate.ToString("MMMM, yyyy"), CheckState.Checked, true);
+                    ConfigurationClasses.RegistryHelper.MainFormHandle = form.Handle;
+                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                    DialogResult result = form.ShowDialog();
+                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                    ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                    if (result != DialogResult.Cancel)
+                    {
+                        using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
+                        {
+                            formProgress.TopMost = true;
+                            string tempFileName = Path.Combine(ConfigurationClasses.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+                            if (result == DialogResult.Yes)
+                            {
+                                formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
+                                if (_selectedMonth.Days.Where(x => x.ContainsData).Count() == 0)
+                                    if (AppManager.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to Email this slide?", _selectedMonth.StartDate.ToString("MMMM, yyyy"))) == DialogResult.No)
+                                        return;
+                                formProgress.Show();
+                                this.Enabled = false;
+                                InteropClasses.PowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, new BusinessClasses.CalendarOutputData[] { _selectedMonth.OutputData });
+                            }
+                            else if (result == DialogResult.No)
+                            {
+                                formProgress.laProgress.Text = form.checkedListBoxControlMonths.CheckedItems.Count == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Several Calendar slides…\nThis will take a few minutes…";
+                                formProgress.Show();
+                                this.Enabled = false;
+                                List<BusinessClasses.CalendarOutputData> emailPages = new List<BusinessClasses.CalendarOutputData>();
+                                foreach (DevExpress.XtraEditors.Controls.CheckedListBoxItem item in form.checkedListBoxControlMonths.Items)
+                                {
+                                    if (item.CheckState == CheckState.Checked)
+                                    {
+                                        BusinessClasses.CalendarMonth month = item.Value as BusinessClasses.CalendarMonth;
+                                        if (month != null)
+                                            emailPages.Add(month.OutputData);
+                                    }
+                                }
+                                InteropClasses.PowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, emailPages.ToArray());
+                            }
+                            this.Enabled = true;
+                            formProgress.Close();
+                            if (File.Exists(tempFileName))
+                                using (ToolForms.FormEmail formEmail = new ToolForms.FormEmail())
+                                {
+                                    formEmail.Text = "Email this Calendar";
+                                    formEmail.PresentationFile = tempFileName;
+                                    ConfigurationClasses.RegistryHelper.MainFormHandle = formEmail.Handle;
+                                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                                    formEmail.ShowDialog();
+                                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                                    ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                                }
+                        }
+                    }
+                }
+            }
         }
         #endregion
     }

@@ -22,7 +22,7 @@ namespace CalendarBuilder.CustomControls.SlideInfo
         public SlideInfoControl()
         {
             InitializeComponent();
-            navBarControlDayProperties.View = new CustomNavPaneViewInfoRegistrator();
+            navBarControlSlideInfo.View = new CustomNavPaneViewInfoRegistrator();
 
             #region Assign Properties Changed Event To Controls
             #region Basic
@@ -33,6 +33,7 @@ namespace CalendarBuilder.CustomControls.SlideInfo
             textEditBasicBusinessName.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
             buttonXBasicDecisionMaker.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
             textEditBasicDecisionMaker.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            buttonXBasicBigDate.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
             checkEditBasicApplyForAll.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
 
             comboBoxEditBasicSlideTitle.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
@@ -119,6 +120,16 @@ namespace CalendarBuilder.CustomControls.SlideInfo
             repositoryItemTextEdit.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
             repositoryItemTextEdit.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
             #endregion
+
+            #region Theme Color
+            buttonXThemeColorBlack.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            buttonXThemeColorBlue.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            buttonXThemeColorGray.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            buttonXThemeColorGreen.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            buttonXThemeColorOrange.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            buttonXThemeColorTeal.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            checkEditThemeColorApplyForAll.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            #endregion
             #endregion
         }
 
@@ -153,6 +164,8 @@ namespace CalendarBuilder.CustomControls.SlideInfo
 
                 buttonXBasicDecisionMaker.Checked = _month.OutputData.ShowDecisionMaker;
                 textEditBasicDecisionMaker.EditValue = !string.IsNullOrEmpty(_month.OutputData.DecisionMaker) ? _month.OutputData.DecisionMaker : _month.Parent.DecisionMaker;
+
+                buttonXBasicBigDate.Checked = _month.OutputData.ShowBigDate;
 
                 checkEditBasicApplyForAll.Checked = _month.OutputData.ApplyForAllBasic;
                 #endregion
@@ -210,6 +223,37 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                 checkEditLegendApplyForAll.Checked = _month.OutputData.ApplyForAllLegend;
                 #endregion
 
+                #region Theme Color
+                buttonXThemeColorBlack.Checked = false;
+                buttonXThemeColorBlue.Checked = false;
+                buttonXThemeColorGray.Checked = false;
+                buttonXThemeColorGreen.Checked = false;
+                buttonXThemeColorOrange.Checked = false;
+                buttonXThemeColorTeal.Checked = false;
+                switch (_month.OutputData.SlideColor)
+                {
+                    case "black":
+                        buttonXThemeColorBlack.Checked = true;
+                        break;
+                    case "blue":
+                        buttonXThemeColorBlue.Checked = true;
+                        break;
+                    case "gray":
+                        buttonXThemeColorGray.Checked = true;
+                        break;
+                    case "green":
+                        buttonXThemeColorGreen.Checked = true;
+                        break;
+                    case "orange":
+                        buttonXThemeColorOrange.Checked = true;
+                        break;
+                    case "teal":
+                        buttonXThemeColorTeal.Checked = true;
+                        break;
+                }
+                checkEditThemeColorApplyForAll.Checked = _month.OutputData.ApplyForAllThemeColor;
+                #endregion
+
                 _allowToSave = true;
                 this.SettingsNotSaved = false;
             }
@@ -231,6 +275,8 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                 _month.OutputData.ShowDecisionMaker = buttonXBasicDecisionMaker.Checked;
                 _month.OutputData.DecisionMaker = textEditBasicDecisionMaker.EditValue != null && !textEditBasicDecisionMaker.EditValue.ToString().Equals(_month.Parent.DecisionMaker) ? textEditBasicDecisionMaker.EditValue.ToString() : string.Empty;
 
+                _month.OutputData.ShowBigDate = buttonXBasicBigDate.Checked;
+
                 _month.OutputData.ApplyForAllBasic = checkEditBasicApplyForAll.Checked;
                 if (_month.OutputData.ApplyForAllBasic)
                 {
@@ -244,6 +290,7 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                             month.OutputData.ShowBusinessName = _month.OutputData.ShowBusinessName;
                             month.OutputData.BusinessName = _month.OutputData.BusinessName;
                             month.OutputData.ShowDecisionMaker = _month.OutputData.ShowDecisionMaker;
+                            month.OutputData.ShowBigDate = _month.OutputData.ShowBigDate;
                             month.OutputData.DecisionMaker = _month.OutputData.DecisionMaker;
                             month.OutputData.ApplyForAllBasic = _month.OutputData.ApplyForAllBasic;
                         }
@@ -375,6 +422,33 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                 }
                 #endregion
 
+                #region Theme Color
+                if (buttonXThemeColorBlack.Checked)
+                    _month.OutputData.SlideColor = "black";
+                else if (buttonXThemeColorBlue.Checked)
+                    _month.OutputData.SlideColor = "blue";
+                else if (buttonXThemeColorGray.Checked)
+                    _month.OutputData.SlideColor = "gray";
+                else if (buttonXThemeColorGreen.Checked)
+                    _month.OutputData.SlideColor = "green";
+                else if (buttonXThemeColorOrange.Checked)
+                    _month.OutputData.SlideColor = "orange";
+                else if (buttonXThemeColorTeal.Checked)
+                    _month.OutputData.SlideColor = "teal";
+                _month.OutputData.ApplyForAllThemeColor = checkEditThemeColorApplyForAll.Checked;
+                if (_month.OutputData.ApplyForAllThemeColor)
+                {
+                    foreach (BusinessClasses.CalendarMonth month in _month.Parent.Months)
+                    {
+                        if (month != _month)
+                        {
+                            month.OutputData.SlideColor = _month.OutputData.SlideColor;
+                            month.OutputData.ApplyForAllThemeColor = _month.OutputData.ApplyForAllThemeColor;
+                        }
+                    }
+                }
+                #endregion
+
                 this.SettingsNotSaved = false;
             }
         }
@@ -459,22 +533,22 @@ namespace CalendarBuilder.CustomControls.SlideInfo
         #endregion
 
         #region Other Numbers Event Handlers
-        private void buttonXOtherNumbersActiveDays_Click(object sender, EventArgs e)
+        private void buttonXOtherNumbersActiveDays_CheckedChanged(object sender, EventArgs e)
         {
             spinEditOtherNumbersActiveDays.Enabled = buttonXOtherNumbersActiveDays.Checked;
         }
 
-        private void buttonXOtherNumbersNewspaperAdsNumber_Click(object sender, EventArgs e)
+        private void buttonXOtherNumbersNewspaperAdsNumber_CheckedChanged(object sender, EventArgs e)
         {
             spinEditOtherNumbersNewspaperAdsNumber.Enabled = buttonXOtherNumbersNewspaperAdsNumber.Checked;
         }
 
-        private void buttonXOtherNumbersImpressions_Click(object sender, EventArgs e)
+        private void buttonXOtherNumbersImpressions_CheckedChanged(object sender, EventArgs e)
         {
             spinEditOtherNumbersImpressions.Enabled = buttonXOtherNumbersImpressions.Checked;
         }
 
-        private void buttonXOtherNumbersDigitalCPM_Click(object sender, EventArgs e)
+        private void buttonXOtherNumbersDigitalCPM_CheckedChanged(object sender, EventArgs e)
         {
             spinEditOtherNumbersDigitalCPM.Enabled = buttonXOtherNumbersDigitalCPM.Checked;
         }
@@ -514,6 +588,19 @@ namespace CalendarBuilder.CustomControls.SlideInfo
         private void gridViewLegend_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             propertiesControl_PropertiesChanged(null, null);
+        }
+        #endregion
+
+        #region Theme Color Event Handlers
+        private void buttonXThemeColor_Click(object sender, EventArgs e)
+        {
+            buttonXThemeColorBlack.Checked = false;
+            buttonXThemeColorBlue.Checked = false;
+            buttonXThemeColorGray.Checked = false;
+            buttonXThemeColorGreen.Checked = false;
+            buttonXThemeColorOrange.Checked = false;
+            buttonXThemeColorTeal.Checked = false;
+            (sender as DevComponents.DotNetBar.ButtonX).Checked = true;
         }
         #endregion
     }

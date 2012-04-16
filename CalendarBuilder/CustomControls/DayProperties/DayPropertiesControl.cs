@@ -6,7 +6,7 @@ namespace CalendarBuilder.CustomControls.DayProperties
 {
     public partial class DayPropertiesControl : UserControl
     {
-        private BusinessClasses.CalendarDay _day = null;
+        public BusinessClasses.CalendarDay Day { get; set; }
 
         public bool SettingsNotSaved { get; set; }
 
@@ -20,32 +20,33 @@ namespace CalendarBuilder.CustomControls.DayProperties
 
         [Browsable(true)]
         [Category("Action")]
-        public event DevExpress.XtraNavBar.NavBarGroupEventHandler PropertiesGroupChanged;
+        public event DevExpress.XtraTab.TabPageChangedEventHandler PropertiesGroupChanged;
 
         public DayPropertiesControl()
         {
             InitializeComponent();
-            navBarControlDayProperties.View = new CustomNavPaneViewInfoRegistrator();
         }
 
         public void LoadData(BusinessClasses.CalendarDay day)
         {
-            _day = day;
+            this.Day = day;
             LoadCurrentDayData();
 
-            navBarGroupDigital.Expanded = true;
             if (this.PropertiesGroupChanged != null)
-                this.PropertiesGroupChanged(navBarControlDayProperties, new DevExpress.XtraNavBar.NavBarGroupEventArgs(navBarGroupDigital));
+                this.PropertiesGroupChanged(xtraTabControl, new DevExpress.XtraTab.TabPageChangedEventArgs(null,xtraTabControl.SelectedTabPage));
         }
 
         public void LoadCurrentDayData()
         {
-            if (_day != null)
+            if (this.Day != null)
             {
-                laTitle.Text = _day.Date.ToString("dddd, MMMM d, yyyy");
-                digitalPropertiesControl.LoadData(_day);
-                newspaperPropertiesControl.LoadData(_day);
-                commentControl.LoadData(_day);
+                xtraTabPageDigital.Tooltip = "Digital Info: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
+                xtraTabPageNewspaper.Tooltip = "Newspaper Info: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
+                xtraTabPageTV.Tooltip = "TV Info: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
+                xtraTabPageComment.Tooltip = "Comment: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
+                digitalPropertiesControl.LoadData(this.Day);
+                newspaperPropertiesControl.LoadData(this.Day);
+                commentControl.LoadData(this.Day);
                 this.SettingsNotSaved = false;
             }
         }
@@ -65,6 +66,13 @@ namespace CalendarBuilder.CustomControls.DayProperties
                 this.PropertiesApplied(sender, e);
         }
 
+        private void barLargeButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Day.ClearData();
+            LoadCurrentDayData();
+            this.SettingsNotSaved = true;
+        }
+
         private void barLargeButtonItemClose_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (this.PropertiesClosed != null)
@@ -76,7 +84,7 @@ namespace CalendarBuilder.CustomControls.DayProperties
             this.SettingsNotSaved = true;
         }
 
-        private void navBarControlDayProperties_ActiveGroupChanged(object sender, DevExpress.XtraNavBar.NavBarGroupEventArgs e)
+        private void xtraTabControl_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
             if (this.PropertiesGroupChanged != null)
                 this.PropertiesGroupChanged(sender, e);

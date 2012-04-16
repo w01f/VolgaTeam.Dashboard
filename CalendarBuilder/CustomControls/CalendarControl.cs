@@ -12,8 +12,8 @@ namespace CalendarBuilder.CustomControls
         private static CalendarControl _instance = null;
         private BusinessClasses.Calendar _localCalendar;
         private CalendarVisualizer.CalendarVisualizer _visualizer = new CalendarVisualizer.CalendarVisualizer();
-        private BusinessClasses.DayCopyPaster _copyPaster = new BusinessClasses.DayCopyPaster();
 
+        public BusinessClasses.DayCopyPaster CopyPaster { get; private set; }
         public bool AllowToSave { get; set; }
         public bool SettingsNotSaved { get; set; }
 
@@ -33,12 +33,13 @@ namespace CalendarBuilder.CustomControls
             AssignCloseActiveEditorsonOutSideClick(pnTop);
 
             #region Copy-Paster Initialization
-            _copyPaster.DayCopied += new EventHandler<EventArgs>((sender, e) =>
+            this.CopyPaster = new BusinessClasses.DayCopyPaster();
+            this.CopyPaster.DayCopied += new EventHandler<EventArgs>((sender, e) =>
             {
                 FormMain.Instance.buttonItemCalendarPaste.Enabled = true;
             });
 
-            _copyPaster.DayPasted += new EventHandler<EventArgs>((sender, e) =>
+            this.CopyPaster.DayPasted += new EventHandler<EventArgs>((sender, e) =>
             {
                 dayPropertiesControl.LoadCurrentDayData();
                 LoadSlideInfoData(reload: true);
@@ -47,7 +48,7 @@ namespace CalendarBuilder.CustomControls
                 this.SettingsNotSaved = true;
             });
 
-            _copyPaster.AfterInitialize += new EventHandler<EventArgs>((sender, e) =>
+            this.CopyPaster.AfterInitialize += new EventHandler<EventArgs>((sender, e) =>
             {
                 FormMain.Instance.buttonItemCalendarCopy.Enabled = true;
                 FormMain.Instance.buttonItemCalendarPaste.Enabled = false;
@@ -181,7 +182,7 @@ namespace CalendarBuilder.CustomControls
 
                 ChangeDayPropertiesVisibility(false);
                 _visualizer.ShowMonth(_localCalendar.Months[FormMain.Instance.listBoxControlCalendar.SelectedIndex].StartDate);
-                _copyPaster.Init();
+                this.CopyPaster.Init();
                 Splash(false);
             }
         }
@@ -280,9 +281,9 @@ namespace CalendarBuilder.CustomControls
                     dockPanelDayProperties.FloatLocation = new System.Drawing.Point(500, 200);
             }
         }
-        private void dayPropertiesControl_PropertiesGroupChanged(object sender, DevExpress.XtraNavBar.NavBarGroupEventArgs e)
+        private void dayPropertiesControl_PropertiesGroupChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
-            dockPanelDayProperties.Text = e.Group.Hint;
+            dockPanelDayProperties.Text = e.Page.Tooltip;
         }
         #endregion
 
@@ -495,7 +496,7 @@ namespace CalendarBuilder.CustomControls
         #endregion
 
         #region Copy-Paste Methods and Event Handlers
-        public void buttonItemCalendarCopy_Click(object sender, EventArgs e)
+        public void CopyDay()
         {
             BusinessClasses.CalendarDay selectedDay = null;
             if (ConfigurationClasses.SettingsManager.Instance.ViewSettings.GridVisible)
@@ -507,10 +508,10 @@ namespace CalendarBuilder.CustomControls
                 selectedDay = _visualizer.SelectedDays.Select(x => x.Day).FirstOrDefault();
             }
             if (selectedDay != null)
-                _copyPaster.Copy(selectedDay);
+                this.CopyPaster.Copy(selectedDay);
         }
 
-        public void buttonItemCalendarPaste_Click(object sender, EventArgs e)
+        public void PasteDay()
         {
             BusinessClasses.CalendarDay[] selectedDays = null;
             if (ConfigurationClasses.SettingsManager.Instance.ViewSettings.GridVisible)
@@ -522,7 +523,17 @@ namespace CalendarBuilder.CustomControls
                 selectedDays = _visualizer.SelectedDays.Select(x => x.Day).ToArray();
             }
             if (selectedDays != null)
-                _copyPaster.Paste(selectedDays);
+                this.CopyPaster.Paste(selectedDays);
+        }
+
+        public void buttonItemCalendarCopy_Click(object sender, EventArgs e)
+        {
+            CopyDay();
+        }
+
+        public void buttonItemCalendarPaste_Click(object sender, EventArgs e)
+        {
+            PasteDay();
         }
         #endregion
 

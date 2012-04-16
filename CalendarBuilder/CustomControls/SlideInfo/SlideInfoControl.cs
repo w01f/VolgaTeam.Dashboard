@@ -22,7 +22,6 @@ namespace CalendarBuilder.CustomControls.SlideInfo
         public SlideInfoControl()
         {
             InitializeComponent();
-            navBarControlSlideInfo.View = new CustomNavPaneViewInfoRegistrator();
 
             #region Assign Properties Changed Event To Controls
             #region Basic
@@ -144,12 +143,11 @@ namespace CalendarBuilder.CustomControls.SlideInfo
             if (_month != null)
             {
                 _allowToSave = false;
-                laTitle.Text = _month.StartDate.ToString("MMMM, yyyy");
-                navBarGroupBasic.Expanded = true;
+                MonthTitle.Text = _month.StartDate.ToString("MMMM, yyyy");
 
                 #region Basic
                 buttonXBasicCalendarMonth.Checked = _month.OutputData.ShowMonth;
-                laBasicCalendarMonth.Text = laTitle.Text;
+                laBasicCalendarMonth.Text = MonthTitle.Text;
 
                 buttonXBasicSlideTitle.Checked = _month.OutputData.ShowHeader;
                 comboBoxEditBasicSlideTitle.Properties.Items.Clear();
@@ -468,8 +466,7 @@ namespace CalendarBuilder.CustomControls.SlideInfo
 
         private void propertiesControl_PropertiesChanged(object sender, EventArgs e)
         {
-            if (_allowToSave)
-                this.SettingsNotSaved = true;
+
         }
 
         #region Basic Event Handlers

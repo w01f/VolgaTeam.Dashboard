@@ -70,7 +70,6 @@
     <Reference Include="DevExpress.XtraLayout.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualBasic">
       <Private>True</Private>
     </Reference>
@@ -175,7 +174,6 @@
     <Compile Include="CustomControls\ModelsOfSuccessContainerControl.designer.cs">
       <DependentUpon>ModelsOfSuccessContainerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\NavigationPaneView.cs" />
     <Compile Include="CustomControls\SlideInfo\SlideInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -459,18 +457,6 @@
     <None Include="Resources\CloneDayProperties.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\DayPropertiesDigital.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DayPropertiesNewspaper.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DayPropertiesTV.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DayPropertiesComment.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ApplyDayProperties.png" />
   </ItemGroup>
   <ItemGroup>
@@ -532,6 +518,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Paste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CopySmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PasteSmall.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

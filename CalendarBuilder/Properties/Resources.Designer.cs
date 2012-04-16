@@ -123,6 +123,13 @@ namespace CalendarBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap CopySmall {
+            get {
+                object obj = ResourceManager.GetObject("CopySmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap CustomComment {
             get {
                 object obj = ResourceManager.GetObject("CustomComment", resourceCulture);
@@ -130,37 +137,16 @@ namespace CalendarBuilder.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap DayPropertiesComment {
-            get {
-                object obj = ResourceManager.GetObject("DayPropertiesComment", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DayPropertiesDigital {
-            get {
-                object obj = ResourceManager.GetObject("DayPropertiesDigital", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DayPropertiesNewspaper {
-            get {
-                object obj = ResourceManager.GetObject("DayPropertiesNewspaper", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DayPropertiesTV {
-            get {
-                object obj = ResourceManager.GetObject("DayPropertiesTV", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap DecisionMaker {
             get {
                 object obj = ResourceManager.GetObject("DecisionMaker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap DeleteData {
+            get {
+                object obj = ResourceManager.GetObject("DeleteData", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -294,6 +280,13 @@ namespace CalendarBuilder.Properties {
         internal static System.Drawing.Bitmap Paste {
             get {
                 object obj = ResourceManager.GetObject("Paste", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PasteSmall {
+            get {
+                object obj = ResourceManager.GetObject("PasteSmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

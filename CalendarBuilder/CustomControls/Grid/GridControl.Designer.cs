@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.barManager = new DevExpress.XtraBars.BarManager();
+            this.components = new System.ComponentModel.Container();
+            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.barToolbar = new DevExpress.XtraBars.Bar();
             this.barLargeButtonItemApply = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barLargeButtonItemClose = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -40,7 +41,7 @@
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlDigital = new DevExpress.XtraGrid.GridControl();
-            this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository();
+            this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository(this.components);
             this.repositoryItemComboBoxDigitalCategory = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemComboBoxDigitalSubCategory = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemComboBoxDigitalProduct = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
@@ -67,8 +68,8 @@
             this.gridColumnNewspaperDay = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnNewspaperColor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnNewspaperCost = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.styleController = new DevExpress.XtraEditors.StyleController();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.pnNavbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -114,10 +115,10 @@
             // barToolbar
             // 
             this.barToolbar.BarName = "Tools";
-            this.barToolbar.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Top;
+            this.barToolbar.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
             this.barToolbar.DockCol = 0;
             this.barToolbar.DockRow = 0;
-            this.barToolbar.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.barToolbar.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
             this.barToolbar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemApply),
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemClose)});
@@ -136,6 +137,7 @@
             // 
             // barLargeButtonItemClose
             // 
+            this.barLargeButtonItemClose.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.barLargeButtonItemClose.Caption = "Close";
             this.barLargeButtonItemClose.Glyph = global::CalendarBuilder.Properties.Resources.CloseDayProperties;
             this.barLargeButtonItemClose.Id = 6;
@@ -147,27 +149,27 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(818, 44);
+            this.barDockControlTop.Size = new System.Drawing.Size(818, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 404);
-            this.barDockControlBottom.Size = new System.Drawing.Size(818, 0);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 360);
+            this.barDockControlBottom.Size = new System.Drawing.Size(818, 44);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 44);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 360);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(818, 44);
+            this.barDockControlRight.Location = new System.Drawing.Point(818, 0);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 360);
             // 
             // pnNavbar
@@ -190,7 +192,7 @@
             this.xtraTabControl.Appearance.Options.UseFont = true;
             this.xtraTabControl.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
             this.xtraTabControl.AppearancePage.Header.Options.UseFont = true;
-            this.xtraTabControl.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.xtraTabControl.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.xtraTabControl.AppearancePage.HeaderActive.Options.UseFont = true;
             this.xtraTabControl.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
             this.xtraTabControl.AppearancePage.HeaderDisabled.Options.UseFont = true;
@@ -199,7 +201,7 @@
             this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
             this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
             this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl.Location = new System.Drawing.Point(0, 44);
+            this.xtraTabControl.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl.Name = "xtraTabControl";
             this.xtraTabControl.SelectedTabPage = this.xtraTabPageDigital;
             this.xtraTabControl.Size = new System.Drawing.Size(818, 360);
@@ -493,6 +495,7 @@
             this.gridViewDigital.OptionsView.ShowIndicator = false;
             this.gridViewDigital.RowHeight = 40;
             this.gridViewDigital.RowSeparatorHeight = 5;
+            this.gridViewDigital.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView_RowCellStyle);
             this.gridViewDigital.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridViewDigital_ShowingEditor);
             this.gridViewDigital.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewDigital_FocusedRowChanged);
             this.gridViewDigital.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewDigital_CellValueChanged);
@@ -611,6 +614,7 @@
             this.gridViewNewspaper.OptionsView.ShowIndicator = false;
             this.gridViewNewspaper.RowHeight = 40;
             this.gridViewNewspaper.RowSeparatorHeight = 5;
+            this.gridViewNewspaper.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView_RowCellStyle);
             this.gridViewNewspaper.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewNewspaper_FocusedRowChanged);
             this.gridViewNewspaper.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewNewspaper_CellValueChanged);
             // 

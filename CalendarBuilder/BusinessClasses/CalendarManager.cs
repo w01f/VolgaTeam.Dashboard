@@ -438,6 +438,7 @@ namespace CalendarBuilder.BusinessClasses
                         day = new CalendarDay();
                         day.Date = startDate;
                     }
+                    day.BelongsToSchedules = day.Date >= this.FlightDateStart & day.Date <= this.FlightDateEnd;
                     days.Add(day);
                     startDate = startDate.AddDays(1);
                 }
@@ -536,11 +537,11 @@ namespace CalendarBuilder.BusinessClasses
     public class CalendarDay
     {
         public DateTime Date { get; set; }
+        public bool BelongsToSchedules { get; set; }
         public DigitalProperties Digital { get; set; }
         public NewspaperProperties Newspaper { get; set; }
         public string Comment1 { get; set; }
         public string Comment2 { get; set; }
-
 
         public string Summary
         {
@@ -643,6 +644,14 @@ namespace CalendarBuilder.BusinessClasses
                         return 0;
                 }
             }
+        }
+
+        public void ClearData()
+        {
+            this.Comment1 = null;
+            this.Comment2 = null;
+            this.Digital = new DigitalProperties(this);
+            this.Newspaper = new NewspaperProperties(this);
         }
     }
 

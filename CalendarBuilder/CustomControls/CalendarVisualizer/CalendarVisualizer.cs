@@ -53,6 +53,33 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
                                     CalendarControl.Instance.ChangeDayPropertiesVisibility(true);
                                     CalendarControl.Instance.Splash(false);
                                 });
+                                dayControl.DayCopied += new EventHandler<EventArgs>((sender, e) =>
+                                {
+                                    CalendarControl.Instance.CopyDay();
+                                });
+                                dayControl.DayPasted += new EventHandler<EventArgs>((sender, e) =>
+                                {
+                                    CalendarControl.Instance.PasteDay();
+                                });
+                                dayControl.DayDataDeleted += new EventHandler<EventArgs>((sender, e) =>
+                                {
+                                    CalendarControl.Instance.SettingsNotSaved = true;
+                                    CalendarControl.Instance.dayPropertiesControl.LoadCurrentDayData();
+                                    CalendarControl.Instance.LoadSlideInfoData(reload: true);
+                                    CalendarControl.Instance.LoadGridData(reload: true);
+                                });
+
+                                CalendarControl.Instance.CopyPaster.DayCopied += new EventHandler<EventArgs>((sender, e) =>
+                                {
+                                    dayControl.toolStripMenuItemPaste.Enabled = true;
+                                });
+
+                                CalendarControl.Instance.CopyPaster.AfterInitialize += new EventHandler<EventArgs>((sender, e) =>
+                                {
+                                    dayControl.toolStripMenuItemCopy.Enabled = true;
+                                    dayControl.toolStripMenuItemPaste.Enabled = false;
+                                });
+
                                 week.Add(dayControl);
                                 _days.Add(dayControl);
                             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -58,7 +59,7 @@ namespace CalendarBuilder.CustomControls.Grid
                 repositoryItemComboBoxDigitalCategory.Items.AddRange(BusinessClasses.ListManager.Instance.MobileCategories.Select(x => ("Mobile: " + x.Name)).ToArray());
                 gridControlDigital.DataSource = null;
                 _digitals.Clear();
-                _digitals.AddRange(_month.Days.Select(x => x.Digital).ToArray());
+                _digitals.AddRange(_month.Days.Where(x => x.BelongsToSchedules).Select(x => x.Digital).ToArray());
                 gridControlDigital.DataSource = new BindingList<BusinessClasses.DigitalProperties>(_digitals);
                 gridViewDigital.RefreshData();
                 #endregion
@@ -72,7 +73,7 @@ namespace CalendarBuilder.CustomControls.Grid
                 repositoryItemComboBoxNewspaperPageSize.Items.AddRange(BusinessClasses.ListManager.Instance.PrintPageSizes);
                 gridControlNewspaper.DataSource = null;
                 _newspapers.Clear();
-                _newspapers.AddRange(_month.Days.Select(x => x.Newspaper).ToArray());
+                _newspapers.AddRange(_month.Days.Where(x => x.BelongsToSchedules).Select(x => x.Newspaper).ToArray());
                 gridControlNewspaper.DataSource = new BindingList<BusinessClasses.NewspaperProperties>(_newspapers);
                 gridViewNewspaper.RefreshData();
                 #endregion
@@ -95,7 +96,7 @@ namespace CalendarBuilder.CustomControls.Grid
         public BusinessClasses.CalendarDay GetSelectedDay()
         {
             BusinessClasses.CalendarDay day = null;
-            if (gridViewDigital.FocusedRowHandle >= 0 && _month!= null)
+            if (gridViewDigital.FocusedRowHandle >= 0 && _month != null)
             {
                 day = _month.Days[gridViewDigital.FocusedRowHandle];
             }
@@ -125,6 +126,13 @@ namespace CalendarBuilder.CustomControls.Grid
         {
             gridViewDigital.CloseEditor();
             gridViewNewspaper.CloseEditor();
+        }
+
+        private void gridView_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+            if (view != null && e.CellValue == null && e.RowHandle != view.FocusedRowHandle)
+                e.Appearance.ForeColor = Color.Gray;
         }
 
         #region Digital Event Handlers
@@ -160,7 +168,7 @@ namespace CalendarBuilder.CustomControls.Grid
                         category = category.Replace("Mobile: ", string.Empty);
                         repositoryItemComboBoxDigitalSubCategory.Items.AddRange(BusinessClasses.ListManager.Instance.MobileSources.Where(x => x.Category.Name.Equals(category) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray());
                     }
-                    if(repositoryItemComboBoxDigitalSubCategory.Items.Count == 0)
+                    if (repositoryItemComboBoxDigitalSubCategory.Items.Count == 0)
                         message = "Sub-Group is not available for Selected Category";
                 }
                 else
@@ -218,5 +226,6 @@ namespace CalendarBuilder.CustomControls.Grid
             }
         }
         #endregion
+       
     }
 }

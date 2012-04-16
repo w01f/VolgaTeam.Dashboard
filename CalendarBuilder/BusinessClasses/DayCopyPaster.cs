@@ -2,7 +2,7 @@
 
 namespace CalendarBuilder.BusinessClasses
 {
-    class DayCopyPaster
+    public class DayCopyPaster
     {
         private CalendarDay _source = null;
 
@@ -24,7 +24,6 @@ namespace CalendarBuilder.BusinessClasses
             {
                 if (this.DayCopied != null)
                     this.DayCopied(null, null);
-                AppManager.ShowInformation(string.Format("Data from {0} was copied into the Buffer", _source.Date.ToString("MM/dd/yy")));
             }
         }
 

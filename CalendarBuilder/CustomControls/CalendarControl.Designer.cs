@@ -191,7 +191,7 @@
             this.dayPropertiesControl.TabIndex = 0;
             this.dayPropertiesControl.PropertiesApplied += new System.EventHandler(this.dayPropertiesControl_PropertiesApplied);
             this.dayPropertiesControl.PropertiesClosed += new System.EventHandler(this.dayPropertiesControl_PropertiesClosed);
-            this.dayPropertiesControl.PropertiesGroupChanged += new DevExpress.XtraNavBar.NavBarGroupEventHandler(this.dayPropertiesControl_PropertiesGroupChanged);
+            this.dayPropertiesControl.PropertiesGroupChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.dayPropertiesControl_PropertiesGroupChanged);
             // 
             // dockPanelSlideInfo
             // 

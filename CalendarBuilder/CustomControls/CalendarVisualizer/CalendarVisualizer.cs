@@ -10,13 +10,14 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
         private BusinessClasses.Calendar _calendar = null;
         private Control _container = null;
         private List<DayControl> _days = new List<DayControl>();
-        private List<DayControl> _selectedDays = new List<DayControl>();
 
         public Dictionary<DateTime, MonthControl> Months { get; private set; }
+        public List<DayControl> SelectedDays { get; private set; }
 
         public CalendarVisualizer()
         {
             this.Months = new Dictionary<DateTime, MonthControl>();
+            this.SelectedDays = new List<DayControl>();
         }
 
         #region Common Methods
@@ -124,9 +125,9 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
         #region Selector Stuff
         public void ClearSelection()
         {
-            foreach (DayControl day in _selectedDays)
+            foreach (DayControl day in this.SelectedDays)
                 day.ChangeSelection(false);
-            _selectedDays.Clear();
+            this.SelectedDays.Clear();
         }
 
         private void SelectDay(DayControl day, bool multiSelect)
@@ -134,7 +135,7 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
             if (!multiSelect)
                 ClearSelection();
             day.ChangeSelection(true);
-            _selectedDays.Add(day);
+            this.SelectedDays.Add(day);
 
             CalendarControl.Instance.dayPropertiesControl.LoadData(day.Day);
         }

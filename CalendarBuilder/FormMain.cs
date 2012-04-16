@@ -137,11 +137,13 @@ namespace CalendarBuilder
             listBoxControlCalendar.SelectedIndexChanged += new EventHandler(CustomControls.CalendarControl.Instance.imageListBoxEditCalendar_SelectedIndexChanged);
             buttonItemCalendarSlideInfo.CheckedChanged += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarSlideInfo_CheckedChanged);
             buttonItemCalendarGrid.CheckedChanged += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarGrid_CheckedChanged);
-            buttonItemCalendarHelp.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemScheduleHelp_Click);
+            buttonItemCalendarCopy.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarCopy_Click);
+            buttonItemCalendarPaste.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarPaste_Click);
             buttonItemCalendarSave.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemScheduleSave_Click);
             buttonItemCalendarSaveAs.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemScheduleSaveAs_Click);
             buttonItemCalendarPowerPoint.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemWeeklySchedulePowerPoint_Click);
             buttonItemCalendarEmail.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemWeeklyScheduleEmail_Click);
+            buttonItemCalendarHelp.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemScheduleHelp_Click);
             #endregion
 
             #region Success Models Events

@@ -276,7 +276,6 @@
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "CalendarControl";
             this.Size = new System.Drawing.Size(653, 519);
-            this.Load += new System.EventHandler(this.CalendarControl_Load);
             this.pnTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).EndInit();

@@ -536,8 +536,8 @@ namespace CalendarBuilder.BusinessClasses
     public class CalendarDay
     {
         public DateTime Date { get; set; }
-        public DigitalProperties Digital { get; private set; }
-        public NewspaperProperties Newspaper { get; private set; }
+        public DigitalProperties Digital { get; set; }
+        public NewspaperProperties Newspaper { get; set; }
         public string Comment1 { get; set; }
         public string Comment2 { get; set; }
 
@@ -744,6 +744,16 @@ namespace CalendarBuilder.BusinessClasses
                 }
             }
         }
+
+        public DigitalProperties Clone(CalendarDay newParent)
+        {
+            DigitalProperties result = null;
+            XmlDocument document = new XmlDocument();
+            document.LoadXml(@"<Digital>" + this.Serialize() + @"</Digital>");
+            result = new DigitalProperties(newParent);
+            result.Deserialize(document.FirstChild);
+            return result;
+        }
     }
 
     public class NewspaperProperties
@@ -865,6 +875,16 @@ namespace CalendarBuilder.BusinessClasses
                         break;
                 }
             }
+        }
+
+        public NewspaperProperties Clone(CalendarDay newParent)
+        {
+            NewspaperProperties result = null;
+            XmlDocument document = new XmlDocument();
+            document.LoadXml(@"<Newspaper>" + this.Serialize() + @"</Newspaper>");
+            result = new NewspaperProperties(newParent);
+            result.Deserialize(document.FirstChild);
+            return result;
         }
     }
 

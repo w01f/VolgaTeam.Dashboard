@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager.cs" />
+    <Compile Include="BusinessClasses\DayCopyPaster.cs" />
     <Compile Include="BusinessClasses\HelpManager.cs" />
     <Compile Include="BusinessClasses\ListManager.cs" />
     <Compile Include="BusinessClasses\OutputManager.cs" />
@@ -525,6 +526,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Paste.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

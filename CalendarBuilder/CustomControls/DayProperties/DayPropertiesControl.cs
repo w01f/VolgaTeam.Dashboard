@@ -31,16 +31,23 @@ namespace CalendarBuilder.CustomControls.DayProperties
         public void LoadData(BusinessClasses.CalendarDay day)
         {
             _day = day;
-            laTitle.Text = _day.Date.ToString("dddd, MMMM d, yyyy");
-            digitalPropertiesControl.LoadData(_day);
-            newspaperPropertiesControl.LoadData(_day);
-            commentControl.LoadData(_day);
+            LoadCurrentDayData();
 
             navBarGroupDigital.Expanded = true;
             if (this.PropertiesGroupChanged != null)
                 this.PropertiesGroupChanged(navBarControlDayProperties, new DevExpress.XtraNavBar.NavBarGroupEventArgs(navBarGroupDigital));
+        }
 
-            this.SettingsNotSaved = false;
+        public void LoadCurrentDayData()
+        {
+            if (_day != null)
+            {
+                laTitle.Text = _day.Date.ToString("dddd, MMMM d, yyyy");
+                digitalPropertiesControl.LoadData(_day);
+                newspaperPropertiesControl.LoadData(_day);
+                commentControl.LoadData(_day);
+                this.SettingsNotSaved = false;
+            }
         }
 
         public void SaveData()

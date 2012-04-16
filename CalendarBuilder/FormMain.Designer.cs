@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
             this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
@@ -83,6 +83,10 @@
             this.ribbonBarCalendarSave = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItemCalendarSave = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItemCalendarSaveAs = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarCalendarPaste = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarPaste = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarCalendarCopy = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarCopy = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarGrid = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItemCalendarGrid = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarSlideInfo = new DevComponents.DotNetBar.RibbonBar();
@@ -131,8 +135,8 @@
             this.ribbonControl.AutoExpand = false;
             this.ribbonControl.CanCustomize = false;
             this.ribbonControl.Controls.Add(this.ribbonPanelHome);
-            this.ribbonControl.Controls.Add(this.ribbonPanelSuccessModels);
             this.ribbonControl.Controls.Add(this.ribbonPanelCalendar);
+            this.ribbonControl.Controls.Add(this.ribbonPanelSuccessModels);
             this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.ribbonControl.EnableQatPlacement = false;
             this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -262,7 +266,7 @@
             this.dateEditFlightDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditFlightDatesStart.Properties.Appearance.Options.UseFont = true;
             this.dateEditFlightDatesStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditFlightDatesStart.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -303,7 +307,7 @@
             this.dateEditFlightDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditFlightDatesEnd.Properties.Appearance.Options.UseFont = true;
             this.dateEditFlightDatesEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditFlightDatesEnd.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -406,7 +410,7 @@
             this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
             this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditPresentationDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditPresentationDate.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -580,6 +584,8 @@
             this.ribbonPanelCalendar.Controls.Add(this.ribbonBarCalendarEmail);
             this.ribbonPanelCalendar.Controls.Add(this.ribbonBarCalendarPowerPoint);
             this.ribbonPanelCalendar.Controls.Add(this.ribbonBarCalendarSave);
+            this.ribbonPanelCalendar.Controls.Add(this.ribbonBarCalendarPaste);
+            this.ribbonPanelCalendar.Controls.Add(this.ribbonBarCalendarCopy);
             this.ribbonPanelCalendar.Controls.Add(this.ribbonBarCalendarGrid);
             this.ribbonPanelCalendar.Controls.Add(this.ribbonBarCalendarSlideInfo);
             this.ribbonPanelCalendar.Controls.Add(this.ribbonBarCalendarsCalendar);
@@ -598,7 +604,7 @@
             this.ribbonBarCalendarExit.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBarCalendarExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemCalendarExit});
-            this.ribbonBarCalendarExit.Location = new System.Drawing.Point(660, 0);
+            this.ribbonBarCalendarExit.Location = new System.Drawing.Point(838, 0);
             this.ribbonBarCalendarExit.Name = "ribbonBarCalendarExit";
             this.ribbonBarCalendarExit.Size = new System.Drawing.Size(84, 135);
             this.ribbonBarCalendarExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -620,7 +626,7 @@
             this.ribbonBarCalendarHelp.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBarCalendarHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemCalendarHelp});
-            this.ribbonBarCalendarHelp.Location = new System.Drawing.Point(578, 0);
+            this.ribbonBarCalendarHelp.Location = new System.Drawing.Point(756, 0);
             this.ribbonBarCalendarHelp.Name = "ribbonBarCalendarHelp";
             this.ribbonBarCalendarHelp.Size = new System.Drawing.Size(82, 135);
             this.ribbonBarCalendarHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -641,7 +647,7 @@
             this.ribbonBarCalendarEmail.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBarCalendarEmail.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemCalendarEmail});
-            this.ribbonBarCalendarEmail.Location = new System.Drawing.Point(489, 0);
+            this.ribbonBarCalendarEmail.Location = new System.Drawing.Point(667, 0);
             this.ribbonBarCalendarEmail.Name = "ribbonBarCalendarEmail";
             this.ribbonBarCalendarEmail.Size = new System.Drawing.Size(89, 135);
             this.ribbonBarCalendarEmail.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -661,7 +667,7 @@
             this.ribbonBarCalendarPowerPoint.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBarCalendarPowerPoint.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemCalendarPowerPoint});
-            this.ribbonBarCalendarPowerPoint.Location = new System.Drawing.Point(405, 0);
+            this.ribbonBarCalendarPowerPoint.Location = new System.Drawing.Point(583, 0);
             this.ribbonBarCalendarPowerPoint.Name = "ribbonBarCalendarPowerPoint";
             this.ribbonBarCalendarPowerPoint.Size = new System.Drawing.Size(84, 135);
             this.ribbonBarCalendarPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -683,7 +689,7 @@
             this.buttonItemCalendarSave,
             this.buttonItemCalendarSaveAs});
             this.ribbonBarCalendarSave.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.ribbonBarCalendarSave.Location = new System.Drawing.Point(338, 0);
+            this.ribbonBarCalendarSave.Location = new System.Drawing.Point(516, 0);
             this.ribbonBarCalendarSave.Name = "ribbonBarCalendarSave";
             this.ribbonBarCalendarSave.Size = new System.Drawing.Size(67, 135);
             this.ribbonBarCalendarSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -707,6 +713,48 @@
             this.buttonItemCalendarSaveAs.SubItemsExpandWidth = 14;
             this.buttonItemCalendarSaveAs.Text = "Save As";
             this.buttonItemCalendarSaveAs.Click += new System.EventHandler(this.pnMain_Click);
+            // 
+            // ribbonBarCalendarPaste
+            // 
+            this.ribbonBarCalendarPaste.AutoOverflowEnabled = true;
+            this.ribbonBarCalendarPaste.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarCalendarPaste.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemCalendarPaste});
+            this.ribbonBarCalendarPaste.Location = new System.Drawing.Point(427, 0);
+            this.ribbonBarCalendarPaste.Name = "ribbonBarCalendarPaste";
+            this.ribbonBarCalendarPaste.Size = new System.Drawing.Size(89, 135);
+            this.ribbonBarCalendarPaste.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarCalendarPaste.TabIndex = 40;
+            this.ribbonBarCalendarPaste.Text = "Paste";
+            // 
+            // buttonItemCalendarPaste
+            // 
+            this.buttonItemCalendarPaste.Enabled = false;
+            this.buttonItemCalendarPaste.Image = global::CalendarBuilder.Properties.Resources.Paste;
+            this.buttonItemCalendarPaste.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarPaste.Name = "buttonItemCalendarPaste";
+            this.buttonItemCalendarPaste.SubItemsExpandWidth = 14;
+            // 
+            // ribbonBarCalendarCopy
+            // 
+            this.ribbonBarCalendarCopy.AutoOverflowEnabled = true;
+            this.ribbonBarCalendarCopy.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarCalendarCopy.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemCalendarCopy});
+            this.ribbonBarCalendarCopy.Location = new System.Drawing.Point(338, 0);
+            this.ribbonBarCalendarCopy.Name = "ribbonBarCalendarCopy";
+            this.ribbonBarCalendarCopy.Size = new System.Drawing.Size(89, 135);
+            this.ribbonBarCalendarCopy.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarCalendarCopy.TabIndex = 39;
+            this.ribbonBarCalendarCopy.Text = "Copy";
+            // 
+            // buttonItemCalendarCopy
+            // 
+            this.buttonItemCalendarCopy.Enabled = false;
+            this.buttonItemCalendarCopy.Image = global::CalendarBuilder.Properties.Resources.Copy;
+            this.buttonItemCalendarCopy.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarCopy.Name = "buttonItemCalendarCopy";
+            this.buttonItemCalendarCopy.SubItemsExpandWidth = 14;
             // 
             // ribbonBarCalendarGrid
             // 
@@ -1023,6 +1071,10 @@
         public DevComponents.DotNetBar.ButtonItem buttonItemCalendarSlideInfo;
         private DevComponents.DotNetBar.RibbonBar ribbonBarCalendarGrid;
         public DevComponents.DotNetBar.ButtonItem buttonItemCalendarGrid;
+        private DevComponents.DotNetBar.RibbonBar ribbonBarCalendarCopy;
+        public DevComponents.DotNetBar.ButtonItem buttonItemCalendarCopy;
+        private DevComponents.DotNetBar.RibbonBar ribbonBarCalendarPaste;
+        public DevComponents.DotNetBar.ButtonItem buttonItemCalendarPaste;
     }
 }
 

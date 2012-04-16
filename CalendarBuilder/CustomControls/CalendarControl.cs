@@ -12,6 +12,7 @@ namespace CalendarBuilder.CustomControls
         private static CalendarControl _instance = null;
         private BusinessClasses.Calendar _localCalendar;
         private CalendarVisualizer.CalendarVisualizer _visualizer = new CalendarVisualizer.CalendarVisualizer();
+        private BusinessClasses.DayCopyPaster _copyPaster = new BusinessClasses.DayCopyPaster();
 
         public bool AllowToSave { get; set; }
         public bool SettingsNotSaved { get; set; }
@@ -29,8 +30,29 @@ namespace CalendarBuilder.CustomControls
                     LoadCalendar(e.QuickSave);
             });
 
-            AssignCloseActiveEditorsonOutSideClick(FormMain.Instance.ribbonControl);
             AssignCloseActiveEditorsonOutSideClick(pnTop);
+
+            #region Copy-Paster Initialization
+            _copyPaster.DayCopied += new EventHandler<EventArgs>((sender, e) =>
+            {
+                FormMain.Instance.buttonItemCalendarPaste.Enabled = true;
+            });
+
+            _copyPaster.DayPasted += new EventHandler<EventArgs>((sender, e) =>
+            {
+                dayPropertiesControl.LoadCurrentDayData();
+                LoadSlideInfoData(reload: true);
+                LoadGridData(reload: true);
+                _visualizer.RefreshData();
+                this.SettingsNotSaved = true;
+            });
+
+            _copyPaster.AfterInitialize += new EventHandler<EventArgs>((sender, e) =>
+            {
+                FormMain.Instance.buttonItemCalendarCopy.Enabled = true;
+                FormMain.Instance.buttonItemCalendarPaste.Enabled = false;
+            });
+            #endregion
         }
 
         public static CalendarControl Instance
@@ -151,12 +173,6 @@ namespace CalendarBuilder.CustomControls
         #endregion
 
         #region Common Event Handlers
-        private void CalendarControl_Load(object sender, EventArgs e)
-        {
-            AssignCloseActiveEditorsonOutSideClick(FormMain.Instance.ribbonControl);
-            AssignCloseActiveEditorsonOutSideClick(pnTop);
-        }
-
         public void imageListBoxEditCalendar_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_visualizer != null && FormMain.Instance.listBoxControlCalendar.SelectedIndex >= 0 && this.AllowToSave)
@@ -165,6 +181,7 @@ namespace CalendarBuilder.CustomControls
 
                 ChangeDayPropertiesVisibility(false);
                 _visualizer.ShowMonth(_localCalendar.Months[FormMain.Instance.listBoxControlCalendar.SelectedIndex].StartDate);
+                _copyPaster.Init();
                 Splash(false);
             }
         }
@@ -189,12 +206,12 @@ namespace CalendarBuilder.CustomControls
                 if (AppManager.ShowWarningQuestion("Day Properties has changed.\nDo you want to save them") == DialogResult.Yes)
                 {
                     dayPropertiesControl.SaveData();
+                    this.SettingsNotSaved = true;
                 }
             }
             LoadSlideInfoData(reload: true);
             LoadGridData(reload: true);
             _visualizer.RefreshData();
-            this.SettingsNotSaved = true;
         }
 
         public void ChangeDayPropertiesVisibility(bool show)
@@ -227,6 +244,7 @@ namespace CalendarBuilder.CustomControls
         private void dayPropertiesControl_PropertiesApplied(object sender, EventArgs e)
         {
             ApplyDayProperties();
+            this.SettingsNotSaved = true;
         }
 
         private void dockManager_Sizing(object sender, DevExpress.XtraBars.Docking.SizingEventArgs e)
@@ -470,7 +488,41 @@ namespace CalendarBuilder.CustomControls
                 SaveGridState();
                 UpdateGridAreaAccordingOptions();
                 LoadGridData();
+                ChangeDayPropertiesVisibility(false);
+                _visualizer.ClearSelection();
             }
+        }
+        #endregion
+
+        #region Copy-Paste Methods and Event Handlers
+        public void buttonItemCalendarCopy_Click(object sender, EventArgs e)
+        {
+            BusinessClasses.CalendarDay selectedDay = null;
+            if (ConfigurationClasses.SettingsManager.Instance.ViewSettings.GridVisible)
+            {
+                selectedDay = gridControl.GetSelectedDay();
+            }
+            else
+            {
+                selectedDay = _visualizer.SelectedDays.Select(x => x.Day).FirstOrDefault();
+            }
+            if (selectedDay != null)
+                _copyPaster.Copy(selectedDay);
+        }
+
+        public void buttonItemCalendarPaste_Click(object sender, EventArgs e)
+        {
+            BusinessClasses.CalendarDay[] selectedDays = null;
+            if (ConfigurationClasses.SettingsManager.Instance.ViewSettings.GridVisible)
+            {
+                selectedDays = new BusinessClasses.CalendarDay[] { gridControl.GetSelectedDay() };
+            }
+            else
+            {
+                selectedDays = _visualizer.SelectedDays.Select(x => x.Day).ToArray();
+            }
+            if (selectedDays != null)
+                _copyPaster.Paste(selectedDays);
         }
         #endregion
 
@@ -516,7 +568,7 @@ namespace CalendarBuilder.CustomControls
                     form.laTitle.Text = "You have several Calendars available for your presentation…";
                     form.buttonXCurrentPublication.Text = string.Format("Send ONLY {0} Calendar Slide to PowerPoint", _selectedMonth.StartDate.ToString("MMMM, yyyy"));
                     form.buttonXSelectedPublications.Text = "Send all of the Selected Calendars to PowerPoint";
-                    foreach (BusinessClasses.CalendarMonth month in _localCalendar.Months.Where(y=>y.Days.Where(z=>z.ContainsData).Count()>0))
+                    foreach (BusinessClasses.CalendarMonth month in _localCalendar.Months.Where(y => y.Days.Where(z => z.ContainsData).Count() > 0))
                         form.checkedListBoxControlMonths.Items.Add(month, month.StartDate.ToString("MMMM, yyyy"), CheckState.Checked, true);
                     ConfigurationClasses.RegistryHelper.MainFormHandle = form.Handle;
                     ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
@@ -531,7 +583,7 @@ namespace CalendarBuilder.CustomControls
                             if (result == DialogResult.Yes)
                             {
                                 formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
-                                if (_selectedMonth.Days.Where(x=>x.ContainsData).Count() == 0)
+                                if (_selectedMonth.Days.Where(x => x.ContainsData).Count() == 0)
                                     if (AppManager.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to send this slide to PowerPoint?", _selectedMonth.StartDate.ToString("MMMM, yyyy"))) == DialogResult.No)
                                         return;
                                 formProgress.Show();
@@ -550,7 +602,7 @@ namespace CalendarBuilder.CustomControls
                                         BusinessClasses.CalendarMonth month = item.Value as BusinessClasses.CalendarMonth;
                                         if (month != null)
                                             InteropClasses.PowerPointHelper.Instance.AppendCalendar(month.OutputData);
-                                            
+
                                     }
                                 }
                             }

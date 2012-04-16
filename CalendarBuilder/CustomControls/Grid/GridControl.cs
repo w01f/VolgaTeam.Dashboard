@@ -92,6 +92,16 @@ namespace CalendarBuilder.CustomControls.Grid
             }
         }
 
+        public BusinessClasses.CalendarDay GetSelectedDay()
+        {
+            BusinessClasses.CalendarDay day = null;
+            if (gridViewDigital.FocusedRowHandle >= 0 && _month!= null)
+            {
+                day = _month.Days[gridViewDigital.FocusedRowHandle];
+            }
+            return day;
+        }
+
         private void barLargeButtonItemApply_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             SaveData();
@@ -129,6 +139,7 @@ namespace CalendarBuilder.CustomControls.Grid
                 gridViewDigital.SetRowCellValue(e.RowHandle, gridColumnDigitalProduct, null);
             propertiesControl_PropertiesChanged(null, null);
         }
+
         private void gridViewDigital_ShowingEditor(object sender, CancelEventArgs e)
         {
             e.Cancel = false;
@@ -183,12 +194,28 @@ namespace CalendarBuilder.CustomControls.Grid
                 }
             }
         }
+
+        private void gridViewDigital_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (xtraTabControl.SelectedTabPage == xtraTabPageDigital)
+            {
+                gridViewNewspaper.FocusedRowHandle = gridViewDigital.FocusedRowHandle;
+            }
+        }
         #endregion
 
         #region Newspaper Event Handlers
         private void gridViewNewspaper_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             propertiesControl_PropertiesChanged(null, null);
+        }
+
+        private void gridViewNewspaper_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (xtraTabControl.SelectedTabPage == xtraTabPageNewspaper)
+            {
+                gridViewDigital.FocusedRowHandle = gridViewNewspaper.FocusedRowHandle;
+            }
         }
         #endregion
     }

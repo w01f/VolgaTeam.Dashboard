@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager = new DevExpress.XtraBars.BarManager();
             this.barToolbar = new DevExpress.XtraBars.Bar();
             this.barLargeButtonItemApply = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barLargeButtonItemClose = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -41,12 +40,17 @@
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlDigital = new DevExpress.XtraGrid.GridControl();
-            this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository(this.components);
+            this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository();
             this.repositoryItemComboBoxDigitalCategory = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemComboBoxDigitalSubCategory = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemComboBoxDigitalProduct = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemTextEditCustomComment = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemDateEdit = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.repositoryItemComboBoxNewspaperPublication = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemComboBoxNewspaperSection = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemComboBoxNewspaperPageSize = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemComboBoxNewspaperColor = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemSpinEditNewspaperTotalCost = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.gridViewDigital = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnDigitalCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnDigitalSubCategory = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -54,8 +58,6 @@
             this.gridColumnDigitalCustomNote = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnDigitalDay = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraTabPageNewspaper = new DevExpress.XtraTab.XtraTabPage();
-            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.gridControlNewspaper = new DevExpress.XtraGrid.GridControl();
             this.gridViewNewspaper = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnNewspaperPublication = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -65,11 +67,8 @@
             this.gridColumnNewspaperDay = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnNewspaperColor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnNewspaperCost = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemComboBoxNewspaperPublication = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.repositoryItemComboBoxNewspaperSection = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.repositoryItemComboBoxNewspaperPageSize = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.repositoryItemComboBoxNewspaperColor = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.repositoryItemSpinEditNewspaperTotalCost = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.styleController = new DevExpress.XtraEditors.StyleController();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.pnNavbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -82,16 +81,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditCustomComment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit.VistaTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewDigital)).BeginInit();
-            this.xtraTabPageNewspaper.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlNewspaper)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewNewspaper)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxNewspaperPublication)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxNewspaperSection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxNewspaperPageSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxNewspaperColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditNewspaperTotalCost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDigital)).BeginInit();
+            this.xtraTabPageNewspaper.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlNewspaper)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewNewspaper)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager
@@ -348,256 +347,6 @@
             this.repositoryItemDateEdit.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             // 
-            // gridViewDigital
-            // 
-            this.gridViewDigital.Appearance.EvenRow.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.gridViewDigital.Appearance.EvenRow.Options.UseFont = true;
-            this.gridViewDigital.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.gridViewDigital.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridViewDigital.Appearance.OddRow.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.gridViewDigital.Appearance.OddRow.Options.UseFont = true;
-            this.gridViewDigital.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.gridViewDigital.Appearance.Row.Options.UseFont = true;
-            this.gridViewDigital.Appearance.SelectedRow.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.gridViewDigital.Appearance.SelectedRow.Options.UseFont = true;
-            this.gridViewDigital.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumnDigitalCategory,
-            this.gridColumnDigitalSubCategory,
-            this.gridColumnDigitalProduct,
-            this.gridColumnDigitalCustomNote,
-            this.gridColumnDigitalDay});
-            this.gridViewDigital.GridControl = this.gridControlDigital;
-            this.gridViewDigital.Name = "gridViewDigital";
-            this.gridViewDigital.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridViewDigital.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridViewDigital.OptionsBehavior.AutoPopulateColumns = false;
-            this.gridViewDigital.OptionsCustomization.AllowColumnMoving = false;
-            this.gridViewDigital.OptionsCustomization.AllowFilter = false;
-            this.gridViewDigital.OptionsCustomization.AllowGroup = false;
-            this.gridViewDigital.OptionsCustomization.AllowQuickHideColumns = false;
-            this.gridViewDigital.OptionsCustomization.AllowSort = false;
-            this.gridViewDigital.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridViewDigital.OptionsSelection.EnableAppearanceHideSelection = false;
-            this.gridViewDigital.OptionsView.ColumnAutoWidth = false;
-            this.gridViewDigital.OptionsView.EnableAppearanceEvenRow = true;
-            this.gridViewDigital.OptionsView.EnableAppearanceOddRow = true;
-            this.gridViewDigital.OptionsView.ShowDetailButtons = false;
-            this.gridViewDigital.OptionsView.ShowGroupExpandCollapseButtons = false;
-            this.gridViewDigital.OptionsView.ShowGroupPanel = false;
-            this.gridViewDigital.OptionsView.ShowIndicator = false;
-            this.gridViewDigital.RowHeight = 40;
-            this.gridViewDigital.RowSeparatorHeight = 5;
-            this.gridViewDigital.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridViewDigital_ShowingEditor);
-            this.gridViewDigital.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewDigital_CellValueChanged);
-            // 
-            // gridColumnDigitalCategory
-            // 
-            this.gridColumnDigitalCategory.Caption = "Category";
-            this.gridColumnDigitalCategory.ColumnEdit = this.repositoryItemComboBoxDigitalCategory;
-            this.gridColumnDigitalCategory.FieldName = "Category";
-            this.gridColumnDigitalCategory.Name = "gridColumnDigitalCategory";
-            this.gridColumnDigitalCategory.Visible = true;
-            this.gridColumnDigitalCategory.VisibleIndex = 1;
-            this.gridColumnDigitalCategory.Width = 165;
-            // 
-            // gridColumnDigitalSubCategory
-            // 
-            this.gridColumnDigitalSubCategory.Caption = "Sub-Group";
-            this.gridColumnDigitalSubCategory.ColumnEdit = this.repositoryItemComboBoxDigitalSubCategory;
-            this.gridColumnDigitalSubCategory.FieldName = "SubCategory";
-            this.gridColumnDigitalSubCategory.Name = "gridColumnDigitalSubCategory";
-            this.gridColumnDigitalSubCategory.Visible = true;
-            this.gridColumnDigitalSubCategory.VisibleIndex = 2;
-            this.gridColumnDigitalSubCategory.Width = 191;
-            // 
-            // gridColumnDigitalProduct
-            // 
-            this.gridColumnDigitalProduct.Caption = "Digital Inventory";
-            this.gridColumnDigitalProduct.ColumnEdit = this.repositoryItemComboBoxDigitalProduct;
-            this.gridColumnDigitalProduct.FieldName = "ProductName";
-            this.gridColumnDigitalProduct.Name = "gridColumnDigitalProduct";
-            this.gridColumnDigitalProduct.Visible = true;
-            this.gridColumnDigitalProduct.VisibleIndex = 3;
-            this.gridColumnDigitalProduct.Width = 242;
-            // 
-            // gridColumnDigitalCustomNote
-            // 
-            this.gridColumnDigitalCustomNote.Caption = "Custome Note";
-            this.gridColumnDigitalCustomNote.ColumnEdit = this.repositoryItemTextEditCustomComment;
-            this.gridColumnDigitalCustomNote.FieldName = "CustomNote";
-            this.gridColumnDigitalCustomNote.Name = "gridColumnDigitalCustomNote";
-            this.gridColumnDigitalCustomNote.Visible = true;
-            this.gridColumnDigitalCustomNote.VisibleIndex = 4;
-            this.gridColumnDigitalCustomNote.Width = 540;
-            // 
-            // gridColumnDigitalDay
-            // 
-            this.gridColumnDigitalDay.Caption = "Day";
-            this.gridColumnDigitalDay.ColumnEdit = this.repositoryItemDateEdit;
-            this.gridColumnDigitalDay.FieldName = "Day";
-            this.gridColumnDigitalDay.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-            this.gridColumnDigitalDay.Name = "gridColumnDigitalDay";
-            this.gridColumnDigitalDay.OptionsColumn.AllowEdit = false;
-            this.gridColumnDigitalDay.OptionsColumn.ReadOnly = true;
-            this.gridColumnDigitalDay.Visible = true;
-            this.gridColumnDigitalDay.VisibleIndex = 0;
-            this.gridColumnDigitalDay.Width = 180;
-            // 
-            // xtraTabPageNewspaper
-            // 
-            this.xtraTabPageNewspaper.Controls.Add(this.gridControlNewspaper);
-            this.xtraTabPageNewspaper.Name = "xtraTabPageNewspaper";
-            this.xtraTabPageNewspaper.Size = new System.Drawing.Size(816, 334);
-            this.xtraTabPageNewspaper.Text = "Newspapaer";
-            // 
-            // styleController
-            // 
-            this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.styleController.Appearance.Options.UseFont = true;
-            this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.styleController.AppearanceDisabled.Options.UseFont = true;
-            this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.styleController.AppearanceDropDown.Options.UseFont = true;
-            this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
-            this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.styleController.AppearanceFocused.Options.UseFont = true;
-            this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.styleController.AppearanceReadOnly.Options.UseFont = true;
-            // 
-            // defaultLookAndFeel
-            // 
-            this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-            // 
-            // gridControlNewspaper
-            // 
-            this.gridControlNewspaper.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlNewspaper.ExternalRepository = this.persistentRepository;
-            this.gridControlNewspaper.Location = new System.Drawing.Point(0, 0);
-            this.gridControlNewspaper.MainView = this.gridViewNewspaper;
-            this.gridControlNewspaper.MenuManager = this.barManager;
-            this.gridControlNewspaper.Name = "gridControlNewspaper";
-            this.gridControlNewspaper.Size = new System.Drawing.Size(816, 334);
-            this.gridControlNewspaper.TabIndex = 1;
-            this.gridControlNewspaper.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewNewspaper});
-            // 
-            // gridViewNewspaper
-            // 
-            this.gridViewNewspaper.Appearance.EvenRow.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.gridViewNewspaper.Appearance.EvenRow.Options.UseFont = true;
-            this.gridViewNewspaper.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.gridViewNewspaper.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridViewNewspaper.Appearance.OddRow.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.gridViewNewspaper.Appearance.OddRow.Options.UseFont = true;
-            this.gridViewNewspaper.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.gridViewNewspaper.Appearance.Row.Options.UseFont = true;
-            this.gridViewNewspaper.Appearance.SelectedRow.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.gridViewNewspaper.Appearance.SelectedRow.Options.UseFont = true;
-            this.gridViewNewspaper.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumnNewspaperPublication,
-            this.gridColumnNewspaperSection,
-            this.gridColumnNewspaperPageSize,
-            this.gridColumnNewspaperCustomNote,
-            this.gridColumnNewspaperDay,
-            this.gridColumnNewspaperColor,
-            this.gridColumnNewspaperCost});
-            this.gridViewNewspaper.GridControl = this.gridControlNewspaper;
-            this.gridViewNewspaper.Name = "gridViewNewspaper";
-            this.gridViewNewspaper.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridViewNewspaper.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridViewNewspaper.OptionsBehavior.AutoPopulateColumns = false;
-            this.gridViewNewspaper.OptionsCustomization.AllowColumnMoving = false;
-            this.gridViewNewspaper.OptionsCustomization.AllowFilter = false;
-            this.gridViewNewspaper.OptionsCustomization.AllowGroup = false;
-            this.gridViewNewspaper.OptionsCustomization.AllowQuickHideColumns = false;
-            this.gridViewNewspaper.OptionsCustomization.AllowSort = false;
-            this.gridViewNewspaper.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridViewNewspaper.OptionsSelection.EnableAppearanceHideSelection = false;
-            this.gridViewNewspaper.OptionsView.ColumnAutoWidth = false;
-            this.gridViewNewspaper.OptionsView.EnableAppearanceEvenRow = true;
-            this.gridViewNewspaper.OptionsView.EnableAppearanceOddRow = true;
-            this.gridViewNewspaper.OptionsView.ShowDetailButtons = false;
-            this.gridViewNewspaper.OptionsView.ShowGroupExpandCollapseButtons = false;
-            this.gridViewNewspaper.OptionsView.ShowGroupPanel = false;
-            this.gridViewNewspaper.OptionsView.ShowIndicator = false;
-            this.gridViewNewspaper.RowHeight = 40;
-            this.gridViewNewspaper.RowSeparatorHeight = 5;
-            this.gridViewNewspaper.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewNewspaper_CellValueChanged);
-            // 
-            // gridColumnNewspaperPublication
-            // 
-            this.gridColumnNewspaperPublication.Caption = "Newspaper";
-            this.gridColumnNewspaperPublication.ColumnEdit = this.repositoryItemComboBoxNewspaperPublication;
-            this.gridColumnNewspaperPublication.FieldName = "PublicationName";
-            this.gridColumnNewspaperPublication.Name = "gridColumnNewspaperPublication";
-            this.gridColumnNewspaperPublication.Visible = true;
-            this.gridColumnNewspaperPublication.VisibleIndex = 1;
-            this.gridColumnNewspaperPublication.Width = 254;
-            // 
-            // gridColumnNewspaperSection
-            // 
-            this.gridColumnNewspaperSection.Caption = "Section";
-            this.gridColumnNewspaperSection.ColumnEdit = this.repositoryItemComboBoxNewspaperSection;
-            this.gridColumnNewspaperSection.FieldName = "Section";
-            this.gridColumnNewspaperSection.Name = "gridColumnNewspaperSection";
-            this.gridColumnNewspaperSection.Visible = true;
-            this.gridColumnNewspaperSection.VisibleIndex = 2;
-            this.gridColumnNewspaperSection.Width = 156;
-            // 
-            // gridColumnNewspaperPageSize
-            // 
-            this.gridColumnNewspaperPageSize.Caption = "Ad-Size";
-            this.gridColumnNewspaperPageSize.ColumnEdit = this.repositoryItemComboBoxNewspaperPageSize;
-            this.gridColumnNewspaperPageSize.FieldName = "PageSize";
-            this.gridColumnNewspaperPageSize.Name = "gridColumnNewspaperPageSize";
-            this.gridColumnNewspaperPageSize.Visible = true;
-            this.gridColumnNewspaperPageSize.VisibleIndex = 3;
-            this.gridColumnNewspaperPageSize.Width = 145;
-            // 
-            // gridColumnNewspaperCustomNote
-            // 
-            this.gridColumnNewspaperCustomNote.Caption = "Custome Note";
-            this.gridColumnNewspaperCustomNote.ColumnEdit = this.repositoryItemTextEditCustomComment;
-            this.gridColumnNewspaperCustomNote.FieldName = "CustomNote";
-            this.gridColumnNewspaperCustomNote.Name = "gridColumnNewspaperCustomNote";
-            this.gridColumnNewspaperCustomNote.Visible = true;
-            this.gridColumnNewspaperCustomNote.VisibleIndex = 6;
-            this.gridColumnNewspaperCustomNote.Width = 540;
-            // 
-            // gridColumnNewspaperDay
-            // 
-            this.gridColumnNewspaperDay.Caption = "Day";
-            this.gridColumnNewspaperDay.ColumnEdit = this.repositoryItemDateEdit;
-            this.gridColumnNewspaperDay.FieldName = "Day";
-            this.gridColumnNewspaperDay.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-            this.gridColumnNewspaperDay.Name = "gridColumnNewspaperDay";
-            this.gridColumnNewspaperDay.OptionsColumn.AllowEdit = false;
-            this.gridColumnNewspaperDay.OptionsColumn.ReadOnly = true;
-            this.gridColumnNewspaperDay.Visible = true;
-            this.gridColumnNewspaperDay.VisibleIndex = 0;
-            this.gridColumnNewspaperDay.Width = 180;
-            // 
-            // gridColumnNewspaperColor
-            // 
-            this.gridColumnNewspaperColor.Caption = "Color or BW";
-            this.gridColumnNewspaperColor.ColumnEdit = this.repositoryItemComboBoxNewspaperColor;
-            this.gridColumnNewspaperColor.FieldName = "Color";
-            this.gridColumnNewspaperColor.Name = "gridColumnNewspaperColor";
-            this.gridColumnNewspaperColor.Visible = true;
-            this.gridColumnNewspaperColor.VisibleIndex = 4;
-            this.gridColumnNewspaperColor.Width = 111;
-            // 
-            // gridColumnNewspaperCost
-            // 
-            this.gridColumnNewspaperCost.Caption = "Cost";
-            this.gridColumnNewspaperCost.ColumnEdit = this.repositoryItemSpinEditNewspaperTotalCost;
-            this.gridColumnNewspaperCost.FieldName = "TotalCost";
-            this.gridColumnNewspaperCost.Name = "gridColumnNewspaperCost";
-            this.gridColumnNewspaperCost.Visible = true;
-            this.gridColumnNewspaperCost.VisibleIndex = 5;
-            this.gridColumnNewspaperCost.Width = 98;
-            // 
             // repositoryItemComboBoxNewspaperPublication
             // 
             this.repositoryItemComboBoxNewspaperPublication.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -705,6 +454,258 @@
             0});
             this.repositoryItemSpinEditNewspaperTotalCost.Name = "repositoryItemSpinEditNewspaperTotalCost";
             // 
+            // gridViewDigital
+            // 
+            this.gridViewDigital.Appearance.EvenRow.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.gridViewDigital.Appearance.EvenRow.Options.UseFont = true;
+            this.gridViewDigital.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.gridViewDigital.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridViewDigital.Appearance.OddRow.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.gridViewDigital.Appearance.OddRow.Options.UseFont = true;
+            this.gridViewDigital.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.gridViewDigital.Appearance.Row.Options.UseFont = true;
+            this.gridViewDigital.Appearance.SelectedRow.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.gridViewDigital.Appearance.SelectedRow.Options.UseFont = true;
+            this.gridViewDigital.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumnDigitalCategory,
+            this.gridColumnDigitalSubCategory,
+            this.gridColumnDigitalProduct,
+            this.gridColumnDigitalCustomNote,
+            this.gridColumnDigitalDay});
+            this.gridViewDigital.GridControl = this.gridControlDigital;
+            this.gridViewDigital.Name = "gridViewDigital";
+            this.gridViewDigital.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewDigital.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewDigital.OptionsBehavior.AutoPopulateColumns = false;
+            this.gridViewDigital.OptionsCustomization.AllowColumnMoving = false;
+            this.gridViewDigital.OptionsCustomization.AllowFilter = false;
+            this.gridViewDigital.OptionsCustomization.AllowGroup = false;
+            this.gridViewDigital.OptionsCustomization.AllowQuickHideColumns = false;
+            this.gridViewDigital.OptionsCustomization.AllowSort = false;
+            this.gridViewDigital.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridViewDigital.OptionsSelection.EnableAppearanceHideSelection = false;
+            this.gridViewDigital.OptionsView.ColumnAutoWidth = false;
+            this.gridViewDigital.OptionsView.EnableAppearanceEvenRow = true;
+            this.gridViewDigital.OptionsView.EnableAppearanceOddRow = true;
+            this.gridViewDigital.OptionsView.ShowDetailButtons = false;
+            this.gridViewDigital.OptionsView.ShowGroupExpandCollapseButtons = false;
+            this.gridViewDigital.OptionsView.ShowGroupPanel = false;
+            this.gridViewDigital.OptionsView.ShowIndicator = false;
+            this.gridViewDigital.RowHeight = 40;
+            this.gridViewDigital.RowSeparatorHeight = 5;
+            this.gridViewDigital.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridViewDigital_ShowingEditor);
+            this.gridViewDigital.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewDigital_FocusedRowChanged);
+            this.gridViewDigital.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewDigital_CellValueChanged);
+            // 
+            // gridColumnDigitalCategory
+            // 
+            this.gridColumnDigitalCategory.Caption = "Category";
+            this.gridColumnDigitalCategory.ColumnEdit = this.repositoryItemComboBoxDigitalCategory;
+            this.gridColumnDigitalCategory.FieldName = "Category";
+            this.gridColumnDigitalCategory.Name = "gridColumnDigitalCategory";
+            this.gridColumnDigitalCategory.Visible = true;
+            this.gridColumnDigitalCategory.VisibleIndex = 1;
+            this.gridColumnDigitalCategory.Width = 165;
+            // 
+            // gridColumnDigitalSubCategory
+            // 
+            this.gridColumnDigitalSubCategory.Caption = "Sub-Group";
+            this.gridColumnDigitalSubCategory.ColumnEdit = this.repositoryItemComboBoxDigitalSubCategory;
+            this.gridColumnDigitalSubCategory.FieldName = "SubCategory";
+            this.gridColumnDigitalSubCategory.Name = "gridColumnDigitalSubCategory";
+            this.gridColumnDigitalSubCategory.Visible = true;
+            this.gridColumnDigitalSubCategory.VisibleIndex = 2;
+            this.gridColumnDigitalSubCategory.Width = 191;
+            // 
+            // gridColumnDigitalProduct
+            // 
+            this.gridColumnDigitalProduct.Caption = "Digital Inventory";
+            this.gridColumnDigitalProduct.ColumnEdit = this.repositoryItemComboBoxDigitalProduct;
+            this.gridColumnDigitalProduct.FieldName = "ProductName";
+            this.gridColumnDigitalProduct.Name = "gridColumnDigitalProduct";
+            this.gridColumnDigitalProduct.Visible = true;
+            this.gridColumnDigitalProduct.VisibleIndex = 3;
+            this.gridColumnDigitalProduct.Width = 242;
+            // 
+            // gridColumnDigitalCustomNote
+            // 
+            this.gridColumnDigitalCustomNote.Caption = "Custome Note";
+            this.gridColumnDigitalCustomNote.ColumnEdit = this.repositoryItemTextEditCustomComment;
+            this.gridColumnDigitalCustomNote.FieldName = "CustomNote";
+            this.gridColumnDigitalCustomNote.Name = "gridColumnDigitalCustomNote";
+            this.gridColumnDigitalCustomNote.Visible = true;
+            this.gridColumnDigitalCustomNote.VisibleIndex = 4;
+            this.gridColumnDigitalCustomNote.Width = 540;
+            // 
+            // gridColumnDigitalDay
+            // 
+            this.gridColumnDigitalDay.Caption = "Day";
+            this.gridColumnDigitalDay.ColumnEdit = this.repositoryItemDateEdit;
+            this.gridColumnDigitalDay.FieldName = "Day";
+            this.gridColumnDigitalDay.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.gridColumnDigitalDay.Name = "gridColumnDigitalDay";
+            this.gridColumnDigitalDay.OptionsColumn.AllowEdit = false;
+            this.gridColumnDigitalDay.OptionsColumn.ReadOnly = true;
+            this.gridColumnDigitalDay.Visible = true;
+            this.gridColumnDigitalDay.VisibleIndex = 0;
+            this.gridColumnDigitalDay.Width = 180;
+            // 
+            // xtraTabPageNewspaper
+            // 
+            this.xtraTabPageNewspaper.Controls.Add(this.gridControlNewspaper);
+            this.xtraTabPageNewspaper.Name = "xtraTabPageNewspaper";
+            this.xtraTabPageNewspaper.Size = new System.Drawing.Size(816, 334);
+            this.xtraTabPageNewspaper.Text = "Newspapaer";
+            // 
+            // gridControlNewspaper
+            // 
+            this.gridControlNewspaper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlNewspaper.ExternalRepository = this.persistentRepository;
+            this.gridControlNewspaper.Location = new System.Drawing.Point(0, 0);
+            this.gridControlNewspaper.MainView = this.gridViewNewspaper;
+            this.gridControlNewspaper.MenuManager = this.barManager;
+            this.gridControlNewspaper.Name = "gridControlNewspaper";
+            this.gridControlNewspaper.Size = new System.Drawing.Size(816, 334);
+            this.gridControlNewspaper.TabIndex = 1;
+            this.gridControlNewspaper.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewNewspaper});
+            // 
+            // gridViewNewspaper
+            // 
+            this.gridViewNewspaper.Appearance.EvenRow.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.gridViewNewspaper.Appearance.EvenRow.Options.UseFont = true;
+            this.gridViewNewspaper.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.gridViewNewspaper.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridViewNewspaper.Appearance.OddRow.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.gridViewNewspaper.Appearance.OddRow.Options.UseFont = true;
+            this.gridViewNewspaper.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.gridViewNewspaper.Appearance.Row.Options.UseFont = true;
+            this.gridViewNewspaper.Appearance.SelectedRow.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.gridViewNewspaper.Appearance.SelectedRow.Options.UseFont = true;
+            this.gridViewNewspaper.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumnNewspaperPublication,
+            this.gridColumnNewspaperSection,
+            this.gridColumnNewspaperPageSize,
+            this.gridColumnNewspaperCustomNote,
+            this.gridColumnNewspaperDay,
+            this.gridColumnNewspaperColor,
+            this.gridColumnNewspaperCost});
+            this.gridViewNewspaper.GridControl = this.gridControlNewspaper;
+            this.gridViewNewspaper.Name = "gridViewNewspaper";
+            this.gridViewNewspaper.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewNewspaper.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewNewspaper.OptionsBehavior.AutoPopulateColumns = false;
+            this.gridViewNewspaper.OptionsCustomization.AllowColumnMoving = false;
+            this.gridViewNewspaper.OptionsCustomization.AllowFilter = false;
+            this.gridViewNewspaper.OptionsCustomization.AllowGroup = false;
+            this.gridViewNewspaper.OptionsCustomization.AllowQuickHideColumns = false;
+            this.gridViewNewspaper.OptionsCustomization.AllowSort = false;
+            this.gridViewNewspaper.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridViewNewspaper.OptionsSelection.EnableAppearanceHideSelection = false;
+            this.gridViewNewspaper.OptionsView.ColumnAutoWidth = false;
+            this.gridViewNewspaper.OptionsView.EnableAppearanceEvenRow = true;
+            this.gridViewNewspaper.OptionsView.EnableAppearanceOddRow = true;
+            this.gridViewNewspaper.OptionsView.ShowDetailButtons = false;
+            this.gridViewNewspaper.OptionsView.ShowGroupExpandCollapseButtons = false;
+            this.gridViewNewspaper.OptionsView.ShowGroupPanel = false;
+            this.gridViewNewspaper.OptionsView.ShowIndicator = false;
+            this.gridViewNewspaper.RowHeight = 40;
+            this.gridViewNewspaper.RowSeparatorHeight = 5;
+            this.gridViewNewspaper.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewNewspaper_FocusedRowChanged);
+            this.gridViewNewspaper.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewNewspaper_CellValueChanged);
+            // 
+            // gridColumnNewspaperPublication
+            // 
+            this.gridColumnNewspaperPublication.Caption = "Newspaper";
+            this.gridColumnNewspaperPublication.ColumnEdit = this.repositoryItemComboBoxNewspaperPublication;
+            this.gridColumnNewspaperPublication.FieldName = "PublicationName";
+            this.gridColumnNewspaperPublication.Name = "gridColumnNewspaperPublication";
+            this.gridColumnNewspaperPublication.Visible = true;
+            this.gridColumnNewspaperPublication.VisibleIndex = 1;
+            this.gridColumnNewspaperPublication.Width = 254;
+            // 
+            // gridColumnNewspaperSection
+            // 
+            this.gridColumnNewspaperSection.Caption = "Section";
+            this.gridColumnNewspaperSection.ColumnEdit = this.repositoryItemComboBoxNewspaperSection;
+            this.gridColumnNewspaperSection.FieldName = "Section";
+            this.gridColumnNewspaperSection.Name = "gridColumnNewspaperSection";
+            this.gridColumnNewspaperSection.Visible = true;
+            this.gridColumnNewspaperSection.VisibleIndex = 2;
+            this.gridColumnNewspaperSection.Width = 156;
+            // 
+            // gridColumnNewspaperPageSize
+            // 
+            this.gridColumnNewspaperPageSize.Caption = "Ad-Size";
+            this.gridColumnNewspaperPageSize.ColumnEdit = this.repositoryItemComboBoxNewspaperPageSize;
+            this.gridColumnNewspaperPageSize.FieldName = "PageSize";
+            this.gridColumnNewspaperPageSize.Name = "gridColumnNewspaperPageSize";
+            this.gridColumnNewspaperPageSize.Visible = true;
+            this.gridColumnNewspaperPageSize.VisibleIndex = 3;
+            this.gridColumnNewspaperPageSize.Width = 145;
+            // 
+            // gridColumnNewspaperCustomNote
+            // 
+            this.gridColumnNewspaperCustomNote.Caption = "Custome Note";
+            this.gridColumnNewspaperCustomNote.ColumnEdit = this.repositoryItemTextEditCustomComment;
+            this.gridColumnNewspaperCustomNote.FieldName = "CustomNote";
+            this.gridColumnNewspaperCustomNote.Name = "gridColumnNewspaperCustomNote";
+            this.gridColumnNewspaperCustomNote.Visible = true;
+            this.gridColumnNewspaperCustomNote.VisibleIndex = 6;
+            this.gridColumnNewspaperCustomNote.Width = 540;
+            // 
+            // gridColumnNewspaperDay
+            // 
+            this.gridColumnNewspaperDay.Caption = "Day";
+            this.gridColumnNewspaperDay.ColumnEdit = this.repositoryItemDateEdit;
+            this.gridColumnNewspaperDay.FieldName = "Day";
+            this.gridColumnNewspaperDay.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.gridColumnNewspaperDay.Name = "gridColumnNewspaperDay";
+            this.gridColumnNewspaperDay.OptionsColumn.AllowEdit = false;
+            this.gridColumnNewspaperDay.OptionsColumn.ReadOnly = true;
+            this.gridColumnNewspaperDay.Visible = true;
+            this.gridColumnNewspaperDay.VisibleIndex = 0;
+            this.gridColumnNewspaperDay.Width = 180;
+            // 
+            // gridColumnNewspaperColor
+            // 
+            this.gridColumnNewspaperColor.Caption = "Color or BW";
+            this.gridColumnNewspaperColor.ColumnEdit = this.repositoryItemComboBoxNewspaperColor;
+            this.gridColumnNewspaperColor.FieldName = "Color";
+            this.gridColumnNewspaperColor.Name = "gridColumnNewspaperColor";
+            this.gridColumnNewspaperColor.Visible = true;
+            this.gridColumnNewspaperColor.VisibleIndex = 4;
+            this.gridColumnNewspaperColor.Width = 111;
+            // 
+            // gridColumnNewspaperCost
+            // 
+            this.gridColumnNewspaperCost.Caption = "Cost";
+            this.gridColumnNewspaperCost.ColumnEdit = this.repositoryItemSpinEditNewspaperTotalCost;
+            this.gridColumnNewspaperCost.FieldName = "TotalCost";
+            this.gridColumnNewspaperCost.Name = "gridColumnNewspaperCost";
+            this.gridColumnNewspaperCost.Visible = true;
+            this.gridColumnNewspaperCost.VisibleIndex = 5;
+            this.gridColumnNewspaperCost.Width = 98;
+            // 
+            // styleController
+            // 
+            this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.styleController.Appearance.Options.UseFont = true;
+            this.styleController.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.styleController.AppearanceDisabled.Options.UseFont = true;
+            this.styleController.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.styleController.AppearanceDropDown.Options.UseFont = true;
+            this.styleController.AppearanceDropDownHeader.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.styleController.AppearanceDropDownHeader.Options.UseFont = true;
+            this.styleController.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.styleController.AppearanceFocused.Options.UseFont = true;
+            this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.styleController.AppearanceReadOnly.Options.UseFont = true;
+            // 
+            // defaultLookAndFeel
+            // 
+            this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
+            // 
             // GridControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -726,16 +727,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditCustomComment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewDigital)).EndInit();
-            this.xtraTabPageNewspaper.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlNewspaper)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewNewspaper)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxNewspaperPublication)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxNewspaperSection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxNewspaperPageSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxNewspaperColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditNewspaperTotalCost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDigital)).EndInit();
+            this.xtraTabPageNewspaper.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlNewspaper)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewNewspaper)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
             this.ResumeLayout(false);
 
         }

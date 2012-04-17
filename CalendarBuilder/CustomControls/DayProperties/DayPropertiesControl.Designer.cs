@@ -42,15 +42,15 @@
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
             this.digitalPropertiesControl = new CalendarBuilder.CustomControls.DayProperties.DigitalPropertiesControl();
+            this.laDigitalTitle = new System.Windows.Forms.Label();
             this.xtraTabPageNewspaper = new DevExpress.XtraTab.XtraTabPage();
             this.newspaperPropertiesControl = new CalendarBuilder.CustomControls.DayProperties.NewspaperPropertiesControl();
+            this.laNewspaperTitle = new System.Windows.Forms.Label();
             this.xtraTabPageTV = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPageComment = new DevExpress.XtraTab.XtraTabPage();
             this.commentControl = new CalendarBuilder.CustomControls.DayProperties.CommentControl();
             this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.laDigitalTitle = new System.Windows.Forms.Label();
-            this.laNewspaperTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.pnNavbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -83,10 +83,10 @@
             // barToolbar
             // 
             this.barToolbar.BarName = "Tools";
-            this.barToolbar.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
+            this.barToolbar.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Top;
             this.barToolbar.DockCol = 0;
             this.barToolbar.DockRow = 0;
-            this.barToolbar.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.barToolbar.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.barToolbar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemApply),
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemDelete),
@@ -126,27 +126,27 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(296, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(296, 44);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 573);
-            this.barDockControlBottom.Size = new System.Drawing.Size(296, 44);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 617);
+            this.barDockControlBottom.Size = new System.Drawing.Size(296, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 44);
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 573);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(296, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(296, 44);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 573);
             // 
             // pnNavbar
@@ -178,7 +178,7 @@
             this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
             this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
             this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControl.Location = new System.Drawing.Point(0, 44);
             this.xtraTabControl.Name = "xtraTabControl";
             this.xtraTabControl.SelectedTabPage = this.xtraTabPageDigital;
             this.xtraTabControl.Size = new System.Drawing.Size(296, 573);
@@ -210,6 +210,19 @@
             this.digitalPropertiesControl.TabIndex = 0;
             this.digitalPropertiesControl.PropertiesChanged += new System.EventHandler(this.propertiesControl_PropertiesChanged);
             // 
+            // laDigitalTitle
+            // 
+            this.laDigitalTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.laDigitalTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.laDigitalTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laDigitalTitle.ForeColor = System.Drawing.Color.White;
+            this.laDigitalTitle.Location = new System.Drawing.Point(0, 0);
+            this.laDigitalTitle.Name = "laDigitalTitle";
+            this.laDigitalTitle.Size = new System.Drawing.Size(294, 31);
+            this.laDigitalTitle.TabIndex = 1;
+            this.laDigitalTitle.Text = "What Digital products are you selling?";
+            this.laDigitalTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // xtraTabPageNewspaper
             // 
             this.xtraTabPageNewspaper.Controls.Add(this.newspaperPropertiesControl);
@@ -229,6 +242,19 @@
             this.newspaperPropertiesControl.Size = new System.Drawing.Size(294, 516);
             this.newspaperPropertiesControl.TabIndex = 0;
             this.newspaperPropertiesControl.PropertiesChanged += new System.EventHandler(this.propertiesControl_PropertiesChanged);
+            // 
+            // laNewspaperTitle
+            // 
+            this.laNewspaperTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.laNewspaperTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.laNewspaperTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laNewspaperTitle.ForeColor = System.Drawing.Color.White;
+            this.laNewspaperTitle.Location = new System.Drawing.Point(0, 0);
+            this.laNewspaperTitle.Name = "laNewspaperTitle";
+            this.laNewspaperTitle.Size = new System.Drawing.Size(294, 31);
+            this.laNewspaperTitle.TabIndex = 2;
+            this.laNewspaperTitle.Text = "What Print products are you selling?";
+            this.laNewspaperTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // xtraTabPageTV
             // 
@@ -273,32 +299,6 @@
             // defaultLookAndFeel
             // 
             this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-            // 
-            // laDigitalTitle
-            // 
-            this.laDigitalTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.laDigitalTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.laDigitalTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laDigitalTitle.ForeColor = System.Drawing.Color.White;
-            this.laDigitalTitle.Location = new System.Drawing.Point(0, 0);
-            this.laDigitalTitle.Name = "laDigitalTitle";
-            this.laDigitalTitle.Size = new System.Drawing.Size(294, 31);
-            this.laDigitalTitle.TabIndex = 1;
-            this.laDigitalTitle.Text = "What Digital products are you selling?";
-            this.laDigitalTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // laNewspaperTitle
-            // 
-            this.laNewspaperTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.laNewspaperTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.laNewspaperTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laNewspaperTitle.ForeColor = System.Drawing.Color.White;
-            this.laNewspaperTitle.Location = new System.Drawing.Point(0, 0);
-            this.laNewspaperTitle.Name = "laNewspaperTitle";
-            this.laNewspaperTitle.Size = new System.Drawing.Size(294, 31);
-            this.laNewspaperTitle.TabIndex = 2;
-            this.laNewspaperTitle.Text = "What Print products are you selling?";
-            this.laNewspaperTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DayPropertiesControl
             // 

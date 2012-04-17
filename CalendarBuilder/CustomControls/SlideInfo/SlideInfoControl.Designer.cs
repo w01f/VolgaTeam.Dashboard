@@ -30,14 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.MonthTitle = new System.Windows.Forms.Label();
-            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
-            this.barToolbar = new DevExpress.XtraBars.Bar();
-            this.barLargeButtonItemApply = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.barLargeButtonItemClose = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.pnNavbar = new System.Windows.Forms.Panel();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageBasic = new DevExpress.XtraTab.XtraTabPage();
@@ -116,7 +108,16 @@
             this.pnThemeColorBottom = new System.Windows.Forms.Panel();
             this.checkEditThemeColorApplyForAll = new DevExpress.XtraEditors.CheckEdit();
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
+            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.barLargeButtonItemApply = new DevExpress.XtraBars.BarLargeButtonItem();
+            this.barLargeButtonItemClose = new DevExpress.XtraBars.BarLargeButtonItem();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.barToolbar = new DevExpress.XtraBars.Bar();
+            this.barLargeButtonItem1 = new DevExpress.XtraBars.BarLargeButtonItem();
+            this.barLargeButtonItem2 = new DevExpress.XtraBars.BarLargeButtonItem();
             this.pnNavbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
             this.xtraTabControl.SuspendLayout();
@@ -168,6 +169,7 @@
             this.pnThemeColorTop.SuspendLayout();
             this.pnThemeColorBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditThemeColorApplyForAll.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.SuspendLayout();
             // 
             // MonthTitle
@@ -175,103 +177,21 @@
             this.MonthTitle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.MonthTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.MonthTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.MonthTitle.Location = new System.Drawing.Point(0, 0);
+            this.MonthTitle.Location = new System.Drawing.Point(0, 44);
             this.MonthTitle.Name = "MonthTitle";
-            this.MonthTitle.Size = new System.Drawing.Size(300, 34);
+            this.MonthTitle.Size = new System.Drawing.Size(300, 35);
             this.MonthTitle.TabIndex = 0;
             this.MonthTitle.Text = "Day Title";
             this.MonthTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // barManager
-            // 
-            this.barManager.AllowCustomization = false;
-            this.barManager.AllowMoveBarOnToolbar = false;
-            this.barManager.AllowQuickCustomization = false;
-            this.barManager.AllowShowToolbarsPopup = false;
-            this.barManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.barToolbar});
-            this.barManager.DockControls.Add(this.barDockControlTop);
-            this.barManager.DockControls.Add(this.barDockControlBottom);
-            this.barManager.DockControls.Add(this.barDockControlLeft);
-            this.barManager.DockControls.Add(this.barDockControlRight);
-            this.barManager.Form = this.pnNavbar;
-            this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barLargeButtonItemApply,
-            this.barLargeButtonItemClose});
-            this.barManager.MaxItemId = 7;
-            // 
-            // barToolbar
-            // 
-            this.barToolbar.BarName = "Tools";
-            this.barToolbar.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.barToolbar.DockCol = 0;
-            this.barToolbar.DockRow = 0;
-            this.barToolbar.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.barToolbar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemApply),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemClose)});
-            this.barToolbar.OptionsBar.AllowQuickCustomization = false;
-            this.barToolbar.OptionsBar.DrawDragBorder = false;
-            this.barToolbar.OptionsBar.UseWholeRow = true;
-            this.barToolbar.Text = "Tools";
-            // 
-            // barLargeButtonItemApply
-            // 
-            this.barLargeButtonItemApply.Caption = "Apply";
-            this.barLargeButtonItemApply.Glyph = global::CalendarBuilder.Properties.Resources.ApplyDayProperties;
-            this.barLargeButtonItemApply.Id = 3;
-            this.barLargeButtonItemApply.Name = "barLargeButtonItemApply";
-            this.barLargeButtonItemApply.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemApply_ItemClick);
-            // 
-            // barLargeButtonItemClose
-            // 
-            this.barLargeButtonItemClose.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.barLargeButtonItemClose.Caption = "Close";
-            this.barLargeButtonItemClose.Glyph = global::CalendarBuilder.Properties.Resources.CloseDayProperties;
-            this.barLargeButtonItemClose.Id = 6;
-            this.barLargeButtonItemClose.Name = "barLargeButtonItemClose";
-            this.barLargeButtonItemClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemClose_ItemClick);
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(296, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 457);
-            this.barDockControlBottom.Size = new System.Drawing.Size(296, 44);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 457);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(296, 0);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 457);
             // 
             // pnNavbar
             // 
             this.pnNavbar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnNavbar.Controls.Add(this.xtraTabControl);
-            this.pnNavbar.Controls.Add(this.barDockControlLeft);
-            this.pnNavbar.Controls.Add(this.barDockControlRight);
-            this.pnNavbar.Controls.Add(this.barDockControlBottom);
-            this.pnNavbar.Controls.Add(this.barDockControlTop);
             this.pnNavbar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnNavbar.Location = new System.Drawing.Point(0, 34);
+            this.pnNavbar.Location = new System.Drawing.Point(0, 79);
             this.pnNavbar.Name = "pnNavbar";
-            this.pnNavbar.Size = new System.Drawing.Size(300, 505);
+            this.pnNavbar.Size = new System.Drawing.Size(300, 460);
             this.pnNavbar.TabIndex = 5;
             // 
             // xtraTabControl
@@ -293,7 +213,7 @@
             this.xtraTabControl.MultiLine = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControl.Name = "xtraTabControl";
             this.xtraTabControl.SelectedTabPage = this.xtraTabPageBasic;
-            this.xtraTabControl.Size = new System.Drawing.Size(296, 457);
+            this.xtraTabControl.Size = new System.Drawing.Size(296, 456);
             this.xtraTabControl.TabIndex = 10;
             this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageBasic,
@@ -309,7 +229,7 @@
             this.xtraTabPageBasic.Controls.Add(this.pnBasicTop);
             this.xtraTabPageBasic.Controls.Add(this.pnBasicBottom);
             this.xtraTabPageBasic.Name = "xtraTabPageBasic";
-            this.xtraTabPageBasic.Size = new System.Drawing.Size(294, 359);
+            this.xtraTabPageBasic.Size = new System.Drawing.Size(294, 358);
             this.xtraTabPageBasic.Text = "Info";
             // 
             // pnBasicTop
@@ -320,7 +240,7 @@
             this.pnBasicTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnBasicTop.Location = new System.Drawing.Point(0, 0);
             this.pnBasicTop.Name = "pnBasicTop";
-            this.pnBasicTop.Size = new System.Drawing.Size(294, 322);
+            this.pnBasicTop.Size = new System.Drawing.Size(294, 321);
             this.pnBasicTop.TabIndex = 3;
             // 
             // xtraScrollableControlBasic
@@ -339,7 +259,7 @@
             this.xtraScrollableControlBasic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraScrollableControlBasic.Location = new System.Drawing.Point(0, 0);
             this.xtraScrollableControlBasic.Name = "xtraScrollableControlBasic";
-            this.xtraScrollableControlBasic.Size = new System.Drawing.Size(290, 318);
+            this.xtraScrollableControlBasic.Size = new System.Drawing.Size(290, 317);
             this.xtraScrollableControlBasic.TabIndex = 2;
             // 
             // buttonXBasicBigDate
@@ -364,7 +284,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textEditBasicDecisionMaker.Enabled = false;
             this.textEditBasicDecisionMaker.Location = new System.Drawing.Point(43, 240);
-            this.textEditBasicDecisionMaker.MenuManager = this.barManager;
             this.textEditBasicDecisionMaker.Name = "textEditBasicDecisionMaker";
             this.textEditBasicDecisionMaker.Properties.NullText = "Decisionmaker Name";
             this.textEditBasicDecisionMaker.Size = new System.Drawing.Size(236, 22);
@@ -409,7 +328,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textEditBasicBusinessName.Enabled = false;
             this.textEditBasicBusinessName.Location = new System.Drawing.Point(43, 173);
-            this.textEditBasicBusinessName.MenuManager = this.barManager;
             this.textEditBasicBusinessName.Name = "textEditBasicBusinessName";
             this.textEditBasicBusinessName.Properties.NullText = "Advertiser Name";
             this.textEditBasicBusinessName.Size = new System.Drawing.Size(236, 22);
@@ -439,7 +357,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxEditBasicSlideTitle.Enabled = false;
             this.comboBoxEditBasicSlideTitle.Location = new System.Drawing.Point(43, 107);
-            this.comboBoxEditBasicSlideTitle.MenuManager = this.barManager;
             this.comboBoxEditBasicSlideTitle.Name = "comboBoxEditBasicSlideTitle";
             this.comboBoxEditBasicSlideTitle.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -498,7 +415,7 @@
             this.pnBasicBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnBasicBottom.Controls.Add(this.checkEditBasicApplyForAll);
             this.pnBasicBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnBasicBottom.Location = new System.Drawing.Point(0, 322);
+            this.pnBasicBottom.Location = new System.Drawing.Point(0, 321);
             this.pnBasicBottom.Name = "pnBasicBottom";
             this.pnBasicBottom.Size = new System.Drawing.Size(294, 37);
             this.pnBasicBottom.TabIndex = 4;
@@ -506,7 +423,6 @@
             // checkEditBasicApplyForAll
             // 
             this.checkEditBasicApplyForAll.Location = new System.Drawing.Point(10, 6);
-            this.checkEditBasicApplyForAll.MenuManager = this.barManager;
             this.checkEditBasicApplyForAll.Name = "checkEditBasicApplyForAll";
             this.checkEditBasicApplyForAll.Properties.AutoWidth = true;
             this.checkEditBasicApplyForAll.Properties.Caption = "Show on ALL Slides";
@@ -722,7 +638,6 @@
             // checkEditInvestmentApplyForAll
             // 
             this.checkEditInvestmentApplyForAll.Location = new System.Drawing.Point(10, 6);
-            this.checkEditInvestmentApplyForAll.MenuManager = this.barManager;
             this.checkEditInvestmentApplyForAll.Name = "checkEditInvestmentApplyForAll";
             this.checkEditInvestmentApplyForAll.Properties.AutoWidth = true;
             this.checkEditInvestmentApplyForAll.Properties.Caption = "Show on ALL Slides";
@@ -957,7 +872,6 @@
             // checkEditOtherNumbersApplyForAll
             // 
             this.checkEditOtherNumbersApplyForAll.Location = new System.Drawing.Point(10, 6);
-            this.checkEditOtherNumbersApplyForAll.MenuManager = this.barManager;
             this.checkEditOtherNumbersApplyForAll.Name = "checkEditOtherNumbersApplyForAll";
             this.checkEditOtherNumbersApplyForAll.Properties.AutoWidth = true;
             this.checkEditOtherNumbersApplyForAll.Properties.Caption = "Show on ALL Slides";
@@ -992,7 +906,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.memoEditCustomComment.Enabled = false;
             this.memoEditCustomComment.Location = new System.Drawing.Point(34, 43);
-            this.memoEditCustomComment.MenuManager = this.barManager;
             this.memoEditCustomComment.Name = "memoEditCustomComment";
             this.memoEditCustomComment.Size = new System.Drawing.Size(245, 256);
             this.memoEditCustomComment.StyleController = this.styleController;
@@ -1031,7 +944,6 @@
             this.checkEditCustomCommentApplyFoAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkEditCustomCommentApplyFoAll.Location = new System.Drawing.Point(10, 6);
-            this.checkEditCustomCommentApplyFoAll.MenuManager = this.barManager;
             this.checkEditCustomCommentApplyFoAll.Name = "checkEditCustomCommentApplyFoAll";
             this.checkEditCustomCommentApplyFoAll.Properties.Appearance.Options.UseTextOptions = true;
             this.checkEditCustomCommentApplyFoAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -1108,7 +1020,6 @@
             this.checkEditLogoApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkEditLogoApplyForAll.Location = new System.Drawing.Point(10, 6);
-            this.checkEditLogoApplyForAll.MenuManager = this.barManager;
             this.checkEditLogoApplyForAll.Name = "checkEditLogoApplyForAll";
             this.checkEditLogoApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
             this.checkEditLogoApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -1266,7 +1177,6 @@
             this.checkEditLegendApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkEditLegendApplyForAll.Location = new System.Drawing.Point(10, 6);
-            this.checkEditLegendApplyForAll.MenuManager = this.barManager;
             this.checkEditLegendApplyForAll.Name = "checkEditLegendApplyForAll";
             this.checkEditLegendApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
             this.checkEditLegendApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -1411,7 +1321,6 @@
             this.checkEditThemeColorApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkEditThemeColorApplyForAll.Location = new System.Drawing.Point(10, 6);
-            this.checkEditThemeColorApplyForAll.MenuManager = this.barManager;
             this.checkEditThemeColorApplyForAll.Name = "checkEditThemeColorApplyForAll";
             this.checkEditThemeColorApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
             this.checkEditThemeColorApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -1424,6 +1333,99 @@
             // 
             this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
             // 
+            // barManager
+            // 
+            this.barManager.AllowCustomization = false;
+            this.barManager.AllowMoveBarOnToolbar = false;
+            this.barManager.AllowQuickCustomization = false;
+            this.barManager.AllowShowToolbarsPopup = false;
+            this.barManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.barToolbar});
+            this.barManager.DockControls.Add(this.barDockControlTop);
+            this.barManager.DockControls.Add(this.barDockControlBottom);
+            this.barManager.DockControls.Add(this.barDockControlLeft);
+            this.barManager.DockControls.Add(this.barDockControlRight);
+            this.barManager.Form = this;
+            this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barLargeButtonItemApply,
+            this.barLargeButtonItemClose,
+            this.barLargeButtonItem1,
+            this.barLargeButtonItem2});
+            this.barManager.MaxItemId = 10;
+            // 
+            // barLargeButtonItemApply
+            // 
+            this.barLargeButtonItemApply.Caption = "Apply";
+            this.barLargeButtonItemApply.Glyph = global::CalendarBuilder.Properties.Resources.ApplyDayProperties;
+            this.barLargeButtonItemApply.Id = 3;
+            this.barLargeButtonItemApply.Name = "barLargeButtonItemApply";
+            // 
+            // barLargeButtonItemClose
+            // 
+            this.barLargeButtonItemClose.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.barLargeButtonItemClose.Caption = "Close";
+            this.barLargeButtonItemClose.Glyph = global::CalendarBuilder.Properties.Resources.CloseDayProperties;
+            this.barLargeButtonItemClose.Id = 6;
+            this.barLargeButtonItemClose.Name = "barLargeButtonItemClose";
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(300, 44);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 539);
+            this.barDockControlBottom.Size = new System.Drawing.Size(300, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 44);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 495);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(300, 44);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 495);
+            // 
+            // barToolbar
+            // 
+            this.barToolbar.BarName = "Toolbar";
+            this.barToolbar.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Top;
+            this.barToolbar.DockCol = 0;
+            this.barToolbar.DockRow = 0;
+            this.barToolbar.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.barToolbar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItem2)});
+            this.barToolbar.OptionsBar.AllowQuickCustomization = false;
+            this.barToolbar.OptionsBar.DrawDragBorder = false;
+            this.barToolbar.OptionsBar.UseWholeRow = true;
+            this.barToolbar.Text = "Toolbar";
+            // 
+            // barLargeButtonItem1
+            // 
+            this.barLargeButtonItem1.Caption = "Apply";
+            this.barLargeButtonItem1.Glyph = global::CalendarBuilder.Properties.Resources.ApplyDayProperties;
+            this.barLargeButtonItem1.Id = 8;
+            this.barLargeButtonItem1.Name = "barLargeButtonItem1";
+            // 
+            // barLargeButtonItem2
+            // 
+            this.barLargeButtonItem2.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.barLargeButtonItem2.Caption = "Close";
+            this.barLargeButtonItem2.Glyph = global::CalendarBuilder.Properties.Resources.CloseDayProperties;
+            this.barLargeButtonItem2.Id = 9;
+            this.barLargeButtonItem2.Name = "barLargeButtonItem2";
+            // 
             // SlideInfoControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1431,10 +1433,13 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.pnNavbar);
             this.Controls.Add(this.MonthTitle);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "SlideInfoControl";
             this.Size = new System.Drawing.Size(300, 539);
-            ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             this.pnNavbar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
             this.xtraTabControl.ResumeLayout(false);
@@ -1491,6 +1496,7 @@
             this.pnThemeColorTop.ResumeLayout(false);
             this.pnThemeColorBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.checkEditThemeColorApplyForAll.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1498,17 +1504,9 @@
         #endregion
 
         private System.Windows.Forms.Label MonthTitle;
-        private DevExpress.XtraBars.BarManager barManager;
-        private DevExpress.XtraBars.Bar barToolbar;
-        private DevExpress.XtraBars.BarDockControl barDockControlTop;
-        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-        private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         private DevExpress.XtraEditors.StyleController styleController;
         private System.Windows.Forms.Panel pnNavbar;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemApply;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemClose;
         private DevComponents.DotNetBar.ButtonX buttonXBasicCalendarMonth;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControlBasic;
         private System.Windows.Forms.Label laBasicCalendarMonth;
@@ -1584,5 +1582,15 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPageLogo;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageLegend;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageThemeColor;
+        private DevExpress.XtraBars.BarManager barManager;
+        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemApply;
+        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemClose;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.Bar barToolbar;
+        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem1;
+        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem2;
     }
 }

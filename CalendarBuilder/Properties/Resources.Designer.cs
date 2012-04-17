@@ -165,6 +165,13 @@ namespace CalendarBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap DownArrow {
+            get {
+                object obj = ResourceManager.GetObject("DownArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Email {
             get {
                 object obj = ResourceManager.GetObject("Email", resourceCulture);

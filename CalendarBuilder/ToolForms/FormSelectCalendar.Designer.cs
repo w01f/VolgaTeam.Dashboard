@@ -1,6 +1,6 @@
 ﻿namespace CalendarBuilder.ToolForms
 {
-    partial class FormSelectPublication
+    partial class FormSelectCalendar
     {
         /// <summary>
         /// Required designer variable.

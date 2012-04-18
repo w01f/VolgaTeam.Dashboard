@@ -182,6 +182,7 @@
             // 
             this.dayPropertiesControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.dayPropertiesControl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dayPropertiesControl.Day = null;
             this.dayPropertiesControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dayPropertiesControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dayPropertiesControl.Location = new System.Drawing.Point(0, 0);
@@ -235,10 +236,12 @@
             this.slideInfoControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.slideInfoControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.slideInfoControl.Location = new System.Drawing.Point(0, 0);
+            this.slideInfoControl.MonthTitle = null;
             this.slideInfoControl.Name = "slideInfoControl";
             this.slideInfoControl.SettingsNotSaved = false;
             this.slideInfoControl.Size = new System.Drawing.Size(298, 626);
             this.slideInfoControl.TabIndex = 0;
+            this.slideInfoControl.PropertiesLoaded += new System.EventHandler(this.slideInfoControl_PropertiesLoaded);
             this.slideInfoControl.PropertiesApplied += new System.EventHandler(this.slideInfoControl_PropertiesApplied);
             this.slideInfoControl.PropertiesClosed += new System.EventHandler(this.slideInfoControl_PropertiesClosed);
             // 

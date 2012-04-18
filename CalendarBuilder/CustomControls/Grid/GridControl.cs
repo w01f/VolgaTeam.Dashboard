@@ -125,7 +125,7 @@ namespace CalendarBuilder.CustomControls.Grid
             BusinessClasses.CalendarDay day = null;
             if (gridViewDigital.FocusedRowHandle >= 0 && _month != null)
             {
-                day = _month.Days[gridViewDigital.FocusedRowHandle];
+                day = _month.Days.Where(x => x.BelongsToSchedules).ToArray()[gridViewDigital.FocusedRowHandle];
             }
             return day;
         }

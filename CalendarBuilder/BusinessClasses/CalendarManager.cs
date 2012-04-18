@@ -906,14 +906,13 @@ namespace CalendarBuilder.BusinessClasses
         public bool ShowHeader { get; set; }
         public bool ShowBusinessName { get; set; }
         public bool ShowDecisionMaker { get; set; }
-        public bool ShowBigDate { get; set; }
         private string _businessName = string.Empty;
         private string _decisionMaker = string.Empty;
         public string Header { get; set; }
         public bool ApplyForAllBasic { get; set; }
         #endregion
 
-        #region Investment
+        #region Cost
         public bool ShowPrintTotalCostManual { get; set; }
         public bool ShowPrintTotalCostCalculated { get; set; }
         public bool ShowDigitalTotalCost { get; set; }
@@ -921,10 +920,14 @@ namespace CalendarBuilder.BusinessClasses
         public double? PrintTotalCost { get; set; }
         public double? DigitalTotalCost { get; set; }
         public double? TVTotalCost { get; set; }
-        public bool ApplyForAllInvestment { get; set; }
+        public bool ApplyForAlCost { get; set; }
         #endregion
 
-        #region Other Numbers
+        #region Notes
+        public bool ShowCustomComment { get; set; }
+        public string CustomComment { get; set; }
+        public bool ApplyForAllCustomComment { get; set; }
+
         private int? _activeDays;
         private int? _printAdsNumber;
         public bool ShowActiveDays { get; set; }
@@ -936,27 +939,21 @@ namespace CalendarBuilder.BusinessClasses
         public bool ApplyForAllOtherNumbers { get; set; }
         #endregion
 
-        #region Custom Comment
-        public bool ShowCustomComment { get; set; }
-        public string CustomComment { get; set; }
-        public bool ApplyForAllCustomComment { get; set; }
-        #endregion
-
-        #region Logo
-        public bool ShowLogo { get; set; }
-        public Image Logo { get; set; }
-        public bool ApplyForAllLogo { get; set; }
-        #endregion
-
         #region Legend
         public bool ShowLegend { get; set; }
         public List<CalendarLegend> Legend { get; private set; }
         public bool ApplyForAllLegend { get; set; }
         #endregion
 
-        #region Theme Color
+        #region Style
         public string SlideColor { get; set; }
         public bool ApplyForAllThemeColor { get; set; }
+
+        public bool ShowLogo { get; set; }
+        public Image Logo { get; set; }
+        public bool ApplyForAllLogo { get; set; }
+
+        public bool ShowBigDate { get; set; }
         #endregion
 
         #region Calculated Options
@@ -1263,35 +1260,27 @@ namespace CalendarBuilder.BusinessClasses
             this.ShowHeader = true;
             this.ShowBusinessName = true;
             this.ShowDecisionMaker = true;
-            this.ShowBigDate = true;
             this.Header = string.Empty;
             this.ApplyForAllBasic = true;
             #endregion
 
-            #region Investment
+            #region Cost
             this.ShowPrintTotalCostManual = false;
             this.ShowPrintTotalCostCalculated = false;
             this.ShowDigitalTotalCost = false;
             this.ShowTVTotalCost = false;
-            this.ApplyForAllInvestment = true;
+            this.ApplyForAlCost = true;
             #endregion
 
-            #region Other Numbers
+            #region Notes
+            this.ShowCustomComment = false;
+            this.ApplyForAllCustomComment = true;
+
             this.ShowActiveDays = false;
             this.ShowPrintAdsNumber = false;
             this.ShowImpressions = false;
             this.ShowDigitalCPM = false;
             this.ApplyForAllOtherNumbers = true;
-            #endregion
-
-            #region Custom Comment
-            this.ShowCustomComment = false;
-            this.ApplyForAllCustomComment = true;
-            #endregion
-
-            #region Logo
-            this.ShowLogo = false;
-            this.ApplyForAllLogo = true;
             #endregion
 
             #region Legend
@@ -1300,9 +1289,14 @@ namespace CalendarBuilder.BusinessClasses
             this.ApplyForAllLegend = true;
             #endregion
 
-            #region Theme Color
+            #region Style
             this.SlideColor = "gray";
             this.ApplyForAllThemeColor = true;
+
+            this.ShowLogo = false;
+            this.ApplyForAllLogo = true;
+
+            this.ShowBigDate = true;
             #endregion
         }
 
@@ -1316,14 +1310,13 @@ namespace CalendarBuilder.BusinessClasses
             result.AppendLine(@"<ShowHeader>" + this.ShowHeader.ToString() + @"</ShowHeader>");
             result.AppendLine(@"<ShowBusinessName>" + this.ShowBusinessName.ToString() + @"</ShowBusinessName>");
             result.AppendLine(@"<ShowDecisionMaker>" + this.ShowDecisionMaker.ToString() + @"</ShowDecisionMaker>");
-            result.AppendLine(@"<ShowBigDate>" + this.ShowBigDate + @"</ShowBigDate>");
             result.AppendLine(@"<Header>" + this.Header.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Header>");
             result.AppendLine(@"<BusinessName>" + _businessName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</BusinessName>");
             result.AppendLine(@"<DecisionMaker>" + _decisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
             result.AppendLine(@"<ApplyForAllBasic>" + this.ApplyForAllBasic.ToString() + @"</ApplyForAllBasic>");
             #endregion
 
-            #region Investment
+            #region Cost
             if (this.PrintTotalCost.HasValue)
                 result.AppendLine(@"<PrintTotalCost>" + this.PrintTotalCost.Value.ToString() + @"</PrintTotalCost>");
             result.AppendLine(@"<ShowPrintTotalCostManual>" + this.ShowPrintTotalCostManual.ToString() + @"</ShowPrintTotalCostManual>");
@@ -1334,10 +1327,15 @@ namespace CalendarBuilder.BusinessClasses
             result.AppendLine(@"<ShowTVTotalCost>" + this.ShowTVTotalCost.ToString() + @"</ShowTVTotalCost>");
             if (this.TVTotalCost.HasValue)
                 result.AppendLine(@"<TVTotalCost>" + this.TVTotalCost.Value.ToString() + @"</TVTotalCost>");
-            result.AppendLine(@"<ApplyForAllInvestment>" + this.ApplyForAllInvestment.ToString() + @"</ApplyForAllInvestment>");
+            result.AppendLine(@"<ApplyForAllCost>" + this.ApplyForAlCost.ToString() + @"</ApplyForAllCost>");
             #endregion
 
-            #region Other Numbers
+            #region Notes
+            result.AppendLine(@"<ShowCustomComment>" + this.ShowCustomComment.ToString() + @"</ShowCustomComment>");
+            if (!string.IsNullOrEmpty(this.CustomComment))
+                result.AppendLine(@"<CustomComment>" + this.CustomComment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</CustomComment>");
+            result.AppendLine(@"<ApplyForAllCustomComment>" + this.ApplyForAllCustomComment.ToString() + @"</ApplyForAllCustomComment>");
+
             if (_activeDays.HasValue)
                 result.AppendLine(@"<ActiveDays>" + _activeDays.Value.ToString() + @"</ActiveDays>");
             if (_printAdsNumber.HasValue)
@@ -1353,20 +1351,6 @@ namespace CalendarBuilder.BusinessClasses
                 result.AppendLine(@"<DigitalCPM>" + this.DigitalCPM.Value.ToString() + @"</DigitalCPM>");
             #endregion
 
-            #region Custom Comment
-            result.AppendLine(@"<ShowCustomComment>" + this.ShowCustomComment.ToString() + @"</ShowCustomComment>");
-            if (!string.IsNullOrEmpty(this.CustomComment))
-                result.AppendLine(@"<CustomComment>" + this.CustomComment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</CustomComment>");
-            result.AppendLine(@"<ApplyForAllCustomComment>" + this.ApplyForAllCustomComment.ToString() + @"</ApplyForAllCustomComment>");
-            #endregion
-
-            #region Logo
-            result.AppendLine(@"<ShowLogo>" + this.ShowLogo.ToString() + @"</ShowLogo>");
-            if (this.Logo != null)
-                result.AppendLine(@"<Logo>" + Convert.ToBase64String((byte[])converter.ConvertTo(this.Logo, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
-            result.AppendLine(@"<ApplyForAllLogo>" + this.ApplyForAllLogo.ToString() + @"</ApplyForAllLogo>");
-            #endregion
-
             #region Legend
             result.AppendLine(@"<ShowLegend>" + this.ShowLegend.ToString() + @"</ShowLegend>");
             result.AppendLine(@"<Legends>");
@@ -1376,9 +1360,16 @@ namespace CalendarBuilder.BusinessClasses
             result.AppendLine(@"<ApplyForAllLegend>" + this.ApplyForAllLegend.ToString() + @"</ApplyForAllLegend>");
             #endregion
 
-            #region Theme Color
+            #region Style
             result.AppendLine(@"<SlideColor>" + this.SlideColor.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideColor>");
             result.AppendLine(@"<ApplyForAllThemeColor>" + this.ApplyForAllThemeColor.ToString() + @"</ApplyForAllThemeColor>");
+
+            result.AppendLine(@"<ShowLogo>" + this.ShowLogo.ToString() + @"</ShowLogo>");
+            if (this.Logo != null)
+                result.AppendLine(@"<Logo>" + Convert.ToBase64String((byte[])converter.ConvertTo(this.Logo, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
+            result.AppendLine(@"<ApplyForAllLogo>" + this.ApplyForAllLogo.ToString() + @"</ApplyForAllLogo>");
+
+            result.AppendLine(@"<ShowBigDate>" + this.ShowBigDate + @"</ShowBigDate>");
             #endregion
 
             return result.ToString();
@@ -1411,10 +1402,6 @@ namespace CalendarBuilder.BusinessClasses
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowDecisionMaker = tempBool;
                         break;
-                    case "ShowBigDate":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowBigDate = tempBool;
-                        break;
                     case "Header":
                         this.Header = childNode.InnerText;
                         break;
@@ -1430,7 +1417,7 @@ namespace CalendarBuilder.BusinessClasses
                         break;
                     #endregion
 
-                    #region Investment
+                    #region Cost
                     case "PrintTotalCost":
                         if (double.TryParse(childNode.InnerText, out tempDouble))
                             this.PrintTotalCost = tempDouble;
@@ -1459,13 +1446,25 @@ namespace CalendarBuilder.BusinessClasses
                         if (double.TryParse(childNode.InnerText, out tempDouble))
                             this.TVTotalCost = tempDouble;
                         break;
-                    case "ApplyForAllInvestment":
+                    case "ApplyForAllCost":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ApplyForAllInvestment = tempBool;
+                            this.ApplyForAlCost = tempBool;
                         break;
                     #endregion
 
-                    #region Other Numbers
+                    #region Notes
+                    case "ShowCustomComment":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowCustomComment = tempBool;
+                        break;
+                    case "CustomComment":
+                        this.CustomComment = childNode.InnerText;
+                        break;
+                    case "ApplyForAllCustomComment":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ApplyForAllCustomComment = tempBool;
+                        break;
+
                     case "ActiveDays":
                         if (int.TryParse(childNode.InnerText, out tempInt))
                             _activeDays = tempInt;
@@ -1504,37 +1503,6 @@ namespace CalendarBuilder.BusinessClasses
                         break;
                     #endregion
 
-                    #region Custom Comment
-                    case "ShowCustomComment":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowCustomComment = tempBool;
-                        break;
-                    case "CustomComment":
-                        this.CustomComment = childNode.InnerText;
-                        break;
-                    case "ApplyForAllCustomComment":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ApplyForAllCustomComment = tempBool;
-                        break;
-                    #endregion
-
-                    #region Logo
-                    case "ShowLogo":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowLogo = tempBool;
-                        break;
-                    case "Logo":
-                        if (string.IsNullOrEmpty(childNode.InnerText))
-                            this.Logo = null;
-                        else
-                            this.Logo = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
-                        break;
-                    case "ApplyForAllLogo":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ApplyForAllLogo = tempBool;
-                        break;
-                    #endregion
-
                     #region Legend
                     case "ShowLegend":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -1555,13 +1523,33 @@ namespace CalendarBuilder.BusinessClasses
                         break;
                     #endregion
 
-                    #region Theme Color
+                    #region Style
                     case "SlideColor":
                         this.SlideColor = childNode.InnerText;
                         break;
                     case "ApplyForAllThemeColor":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ApplyForAllThemeColor = tempBool;
+                        break;
+
+                    case "ShowLogo":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowLogo = tempBool;
+                        break;
+                    case "Logo":
+                        if (string.IsNullOrEmpty(childNode.InnerText))
+                            this.Logo = null;
+                        else
+                            this.Logo = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
+                        break;
+                    case "ApplyForAllLogo":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ApplyForAllLogo = tempBool;
+                        break;
+
+                    case "ShowBigDate":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowBigDate = tempBool;
                         break;
                     #endregion
                 }
@@ -1595,14 +1583,16 @@ namespace CalendarBuilder.BusinessClasses
                     legend = new CalendarLegend();
                     legend.Description = day.Newspaper.PublicationName;
                     legend.Code = day.Newspaper.PublicationAbbreviation;
-                    _legendsFromDays.Add(legend);
+                    if (!_legendsFromDays.Select(x => x.Description).Contains(legend.Description))
+                        _legendsFromDays.Add(legend);
                 }
                 if (!string.IsNullOrEmpty(day.Newspaper.Section))
                 {
                     legend = new CalendarLegend();
                     legend.Description = day.Newspaper.Section;
                     legend.Code = day.Newspaper.SectionAbbreviation;
-                    _legendsFromDays.Add(legend);
+                    if (!_legendsFromDays.Select(x => x.Description).Contains(legend.Description))
+                        _legendsFromDays.Add(legend);
                 }
             }
             _newLegends.AddRange(this.Legend.Where(x => _legendsFromDays.Select(y => y.Description).Contains(x.Description)));

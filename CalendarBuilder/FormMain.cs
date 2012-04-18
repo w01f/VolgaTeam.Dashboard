@@ -136,9 +136,13 @@ namespace CalendarBuilder
             #region Calendar Events
             listBoxControlCalendar.SelectedIndexChanged += new EventHandler(CustomControls.CalendarControl.Instance.imageListBoxEditCalendar_SelectedIndexChanged);
             buttonItemCalendarSlideInfo.CheckedChanged += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarSlideInfo_CheckedChanged);
-            buttonItemCalendarGrid.CheckedChanged += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarGrid_CheckedChanged);
+            buttonItemCalendarMonth.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarView_Click);
+            buttonItemCalendarGrid.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarView_Click);
+            buttonItemCalendarMonth.CheckedChanged += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarView_CheckedChanged);
+            buttonItemCalendarGrid.CheckedChanged += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarView_CheckedChanged);
             buttonItemCalendarCopy.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarCopy_Click);
             buttonItemCalendarPaste.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarPaste_Click);
+            buttonItemCalendarClone.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarClone_Click);
             buttonItemCalendarSave.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemScheduleSave_Click);
             buttonItemCalendarSaveAs.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemScheduleSaveAs_Click);
             buttonItemCalendarPowerPoint.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemWeeklySchedulePowerPoint_Click);

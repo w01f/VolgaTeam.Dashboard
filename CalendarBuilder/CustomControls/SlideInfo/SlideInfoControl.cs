@@ -9,7 +9,12 @@ namespace CalendarBuilder.CustomControls.SlideInfo
     {
         private BusinessClasses.CalendarMonth _month = null;
         private bool _allowToSave = false;
+        public string MonthTitle { get; set; }
         public bool SettingsNotSaved { get; set; }
+
+        [Browsable(true)]
+        [Category("Action")]
+        public event EventHandler PropertiesLoaded;
 
         [Browsable(true)]
         [Category("Action")]
@@ -32,7 +37,6 @@ namespace CalendarBuilder.CustomControls.SlideInfo
             textEditBasicBusinessName.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
             buttonXBasicDecisionMaker.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
             textEditBasicDecisionMaker.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
-            buttonXBasicBigDate.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
             checkEditBasicApplyForAll.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
 
             comboBoxEditBasicSlideTitle.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
@@ -46,28 +50,39 @@ namespace CalendarBuilder.CustomControls.SlideInfo
             textEditBasicDecisionMaker.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
             #endregion
 
-            #region Investment
-            buttonXInvestmentDigital.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
-            spinEditInvestmentDigital.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
-            buttonXInvestmentNewspaperCalculated.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
-            buttonXInvestmentNewspaperManual.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
-            spinEditInvestmentNewspaper.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
-            buttonXInvestmentTV.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
-            spinEditInvestmentTV.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
-            checkEditInvestmentApplyForAll.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            #region Cost
+            buttonXCostDigital.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            spinEditCostDigital.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            buttonXCostNewspaperCalculated.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            buttonXCostNewspaperManual.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            spinEditCostNewspaper.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            buttonXCostTV.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            spinEditCostTV.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            checkEditCostApplyForAll.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
 
-            spinEditInvestmentDigital.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
-            spinEditInvestmentDigital.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
-            spinEditInvestmentDigital.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
-            spinEditInvestmentNewspaper.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
-            spinEditInvestmentNewspaper.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
-            spinEditInvestmentNewspaper.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
-            spinEditInvestmentTV.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
-            spinEditInvestmentTV.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
-            spinEditInvestmentTV.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
+            spinEditCostDigital.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
+            spinEditCostDigital.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
+            spinEditCostDigital.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
+            spinEditCostNewspaper.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
+            spinEditCostNewspaper.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
+            spinEditCostNewspaper.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
+            spinEditCostTV.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
+            spinEditCostTV.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
+            spinEditCostTV.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
             #endregion
 
             #region Other Numbers
+            #endregion
+
+            #region Notes
+            buttonXNotesCustomComment.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            memoEditNotesCustomComment.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            checkEditNotesCustomCommentApplyFoAll.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+
+            memoEditNotesCustomComment.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
+            memoEditNotesCustomComment.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
+            memoEditNotesCustomComment.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
+
             buttonXOtherNumbersActiveDays.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
             spinEditOtherNumbersActiveDays.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
             buttonXOtherNumbersDigitalCPM.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
@@ -92,22 +107,6 @@ namespace CalendarBuilder.CustomControls.SlideInfo
             spinEditOtherNumbersNewspaperAdsNumber.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
             #endregion
 
-            #region Custom Comment
-            buttonXCustomComment.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
-            memoEditCustomComment.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
-            checkEditCustomCommentApplyFoAll.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
-
-            memoEditCustomComment.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
-            memoEditCustomComment.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
-            memoEditCustomComment.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
-            #endregion
-
-            #region Logo
-            buttonXLogo.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
-            pictureEditLogo.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
-            checkEditLogoApplyForAll.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
-            #endregion
-
             #region Legend
             buttonXLegend.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
             gridViewLegend.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(gridViewLegend_CellValueChanged);
@@ -120,7 +119,7 @@ namespace CalendarBuilder.CustomControls.SlideInfo
             repositoryItemTextEdit.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
             #endregion
 
-            #region Theme Color
+            #region Style
             buttonXThemeColorBlack.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
             buttonXThemeColorBlue.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
             buttonXThemeColorGray.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
@@ -128,6 +127,12 @@ namespace CalendarBuilder.CustomControls.SlideInfo
             buttonXThemeColorOrange.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
             buttonXThemeColorTeal.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
             checkEditThemeColorApplyForAll.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+
+            buttonXLogo.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            pictureEditLogo.EditValueChanged += new EventHandler(propertiesControl_PropertiesChanged);
+            checkEditLogoApplyForAll.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
+
+            buttonXStyleBigDate.CheckedChanged += new EventHandler(propertiesControl_PropertiesChanged);
             #endregion
             #endregion
         }
@@ -136,6 +141,8 @@ namespace CalendarBuilder.CustomControls.SlideInfo
         {
             _month = month;
             LoadCurrentMonthData();
+            if (this.PropertiesLoaded != null)
+                this.PropertiesLoaded(null, null);
         }
 
         public void LoadCurrentMonthData()
@@ -143,11 +150,11 @@ namespace CalendarBuilder.CustomControls.SlideInfo
             if (_month != null)
             {
                 _allowToSave = false;
-                MonthTitle.Text = _month.StartDate.ToString("MMMM, yyyy");
+                this.MonthTitle = "Slide Info - " + _month.StartDate.ToString("MMMM yyyy");
 
                 #region Basic
                 buttonXBasicCalendarMonth.Checked = _month.OutputData.ShowMonth;
-                laBasicCalendarMonth.Text = MonthTitle.Text;
+                laBasicCalendarMonth.Text = _month.StartDate.ToString("MMMM yyyy");
 
                 buttonXBasicSlideTitle.Checked = _month.OutputData.ShowHeader;
                 comboBoxEditBasicSlideTitle.Properties.Items.Clear();
@@ -163,28 +170,30 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                 buttonXBasicDecisionMaker.Checked = _month.OutputData.ShowDecisionMaker;
                 textEditBasicDecisionMaker.EditValue = !string.IsNullOrEmpty(_month.OutputData.DecisionMaker) ? _month.OutputData.DecisionMaker : _month.Parent.DecisionMaker;
 
-                buttonXBasicBigDate.Checked = _month.OutputData.ShowBigDate;
-
                 checkEditBasicApplyForAll.Checked = _month.OutputData.ApplyForAllBasic;
                 #endregion
 
-                #region Investment
-                buttonXInvestmentNewspaperCalculated.Checked = _month.OutputData.ShowPrintTotalCostCalculated;
-                laInvestmentNewspaperCalculated.Text = _month.OutputData.PrintTotalCostCalculated.ToString("$#,###.00");
+                #region Cost
+                buttonXCostNewspaperCalculated.Checked = _month.OutputData.ShowPrintTotalCostCalculated;
+                laCostNewspaperCalculated.Text = _month.OutputData.PrintTotalCostCalculated.ToString("$#,###.00");
 
-                buttonXInvestmentNewspaperManual.Checked = _month.OutputData.ShowPrintTotalCostManual;
-                spinEditInvestmentNewspaper.Value = _month.OutputData.PrintTotalCost.HasValue ? (decimal)_month.OutputData.PrintTotalCost.Value : 0;
+                buttonXCostNewspaperManual.Checked = _month.OutputData.ShowPrintTotalCostManual;
+                spinEditCostNewspaper.Value = _month.OutputData.PrintTotalCost.HasValue ? (decimal)_month.OutputData.PrintTotalCost.Value : 0;
 
-                buttonXInvestmentDigital.Checked = _month.OutputData.ShowDigitalTotalCost;
-                spinEditInvestmentDigital.Value = _month.OutputData.DigitalTotalCost.HasValue ? (decimal)_month.OutputData.DigitalTotalCost.Value : 0;
+                buttonXCostDigital.Checked = _month.OutputData.ShowDigitalTotalCost;
+                spinEditCostDigital.Value = _month.OutputData.DigitalTotalCost.HasValue ? (decimal)_month.OutputData.DigitalTotalCost.Value : 0;
 
-                buttonXInvestmentTV.Checked = _month.OutputData.ShowTVTotalCost;
-                spinEditInvestmentTV.Value = _month.OutputData.TVTotalCost.HasValue ? (decimal)_month.OutputData.TVTotalCost.Value : 0;
+                buttonXCostTV.Checked = _month.OutputData.ShowTVTotalCost;
+                spinEditCostTV.Value = _month.OutputData.TVTotalCost.HasValue ? (decimal)_month.OutputData.TVTotalCost.Value : 0;
 
-                checkEditInvestmentApplyForAll.Checked = _month.OutputData.ApplyForAllInvestment;
+                checkEditCostApplyForAll.Checked = _month.OutputData.ApplyForAlCost;
                 #endregion
 
-                #region Other Numbers
+                #region Notes
+                buttonXNotesCustomComment.Checked = _month.OutputData.ShowCustomComment;
+                memoEditNotesCustomComment.EditValue = _month.OutputData.CustomComment;
+                checkEditNotesCustomCommentApplyFoAll.Checked = _month.OutputData.ApplyForAllCustomComment;
+
                 buttonXOtherNumbersActiveDays.Checked = _month.OutputData.ShowActiveDays;
                 spinEditOtherNumbersActiveDays.Value = _month.OutputData.ActiveDays;
 
@@ -200,18 +209,6 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                 checkEditOtherNumbersApplyForAll.Checked = _month.OutputData.ApplyForAllOtherNumbers;
                 #endregion
 
-                #region Custom Comment
-                buttonXCustomComment.Checked = _month.OutputData.ShowCustomComment;
-                memoEditCustomComment.EditValue = _month.OutputData.CustomComment;
-                checkEditCustomCommentApplyFoAll.Checked = _month.OutputData.ApplyForAllCustomComment;
-                #endregion
-
-                #region Logo
-                buttonXLogo.Checked = _month.OutputData.ShowLogo;
-                pictureEditLogo.Image = _month.OutputData.Logo;
-                checkEditLogoApplyForAll.Checked = _month.OutputData.ApplyForAllLogo;
-                #endregion
-
                 #region Legend
                 buttonXLegend.Checked = _month.OutputData.ShowLegend;
                 gridControlLegend.DataSource = null;
@@ -221,7 +218,7 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                 checkEditLegendApplyForAll.Checked = _month.OutputData.ApplyForAllLegend;
                 #endregion
 
-                #region Theme Color
+                #region Style
                 buttonXThemeColorBlack.Checked = false;
                 buttonXThemeColorBlue.Checked = false;
                 buttonXThemeColorGray.Checked = false;
@@ -250,6 +247,12 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                         break;
                 }
                 checkEditThemeColorApplyForAll.Checked = _month.OutputData.ApplyForAllThemeColor;
+
+                buttonXLogo.Checked = _month.OutputData.ShowLogo;
+                pictureEditLogo.Image = _month.OutputData.Logo;
+                checkEditLogoApplyForAll.Checked = _month.OutputData.ApplyForAllLogo;
+
+                buttonXStyleBigDate.Checked = _month.OutputData.ShowBigDate;
                 #endregion
 
                 _allowToSave = true;
@@ -273,8 +276,6 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                 _month.OutputData.ShowDecisionMaker = buttonXBasicDecisionMaker.Checked;
                 _month.OutputData.DecisionMaker = textEditBasicDecisionMaker.EditValue != null && !textEditBasicDecisionMaker.EditValue.ToString().Equals(_month.Parent.DecisionMaker) ? textEditBasicDecisionMaker.EditValue.ToString() : string.Empty;
 
-                _month.OutputData.ShowBigDate = buttonXBasicBigDate.Checked;
-
                 _month.OutputData.ApplyForAllBasic = checkEditBasicApplyForAll.Checked;
                 if (_month.OutputData.ApplyForAllBasic)
                 {
@@ -288,7 +289,6 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                             month.OutputData.ShowBusinessName = _month.OutputData.ShowBusinessName;
                             month.OutputData.BusinessName = _month.OutputData.BusinessName;
                             month.OutputData.ShowDecisionMaker = _month.OutputData.ShowDecisionMaker;
-                            month.OutputData.ShowBigDate = _month.OutputData.ShowBigDate;
                             month.OutputData.DecisionMaker = _month.OutputData.DecisionMaker;
                             month.OutputData.ApplyForAllBasic = _month.OutputData.ApplyForAllBasic;
                         }
@@ -296,20 +296,20 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                 }
                 #endregion
 
-                #region Investment
-                _month.OutputData.ShowPrintTotalCostCalculated = buttonXInvestmentNewspaperCalculated.Checked;
+                #region Cost
+                _month.OutputData.ShowPrintTotalCostCalculated = buttonXCostNewspaperCalculated.Checked;
 
-                _month.OutputData.ShowPrintTotalCostManual = buttonXInvestmentNewspaperManual.Checked;
-                _month.OutputData.PrintTotalCost = spinEditInvestmentNewspaper.Value > 0 ? (double?)spinEditInvestmentNewspaper.Value : null;
+                _month.OutputData.ShowPrintTotalCostManual = buttonXCostNewspaperManual.Checked;
+                _month.OutputData.PrintTotalCost = spinEditCostNewspaper.Value > 0 ? (double?)spinEditCostNewspaper.Value : null;
 
-                _month.OutputData.ShowDigitalTotalCost = buttonXInvestmentDigital.Checked;
-                _month.OutputData.DigitalTotalCost = spinEditInvestmentDigital.Value > 0 ? (double?)spinEditInvestmentDigital.Value : null;
+                _month.OutputData.ShowDigitalTotalCost = buttonXCostDigital.Checked;
+                _month.OutputData.DigitalTotalCost = spinEditCostDigital.Value > 0 ? (double?)spinEditCostDigital.Value : null;
 
-                _month.OutputData.ShowTVTotalCost = buttonXInvestmentTV.Checked;
-                _month.OutputData.TVTotalCost = spinEditInvestmentTV.Value > 0 ? (double?)spinEditInvestmentTV.Value : null;
+                _month.OutputData.ShowTVTotalCost = buttonXCostTV.Checked;
+                _month.OutputData.TVTotalCost = spinEditCostTV.Value > 0 ? (double?)spinEditCostTV.Value : null;
 
-                _month.OutputData.ApplyForAllInvestment = checkEditInvestmentApplyForAll.Checked;
-                if (_month.OutputData.ApplyForAllInvestment)
+                _month.OutputData.ApplyForAlCost = checkEditCostApplyForAll.Checked;
+                if (_month.OutputData.ApplyForAlCost)
                 {
                     foreach (BusinessClasses.CalendarMonth month in _month.Parent.Months)
                     {
@@ -322,13 +322,29 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                             month.OutputData.DigitalTotalCost = _month.OutputData.DigitalTotalCost;
                             month.OutputData.ShowTVTotalCost = _month.OutputData.ShowTVTotalCost;
                             month.OutputData.TVTotalCost = _month.OutputData.TVTotalCost;
-                            month.OutputData.ApplyForAllInvestment = _month.OutputData.ApplyForAllInvestment;
+                            month.OutputData.ApplyForAlCost = _month.OutputData.ApplyForAlCost;
                         }
                     }
                 }
                 #endregion
 
-                #region Other Numbers
+                #region Notes
+                _month.OutputData.ShowCustomComment = buttonXNotesCustomComment.Checked;
+                _month.OutputData.CustomComment = memoEditNotesCustomComment.EditValue != null ? memoEditNotesCustomComment.EditValue.ToString() : string.Empty;
+                _month.OutputData.ApplyForAllCustomComment = checkEditNotesCustomCommentApplyFoAll.Checked;
+                if (_month.OutputData.ApplyForAllCustomComment)
+                {
+                    foreach (BusinessClasses.CalendarMonth month in _month.Parent.Months)
+                    {
+                        if (month != _month)
+                        {
+                            month.OutputData.ShowCustomComment = _month.OutputData.ShowCustomComment;
+                            month.OutputData.CustomComment = _month.OutputData.CustomComment;
+                            month.OutputData.ApplyForAllCustomComment = _month.OutputData.ApplyForAllCustomComment;
+                        }
+                    }
+                }
+
                 _month.OutputData.ShowActiveDays = buttonXOtherNumbersActiveDays.Checked;
                 _month.OutputData.ActiveDays = (int)spinEditOtherNumbersActiveDays.Value;
 
@@ -362,42 +378,6 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                 }
                 #endregion
 
-                #region Custom Comment
-                _month.OutputData.ShowCustomComment = buttonXCustomComment.Checked;
-                _month.OutputData.CustomComment = memoEditCustomComment.EditValue != null ? memoEditCustomComment.EditValue.ToString() : string.Empty;
-                _month.OutputData.ApplyForAllCustomComment = checkEditCustomCommentApplyFoAll.Checked;
-                if (_month.OutputData.ApplyForAllCustomComment)
-                {
-                    foreach (BusinessClasses.CalendarMonth month in _month.Parent.Months)
-                    {
-                        if (month != _month)
-                        {
-                            month.OutputData.ShowCustomComment = _month.OutputData.ShowCustomComment;
-                            month.OutputData.CustomComment = _month.OutputData.CustomComment;
-                            month.OutputData.ApplyForAllCustomComment = _month.OutputData.ApplyForAllCustomComment;
-                        }
-                    }
-                }
-                #endregion
-
-                #region Logo
-                _month.OutputData.ShowLogo = buttonXLogo.Checked;
-                _month.OutputData.Logo = pictureEditLogo.Image;
-                _month.OutputData.ApplyForAllLogo = checkEditLogoApplyForAll.Checked;
-                if (_month.OutputData.ApplyForAllLogo)
-                {
-                    foreach (BusinessClasses.CalendarMonth month in _month.Parent.Months)
-                    {
-                        if (month != _month)
-                        {
-                            month.OutputData.ShowLogo = _month.OutputData.ShowLogo;
-                            month.OutputData.Logo = _month.OutputData.Logo;
-                            month.OutputData.ApplyForAllLogo = _month.OutputData.ApplyForAllLogo;
-                        }
-                    }
-                }
-                #endregion
-
                 #region Legend
                 _month.OutputData.ShowLegend = buttonXLegend.Checked;
                 gridViewLegend.CloseEditor();
@@ -420,7 +400,7 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                 }
                 #endregion
 
-                #region Theme Color
+                #region Style
                 if (buttonXThemeColorBlack.Checked)
                     _month.OutputData.SlideColor = "black";
                 else if (buttonXThemeColorBlue.Checked)
@@ -445,6 +425,24 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                         }
                     }
                 }
+
+                _month.OutputData.ShowLogo = buttonXLogo.Checked;
+                _month.OutputData.Logo = pictureEditLogo.Image;
+                _month.OutputData.ApplyForAllLogo = checkEditLogoApplyForAll.Checked;
+                if (_month.OutputData.ApplyForAllLogo)
+                {
+                    foreach (BusinessClasses.CalendarMonth month in _month.Parent.Months)
+                    {
+                        if (month != _month)
+                        {
+                            month.OutputData.ShowLogo = _month.OutputData.ShowLogo;
+                            month.OutputData.Logo = _month.OutputData.Logo;
+                            month.OutputData.ApplyForAllLogo = _month.OutputData.ApplyForAllLogo;
+                        }
+                    }
+                }
+
+                _month.OutputData.ShowBigDate = buttonXStyleBigDate.Checked;
                 #endregion
 
                 this.SettingsNotSaved = false;
@@ -491,16 +489,16 @@ namespace CalendarBuilder.CustomControls.SlideInfo
         }
         #endregion
 
-        #region Investment Event Handlers
-        private void buttonXInvestmentNewspaperCalculated_Click(object sender, EventArgs e)
+        #region Cost Event Handlers
+        private void buttonXCostNewspaperCalculated_Click(object sender, EventArgs e)
         {
             DevComponents.DotNetBar.ButtonX button = sender as DevComponents.DotNetBar.ButtonX;
             if (button != null)
             {
                 if (!button.Checked)
                 {
-                    buttonXInvestmentNewspaperCalculated.Checked = false;
-                    buttonXInvestmentNewspaperManual.Checked = false;
+                    buttonXCostNewspaperCalculated.Checked = false;
+                    buttonXCostNewspaperManual.Checked = false;
                     button.Checked = true;
                 }
                 else
@@ -508,28 +506,33 @@ namespace CalendarBuilder.CustomControls.SlideInfo
             }
         }
 
-        private void buttonXInvestmentNewspaperCalculated_CheckedChanged(object sender, EventArgs e)
+        private void buttonXCostNewspaperCalculated_CheckedChanged(object sender, EventArgs e)
         {
-            laInvestmentNewspaperCalculated.Enabled = buttonXInvestmentNewspaperCalculated.Checked;
+            laCostNewspaperCalculated.Enabled = buttonXCostNewspaperCalculated.Checked;
         }
 
-        private void buttonXInvestmentNewspaperManual_CheckedChanged(object sender, EventArgs e)
+        private void buttonXCostNewspaperManual_CheckedChanged(object sender, EventArgs e)
         {
-            spinEditInvestmentNewspaper.Enabled = buttonXInvestmentNewspaperManual.Checked;
+            spinEditCostNewspaper.Enabled = buttonXCostNewspaperManual.Checked;
         }
 
-        private void buttonXInvestmentDigital_CheckedChanged(object sender, EventArgs e)
+        private void buttonXCostDigital_CheckedChanged(object sender, EventArgs e)
         {
-            spinEditInvestmentDigital.Enabled = buttonXInvestmentDigital.Checked;
+            spinEditCostDigital.Enabled = buttonXCostDigital.Checked;
         }
 
-        private void buttonXInvestmentTV_CheckedChanged(object sender, EventArgs e)
+        private void buttonXCostTV_CheckedChanged(object sender, EventArgs e)
         {
-            spinEditInvestmentTV.Enabled = buttonXInvestmentTV.Checked;
+            spinEditCostTV.Enabled = buttonXCostTV.Checked;
         }
         #endregion
 
-        #region Other Numbers Event Handlers
+        #region Notes Event Handlers
+        private void buttonXCustomComment_CheckedChanged(object sender, EventArgs e)
+        {
+            memoEditNotesCustomComment.Enabled = buttonXNotesCustomComment.Checked;
+        }
+
         private void buttonXOtherNumbersActiveDays_CheckedChanged(object sender, EventArgs e)
         {
             spinEditOtherNumbersActiveDays.Enabled = buttonXOtherNumbersActiveDays.Checked;
@@ -551,14 +554,30 @@ namespace CalendarBuilder.CustomControls.SlideInfo
         }
         #endregion
 
-        #region Custom Comment Event Handlers
-        private void buttonXCustomComment_CheckedChanged(object sender, EventArgs e)
+        #region Legend Event Handlers
+        private void buttonXLegend_CheckedChanged(object sender, EventArgs e)
         {
-            memoEditCustomComment.Enabled = buttonXCustomComment.Checked;
+            gridControlLegend.Enabled = buttonXLegend.Checked;
+        }
+
+        private void gridViewLegend_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            propertiesControl_PropertiesChanged(null, null);
         }
         #endregion
 
-        #region Logo Event Handlers
+        #region Style Event Handlers
+        private void buttonXThemeColor_Click(object sender, EventArgs e)
+        {
+            buttonXThemeColorBlack.Checked = false;
+            buttonXThemeColorBlue.Checked = false;
+            buttonXThemeColorGray.Checked = false;
+            buttonXThemeColorGreen.Checked = false;
+            buttonXThemeColorOrange.Checked = false;
+            buttonXThemeColorTeal.Checked = false;
+            (sender as DevComponents.DotNetBar.ButtonX).Checked = true;
+        }
+
         private void buttonXLogo_CheckedChanged(object sender, EventArgs e)
         {
             pictureEditLogo.Enabled = buttonXLogo.Checked;
@@ -573,31 +592,6 @@ namespace CalendarBuilder.CustomControls.SlideInfo
                     pictureEditLogo.Image = new System.Drawing.Bitmap(form.SelectedSource.BigLogo);
                 }
             }
-        }
-        #endregion
-
-        #region Legend Event Handlers
-        private void buttonXLegend_CheckedChanged(object sender, EventArgs e)
-        {
-            gridControlLegend.Enabled = buttonXLegend.Checked;
-        }
-
-        private void gridViewLegend_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-            propertiesControl_PropertiesChanged(null, null);
-        }
-        #endregion
-
-        #region Theme Color Event Handlers
-        private void buttonXThemeColor_Click(object sender, EventArgs e)
-        {
-            buttonXThemeColorBlack.Checked = false;
-            buttonXThemeColorBlue.Checked = false;
-            buttonXThemeColorGray.Checked = false;
-            buttonXThemeColorGreen.Checked = false;
-            buttonXThemeColorOrange.Checked = false;
-            buttonXThemeColorTeal.Checked = false;
-            (sender as DevComponents.DotNetBar.ButtonX).Checked = true;
         }
         #endregion
     }

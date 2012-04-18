@@ -49,6 +49,7 @@
             this.xtraTabPageTV = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPageComment = new DevExpress.XtraTab.XtraTabPage();
             this.commentControl = new CalendarBuilder.CustomControls.DayProperties.CommentControl();
+            this.laCommentTitle = new System.Windows.Forms.Label();
             this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
@@ -229,7 +230,7 @@
             this.xtraTabPageNewspaper.Controls.Add(this.laNewspaperTitle);
             this.xtraTabPageNewspaper.Name = "xtraTabPageNewspaper";
             this.xtraTabPageNewspaper.Size = new System.Drawing.Size(294, 547);
-            this.xtraTabPageNewspaper.Text = "Newspapaer";
+            this.xtraTabPageNewspaper.Text = "Newspaper";
             // 
             // newspaperPropertiesControl
             // 
@@ -259,12 +260,14 @@
             // xtraTabPageTV
             // 
             this.xtraTabPageTV.Name = "xtraTabPageTV";
+            this.xtraTabPageTV.PageEnabled = false;
             this.xtraTabPageTV.Size = new System.Drawing.Size(294, 547);
             this.xtraTabPageTV.Text = "TV";
             // 
             // xtraTabPageComment
             // 
             this.xtraTabPageComment.Controls.Add(this.commentControl);
+            this.xtraTabPageComment.Controls.Add(this.laCommentTitle);
             this.xtraTabPageComment.Name = "xtraTabPageComment";
             this.xtraTabPageComment.Size = new System.Drawing.Size(294, 547);
             this.xtraTabPageComment.Text = "Comment";
@@ -275,11 +278,25 @@
             this.commentControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commentControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.commentControl.ForeColor = System.Drawing.Color.Black;
-            this.commentControl.Location = new System.Drawing.Point(0, 0);
+            this.commentControl.Location = new System.Drawing.Point(0, 31);
             this.commentControl.Name = "commentControl";
-            this.commentControl.Size = new System.Drawing.Size(294, 547);
+            this.commentControl.Size = new System.Drawing.Size(294, 516);
             this.commentControl.TabIndex = 0;
             this.commentControl.PropertiesChanged += new System.EventHandler(this.propertiesControl_PropertiesChanged);
+            // 
+            // laCommentTitle
+            // 
+            this.laCommentTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.laCommentTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.laCommentTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laCommentTitle.ForeColor = System.Drawing.Color.White;
+            this.laCommentTitle.Location = new System.Drawing.Point(0, 0);
+            this.laCommentTitle.Name = "laCommentTitle";
+            this.laCommentTitle.Size = new System.Drawing.Size(294, 31);
+            this.laCommentTitle.TabIndex = 2;
+            this.laCommentTitle.Text = "Keep Comments Short & Sweet!";
+            this.laCommentTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.laCommentTitle.UseMnemonic = false;
             // 
             // styleController
             // 
@@ -345,5 +362,6 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPageComment;
         private System.Windows.Forms.Label laDigitalTitle;
         private System.Windows.Forms.Label laNewspaperTitle;
+        private System.Windows.Forms.Label laCommentTitle;
     }
 }

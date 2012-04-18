@@ -46,6 +46,7 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
                                 {
                                     CalendarControl.Instance.ApplyDayProperties();
                                     SelectDay(e.SelectedDay, e.MultiSelect);
+                                    CalendarControl.Instance.CopyPaster.SetCopy();
                                 });
                                 dayControl.PropertiesRequested += new EventHandler<EventArgs>((sender, e) =>
                                 {
@@ -61,6 +62,10 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
                                 {
                                     CalendarControl.Instance.PasteDay();
                                 });
+                                dayControl.DayCloned += new EventHandler<EventArgs>((sender, e) =>
+                                {
+                                    CalendarControl.Instance.CloneDay();
+                                });
                                 dayControl.DayDataDeleted += new EventHandler<EventArgs>((sender, e) =>
                                 {
                                     CalendarControl.Instance.SettingsNotSaved = true;
@@ -68,16 +73,26 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
                                     CalendarControl.Instance.LoadSlideInfoData(reload: true);
                                     CalendarControl.Instance.LoadGridData(reload: true);
                                 });
-
+                                CalendarControl.Instance.CopyPaster.OnSetCopy += new EventHandler<EventArgs>((sender, e) =>
+                                {
+                                    dayControl.toolStripMenuItemCopy.Enabled = true;
+                                    dayControl.toolStripMenuItemClone.Enabled = true;
+                                });
+                                CalendarControl.Instance.CopyPaster.OnSetPaste += new EventHandler<EventArgs>((sender, e) =>
+                                {
+                                });
+                                CalendarControl.Instance.CopyPaster.OnResetCopy += new EventHandler<EventArgs>((sender, e) =>
+                                {
+                                    dayControl.toolStripMenuItemCopy.Enabled = false;
+                                    dayControl.toolStripMenuItemClone.Enabled = false;
+                                });
+                                CalendarControl.Instance.CopyPaster.OnResetPaste += new EventHandler<EventArgs>((sender, e) =>
+                                {
+                                    dayControl.toolStripMenuItemPaste.Enabled = false;
+                                });
                                 CalendarControl.Instance.CopyPaster.DayCopied += new EventHandler<EventArgs>((sender, e) =>
                                 {
                                     dayControl.toolStripMenuItemPaste.Enabled = true;
-                                });
-
-                                CalendarControl.Instance.CopyPaster.AfterInitialize += new EventHandler<EventArgs>((sender, e) =>
-                                {
-                                    dayControl.toolStripMenuItemCopy.Enabled = true;
-                                    dayControl.toolStripMenuItemPaste.Enabled = false;
                                 });
 
                                 week.Add(dayControl);
@@ -123,6 +138,7 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
             BusinessClasses.CalendarMonth calendarMonth = null;
             ClearSelection();
             _container.Controls.Clear();
+            CalendarControl.Instance.CopyPaster.ResetCopy();
             if (this.Months.ContainsKey(date))
             {
                 month = this.Months[date];

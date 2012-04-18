@@ -95,7 +95,7 @@
             this.comboBoxEditQuickList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxEditQuickList.Enabled = false;
-            this.comboBoxEditQuickList.Location = new System.Drawing.Point(10, 148);
+            this.comboBoxEditQuickList.Location = new System.Drawing.Point(10, 157);
             this.comboBoxEditQuickList.Name = "comboBoxEditQuickList";
             this.comboBoxEditQuickList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -110,7 +110,7 @@
             this.comboBoxEditPublication.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxEditPublication.Enabled = false;
-            this.comboBoxEditPublication.Location = new System.Drawing.Point(10, 217);
+            this.comboBoxEditPublication.Location = new System.Drawing.Point(10, 233);
             this.comboBoxEditPublication.Name = "comboBoxEditPublication";
             this.comboBoxEditPublication.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -142,7 +142,7 @@
             this.xtraScrollableControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraScrollableControl.Location = new System.Drawing.Point(0, 0);
             this.xtraScrollableControl.Name = "xtraScrollableControl";
-            this.xtraScrollableControl.Size = new System.Drawing.Size(300, 579);
+            this.xtraScrollableControl.Size = new System.Drawing.Size(300, 426);
             this.xtraScrollableControl.TabIndex = 14;
             // 
             // buttonXAdInfo
@@ -157,6 +157,7 @@
             this.buttonXAdInfo.Size = new System.Drawing.Size(281, 24);
             this.buttonXAdInfo.TabIndex = 27;
             this.buttonXAdInfo.Text = "D. Other Ad Info";
+            this.buttonXAdInfo.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             this.buttonXAdInfo.CheckedChanged += new System.EventHandler(this.buttonXAdInfo_CheckedChanged);
             // 
             // buttonXPublication
@@ -166,11 +167,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXPublication.AutoCheckOnClick = true;
             this.buttonXPublication.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXPublication.Location = new System.Drawing.Point(10, 187);
+            this.buttonXPublication.Location = new System.Drawing.Point(10, 203);
             this.buttonXPublication.Name = "buttonXPublication";
             this.buttonXPublication.Size = new System.Drawing.Size(281, 24);
             this.buttonXPublication.TabIndex = 26;
             this.buttonXPublication.Text = "C. Select Newspaper";
+            this.buttonXPublication.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             this.buttonXPublication.CheckedChanged += new System.EventHandler(this.checkEditPublication_CheckedChanged);
             // 
             // buttonXQuickList
@@ -181,11 +183,12 @@
             this.buttonXQuickList.AutoCheckOnClick = true;
             this.buttonXQuickList.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXQuickList.Enabled = false;
-            this.buttonXQuickList.Location = new System.Drawing.Point(10, 118);
+            this.buttonXQuickList.Location = new System.Drawing.Point(10, 127);
             this.buttonXQuickList.Name = "buttonXQuickList";
             this.buttonXQuickList.Size = new System.Drawing.Size(281, 24);
             this.buttonXQuickList.TabIndex = 25;
             this.buttonXQuickList.Text = "B. My Favorite Quick List";
+            this.buttonXQuickList.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             this.buttonXQuickList.CheckedChanged += new System.EventHandler(this.checkEditQuickList_CheckedChanged);
             // 
             // buttonXCustomNote
@@ -200,6 +203,7 @@
             this.buttonXCustomNote.Size = new System.Drawing.Size(281, 24);
             this.buttonXCustomNote.TabIndex = 24;
             this.buttonXCustomNote.Text = "A. Type a Custom Newspaper Note";
+            this.buttonXCustomNote.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             this.buttonXCustomNote.CheckedChanged += new System.EventHandler(this.checkEditUseCustomNote_CheckedChanged);
             // 
             // checkEditTotalCost
@@ -337,7 +341,7 @@
             // 
             // labelControlPublicationAbbreviation
             // 
-            this.labelControlPublicationAbbreviation.Location = new System.Drawing.Point(10, 245);
+            this.labelControlPublicationAbbreviation.Location = new System.Drawing.Point(10, 257);
             this.labelControlPublicationAbbreviation.Name = "labelControlPublicationAbbreviation";
             this.labelControlPublicationAbbreviation.Size = new System.Drawing.Size(0, 16);
             this.labelControlPublicationAbbreviation.StyleController = this.styleController;
@@ -351,7 +355,7 @@
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "NewspaperPropertiesControl";
-            this.Size = new System.Drawing.Size(300, 579);
+            this.Size = new System.Drawing.Size(300, 426);
             ((System.ComponentModel.ISupportInitialize)(this.memoEditCustomNote.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditQuickList.Properties)).EndInit();

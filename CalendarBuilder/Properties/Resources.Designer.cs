@@ -102,9 +102,16 @@ namespace CalendarBuilder.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap CloneDayProperties {
+        internal static System.Drawing.Bitmap Clone {
             get {
-                object obj = ResourceManager.GetObject("CloneDayProperties", resourceCulture);
+                object obj = ResourceManager.GetObject("Clone", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap CloneSmall {
+            get {
+                object obj = ResourceManager.GetObject("CloneSmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -112,13 +119,6 @@ namespace CalendarBuilder.Properties {
         internal static System.Drawing.Bitmap CloseDayProperties {
             get {
                 object obj = ResourceManager.GetObject("CloseDayProperties", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Copy {
-            get {
-                object obj = ResourceManager.GetObject("Copy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -280,13 +280,6 @@ namespace CalendarBuilder.Properties {
         internal static System.Drawing.Bitmap OutputLogo {
             get {
                 object obj = ResourceManager.GetObject("OutputLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Paste {
-            get {
-                object obj = ResourceManager.GetObject("Paste", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

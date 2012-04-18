@@ -190,6 +190,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormCloneDay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormCloneDay.Designer.cs">
+      <DependentUpon>FormCloneDay.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormEmail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,11 +228,11 @@
     <Compile Include="ToolForms\FormProgress.designer.cs">
       <DependentUpon>FormProgress.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormSelectPublication.cs">
+    <Compile Include="ToolForms\FormSelectCalendar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ToolForms\FormSelectPublication.Designer.cs">
-      <DependentUpon>FormSelectPublication.cs</DependentUpon>
+    <Compile Include="ToolForms\FormSelectCalendar.Designer.cs">
+      <DependentUpon>FormSelectCalendar.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormSlideOutput.cs">
       <SubType>Form</SubType>
@@ -279,6 +285,9 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormCloneDay.resx">
+      <DependentUpon>FormCloneDay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormEmail.resx">
       <DependentUpon>FormEmail.cs</DependentUpon>
     </EmbeddedResource>
@@ -305,8 +314,8 @@
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormSelectPublication.resx">
-      <DependentUpon>FormSelectPublication.cs</DependentUpon>
+    <EmbeddedResource Include="ToolForms\FormSelectCalendar.resx">
+      <DependentUpon>FormSelectCalendar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormSlideOutput.resx">
       <DependentUpon>FormSlideOutput.cs</DependentUpon>
@@ -514,12 +523,6 @@
     <None Include="Resources\Calendar.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Copy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Paste.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\DeleteData.png" />
   </ItemGroup>
   <ItemGroup>
@@ -530,6 +533,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DownArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloneSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MonthCalendar\MonthCalendar.csproj">
+      <Project>{898ECB12-D464-4514-AE2E-45FE430FE04E}</Project>
+      <Name>MonthCalendar</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clone.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

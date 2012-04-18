@@ -92,7 +92,8 @@
             this.buttonXComment1.Name = "buttonXComment1";
             this.buttonXComment1.Size = new System.Drawing.Size(223, 24);
             this.buttonXComment1.TabIndex = 28;
-            this.buttonXComment1.Text = "Comment #1";
+            this.buttonXComment1.Text = "A. Comment #1";
+            this.buttonXComment1.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             this.buttonXComment1.CheckedChanged += new System.EventHandler(this.checkEditUseComment1_CheckedChanged);
             // 
             // buttonXComment2
@@ -107,7 +108,8 @@
             this.buttonXComment2.Name = "buttonXComment2";
             this.buttonXComment2.Size = new System.Drawing.Size(223, 24);
             this.buttonXComment2.TabIndex = 29;
-            this.buttonXComment2.Text = "Comment #2";
+            this.buttonXComment2.Text = "B. Comment #2";
+            this.buttonXComment2.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             this.buttonXComment2.CheckedChanged += new System.EventHandler(this.checkEditUseComment2_CheckedChanged);
             // 
             // CommentControl

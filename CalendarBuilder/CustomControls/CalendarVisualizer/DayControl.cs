@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace CalendarBuilder.CustomControls.CalendarVisualizer
@@ -9,11 +7,13 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
     [System.ComponentModel.ToolboxItem(false)]
     public partial class DayControl : UserControl
     {
+        private bool _isSelected = false;
         public BusinessClasses.CalendarDay Day { get; set; }
         public event EventHandler<SelectDayEventArgs> DaySelected;
         public event EventHandler<EventArgs> PropertiesRequested;
         public event EventHandler<EventArgs> DayCopied;
         public event EventHandler<EventArgs> DayPasted;
+        public event EventHandler<EventArgs> DayCloned;
         public event EventHandler<EventArgs> DayDataDeleted;
 
         public DayControl(BusinessClasses.CalendarDay day)
@@ -38,8 +38,9 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
 
         public void ChangeSelection(bool select)
         {
+            _isSelected = select;
             this.Padding = new Padding(select ? 5 : 0);
-            this.BackColor = select ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.AliceBlue;
+            this.BackColor = _isSelected ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.AliceBlue;
             this.Refresh();
         }
 
@@ -65,7 +66,8 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
 
         private void contextMenuStrip_Opened(object sender, EventArgs e)
         {
-            Control_Click(null, null);
+            if (!_isSelected)
+                Control_Click(null, null);
         }
 
         private void toolStripMenuItemCopy_Click(object sender, EventArgs e)
@@ -86,6 +88,12 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
             RefreshData();
             if (this.DayDataDeleted != null)
                 this.DayDataDeleted(sender, new EventArgs());
+        }
+
+        private void toolStripMenuItemClone_Click(object sender, EventArgs e)
+        {
+            if (this.DayCloned != null)
+                this.DayCloned(sender, new EventArgs());
         }
     }
 

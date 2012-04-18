@@ -34,6 +34,23 @@ namespace CalendarBuilder.CustomControls
 
             #region Copy-Paster Initialization
             this.CopyPaster = new BusinessClasses.DayCopyPaster();
+            this.CopyPaster.OnSetCopy += new EventHandler<EventArgs>((sender, e) =>
+            {
+                FormMain.Instance.buttonItemCalendarCopy.Enabled = true;
+                FormMain.Instance.buttonItemCalendarClone.Enabled = true;
+            });
+            this.CopyPaster.OnSetPaste += new EventHandler<EventArgs>((sender, e) =>
+            {
+            });
+            this.CopyPaster.OnResetCopy += new EventHandler<EventArgs>((sender, e) =>
+            {
+                FormMain.Instance.buttonItemCalendarCopy.Enabled = false;
+                FormMain.Instance.buttonItemCalendarClone.Enabled = false;
+            });
+            this.CopyPaster.OnResetPaste += new EventHandler<EventArgs>((sender, e) =>
+            {
+                FormMain.Instance.buttonItemCalendarPaste.Enabled = false;
+            });
             this.CopyPaster.DayCopied += new EventHandler<EventArgs>((sender, e) =>
             {
                 FormMain.Instance.buttonItemCalendarPaste.Enabled = true;
@@ -46,12 +63,6 @@ namespace CalendarBuilder.CustomControls
                 LoadGridData(reload: true);
                 _visualizer.RefreshData();
                 this.SettingsNotSaved = true;
-            });
-
-            this.CopyPaster.AfterInitialize += new EventHandler<EventArgs>((sender, e) =>
-            {
-                FormMain.Instance.buttonItemCalendarCopy.Enabled = true;
-                FormMain.Instance.buttonItemCalendarPaste.Enabled = false;
             });
             #endregion
         }
@@ -128,7 +139,10 @@ namespace CalendarBuilder.CustomControls
         private void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
         {
             if (_visualizer != null)
+            {
                 _visualizer.ClearSelection();
+                this.CopyPaster.ResetCopy();
+            }
             Splash(true);
             ChangeDayPropertiesVisibility(false);
             Splash(false);
@@ -155,6 +169,7 @@ namespace CalendarBuilder.CustomControls
 
                 foreach (CalendarVisualizer.MonthControl month in _visualizer.Months.Values)
                     AssignCloseActiveEditorsonOutSideClick(month);
+                LoadGridState();
             }
             this.AllowToSave = true;
             imageListBoxEditCalendar_SelectedIndexChanged(null, null);
@@ -182,7 +197,6 @@ namespace CalendarBuilder.CustomControls
 
                 ChangeDayPropertiesVisibility(false);
                 _visualizer.ShowMonth(_localCalendar.Months[FormMain.Instance.listBoxControlCalendar.SelectedIndex].StartDate);
-                this.CopyPaster.Init();
                 Splash(false);
             }
         }
@@ -228,6 +242,8 @@ namespace CalendarBuilder.CustomControls
                     dockPanelDayProperties.FloatLocation = new System.Drawing.Point(500, 200);
                 dockPanelDayProperties.Dock = ConfigurationClasses.SettingsManager.Instance.ViewSettings.DayPropertiesDocked ? DevExpress.XtraBars.Docking.DockingStyle.Right : DevExpress.XtraBars.Docking.DockingStyle.Float;
                 this.AllowToSave = temp;
+
+                dockPanelSlideInfo_ClosedPanel(null, null);
             }
             else if (!show && dockPanelDayProperties.Visibility == DevExpress.XtraBars.Docking.DockVisibility.Visible)
             {
@@ -250,7 +266,7 @@ namespace CalendarBuilder.CustomControls
 
         private void dockManager_Sizing(object sender, DevExpress.XtraBars.Docking.SizingEventArgs e)
         {
-            if (e.Panel.Name.Equals("dockPanelDayProperties") && (e.NewSize.Width < 300 || e.NewSize.Height < 650))
+            if ((e.Panel.Name.Equals("dockPanelDayProperties") || e.Panel.Name.Equals("dockPanelSlideInfo")) && (e.NewSize.Width < 300 || e.NewSize.Height < 650))
                 e.Cancel = true;
         }
 
@@ -340,6 +356,11 @@ namespace CalendarBuilder.CustomControls
             }
         }
 
+        private void slideInfoControl_PropertiesLoaded(object sender, EventArgs e)
+        {
+            dockPanelSlideInfo.Text = slideInfoControl.MonthTitle;
+        }
+
         private void slideInfoControl_PropertiesApplied(object sender, EventArgs e)
         {
             this.SettingsNotSaved = true;
@@ -353,10 +374,7 @@ namespace CalendarBuilder.CustomControls
         private void dockPanelSlideInfo_ClosedPanel(object sender, DevExpress.XtraBars.Docking.DockPanelEventArgs e)
         {
             SaveSlideInfoState();
-            bool temp = this.AllowToSave;
-            this.AllowToSave = false;
             FormMain.Instance.buttonItemCalendarSlideInfo.Checked = false;
-            this.AllowToSave = temp;
         }
 
         private void dockPanelSlideInfo_DockChanged(object sender, EventArgs e)
@@ -395,18 +413,19 @@ namespace CalendarBuilder.CustomControls
                     this.AllowToSave = temp;
                     SaveSlideInfoState();
                     LoadSlideInfoData();
+                    dayPropertiesControl_PropertiesClosed(null, null);
                 }
             }
         }
 
         #endregion
 
-        #region Grid Methods and Event Handlers
+        #region View Methods and Event Handlers
         private void LoadGridState()
         {
             bool temp = this.AllowToSave;
             this.AllowToSave = false;
-            FormMain.Instance.buttonItemCalendarGrid.Checked = ConfigurationClasses.SettingsManager.Instance.ViewSettings.GridVisible;
+            buttonItemCalendarView_Click(ConfigurationClasses.SettingsManager.Instance.ViewSettings.GridVisible ? FormMain.Instance.buttonItemCalendarGrid : FormMain.Instance.buttonItemCalendarMonth, null);
             UpdateGridAreaAccordingOptions();
             this.AllowToSave = temp;
         }
@@ -454,6 +473,9 @@ namespace CalendarBuilder.CustomControls
             {
                 gridControl.LoadCurrentMonthData();
             }
+            if (ConfigurationClasses.SettingsManager.Instance.ViewSettings.GridVisible)
+                this.CopyPaster.SetCopy();
+
         }
 
         public void ApplyGridData()
@@ -479,10 +501,17 @@ namespace CalendarBuilder.CustomControls
         private void gridControl_PropertiesClosed(object sender, EventArgs e)
         {
             ApplyGridData();
-            FormMain.Instance.buttonItemCalendarGrid.Checked = false;
+            buttonItemCalendarView_Click(FormMain.Instance.buttonItemCalendarMonth, null);
         }
 
-        public void buttonItemCalendarGrid_CheckedChanged(object sender, EventArgs e)
+        public void buttonItemCalendarView_Click(object sender, EventArgs e)
+        {
+            FormMain.Instance.buttonItemCalendarMonth.Checked = false;
+            FormMain.Instance.buttonItemCalendarGrid.Checked = false;
+            (sender as DevComponents.DotNetBar.ButtonItem).Checked = true;
+        }
+
+        public void buttonItemCalendarView_CheckedChanged(object sender, EventArgs e)
         {
             if (this.AllowToSave)
             {
@@ -491,6 +520,10 @@ namespace CalendarBuilder.CustomControls
                 LoadGridData();
                 ChangeDayPropertiesVisibility(false);
                 _visualizer.ClearSelection();
+                this.CopyPaster.ResetCopy();
+                this.CopyPaster.ResetPaste();
+                if (ConfigurationClasses.SettingsManager.Instance.ViewSettings.GridVisible)
+                    this.CopyPaster.SetCopy();
             }
         }
         #endregion
@@ -526,6 +559,30 @@ namespace CalendarBuilder.CustomControls
                 this.CopyPaster.Paste(selectedDays);
         }
 
+        public void CloneDay()
+        {
+            BusinessClasses.CalendarDay selectedDay = null;
+            BusinessClasses.CalendarDay[] clonedDays = null;
+            if (ConfigurationClasses.SettingsManager.Instance.ViewSettings.GridVisible)
+            {
+                selectedDay = gridControl.GetSelectedDay();
+            }
+            else
+            {
+                selectedDay = _visualizer.SelectedDays.Select(x => x.Day).FirstOrDefault();
+            }
+            if (selectedDay != null)
+            {
+                using (ToolForms.FormCloneDay form = new ToolForms.FormCloneDay(selectedDay, _localCalendar.FlightDateStart.Value, _localCalendar.FlightDateEnd.Value))
+                {
+                    if (form.ShowDialog() == DialogResult.OK)
+                        clonedDays = _localCalendar.Days.Where(x => form.SelectedDates.Contains(x.Date)).ToArray();
+                }
+                if (clonedDays != null)
+                    this.CopyPaster.Clone(selectedDay, clonedDays);
+            }
+        }
+
         public void buttonItemCalendarCopy_Click(object sender, EventArgs e)
         {
             CopyDay();
@@ -534,6 +591,11 @@ namespace CalendarBuilder.CustomControls
         public void buttonItemCalendarPaste_Click(object sender, EventArgs e)
         {
             PasteDay();
+        }
+
+        public void buttonItemCalendarClone_Click(object sender, EventArgs e)
+        {
+            CloneDay();
         }
         #endregion
 
@@ -572,7 +634,7 @@ namespace CalendarBuilder.CustomControls
             if (FormMain.Instance.listBoxControlCalendar.SelectedIndex >= 0)
             {
                 BusinessClasses.CalendarMonth _selectedMonth = _localCalendar.Months[FormMain.Instance.listBoxControlCalendar.SelectedIndex];
-                using (ToolForms.FormSelectPublication form = new ToolForms.FormSelectPublication())
+                using (ToolForms.FormSelectCalendar form = new ToolForms.FormSelectCalendar())
                 {
                     form.Text = "Ad Calendar Slide Output";
                     form.pbLogo.Image = Properties.Resources.Calendar;
@@ -636,7 +698,7 @@ namespace CalendarBuilder.CustomControls
             {
                 BusinessClasses.CalendarMonth _selectedMonth = _localCalendar.Months[FormMain.Instance.listBoxControlCalendar.SelectedIndex];
 
-                using (ToolForms.FormSelectPublication form = new ToolForms.FormSelectPublication())
+                using (ToolForms.FormSelectCalendar form = new ToolForms.FormSelectCalendar())
                 {
                     form.Text = "Ad Calendar Email Output";
                     form.pbLogo.Image = Properties.Resources.EmailBig;

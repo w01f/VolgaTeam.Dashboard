@@ -86,7 +86,7 @@
             this.checkedListBoxAdNotes.Appearance.Options.UseBackColor = true;
             this.checkedListBoxAdNotes.Appearance.Options.UseFont = true;
             this.checkedListBoxAdNotes.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.checkedListBoxAdNotes.ItemHeight = 30;
+            this.checkedListBoxAdNotes.ItemHeight = 45;
             this.checkedListBoxAdNotes.Location = new System.Drawing.Point(9, 36);
             this.checkedListBoxAdNotes.Name = "checkedListBoxAdNotes";
             this.checkedListBoxAdNotes.Size = new System.Drawing.Size(217, 538);

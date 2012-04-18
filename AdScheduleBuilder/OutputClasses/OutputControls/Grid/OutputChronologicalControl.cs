@@ -812,6 +812,10 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         public void SetSlideHeader()
         {
             comboBoxEditSchedule.Enabled = this.SlideHeaderState.ShowSlideHeader;
+            laBusinessName.Enabled = this.SlideHeaderState.ShowAdvertiser;
+            laDate.Enabled = this.SlideHeaderState.ShowPresentationDate;
+            laDecisionMaker.Enabled = this.SlideHeaderState.ShowDecisionMaker;
+            laFlightDates.Enabled = this.SlideHeaderState.ShowFlightDates;
             pictureEditLogo1.Enabled = this.SlideHeaderState.ShowLogo1;
             pictureEditLogo2.Enabled = this.SlideHeaderState.ShowLogo2;
             pictureEditLogo3.Enabled = this.SlideHeaderState.ShowLogo3;
@@ -1323,7 +1327,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             get
             {
-                return this.SlideBulletsState.DoNotShow;
+                return !this.SlideBulletsState.EnableSlideBullets;
             }
         }
 

@@ -137,7 +137,7 @@
             this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnHeader.Location = new System.Drawing.Point(0, 30);
             this.pnHeader.Name = "pnHeader";
-            this.pnHeader.Size = new System.Drawing.Size(810, 205);
+            this.pnHeader.Size = new System.Drawing.Size(788, 205);
             this.pnHeader.TabIndex = 0;
             // 
             // laFlightDates
@@ -164,7 +164,7 @@
             // 
             this.laDecisionMaker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.laDecisionMaker.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic);
-            this.laDecisionMaker.Location = new System.Drawing.Point(559, 57);
+            this.laDecisionMaker.Location = new System.Drawing.Point(537, 57);
             this.laDecisionMaker.Name = "laDecisionMaker";
             this.laDecisionMaker.Size = new System.Drawing.Size(248, 16);
             this.laDecisionMaker.TabIndex = 49;
@@ -175,7 +175,7 @@
             // 
             this.laDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.laDate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic);
-            this.laDate.Location = new System.Drawing.Point(552, 15);
+            this.laDate.Location = new System.Drawing.Point(530, 15);
             this.laDate.Name = "laDate";
             this.laDate.Size = new System.Drawing.Size(255, 20);
             this.laDate.TabIndex = 48;
@@ -192,15 +192,15 @@
             this.layoutControlFeaturedPublications.Location = new System.Drawing.Point(0, 115);
             this.layoutControlFeaturedPublications.Name = "layoutControlFeaturedPublications";
             this.layoutControlFeaturedPublications.Root = this.layoutControlGroupFeaturedPublicationsRoot;
-            this.layoutControlFeaturedPublications.Size = new System.Drawing.Size(810, 90);
+            this.layoutControlFeaturedPublications.Size = new System.Drawing.Size(788, 90);
             this.layoutControlFeaturedPublications.TabIndex = 47;
             this.layoutControlFeaturedPublications.Text = "layoutControl1";
             // 
             // pictureEditLogo4
             // 
-            this.pictureEditLogo4.Location = new System.Drawing.Point(625, 2);
+            this.pictureEditLogo4.Location = new System.Drawing.Point(584, 2);
             this.pictureEditLogo4.Name = "pictureEditLogo4";
-            this.pictureEditLogo4.Properties.NullText = "Click to Select Image";
+            this.pictureEditLogo4.Properties.NullText = "Click to select Logo 4";
             this.pictureEditLogo4.Properties.ReadOnly = true;
             this.pictureEditLogo4.Properties.ShowMenu = false;
             this.pictureEditLogo4.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
@@ -211,9 +211,9 @@
             // 
             // pictureEditLogo3
             // 
-            this.pictureEditLogo3.Location = new System.Drawing.Point(425, 2);
+            this.pictureEditLogo3.Location = new System.Drawing.Point(395, 2);
             this.pictureEditLogo3.Name = "pictureEditLogo3";
-            this.pictureEditLogo3.Properties.NullText = "Click to Select Image";
+            this.pictureEditLogo3.Properties.NullText = "Click to select Logo 3";
             this.pictureEditLogo3.Properties.ReadOnly = true;
             this.pictureEditLogo3.Properties.ShowMenu = false;
             this.pictureEditLogo3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
@@ -224,9 +224,9 @@
             // 
             // pictureEditLogo2
             // 
-            this.pictureEditLogo2.Location = new System.Drawing.Point(223, 2);
+            this.pictureEditLogo2.Location = new System.Drawing.Point(204, 2);
             this.pictureEditLogo2.Name = "pictureEditLogo2";
-            this.pictureEditLogo2.Properties.NullText = "Click to Select Image";
+            this.pictureEditLogo2.Properties.NullText = "Click to select Logo 2";
             this.pictureEditLogo2.Properties.ReadOnly = true;
             this.pictureEditLogo2.Properties.ShowMenu = false;
             this.pictureEditLogo2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
@@ -237,9 +237,9 @@
             // 
             // pictureEditLogo1
             // 
-            this.pictureEditLogo1.Location = new System.Drawing.Point(23, 2);
+            this.pictureEditLogo1.Location = new System.Drawing.Point(13, 2);
             this.pictureEditLogo1.Name = "pictureEditLogo1";
-            this.pictureEditLogo1.Properties.NullText = "Click to Select Image";
+            this.pictureEditLogo1.Properties.NullText = "Click to select Logo 1";
             this.pictureEditLogo1.Properties.ReadOnly = true;
             this.pictureEditLogo1.Properties.ShowMenu = false;
             this.pictureEditLogo1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
@@ -261,7 +261,7 @@
             this.layoutControlGroupFeaturedPublicationsRoot.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroupFeaturedPublicationsRoot.Name = "layoutControlGroupFeaturedPublicationsRoot";
             this.layoutControlGroupFeaturedPublicationsRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 10);
-            this.layoutControlGroupFeaturedPublicationsRoot.Size = new System.Drawing.Size(810, 90);
+            this.layoutControlGroupFeaturedPublicationsRoot.Size = new System.Drawing.Size(788, 90);
             this.layoutControlGroupFeaturedPublicationsRoot.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
             this.layoutControlGroupFeaturedPublicationsRoot.Text = "layoutControlGroupFeaturedPublicationsRoot";
             this.layoutControlGroupFeaturedPublicationsRoot.TextVisible = false;
@@ -273,20 +273,20 @@
             this.layoutControlGroupLogo4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemLogo4,
             this.emptySpaceItem1});
-            this.layoutControlGroupLogo4.Location = new System.Drawing.Point(592, 0);
+            this.layoutControlGroupLogo4.Location = new System.Drawing.Point(562, 0);
             this.layoutControlGroupLogo4.Name = "layoutControlGroupLogo4";
-            this.layoutControlGroupLogo4.Size = new System.Drawing.Size(218, 80);
+            this.layoutControlGroupLogo4.Size = new System.Drawing.Size(226, 80);
             this.layoutControlGroupLogo4.Text = "layoutControlGroupLogo4";
             // 
             // layoutControlItemLogo4
             // 
             this.layoutControlItemLogo4.Control = this.pictureEditLogo4;
             this.layoutControlItemLogo4.CustomizationFormText = "layoutControlItemLogo4";
-            this.layoutControlItemLogo4.Location = new System.Drawing.Point(31, 0);
+            this.layoutControlItemLogo4.Location = new System.Drawing.Point(20, 0);
             this.layoutControlItemLogo4.MaxSize = new System.Drawing.Size(169, 0);
             this.layoutControlItemLogo4.MinSize = new System.Drawing.Size(169, 24);
             this.layoutControlItemLogo4.Name = "layoutControlItemLogo4";
-            this.layoutControlItemLogo4.Size = new System.Drawing.Size(187, 80);
+            this.layoutControlItemLogo4.Size = new System.Drawing.Size(206, 80);
             this.layoutControlItemLogo4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemLogo4.Text = "layoutControlItemLogo4";
             this.layoutControlItemLogo4.TextSize = new System.Drawing.Size(0, 0);
@@ -297,10 +297,10 @@
             // 
             this.emptySpaceItem1.CustomizationFormText = "emptySpaceItem1";
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
-            this.emptySpaceItem1.MaxSize = new System.Drawing.Size(31, 0);
-            this.emptySpaceItem1.MinSize = new System.Drawing.Size(31, 10);
+            this.emptySpaceItem1.MaxSize = new System.Drawing.Size(20, 0);
+            this.emptySpaceItem1.MinSize = new System.Drawing.Size(20, 10);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(31, 80);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(20, 80);
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.Text = "emptySpaceItem1";
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -312,16 +312,16 @@
             this.layoutControlGroupLogo3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemLogo3,
             this.emptySpaceItem2});
-            this.layoutControlGroupLogo3.Location = new System.Drawing.Point(391, 0);
+            this.layoutControlGroupLogo3.Location = new System.Drawing.Point(372, 0);
             this.layoutControlGroupLogo3.Name = "layoutControlGroupLogo3";
-            this.layoutControlGroupLogo3.Size = new System.Drawing.Size(201, 80);
+            this.layoutControlGroupLogo3.Size = new System.Drawing.Size(190, 80);
             this.layoutControlGroupLogo3.Text = "layoutControlGroupLogo3";
             // 
             // layoutControlItemLogo3
             // 
             this.layoutControlItemLogo3.Control = this.pictureEditLogo3;
             this.layoutControlItemLogo3.CustomizationFormText = "layoutControlItemLogo3";
-            this.layoutControlItemLogo3.Location = new System.Drawing.Point(32, 0);
+            this.layoutControlItemLogo3.Location = new System.Drawing.Point(21, 0);
             this.layoutControlItemLogo3.MaxSize = new System.Drawing.Size(169, 0);
             this.layoutControlItemLogo3.MinSize = new System.Drawing.Size(169, 24);
             this.layoutControlItemLogo3.Name = "layoutControlItemLogo3";
@@ -336,10 +336,10 @@
             // 
             this.emptySpaceItem2.CustomizationFormText = "emptySpaceItem2";
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
-            this.emptySpaceItem2.MaxSize = new System.Drawing.Size(32, 0);
-            this.emptySpaceItem2.MinSize = new System.Drawing.Size(32, 10);
+            this.emptySpaceItem2.MaxSize = new System.Drawing.Size(21, 0);
+            this.emptySpaceItem2.MinSize = new System.Drawing.Size(21, 10);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(32, 80);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(21, 80);
             this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem2.Text = "emptySpaceItem2";
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
@@ -351,16 +351,16 @@
             this.layoutControlGroupLogo2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItemLogo2,
             this.emptySpaceItem3});
-            this.layoutControlGroupLogo2.Location = new System.Drawing.Point(190, 0);
+            this.layoutControlGroupLogo2.Location = new System.Drawing.Point(180, 0);
             this.layoutControlGroupLogo2.Name = "layoutControlGroupLogo2";
-            this.layoutControlGroupLogo2.Size = new System.Drawing.Size(201, 80);
+            this.layoutControlGroupLogo2.Size = new System.Drawing.Size(192, 80);
             this.layoutControlGroupLogo2.Text = "layoutControlGroupLogo2";
             // 
             // layoutControlItemLogo2
             // 
             this.layoutControlItemLogo2.Control = this.pictureEditLogo2;
             this.layoutControlItemLogo2.CustomizationFormText = "layoutControlItemLogo2";
-            this.layoutControlItemLogo2.Location = new System.Drawing.Point(31, 0);
+            this.layoutControlItemLogo2.Location = new System.Drawing.Point(22, 0);
             this.layoutControlItemLogo2.MaxSize = new System.Drawing.Size(170, 0);
             this.layoutControlItemLogo2.MinSize = new System.Drawing.Size(170, 24);
             this.layoutControlItemLogo2.Name = "layoutControlItemLogo2";
@@ -375,10 +375,10 @@
             // 
             this.emptySpaceItem3.CustomizationFormText = "emptySpaceItem3";
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 0);
-            this.emptySpaceItem3.MaxSize = new System.Drawing.Size(31, 0);
-            this.emptySpaceItem3.MinSize = new System.Drawing.Size(31, 10);
+            this.emptySpaceItem3.MaxSize = new System.Drawing.Size(22, 0);
+            this.emptySpaceItem3.MinSize = new System.Drawing.Size(22, 10);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(31, 80);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(22, 80);
             this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem3.Text = "emptySpaceItem3";
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -392,14 +392,14 @@
             this.emptySpaceItem4});
             this.layoutControlGroupLogo1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroupLogo1.Name = "layoutControlGroupLogo1";
-            this.layoutControlGroupLogo1.Size = new System.Drawing.Size(190, 80);
+            this.layoutControlGroupLogo1.Size = new System.Drawing.Size(180, 80);
             this.layoutControlGroupLogo1.Text = "layoutControlGroupLogo1";
             // 
             // layoutControlItemLogo1
             // 
             this.layoutControlItemLogo1.Control = this.pictureEditLogo1;
             this.layoutControlItemLogo1.CustomizationFormText = "layoutControlItemLogo1";
-            this.layoutControlItemLogo1.Location = new System.Drawing.Point(21, 0);
+            this.layoutControlItemLogo1.Location = new System.Drawing.Point(11, 0);
             this.layoutControlItemLogo1.MaxSize = new System.Drawing.Size(169, 0);
             this.layoutControlItemLogo1.MinSize = new System.Drawing.Size(169, 24);
             this.layoutControlItemLogo1.Name = "layoutControlItemLogo1";
@@ -414,10 +414,10 @@
             // 
             this.emptySpaceItem4.CustomizationFormText = "emptySpaceItem4";
             this.emptySpaceItem4.Location = new System.Drawing.Point(0, 0);
-            this.emptySpaceItem4.MaxSize = new System.Drawing.Size(21, 0);
-            this.emptySpaceItem4.MinSize = new System.Drawing.Size(21, 10);
+            this.emptySpaceItem4.MaxSize = new System.Drawing.Size(11, 0);
+            this.emptySpaceItem4.MinSize = new System.Drawing.Size(11, 10);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(21, 80);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(11, 80);
             this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem4.Text = "emptySpaceItem4";
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -458,7 +458,7 @@
             this.pnLine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnLine.Location = new System.Drawing.Point(2, 43);
             this.pnLine.Name = "pnLine";
-            this.pnLine.Size = new System.Drawing.Size(807, 1);
+            this.pnLine.Size = new System.Drawing.Size(785, 1);
             this.pnLine.TabIndex = 12;
             // 
             // pnTopHeader
@@ -470,7 +470,7 @@
             this.pnTopHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnTopHeader.Location = new System.Drawing.Point(0, 0);
             this.pnTopHeader.Name = "pnTopHeader";
-            this.pnTopHeader.Size = new System.Drawing.Size(810, 30);
+            this.pnTopHeader.Size = new System.Drawing.Size(788, 30);
             this.pnTopHeader.TabIndex = 4;
             // 
             // laScheduleWindow
@@ -478,7 +478,7 @@
             this.laScheduleWindow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.laScheduleWindow.Location = new System.Drawing.Point(300, 0);
             this.laScheduleWindow.Name = "laScheduleWindow";
-            this.laScheduleWindow.Size = new System.Drawing.Size(210, 30);
+            this.laScheduleWindow.Size = new System.Drawing.Size(188, 30);
             this.laScheduleWindow.TabIndex = 1;
             this.laScheduleWindow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -494,7 +494,7 @@
             // laScheduleName
             // 
             this.laScheduleName.Dock = System.Windows.Forms.DockStyle.Right;
-            this.laScheduleName.Location = new System.Drawing.Point(510, 0);
+            this.laScheduleName.Location = new System.Drawing.Point(488, 0);
             this.laScheduleName.Name = "laScheduleName";
             this.laScheduleName.Size = new System.Drawing.Size(300, 30);
             this.laScheduleName.TabIndex = 0;
@@ -513,7 +513,7 @@
             this.repositoryItemSpinEditDiscount,
             this.repositoryItemDate,
             this.repositoryItemTextEdit});
-            this.gridControlPublication.Size = new System.Drawing.Size(810, 195);
+            this.gridControlPublication.Size = new System.Drawing.Size(788, 195);
             this.gridControlPublication.TabIndex = 45;
             this.gridControlPublication.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPublications});
@@ -888,7 +888,7 @@
             this.Controls.Add(this.pnTopHeader);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "OutputChronologicalControl";
-            this.Size = new System.Drawing.Size(810, 430);
+            this.Size = new System.Drawing.Size(788, 430);
             this.pnHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlFeaturedPublications)).EndInit();
             this.layoutControlFeaturedPublications.ResumeLayout(false);

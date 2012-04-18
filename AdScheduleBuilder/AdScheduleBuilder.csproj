@@ -1040,16 +1040,7 @@
     <None Include="Resources\GridDetails.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\GridAdNotes.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SlideBullets.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\CloneSchedule.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SlideHeader.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonthCalendar\MonthCalendar.csproj">

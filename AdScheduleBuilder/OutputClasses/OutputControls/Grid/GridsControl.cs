@@ -69,11 +69,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             }
         }
 
-        public void UpdateNavBarView()
-        {
-            navBarControlDetails.View = new CustomNavPaneViewInfoRegistrator();
-        }
-
         private void UncheckOutputOptions()
         {
             FormMain.Instance.buttonItemGridsDetailedGrid.Checked = false;
@@ -146,24 +141,24 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 }
                 (_selectedOutput as Control).BringToFront();
 
-                if (!navBarGroupControlContainerAdNotes.Controls.Contains(_selectedOutput.AdNotes))
+                if (!xtraTabPageAdNotes.Controls.Contains(_selectedOutput.AdNotes))
                 {
                     Application.DoEvents();
-                    navBarGroupControlContainerAdNotes.Controls.Add(_selectedOutput.AdNotes);
+                    xtraTabPageAdNotes.Controls.Add(_selectedOutput.AdNotes);
                 }
                 _selectedOutput.AdNotes.BringToFront();
 
-                if (!navBarGroupControlContainerSlideBulltes.Controls.Contains(_selectedOutput.SlideBullets))
+                if (!xtraTabPageSlideBullets.Controls.Contains(_selectedOutput.SlideBullets))
                 {
                     Application.DoEvents();
-                    navBarGroupControlContainerSlideBulltes.Controls.Add(_selectedOutput.SlideBullets);
+                    xtraTabPageSlideBullets.Controls.Add(_selectedOutput.SlideBullets);
                 }
                 _selectedOutput.SlideBullets.BringToFront();
 
-                if (!navBarGroupControlContainerSlideHeader.Controls.Contains(_selectedOutput.SlideHeader))
+                if (!xtraTabPageSlideHeaders.Controls.Contains(_selectedOutput.SlideHeader))
                 {
                     Application.DoEvents();
-                    navBarGroupControlContainerSlideHeader.Controls.Add(_selectedOutput.SlideHeader);
+                    xtraTabPageSlideHeaders.Controls.Add(_selectedOutput.SlideHeader);
                 }
                 _selectedOutput.SlideHeader.BringToFront();
             }
@@ -230,7 +225,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         public void buttonItemGridsDetails_CheckedChanged(object sender, EventArgs e)
         {
             _selectedOutput.SetToggleState();
-            UpdateNavBarView();
             splitContainerControl.PanelVisibility = FormMain.Instance.buttonItemGridsDetails.Checked ? DevExpress.XtraEditors.SplitPanelVisibility.Both : DevExpress.XtraEditors.SplitPanelVisibility.Panel2;
         }
 

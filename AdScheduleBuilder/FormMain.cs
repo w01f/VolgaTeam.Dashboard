@@ -562,7 +562,6 @@ namespace AdScheduleBuilder
                         pnMain.BringToFront();
                         Application.DoEvents();
                     }
-                    OutputClasses.OutputControls.GridsControl.Instance.UpdateNavBarView();
                     OutputClasses.OutputControls.GridsControl.Instance.BringToFront();
                     _currentControl = OutputClasses.OutputControls.GridsControl.Instance;
                 }

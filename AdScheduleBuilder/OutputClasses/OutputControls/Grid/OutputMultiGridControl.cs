@@ -444,10 +444,10 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             this.SlideBullets.checkEditReadership.Visible = false;
             this.SlideHeader = new SlideHeaderControl(this);
             this.SlideHeader.checkEditPublicationName.Visible = false;
-            this.SlideHeader.checkEditPublicationLogo1.Visible = false;
-            this.SlideHeader.checkEditPublicationLogo2.Visible = false;
-            this.SlideHeader.checkEditPublicationLogo3.Visible = false;
-            this.SlideHeader.checkEditPublicationLogo4.Visible = false;
+            this.SlideHeader.checkEditLogo1.Visible = false;
+            this.SlideHeader.checkEditLogo2.Visible = false;
+            this.SlideHeader.checkEditLogo3.Visible = false;
+            this.SlideHeader.checkEditLogo4.Visible = false;
 
 
             #region Set Default Values
@@ -806,6 +806,10 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         public void SetSlideHeader()
         {
             comboBoxEditSchedule.Enabled = this.SlideHeaderState.ShowSlideHeader;
+            laBusinessName.Enabled = this.SlideHeaderState.ShowAdvertiser;
+            laDate.Enabled = this.SlideHeaderState.ShowPresentationDate;
+            laDecisionMaker.Enabled = this.SlideHeaderState.ShowDecisionMaker;
+            laFlightDates.Enabled = this.SlideHeaderState.ShowFlightDates;
         }
 
         public void SetToggleState()
@@ -1265,7 +1269,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             get
             {
-                return this.SlideBulletsState.DoNotShow;
+                return !this.SlideBulletsState.EnableSlideBullets;
             }
         }
 

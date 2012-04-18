@@ -41,22 +41,6 @@
             this.checkEditDecisionMaker = new DevExpress.XtraEditors.CheckEdit();
             this.pnMain = new System.Windows.Forms.Panel();
             this.pnBody = new System.Windows.Forms.Panel();
-            this.pnAdSize = new System.Windows.Forms.Panel();
-            this.pnAdSizeSharePage = new System.Windows.Forms.Panel();
-            this.pnAdSizeSharePageLine2 = new System.Windows.Forms.Panel();
-            this.checkEditSharePageDimensions = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEditSharePagePageSize = new DevExpress.XtraEditors.CheckEdit();
-            this.panelAdSizeSharePageLine1 = new System.Windows.Forms.Panel();
-            this.checkEditSharePageColor = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEditSharePagePercentOfPage = new DevExpress.XtraEditors.CheckEdit();
-            this.pnAdSizeStandart = new System.Windows.Forms.Panel();
-            this.pnAdSizeStandartLine2 = new System.Windows.Forms.Panel();
-            this.checkEditStandartMechanicals = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEditStandartPageSize = new DevExpress.XtraEditors.CheckEdit();
-            this.pnAdSizeStandartLine1 = new System.Windows.Forms.Panel();
-            this.checkEditStandartColor = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEditStandartDimensions = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEditStandartSquare = new DevExpress.XtraEditors.CheckEdit();
             this.pnInvestmentDetails = new System.Windows.Forms.Panel();
             this.checkEditTotalCost = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditAvgPCIRate = new DevExpress.XtraEditors.CheckEdit();
@@ -81,6 +65,22 @@
             this.laInvestmentDetails = new System.Windows.Forms.Label();
             this.pictureBoxInvestmentDetails = new System.Windows.Forms.PictureBox();
             this.checkEditInvestmentDetailsPicture = new DevExpress.XtraEditors.CheckEdit();
+            this.pnAdSize = new System.Windows.Forms.Panel();
+            this.pnAdSizeSharePage = new System.Windows.Forms.Panel();
+            this.pnAdSizeSharePageLine2 = new System.Windows.Forms.Panel();
+            this.checkEditSharePageDimensions = new DevExpress.XtraEditors.CheckEdit();
+            this.checkEditSharePagePageSize = new DevExpress.XtraEditors.CheckEdit();
+            this.panelAdSizeSharePageLine1 = new System.Windows.Forms.Panel();
+            this.checkEditSharePageColor = new DevExpress.XtraEditors.CheckEdit();
+            this.checkEditSharePagePercentOfPage = new DevExpress.XtraEditors.CheckEdit();
+            this.pnAdSizeStandart = new System.Windows.Forms.Panel();
+            this.pnAdSizeStandartLine2 = new System.Windows.Forms.Panel();
+            this.checkEditStandartMechanicals = new DevExpress.XtraEditors.CheckEdit();
+            this.checkEditStandartPageSize = new DevExpress.XtraEditors.CheckEdit();
+            this.pnAdSizeStandartLine1 = new System.Windows.Forms.Panel();
+            this.checkEditStandartColor = new DevExpress.XtraEditors.CheckEdit();
+            this.checkEditStandartDimensions = new DevExpress.XtraEditors.CheckEdit();
+            this.checkEditStandartSquare = new DevExpress.XtraEditors.CheckEdit();
             this.pnHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
@@ -93,22 +93,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEditDecisionMaker.Properties)).BeginInit();
             this.pnMain.SuspendLayout();
             this.pnBody.SuspendLayout();
-            this.pnAdSize.SuspendLayout();
-            this.pnAdSizeSharePage.SuspendLayout();
-            this.pnAdSizeSharePageLine2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePageDimensions.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePagePageSize.Properties)).BeginInit();
-            this.panelAdSizeSharePageLine1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePageColor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePagePercentOfPage.Properties)).BeginInit();
-            this.pnAdSizeStandart.SuspendLayout();
-            this.pnAdSizeStandartLine2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartMechanicals.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartPageSize.Properties)).BeginInit();
-            this.pnAdSizeStandartLine1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartColor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartDimensions.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartSquare.Properties)).BeginInit();
             this.pnInvestmentDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditTotalCost.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditAvgPCIRate.Properties)).BeginInit();
@@ -129,12 +113,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEditTotalAds.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInvestmentDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditInvestmentDetailsPicture.Properties)).BeginInit();
+            this.pnAdSize.SuspendLayout();
+            this.pnAdSizeSharePage.SuspendLayout();
+            this.pnAdSizeSharePageLine2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePageDimensions.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePagePageSize.Properties)).BeginInit();
+            this.panelAdSizeSharePageLine1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePageColor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePagePercentOfPage.Properties)).BeginInit();
+            this.pnAdSizeStandart.SuspendLayout();
+            this.pnAdSizeStandartLine2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartMechanicals.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartPageSize.Properties)).BeginInit();
+            this.pnAdSizeStandartLine1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartColor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartDimensions.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartSquare.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // pnHeader
             // 
             this.pnHeader.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnHeader.Controls.Add(this.checkEditFlightDates);
             this.pnHeader.Controls.Add(this.pbLogo);
             this.pnHeader.Controls.Add(this.checkEditLogo);
             this.pnHeader.Controls.Add(this.comboBoxEditSchedule);
@@ -144,6 +143,7 @@
             this.pnHeader.Controls.Add(this.checkEditDate);
             this.pnHeader.Controls.Add(this.checkEditBusinessName);
             this.pnHeader.Controls.Add(this.checkEditDecisionMaker);
+            this.pnHeader.Controls.Add(this.checkEditFlightDates);
             this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnHeader.Location = new System.Drawing.Point(0, 0);
             this.pnHeader.Name = "pnHeader";
@@ -154,7 +154,7 @@
             // 
             this.checkEditFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkEditFlightDates.EditValue = true;
-            this.checkEditFlightDates.Location = new System.Drawing.Point(826, 109);
+            this.checkEditFlightDates.Location = new System.Drawing.Point(608, 109);
             this.checkEditFlightDates.Name = "checkEditFlightDates";
             this.checkEditFlightDates.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkEditFlightDates.Properties.Appearance.Options.UseFont = true;
@@ -168,7 +168,7 @@
             this.checkEditFlightDates.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.checkEditFlightDates.Properties.Caption = "Flight Dates Tag";
             this.checkEditFlightDates.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditFlightDates.Size = new System.Drawing.Size(164, 19);
+            this.checkEditFlightDates.Size = new System.Drawing.Size(382, 21);
             this.checkEditFlightDates.TabIndex = 45;
             this.checkEditFlightDates.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
             this.checkEditFlightDates.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -265,7 +265,7 @@
             // 
             this.checkEditBusinessName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkEditBusinessName.EditValue = true;
-            this.checkEditBusinessName.Location = new System.Drawing.Point(825, 8);
+            this.checkEditBusinessName.Location = new System.Drawing.Point(615, 8);
             this.checkEditBusinessName.Name = "checkEditBusinessName";
             this.checkEditBusinessName.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkEditBusinessName.Properties.Appearance.Options.UseFont = true;
@@ -279,7 +279,7 @@
             this.checkEditBusinessName.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.checkEditBusinessName.Properties.Caption = "Business Name Tag";
             this.checkEditBusinessName.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditBusinessName.Size = new System.Drawing.Size(166, 21);
+            this.checkEditBusinessName.Size = new System.Drawing.Size(376, 21);
             this.checkEditBusinessName.TabIndex = 5;
             this.checkEditBusinessName.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
             this.checkEditBusinessName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -288,7 +288,7 @@
             // 
             this.checkEditDecisionMaker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkEditDecisionMaker.EditValue = true;
-            this.checkEditDecisionMaker.Location = new System.Drawing.Point(827, 56);
+            this.checkEditDecisionMaker.Location = new System.Drawing.Point(648, 56);
             this.checkEditDecisionMaker.Name = "checkEditDecisionMaker";
             this.checkEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
@@ -302,7 +302,7 @@
             this.checkEditDecisionMaker.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.checkEditDecisionMaker.Properties.Caption = "Decision-Maker Tag";
             this.checkEditDecisionMaker.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditDecisionMaker.Size = new System.Drawing.Size(164, 21);
+            this.checkEditDecisionMaker.Size = new System.Drawing.Size(343, 21);
             this.checkEditDecisionMaker.TabIndex = 6;
             this.checkEditDecisionMaker.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
             this.checkEditDecisionMaker.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -347,279 +347,6 @@
             this.pnBody.Name = "pnBody";
             this.pnBody.Size = new System.Drawing.Size(1000, 341);
             this.pnBody.TabIndex = 0;
-            // 
-            // pnAdSize
-            // 
-            this.pnAdSize.Controls.Add(this.pnAdSizeSharePage);
-            this.pnAdSize.Controls.Add(this.pnAdSizeStandart);
-            this.pnAdSize.Location = new System.Drawing.Point(113, 30);
-            this.pnAdSize.Name = "pnAdSize";
-            this.pnAdSize.Size = new System.Drawing.Size(415, 164);
-            this.pnAdSize.TabIndex = 46;
-            // 
-            // pnAdSizeSharePage
-            // 
-            this.pnAdSizeSharePage.Controls.Add(this.pnAdSizeSharePageLine2);
-            this.pnAdSizeSharePage.Controls.Add(this.panelAdSizeSharePageLine1);
-            this.pnAdSizeSharePage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnAdSizeSharePage.Location = new System.Drawing.Point(0, 64);
-            this.pnAdSizeSharePage.Name = "pnAdSizeSharePage";
-            this.pnAdSizeSharePage.Size = new System.Drawing.Size(415, 80);
-            this.pnAdSizeSharePage.TabIndex = 46;
-            // 
-            // pnAdSizeSharePageLine2
-            // 
-            this.pnAdSizeSharePageLine2.Controls.Add(this.checkEditSharePageDimensions);
-            this.pnAdSizeSharePageLine2.Controls.Add(this.checkEditSharePagePageSize);
-            this.pnAdSizeSharePageLine2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnAdSizeSharePageLine2.Location = new System.Drawing.Point(0, 23);
-            this.pnAdSizeSharePageLine2.Name = "pnAdSizeSharePageLine2";
-            this.pnAdSizeSharePageLine2.Size = new System.Drawing.Size(415, 38);
-            this.pnAdSizeSharePageLine2.TabIndex = 45;
-            // 
-            // checkEditSharePageDimensions
-            // 
-            this.checkEditSharePageDimensions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkEditSharePageDimensions.EditValue = true;
-            this.checkEditSharePageDimensions.Location = new System.Drawing.Point(197, 0);
-            this.checkEditSharePageDimensions.Name = "checkEditSharePageDimensions";
-            this.checkEditSharePageDimensions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkEditSharePageDimensions.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePageDimensions.Properties.Appearance.Options.UseFont = true;
-            this.checkEditSharePageDimensions.Properties.Appearance.Options.UseForeColor = true;
-            this.checkEditSharePageDimensions.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePageDimensions.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.checkEditSharePageDimensions.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePageDimensions.Properties.AppearanceFocused.Options.UseForeColor = true;
-            this.checkEditSharePageDimensions.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePageDimensions.Properties.AppearanceReadOnly.Options.UseForeColor = true;
-            this.checkEditSharePageDimensions.Properties.AutoHeight = false;
-            this.checkEditSharePageDimensions.Properties.Caption = "Mech Tag";
-            this.checkEditSharePageDimensions.Size = new System.Drawing.Size(218, 38);
-            this.checkEditSharePageDimensions.TabIndex = 40;
-            this.checkEditSharePageDimensions.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-            // 
-            // checkEditSharePagePageSize
-            // 
-            this.checkEditSharePagePageSize.Dock = System.Windows.Forms.DockStyle.Left;
-            this.checkEditSharePagePageSize.EditValue = true;
-            this.checkEditSharePagePageSize.Location = new System.Drawing.Point(0, 0);
-            this.checkEditSharePagePageSize.Name = "checkEditSharePagePageSize";
-            this.checkEditSharePagePageSize.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkEditSharePagePageSize.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePagePageSize.Properties.Appearance.Options.UseFont = true;
-            this.checkEditSharePagePageSize.Properties.Appearance.Options.UseForeColor = true;
-            this.checkEditSharePagePageSize.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePagePageSize.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.checkEditSharePagePageSize.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePagePageSize.Properties.AppearanceFocused.Options.UseForeColor = true;
-            this.checkEditSharePagePageSize.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePagePageSize.Properties.AppearanceReadOnly.Options.UseForeColor = true;
-            this.checkEditSharePagePageSize.Properties.AutoHeight = false;
-            this.checkEditSharePagePageSize.Properties.Caption = "Page Size Tag";
-            this.checkEditSharePagePageSize.Size = new System.Drawing.Size(197, 38);
-            this.checkEditSharePagePageSize.TabIndex = 13;
-            this.checkEditSharePagePageSize.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-            // 
-            // panelAdSizeSharePageLine1
-            // 
-            this.panelAdSizeSharePageLine1.Controls.Add(this.checkEditSharePageColor);
-            this.panelAdSizeSharePageLine1.Controls.Add(this.checkEditSharePagePercentOfPage);
-            this.panelAdSizeSharePageLine1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelAdSizeSharePageLine1.Location = new System.Drawing.Point(0, 0);
-            this.panelAdSizeSharePageLine1.Name = "panelAdSizeSharePageLine1";
-            this.panelAdSizeSharePageLine1.Size = new System.Drawing.Size(415, 23);
-            this.panelAdSizeSharePageLine1.TabIndex = 44;
-            // 
-            // checkEditSharePageColor
-            // 
-            this.checkEditSharePageColor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkEditSharePageColor.EditValue = true;
-            this.checkEditSharePageColor.Location = new System.Drawing.Point(197, 0);
-            this.checkEditSharePageColor.Name = "checkEditSharePageColor";
-            this.checkEditSharePageColor.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkEditSharePageColor.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePageColor.Properties.Appearance.Options.UseFont = true;
-            this.checkEditSharePageColor.Properties.Appearance.Options.UseForeColor = true;
-            this.checkEditSharePageColor.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePageColor.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.checkEditSharePageColor.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePageColor.Properties.AppearanceFocused.Options.UseForeColor = true;
-            this.checkEditSharePageColor.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePageColor.Properties.AppearanceReadOnly.Options.UseForeColor = true;
-            this.checkEditSharePageColor.Properties.AutoHeight = false;
-            this.checkEditSharePageColor.Properties.Caption = "Color Tag";
-            this.checkEditSharePageColor.Size = new System.Drawing.Size(218, 23);
-            this.checkEditSharePageColor.TabIndex = 21;
-            this.checkEditSharePageColor.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-            // 
-            // checkEditSharePagePercentOfPage
-            // 
-            this.checkEditSharePagePercentOfPage.Dock = System.Windows.Forms.DockStyle.Left;
-            this.checkEditSharePagePercentOfPage.EditValue = true;
-            this.checkEditSharePagePercentOfPage.Location = new System.Drawing.Point(0, 0);
-            this.checkEditSharePagePercentOfPage.Name = "checkEditSharePagePercentOfPage";
-            this.checkEditSharePagePercentOfPage.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkEditSharePagePercentOfPage.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePagePercentOfPage.Properties.Appearance.Options.UseFont = true;
-            this.checkEditSharePagePercentOfPage.Properties.Appearance.Options.UseForeColor = true;
-            this.checkEditSharePagePercentOfPage.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePagePercentOfPage.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.checkEditSharePagePercentOfPage.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePagePercentOfPage.Properties.AppearanceFocused.Options.UseForeColor = true;
-            this.checkEditSharePagePercentOfPage.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditSharePagePercentOfPage.Properties.AppearanceReadOnly.Options.UseForeColor = true;
-            this.checkEditSharePagePercentOfPage.Properties.AutoHeight = false;
-            this.checkEditSharePagePercentOfPage.Properties.Caption = "Column Inches Tag";
-            this.checkEditSharePagePercentOfPage.Size = new System.Drawing.Size(197, 23);
-            this.checkEditSharePagePercentOfPage.TabIndex = 12;
-            this.checkEditSharePagePercentOfPage.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-            // 
-            // pnAdSizeStandart
-            // 
-            this.pnAdSizeStandart.Controls.Add(this.pnAdSizeStandartLine2);
-            this.pnAdSizeStandart.Controls.Add(this.pnAdSizeStandartLine1);
-            this.pnAdSizeStandart.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnAdSizeStandart.Location = new System.Drawing.Point(0, 0);
-            this.pnAdSizeStandart.Name = "pnAdSizeStandart";
-            this.pnAdSizeStandart.Size = new System.Drawing.Size(415, 64);
-            this.pnAdSizeStandart.TabIndex = 45;
-            // 
-            // pnAdSizeStandartLine2
-            // 
-            this.pnAdSizeStandartLine2.Controls.Add(this.checkEditStandartMechanicals);
-            this.pnAdSizeStandartLine2.Controls.Add(this.checkEditStandartPageSize);
-            this.pnAdSizeStandartLine2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnAdSizeStandartLine2.Location = new System.Drawing.Point(0, 23);
-            this.pnAdSizeStandartLine2.Name = "pnAdSizeStandartLine2";
-            this.pnAdSizeStandartLine2.Size = new System.Drawing.Size(415, 38);
-            this.pnAdSizeStandartLine2.TabIndex = 42;
-            // 
-            // checkEditStandartMechanicals
-            // 
-            this.checkEditStandartMechanicals.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkEditStandartMechanicals.EditValue = true;
-            this.checkEditStandartMechanicals.Location = new System.Drawing.Point(148, 0);
-            this.checkEditStandartMechanicals.Name = "checkEditStandartMechanicals";
-            this.checkEditStandartMechanicals.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkEditStandartMechanicals.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartMechanicals.Properties.Appearance.Options.UseFont = true;
-            this.checkEditStandartMechanicals.Properties.Appearance.Options.UseForeColor = true;
-            this.checkEditStandartMechanicals.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartMechanicals.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.checkEditStandartMechanicals.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartMechanicals.Properties.AppearanceFocused.Options.UseForeColor = true;
-            this.checkEditStandartMechanicals.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartMechanicals.Properties.AppearanceReadOnly.Options.UseForeColor = true;
-            this.checkEditStandartMechanicals.Properties.AutoHeight = false;
-            this.checkEditStandartMechanicals.Properties.Caption = "Mech Tag";
-            this.checkEditStandartMechanicals.Size = new System.Drawing.Size(267, 38);
-            this.checkEditStandartMechanicals.TabIndex = 40;
-            this.checkEditStandartMechanicals.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-            this.checkEditStandartMechanicals.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
-            // 
-            // checkEditStandartPageSize
-            // 
-            this.checkEditStandartPageSize.Dock = System.Windows.Forms.DockStyle.Left;
-            this.checkEditStandartPageSize.EditValue = true;
-            this.checkEditStandartPageSize.Location = new System.Drawing.Point(0, 0);
-            this.checkEditStandartPageSize.Name = "checkEditStandartPageSize";
-            this.checkEditStandartPageSize.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkEditStandartPageSize.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartPageSize.Properties.Appearance.Options.UseFont = true;
-            this.checkEditStandartPageSize.Properties.Appearance.Options.UseForeColor = true;
-            this.checkEditStandartPageSize.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartPageSize.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.checkEditStandartPageSize.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartPageSize.Properties.AppearanceFocused.Options.UseForeColor = true;
-            this.checkEditStandartPageSize.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartPageSize.Properties.AppearanceReadOnly.Options.UseForeColor = true;
-            this.checkEditStandartPageSize.Properties.AutoHeight = false;
-            this.checkEditStandartPageSize.Properties.Caption = "Page Size Tag";
-            this.checkEditStandartPageSize.Size = new System.Drawing.Size(148, 38);
-            this.checkEditStandartPageSize.TabIndex = 13;
-            this.checkEditStandartPageSize.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-            this.checkEditStandartPageSize.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
-            // 
-            // pnAdSizeStandartLine1
-            // 
-            this.pnAdSizeStandartLine1.Controls.Add(this.checkEditStandartColor);
-            this.pnAdSizeStandartLine1.Controls.Add(this.checkEditStandartDimensions);
-            this.pnAdSizeStandartLine1.Controls.Add(this.checkEditStandartSquare);
-            this.pnAdSizeStandartLine1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnAdSizeStandartLine1.Location = new System.Drawing.Point(0, 0);
-            this.pnAdSizeStandartLine1.Name = "pnAdSizeStandartLine1";
-            this.pnAdSizeStandartLine1.Size = new System.Drawing.Size(415, 23);
-            this.pnAdSizeStandartLine1.TabIndex = 43;
-            // 
-            // checkEditStandartColor
-            // 
-            this.checkEditStandartColor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkEditStandartColor.EditValue = true;
-            this.checkEditStandartColor.Location = new System.Drawing.Point(279, 0);
-            this.checkEditStandartColor.Name = "checkEditStandartColor";
-            this.checkEditStandartColor.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkEditStandartColor.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartColor.Properties.Appearance.Options.UseFont = true;
-            this.checkEditStandartColor.Properties.Appearance.Options.UseForeColor = true;
-            this.checkEditStandartColor.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartColor.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.checkEditStandartColor.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartColor.Properties.AppearanceFocused.Options.UseForeColor = true;
-            this.checkEditStandartColor.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartColor.Properties.AppearanceReadOnly.Options.UseForeColor = true;
-            this.checkEditStandartColor.Properties.AutoHeight = false;
-            this.checkEditStandartColor.Properties.Caption = "Color Tag";
-            this.checkEditStandartColor.Size = new System.Drawing.Size(136, 23);
-            this.checkEditStandartColor.TabIndex = 21;
-            this.checkEditStandartColor.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-            this.checkEditStandartColor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
-            // 
-            // checkEditStandartDimensions
-            // 
-            this.checkEditStandartDimensions.Dock = System.Windows.Forms.DockStyle.Left;
-            this.checkEditStandartDimensions.EditValue = true;
-            this.checkEditStandartDimensions.Location = new System.Drawing.Point(146, 0);
-            this.checkEditStandartDimensions.Name = "checkEditStandartDimensions";
-            this.checkEditStandartDimensions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkEditStandartDimensions.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartDimensions.Properties.Appearance.Options.UseFont = true;
-            this.checkEditStandartDimensions.Properties.Appearance.Options.UseForeColor = true;
-            this.checkEditStandartDimensions.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartDimensions.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.checkEditStandartDimensions.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartDimensions.Properties.AppearanceFocused.Options.UseForeColor = true;
-            this.checkEditStandartDimensions.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartDimensions.Properties.AppearanceReadOnly.Options.UseForeColor = true;
-            this.checkEditStandartDimensions.Properties.AutoHeight = false;
-            this.checkEditStandartDimensions.Properties.Caption = "Col Inch Val";
-            this.checkEditStandartDimensions.Size = new System.Drawing.Size(133, 23);
-            this.checkEditStandartDimensions.TabIndex = 39;
-            this.checkEditStandartDimensions.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-            this.checkEditStandartDimensions.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
-            // 
-            // checkEditStandartSquare
-            // 
-            this.checkEditStandartSquare.Dock = System.Windows.Forms.DockStyle.Left;
-            this.checkEditStandartSquare.EditValue = true;
-            this.checkEditStandartSquare.Location = new System.Drawing.Point(0, 0);
-            this.checkEditStandartSquare.Name = "checkEditStandartSquare";
-            this.checkEditStandartSquare.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkEditStandartSquare.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartSquare.Properties.Appearance.Options.UseFont = true;
-            this.checkEditStandartSquare.Properties.Appearance.Options.UseForeColor = true;
-            this.checkEditStandartSquare.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartSquare.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.checkEditStandartSquare.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartSquare.Properties.AppearanceFocused.Options.UseForeColor = true;
-            this.checkEditStandartSquare.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
-            this.checkEditStandartSquare.Properties.AppearanceReadOnly.Options.UseForeColor = true;
-            this.checkEditStandartSquare.Properties.AutoHeight = false;
-            this.checkEditStandartSquare.Properties.Caption = "Column Inches Tag";
-            this.checkEditStandartSquare.Size = new System.Drawing.Size(146, 23);
-            this.checkEditStandartSquare.TabIndex = 12;
-            this.checkEditStandartSquare.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-            this.checkEditStandartSquare.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
             // 
             // pnInvestmentDetails
             // 
@@ -947,6 +674,279 @@
             this.checkEditInvestmentDetailsPicture.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
             this.checkEditInvestmentDetailsPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
             // 
+            // pnAdSize
+            // 
+            this.pnAdSize.Controls.Add(this.pnAdSizeSharePage);
+            this.pnAdSize.Controls.Add(this.pnAdSizeStandart);
+            this.pnAdSize.Location = new System.Drawing.Point(113, 30);
+            this.pnAdSize.Name = "pnAdSize";
+            this.pnAdSize.Size = new System.Drawing.Size(415, 164);
+            this.pnAdSize.TabIndex = 46;
+            // 
+            // pnAdSizeSharePage
+            // 
+            this.pnAdSizeSharePage.Controls.Add(this.pnAdSizeSharePageLine2);
+            this.pnAdSizeSharePage.Controls.Add(this.panelAdSizeSharePageLine1);
+            this.pnAdSizeSharePage.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnAdSizeSharePage.Location = new System.Drawing.Point(0, 64);
+            this.pnAdSizeSharePage.Name = "pnAdSizeSharePage";
+            this.pnAdSizeSharePage.Size = new System.Drawing.Size(415, 80);
+            this.pnAdSizeSharePage.TabIndex = 46;
+            // 
+            // pnAdSizeSharePageLine2
+            // 
+            this.pnAdSizeSharePageLine2.Controls.Add(this.checkEditSharePageDimensions);
+            this.pnAdSizeSharePageLine2.Controls.Add(this.checkEditSharePagePageSize);
+            this.pnAdSizeSharePageLine2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnAdSizeSharePageLine2.Location = new System.Drawing.Point(0, 23);
+            this.pnAdSizeSharePageLine2.Name = "pnAdSizeSharePageLine2";
+            this.pnAdSizeSharePageLine2.Size = new System.Drawing.Size(415, 38);
+            this.pnAdSizeSharePageLine2.TabIndex = 45;
+            // 
+            // checkEditSharePageDimensions
+            // 
+            this.checkEditSharePageDimensions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkEditSharePageDimensions.EditValue = true;
+            this.checkEditSharePageDimensions.Location = new System.Drawing.Point(197, 0);
+            this.checkEditSharePageDimensions.Name = "checkEditSharePageDimensions";
+            this.checkEditSharePageDimensions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkEditSharePageDimensions.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePageDimensions.Properties.Appearance.Options.UseFont = true;
+            this.checkEditSharePageDimensions.Properties.Appearance.Options.UseForeColor = true;
+            this.checkEditSharePageDimensions.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePageDimensions.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.checkEditSharePageDimensions.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePageDimensions.Properties.AppearanceFocused.Options.UseForeColor = true;
+            this.checkEditSharePageDimensions.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePageDimensions.Properties.AppearanceReadOnly.Options.UseForeColor = true;
+            this.checkEditSharePageDimensions.Properties.AutoHeight = false;
+            this.checkEditSharePageDimensions.Properties.Caption = "Mech Tag";
+            this.checkEditSharePageDimensions.Size = new System.Drawing.Size(218, 38);
+            this.checkEditSharePageDimensions.TabIndex = 40;
+            this.checkEditSharePageDimensions.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+            // 
+            // checkEditSharePagePageSize
+            // 
+            this.checkEditSharePagePageSize.Dock = System.Windows.Forms.DockStyle.Left;
+            this.checkEditSharePagePageSize.EditValue = true;
+            this.checkEditSharePagePageSize.Location = new System.Drawing.Point(0, 0);
+            this.checkEditSharePagePageSize.Name = "checkEditSharePagePageSize";
+            this.checkEditSharePagePageSize.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkEditSharePagePageSize.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePagePageSize.Properties.Appearance.Options.UseFont = true;
+            this.checkEditSharePagePageSize.Properties.Appearance.Options.UseForeColor = true;
+            this.checkEditSharePagePageSize.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePagePageSize.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.checkEditSharePagePageSize.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePagePageSize.Properties.AppearanceFocused.Options.UseForeColor = true;
+            this.checkEditSharePagePageSize.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePagePageSize.Properties.AppearanceReadOnly.Options.UseForeColor = true;
+            this.checkEditSharePagePageSize.Properties.AutoHeight = false;
+            this.checkEditSharePagePageSize.Properties.Caption = "Page Size Tag";
+            this.checkEditSharePagePageSize.Size = new System.Drawing.Size(197, 38);
+            this.checkEditSharePagePageSize.TabIndex = 13;
+            this.checkEditSharePagePageSize.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+            // 
+            // panelAdSizeSharePageLine1
+            // 
+            this.panelAdSizeSharePageLine1.Controls.Add(this.checkEditSharePageColor);
+            this.panelAdSizeSharePageLine1.Controls.Add(this.checkEditSharePagePercentOfPage);
+            this.panelAdSizeSharePageLine1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelAdSizeSharePageLine1.Location = new System.Drawing.Point(0, 0);
+            this.panelAdSizeSharePageLine1.Name = "panelAdSizeSharePageLine1";
+            this.panelAdSizeSharePageLine1.Size = new System.Drawing.Size(415, 23);
+            this.panelAdSizeSharePageLine1.TabIndex = 44;
+            // 
+            // checkEditSharePageColor
+            // 
+            this.checkEditSharePageColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkEditSharePageColor.EditValue = true;
+            this.checkEditSharePageColor.Location = new System.Drawing.Point(197, 0);
+            this.checkEditSharePageColor.Name = "checkEditSharePageColor";
+            this.checkEditSharePageColor.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkEditSharePageColor.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePageColor.Properties.Appearance.Options.UseFont = true;
+            this.checkEditSharePageColor.Properties.Appearance.Options.UseForeColor = true;
+            this.checkEditSharePageColor.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePageColor.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.checkEditSharePageColor.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePageColor.Properties.AppearanceFocused.Options.UseForeColor = true;
+            this.checkEditSharePageColor.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePageColor.Properties.AppearanceReadOnly.Options.UseForeColor = true;
+            this.checkEditSharePageColor.Properties.AutoHeight = false;
+            this.checkEditSharePageColor.Properties.Caption = "Color Tag";
+            this.checkEditSharePageColor.Size = new System.Drawing.Size(218, 23);
+            this.checkEditSharePageColor.TabIndex = 21;
+            this.checkEditSharePageColor.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+            // 
+            // checkEditSharePagePercentOfPage
+            // 
+            this.checkEditSharePagePercentOfPage.Dock = System.Windows.Forms.DockStyle.Left;
+            this.checkEditSharePagePercentOfPage.EditValue = true;
+            this.checkEditSharePagePercentOfPage.Location = new System.Drawing.Point(0, 0);
+            this.checkEditSharePagePercentOfPage.Name = "checkEditSharePagePercentOfPage";
+            this.checkEditSharePagePercentOfPage.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkEditSharePagePercentOfPage.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePagePercentOfPage.Properties.Appearance.Options.UseFont = true;
+            this.checkEditSharePagePercentOfPage.Properties.Appearance.Options.UseForeColor = true;
+            this.checkEditSharePagePercentOfPage.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePagePercentOfPage.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.checkEditSharePagePercentOfPage.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePagePercentOfPage.Properties.AppearanceFocused.Options.UseForeColor = true;
+            this.checkEditSharePagePercentOfPage.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditSharePagePercentOfPage.Properties.AppearanceReadOnly.Options.UseForeColor = true;
+            this.checkEditSharePagePercentOfPage.Properties.AutoHeight = false;
+            this.checkEditSharePagePercentOfPage.Properties.Caption = "Column Inches Tag";
+            this.checkEditSharePagePercentOfPage.Size = new System.Drawing.Size(197, 23);
+            this.checkEditSharePagePercentOfPage.TabIndex = 12;
+            this.checkEditSharePagePercentOfPage.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+            // 
+            // pnAdSizeStandart
+            // 
+            this.pnAdSizeStandart.Controls.Add(this.pnAdSizeStandartLine2);
+            this.pnAdSizeStandart.Controls.Add(this.pnAdSizeStandartLine1);
+            this.pnAdSizeStandart.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnAdSizeStandart.Location = new System.Drawing.Point(0, 0);
+            this.pnAdSizeStandart.Name = "pnAdSizeStandart";
+            this.pnAdSizeStandart.Size = new System.Drawing.Size(415, 64);
+            this.pnAdSizeStandart.TabIndex = 45;
+            // 
+            // pnAdSizeStandartLine2
+            // 
+            this.pnAdSizeStandartLine2.Controls.Add(this.checkEditStandartMechanicals);
+            this.pnAdSizeStandartLine2.Controls.Add(this.checkEditStandartPageSize);
+            this.pnAdSizeStandartLine2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnAdSizeStandartLine2.Location = new System.Drawing.Point(0, 23);
+            this.pnAdSizeStandartLine2.Name = "pnAdSizeStandartLine2";
+            this.pnAdSizeStandartLine2.Size = new System.Drawing.Size(415, 38);
+            this.pnAdSizeStandartLine2.TabIndex = 42;
+            // 
+            // checkEditStandartMechanicals
+            // 
+            this.checkEditStandartMechanicals.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkEditStandartMechanicals.EditValue = true;
+            this.checkEditStandartMechanicals.Location = new System.Drawing.Point(148, 0);
+            this.checkEditStandartMechanicals.Name = "checkEditStandartMechanicals";
+            this.checkEditStandartMechanicals.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkEditStandartMechanicals.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartMechanicals.Properties.Appearance.Options.UseFont = true;
+            this.checkEditStandartMechanicals.Properties.Appearance.Options.UseForeColor = true;
+            this.checkEditStandartMechanicals.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartMechanicals.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.checkEditStandartMechanicals.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartMechanicals.Properties.AppearanceFocused.Options.UseForeColor = true;
+            this.checkEditStandartMechanicals.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartMechanicals.Properties.AppearanceReadOnly.Options.UseForeColor = true;
+            this.checkEditStandartMechanicals.Properties.AutoHeight = false;
+            this.checkEditStandartMechanicals.Properties.Caption = "Mech Tag";
+            this.checkEditStandartMechanicals.Size = new System.Drawing.Size(267, 38);
+            this.checkEditStandartMechanicals.TabIndex = 40;
+            this.checkEditStandartMechanicals.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+            this.checkEditStandartMechanicals.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
+            // 
+            // checkEditStandartPageSize
+            // 
+            this.checkEditStandartPageSize.Dock = System.Windows.Forms.DockStyle.Left;
+            this.checkEditStandartPageSize.EditValue = true;
+            this.checkEditStandartPageSize.Location = new System.Drawing.Point(0, 0);
+            this.checkEditStandartPageSize.Name = "checkEditStandartPageSize";
+            this.checkEditStandartPageSize.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkEditStandartPageSize.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartPageSize.Properties.Appearance.Options.UseFont = true;
+            this.checkEditStandartPageSize.Properties.Appearance.Options.UseForeColor = true;
+            this.checkEditStandartPageSize.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartPageSize.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.checkEditStandartPageSize.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartPageSize.Properties.AppearanceFocused.Options.UseForeColor = true;
+            this.checkEditStandartPageSize.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartPageSize.Properties.AppearanceReadOnly.Options.UseForeColor = true;
+            this.checkEditStandartPageSize.Properties.AutoHeight = false;
+            this.checkEditStandartPageSize.Properties.Caption = "Page Size Tag";
+            this.checkEditStandartPageSize.Size = new System.Drawing.Size(148, 38);
+            this.checkEditStandartPageSize.TabIndex = 13;
+            this.checkEditStandartPageSize.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+            this.checkEditStandartPageSize.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
+            // 
+            // pnAdSizeStandartLine1
+            // 
+            this.pnAdSizeStandartLine1.Controls.Add(this.checkEditStandartColor);
+            this.pnAdSizeStandartLine1.Controls.Add(this.checkEditStandartDimensions);
+            this.pnAdSizeStandartLine1.Controls.Add(this.checkEditStandartSquare);
+            this.pnAdSizeStandartLine1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnAdSizeStandartLine1.Location = new System.Drawing.Point(0, 0);
+            this.pnAdSizeStandartLine1.Name = "pnAdSizeStandartLine1";
+            this.pnAdSizeStandartLine1.Size = new System.Drawing.Size(415, 23);
+            this.pnAdSizeStandartLine1.TabIndex = 43;
+            // 
+            // checkEditStandartColor
+            // 
+            this.checkEditStandartColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkEditStandartColor.EditValue = true;
+            this.checkEditStandartColor.Location = new System.Drawing.Point(279, 0);
+            this.checkEditStandartColor.Name = "checkEditStandartColor";
+            this.checkEditStandartColor.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkEditStandartColor.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartColor.Properties.Appearance.Options.UseFont = true;
+            this.checkEditStandartColor.Properties.Appearance.Options.UseForeColor = true;
+            this.checkEditStandartColor.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartColor.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.checkEditStandartColor.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartColor.Properties.AppearanceFocused.Options.UseForeColor = true;
+            this.checkEditStandartColor.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartColor.Properties.AppearanceReadOnly.Options.UseForeColor = true;
+            this.checkEditStandartColor.Properties.AutoHeight = false;
+            this.checkEditStandartColor.Properties.Caption = "Color Tag";
+            this.checkEditStandartColor.Size = new System.Drawing.Size(136, 23);
+            this.checkEditStandartColor.TabIndex = 21;
+            this.checkEditStandartColor.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+            this.checkEditStandartColor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
+            // 
+            // checkEditStandartDimensions
+            // 
+            this.checkEditStandartDimensions.Dock = System.Windows.Forms.DockStyle.Left;
+            this.checkEditStandartDimensions.EditValue = true;
+            this.checkEditStandartDimensions.Location = new System.Drawing.Point(146, 0);
+            this.checkEditStandartDimensions.Name = "checkEditStandartDimensions";
+            this.checkEditStandartDimensions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkEditStandartDimensions.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartDimensions.Properties.Appearance.Options.UseFont = true;
+            this.checkEditStandartDimensions.Properties.Appearance.Options.UseForeColor = true;
+            this.checkEditStandartDimensions.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartDimensions.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.checkEditStandartDimensions.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartDimensions.Properties.AppearanceFocused.Options.UseForeColor = true;
+            this.checkEditStandartDimensions.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartDimensions.Properties.AppearanceReadOnly.Options.UseForeColor = true;
+            this.checkEditStandartDimensions.Properties.AutoHeight = false;
+            this.checkEditStandartDimensions.Properties.Caption = "Col Inch Val";
+            this.checkEditStandartDimensions.Size = new System.Drawing.Size(133, 23);
+            this.checkEditStandartDimensions.TabIndex = 39;
+            this.checkEditStandartDimensions.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+            this.checkEditStandartDimensions.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
+            // 
+            // checkEditStandartSquare
+            // 
+            this.checkEditStandartSquare.Dock = System.Windows.Forms.DockStyle.Left;
+            this.checkEditStandartSquare.EditValue = true;
+            this.checkEditStandartSquare.Location = new System.Drawing.Point(0, 0);
+            this.checkEditStandartSquare.Name = "checkEditStandartSquare";
+            this.checkEditStandartSquare.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkEditStandartSquare.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartSquare.Properties.Appearance.Options.UseFont = true;
+            this.checkEditStandartSquare.Properties.Appearance.Options.UseForeColor = true;
+            this.checkEditStandartSquare.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartSquare.Properties.AppearanceDisabled.Options.UseForeColor = true;
+            this.checkEditStandartSquare.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartSquare.Properties.AppearanceFocused.Options.UseForeColor = true;
+            this.checkEditStandartSquare.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
+            this.checkEditStandartSquare.Properties.AppearanceReadOnly.Options.UseForeColor = true;
+            this.checkEditStandartSquare.Properties.AutoHeight = false;
+            this.checkEditStandartSquare.Properties.Caption = "Column Inches Tag";
+            this.checkEditStandartSquare.Size = new System.Drawing.Size(146, 23);
+            this.checkEditStandartSquare.TabIndex = 12;
+            this.checkEditStandartSquare.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+            this.checkEditStandartSquare.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
+            // 
             // PublicationBasicOverviewControl
             // 
             this.Controls.Add(this.pnMain);
@@ -967,22 +967,6 @@
             this.pnMain.ResumeLayout(false);
             this.pnBody.ResumeLayout(false);
             this.pnBody.PerformLayout();
-            this.pnAdSize.ResumeLayout(false);
-            this.pnAdSizeSharePage.ResumeLayout(false);
-            this.pnAdSizeSharePageLine2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePageDimensions.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePagePageSize.Properties)).EndInit();
-            this.panelAdSizeSharePageLine1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePageColor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePagePercentOfPage.Properties)).EndInit();
-            this.pnAdSizeStandart.ResumeLayout(false);
-            this.pnAdSizeStandartLine2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartMechanicals.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartPageSize.Properties)).EndInit();
-            this.pnAdSizeStandartLine1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartColor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartDimensions.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartSquare.Properties)).EndInit();
             this.pnInvestmentDetails.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.checkEditTotalCost.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditAvgPCIRate.Properties)).EndInit();
@@ -1003,6 +987,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEditTotalAds.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInvestmentDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditInvestmentDetailsPicture.Properties)).EndInit();
+            this.pnAdSize.ResumeLayout(false);
+            this.pnAdSizeSharePage.ResumeLayout(false);
+            this.pnAdSizeSharePageLine2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePageDimensions.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePagePageSize.Properties)).EndInit();
+            this.panelAdSizeSharePageLine1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePageColor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditSharePagePercentOfPage.Properties)).EndInit();
+            this.pnAdSizeStandart.ResumeLayout(false);
+            this.pnAdSizeStandartLine2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartMechanicals.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartPageSize.Properties)).EndInit();
+            this.pnAdSizeStandartLine1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartColor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartDimensions.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditStandartSquare.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -32,19 +32,16 @@
             this.pnEmpty = new System.Windows.Forms.Panel();
             this.pnMain = new System.Windows.Forms.Panel();
             this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
-            this.navBarControlDetails = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroupAdNotes = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarGroupControlContainerAdNotes = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.navBarGroupControlContainerSlideBulltes = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.navBarGroupControlContainerSlideHeader = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.navBarGroupSlideHeader = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarGroupSlideBullets = new DevExpress.XtraNavBar.NavBarGroup();
+            this.xtraTabControlDetails = new DevExpress.XtraTab.XtraTabControl();
+            this.xtraTabPageAdNotes = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPageSlideHeaders = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPageSlideBullets = new DevExpress.XtraTab.XtraTabPage();
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
             this.splitContainerControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControlDetails)).BeginInit();
-            this.navBarControlDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlDetails)).BeginInit();
+            this.xtraTabControlDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +66,7 @@
             this.splitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl.Name = "splitContainerControl";
-            this.splitContainerControl.Panel1.Controls.Add(this.navBarControlDetails);
+            this.splitContainerControl.Panel1.Controls.Add(this.xtraTabControlDetails);
             this.splitContainerControl.Panel1.MinSize = 250;
             this.splitContainerControl.Panel1.Text = "Panel1";
             this.splitContainerControl.Panel2.Controls.Add(this.pnMain);
@@ -81,85 +78,48 @@
             this.splitContainerControl.TabIndex = 2;
             this.splitContainerControl.Text = "splitContainerControl";
             // 
-            // navBarControlDetails
+            // xtraTabControlDetails
             // 
-            this.navBarControlDetails.ActiveGroup = this.navBarGroupAdNotes;
-            this.navBarControlDetails.BackColor = System.Drawing.Color.Transparent;
-            this.navBarControlDetails.Controls.Add(this.navBarGroupControlContainerAdNotes);
-            this.navBarControlDetails.Controls.Add(this.navBarGroupControlContainerSlideBulltes);
-            this.navBarControlDetails.Controls.Add(this.navBarGroupControlContainerSlideHeader);
-            this.navBarControlDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navBarControlDetails.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroupAdNotes,
-            this.navBarGroupSlideHeader,
-            this.navBarGroupSlideBullets});
-            this.navBarControlDetails.Location = new System.Drawing.Point(0, 0);
-            this.navBarControlDetails.Name = "navBarControlDetails";
-            this.navBarControlDetails.OptionsNavPane.ExpandedWidth = 212;
-            this.navBarControlDetails.OptionsNavPane.ShowExpandButton = false;
-            this.navBarControlDetails.OptionsNavPane.ShowOverflowButton = false;
-            this.navBarControlDetails.OptionsNavPane.ShowOverflowPanel = false;
-            this.navBarControlDetails.OptionsNavPane.ShowSplitter = false;
-            this.navBarControlDetails.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.ExplorerBar;
-            this.navBarControlDetails.Size = new System.Drawing.Size(0, 0);
-            this.navBarControlDetails.TabIndex = 0;
-            this.navBarControlDetails.Text = "navBarControl1";
-            this.navBarControlDetails.View = new DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator();
+            this.xtraTabControlDetails.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.xtraTabControlDetails.Appearance.Options.UseFont = true;
+            this.xtraTabControlDetails.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.xtraTabControlDetails.AppearancePage.Header.Options.UseFont = true;
+            this.xtraTabControlDetails.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.xtraTabControlDetails.AppearancePage.HeaderActive.Options.UseFont = true;
+            this.xtraTabControlDetails.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.xtraTabControlDetails.AppearancePage.HeaderDisabled.Options.UseFont = true;
+            this.xtraTabControlDetails.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.xtraTabControlDetails.AppearancePage.HeaderHotTracked.Options.UseFont = true;
+            this.xtraTabControlDetails.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.xtraTabControlDetails.AppearancePage.PageClient.Options.UseFont = true;
+            this.xtraTabControlDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControlDetails.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControlDetails.Name = "xtraTabControlDetails";
+            this.xtraTabControlDetails.SelectedTabPage = this.xtraTabPageAdNotes;
+            this.xtraTabControlDetails.Size = new System.Drawing.Size(0, 0);
+            this.xtraTabControlDetails.TabIndex = 0;
+            this.xtraTabControlDetails.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPageAdNotes,
+            this.xtraTabPageSlideHeaders,
+            this.xtraTabPageSlideBullets});
             // 
-            // navBarGroupAdNotes
+            // xtraTabPageAdNotes
             // 
-            this.navBarGroupAdNotes.Appearance.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.navBarGroupAdNotes.Appearance.Options.UseFont = true;
-            this.navBarGroupAdNotes.Caption = "Ad Notes";
-            this.navBarGroupAdNotes.ControlContainer = this.navBarGroupControlContainerAdNotes;
-            this.navBarGroupAdNotes.Expanded = true;
-            this.navBarGroupAdNotes.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Small;
-            this.navBarGroupAdNotes.GroupClientHeight = 80;
-            this.navBarGroupAdNotes.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroupAdNotes.Name = "navBarGroupAdNotes";
-            this.navBarGroupAdNotes.SmallImage = global::AdScheduleBuilder.Properties.Resources.GridAdNotes;
+            this.xtraTabPageAdNotes.Name = "xtraTabPageAdNotes";
+            this.xtraTabPageAdNotes.Size = new System.Drawing.Size(0, 0);
+            this.xtraTabPageAdNotes.Text = "AdNotes";
             // 
-            // navBarGroupControlContainerAdNotes
+            // xtraTabPageSlideHeaders
             // 
-            this.navBarGroupControlContainerAdNotes.Name = "navBarGroupControlContainerAdNotes";
-            this.navBarGroupControlContainerAdNotes.Size = new System.Drawing.Size(248, 330);
-            this.navBarGroupControlContainerAdNotes.TabIndex = 1;
+            this.xtraTabPageSlideHeaders.Name = "xtraTabPageSlideHeaders";
+            this.xtraTabPageSlideHeaders.Size = new System.Drawing.Size(0, 0);
+            this.xtraTabPageSlideHeaders.Text = "Headers";
             // 
-            // navBarGroupControlContainerSlideBulltes
+            // xtraTabPageSlideBullets
             // 
-            this.navBarGroupControlContainerSlideBulltes.Name = "navBarGroupControlContainerSlideBulltes";
-            this.navBarGroupControlContainerSlideBulltes.Size = new System.Drawing.Size(210, 259);
-            this.navBarGroupControlContainerSlideBulltes.TabIndex = 0;
-            // 
-            // navBarGroupControlContainerSlideHeader
-            // 
-            this.navBarGroupControlContainerSlideHeader.Name = "navBarGroupControlContainerSlideHeader";
-            this.navBarGroupControlContainerSlideHeader.Size = new System.Drawing.Size(248, 330);
-            this.navBarGroupControlContainerSlideHeader.TabIndex = 2;
-            // 
-            // navBarGroupSlideHeader
-            // 
-            this.navBarGroupSlideHeader.Appearance.Font = new System.Drawing.Font("Arial", 15.75F);
-            this.navBarGroupSlideHeader.Appearance.Options.UseFont = true;
-            this.navBarGroupSlideHeader.Caption = "Slide Headers";
-            this.navBarGroupSlideHeader.ControlContainer = this.navBarGroupControlContainerSlideHeader;
-            this.navBarGroupSlideHeader.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Small;
-            this.navBarGroupSlideHeader.GroupClientHeight = 80;
-            this.navBarGroupSlideHeader.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroupSlideHeader.Name = "navBarGroupSlideHeader";
-            this.navBarGroupSlideHeader.SmallImage = global::AdScheduleBuilder.Properties.Resources.SlideHeader;
-            // 
-            // navBarGroupSlideBullets
-            // 
-            this.navBarGroupSlideBullets.Appearance.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.navBarGroupSlideBullets.Appearance.Options.UseFont = true;
-            this.navBarGroupSlideBullets.Caption = "Schedule Totals";
-            this.navBarGroupSlideBullets.ControlContainer = this.navBarGroupControlContainerSlideBulltes;
-            this.navBarGroupSlideBullets.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Small;
-            this.navBarGroupSlideBullets.GroupClientHeight = 80;
-            this.navBarGroupSlideBullets.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroupSlideBullets.Name = "navBarGroupSlideBullets";
-            this.navBarGroupSlideBullets.SmallImage = global::AdScheduleBuilder.Properties.Resources.SlideBullets;
+            this.xtraTabPageSlideBullets.Name = "xtraTabPageSlideBullets";
+            this.xtraTabPageSlideBullets.Size = new System.Drawing.Size(0, 0);
+            this.xtraTabPageSlideBullets.Text = "Totals";
             // 
             // defaultLookAndFeel
             // 
@@ -191,8 +151,8 @@
             this.Size = new System.Drawing.Size(453, 490);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
             this.splitContainerControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControlDetails)).EndInit();
-            this.navBarControlDetails.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlDetails)).EndInit();
+            this.xtraTabControlDetails.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
             this.ResumeLayout(false);
 
@@ -204,13 +164,10 @@
         private System.Windows.Forms.Panel pnMain;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        private DevExpress.XtraNavBar.NavBarControl navBarControlDetails;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroupAdNotes;
         private DevExpress.XtraEditors.StyleController styleController;
-        private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainerAdNotes;
-        private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainerSlideBulltes;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroupSlideBullets;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroupSlideHeader;
-        private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainerSlideHeader;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControlDetails;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageAdNotes;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageSlideHeaders;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageSlideBullets;
     }
 }

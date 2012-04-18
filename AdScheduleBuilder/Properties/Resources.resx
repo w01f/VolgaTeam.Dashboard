@@ -220,9 +220,6 @@
   <data name="ModelsOfSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ModelsOfSuccess.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SlideBullets" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SlideBullets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Unselected" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Unselected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -307,9 +304,6 @@
   <data name="AdNoteNormal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AdNoteNormal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SlideHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SlideHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Selected" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Selected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -330,9 +324,6 @@
   </data>
   <data name="BlackColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BlackColor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="GridAdNotes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GridAdNotes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DetailedGrid" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DetailedGrid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

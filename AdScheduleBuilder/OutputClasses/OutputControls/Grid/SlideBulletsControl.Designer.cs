@@ -48,7 +48,6 @@
             this.checkEditTotalFinalCost = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditTotalInserts = new DevExpress.XtraEditors.CheckEdit();
             this.pnSlideOptions = new System.Windows.Forms.Panel();
-            this.checkEditNoSlides = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditAllSlides = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditLastSlide = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditEnableSlideBullets = new DevExpress.XtraEditors.CheckEdit();
@@ -72,7 +71,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEditTotalFinalCost.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditTotalInserts.Properties)).BeginInit();
             this.pnSlideOptions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditNoSlides.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditAllSlides.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditLastSlide.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditEnableSlideBullets.Properties)).BeginInit();
@@ -89,9 +87,9 @@
             this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnMain.Controls.Add(this.xtraScrollableControl);
             this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnMain.Location = new System.Drawing.Point(0, 123);
+            this.pnMain.Location = new System.Drawing.Point(0, 67);
             this.pnMain.Name = "pnMain";
-            this.pnMain.Size = new System.Drawing.Size(257, 391);
+            this.pnMain.Size = new System.Drawing.Size(257, 447);
             this.pnMain.TabIndex = 51;
             // 
             // xtraScrollableControl
@@ -117,13 +115,13 @@
             this.xtraScrollableControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraScrollableControl.Location = new System.Drawing.Point(0, 0);
             this.xtraScrollableControl.Name = "xtraScrollableControl";
-            this.xtraScrollableControl.Size = new System.Drawing.Size(253, 387);
+            this.xtraScrollableControl.Size = new System.Drawing.Size(253, 443);
             this.xtraScrollableControl.TabIndex = 48;
             // 
             // checkEditReadership
             // 
             this.checkEditReadership.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkEditReadership.Location = new System.Drawing.Point(0, 338);
+            this.checkEditReadership.Location = new System.Drawing.Point(0, 377);
             this.checkEditReadership.Name = "checkEditReadership";
             this.checkEditReadership.Properties.AllowHtmlString = true;
             this.checkEditReadership.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -131,7 +129,7 @@
             this.checkEditReadership.Properties.AutoHeight = false;
             this.checkEditReadership.Properties.AutoWidth = true;
             this.checkEditReadership.Properties.Caption = "Readership Tag";
-            this.checkEditReadership.Size = new System.Drawing.Size(112, 26);
+            this.checkEditReadership.Size = new System.Drawing.Size(112, 29);
             this.checkEditReadership.StyleController = this.styleController;
             this.checkEditReadership.TabIndex = 55;
             this.checkEditReadership.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -159,7 +157,7 @@
             // checkEditDelivery
             // 
             this.checkEditDelivery.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkEditDelivery.Location = new System.Drawing.Point(0, 312);
+            this.checkEditDelivery.Location = new System.Drawing.Point(0, 348);
             this.checkEditDelivery.Name = "checkEditDelivery";
             this.checkEditDelivery.Properties.AllowHtmlString = true;
             this.checkEditDelivery.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -167,7 +165,7 @@
             this.checkEditDelivery.Properties.AutoHeight = false;
             this.checkEditDelivery.Properties.AutoWidth = true;
             this.checkEditDelivery.Properties.Caption = "Delivery Tag";
-            this.checkEditDelivery.Size = new System.Drawing.Size(92, 26);
+            this.checkEditDelivery.Size = new System.Drawing.Size(92, 29);
             this.checkEditDelivery.StyleController = this.styleController;
             this.checkEditDelivery.TabIndex = 54;
             this.checkEditDelivery.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -176,7 +174,7 @@
             // checkEditTotalDiscounts
             // 
             this.checkEditTotalDiscounts.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkEditTotalDiscounts.Location = new System.Drawing.Point(0, 286);
+            this.checkEditTotalDiscounts.Location = new System.Drawing.Point(0, 319);
             this.checkEditTotalDiscounts.Name = "checkEditTotalDiscounts";
             this.checkEditTotalDiscounts.Properties.AllowHtmlString = true;
             this.checkEditTotalDiscounts.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -184,7 +182,7 @@
             this.checkEditTotalDiscounts.Properties.AutoHeight = false;
             this.checkEditTotalDiscounts.Properties.AutoWidth = true;
             this.checkEditTotalDiscounts.Properties.Caption = "Discounts Tag";
-            this.checkEditTotalDiscounts.Size = new System.Drawing.Size(105, 26);
+            this.checkEditTotalDiscounts.Size = new System.Drawing.Size(105, 29);
             this.checkEditTotalDiscounts.StyleController = this.styleController;
             this.checkEditTotalDiscounts.TabIndex = 52;
             this.checkEditTotalDiscounts.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -193,7 +191,7 @@
             // checkEditTotalColor
             // 
             this.checkEditTotalColor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkEditTotalColor.Location = new System.Drawing.Point(0, 260);
+            this.checkEditTotalColor.Location = new System.Drawing.Point(0, 290);
             this.checkEditTotalColor.Name = "checkEditTotalColor";
             this.checkEditTotalColor.Properties.AllowHtmlString = true;
             this.checkEditTotalColor.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -201,7 +199,7 @@
             this.checkEditTotalColor.Properties.AutoHeight = false;
             this.checkEditTotalColor.Properties.AutoWidth = true;
             this.checkEditTotalColor.Properties.Caption = "Color Tag";
-            this.checkEditTotalColor.Size = new System.Drawing.Size(77, 26);
+            this.checkEditTotalColor.Size = new System.Drawing.Size(77, 29);
             this.checkEditTotalColor.StyleController = this.styleController;
             this.checkEditTotalColor.TabIndex = 46;
             this.checkEditTotalColor.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -210,7 +208,7 @@
             // checkEditAvgPCI
             // 
             this.checkEditAvgPCI.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkEditAvgPCI.Location = new System.Drawing.Point(0, 234);
+            this.checkEditAvgPCI.Location = new System.Drawing.Point(0, 261);
             this.checkEditAvgPCI.Name = "checkEditAvgPCI";
             this.checkEditAvgPCI.Properties.AllowHtmlString = true;
             this.checkEditAvgPCI.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -218,7 +216,7 @@
             this.checkEditAvgPCI.Properties.AutoHeight = false;
             this.checkEditAvgPCI.Properties.AutoWidth = true;
             this.checkEditAvgPCI.Properties.Caption = "Avg PCI Tag";
-            this.checkEditAvgPCI.Size = new System.Drawing.Size(93, 26);
+            this.checkEditAvgPCI.Size = new System.Drawing.Size(93, 29);
             this.checkEditAvgPCI.StyleController = this.styleController;
             this.checkEditAvgPCI.TabIndex = 49;
             this.checkEditAvgPCI.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -227,7 +225,7 @@
             // checkEditAvgFinalCost
             // 
             this.checkEditAvgFinalCost.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkEditAvgFinalCost.Location = new System.Drawing.Point(0, 208);
+            this.checkEditAvgFinalCost.Location = new System.Drawing.Point(0, 232);
             this.checkEditAvgFinalCost.Name = "checkEditAvgFinalCost";
             this.checkEditAvgFinalCost.Properties.AllowHtmlString = true;
             this.checkEditAvgFinalCost.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -235,7 +233,7 @@
             this.checkEditAvgFinalCost.Properties.AutoHeight = false;
             this.checkEditAvgFinalCost.Properties.AutoWidth = true;
             this.checkEditAvgFinalCost.Properties.Caption = "Avg Final Cost Tag";
-            this.checkEditAvgFinalCost.Size = new System.Drawing.Size(131, 26);
+            this.checkEditAvgFinalCost.Size = new System.Drawing.Size(131, 29);
             this.checkEditAvgFinalCost.StyleController = this.styleController;
             this.checkEditAvgFinalCost.TabIndex = 51;
             this.checkEditAvgFinalCost.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -244,7 +242,7 @@
             // checkEditAvgAdCost
             // 
             this.checkEditAvgAdCost.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkEditAvgAdCost.Location = new System.Drawing.Point(0, 182);
+            this.checkEditAvgAdCost.Location = new System.Drawing.Point(0, 203);
             this.checkEditAvgAdCost.Name = "checkEditAvgAdCost";
             this.checkEditAvgAdCost.Properties.AllowHtmlString = true;
             this.checkEditAvgAdCost.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -260,7 +258,7 @@
             this.checkEditAvgAdCost.Properties.AutoHeight = false;
             this.checkEditAvgAdCost.Properties.AutoWidth = true;
             this.checkEditAvgAdCost.Properties.Caption = "Avg Ad Cost Tag";
-            this.checkEditAvgAdCost.Size = new System.Drawing.Size(119, 26);
+            this.checkEditAvgAdCost.Size = new System.Drawing.Size(119, 29);
             this.checkEditAvgAdCost.StyleController = this.styleController;
             this.checkEditAvgAdCost.TabIndex = 50;
             this.checkEditAvgAdCost.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -269,7 +267,7 @@
             // checkEditTotalSquare
             // 
             this.checkEditTotalSquare.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkEditTotalSquare.Location = new System.Drawing.Point(0, 156);
+            this.checkEditTotalSquare.Location = new System.Drawing.Point(0, 174);
             this.checkEditTotalSquare.Name = "checkEditTotalSquare";
             this.checkEditTotalSquare.Properties.AllowHtmlString = true;
             this.checkEditTotalSquare.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -277,7 +275,7 @@
             this.checkEditTotalSquare.Properties.AutoHeight = false;
             this.checkEditTotalSquare.Properties.AutoWidth = true;
             this.checkEditTotalSquare.Properties.Caption = "Total Square Tag";
-            this.checkEditTotalSquare.Size = new System.Drawing.Size(120, 26);
+            this.checkEditTotalSquare.Size = new System.Drawing.Size(120, 29);
             this.checkEditTotalSquare.StyleController = this.styleController;
             this.checkEditTotalSquare.TabIndex = 44;
             this.checkEditTotalSquare.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -286,7 +284,7 @@
             // checkEditColumnInches
             // 
             this.checkEditColumnInches.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkEditColumnInches.Location = new System.Drawing.Point(0, 130);
+            this.checkEditColumnInches.Location = new System.Drawing.Point(0, 145);
             this.checkEditColumnInches.Name = "checkEditColumnInches";
             this.checkEditColumnInches.Properties.AllowHtmlString = true;
             this.checkEditColumnInches.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -294,7 +292,7 @@
             this.checkEditColumnInches.Properties.AutoHeight = false;
             this.checkEditColumnInches.Properties.AutoWidth = true;
             this.checkEditColumnInches.Properties.Caption = "Column Inches Tag";
-            this.checkEditColumnInches.Size = new System.Drawing.Size(133, 26);
+            this.checkEditColumnInches.Size = new System.Drawing.Size(133, 29);
             this.checkEditColumnInches.StyleController = this.styleController;
             this.checkEditColumnInches.TabIndex = 47;
             this.checkEditColumnInches.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -303,7 +301,7 @@
             // checkEditPercentOfPage
             // 
             this.checkEditPercentOfPage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkEditPercentOfPage.Location = new System.Drawing.Point(0, 104);
+            this.checkEditPercentOfPage.Location = new System.Drawing.Point(0, 116);
             this.checkEditPercentOfPage.Name = "checkEditPercentOfPage";
             this.checkEditPercentOfPage.Properties.AllowHtmlString = true;
             this.checkEditPercentOfPage.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -311,7 +309,7 @@
             this.checkEditPercentOfPage.Properties.AutoHeight = false;
             this.checkEditPercentOfPage.Properties.AutoWidth = true;
             this.checkEditPercentOfPage.Properties.Caption = "Percent Of Page Tag";
-            this.checkEditPercentOfPage.Size = new System.Drawing.Size(143, 26);
+            this.checkEditPercentOfPage.Size = new System.Drawing.Size(143, 29);
             this.checkEditPercentOfPage.StyleController = this.styleController;
             this.checkEditPercentOfPage.TabIndex = 56;
             this.checkEditPercentOfPage.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -320,7 +318,7 @@
             // checkEditDimensions
             // 
             this.checkEditDimensions.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkEditDimensions.Location = new System.Drawing.Point(0, 78);
+            this.checkEditDimensions.Location = new System.Drawing.Point(0, 87);
             this.checkEditDimensions.Name = "checkEditDimensions";
             this.checkEditDimensions.Properties.AllowHtmlString = true;
             this.checkEditDimensions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -328,7 +326,7 @@
             this.checkEditDimensions.Properties.AutoHeight = false;
             this.checkEditDimensions.Properties.AutoWidth = true;
             this.checkEditDimensions.Properties.Caption = "Dimensions Tag";
-            this.checkEditDimensions.Size = new System.Drawing.Size(115, 26);
+            this.checkEditDimensions.Size = new System.Drawing.Size(115, 29);
             this.checkEditDimensions.StyleController = this.styleController;
             this.checkEditDimensions.TabIndex = 48;
             this.checkEditDimensions.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -337,7 +335,7 @@
             // checkEditPageSize
             // 
             this.checkEditPageSize.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkEditPageSize.Location = new System.Drawing.Point(0, 52);
+            this.checkEditPageSize.Location = new System.Drawing.Point(0, 58);
             this.checkEditPageSize.Name = "checkEditPageSize";
             this.checkEditPageSize.Properties.AllowHtmlString = true;
             this.checkEditPageSize.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -345,7 +343,7 @@
             this.checkEditPageSize.Properties.AutoHeight = false;
             this.checkEditPageSize.Properties.AutoWidth = true;
             this.checkEditPageSize.Properties.Caption = "Page SizeTag";
-            this.checkEditPageSize.Size = new System.Drawing.Size(103, 26);
+            this.checkEditPageSize.Size = new System.Drawing.Size(103, 29);
             this.checkEditPageSize.StyleController = this.styleController;
             this.checkEditPageSize.TabIndex = 45;
             this.checkEditPageSize.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -355,7 +353,7 @@
             // 
             this.checkEditTotalFinalCost.Dock = System.Windows.Forms.DockStyle.Top;
             this.checkEditTotalFinalCost.EditValue = true;
-            this.checkEditTotalFinalCost.Location = new System.Drawing.Point(0, 26);
+            this.checkEditTotalFinalCost.Location = new System.Drawing.Point(0, 29);
             this.checkEditTotalFinalCost.Name = "checkEditTotalFinalCost";
             this.checkEditTotalFinalCost.Properties.AllowHtmlString = true;
             this.checkEditTotalFinalCost.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -363,7 +361,7 @@
             this.checkEditTotalFinalCost.Properties.AutoHeight = false;
             this.checkEditTotalFinalCost.Properties.AutoWidth = true;
             this.checkEditTotalFinalCost.Properties.Caption = "Investments Tag";
-            this.checkEditTotalFinalCost.Size = new System.Drawing.Size(116, 26);
+            this.checkEditTotalFinalCost.Size = new System.Drawing.Size(116, 29);
             this.checkEditTotalFinalCost.StyleController = this.styleController;
             this.checkEditTotalFinalCost.TabIndex = 53;
             this.checkEditTotalFinalCost.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -381,7 +379,7 @@
             this.checkEditTotalInserts.Properties.AutoHeight = false;
             this.checkEditTotalInserts.Properties.AutoWidth = true;
             this.checkEditTotalInserts.Properties.Caption = "Total Ads Tag";
-            this.checkEditTotalInserts.Size = new System.Drawing.Size(102, 26);
+            this.checkEditTotalInserts.Size = new System.Drawing.Size(102, 29);
             this.checkEditTotalInserts.StyleController = this.styleController;
             this.checkEditTotalInserts.TabIndex = 43;
             this.checkEditTotalInserts.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -390,45 +388,29 @@
             // pnSlideOptions
             // 
             this.pnSlideOptions.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnSlideOptions.Controls.Add(this.checkEditNoSlides);
             this.pnSlideOptions.Controls.Add(this.checkEditAllSlides);
             this.pnSlideOptions.Controls.Add(this.checkEditLastSlide);
             this.pnSlideOptions.Controls.Add(this.checkEditEnableSlideBullets);
             this.pnSlideOptions.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnSlideOptions.Location = new System.Drawing.Point(0, 0);
             this.pnSlideOptions.Name = "pnSlideOptions";
-            this.pnSlideOptions.Size = new System.Drawing.Size(257, 123);
+            this.pnSlideOptions.Size = new System.Drawing.Size(257, 67);
             this.pnSlideOptions.TabIndex = 52;
-            // 
-            // checkEditNoSlides
-            // 
-            this.checkEditNoSlides.Location = new System.Drawing.Point(0, 93);
-            this.checkEditNoSlides.Name = "checkEditNoSlides";
-            this.checkEditNoSlides.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.checkEditNoSlides.Properties.Appearance.Options.UseFont = true;
-            this.checkEditNoSlides.Properties.AutoWidth = true;
-            this.checkEditNoSlides.Properties.Caption = "Do not show at all";
-            this.checkEditNoSlides.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
-            this.checkEditNoSlides.Size = new System.Drawing.Size(127, 21);
-            this.checkEditNoSlides.StyleController = this.styleController;
-            this.checkEditNoSlides.TabIndex = 27;
-            this.checkEditNoSlides.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-            this.checkEditNoSlides.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditNoSlides_EditValueChanging);
             // 
             // checkEditAllSlides
             // 
-            this.checkEditAllSlides.Location = new System.Drawing.Point(0, 66);
+            this.checkEditAllSlides.Location = new System.Drawing.Point(144, 39);
             this.checkEditAllSlides.Name = "checkEditAllSlides";
             this.checkEditAllSlides.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
             this.checkEditAllSlides.Properties.Appearance.Options.UseFont = true;
             this.checkEditAllSlides.Properties.AutoWidth = true;
-            this.checkEditAllSlides.Properties.Caption = "Show on all slides";
+            this.checkEditAllSlides.Properties.Caption = "All slides";
             this.checkEditAllSlides.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
-            this.checkEditAllSlides.Size = new System.Drawing.Size(128, 21);
+            this.checkEditAllSlides.Properties.RadioGroupIndex = 1;
+            this.checkEditAllSlides.Size = new System.Drawing.Size(76, 21);
             this.checkEditAllSlides.StyleController = this.styleController;
             this.checkEditAllSlides.TabIndex = 26;
             this.checkEditAllSlides.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-            this.checkEditAllSlides.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditNoSlides_EditValueChanging);
             // 
             // checkEditLastSlide
             // 
@@ -437,13 +419,13 @@
             this.checkEditLastSlide.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
             this.checkEditLastSlide.Properties.Appearance.Options.UseFont = true;
             this.checkEditLastSlide.Properties.AutoWidth = true;
-            this.checkEditLastSlide.Properties.Caption = "Last Slide Only";
+            this.checkEditLastSlide.Properties.Caption = "Last Slide";
             this.checkEditLastSlide.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
-            this.checkEditLastSlide.Size = new System.Drawing.Size(112, 21);
+            this.checkEditLastSlide.Properties.RadioGroupIndex = 1;
+            this.checkEditLastSlide.Size = new System.Drawing.Size(81, 21);
             this.checkEditLastSlide.StyleController = this.styleController;
             this.checkEditLastSlide.TabIndex = 25;
             this.checkEditLastSlide.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-            this.checkEditLastSlide.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditNoSlides_EditValueChanging);
             // 
             // checkEditEnableSlideBullets
             // 
@@ -452,7 +434,7 @@
             this.checkEditEnableSlideBullets.Name = "checkEditEnableSlideBullets";
             this.checkEditEnableSlideBullets.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.checkEditEnableSlideBullets.Properties.Appearance.Options.UseFont = true;
-            this.checkEditEnableSlideBullets.Properties.Caption = "Select up to 6 Slide Notes";
+            this.checkEditEnableSlideBullets.Properties.Caption = "Show Slide Totals";
             this.checkEditEnableSlideBullets.Size = new System.Drawing.Size(244, 24);
             this.checkEditEnableSlideBullets.TabIndex = 24;
             this.checkEditEnableSlideBullets.CheckedChanged += new System.EventHandler(this.checkEditEnableSlideBullets_CheckedChanged);
@@ -511,7 +493,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEditTotalInserts.Properties)).EndInit();
             this.pnSlideOptions.ResumeLayout(false);
             this.pnSlideOptions.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditNoSlides.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditAllSlides.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditLastSlide.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditEnableSlideBullets.Properties)).EndInit();
@@ -545,7 +526,6 @@
         private System.Windows.Forms.Panel pnSignature;
         public DevExpress.XtraEditors.CheckEdit checkEditSignature;
         private DevExpress.XtraEditors.CheckEdit checkEditEnableSlideBullets;
-        private DevExpress.XtraEditors.CheckEdit checkEditNoSlides;
         private DevExpress.XtraEditors.CheckEdit checkEditAllSlides;
         private DevExpress.XtraEditors.CheckEdit checkEditLastSlide;
         private DevExpress.XtraEditors.StyleController styleController;

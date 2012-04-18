@@ -31,10 +31,10 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 checkEditDecisionMaker.Font = font;
                 checkEditFlightDates.Font = font;
                 checkEditPresentationDate.Font = font;
-                checkEditPublicationLogo1.Font = font;
-                checkEditPublicationLogo2.Font = font;
-                checkEditPublicationLogo3.Font = font;
-                checkEditPublicationLogo4.Font = font;
+                checkEditLogo1.Font = font;
+                checkEditLogo2.Font = font;
+                checkEditLogo3.Font = font;
+                checkEditLogo4.Font = font;
                 checkEditPublicationName.Font = font;
                 checkEditSlideTitle.Font = font;
             }
@@ -48,10 +48,10 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             checkEditDecisionMaker.Checked = _settingsContainer.SlideHeaderState.ShowDecisionMaker;
             checkEditFlightDates.Checked = _settingsContainer.SlideHeaderState.ShowFlightDates;
             checkEditPresentationDate.Checked = _settingsContainer.SlideHeaderState.ShowPresentationDate;
-            checkEditPublicationLogo1.Checked = _settingsContainer.SlideHeaderState.ShowLogo1;
-            checkEditPublicationLogo2.Checked = _settingsContainer.SlideHeaderState.ShowLogo2;
-            checkEditPublicationLogo3.Checked = _settingsContainer.SlideHeaderState.ShowLogo3;
-            checkEditPublicationLogo4.Checked = _settingsContainer.SlideHeaderState.ShowLogo4;
+            checkEditLogo1.Checked = _settingsContainer.SlideHeaderState.ShowLogo1;
+            checkEditLogo2.Checked = _settingsContainer.SlideHeaderState.ShowLogo2;
+            checkEditLogo3.Checked = _settingsContainer.SlideHeaderState.ShowLogo3;
+            checkEditLogo4.Checked = _settingsContainer.SlideHeaderState.ShowLogo4;
             checkEditPublicationName.Checked = _settingsContainer.SlideHeaderState.ShowName;
             checkEditSlideTitle.Checked = _settingsContainer.SlideHeaderState.ShowSlideHeader;
             _settingsContainer.SetSlideHeader();
@@ -67,10 +67,10 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 _settingsContainer.SlideHeaderState.ShowDecisionMaker = checkEditDecisionMaker.Checked & checkEditEnableSlideHeader.Checked;
                 _settingsContainer.SlideHeaderState.ShowFlightDates = checkEditFlightDates.Checked & checkEditEnableSlideHeader.Checked;
                 _settingsContainer.SlideHeaderState.ShowPresentationDate = checkEditPresentationDate.Checked & checkEditEnableSlideHeader.Checked;
-                _settingsContainer.SlideHeaderState.ShowLogo1 = checkEditPublicationLogo1.Checked & checkEditEnableSlideHeader.Checked;
-                _settingsContainer.SlideHeaderState.ShowLogo2 = checkEditPublicationLogo2.Checked & checkEditEnableSlideHeader.Checked;
-                _settingsContainer.SlideHeaderState.ShowLogo3 = checkEditPublicationLogo3.Checked & checkEditEnableSlideHeader.Checked;
-                _settingsContainer.SlideHeaderState.ShowLogo4 = checkEditPublicationLogo4.Checked & checkEditEnableSlideHeader.Checked;
+                _settingsContainer.SlideHeaderState.ShowLogo1 = checkEditLogo1.Checked & checkEditEnableSlideHeader.Checked;
+                _settingsContainer.SlideHeaderState.ShowLogo2 = checkEditLogo2.Checked & checkEditEnableSlideHeader.Checked;
+                _settingsContainer.SlideHeaderState.ShowLogo3 = checkEditLogo3.Checked & checkEditEnableSlideHeader.Checked;
+                _settingsContainer.SlideHeaderState.ShowLogo4 = checkEditLogo4.Checked & checkEditEnableSlideHeader.Checked;
                 _settingsContainer.SlideHeaderState.ShowName = checkEditPublicationName.Checked & checkEditEnableSlideHeader.Checked;
                 _settingsContainer.SlideHeaderState.ShowSlideHeader = checkEditSlideTitle.Checked & checkEditEnableSlideHeader.Checked;
                 _settingsContainer.SetSlideHeader();

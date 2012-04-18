@@ -2006,7 +2006,6 @@ namespace AdScheduleBuilder.ConfigurationClasses
         public bool ShowReadership { get; set; }
         public bool ShowSignature { get; set; }
         public bool ShowOnlyOnLastSlide { get; set; }
-        public bool DoNotShow { get; set; }
 
         public SlideBulletsState()
         {
@@ -2027,7 +2026,6 @@ namespace AdScheduleBuilder.ConfigurationClasses
             this.ShowReadership = false;
             this.ShowSignature = true;
             this.ShowOnlyOnLastSlide = true;
-            this.DoNotShow = false;
         }
 
         public string Serialize()
@@ -2035,7 +2033,6 @@ namespace AdScheduleBuilder.ConfigurationClasses
             StringBuilder result = new StringBuilder();
 
             result.AppendLine(@"<EnableSlideBullets>" + this.EnableSlideBullets + @"</EnableSlideBullets>");
-            result.AppendLine(@"<DoNotShow>" + this.DoNotShow + @"</DoNotShow>");
             result.AppendLine(@"<ShowAvgAdCost>" + this.ShowAvgAdCost + @"</ShowAvgAdCost>");
             result.AppendLine(@"<ShowAvgFinalCost>" + this.ShowAvgFinalCost + @"</ShowAvgFinalCost>");
             result.AppendLine(@"<ShowAvgPCI>" + this.ShowAvgPCI + @"</ShowAvgPCI>");
@@ -2066,10 +2063,6 @@ namespace AdScheduleBuilder.ConfigurationClasses
                     case "EnableSlideBullets":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.EnableSlideBullets = tempBool;
-                        break;
-                    case "DoNotShow":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.DoNotShow = tempBool;
                         break;
                     case "ShowAvgAdCost":
                         if (bool.TryParse(childNode.InnerText, out tempBool))

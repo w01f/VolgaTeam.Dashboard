@@ -202,7 +202,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 styleController.AppearanceReadOnly.Font = font;
                 checkEditAllSlides.Font = font;
                 checkEditLastSlide.Font = font;
-                checkEditNoSlides.Font = font;
                 checkEditAvgAdCost.Font = font;
                 checkEditAvgFinalCost.Font = font;
                 checkEditAvgPCI.Font = font;
@@ -277,7 +276,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             checkEditTotalSquare.Checked = _settingsContainer.SlideBulletsState.ShowTotalSquare;
             checkEditLastSlide.Checked = _settingsContainer.SlideBulletsState.ShowOnlyOnLastSlide;
             checkEditAllSlides.Checked = !_settingsContainer.SlideBulletsState.ShowOnlyOnLastSlide;
-            checkEditNoSlides.Checked = _settingsContainer.SlideBulletsState.DoNotShow;
             _allowToCheckSlideOptions = true;
             _allowToSave = true;
         }
@@ -303,7 +301,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 _settingsContainer.SlideBulletsState.ShowTotalInserts = checkEditTotalInserts.Checked & checkEditEnableSlideBullets.Checked;
                 _settingsContainer.SlideBulletsState.ShowTotalSquare = checkEditTotalSquare.Checked & checkEditEnableSlideBullets.Checked;
                 _settingsContainer.SlideBulletsState.ShowOnlyOnLastSlide = checkEditLastSlide.Checked;
-                _settingsContainer.SlideBulletsState.DoNotShow = checkEditNoSlides.Checked;
                 _settingsContainer.SettingsNotSaved = true;
             }
         }
@@ -330,26 +327,9 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             checkEditAllSlides.Enabled = checkEditEnableSlideBullets.Checked;
             checkEditLastSlide.Enabled = checkEditEnableSlideBullets.Checked;
-            checkEditNoSlides.Enabled = checkEditEnableSlideBullets.Checked;
             xtraScrollableControl.Enabled = checkEditEnableSlideBullets.Checked;
             checkEditSignature.Enabled = checkEditEnableSlideBullets.Checked;
             SaveSlideBullets();
-        }
-
-        private void checkEditNoSlides_EditValueChanging(object sender, ChangingEventArgs e)
-        {
-            if (_allowToSave)
-            {
-                DevExpress.XtraEditors.CheckEdit checkEdit = sender as DevExpress.XtraEditors.CheckEdit;
-                if ((bool)e.NewValue)
-                {
-                    _allowToSave = false;
-                    checkEditAllSlides.Checked = false;
-                    checkEditLastSlide.Checked = false;
-                    checkEditNoSlides.Checked = false;
-                    _allowToSave = true;
-                }
-            }
         }
     }
 }

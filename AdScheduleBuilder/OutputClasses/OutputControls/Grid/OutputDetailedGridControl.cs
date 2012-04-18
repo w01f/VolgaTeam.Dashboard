@@ -431,9 +431,10 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             this.AdNotes = new AdNotesControl(this);
             this.SlideBullets = new SlideBulletsControl(this);
             this.SlideHeader = new SlideHeaderControl(this);
-            this.SlideHeader.checkEditPublicationLogo2.Visible = false;
-            this.SlideHeader.checkEditPublicationLogo3.Visible = false;
-            this.SlideHeader.checkEditPublicationLogo4.Visible = false;
+            this.SlideHeader.checkEditLogo1.Text = "Publication Logo";
+            this.SlideHeader.checkEditLogo2.Visible = false;
+            this.SlideHeader.checkEditLogo3.Visible = false;
+            this.SlideHeader.checkEditLogo4.Visible = false;
 
             #region Set Default Values
             this.EnableIDButton = true;
@@ -761,8 +762,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         private void SetColumnsState()
         {
-            PublicationDetailedGridControl publicationControl = xtraTabControlPublications.SelectedTabPage as PublicationDetailedGridControl;
-            if (publicationControl != null)
+            foreach (PublicationDetailedGridControl publicationControl in _tabPages)
             {
                 publicationControl.gridColumnColorPricing.VisibleIndex = this.PositionColor;
                 publicationControl.gridColumnColumnInches.VisibleIndex = this.PositionSquare;
@@ -846,8 +846,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         public void SetPreviewState()
         {
-            PublicationDetailedGridControl publicationControl = xtraTabControlPublications.SelectedTabPage as PublicationDetailedGridControl;
-            if (publicationControl != null)
+            foreach (PublicationDetailedGridControl publicationControl in _tabPages)
             {
                 publicationControl.gridViewPublications.OptionsView.ShowPreview = _showCommentsHeader;
                 publicationControl.gridViewPublications.RefreshData();
@@ -856,8 +855,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         public void SetSlideHeader()
         {
-            PublicationDetailedGridControl publicationControl = xtraTabControlPublications.SelectedTabPage as PublicationDetailedGridControl;
-            if (publicationControl != null)
+            foreach (PublicationDetailedGridControl publicationControl in _tabPages)
             {
                 publicationControl.SetSlideHeader();
             }
@@ -910,8 +908,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             laAdvertiser.Text = this.LocalSchedule.BusinessName + (!string.IsNullOrEmpty(this.LocalSchedule.AccountNumber) ? (" - " + this.LocalSchedule.AccountNumber) : string.Empty);
             if (!quickLoad)
             {
-                LoadView();
-
                 xtraTabControlPublications.SuspendLayout();
                 Application.DoEvents();
                 xtraTabControlPublications.SelectedPageChanged -= new DevExpress.XtraTab.TabPageChangedEventHandler(xtraTabControlPublications_SelectedPageChanged); ;
@@ -936,6 +932,9 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 }
                 _tabPages.Sort((x, y) => x.Publication.Index.CompareTo(y.Publication.Index));
                 xtraTabControlPublications.TabPages.AddRange(_tabPages.ToArray());
+
+                LoadView();
+
                 this.AllowToSave = false;
                 SetColumnsState();
                 UpdateSlideBullets();
@@ -955,7 +954,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         private void xtraTabControlPublications_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
             this.AllowToSave = false;
-            SetColumnsState();
             UpdateSlideBullets();
             this.AllowToSave = true;
         }

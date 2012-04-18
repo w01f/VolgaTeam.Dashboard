@@ -72,6 +72,11 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         public void SetSlideHeader()
         {
             comboBoxEditSchedule.Enabled = OutputDetailedGridControl.Instance.SlideHeaderState.ShowSlideHeader;
+            laBusinessName.Enabled = OutputDetailedGridControl.Instance.SlideHeaderState.ShowAdvertiser;
+            laDate.Enabled = OutputDetailedGridControl.Instance.SlideHeaderState.ShowPresentationDate;
+            laDecisionMaker.Enabled = OutputDetailedGridControl.Instance.SlideHeaderState.ShowDecisionMaker;
+            laFlightDates.Enabled = OutputDetailedGridControl.Instance.SlideHeaderState.ShowFlightDates;
+            laPublicationName.Enabled = OutputDetailedGridControl.Instance.SlideHeaderState.ShowName;
         }
 
         #region Editor's Events
@@ -517,7 +522,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             get
             {
-                return OutputDetailedGridControl.Instance.SlideBulletsState.DoNotShow;
+                return !OutputDetailedGridControl.Instance.SlideBulletsState.EnableSlideBullets;
             }
         }
 

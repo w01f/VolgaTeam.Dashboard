@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -84,6 +85,12 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             _dayView.radioGroupDeadline.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "All Days in " + date.ToString("MMMM")));
             _dayView.radioGroupDeadline.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "All DAYS"));
             _dayView.radioGroupDeadline.SelectedIndex = 0;
+
+            if (!(this.Date >= this.ParentMonth.ParentCalendar.LocalSchedule.FlightDateStart && this.Date <= this.ParentMonth.ParentCalendar.LocalSchedule.FlightDateEnd))
+            {
+                laSmallDayCaption.BackColor = Color.Gray;
+                xtraScrollableControl.BackColor = Color.LightGray;
+            }
 
             RefreshData();
 

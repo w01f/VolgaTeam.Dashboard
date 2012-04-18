@@ -66,11 +66,8 @@ namespace AdScheduleBuilder.CustomControls
                 bool result = false;
                 if (this.SettingsNotSaved)
                 {
-                    if (AppManager.ShowWarningQuestion("Your Schedule settings have changed.\nDo you want to save changes?") == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        if (SaveSchedule())
-                            result = true;
-                    }
+                    if (SaveSchedule())
+                        result = true;
                 }
                 else
                     result = true;
@@ -84,6 +81,7 @@ namespace AdScheduleBuilder.CustomControls
             if (control != FormMain.Instance.comboBoxEditBusinessName
                 && control != FormMain.Instance.comboBoxEditClientType
                 && control != FormMain.Instance.comboBoxEditDecisionMaker
+                && control != FormMain.Instance.textEditAccountNumber
                 && control != FormMain.Instance.listBoxControlCalendar
                 && control != FormMain.Instance.comboBoxEditRateCard
                 && control != FormMain.Instance.comboBoxEditRateCards
@@ -120,7 +118,7 @@ namespace AdScheduleBuilder.CustomControls
             this.LocalSchedule = BusinessClasses.ScheduleManager.Instance.GetLocalSchedule();
             laScheduleWindow.Text = string.Format("{0} - {1}", new object[] { this.LocalSchedule.FlightDateStart.ToString("MM/dd/yy"), this.LocalSchedule.FlightDateEnd.ToString("MM/dd/yy") });
             laScheduleName.Text = this.LocalSchedule.Name;
-            laAdvertiser.Text = this.LocalSchedule.BusinessName;
+            laAdvertiser.Text = this.LocalSchedule.BusinessName + (!string.IsNullOrEmpty(this.LocalSchedule.AccountNumber) ? (" - " + this.LocalSchedule.AccountNumber) : string.Empty);
             FormMain.Instance.UpdateOutputTabs(this.LocalSchedule.Publications.Select(x => x.Inserts.Count).Sum() > 0);
             if (!quickLoad)
             {

@@ -107,7 +107,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             this.LocalSchedule = BusinessClasses.ScheduleManager.Instance.GetLocalSchedule();
             laScheduleWindow.Text = string.Format("{0} - {1}", new object[] { this.LocalSchedule.FlightDateStart.ToString("MM/dd/yy"), this.LocalSchedule.FlightDateEnd.ToString("MM/dd/yy") });
             laScheduleName.Text = this.LocalSchedule.Name;
-            laAdvertiser.Text = this.LocalSchedule.BusinessName;
+            laAdvertiser.Text = this.LocalSchedule.BusinessName + (!string.IsNullOrEmpty(this.LocalSchedule.AccountNumber) ? (" - " + this.LocalSchedule.AccountNumber) : string.Empty);
             if (!quickLoad)
             {
                 _allowToSave = false;
@@ -134,7 +134,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 _allowToSave = true;
 
                 checkEditDate.Text = this.LocalSchedule.PresentationDateObject != null ? this.LocalSchedule.PresentationDate.ToString("MM/dd/yy") : string.Empty;
-                checkEditBusinessName.Text = " " + this.LocalSchedule.BusinessName;
+                checkEditBusinessName.Text = " " + this.LocalSchedule.BusinessName + (!string.IsNullOrEmpty(this.LocalSchedule.AccountNumber) ? (" - " + this.LocalSchedule.AccountNumber) : string.Empty);
                 checkEditDecisionMaker.Text = this.LocalSchedule.DecisionMaker;
                 checkEditFlightDates.Text = " " + this.LocalSchedule.FlightDateStart.ToString("MM/dd/yy") + " - " + this.LocalSchedule.FlightDateEnd.ToString("MM/dd/yy");
 

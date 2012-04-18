@@ -23,6 +23,8 @@ namespace AdScheduleBuilder
             comboBoxEditBusinessName.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
             comboBoxEditDecisionMaker.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
             comboBoxEditClientType.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
+            textEditAccountNumber.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
+            checkBoxItemAccountNumber.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.ScheduleSettingsControl.Instance.checkBoxItemAccountNumber_CheckedChanged);
             buttonItemSalesStrategyEmail.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemSalesStrategyEmail_Click);
             buttonItemSalesStrategyFaceCall.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemSalesStrategyFaceCall_Click);
             buttonItemSalesStrategyFax.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemSalesStrategyFax_Click);
@@ -50,6 +52,9 @@ namespace AdScheduleBuilder
             comboBoxEditClientType.Enter += new EventHandler(Editor_Enter);
             comboBoxEditClientType.MouseDown += new MouseEventHandler(Editor_MouseDown);
             comboBoxEditClientType.MouseUp += new MouseEventHandler(Editor_MouseUp);
+            textEditAccountNumber.Enter += new EventHandler(Editor_Enter);
+            textEditAccountNumber.MouseDown += new MouseEventHandler(Editor_MouseDown);
+            textEditAccountNumber.MouseUp += new MouseEventHandler(Editor_MouseUp);
             #endregion
 
             #region Schedule Builder Events
@@ -272,6 +277,7 @@ namespace AdScheduleBuilder
                 comboBoxEditBusinessName.Font = font;
                 comboBoxEditClientType.Font = font;
                 comboBoxEditDecisionMaker.Font = font;
+                textEditAccountNumber.Font = font;
                 spinEditCostPerInch.Font = font;
                 spinEditStandartHeight.Font = font;
                 spinEditStandartWidth.Font = font;

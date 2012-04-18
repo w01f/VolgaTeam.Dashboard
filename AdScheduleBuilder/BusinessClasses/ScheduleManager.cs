@@ -236,6 +236,7 @@ namespace AdScheduleBuilder.BusinessClasses
         public string BusinessName { get; set; }
         public string DecisionMaker { get; set; }
         public string ClientType { get; set; }
+        public string AccountNumber { get; set; }
         public string Status { get; set; }
         public SalesStrategies SalesStrategy { get; set; }
         public DateTime PresentationDate { get; set; }
@@ -317,6 +318,7 @@ namespace AdScheduleBuilder.BusinessClasses
         public Schedule(string fileName)
         {
             this.ClientType = string.Empty;
+            this.AccountNumber = string.Empty;
             this.Status = ListManager.Instance.Statuses.FirstOrDefault();
             this.Publications = new List<Publication>();
             this.ViewSettings = new ConfigurationClasses.ScheduleViewSettings();
@@ -361,6 +363,10 @@ namespace AdScheduleBuilder.BusinessClasses
                 node = document.SelectSingleNode(@"/Schedule/ClientType");
                 if (node != null)
                     this.ClientType = node.InnerText;
+
+                node = document.SelectSingleNode(@"/Schedule/AccountNumber");
+                if (node != null)
+                    this.AccountNumber = node.InnerText;
 
                 node = document.SelectSingleNode(@"/Schedule/Status");
                 if (node != null)
@@ -442,6 +448,7 @@ namespace AdScheduleBuilder.BusinessClasses
             }
 
             xml.AppendLine(@"<ClientType>" + this.ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
+            xml.AppendLine(@"<AccountNumber>" + this.AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");
             xml.AppendLine(@"<Status>" + (this.Status != null ? this.Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
             xml.AppendLine(@"<SalesStrategy>" + (int)this.SalesStrategy + @"</SalesStrategy>");
             xml.AppendLine(@"<PresentationDate>" + this.PresentationDate.ToString() + @"</PresentationDate>");

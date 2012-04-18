@@ -32,11 +32,8 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 bool result = false;
                 if (_selectedOutput.SettingsNotSaved)
                 {
-                    if (AppManager.ShowWarningQuestion("Your Schedule settings have changed.\nDo you want to save changes?") == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        SaveSchedule();
-                        result = true;
-                    }
+                    SaveSchedule();
+                    result = true;
                 }
                 else
                     result = true;

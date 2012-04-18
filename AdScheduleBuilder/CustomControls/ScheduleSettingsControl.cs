@@ -57,11 +57,8 @@ namespace AdScheduleBuilder.CustomControls
                 bool result = false;
                 if (this.SettingsNotSaved)
                 {
-                    if (AppManager.ShowWarningQuestion("Your Schedule settings have changed.\nDo you want to save changes?") == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        if (SaveSchedule())
-                            result = true;
-                    }
+                    if (SaveSchedule())
+                        result = true;
                 }
                 else
                     result = true;
@@ -74,6 +71,7 @@ namespace AdScheduleBuilder.CustomControls
             if (control != FormMain.Instance.comboBoxEditBusinessName
                 && control != FormMain.Instance.comboBoxEditClientType
                 && control != FormMain.Instance.comboBoxEditDecisionMaker
+                && control != FormMain.Instance.textEditAccountNumber
                 && control != FormMain.Instance.listBoxControlCalendar
                 && control != FormMain.Instance.comboBoxEditRateCard
                 && control != FormMain.Instance.comboBoxEditRateCards
@@ -123,13 +121,14 @@ namespace AdScheduleBuilder.CustomControls
                 FormMain.Instance.comboBoxEditClientType.Properties.Items.Clear();
                 FormMain.Instance.comboBoxEditClientType.Properties.Items.AddRange(BusinessClasses.ListManager.Instance.ClientTypes.ToArray());
 
-
-
                 FormMain.Instance.comboBoxEditBusinessName.EditValue = _localSchedule.BusinessName;
                 FormMain.Instance.comboBoxEditDecisionMaker.EditValue = _localSchedule.DecisionMaker;
 
                 if (!string.IsNullOrEmpty(_localSchedule.ClientType))
                     FormMain.Instance.comboBoxEditClientType.SelectedIndex = FormMain.Instance.comboBoxEditClientType.Properties.Items.IndexOf(_localSchedule.ClientType);
+
+                FormMain.Instance.checkBoxItemAccountNumber.Checked = !string.IsNullOrEmpty(_localSchedule.AccountNumber);
+                FormMain.Instance.textEditAccountNumber.EditValue = _localSchedule.AccountNumber;
 
                 switch (_localSchedule.SalesStrategy)
                 {
@@ -218,6 +217,11 @@ namespace AdScheduleBuilder.CustomControls
                 AppManager.ShowWarning("You must set Client type before save");
                 return false;
             }
+
+            if (FormMain.Instance.checkBoxItemAccountNumber.Checked && FormMain.Instance.textEditAccountNumber.EditValue != null)
+                _localSchedule.AccountNumber = FormMain.Instance.textEditAccountNumber.EditValue.ToString();
+            else
+                _localSchedule.AccountNumber = string.Empty;
 
             if (FormMain.Instance.buttonItemSalesStrategyEmail.Checked)
                 _localSchedule.SalesStrategy = BusinessClasses.SalesStrategies.Email;
@@ -435,6 +439,12 @@ namespace AdScheduleBuilder.CustomControls
                 FormMain.Instance.labelItemFlightDatesWeeks.Text = weeksCount.ToString() + (weeksCount > 1 ? " Weeks" : " Week");
                 FormMain.Instance.labelItemFlightDatesWeeks.Visible = true;
             }
+        }
+
+        public void checkBoxItemAccountNumber_CheckedChanged(object sender, DevComponents.DotNetBar.CheckBoxChangeEventArgs e)
+        {
+            FormMain.Instance.textEditAccountNumber.Enabled = FormMain.Instance.checkBoxItemAccountNumber.Checked;
+            SchedulePropertyEditValueChanged(null, null);
         }
 
         public void SchedulePropertyEditValueChanged(object sender, EventArgs e)

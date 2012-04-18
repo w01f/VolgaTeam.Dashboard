@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
             this.ribbonPanelScheduleSettings = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemHomeExit = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarScheduleSettingsHelp = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemScheduleSettingsHelp = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarScheduleSettingsSave = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemScheduleSettingsSave = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemScheduleSettingsSaveAs = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarScheduleSettingsOptions = new DevComponents.DotNetBar.RibbonBar();
             this.itemContainerScheduleSettingsOptions = new DevComponents.DotNetBar.ItemContainer();
             this.buttonItemSalesStrategyLogo = new DevComponents.DotNetBar.ButtonItem();
@@ -46,9 +49,12 @@
             this.buttonItemSalesStrategyReadership = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarHomePublications = new DevComponents.DotNetBar.RibbonBar();
             this.itemContainerPublicationsButtons = new DevComponents.DotNetBar.ItemContainer();
+            this.buttonItemPublicationsAdd = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemPublicationsClone = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemPublicationsDelete = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarFlightDates = new DevComponents.DotNetBar.RibbonBar();
             this.dateEditFlightDatesStart = new DevExpress.XtraEditors.DateEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+            this.styleController = new DevExpress.XtraEditors.StyleController();
             this.dateEditFlightDatesEnd = new DevExpress.XtraEditors.DateEdit();
             this.itemContainerFlightDates = new DevComponents.DotNetBar.ItemContainer();
             this.itemContainerFlightDatesStartLogo = new DevComponents.DotNetBar.ItemContainer();
@@ -69,6 +75,9 @@
             this.itemContainerSaleStrategyType = new DevComponents.DotNetBar.ItemContainer();
             this.labelItemSaleStrategyType = new DevComponents.DotNetBar.LabelItem();
             this.itemContainerSaleStrategyTypeButtons = new DevComponents.DotNetBar.ItemContainer();
+            this.buttonItemSalesStrategyFaceCall = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemSalesStrategyEmail = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemSalesStrategyFax = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarAdvertiser = new DevComponents.DotNetBar.RibbonBar();
             this.comboBoxEditBusinessName = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEditDecisionMaker = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -79,13 +88,25 @@
             this.controlContainerItemClientType = new DevComponents.DotNetBar.ControlContainerItem();
             this.ribbonPanelCalendars = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarCalendarsExit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarsExit = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarsHelp = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarsHelp = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarsPowerPoint = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarsPowerPoint = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarsEmail = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarsEmail = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarsSave = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemCalendarsSave = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemCalendarsSaveAs = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarsThemeColor = new DevComponents.DotNetBar.RibbonBar();
             this.itemContainerCalendarsThemeColor1 = new DevComponents.DotNetBar.ItemContainer();
+            this.buttonItemCalendarsColorGray = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemCalendarsColorBlack = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemCalendarsColorBlue = new DevComponents.DotNetBar.ButtonItem();
             this.itemContainerCalendarsThemeColor2 = new DevComponents.DotNetBar.ItemContainer();
+            this.buttonItemCalendarsColorTeal = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemCalendarsColorOrange = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemCalendarsColorGreen = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarsMonthlyInfo = new DevComponents.DotNetBar.RibbonBar();
             this.itemContainerCalendarsMonthlyInfo1 = new DevComponents.DotNetBar.ItemContainer();
             this.buttonItemCalendarsShowTitle = new DevComponents.DotNetBar.ButtonItem();
@@ -114,13 +135,16 @@
             this.buttonItemCalendarsShowPercentOfPage = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarCalendarsCalendar = new DevComponents.DotNetBar.RibbonBar();
             this.listBoxControlCalendar = new DevExpress.XtraEditors.ImageListBoxControl();
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
+            this.imageList = new System.Windows.Forms.ImageList();
             this.itemContainerCalendarsCalendar = new DevComponents.DotNetBar.ItemContainer();
             this.controlContainerItemCalendar = new DevComponents.DotNetBar.ControlContainerItem();
             this.ribbonPanelRateCard = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarRateCardExit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemRateCardExit = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarRateCardHelp = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemRateCardHelp = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarRateCardEmail = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemRatecardEmail = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarRateCards = new DevComponents.DotNetBar.RibbonBar();
             this.laRateCards = new System.Windows.Forms.Label();
             this.comboBoxEditRateCards = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -129,11 +153,18 @@
             this.controlContainerItemComboRateCards = new DevComponents.DotNetBar.ControlContainerItem();
             this.ribbonPanelBuildSchedules = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarSchedulesExit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSchedulesExit = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSchedulesHelp = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSchedulesHelp = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSchedulesSave = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSchedulesSave = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemSchedulesSaveAs = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarColorPricing = new DevComponents.DotNetBar.RibbonBar();
             this.spinEditCostPerInch = new DevExpress.XtraEditors.SpinEdit();
             this.itemContainerColorButtons = new DevComponents.DotNetBar.ItemContainer();
+            this.buttonItemColorOptionsSingle = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemColorOptionsSpot = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemColorOptionsFull = new DevComponents.DotNetBar.ButtonItem();
             this.labelItemColorOptionsBorder = new DevComponents.DotNetBar.LabelItem();
             this.itemContainerColorPricing = new DevComponents.DotNetBar.ItemContainer();
             this.buttonItemColorOptionsCostPerAd = new DevComponents.DotNetBar.ButtonItem();
@@ -159,6 +190,7 @@
             this.itemContainerAdSizeCheckBox = new DevComponents.DotNetBar.ItemContainer();
             this.checkBoxItemAdSizeStandartSquare = new DevComponents.DotNetBar.CheckBoxItem();
             this.itemContainerAdSizeLogo = new DevComponents.DotNetBar.ItemContainer();
+            this.labelItemAdSizeLogo = new DevComponents.DotNetBar.LabelItem();
             this.itemContainerAdSizeValues = new DevComponents.DotNetBar.ItemContainer();
             this.controlContainerItemColumnsCount = new DevComponents.DotNetBar.ControlContainerItem();
             this.controlContainerItemInchesCount = new DevComponents.DotNetBar.ControlContainerItem();
@@ -189,15 +221,28 @@
             this.controlContainerItemSharePageSquare = new DevComponents.DotNetBar.ControlContainerItem();
             this.ribbonBarAdPricingStrategy = new DevComponents.DotNetBar.RibbonBar();
             this.itemContainerAdPricingStrategy = new DevComponents.DotNetBar.ItemContainer();
+            this.buttonItemAdPricingColumnInches = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemAdPricingFlat = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemAdPricingPagePercent = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSchedulesLines = new DevComponents.DotNetBar.RibbonBar();
             this.itemContainerSchedulesLines = new DevComponents.DotNetBar.ItemContainer();
+            this.buttonItemSchedulesAdd = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemCloneInsert = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemDeleteInsert = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanelGrids = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarGridsExit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemGridsExit = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarGridHelp = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemGridsHelp = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarGridsPowerPoint = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemGridsPowerPoint = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarGridsEmail = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemGridsEmail = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarGridsSave = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemGridsSave = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemGridsSaveAs = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarGridsDetails = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemGridsDetails = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarGridsColumns = new DevComponents.DotNetBar.RibbonBar();
             this.itemContainerGridsColumns1 = new DevComponents.DotNetBar.ItemContainer();
             this.itemContainerGridsButtonGroup1 = new DevComponents.DotNetBar.ItemContainer();
@@ -225,13 +270,23 @@
             this.buttonItemGridsColumnsReadership = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarGridsStyles = new DevComponents.DotNetBar.RibbonBar();
             this.itemContainerGridsStyles = new DevComponents.DotNetBar.ItemContainer();
+            this.buttonItemGridsDetailedGrid = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemGridsMultiGrid = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemGridsChronological = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanelSummaries = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarSummariesExit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSummariesExit = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSummariesHelp = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSummariesHelp = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSummariesPowerPoint = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSummariesPowerPoint = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSummariesEmail = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSummariesEmail = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSummariesSave = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSummariesSave = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemSummariesSaveAs = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSummariesSnapshot = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSummariesSnapshot = new DevComponents.DotNetBar.ButtonItem();
             this.itemContainerSnapshotButtonsGroup1 = new DevComponents.DotNetBar.ItemContainer();
             this.buttonItemSnapshotLogo = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItemSnapshotTotalInserts = new DevComponents.DotNetBar.ButtonItem();
@@ -251,11 +306,16 @@
             this.buttonItemSnapshotDelivery = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItemSnapshotPercentOfPage = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSummariesMultiSummary = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSummariesMultiSummary = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSummariesBasicOverview = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSummariesBasicOverview = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanelSuccessModels = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarSuccessModelsExit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSuccessModelsExit = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSuccessModelsHelp = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSuccessModelsHelp = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarModelsOfSuccess = new DevComponents.DotNetBar.RibbonBar();
+            this.labelItemModelsOfSuccess = new DevComponents.DotNetBar.LabelItem();
             this.ribbonTabItemScheduleSettings = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemBuildSchedules = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemSummaries = new DevComponents.DotNetBar.RibbonTabItem();
@@ -266,68 +326,11 @@
             this.pnMain = new System.Windows.Forms.Panel();
             this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
             this.pnEmpty = new System.Windows.Forms.Panel();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.buttonItemCalendarsExit = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarsHelp = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarsPowerPoint = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarsEmail = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarsSave = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarsSaveAs = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarsColorGray = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarsColorBlack = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarsColorBlue = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarsColorTeal = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarsColorOrange = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCalendarsColorGreen = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemRateCardExit = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemRateCardHelp = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemRatecardEmail = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemHomeExit = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemScheduleSettingsHelp = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemScheduleSettingsSave = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemScheduleSettingsSaveAs = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemPublicationsAdd = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemPublicationsClone = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemPublicationsDelete = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSalesStrategyFaceCall = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSalesStrategyEmail = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSalesStrategyFax = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSchedulesExit = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSchedulesHelp = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSchedulesSave = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSchedulesSaveAs = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemColorOptionsSingle = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemColorOptionsSpot = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemColorOptionsFull = new DevComponents.DotNetBar.ButtonItem();
-            this.labelItemAdSizeLogo = new DevComponents.DotNetBar.LabelItem();
-            this.buttonItemAdPricingColumnInches = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemAdPricingFlat = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemAdPricingPagePercent = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSchedulesAdd = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemCloneInsert = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemDeleteInsert = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemGridsExit = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemGridsHelp = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemGridsPowerPoint = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemGridsEmail = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemGridsSave = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemGridsSaveAs = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemGridsDetails = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemGridsDetailedGrid = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemGridsMultiGrid = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemGridsChronological = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSummariesExit = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSummariesHelp = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSummariesPowerPoint = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSummariesEmail = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSummariesSave = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSummariesSaveAs = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSummariesSnapshot = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSummariesMultiSummary = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSummariesBasicOverview = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSuccessModelsExit = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSuccessModelsHelp = new DevComponents.DotNetBar.ButtonItem();
-            this.labelItemModelsOfSuccess = new DevComponents.DotNetBar.LabelItem();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.itemContainerAccountNumber = new DevComponents.DotNetBar.ItemContainer();
+            this.checkBoxItemAccountNumber = new DevComponents.DotNetBar.CheckBoxItem();
+            this.textEditAccountNumber = new DevExpress.XtraEditors.TextEdit();
+            this.controlContainerItem1 = new DevComponents.DotNetBar.ControlContainerItem();
             this.ribbonControl.SuspendLayout();
             this.ribbonPanelScheduleSettings.SuspendLayout();
             this.ribbonBarFlightDates.SuspendLayout();
@@ -363,6 +366,7 @@
             this.ribbonPanelGrids.SuspendLayout();
             this.ribbonPanelSummaries.SuspendLayout();
             this.ribbonPanelSuccessModels.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditAccountNumber.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -427,6 +431,16 @@
             this.ribbonBarHomeExit.TabIndex = 9;
             this.ribbonBarHomeExit.Text = "EXIT";
             // 
+            // buttonItemHomeExit
+            // 
+            this.buttonItemHomeExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
+            this.buttonItemHomeExit.ImagePaddingHorizontal = 8;
+            this.buttonItemHomeExit.Name = "buttonItemHomeExit";
+            this.buttonItemHomeExit.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemHomeExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Ad Schedule Builder", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemHomeExit.Text = "buttonItem1";
+            this.buttonItemHomeExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
+            // 
             // ribbonBarScheduleSettingsHelp
             // 
             this.ribbonBarScheduleSettingsHelp.AutoOverflowEnabled = true;
@@ -439,6 +453,15 @@
             this.ribbonBarScheduleSettingsHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarScheduleSettingsHelp.TabIndex = 10;
             this.ribbonBarScheduleSettingsHelp.Text = "HELP";
+            // 
+            // buttonItemScheduleSettingsHelp
+            // 
+            this.buttonItemScheduleSettingsHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
+            this.buttonItemScheduleSettingsHelp.ImagePaddingHorizontal = 8;
+            this.buttonItemScheduleSettingsHelp.Name = "buttonItemScheduleSettingsHelp";
+            this.buttonItemScheduleSettingsHelp.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemScheduleSettingsHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me understand how to build an Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemScheduleSettingsHelp.Text = "buttonItem1";
             // 
             // ribbonBarScheduleSettingsSave
             // 
@@ -454,6 +477,24 @@
             this.ribbonBarScheduleSettingsSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarScheduleSettingsSave.TabIndex = 8;
             this.ribbonBarScheduleSettingsSave.Text = "Save";
+            // 
+            // buttonItemScheduleSettingsSave
+            // 
+            this.buttonItemScheduleSettingsSave.Image = global::AdScheduleBuilder.Properties.Resources.SaveSmall;
+            this.buttonItemScheduleSettingsSave.ImagePaddingHorizontal = 8;
+            this.buttonItemScheduleSettingsSave.Name = "buttonItemScheduleSettingsSave";
+            this.buttonItemScheduleSettingsSave.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemScheduleSettingsSave, new DevComponents.DotNetBar.SuperTooltipInfo("Save", "", "Save this Advertising Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemScheduleSettingsSave.Text = "Save";
+            // 
+            // buttonItemScheduleSettingsSaveAs
+            // 
+            this.buttonItemScheduleSettingsSaveAs.Image = global::AdScheduleBuilder.Properties.Resources.SaveAs;
+            this.buttonItemScheduleSettingsSaveAs.ImagePaddingHorizontal = 8;
+            this.buttonItemScheduleSettingsSaveAs.Name = "buttonItemScheduleSettingsSaveAs";
+            this.buttonItemScheduleSettingsSaveAs.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemScheduleSettingsSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this Schedule as a New File", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemScheduleSettingsSaveAs.Text = "Save As";
             // 
             // ribbonBarScheduleSettingsOptions
             // 
@@ -538,6 +579,30 @@
             this.buttonItemPublicationsClone,
             this.buttonItemPublicationsDelete});
             // 
+            // buttonItemPublicationsAdd
+            // 
+            this.buttonItemPublicationsAdd.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemPublicationsAdd.Image = global::AdScheduleBuilder.Properties.Resources.AddLine;
+            this.buttonItemPublicationsAdd.ImagePaddingHorizontal = 8;
+            this.buttonItemPublicationsAdd.Name = "buttonItemPublicationsAdd";
+            this.superTooltip.SetSuperTooltip(this.buttonItemPublicationsAdd, new DevComponents.DotNetBar.SuperTooltipInfo("Add Publication", "", "Add a publication to your Newspaper Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // buttonItemPublicationsClone
+            // 
+            this.buttonItemPublicationsClone.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemPublicationsClone.Image = global::AdScheduleBuilder.Properties.Resources.CloneLine;
+            this.buttonItemPublicationsClone.ImagePaddingHorizontal = 8;
+            this.buttonItemPublicationsClone.Name = "buttonItemPublicationsClone";
+            this.superTooltip.SetSuperTooltip(this.buttonItemPublicationsClone, new DevComponents.DotNetBar.SuperTooltipInfo("Clone Publication", "", "Clone the selected Publication", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // buttonItemPublicationsDelete
+            // 
+            this.buttonItemPublicationsDelete.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemPublicationsDelete.Image = global::AdScheduleBuilder.Properties.Resources.DeleteLine;
+            this.buttonItemPublicationsDelete.ImagePaddingHorizontal = 8;
+            this.buttonItemPublicationsDelete.Name = "buttonItemPublicationsDelete";
+            this.superTooltip.SetSuperTooltip(this.buttonItemPublicationsDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Remove Publication", "", "Delete the selected Publication from your Ad Schedule Below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
             // ribbonBarFlightDates
             // 
             this.ribbonBarFlightDates.AutoOverflowEnabled = true;
@@ -562,7 +627,7 @@
             this.dateEditFlightDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditFlightDatesStart.Properties.Appearance.Options.UseFont = true;
             this.dateEditFlightDatesStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditFlightDatesStart.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -588,7 +653,7 @@
             this.dateEditFlightDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditFlightDatesEnd.Properties.Appearance.Options.UseFont = true;
             this.dateEditFlightDatesEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
             this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditFlightDatesEnd.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -698,7 +763,7 @@
             this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
             this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditPresentationDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditPresentationDate.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -769,12 +834,39 @@
             this.buttonItemSalesStrategyEmail,
             this.buttonItemSalesStrategyFax});
             // 
+            // buttonItemSalesStrategyFaceCall
+            // 
+            this.buttonItemSalesStrategyFaceCall.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemSalesStrategyFaceCall.Checked = true;
+            this.buttonItemSalesStrategyFaceCall.Image = global::AdScheduleBuilder.Properties.Resources.FaceCall;
+            this.buttonItemSalesStrategyFaceCall.ImageFixedSize = new System.Drawing.Size(32, 32);
+            this.buttonItemSalesStrategyFaceCall.ImagePaddingHorizontal = 8;
+            this.buttonItemSalesStrategyFaceCall.Name = "buttonItemSalesStrategyFaceCall";
+            this.superTooltip.SetSuperTooltip(this.buttonItemSalesStrategyFaceCall, new DevComponents.DotNetBar.SuperTooltipInfo("Face Call", "", "I will present this Ad Schedule in Person", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // buttonItemSalesStrategyEmail
+            // 
+            this.buttonItemSalesStrategyEmail.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemSalesStrategyEmail.Image = global::AdScheduleBuilder.Properties.Resources.Email;
+            this.buttonItemSalesStrategyEmail.ImagePaddingHorizontal = 8;
+            this.buttonItemSalesStrategyEmail.Name = "buttonItemSalesStrategyEmail";
+            this.superTooltip.SetSuperTooltip(this.buttonItemSalesStrategyEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "I will email this Ad Schedule to the client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // buttonItemSalesStrategyFax
+            // 
+            this.buttonItemSalesStrategyFax.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemSalesStrategyFax.Image = global::AdScheduleBuilder.Properties.Resources.Fax;
+            this.buttonItemSalesStrategyFax.ImagePaddingHorizontal = 8;
+            this.buttonItemSalesStrategyFax.Name = "buttonItemSalesStrategyFax";
+            this.superTooltip.SetSuperTooltip(this.buttonItemSalesStrategyFax, new DevComponents.DotNetBar.SuperTooltipInfo("Fax", "", "I will faxl this Ad Schedule to the client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
             // ribbonBarAdvertiser
             // 
             this.ribbonBarAdvertiser.AutoOverflowEnabled = true;
             this.ribbonBarAdvertiser.Controls.Add(this.comboBoxEditBusinessName);
             this.ribbonBarAdvertiser.Controls.Add(this.comboBoxEditDecisionMaker);
             this.ribbonBarAdvertiser.Controls.Add(this.comboBoxEditClientType);
+            this.ribbonBarAdvertiser.Controls.Add(this.textEditAccountNumber);
             this.ribbonBarAdvertiser.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBarAdvertiser.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.itemContainerAdvertiser});
@@ -800,7 +892,7 @@
             // 
             // comboBoxEditDecisionMaker
             // 
-            this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(6, 45);
+            this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(6, 33);
             this.comboBoxEditDecisionMaker.Name = "comboBoxEditDecisionMaker";
             this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
@@ -813,7 +905,7 @@
             // 
             // comboBoxEditClientType
             // 
-            this.comboBoxEditClientType.Location = new System.Drawing.Point(6, 87);
+            this.comboBoxEditClientType.Location = new System.Drawing.Point(6, 63);
             this.comboBoxEditClientType.Name = "comboBoxEditClientType";
             this.comboBoxEditClientType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxEditClientType.Properties.Appearance.Options.UseFont = true;
@@ -827,13 +919,14 @@
             // 
             // itemContainerAdvertiser
             // 
-            this.itemContainerAdvertiser.ItemSpacing = 20;
+            this.itemContainerAdvertiser.ItemSpacing = 8;
             this.itemContainerAdvertiser.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
             this.itemContainerAdvertiser.Name = "itemContainerAdvertiser";
             this.itemContainerAdvertiser.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.controlContainerItemBusinessName,
             this.controlContainerItemDecisionMaker,
-            this.controlContainerItemClientType});
+            this.controlContainerItemClientType,
+            this.itemContainerAccountNumber});
             // 
             // controlContainerItemBusinessName
             // 
@@ -889,6 +982,15 @@
             this.ribbonBarCalendarsExit.TabIndex = 34;
             this.ribbonBarCalendarsExit.Text = "EXIT";
             // 
+            // buttonItemCalendarsExit
+            // 
+            this.buttonItemCalendarsExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
+            this.buttonItemCalendarsExit.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarsExit.Name = "buttonItemCalendarsExit";
+            this.buttonItemCalendarsExit.SubItemsExpandWidth = 14;
+            this.buttonItemCalendarsExit.Text = "buttonItem1";
+            this.buttonItemCalendarsExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
+            // 
             // ribbonBarCalendarsHelp
             // 
             this.ribbonBarCalendarsHelp.AutoOverflowEnabled = true;
@@ -901,6 +1003,14 @@
             this.ribbonBarCalendarsHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCalendarsHelp.TabIndex = 32;
             this.ribbonBarCalendarsHelp.Text = "HELP";
+            // 
+            // buttonItemCalendarsHelp
+            // 
+            this.buttonItemCalendarsHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
+            this.buttonItemCalendarsHelp.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarsHelp.Name = "buttonItemCalendarsHelp";
+            this.buttonItemCalendarsHelp.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me understand how to use the Advertising Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
             // 
             // ribbonBarCalendarsPowerPoint
             // 
@@ -917,6 +1027,15 @@
             this.ribbonBarCalendarsPowerPoint.Text = "PowerPoint";
             this.ribbonBarCalendarsPowerPoint.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
             // 
+            // buttonItemCalendarsPowerPoint
+            // 
+            this.buttonItemCalendarsPowerPoint.Image = global::AdScheduleBuilder.Properties.Resources.PowerPoint;
+            this.buttonItemCalendarsPowerPoint.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarsPowerPoint.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.buttonItemCalendarsPowerPoint.Name = "buttonItemCalendarsPowerPoint";
+            this.buttonItemCalendarsPowerPoint.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to my PowerPoint Presentation", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
             // ribbonBarCalendarsEmail
             // 
             this.ribbonBarCalendarsEmail.AutoOverflowEnabled = true;
@@ -929,6 +1048,14 @@
             this.ribbonBarCalendarsEmail.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCalendarsEmail.TabIndex = 33;
             this.ribbonBarCalendarsEmail.Text = "Email";
+            // 
+            // buttonItemCalendarsEmail
+            // 
+            this.buttonItemCalendarsEmail.Image = global::AdScheduleBuilder.Properties.Resources.EmailBig;
+            this.buttonItemCalendarsEmail.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarsEmail.Name = "buttonItemCalendarsEmail";
+            this.buttonItemCalendarsEmail.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Advertising Schedule in an email", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
             // 
             // ribbonBarCalendarsSave
             // 
@@ -944,6 +1071,24 @@
             this.ribbonBarCalendarsSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCalendarsSave.TabIndex = 31;
             this.ribbonBarCalendarsSave.Text = "Save";
+            // 
+            // buttonItemCalendarsSave
+            // 
+            this.buttonItemCalendarsSave.Image = global::AdScheduleBuilder.Properties.Resources.SaveSmall;
+            this.buttonItemCalendarsSave.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarsSave.Name = "buttonItemCalendarsSave";
+            this.buttonItemCalendarsSave.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsSave, new DevComponents.DotNetBar.SuperTooltipInfo("Save Schedule", "", "Save this current Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemCalendarsSave.Text = "Save";
+            // 
+            // buttonItemCalendarsSaveAs
+            // 
+            this.buttonItemCalendarsSaveAs.Image = global::AdScheduleBuilder.Properties.Resources.SaveAs;
+            this.buttonItemCalendarsSaveAs.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarsSaveAs.Name = "buttonItemCalendarsSaveAs";
+            this.buttonItemCalendarsSaveAs.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save a Copy", "", "Save a copy of this Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemCalendarsSaveAs.Text = "Save As";
             // 
             // ribbonBarCalendarsThemeColor
             // 
@@ -968,6 +1113,30 @@
             this.buttonItemCalendarsColorBlack,
             this.buttonItemCalendarsColorBlue});
             // 
+            // buttonItemCalendarsColorGray
+            // 
+            this.buttonItemCalendarsColorGray.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemCalendarsColorGray.Image = global::AdScheduleBuilder.Properties.Resources.GrayColor;
+            this.buttonItemCalendarsColorGray.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarsColorGray.Name = "buttonItemCalendarsColorGray";
+            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsColorGray, new DevComponents.DotNetBar.SuperTooltipInfo("Theme Color", "", "Gray", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // buttonItemCalendarsColorBlack
+            // 
+            this.buttonItemCalendarsColorBlack.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemCalendarsColorBlack.Image = global::AdScheduleBuilder.Properties.Resources.BlackColor;
+            this.buttonItemCalendarsColorBlack.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarsColorBlack.Name = "buttonItemCalendarsColorBlack";
+            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsColorBlack, new DevComponents.DotNetBar.SuperTooltipInfo("Theme Color", "", "Black and White", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // buttonItemCalendarsColorBlue
+            // 
+            this.buttonItemCalendarsColorBlue.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemCalendarsColorBlue.Image = global::AdScheduleBuilder.Properties.Resources.BlueColor;
+            this.buttonItemCalendarsColorBlue.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarsColorBlue.Name = "buttonItemCalendarsColorBlue";
+            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsColorBlue, new DevComponents.DotNetBar.SuperTooltipInfo("Theme Color", "", "Blue", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
             // itemContainerCalendarsThemeColor2
             // 
             this.itemContainerCalendarsThemeColor2.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
@@ -976,6 +1145,30 @@
             this.buttonItemCalendarsColorTeal,
             this.buttonItemCalendarsColorOrange,
             this.buttonItemCalendarsColorGreen});
+            // 
+            // buttonItemCalendarsColorTeal
+            // 
+            this.buttonItemCalendarsColorTeal.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemCalendarsColorTeal.Image = global::AdScheduleBuilder.Properties.Resources.TealColor;
+            this.buttonItemCalendarsColorTeal.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarsColorTeal.Name = "buttonItemCalendarsColorTeal";
+            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsColorTeal, new DevComponents.DotNetBar.SuperTooltipInfo("Theme Color", "", "Teal", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // buttonItemCalendarsColorOrange
+            // 
+            this.buttonItemCalendarsColorOrange.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemCalendarsColorOrange.Image = global::AdScheduleBuilder.Properties.Resources.OrangeColor;
+            this.buttonItemCalendarsColorOrange.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarsColorOrange.Name = "buttonItemCalendarsColorOrange";
+            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsColorOrange, new DevComponents.DotNetBar.SuperTooltipInfo("Theme Color", "", "Orange", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // buttonItemCalendarsColorGreen
+            // 
+            this.buttonItemCalendarsColorGreen.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemCalendarsColorGreen.Image = global::AdScheduleBuilder.Properties.Resources.GreenColor;
+            this.buttonItemCalendarsColorGreen.ImagePaddingHorizontal = 8;
+            this.buttonItemCalendarsColorGreen.Name = "buttonItemCalendarsColorGreen";
+            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsColorGreen, new DevComponents.DotNetBar.SuperTooltipInfo("Theme Color", "", "Green", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
             // 
             // ribbonBarCalendarsMonthlyInfo
             // 
@@ -1309,6 +1502,16 @@
             this.ribbonBarRateCardExit.TabIndex = 34;
             this.ribbonBarRateCardExit.Text = "EXIT";
             // 
+            // buttonItemRateCardExit
+            // 
+            this.buttonItemRateCardExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
+            this.buttonItemRateCardExit.ImagePaddingHorizontal = 8;
+            this.buttonItemRateCardExit.Name = "buttonItemRateCardExit";
+            this.buttonItemRateCardExit.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemRateCardExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Ad Schedule Builder", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemRateCardExit.Text = "buttonItem1";
+            this.buttonItemRateCardExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
+            // 
             // ribbonBarRateCardHelp
             // 
             this.ribbonBarRateCardHelp.AutoOverflowEnabled = true;
@@ -1322,6 +1525,14 @@
             this.ribbonBarRateCardHelp.TabIndex = 35;
             this.ribbonBarRateCardHelp.Text = "HELP";
             // 
+            // buttonItemRateCardHelp
+            // 
+            this.buttonItemRateCardHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
+            this.buttonItemRateCardHelp.ImagePaddingHorizontal = 8;
+            this.buttonItemRateCardHelp.Name = "buttonItemRateCardHelp";
+            this.buttonItemRateCardHelp.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemRateCardHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me understand how to access Models of Success Online Videos", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
             // ribbonBarRateCardEmail
             // 
             this.ribbonBarRateCardEmail.AutoOverflowEnabled = true;
@@ -1334,6 +1545,14 @@
             this.ribbonBarRateCardEmail.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarRateCardEmail.TabIndex = 36;
             this.ribbonBarRateCardEmail.Text = "Email";
+            // 
+            // buttonItemRatecardEmail
+            // 
+            this.buttonItemRatecardEmail.Image = global::AdScheduleBuilder.Properties.Resources.EmailBig;
+            this.buttonItemRatecardEmail.ImagePaddingHorizontal = 8;
+            this.buttonItemRatecardEmail.Name = "buttonItemRatecardEmail";
+            this.buttonItemRatecardEmail.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemRatecardEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Advertising Schedule in an email", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
             // 
             // ribbonBarRateCards
             // 
@@ -1427,6 +1646,15 @@
             this.ribbonBarSchedulesExit.TabIndex = 14;
             this.ribbonBarSchedulesExit.Text = "EXIT";
             // 
+            // buttonItemSchedulesExit
+            // 
+            this.buttonItemSchedulesExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
+            this.buttonItemSchedulesExit.ImagePaddingHorizontal = 8;
+            this.buttonItemSchedulesExit.Name = "buttonItemSchedulesExit";
+            this.buttonItemSchedulesExit.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSchedulesExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close this Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemSchedulesExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
+            // 
             // ribbonBarSchedulesHelp
             // 
             this.ribbonBarSchedulesHelp.AutoOverflowEnabled = true;
@@ -1439,6 +1667,14 @@
             this.ribbonBarSchedulesHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSchedulesHelp.TabIndex = 16;
             this.ribbonBarSchedulesHelp.Text = "HELP";
+            // 
+            // buttonItemSchedulesHelp
+            // 
+            this.buttonItemSchedulesHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
+            this.buttonItemSchedulesHelp.ImagePaddingHorizontal = 8;
+            this.buttonItemSchedulesHelp.Name = "buttonItemSchedulesHelp";
+            this.buttonItemSchedulesHelp.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSchedulesHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me with building Ad Schedules for my Presentations", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
             // 
             // ribbonBarSchedulesSave
             // 
@@ -1454,6 +1690,24 @@
             this.ribbonBarSchedulesSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSchedulesSave.TabIndex = 15;
             this.ribbonBarSchedulesSave.Text = "Save";
+            // 
+            // buttonItemSchedulesSave
+            // 
+            this.buttonItemSchedulesSave.Image = global::AdScheduleBuilder.Properties.Resources.SaveSmall;
+            this.buttonItemSchedulesSave.ImagePaddingHorizontal = 8;
+            this.buttonItemSchedulesSave.Name = "buttonItemSchedulesSave";
+            this.buttonItemSchedulesSave.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSchedulesSave, new DevComponents.DotNetBar.SuperTooltipInfo("Save", "", "Save this Advertising Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemSchedulesSave.Text = "Save";
+            // 
+            // buttonItemSchedulesSaveAs
+            // 
+            this.buttonItemSchedulesSaveAs.Image = global::AdScheduleBuilder.Properties.Resources.SaveAs;
+            this.buttonItemSchedulesSaveAs.ImagePaddingHorizontal = 8;
+            this.buttonItemSchedulesSaveAs.Name = "buttonItemSchedulesSaveAs";
+            this.buttonItemSchedulesSaveAs.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSchedulesSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemSchedulesSaveAs.Text = "Save As";
             // 
             // ribbonBarColorPricing
             // 
@@ -1504,6 +1758,30 @@
             this.buttonItemColorOptionsSingle,
             this.buttonItemColorOptionsSpot,
             this.buttonItemColorOptionsFull});
+            // 
+            // buttonItemColorOptionsSingle
+            // 
+            this.buttonItemColorOptionsSingle.Image = global::AdScheduleBuilder.Properties.Resources.ColorSingle;
+            this.buttonItemColorOptionsSingle.ImagePaddingHorizontal = 8;
+            this.buttonItemColorOptionsSingle.Name = "buttonItemColorOptionsSingle";
+            this.buttonItemColorOptionsSingle.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemColorOptionsSingle, new DevComponents.DotNetBar.SuperTooltipInfo("Black and White", "", "Color Pricing is Black and White", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // buttonItemColorOptionsSpot
+            // 
+            this.buttonItemColorOptionsSpot.Image = global::AdScheduleBuilder.Properties.Resources.ColorSpot;
+            this.buttonItemColorOptionsSpot.ImagePaddingHorizontal = 8;
+            this.buttonItemColorOptionsSpot.Name = "buttonItemColorOptionsSpot";
+            this.buttonItemColorOptionsSpot.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemColorOptionsSpot, new DevComponents.DotNetBar.SuperTooltipInfo("Spot Color", "", "Color Pricing is Spot Color", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // buttonItemColorOptionsFull
+            // 
+            this.buttonItemColorOptionsFull.Image = global::AdScheduleBuilder.Properties.Resources.ColorFull;
+            this.buttonItemColorOptionsFull.ImagePaddingHorizontal = 8;
+            this.buttonItemColorOptionsFull.Name = "buttonItemColorOptionsFull";
+            this.buttonItemColorOptionsFull.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemColorOptionsFull, new DevComponents.DotNetBar.SuperTooltipInfo("Full Color", "", "Color Pricing is Full Color", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
             // 
             // labelItemColorOptionsBorder
             // 
@@ -1789,6 +2067,11 @@
             this.itemContainerAdSizeLogo.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.labelItemAdSizeLogo});
             // 
+            // labelItemAdSizeLogo
+            // 
+            this.labelItemAdSizeLogo.Image = global::AdScheduleBuilder.Properties.Resources.AdSize;
+            this.labelItemAdSizeLogo.Name = "labelItemAdSizeLogo";
+            // 
             // itemContainerAdSizeValues
             // 
             this.itemContainerAdSizeValues.ItemSpacing = 15;
@@ -2024,6 +2307,36 @@
             this.buttonItemAdPricingPagePercent});
             this.itemContainerAdPricingStrategy.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
             // 
+            // buttonItemAdPricingColumnInches
+            // 
+            this.buttonItemAdPricingColumnInches.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemAdPricingColumnInches.ForeColor = System.Drawing.Color.Black;
+            this.buttonItemAdPricingColumnInches.Image = global::AdScheduleBuilder.Properties.Resources.ColumnInches;
+            this.buttonItemAdPricingColumnInches.ImagePaddingHorizontal = 8;
+            this.buttonItemAdPricingColumnInches.Name = "buttonItemAdPricingColumnInches";
+            this.superTooltip.SetSuperTooltip(this.buttonItemAdPricingColumnInches, new DevComponents.DotNetBar.SuperTooltipInfo("Column Inches", "", "Build this schedule with traditional column inch strategy", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemAdPricingColumnInches.Text = "  Column Inches";
+            // 
+            // buttonItemAdPricingFlat
+            // 
+            this.buttonItemAdPricingFlat.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemAdPricingFlat.ForeColor = System.Drawing.Color.Black;
+            this.buttonItemAdPricingFlat.Image = global::AdScheduleBuilder.Properties.Resources.FlatRate;
+            this.buttonItemAdPricingFlat.ImagePaddingHorizontal = 8;
+            this.buttonItemAdPricingFlat.Name = "buttonItemAdPricingFlat";
+            this.superTooltip.SetSuperTooltip(this.buttonItemAdPricingFlat, new DevComponents.DotNetBar.SuperTooltipInfo("Flat Rate", "", "Build this schedule with flat package rates", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemAdPricingFlat.Text = "  Flat Rate";
+            // 
+            // buttonItemAdPricingPagePercent
+            // 
+            this.buttonItemAdPricingPagePercent.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemAdPricingPagePercent.ForeColor = System.Drawing.Color.Black;
+            this.buttonItemAdPricingPagePercent.Image = global::AdScheduleBuilder.Properties.Resources.SharePage;
+            this.buttonItemAdPricingPagePercent.ImagePaddingHorizontal = 8;
+            this.buttonItemAdPricingPagePercent.Name = "buttonItemAdPricingPagePercent";
+            this.superTooltip.SetSuperTooltip(this.buttonItemAdPricingPagePercent, new DevComponents.DotNetBar.SuperTooltipInfo("Share of Page", "", "Build this schedule with the % share of page strategy", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemAdPricingPagePercent.Text = "  % Share of Page";
+            // 
             // ribbonBarSchedulesLines
             // 
             this.ribbonBarSchedulesLines.AutoOverflowEnabled = true;
@@ -2045,6 +2358,37 @@
             this.buttonItemSchedulesAdd,
             this.buttonItemCloneInsert,
             this.buttonItemDeleteInsert});
+            // 
+            // buttonItemSchedulesAdd
+            // 
+            this.buttonItemSchedulesAdd.FixedSize = new System.Drawing.Size(125, 38);
+            this.buttonItemSchedulesAdd.ForeColor = System.Drawing.Color.Black;
+            this.buttonItemSchedulesAdd.Image = global::AdScheduleBuilder.Properties.Resources.AddLine;
+            this.buttonItemSchedulesAdd.ImagePaddingHorizontal = 8;
+            this.buttonItemSchedulesAdd.Name = "buttonItemSchedulesAdd";
+            this.buttonItemSchedulesAdd.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSchedulesAdd, new DevComponents.DotNetBar.SuperTooltipInfo("Add Line", "", "Add a new line to this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemSchedulesAdd.Text = "     Add";
+            // 
+            // buttonItemCloneInsert
+            // 
+            this.buttonItemCloneInsert.FixedSize = new System.Drawing.Size(125, 38);
+            this.buttonItemCloneInsert.ForeColor = System.Drawing.Color.Black;
+            this.buttonItemCloneInsert.Image = global::AdScheduleBuilder.Properties.Resources.CloneLine;
+            this.buttonItemCloneInsert.ImagePaddingHorizontal = 8;
+            this.buttonItemCloneInsert.Name = "buttonItemCloneInsert";
+            this.superTooltip.SetSuperTooltip(this.buttonItemCloneInsert, new DevComponents.DotNetBar.SuperTooltipInfo("Clone Line", "", "Clone the selected Ad below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemCloneInsert.Text = "     Clone";
+            // 
+            // buttonItemDeleteInsert
+            // 
+            this.buttonItemDeleteInsert.FixedSize = new System.Drawing.Size(125, 38);
+            this.buttonItemDeleteInsert.ForeColor = System.Drawing.Color.Black;
+            this.buttonItemDeleteInsert.Image = global::AdScheduleBuilder.Properties.Resources.DeleteLine;
+            this.buttonItemDeleteInsert.ImagePaddingHorizontal = 8;
+            this.buttonItemDeleteInsert.Name = "buttonItemDeleteInsert";
+            this.superTooltip.SetSuperTooltip(this.buttonItemDeleteInsert, new DevComponents.DotNetBar.SuperTooltipInfo("Delete Line", "", "Delete the selected Ad below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemDeleteInsert.Text = "     Delete     ";
             // 
             // ribbonPanelGrids
             // 
@@ -2078,6 +2422,15 @@
             this.ribbonBarGridsExit.TabIndex = 26;
             this.ribbonBarGridsExit.Text = "EXIT";
             // 
+            // buttonItemGridsExit
+            // 
+            this.buttonItemGridsExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
+            this.buttonItemGridsExit.ImagePaddingHorizontal = 8;
+            this.buttonItemGridsExit.Name = "buttonItemGridsExit";
+            this.buttonItemGridsExit.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemGridsExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Ad Schedule Builder", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemGridsExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
+            // 
             // ribbonBarGridHelp
             // 
             this.ribbonBarGridHelp.AutoOverflowEnabled = true;
@@ -2090,6 +2443,13 @@
             this.ribbonBarGridHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarGridHelp.TabIndex = 31;
             this.ribbonBarGridHelp.Text = "HELP";
+            // 
+            // buttonItemGridsHelp
+            // 
+            this.buttonItemGridsHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
+            this.buttonItemGridsHelp.ImagePaddingHorizontal = 8;
+            this.buttonItemGridsHelp.Name = "buttonItemGridsHelp";
+            this.buttonItemGridsHelp.SubItemsExpandWidth = 14;
             // 
             // ribbonBarGridsPowerPoint
             // 
@@ -2104,6 +2464,14 @@
             this.ribbonBarGridsPowerPoint.TabIndex = 20;
             this.ribbonBarGridsPowerPoint.Text = "PowerPoint";
             // 
+            // buttonItemGridsPowerPoint
+            // 
+            this.buttonItemGridsPowerPoint.Image = global::AdScheduleBuilder.Properties.Resources.PowerPoint;
+            this.buttonItemGridsPowerPoint.ImagePaddingHorizontal = 8;
+            this.buttonItemGridsPowerPoint.Name = "buttonItemGridsPowerPoint";
+            this.buttonItemGridsPowerPoint.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemGridsPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to my PowerPoint Presentation", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
             // ribbonBarGridsEmail
             // 
             this.ribbonBarGridsEmail.AutoOverflowEnabled = true;
@@ -2116,6 +2484,14 @@
             this.ribbonBarGridsEmail.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarGridsEmail.TabIndex = 34;
             this.ribbonBarGridsEmail.Text = "Email";
+            // 
+            // buttonItemGridsEmail
+            // 
+            this.buttonItemGridsEmail.Image = global::AdScheduleBuilder.Properties.Resources.EmailBig;
+            this.buttonItemGridsEmail.ImagePaddingHorizontal = 8;
+            this.buttonItemGridsEmail.Name = "buttonItemGridsEmail";
+            this.buttonItemGridsEmail.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemGridsEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Advertising Schedule in an email", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
             // 
             // ribbonBarGridsSave
             // 
@@ -2132,6 +2508,24 @@
             this.ribbonBarGridsSave.TabIndex = 27;
             this.ribbonBarGridsSave.Text = "Save";
             // 
+            // buttonItemGridsSave
+            // 
+            this.buttonItemGridsSave.Image = global::AdScheduleBuilder.Properties.Resources.SaveSmall;
+            this.buttonItemGridsSave.ImagePaddingHorizontal = 8;
+            this.buttonItemGridsSave.Name = "buttonItemGridsSave";
+            this.buttonItemGridsSave.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemGridsSave, new DevComponents.DotNetBar.SuperTooltipInfo("Save Schedule", "", "Save this current Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemGridsSave.Text = "Save";
+            // 
+            // buttonItemGridsSaveAs
+            // 
+            this.buttonItemGridsSaveAs.Image = global::AdScheduleBuilder.Properties.Resources.SaveAs;
+            this.buttonItemGridsSaveAs.ImagePaddingHorizontal = 8;
+            this.buttonItemGridsSaveAs.Name = "buttonItemGridsSaveAs";
+            this.buttonItemGridsSaveAs.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemGridsSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save a Copy", "", "Save a copy of this Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemGridsSaveAs.Text = "Save As";
+            // 
             // ribbonBarGridsDetails
             // 
             this.ribbonBarGridsDetails.AutoOverflowEnabled = true;
@@ -2144,6 +2538,15 @@
             this.ribbonBarGridsDetails.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarGridsDetails.TabIndex = 25;
             this.ribbonBarGridsDetails.Text = "Details";
+            // 
+            // buttonItemGridsDetails
+            // 
+            this.buttonItemGridsDetails.AutoCheckOnClick = true;
+            this.buttonItemGridsDetails.Image = global::AdScheduleBuilder.Properties.Resources.GridDetails;
+            this.buttonItemGridsDetails.ImagePaddingHorizontal = 8;
+            this.buttonItemGridsDetails.Name = "buttonItemGridsDetails";
+            this.buttonItemGridsDetails.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemGridsDetails, new DevComponents.DotNetBar.SuperTooltipInfo("Options", "", "Show important details about your ad schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
             // 
             // ribbonBarGridsColumns
             // 
@@ -2402,6 +2805,31 @@
             this.buttonItemGridsMultiGrid,
             this.buttonItemGridsChronological});
             // 
+            // buttonItemGridsDetailedGrid
+            // 
+            this.buttonItemGridsDetailedGrid.Checked = true;
+            this.buttonItemGridsDetailedGrid.Image = global::AdScheduleBuilder.Properties.Resources.DetailedGrid;
+            this.buttonItemGridsDetailedGrid.ImagePaddingHorizontal = 8;
+            this.buttonItemGridsDetailedGrid.Name = "buttonItemGridsDetailedGrid";
+            this.buttonItemGridsDetailedGrid.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemGridsDetailedGrid, new DevComponents.DotNetBar.SuperTooltipInfo("Detailed Grid", "", "A line item detailed advertising schedule for each publication you are selling", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // buttonItemGridsMultiGrid
+            // 
+            this.buttonItemGridsMultiGrid.Image = global::AdScheduleBuilder.Properties.Resources.MultiGrid;
+            this.buttonItemGridsMultiGrid.ImagePaddingHorizontal = 8;
+            this.buttonItemGridsMultiGrid.Name = "buttonItemGridsMultiGrid";
+            this.buttonItemGridsMultiGrid.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemGridsMultiGrid, new DevComponents.DotNetBar.SuperTooltipInfo("Multi-Publication Grid", "", "An advertising schedule grid featuring all publications combined", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // buttonItemGridsChronological
+            // 
+            this.buttonItemGridsChronological.Image = global::AdScheduleBuilder.Properties.Resources.Chronological;
+            this.buttonItemGridsChronological.ImagePaddingHorizontal = 8;
+            this.buttonItemGridsChronological.Name = "buttonItemGridsChronological";
+            this.buttonItemGridsChronological.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemGridsChronological, new DevComponents.DotNetBar.SuperTooltipInfo("Chronological Grid", "", "This combined advertising schedule displays all ads sorted by date", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
             // ribbonPanelSummaries
             // 
             this.ribbonPanelSummaries.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -2434,6 +2862,15 @@
             this.ribbonBarSummariesExit.TabIndex = 28;
             this.ribbonBarSummariesExit.Text = "EXIT";
             // 
+            // buttonItemSummariesExit
+            // 
+            this.buttonItemSummariesExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
+            this.buttonItemSummariesExit.ImagePaddingHorizontal = 8;
+            this.buttonItemSummariesExit.Name = "buttonItemSummariesExit";
+            this.buttonItemSummariesExit.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Ad Schedule Builder", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemSummariesExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
+            // 
             // ribbonBarSummariesHelp
             // 
             this.ribbonBarSummariesHelp.AutoOverflowEnabled = true;
@@ -2446,6 +2883,13 @@
             this.ribbonBarSummariesHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSummariesHelp.TabIndex = 30;
             this.ribbonBarSummariesHelp.Text = "HELP";
+            // 
+            // buttonItemSummariesHelp
+            // 
+            this.buttonItemSummariesHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
+            this.buttonItemSummariesHelp.ImagePaddingHorizontal = 8;
+            this.buttonItemSummariesHelp.Name = "buttonItemSummariesHelp";
+            this.buttonItemSummariesHelp.SubItemsExpandWidth = 14;
             // 
             // ribbonBarSummariesPowerPoint
             // 
@@ -2460,6 +2904,14 @@
             this.ribbonBarSummariesPowerPoint.TabIndex = 18;
             this.ribbonBarSummariesPowerPoint.Text = "PowerPoint";
             // 
+            // buttonItemSummariesPowerPoint
+            // 
+            this.buttonItemSummariesPowerPoint.Image = global::AdScheduleBuilder.Properties.Resources.PowerPoint;
+            this.buttonItemSummariesPowerPoint.ImagePaddingHorizontal = 8;
+            this.buttonItemSummariesPowerPoint.Name = "buttonItemSummariesPowerPoint";
+            this.buttonItemSummariesPowerPoint.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to my PowerPoint Presentation", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
             // ribbonBarSummariesEmail
             // 
             this.ribbonBarSummariesEmail.AutoOverflowEnabled = true;
@@ -2472,6 +2924,14 @@
             this.ribbonBarSummariesEmail.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSummariesEmail.TabIndex = 31;
             this.ribbonBarSummariesEmail.Text = "Email";
+            // 
+            // buttonItemSummariesEmail
+            // 
+            this.buttonItemSummariesEmail.Image = global::AdScheduleBuilder.Properties.Resources.EmailBig;
+            this.buttonItemSummariesEmail.ImagePaddingHorizontal = 8;
+            this.buttonItemSummariesEmail.Name = "buttonItemSummariesEmail";
+            this.buttonItemSummariesEmail.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Advertising Schedule in an email", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
             // 
             // ribbonBarSummariesSave
             // 
@@ -2488,6 +2948,24 @@
             this.ribbonBarSummariesSave.TabIndex = 29;
             this.ribbonBarSummariesSave.Text = "Save";
             // 
+            // buttonItemSummariesSave
+            // 
+            this.buttonItemSummariesSave.Image = global::AdScheduleBuilder.Properties.Resources.SaveSmall;
+            this.buttonItemSummariesSave.ImagePaddingHorizontal = 8;
+            this.buttonItemSummariesSave.Name = "buttonItemSummariesSave";
+            this.buttonItemSummariesSave.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesSave, new DevComponents.DotNetBar.SuperTooltipInfo("Save Schedule", "", "Save this current Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemSummariesSave.Text = "Save";
+            // 
+            // buttonItemSummariesSaveAs
+            // 
+            this.buttonItemSummariesSaveAs.Image = global::AdScheduleBuilder.Properties.Resources.SaveAs;
+            this.buttonItemSummariesSaveAs.ImagePaddingHorizontal = 8;
+            this.buttonItemSummariesSaveAs.Name = "buttonItemSummariesSaveAs";
+            this.buttonItemSummariesSaveAs.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save a Copy", "", "Save a copy of this Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemSummariesSaveAs.Text = "Save As";
+            // 
             // ribbonBarSummariesSnapshot
             // 
             this.ribbonBarSummariesSnapshot.AutoOverflowEnabled = true;
@@ -2503,6 +2981,15 @@
             this.ribbonBarSummariesSnapshot.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSummariesSnapshot.TabIndex = 19;
             this.ribbonBarSummariesSnapshot.Text = "Snapshot";
+            // 
+            // buttonItemSummariesSnapshot
+            // 
+            this.buttonItemSummariesSnapshot.FixedSize = new System.Drawing.Size(90, 64);
+            this.buttonItemSummariesSnapshot.Image = global::AdScheduleBuilder.Properties.Resources.Snapshot;
+            this.buttonItemSummariesSnapshot.ImagePaddingHorizontal = 8;
+            this.buttonItemSummariesSnapshot.Name = "buttonItemSummariesSnapshot";
+            this.buttonItemSummariesSnapshot.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesSnapshot, new DevComponents.DotNetBar.SuperTooltipInfo("Snapshot", "", "Provide a simple summary of publications and details to your client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
             // 
             // itemContainerSnapshotButtonsGroup1
             // 
@@ -2663,6 +3150,15 @@
             this.ribbonBarSummariesMultiSummary.TabIndex = 13;
             this.ribbonBarSummariesMultiSummary.Text = "Multi-Summary";
             // 
+            // buttonItemSummariesMultiSummary
+            // 
+            this.buttonItemSummariesMultiSummary.FixedSize = new System.Drawing.Size(90, 64);
+            this.buttonItemSummariesMultiSummary.Image = global::AdScheduleBuilder.Properties.Resources.MultiSummary;
+            this.buttonItemSummariesMultiSummary.ImagePaddingHorizontal = 8;
+            this.buttonItemSummariesMultiSummary.Name = "buttonItemSummariesMultiSummary";
+            this.buttonItemSummariesMultiSummary.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesMultiSummary, new DevComponents.DotNetBar.SuperTooltipInfo("Multi Publication Summary", "", "Useful if you want to sell several different publications to your client.", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
             // ribbonBarSummariesBasicOverview
             // 
             this.ribbonBarSummariesBasicOverview.AutoOverflowEnabled = true;
@@ -2675,6 +3171,17 @@
             this.ribbonBarSummariesBasicOverview.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSummariesBasicOverview.TabIndex = 12;
             this.ribbonBarSummariesBasicOverview.Text = "Basic Overview";
+            // 
+            // buttonItemSummariesBasicOverview
+            // 
+            this.buttonItemSummariesBasicOverview.Checked = true;
+            this.buttonItemSummariesBasicOverview.FixedSize = new System.Drawing.Size(90, 64);
+            this.buttonItemSummariesBasicOverview.Image = global::AdScheduleBuilder.Properties.Resources.BasicOverview;
+            this.buttonItemSummariesBasicOverview.ImagePaddingHorizontal = 8;
+            this.buttonItemSummariesBasicOverview.Name = "buttonItemSummariesBasicOverview";
+            this.buttonItemSummariesBasicOverview.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesBasicOverview, new DevComponents.DotNetBar.SuperTooltipInfo("Basic Overview", "", "Designed for less-sophisticated clients, this is most basic schedule slide availa" +
+            "ble", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
             // 
             // ribbonPanelSuccessModels
             // 
@@ -2703,6 +3210,16 @@
             this.ribbonBarSuccessModelsExit.TabIndex = 10;
             this.ribbonBarSuccessModelsExit.Text = "EXIT";
             // 
+            // buttonItemSuccessModelsExit
+            // 
+            this.buttonItemSuccessModelsExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
+            this.buttonItemSuccessModelsExit.ImagePaddingHorizontal = 8;
+            this.buttonItemSuccessModelsExit.Name = "buttonItemSuccessModelsExit";
+            this.buttonItemSuccessModelsExit.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSuccessModelsExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Ad Schedule Builder", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.buttonItemSuccessModelsExit.Text = "buttonItem1";
+            this.buttonItemSuccessModelsExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
+            // 
             // ribbonBarSuccessModelsHelp
             // 
             this.ribbonBarSuccessModelsHelp.AutoOverflowEnabled = true;
@@ -2716,6 +3233,14 @@
             this.ribbonBarSuccessModelsHelp.TabIndex = 33;
             this.ribbonBarSuccessModelsHelp.Text = "HELP";
             // 
+            // buttonItemSuccessModelsHelp
+            // 
+            this.buttonItemSuccessModelsHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
+            this.buttonItemSuccessModelsHelp.ImagePaddingHorizontal = 8;
+            this.buttonItemSuccessModelsHelp.Name = "buttonItemSuccessModelsHelp";
+            this.buttonItemSuccessModelsHelp.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemSuccessModelsHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me understand how to access Models of Success Online Videos", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
             // ribbonBarModelsOfSuccess
             // 
             this.ribbonBarModelsOfSuccess.AutoOverflowEnabled = true;
@@ -2728,6 +3253,11 @@
             this.ribbonBarModelsOfSuccess.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarModelsOfSuccess.TabIndex = 0;
             this.ribbonBarModelsOfSuccess.Text = "Ad Schedule Models of Success";
+            // 
+            // labelItemModelsOfSuccess
+            // 
+            this.labelItemModelsOfSuccess.Image = global::AdScheduleBuilder.Properties.Resources.ModelsOfSuccess;
+            this.labelItemModelsOfSuccess.Name = "labelItemModelsOfSuccess";
             // 
             // ribbonTabItemScheduleSettings
             // 
@@ -2801,529 +3331,35 @@
             // 
             this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
             // 
-            // buttonItemCalendarsExit
-            // 
-            this.buttonItemCalendarsExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
-            this.buttonItemCalendarsExit.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarsExit.Name = "buttonItemCalendarsExit";
-            this.buttonItemCalendarsExit.SubItemsExpandWidth = 14;
-            this.buttonItemCalendarsExit.Text = "buttonItem1";
-            this.buttonItemCalendarsExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
-            // 
-            // buttonItemCalendarsHelp
-            // 
-            this.buttonItemCalendarsHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
-            this.buttonItemCalendarsHelp.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarsHelp.Name = "buttonItemCalendarsHelp";
-            this.buttonItemCalendarsHelp.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me understand how to use the Advertising Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemCalendarsPowerPoint
-            // 
-            this.buttonItemCalendarsPowerPoint.Image = global::AdScheduleBuilder.Properties.Resources.PowerPoint;
-            this.buttonItemCalendarsPowerPoint.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarsPowerPoint.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.buttonItemCalendarsPowerPoint.Name = "buttonItemCalendarsPowerPoint";
-            this.buttonItemCalendarsPowerPoint.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to my PowerPoint Presentation", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemCalendarsEmail
-            // 
-            this.buttonItemCalendarsEmail.Image = global::AdScheduleBuilder.Properties.Resources.EmailBig;
-            this.buttonItemCalendarsEmail.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarsEmail.Name = "buttonItemCalendarsEmail";
-            this.buttonItemCalendarsEmail.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Advertising Schedule in an email", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemCalendarsSave
-            // 
-            this.buttonItemCalendarsSave.Image = global::AdScheduleBuilder.Properties.Resources.SaveSmall;
-            this.buttonItemCalendarsSave.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarsSave.Name = "buttonItemCalendarsSave";
-            this.buttonItemCalendarsSave.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsSave, new DevComponents.DotNetBar.SuperTooltipInfo("Save Schedule", "", "Save this current Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemCalendarsSave.Text = "Save";
-            // 
-            // buttonItemCalendarsSaveAs
-            // 
-            this.buttonItemCalendarsSaveAs.Image = global::AdScheduleBuilder.Properties.Resources.SaveAs;
-            this.buttonItemCalendarsSaveAs.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarsSaveAs.Name = "buttonItemCalendarsSaveAs";
-            this.buttonItemCalendarsSaveAs.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save a Copy", "", "Save a copy of this Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemCalendarsSaveAs.Text = "Save As";
-            // 
-            // buttonItemCalendarsColorGray
-            // 
-            this.buttonItemCalendarsColorGray.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemCalendarsColorGray.Image = global::AdScheduleBuilder.Properties.Resources.GrayColor;
-            this.buttonItemCalendarsColorGray.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarsColorGray.Name = "buttonItemCalendarsColorGray";
-            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsColorGray, new DevComponents.DotNetBar.SuperTooltipInfo("Theme Color", "", "Gray", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemCalendarsColorBlack
-            // 
-            this.buttonItemCalendarsColorBlack.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemCalendarsColorBlack.Image = global::AdScheduleBuilder.Properties.Resources.BlackColor;
-            this.buttonItemCalendarsColorBlack.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarsColorBlack.Name = "buttonItemCalendarsColorBlack";
-            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsColorBlack, new DevComponents.DotNetBar.SuperTooltipInfo("Theme Color", "", "Black and White", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemCalendarsColorBlue
-            // 
-            this.buttonItemCalendarsColorBlue.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemCalendarsColorBlue.Image = global::AdScheduleBuilder.Properties.Resources.BlueColor;
-            this.buttonItemCalendarsColorBlue.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarsColorBlue.Name = "buttonItemCalendarsColorBlue";
-            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsColorBlue, new DevComponents.DotNetBar.SuperTooltipInfo("Theme Color", "", "Blue", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemCalendarsColorTeal
-            // 
-            this.buttonItemCalendarsColorTeal.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemCalendarsColorTeal.Image = global::AdScheduleBuilder.Properties.Resources.TealColor;
-            this.buttonItemCalendarsColorTeal.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarsColorTeal.Name = "buttonItemCalendarsColorTeal";
-            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsColorTeal, new DevComponents.DotNetBar.SuperTooltipInfo("Theme Color", "", "Teal", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemCalendarsColorOrange
-            // 
-            this.buttonItemCalendarsColorOrange.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemCalendarsColorOrange.Image = global::AdScheduleBuilder.Properties.Resources.OrangeColor;
-            this.buttonItemCalendarsColorOrange.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarsColorOrange.Name = "buttonItemCalendarsColorOrange";
-            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsColorOrange, new DevComponents.DotNetBar.SuperTooltipInfo("Theme Color", "", "Orange", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemCalendarsColorGreen
-            // 
-            this.buttonItemCalendarsColorGreen.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemCalendarsColorGreen.Image = global::AdScheduleBuilder.Properties.Resources.GreenColor;
-            this.buttonItemCalendarsColorGreen.ImagePaddingHorizontal = 8;
-            this.buttonItemCalendarsColorGreen.Name = "buttonItemCalendarsColorGreen";
-            this.superTooltip.SetSuperTooltip(this.buttonItemCalendarsColorGreen, new DevComponents.DotNetBar.SuperTooltipInfo("Theme Color", "", "Green", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemRateCardExit
-            // 
-            this.buttonItemRateCardExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
-            this.buttonItemRateCardExit.ImagePaddingHorizontal = 8;
-            this.buttonItemRateCardExit.Name = "buttonItemRateCardExit";
-            this.buttonItemRateCardExit.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemRateCardExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Ad Schedule Builder", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemRateCardExit.Text = "buttonItem1";
-            this.buttonItemRateCardExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
-            // 
-            // buttonItemRateCardHelp
-            // 
-            this.buttonItemRateCardHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
-            this.buttonItemRateCardHelp.ImagePaddingHorizontal = 8;
-            this.buttonItemRateCardHelp.Name = "buttonItemRateCardHelp";
-            this.buttonItemRateCardHelp.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemRateCardHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me understand how to access Models of Success Online Videos", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemRatecardEmail
-            // 
-            this.buttonItemRatecardEmail.Image = global::AdScheduleBuilder.Properties.Resources.EmailBig;
-            this.buttonItemRatecardEmail.ImagePaddingHorizontal = 8;
-            this.buttonItemRatecardEmail.Name = "buttonItemRatecardEmail";
-            this.buttonItemRatecardEmail.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemRatecardEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Advertising Schedule in an email", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemHomeExit
-            // 
-            this.buttonItemHomeExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
-            this.buttonItemHomeExit.ImagePaddingHorizontal = 8;
-            this.buttonItemHomeExit.Name = "buttonItemHomeExit";
-            this.buttonItemHomeExit.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemHomeExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Ad Schedule Builder", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemHomeExit.Text = "buttonItem1";
-            this.buttonItemHomeExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
-            // 
-            // buttonItemScheduleSettingsHelp
-            // 
-            this.buttonItemScheduleSettingsHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
-            this.buttonItemScheduleSettingsHelp.ImagePaddingHorizontal = 8;
-            this.buttonItemScheduleSettingsHelp.Name = "buttonItemScheduleSettingsHelp";
-            this.buttonItemScheduleSettingsHelp.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemScheduleSettingsHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me understand how to build an Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemScheduleSettingsHelp.Text = "buttonItem1";
-            // 
-            // buttonItemScheduleSettingsSave
-            // 
-            this.buttonItemScheduleSettingsSave.Image = global::AdScheduleBuilder.Properties.Resources.SaveSmall;
-            this.buttonItemScheduleSettingsSave.ImagePaddingHorizontal = 8;
-            this.buttonItemScheduleSettingsSave.Name = "buttonItemScheduleSettingsSave";
-            this.buttonItemScheduleSettingsSave.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemScheduleSettingsSave, new DevComponents.DotNetBar.SuperTooltipInfo("Save", "", "Save this Advertising Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemScheduleSettingsSave.Text = "Save";
-            // 
-            // buttonItemScheduleSettingsSaveAs
-            // 
-            this.buttonItemScheduleSettingsSaveAs.Image = global::AdScheduleBuilder.Properties.Resources.SaveAs;
-            this.buttonItemScheduleSettingsSaveAs.ImagePaddingHorizontal = 8;
-            this.buttonItemScheduleSettingsSaveAs.Name = "buttonItemScheduleSettingsSaveAs";
-            this.buttonItemScheduleSettingsSaveAs.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemScheduleSettingsSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this Schedule as a New File", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemScheduleSettingsSaveAs.Text = "Save As";
-            // 
-            // buttonItemPublicationsAdd
-            // 
-            this.buttonItemPublicationsAdd.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemPublicationsAdd.Image = global::AdScheduleBuilder.Properties.Resources.AddLine;
-            this.buttonItemPublicationsAdd.ImagePaddingHorizontal = 8;
-            this.buttonItemPublicationsAdd.Name = "buttonItemPublicationsAdd";
-            this.superTooltip.SetSuperTooltip(this.buttonItemPublicationsAdd, new DevComponents.DotNetBar.SuperTooltipInfo("Add Publication", "", "Add a publication to your Newspaper Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemPublicationsClone
-            // 
-            this.buttonItemPublicationsClone.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemPublicationsClone.Image = global::AdScheduleBuilder.Properties.Resources.CloneLine;
-            this.buttonItemPublicationsClone.ImagePaddingHorizontal = 8;
-            this.buttonItemPublicationsClone.Name = "buttonItemPublicationsClone";
-            this.superTooltip.SetSuperTooltip(this.buttonItemPublicationsClone, new DevComponents.DotNetBar.SuperTooltipInfo("Clone Publication", "", "Clone the selected Publication", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemPublicationsDelete
-            // 
-            this.buttonItemPublicationsDelete.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemPublicationsDelete.Image = global::AdScheduleBuilder.Properties.Resources.DeleteLine;
-            this.buttonItemPublicationsDelete.ImagePaddingHorizontal = 8;
-            this.buttonItemPublicationsDelete.Name = "buttonItemPublicationsDelete";
-            this.superTooltip.SetSuperTooltip(this.buttonItemPublicationsDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Remove Publication", "", "Delete the selected Publication from your Ad Schedule Below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemSalesStrategyFaceCall
-            // 
-            this.buttonItemSalesStrategyFaceCall.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemSalesStrategyFaceCall.Checked = true;
-            this.buttonItemSalesStrategyFaceCall.Image = global::AdScheduleBuilder.Properties.Resources.FaceCall;
-            this.buttonItemSalesStrategyFaceCall.ImageFixedSize = new System.Drawing.Size(32, 32);
-            this.buttonItemSalesStrategyFaceCall.ImagePaddingHorizontal = 8;
-            this.buttonItemSalesStrategyFaceCall.Name = "buttonItemSalesStrategyFaceCall";
-            this.superTooltip.SetSuperTooltip(this.buttonItemSalesStrategyFaceCall, new DevComponents.DotNetBar.SuperTooltipInfo("Face Call", "", "I will present this Ad Schedule in Person", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemSalesStrategyEmail
-            // 
-            this.buttonItemSalesStrategyEmail.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemSalesStrategyEmail.Image = global::AdScheduleBuilder.Properties.Resources.Email;
-            this.buttonItemSalesStrategyEmail.ImagePaddingHorizontal = 8;
-            this.buttonItemSalesStrategyEmail.Name = "buttonItemSalesStrategyEmail";
-            this.superTooltip.SetSuperTooltip(this.buttonItemSalesStrategyEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "I will email this Ad Schedule to the client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemSalesStrategyFax
-            // 
-            this.buttonItemSalesStrategyFax.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemSalesStrategyFax.Image = global::AdScheduleBuilder.Properties.Resources.Fax;
-            this.buttonItemSalesStrategyFax.ImagePaddingHorizontal = 8;
-            this.buttonItemSalesStrategyFax.Name = "buttonItemSalesStrategyFax";
-            this.superTooltip.SetSuperTooltip(this.buttonItemSalesStrategyFax, new DevComponents.DotNetBar.SuperTooltipInfo("Fax", "", "I will faxl this Ad Schedule to the client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemSchedulesExit
-            // 
-            this.buttonItemSchedulesExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
-            this.buttonItemSchedulesExit.ImagePaddingHorizontal = 8;
-            this.buttonItemSchedulesExit.Name = "buttonItemSchedulesExit";
-            this.buttonItemSchedulesExit.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSchedulesExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close this Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemSchedulesExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
-            // 
-            // buttonItemSchedulesHelp
-            // 
-            this.buttonItemSchedulesHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
-            this.buttonItemSchedulesHelp.ImagePaddingHorizontal = 8;
-            this.buttonItemSchedulesHelp.Name = "buttonItemSchedulesHelp";
-            this.buttonItemSchedulesHelp.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSchedulesHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me with building Ad Schedules for my Presentations", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemSchedulesSave
-            // 
-            this.buttonItemSchedulesSave.Image = global::AdScheduleBuilder.Properties.Resources.SaveSmall;
-            this.buttonItemSchedulesSave.ImagePaddingHorizontal = 8;
-            this.buttonItemSchedulesSave.Name = "buttonItemSchedulesSave";
-            this.buttonItemSchedulesSave.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSchedulesSave, new DevComponents.DotNetBar.SuperTooltipInfo("Save", "", "Save this Advertising Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemSchedulesSave.Text = "Save";
-            // 
-            // buttonItemSchedulesSaveAs
-            // 
-            this.buttonItemSchedulesSaveAs.Image = global::AdScheduleBuilder.Properties.Resources.SaveAs;
-            this.buttonItemSchedulesSaveAs.ImagePaddingHorizontal = 8;
-            this.buttonItemSchedulesSaveAs.Name = "buttonItemSchedulesSaveAs";
-            this.buttonItemSchedulesSaveAs.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSchedulesSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save As", "", "Save a copy of this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemSchedulesSaveAs.Text = "Save As";
-            // 
-            // buttonItemColorOptionsSingle
-            // 
-            this.buttonItemColorOptionsSingle.Image = global::AdScheduleBuilder.Properties.Resources.ColorSingle;
-            this.buttonItemColorOptionsSingle.ImagePaddingHorizontal = 8;
-            this.buttonItemColorOptionsSingle.Name = "buttonItemColorOptionsSingle";
-            this.buttonItemColorOptionsSingle.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemColorOptionsSingle, new DevComponents.DotNetBar.SuperTooltipInfo("Black and White", "", "Color Pricing is Black and White", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemColorOptionsSpot
-            // 
-            this.buttonItemColorOptionsSpot.Image = global::AdScheduleBuilder.Properties.Resources.ColorSpot;
-            this.buttonItemColorOptionsSpot.ImagePaddingHorizontal = 8;
-            this.buttonItemColorOptionsSpot.Name = "buttonItemColorOptionsSpot";
-            this.buttonItemColorOptionsSpot.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemColorOptionsSpot, new DevComponents.DotNetBar.SuperTooltipInfo("Spot Color", "", "Color Pricing is Spot Color", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemColorOptionsFull
-            // 
-            this.buttonItemColorOptionsFull.Image = global::AdScheduleBuilder.Properties.Resources.ColorFull;
-            this.buttonItemColorOptionsFull.ImagePaddingHorizontal = 8;
-            this.buttonItemColorOptionsFull.Name = "buttonItemColorOptionsFull";
-            this.buttonItemColorOptionsFull.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemColorOptionsFull, new DevComponents.DotNetBar.SuperTooltipInfo("Full Color", "", "Color Pricing is Full Color", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // labelItemAdSizeLogo
-            // 
-            this.labelItemAdSizeLogo.Image = global::AdScheduleBuilder.Properties.Resources.AdSize;
-            this.labelItemAdSizeLogo.Name = "labelItemAdSizeLogo";
-            // 
-            // buttonItemAdPricingColumnInches
-            // 
-            this.buttonItemAdPricingColumnInches.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemAdPricingColumnInches.ForeColor = System.Drawing.Color.Black;
-            this.buttonItemAdPricingColumnInches.Image = global::AdScheduleBuilder.Properties.Resources.ColumnInches;
-            this.buttonItemAdPricingColumnInches.ImagePaddingHorizontal = 8;
-            this.buttonItemAdPricingColumnInches.Name = "buttonItemAdPricingColumnInches";
-            this.superTooltip.SetSuperTooltip(this.buttonItemAdPricingColumnInches, new DevComponents.DotNetBar.SuperTooltipInfo("Column Inches", "", "Build this schedule with traditional column inch strategy", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemAdPricingColumnInches.Text = "  Column Inches";
-            // 
-            // buttonItemAdPricingFlat
-            // 
-            this.buttonItemAdPricingFlat.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemAdPricingFlat.ForeColor = System.Drawing.Color.Black;
-            this.buttonItemAdPricingFlat.Image = global::AdScheduleBuilder.Properties.Resources.FlatRate;
-            this.buttonItemAdPricingFlat.ImagePaddingHorizontal = 8;
-            this.buttonItemAdPricingFlat.Name = "buttonItemAdPricingFlat";
-            this.superTooltip.SetSuperTooltip(this.buttonItemAdPricingFlat, new DevComponents.DotNetBar.SuperTooltipInfo("Flat Rate", "", "Build this schedule with flat package rates", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemAdPricingFlat.Text = "  Flat Rate";
-            // 
-            // buttonItemAdPricingPagePercent
-            // 
-            this.buttonItemAdPricingPagePercent.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemAdPricingPagePercent.ForeColor = System.Drawing.Color.Black;
-            this.buttonItemAdPricingPagePercent.Image = global::AdScheduleBuilder.Properties.Resources.SharePage;
-            this.buttonItemAdPricingPagePercent.ImagePaddingHorizontal = 8;
-            this.buttonItemAdPricingPagePercent.Name = "buttonItemAdPricingPagePercent";
-            this.superTooltip.SetSuperTooltip(this.buttonItemAdPricingPagePercent, new DevComponents.DotNetBar.SuperTooltipInfo("Share of Page", "", "Build this schedule with the % share of page strategy", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemAdPricingPagePercent.Text = "  % Share of Page";
-            // 
-            // buttonItemSchedulesAdd
-            // 
-            this.buttonItemSchedulesAdd.FixedSize = new System.Drawing.Size(125, 38);
-            this.buttonItemSchedulesAdd.ForeColor = System.Drawing.Color.Black;
-            this.buttonItemSchedulesAdd.Image = global::AdScheduleBuilder.Properties.Resources.AddLine;
-            this.buttonItemSchedulesAdd.ImagePaddingHorizontal = 8;
-            this.buttonItemSchedulesAdd.Name = "buttonItemSchedulesAdd";
-            this.buttonItemSchedulesAdd.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSchedulesAdd, new DevComponents.DotNetBar.SuperTooltipInfo("Add Line", "", "Add a new line to this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemSchedulesAdd.Text = "     Add";
-            // 
-            // buttonItemCloneInsert
-            // 
-            this.buttonItemCloneInsert.FixedSize = new System.Drawing.Size(125, 38);
-            this.buttonItemCloneInsert.ForeColor = System.Drawing.Color.Black;
-            this.buttonItemCloneInsert.Image = global::AdScheduleBuilder.Properties.Resources.CloneLine;
-            this.buttonItemCloneInsert.ImagePaddingHorizontal = 8;
-            this.buttonItemCloneInsert.Name = "buttonItemCloneInsert";
-            this.superTooltip.SetSuperTooltip(this.buttonItemCloneInsert, new DevComponents.DotNetBar.SuperTooltipInfo("Clone Line", "", "Clone the selected Ad below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemCloneInsert.Text = "     Clone";
-            // 
-            // buttonItemDeleteInsert
-            // 
-            this.buttonItemDeleteInsert.FixedSize = new System.Drawing.Size(125, 38);
-            this.buttonItemDeleteInsert.ForeColor = System.Drawing.Color.Black;
-            this.buttonItemDeleteInsert.Image = global::AdScheduleBuilder.Properties.Resources.DeleteLine;
-            this.buttonItemDeleteInsert.ImagePaddingHorizontal = 8;
-            this.buttonItemDeleteInsert.Name = "buttonItemDeleteInsert";
-            this.superTooltip.SetSuperTooltip(this.buttonItemDeleteInsert, new DevComponents.DotNetBar.SuperTooltipInfo("Delete Line", "", "Delete the selected Ad below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemDeleteInsert.Text = "     Delete     ";
-            // 
-            // buttonItemGridsExit
-            // 
-            this.buttonItemGridsExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
-            this.buttonItemGridsExit.ImagePaddingHorizontal = 8;
-            this.buttonItemGridsExit.Name = "buttonItemGridsExit";
-            this.buttonItemGridsExit.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemGridsExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Ad Schedule Builder", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemGridsExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
-            // 
-            // buttonItemGridsHelp
-            // 
-            this.buttonItemGridsHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
-            this.buttonItemGridsHelp.ImagePaddingHorizontal = 8;
-            this.buttonItemGridsHelp.Name = "buttonItemGridsHelp";
-            this.buttonItemGridsHelp.SubItemsExpandWidth = 14;
-            // 
-            // buttonItemGridsPowerPoint
-            // 
-            this.buttonItemGridsPowerPoint.Image = global::AdScheduleBuilder.Properties.Resources.PowerPoint;
-            this.buttonItemGridsPowerPoint.ImagePaddingHorizontal = 8;
-            this.buttonItemGridsPowerPoint.Name = "buttonItemGridsPowerPoint";
-            this.buttonItemGridsPowerPoint.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemGridsPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to my PowerPoint Presentation", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemGridsEmail
-            // 
-            this.buttonItemGridsEmail.Image = global::AdScheduleBuilder.Properties.Resources.EmailBig;
-            this.buttonItemGridsEmail.ImagePaddingHorizontal = 8;
-            this.buttonItemGridsEmail.Name = "buttonItemGridsEmail";
-            this.buttonItemGridsEmail.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemGridsEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Advertising Schedule in an email", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemGridsSave
-            // 
-            this.buttonItemGridsSave.Image = global::AdScheduleBuilder.Properties.Resources.SaveSmall;
-            this.buttonItemGridsSave.ImagePaddingHorizontal = 8;
-            this.buttonItemGridsSave.Name = "buttonItemGridsSave";
-            this.buttonItemGridsSave.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemGridsSave, new DevComponents.DotNetBar.SuperTooltipInfo("Save Schedule", "", "Save this current Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemGridsSave.Text = "Save";
-            // 
-            // buttonItemGridsSaveAs
-            // 
-            this.buttonItemGridsSaveAs.Image = global::AdScheduleBuilder.Properties.Resources.SaveAs;
-            this.buttonItemGridsSaveAs.ImagePaddingHorizontal = 8;
-            this.buttonItemGridsSaveAs.Name = "buttonItemGridsSaveAs";
-            this.buttonItemGridsSaveAs.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemGridsSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save a Copy", "", "Save a copy of this Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemGridsSaveAs.Text = "Save As";
-            // 
-            // buttonItemGridsDetails
-            // 
-            this.buttonItemGridsDetails.AutoCheckOnClick = true;
-            this.buttonItemGridsDetails.Image = global::AdScheduleBuilder.Properties.Resources.GridDetails;
-            this.buttonItemGridsDetails.ImagePaddingHorizontal = 8;
-            this.buttonItemGridsDetails.Name = "buttonItemGridsDetails";
-            this.buttonItemGridsDetails.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemGridsDetails, new DevComponents.DotNetBar.SuperTooltipInfo("Options", "", "Show important details about your ad schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemGridsDetailedGrid
-            // 
-            this.buttonItemGridsDetailedGrid.Checked = true;
-            this.buttonItemGridsDetailedGrid.Image = global::AdScheduleBuilder.Properties.Resources.DetailedGrid;
-            this.buttonItemGridsDetailedGrid.ImagePaddingHorizontal = 8;
-            this.buttonItemGridsDetailedGrid.Name = "buttonItemGridsDetailedGrid";
-            this.buttonItemGridsDetailedGrid.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemGridsDetailedGrid, new DevComponents.DotNetBar.SuperTooltipInfo("Detailed Grid", "", "A line item detailed advertising schedule for each publication you are selling", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemGridsMultiGrid
-            // 
-            this.buttonItemGridsMultiGrid.Image = global::AdScheduleBuilder.Properties.Resources.MultiGrid;
-            this.buttonItemGridsMultiGrid.ImagePaddingHorizontal = 8;
-            this.buttonItemGridsMultiGrid.Name = "buttonItemGridsMultiGrid";
-            this.buttonItemGridsMultiGrid.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemGridsMultiGrid, new DevComponents.DotNetBar.SuperTooltipInfo("Multi-Publication Grid", "", "An advertising schedule grid featuring all publications combined", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemGridsChronological
-            // 
-            this.buttonItemGridsChronological.Image = global::AdScheduleBuilder.Properties.Resources.Chronological;
-            this.buttonItemGridsChronological.ImagePaddingHorizontal = 8;
-            this.buttonItemGridsChronological.Name = "buttonItemGridsChronological";
-            this.buttonItemGridsChronological.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemGridsChronological, new DevComponents.DotNetBar.SuperTooltipInfo("Chronological Grid", "", "This combined advertising schedule displays all ads sorted by date", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemSummariesExit
-            // 
-            this.buttonItemSummariesExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
-            this.buttonItemSummariesExit.ImagePaddingHorizontal = 8;
-            this.buttonItemSummariesExit.Name = "buttonItemSummariesExit";
-            this.buttonItemSummariesExit.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Ad Schedule Builder", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemSummariesExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
-            // 
-            // buttonItemSummariesHelp
-            // 
-            this.buttonItemSummariesHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
-            this.buttonItemSummariesHelp.ImagePaddingHorizontal = 8;
-            this.buttonItemSummariesHelp.Name = "buttonItemSummariesHelp";
-            this.buttonItemSummariesHelp.SubItemsExpandWidth = 14;
-            // 
-            // buttonItemSummariesPowerPoint
-            // 
-            this.buttonItemSummariesPowerPoint.Image = global::AdScheduleBuilder.Properties.Resources.PowerPoint;
-            this.buttonItemSummariesPowerPoint.ImagePaddingHorizontal = 8;
-            this.buttonItemSummariesPowerPoint.Name = "buttonItemSummariesPowerPoint";
-            this.buttonItemSummariesPowerPoint.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to my PowerPoint Presentation", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemSummariesEmail
-            // 
-            this.buttonItemSummariesEmail.Image = global::AdScheduleBuilder.Properties.Resources.EmailBig;
-            this.buttonItemSummariesEmail.ImagePaddingHorizontal = 8;
-            this.buttonItemSummariesEmail.Name = "buttonItemSummariesEmail";
-            this.buttonItemSummariesEmail.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Advertising Schedule in an email", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemSummariesSave
-            // 
-            this.buttonItemSummariesSave.Image = global::AdScheduleBuilder.Properties.Resources.SaveSmall;
-            this.buttonItemSummariesSave.ImagePaddingHorizontal = 8;
-            this.buttonItemSummariesSave.Name = "buttonItemSummariesSave";
-            this.buttonItemSummariesSave.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesSave, new DevComponents.DotNetBar.SuperTooltipInfo("Save Schedule", "", "Save this current Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemSummariesSave.Text = "Save";
-            // 
-            // buttonItemSummariesSaveAs
-            // 
-            this.buttonItemSummariesSaveAs.Image = global::AdScheduleBuilder.Properties.Resources.SaveAs;
-            this.buttonItemSummariesSaveAs.ImagePaddingHorizontal = 8;
-            this.buttonItemSummariesSaveAs.Name = "buttonItemSummariesSaveAs";
-            this.buttonItemSummariesSaveAs.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesSaveAs, new DevComponents.DotNetBar.SuperTooltipInfo("Save a Copy", "", "Save a copy of this Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemSummariesSaveAs.Text = "Save As";
-            // 
-            // buttonItemSummariesSnapshot
-            // 
-            this.buttonItemSummariesSnapshot.FixedSize = new System.Drawing.Size(90, 64);
-            this.buttonItemSummariesSnapshot.Image = global::AdScheduleBuilder.Properties.Resources.Snapshot;
-            this.buttonItemSummariesSnapshot.ImagePaddingHorizontal = 8;
-            this.buttonItemSummariesSnapshot.Name = "buttonItemSummariesSnapshot";
-            this.buttonItemSummariesSnapshot.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesSnapshot, new DevComponents.DotNetBar.SuperTooltipInfo("Snapshot", "", "Provide a simple summary of publications and details to your client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemSummariesMultiSummary
-            // 
-            this.buttonItemSummariesMultiSummary.FixedSize = new System.Drawing.Size(90, 64);
-            this.buttonItemSummariesMultiSummary.Image = global::AdScheduleBuilder.Properties.Resources.MultiSummary;
-            this.buttonItemSummariesMultiSummary.ImagePaddingHorizontal = 8;
-            this.buttonItemSummariesMultiSummary.Name = "buttonItemSummariesMultiSummary";
-            this.buttonItemSummariesMultiSummary.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesMultiSummary, new DevComponents.DotNetBar.SuperTooltipInfo("Multi Publication Summary", "", "Useful if you want to sell several different publications to your client.", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemSummariesBasicOverview
-            // 
-            this.buttonItemSummariesBasicOverview.Checked = true;
-            this.buttonItemSummariesBasicOverview.FixedSize = new System.Drawing.Size(90, 64);
-            this.buttonItemSummariesBasicOverview.Image = global::AdScheduleBuilder.Properties.Resources.BasicOverview;
-            this.buttonItemSummariesBasicOverview.ImagePaddingHorizontal = 8;
-            this.buttonItemSummariesBasicOverview.Name = "buttonItemSummariesBasicOverview";
-            this.buttonItemSummariesBasicOverview.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSummariesBasicOverview, new DevComponents.DotNetBar.SuperTooltipInfo("Basic Overview", "", "Designed for less-sophisticated clients, this is most basic schedule slide availa" +
-            "ble", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // buttonItemSuccessModelsExit
-            // 
-            this.buttonItemSuccessModelsExit.Image = global::AdScheduleBuilder.Properties.Resources.Exit;
-            this.buttonItemSuccessModelsExit.ImagePaddingHorizontal = 8;
-            this.buttonItemSuccessModelsExit.Name = "buttonItemSuccessModelsExit";
-            this.buttonItemSuccessModelsExit.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSuccessModelsExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Ad Schedule Builder", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.buttonItemSuccessModelsExit.Text = "buttonItem1";
-            this.buttonItemSuccessModelsExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
-            // 
-            // buttonItemSuccessModelsHelp
-            // 
-            this.buttonItemSuccessModelsHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
-            this.buttonItemSuccessModelsHelp.ImagePaddingHorizontal = 8;
-            this.buttonItemSuccessModelsHelp.Name = "buttonItemSuccessModelsHelp";
-            this.buttonItemSuccessModelsHelp.SubItemsExpandWidth = 14;
-            this.superTooltip.SetSuperTooltip(this.buttonItemSuccessModelsHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me understand how to access Models of Success Online Videos", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            // 
-            // labelItemModelsOfSuccess
-            // 
-            this.labelItemModelsOfSuccess.Image = global::AdScheduleBuilder.Properties.Resources.ModelsOfSuccess;
-            this.labelItemModelsOfSuccess.Name = "labelItemModelsOfSuccess";
+            // itemContainerAccountNumber
+            // 
+            this.itemContainerAccountNumber.ItemSpacing = 3;
+            this.itemContainerAccountNumber.Name = "itemContainerAccountNumber";
+            this.itemContainerAccountNumber.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.checkBoxItemAccountNumber,
+            this.controlContainerItem1});
+            // 
+            // checkBoxItemAccountNumber
+            // 
+            this.checkBoxItemAccountNumber.Name = "checkBoxItemAccountNumber";
+            this.checkBoxItemAccountNumber.Text = "Acct#: ";
+            this.checkBoxItemAccountNumber.TextColor = System.Drawing.Color.Black;
+            // 
+            // textEditAccountNumber
+            // 
+            this.textEditAccountNumber.Enabled = false;
+            this.textEditAccountNumber.Location = new System.Drawing.Point(60, 93);
+            this.textEditAccountNumber.Name = "textEditAccountNumber";
+            this.textEditAccountNumber.Size = new System.Drawing.Size(110, 20);
+            this.textEditAccountNumber.StyleController = this.styleController;
+            this.textEditAccountNumber.TabIndex = 0;
+            // 
+            // controlContainerItem1
+            // 
+            this.controlContainerItem1.AllowItemResize = false;
+            this.controlContainerItem1.Control = this.textEditAccountNumber;
+            this.controlContainerItem1.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
+            this.controlContainerItem1.Name = "controlContainerItem1";
             // 
             // FormMain
             // 
@@ -3380,6 +3416,7 @@
             this.ribbonPanelGrids.ResumeLayout(false);
             this.ribbonPanelSummaries.ResumeLayout(false);
             this.ribbonPanelSuccessModels.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.textEditAccountNumber.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3681,6 +3718,10 @@
         public DevComponents.DotNetBar.ButtonItem buttonItemCalendarsShowDate;
         public DevComponents.DotNetBar.LabelItem labelItemAdSizeSharePagePercentOfPage;
         public DevComponents.DotNetBar.LabelItem labelItemAdSizeSharePageDimensions;
+        private DevComponents.DotNetBar.ItemContainer itemContainerAccountNumber;
+        private DevComponents.DotNetBar.ControlContainerItem controlContainerItem1;
+        public DevExpress.XtraEditors.TextEdit textEditAccountNumber;
+        public DevComponents.DotNetBar.CheckBoxItem checkBoxItemAccountNumber;
     }
 }
 

@@ -62,11 +62,11 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             this.LocalSchedule = BusinessClasses.ScheduleManager.Instance.GetLocalSchedule();
             laScheduleWindow.Text = string.Format("{0} - {1}", new object[] { this.LocalSchedule.FlightDateStart.ToString("MM/dd/yy"), this.LocalSchedule.FlightDateEnd.ToString("MM/dd/yy") });
             laScheduleName.Text = this.LocalSchedule.Name;
-            laAdvertiser.Text = this.LocalSchedule.BusinessName;
+            laAdvertiser.Text = this.LocalSchedule.BusinessName + (!string.IsNullOrEmpty(this.LocalSchedule.AccountNumber) ? (" - " + this.LocalSchedule.AccountNumber) : string.Empty);
             if (!quickLoad)
             {
                 checkEditDate.Text = this.LocalSchedule.PresentationDateObject != null ? this.LocalSchedule.PresentationDate.ToString("MM/dd/yy") : string.Empty;
-                checkEditBusinessName.Text = " " + this.LocalSchedule.BusinessName;
+                checkEditBusinessName.Text = " " + this.LocalSchedule.BusinessName + (!string.IsNullOrEmpty(this.LocalSchedule.AccountNumber) ? (" - " + this.LocalSchedule.AccountNumber) : string.Empty);
                 checkEditDecisionMaker.Text = " " + this.LocalSchedule.DecisionMaker;
                 checkEditFlightDates.Text = " " + this.LocalSchedule.FlightDateStart.ToString("MM/dd/yy") + " - " + this.LocalSchedule.FlightDateEnd.ToString("MM/dd/yy");
 
@@ -253,7 +253,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             get
             {
                 List<string> result = new List<string>();
-                foreach (PublicationMultiSummaryControl publication in xtraTabControlPublications.TabPages.Where(x=>x.PageEnabled))
+                foreach (PublicationMultiSummaryControl publication in xtraTabControlPublications.TabPages.Where(x => x.PageEnabled))
                     result.Add(publication.checkEditFlightDates.Checked ? publication.checkEditFlightDates.Text : string.Empty);
                 return result.ToArray();
             }

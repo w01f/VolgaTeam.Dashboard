@@ -119,7 +119,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls.Calendar.SettingsViewer
 
         public override void LoadValue()
         {
-            laValue.Text = "Business Name: "+ _settings.MonthView.ParentCalendar.LocalSchedule.BusinessName;
+            laValue.Text = "Business Name: " + (_settings.MonthView.ParentCalendar.LocalSchedule.BusinessName + (!string.IsNullOrEmpty(_settings.MonthView.ParentCalendar.LocalSchedule.AccountNumber) ? (" - " + _settings.MonthView.ParentCalendar.LocalSchedule.AccountNumber) : string.Empty));
         }
     }
 

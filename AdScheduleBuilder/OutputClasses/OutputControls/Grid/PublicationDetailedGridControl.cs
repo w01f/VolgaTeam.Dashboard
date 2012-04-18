@@ -45,7 +45,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             pbLogo.Image = this.Publication.SmallLogo != null ? new Bitmap(this.Publication.SmallLogo) : null;
             laPublicationName.Text = this.Publication.Name.Replace("&", "&&");
             laDate.Text = this.Publication.Parent.PresentationDateObject != null ? this.Publication.Parent.PresentationDate.ToString("MM/dd/yy") : string.Empty;
-            laBusinessName.Text = this.Publication.Parent.BusinessName;
+            laBusinessName.Text = this.Publication.Parent.BusinessName + (!string.IsNullOrEmpty(this.Publication.Parent.AccountNumber) ? (" - " + this.Publication.Parent.AccountNumber) : string.Empty);
             laDecisionMaker.Text = this.Publication.Parent.DecisionMaker;
             laFlightDates.Text = this.Publication.Parent.FlightDateStart.ToString("MM/dd/yy") + " - " + this.Publication.Parent.FlightDateEnd.ToString("MM/dd/yy");
             gridControlPublication.DataSource = new BindingList<BusinessClasses.Insert>(this.Publication.Inserts);
@@ -190,7 +190,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             SortedDictionary<int, string> previewText = new SortedDictionary<int, string>();
             int maxNumber = 12;
             if (OutputDetailedGridControl.Instance.ShowCommentsInPreview && !string.IsNullOrEmpty(e.PreviewText))
-                previewText.Add(OutputDetailedGridControl.Instance.PositionCommentsInPreview > 0 && !previewText.Keys.Contains(OutputDetailedGridControl.Instance.PositionCommentsInPreview) ? OutputDetailedGridControl.Instance.PositionCommentsInPreview : ++maxNumber,e.PreviewText);
+                previewText.Add(OutputDetailedGridControl.Instance.PositionCommentsInPreview > 0 && !previewText.Keys.Contains(OutputDetailedGridControl.Instance.PositionCommentsInPreview) ? OutputDetailedGridControl.Instance.PositionCommentsInPreview : ++maxNumber, e.PreviewText);
             if (OutputDetailedGridControl.Instance.ShowSectionInPreview && !string.IsNullOrEmpty(gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnSection).ToString()))
                 previewText.Add(OutputDetailedGridControl.Instance.PositionSectionInPreview > 0 && !previewText.Keys.Contains(OutputDetailedGridControl.Instance.PositionSectionInPreview) ? OutputDetailedGridControl.Instance.PositionSectionInPreview : ++maxNumber, "Section: " + gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnSection).ToString());
             if (OutputDetailedGridControl.Instance.ShowMechanicalsInPreview && !string.IsNullOrEmpty((string)gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnMechanicals)))

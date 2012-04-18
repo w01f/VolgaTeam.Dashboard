@@ -235,7 +235,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             get
             {
-                return _settings.Parent.ShowBusinessName ? this.ParentCalendar.LocalSchedule.BusinessName : string.Empty;
+                return _settings.Parent.ShowBusinessName ? (this.ParentCalendar.LocalSchedule.BusinessName + (!string.IsNullOrEmpty(this.ParentCalendar.LocalSchedule.AccountNumber) ? (" - " + this.ParentCalendar.LocalSchedule.AccountNumber) : string.Empty)) : string.Empty;
             }
         }
 

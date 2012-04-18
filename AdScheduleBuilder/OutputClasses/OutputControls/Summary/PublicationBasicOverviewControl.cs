@@ -80,7 +80,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             checkEditAvgADRate.Text = "Avg Ad Rate: " + this.Publication.AvgADRate.ToString("$#,##0.00");
             checkEditAvgPCIRate.Text = this.Publication.AvgPCIRate > 0 ? ("Avg PCI: " + this.Publication.AvgPCIRate.ToString("$#,##0.00")) : string.Empty;
             checkEditAvgPCIRate.Visible = this.Publication.AvgPCIRate > 0;
-            checkEditBusinessName.Text = this.Publication.Parent.BusinessName;
+            checkEditBusinessName.Text = this.Publication.Parent.BusinessName + (!string.IsNullOrEmpty(this.Publication.Parent.AccountNumber) ? (" - " + this.Publication.Parent.AccountNumber) : string.Empty);
 
             switch (this.Publication.ColorOption)
             {

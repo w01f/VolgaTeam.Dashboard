@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCloneDay));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.laOriginalDate = new System.Windows.Forms.Label();
             this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
@@ -53,6 +53,8 @@
             this.repositoryItemButtonEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.pnBottom = new System.Windows.Forms.Panel();
             this.labelControlClonedNumber = new DevExpress.XtraEditors.LabelControl();
+            this.buttonXSelectAllDays = new DevComponents.DotNetBar.ButtonX();
+            this.buttonXSelectFirstDays = new DevComponents.DotNetBar.ButtonX();
             this.pnTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.pnMain.SuspendLayout();
@@ -115,7 +117,7 @@
             this.buttonXClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXClearAll.ForeColor = System.Drawing.Color.Black;
-            this.buttonXClearAll.Location = new System.Drawing.Point(262, 70);
+            this.buttonXClearAll.Location = new System.Drawing.Point(262, 148);
             this.buttonXClearAll.Name = "buttonXClearAll";
             this.buttonXClearAll.Size = new System.Drawing.Size(157, 33);
             this.buttonXClearAll.TabIndex = 12;
@@ -178,6 +180,8 @@
             // 
             // xtraTabPageDays
             // 
+            this.xtraTabPageDays.Controls.Add(this.buttonXSelectFirstDays);
+            this.xtraTabPageDays.Controls.Add(this.buttonXSelectAllDays);
             this.xtraTabPageDays.Controls.Add(this.labelControlDayTitle);
             this.xtraTabPageDays.Controls.Add(this.buttonXAddAllWeekdays);
             this.xtraTabPageDays.Controls.Add(this.checkEditHighlightWeekdays);
@@ -205,7 +209,7 @@
             this.buttonXAddAllWeekdays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXAddAllWeekdays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXAddAllWeekdays.ForeColor = System.Drawing.Color.Black;
-            this.buttonXAddAllWeekdays.Location = new System.Drawing.Point(262, 31);
+            this.buttonXAddAllWeekdays.Location = new System.Drawing.Point(262, 109);
             this.buttonXAddAllWeekdays.Name = "buttonXAddAllWeekdays";
             this.buttonXAddAllWeekdays.Size = new System.Drawing.Size(159, 33);
             this.buttonXAddAllWeekdays.TabIndex = 18;
@@ -341,7 +345,7 @@
             // repositoryItemButtonEdit
             // 
             this.repositoryItemButtonEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.repositoryItemButtonEdit.DisplayFormat.FormatString = "ddd, M/d/yy";
             this.repositoryItemButtonEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.repositoryItemButtonEdit.EditFormat.FormatString = "ddd, M/d/yy";
@@ -374,6 +378,32 @@
             this.labelControlClonedNumber.TabIndex = 10;
             this.labelControlClonedNumber.Text = "Cloned Days: <b>{0}</b>";
             // 
+            // buttonXSelectAllDays
+            // 
+            this.buttonXSelectAllDays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXSelectAllDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXSelectAllDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXSelectAllDays.ForeColor = System.Drawing.Color.Black;
+            this.buttonXSelectAllDays.Location = new System.Drawing.Point(262, 31);
+            this.buttonXSelectAllDays.Name = "buttonXSelectAllDays";
+            this.buttonXSelectAllDays.Size = new System.Drawing.Size(159, 33);
+            this.buttonXSelectAllDays.TabIndex = 20;
+            this.buttonXSelectAllDays.Text = "Select ALL Days";
+            this.buttonXSelectAllDays.Click += new System.EventHandler(this.buttonXSelectAllDays_Click);
+            // 
+            // buttonXSelectFirstDays
+            // 
+            this.buttonXSelectFirstDays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXSelectFirstDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXSelectFirstDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXSelectFirstDays.ForeColor = System.Drawing.Color.Black;
+            this.buttonXSelectFirstDays.Location = new System.Drawing.Point(262, 70);
+            this.buttonXSelectFirstDays.Name = "buttonXSelectFirstDays";
+            this.buttonXSelectFirstDays.Size = new System.Drawing.Size(159, 33);
+            this.buttonXSelectFirstDays.TabIndex = 21;
+            this.buttonXSelectFirstDays.Text = "1st Day of Months";
+            this.buttonXSelectFirstDays.Click += new System.EventHandler(this.buttonXSelectFirstDays_Click);
+            // 
             // FormCloneDay
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -397,7 +427,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlClone)).EndInit();
             this.xtraTabControlClone.ResumeLayout(false);
             this.xtraTabPageDays.ResumeLayout(false);
-            this.xtraTabPageDays.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditHighlightWeekdays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDays)).EndInit();
@@ -431,5 +460,7 @@
         private DevExpress.XtraEditors.LabelControl labelControlFlightDates;
         private DevExpress.XtraEditors.LabelControl labelControlClonedNumber;
         private System.Windows.Forms.PictureBox pbLogo;
+        private DevComponents.DotNetBar.ButtonX buttonXSelectFirstDays;
+        private DevComponents.DotNetBar.ButtonX buttonXSelectAllDays;
     }
 }

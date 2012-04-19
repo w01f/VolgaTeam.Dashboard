@@ -70,7 +70,8 @@ namespace CalendarBuilder.ToolForms
             DateItem dateItem = new DateItem();
             dateItem.Date = selectedDate;
             dateItem.BackColor1 = Color.Blue;
-            _selectedDates.Add(dateItem);
+            if (!_selectedDates.Select(x => x.Date).Contains(selectedDate))
+                _selectedDates.Add(dateItem);
             UpdateSelectedDates();
         }
 
@@ -126,6 +127,28 @@ namespace CalendarBuilder.ToolForms
                 if (startDate != _day.Date)
                     AddSelectedDate(startDate.Date);
                 startDate = startDate.AddDays(7);
+            }
+        }
+
+        private void buttonXSelectAllDays_Click(object sender, EventArgs e)
+        {
+            DateTime startDate = _flightDateStart;
+            while (startDate <= _flightDateEnd)
+            {
+                if (startDate != _day.Date)
+                    AddSelectedDate(startDate.Date);
+                startDate = startDate.AddDays(1);
+            }
+        }
+
+        private void buttonXSelectFirstDays_Click(object sender, EventArgs e)
+        {
+            DateTime startDate = _flightDateStart;
+            while (startDate <= _flightDateEnd)
+            {
+                if (startDate != _day.Date && (startDate.Day == 1 || startDate.Equals(_flightDateStart)))
+                    AddSelectedDate(startDate.Date);
+                startDate = startDate.AddDays(1);
             }
         }
 

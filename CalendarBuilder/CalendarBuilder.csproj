@@ -546,6 +546,18 @@
   <ItemGroup>
     <None Include="Resources\Clone.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeCalendar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeCalendar2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeCalendar3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BetaTest.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe" sign /f d:\temp\NewBizWiz\NLDCertificate.pfx /t http://timestamp.verisign.com/scripts/timstamp.dll  /p bubbadude CalendarBuilder.dll

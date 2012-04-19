@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GridControl));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -55,7 +54,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject25 = new DevExpress.Utils.SerializableAppearanceObject();
-            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager = new DevExpress.XtraBars.BarManager();
             this.barToolbar = new DevExpress.XtraBars.Bar();
             this.barLargeButtonItemApply = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barLargeButtonItemClose = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -67,7 +66,7 @@
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlDigital = new DevExpress.XtraGrid.GridControl();
-            this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository(this.components);
+            this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository();
             this.repositoryItemDateEdit = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.repositoryItemComboBoxDigitalCategory = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemComboBoxDigitalSubCategory = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
@@ -119,8 +118,8 @@
             this.gridColumnNewspaperDay = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnNewspaperColor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnNewspaperCost = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.styleController = new DevExpress.XtraEditors.StyleController();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.pnGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -1175,7 +1174,7 @@
             this.xtraTabPageNewspaper.Controls.Add(this.gridControlNewspaper);
             this.xtraTabPageNewspaper.Name = "xtraTabPageNewspaper";
             this.xtraTabPageNewspaper.Size = new System.Drawing.Size(816, 334);
-            this.xtraTabPageNewspaper.Text = "Newspapaer";
+            this.xtraTabPageNewspaper.Text = "Newspaper";
             // 
             // gridControlNewspaper
             // 

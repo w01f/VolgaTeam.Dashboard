@@ -143,9 +143,6 @@ namespace CalendarBuilder.CustomControls
                 _visualizer.ClearSelection();
                 this.CopyPaster.ResetCopy();
             }
-            Splash(true);
-            ChangeDayPropertiesVisibility(false);
-            Splash(false);
         }
 
         public void LoadCalendar(bool quickLoad)
@@ -167,8 +164,6 @@ namespace CalendarBuilder.CustomControls
                 if (FormMain.Instance.listBoxControlCalendar.Items.Count > 0)
                     FormMain.Instance.listBoxControlCalendar.SelectedIndex = 0;
 
-                foreach (CalendarVisualizer.MonthControl month in _visualizer.Months.Values)
-                    AssignCloseActiveEditorsonOutSideClick(month);
                 LoadGridState();
             }
             this.AllowToSave = true;
@@ -207,7 +202,8 @@ namespace CalendarBuilder.CustomControls
         {
             if (this.AllowToSave)
             {
-                ConfigurationClasses.SettingsManager.Instance.ViewSettings.DayPropertiesDocked = dockPanelDayProperties.Dock == DevExpress.XtraBars.Docking.DockingStyle.Right;
+                if (dockPanelDayProperties.Visibility == DevExpress.XtraBars.Docking.DockVisibility.Visible)
+                    ConfigurationClasses.SettingsManager.Instance.ViewSettings.DayPropertiesDocked = dockPanelDayProperties.Dock == DevExpress.XtraBars.Docking.DockingStyle.Right;
                 ConfigurationClasses.SettingsManager.Instance.ViewSettings.DayPropertiesFloatLeft = dockPanelDayProperties.FloatLocation.X;
                 ConfigurationClasses.SettingsManager.Instance.ViewSettings.DayPropertiesFloatTop = dockPanelDayProperties.FloatLocation.Y;
                 ConfigurationClasses.SettingsManager.Instance.ViewSettings.Save();
@@ -328,7 +324,8 @@ namespace CalendarBuilder.CustomControls
             if (this.AllowToSave)
             {
                 ConfigurationClasses.SettingsManager.Instance.ViewSettings.SlideInfoVisible = dockPanelSlideInfo.Visibility == DevExpress.XtraBars.Docking.DockVisibility.Visible;
-                ConfigurationClasses.SettingsManager.Instance.ViewSettings.SlideInfoDocked = dockPanelSlideInfo.Dock == DevExpress.XtraBars.Docking.DockingStyle.Left;
+                if (ConfigurationClasses.SettingsManager.Instance.ViewSettings.SlideInfoVisible)
+                    ConfigurationClasses.SettingsManager.Instance.ViewSettings.SlideInfoDocked = dockPanelSlideInfo.Dock == DevExpress.XtraBars.Docking.DockingStyle.Left;
                 ConfigurationClasses.SettingsManager.Instance.ViewSettings.SlideInfoFloatLeft = dockPanelSlideInfo.FloatLocation.X;
                 ConfigurationClasses.SettingsManager.Instance.ViewSettings.SlideInfoFloatTop = dockPanelSlideInfo.FloatLocation.Y;
                 ConfigurationClasses.SettingsManager.Instance.ViewSettings.Save();

@@ -71,7 +71,7 @@ namespace CalendarBuilder.CustomControls
             }
         }
         #endregion
-        
+
         private void UncheckSalesStrategyButtons()
         {
             FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked = false;
@@ -219,7 +219,7 @@ namespace CalendarBuilder.CustomControls
             return true;
         }
         #endregion
- 
+
         #region Toggles Switch Events
         public void buttonItemHomeSalesStrategyFaceCall_Click(object sender, EventArgs e)
         {
@@ -348,5 +348,30 @@ namespace CalendarBuilder.CustomControls
             }
         }
         #endregion
+
+        #region Picture Box Clicks Habdlers
+        /// <summary>
+        /// Buttonize the PictureBox 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            PictureBox pic = (PictureBox)(sender);
+            pic.Top += 1;
+        }
+
+        private void pictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            PictureBox pic = (PictureBox)(sender);
+            pic.Top -= 1;
+        }
+        #endregion
+
+        private void pbCalendar1_Click(object sender, EventArgs e)
+        {
+            if (FormMain.Instance.ribbonTabItemCalendar.Enabled)
+                FormMain.Instance.ribbonTabItemCalendar.Select();
+        }
     }
 }

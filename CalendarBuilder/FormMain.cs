@@ -98,6 +98,8 @@ namespace CalendarBuilder
         public void UpdateScheduleTabs(bool enable)
         {
             ribbonTabItemCalendar.Enabled = enable;
+            ribbonTabItem1.Enabled = false;
+            ribbonTabItem2.Enabled = false;
         }
 
         private void FormMain_Shown(object sender, EventArgs e)

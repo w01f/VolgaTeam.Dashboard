@@ -47,6 +47,7 @@
             this.laNoSlidesWarningText2 = new System.Windows.Forms.Label();
             this.pbNoSlidesWarning = new System.Windows.Forms.PictureBox();
             this.laNoSlidesWarningText1 = new System.Windows.Forms.Label();
+            this.pbBetaTest = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlCalendars)).BeginInit();
@@ -57,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbNoDataWarning)).BeginInit();
             this.pnNoSlidesWarning.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbNoSlidesWarning)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBetaTest)).BeginInit();
             this.SuspendLayout();
             // 
             // pbTitle
@@ -74,6 +76,7 @@
             // 
             this.pbLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbLogo.Image = global::NewBizWizForm.Properties.Resources.CalendarLogo;
             this.pbLogo.Location = new System.Drawing.Point(666, 208);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(225, 266);
@@ -325,10 +328,23 @@
     "d:";
             this.laNoSlidesWarningText1.UseMnemonic = false;
             // 
+            // pbBetaTest
+            // 
+            this.pbBetaTest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbBetaTest.Image = global::NewBizWizForm.Properties.Resources.BetaTest;
+            this.pbBetaTest.Location = new System.Drawing.Point(664, 13);
+            this.pbBetaTest.Name = "pbBetaTest";
+            this.pbBetaTest.Size = new System.Drawing.Size(227, 34);
+            this.pbBetaTest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbBetaTest.TabIndex = 37;
+            this.pbBetaTest.TabStop = false;
+            // 
             // CalendarBuilderControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.Controls.Add(this.pbBetaTest);
             this.Controls.Add(this.laTitle);
             this.Controls.Add(this.pbLogo);
             this.Controls.Add(this.pbTitle);
@@ -348,6 +364,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbNoDataWarning)).EndInit();
             this.pnNoSlidesWarning.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbNoSlidesWarning)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBetaTest)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -373,6 +390,7 @@
         private System.Windows.Forms.Label laNoSlidesWarningText2;
         private System.Windows.Forms.PictureBox pbNoSlidesWarning;
         private System.Windows.Forms.Label laNoSlidesWarningText1;
+        private System.Windows.Forms.PictureBox pbBetaTest;
 
     }
 }

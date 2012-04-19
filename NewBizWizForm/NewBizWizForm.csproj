@@ -656,6 +656,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\BetaTest.png" />
+    <None Include="Resources\CalendarLogo.png" />
     <None Include="Resources\CalendarLittle.png" />
     <None Include="Resources\DigitalLittle.png" />
     <None Include="Resources\HomeStar.png" />

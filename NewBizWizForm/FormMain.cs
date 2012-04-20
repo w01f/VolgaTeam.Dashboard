@@ -517,6 +517,8 @@ namespace NewBizWizForm
                 helpKey = "Radio";
             else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCable)
                 helpKey = "Cable";
+            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDigital)
+                helpKey = "Digital";
             else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar)
                 helpKey = "Calendar";
             else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemIPad)

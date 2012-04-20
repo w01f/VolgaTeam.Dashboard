@@ -396,7 +396,7 @@ namespace TVScheduleBuilder.CustomControls
         #region Ribbon Operations Events
         public void buttonItemScheduleHelp_Click(object sender, EventArgs e)
         {
-            BusinessClasses.HelpManager.Instance.OpenHelpLink("Home");
+            BusinessClasses.HelpManager.Instance.OpenHelpLink("week");
         }
 
         public void buttonItemScheduleSave_Click(object sender, EventArgs e)

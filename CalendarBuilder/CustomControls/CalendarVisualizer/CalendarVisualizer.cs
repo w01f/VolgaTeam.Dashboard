@@ -45,7 +45,7 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
                                 dayControl.DaySelected += new EventHandler<SelectDayEventArgs>((sender, e) =>
                                 {
                                     CalendarControl.Instance.ApplyDayProperties();
-                                    SelectDay(e.SelectedDay, e.MultiSelect);
+                                    SelectDay(e.SelectedDay, e.ModifierKeys);
                                     CalendarControl.Instance.CopyPaster.SetCopy();
                                 });
                                 dayControl.PropertiesRequested += new EventHandler<EventArgs>((sender, e) =>
@@ -68,6 +68,11 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
                                 });
                                 dayControl.DayDataDeleted += new EventHandler<EventArgs>((sender, e) =>
                                 {
+                                    foreach (DayControl day in this.SelectedDays)
+                                    {
+                                        day.Day.ClearData();
+                                        RefreshData();
+                                    }
                                     CalendarControl.Instance.SettingsNotSaved = true;
                                     CalendarControl.Instance.dayPropertiesControl.LoadCurrentDayData();
                                     CalendarControl.Instance.LoadSlideInfoData(reload: true);
@@ -173,13 +178,31 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
             this.SelectedDays.Clear();
         }
 
-        private void SelectDay(DayControl day, bool multiSelect)
+        private void SelectDay(DayControl day, Keys modifierKeys)
         {
-            if (!multiSelect)
+            bool ctrlSelect = (modifierKeys & Keys.Control) == Keys.Control;
+            bool shiftSelect = (modifierKeys & Keys.Shift) == Keys.Shift;
+            if (!(ctrlSelect | shiftSelect))
                 ClearSelection();
-            day.ChangeSelection(true);
-            this.SelectedDays.Add(day);
-
+            if (shiftSelect)
+            {
+                DayControl prevSelectedDay = this.SelectedDays.LastOrDefault();
+                if (prevSelectedDay != null)
+                {
+                    DateTime minDate = prevSelectedDay.Day.Date > day.Day.Date ? day.Day.Date : prevSelectedDay.Day.Date;
+                    DateTime maxDate = prevSelectedDay.Day.Date < day.Day.Date ? day.Day.Date : prevSelectedDay.Day.Date;
+                    foreach (DayControl dayToSelect in _days.Where(x => (x.Day.Date >= minDate && x.Day.Date < maxDate) && !x.IsSelected))
+                    {
+                        dayToSelect.ChangeSelection(true);
+                        this.SelectedDays.Add(dayToSelect);
+                    }
+                }
+            }
+            if (!day.IsSelected)
+            {
+                day.ChangeSelection(true);
+                this.SelectedDays.Add(day);
+            }
             CalendarControl.Instance.dayPropertiesControl.LoadData(day.Day);
         }
         #endregion

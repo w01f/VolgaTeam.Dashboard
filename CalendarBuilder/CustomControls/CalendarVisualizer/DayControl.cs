@@ -7,7 +7,7 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
     [System.ComponentModel.ToolboxItem(false)]
     public partial class DayControl : UserControl
     {
-        private bool _isSelected = false;
+        public bool IsSelected { get; set; }
         public BusinessClasses.CalendarDay Day { get; set; }
         public event EventHandler<SelectDayEventArgs> DaySelected;
         public event EventHandler<EventArgs> PropertiesRequested;
@@ -38,9 +38,9 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
 
         public void ChangeSelection(bool select)
         {
-            _isSelected = select;
+            this.IsSelected = select;
             this.Padding = new Padding(select ? 5 : 0);
-            this.BackColor = _isSelected ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.AliceBlue;
+            this.BackColor = this.IsSelected ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.AliceBlue;
             this.Refresh();
         }
 
@@ -48,14 +48,14 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
         {
             if (this.Day.BelongsToSchedules)
                 if (this.DaySelected != null)
-                    this.DaySelected(sender, new SelectDayEventArgs(this, (ModifierKeys & Keys.Control) == Keys.Control));
+                    this.DaySelected(sender, new SelectDayEventArgs(this, ModifierKeys));
         }
 
         private void Control_DoubleClick(object sender, EventArgs e)
         {
             if (this.Day.BelongsToSchedules)
                 if (this.PropertiesRequested != null)
-                    this.PropertiesRequested(sender, new SelectDayEventArgs(this, (ModifierKeys & Keys.Control) == Keys.Control));
+                    this.PropertiesRequested(sender, new EventArgs());
         }
 
         private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -66,7 +66,7 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
 
         private void contextMenuStrip_Opened(object sender, EventArgs e)
         {
-            if (!_isSelected)
+            if (!this.IsSelected)
                 Control_Click(null, null);
         }
 
@@ -84,8 +84,6 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
 
         private void toolStripMenuItemDelete_Click(object sender, EventArgs e)
         {
-            this.Day.ClearData();
-            RefreshData();
             if (this.DayDataDeleted != null)
                 this.DayDataDeleted(sender, new EventArgs());
         }
@@ -100,12 +98,12 @@ namespace CalendarBuilder.CustomControls.CalendarVisualizer
     public class SelectDayEventArgs : EventArgs
     {
         public DayControl SelectedDay { get; private set; }
-        public bool MultiSelect { get; private set; }
+        public Keys ModifierKeys { get; private set; }
 
-        public SelectDayEventArgs(DayControl selectedDay, bool multiSelect)
+        public SelectDayEventArgs(DayControl selectedDay, Keys modifierKeys)
         {
             this.SelectedDay = selectedDay;
-            this.MultiSelect = multiSelect;
+            this.ModifierKeys = modifierKeys;
         }
     }
 }

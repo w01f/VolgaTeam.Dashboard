@@ -37,8 +37,8 @@ namespace TVScheduleBuilder.BusinessClasses
                 {
                     foreach (XmlNode childNode in node.ChildNodes)
                     {
-                        if (!_helpLinks.Keys.Contains(childNode.Name))
-                            _helpLinks.Add(childNode.Name, childNode.InnerText);
+                        if (!_helpLinks.Keys.Contains(childNode.Name.ToLower()))
+                            _helpLinks.Add(childNode.Name.ToLower(), childNode.InnerText);
 
                     }
                 }
@@ -47,11 +47,11 @@ namespace TVScheduleBuilder.BusinessClasses
 
         public void OpenHelpLink(string helpKey)
         {
-            if (_helpLinks.Keys.Contains(helpKey))
+            if (_helpLinks.Keys.Contains(helpKey.ToLower()))
             {
                 try
                 {
-                    Process.Start(_helpLinks[helpKey]);
+                    Process.Start(_helpLinks[helpKey.ToLower()]);
                 }
                 catch
                 {

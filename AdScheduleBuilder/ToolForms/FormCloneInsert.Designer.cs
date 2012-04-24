@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCloneInsert));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             this.laOriginalDate = new System.Windows.Forms.Label();
             this.checkEditPCIRate = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditDiscount = new DevExpress.XtraEditors.CheckEdit();
@@ -141,12 +140,12 @@
             this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonXCancel.ForeColor = System.Drawing.Color.Black;
             this.buttonXCancel.Location = new System.Drawing.Point(495, 11);
             this.buttonXCancel.Name = "buttonXCancel";
             this.buttonXCancel.Size = new System.Drawing.Size(98, 35);
             this.buttonXCancel.TabIndex = 9;
             this.buttonXCancel.Text = "Cancel";
+            this.buttonXCancel.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXOK
             // 
@@ -154,12 +153,12 @@
             this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonXOK.ForeColor = System.Drawing.Color.Black;
             this.buttonXOK.Location = new System.Drawing.Point(383, 11);
             this.buttonXOK.Name = "buttonXOK";
             this.buttonXOK.Size = new System.Drawing.Size(98, 35);
             this.buttonXOK.TabIndex = 8;
             this.buttonXOK.Text = "OK";
+            this.buttonXOK.TextColor = System.Drawing.Color.Black;
             // 
             // checkEditComment
             // 
@@ -177,12 +176,12 @@
             this.buttonXClearAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXClearAll.ForeColor = System.Drawing.Color.Black;
             this.buttonXClearAll.Location = new System.Drawing.Point(262, 70);
             this.buttonXClearAll.Name = "buttonXClearAll";
             this.buttonXClearAll.Size = new System.Drawing.Size(157, 33);
             this.buttonXClearAll.TabIndex = 12;
             this.buttonXClearAll.Text = "Clear All";
+            this.buttonXClearAll.TextColor = System.Drawing.Color.Black;
             this.buttonXClearAll.Click += new System.EventHandler(this.buttonXClearAll_Click);
             // 
             // checkEditSections
@@ -313,12 +312,12 @@
             this.buttonXAddAllWeekdays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXAddAllWeekdays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXAddAllWeekdays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXAddAllWeekdays.ForeColor = System.Drawing.Color.Black;
             this.buttonXAddAllWeekdays.Location = new System.Drawing.Point(262, 31);
             this.buttonXAddAllWeekdays.Name = "buttonXAddAllWeekdays";
             this.buttonXAddAllWeekdays.Size = new System.Drawing.Size(159, 33);
             this.buttonXAddAllWeekdays.TabIndex = 18;
             this.buttonXAddAllWeekdays.Text = "Add All {0}s";
+            this.buttonXAddAllWeekdays.TextColor = System.Drawing.Color.Black;
             this.buttonXAddAllWeekdays.Click += new System.EventHandler(this.buttonXAddAllWeekdays_Click);
             // 
             // checkEditHighlightWeekdays
@@ -388,7 +387,7 @@
             this.xtraTabPageOptions.Controls.Add(this.checkEditComment);
             this.xtraTabPageOptions.Controls.Add(this.checkEditSections);
             this.xtraTabPageOptions.Name = "xtraTabPageOptions";
-            this.xtraTabPageOptions.Size = new System.Drawing.Size(428, 223);
+            this.xtraTabPageOptions.Size = new System.Drawing.Size(428, 221);
             this.xtraTabPageOptions.Text = "Options";
             // 
             // laOptionsTitle
@@ -468,7 +467,7 @@
             // repositoryItemButtonEdit
             // 
             this.repositoryItemButtonEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.repositoryItemButtonEdit.DisplayFormat.FormatString = "ddd, M/d/yy";
             this.repositoryItemButtonEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.repositoryItemButtonEdit.EditFormat.FormatString = "ddd, M/d/yy";

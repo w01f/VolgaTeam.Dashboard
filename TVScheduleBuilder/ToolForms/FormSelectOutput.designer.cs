@@ -57,12 +57,12 @@
             this.buttonXGrid.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXGrid.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.buttonXGrid.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXGrid.ForeColor = System.Drawing.Color.Black;
             this.buttonXGrid.Location = new System.Drawing.Point(106, 92);
             this.buttonXGrid.Name = "buttonXGrid";
             this.buttonXGrid.Size = new System.Drawing.Size(391, 72);
             this.buttonXGrid.TabIndex = 9;
             this.buttonXGrid.Text = "Output <b>TABLE</b> format";
+            this.buttonXGrid.TextColor = System.Drawing.Color.Black;
             this.buttonXGrid.Tooltip = "Paste the Schedule as a Microsoft TABLE\r\nto the PowerPoint slide";
             // 
             // buttonXExcel
@@ -71,12 +71,12 @@
             this.buttonXExcel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXExcel.DialogResult = System.Windows.Forms.DialogResult.No;
             this.buttonXExcel.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXExcel.ForeColor = System.Drawing.Color.Black;
             this.buttonXExcel.Location = new System.Drawing.Point(106, 172);
             this.buttonXExcel.Name = "buttonXExcel";
             this.buttonXExcel.Size = new System.Drawing.Size(391, 72);
             this.buttonXExcel.TabIndex = 12;
             this.buttonXExcel.Text = "Output <b>EXCEL</b> format";
+            this.buttonXExcel.TextColor = System.Drawing.Color.Black;
             this.buttonXExcel.Tooltip = "Embed an Excel Grid\r\nto the PowerPoint slide";
             // 
             // buttonXImage
@@ -85,12 +85,12 @@
             this.buttonXImage.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXImage.DialogResult = System.Windows.Forms.DialogResult.Ignore;
             this.buttonXImage.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXImage.ForeColor = System.Drawing.Color.Black;
             this.buttonXImage.Location = new System.Drawing.Point(106, 253);
             this.buttonXImage.Name = "buttonXImage";
             this.buttonXImage.Size = new System.Drawing.Size(391, 72);
             this.buttonXImage.TabIndex = 14;
             this.buttonXImage.Text = "Output <b>IMAGE</b> format";
+            this.buttonXImage.TextColor = System.Drawing.Color.Black;
             this.buttonXImage.Tooltip = "Paste the Schedule as an IMAGE\r\nto the PowerPoint slide";
             // 
             // pictureBox1

@@ -117,12 +117,12 @@
             this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonXOK.ForeColor = System.Drawing.Color.Black;
             this.buttonXOK.Location = new System.Drawing.Point(363, 238);
             this.buttonXOK.Name = "buttonXOK";
             this.buttonXOK.Size = new System.Drawing.Size(75, 34);
             this.buttonXOK.TabIndex = 7;
             this.buttonXOK.Text = "Continue";
+            this.buttonXOK.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXCancel
             // 
@@ -130,12 +130,12 @@
             this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonXCancel.ForeColor = System.Drawing.Color.Black;
             this.buttonXCancel.Location = new System.Drawing.Point(449, 238);
             this.buttonXCancel.Name = "buttonXCancel";
             this.buttonXCancel.Size = new System.Drawing.Size(75, 34);
             this.buttonXCancel.TabIndex = 8;
             this.buttonXCancel.Text = "Cancel";
+            this.buttonXCancel.TextColor = System.Drawing.Color.Black;
             // 
             // ckDeleteAllDiscounts
             // 

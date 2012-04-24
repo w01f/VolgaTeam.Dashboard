@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnHeader = new System.Windows.Forms.Panel();
             this.laDayTitle = new System.Windows.Forms.Label();
             this.pnFooter = new System.Windows.Forms.Panel();
@@ -36,12 +35,13 @@
             this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
             this.pnCustomNote = new System.Windows.Forms.Panel();
             this.radioGroupCustomNote = new DevExpress.XtraEditors.RadioGroup();
-            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+            this.styleController = new DevExpress.XtraEditors.StyleController();
             this.pbCustomNoteLogo = new System.Windows.Forms.PictureBox();
             this.memoEditCustomNote = new DevExpress.XtraEditors.MemoEdit();
             this.checkEditUseCustomNote = new DevExpress.XtraEditors.CheckEdit();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             this.pnMain = new System.Windows.Forms.Panel();
+            this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
             this.pnDataLogo = new System.Windows.Forms.Panel();
             this.pbDataLogo = new System.Windows.Forms.PictureBox();
             this.pnDeadline = new System.Windows.Forms.Panel();
@@ -49,7 +49,6 @@
             this.pbDeadlineLogo = new System.Windows.Forms.PictureBox();
             this.memoEditDeadline = new DevExpress.XtraEditors.MemoEdit();
             this.checkEditUseDeadline = new DevExpress.XtraEditors.CheckEdit();
-            this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
             this.pnHeader.SuspendLayout();
             this.pnFooter.SuspendLayout();
             this.pnCustomNote.SuspendLayout();
@@ -108,12 +107,12 @@
             this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonXCancel.ForeColor = System.Drawing.Color.Black;
             this.buttonXCancel.Location = new System.Drawing.Point(534, 6);
             this.buttonXCancel.Name = "buttonXCancel";
             this.buttonXCancel.Size = new System.Drawing.Size(107, 36);
             this.buttonXCancel.TabIndex = 8;
             this.buttonXCancel.Text = "Cancel";
+            this.buttonXCancel.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXOK
             // 
@@ -121,12 +120,12 @@
             this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonXOK.ForeColor = System.Drawing.Color.Black;
             this.buttonXOK.Location = new System.Drawing.Point(418, 6);
             this.buttonXOK.Name = "buttonXOK";
             this.buttonXOK.Size = new System.Drawing.Size(107, 36);
             this.buttonXOK.TabIndex = 7;
             this.buttonXOK.Text = "OK";
+            this.buttonXOK.TextColor = System.Drawing.Color.Black;
             // 
             // pnCustomNote
             // 
@@ -228,6 +227,18 @@
             this.pnMain.Size = new System.Drawing.Size(654, 221);
             this.pnMain.TabIndex = 4;
             // 
+            // xtraScrollableControl
+            // 
+            this.xtraScrollableControl.AlwaysScrollActiveControlIntoView = false;
+            this.xtraScrollableControl.Appearance.BackColor = System.Drawing.Color.AliceBlue;
+            this.xtraScrollableControl.Appearance.Options.UseBackColor = true;
+            this.xtraScrollableControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraScrollableControl.Location = new System.Drawing.Point(86, 0);
+            this.xtraScrollableControl.Name = "xtraScrollableControl";
+            this.xtraScrollableControl.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
+            this.xtraScrollableControl.Size = new System.Drawing.Size(564, 217);
+            this.xtraScrollableControl.TabIndex = 3;
+            // 
             // pnDataLogo
             // 
             this.pnDataLogo.Controls.Add(this.pbDataLogo);
@@ -310,18 +321,6 @@
             this.checkEditUseDeadline.StyleController = this.styleController;
             this.checkEditUseDeadline.TabIndex = 2;
             this.checkEditUseDeadline.CheckedChanged += new System.EventHandler(this.checkEditUseDeadline_CheckedChanged);
-            // 
-            // xtraScrollableControl
-            // 
-            this.xtraScrollableControl.AlwaysScrollActiveControlIntoView = false;
-            this.xtraScrollableControl.Appearance.BackColor = System.Drawing.Color.AliceBlue;
-            this.xtraScrollableControl.Appearance.Options.UseBackColor = true;
-            this.xtraScrollableControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraScrollableControl.Location = new System.Drawing.Point(86, 0);
-            this.xtraScrollableControl.Name = "xtraScrollableControl";
-            this.xtraScrollableControl.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
-            this.xtraScrollableControl.Size = new System.Drawing.Size(564, 217);
-            this.xtraScrollableControl.TabIndex = 3;
             // 
             // FormDayView
             // 

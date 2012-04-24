@@ -41,12 +41,12 @@
             this.buttonXYes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonXYes.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXYes.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.buttonXYes.ForeColor = System.Drawing.Color.Black;
             this.buttonXYes.Location = new System.Drawing.Point(103, 103);
             this.buttonXYes.Name = "buttonXYes";
             this.buttonXYes.Size = new System.Drawing.Size(75, 29);
             this.buttonXYes.TabIndex = 7;
             this.buttonXYes.Text = "Yes";
+            this.buttonXYes.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXNo
             // 
@@ -54,12 +54,12 @@
             this.buttonXNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonXNo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXNo.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.buttonXNo.ForeColor = System.Drawing.Color.Black;
             this.buttonXNo.Location = new System.Drawing.Point(189, 103);
             this.buttonXNo.Name = "buttonXNo";
             this.buttonXNo.Size = new System.Drawing.Size(75, 29);
             this.buttonXNo.TabIndex = 8;
             this.buttonXNo.Text = "No";
+            this.buttonXNo.TextColor = System.Drawing.Color.Black;
             // 
             // labelControlText
             // 

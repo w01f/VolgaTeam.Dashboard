@@ -61,12 +61,12 @@
             this.buttonXShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXShow.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXShow.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonXShow.ForeColor = System.Drawing.Color.Black;
             this.buttonXShow.Location = new System.Drawing.Point(21, 92);
             this.buttonXShow.Name = "buttonXShow";
             this.buttonXShow.Size = new System.Drawing.Size(175, 32);
             this.buttonXShow.TabIndex = 9;
             this.buttonXShow.Text = "Stay Here";
+            this.buttonXShow.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXOK
             // 
@@ -74,12 +74,12 @@
             this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonXOK.ForeColor = System.Drawing.Color.Black;
             this.buttonXOK.Location = new System.Drawing.Point(202, 92);
             this.buttonXOK.Name = "buttonXOK";
             this.buttonXOK.Size = new System.Drawing.Size(175, 32);
             this.buttonXOK.TabIndex = 10;
             this.buttonXOK.Text = "Open Dashboard";
+            this.buttonXOK.TextColor = System.Drawing.Color.Black;
             // 
             // FormSlideOutput
             // 

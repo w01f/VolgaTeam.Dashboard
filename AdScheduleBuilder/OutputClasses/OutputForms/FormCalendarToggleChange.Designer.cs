@@ -39,12 +39,12 @@
             this.buttonXDisable.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXDisable.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.buttonXDisable.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXDisable.ForeColor = System.Drawing.Color.Black;
             this.buttonXDisable.Location = new System.Drawing.Point(14, 12);
             this.buttonXDisable.Name = "buttonXDisable";
             this.buttonXDisable.Size = new System.Drawing.Size(211, 39);
             this.buttonXDisable.TabIndex = 1;
             this.buttonXDisable.Text = "Disable this item";
+            this.buttonXDisable.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXEdit
             // 
@@ -52,12 +52,12 @@
             this.buttonXEdit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXEdit.DialogResult = System.Windows.Forms.DialogResult.No;
             this.buttonXEdit.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXEdit.ForeColor = System.Drawing.Color.Black;
             this.buttonXEdit.Location = new System.Drawing.Point(14, 67);
             this.buttonXEdit.Name = "buttonXEdit";
             this.buttonXEdit.Size = new System.Drawing.Size(211, 39);
             this.buttonXEdit.TabIndex = 2;
             this.buttonXEdit.Text = "Edit this item";
+            this.buttonXEdit.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXCancel
             // 
@@ -65,12 +65,12 @@
             this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonXCancel.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXCancel.ForeColor = System.Drawing.Color.Red;
             this.buttonXCancel.Location = new System.Drawing.Point(14, 122);
             this.buttonXCancel.Name = "buttonXCancel";
             this.buttonXCancel.Size = new System.Drawing.Size(211, 39);
             this.buttonXCancel.TabIndex = 3;
             this.buttonXCancel.Text = "CANCEL";
+            this.buttonXCancel.TextColor = System.Drawing.Color.Black;
             // 
             // FormCalendarToggleChange
             // 

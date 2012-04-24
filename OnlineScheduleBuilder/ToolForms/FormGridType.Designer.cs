@@ -49,7 +49,6 @@
             this.buttonXImage.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXImage.DialogResult = System.Windows.Forms.DialogResult.No;
             this.buttonXImage.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXImage.ForeColor = System.Drawing.Color.Black;
             this.buttonXImage.Image = global::OnlineScheduleBuilder.Properties.Resources.Image;
             this.buttonXImage.Location = new System.Drawing.Point(18, 146);
             this.buttonXImage.Name = "buttonXImage";
@@ -57,6 +56,7 @@
             this.buttonXImage.TabIndex = 3;
             this.buttonXImage.Text = "        As Image";
             this.buttonXImage.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXImage.TextColor = System.Drawing.Color.Black;
             this.buttonXImage.Tooltip = "Paste the Schedule as an IMAGE\r\nto the PowerPoint slide";
             // 
             // buttonXCancel
@@ -65,7 +65,6 @@
             this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonXCancel.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXCancel.ForeColor = System.Drawing.Color.Red;
             this.buttonXCancel.Image = global::OnlineScheduleBuilder.Properties.Resources.Exit;
             this.buttonXCancel.ImageFixedSize = new System.Drawing.Size(42, 42);
             this.buttonXCancel.Location = new System.Drawing.Point(18, 216);
@@ -74,6 +73,7 @@
             this.buttonXCancel.TabIndex = 2;
             this.buttonXCancel.Text = "           Cancel";
             this.buttonXCancel.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXCancel.TextColor = System.Drawing.Color.Black;
             this.buttonXCancel.Tooltip = "Do NOTHING and Close this Window";
             // 
             // buttonXExcel
@@ -82,7 +82,6 @@
             this.buttonXExcel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXExcel.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.buttonXExcel.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXExcel.ForeColor = System.Drawing.Color.Black;
             this.buttonXExcel.Image = global::OnlineScheduleBuilder.Properties.Resources.Excel;
             this.buttonXExcel.Location = new System.Drawing.Point(18, 77);
             this.buttonXExcel.Name = "buttonXExcel";
@@ -90,6 +89,7 @@
             this.buttonXExcel.TabIndex = 1;
             this.buttonXExcel.Text = "         As Excel";
             this.buttonXExcel.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.buttonXExcel.TextColor = System.Drawing.Color.Black;
             this.buttonXExcel.Tooltip = "Embed an Excel Grid \r\nto the PowerPoint slide";
             // 
             // FormGridType

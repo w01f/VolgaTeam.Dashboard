@@ -135,12 +135,12 @@
             this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonX1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonX1.ForeColor = System.Drawing.Color.Black;
             this.buttonX1.Location = new System.Drawing.Point(115, 255);
             this.buttonX1.Name = "buttonX1";
             this.buttonX1.Size = new System.Drawing.Size(126, 36);
             this.buttonX1.TabIndex = 8;
             this.buttonX1.Text = "OK";
+            this.buttonX1.TextColor = System.Drawing.Color.Black;
             // 
             // FormAddPublicationWarning
             // 

@@ -128,6 +128,7 @@
             this.buttonXCancel.Size = new System.Drawing.Size(75, 31);
             this.buttonXCancel.TabIndex = 1;
             this.buttonXCancel.Text = "Cancel";
+            this.buttonXCancel.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXOK
             // 
@@ -140,6 +141,7 @@
             this.buttonXOK.Size = new System.Drawing.Size(75, 31);
             this.buttonXOK.TabIndex = 0;
             this.buttonXOK.Text = "OK";
+            this.buttonXOK.TextColor = System.Drawing.Color.Black;
             // 
             // FormImageGallery
             // 

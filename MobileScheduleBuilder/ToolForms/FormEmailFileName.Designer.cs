@@ -61,24 +61,24 @@
             this.buttonXOK.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonXOK.ForeColor = System.Drawing.Color.Black;
             this.buttonXOK.Location = new System.Drawing.Point(65, 94);
             this.buttonXOK.Name = "buttonXOK";
             this.buttonXOK.Size = new System.Drawing.Size(117, 30);
             this.buttonXOK.TabIndex = 1;
             this.buttonXOK.Text = "Generate Email";
+            this.buttonXOK.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXCancel
             // 
             this.buttonXCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonXCancel.ForeColor = System.Drawing.Color.Black;
             this.buttonXCancel.Location = new System.Drawing.Point(202, 94);
             this.buttonXCancel.Name = "buttonXCancel";
             this.buttonXCancel.Size = new System.Drawing.Size(117, 30);
             this.buttonXCancel.TabIndex = 2;
             this.buttonXCancel.Text = "Cancel";
+            this.buttonXCancel.TextColor = System.Drawing.Color.Black;
             // 
             // textEditFileName
             // 

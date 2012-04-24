@@ -35,6 +35,11 @@
             this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
             this.buttonXClearSection = new DevComponents.DotNetBar.ButtonX();
             this.tabControlAdNotes = new DevComponents.DotNetBar.TabControl();
+            this.tabControlPanelComments = new DevComponents.DotNetBar.TabControlPanel();
+            this.adNotesWeekdaysSelectorComments = new AdScheduleBuilder.CustomControls.AdNotesWeekdaysSelector();
+            this.buttonXClearComment = new DevComponents.DotNetBar.ButtonX();
+            this.ckCommentAll = new DevExpress.XtraEditors.CheckEdit();
+            this.tabItemComments = new DevComponents.DotNetBar.TabItem();
             this.tabControlPanelMechanicals = new DevComponents.DotNetBar.TabControlPanel();
             this.adNotesWeekdaysSelectorMechanicals = new AdScheduleBuilder.CustomControls.AdNotesWeekdaysSelector();
             this.buttonXClearMechanicals = new DevComponents.DotNetBar.ButtonX();
@@ -42,11 +47,6 @@
             this.textEditMechanicals = new DevExpress.XtraEditors.TextEdit();
             this.ckMechanicals = new DevExpress.XtraEditors.CheckEdit();
             this.tabItemMechanicals = new DevComponents.DotNetBar.TabItem();
-            this.tabControlPanelComments = new DevComponents.DotNetBar.TabControlPanel();
-            this.adNotesWeekdaysSelectorComments = new AdScheduleBuilder.CustomControls.AdNotesWeekdaysSelector();
-            this.buttonXClearComment = new DevComponents.DotNetBar.ButtonX();
-            this.ckCommentAll = new DevExpress.XtraEditors.CheckEdit();
-            this.tabItemComments = new DevComponents.DotNetBar.TabItem();
             this.tabControlPanelSections = new DevComponents.DotNetBar.TabControlPanel();
             this.adNotesWeekdaysSelectorSections = new AdScheduleBuilder.CustomControls.AdNotesWeekdaysSelector();
             this.textEditSection = new DevExpress.XtraEditors.TextEdit();
@@ -77,12 +77,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlComments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabControlAdNotes)).BeginInit();
             this.tabControlAdNotes.SuspendLayout();
+            this.tabControlPanelComments.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ckCommentAll.Properties)).BeginInit();
             this.tabControlPanelMechanicals.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMechanicals)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditMechanicals.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckMechanicals.Properties)).BeginInit();
-            this.tabControlPanelComments.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ckCommentAll.Properties)).BeginInit();
             this.tabControlPanelSections.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEditSection.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckSection.Properties)).BeginInit();
@@ -149,12 +149,12 @@
             this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonXOK.ForeColor = System.Drawing.Color.Black;
             this.buttonXOK.Location = new System.Drawing.Point(380, 6);
             this.buttonXOK.Name = "buttonXOK";
             this.buttonXOK.Size = new System.Drawing.Size(107, 36);
             this.buttonXOK.TabIndex = 5;
             this.buttonXOK.Text = "OK";
+            this.buttonXOK.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXCancel
             // 
@@ -162,12 +162,12 @@
             this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonXCancel.ForeColor = System.Drawing.Color.Black;
             this.buttonXCancel.Location = new System.Drawing.Point(496, 6);
             this.buttonXCancel.Name = "buttonXCancel";
             this.buttonXCancel.Size = new System.Drawing.Size(107, 36);
             this.buttonXCancel.TabIndex = 6;
             this.buttonXCancel.Text = "Cancel";
+            this.buttonXCancel.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXClearSection
             // 
@@ -179,6 +179,7 @@
             this.buttonXClearSection.Size = new System.Drawing.Size(107, 59);
             this.buttonXClearSection.TabIndex = 7;
             this.buttonXClearSection.Text = "Clear\r\nSection";
+            this.buttonXClearSection.TextColor = System.Drawing.Color.Black;
             this.buttonXClearSection.Click += new System.EventHandler(this.buttonXClearSection_Click);
             // 
             // tabControlAdNotes
@@ -206,9 +207,9 @@
             this.tabControlAdNotes.ColorScheme.TabPanelBackground2 = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.tabControlAdNotes.ColorScheme.TabPanelBorder = System.Drawing.Color.White;
             this.tabControlAdNotes.Controls.Add(this.tabControlPanelComments);
-            this.tabControlAdNotes.Controls.Add(this.tabControlPanelMechanicals);
             this.tabControlAdNotes.Controls.Add(this.tabControlPanelSections);
             this.tabControlAdNotes.Controls.Add(this.tabControlPanelDeadlines);
+            this.tabControlAdNotes.Controls.Add(this.tabControlPanelMechanicals);
             this.tabControlAdNotes.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabControlAdNotes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlAdNotes.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -228,92 +229,6 @@
             this.tabControlAdNotes.TabStop = false;
             this.tabControlAdNotes.Text = "tabControl1";
             this.tabControlAdNotes.SelectedTabChanged += new DevComponents.DotNetBar.TabStrip.SelectedTabChangedEventHandler(this.tabControlAdNotes_SelectedTabChanged);
-            // 
-            // tabControlPanelMechanicals
-            // 
-            this.tabControlPanelMechanicals.Controls.Add(this.adNotesWeekdaysSelectorMechanicals);
-            this.tabControlPanelMechanicals.Controls.Add(this.buttonXClearMechanicals);
-            this.tabControlPanelMechanicals.Controls.Add(this.xtraTabControlMechanicals);
-            this.tabControlPanelMechanicals.Controls.Add(this.textEditMechanicals);
-            this.tabControlPanelMechanicals.Controls.Add(this.ckMechanicals);
-            this.tabControlPanelMechanicals.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanelMechanicals.Location = new System.Drawing.Point(0, 41);
-            this.tabControlPanelMechanicals.Name = "tabControlPanelMechanicals";
-            this.tabControlPanelMechanicals.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanelMechanicals.Size = new System.Drawing.Size(610, 323);
-            this.tabControlPanelMechanicals.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.tabControlPanelMechanicals.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.tabControlPanelMechanicals.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanelMechanicals.Style.BorderColor.Color = System.Drawing.Color.White;
-            this.tabControlPanelMechanicals.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
-            | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanelMechanicals.Style.GradientAngle = 90;
-            this.tabControlPanelMechanicals.TabIndex = 4;
-            this.tabControlPanelMechanicals.TabItem = this.tabItemMechanicals;
-            // 
-            // adNotesWeekdaysSelectorMechanicals
-            // 
-            this.adNotesWeekdaysSelectorMechanicals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.adNotesWeekdaysSelectorMechanicals.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.adNotesWeekdaysSelectorMechanicals.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.adNotesWeekdaysSelectorMechanicals.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.adNotesWeekdaysSelectorMechanicals.Location = new System.Drawing.Point(163, 257);
-            this.adNotesWeekdaysSelectorMechanicals.Name = "adNotesWeekdaysSelectorMechanicals";
-            this.adNotesWeekdaysSelectorMechanicals.Size = new System.Drawing.Size(440, 59);
-            this.adNotesWeekdaysSelectorMechanicals.TabIndex = 24;
-            // 
-            // buttonXClearMechanicals
-            // 
-            this.buttonXClearMechanicals.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonXClearMechanicals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonXClearMechanicals.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXClearMechanicals.Location = new System.Drawing.Point(8, 257);
-            this.buttonXClearMechanicals.Name = "buttonXClearMechanicals";
-            this.buttonXClearMechanicals.Size = new System.Drawing.Size(107, 59);
-            this.buttonXClearMechanicals.TabIndex = 10;
-            this.buttonXClearMechanicals.Text = "Clear\r\nMechanicals";
-            this.buttonXClearMechanicals.Click += new System.EventHandler(this.buttonXClearMechanicals_Click);
-            // 
-            // xtraTabControlMechanicals
-            // 
-            this.xtraTabControlMechanicals.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.xtraTabControlMechanicals.Appearance.Options.UseFont = true;
-            this.xtraTabControlMechanicals.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.xtraTabControlMechanicals.AppearancePage.Header.Options.UseFont = true;
-            this.xtraTabControlMechanicals.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.xtraTabControlMechanicals.AppearancePage.HeaderActive.Options.UseFont = true;
-            this.xtraTabControlMechanicals.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
-            this.xtraTabControlMechanicals.Location = new System.Drawing.Point(8, 38);
-            this.xtraTabControlMechanicals.Name = "xtraTabControlMechanicals";
-            this.xtraTabControlMechanicals.Size = new System.Drawing.Size(595, 213);
-            this.xtraTabControlMechanicals.TabIndex = 9;
-            // 
-            // textEditMechanicals
-            // 
-            this.textEditMechanicals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textEditMechanicals.Enabled = false;
-            this.textEditMechanicals.Location = new System.Drawing.Point(33, 11);
-            this.textEditMechanicals.Name = "textEditMechanicals";
-            this.textEditMechanicals.Size = new System.Drawing.Size(570, 20);
-            this.textEditMechanicals.TabIndex = 8;
-            this.textEditMechanicals.EditValueChanged += new System.EventHandler(this.textEditMechanicals_EditValueChanged);
-            // 
-            // ckMechanicals
-            // 
-            this.ckMechanicals.Location = new System.Drawing.Point(8, 13);
-            this.ckMechanicals.Name = "ckMechanicals";
-            this.ckMechanicals.Properties.Caption = "";
-            this.ckMechanicals.Size = new System.Drawing.Size(21, 19);
-            this.ckMechanicals.TabIndex = 7;
-            this.ckMechanicals.CheckedChanged += new System.EventHandler(this.ckMechanicals_CheckedChanged);
-            // 
-            // tabItemMechanicals
-            // 
-            this.tabItemMechanicals.AttachedControl = this.tabControlPanelMechanicals;
-            this.tabItemMechanicals.Image = global::AdScheduleBuilder.Properties.Resources.Unselected;
-            this.tabItemMechanicals.Name = "tabItemMechanicals";
-            this.tabItemMechanicals.Text = "Mechanicals";
             // 
             // tabControlPanelComments
             // 
@@ -361,6 +276,7 @@
             this.buttonXClearComment.Size = new System.Drawing.Size(107, 59);
             this.buttonXClearComment.TabIndex = 8;
             this.buttonXClearComment.Text = "Clear\r\nComment";
+            this.buttonXClearComment.TextColor = System.Drawing.Color.Black;
             this.buttonXClearComment.Click += new System.EventHandler(this.buttonXClearComment_Click);
             // 
             // ckCommentAll
@@ -389,6 +305,94 @@
             this.tabItemComments.Image = global::AdScheduleBuilder.Properties.Resources.Unselected;
             this.tabItemComments.Name = "tabItemComments";
             this.tabItemComments.Text = "Comments";
+            // 
+            // tabControlPanelMechanicals
+            // 
+            this.tabControlPanelMechanicals.Controls.Add(this.adNotesWeekdaysSelectorMechanicals);
+            this.tabControlPanelMechanicals.Controls.Add(this.buttonXClearMechanicals);
+            this.tabControlPanelMechanicals.Controls.Add(this.xtraTabControlMechanicals);
+            this.tabControlPanelMechanicals.Controls.Add(this.textEditMechanicals);
+            this.tabControlPanelMechanicals.Controls.Add(this.ckMechanicals);
+            this.tabControlPanelMechanicals.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanelMechanicals.Location = new System.Drawing.Point(0, 41);
+            this.tabControlPanelMechanicals.Name = "tabControlPanelMechanicals";
+            this.tabControlPanelMechanicals.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanelMechanicals.Size = new System.Drawing.Size(610, 323);
+            this.tabControlPanelMechanicals.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.tabControlPanelMechanicals.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.tabControlPanelMechanicals.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanelMechanicals.Style.BorderColor.Color = System.Drawing.Color.White;
+            this.tabControlPanelMechanicals.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanelMechanicals.Style.GradientAngle = 90;
+            this.tabControlPanelMechanicals.TabIndex = 4;
+            this.tabControlPanelMechanicals.TabItem = this.tabItemMechanicals;
+            // 
+            // adNotesWeekdaysSelectorMechanicals
+            // 
+            this.adNotesWeekdaysSelectorMechanicals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.adNotesWeekdaysSelectorMechanicals.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.adNotesWeekdaysSelectorMechanicals.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.adNotesWeekdaysSelectorMechanicals.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adNotesWeekdaysSelectorMechanicals.Location = new System.Drawing.Point(163, 257);
+            this.adNotesWeekdaysSelectorMechanicals.Name = "adNotesWeekdaysSelectorMechanicals";
+            this.adNotesWeekdaysSelectorMechanicals.Size = new System.Drawing.Size(440, 59);
+            this.adNotesWeekdaysSelectorMechanicals.TabIndex = 24;
+            // 
+            // buttonXClearMechanicals
+            // 
+            this.buttonXClearMechanicals.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXClearMechanicals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonXClearMechanicals.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXClearMechanicals.Location = new System.Drawing.Point(8, 257);
+            this.buttonXClearMechanicals.Name = "buttonXClearMechanicals";
+            this.buttonXClearMechanicals.Size = new System.Drawing.Size(107, 59);
+            this.buttonXClearMechanicals.TabIndex = 10;
+            this.buttonXClearMechanicals.Text = "Clear\r\nMechanicals";
+            this.buttonXClearMechanicals.TextColor = System.Drawing.Color.Black;
+            this.buttonXClearMechanicals.Click += new System.EventHandler(this.buttonXClearMechanicals_Click);
+            // 
+            // xtraTabControlMechanicals
+            // 
+            this.xtraTabControlMechanicals.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.xtraTabControlMechanicals.Appearance.Options.UseFont = true;
+            this.xtraTabControlMechanicals.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.xtraTabControlMechanicals.AppearancePage.Header.Options.UseFont = true;
+            this.xtraTabControlMechanicals.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.xtraTabControlMechanicals.AppearancePage.HeaderActive.Options.UseFont = true;
+            this.xtraTabControlMechanicals.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
+            this.xtraTabControlMechanicals.Location = new System.Drawing.Point(8, 38);
+            this.xtraTabControlMechanicals.Name = "xtraTabControlMechanicals";
+            this.xtraTabControlMechanicals.Size = new System.Drawing.Size(595, 213);
+            this.xtraTabControlMechanicals.TabIndex = 9;
+            // 
+            // textEditMechanicals
+            // 
+            this.textEditMechanicals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textEditMechanicals.Enabled = false;
+            this.textEditMechanicals.Location = new System.Drawing.Point(33, 11);
+            this.textEditMechanicals.Name = "textEditMechanicals";
+            this.textEditMechanicals.Size = new System.Drawing.Size(570, 20);
+            this.textEditMechanicals.TabIndex = 8;
+            this.textEditMechanicals.EditValueChanged += new System.EventHandler(this.textEditMechanicals_EditValueChanged);
+            // 
+            // ckMechanicals
+            // 
+            this.ckMechanicals.Location = new System.Drawing.Point(8, 13);
+            this.ckMechanicals.Name = "ckMechanicals";
+            this.ckMechanicals.Properties.Caption = "";
+            this.ckMechanicals.Size = new System.Drawing.Size(21, 19);
+            this.ckMechanicals.TabIndex = 7;
+            this.ckMechanicals.CheckedChanged += new System.EventHandler(this.ckMechanicals_CheckedChanged);
+            // 
+            // tabItemMechanicals
+            // 
+            this.tabItemMechanicals.AttachedControl = this.tabControlPanelMechanicals;
+            this.tabItemMechanicals.Image = global::AdScheduleBuilder.Properties.Resources.Unselected;
+            this.tabItemMechanicals.Name = "tabItemMechanicals";
+            this.tabItemMechanicals.Text = "Mechanicals";
+            this.tabItemMechanicals.TextColor = System.Drawing.Color.Black;
             // 
             // tabControlPanelSections
             // 
@@ -579,6 +583,7 @@
             this.buttonXClearDeadline.Size = new System.Drawing.Size(107, 59);
             this.buttonXClearDeadline.TabIndex = 20;
             this.buttonXClearDeadline.Text = "Clear\r\nDeadline";
+            this.buttonXClearDeadline.TextColor = System.Drawing.Color.Black;
             this.buttonXClearDeadline.Click += new System.EventHandler(this.buttonXClearDeadline_Click);
             // 
             // tabItemDeadlines
@@ -724,12 +729,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlComments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabControlAdNotes)).EndInit();
             this.tabControlAdNotes.ResumeLayout(false);
+            this.tabControlPanelComments.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ckCommentAll.Properties)).EndInit();
             this.tabControlPanelMechanicals.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMechanicals)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditMechanicals.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckMechanicals.Properties)).EndInit();
-            this.tabControlPanelComments.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ckCommentAll.Properties)).EndInit();
             this.tabControlPanelSections.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.textEditSection.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckSection.Properties)).EndInit();

@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             this.pnMain = new System.Windows.Forms.Panel();
             this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
             this.checkEditReadership = new DevExpress.XtraEditors.CheckEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+            this.styleController = new DevExpress.XtraEditors.StyleController();
             this.checkEditDelivery = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditTotalDiscounts = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditTotalColor = new DevExpress.XtraEditors.CheckEdit();
@@ -410,6 +409,7 @@
             this.checkEditAllSlides.Size = new System.Drawing.Size(76, 21);
             this.checkEditAllSlides.StyleController = this.styleController;
             this.checkEditAllSlides.TabIndex = 26;
+            this.checkEditAllSlides.TabStop = false;
             this.checkEditAllSlides.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
             // 
             // checkEditLastSlide
@@ -425,6 +425,7 @@
             this.checkEditLastSlide.Size = new System.Drawing.Size(81, 21);
             this.checkEditLastSlide.StyleController = this.styleController;
             this.checkEditLastSlide.TabIndex = 25;
+            this.checkEditLastSlide.TabStop = false;
             this.checkEditLastSlide.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
             // 
             // checkEditEnableSlideBullets

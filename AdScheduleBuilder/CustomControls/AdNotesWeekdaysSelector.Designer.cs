@@ -48,12 +48,12 @@
             this.buttonXMonday.Checked = true;
             this.buttonXMonday.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXMonday.Enabled = false;
-            this.buttonXMonday.ForeColor = System.Drawing.Color.Black;
             this.buttonXMonday.Location = new System.Drawing.Point(179, 5);
             this.buttonXMonday.Name = "buttonXMonday";
             this.buttonXMonday.Size = new System.Drawing.Size(31, 22);
             this.buttonXMonday.TabIndex = 0;
             this.buttonXMonday.Text = "M";
+            this.buttonXMonday.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXTuesday
             // 
@@ -62,12 +62,12 @@
             this.buttonXTuesday.Checked = true;
             this.buttonXTuesday.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXTuesday.Enabled = false;
-            this.buttonXTuesday.ForeColor = System.Drawing.Color.Black;
             this.buttonXTuesday.Location = new System.Drawing.Point(216, 5);
             this.buttonXTuesday.Name = "buttonXTuesday";
             this.buttonXTuesday.Size = new System.Drawing.Size(31, 22);
             this.buttonXTuesday.TabIndex = 1;
             this.buttonXTuesday.Text = "Tu";
+            this.buttonXTuesday.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXWednesday
             // 
@@ -76,12 +76,12 @@
             this.buttonXWednesday.Checked = true;
             this.buttonXWednesday.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXWednesday.Enabled = false;
-            this.buttonXWednesday.ForeColor = System.Drawing.Color.Black;
             this.buttonXWednesday.Location = new System.Drawing.Point(253, 5);
             this.buttonXWednesday.Name = "buttonXWednesday";
             this.buttonXWednesday.Size = new System.Drawing.Size(31, 22);
             this.buttonXWednesday.TabIndex = 2;
             this.buttonXWednesday.Text = "W";
+            this.buttonXWednesday.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXThursday
             // 
@@ -90,12 +90,12 @@
             this.buttonXThursday.Checked = true;
             this.buttonXThursday.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXThursday.Enabled = false;
-            this.buttonXThursday.ForeColor = System.Drawing.Color.Black;
             this.buttonXThursday.Location = new System.Drawing.Point(290, 5);
             this.buttonXThursday.Name = "buttonXThursday";
             this.buttonXThursday.Size = new System.Drawing.Size(31, 22);
             this.buttonXThursday.TabIndex = 3;
             this.buttonXThursday.Text = "Th";
+            this.buttonXThursday.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXFriday
             // 
@@ -104,12 +104,12 @@
             this.buttonXFriday.Checked = true;
             this.buttonXFriday.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXFriday.Enabled = false;
-            this.buttonXFriday.ForeColor = System.Drawing.Color.Black;
             this.buttonXFriday.Location = new System.Drawing.Point(327, 5);
             this.buttonXFriday.Name = "buttonXFriday";
             this.buttonXFriday.Size = new System.Drawing.Size(31, 22);
             this.buttonXFriday.TabIndex = 4;
             this.buttonXFriday.Text = "F";
+            this.buttonXFriday.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXSaturday
             // 
@@ -118,12 +118,12 @@
             this.buttonXSaturday.Checked = true;
             this.buttonXSaturday.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXSaturday.Enabled = false;
-            this.buttonXSaturday.ForeColor = System.Drawing.Color.Black;
             this.buttonXSaturday.Location = new System.Drawing.Point(364, 5);
             this.buttonXSaturday.Name = "buttonXSaturday";
             this.buttonXSaturday.Size = new System.Drawing.Size(31, 22);
             this.buttonXSaturday.TabIndex = 5;
             this.buttonXSaturday.Text = "Sa";
+            this.buttonXSaturday.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXSunday
             // 
@@ -132,12 +132,12 @@
             this.buttonXSunday.Checked = true;
             this.buttonXSunday.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXSunday.Enabled = false;
-            this.buttonXSunday.ForeColor = System.Drawing.Color.Black;
             this.buttonXSunday.Location = new System.Drawing.Point(401, 5);
             this.buttonXSunday.Name = "buttonXSunday";
             this.buttonXSunday.Size = new System.Drawing.Size(31, 22);
             this.buttonXSunday.TabIndex = 6;
             this.buttonXSunday.Text = "Su";
+            this.buttonXSunday.TextColor = System.Drawing.Color.Black;
             // 
             // ckEnableWeekdays
             // 
@@ -159,12 +159,12 @@
             this.buttonXSelectAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXSelectAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXSelectAll.Enabled = false;
-            this.buttonXSelectAll.ForeColor = System.Drawing.Color.Black;
             this.buttonXSelectAll.Location = new System.Drawing.Point(179, 33);
             this.buttonXSelectAll.Name = "buttonXSelectAll";
             this.buttonXSelectAll.Size = new System.Drawing.Size(105, 22);
             this.buttonXSelectAll.TabIndex = 8;
             this.buttonXSelectAll.Text = "Select All Days";
+            this.buttonXSelectAll.TextColor = System.Drawing.Color.Black;
             this.buttonXSelectAll.Click += new System.EventHandler(this.buttonXSelectAll_Click);
             // 
             // buttonXClearAll
@@ -172,12 +172,12 @@
             this.buttonXClearAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXClearAll.Enabled = false;
-            this.buttonXClearAll.ForeColor = System.Drawing.Color.Black;
             this.buttonXClearAll.Location = new System.Drawing.Point(327, 33);
             this.buttonXClearAll.Name = "buttonXClearAll";
             this.buttonXClearAll.Size = new System.Drawing.Size(105, 22);
             this.buttonXClearAll.TabIndex = 9;
             this.buttonXClearAll.Text = "Clear All Days";
+            this.buttonXClearAll.TextColor = System.Drawing.Color.Black;
             this.buttonXClearAll.Click += new System.EventHandler(this.buttonXClearAll_Click);
             // 
             // AdNotesWeekdaysSelector

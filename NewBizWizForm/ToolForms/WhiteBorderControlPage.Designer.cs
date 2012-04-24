@@ -80,9 +80,9 @@
             // 
             // panelExTop
             // 
-            this.panelExTop.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelExTop.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelExTop.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelExTop.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.panelExTop.Location = new System.Drawing.Point(1, 1);
@@ -120,7 +120,6 @@
             this.buttonXSavedFiles.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXSavedFiles.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXSavedFiles.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXSavedFiles.ForeColor = System.Drawing.Color.Black;
             this.buttonXSavedFiles.Image = global::NewBizWizForm.Properties.Resources.SavedFiles;
             this.buttonXSavedFiles.Location = new System.Drawing.Point(13, 9);
             this.buttonXSavedFiles.Name = "buttonXSavedFiles";
@@ -128,6 +127,7 @@
             this.buttonXSavedFiles.TabIndex = 104;
             this.buttonXSavedFiles.TabStop = false;
             this.buttonXSavedFiles.Text = "My Saved Files";
+            this.buttonXSavedFiles.TextColor = System.Drawing.Color.Black;
             this.buttonXSavedFiles.Click += new System.EventHandler(this.buttonXSavedFiles_Click);
             // 
             // buttonXOutput
@@ -136,13 +136,13 @@
             this.buttonXOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXOutput.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXOutput.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXOutput.ForeColor = System.Drawing.Color.Black;
             this.buttonXOutput.Location = new System.Drawing.Point(770, 9);
             this.buttonXOutput.Name = "buttonXOutput";
             this.buttonXOutput.Size = new System.Drawing.Size(72, 48);
             this.buttonXOutput.TabIndex = 102;
             this.buttonXOutput.TabStop = false;
             this.buttonXOutput.Text = "Output";
+            this.buttonXOutput.TextColor = System.Drawing.Color.Black;
             this.buttonXOutput.Visible = false;
             this.buttonXOutput.Click += new System.EventHandler(this.buttonXOutput_Click);
             // 

@@ -71,6 +71,9 @@ namespace NewBizWizForm.TabHomeForms
                 case 30:
                     dashboard = new Dashboard.DashboardCode30Control();
                     break;
+                case 31:
+                    dashboard = new Dashboard.DashboardCode31Control();
+                    break;
             }
 
             if (dashboard != null)

@@ -81,6 +81,14 @@ namespace NewBizWizForm
                     Process.Start(ConfigurationClasses.SettingsManager.Instance.OneDomainApplicationPath);
         }
 
+        public void RunSalesDepot()
+        {
+            Process[] processes = Process.GetProcesses();
+            if (processes.Where(x => x.ProcessName.ToLower().Contains("salesdepot")).Count() == 0)
+                if (System.IO.File.Exists(ConfigurationClasses.SettingsManager.Instance.SalesDepotApplicationPath))
+                    Process.Start(ConfigurationClasses.SettingsManager.Instance.SalesDepotApplicationPath);
+        }
+
 
         public void ActivateMainForm()
         {

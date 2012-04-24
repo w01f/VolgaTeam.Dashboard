@@ -83,7 +83,7 @@
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar2, Version=7.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar2, Version=10.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Data.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
@@ -165,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TabCalendarForms\TabCalendarMainPage.resx">
       <DependentUpon>TabCalendarMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode31Control.resx">
+      <DependentUpon>DashboardCode31Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode30Control.resx">
       <DependentUpon>DashboardCode30Control.cs</DependentUpon>
@@ -343,6 +346,12 @@
     </Compile>
     <Compile Include="TabCalendarForms\TabCalendarMainPage.Designer.cs">
       <DependentUpon>TabCalendarMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode31Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode31Control.Designer.cs">
+      <DependentUpon>DashboardCode31Control.cs</DependentUpon>
     </Compile>
     <Compile Include="TabHomeForms\Dashboard\DashboardCode30Control.cs">
       <SubType>UserControl</SubType>
@@ -656,6 +665,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\HomeSalesDepotBig.png" />
+    <None Include="Resources\HomeClientSolutionBig.png" />
     <None Include="Resources\BetaTest.png" />
     <None Include="Resources\CalendarLogo.png" />
     <None Include="Resources\CalendarLittle.png" />

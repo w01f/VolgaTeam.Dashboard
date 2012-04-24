@@ -99,8 +99,12 @@
             // 
             // labelXDetail
             // 
-            this.labelXDetail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelXDetail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.labelXDetail.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelXDetail.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.labelXDetail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
             this.labelXDetail.Location = new System.Drawing.Point(556, 89);
@@ -108,14 +112,14 @@
             this.labelXDetail.Size = new System.Drawing.Size(291, 275);
             this.labelXDetail.TabIndex = 23;
             this.labelXDetail.Text = "Make at least 1 (one) selection on each tab to define the Target Customer...\r\n\r\nW" +
-                "ho is the “IDEAL” Target Customer this campaign will REACH?";
+    "ho is the “IDEAL” Target Customer this campaign will REACH?";
             this.labelXDetail.TextLineAlignment = System.Drawing.StringAlignment.Far;
             this.labelXDetail.WordWrap = true;
             // 
             // tabControlTargetCustomers
             // 
-            this.tabControlTargetCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.tabControlTargetCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.tabControlTargetCustomers.BackColor = System.Drawing.Color.Transparent;
             this.tabControlTargetCustomers.CanReorderTabs = false;
             this.tabControlTargetCustomers.ColorScheme.TabBackground = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
@@ -172,17 +176,17 @@
             this.tabControlPanelTargetDemo.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.tabControlPanelTargetDemo.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanelTargetDemo.Style.BorderColor.Color = System.Drawing.Color.White;
-            this.tabControlPanelTargetDemo.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanelTargetDemo.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
             this.tabControlPanelTargetDemo.Style.GradientAngle = 90;
             this.tabControlPanelTargetDemo.TabIndex = 1;
             this.tabControlPanelTargetDemo.TabItem = this.tabItemTargetDemo;
             // 
             // checkedListBoxControlTargetDemo
             // 
-            this.checkedListBoxControlTargetDemo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkedListBoxControlTargetDemo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkedListBoxControlTargetDemo.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.checkedListBoxControlTargetDemo.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkedListBoxControlTargetDemo.Appearance.Options.UseBackColor = true;
@@ -215,17 +219,17 @@
             this.tabControlPanelGeographicResidence.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.tabControlPanelGeographicResidence.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanelGeographicResidence.Style.BorderColor.Color = System.Drawing.Color.White;
-            this.tabControlPanelGeographicResidence.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanelGeographicResidence.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
             this.tabControlPanelGeographicResidence.Style.GradientAngle = 90;
             this.tabControlPanelGeographicResidence.TabIndex = 3;
             this.tabControlPanelGeographicResidence.TabItem = this.tabItemGeographicResidence;
             // 
             // checkedListBoxControlGeographicResidence
             // 
-            this.checkedListBoxControlGeographicResidence.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkedListBoxControlGeographicResidence.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkedListBoxControlGeographicResidence.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.checkedListBoxControlGeographicResidence.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkedListBoxControlGeographicResidence.Appearance.Options.UseBackColor = true;
@@ -258,17 +262,17 @@
             this.tabControlPanelHouseholdIncome.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.tabControlPanelHouseholdIncome.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanelHouseholdIncome.Style.BorderColor.Color = System.Drawing.Color.White;
-            this.tabControlPanelHouseholdIncome.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanelHouseholdIncome.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
             this.tabControlPanelHouseholdIncome.Style.GradientAngle = 90;
             this.tabControlPanelHouseholdIncome.TabIndex = 2;
             this.tabControlPanelHouseholdIncome.TabItem = this.tabItemHouseholdIncome;
             // 
             // checkedListBoxControlHouseholdIncome
             // 
-            this.checkedListBoxControlHouseholdIncome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkedListBoxControlHouseholdIncome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkedListBoxControlHouseholdIncome.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.checkedListBoxControlHouseholdIncome.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkedListBoxControlHouseholdIncome.Appearance.Options.UseBackColor = true;

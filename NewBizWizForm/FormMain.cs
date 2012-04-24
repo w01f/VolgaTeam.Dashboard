@@ -256,6 +256,17 @@ namespace NewBizWizForm
                     ribbonTabItemDigital.Visible = true;
                     ribbonTabItemCalendar.Visible = false;
                     break;
+                case 31:
+                    ribbonTabItemCable.Visible = false;
+                    ribbonTabItemMobile.Visible = false;
+                    ribbonTabItemNewspaper.Visible = false;
+                    ribbonTabItemOnline.Visible = false;
+                    ribbonTabItemRadio.Visible = false;
+                    ribbonTabItemTV.Visible = false;
+                    ribbonTabItemStar.Visible = false;
+                    ribbonTabItemDigital.Visible = false;
+                    ribbonTabItemCalendar.Visible = false;
+                    break;
             }
         }
         #endregion
@@ -557,7 +568,7 @@ namespace NewBizWizForm
             InteropClasses.PowerPointHelper.Instance.AppendCleanslate();
         }
 
-        private void buttonItemHomeCover_Click(object sender, EventArgs e)
+        public void buttonItemHomeCover_Click(object sender, EventArgs e)
         {
             if (buttonItemHomeCover.Checked)
                 UncheckHomeButtons();

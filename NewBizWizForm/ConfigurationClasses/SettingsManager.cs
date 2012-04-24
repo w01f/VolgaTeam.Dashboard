@@ -18,6 +18,7 @@ namespace NewBizWizForm.ConfigurationClasses
         private string _appIDFile = string.Empty;
         public string MinibarApplicationPath { get; set; }
         public string OneDomainApplicationPath { get; set; }
+        public string SalesDepotApplicationPath { get; set; }
         public string HelpLinksPath { get; set; }
         public string DashboardSaveFolder { get; set; }
         public int LastUsedLogoIndex { get; set; }
@@ -101,6 +102,7 @@ namespace NewBizWizForm.ConfigurationClasses
             _dashboardNamePath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\Tab2Name.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.MinibarApplicationPath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\MiniBar.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.OneDomainApplicationPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\applications\APP_One_Domain\OneDomain.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+            this.SalesDepotApplicationPath = string.Format(@"{0}\newlocaldirect.com\Sales Depot\SalesDepot.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\DashboardHelp.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.IconPath = string.Format(@"{0}\newlocaldirect.com\app\tab2icon.ico", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.LastUsedLogoIndex = 0;

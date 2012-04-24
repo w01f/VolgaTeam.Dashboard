@@ -238,8 +238,8 @@
             // 
             // tabControlSimpleSummary
             // 
-            this.tabControlSimpleSummary.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.tabControlSimpleSummary.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.tabControlSimpleSummary.BackColor = System.Drawing.Color.Transparent;
             this.tabControlSimpleSummary.CanReorderTabs = false;
             this.tabControlSimpleSummary.ColorScheme.TabBackground = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
@@ -305,8 +305,8 @@
             this.tabControlPanelAdvertiser.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.tabControlPanelAdvertiser.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanelAdvertiser.Style.BorderColor.Color = System.Drawing.Color.White;
-            this.tabControlPanelAdvertiser.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanelAdvertiser.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
             this.tabControlPanelAdvertiser.Style.GradientAngle = 90;
             this.tabControlPanelAdvertiser.TabIndex = 2;
             this.tabControlPanelAdvertiser.TabItem = this.tabItemAdvertiser;
@@ -470,8 +470,8 @@
             this.tabControlPanelSlideOutput.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.tabControlPanelSlideOutput.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanelSlideOutput.Style.BorderColor.Color = System.Drawing.Color.White;
-            this.tabControlPanelSlideOutput.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanelSlideOutput.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
             this.tabControlPanelSlideOutput.Style.GradientAngle = 90;
             this.tabControlPanelSlideOutput.TabIndex = 3;
             this.tabControlPanelSlideOutput.TabItem = this.tabItemSlideOutput;
@@ -489,9 +489,9 @@
             // 
             // laOutputWarning
             // 
-            this.laOutputWarning.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.laOutputWarning.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.laOutputWarning.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.laOutputWarning.ForeColor = System.Drawing.Color.Red;
             this.laOutputWarning.Location = new System.Drawing.Point(143, 12);
@@ -586,17 +586,17 @@
             this.tabControlPanelDetails.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.tabControlPanelDetails.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanelDetails.Style.BorderColor.Color = System.Drawing.Color.White;
-            this.tabControlPanelDetails.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanelDetails.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
             this.tabControlPanelDetails.Style.GradientAngle = 90;
             this.tabControlPanelDetails.TabIndex = 1;
             this.tabControlPanelDetails.TabItem = this.tabItemPaymentDetails;
             // 
             // simpleSummaryItemContainer
             // 
-            this.simpleSummaryItemContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleSummaryItemContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.simpleSummaryItemContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.simpleSummaryItemContainer.Location = new System.Drawing.Point(3, 0);
             this.simpleSummaryItemContainer.Name = "simpleSummaryItemContainer";
@@ -630,8 +630,8 @@
             this.tabControlPanelCampaign.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.tabControlPanelCampaign.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanelCampaign.Style.BorderColor.Color = System.Drawing.Color.White;
-            this.tabControlPanelCampaign.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanelCampaign.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
             this.tabControlPanelCampaign.Style.GradientAngle = 90;
             this.tabControlPanelCampaign.TabIndex = 2;
             this.tabControlPanelCampaign.TabItem = this.tabItemCampaign;
@@ -878,7 +878,6 @@
             this.buttonXSavedFiles.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXSavedFiles.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXSavedFiles.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXSavedFiles.ForeColor = System.Drawing.Color.Black;
             this.buttonXSavedFiles.Image = global::NewBizWizForm.Properties.Resources.SavedFiles;
             this.buttonXSavedFiles.Location = new System.Drawing.Point(13, 9);
             this.buttonXSavedFiles.Name = "buttonXSavedFiles";
@@ -886,6 +885,7 @@
             this.buttonXSavedFiles.TabIndex = 103;
             this.buttonXSavedFiles.TabStop = false;
             this.buttonXSavedFiles.Text = "My Saved Files";
+            this.buttonXSavedFiles.TextColor = System.Drawing.Color.Black;
             this.buttonXSavedFiles.Click += new System.EventHandler(this.buttonXSavedFiles_Click);
             // 
             // ckMonthlyInvestment
@@ -937,8 +937,8 @@
             // 
             // laPresentationDateTag
             // 
-            this.laPresentationDateTag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.laPresentationDateTag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.laPresentationDateTag.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.laPresentationDateTag.Location = new System.Drawing.Point(657, 242);
             this.laPresentationDateTag.Name = "laPresentationDateTag";
@@ -1021,7 +1021,6 @@
             this.buttonXAddItem.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXAddItem.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXAddItem.ForeColor = System.Drawing.Color.Black;
             this.buttonXAddItem.Location = new System.Drawing.Point(6, 78);
             this.buttonXAddItem.Name = "buttonXAddItem";
             this.buttonXAddItem.Size = new System.Drawing.Size(128, 33);
@@ -1044,8 +1043,8 @@
             // 
             // laCampaignTag
             // 
-            this.laCampaignTag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.laCampaignTag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.laCampaignTag.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.laCampaignTag.Location = new System.Drawing.Point(654, 171);
             this.laCampaignTag.Name = "laCampaignTag";
@@ -1056,8 +1055,8 @@
             // 
             // ckCampaign
             // 
-            this.ckCampaign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ckCampaign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ckCampaign.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.ckCampaign.Checked = true;
             this.ckCampaign.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -1073,9 +1072,9 @@
             // 
             // laDescription
             // 
-            this.laDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.laDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.laDescription.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.laDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
             this.laDescription.Location = new System.Drawing.Point(628, 213);
@@ -1087,8 +1086,8 @@
             // 
             // ckPresentationDate
             // 
-            this.ckPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ckPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ckPresentationDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.ckPresentationDate.Checked = true;
             this.ckPresentationDate.CheckState = System.Windows.Forms.CheckState.Checked;

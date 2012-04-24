@@ -8,7 +8,7 @@ namespace NewBizWizForm.TabCalendarForms
     [System.ComponentModel.ToolboxItem(false)]
     public partial class CalendarBuilderControl : UserControl
     {
-        private CalendarBuilder.BusinessClasses.ShortCalendar[] _calendarList = null;
+        private CalendarBuilder.BusinessClasses.ShortSchedule[] _calendarList = null;
 
         private static CalendarBuilderControl _instance;
 
@@ -67,7 +67,7 @@ namespace NewBizWizForm.TabCalendarForms
                 pnNoDataWarning.Visible = false;
                 repositoryItemComboBoxStatus.Items.Clear();
                 repositoryItemComboBoxStatus.Items.AddRange(CalendarBuilder.BusinessClasses.ListManager.Instance.Statuses);
-                gridControlCalendars.DataSource = new BindingList<CalendarBuilder.BusinessClasses.ShortCalendar>(_calendarList);
+                gridControlCalendars.DataSource = new BindingList<CalendarBuilder.BusinessClasses.ShortSchedule>(_calendarList);
             }
             gridViewCalendars.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridViewCalendars_FocusedRowChanged);
         }
@@ -160,7 +160,7 @@ namespace NewBizWizForm.TabCalendarForms
 
         private void gridViewCalendars_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            CalendarBuilder.BusinessClasses.ShortCalendar schedule = _calendarList[gridViewCalendars.GetDataSourceRowIndex(e.RowHandle)];
+            CalendarBuilder.BusinessClasses.ShortSchedule schedule = _calendarList[gridViewCalendars.GetDataSourceRowIndex(e.RowHandle)];
             schedule.Save();
         }
 

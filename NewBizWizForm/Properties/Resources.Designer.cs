@@ -263,6 +263,13 @@ namespace NewBizWizForm.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap HomeClientSolutionBig {
+            get {
+                object obj = ResourceManager.GetObject("HomeClientSolutionBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap HomeDigital {
             get {
                 object obj = ResourceManager.GetObject("HomeDigital", resourceCulture);
@@ -371,6 +378,13 @@ namespace NewBizWizForm.Properties {
         internal static System.Drawing.Bitmap HomeRadioSmall {
             get {
                 object obj = ResourceManager.GetObject("HomeRadioSmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap HomeSalesDepotBig {
+            get {
+                object obj = ResourceManager.GetObject("HomeSalesDepotBig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

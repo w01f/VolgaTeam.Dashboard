@@ -10,7 +10,55 @@ namespace CalendarBuilder.ConfigurationClasses
     public class ViewSettings
     {
         public string LocalSettingsPath { get; set; }
+        public CalendarSettings AdvancedCalendarSettings { get; private set; }
+        public CalendarSettings GraphicCalendarSettings { get; private set; }
 
+        public ViewSettings()
+        {
+            this.LocalSettingsPath = string.Format(@"{0}\newlocaldirect.com\xml\app\CalendarSettings.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+            this.AdvancedCalendarSettings = new CalendarSettings();
+            this.GraphicCalendarSettings = new CalendarSettings();
+            Load();
+        }
+
+        private void Load()
+        {
+            XmlNode node;
+            if (File.Exists(this.LocalSettingsPath))
+            {
+                XmlDocument document = new XmlDocument();
+                document.Load(this.LocalSettingsPath);
+
+                node = document.SelectSingleNode(@"/ViewSettings/AdvancedCalendarSettings");
+                if (node != null)
+                    this.AdvancedCalendarSettings.Deserialize(node);
+
+                node = document.SelectSingleNode(@"/ViewSettings/GraphicCalendarSettings");
+                if (node != null)
+                    this.GraphicCalendarSettings.Deserialize(node);
+            }
+        }
+
+        public void Save()
+        {
+            StringBuilder xml = new StringBuilder();
+
+            xml.AppendLine(@"<ViewSettings>");
+            xml.AppendLine(@"<AdvancedCalendarSettings>" + this.AdvancedCalendarSettings.Serialize() + @"</AdvancedCalendarSettings>");
+            xml.AppendLine(@"<GraphicCalendarSettings>" + this.GraphicCalendarSettings.Serialize() + @"</GraphicCalendarSettings>");
+            xml.AppendLine(@"</ViewSettings>");
+
+            string userConfigurationPath = this.LocalSettingsPath;
+            using (StreamWriter sw = new StreamWriter(userConfigurationPath, false))
+            {
+                sw.Write(xml);
+                sw.Flush();
+            }
+        }
+    }
+
+    public class CalendarSettings
+    {
         #region Day Properties
         public bool DayPropertiesDocked { get; set; }
         public int DayPropertiesFloatLeft { get; set; }
@@ -28,94 +76,84 @@ namespace CalendarBuilder.ConfigurationClasses
         public bool GridVisible { get; set; }
         #endregion
 
-        public ViewSettings()
+        public CalendarSettings()
         {
             this.DayPropertiesDocked = true;
-            this.LocalSettingsPath = string.Format(@"{0}\newlocaldirect.com\xml\app\CalendarSettings.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-            Load();
+            this.SlideInfoDocked = true;
         }
 
-        private void Load()
+        public string Serialize()
         {
-            XmlNode node;
-            int tempInt;
-            bool tempBool;
-            if (File.Exists(this.LocalSettingsPath))
-            {
-                XmlDocument document = new XmlDocument();
-                document.Load(this.LocalSettingsPath);
-
-                #region Day Properties
-                node = document.SelectSingleNode(@"/ViewSettings/DayPropertiesDocked");
-                if (node != null)
-                    if (bool.TryParse(node.InnerText, out tempBool))
-                        this.DayPropertiesDocked = tempBool;
-                node = document.SelectSingleNode(@"/ViewSettings/DayPropertiesFloatLeft");
-                if (node != null)
-                    if (int.TryParse(node.InnerText, out tempInt))
-                        this.DayPropertiesFloatLeft = tempInt;
-                node = document.SelectSingleNode(@"/ViewSettings/DayPropertiesFloatTop");
-                if (node != null)
-                    if (int.TryParse(node.InnerText, out tempInt))
-                        this.DayPropertiesFloatTop = tempInt;
-                #endregion
-
-                #region Slide Info Properties
-                node = document.SelectSingleNode(@"/ViewSettings/SlideInfoVisible");
-                if (node != null)
-                    if (bool.TryParse(node.InnerText, out tempBool))
-                        this.SlideInfoVisible = tempBool;
-                node = document.SelectSingleNode(@"/ViewSettings/SlideInfoDocked");
-                if (node != null)
-                    if (bool.TryParse(node.InnerText, out tempBool))
-                        this.SlideInfoDocked = tempBool;
-                node = document.SelectSingleNode(@"/ViewSettings/SlideInfoFloatLeft");
-                if (node != null)
-                    if (int.TryParse(node.InnerText, out tempInt))
-                        this.SlideInfoFloatLeft = tempInt;
-                node = document.SelectSingleNode(@"/ViewSettings/SlideInfoFloatTop");
-                if (node != null)
-                    if (int.TryParse(node.InnerText, out tempInt))
-                        this.SlideInfoFloatTop = tempInt;
-                #endregion
-
-                #region Grid Properties
-                node = document.SelectSingleNode(@"/ViewSettings/GridVisible");
-                if (node != null)
-                    if (bool.TryParse(node.InnerText, out tempBool))
-                        this.GridVisible = tempBool;
-                #endregion
-            }
-        }
-
-        public void Save()
-        {
-            StringBuilder xml = new StringBuilder();
-
-            xml.AppendLine(@"<ViewSettings>");
+            StringBuilder result = new StringBuilder();
             #region Day Properties
-            xml.AppendLine(@"<DayPropertiesDocked>" + this.DayPropertiesDocked + @"</DayPropertiesDocked>");
-            xml.AppendLine(@"<DayPropertiesFloatLeft>" + this.DayPropertiesFloatLeft + @"</DayPropertiesFloatLeft>");
-            xml.AppendLine(@"<DayPropertiesFloatTop>" + this.DayPropertiesFloatTop + @"</DayPropertiesFloatTop>");
+            result.AppendLine(@"<DayPropertiesDocked>" + this.DayPropertiesDocked + @"</DayPropertiesDocked>");
+            result.AppendLine(@"<DayPropertiesFloatLeft>" + this.DayPropertiesFloatLeft + @"</DayPropertiesFloatLeft>");
+            result.AppendLine(@"<DayPropertiesFloatTop>" + this.DayPropertiesFloatTop + @"</DayPropertiesFloatTop>");
             #endregion
 
             #region Slide Info Properties
-            xml.AppendLine(@"<SlideInfoVisible>" + this.SlideInfoVisible + @"</SlideInfoVisible>");
-            xml.AppendLine(@"<SlideInfoDocked>" + this.SlideInfoDocked + @"</SlideInfoDocked>");
-            xml.AppendLine(@"<SlideInfoFloatLeft>" + this.SlideInfoFloatLeft + @"</SlideInfoFloatLeft>");
-            xml.AppendLine(@"<SlideInfoFloatTop>" + this.SlideInfoFloatTop + @"</SlideInfoFloatTop>");
+            result.AppendLine(@"<SlideInfoVisible>" + this.SlideInfoVisible + @"</SlideInfoVisible>");
+            result.AppendLine(@"<SlideInfoDocked>" + this.SlideInfoDocked + @"</SlideInfoDocked>");
+            result.AppendLine(@"<SlideInfoFloatLeft>" + this.SlideInfoFloatLeft + @"</SlideInfoFloatLeft>");
+            result.AppendLine(@"<SlideInfoFloatTop>" + this.SlideInfoFloatTop + @"</SlideInfoFloatTop>");
             #endregion
 
             #region Slide Info Properties
-            xml.AppendLine(@"<GridVisible>" + this.GridVisible + @"</GridVisible>");
+            result.AppendLine(@"<GridVisible>" + this.GridVisible + @"</GridVisible>");
             #endregion
-            xml.AppendLine(@"</ViewSettings>");
+            return result.ToString();
+        }
 
-            string userConfigurationPath = this.LocalSettingsPath;
-            using (StreamWriter sw = new StreamWriter(userConfigurationPath, false))
+        public void Deserialize(XmlNode node)
+        {
+            bool tempBool = false;
+            int tempInt;
+
+            foreach (XmlNode childNode in node.ChildNodes)
             {
-                sw.Write(xml);
-                sw.Flush();
+                switch (childNode.Name)
+                {
+                    #region Day Properties
+                    case "DayPropertiesDocked":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.DayPropertiesDocked = tempBool;
+                        break;
+                    case "DayPropertiesFloatLeft":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.DayPropertiesFloatLeft = tempInt;
+                        break;
+                    case "DayPropertiesFloatTop":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.DayPropertiesFloatTop = tempInt;
+                        break;
+                    #endregion
+
+                    #region Slide Info Properties
+                    case "SlideInfoVisible":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.SlideInfoVisible = tempBool;
+                        break;
+                    case "SlideInfoDocked":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.SlideInfoDocked = tempBool;
+                        break;
+                    case "SlideInfoFloatLeft":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.SlideInfoFloatLeft = tempInt;
+                        break;
+                    case "SlideInfoFloatTop":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.SlideInfoFloatTop = tempInt;
+                        break;
+                    #endregion
+
+                    #region Grid Properties
+                    case "GridVisible":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.GridVisible = tempBool;
+                        break;
+                    #endregion
+                }
             }
         }
     }

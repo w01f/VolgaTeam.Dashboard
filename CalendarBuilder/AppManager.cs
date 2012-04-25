@@ -21,7 +21,7 @@ namespace CalendarBuilder
                             string fileName = from.ScheduleName.Trim();
                             BusinessClasses.SuccessModelsManager.Instance.Load();
                             BusinessClasses.OutputManager.Instance.LoadCalendarTemplates();
-                            BusinessClasses.CalendarManager.Instance.OpenCalendar(fileName, true);
+                            BusinessClasses.ScheduleManager.Instance.OpenCalendar(fileName, true);
                             FormMain.Instance.ShowDialog();
                             InteropClasses.PowerPointHelper.Instance.Disconnect();
                             RestoreCulture();
@@ -53,7 +53,7 @@ namespace CalendarBuilder
                         ConfigurationClasses.SettingsManager.Instance.SaveFolder = new FileInfo(fileName).Directory.FullName;
                         BusinessClasses.SuccessModelsManager.Instance.Load();
                         BusinessClasses.OutputManager.Instance.LoadCalendarTemplates();
-                        BusinessClasses.CalendarManager.Instance.OpenCalendar(fileName);
+                        BusinessClasses.ScheduleManager.Instance.OpenCalendar(fileName);
                         FormMain.Instance.ShowDialog();
                         InteropClasses.PowerPointHelper.Instance.Disconnect();
                         RestoreCulture();
@@ -71,7 +71,7 @@ namespace CalendarBuilder
                 SetCulture();
                 BusinessClasses.SuccessModelsManager.Instance.Load();
                 BusinessClasses.OutputManager.Instance.LoadCalendarTemplates();
-                BusinessClasses.CalendarManager.Instance.OpenCalendar(fileName);
+                BusinessClasses.ScheduleManager.Instance.OpenCalendar(fileName);
                 FormMain.Instance.ShowDialog();
                 InteropClasses.PowerPointHelper.Instance.Disconnect();
                 RestoreCulture();
@@ -79,11 +79,11 @@ namespace CalendarBuilder
             }
         }
 
-        public static BusinessClasses.ShortCalendar[] GetShortScheduleList()
+        public static BusinessClasses.ShortSchedule[] GetShortScheduleList()
         {
             DirectoryInfo saveFolder = new DirectoryInfo(ConfigurationClasses.SettingsManager.Instance.SaveFolder);
             if (saveFolder.Exists)
-                return BusinessClasses.CalendarManager.Instance.GetShortCalendarList(saveFolder);
+                return BusinessClasses.ScheduleManager.Instance.GetShortScheduleList(saveFolder);
             else
                 return null;
         }
@@ -98,11 +98,11 @@ namespace CalendarBuilder
 
         private static void RemoveInstances()
         {
-            CustomControls.HomeControl.RemoveInstance();
-            CustomControls.CalendarControl.RemoveInstance();
-            CustomControls.ModelsOfSuccessContainerControl.RemoveInstance();
+            PresentationClasses.HomeControl.RemoveInstance();
+            PresentationClasses.CalendarVisualizer.RemoveInstance();
+            PresentationClasses.ModelsOfSuccessContainerControl.RemoveInstance();
             FormMain.RemoveInstance();
-            BusinessClasses.CalendarManager.Instance.RemoveInstance();
+            BusinessClasses.ScheduleManager.Instance.RemoveInstance();
         }
 
         public static void ShowWarning(string text)

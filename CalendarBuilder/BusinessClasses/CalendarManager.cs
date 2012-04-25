@@ -10,32 +10,39 @@ using System.Xml;
 
 namespace CalendarBuilder.BusinessClasses
 {
-    public enum SalesStrategies
+    public enum CalendarStyle
+    {
+        Simple = 0,
+        Graphic,
+        Advanced
+    }
+
+    public enum SalesStrategy
     {
         InPerson = 0,
         Email,
         Fax
     }
 
-    public enum ColorOptions
+    public enum ColorOption
     {
         BlackWhite = 0,
         SpotColor,
         FullColor
     }
 
-    public class CalendarManager
+    public class ScheduleManager
     {
-        private static CalendarManager _instance = new CalendarManager();
-        private Calendar _currentCalendar;
+        private static ScheduleManager _instance = new ScheduleManager();
+        private Schedule _currentCalendar;
 
         public event EventHandler<SavingingEventArgs> SettingsSaved;
 
-        private CalendarManager()
+        private ScheduleManager()
         {
         }
 
-        public static CalendarManager Instance
+        public static ScheduleManager Instance
         {
             get
             {
@@ -49,12 +56,12 @@ namespace CalendarBuilder.BusinessClasses
             if (create && File.Exists(calendarFilePath))
                 if (AppManager.ShowWarningQuestion(string.Format("An older Calendar is already saved with this same file name.\nDo you want to replace this file with a newer calendar?", scheduleName)) == DialogResult.Yes)
                     File.Delete(calendarFilePath);
-            _currentCalendar = new Calendar(calendarFilePath);
+            _currentCalendar = new Schedule(calendarFilePath);
         }
 
         public void OpenCalendar(string scheduleFilePath)
         {
-            _currentCalendar = new Calendar(scheduleFilePath);
+            _currentCalendar = new Schedule(scheduleFilePath);
         }
 
         public string GetCalendarFileName(string calendarName)
@@ -62,12 +69,12 @@ namespace CalendarBuilder.BusinessClasses
             return Path.Combine(ConfigurationClasses.SettingsManager.Instance.SaveFolder, calendarName + ".xml");
         }
 
-        public Calendar GetLocalCalendar()
+        public Schedule GetLocalCalendar()
         {
-            return new Calendar(_currentCalendar.CalendarFile.FullName);
+            return new Schedule(_currentCalendar.CalendarFile.FullName);
         }
 
-        public void SaveCalendar(Calendar localCalendar, bool quickSave, Control sender)
+        public void SaveCalendar(Schedule localCalendar, bool quickSave, Control sender)
         {
             localCalendar.Save();
             _currentCalendar = localCalendar;
@@ -95,12 +102,12 @@ namespace CalendarBuilder.BusinessClasses
             }
         }
 
-        public ShortCalendar[] GetShortCalendarList(DirectoryInfo rootFolder)
+        public ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
         {
-            List<ShortCalendar> calendarList = new List<ShortCalendar>();
+            List<ShortSchedule> calendarList = new List<ShortSchedule>();
             foreach (var file in rootFolder.GetFiles("*.xml"))
             {
-                ShortCalendar schedule = new ShortCalendar(file);
+                ShortSchedule schedule = new ShortSchedule(file);
                 if (!string.IsNullOrEmpty(schedule.BusinessName))
                     calendarList.Add(schedule);
             }
@@ -123,7 +130,7 @@ namespace CalendarBuilder.BusinessClasses
         public bool QuickSave { get; set; }
     }
 
-    public class ShortCalendar
+    public class ShortSchedule
     {
         private FileInfo _calendarFile;
 
@@ -154,7 +161,7 @@ namespace CalendarBuilder.BusinessClasses
             }
         }
 
-        public ShortCalendar(FileInfo file)
+        public ShortSchedule(FileInfo file)
         {
             this.BusinessName = string.Empty;
             this.Status = ListManager.Instance.Statuses.FirstOrDefault();
@@ -170,11 +177,11 @@ namespace CalendarBuilder.BusinessClasses
                 XmlDocument document = new XmlDocument();
                 document.Load(_calendarFile.FullName);
 
-                node = document.SelectSingleNode(@"/Calendar/BusinessName");
+                node = document.SelectSingleNode(@"/Schedule/BusinessName");
                 if (node != null)
                     this.BusinessName = node.InnerText;
 
-                node = document.SelectSingleNode(@"/Calendar/Status");
+                node = document.SelectSingleNode(@"/Schedule/Status");
                 if (node != null)
                     this.Status = node.InnerText;
             }
@@ -190,12 +197,12 @@ namespace CalendarBuilder.BusinessClasses
                     XmlDocument document = new XmlDocument();
                     document.Load(_calendarFile.FullName);
 
-                    node = document.SelectSingleNode(@"/Calendar/Status");
+                    node = document.SelectSingleNode(@"/Schedule/Status");
                     if (node != null)
                         node.InnerText = this.Status;
                     else
                     {
-                        node = document.SelectSingleNode(@"/Calendar");
+                        node = document.SelectSingleNode(@"/Schedule");
                         if (node != null)
                             node.InnerXml += (@"<Status>" + (this.Status != null ? this.Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
                     }
@@ -208,20 +215,20 @@ namespace CalendarBuilder.BusinessClasses
         }
     }
 
-    public class Calendar
+    public class Schedule
     {
         private FileInfo _calendarFile { get; set; }
         public string BusinessName { get; set; }
         public string DecisionMaker { get; set; }
         public string ClientType { get; set; }
         public string Status { get; set; }
-        public SalesStrategies SalesStrategy { get; set; }
+        public SalesStrategy SalesStrategy { get; set; }
         public DateTime? PresentationDate { get; set; }
         public DateTime? FlightDateStart { get; set; }
         public DateTime? FlightDateEnd { get; set; }
 
-        public List<CalendarMonth> Months { get; private set; }
-        public List<CalendarDay> Days { get; private set; }
+        public Calendar AdvancedCalendar { get; private set; }
+        public Calendar GraphicCalendar { get; private set; }
 
         public string Name
         {
@@ -254,22 +261,22 @@ namespace CalendarBuilder.BusinessClasses
             }
         }
 
-        public Calendar(string fileName)
+        public Schedule(string fileName)
         {
             this.BusinessName = string.Empty;
             this.DecisionMaker = string.Empty;
             this.ClientType = string.Empty;
             this.Status = ListManager.Instance.Statuses.FirstOrDefault();
-            this.Months = new List<CalendarMonth>();
-            this.Days = new List<CalendarDay>();
+            this.AdvancedCalendar = new Calendar(this);
+            this.GraphicCalendar = new Calendar(this);
 
             _calendarFile = new FileInfo(fileName);
             if (!File.Exists(fileName))
             {
                 StringBuilder xml = new StringBuilder();
-                xml.AppendLine(@"<Calendar>");
+                xml.AppendLine(@"<Schedule>");
                 xml.AppendLine(@"<Status>" + (this.Status != null ? this.Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
-                xml.AppendLine(@"</Calendar>");
+                xml.AppendLine(@"</Schedule>");
                 using (StreamWriter sw = new StreamWriter(_calendarFile.FullName, false))
                 {
                     sw.Write(xml);
@@ -279,9 +286,6 @@ namespace CalendarBuilder.BusinessClasses
             }
             else
                 Load();
-
-            UpdateDaysCollection();
-            UpdateMonthCollection();
         }
 
         public static DateTime[][] GetDaysByWeek(DateTime start, DateTime end)
@@ -314,65 +318,54 @@ namespace CalendarBuilder.BusinessClasses
                 XmlDocument document = new XmlDocument();
                 document.Load(_calendarFile.FullName);
 
-                node = document.SelectSingleNode(@"/Calendar/BusinessName");
+                node = document.SelectSingleNode(@"/Schedule/BusinessName");
                 if (node != null)
                     this.BusinessName = node.InnerText;
 
-                node = document.SelectSingleNode(@"/Calendar/DecisionMaker");
+                node = document.SelectSingleNode(@"/Schedule/DecisionMaker");
                 if (node != null)
                     this.DecisionMaker = node.InnerText;
 
-                node = document.SelectSingleNode(@"/Calendar/ClientType");
+                node = document.SelectSingleNode(@"/Schedule/ClientType");
                 if (node != null)
                     this.ClientType = node.InnerText;
 
-                node = document.SelectSingleNode(@"/Calendar/Status");
+                node = document.SelectSingleNode(@"/Schedule/Status");
                 if (node != null)
                     this.Status = node.InnerText;
 
-                node = document.SelectSingleNode(@"/Calendar/SalesStrategy");
+                node = document.SelectSingleNode(@"/Schedule/SalesStrategy");
                 if (node != null)
                     if (int.TryParse(node.InnerText, out tempInt))
-                        this.SalesStrategy = (SalesStrategies)tempInt;
+                        this.SalesStrategy = (SalesStrategy)tempInt;
 
-                node = document.SelectSingleNode(@"/Calendar/PresentationDate");
+                node = document.SelectSingleNode(@"/Schedule/PresentationDate");
                 if (node != null)
                     if (DateTime.TryParse(node.InnerText, out tempDateTime))
                         this.PresentationDate = tempDateTime;
 
-                node = document.SelectSingleNode(@"/Calendar/FlightDateStart");
+                node = document.SelectSingleNode(@"/Schedule/FlightDateStart");
                 if (node != null)
                     if (DateTime.TryParse(node.InnerText, out tempDateTime))
                         this.FlightDateStart = tempDateTime;
 
-                node = document.SelectSingleNode(@"/Calendar/FlightDateEnd");
+                node = document.SelectSingleNode(@"/Schedule/FlightDateEnd");
                 if (node != null)
                     if (DateTime.TryParse(node.InnerText, out tempDateTime))
                         this.FlightDateEnd = tempDateTime;
 
-                node = document.SelectSingleNode(@"/Calendar/Days");
+                node = document.SelectSingleNode(@"/Schedule/AdvancedCalendar");
                 if (node != null)
                 {
-                    this.Days.Clear();
-                    foreach (XmlNode childNode in node.ChildNodes)
-                    {
-                        CalendarDay day = new CalendarDay();
-                        day.Deserialize(childNode);
-                        this.Days.Add(day);
-                    }
+                    this.AdvancedCalendar.Deserialize(node);
                 }
 
-                node = document.SelectSingleNode(@"/Calendar/Months");
+                node = document.SelectSingleNode(@"/Schedule/GraphicCalendar");
                 if (node != null)
                 {
-                    this.Months.Clear();
-                    foreach (XmlNode childNode in node.ChildNodes)
-                    {
-                        CalendarMonth month = new CalendarMonth(this);
-                        month.Deserialize(childNode);
-                        this.Months.Add(month);
-                    }
+                    this.GraphicCalendar.Deserialize(node);
                 }
+
             }
         }
 
@@ -381,7 +374,7 @@ namespace CalendarBuilder.BusinessClasses
             TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
             StringBuilder xml = new StringBuilder();
 
-            xml.AppendLine(@"<Calendar>");
+            xml.AppendLine(@"<Schedule>");
             xml.AppendLine(@"<BusinessName>" + this.BusinessName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</BusinessName>");
             if (!ListManager.Instance.Advertisers.Contains(this.BusinessName))
             {
@@ -404,17 +397,10 @@ namespace CalendarBuilder.BusinessClasses
             if (this.FlightDateEnd.HasValue)
                 xml.AppendLine(@"<FlightDateEnd>" + this.FlightDateEnd.Value.ToString() + @"</FlightDateEnd>");
 
-            xml.AppendLine(@"<Days>");
-            foreach (CalendarDay day in this.Days)
-                xml.AppendLine(@"<Day>" + day.Serialize() + @"</Day>");
-            xml.AppendLine(@"</Days>");
+            xml.AppendLine(@"<AdvancedCalendar>" + this.AdvancedCalendar.Serialize() + @"</AdvancedCalendar>");
+            xml.AppendLine(@"<GraphicCalendar>" + this.GraphicCalendar.Serialize() + @"</GraphicCalendar>");
 
-            xml.AppendLine(@"<Months>");
-            foreach (CalendarMonth month in this.Months)
-                xml.AppendLine(@"<Month>" + month.Serialize() + @"</Month>");
-            xml.AppendLine(@"</Months>");
-
-            xml.AppendLine(@"</Calendar>");
+            xml.AppendLine(@"</Schedule>");
 
             using (StreamWriter sw = new StreamWriter(_calendarFile.FullName, false))
             {
@@ -423,13 +409,75 @@ namespace CalendarBuilder.BusinessClasses
             }
         }
 
+
+    }
+
+    public class Calendar
+    {
+        public Schedule Schedule { get; private set; }
+        public List<CalendarMonth> Months { get; private set; }
+        public List<CalendarDay> Days { get; private set; }
+
+        public Calendar(Schedule parent)
+        {
+            this.Schedule = parent;
+            this.Months = new List<CalendarMonth>();
+            this.Days = new List<CalendarDay>();
+        }
+
+        public string Serialize()
+        {
+            StringBuilder result = new StringBuilder();
+            result.AppendLine(@"<Days>");
+            foreach (CalendarDay day in this.Days)
+                result.AppendLine(@"<Day>" + day.Serialize() + @"</Day>");
+            result.AppendLine(@"</Days>");
+
+            result.AppendLine(@"<Months>");
+            foreach (CalendarMonth month in this.Months)
+                result.AppendLine(@"<Month>" + month.Serialize() + @"</Month>");
+            result.AppendLine(@"</Months>");
+            return result.ToString();
+        }
+
+        public void Deserialize(XmlNode node)
+        {
+            foreach (XmlNode childNode in node.ChildNodes)
+            {
+                switch (childNode.Name)
+                {
+                    case "Days":
+                        this.Days.Clear();
+                        foreach (XmlNode dayNode in childNode.ChildNodes)
+                        {
+                            CalendarDay day = new CalendarDay();
+                            day.Deserialize(dayNode);
+                            this.Days.Add(day);
+                        }
+                        break;
+                    case "Months":
+                        this.Months.Clear();
+                        foreach (XmlNode monthNode in childNode.ChildNodes)
+                        {
+                            CalendarMonth month = new CalendarMonth(this);
+                            month.Deserialize(monthNode);
+                            this.Months.Add(month);
+                        }
+                        break;
+                }
+            }
+
+            UpdateDaysCollection();
+            UpdateMonthCollection();
+        }
+
         private void UpdateDaysCollection()
         {
-            if (this.FlightDateStart.HasValue && this.FlightDateEnd.HasValue)
+            if (this.Schedule.FlightDateStart.HasValue && this.Schedule.FlightDateEnd.HasValue)
             {
                 List<CalendarDay> days = new List<CalendarDay>();
-                DateTime startDate = new DateTime(this.FlightDateStart.Value.Year, this.FlightDateStart.Value.Month, 1);
-                DateTime endDate = new DateTime(this.FlightDateEnd.Value.Month < 12 ? this.FlightDateEnd.Value.Year : (this.FlightDateEnd.Value.Year + 1), (this.FlightDateEnd.Value.Month < 12 ? this.FlightDateEnd.Value.Month + 1 : 1), 1).AddDays(-1);
+                DateTime startDate = new DateTime(this.Schedule.FlightDateStart.Value.Year, this.Schedule.FlightDateStart.Value.Month, 1);
+                DateTime endDate = new DateTime(this.Schedule.FlightDateEnd.Value.Month < 12 ? this.Schedule.FlightDateEnd.Value.Year : (this.Schedule.FlightDateEnd.Value.Year + 1), (this.Schedule.FlightDateEnd.Value.Month < 12 ? this.Schedule.FlightDateEnd.Value.Month + 1 : 1), 1).AddDays(-1);
                 while (startDate <= endDate)
                 {
                     CalendarDay day = this.Days.Where(x => x.Date.Equals(startDate)).FirstOrDefault();
@@ -438,7 +486,7 @@ namespace CalendarBuilder.BusinessClasses
                         day = new CalendarDay();
                         day.Date = startDate;
                     }
-                    day.BelongsToSchedules = day.Date >= this.FlightDateStart & day.Date <= this.FlightDateEnd;
+                    day.BelongsToSchedules = day.Date >= this.Schedule.FlightDateStart & day.Date <= this.Schedule.FlightDateEnd;
                     days.Add(day);
                     startDate = startDate.AddDays(1);
                 }
@@ -451,11 +499,11 @@ namespace CalendarBuilder.BusinessClasses
 
         private void UpdateMonthCollection()
         {
-            if (this.FlightDateStart.HasValue && this.FlightDateEnd.HasValue)
+            if (this.Schedule.FlightDateStart.HasValue && this.Schedule.FlightDateEnd.HasValue)
             {
                 List<CalendarMonth> months = new List<CalendarMonth>();
-                DateTime startDate = new DateTime(this.FlightDateStart.Value.Year, this.FlightDateStart.Value.Month, 1);
-                while (startDate <= this.FlightDateEnd.Value)
+                DateTime startDate = new DateTime(this.Schedule.FlightDateStart.Value.Year, this.Schedule.FlightDateStart.Value.Month, 1);
+                while (startDate <= this.Schedule.FlightDateEnd.Value)
                 {
                     CalendarMonth month = this.Months.Where(x => x.StartDate.Equals(startDate)).FirstOrDefault();
                     if (month == null)
@@ -542,6 +590,7 @@ namespace CalendarBuilder.BusinessClasses
         public NewspaperProperties Newspaper { get; set; }
         public string Comment1 { get; set; }
         public string Comment2 { get; set; }
+        public ImageSource Logo { get; set; }
 
         public string Summary
         {
@@ -570,7 +619,7 @@ namespace CalendarBuilder.BusinessClasses
         {
             get
             {
-                return !string.IsNullOrEmpty(this.Summary);
+                return !string.IsNullOrEmpty(this.Summary) || this.Logo.ContainsData;
             }
         }
 
@@ -578,11 +627,13 @@ namespace CalendarBuilder.BusinessClasses
         {
             this.Digital = new DigitalProperties(this);
             this.Newspaper = new NewspaperProperties(this);
+            this.Logo = new ImageSource();
         }
 
         public string Serialize()
         {
             StringBuilder result = new StringBuilder();
+
             result.AppendLine(@"<Date>" + this.Date.ToString() + @"</Date>");
             result.AppendLine(@"<Digital>" + this.Digital.Serialize() + @"</Digital>");
             result.AppendLine(@"<Newspaper>" + this.Newspaper.Serialize() + @"</Newspaper>");
@@ -590,6 +641,7 @@ namespace CalendarBuilder.BusinessClasses
                 result.AppendLine(@"<Comment1>" + this.Comment1.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comment1>");
             if (!string.IsNullOrEmpty(this.Comment2))
                 result.AppendLine(@"<Comment2>" + this.Comment2.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comment2>");
+            result.AppendLine(@"<Logo>" + this.Logo.Serialize() + @"</Logo>");
             return result.ToString();
         }
 
@@ -615,6 +667,9 @@ namespace CalendarBuilder.BusinessClasses
                         break;
                     case "Comment2":
                         this.Comment2 = childNode.InnerText;
+                        break;
+                    case "Logo":
+                        this.Logo.Deserialize(childNode);
                         break;
                 }
             }
@@ -650,6 +705,7 @@ namespace CalendarBuilder.BusinessClasses
         {
             this.Comment1 = null;
             this.Comment2 = null;
+            this.Logo = new ImageSource();
             this.Digital = new DigitalProperties(this);
             this.Newspaper = new NewspaperProperties(this);
         }
@@ -899,6 +955,8 @@ namespace CalendarBuilder.BusinessClasses
 
     public class CalendarOutputData
     {
+        private List<string> _dayLogosPaths = new List<string>();
+
         public CalendarMonth Parent { get; private set; }
 
         #region Basic
@@ -966,14 +1024,14 @@ namespace CalendarBuilder.BusinessClasses
                     if (!string.IsNullOrEmpty(_businessName))
                         return _businessName;
                     else
-                        return this.Parent.Parent.BusinessName;
+                        return this.Parent.Parent.Schedule.BusinessName;
                 }
                 else
                     return string.Empty;
             }
             set
             {
-                if (!value.Equals(this.Parent.Parent.BusinessName))
+                if (!value.Equals(this.Parent.Parent.Schedule.BusinessName))
                     _businessName = value;
                 else
                     _businessName = string.Empty;
@@ -989,14 +1047,14 @@ namespace CalendarBuilder.BusinessClasses
                     if (!string.IsNullOrEmpty(_decisionMaker))
                         return _decisionMaker;
                     else
-                        return this.Parent.Parent.DecisionMaker;
+                        return this.Parent.Parent.Schedule.DecisionMaker;
                 }
                 else
                     return string.Empty;
             }
             set
             {
-                if (!value.Equals(this.Parent.Parent.DecisionMaker))
+                if (!value.Equals(this.Parent.Parent.Schedule.DecisionMaker))
                     _decisionMaker = value;
                 else
                     _decisionMaker = string.Empty;
@@ -1238,6 +1296,14 @@ namespace CalendarBuilder.BusinessClasses
             get
             {
                 return this.Parent.Days.Select(x => x.Summary).ToArray();
+            }
+        }
+
+        public string[] DayLogoPaths
+        {
+            get
+            {
+                return _dayLogosPaths.ToArray();
             }
         }
 
@@ -1620,6 +1686,23 @@ namespace CalendarBuilder.BusinessClasses
                 tagValues.Add("Digital CPM: " + this.DigitalCPM.Value.ToString("$#,###.0"));
             return tagValues.ToArray();
         }
+
+        public void PrepareDayLogoPaths()
+        {
+            _dayLogosPaths.Clear();
+            foreach (CalendarDay day in this.Parent.Days)
+            {
+                if (day.Logo.TinyImage != null)
+                {
+                    string filePath = string.Empty;
+                    filePath = System.IO.Path.GetTempFileName();
+                    day.Logo.TinyImage.Save(filePath);
+                    _dayLogosPaths.Add(filePath);
+                }
+                else
+                    _dayLogosPaths.Add(string.Empty);
+            }
+        }
     }
 
     public class CalendarLegend
@@ -1681,6 +1764,77 @@ namespace CalendarBuilder.BusinessClasses
             result.Code = this.Code;
             result.Description = this.Description;
             result.Visible = this.Visible;
+            return result;
+        }
+    }
+
+    public class ImageSource
+    {
+        public Image BigImage { get; set; }
+        public Image SmallImage { get; set; }
+        public Image TinyImage { get; set; }
+        public Image XtraTinyImage { get; set; }
+
+        public bool ContainsData
+        {
+            get
+            {
+                return this.XtraTinyImage != null;
+            }
+        }
+
+        public string Serialize()
+        {
+            TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+            StringBuilder result = new StringBuilder();
+            result.Append("<BigImage>" + Convert.ToBase64String((byte[])converter.ConvertTo(this.BigImage, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</BigImage>");
+            result.Append("<SmallImage>" + Convert.ToBase64String((byte[])converter.ConvertTo(this.SmallImage, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</SmallImage>");
+            result.Append("<TinyImage>" + Convert.ToBase64String((byte[])converter.ConvertTo(this.TinyImage, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</TinyImage>");
+            result.Append("<XtraTinyImage>" + Convert.ToBase64String((byte[])converter.ConvertTo(this.XtraTinyImage, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</XtraTinyImage>");
+            return result.ToString();
+        }
+
+        public void Deserialize(XmlNode node)
+        {
+            foreach (XmlNode childNode in node.ChildNodes)
+            {
+                switch (childNode.Name)
+                {
+                    case "BigImage":
+                        if (string.IsNullOrEmpty(childNode.InnerText))
+                            this.BigImage = null;
+                        else
+                            this.BigImage = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
+                        break;
+                    case "SmallImage":
+                        if (string.IsNullOrEmpty(childNode.InnerText))
+                            this.SmallImage = null;
+                        else
+                            this.SmallImage = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
+                        break;
+                    case "TinyImage":
+                        if (string.IsNullOrEmpty(childNode.InnerText))
+                            this.TinyImage = null;
+                        else
+                            this.TinyImage = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
+                        break;
+                    case "XtraTinyImage":
+                        if (string.IsNullOrEmpty(childNode.InnerText))
+                            this.TinyImage = null;
+                        else
+                            this.XtraTinyImage = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
+                        break;
+                }
+            }
+        }
+
+        public ImageSource Clone()
+        {
+            ImageSource result = new ImageSource();
+            result.BigImage = this.BigImage;
+            result.SmallImage = this.SmallImage;
+            result.TinyImage = this.TinyImage;
+            result.XtraTinyImage = this.XtraTinyImage;
             return result;
         }
     }

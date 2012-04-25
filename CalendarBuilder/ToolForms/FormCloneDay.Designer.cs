@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCloneDay));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.laOriginalDate = new System.Windows.Forms.Label();
             this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
@@ -41,6 +41,8 @@
             this.pnMain = new System.Windows.Forms.Panel();
             this.xtraTabControlClone = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageDays = new DevExpress.XtraTab.XtraTabPage();
+            this.buttonXSelectFirstDays = new DevComponents.DotNetBar.ButtonX();
+            this.buttonXSelectAllDays = new DevComponents.DotNetBar.ButtonX();
             this.labelControlDayTitle = new DevExpress.XtraEditors.LabelControl();
             this.buttonXAddAllWeekdays = new DevComponents.DotNetBar.ButtonX();
             this.checkEditHighlightWeekdays = new DevExpress.XtraEditors.CheckEdit();
@@ -53,8 +55,6 @@
             this.repositoryItemButtonEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.pnBottom = new System.Windows.Forms.Panel();
             this.labelControlClonedNumber = new DevExpress.XtraEditors.LabelControl();
-            this.buttonXSelectAllDays = new DevComponents.DotNetBar.ButtonX();
-            this.buttonXSelectFirstDays = new DevComponents.DotNetBar.ButtonX();
             this.pnTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.pnMain.SuspendLayout();
@@ -91,12 +91,12 @@
             this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonXCancel.ForeColor = System.Drawing.Color.Black;
             this.buttonXCancel.Location = new System.Drawing.Point(495, 11);
             this.buttonXCancel.Name = "buttonXCancel";
             this.buttonXCancel.Size = new System.Drawing.Size(98, 35);
             this.buttonXCancel.TabIndex = 9;
             this.buttonXCancel.Text = "Cancel";
+            this.buttonXCancel.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXOK
             // 
@@ -104,24 +104,24 @@
             this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonXOK.ForeColor = System.Drawing.Color.Black;
             this.buttonXOK.Location = new System.Drawing.Point(383, 11);
             this.buttonXOK.Name = "buttonXOK";
             this.buttonXOK.Size = new System.Drawing.Size(98, 35);
             this.buttonXOK.TabIndex = 8;
             this.buttonXOK.Text = "OK";
+            this.buttonXOK.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXClearAll
             // 
             this.buttonXClearAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXClearAll.ForeColor = System.Drawing.Color.Black;
             this.buttonXClearAll.Location = new System.Drawing.Point(262, 148);
             this.buttonXClearAll.Name = "buttonXClearAll";
             this.buttonXClearAll.Size = new System.Drawing.Size(157, 33);
             this.buttonXClearAll.TabIndex = 12;
             this.buttonXClearAll.Text = "Clear All";
+            this.buttonXClearAll.TextColor = System.Drawing.Color.Black;
             this.buttonXClearAll.Click += new System.EventHandler(this.buttonXClearAll_Click);
             // 
             // pnTop
@@ -191,6 +191,32 @@
             this.xtraTabPageDays.Size = new System.Drawing.Size(428, 221);
             this.xtraTabPageDays.Text = "Days";
             // 
+            // buttonXSelectFirstDays
+            // 
+            this.buttonXSelectFirstDays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXSelectFirstDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXSelectFirstDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXSelectFirstDays.Location = new System.Drawing.Point(262, 70);
+            this.buttonXSelectFirstDays.Name = "buttonXSelectFirstDays";
+            this.buttonXSelectFirstDays.Size = new System.Drawing.Size(159, 33);
+            this.buttonXSelectFirstDays.TabIndex = 21;
+            this.buttonXSelectFirstDays.Text = "1st Day of Months";
+            this.buttonXSelectFirstDays.TextColor = System.Drawing.Color.Black;
+            this.buttonXSelectFirstDays.Click += new System.EventHandler(this.buttonXSelectFirstDays_Click);
+            // 
+            // buttonXSelectAllDays
+            // 
+            this.buttonXSelectAllDays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXSelectAllDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonXSelectAllDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXSelectAllDays.Location = new System.Drawing.Point(262, 31);
+            this.buttonXSelectAllDays.Name = "buttonXSelectAllDays";
+            this.buttonXSelectAllDays.Size = new System.Drawing.Size(159, 33);
+            this.buttonXSelectAllDays.TabIndex = 20;
+            this.buttonXSelectAllDays.Text = "Select ALL Days";
+            this.buttonXSelectAllDays.TextColor = System.Drawing.Color.Black;
+            this.buttonXSelectAllDays.Click += new System.EventHandler(this.buttonXSelectAllDays_Click);
+            // 
             // labelControlDayTitle
             // 
             this.labelControlDayTitle.AllowHtmlString = true;
@@ -208,12 +234,12 @@
             this.buttonXAddAllWeekdays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXAddAllWeekdays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXAddAllWeekdays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXAddAllWeekdays.ForeColor = System.Drawing.Color.Black;
             this.buttonXAddAllWeekdays.Location = new System.Drawing.Point(262, 109);
             this.buttonXAddAllWeekdays.Name = "buttonXAddAllWeekdays";
             this.buttonXAddAllWeekdays.Size = new System.Drawing.Size(159, 33);
             this.buttonXAddAllWeekdays.TabIndex = 18;
             this.buttonXAddAllWeekdays.Text = "Add All {0}s";
+            this.buttonXAddAllWeekdays.TextColor = System.Drawing.Color.Black;
             this.buttonXAddAllWeekdays.Click += new System.EventHandler(this.buttonXAddAllWeekdays_Click);
             // 
             // checkEditHighlightWeekdays
@@ -345,7 +371,7 @@
             // repositoryItemButtonEdit
             // 
             this.repositoryItemButtonEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.repositoryItemButtonEdit.DisplayFormat.FormatString = "ddd, M/d/yy";
             this.repositoryItemButtonEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.repositoryItemButtonEdit.EditFormat.FormatString = "ddd, M/d/yy";
@@ -377,32 +403,6 @@
             this.labelControlClonedNumber.Size = new System.Drawing.Size(374, 56);
             this.labelControlClonedNumber.TabIndex = 10;
             this.labelControlClonedNumber.Text = "Cloned Days: <b>{0}</b>";
-            // 
-            // buttonXSelectAllDays
-            // 
-            this.buttonXSelectAllDays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonXSelectAllDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonXSelectAllDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXSelectAllDays.ForeColor = System.Drawing.Color.Black;
-            this.buttonXSelectAllDays.Location = new System.Drawing.Point(262, 31);
-            this.buttonXSelectAllDays.Name = "buttonXSelectAllDays";
-            this.buttonXSelectAllDays.Size = new System.Drawing.Size(159, 33);
-            this.buttonXSelectAllDays.TabIndex = 20;
-            this.buttonXSelectAllDays.Text = "Select ALL Days";
-            this.buttonXSelectAllDays.Click += new System.EventHandler(this.buttonXSelectAllDays_Click);
-            // 
-            // buttonXSelectFirstDays
-            // 
-            this.buttonXSelectFirstDays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonXSelectFirstDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonXSelectFirstDays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXSelectFirstDays.ForeColor = System.Drawing.Color.Black;
-            this.buttonXSelectFirstDays.Location = new System.Drawing.Point(262, 70);
-            this.buttonXSelectFirstDays.Name = "buttonXSelectFirstDays";
-            this.buttonXSelectFirstDays.Size = new System.Drawing.Size(159, 33);
-            this.buttonXSelectFirstDays.TabIndex = 21;
-            this.buttonXSelectFirstDays.Text = "1st Day of Months";
-            this.buttonXSelectFirstDays.Click += new System.EventHandler(this.buttonXSelectFirstDays_Click);
             // 
             // FormCloneDay
             // 

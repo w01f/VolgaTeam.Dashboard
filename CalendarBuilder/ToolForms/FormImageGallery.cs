@@ -8,14 +8,14 @@ namespace CalendarBuilder.ToolForms
 {
     public partial class FormImageGallery : Form
     {
-        private List<BusinessClasses.PrintSource> _publicationSources = new List<BusinessClasses.PrintSource>();
+        private List<BusinessClasses.ImageSource> _imageSources = new List<BusinessClasses.ImageSource>();
 
-        public BusinessClasses.PrintSource SelectedSource
+        public BusinessClasses.ImageSource SelectedSource
         {
             get
             {
                 if(gridViewImageGallery.FocusedRowHandle>=0)
-                    return _publicationSources[gridViewImageGallery.GetFocusedDataSourceRowIndex()];
+                    return _imageSources[gridViewImageGallery.GetFocusedDataSourceRowIndex()];
                 else
                     return null;
             }
@@ -28,8 +28,8 @@ namespace CalendarBuilder.ToolForms
 
         private void FormImageGallery_Load(object sender, System.EventArgs e)
         {
-            _publicationSources.AddRange(BusinessClasses.ListManager.Instance.PrintSources.Where(x => x.BigLogo != null && x.SmallLogo != null /*&& x.TinyLogo != null*/).GroupBy(x => x.BigLogoFileName).Select(x => x.First()));
-            gridControlImageGallery.DataSource = _publicationSources;
+            _imageSources.AddRange(BusinessClasses.ListManager.Instance.Images);
+            gridControlImageGallery.DataSource = _imageSources;
         }
 
         private void gridViewImageGallery_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)

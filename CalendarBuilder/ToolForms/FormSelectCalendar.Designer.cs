@@ -44,12 +44,12 @@
             this.buttonXCurrentPublication.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXCurrentPublication.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXCurrentPublication.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.buttonXCurrentPublication.ForeColor = System.Drawing.Color.Black;
             this.buttonXCurrentPublication.Location = new System.Drawing.Point(334, 97);
             this.buttonXCurrentPublication.Name = "buttonXCurrentPublication";
             this.buttonXCurrentPublication.Size = new System.Drawing.Size(301, 65);
             this.buttonXCurrentPublication.TabIndex = 9;
             this.buttonXCurrentPublication.Text = "Attach just the Current Month to my Outlook Email Message";
+            this.buttonXCurrentPublication.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXSelectedPublications
             // 
@@ -57,12 +57,12 @@
             this.buttonXSelectedPublications.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXSelectedPublications.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXSelectedPublications.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.buttonXSelectedPublications.ForeColor = System.Drawing.Color.Black;
             this.buttonXSelectedPublications.Location = new System.Drawing.Point(334, 178);
             this.buttonXSelectedPublications.Name = "buttonXSelectedPublications";
             this.buttonXSelectedPublications.Size = new System.Drawing.Size(301, 65);
             this.buttonXSelectedPublications.TabIndex = 10;
             this.buttonXSelectedPublications.Text = "Attach all Selected Months to my Outlook Email Message";
+            this.buttonXSelectedPublications.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXClose
             // 
@@ -70,12 +70,12 @@
             this.buttonXClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonXClose.ForeColor = System.Drawing.Color.Black;
             this.buttonXClose.Location = new System.Drawing.Point(334, 260);
             this.buttonXClose.Name = "buttonXClose";
             this.buttonXClose.Size = new System.Drawing.Size(301, 65);
             this.buttonXClose.TabIndex = 11;
             this.buttonXClose.Text = "Cancel";
+            this.buttonXClose.TextColor = System.Drawing.Color.Black;
             // 
             // pbLogo
             // 
@@ -112,7 +112,7 @@
             this.checkedListBoxControlMonths.Size = new System.Drawing.Size(299, 229);
             this.checkedListBoxControlMonths.TabIndex = 15;
             // 
-            // FormSelectPublication
+            // FormSelectCalendar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
@@ -127,7 +127,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormSelectPublication";
+            this.Name = "FormSelectCalendar";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calendar Output Options";

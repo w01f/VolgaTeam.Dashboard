@@ -53,7 +53,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar2, Version=7.6.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.DotNetBar2, Version=10.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.Data.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -86,7 +88,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager.cs" />
-    <Compile Include="BusinessClasses\DayCopyPaster.cs" />
+    <Compile Include="PresentationClasses\Calendars\GraphicCalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Calendars\GraphicCalendarControl.Designer.cs">
+      <DependentUpon>GraphicCalendarControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\CalendarVisualizer.cs" />
+    <Compile Include="PresentationClasses\CopyPasterManager.cs" />
     <Compile Include="BusinessClasses\HelpManager.cs" />
     <Compile Include="BusinessClasses\ListManager.cs" />
     <Compile Include="BusinessClasses\OutputManager.cs" />
@@ -95,89 +104,104 @@
     <Compile Include="ConfigurationClasses\RegistryHelper.cs" />
     <Compile Include="ConfigurationClasses\SettingsManager.cs" />
     <Compile Include="ConfigurationClasses\ViewSettings.cs" />
-    <Compile Include="CustomControls\CalendarVisualizer\CalendarVisualizer.cs" />
-    <Compile Include="CustomControls\CalendarVisualizer\DayControl.cs">
+    <Compile Include="PresentationClasses\DayProperties\LogoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\CalendarVisualizer\DayControl.Designer.cs">
+    <Compile Include="PresentationClasses\DayProperties\LogoControl.Designer.cs">
+      <DependentUpon>LogoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ICalendarControl.cs" />
+    <Compile Include="PresentationClasses\SelectionManager.cs" />
+    <Compile Include="PresentationClasses\Views\IView.cs" />
+    <Compile Include="PresentationClasses\Views\MonthView\MonthViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Views\MonthView\MonthViewControl.Designer.cs">
+      <DependentUpon>MonthViewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Views\MonthView\DayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Views\MonthView\DayControl.Designer.cs">
       <DependentUpon>DayControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\DayProperties\CommentControl.cs">
+    <Compile Include="PresentationClasses\DayProperties\CommentControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\DayProperties\CommentControl.Designer.cs">
+    <Compile Include="PresentationClasses\DayProperties\CommentControl.Designer.cs">
       <DependentUpon>CommentControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\DayProperties\DigitalPropertiesControl.cs">
+    <Compile Include="PresentationClasses\DayProperties\DayPropertiesWrapper.cs" />
+    <Compile Include="PresentationClasses\DayProperties\DigitalPropertiesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\DayProperties\DigitalPropertiesControl.Designer.cs">
+    <Compile Include="PresentationClasses\DayProperties\DigitalPropertiesControl.Designer.cs">
       <DependentUpon>DigitalPropertiesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\DayProperties\DayPropertiesControl.cs">
+    <Compile Include="PresentationClasses\DayProperties\DayPropertiesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\DayProperties\DayPropertiesControl.Designer.cs">
+    <Compile Include="PresentationClasses\DayProperties\DayPropertiesControl.Designer.cs">
       <DependentUpon>DayPropertiesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\CalendarVisualizer\MonthControl.cs">
+    <Compile Include="PresentationClasses\Views\MonthView\MonthControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\CalendarVisualizer\MonthControl.Designer.cs">
+    <Compile Include="PresentationClasses\Views\MonthView\MonthControl.Designer.cs">
       <DependentUpon>MonthControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\CalendarVisualizer\WeekControl.cs">
+    <Compile Include="PresentationClasses\Views\MonthView\WeekControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\CalendarVisualizer\WeekControl.Designer.cs">
+    <Compile Include="PresentationClasses\Views\MonthView\WeekControl.Designer.cs">
       <DependentUpon>WeekControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\CalendarVisualizer\WeekEmptySpaceControl.cs">
+    <Compile Include="PresentationClasses\Views\MonthView\WeekEmptySpaceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\CalendarVisualizer\WeekEmptySpaceControl.Designer.cs">
+    <Compile Include="PresentationClasses\Views\MonthView\WeekEmptySpaceControl.Designer.cs">
       <DependentUpon>WeekEmptySpaceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\DayProperties\NewspaperPropertiesControl.cs">
+    <Compile Include="PresentationClasses\DayProperties\NewspaperPropertiesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\DayProperties\NewspaperPropertiesControl.Designer.cs">
+    <Compile Include="PresentationClasses\DayProperties\NewspaperPropertiesControl.Designer.cs">
       <DependentUpon>NewspaperPropertiesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\Grid\GridControl.cs">
+    <Compile Include="PresentationClasses\Views\GridView\GridViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\Grid\GridControl.Designer.cs">
-      <DependentUpon>GridControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\Views\GridView\GridViewControl.Designer.cs">
+      <DependentUpon>GridViewControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\HomeControl.cs">
+    <Compile Include="PresentationClasses\HomeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\HomeControl.Designer.cs">
+    <Compile Include="PresentationClasses\HomeControl.Designer.cs">
       <DependentUpon>HomeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\CalendarControl.cs">
+    <Compile Include="PresentationClasses\Calendars\AdvancedCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\CalendarControl.Designer.cs">
-      <DependentUpon>CalendarControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\Calendars\AdvancedCalendarControl.Designer.cs">
+      <DependentUpon>AdvancedCalendarControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\ModelOfSuccessControl.cs">
+    <Compile Include="PresentationClasses\ModelOfSuccessControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\ModelOfSuccessControl.designer.cs">
+    <Compile Include="PresentationClasses\ModelOfSuccessControl.designer.cs">
       <DependentUpon>ModelOfSuccessControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\ModelsOfSuccessContainerControl.cs">
+    <Compile Include="PresentationClasses\ModelsOfSuccessContainerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\ModelsOfSuccessContainerControl.designer.cs">
+    <Compile Include="PresentationClasses\ModelsOfSuccessContainerControl.designer.cs">
       <DependentUpon>ModelsOfSuccessContainerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\SlideInfo\SlideInfoControl.cs">
+    <Compile Include="PresentationClasses\SlideInfo\SlideInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\SlideInfo\SlideInfoControl.Designer.cs">
+    <Compile Include="PresentationClasses\SlideInfo\SlideInfoControl.Designer.cs">
       <DependentUpon>SlideInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="InteropClasses\ExcelHelper.cs" />
@@ -190,6 +214,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\SlideInfo\SlideInfoWrapper.cs" />
     <Compile Include="ToolForms\FormCloneDay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,46 +265,55 @@
     <Compile Include="ToolForms\FormSlideOutput.Designer.cs">
       <DependentUpon>FormSlideOutput.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CustomControls\CalendarVisualizer\DayControl.resx">
+    <EmbeddedResource Include="PresentationClasses\Calendars\GraphicCalendarControl.resx">
+      <DependentUpon>GraphicCalendarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\DayProperties\LogoControl.resx">
+      <DependentUpon>LogoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Views\MonthView\MonthViewControl.resx">
+      <DependentUpon>MonthViewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Views\MonthView\DayControl.resx">
       <DependentUpon>DayControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\DayProperties\CommentControl.resx">
+    <EmbeddedResource Include="PresentationClasses\DayProperties\CommentControl.resx">
       <DependentUpon>CommentControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\DayProperties\DigitalPropertiesControl.resx">
+    <EmbeddedResource Include="PresentationClasses\DayProperties\DigitalPropertiesControl.resx">
       <DependentUpon>DigitalPropertiesControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\DayProperties\DayPropertiesControl.resx">
+    <EmbeddedResource Include="PresentationClasses\DayProperties\DayPropertiesControl.resx">
       <DependentUpon>DayPropertiesControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\CalendarVisualizer\MonthControl.resx">
+    <EmbeddedResource Include="PresentationClasses\Views\MonthView\MonthControl.resx">
       <DependentUpon>MonthControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\CalendarVisualizer\WeekControl.resx">
+    <EmbeddedResource Include="PresentationClasses\Views\MonthView\WeekControl.resx">
       <DependentUpon>WeekControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\CalendarVisualizer\WeekEmptySpaceControl.resx">
+    <EmbeddedResource Include="PresentationClasses\Views\MonthView\WeekEmptySpaceControl.resx">
       <DependentUpon>WeekEmptySpaceControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\DayProperties\NewspaperPropertiesControl.resx">
+    <EmbeddedResource Include="PresentationClasses\DayProperties\NewspaperPropertiesControl.resx">
       <DependentUpon>NewspaperPropertiesControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\Grid\GridControl.resx">
-      <DependentUpon>GridControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\Views\GridView\GridViewControl.resx">
+      <DependentUpon>GridViewControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\HomeControl.resx">
+    <EmbeddedResource Include="PresentationClasses\HomeControl.resx">
       <DependentUpon>HomeControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\CalendarControl.resx">
-      <DependentUpon>CalendarControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\Calendars\AdvancedCalendarControl.resx">
+      <DependentUpon>AdvancedCalendarControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\ModelOfSuccessControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ModelOfSuccessControl.resx">
       <DependentUpon>ModelOfSuccessControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\ModelsOfSuccessContainerControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ModelsOfSuccessContainerControl.resx">
       <DependentUpon>ModelsOfSuccessContainerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\SlideInfo\SlideInfoControl.resx">
+    <EmbeddedResource Include="PresentationClasses\SlideInfo\SlideInfoControl.resx">
       <DependentUpon>SlideInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">

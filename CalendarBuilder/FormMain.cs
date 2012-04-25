@@ -13,6 +13,7 @@ namespace CalendarBuilder
         private FormMain()
         {
             InitializeComponent();
+
             if ((base.CreateGraphics()).DpiX > 96)
             {
                 Font font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 1, styleController.Appearance.Font.Style);
@@ -38,14 +39,14 @@ namespace CalendarBuilder
                 ribbonBarSuccessModels.RecalcLayout();
                 ribbonBarSuccessModelsExit.RecalcLayout();
                 ribbonBarSuccessModelsHelp.RecalcLayout();
-                ribbonBarCalendarEmail.RecalcLayout();
-                ribbonBarCalendarExit.RecalcLayout();
-                ribbonBarCalendarHelp.RecalcLayout();
-                ribbonBarCalendarPowerPoint.RecalcLayout();
-                ribbonBarCalendarSave.RecalcLayout();
+                ribbonBarAdvancedCalendarEmail.RecalcLayout();
+                ribbonBarAdvancedCalendarExit.RecalcLayout();
+                ribbonBarAdvancedCalendarHelp.RecalcLayout();
+                ribbonBarAdvancedCalendarPowerPoint.RecalcLayout();
+                ribbonBarAdvancedCalendarSave.RecalcLayout();
                 ribbonPanelHome.PerformLayout();
                 ribbonPanelSuccessModels.PerformLayout();
-                ribbonPanelCalendar.PerformLayout();
+                ribbonPanelAdvancedCalendar.PerformLayout();
             }
         }
 
@@ -68,9 +69,9 @@ namespace CalendarBuilder
         private bool AllowToLeaveCurrentControl()
         {
             bool result = false;
-            if ((_currentControl == CustomControls.HomeControl.Instance))
+            if ((_currentControl == PresentationClasses.HomeControl.Instance))
             {
-                if (CustomControls.HomeControl.Instance.AllowToLeaveControl)
+                if (PresentationClasses.HomeControl.Instance.AllowToLeaveControl)
                     result = true;
                 else
                 {
@@ -79,16 +80,11 @@ namespace CalendarBuilder
                     ribbonControl.SelectedRibbonTabChanged += new EventHandler(ribbonControl_SelectedRibbonTabChanged);
                 }
             }
-            else if ((_currentControl == CustomControls.CalendarControl.Instance))
+            else if (_currentControl == PresentationClasses.CalendarVisualizer.Instance.SelectedCalendarControl)
             {
-                if (CustomControls.CalendarControl.Instance.AllowToLeaveControl)
-                    result = true;
-                else
-                {
-                    ribbonControl.SelectedRibbonTabChanged -= new EventHandler(ribbonControl_SelectedRibbonTabChanged);
-                    ribbonControl.SelectedRibbonTabItem = ribbonTabItemCalendar;
-                    ribbonControl.SelectedRibbonTabChanged += new EventHandler(ribbonControl_SelectedRibbonTabChanged);
-                }
+                if (PresentationClasses.CalendarVisualizer.Instance.SelectedCalendarControl != null)
+                    PresentationClasses.CalendarVisualizer.Instance.SelectedCalendarControl.LeaveCalendar();
+                result = true;
             }
             else
                 result = true;
@@ -97,33 +93,33 @@ namespace CalendarBuilder
 
         public void UpdateScheduleTabs(bool enable)
         {
-            ribbonTabItemCalendar.Enabled = enable;
-            ribbonTabItem1.Enabled = false;
-            ribbonTabItem2.Enabled = false;
+            ribbonTabItemAdvancedCalendar.Enabled = enable;
+            ribbonTabItemGraphicCalendar.Enabled = enable;
+            ribbonTabItemSimpleCalendar.Enabled = false;
         }
 
         private void FormMain_Shown(object sender, EventArgs e)
         {
             #region Home Events
-            buttonItemHomeHelp.Click += new EventHandler(CustomControls.HomeControl.Instance.buttonItemHomeHelp_Click);
-            buttonItemHomeSave.Click += new EventHandler(CustomControls.HomeControl.Instance.buttonItemHomeSave_Click);
-            buttonItemHomeSaveAs.Click += new EventHandler(CustomControls.HomeControl.Instance.buttonItemHomeSaveAs_Click);
-            comboBoxEditBusinessName.EditValueChanged += new EventHandler(CustomControls.HomeControl.Instance.SchedulePropertyEditValueChanged);
-            comboBoxEditDecisionMaker.EditValueChanged += new EventHandler(CustomControls.HomeControl.Instance.SchedulePropertyEditValueChanged);
-            comboBoxEditClientType.EditValueChanged += new EventHandler(CustomControls.HomeControl.Instance.SchedulePropertyEditValueChanged);
-            buttonItemHomeSalesStrategyEmail.Click += new EventHandler(CustomControls.HomeControl.Instance.buttonItemHomeSalesStrategyEmail_Click);
-            buttonItemHomeSalesStrategyFaceCall.Click += new EventHandler(CustomControls.HomeControl.Instance.buttonItemHomeSalesStrategyFaceCall_Click);
-            buttonItemHomeSalesStrategyFax.Click += new EventHandler(CustomControls.HomeControl.Instance.buttonItemHomeSalesStrategyFax_Click);
-            buttonItemHomeSalesStrategyEmail.CheckedChanged += new EventHandler(CustomControls.HomeControl.Instance.SchedulePropertyEditValueChanged);
-            buttonItemHomeSalesStrategyFax.CheckedChanged += new EventHandler(CustomControls.HomeControl.Instance.SchedulePropertyEditValueChanged);
-            buttonItemHomeSalesStrategyFaceCall.CheckedChanged += new EventHandler(CustomControls.HomeControl.Instance.SchedulePropertyEditValueChanged);
-            dateEditPresentationDate.EditValueChanged += new EventHandler(CustomControls.HomeControl.Instance.SchedulePropertyEditValueChanged);
-            dateEditFlightDatesStart.EditValueChanged += new EventHandler(CustomControls.HomeControl.Instance.FlightDateStartEditValueChanged);
-            dateEditFlightDatesEnd.EditValueChanged += new EventHandler(CustomControls.HomeControl.Instance.FlightDateEndEditValueChanged);
-            dateEditFlightDatesStart.EditValueChanged += new EventHandler(CustomControls.HomeControl.Instance.CalcWeeksOnFlightDatesChange);
-            dateEditFlightDatesEnd.EditValueChanged += new EventHandler(CustomControls.HomeControl.Instance.CalcWeeksOnFlightDatesChange);
-            dateEditFlightDatesStart.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(CustomControls.HomeControl.Instance.dateEditFlightDatesStart_CloseUp);
-            dateEditFlightDatesEnd.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(CustomControls.HomeControl.Instance.dateEditFlightDatesEnd_CloseUp);
+            buttonItemHomeHelp.Click += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeHelp_Click);
+            buttonItemHomeSave.Click += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeSave_Click);
+            buttonItemHomeSaveAs.Click += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeSaveAs_Click);
+            comboBoxEditBusinessName.EditValueChanged += new EventHandler(PresentationClasses.HomeControl.Instance.SchedulePropertyEditValueChanged);
+            comboBoxEditDecisionMaker.EditValueChanged += new EventHandler(PresentationClasses.HomeControl.Instance.SchedulePropertyEditValueChanged);
+            comboBoxEditClientType.EditValueChanged += new EventHandler(PresentationClasses.HomeControl.Instance.SchedulePropertyEditValueChanged);
+            buttonItemHomeSalesStrategyEmail.Click += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeSalesStrategyEmail_Click);
+            buttonItemHomeSalesStrategyFaceCall.Click += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeSalesStrategyFaceCall_Click);
+            buttonItemHomeSalesStrategyFax.Click += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeSalesStrategyFax_Click);
+            buttonItemHomeSalesStrategyEmail.CheckedChanged += new EventHandler(PresentationClasses.HomeControl.Instance.SchedulePropertyEditValueChanged);
+            buttonItemHomeSalesStrategyFax.CheckedChanged += new EventHandler(PresentationClasses.HomeControl.Instance.SchedulePropertyEditValueChanged);
+            buttonItemHomeSalesStrategyFaceCall.CheckedChanged += new EventHandler(PresentationClasses.HomeControl.Instance.SchedulePropertyEditValueChanged);
+            dateEditPresentationDate.EditValueChanged += new EventHandler(PresentationClasses.HomeControl.Instance.SchedulePropertyEditValueChanged);
+            dateEditFlightDatesStart.EditValueChanged += new EventHandler(PresentationClasses.HomeControl.Instance.FlightDateStartEditValueChanged);
+            dateEditFlightDatesEnd.EditValueChanged += new EventHandler(PresentationClasses.HomeControl.Instance.FlightDateEndEditValueChanged);
+            dateEditFlightDatesStart.EditValueChanged += new EventHandler(PresentationClasses.HomeControl.Instance.CalcWeeksOnFlightDatesChange);
+            dateEditFlightDatesEnd.EditValueChanged += new EventHandler(PresentationClasses.HomeControl.Instance.CalcWeeksOnFlightDatesChange);
+            dateEditFlightDatesStart.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(PresentationClasses.HomeControl.Instance.dateEditFlightDatesStart_CloseUp);
+            dateEditFlightDatesEnd.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(PresentationClasses.HomeControl.Instance.dateEditFlightDatesEnd_CloseUp);
             comboBoxEditBusinessName.Enter += new EventHandler(Editor_Enter);
             comboBoxEditBusinessName.MouseDown += new MouseEventHandler(Editor_MouseDown);
             comboBoxEditBusinessName.MouseUp += new MouseEventHandler(Editor_MouseUp);
@@ -135,25 +131,42 @@ namespace CalendarBuilder
             comboBoxEditClientType.MouseUp += new MouseEventHandler(Editor_MouseUp);
             #endregion
 
-            #region Calendar Events
-            listBoxControlCalendar.SelectedIndexChanged += new EventHandler(CustomControls.CalendarControl.Instance.imageListBoxEditCalendar_SelectedIndexChanged);
-            buttonItemCalendarSlideInfo.CheckedChanged += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarSlideInfo_CheckedChanged);
-            buttonItemCalendarMonth.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarView_Click);
-            buttonItemCalendarGrid.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarView_Click);
-            buttonItemCalendarMonth.CheckedChanged += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarView_CheckedChanged);
-            buttonItemCalendarGrid.CheckedChanged += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarView_CheckedChanged);
-            buttonItemCalendarCopy.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarCopy_Click);
-            buttonItemCalendarPaste.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarPaste_Click);
-            buttonItemCalendarClone.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemCalendarClone_Click);
-            buttonItemCalendarSave.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemScheduleSave_Click);
-            buttonItemCalendarSaveAs.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemScheduleSaveAs_Click);
-            buttonItemCalendarPowerPoint.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemWeeklySchedulePowerPoint_Click);
-            buttonItemCalendarEmail.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemWeeklyScheduleEmail_Click);
-            buttonItemCalendarHelp.Click += new EventHandler(CustomControls.CalendarControl.Instance.buttonItemScheduleHelp_Click);
+            #region Advanced Calendar Events
+            listBoxControlAdvancedCalendar.SelectedIndexChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.imageListBoxEditCalendar_SelectedIndexChanged);
+            buttonItemAdvancedCalendarSlideInfo.CheckedChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarSlideInfo_CheckedChanged);
+            buttonItemAdvancedCalendarMonth.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_Click);
+            buttonItemAdvancedCalendarGrid.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_Click);
+            buttonItemAdvancedCalendarMonth.CheckedChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_CheckedChanged);
+            buttonItemAdvancedCalendarGrid.CheckedChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_CheckedChanged);
+            buttonItemAdvancedCalendarCopy.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarCopy_Click);
+            buttonItemAdvancedCalendarPaste.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarPaste_Click);
+            buttonItemAdvancedCalendarClone.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarClone_Click);
+            buttonItemAdvancedCalendarSave.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSave_Click);
+            buttonItemAdvancedCalendarSaveAs.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSaveAs_Click);
+            buttonItemAdvancedCalendarPowerPoint.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklySchedulePowerPoint_Click);
+            buttonItemAdvancedCalendarEmail.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklyScheduleEmail_Click);
+            buttonItemAdvancedCalendarHelp.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleHelp_Click);
+            #endregion
+
+            #region Graphic Calendar Events
+            listBoxControlGraphicCalendar.SelectedIndexChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.imageListBoxEditCalendar_SelectedIndexChanged);
+            buttonItemGraphicCalendarSlideInfo.CheckedChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarSlideInfo_CheckedChanged);
+            buttonItemGraphicCalendarMonth.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_Click);
+            buttonItemGraphicCalendarGrid.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_Click);
+            buttonItemGraphicCalendarMonth.CheckedChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_CheckedChanged);
+            buttonItemGraphicCalendarGrid.CheckedChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_CheckedChanged);
+            buttonItemGraphicCalendarCopy.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarCopy_Click);
+            buttonItemGraphicCalendarPaste.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarPaste_Click);
+            buttonItemGraphicCalendarClone.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarClone_Click);
+            buttonItemGraphicCalendarSave.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSave_Click);
+            buttonItemGraphicCalendarSaveAs.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSaveAs_Click);
+            buttonItemGraphicCalendarPowerPoint.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklySchedulePowerPoint_Click);
+            buttonItemGraphicCalendarEmail.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklyScheduleEmail_Click);
+            buttonItemGraphicCalendarHelp.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleHelp_Click);
             #endregion
 
             #region Success Models Events
-            buttonItemSuccessModelsHelp.Click += new EventHandler(CustomControls.ModelsOfSuccessContainerControl.Instance.buttonItemSuccessModelsHelp_Click);
+            buttonItemSuccessModelsHelp.Click += new EventHandler(PresentationClasses.ModelsOfSuccessContainerControl.Instance.buttonItemSuccessModelsHelp_Click);
             #endregion
 
             if (!string.IsNullOrEmpty(ConfigurationClasses.SettingsManager.Instance.SelectedWizard))
@@ -167,16 +180,16 @@ namespace CalendarBuilder
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        CustomControls.HomeControl.Instance.LoadCalendar(false);
+                        PresentationClasses.HomeControl.Instance.LoadCalendar(false);
                         System.Windows.Forms.Application.DoEvents();
-                        CustomControls.CalendarControl.Instance.LoadCalendar(false);
+                        PresentationClasses.CalendarVisualizer.Instance.LoadData();
                         System.Windows.Forms.Application.DoEvents();
                     });
                 }));
 
                 form.Show();
                 System.Windows.Forms.Application.DoEvents();
-                
+
                 thread.Start();
 
                 while (thread.IsAlive)
@@ -196,20 +209,29 @@ namespace CalendarBuilder
             {
                 if (AllowToLeaveCurrentControl())
                 {
-                    _currentControl = CustomControls.HomeControl.Instance;
-                    if (!pnMain.Controls.Contains(_currentControl))
-                        pnMain.Controls.Add(CustomControls.HomeControl.Instance);
+                    _currentControl = PresentationClasses.HomeControl.Instance;
+                    if (!pnMain.Controls.Contains(_currentControl as Control))
+                        pnMain.Controls.Add(_currentControl);
                 }
                 _currentControl.BringToFront();
             }
-            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar)
+            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemAdvancedCalendar)
             {
                 if (AllowToLeaveCurrentControl())
                 {
-                    _currentControl = CustomControls.CalendarControl.Instance;
+                    _currentControl = PresentationClasses.CalendarVisualizer.Instance.SelectCalendar(BusinessClasses.CalendarStyle.Advanced) as Control;
                     if (!pnMain.Controls.Contains(_currentControl))
-                        pnMain.Controls.Add(CustomControls.CalendarControl.Instance);
-                    CustomControls.CalendarControl.Instance.LoadSlideInfoState();
+                        pnMain.Controls.Add(_currentControl);
+                }
+                _currentControl.BringToFront();
+            }
+            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGraphicCalendar)
+            {
+                if (AllowToLeaveCurrentControl())
+                {
+                    _currentControl = PresentationClasses.CalendarVisualizer.Instance.SelectCalendar(BusinessClasses.CalendarStyle.Graphic) as Control;
+                    if (!pnMain.Controls.Contains(_currentControl))
+                        pnMain.Controls.Add(_currentControl);
                 }
                 _currentControl.BringToFront();
             }
@@ -217,9 +239,9 @@ namespace CalendarBuilder
             {
                 if (AllowToLeaveCurrentControl())
                 {
-                    _currentControl = CustomControls.ModelsOfSuccessContainerControl.Instance;
+                    _currentControl = PresentationClasses.ModelsOfSuccessContainerControl.Instance;
                     if (!pnMain.Controls.Contains(_currentControl))
-                        pnMain.Controls.Add(CustomControls.ModelsOfSuccessContainerControl.Instance);
+                        pnMain.Controls.Add(PresentationClasses.ModelsOfSuccessContainerControl.Instance);
                 }
                 _currentControl.BringToFront();
             }
@@ -229,10 +251,10 @@ namespace CalendarBuilder
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             bool result = true;
-            if (_currentControl == CustomControls.HomeControl.Instance)
-                result = CustomControls.HomeControl.Instance.AllowToLeaveControl;
-            else if (_currentControl == CustomControls.CalendarControl.Instance)
-                result = CustomControls.CalendarControl.Instance.AllowToLeaveControl;
+            if (_currentControl == PresentationClasses.HomeControl.Instance)
+                result = PresentationClasses.HomeControl.Instance.AllowToLeaveControl;
+            else if (_currentControl == PresentationClasses.CalendarVisualizer.Instance.SelectedCalendarControl)
+                PresentationClasses.CalendarVisualizer.Instance.SelectedCalendarControl.LeaveCalendar();
         }
 
         private void buttonItemHomeExit_Click(object sender, EventArgs e)

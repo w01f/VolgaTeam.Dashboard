@@ -38,6 +38,7 @@ namespace CalendarBuilder.BusinessClasses
         public List<string> ClientTypes { get; private set; }
         public List<string> Statuses { get; private set; }
         public List<string> OutputHeaders { get; set; }
+        public List<ImageSource> Images { get; set; }
         #endregion
 
         #region Print Lists
@@ -66,6 +67,7 @@ namespace CalendarBuilder.BusinessClasses
             this.ClientTypes = new List<string>();
             this.Statuses = new List<string>();
             this.OutputHeaders = new List<string>();
+            this.Images = new List<ImageSource>();
             #endregion
 
             #region Print Lists
@@ -102,6 +104,7 @@ namespace CalendarBuilder.BusinessClasses
             LoadPrintStrategy();
             LoadOnlineStrategy();
             LoadMobileStrategy();
+            LoadImages();
         }
 
         private void LoadAdvertisers()
@@ -185,39 +188,6 @@ namespace CalendarBuilder.BusinessClasses
                                         case "Abbreviation":
                                             dailySource.Abbreviation = attribute.Value;
                                             sundaySource.Abbreviation = attribute.Value;
-                                            break;
-                                        case "BigLogo":
-                                            dailySource.BigLogo = null;
-                                            dailySource.BigLogoFileName = attribute.Value;
-                                            filePath = Path.Combine(ConfigurationClasses.SettingsManager.Instance.BigImageFolder.FullName, attribute.Value);
-                                            if (!File.Exists(filePath))
-                                                filePath = Path.Combine(ConfigurationClasses.SettingsManager.Instance.BigImageFolder.FullName, ConfigurationClasses.SettingsManager.DefaultBigLogoFileName);
-                                            if (File.Exists(filePath))
-                                                dailySource.BigLogo = new Bitmap(filePath);
-                                            sundaySource.BigLogo = dailySource.BigLogo;
-                                            sundaySource.BigLogoFileName = dailySource.BigLogoFileName;
-                                            break;
-                                        case "LittleLogo":
-                                            dailySource.SmallLogo = null;
-                                            dailySource.SmallLogoFileName = attribute.Value;
-                                            filePath = Path.Combine(ConfigurationClasses.SettingsManager.Instance.SmallImageFolder.FullName, attribute.Value);
-                                            if (!File.Exists(filePath))
-                                                filePath = Path.Combine(ConfigurationClasses.SettingsManager.Instance.SmallImageFolder.FullName, ConfigurationClasses.SettingsManager.DefaultSmallLogoFileName);
-                                            if (File.Exists(filePath))
-                                                dailySource.SmallLogo = new Bitmap(filePath);
-                                            sundaySource.SmallLogo = dailySource.SmallLogo;
-                                            sundaySource.SmallLogoFileName = dailySource.SmallLogoFileName;
-                                            break;
-                                        case "TinyLogo":
-                                            dailySource.TinyLogo = null;
-                                            dailySource.TinyLogoFileName = attribute.Value;
-                                            filePath = Path.Combine(ConfigurationClasses.SettingsManager.Instance.TinyImageFolder.FullName, attribute.Value);
-                                            if (!File.Exists(filePath))
-                                                filePath = Path.Combine(ConfigurationClasses.SettingsManager.Instance.TinyImageFolder.FullName, ConfigurationClasses.SettingsManager.DefaultTinyLogoFileName);
-                                            if (File.Exists(filePath))
-                                                dailySource.TinyLogo = new Bitmap(filePath);
-                                            sundaySource.TinyLogo = dailySource.TinyLogo;
-                                            sundaySource.TinyLogoFileName = dailySource.TinyLogoFileName;
                                             break;
                                         case "DailyCirculation":
                                             if (double.TryParse(attribute.Value, out tempDouble))
@@ -391,6 +361,29 @@ namespace CalendarBuilder.BusinessClasses
             }
         }
 
+        private void LoadImages()
+        {
+            this.Images.Clear();
+            foreach (FileInfo bigImageFile in ConfigurationClasses.SettingsManager.Instance.BigImageFolder.GetFiles("*.png"))
+            {
+                string imageFileName = Path.GetFileNameWithoutExtension(bigImageFile.FullName);
+                string imageFileExtension = Path.GetExtension(bigImageFile.FullName);
+
+                string smallImageFilePath = Path.Combine(ConfigurationClasses.SettingsManager.Instance.SmallImageFolder.FullName, string.Format("{0}2{1}", new string[] { imageFileName, imageFileExtension }));
+                string tinyImageFilePath = Path.Combine(ConfigurationClasses.SettingsManager.Instance.TinyImageFolder.FullName, string.Format("{0}3{1}", new string[] { imageFileName, imageFileExtension }));
+                string xtraTinyImageFilePath = Path.Combine(ConfigurationClasses.SettingsManager.Instance.XtraTinyImageFolder.FullName, string.Format("{0}4{1}", new string[] { imageFileName, imageFileExtension }));
+                if (File.Exists(smallImageFilePath) && File.Exists(tinyImageFilePath) && File.Exists(xtraTinyImageFilePath))
+                {
+                    ImageSource imageSource = new ImageSource();
+                    imageSource.BigImage = new Bitmap(bigImageFile.FullName);
+                    imageSource.SmallImage = new Bitmap(smallImageFilePath);
+                    imageSource.TinyImage = new Bitmap(tinyImageFilePath);
+                    imageSource.XtraTinyImage = new Bitmap(xtraTinyImageFilePath);
+                    this.Images.Add(imageSource);
+                }
+            }
+        }
+
         private void GetOnlineSourceProperties(XmlNode node, ref DigitalSource digitalSource)
         {
             int tempInt = 0;
@@ -524,7 +517,6 @@ namespace CalendarBuilder.BusinessClasses
             }
         }
 
-
         public void SaveAdvertisers()
         {
             StringBuilder xml = new StringBuilder();
@@ -565,23 +557,14 @@ namespace CalendarBuilder.BusinessClasses
     {
         public string Name { get; set; }
         public string Abbreviation { get; set; }
-        public Image BigLogo { get; set; }
-        public string BigLogoFileName { get; set; }
-        public Image SmallLogo { get; set; }
-        public string SmallLogoFileName { get; set; }
-        public Image TinyLogo { get; set; }
-        public string TinyLogoFileName { get; set; }
         public PrintCirculationType Circulation { get; set; }
         public double? Delivery { get; set; }
         public double? Readership { get; set; }
-        
+
         public PrintSource()
         {
             this.Name = string.Empty;
             this.Abbreviation = string.Empty;
-            this.BigLogo = null;
-            this.SmallLogo = null;
-            this.TinyLogo = null;
             this.Circulation = PrintCirculationType.Daily;
             this.Delivery = null;
             this.Readership = null;

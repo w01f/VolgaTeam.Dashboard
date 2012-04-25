@@ -22,6 +22,7 @@ namespace CalendarBuilder.InteropClasses
                     {
                         System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
                         {
+                            monthOutputData.PrepareDayLogoPaths();
                             int daysCount = monthOutputData.DayOutput.Length;
                             MessageFilter.Register();
 
@@ -100,127 +101,127 @@ namespace CalendarBuilder.InteropClasses
                                                 break;
                                             case "1-1":
                                                 if (daysCount > 0)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 1);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 1);
                                                 break;
                                             case "2-1":
                                                 if (daysCount > 1)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 2);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 2);
                                                 break;
                                             case "3-1":
                                                 if (daysCount > 2)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 3);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 3);
                                                 break;
                                             case "4-1":
                                                 if (daysCount > 3)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 4);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 4);
                                                 break;
                                             case "5-1":
                                                 if (daysCount > 4)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 5);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 5);
                                                 break;
                                             case "6-1":
                                                 if (daysCount > 5)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 6);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 6);
                                                 break;
                                             case "7-1":
                                                 if (daysCount > 6)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 7);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 7);
                                                 break;
                                             case "8-1":
                                                 if (daysCount > 7)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 8);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 8);
                                                 break;
                                             case "9-1":
                                                 if (daysCount > 8)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 9);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 9);
                                                 break;
                                             case "10-1":
                                                 if (daysCount > 9)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 10);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 10);
                                                 break;
                                             case "11-1":
                                                 if (daysCount > 10)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 11);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 11);
                                                 break;
                                             case "12-1":
                                                 if (daysCount > 11)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 12);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 12);
                                                 break;
                                             case "13-1":
                                                 if (daysCount > 12)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 13);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 13);
                                                 break;
                                             case "14-1":
                                                 if (daysCount > 13)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 14);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 14);
                                                 break;
                                             case "15-1":
                                                 if (daysCount > 14)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 15);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 15);
                                                 break;
                                             case "16-1":
                                                 if (daysCount > 15)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 16);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 16);
                                                 break;
                                             case "17-1":
                                                 if (daysCount > 16)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 17);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 17);
                                                 break;
                                             case "18-1":
                                                 if (daysCount > 17)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 18);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 18);
                                                 break;
                                             case "19-1":
                                                 if (daysCount > 18)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 19);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 19);
                                                 break;
                                             case "20-1":
                                                 if (daysCount > 19)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 20);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 20);
                                                 break;
                                             case "21-1":
                                                 if (daysCount > 20)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 21);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 21);
                                                 break;
                                             case "22-1":
                                                 if (daysCount > 21)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 22);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 22);
                                                 break;
                                             case "23-1":
                                                 if (daysCount > 22)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 23);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 23);
                                                 break;
                                             case "24-1":
                                                 if (daysCount > 23)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 24);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 24);
                                                 break;
                                             case "25-1":
                                                 if (daysCount > 24)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 25);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 25);
                                                 break;
                                             case "26-1":
                                                 if (daysCount > 25)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 26);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 26);
                                                 break;
                                             case "27-1":
                                                 if (daysCount > 26)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 27);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 27);
                                                 break;
                                             case "28-1":
                                                 if (daysCount > 27)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 28);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 28);
                                                 break;
                                             case "29-1":
                                                 if (daysCount > 28)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 29);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 29);
                                                 break;
                                             case "30-1":
                                                 if (daysCount > 29)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 30);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 30);
                                                 break;
                                             case "31-1":
                                                 if (daysCount > 30)
-                                                    SetDayRecordTagValue(monthOutputData, shape, 31);
+                                                    SetDayRecordTagValue(monthOutputData, slide, shape, 31);
                                                 break;
                                         }
                                     }
@@ -258,14 +259,24 @@ namespace CalendarBuilder.InteropClasses
             }
         }
 
-        private void SetDayRecordTagValue(BusinessClasses.CalendarOutputData monthOutputData, PowerPoint.Shape shape, int dayNumber)
+        private void SetDayRecordTagValue(BusinessClasses.CalendarOutputData monthOutputData, PowerPoint.Slide slide, PowerPoint.Shape shape, int dayNumber)
         {
             try
             {
+                PowerPoint.Shape imageShape = null;
+                if (!string.IsNullOrEmpty(monthOutputData.DayLogoPaths[dayNumber - 1]))
+                {
+                    imageShape = slide.Shapes.AddPicture(FileName: monthOutputData.DayLogoPaths[dayNumber - 1], LinkToFile: Microsoft.Office.Core.MsoTriState.msoFalse, SaveWithDocument: Microsoft.Office.Core.MsoTriState.msoCTrue, Left: shape.Left + 3, Top: shape.Top + 3);
+                }
                 if (!string.IsNullOrEmpty(monthOutputData.DayOutput[dayNumber - 1]))
                 {
                     shape.TextFrame.TextRange.Text = monthOutputData.DayOutput[dayNumber - 1];
                     shape.TextFrame.TextRange.Font.Size = monthOutputData.FontSize;
+                    if (imageShape != null)
+                    {
+                        shape.Top = imageShape.Top + imageShape.Height;
+                        shape.Height -= imageShape.Height;
+                    }
                 }
                 else
                     shape.Visible = Microsoft.Office.Core.MsoTriState.msoFalse;
@@ -294,7 +305,9 @@ namespace CalendarBuilder.InteropClasses
                 }
                 AppManager.ReleaseComObject(presentations);
                 foreach (BusinessClasses.CalendarOutputData month in monthOutputData)
+                {
                     AppendCalendar(month, presentation);
+                }
                 MessageFilter.Register();
                 System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
                 {

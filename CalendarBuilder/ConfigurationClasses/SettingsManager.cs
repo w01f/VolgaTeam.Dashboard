@@ -23,6 +23,7 @@ namespace CalendarBuilder.ConfigurationClasses
         public DirectoryInfo BigImageFolder { get; set; }
         public DirectoryInfo SmallImageFolder { get; set; }
         public DirectoryInfo TinyImageFolder { get; set; }
+        public DirectoryInfo XtraTinyImageFolder { get; set; }
         public string HelpLinksPath { get; set; }
         public string SuccessModelsPath { get; set; }
         public string TempPath { get; set; }
@@ -125,6 +126,12 @@ namespace CalendarBuilder.ConfigurationClasses
                 this.TinyImageFolder = new DirectoryInfo(folderPath);
             else
                 this.TinyImageFolder = new DirectoryInfo(Application.StartupPath);
+
+            folderPath = Path.Combine(_imageFolderPath, "Xtra Tiny Logos");
+            if (Directory.Exists(folderPath))
+                this.XtraTinyImageFolder = new DirectoryInfo(folderPath);
+            else
+                this.XtraTinyImageFolder = new DirectoryInfo(Application.StartupPath);
 
             this.TempPath = string.Format(@"{0}\newlocaldirect.com\Sync\Temp", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             if (!Directory.Exists(this.TempPath))

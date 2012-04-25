@@ -95,7 +95,7 @@
             // 
             this.gridColumnImage.Caption = "Image";
             this.gridColumnImage.ColumnEdit = this.repositoryItemPictureEdit;
-            this.gridColumnImage.FieldName = "SmallLogo";
+            this.gridColumnImage.FieldName = "BigImage";
             this.gridColumnImage.Name = "gridColumnImage";
             this.gridColumnImage.Visible = true;
             this.gridColumnImage.VisibleIndex = 0;
@@ -123,12 +123,12 @@
             this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonXCancel.ForeColor = System.Drawing.Color.Black;
             this.buttonXCancel.Location = new System.Drawing.Point(305, 6);
             this.buttonXCancel.Name = "buttonXCancel";
             this.buttonXCancel.Size = new System.Drawing.Size(75, 31);
             this.buttonXCancel.TabIndex = 1;
             this.buttonXCancel.Text = "Cancel";
+            this.buttonXCancel.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXOK
             // 
@@ -136,12 +136,12 @@
             this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonXOK.ForeColor = System.Drawing.Color.Black;
             this.buttonXOK.Location = new System.Drawing.Point(222, 6);
             this.buttonXOK.Name = "buttonXOK";
             this.buttonXOK.Size = new System.Drawing.Size(75, 31);
             this.buttonXOK.TabIndex = 0;
             this.buttonXOK.Text = "OK";
+            this.buttonXOK.TextColor = System.Drawing.Color.Black;
             // 
             // FormImageGallery
             // 

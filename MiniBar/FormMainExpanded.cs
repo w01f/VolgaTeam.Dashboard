@@ -685,7 +685,7 @@ namespace MiniBar
         {
             foreach (BusinessClasses.NBWApplication nbwApplication in BusinessClasses.NBWApplicationsManager.Instance.NBWApplications)
             {
-                if (nbwApplication.UseSlideTemplates && BusinessClasses.MasterWizardManager.Instance.SelectedWizard!= null)
+                if (nbwApplication.UseSlideTemplates && BusinessClasses.MasterWizardManager.Instance.SelectedWizard != null)
                 {
                     string slideTemplatesFolderPath = Path.Combine(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.Folder.FullName, ConfigurationClasses.SettingsManager.Instance.SlideFolder, nbwApplication.SlideTemplatesPath);
                     nbwApplication.AppButton.Enabled = Directory.Exists(slideTemplatesFolderPath);

@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+            this.styleController = new DevExpress.XtraEditors.StyleController();
             this.labelControlCurrentState = new DevExpress.XtraEditors.LabelControl();
             this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
             this.buttonXSave = new DevComponents.DotNetBar.ButtonX();
@@ -71,12 +70,12 @@
             this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonXCancel.ForeColor = System.Drawing.Color.Black;
             this.buttonXCancel.Location = new System.Drawing.Point(496, 176);
             this.buttonXCancel.Name = "buttonXCancel";
             this.buttonXCancel.Size = new System.Drawing.Size(122, 32);
             this.buttonXCancel.TabIndex = 14;
             this.buttonXCancel.Text = "CANCEL";
+            this.buttonXCancel.TextColor = System.Drawing.Color.Black;
             // 
             // buttonXSave
             // 
@@ -84,12 +83,12 @@
             this.buttonXSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXSave.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.buttonXSave.ForeColor = System.Drawing.Color.Black;
             this.buttonXSave.Location = new System.Drawing.Point(344, 176);
             this.buttonXSave.Name = "buttonXSave";
             this.buttonXSave.Size = new System.Drawing.Size(122, 32);
             this.buttonXSave.TabIndex = 13;
             this.buttonXSave.Text = "YES!";
+            this.buttonXSave.TextColor = System.Drawing.Color.Black;
             // 
             // labelControlFutureState
             // 
@@ -111,7 +110,7 @@
             this.labelControlDescripption.StyleController = this.styleController;
             this.labelControlDescripption.TabIndex = 16;
             this.labelControlDescripption.Text = "Changing your Slide Format size COULD distort items on the slide.\r\n\r\nDO YOU STILL" +
-                " WANT TO DO THIS?";
+    " WANT TO DO THIS?";
             // 
             // pbLogo
             // 

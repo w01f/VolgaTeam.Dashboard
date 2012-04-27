@@ -51,48 +51,48 @@
             // 
             this.buttonXAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXAdd.ForeColor = System.Drawing.Color.Black;
             this.buttonXAdd.Location = new System.Drawing.Point(30, 71);
             this.buttonXAdd.Name = "buttonXAdd";
             this.buttonXAdd.Size = new System.Drawing.Size(271, 41);
             this.buttonXAdd.TabIndex = 2;
             this.buttonXAdd.Text = "Add a Slide Header to the Active Slide";
+            this.buttonXAdd.TextColor = System.Drawing.Color.Black;
             this.buttonXAdd.Click += new System.EventHandler(this.buttonXAdd_Click);
             // 
             // buttonXReplace
             // 
             this.buttonXReplace.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXReplace.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXReplace.ForeColor = System.Drawing.Color.Black;
             this.buttonXReplace.Location = new System.Drawing.Point(30, 138);
             this.buttonXReplace.Name = "buttonXReplace";
             this.buttonXReplace.Size = new System.Drawing.Size(271, 41);
             this.buttonXReplace.TabIndex = 3;
             this.buttonXReplace.Text = "Replace all Slide Headers on All Slides with NEW Headers";
+            this.buttonXReplace.TextColor = System.Drawing.Color.Black;
             this.buttonXReplace.Click += new System.EventHandler(this.buttonXReplace_Click);
             // 
             // buttonXDelete
             // 
             this.buttonXDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXDelete.ForeColor = System.Drawing.Color.Black;
             this.buttonXDelete.Location = new System.Drawing.Point(30, 204);
             this.buttonXDelete.Name = "buttonXDelete";
             this.buttonXDelete.Size = new System.Drawing.Size(271, 41);
             this.buttonXDelete.TabIndex = 4;
             this.buttonXDelete.Text = "Delete All Slide Headers in this Presentation";
+            this.buttonXDelete.TextColor = System.Drawing.Color.Black;
             this.buttonXDelete.Click += new System.EventHandler(this.buttonXDelete_Click);
             // 
             // buttonXClose
             // 
             this.buttonXClose.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonXClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXClose.ForeColor = System.Drawing.Color.Black;
             this.buttonXClose.Location = new System.Drawing.Point(30, 269);
             this.buttonXClose.Name = "buttonXClose";
             this.buttonXClose.Size = new System.Drawing.Size(271, 41);
             this.buttonXClose.TabIndex = 5;
             this.buttonXClose.Text = "CANCEL/CLOSE";
+            this.buttonXClose.TextColor = System.Drawing.Color.Black;
             this.buttonXClose.Click += new System.EventHandler(this.buttonXClose_Click);
             // 
             // pbLogo

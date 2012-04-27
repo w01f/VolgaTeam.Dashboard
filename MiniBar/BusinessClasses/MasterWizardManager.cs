@@ -128,11 +128,16 @@ namespace MiniBar.BusinessClasses
             this.Has34 = Directory.Exists(Path.Combine(this.Folder.FullName, "Slides34"));
             this.Has45 = Directory.Exists(Path.Combine(this.Folder.FullName, "Slides45"));
             this.Has169 = Directory.Exists(Path.Combine(this.Folder.FullName, "Slides169"));
-            this.HasSlideTemplate43 = this.Has43 ? (Directory.GetFiles(Path.Combine(this.Folder.FullName, "Slides43"), @"*.pot*").Length == 1) : false;
-            this.HasSlideTemplate54 = this.Has54 ? (Directory.GetFiles(Path.Combine(this.Folder.FullName, "Slides54"), @"*.pot*").Length == 1) : false;
-            this.HasSlideTemplate34 = this.Has34 ? (Directory.GetFiles(Path.Combine(this.Folder.FullName, "Slides34"), @"*.pot*").Length == 1) : false;
-            this.HasSlideTemplate45 = this.Has45 ? (Directory.GetFiles(Path.Combine(this.Folder.FullName, "Slides45"), @"*.pot*").Length == 1) : false;
-            this.HasSlideTemplate169 = this.Has169 ? (Directory.GetFiles(Path.Combine(this.Folder.FullName, "Slides169"), @"*.pot*").Length == 1) : false;
+            //this.HasSlideTemplate43 = this.Has43 ? (Directory.GetFiles(Path.Combine(this.Folder.FullName, "Slides43"), @"*.pot*").Length == 1) : false;
+            //this.HasSlideTemplate54 = this.Has54 ? (Directory.GetFiles(Path.Combine(this.Folder.FullName, "Slides54"), @"*.pot*").Length == 1) : false;
+            //this.HasSlideTemplate34 = this.Has34 ? (Directory.GetFiles(Path.Combine(this.Folder.FullName, "Slides34"), @"*.pot*").Length == 1) : false;
+            //this.HasSlideTemplate45 = this.Has45 ? (Directory.GetFiles(Path.Combine(this.Folder.FullName, "Slides45"), @"*.pot*").Length == 1) : false;
+            //this.HasSlideTemplate169 = this.Has169 ? (Directory.GetFiles(Path.Combine(this.Folder.FullName, "Slides169"), @"*.pot*").Length == 1) : false;
+            this.HasSlideTemplate43 = this.Has43;
+            this.HasSlideTemplate54 = this.Has54;
+            this.HasSlideTemplate34 = this.Has34;
+            this.HasSlideTemplate45 = this.Has45;
+            this.HasSlideTemplate169 = this.Has169;
             FileInfo file = new FileInfo(Path.Combine(this.Folder.FullName, this.Folder.Name + ".png"));
             this.LogoFile = file.Exists ? file : null;
         }

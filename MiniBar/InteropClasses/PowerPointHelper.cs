@@ -216,7 +216,7 @@ namespace MiniBar.InteropClasses
                         PowerPoint.Presentations presentations = _powerPointObject.Presentations;
                         _activePresentation = presentations.Add(Microsoft.Office.Core.MsoTriState.msoCTrue);
                         AppManager.Instance.ReleaseComObject(presentations);
-                        if (_is2003 && ConfigurationClasses.SettingsManager.Instance.SlideTemplateEnabled && File.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.CleanslateFile))
+                        if (ConfigurationClasses.SettingsManager.Instance.SlideTemplateEnabled && File.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.CleanslateFile))
                         {
                             AppendCleanslate();
                         }
@@ -224,12 +224,6 @@ namespace MiniBar.InteropClasses
                         {
                             PowerPoint.Slides slides = _activePresentation.Slides;
                             slides.Add(1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutTitle);
-                            if (ConfigurationClasses.SettingsManager.Instance.SlideTemplateEnabled && !_is2003)
-                            {
-                                string[] templates = Directory.GetFiles(Path.Combine(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.Folder.FullName, ConfigurationClasses.SettingsManager.Instance.SlideFolder), "*.pot*");
-                                if (templates.Length == 1)
-                                    _activePresentation.ApplyTemplate(templates[0]);
-                            }
                             AppManager.Instance.ReleaseComObject(slides);
                         }
                     }

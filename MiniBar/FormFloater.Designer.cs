@@ -55,6 +55,7 @@
             this.buttonXMinibar.Size = new System.Drawing.Size(77, 55);
             this.buttonXMinibar.TabIndex = 2;
             this.buttonXMinibar.Text = "Minibar";
+            this.buttonXMinibar.TextColor = System.Drawing.Color.Black;
             this.buttonXMinibar.Click += new System.EventHandler(this.buttonXMinibar_Click);
             // 
             // FormFloater

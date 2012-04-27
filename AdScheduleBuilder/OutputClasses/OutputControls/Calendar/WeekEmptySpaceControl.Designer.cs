@@ -34,9 +34,10 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Name = "WeekEmptySpaceControl";
-            this.Size = new System.Drawing.Size(308, 150);
+            this.Padding = new System.Windows.Forms.Padding(1);
+            this.Size = new System.Drawing.Size(312, 154);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.WeekEmptySpaceControl_Paint);
             this.ResumeLayout(false);
 
         }

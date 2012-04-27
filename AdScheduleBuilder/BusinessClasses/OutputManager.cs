@@ -197,7 +197,7 @@ namespace AdScheduleBuilder.BusinessClasses
             }
             catch
             {
-                AppManager.ShowWarning("Couldn't open file legend file");
+                AppManager.ShowWarning("Couldn't open legend file");
                 return;
             }
 

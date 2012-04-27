@@ -34,8 +34,8 @@
             this.laAdvertiser = new System.Windows.Forms.Label();
             this.laScheduleName = new System.Windows.Forms.Label();
             this.pnMain = new System.Windows.Forms.Panel();
-            this.pnEmpty = new System.Windows.Forms.Panel();
             this.pnCalendarView = new System.Windows.Forms.Panel();
+            this.pnEmpty = new System.Windows.Forms.Panel();
             this.pnHeader.SuspendLayout();
             this.pnMain.SuspendLayout();
             this.SuspendLayout();
@@ -47,7 +47,6 @@
             // pnHeader
             // 
             this.pnHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.pnHeader.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnHeader.Controls.Add(this.laScheduleWindow);
             this.pnHeader.Controls.Add(this.laAdvertiser);
             this.pnHeader.Controls.Add(this.laScheduleName);
@@ -62,7 +61,7 @@
             this.laScheduleWindow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.laScheduleWindow.Location = new System.Drawing.Point(300, 0);
             this.laScheduleWindow.Name = "laScheduleWindow";
-            this.laScheduleWindow.Size = new System.Drawing.Size(133, 26);
+            this.laScheduleWindow.Size = new System.Drawing.Size(137, 30);
             this.laScheduleWindow.TabIndex = 1;
             this.laScheduleWindow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -71,16 +70,16 @@
             this.laAdvertiser.Dock = System.Windows.Forms.DockStyle.Left;
             this.laAdvertiser.Location = new System.Drawing.Point(0, 0);
             this.laAdvertiser.Name = "laAdvertiser";
-            this.laAdvertiser.Size = new System.Drawing.Size(300, 26);
+            this.laAdvertiser.Size = new System.Drawing.Size(300, 30);
             this.laAdvertiser.TabIndex = 2;
             this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // laScheduleName
             // 
             this.laScheduleName.Dock = System.Windows.Forms.DockStyle.Right;
-            this.laScheduleName.Location = new System.Drawing.Point(433, 0);
+            this.laScheduleName.Location = new System.Drawing.Point(437, 0);
             this.laScheduleName.Name = "laScheduleName";
-            this.laScheduleName.Size = new System.Drawing.Size(300, 26);
+            this.laScheduleName.Size = new System.Drawing.Size(300, 30);
             this.laScheduleName.TabIndex = 0;
             this.laScheduleName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -94,6 +93,15 @@
             this.pnMain.Size = new System.Drawing.Size(737, 400);
             this.pnMain.TabIndex = 7;
             // 
+            // pnCalendarView
+            // 
+            this.pnCalendarView.BackColor = System.Drawing.Color.AliceBlue;
+            this.pnCalendarView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnCalendarView.Location = new System.Drawing.Point(0, 0);
+            this.pnCalendarView.Name = "pnCalendarView";
+            this.pnCalendarView.Size = new System.Drawing.Size(737, 400);
+            this.pnCalendarView.TabIndex = 6;
+            // 
             // pnEmpty
             // 
             this.pnEmpty.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -102,16 +110,6 @@
             this.pnEmpty.Name = "pnEmpty";
             this.pnEmpty.Size = new System.Drawing.Size(737, 400);
             this.pnEmpty.TabIndex = 7;
-            // 
-            // pnCalendarView
-            // 
-            this.pnCalendarView.BackColor = System.Drawing.Color.AliceBlue;
-            this.pnCalendarView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnCalendarView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnCalendarView.Location = new System.Drawing.Point(0, 0);
-            this.pnCalendarView.Name = "pnCalendarView";
-            this.pnCalendarView.Size = new System.Drawing.Size(737, 400);
-            this.pnCalendarView.TabIndex = 6;
             // 
             // OutputCalendarControl
             // 

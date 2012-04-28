@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace CalendarBuilder.PresentationClasses.Calendars
 {
     [System.ComponentModel.ToolboxItem(false)]
-    public partial class GraphicCalendarControl : UserControl, ICalendarControl
+    public partial class SimpleCalendarControl : UserControl, ICalendarControl
     {
         private BusinessClasses.Schedule _localSchedule = null;
 
@@ -25,7 +25,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
         {
             get
             {
-                return _localSchedule.GraphicCalendar;
+                return _localSchedule.SimpleCalendar;
             }
         }
 
@@ -33,11 +33,11 @@ namespace CalendarBuilder.PresentationClasses.Calendars
         {
             get
             {
-                return ConfigurationClasses.SettingsManager.Instance.ViewSettings.GraphicCalendarSettings;
+                return ConfigurationClasses.SettingsManager.Instance.ViewSettings.SimpleCalendarSettings;
             }
         }
 
-        public GraphicCalendarControl()
+        public SimpleCalendarControl()
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
@@ -56,7 +56,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 
             #region Month View Initialization
             this.MonthView = new Views.MonthView.MonthViewControl(this);
-            this.MonthView.Decorate(BusinessClasses.CalendarStyle.Graphic);
+            this.MonthView.Decorate(BusinessClasses.CalendarStyle.Simple);
             this.MonthView.DataSaved += new EventHandler<EventArgs>((sender, e) =>
             {
                 this.GridView.RefreshData();
@@ -66,7 +66,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 
             #region Grid  View Initialization
             this.GridView = new Views.GridView.GridViewControl(this);
-            this.GridView.Decorate(BusinessClasses.CalendarStyle.Graphic);
+            this.GridView.Decorate(BusinessClasses.CalendarStyle.Simple);
             this.GridView.DataSaved += new EventHandler<EventArgs>((sender, e) =>
             {
                 this.MonthView.RefreshData();
@@ -79,7 +79,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
             #region Day Properties Initialization
             this.DayProperties = new DayProperties.DayPropertiesWrapper(this, dockPanelDayProperties);
             CalendarVisualizer.AssignCloseActiveEditorsonOutSideClick(this.DayProperties.ContainedControl);
-            this.DayProperties.Decorate(BusinessClasses.CalendarStyle.Graphic);
+            this.DayProperties.Decorate(BusinessClasses.CalendarStyle.Simple);
             dockPanelDayProperties.Controls.Add(this.DayProperties.ContainedControl);
             this.DayProperties.Shown += new EventHandler<EventArgs>((sender, e) =>
             {
@@ -100,7 +100,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
             #region Slide Info Initialization
             this.SlideInfo = new SlideInfo.SlideInfoWrapper(this, dockPanelSlideInfo);
             CalendarVisualizer.AssignCloseActiveEditorsonOutSideClick(this.SlideInfo.ContainedControl);
-            this.SlideInfo.Decorate(BusinessClasses.CalendarStyle.Graphic);
+            this.SlideInfo.Decorate(BusinessClasses.CalendarStyle.Simple);
             dockPanelSlideInfo.Controls.Add(this.SlideInfo.ContainedControl);
             this.SlideInfo.Shown += new EventHandler<EventArgs>((sender, e) =>
             {
@@ -360,7 +360,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
         #region Other Ribbon Operations
         public void OpenHelp()
         {
-            BusinessClasses.HelpManager.Instance.OpenHelpLink("cool");
+            BusinessClasses.HelpManager.Instance.OpenHelpLink("simple");
         }
         #endregion
 

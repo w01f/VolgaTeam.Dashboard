@@ -21,24 +21,25 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
             this.Dock = DockStyle.Top;
             this.Resize += new EventHandler(WeekControl_Resize);
 
-            this.Controls.Clear();
-            _dayControls.Clear();
-            _dayControls.AddRange(days);
-            this.Controls.AddRange(days);
-            _maxWeekDayIndex = _dayControls.Max(x => x.Day.WeekDayIndex);
-            if (_maxWeekDayIndex < 7)
+            if (days.Length > 0)
             {
-                _footer = new WeekEmptySpaceControl();
-                this.Controls.Add(_footer);
-            }
+                _dayControls.AddRange(days);
+                this.Controls.AddRange(days);
+                _maxWeekDayIndex = _dayControls.Max(x => x.Day.WeekDayIndex);
+                if (_maxWeekDayIndex < 7)
+                {
+                    _footer = new WeekEmptySpaceControl();
+                    this.Controls.Add(_footer);
+                }
 
-            _minWeekDayIndex = _dayControls.Min(x => x.Day.WeekDayIndex);
-            if (_maxWeekDayIndex > 1)
-            {
-                _header = new WeekEmptySpaceControl();
-                this.Controls.Add(_header);
+                _minWeekDayIndex = _dayControls.Min(x => x.Day.WeekDayIndex);
+                if (_maxWeekDayIndex > 1)
+                {
+                    _header = new WeekEmptySpaceControl();
+                    this.Controls.Add(_header);
+                }
+                FitDayControls();
             }
-            FitDayControls();
         }
 
         private void FitDayControls()

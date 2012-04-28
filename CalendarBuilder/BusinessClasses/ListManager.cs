@@ -374,7 +374,7 @@ namespace CalendarBuilder.BusinessClasses
                 string xtraTinyImageFilePath = Path.Combine(ConfigurationClasses.SettingsManager.Instance.XtraTinyImageFolder.FullName, string.Format("{0}4{1}", new string[] { imageFileName, imageFileExtension }));
                 if (File.Exists(smallImageFilePath) && File.Exists(tinyImageFilePath) && File.Exists(xtraTinyImageFilePath))
                 {
-                    ImageSource imageSource = new ImageSource();
+                    ImageSource imageSource = new ImageSource(null);
                     imageSource.BigImage = new Bitmap(bigImageFile.FullName);
                     imageSource.SmallImage = new Bitmap(smallImageFilePath);
                     imageSource.TinyImage = new Bitmap(tinyImageFilePath);

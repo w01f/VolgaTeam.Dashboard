@@ -81,70 +81,74 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
                             if (calendarDay != null)
                             {
                                 Views.MonthView.DayControl dayControl = new Views.MonthView.DayControl(calendarDay);
-                                dayControl.DaySelected += new EventHandler<Views.MonthView.SelectDayEventArgs>((sender, e) =>
-                                {
-                                    this.SelectionManager.SelectDay(e.SelectedDay.Day, e.ModifierKeys);
-                                    this.CopyPasteManager.SetCopy();
-                                });
-                                dayControl.PropertiesRequested += new EventHandler<EventArgs>((sender, e) =>
-                                {
-                                    Calendar.DayProperties.Show();
-                                });
-                                dayControl.DayCopied += new EventHandler<EventArgs>((sender, e) =>
-                                {
-                                    this.CopyDay();
-                                });
-                                dayControl.DayPasted += new EventHandler<EventArgs>((sender, e) =>
-                                {
-                                    this.PasteDay();
-                                });
-                                dayControl.DayCloned += new EventHandler<EventArgs>((sender, e) =>
-                                {
-                                    this.CloneDay();
-                                });
-                                dayControl.DayDataDeleted += new EventHandler<EventArgs>((sender, e) =>
-                                {
-                                    foreach (BusinessClasses.CalendarDay day in this.SelectionManager.SelectedDays)
-                                    {
-                                        day.ClearData();
-                                        RefreshData();
-                                    }
-                                    this.Calendar.SettingsNotSaved = true;
-                                    this.Calendar.SelectedView.RefreshData();
-                                    this.Calendar.DayProperties.LoadData();
-                                    this.Calendar.SlideInfo.LoadData(reload: true);
-                                });
-                                this.CopyPasteManager.OnSetCopy += new EventHandler<EventArgs>((sender, e) =>
-                                {
-                                    dayControl.toolStripMenuItemCopy.Enabled = true;
-                                    dayControl.toolStripMenuItemClone.Enabled = true;
-                                });
-                                this.CopyPasteManager.OnSetPaste += new EventHandler<EventArgs>((sender, e) =>
-                                {
-                                });
-                                this.CopyPasteManager.OnResetCopy += new EventHandler<EventArgs>((sender, e) =>
-                                {
-                                    dayControl.toolStripMenuItemCopy.Enabled = false;
-                                    dayControl.toolStripMenuItemClone.Enabled = false;
-                                });
-                                this.CopyPasteManager.OnResetPaste += new EventHandler<EventArgs>((sender, e) =>
-                                {
-                                    dayControl.toolStripMenuItemPaste.Enabled = false;
-                                });
-                                this.CopyPasteManager.DayCopied += new EventHandler<EventArgs>((sender, e) =>
-                                {
-                                    dayControl.toolStripMenuItemPaste.Enabled = true;
-                                });
-                                dayControl.Decorate(_style);
-                                week.Add(dayControl);
-                                _days.Add(dayControl);
+                                //dayControl.DaySelected += new EventHandler<Views.MonthView.SelectDayEventArgs>((sender, e) =>
+                                //{
+                                //    this.SelectionManager.SelectDay(e.SelectedDay.Day, e.ModifierKeys);
+                                //    this.CopyPasteManager.SetCopy();
+                                //});
+                                //dayControl.PropertiesRequested += new EventHandler<EventArgs>((sender, e) =>
+                                //{
+                                //    Calendar.DayProperties.Show();
+                                //});
+                                //dayControl.DayCopied += new EventHandler<EventArgs>((sender, e) =>
+                                //{
+                                //    this.CopyDay();
+                                //});
+                                //dayControl.DayPasted += new EventHandler<EventArgs>((sender, e) =>
+                                //{
+                                //    this.PasteDay();
+                                //});
+                                //dayControl.DayCloned += new EventHandler<EventArgs>((sender, e) =>
+                                //{
+                                //    this.CloneDay();
+                                //});
+                                //dayControl.DayDataDeleted += new EventHandler<EventArgs>((sender, e) =>
+                                //{
+                                //    foreach (BusinessClasses.CalendarDay day in this.SelectionManager.SelectedDays)
+                                //    {
+                                //        day.ClearData();
+                                //        RefreshData();
+                                //    }
+                                //    this.Calendar.SettingsNotSaved = true;
+                                //    this.Calendar.SelectedView.RefreshData();
+                                //    this.Calendar.DayProperties.LoadData();
+                                //    this.Calendar.SlideInfo.LoadData(reload: true);
+                                //});
+                                //dayControl.DataChanged += new EventHandler<EventArgs>((sender, e) =>
+                                //{
+                                //    this.Calendar.SettingsNotSaved = true;
+                                //});
+                                //this.CopyPasteManager.OnSetCopy += new EventHandler<EventArgs>((sender, e) =>
+                                //{
+                                //    dayControl.toolStripMenuItemCopy.Enabled = true;
+                                //    dayControl.toolStripMenuItemClone.Enabled = true;
+                                //});
+                                //this.CopyPasteManager.OnSetPaste += new EventHandler<EventArgs>((sender, e) =>
+                                //{
+                                //});
+                                //this.CopyPasteManager.OnResetCopy += new EventHandler<EventArgs>((sender, e) =>
+                                //{
+                                //    dayControl.toolStripMenuItemCopy.Enabled = false;
+                                //    dayControl.toolStripMenuItemClone.Enabled = false;
+                                //});
+                                //this.CopyPasteManager.OnResetPaste += new EventHandler<EventArgs>((sender, e) =>
+                                //{
+                                //    dayControl.toolStripMenuItemPaste.Enabled = false;
+                                //});
+                                //this.CopyPasteManager.DayCopied += new EventHandler<EventArgs>((sender, e) =>
+                                //{
+                                //    dayControl.toolStripMenuItemPaste.Enabled = true;
+                                //});
+                                //dayControl.Decorate(_style);
+                                //CalendarVisualizer.AssignCloseActiveEditorsonOutSideClick(dayControl);
+                                //week.Add(dayControl);
+                                //_days.Add(dayControl);
                             }
                             System.Windows.Forms.Application.DoEvents();
                         }
                         weeks.Add(week.ToArray());
                         System.Windows.Forms.Application.DoEvents();
                     }
-
                     Views.MonthView.MonthControl monthControl = new Views.MonthView.MonthControl(weeks.ToArray());
                     this.Months.Add(month.StartDate, monthControl);
                 }
@@ -179,7 +183,6 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
 
         public void ChangeMonth(DateTime date)
         {
-            this.Calendar.Splash(true);
             Views.MonthView.MonthControl month = null;
             BusinessClasses.CalendarMonth calendarMonth = null;
             this.SelectionManager.ClearSelection();
@@ -198,7 +201,6 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
                 }
                 month.BringToFront();
             }
-            this.Calendar.Splash(false);
         }
 
         public void SelectDay(BusinessClasses.CalendarDay day, bool selected)

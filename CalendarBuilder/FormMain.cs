@@ -95,7 +95,7 @@ namespace CalendarBuilder
         {
             ribbonTabItemAdvancedCalendar.Enabled = enable;
             ribbonTabItemGraphicCalendar.Enabled = enable;
-            ribbonTabItemSimpleCalendar.Enabled = false;
+            ribbonTabItemSimpleCalendar.Enabled = enable;
         }
 
         private void FormMain_Shown(object sender, EventArgs e)
@@ -165,6 +165,23 @@ namespace CalendarBuilder
             buttonItemGraphicCalendarHelp.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleHelp_Click);
             #endregion
 
+            #region Simple Calendar Events
+            listBoxControlSimpleCalendar.SelectedIndexChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.imageListBoxEditCalendar_SelectedIndexChanged);
+            buttonItemSimpleCalendarSlideInfo.CheckedChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarSlideInfo_CheckedChanged);
+            buttonItemSimpleCalendarMonth.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_Click);
+            buttonItemSimpleCalendarGrid.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_Click);
+            buttonItemSimpleCalendarMonth.CheckedChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_CheckedChanged);
+            buttonItemSimpleCalendarGrid.CheckedChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_CheckedChanged);
+            buttonItemSimpleCalendarCopy.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarCopy_Click);
+            buttonItemSimpleCalendarPaste.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarPaste_Click);
+            buttonItemSimpleCalendarClone.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarClone_Click);
+            buttonItemSimpleCalendarSave.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSave_Click);
+            buttonItemSimpleCalendarSaveAs.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSaveAs_Click);
+            buttonItemSimpleCalendarPowerPoint.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklySchedulePowerPoint_Click);
+            buttonItemSimpleCalendarEmail.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklyScheduleEmail_Click);
+            buttonItemSimpleCalendarHelp.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleHelp_Click);
+            #endregion
+
             #region Success Models Events
             buttonItemSuccessModelsHelp.Click += new EventHandler(PresentationClasses.ModelsOfSuccessContainerControl.Instance.buttonItemSuccessModelsHelp_Click);
             #endregion
@@ -205,6 +222,7 @@ namespace CalendarBuilder
 
         public void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
         {
+            pnEmpty.BringToFront();
             if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemHome)
             {
                 if (AllowToLeaveCurrentControl())
@@ -218,21 +236,19 @@ namespace CalendarBuilder
             else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemAdvancedCalendar)
             {
                 if (AllowToLeaveCurrentControl())
-                {
-                    _currentControl = PresentationClasses.CalendarVisualizer.Instance.SelectCalendar(BusinessClasses.CalendarStyle.Advanced) as Control;
-                    if (!pnMain.Controls.Contains(_currentControl))
-                        pnMain.Controls.Add(_currentControl);
-                }
+                    _currentControl = PresentationClasses.CalendarVisualizer.Instance.SelectCalendar(pnMain,BusinessClasses.CalendarStyle.Advanced) as Control;
                 _currentControl.BringToFront();
             }
             else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGraphicCalendar)
             {
                 if (AllowToLeaveCurrentControl())
-                {
-                    _currentControl = PresentationClasses.CalendarVisualizer.Instance.SelectCalendar(BusinessClasses.CalendarStyle.Graphic) as Control;
-                    if (!pnMain.Controls.Contains(_currentControl))
-                        pnMain.Controls.Add(_currentControl);
-                }
+                    _currentControl = PresentationClasses.CalendarVisualizer.Instance.SelectCalendar(pnMain,BusinessClasses.CalendarStyle.Graphic) as Control;
+                _currentControl.BringToFront();
+            }
+            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSimpleCalendar)
+            {
+                if (AllowToLeaveCurrentControl())
+                    _currentControl = PresentationClasses.CalendarVisualizer.Instance.SelectCalendar(pnMain, BusinessClasses.CalendarStyle.Simple) as Control;
                 _currentControl.BringToFront();
             }
             else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSuccessModels)

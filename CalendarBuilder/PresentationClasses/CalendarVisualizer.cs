@@ -8,6 +8,7 @@ namespace CalendarBuilder.PresentationClasses
         private static CalendarVisualizer _instance = null;
         private Calendars.AdvancedCalendarControl _advancedCalendar = new Calendars.AdvancedCalendarControl();
         private Calendars.GraphicCalendarControl _graphicCalendar = new Calendars.GraphicCalendarControl();
+        private Calendars.SimpleCalendarControl _simpleCalendar = new Calendars.SimpleCalendarControl();
 
         #region Operation Buttons
         public DevExpress.XtraEditors.ImageListBoxControl MonthsListBoxControl { get; set; }
@@ -52,13 +53,29 @@ namespace CalendarBuilder.PresentationClasses
             }
         }
 
+        public static void AssignCloseActiveEditorsonOutSideClick(Control control)
+        {
+            if (control.GetType() != typeof(DevExpress.XtraEditors.TextEdit) && control.GetType() != typeof(DevExpress.XtraEditors.MemoEdit) && control.GetType() != typeof(DevExpress.XtraEditors.ComboBoxEdit) && control.GetType() != typeof(DevExpress.XtraEditors.LookUpEdit) && control.GetType() != typeof(DevExpress.XtraEditors.DateEdit) && control.GetType() != typeof(DevExpress.XtraEditors.CheckedListBoxControl) && control.GetType() != typeof(DevExpress.XtraEditors.SpinEdit) && control.GetType() != typeof(DevExpress.XtraEditors.CheckEdit) && control.GetType() != typeof(DevExpress.XtraEditors.ImageListBoxControl))
+            {
+                control.Click += new EventHandler(CloseActiveEditorsonOutSideClick);
+                foreach (Control childControl in control.Controls)
+                    AssignCloseActiveEditorsonOutSideClick(childControl);
+            }
+        }
+
+        private static void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
+        {
+            FormMain.Instance.ribbonControl.Focus();
+        }
+
         public void LoadData()
         {
             _advancedCalendar.LoadCalendar(false);
             _graphicCalendar.LoadCalendar(false);
+            _simpleCalendar.LoadCalendar(false);
         }
 
-        public ICalendarControl SelectCalendar(BusinessClasses.CalendarStyle calendarStyle)
+        public ICalendarControl SelectCalendar(Control container, BusinessClasses.CalendarStyle calendarStyle)
         {
             if (this.SelectedCalendarControl != null)
                 this.SelectedCalendarControl.LeaveCalendar();
@@ -84,11 +101,25 @@ namespace CalendarBuilder.PresentationClasses
                     this.PasteButtonItem = FormMain.Instance.buttonItemGraphicCalendarPaste;
                     this.CloneButtonItem = FormMain.Instance.buttonItemGraphicCalendarClone;
                     break;
+                case BusinessClasses.CalendarStyle.Simple:
+                    this.SelectedCalendarControl = _simpleCalendar;
+                    this.MonthsListBoxControl = FormMain.Instance.listBoxControlSimpleCalendar;
+                    this.MonthViewButtonItem = FormMain.Instance.buttonItemSimpleCalendarMonth;
+                    this.GridViewButtonItem = FormMain.Instance.buttonItemSimpleCalendarGrid;
+                    this.SlideInfoButtonItem = FormMain.Instance.buttonItemSimpleCalendarSlideInfo;
+                    this.CopyButtonItem = FormMain.Instance.buttonItemSimpleCalendarCopy;
+                    this.PasteButtonItem = FormMain.Instance.buttonItemSimpleCalendarPaste;
+                    this.CloneButtonItem = FormMain.Instance.buttonItemSimpleCalendarClone;
+                    break;
                 default:
                     this.SelectedCalendarControl = _advancedCalendar;
                     break;
             }
             this.SelectedCalendarControl.ShowCalendar();
+            this.SelectedCalendarControl.Splash(true);
+            if (!container.Controls.Contains(this.SelectedCalendarControl as Control))
+                container.Controls.Add(this.SelectedCalendarControl as Control);
+            this.SelectedCalendarControl.Splash(false);
             return this.SelectedCalendarControl;
         }
 
@@ -131,7 +162,9 @@ namespace CalendarBuilder.PresentationClasses
             {
                 this.SelectedCalendarControl.DayProperties.Close();
                 this.SelectedCalendarControl.SlideInfo.LoadData(month: this.SelectedCalendarControl.CalendarData.Months[CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex]);
+                this.SelectedCalendarControl.Splash(true);
                 this.SelectedCalendarControl.SelectedView.ChangeMonth(this.SelectedCalendarControl.CalendarData.Months[CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex].StartDate);
+                this.SelectedCalendarControl.Splash(false);
             }
         }
 
@@ -140,9 +173,17 @@ namespace CalendarBuilder.PresentationClasses
             if (this.SelectedCalendarControl.AllowToSave)
             {
                 if (CalendarVisualizer.Instance.SlideInfoButtonItem.Checked)
+                {
+                    this.SelectedCalendarControl.Splash(true);
                     this.SelectedCalendarControl.SlideInfo.Show();
+                    this.SelectedCalendarControl.Splash(false);
+                }
                 else
+                {
+                    this.SelectedCalendarControl.Splash(true);
                     this.SelectedCalendarControl.SlideInfo.Close();
+                    this.SelectedCalendarControl.Splash(false);
+                }
             }
         }
 

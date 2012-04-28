@@ -45,10 +45,12 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
         {
             if (this.Closed != null)
                 this.Closed(this, new EventArgs());
+            _parentCalendar.Splash(false);
         }
 
         private void ClosingPanel(object sender, DevExpress.XtraBars.Docking.DockPanelCancelEventArgs e)
         {
+            _parentCalendar.Splash(true);
             SaveData();
             SaveSettings();
         }
@@ -138,17 +140,21 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
 
         public void Show()
         {
+            _parentCalendar.Splash(true);
             _allowToSave = false;
             _container.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Visible;
             LoadSettings();
             _allowToSave = true;
             if (this.Shown != null)
                 this.Shown(this, new EventArgs());
+            _parentCalendar.Splash(false);
         }
 
         public void Close()
         {
+            _parentCalendar.Splash(true);
             _container.Close();
+            _parentCalendar.Splash(false);
         }
 
         public void Decorate(BusinessClasses.CalendarStyle style)

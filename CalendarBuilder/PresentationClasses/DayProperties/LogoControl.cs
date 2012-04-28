@@ -36,9 +36,9 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
             if (_day != null)
             {
                 if (pbSelectedLogo.Tag != null)
-                    _day.Logo = pbSelectedLogo.Tag as BusinessClasses.ImageSource;
+                    _day.Logo = (pbSelectedLogo.Tag as BusinessClasses.ImageSource).Clone(_day);
                 else
-                    _day.Logo = new BusinessClasses.ImageSource();
+                    _day.Logo = new BusinessClasses.ImageSource(_day);
             }
         }
 

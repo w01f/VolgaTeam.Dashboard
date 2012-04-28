@@ -31,6 +31,16 @@ namespace CalendarBuilder.BusinessClasses
         FullColor
     }
 
+    public enum DayDataType
+    {
+        All = 0,
+        Digital,
+        Newspaper,
+        Comment,
+        Logo
+    }
+
+
     public class ScheduleManager
     {
         private static ScheduleManager _instance = new ScheduleManager();
@@ -229,6 +239,7 @@ namespace CalendarBuilder.BusinessClasses
 
         public Calendar AdvancedCalendar { get; private set; }
         public Calendar GraphicCalendar { get; private set; }
+        public Calendar SimpleCalendar { get; private set; }
 
         public string Name
         {
@@ -269,6 +280,7 @@ namespace CalendarBuilder.BusinessClasses
             this.Status = ListManager.Instance.Statuses.FirstOrDefault();
             this.AdvancedCalendar = new Calendar(this);
             this.GraphicCalendar = new Calendar(this);
+            this.SimpleCalendar = new Calendar(this);
 
             _calendarFile = new FileInfo(fileName);
             if (!File.Exists(fileName))
@@ -365,7 +377,22 @@ namespace CalendarBuilder.BusinessClasses
                 {
                     this.GraphicCalendar.Deserialize(node);
                 }
+                else
+                {
+                    this.GraphicCalendar.UpdateDaysCollection();
+                    this.GraphicCalendar.UpdateMonthCollection();
+                }
 
+                node = document.SelectSingleNode(@"/Schedule/SimpleCalendar");
+                if (node != null)
+                {
+                    this.SimpleCalendar.Deserialize(node);
+                }
+                else
+                {
+                    this.SimpleCalendar.UpdateDaysCollection();
+                    this.SimpleCalendar.UpdateMonthCollection();
+                }
             }
         }
 
@@ -399,6 +426,7 @@ namespace CalendarBuilder.BusinessClasses
 
             xml.AppendLine(@"<AdvancedCalendar>" + this.AdvancedCalendar.Serialize() + @"</AdvancedCalendar>");
             xml.AppendLine(@"<GraphicCalendar>" + this.GraphicCalendar.Serialize() + @"</GraphicCalendar>");
+            xml.AppendLine(@"<SimpleCalendar>" + this.SimpleCalendar.Serialize() + @"</SimpleCalendar>");
 
             xml.AppendLine(@"</Schedule>");
 
@@ -471,7 +499,7 @@ namespace CalendarBuilder.BusinessClasses
             UpdateMonthCollection();
         }
 
-        private void UpdateDaysCollection()
+        public void UpdateDaysCollection()
         {
             if (this.Schedule.FlightDateStart.HasValue && this.Schedule.FlightDateEnd.HasValue)
             {
@@ -497,7 +525,7 @@ namespace CalendarBuilder.BusinessClasses
                 this.Days.Clear();
         }
 
-        private void UpdateMonthCollection()
+        public void UpdateMonthCollection()
         {
             if (this.Schedule.FlightDateStart.HasValue && this.Schedule.FlightDateEnd.HasValue)
             {
@@ -627,7 +655,7 @@ namespace CalendarBuilder.BusinessClasses
         {
             this.Digital = new DigitalProperties(this);
             this.Newspaper = new NewspaperProperties(this);
-            this.Logo = new ImageSource();
+            this.Logo = new ImageSource(this);
         }
 
         public string Serialize()
@@ -701,13 +729,31 @@ namespace CalendarBuilder.BusinessClasses
             }
         }
 
-        public void ClearData()
+        public void ClearData(DayDataType dataToClear = DayDataType.All)
         {
-            this.Comment1 = null;
-            this.Comment2 = null;
-            this.Logo = new ImageSource();
-            this.Digital = new DigitalProperties(this);
-            this.Newspaper = new NewspaperProperties(this);
+            switch (dataToClear)
+            {
+                case DayDataType.Digital:
+                    this.Digital = new DigitalProperties(this);
+                    break;
+                case DayDataType.Newspaper:
+                    this.Newspaper = new NewspaperProperties(this);
+                    break;
+                case DayDataType.Comment:
+                    this.Comment1 = null;
+                    this.Comment2 = null;
+                    break;
+                case DayDataType.Logo:
+                    this.Logo = new ImageSource(this);
+                    break;
+                case DayDataType.All:
+                    this.Comment1 = null;
+                    this.Comment2 = null;
+                    this.Logo = new ImageSource(this);
+                    this.Digital = new DigitalProperties(this);
+                    this.Newspaper = new NewspaperProperties(this);
+                    break;
+            }
         }
     }
 
@@ -1359,7 +1405,10 @@ namespace CalendarBuilder.BusinessClasses
             this.SlideColor = "gray";
             this.ApplyForAllThemeColor = true;
 
-            this.ShowLogo = false;
+            this.ShowLogo = true;
+            string defaultLogoPath = Path.Combine(ConfigurationClasses.SettingsManager.Instance.BigImageFolder.FullName, ConfigurationClasses.SettingsManager.DefaultBigLogoFileName);
+            if (File.Exists(defaultLogoPath))
+                this.Logo = new Bitmap(defaultLogoPath);
             this.ApplyForAllLogo = true;
 
             this.ShowBigDate = true;
@@ -1770,10 +1819,19 @@ namespace CalendarBuilder.BusinessClasses
 
     public class ImageSource
     {
+        private CalendarDay _parent = null;
         public Image BigImage { get; set; }
         public Image SmallImage { get; set; }
         public Image TinyImage { get; set; }
         public Image XtraTinyImage { get; set; }
+
+        public DateTime? Day
+        {
+            get
+            {
+                return _parent != null ? (DateTime?)_parent.Date : null;
+            }
+        }
 
         public bool ContainsData
         {
@@ -1781,6 +1839,11 @@ namespace CalendarBuilder.BusinessClasses
             {
                 return this.XtraTinyImage != null;
             }
+        }
+
+        public ImageSource(CalendarDay parent)
+        {
+            _parent = parent;
         }
 
         public string Serialize()
@@ -1828,9 +1891,9 @@ namespace CalendarBuilder.BusinessClasses
             }
         }
 
-        public ImageSource Clone()
+        public ImageSource Clone(CalendarDay newParent)
         {
-            ImageSource result = new ImageSource();
+            ImageSource result = new ImageSource(newParent);
             result.BigImage = this.BigImage;
             result.SmallImage = this.SmallImage;
             result.TinyImage = this.TinyImage;

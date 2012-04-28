@@ -12,12 +12,14 @@ namespace CalendarBuilder.ConfigurationClasses
         public string LocalSettingsPath { get; set; }
         public CalendarSettings AdvancedCalendarSettings { get; private set; }
         public CalendarSettings GraphicCalendarSettings { get; private set; }
+        public CalendarSettings SimpleCalendarSettings { get; private set; }
 
         public ViewSettings()
         {
             this.LocalSettingsPath = string.Format(@"{0}\newlocaldirect.com\xml\app\CalendarSettings.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.AdvancedCalendarSettings = new CalendarSettings();
             this.GraphicCalendarSettings = new CalendarSettings();
+            this.SimpleCalendarSettings = new CalendarSettings();
             Load();
         }
 
@@ -36,6 +38,10 @@ namespace CalendarBuilder.ConfigurationClasses
                 node = document.SelectSingleNode(@"/ViewSettings/GraphicCalendarSettings");
                 if (node != null)
                     this.GraphicCalendarSettings.Deserialize(node);
+
+                node = document.SelectSingleNode(@"/ViewSettings/SimpleCalendarSettings");
+                if (node != null)
+                    this.SimpleCalendarSettings.Deserialize(node);
             }
         }
 
@@ -46,6 +52,7 @@ namespace CalendarBuilder.ConfigurationClasses
             xml.AppendLine(@"<ViewSettings>");
             xml.AppendLine(@"<AdvancedCalendarSettings>" + this.AdvancedCalendarSettings.Serialize() + @"</AdvancedCalendarSettings>");
             xml.AppendLine(@"<GraphicCalendarSettings>" + this.GraphicCalendarSettings.Serialize() + @"</GraphicCalendarSettings>");
+            xml.AppendLine(@"<SimpleCalendarSettings>" + this.SimpleCalendarSettings.Serialize() + @"</SimpleCalendarSettings>");
             xml.AppendLine(@"</ViewSettings>");
 
             string userConfigurationPath = this.LocalSettingsPath;

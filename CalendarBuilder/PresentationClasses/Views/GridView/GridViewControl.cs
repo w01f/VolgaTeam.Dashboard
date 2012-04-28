@@ -10,11 +10,13 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
     public partial class GridViewControl : UserControl, IView
     {
         private bool _allowToSave = false;
+        private BusinessClasses.CalendarMonth _selectedMonth = null;
         private List<BusinessClasses.DigitalProperties> _digitals = new List<BusinessClasses.DigitalProperties>();
         private List<BusinessClasses.NewspaperProperties> _newspapers = new List<BusinessClasses.NewspaperProperties>();
+        private List<BusinessClasses.CalendarDay> _dayComments = new List<BusinessClasses.CalendarDay>();
+        private List<BusinessClasses.ImageSource> _logos = new List<BusinessClasses.ImageSource>();
 
         public ICalendarControl Calendar { get; private set; }
-        public SelectionManager SelectionManager { get; private set; }
         public CopyPasteManager CopyPasteManager { get; private set; }
 
         public bool SettingsNotSaved { get; set; }
@@ -25,14 +27,16 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
             InitializeComponent();
             this.Dock = DockStyle.Fill;
             this.Calendar = calendar;
-            this.SelectionManager = new SelectionManager(this);
-            
+
             #region Copy-Paster Initialization
             this.CopyPasteManager = new CopyPasteManager();
             this.CopyPasteManager.OnSetCopy += new EventHandler<EventArgs>((sender, e) =>
             {
                 CalendarVisualizer.Instance.CopyButtonItem.Enabled = true;
+                toolStripMenuItemCopy.Enabled = true;
                 CalendarVisualizer.Instance.CloneButtonItem.Enabled = true;
+                toolStripMenuItemClone.Enabled = true;
+                toolStripMenuItemDelete.Enabled = true;
             });
             this.CopyPasteManager.OnSetPaste += new EventHandler<EventArgs>((sender, e) =>
             {
@@ -40,15 +44,20 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
             this.CopyPasteManager.OnResetCopy += new EventHandler<EventArgs>((sender, e) =>
             {
                 CalendarVisualizer.Instance.CopyButtonItem.Enabled = false;
+                toolStripMenuItemCopy.Enabled = false;
                 CalendarVisualizer.Instance.CloneButtonItem.Enabled = false;
+                toolStripMenuItemClone.Enabled = false;
+                toolStripMenuItemDelete.Enabled = false;
             });
             this.CopyPasteManager.OnResetPaste += new EventHandler<EventArgs>((sender, e) =>
             {
                 CalendarVisualizer.Instance.PasteButtonItem.Enabled = false;
+                toolStripMenuItemPaste.Enabled = false;
             });
             this.CopyPasteManager.DayCopied += new EventHandler<EventArgs>((sender, e) =>
             {
                 CalendarVisualizer.Instance.PasteButtonItem.Enabled = true;
+                toolStripMenuItemPaste.Enabled = true;
             });
 
             this.CopyPasteManager.DayPasted += new EventHandler<EventArgs>((sender, e) =>
@@ -126,6 +135,8 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
         {
             gridViewDigital.CloseEditor();
             gridViewNewspaper.CloseEditor();
+            gridViewComment.CloseEditor();
+            bandedGridViewLogo.CloseEditor();
             if (this.DataSaved != null)
                 this.DataSaved(this, new EventArgs());
             this.SettingsNotSaved = false;
@@ -133,37 +144,78 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
 
         public void RefreshData()
         {
-            gridViewNewspaper.RefreshData();
+            if (_selectedMonth != null)
+            {
+                RefreshDigitalData();
+                RefreshNewspaperData();
+                RefreshLogoData();
+                gridViewComment.RefreshData();
+            }
+
+            int[] selectedRowhandles = gridViewComment.GetSelectedRows();
+            gridViewDigital.ClearSelection();
+            foreach (int rowHandle in selectedRowhandles)
+                gridViewDigital.SelectRow(rowHandle);
+        }
+
+        private void RefreshDigitalData()
+        {
+            _allowToSave = false;
+            gridControlDigital.DataSource = null;
+            _digitals.Clear();
+            _digitals.AddRange(_selectedMonth.Days.Where(x => x.BelongsToSchedules).Select(x => x.Digital).ToArray());
+            gridControlDigital.DataSource = new BindingList<BusinessClasses.DigitalProperties>(_digitals);
             gridViewDigital.RefreshData();
+            _allowToSave = true;
+        }
+
+        private void RefreshNewspaperData()
+        {
+            _allowToSave = false;
+            gridControlNewspaper.DataSource = null;
+            _newspapers.Clear();
+            _newspapers.AddRange(_selectedMonth.Days.Where(x => x.BelongsToSchedules).Select(x => x.Newspaper).ToArray());
+            gridControlNewspaper.DataSource = new BindingList<BusinessClasses.NewspaperProperties>(_newspapers);
+            gridViewNewspaper.RefreshData();
+            _allowToSave = true;
+        }
+
+        private void RefreshLogoData()
+        {
+            _allowToSave = false;
+            gridControlLogo.DataSource = null;
+            _logos.Clear();
+            _logos.AddRange(_selectedMonth.Days.Where(x => x.BelongsToSchedules).Select(x => x.Logo).ToArray());
+            gridControlLogo.DataSource = new BindingList<BusinessClasses.ImageSource>(_logos.ToArray());
+            bandedGridViewLogo.RefreshData();
+            _allowToSave = true;
         }
 
         public void ChangeMonth(DateTime date)
         {
             BusinessClasses.CalendarMonth calendarMonth = null;
-            this.SelectionManager.ClearSelection();
             this.CopyPasteManager.ResetCopy();
             calendarMonth = this.Calendar.CalendarData.Months.Where(x => x.StartDate.Equals(date)).FirstOrDefault();
             if (calendarMonth != null)
             {
+                _selectedMonth = calendarMonth;
                 _allowToSave = false;
 
-                #region Digital
-                gridControlDigital.DataSource = null;
-                _digitals.Clear();
-                _digitals.AddRange(calendarMonth.Days.Where(x => x.BelongsToSchedules).Select(x => x.Digital).ToArray());
-                gridControlDigital.DataSource = new BindingList<BusinessClasses.DigitalProperties>(_digitals);
-                gridViewDigital.RefreshData();
-                #endregion
+                RefreshDigitalData();
 
-                #region Newspaper
-                gridControlNewspaper.DataSource = null;
-                _newspapers.Clear();
-                _newspapers.AddRange(calendarMonth.Days.Where(x => x.BelongsToSchedules).Select(x => x.Newspaper).ToArray());
-                gridControlNewspaper.DataSource = new BindingList<BusinessClasses.NewspaperProperties>(_newspapers);
-                gridViewNewspaper.RefreshData();
-                #endregion
+                RefreshNewspaperData();
 
+                RefreshLogoData();
+
+                #region Comment
+                _allowToSave = false;
+                gridControlComment.DataSource = null;
+                gridControlComment.DataSource = new BindingList<BusinessClasses.CalendarDay>(_selectedMonth.Days.Where(x => x.BelongsToSchedules).ToArray());
+                gridViewComment.RefreshData();
                 _allowToSave = true;
+                #endregion
+
+                this.CopyPasteManager.SetCopy();
             }
         }
 
@@ -175,27 +227,65 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
         {
             xtraTabPageDigital.PageVisible = style == BusinessClasses.CalendarStyle.Advanced;
             xtraTabPageNewspaper.PageVisible = style == BusinessClasses.CalendarStyle.Advanced;
+            xtraTabPageLogo.PageVisible = style == BusinessClasses.CalendarStyle.Graphic;
+            gridColumnComment2.Visible = style != BusinessClasses.CalendarStyle.Simple;
+            gridColumnComment2.Caption = style != BusinessClasses.CalendarStyle.Simple ? "Comment #1" : "Comment";
         }
 
         #region Copy-Paste Methods and Event Handlers
+        public BusinessClasses.CalendarDay[] GetSelectedDays()
+        {
+            List<BusinessClasses.CalendarDay> selectedDays = new List<BusinessClasses.CalendarDay>();
+            int[] selectedRowHandles = gridViewDigital.GetSelectedRows();
+            foreach (int rowHandle in selectedRowHandles)
+            {
+                BusinessClasses.CalendarDay selectedDay = _selectedMonth.Days.Where(x => x.BelongsToSchedules).ElementAt(rowHandle);
+                if (selectedDay != null)
+                    selectedDays.Add(selectedDay);
+            }
+            return selectedDays.ToArray();
+        }
+
         public void CopyDay()
         {
-            BusinessClasses.CalendarDay selectedDay = this.SelectionManager.SelectedDays.FirstOrDefault();
+            BusinessClasses.CalendarDay selectedDay = GetSelectedDays().FirstOrDefault();
             if (selectedDay != null)
                 this.CopyPasteManager.Copy(selectedDay);
         }
 
         public void PasteDay()
         {
-            BusinessClasses.CalendarDay[] selectedDays = this.SelectionManager.SelectedDays.ToArray();
+            BusinessClasses.DayDataType dataToPaste;
+            if (xtraTabControl.SelectedTabPage == xtraTabPageDigital)
+                dataToPaste = BusinessClasses.DayDataType.Digital;
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageNewspaper)
+                dataToPaste = BusinessClasses.DayDataType.Newspaper;
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageComment)
+                dataToPaste = BusinessClasses.DayDataType.Comment;
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageLogo)
+                dataToPaste = BusinessClasses.DayDataType.Logo;
+            else
+                dataToPaste = BusinessClasses.DayDataType.All;
+            BusinessClasses.CalendarDay[] selectedDays = GetSelectedDays();
             if (selectedDays != null)
-                this.CopyPasteManager.Paste(selectedDays);
+                this.CopyPasteManager.Paste(selectedDays, dataToPaste);
         }
 
         public void CloneDay()
         {
+            BusinessClasses.DayDataType dataToClone;
+            if (xtraTabControl.SelectedTabPage == xtraTabPageDigital)
+                dataToClone = BusinessClasses.DayDataType.Digital;
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageNewspaper)
+                dataToClone = BusinessClasses.DayDataType.Newspaper;
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageComment)
+                dataToClone = BusinessClasses.DayDataType.Comment;
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageLogo)
+                dataToClone = BusinessClasses.DayDataType.Logo;
+            else
+                dataToClone = BusinessClasses.DayDataType.All;
             BusinessClasses.CalendarDay[] clonedDays = null;
-            BusinessClasses.CalendarDay selectedDay = this.SelectionManager.SelectedDays.FirstOrDefault();
+            BusinessClasses.CalendarDay selectedDay = GetSelectedDays().FirstOrDefault();
             if (selectedDay != null)
             {
                 using (ToolForms.FormCloneDay form = new ToolForms.FormCloneDay(selectedDay, this.Calendar.CalendarData.Schedule.FlightDateStart.Value, this.Calendar.CalendarData.Schedule.FlightDateEnd.Value))
@@ -204,8 +294,27 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
                         clonedDays = this.Calendar.CalendarData.Days.Where(x => form.SelectedDates.Contains(x.Date)).ToArray();
                 }
                 if (clonedDays != null)
-                    this.CopyPasteManager.Clone(selectedDay, clonedDays);
+                    this.CopyPasteManager.Clone(selectedDay, clonedDays, dataToClone);
             }
+        }
+
+        public void DeleteDayData()
+        {
+            BusinessClasses.DayDataType dataToClear;
+            if (xtraTabControl.SelectedTabPage == xtraTabPageDigital)
+                dataToClear = BusinessClasses.DayDataType.Digital;
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageNewspaper)
+                dataToClear = BusinessClasses.DayDataType.Newspaper;
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageComment)
+                dataToClear = BusinessClasses.DayDataType.Comment;
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageLogo)
+                dataToClear = BusinessClasses.DayDataType.Logo;
+            else
+                dataToClear = BusinessClasses.DayDataType.All;
+            BusinessClasses.CalendarDay[] selectedDays = GetSelectedDays();
+            foreach (BusinessClasses.CalendarDay day in selectedDays)
+                day.ClearData(dataToClear);
+            RefreshData();
         }
         #endregion
         #endregion
@@ -226,8 +335,15 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
         private void gridView_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
-            if (view != null && e.CellValue == null && e.RowHandle != view.FocusedRowHandle)
+            int[] selectedRowHandles = view.GetSelectedRows();
+            if (view != null && e.CellValue == null && !selectedRowHandles.Contains(e.RowHandle))
                 e.Appearance.ForeColor = Color.Gray;
+        }
+
+        private void gridView_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
+        {
+            if (!e.HitInfo.InRowCell)
+                e.Allow = false;
         }
         #endregion
 
@@ -311,6 +427,8 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
             if (xtraTabControl.SelectedTabPage == xtraTabPageDigital)
             {
                 gridViewNewspaper.FocusedRowHandle = gridViewDigital.FocusedRowHandle;
+                gridViewComment.FocusedRowHandle = gridViewDigital.FocusedRowHandle;
+                bandedGridViewLogo.FocusedRowHandle = gridViewDigital.FocusedRowHandle;
             }
         }
 
@@ -437,6 +555,30 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
                     gridViewNewspaper.SetRowCellValue(i, gridColumnNewspaperCustomNote, value);
                 }
             }
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageComment)
+            {
+                gridViewComment.CloseEditor();
+                object value = gridViewComment.GetRowCellValue(0, gridViewComment.FocusedColumn);
+                for (int i = 1; i < gridViewComment.RowCount; i++)
+                {
+                    gridViewComment.SetRowCellValue(i, gridViewComment.FocusedColumn, value);
+                }
+            }
+        }
+
+        private void gridViewDigital_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            _allowToSave = false;
+            gridViewNewspaper.ClearSelection();
+            gridViewComment.ClearSelection();
+            bandedGridViewLogo.ClearSelection();
+            foreach (int rowHandel in gridViewDigital.GetSelectedRows())
+            {
+                gridViewNewspaper.SelectRow(rowHandel);
+                gridViewComment.SelectRow(rowHandel);
+                bandedGridViewLogo.SelectRow(rowHandel);
+            }
+            _allowToSave = true;
         }
         #endregion
 
@@ -451,6 +593,8 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
             if (xtraTabControl.SelectedTabPage == xtraTabPageNewspaper)
             {
                 gridViewDigital.FocusedRowHandle = gridViewNewspaper.FocusedRowHandle;
+                gridViewComment.FocusedRowHandle = gridViewNewspaper.FocusedRowHandle;
+                bandedGridViewLogo.FocusedRowHandle = gridViewNewspaper.FocusedRowHandle;
             }
         }
 
@@ -609,6 +753,157 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
                     gridViewNewspaper.SetRowCellValue(i, gridColumnNewspaperCost, value);
                 }
             }
+        }
+
+        private void gridViewNewspaper_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            if (_allowToSave)
+            {
+                int[] rowHandles = gridViewNewspaper.GetSelectedRows();
+                gridViewDigital.ClearSelection();
+                foreach (int rowHandle in rowHandles)
+                    gridViewDigital.SelectRow(rowHandle);
+            }
+        }
+        #endregion
+
+        #region Comment Event Handlers
+        private void gridViewComment_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            propertiesControl_PropertiesChanged(null, null);
+        }
+
+        private void gridViewComment_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (xtraTabControl.SelectedTabPage == xtraTabPageComment)
+            {
+                gridViewDigital.FocusedRowHandle = gridViewComment.FocusedRowHandle;
+                gridViewNewspaper.FocusedRowHandle = gridViewComment.FocusedRowHandle;
+                bandedGridViewLogo.FocusedRowHandle = gridViewComment.FocusedRowHandle;
+            }
+        }
+
+        private void gridViewComment_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
+        {
+            if (e.Column == gridColumnComment1 || e.Column == gridColumnComment2)
+            {
+                if (e.RowHandle == 0)
+                    e.RepositoryItem = repositoryItemButtonEditCustomCommentFirstRow;
+                else
+                    e.RepositoryItem = repositoryItemTextEditCustomComment;
+            }
+        }
+
+        private void gridViewComment_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            if (_allowToSave)
+            {
+                int[] rowHandles = gridViewComment.GetSelectedRows();
+                gridViewDigital.ClearSelection();
+                foreach (int rowHandle in rowHandles)
+                    gridViewDigital.SelectRow(rowHandle);
+            }
+        }
+        #endregion
+
+        #region Logo Event Handlers
+        private void bandedGridViewLogo_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            DevExpress.XtraGrid.Views.BandedGrid.BandedGridView view = sender as DevExpress.XtraGrid.Views.BandedGrid.BandedGridView;
+            int[] selectedRowHandles = view.GetSelectedRows();
+            if (view != null && e.CellValue == null && !selectedRowHandles.Contains(e.RowHandle))
+                e.Appearance.ForeColor = Color.Gray;
+        }
+
+        private void bandedGridViewLogo_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            propertiesControl_PropertiesChanged(null, null);
+        }
+
+        private void bandedGridViewLogo_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (xtraTabControl.SelectedTabPage == xtraTabPageLogo)
+            {
+                gridViewDigital.FocusedRowHandle = bandedGridViewLogo.FocusedRowHandle;
+                gridViewNewspaper.FocusedRowHandle = bandedGridViewLogo.FocusedRowHandle;
+                gridViewComment.FocusedRowHandle = bandedGridViewLogo.FocusedRowHandle;
+            }
+        }
+
+        private void bandedGridViewLogo_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
+        {
+            if (e.Column == bandedGridColumnLogoSelector)
+            {
+                if (e.RowHandle == 0)
+                    e.RepositoryItem = repositoryItemButtonEditLogoSelectorFirstRow;
+                else
+                    e.RepositoryItem = repositoryItemButtonEditLogoSelector;
+            }
+        }
+
+        private void repositoryItemButtonEditLogoSelector_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (e.Button.Index == 0)
+            {
+                bandedGridViewLogo.CloseEditor();
+                object bigImage = bandedGridViewLogo.GetRowCellValue(0, bandedGridColumnBigImage);
+                object smallImage = bandedGridViewLogo.GetRowCellValue(0, bandedGridColumnSmallImage);
+                object tinyImage = bandedGridViewLogo.GetRowCellValue(0, bandedGridColumnTinyLogo);
+                object xtraTinyImage = bandedGridViewLogo.GetRowCellValue(0, bandedGridColumnXtraTinyImage);
+                for (int i = 1; i < bandedGridViewLogo.RowCount; i++)
+                {
+                    bandedGridViewLogo.SetRowCellValue(i, bandedGridColumnBigImage, bigImage);
+                    bandedGridViewLogo.SetRowCellValue(i, bandedGridColumnSmallImage, smallImage);
+                    bandedGridViewLogo.SetRowCellValue(i, bandedGridColumnTinyLogo, tinyImage);
+                    bandedGridViewLogo.SetRowCellValue(i, bandedGridColumnXtraTinyImage, xtraTinyImage);
+                }
+            }
+            else if (e.Button.Index == 1)
+            {
+                using (ToolForms.FormImageGallery form = new ToolForms.FormImageGallery())
+                {
+                    if (form.ShowDialog() == DialogResult.OK && form.SelectedSource != null && form.SelectedSource.BigImage != null && form.SelectedSource.SmallImage != null && form.SelectedSource.TinyImage != null && form.SelectedSource.XtraTinyImage != null)
+                    {
+                        bandedGridViewLogo.SetRowCellValue(bandedGridViewLogo.FocusedRowHandle, bandedGridColumnBigImage, new System.Drawing.Bitmap(form.SelectedSource.BigImage));
+                        bandedGridViewLogo.SetRowCellValue(bandedGridViewLogo.FocusedRowHandle, bandedGridColumnSmallImage, new System.Drawing.Bitmap(form.SelectedSource.SmallImage));
+                        bandedGridViewLogo.SetRowCellValue(bandedGridViewLogo.FocusedRowHandle, bandedGridColumnTinyLogo, new System.Drawing.Bitmap(form.SelectedSource.TinyImage));
+                        bandedGridViewLogo.SetRowCellValue(bandedGridViewLogo.FocusedRowHandle, bandedGridColumnXtraTinyImage, new System.Drawing.Bitmap(form.SelectedSource.XtraTinyImage));
+                    }
+                }
+            }
+        }
+
+        private void bandedGridViewLogo_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            if (_allowToSave)
+            {
+                int[] rowHandles = bandedGridViewLogo.GetSelectedRows();
+                gridViewDigital.ClearSelection();
+                foreach (int rowHandle in rowHandles)
+                    gridViewDigital.SelectRow(rowHandle);
+            }
+        }
+        #endregion
+
+        #region Context Menu Event Handlers
+        private void toolStripMenuItemCopy_Click(object sender, EventArgs e)
+        {
+            CopyDay();
+        }
+
+        private void toolStripMenuItemPaste_Click(object sender, EventArgs e)
+        {
+            PasteDay();
+        }
+
+        private void toolStripMenuItemClone_Click(object sender, EventArgs e)
+        {
+            CloneDay();
+        }
+
+        private void toolStripMenuItemDelete_Click(object sender, EventArgs e)
+        {
+            DeleteDayData();
         }
         #endregion
     }

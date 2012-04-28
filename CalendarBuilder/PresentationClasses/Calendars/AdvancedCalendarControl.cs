@@ -78,6 +78,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 
             #region Day Properties Initialization
             this.DayProperties = new DayProperties.DayPropertiesWrapper(this, dockPanelDayProperties);
+            CalendarVisualizer.AssignCloseActiveEditorsonOutSideClick(this.DayProperties.ContainedControl);
             this.DayProperties.Decorate(BusinessClasses.CalendarStyle.Advanced);
             dockPanelDayProperties.Controls.Add(this.DayProperties.ContainedControl);
             this.DayProperties.Shown += new EventHandler<EventArgs>((sender, e) =>
@@ -98,6 +99,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 
             #region Slide Info Initialization
             this.SlideInfo = new SlideInfo.SlideInfoWrapper(this, dockPanelSlideInfo);
+            CalendarVisualizer.AssignCloseActiveEditorsonOutSideClick(this.SlideInfo.ContainedControl);
             this.SlideInfo.Decorate(BusinessClasses.CalendarStyle.Advanced);
             dockPanelSlideInfo.Controls.Add(this.SlideInfo.ContainedControl);
             this.SlideInfo.Shown += new EventHandler<EventArgs>((sender, e) =>
@@ -126,9 +128,13 @@ namespace CalendarBuilder.PresentationClasses.Calendars
         public void Splash(bool show)
         {
             if (show)
+            {
                 pnEmpty.BringToFront();
+            }
             else
+            {
                 pnMain.BringToFront();
+            }
         }
 
         public void LeaveCalendar()
@@ -140,7 +146,6 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 
         public void ShowCalendar()
         {
-            this.Splash(true);
             this.AllowToSave = false;
             CalendarVisualizer.Instance.MonthsListBoxControl.Items.Clear();
             CalendarVisualizer.Instance.MonthsListBoxControl.Items.AddRange(this.CalendarData.Months.Select(x => new DevExpress.XtraEditors.Controls.ImageListBoxItem(x.StartDate.ToString("MMM, yyyy"), 0)).ToArray());
@@ -152,7 +157,6 @@ namespace CalendarBuilder.PresentationClasses.Calendars
             this.SlideInfo.LoadData(month: this.CalendarData.Months[CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex]);
             this.SlideInfo.LoadVisibilitySettings();
             this.AllowToSave = true;
-            this.Splash(false);
         }
 
         public void LoadCalendar(bool quickLoad)
@@ -205,7 +209,9 @@ namespace CalendarBuilder.PresentationClasses.Calendars
                 this.SelectedView = this.MonthView;
                 this.MonthView.BringToFront();
             }
+            this.Splash(true);
             this.SelectedView.ChangeMonth(this.CalendarData.Months[CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex].StartDate);
+            this.Splash(false);
             this.AllowToSave = temp;
         }
 

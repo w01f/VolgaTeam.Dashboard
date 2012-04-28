@@ -46,10 +46,12 @@ namespace CalendarBuilder.PresentationClasses.SlideInfo
                 SaveVisibilitySettings();
             if (this.Closed != null)
                 this.Closed(this, new EventArgs());
+            _parentCalendar.Splash(false);
         }
 
         private void ClosingPanel(object sender, DevExpress.XtraBars.Docking.DockPanelCancelEventArgs e)
         {
+            _parentCalendar.Splash(true);
             SaveData();
             SaveLocationSettings();
         }
@@ -97,9 +99,17 @@ namespace CalendarBuilder.PresentationClasses.SlideInfo
         public void LoadVisibilitySettings()
         {
             if (_parentCalendar.CalendarSettings.SlideInfoVisible)
+            {
+                _parentCalendar.Splash(true);
                 Show();
+                _parentCalendar.Splash(false);
+            }
             else
+            {
+                _parentCalendar.Splash(true);
                 Close();
+                _parentCalendar.Splash(false);
+            }
             CalendarVisualizer.Instance.SlideInfoButtonItem.Checked = _parentCalendar.CalendarSettings.SlideInfoVisible;
         }
 

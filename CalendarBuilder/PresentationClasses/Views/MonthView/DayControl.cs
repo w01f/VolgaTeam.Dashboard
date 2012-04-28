@@ -8,6 +8,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
     public partial class DayControl : UserControl
     {
         private BusinessClasses.CalendarStyle _style;
+        private bool _allowToSave = false;
 
         public bool IsSelected { get; set; }
         public BusinessClasses.CalendarDay Day { get; set; }
@@ -17,13 +18,18 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         public event EventHandler<EventArgs> DayPasted;
         public event EventHandler<EventArgs> DayCloned;
         public event EventHandler<EventArgs> DayDataDeleted;
+        public event EventHandler<EventArgs> DataChanged;
 
         public DayControl(BusinessClasses.CalendarDay day)
         {
             InitializeComponent();
             this.Day = day;
             laSmallDayCaption.Text = this.Day.Date.Day.ToString();
-            RefreshData();
+            //RefreshData();
+
+            memoEditSimpleComment.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
+            memoEditSimpleComment.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
+            memoEditSimpleComment.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -46,23 +52,26 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
 
         public void RefreshData()
         {
+            _allowToSave = false;
             labelControlData.Text = this.Day.Summary;
             pbLogo.Image = this.Day.Logo.XtraTinyImage;
             pbLogo.Visible = _style == BusinessClasses.CalendarStyle.Graphic && this.Day.Logo.XtraTinyImage != null;
+            memoEditSimpleComment.EditValue = this.Day.Comment1;
             toolStripMenuItemDelete.Enabled = this.Day.ContainsData;
-            this.BackColor = this.BackColor == Color.Blue || this.BackColor == Color.Green ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.AliceBlue;
+            this.BackColor = this.BackColor == Color.Blue || this.BackColor == Color.Green ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.FromArgb(175, 210, 255);
             if (!this.Day.BelongsToSchedules)
             {
                 xtraScrollableControl.BackColor = Color.LightGray;
                 laSmallDayCaption.BackColor = Color.Gray;
             }
+            _allowToSave = true;
         }
 
         public void ChangeSelection(bool select)
         {
             this.IsSelected = select;
             this.Padding = new Padding(select ? 5 : 1);
-            this.BackColor = this.IsSelected ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.AliceBlue;
+            this.BackColor = this.IsSelected ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.FromArgb(175, 210, 255);
             this.Refresh();
         }
 
@@ -82,8 +91,16 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         private void Control_DoubleClick(object sender, EventArgs e)
         {
             if (this.Day.BelongsToSchedules && _style != BusinessClasses.CalendarStyle.Simple)
+            {
                 if (this.PropertiesRequested != null)
                     this.PropertiesRequested(sender, new EventArgs());
+            }
+            else if (this.Day.BelongsToSchedules && _style == BusinessClasses.CalendarStyle.Simple)
+            {
+                memoEditSimpleComment.BringToFront();
+                memoEditSimpleComment.Focus();
+                memoEditSimpleComment.SelectAll();
+            }
         }
 
         private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -120,6 +137,22 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         {
             if (this.DayCloned != null)
                 this.DayCloned(sender, new EventArgs());
+        }
+
+        private void memoEditSimpleComment_EditValueChanged(object sender, EventArgs e)
+        {
+            if (_allowToSave)
+            {
+                this.Day.Comment1 = memoEditSimpleComment.EditValue != null ? memoEditSimpleComment.EditValue.ToString() : string.Empty;
+                RefreshData();
+                if (this.DataChanged != null)
+                    this.DataChanged(sender, new EventArgs());
+            }
+        }
+
+        private void memoEditSimpleComment_Leave(object sender, EventArgs e)
+        {
+            xtraScrollableControl.BringToFront();
         }
     }
 

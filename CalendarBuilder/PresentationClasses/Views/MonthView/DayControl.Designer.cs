@@ -36,18 +36,18 @@
             this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.pnData = new System.Windows.Forms.Panel();
+            this.memoEditSimpleComment = new DevExpress.XtraEditors.MemoEdit();
             this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
             this.labelControlData = new DevExpress.XtraEditors.LabelControl();
             this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.popupMenu = new DevExpress.XtraBars.PopupMenu(this.components);
             this.contextMenuStrip.SuspendLayout();
             this.pnData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEditSimpleComment.Properties)).BeginInit();
             this.xtraScrollableControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu)).BeginInit();
             this.SuspendLayout();
             // 
             // laSmallDayCaption
@@ -122,13 +122,27 @@
             // 
             // pnData
             // 
-            this.pnData.BackColor = System.Drawing.Color.AliceBlue;
+            this.pnData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.pnData.Controls.Add(this.xtraScrollableControl);
+            this.pnData.Controls.Add(this.memoEditSimpleComment);
             this.pnData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnData.Location = new System.Drawing.Point(1, 22);
             this.pnData.Name = "pnData";
             this.pnData.Size = new System.Drawing.Size(274, 224);
             this.pnData.TabIndex = 1;
+            // 
+            // memoEditSimpleComment
+            // 
+            this.memoEditSimpleComment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.memoEditSimpleComment.Location = new System.Drawing.Point(0, 0);
+            this.memoEditSimpleComment.Name = "memoEditSimpleComment";
+            this.memoEditSimpleComment.Properties.Appearance.BackColor = System.Drawing.Color.AliceBlue;
+            this.memoEditSimpleComment.Properties.Appearance.Options.UseBackColor = true;
+            this.memoEditSimpleComment.Size = new System.Drawing.Size(274, 224);
+            this.memoEditSimpleComment.StyleController = this.styleController;
+            this.memoEditSimpleComment.TabIndex = 2;
+            this.memoEditSimpleComment.EditValueChanged += new System.EventHandler(this.memoEditSimpleComment_EditValueChanged);
+            this.memoEditSimpleComment.Leave += new System.EventHandler(this.memoEditSimpleComment_Leave);
             // 
             // xtraScrollableControl
             // 
@@ -191,14 +205,10 @@
             // 
             this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
             // 
-            // popupMenu
-            // 
-            this.popupMenu.Name = "popupMenu";
-            // 
             // DayControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.Controls.Add(this.pnData);
             this.Controls.Add(this.laSmallDayCaption);
             this.Cursor = System.Windows.Forms.Cursors.Default;
@@ -208,10 +218,10 @@
             this.Size = new System.Drawing.Size(276, 247);
             this.contextMenuStrip.ResumeLayout(false);
             this.pnData.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.memoEditSimpleComment.Properties)).EndInit();
             this.xtraScrollableControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -224,13 +234,12 @@
         private DevExpress.XtraEditors.LabelControl labelControlData;
         private DevExpress.XtraEditors.StyleController styleController;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        private DevExpress.XtraBars.PopupMenu popupMenu;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopy;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPaste;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDelete;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemClone;
         private System.Windows.Forms.PictureBox pbLogo;
-
+        private DevExpress.XtraEditors.MemoEdit memoEditSimpleComment;
     }
 }

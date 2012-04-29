@@ -4,14 +4,21 @@ namespace CalendarBuilder.PresentationClasses
 {
     public class CopyPasteManager
     {
-        private BusinessClasses.CalendarDay _source = null;
-
+        public BusinessClasses.CalendarDay Source { get; private set; }
+        
+        public Views.IView ParentView { get; private set; }
+        
         public event EventHandler<EventArgs> DayCopied;
         public event EventHandler<EventArgs> DayPasted;
         public event EventHandler<EventArgs> OnSetCopy;
         public event EventHandler<EventArgs> OnResetCopy;
         public event EventHandler<EventArgs> OnSetPaste;
         public event EventHandler<EventArgs> OnResetPaste;
+
+        public CopyPasteManager(Views.IView parentView)
+        {
+            this.ParentView = parentView;
+        }
 
         public void SetCopy()
         {
@@ -33,15 +40,15 @@ namespace CalendarBuilder.PresentationClasses
 
         public void ResetPaste()
         {
-            _source = null;
+            this.Source = null;
             if (this.OnResetPaste != null)
                 this.OnResetPaste(null, null);
         }
 
         public void Copy(BusinessClasses.CalendarDay source)
         {
-            _source = source;
-            if (_source != null)
+            this.Source = source;
+            if (this.Source != null)
             {
                 if (this.DayCopied != null)
                     this.DayCopied(null, null);
@@ -86,31 +93,31 @@ namespace CalendarBuilder.PresentationClasses
 
         public void Paste(BusinessClasses.CalendarDay[] destination, BusinessClasses.DayDataType dataToPaste = BusinessClasses.DayDataType.All)
         {
-            if (_source != null && destination != null)
+            if (this.Source != null && destination != null)
             {
                 foreach (BusinessClasses.CalendarDay day in destination)
                 {
                     switch (dataToPaste)
                     {
                         case BusinessClasses.DayDataType.Comment:
-                            day.Comment1 = _source.Comment1;
-                            day.Comment2 = _source.Comment2;
+                            day.Comment1 = this.Source.Comment1;
+                            day.Comment2 = this.Source.Comment2;
                             break;
                         case BusinessClasses.DayDataType.Digital:
-                            day.Digital = _source.Digital.Clone(day);
+                            day.Digital = this.Source.Digital.Clone(day);
                             break;
                         case BusinessClasses.DayDataType.Logo:
-                            day.Logo = _source.Logo.Clone(day);
+                            day.Logo = this.Source.Logo.Clone(day);
                             break;
                         case BusinessClasses.DayDataType.Newspaper:
-                            day.Newspaper = _source.Newspaper.Clone(day);
+                            day.Newspaper = this.Source.Newspaper.Clone(day);
                             break;
                         case BusinessClasses.DayDataType.All:
-                            day.Comment1 = _source.Comment1;
-                            day.Comment2 = _source.Comment2;
-                            day.Digital = _source.Digital.Clone(day);
-                            day.Newspaper = _source.Newspaper.Clone(day);
-                            day.Logo = _source.Logo.Clone(day);
+                            day.Comment1 = this.Source.Comment1;
+                            day.Comment2 = this.Source.Comment2;
+                            day.Digital = this.Source.Digital.Clone(day);
+                            day.Newspaper = this.Source.Newspaper.Clone(day);
+                            day.Logo = this.Source.Logo.Clone(day);
                             break;
                     }
                 }

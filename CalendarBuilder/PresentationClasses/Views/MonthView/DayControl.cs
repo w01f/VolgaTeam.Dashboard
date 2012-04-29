@@ -9,8 +9,9 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
     {
         private BusinessClasses.CalendarStyle _style;
         private bool _allowToSave = false;
-
-        public bool IsSelected { get; set; }
+        private bool _isSelected = false;
+        private bool _isCopySource = false;
+ 
         public BusinessClasses.CalendarDay Day { get; set; }
         public event EventHandler<SelectDayEventArgs> DaySelected;
         public event EventHandler<EventArgs> PropertiesRequested;
@@ -25,7 +26,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
             InitializeComponent();
             this.Day = day;
             laSmallDayCaption.Text = this.Day.Date.Day.ToString();
-            //RefreshData();
+            RefreshData();
 
             memoEditSimpleComment.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
             memoEditSimpleComment.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
@@ -64,15 +65,45 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
                 xtraScrollableControl.BackColor = Color.LightGray;
                 laSmallDayCaption.BackColor = Color.Gray;
             }
+            else if (_isCopySource)
+            {
+                xtraScrollableControl.BackColor = Color.LightGreen;
+                laSmallDayCaption.BackColor = Color.Green;
+            }
+            else
+            {
+                xtraScrollableControl.BackColor = Color.AliceBlue;
+                laSmallDayCaption.BackColor = Color.FromArgb(175, 210, 255);
+            }
             _allowToSave = true;
         }
 
         public void ChangeSelection(bool select)
         {
-            this.IsSelected = select;
+            _isSelected = select;
             this.Padding = new Padding(select ? 5 : 1);
-            this.BackColor = this.IsSelected ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.FromArgb(175, 210, 255);
+            this.BackColor = _isSelected ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.FromArgb(175, 210, 255);
             this.Refresh();
+        }
+
+        public void ChangeCopySource(bool isCopySource)
+        {
+            _isCopySource = isCopySource;
+            if (!this.Day.BelongsToSchedules)
+            {
+                xtraScrollableControl.BackColor = Color.LightGray;
+                laSmallDayCaption.BackColor = Color.Gray;
+            }
+            else if (_isCopySource)
+            {
+                xtraScrollableControl.BackColor = Color.FromArgb(192, 255, 192);
+                laSmallDayCaption.BackColor = Color.DarkSeaGreen;
+            }
+            else
+            {
+                xtraScrollableControl.BackColor = Color.AliceBlue;
+                laSmallDayCaption.BackColor = Color.FromArgb(175, 210, 255);
+            }
         }
 
         public void Decorate(BusinessClasses.CalendarStyle style)
@@ -111,7 +142,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
 
         private void contextMenuStrip_Opened(object sender, EventArgs e)
         {
-            if (!this.IsSelected)
+            if (!_isSelected)
                 Control_Click(null, null);
         }
 

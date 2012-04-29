@@ -15,6 +15,7 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
         private List<BusinessClasses.NewspaperProperties> _newspapers = new List<BusinessClasses.NewspaperProperties>();
         private List<BusinessClasses.CalendarDay> _dayComments = new List<BusinessClasses.CalendarDay>();
         private List<BusinessClasses.ImageSource> _logos = new List<BusinessClasses.ImageSource>();
+        private BusinessClasses.CalendarDay _copySource = null;
 
         public ICalendarControl Calendar { get; private set; }
         public CopyPasteManager CopyPasteManager { get; private set; }
@@ -29,7 +30,7 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
             this.Calendar = calendar;
 
             #region Copy-Paster Initialization
-            this.CopyPasteManager = new CopyPasteManager();
+            this.CopyPasteManager = new CopyPasteManager(this);
             this.CopyPasteManager.OnSetCopy += new EventHandler<EventArgs>((sender, e) =>
             {
                 CalendarVisualizer.Instance.CopyButtonItem.Enabled = true;
@@ -250,7 +251,13 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
         {
             BusinessClasses.CalendarDay selectedDay = GetSelectedDays().FirstOrDefault();
             if (selectedDay != null)
+            {
                 this.CopyPasteManager.Copy(selectedDay);
+                gridViewDigital.RefreshData();
+                gridViewNewspaper.RefreshData();
+                gridViewComment.RefreshData();
+                bandedGridViewLogo.RefreshData();
+            }
         }
 
         public void PasteDay()
@@ -336,8 +343,10 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
         {
             DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
             int[] selectedRowHandles = view.GetSelectedRows();
-            if (view != null && e.CellValue == null && !selectedRowHandles.Contains(e.RowHandle))
+            if (view != null && !selectedRowHandles.Contains(e.RowHandle) && e.CellValue == null)
                 e.Appearance.ForeColor = Color.Gray;
+            if (view != null && !selectedRowHandles.Contains(e.RowHandle) && this.CopyPasteManager.Source != null && _digitals[e.RowHandle].Day.Equals(this.CopyPasteManager.Source.Date))
+                e.Appearance.BackColor = Color.FromArgb(192, 255, 192);
         }
 
         private void gridView_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
@@ -811,8 +820,10 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
         {
             DevExpress.XtraGrid.Views.BandedGrid.BandedGridView view = sender as DevExpress.XtraGrid.Views.BandedGrid.BandedGridView;
             int[] selectedRowHandles = view.GetSelectedRows();
-            if (view != null && e.CellValue == null && !selectedRowHandles.Contains(e.RowHandle))
+            if (view != null && !selectedRowHandles.Contains(e.RowHandle) && e.CellValue == null)
                 e.Appearance.ForeColor = Color.Gray;
+            if (view != null && !selectedRowHandles.Contains(e.RowHandle) && this.CopyPasteManager.Source != null && _digitals[e.RowHandle].Day.Equals(this.CopyPasteManager.Source.Date))
+                e.Appearance.BackColor = Color.FromArgb(192, 255, 192);
         }
 
         private void bandedGridViewLogo_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)

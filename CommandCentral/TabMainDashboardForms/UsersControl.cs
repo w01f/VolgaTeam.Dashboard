@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -46,6 +47,7 @@ namespace CommandCentral.TabMainDashboard
                 DevComponents.DotNetBar.ButtonX button = new DevComponents.DotNetBar.ButtonX();
                 button.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
                 button.Text = sourceFile.Name.Replace(sourceFile.Extension, "").Replace("UL-", "");
+                button.TextColor = Color.Black;
                 button.Tag = sourceFile;
                 button.Click += new EventHandler(buttonXUsers_Click);
                 button.Height = 80;

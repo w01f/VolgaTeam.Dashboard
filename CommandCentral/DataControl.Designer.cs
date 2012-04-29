@@ -41,14 +41,15 @@
             this.buttonXSourceFile.Size = new System.Drawing.Size(159, 77);
             this.buttonXSourceFile.TabIndex = 0;
             this.buttonXSourceFile.Text = "Closing\r\nSummary";
+            this.buttonXSourceFile.TextColor = System.Drawing.Color.Black;
             this.buttonXSourceFile.Click += new System.EventHandler(this.buttonXSourceFile_Click);
             // 
-            // ClosingSummaryControl
+            // DataControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.Controls.Add(this.buttonXSourceFile);
-            this.Name = "ClosingSummaryControl";
+            this.Name = "DataControl";
             this.Size = new System.Drawing.Size(669, 463);
             this.ResumeLayout(false);
 

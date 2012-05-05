@@ -99,6 +99,8 @@ namespace CalendarBuilder.InteropClasses
         const UInt32 SWP_NOSENDCHANGING = 0x0400;  /* Don't send WM_WINDOWPOSCHANGING */
 
         public const UInt32 TOPMOST_FLAGS = SWP_NOMOVE | SWP_NOSIZE;
+
+        public const int CS_DROPSHADOW = 0x00020000;
         #endregion
 
         #region API imports
@@ -168,6 +170,9 @@ namespace CalendarBuilder.InteropClasses
 
         [DllImport("shlwapi.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
         public static extern int StrCmpLogicalW(String x, String y);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
         #endregion
 
         public static void MakeTopMost(IntPtr handle)

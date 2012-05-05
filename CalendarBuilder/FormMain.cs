@@ -96,6 +96,7 @@ namespace CalendarBuilder
             ribbonTabItemAdvancedCalendar.Enabled = enable;
             ribbonTabItemGraphicCalendar.Enabled = enable;
             ribbonTabItemSimpleCalendar.Enabled = enable;
+            ribbonTabItemTVCalendar.Enabled = false;
         }
 
         private void FormMain_Shown(object sender, EventArgs e)
@@ -187,11 +188,11 @@ namespace CalendarBuilder
             #endregion
 
             if (!string.IsNullOrEmpty(ConfigurationClasses.SettingsManager.Instance.SelectedWizard))
-                FormMain.Instance.Text = "Quick Calendar - " + ConfigurationClasses.SettingsManager.Instance.SelectedWizard + " - " + ConfigurationClasses.SettingsManager.Instance.Size;
+                FormMain.Instance.Text = "Ninja Calendar BETA - " + ConfigurationClasses.SettingsManager.Instance.SelectedWizard + " - " + ConfigurationClasses.SettingsManager.Instance.Size;
             ribbonControl.Enabled = false;
             using (ToolForms.FormProgress form = new ToolForms.FormProgress())
             {
-                form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Quick Calendar...";
+                form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Ninja Calendar...";
                 form.TopMost = true;
                 System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
                 {

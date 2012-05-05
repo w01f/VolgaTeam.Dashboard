@@ -130,6 +130,13 @@ namespace CalendarBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Color {
+            get {
+                object obj = ResourceManager.GetObject("Color", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap CopySmall {
             get {
                 object obj = ResourceManager.GetObject("CopySmall", resourceCulture);
@@ -214,6 +221,13 @@ namespace CalendarBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap FloaterNote {
+            get {
+                object obj = ResourceManager.GetObject("FloaterNote", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap GrayColor {
             get {
                 object obj = ResourceManager.GetObject("GrayColor", resourceCulture);
@@ -259,6 +273,13 @@ namespace CalendarBuilder.Properties {
         internal static System.Drawing.Bitmap HomeCalendar3 {
             get {
                 object obj = ResourceManager.GetObject("HomeCalendar3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap HomeCalendar4 {
+            get {
+                object obj = ResourceManager.GetObject("HomeCalendar4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -371,6 +371,12 @@ namespace CalendarBuilder.BusinessClasses
                 {
                     this.AdvancedCalendar.Deserialize(node);
                 }
+                else
+                {
+                    this.AdvancedCalendar.UpdateDaysCollection();
+                    this.AdvancedCalendar.UpdateMonthCollection();
+                    this.AdvancedCalendar.UpdateNotesCollection();
+                }
 
                 node = document.SelectSingleNode(@"/Schedule/GraphicCalendar");
                 if (node != null)
@@ -381,6 +387,7 @@ namespace CalendarBuilder.BusinessClasses
                 {
                     this.GraphicCalendar.UpdateDaysCollection();
                     this.GraphicCalendar.UpdateMonthCollection();
+                    this.GraphicCalendar.UpdateNotesCollection();
                 }
 
                 node = document.SelectSingleNode(@"/Schedule/SimpleCalendar");
@@ -392,6 +399,7 @@ namespace CalendarBuilder.BusinessClasses
                 {
                     this.SimpleCalendar.UpdateDaysCollection();
                     this.SimpleCalendar.UpdateMonthCollection();
+                    this.SimpleCalendar.UpdateNotesCollection();
                 }
             }
         }
@@ -445,12 +453,14 @@ namespace CalendarBuilder.BusinessClasses
         public Schedule Schedule { get; private set; }
         public List<CalendarMonth> Months { get; private set; }
         public List<CalendarDay> Days { get; private set; }
+        public List<CalendarNote> Notes { get; private set; }
 
         public Calendar(Schedule parent)
         {
             this.Schedule = parent;
             this.Months = new List<CalendarMonth>();
             this.Days = new List<CalendarDay>();
+            this.Notes = new List<CalendarNote>();
         }
 
         public string Serialize()
@@ -465,6 +475,11 @@ namespace CalendarBuilder.BusinessClasses
             foreach (CalendarMonth month in this.Months)
                 result.AppendLine(@"<Month>" + month.Serialize() + @"</Month>");
             result.AppendLine(@"</Months>");
+
+            result.AppendLine(@"<CalendarNotes>");
+            foreach (CalendarNote note in this.Notes)
+                result.AppendLine(@"<CalendarNote>" + note.Serialize() + @"</CalendarNote>");
+            result.AppendLine(@"</CalendarNotes>");
             return result.ToString();
         }
 
@@ -492,11 +507,22 @@ namespace CalendarBuilder.BusinessClasses
                             this.Months.Add(month);
                         }
                         break;
+                    case "CalendarNotes":
+                        this.Months.Clear();
+                        foreach (XmlNode noteNode in childNode.ChildNodes)
+                        {
+                            CalendarNote note = new CalendarNote(this);
+                            note.Deserialize(noteNode);
+                            if (note.StartDay != DateTime.MinValue && note.FinishDay != DateTime.MinValue)
+                                this.Notes.Add(note);
+                        }
+                        break;
                 }
             }
 
             UpdateDaysCollection();
             UpdateMonthCollection();
+            UpdateNotesCollection();
         }
 
         public void UpdateDaysCollection()
@@ -550,6 +576,66 @@ namespace CalendarBuilder.BusinessClasses
             }
             else
                 this.Months.Clear();
+        }
+
+        public void UpdateNotesCollection()
+        {
+            if (this.Schedule.FlightDateStart.HasValue && this.Schedule.FlightDateEnd.HasValue)
+            {
+                List<CalendarNote> _notesToDelete = new List<CalendarNote>();
+                foreach (CalendarNote note in this.Notes)
+                {
+                    if (note.FinishDay < this.Schedule.FlightDateStart.Value || note.StartDay > this.Schedule.FlightDateEnd.Value)
+                        _notesToDelete.Add(note);
+                    else if (note.StartDay < this.Schedule.FlightDateStart.Value)
+                        note.StartDay = this.Schedule.FlightDateStart.Value;
+                    else if (note.FinishDay > this.Schedule.FlightDateEnd.Value)
+                        note.FinishDay = this.Schedule.FlightDateEnd.Value;
+                    if (note.Length < 1)
+                        _notesToDelete.Add(note);
+                }
+                foreach (CalendarNote note in _notesToDelete)
+                    this.Notes.Remove(note);
+            }
+            else
+                this.Notes.Clear();
+            UpdateDayAndNoteLinks();
+        }
+
+        private void UpdateDayAndNoteLinks()
+        {
+            foreach (CalendarDay day in this.Days)
+                day.HasNotes = this.Notes.Where(x => day.Date >= x.StartDay && day.Date <= x.FinishDay).Count() > 0;
+        }
+
+        public void AddNote(DateRange range, string noteText = "")
+        {
+            CalendarNote newNote = new CalendarNote(this);
+            newNote.StartDay = range.StartDate;
+            newNote.FinishDay = range.FinishDate;
+            newNote.Note = noteText;
+            List<CalendarNote> _notesToDelete = new List<CalendarNote>();
+            foreach (CalendarNote note in this.Notes)
+            {
+                if (note.StartDay >= newNote.StartDay && note.FinishDay <= newNote.FinishDay)
+                    _notesToDelete.Add(note);
+                else if (note.StartDay <= newNote.FinishDay && note.FinishDay > newNote.FinishDay)
+                    note.StartDay = newNote.FinishDay.AddDays(1);
+                else if (note.FinishDay >= newNote.StartDay && note.StartDay < newNote.StartDay)
+                    note.FinishDay = newNote.StartDay.AddDays(-1);
+                if (note.Length < 1)
+                    _notesToDelete.Add(note);
+            }
+            foreach (CalendarNote note in _notesToDelete)
+                this.Notes.Remove(note);
+            this.Notes.Add(newNote);
+            UpdateDayAndNoteLinks();
+        }
+
+        public void DeleteNote(CalendarNote note)
+        {
+            this.Notes.Remove(note);
+            UpdateDayAndNoteLinks();
         }
     }
 
@@ -614,6 +700,7 @@ namespace CalendarBuilder.BusinessClasses
     {
         public DateTime Date { get; set; }
         public bool BelongsToSchedules { get; set; }
+        public bool HasNotes { get; set; }
         public DigitalProperties Digital { get; set; }
         public NewspaperProperties Newspaper { get; set; }
         public string Comment1 { get; set; }
@@ -753,6 +840,157 @@ namespace CalendarBuilder.BusinessClasses
                     this.Digital = new DigitalProperties(this);
                     this.Newspaper = new NewspaperProperties(this);
                     break;
+            }
+        }
+    }
+
+    public class CalendarNote
+    {
+        public Calendar Parent { get; private set; }
+        public DateTime StartDay { get; set; }
+        public DateTime FinishDay { get; set; }
+        public Color BackgroundColor { get; set; }
+        public string Note { get; set; }
+
+        #region Output Data
+        public float Top { get; set; }
+        public float Left { get; set; }
+        public float Right { get; set; }
+        public float Height { get; set; }
+        #endregion
+
+        public int Length
+        {
+            get
+            {
+                return (this.FinishDay - this.StartDay).Days;
+            }
+        }
+
+        public Color ForeColor
+        {
+            get
+            {
+                int d = 0;
+                // Counting the perceptive luminance - human eye favors green color... 
+                double a = 1 - (0.299 * this.BackgroundColor.R + 0.587 * this.BackgroundColor.G + 0.114 * this.BackgroundColor.B) / 255;
+
+                if (a < 0.5)
+                    d = 0; // bright colors - black font
+                else
+                    d = 255; // dark colors - white font
+
+                return Color.FromArgb(d, d, d);
+            }
+        }
+
+        public CalendarNote(Calendar parent)
+        {
+            this.Parent = parent;
+            this.BackgroundColor = Color.LemonChiffon;
+            this.Note = string.Empty;
+
+            this.Height = 25f;
+        }
+
+        public string Serialize()
+        {
+            StringBuilder result = new StringBuilder();
+
+            result.AppendLine(@"<StartDay>" + this.StartDay.ToString() + @"</StartDay>");
+            result.AppendLine(@"<FinishDay>" + this.FinishDay.ToString() + @"</FinishDay>");
+            result.AppendLine(@"<BackgroundColor>" + this.BackgroundColor.ToArgb().ToString() + @"</BackgroundColor>");
+            result.AppendLine(@"<Note>" + this.Note.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Note>");
+            return result.ToString();
+        }
+
+        public void Deserialize(XmlNode node)
+        {
+            DateTime tempDate;
+            int tempInt;
+
+            foreach (XmlNode childNode in node.ChildNodes)
+            {
+                switch (childNode.Name)
+                {
+                    case "StartDay":
+                        if (DateTime.TryParse(childNode.InnerText, out tempDate))
+                            this.StartDay = tempDate;
+                        break;
+                    case "FinishDay":
+                        if (DateTime.TryParse(childNode.InnerText, out tempDate))
+                            this.FinishDay = tempDate;
+                        break;
+                    case "BackgroundColor":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.BackgroundColor = Color.FromArgb(tempInt);
+                        break;
+                    case "Note":
+                        this.Note = childNode.InnerText;
+                        break;
+                }
+            }
+        }
+
+        public static DateRange[] CalculateDateRange(DateTime[] dates)
+        {
+            List<DateRange> result = new List<DateRange>();
+            List<DateTime> selectedDates = new List<DateTime>();
+            selectedDates.AddRange(dates);
+            selectedDates.Sort();
+
+            DateTime firstSelectedDate = selectedDates.FirstOrDefault();
+            DateTime lastSelectedDate = selectedDates.LastOrDefault();
+            //Get Sunday nearest to last selected sate
+            DateTime firstWeekday = firstSelectedDate;
+            while (firstWeekday.DayOfWeek != DayOfWeek.Sunday)
+                firstWeekday = firstWeekday.AddDays(-1);
+            //Get Saturday nearest to last selected sate
+            DateTime lastWeekday = firstSelectedDate;
+            while (lastWeekday.DayOfWeek != DayOfWeek.Saturday)
+                lastWeekday = lastWeekday.AddDays(1);
+
+            while (firstWeekday < lastSelectedDate)
+            {
+                DateRange range = new DateRange();
+                if (firstWeekday >= firstSelectedDate && lastWeekday <= lastSelectedDate)
+                {
+                    range.StartDate = firstWeekday;
+                    range.FinishDate = lastWeekday;
+                }
+                else if (firstWeekday <= firstSelectedDate && lastWeekday >= lastSelectedDate)
+                {
+                    range.StartDate = firstSelectedDate;
+                    range.FinishDate = lastSelectedDate;
+                }
+                else if (firstWeekday <= firstSelectedDate && lastWeekday >= firstSelectedDate)
+                {
+                    range.StartDate = firstSelectedDate;
+                    range.FinishDate = lastWeekday;
+                }
+                else if (firstWeekday <= lastSelectedDate && lastWeekday >= lastSelectedDate)
+                {
+                    range.StartDate = firstWeekday;
+                    range.FinishDate = lastSelectedDate;
+                }
+                result.Add(range);
+                firstWeekday = firstWeekday.AddDays(7);
+                lastWeekday = lastWeekday.AddDays(7);
+            }
+            return result.ToArray();
+        }
+    }
+
+    public class DateRange
+    {
+        public DateTime StartDate { get; set; }
+        public DateTime FinishDate { get; set; }
+
+        public string Range
+        {
+            get
+            {
+                return this.StartDate.ToString("MM/dd/yy") + "-" + this.FinishDate.ToString("MM/dd/yy");
             }
         }
     }
@@ -1002,6 +1240,8 @@ namespace CalendarBuilder.BusinessClasses
     public class CalendarOutputData
     {
         private List<string> _dayLogosPaths = new List<string>();
+
+        public List<CalendarNote> Notes { get; private set; }
 
         public CalendarMonth Parent { get; private set; }
 
@@ -1366,6 +1606,7 @@ namespace CalendarBuilder.BusinessClasses
         public CalendarOutputData(CalendarMonth parent)
         {
             this.Parent = parent;
+            this.Notes = new List<CalendarNote>();
 
             #region Basic
             this.ShowMonth = true;
@@ -1751,6 +1992,12 @@ namespace CalendarBuilder.BusinessClasses
                 else
                     _dayLogosPaths.Add(string.Empty);
             }
+        }
+
+        public void PrepareNotes()
+        {
+            this.Notes.Clear();
+            this.Notes.AddRange(this.Parent.Parent.Notes.Where(x => x.StartDay >= this.Parent.StartDate && x.FinishDay <= this.Parent.EndDate));
         }
     }
 

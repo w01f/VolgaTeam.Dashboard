@@ -107,17 +107,17 @@ namespace CalendarBuilder
 
         public static void ShowWarning(string text)
         {
-            MessageBox.Show(text, "Quick Calendar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            MessageBox.Show(text, "Ninja Calendar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         public static DialogResult ShowWarningQuestion(string text)
         {
-            return MessageBox.Show(text, "Quick Calendar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            return MessageBox.Show(text, "Ninja Calendar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
         }
 
         public static void ShowInformation(string text)
         {
-            MessageBox.Show(text, "Quick Calendar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(text, "Ninja Calendar", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private static void SetCulture()

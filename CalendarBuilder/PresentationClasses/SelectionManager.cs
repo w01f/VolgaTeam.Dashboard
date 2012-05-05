@@ -11,6 +11,8 @@ namespace CalendarBuilder.PresentationClasses
         public Views.IView ParentView { get; private set; }
         public List<BusinessClasses.CalendarDay> SelectedDays { get; private set; }
 
+        public event EventHandler<EventArgs> SelectionStateResponse;
+
         public SelectionManager(Views.IView parentView)
         {
             this.ParentView = parentView;
@@ -20,8 +22,14 @@ namespace CalendarBuilder.PresentationClasses
         public void ClearSelection()
         {
             foreach (BusinessClasses.CalendarDay day in this.SelectedDays)
-                this.ParentView.SelectDay(day,false);
+                this.ParentView.SelectDay(day, false);
             this.SelectedDays.Clear();
+        }
+
+        public void ProcessSelectionStateRequest()
+        {
+            if (this.SelectionStateResponse != null)
+                this.SelectionStateResponse(this, new EventArgs());
         }
 
         public void SelectDay(BusinessClasses.CalendarDay day, Keys modifierKeys)

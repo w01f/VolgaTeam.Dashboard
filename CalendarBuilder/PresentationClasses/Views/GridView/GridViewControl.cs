@@ -15,7 +15,6 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
         private List<BusinessClasses.NewspaperProperties> _newspapers = new List<BusinessClasses.NewspaperProperties>();
         private List<BusinessClasses.CalendarDay> _dayComments = new List<BusinessClasses.CalendarDay>();
         private List<BusinessClasses.ImageSource> _logos = new List<BusinessClasses.ImageSource>();
-        private BusinessClasses.CalendarDay _copySource = null;
 
         public ICalendarControl Calendar { get; private set; }
         public CopyPasteManager CopyPasteManager { get; private set; }
@@ -31,16 +30,13 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
 
             #region Copy-Paster Initialization
             this.CopyPasteManager = new CopyPasteManager(this);
-            this.CopyPasteManager.OnSetCopy += new EventHandler<EventArgs>((sender, e) =>
+            this.CopyPasteManager.OnSetCopyDay += new EventHandler<EventArgs>((sender, e) =>
             {
                 CalendarVisualizer.Instance.CopyButtonItem.Enabled = true;
                 toolStripMenuItemCopy.Enabled = true;
                 CalendarVisualizer.Instance.CloneButtonItem.Enabled = true;
                 toolStripMenuItemClone.Enabled = true;
                 toolStripMenuItemDelete.Enabled = true;
-            });
-            this.CopyPasteManager.OnSetPaste += new EventHandler<EventArgs>((sender, e) =>
-            {
             });
             this.CopyPasteManager.OnResetCopy += new EventHandler<EventArgs>((sender, e) =>
             {
@@ -216,7 +212,7 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
                 _allowToSave = true;
                 #endregion
 
-                this.CopyPasteManager.SetCopy();
+                this.CopyPasteManager.SetCopyDay();
             }
         }
 
@@ -252,7 +248,7 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
             BusinessClasses.CalendarDay selectedDay = GetSelectedDays().FirstOrDefault();
             if (selectedDay != null)
             {
-                this.CopyPasteManager.Copy(selectedDay);
+                this.CopyPasteManager.CopyDay(selectedDay);
                 gridViewDigital.RefreshData();
                 gridViewNewspaper.RefreshData();
                 gridViewComment.RefreshData();
@@ -275,7 +271,7 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
                 dataToPaste = BusinessClasses.DayDataType.All;
             BusinessClasses.CalendarDay[] selectedDays = GetSelectedDays();
             if (selectedDays != null)
-                this.CopyPasteManager.Paste(selectedDays, dataToPaste);
+                this.CopyPasteManager.PasteDay(selectedDays, dataToPaste);
         }
 
         public void CloneDay()
@@ -301,7 +297,7 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
                         clonedDays = this.Calendar.CalendarData.Days.Where(x => form.SelectedDates.Contains(x.Date)).ToArray();
                 }
                 if (clonedDays != null)
-                    this.CopyPasteManager.Clone(selectedDay, clonedDays, dataToClone);
+                    this.CopyPasteManager.CloneDay(selectedDay, clonedDays, dataToClone);
             }
         }
 
@@ -345,7 +341,7 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
             int[] selectedRowHandles = view.GetSelectedRows();
             if (view != null && !selectedRowHandles.Contains(e.RowHandle) && e.CellValue == null)
                 e.Appearance.ForeColor = Color.Gray;
-            if (view != null && !selectedRowHandles.Contains(e.RowHandle) && this.CopyPasteManager.Source != null && _digitals[e.RowHandle].Day.Equals(this.CopyPasteManager.Source.Date))
+            if (view != null && !selectedRowHandles.Contains(e.RowHandle) && this.CopyPasteManager.SourceDay != null && _digitals[e.RowHandle].Day.Equals(this.CopyPasteManager.SourceDay.Date))
                 e.Appearance.BackColor = Color.FromArgb(192, 255, 192);
         }
 
@@ -822,7 +818,7 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
             int[] selectedRowHandles = view.GetSelectedRows();
             if (view != null && !selectedRowHandles.Contains(e.RowHandle) && e.CellValue == null)
                 e.Appearance.ForeColor = Color.Gray;
-            if (view != null && !selectedRowHandles.Contains(e.RowHandle) && this.CopyPasteManager.Source != null && _digitals[e.RowHandle].Day.Equals(this.CopyPasteManager.Source.Date))
+            if (view != null && !selectedRowHandles.Contains(e.RowHandle) && this.CopyPasteManager.SourceDay != null && _digitals[e.RowHandle].Day.Equals(this.CopyPasteManager.SourceDay.Date))
                 e.Appearance.BackColor = Color.FromArgb(192, 255, 192);
         }
 

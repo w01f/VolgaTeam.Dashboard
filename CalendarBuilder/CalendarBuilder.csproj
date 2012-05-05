@@ -119,6 +119,12 @@
     <Compile Include="PresentationClasses\ICalendarControl.cs" />
     <Compile Include="PresentationClasses\SelectionManager.cs" />
     <Compile Include="PresentationClasses\Views\IView.cs" />
+    <Compile Include="PresentationClasses\Views\MonthView\CalendarNoteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Views\MonthView\CalendarNoteControl.Designer.cs">
+      <DependentUpon>CalendarNoteControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\Views\MonthView\MonthViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -221,6 +227,18 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\SlideInfo\SlideInfoWrapper.cs" />
+    <Compile Include="ToolForms\FormNoteColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormNoteColor.Designer.cs">
+      <DependentUpon>FormNoteColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormCloneNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormCloneNote.Designer.cs">
+      <DependentUpon>FormCloneNote.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormCloneDay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +298,9 @@
     <EmbeddedResource Include="PresentationClasses\DayProperties\LogoControl.resx">
       <DependentUpon>LogoControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Views\MonthView\CalendarNoteControl.resx">
+      <DependentUpon>CalendarNoteControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Views\MonthView\MonthViewControl.resx">
       <DependentUpon>MonthViewControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -327,6 +348,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormNoteColor.resx">
+      <DependentUpon>FormNoteColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormCloneNote.resx">
+      <DependentUpon>FormCloneNote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormCloneDay.resx">
       <DependentUpon>FormCloneDay.cs</DependentUpon>
@@ -600,6 +627,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BetaTest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FloaterNote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeCalendar4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -4,15 +4,18 @@ namespace CalendarBuilder.PresentationClasses
 {
     public class CopyPasteManager
     {
-        public BusinessClasses.CalendarDay Source { get; private set; }
+        public BusinessClasses.CalendarDay SourceDay { get; private set; }
+        public BusinessClasses.CalendarNote SourceNote { get; private set; }
         
         public Views.IView ParentView { get; private set; }
         
         public event EventHandler<EventArgs> DayCopied;
         public event EventHandler<EventArgs> DayPasted;
-        public event EventHandler<EventArgs> OnSetCopy;
+
+        public event EventHandler<EventArgs> NoteCopied;
+
+        public event EventHandler<EventArgs> OnSetCopyDay;
         public event EventHandler<EventArgs> OnResetCopy;
-        public event EventHandler<EventArgs> OnSetPaste;
         public event EventHandler<EventArgs> OnResetPaste;
 
         public CopyPasteManager(Views.IView parentView)
@@ -20,16 +23,10 @@ namespace CalendarBuilder.PresentationClasses
             this.ParentView = parentView;
         }
 
-        public void SetCopy()
+        public void SetCopyDay()
         {
-            if (this.OnSetCopy != null)
-                this.OnSetCopy(null, null);
-        }
-
-        public void SetPaste()
-        {
-            if (this.OnSetPaste != null)
-                this.OnSetPaste(null, null);
+            if (this.OnSetCopyDay != null)
+                this.OnSetCopyDay(null, null);
         }
 
         public void ResetCopy()
@@ -40,22 +37,23 @@ namespace CalendarBuilder.PresentationClasses
 
         public void ResetPaste()
         {
-            this.Source = null;
+            this.SourceDay = null;
+            this.SourceNote = null;
             if (this.OnResetPaste != null)
                 this.OnResetPaste(null, null);
         }
 
-        public void Copy(BusinessClasses.CalendarDay source)
+        public void CopyDay(BusinessClasses.CalendarDay source)
         {
-            this.Source = source;
-            if (this.Source != null)
+            this.SourceDay = source;
+            if (this.SourceDay != null)
             {
                 if (this.DayCopied != null)
                     this.DayCopied(null, null);
             }
         }
 
-        public void Clone(BusinessClasses.CalendarDay source, BusinessClasses.CalendarDay[] destination, BusinessClasses.DayDataType dataToPaste = BusinessClasses.DayDataType.All)
+        public void CloneDay(BusinessClasses.CalendarDay source, BusinessClasses.CalendarDay[] destination, BusinessClasses.DayDataType dataToPaste = BusinessClasses.DayDataType.All)
         {
             if (source != null && destination != null)
             {
@@ -91,33 +89,33 @@ namespace CalendarBuilder.PresentationClasses
             }
         }
 
-        public void Paste(BusinessClasses.CalendarDay[] destination, BusinessClasses.DayDataType dataToPaste = BusinessClasses.DayDataType.All)
+        public void PasteDay(BusinessClasses.CalendarDay[] destination, BusinessClasses.DayDataType dataToPaste = BusinessClasses.DayDataType.All)
         {
-            if (this.Source != null && destination != null)
+            if (this.SourceDay != null && destination != null)
             {
                 foreach (BusinessClasses.CalendarDay day in destination)
                 {
                     switch (dataToPaste)
                     {
                         case BusinessClasses.DayDataType.Comment:
-                            day.Comment1 = this.Source.Comment1;
-                            day.Comment2 = this.Source.Comment2;
+                            day.Comment1 = this.SourceDay.Comment1;
+                            day.Comment2 = this.SourceDay.Comment2;
                             break;
                         case BusinessClasses.DayDataType.Digital:
-                            day.Digital = this.Source.Digital.Clone(day);
+                            day.Digital = this.SourceDay.Digital.Clone(day);
                             break;
                         case BusinessClasses.DayDataType.Logo:
-                            day.Logo = this.Source.Logo.Clone(day);
+                            day.Logo = this.SourceDay.Logo.Clone(day);
                             break;
                         case BusinessClasses.DayDataType.Newspaper:
-                            day.Newspaper = this.Source.Newspaper.Clone(day);
+                            day.Newspaper = this.SourceDay.Newspaper.Clone(day);
                             break;
                         case BusinessClasses.DayDataType.All:
-                            day.Comment1 = this.Source.Comment1;
-                            day.Comment2 = this.Source.Comment2;
-                            day.Digital = this.Source.Digital.Clone(day);
-                            day.Newspaper = this.Source.Newspaper.Clone(day);
-                            day.Logo = this.Source.Logo.Clone(day);
+                            day.Comment1 = this.SourceDay.Comment1;
+                            day.Comment2 = this.SourceDay.Comment2;
+                            day.Digital = this.SourceDay.Digital.Clone(day);
+                            day.Newspaper = this.SourceDay.Newspaper.Clone(day);
+                            day.Logo = this.SourceDay.Logo.Clone(day);
                             break;
                     }
                 }
@@ -125,5 +123,27 @@ namespace CalendarBuilder.PresentationClasses
                     this.DayPasted(null, null);
             }
         }
+
+        public void CopyNote(BusinessClasses.CalendarNote source)
+        {
+            this.SourceNote = source;
+            if (this.SourceNote != null)
+            {
+                if (this.NoteCopied != null)
+                    this.NoteCopied(null, null);
+            }
+        }
+
+        //public void CloneNote(BusinessClasses.CalendarNote source, BusinessClasses.CalendarDay[] destination)
+        //{
+        //    if (source != null && destination != null)
+        //    {
+        //        foreach (BusinessClasses.CalendarDay day in destination)
+        //        {
+        //        }
+        //        if (this.DayPasted != null)
+        //            this.DayPasted(null, null);
+        //    }
+        //}
     }
 }

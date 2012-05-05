@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.IO;
@@ -23,6 +24,7 @@ namespace CalendarBuilder.InteropClasses
                         System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
                         {
                             monthOutputData.PrepareDayLogoPaths();
+                            monthOutputData.PrepareNotes();
                             int daysCount = monthOutputData.DayOutput.Length;
                             MessageFilter.Register();
 
@@ -226,12 +228,33 @@ namespace CalendarBuilder.InteropClasses
                                         }
                                     }
                                 }
+                                foreach (BusinessClasses.CalendarNote note in monthOutputData.Notes)
+                                {
+                                    PowerPoint.Shape noteShape = slide.Shapes.AddTextbox(Microsoft.Office.Core.MsoTextOrientation.msoTextOrientationHorizontal, note.Left, note.Top, note.Right - note.Left, note.Height);
+                                    noteShape.Fill.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
+                                    noteShape.Fill.Solid();
+                                    noteShape.Fill.ForeColor.RGB = Microsoft.VisualBasic.Information.RGB(note.BackgroundColor.R, note.BackgroundColor.G, note.BackgroundColor.B);
+                                    noteShape.Fill.Transparency = 0;
+
+                                    noteShape.Line.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
+                                    noteShape.Line.ForeColor.SchemeColor = PowerPoint.PpColorSchemeIndex.ppForeground;
+                                    noteShape.Line.BackColor.RGB = Microsoft.VisualBasic.Information.RGB(0, 0, 0); ;
+
+                                    noteShape.Shadow.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
+                                    noteShape.Shadow.Type = Microsoft.Office.Core.MsoShadowType.msoShadow14;
+
+                                    noteShape.TextFrame.TextRange.Font.Color.RGB = Microsoft.VisualBasic.Information.RGB(note.ForeColor.R, note.ForeColor.G, note.ForeColor.B);
+                                    noteShape.TextFrame.TextRange.Font.Name = "Calibri";
+                                    noteShape.TextFrame.TextRange.Font.Size = 8;
+                                    noteShape.TextFrame.TextRange.Text = note.Note;
+                                }
+
                             }
                             if (excelHelper.Connect())
                             {
                                 if (excelHelper.GetCalendarBackground(monthOutputData))
                                 {
-                                    PowerPoint.ShapeRange shapeRange = presentation.SlideMaster.Shapes.PasteSpecial(PowerPoint.PpPasteDataType.ppPasteMetafilePicture, Microsoft.Office.Core.MsoTriState.msoFalse, "", 0, "", Microsoft.Office.Core.MsoTriState.msoFalse);
+                                    PowerPoint.ShapeRange shapeRange = presentation.SlideMaster.Shapes.PasteSpecial(PowerPoint.PpPasteDataType.ppPasteEnhancedMetafile, Microsoft.Office.Core.MsoTriState.msoFalse, "", 0, "", Microsoft.Office.Core.MsoTriState.msoFalse);
                                     // Resize selection
                                     shapeRange.LockAspectRatio = Microsoft.Office.Core.MsoTriState.msoFalse;
                                     shapeRange.Height = presentation.SlideMaster.Height;
@@ -242,6 +265,8 @@ namespace CalendarBuilder.InteropClasses
                                 }
                                 excelHelper.Disconnect();
                             }
+
+
 
                             presentation.SlideMaster.Design.Name = monthOutputData.SlideMasterName;
                             AppendSlide(presentation, -1, destinationPresentation);
@@ -263,6 +288,25 @@ namespace CalendarBuilder.InteropClasses
         {
             try
             {
+                foreach (BusinessClasses.CalendarNote note in monthOutputData.Notes.Where(x => x.StartDay.Day == dayNumber))
+                {
+                    note.Left = shape.Left + 10;
+                    note.Top = shape.Top + 10;
+                    shape.Top += (note.Height + 15);
+                    shape.Height -= (note.Height + 15);
+                }
+                foreach (BusinessClasses.CalendarNote note in monthOutputData.Notes.Where(x => x.FinishDay.Day == dayNumber))
+                {
+                    note.Right = shape.Left + shape.Width - 10;
+                }
+
+                BusinessClasses.CalendarNote midleNote = monthOutputData.Notes.Where(x => x.StartDay.Day < dayNumber && x.FinishDay.Day >= dayNumber).FirstOrDefault();
+                if (midleNote != null)
+                {
+                    shape.Top += (midleNote.Height + 15);
+                    shape.Height -= (midleNote.Height + 15);
+                }
+
                 PowerPoint.Shape imageShape = null;
                 if (!string.IsNullOrEmpty(monthOutputData.DayLogoPaths[dayNumber - 1]))
                 {

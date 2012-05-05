@@ -36,7 +36,7 @@ namespace CalendarBuilder.ConfigurationClasses
         public string Orientation { get; set; }
         public bool SlideTemplateEnabled { get; set; }
 
-        public ViewSettings ViewSettings { get; private set; }
+        public LocalSettings ViewSettings { get; private set; }
 
         public string Size
         {
@@ -137,7 +137,7 @@ namespace CalendarBuilder.ConfigurationClasses
             if (!Directory.Exists(this.TempPath))
                 Directory.CreateDirectory(this.TempPath);
 
-            this.ViewSettings = new ViewSettings();
+            this.ViewSettings = new LocalSettings();
         }
 
         public static SettingsManager Instance

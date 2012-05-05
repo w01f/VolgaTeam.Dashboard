@@ -34,25 +34,25 @@
             this.pnCalendarSmall = new System.Windows.Forms.Panel();
             this.pbCalendarSmall = new System.Windows.Forms.PictureBox();
             this.pnLeft = new System.Windows.Forms.Panel();
+            this.pnOnlineSmall = new System.Windows.Forms.Panel();
+            this.pbOnlineSmall = new System.Windows.Forms.PictureBox();
             this.pnNewspaperSmall = new System.Windows.Forms.Panel();
             this.pbNewspaperSmall = new System.Windows.Forms.PictureBox();
             this.pnRight = new System.Windows.Forms.Panel();
             this.pnTVSmall = new System.Windows.Forms.Panel();
             this.pbTVSmall = new System.Windows.Forms.PictureBox();
-            this.pnOnlineSmall = new System.Windows.Forms.Panel();
-            this.pbOnlineSmall = new System.Windows.Forms.PictureBox();
             this.pnMobileSmall.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMobileSmall)).BeginInit();
             this.pnCalendarSmall.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCalendarSmall)).BeginInit();
             this.pnLeft.SuspendLayout();
+            this.pnOnlineSmall.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOnlineSmall)).BeginInit();
             this.pnNewspaperSmall.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbNewspaperSmall)).BeginInit();
             this.pnRight.SuspendLayout();
             this.pnTVSmall.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTVSmall)).BeginInit();
-            this.pnOnlineSmall.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOnlineSmall)).BeginInit();
             this.SuspendLayout();
             // 
             // defaultLookAndFeel
@@ -65,16 +65,16 @@
             this.pnMobileSmall.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnMobileSmall.Location = new System.Drawing.Point(0, 147);
             this.pnMobileSmall.Name = "pnMobileSmall";
-            this.pnMobileSmall.Size = new System.Drawing.Size(426, 147);
+            this.pnMobileSmall.Size = new System.Drawing.Size(368, 147);
             this.pnMobileSmall.TabIndex = 26;
             // 
             // pbMobileSmall
             // 
             this.pbMobileSmall.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbMobileSmall.Image = global::NewBizWizForm.Properties.Resources.HomeMobileSmall;
-            this.pbMobileSmall.Location = new System.Drawing.Point(37, 28);
+            this.pbMobileSmall.Location = new System.Drawing.Point(3, 28);
             this.pbMobileSmall.Name = "pbMobileSmall";
-            this.pbMobileSmall.Size = new System.Drawing.Size(701, 90);
+            this.pbMobileSmall.Size = new System.Drawing.Size(372, 90);
             this.pbMobileSmall.TabIndex = 2;
             this.pbMobileSmall.TabStop = false;
             this.pbMobileSmall.Click += new System.EventHandler(this.pbMobile_Click);
@@ -87,16 +87,16 @@
             this.pnCalendarSmall.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnCalendarSmall.Location = new System.Drawing.Point(0, 294);
             this.pnCalendarSmall.Name = "pnCalendarSmall";
-            this.pnCalendarSmall.Size = new System.Drawing.Size(450, 147);
+            this.pnCalendarSmall.Size = new System.Drawing.Size(508, 147);
             this.pnCalendarSmall.TabIndex = 23;
             // 
             // pbCalendarSmall
             // 
             this.pbCalendarSmall.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbCalendarSmall.Image = global::NewBizWizForm.Properties.Resources.HomeCalendarSmall;
-            this.pbCalendarSmall.Location = new System.Drawing.Point(37, 28);
+            this.pbCalendarSmall.Location = new System.Drawing.Point(12, 28);
             this.pbCalendarSmall.Name = "pbCalendarSmall";
-            this.pbCalendarSmall.Size = new System.Drawing.Size(701, 90);
+            this.pbCalendarSmall.Size = new System.Drawing.Size(497, 90);
             this.pbCalendarSmall.TabIndex = 2;
             this.pbCalendarSmall.TabStop = false;
             this.pbCalendarSmall.Click += new System.EventHandler(this.pbCalendar_Click);
@@ -111,8 +111,30 @@
             this.pnLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnLeft.Location = new System.Drawing.Point(0, 0);
             this.pnLeft.Name = "pnLeft";
-            this.pnLeft.Size = new System.Drawing.Size(450, 458);
+            this.pnLeft.Size = new System.Drawing.Size(508, 458);
             this.pnLeft.TabIndex = 27;
+            // 
+            // pnOnlineSmall
+            // 
+            this.pnOnlineSmall.Controls.Add(this.pbOnlineSmall);
+            this.pnOnlineSmall.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnOnlineSmall.Location = new System.Drawing.Point(0, 147);
+            this.pnOnlineSmall.Name = "pnOnlineSmall";
+            this.pnOnlineSmall.Size = new System.Drawing.Size(508, 147);
+            this.pnOnlineSmall.TabIndex = 26;
+            // 
+            // pbOnlineSmall
+            // 
+            this.pbOnlineSmall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbOnlineSmall.Image = global::NewBizWizForm.Properties.Resources.HomeOnlineSmall;
+            this.pbOnlineSmall.Location = new System.Drawing.Point(4, 28);
+            this.pbOnlineSmall.Name = "pbOnlineSmall";
+            this.pbOnlineSmall.Size = new System.Drawing.Size(497, 90);
+            this.pbOnlineSmall.TabIndex = 2;
+            this.pbOnlineSmall.TabStop = false;
+            this.pbOnlineSmall.Click += new System.EventHandler(this.pbOnline_Click);
+            this.pbOnlineSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbOnlineSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
             // pnNewspaperSmall
             // 
@@ -120,16 +142,16 @@
             this.pnNewspaperSmall.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnNewspaperSmall.Location = new System.Drawing.Point(0, 0);
             this.pnNewspaperSmall.Name = "pnNewspaperSmall";
-            this.pnNewspaperSmall.Size = new System.Drawing.Size(450, 147);
+            this.pnNewspaperSmall.Size = new System.Drawing.Size(508, 147);
             this.pnNewspaperSmall.TabIndex = 24;
             // 
             // pbNewspaperSmall
             // 
             this.pbNewspaperSmall.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbNewspaperSmall.Image = global::NewBizWizForm.Properties.Resources.HomeNewspaperSmall;
-            this.pbNewspaperSmall.Location = new System.Drawing.Point(37, 28);
+            this.pbNewspaperSmall.Location = new System.Drawing.Point(13, 28);
             this.pbNewspaperSmall.Name = "pbNewspaperSmall";
-            this.pbNewspaperSmall.Size = new System.Drawing.Size(701, 90);
+            this.pbNewspaperSmall.Size = new System.Drawing.Size(497, 90);
             this.pbNewspaperSmall.TabIndex = 2;
             this.pbNewspaperSmall.TabStop = false;
             this.pbNewspaperSmall.Click += new System.EventHandler(this.pbNewspaper_Click);
@@ -141,9 +163,9 @@
             this.pnRight.Controls.Add(this.pnMobileSmall);
             this.pnRight.Controls.Add(this.pnTVSmall);
             this.pnRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnRight.Location = new System.Drawing.Point(450, 0);
+            this.pnRight.Location = new System.Drawing.Point(508, 0);
             this.pnRight.Name = "pnRight";
-            this.pnRight.Size = new System.Drawing.Size(426, 458);
+            this.pnRight.Size = new System.Drawing.Size(368, 458);
             this.pnRight.TabIndex = 28;
             // 
             // pnTVSmall
@@ -152,43 +174,21 @@
             this.pnTVSmall.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnTVSmall.Location = new System.Drawing.Point(0, 0);
             this.pnTVSmall.Name = "pnTVSmall";
-            this.pnTVSmall.Size = new System.Drawing.Size(426, 147);
+            this.pnTVSmall.Size = new System.Drawing.Size(368, 147);
             this.pnTVSmall.TabIndex = 27;
             // 
             // pbTVSmall
             // 
             this.pbTVSmall.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbTVSmall.Image = global::NewBizWizForm.Properties.Resources.HomeTVSmall;
-            this.pbTVSmall.Location = new System.Drawing.Point(37, 28);
+            this.pbTVSmall.Location = new System.Drawing.Point(1, 28);
             this.pbTVSmall.Name = "pbTVSmall";
-            this.pbTVSmall.Size = new System.Drawing.Size(701, 90);
+            this.pbTVSmall.Size = new System.Drawing.Size(372, 90);
             this.pbTVSmall.TabIndex = 2;
             this.pbTVSmall.TabStop = false;
             this.pbTVSmall.Click += new System.EventHandler(this.pbTV_Click);
             this.pbTVSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pbTVSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pnOnlineSmall
-            // 
-            this.pnOnlineSmall.Controls.Add(this.pbOnlineSmall);
-            this.pnOnlineSmall.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnOnlineSmall.Location = new System.Drawing.Point(0, 147);
-            this.pnOnlineSmall.Name = "pnOnlineSmall";
-            this.pnOnlineSmall.Size = new System.Drawing.Size(450, 147);
-            this.pnOnlineSmall.TabIndex = 26;
-            // 
-            // pbOnlineSmall
-            // 
-            this.pbOnlineSmall.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbOnlineSmall.Image = global::NewBizWizForm.Properties.Resources.HomeOnlineSmall;
-            this.pbOnlineSmall.Location = new System.Drawing.Point(37, 28);
-            this.pbOnlineSmall.Name = "pbOnlineSmall";
-            this.pbOnlineSmall.Size = new System.Drawing.Size(701, 90);
-            this.pbOnlineSmall.TabIndex = 2;
-            this.pbOnlineSmall.TabStop = false;
-            this.pbOnlineSmall.Click += new System.EventHandler(this.pbOnline_Click);
-            this.pbOnlineSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pbOnlineSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
             // DashboardCode17Control
             // 
@@ -204,13 +204,13 @@
             this.pnCalendarSmall.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbCalendarSmall)).EndInit();
             this.pnLeft.ResumeLayout(false);
+            this.pnOnlineSmall.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbOnlineSmall)).EndInit();
             this.pnNewspaperSmall.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbNewspaperSmall)).EndInit();
             this.pnRight.ResumeLayout(false);
             this.pnTVSmall.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbTVSmall)).EndInit();
-            this.pnOnlineSmall.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbOnlineSmall)).EndInit();
             this.ResumeLayout(false);
 
         }

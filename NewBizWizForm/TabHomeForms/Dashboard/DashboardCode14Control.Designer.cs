@@ -62,7 +62,7 @@
             this.pbRadio.Image = global::NewBizWizForm.Properties.Resources.HomeRadio;
             this.pbRadio.Location = new System.Drawing.Point(37, 12);
             this.pbRadio.Name = "pbRadio";
-            this.pbRadio.Size = new System.Drawing.Size(624, 127);
+            this.pbRadio.Size = new System.Drawing.Size(670, 127);
             this.pbRadio.TabIndex = 2;
             this.pbRadio.TabStop = false;
             this.pbRadio.Click += new System.EventHandler(this.pbRadio_Click);
@@ -84,7 +84,7 @@
             this.pbDigital.Image = global::NewBizWizForm.Properties.Resources.HomeDigital;
             this.pbDigital.Location = new System.Drawing.Point(37, 12);
             this.pbDigital.Name = "pbDigital";
-            this.pbDigital.Size = new System.Drawing.Size(624, 127);
+            this.pbDigital.Size = new System.Drawing.Size(670, 127);
             this.pbDigital.TabIndex = 3;
             this.pbDigital.TabStop = false;
             this.pbDigital.Click += new System.EventHandler(this.pbDigital_Click);
@@ -106,7 +106,7 @@
             this.pbCalendar.Image = global::NewBizWizForm.Properties.Resources.HomeCalendar;
             this.pbCalendar.Location = new System.Drawing.Point(37, 12);
             this.pbCalendar.Name = "pbCalendar";
-            this.pbCalendar.Size = new System.Drawing.Size(624, 127);
+            this.pbCalendar.Size = new System.Drawing.Size(670, 127);
             this.pbCalendar.TabIndex = 4;
             this.pbCalendar.TabStop = false;
             this.pbCalendar.Click += new System.EventHandler(this.pbCalendar_Click);

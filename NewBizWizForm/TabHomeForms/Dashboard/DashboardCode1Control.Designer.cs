@@ -82,7 +82,7 @@
             // 
             this.pbOnline.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbOnline.Image = global::NewBizWizForm.Properties.Resources.HomeOnline;
-            this.pbOnline.Location = new System.Drawing.Point(37, 12);
+            this.pbOnline.Location = new System.Drawing.Point(25, 12);
             this.pbOnline.Name = "pbOnline";
             this.pbOnline.Size = new System.Drawing.Size(624, 127);
             this.pbOnline.TabIndex = 3;

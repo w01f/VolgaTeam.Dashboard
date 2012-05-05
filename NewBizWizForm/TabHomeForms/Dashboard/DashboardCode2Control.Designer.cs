@@ -60,7 +60,7 @@
             // 
             this.pbOnline.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbOnline.Image = global::NewBizWizForm.Properties.Resources.HomeOnline;
-            this.pbOnline.Location = new System.Drawing.Point(37, 12);
+            this.pbOnline.Location = new System.Drawing.Point(25, 12);
             this.pbOnline.Name = "pbOnline";
             this.pbOnline.Size = new System.Drawing.Size(555, 127);
             this.pbOnline.TabIndex = 3;
@@ -82,7 +82,7 @@
             // 
             this.pbMobile.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbMobile.Image = global::NewBizWizForm.Properties.Resources.HomeMobile;
-            this.pbMobile.Location = new System.Drawing.Point(37, 12);
+            this.pbMobile.Location = new System.Drawing.Point(35, 12);
             this.pbMobile.Name = "pbMobile";
             this.pbMobile.Size = new System.Drawing.Size(555, 127);
             this.pbMobile.TabIndex = 4;

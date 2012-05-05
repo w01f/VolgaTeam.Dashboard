@@ -56,7 +56,7 @@
             // 
             this.pbMobileBig.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbMobileBig.Image = global::NewBizWizForm.Properties.Resources.HomeMobileBig;
-            this.pbMobileBig.Location = new System.Drawing.Point(20, 17);
+            this.pbMobileBig.Location = new System.Drawing.Point(30, 17);
             this.pbMobileBig.Name = "pbMobileBig";
             this.pbMobileBig.Size = new System.Drawing.Size(771, 197);
             this.pbMobileBig.TabIndex = 4;

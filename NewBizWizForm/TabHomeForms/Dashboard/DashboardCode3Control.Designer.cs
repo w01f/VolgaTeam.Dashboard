@@ -60,7 +60,7 @@
             // 
             this.pbOnline.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbOnline.Image = global::NewBizWizForm.Properties.Resources.HomeOnline;
-            this.pbOnline.Location = new System.Drawing.Point(37, 12);
+            this.pbOnline.Location = new System.Drawing.Point(27, 12);
             this.pbOnline.Name = "pbOnline";
             this.pbOnline.Size = new System.Drawing.Size(451, 127);
             this.pbOnline.TabIndex = 3;
@@ -104,7 +104,7 @@
             // 
             this.pbRadio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbRadio.Image = global::NewBizWizForm.Properties.Resources.HomeRadio;
-            this.pbRadio.Location = new System.Drawing.Point(37, 12);
+            this.pbRadio.Location = new System.Drawing.Point(39, 12);
             this.pbRadio.Name = "pbRadio";
             this.pbRadio.Size = new System.Drawing.Size(451, 127);
             this.pbRadio.TabIndex = 4;

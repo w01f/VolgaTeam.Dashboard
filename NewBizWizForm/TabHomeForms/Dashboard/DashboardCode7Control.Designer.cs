@@ -30,33 +30,33 @@
         {
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             this.pnMobileSmall = new System.Windows.Forms.Panel();
+            this.pbMobileSmall = new System.Windows.Forms.PictureBox();
             this.pnOnlineSmall = new System.Windows.Forms.Panel();
+            this.pbOnlineSmall = new System.Windows.Forms.PictureBox();
             this.pnTVSmall = new System.Windows.Forms.Panel();
+            this.pbTVSmall = new System.Windows.Forms.PictureBox();
             this.pnRadioSmall = new System.Windows.Forms.Panel();
+            this.pbRadioSmall = new System.Windows.Forms.PictureBox();
             this.pnLeft = new System.Windows.Forms.Panel();
             this.pnNewspaperSmall = new System.Windows.Forms.Panel();
+            this.pbNewspaperSmall = new System.Windows.Forms.PictureBox();
             this.pnRight = new System.Windows.Forms.Panel();
             this.pnCableSmall = new System.Windows.Forms.Panel();
-            this.pbMobileSmall = new System.Windows.Forms.PictureBox();
-            this.pbOnlineSmall = new System.Windows.Forms.PictureBox();
             this.pbCableSmall = new System.Windows.Forms.PictureBox();
-            this.pbRadioSmall = new System.Windows.Forms.PictureBox();
-            this.pbTVSmall = new System.Windows.Forms.PictureBox();
-            this.pbNewspaperSmall = new System.Windows.Forms.PictureBox();
             this.pnMobileSmall.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMobileSmall)).BeginInit();
             this.pnOnlineSmall.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOnlineSmall)).BeginInit();
             this.pnTVSmall.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTVSmall)).BeginInit();
             this.pnRadioSmall.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRadioSmall)).BeginInit();
             this.pnLeft.SuspendLayout();
             this.pnNewspaperSmall.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewspaperSmall)).BeginInit();
             this.pnRight.SuspendLayout();
             this.pnCableSmall.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMobileSmall)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOnlineSmall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCableSmall)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRadioSmall)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTVSmall)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewspaperSmall)).BeginInit();
             this.SuspendLayout();
             // 
             // defaultLookAndFeel
@@ -72,6 +72,19 @@
             this.pnMobileSmall.Size = new System.Drawing.Size(426, 147);
             this.pnMobileSmall.TabIndex = 26;
             // 
+            // pbMobileSmall
+            // 
+            this.pbMobileSmall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbMobileSmall.Image = global::NewBizWizForm.Properties.Resources.HomeMobileSmall;
+            this.pbMobileSmall.Location = new System.Drawing.Point(37, 28);
+            this.pbMobileSmall.Name = "pbMobileSmall";
+            this.pbMobileSmall.Size = new System.Drawing.Size(362, 90);
+            this.pbMobileSmall.TabIndex = 2;
+            this.pbMobileSmall.TabStop = false;
+            this.pbMobileSmall.Click += new System.EventHandler(this.pbMobile_Click);
+            this.pbMobileSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbMobileSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
             // pnOnlineSmall
             // 
             this.pnOnlineSmall.Controls.Add(this.pbOnlineSmall);
@@ -80,6 +93,19 @@
             this.pnOnlineSmall.Name = "pnOnlineSmall";
             this.pnOnlineSmall.Size = new System.Drawing.Size(426, 147);
             this.pnOnlineSmall.TabIndex = 25;
+            // 
+            // pbOnlineSmall
+            // 
+            this.pbOnlineSmall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbOnlineSmall.Image = global::NewBizWizForm.Properties.Resources.HomeOnlineSmall;
+            this.pbOnlineSmall.Location = new System.Drawing.Point(27, 28);
+            this.pbOnlineSmall.Name = "pbOnlineSmall";
+            this.pbOnlineSmall.Size = new System.Drawing.Size(362, 90);
+            this.pbOnlineSmall.TabIndex = 2;
+            this.pbOnlineSmall.TabStop = false;
+            this.pbOnlineSmall.Click += new System.EventHandler(this.pbOnline_Click);
+            this.pbOnlineSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbOnlineSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
             // pnTVSmall
             // 
@@ -90,6 +116,19 @@
             this.pnTVSmall.Size = new System.Drawing.Size(450, 147);
             this.pnTVSmall.TabIndex = 24;
             // 
+            // pbTVSmall
+            // 
+            this.pbTVSmall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbTVSmall.Image = global::NewBizWizForm.Properties.Resources.HomeTVSmall;
+            this.pbTVSmall.Location = new System.Drawing.Point(37, 28);
+            this.pbTVSmall.Name = "pbTVSmall";
+            this.pbTVSmall.Size = new System.Drawing.Size(701, 90);
+            this.pbTVSmall.TabIndex = 2;
+            this.pbTVSmall.TabStop = false;
+            this.pbTVSmall.Click += new System.EventHandler(this.pbTV_Click);
+            this.pbTVSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbTVSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
             // pnRadioSmall
             // 
             this.pnRadioSmall.Controls.Add(this.pbRadioSmall);
@@ -98,6 +137,19 @@
             this.pnRadioSmall.Name = "pnRadioSmall";
             this.pnRadioSmall.Size = new System.Drawing.Size(450, 147);
             this.pnRadioSmall.TabIndex = 23;
+            // 
+            // pbRadioSmall
+            // 
+            this.pbRadioSmall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbRadioSmall.Image = global::NewBizWizForm.Properties.Resources.HomeRadioSmall;
+            this.pbRadioSmall.Location = new System.Drawing.Point(37, 28);
+            this.pbRadioSmall.Name = "pbRadioSmall";
+            this.pbRadioSmall.Size = new System.Drawing.Size(701, 90);
+            this.pbRadioSmall.TabIndex = 2;
+            this.pbRadioSmall.TabStop = false;
+            this.pbRadioSmall.Click += new System.EventHandler(this.pbRadio_Click);
+            this.pbRadioSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbRadioSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
             // pnLeft
             // 
@@ -119,6 +171,19 @@
             this.pnNewspaperSmall.Size = new System.Drawing.Size(450, 147);
             this.pnNewspaperSmall.TabIndex = 24;
             // 
+            // pbNewspaperSmall
+            // 
+            this.pbNewspaperSmall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbNewspaperSmall.Image = global::NewBizWizForm.Properties.Resources.HomeNewspaperSmall;
+            this.pbNewspaperSmall.Location = new System.Drawing.Point(34, 28);
+            this.pbNewspaperSmall.Name = "pbNewspaperSmall";
+            this.pbNewspaperSmall.Size = new System.Drawing.Size(701, 90);
+            this.pbNewspaperSmall.TabIndex = 2;
+            this.pbNewspaperSmall.TabStop = false;
+            this.pbNewspaperSmall.Click += new System.EventHandler(this.pbNewspaper_Click);
+            this.pbNewspaperSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbNewspaperSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
             // pnRight
             // 
             this.pnRight.Controls.Add(this.pnMobileSmall);
@@ -139,83 +204,18 @@
             this.pnCableSmall.Size = new System.Drawing.Size(426, 147);
             this.pnCableSmall.TabIndex = 26;
             // 
-            // pbMobileSmall
-            // 
-            this.pbMobileSmall.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbMobileSmall.Image = global::NewBizWizForm.Properties.Resources.HomeMobileSmall;
-            this.pbMobileSmall.Location = new System.Drawing.Point(37, 28);
-            this.pbMobileSmall.Name = "pbMobileSmall";
-            this.pbMobileSmall.Size = new System.Drawing.Size(701, 90);
-            this.pbMobileSmall.TabIndex = 2;
-            this.pbMobileSmall.TabStop = false;
-            this.pbMobileSmall.Click += new System.EventHandler(this.pbMobile_Click);
-            this.pbMobileSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pbMobileSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pbOnlineSmall
-            // 
-            this.pbOnlineSmall.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbOnlineSmall.Image = global::NewBizWizForm.Properties.Resources.HomeOnlineSmall;
-            this.pbOnlineSmall.Location = new System.Drawing.Point(37, 28);
-            this.pbOnlineSmall.Name = "pbOnlineSmall";
-            this.pbOnlineSmall.Size = new System.Drawing.Size(701, 90);
-            this.pbOnlineSmall.TabIndex = 2;
-            this.pbOnlineSmall.TabStop = false;
-            this.pbOnlineSmall.Click += new System.EventHandler(this.pbOnline_Click);
-            this.pbOnlineSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pbOnlineSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
             // pbCableSmall
             // 
             this.pbCableSmall.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbCableSmall.Image = global::NewBizWizForm.Properties.Resources.HomeCableSmall;
-            this.pbCableSmall.Location = new System.Drawing.Point(37, 28);
+            this.pbCableSmall.Location = new System.Drawing.Point(45, 28);
             this.pbCableSmall.Name = "pbCableSmall";
-            this.pbCableSmall.Size = new System.Drawing.Size(701, 90);
+            this.pbCableSmall.Size = new System.Drawing.Size(362, 90);
             this.pbCableSmall.TabIndex = 2;
             this.pbCableSmall.TabStop = false;
             this.pbCableSmall.Click += new System.EventHandler(this.pbCable_Click);
             this.pbCableSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pbCableSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pbRadioSmall
-            // 
-            this.pbRadioSmall.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbRadioSmall.Image = global::NewBizWizForm.Properties.Resources.HomeRadioSmall;
-            this.pbRadioSmall.Location = new System.Drawing.Point(37, 28);
-            this.pbRadioSmall.Name = "pbRadioSmall";
-            this.pbRadioSmall.Size = new System.Drawing.Size(701, 90);
-            this.pbRadioSmall.TabIndex = 2;
-            this.pbRadioSmall.TabStop = false;
-            this.pbRadioSmall.Click += new System.EventHandler(this.pbRadio_Click);
-            this.pbRadioSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pbRadioSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pbTVSmall
-            // 
-            this.pbTVSmall.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbTVSmall.Image = global::NewBizWizForm.Properties.Resources.HomeTVSmall;
-            this.pbTVSmall.Location = new System.Drawing.Point(37, 28);
-            this.pbTVSmall.Name = "pbTVSmall";
-            this.pbTVSmall.Size = new System.Drawing.Size(701, 90);
-            this.pbTVSmall.TabIndex = 2;
-            this.pbTVSmall.TabStop = false;
-            this.pbTVSmall.Click += new System.EventHandler(this.pbTV_Click);
-            this.pbTVSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pbTVSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pbNewspaperSmall
-            // 
-            this.pbNewspaperSmall.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbNewspaperSmall.Image = global::NewBizWizForm.Properties.Resources.HomeNewspaperSmall;
-            this.pbNewspaperSmall.Location = new System.Drawing.Point(37, 28);
-            this.pbNewspaperSmall.Name = "pbNewspaperSmall";
-            this.pbNewspaperSmall.Size = new System.Drawing.Size(701, 90);
-            this.pbNewspaperSmall.TabIndex = 2;
-            this.pbNewspaperSmall.TabStop = false;
-            this.pbNewspaperSmall.Click += new System.EventHandler(this.pbNewspaper_Click);
-            this.pbNewspaperSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pbNewspaperSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
             // DashboardCode7Control
             // 
@@ -227,19 +227,19 @@
             this.Name = "DashboardCode7Control";
             this.Size = new System.Drawing.Size(876, 458);
             this.pnMobileSmall.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbMobileSmall)).EndInit();
             this.pnOnlineSmall.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbOnlineSmall)).EndInit();
             this.pnTVSmall.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbTVSmall)).EndInit();
             this.pnRadioSmall.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbRadioSmall)).EndInit();
             this.pnLeft.ResumeLayout(false);
             this.pnNewspaperSmall.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbNewspaperSmall)).EndInit();
             this.pnRight.ResumeLayout(false);
             this.pnCableSmall.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbMobileSmall)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOnlineSmall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCableSmall)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRadioSmall)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTVSmall)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewspaperSmall)).EndInit();
             this.ResumeLayout(false);
 
         }

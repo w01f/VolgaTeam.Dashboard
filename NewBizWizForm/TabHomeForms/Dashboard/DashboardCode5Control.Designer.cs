@@ -30,21 +30,21 @@
         {
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             this.pnMobileSmall = new System.Windows.Forms.Panel();
-            this.pnOnlineSmall = new System.Windows.Forms.Panel();
-            this.pnTVSmall = new System.Windows.Forms.Panel();
-            this.pnRadioSmall = new System.Windows.Forms.Panel();
             this.pbMobileSmall = new System.Windows.Forms.PictureBox();
+            this.pnOnlineSmall = new System.Windows.Forms.Panel();
             this.pbOnlineSmall = new System.Windows.Forms.PictureBox();
-            this.pbRadioSmall = new System.Windows.Forms.PictureBox();
+            this.pnTVSmall = new System.Windows.Forms.Panel();
             this.pbTVSmall = new System.Windows.Forms.PictureBox();
+            this.pnRadioSmall = new System.Windows.Forms.Panel();
+            this.pbRadioSmall = new System.Windows.Forms.PictureBox();
             this.pnMobileSmall.SuspendLayout();
-            this.pnOnlineSmall.SuspendLayout();
-            this.pnTVSmall.SuspendLayout();
-            this.pnRadioSmall.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMobileSmall)).BeginInit();
+            this.pnOnlineSmall.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbOnlineSmall)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRadioSmall)).BeginInit();
+            this.pnTVSmall.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTVSmall)).BeginInit();
+            this.pnRadioSmall.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRadioSmall)).BeginInit();
             this.SuspendLayout();
             // 
             // defaultLookAndFeel
@@ -60,33 +60,6 @@
             this.pnMobileSmall.Size = new System.Drawing.Size(731, 110);
             this.pnMobileSmall.TabIndex = 26;
             // 
-            // pnOnlineSmall
-            // 
-            this.pnOnlineSmall.Controls.Add(this.pbOnlineSmall);
-            this.pnOnlineSmall.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnOnlineSmall.Location = new System.Drawing.Point(0, 220);
-            this.pnOnlineSmall.Name = "pnOnlineSmall";
-            this.pnOnlineSmall.Size = new System.Drawing.Size(731, 110);
-            this.pnOnlineSmall.TabIndex = 25;
-            // 
-            // pnTVSmall
-            // 
-            this.pnTVSmall.Controls.Add(this.pbTVSmall);
-            this.pnTVSmall.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnTVSmall.Location = new System.Drawing.Point(0, 0);
-            this.pnTVSmall.Name = "pnTVSmall";
-            this.pnTVSmall.Size = new System.Drawing.Size(731, 110);
-            this.pnTVSmall.TabIndex = 24;
-            // 
-            // pnRadioSmall
-            // 
-            this.pnRadioSmall.Controls.Add(this.pbRadioSmall);
-            this.pnRadioSmall.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnRadioSmall.Location = new System.Drawing.Point(0, 110);
-            this.pnRadioSmall.Name = "pnRadioSmall";
-            this.pnRadioSmall.Size = new System.Drawing.Size(731, 110);
-            this.pnRadioSmall.TabIndex = 23;
-            // 
             // pbMobileSmall
             // 
             this.pbMobileSmall.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -100,11 +73,20 @@
             this.pbMobileSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pbMobileSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
+            // pnOnlineSmall
+            // 
+            this.pnOnlineSmall.Controls.Add(this.pbOnlineSmall);
+            this.pnOnlineSmall.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnOnlineSmall.Location = new System.Drawing.Point(0, 220);
+            this.pnOnlineSmall.Name = "pnOnlineSmall";
+            this.pnOnlineSmall.Size = new System.Drawing.Size(731, 110);
+            this.pnOnlineSmall.TabIndex = 25;
+            // 
             // pbOnlineSmall
             // 
             this.pbOnlineSmall.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbOnlineSmall.Image = global::NewBizWizForm.Properties.Resources.HomeOnlineSmall;
-            this.pbOnlineSmall.Location = new System.Drawing.Point(37, 10);
+            this.pbOnlineSmall.Location = new System.Drawing.Point(27, 10);
             this.pbOnlineSmall.Name = "pbOnlineSmall";
             this.pbOnlineSmall.Size = new System.Drawing.Size(701, 90);
             this.pbOnlineSmall.TabIndex = 2;
@@ -113,18 +95,14 @@
             this.pbOnlineSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pbOnlineSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
-            // pbRadioSmall
+            // pnTVSmall
             // 
-            this.pbRadioSmall.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbRadioSmall.Image = global::NewBizWizForm.Properties.Resources.HomeRadioSmall;
-            this.pbRadioSmall.Location = new System.Drawing.Point(37, 10);
-            this.pbRadioSmall.Name = "pbRadioSmall";
-            this.pbRadioSmall.Size = new System.Drawing.Size(701, 90);
-            this.pbRadioSmall.TabIndex = 2;
-            this.pbRadioSmall.TabStop = false;
-            this.pbRadioSmall.Click += new System.EventHandler(this.pbRadio_Click);
-            this.pbRadioSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pbRadioSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            this.pnTVSmall.Controls.Add(this.pbTVSmall);
+            this.pnTVSmall.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnTVSmall.Location = new System.Drawing.Point(0, 0);
+            this.pnTVSmall.Name = "pnTVSmall";
+            this.pnTVSmall.Size = new System.Drawing.Size(731, 110);
+            this.pnTVSmall.TabIndex = 24;
             // 
             // pbTVSmall
             // 
@@ -139,6 +117,28 @@
             this.pbTVSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pbTVSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
+            // pnRadioSmall
+            // 
+            this.pnRadioSmall.Controls.Add(this.pbRadioSmall);
+            this.pnRadioSmall.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnRadioSmall.Location = new System.Drawing.Point(0, 110);
+            this.pnRadioSmall.Name = "pnRadioSmall";
+            this.pnRadioSmall.Size = new System.Drawing.Size(731, 110);
+            this.pnRadioSmall.TabIndex = 23;
+            // 
+            // pbRadioSmall
+            // 
+            this.pbRadioSmall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbRadioSmall.Image = global::NewBizWizForm.Properties.Resources.HomeRadioSmall;
+            this.pbRadioSmall.Location = new System.Drawing.Point(37, 10);
+            this.pbRadioSmall.Name = "pbRadioSmall";
+            this.pbRadioSmall.Size = new System.Drawing.Size(701, 90);
+            this.pbRadioSmall.TabIndex = 2;
+            this.pbRadioSmall.TabStop = false;
+            this.pbRadioSmall.Click += new System.EventHandler(this.pbRadio_Click);
+            this.pbRadioSmall.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbRadioSmall.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
             // DashboardCode5Control
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -151,13 +151,13 @@
             this.Name = "DashboardCode5Control";
             this.Size = new System.Drawing.Size(731, 458);
             this.pnMobileSmall.ResumeLayout(false);
-            this.pnOnlineSmall.ResumeLayout(false);
-            this.pnTVSmall.ResumeLayout(false);
-            this.pnRadioSmall.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbMobileSmall)).EndInit();
+            this.pnOnlineSmall.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbOnlineSmall)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRadioSmall)).EndInit();
+            this.pnTVSmall.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbTVSmall)).EndInit();
+            this.pnRadioSmall.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbRadioSmall)).EndInit();
             this.ResumeLayout(false);
 
         }

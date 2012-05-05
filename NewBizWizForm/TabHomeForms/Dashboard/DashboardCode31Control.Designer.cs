@@ -65,9 +65,9 @@
             // 
             this.pbSalesDepotBig.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbSalesDepotBig.Image = global::NewBizWizForm.Properties.Resources.HomeSalesDepotBig;
-            this.pbSalesDepotBig.Location = new System.Drawing.Point(19, 45);
+            this.pbSalesDepotBig.Location = new System.Drawing.Point(9, 34);
             this.pbSalesDepotBig.Name = "pbSalesDepotBig";
-            this.pbSalesDepotBig.Size = new System.Drawing.Size(886, 140);
+            this.pbSalesDepotBig.Size = new System.Drawing.Size(904, 161);
             this.pbSalesDepotBig.TabIndex = 4;
             this.pbSalesDepotBig.TabStop = false;
             this.pbSalesDepotBig.Click += new System.EventHandler(this.pbSalesDepotBig_Click);
@@ -78,9 +78,9 @@
             // 
             this.pbClientSolutionBig.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbClientSolutionBig.Image = global::NewBizWizForm.Properties.Resources.HomeClientSolutionBig;
-            this.pbClientSolutionBig.Location = new System.Drawing.Point(19, 51);
+            this.pbClientSolutionBig.Location = new System.Drawing.Point(9, 40);
             this.pbClientSolutionBig.Name = "pbClientSolutionBig";
-            this.pbClientSolutionBig.Size = new System.Drawing.Size(886, 135);
+            this.pbClientSolutionBig.Size = new System.Drawing.Size(904, 156);
             this.pbClientSolutionBig.TabIndex = 3;
             this.pbClientSolutionBig.TabStop = false;
             this.pbClientSolutionBig.Click += new System.EventHandler(this.pbClientSolutionBig_Click);

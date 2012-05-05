@@ -479,7 +479,7 @@ namespace MiniBar.ConfigurationClasses
                 this.SyncHourly = false;
                 this.OwnControl = false;
                 this.OnPrimaryScreen = true;
-                this.QuickRetraction = false;
+                this.QuickRetraction = true;
                 this.FloaterLeft = 0;
                 this.FloaterTop = 0;
 
@@ -522,10 +522,10 @@ namespace MiniBar.ConfigurationClasses
                     if (node != null)
                         if (int.TryParse(node.InnerText, out tempInt))
                             this.FloaterTop = tempInt;
-                    node = document.SelectSingleNode(@"/MinibarSettings/QuickRetraction");
-                    if (node != null)
-                        if (bool.TryParse(node.InnerText, out tempBool))
-                            this.QuickRetraction = tempBool;
+                    //node = document.SelectSingleNode(@"/MinibarSettings/QuickRetraction");
+                    //if (node != null)
+                    //    if (bool.TryParse(node.InnerText, out tempBool))
+                    //        this.QuickRetraction = tempBool;
                 }
 
                 if (File.Exists(Path.Combine(this.SyncSettingsFolderPath, SyncSettingsFileName)))

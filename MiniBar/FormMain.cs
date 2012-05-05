@@ -36,7 +36,7 @@ namespace MiniBar
             ribbonControl.Height = 24;
 
             _hideTimer = new Timer();
-            _hideTimer.Interval = 30;
+            _hideTimer.Interval = 1000;
             _hideTimer.Tick += new EventHandler(_hideTimer_Tick);
             _hideTimer.Start();
 
@@ -105,14 +105,12 @@ namespace MiniBar
             }
             ribbonControl.Height = 130;
             Application.DoEvents();
-            //_expanded = true;
             ((Timer)sender).Enabled = false;
             ((Timer)sender).Dispose();
         }
 
         void RetractRibbonTimer_Tick(object sender, EventArgs e)
         {
-            //_expanded = false;
             if (ribbonControl.Height > (24 + 10))
             {
                 ribbonControl.Height = ConfigurationClasses.SettingsManager.Instance.QuickRetraction ? 24 : (ribbonControl.Height - 10);

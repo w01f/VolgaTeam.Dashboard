@@ -39,7 +39,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 pictureBoxLogo.Image = new Bitmap(_publication.SmallLogo);
             else
                 pictureBoxLogo.Image = null;
-            laSquareValue.Text = _publication.SizeOptions.Square.HasValue && _publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage ? (_publication.SizeOptions.Square.Value.ToString("#,###.00")) : "N/A";
+            laSquareValue.Text = _publication.SizeOptions.Square.HasValue && _publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage ? (_publication.SizeOptions.Square.Value.ToString("#,###.00#")) : "N/A";
             laCostValue.Text = _publication.AvgADRate.ToString("$#,###.00");
             if (_publication.DailyDelivery.HasValue)
                 laDeliveryValue.Text = _publication.DailyDelivery.Value.ToString("#,##0");
@@ -57,7 +57,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             else
                 laReadershipValue.Text = "0";
             laTotalColorValue.Text = _publication.TotalColorPricingCalculated > 0 ? _publication.TotalColorPricingCalculated.ToString("$#,###.00") : _publication.Inserts.FirstOrDefault().ColorPricingObject.ToString();
-            laTotalSquareValue.Text = _publication.TotalSquare.HasValue && _publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage ? (_publication.TotalSquare.Value.ToString("#,###.00")) : "N/A";
+            laTotalSquareValue.Text = _publication.TotalSquare.HasValue && _publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage ? (_publication.TotalSquare.Value.ToString("#,###.00#")) : "N/A";
             laTotalInsertsValue.Text = _publication.TotalInserts.ToString("#,##0");
         }
 

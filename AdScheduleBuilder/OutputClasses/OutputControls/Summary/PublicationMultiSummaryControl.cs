@@ -70,7 +70,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             checkEditFlightDates.Text = this.Publication.Parent.FlightDateStart.ToString("MM/dd/yy") + " - " + this.Publication.Parent.FlightDateEnd.ToString("MM/dd/yy");
             checkEditName.Text = this.Publication.Name.Replace("&", "&&");
             checkEditTotalAds.Text = "Total Ads: " + this.Publication.TotalInserts.ToString("#,##0");
-            checkEditTotalSquare.Text = this.Publication.TotalSquare.HasValue && this.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage ? ("Total Column Inches: " + this.Publication.TotalSquare.Value.ToString("#,##0.00")) : string.Empty;
+            checkEditTotalSquare.Text = this.Publication.TotalSquare.HasValue && this.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage ? ("Total Column Inches: " + this.Publication.TotalSquare.Value.ToString("#,##0.00#")) : string.Empty;
             checkEditTotalSquare.Visible = this.Publication.TotalSquare.HasValue && this.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage;
             checkEditPageSize.Text = !string.IsNullOrEmpty(this.Publication.SizeOptions.PageSize) ? ("Page Size: " + this.Publication.SizeOptions.PageSize) : string.Empty;
             checkEditPageSize.Visible = !string.IsNullOrEmpty(this.Publication.SizeOptions.PageSize);
@@ -80,7 +80,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             checkEditAvgFinalCost.Text = "Final Avg Ad Cost: " + this.Publication.AvgFinalRate.ToString("$#,##0.00");
             checkEditAvgPCI.Text = this.Publication.AvgPCIRate > 0 ? ("Avg PCI: " + this.Publication.AvgPCIRate.ToString("$#,##0.00")) : string.Empty;
             checkEditAvgPCI.Visible = this.Publication.AvgPCIRate > 0;
-            checkEditSquare.Text = this.Publication.SizeOptions.Square.HasValue && this.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage ? ("Column Inches: " + this.Publication.SizeOptions.Square.Value.ToString("#,##0.00") + " col. in.") : string.Empty;
+            checkEditSquare.Text = this.Publication.SizeOptions.Square.HasValue && this.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage ? ("Column Inches: " + this.Publication.SizeOptions.Square.Value.ToString("#,##0.00#") + " col. in.") : string.Empty;
             checkEditSquare.Visible = this.Publication.SizeOptions.Square.HasValue && this.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage;
             checkEditDimensions.Text = !string.IsNullOrEmpty(this.Publication.SizeOptions.Dimensions) ? ("Dimensions: " + this.Publication.SizeOptions.Dimensions) : string.Empty;
             checkEditDimensions.Visible = !string.IsNullOrEmpty(this.Publication.SizeOptions.Dimensions);

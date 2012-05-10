@@ -512,7 +512,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             this.SlideBullets.TotalColor = this.LocalSchedule.Publications.Sum(x => x.TotalColorPricingCalculated).ToString("$#,###.00");
             this.SlideBullets.Discounts = this.LocalSchedule.Publications.Sum(x => x.TotalDiscountRate).ToString("$#,###.00");
             this.SlideBullets.TotalFinalCost = this.LocalSchedule.Publications.Sum(x => x.TotalFinalRate).ToString("$#,###.00");
-            this.SlideBullets.TotalSquare = this.LocalSchedule.Publications.Sum(x => x.TotalSquare.HasValue ? x.TotalSquare.Value : 0).ToString("#,###.00");
+            this.SlideBullets.TotalSquare = this.LocalSchedule.Publications.Sum(x => x.TotalSquare.HasValue ? x.TotalSquare.Value : 0).ToString("#,###.00#");
         }
 
         private void PrepareInserts()

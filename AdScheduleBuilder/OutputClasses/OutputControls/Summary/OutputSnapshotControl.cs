@@ -353,9 +353,9 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                     if (this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDimensions && !string.IsNullOrEmpty(publication.SizeOptions.Dimensions))
                         adSpecs.Add("Dimensions: " + publication.SizeOptions.Dimensions);
                     if (this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowSquare && publication.SizeOptions.Square.HasValue && publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage)
-                        adSpecs.Add("Col. Inches: " + publication.SizeOptions.Square.Value.ToString("#,###.00"));
+                        adSpecs.Add("Col. Inches: " + publication.SizeOptions.Square.Value.ToString("#,###.00#"));
                     if (this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalSquare && publication.TotalSquare.HasValue && publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage)
-                        adSpecs.Add("Total Inches: " + publication.TotalSquare.Value.ToString("#,###.00"));
+                        adSpecs.Add("Total Inches: " + publication.TotalSquare.Value.ToString("#,###.00#"));
                     if (this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgPCI && publication.AvgPCIRate > 0)
                         adSpecs.Add("Avg PCI: " + publication.AvgPCIRate.ToString("$#,###.00"));
                     if (this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgCost)

@@ -870,7 +870,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 this.SlideBullets.PageSize = publicationControl.Publication.SizeOptions.PageSizeOutput;
                 this.SlideBullets.PercentOfPage = publicationControl.Publication.SizeOptions.PercentOfPageOutput;
                 this.SlideBullets.Dimensions = publicationControl.Publication.SizeOptions.Dimensions;
-                this.SlideBullets.ColumnInches = publicationControl.Publication.SizeOptions.Square.HasValue ? publicationControl.Publication.SizeOptions.Square.Value.ToString("#,###.00") : "N/A";
+                this.SlideBullets.ColumnInches = publicationControl.Publication.SizeOptions.Square.HasValue ? publicationControl.Publication.SizeOptions.Square.Value.ToString("#,###.00#") : "N/A";
                 this.SlideBullets.AvgAdCost = publicationControl.Publication.AvgADRate.ToString("$#,###.00");
                 this.SlideBullets.AvgFinalCost = publicationControl.Publication.AvgFinalRate.ToString("$#,###.00");
                 this.SlideBullets.AvgPCI = publicationControl.Publication.AvgPCIRate.ToString("$#,###.00");
@@ -879,7 +879,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 this.SlideBullets.TotalColor = publicationControl.Publication.TotalColorPricingCalculated.ToString("$#,###.00");
                 this.SlideBullets.Discounts = publicationControl.Publication.TotalDiscountRate.ToString("$#,###.00");
                 this.SlideBullets.TotalFinalCost = publicationControl.Publication.TotalFinalRate.ToString("$#,###.00");
-                this.SlideBullets.TotalSquare = publicationControl.Publication.TotalSquare.HasValue ? publicationControl.Publication.TotalSquare.Value.ToString("#,###.00") : "N/A";
+                this.SlideBullets.TotalSquare = publicationControl.Publication.TotalSquare.HasValue ? publicationControl.Publication.TotalSquare.Value.ToString("#,###.00#") : "N/A";
             }
             else
             {

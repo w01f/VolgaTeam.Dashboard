@@ -727,7 +727,7 @@ namespace AdScheduleBuilder.CustomControls
             FormMain.Instance.controlContainerItemEqualSign.Visible = sizeOptions.Square.HasValue;
             FormMain.Instance.controlContainerItemSquareMetric.Visible = sizeOptions.Square.HasValue;
             FormMain.Instance.controlContainerItemSquareValue.Visible = sizeOptions.Square.HasValue;
-            FormMain.Instance.laStandartSquareValue.Text = sizeOptions.Square.HasValue ? sizeOptions.Square.Value.ToString("#,##0.00") : string.Empty;
+            FormMain.Instance.laStandartSquareValue.Text = sizeOptions.Square.HasValue ? sizeOptions.Square.Value.ToString("#,##0.00#") : string.Empty;
             FormMain.Instance.comboBoxEditStandartPageSize.Enabled = sizeOptions.EnablePageSize;
             FormMain.Instance.comboBoxEditSharePagePageSize.Enabled = sizeOptions.EnablePageSize;
             FormMain.Instance.buttonItemColorOptionsPCI.Enabled = sizeOptions.EnableSquare & publicationControl.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage & publicationControl.Publication.ColorOption != BusinessClasses.ColorOptions.BlackWhite;

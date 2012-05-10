@@ -62,9 +62,9 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             checkEditStandartDimensions.Visible = !string.IsNullOrEmpty(this.Publication.SizeOptions.Dimensions);
             checkEditSharePageDimensions.Text = !string.IsNullOrEmpty(this.Publication.SizeOptions.Dimensions) ? this.Publication.SizeOptions.Dimensions : string.Empty;
             checkEditSharePageDimensions.Visible = !string.IsNullOrEmpty(this.Publication.SizeOptions.Dimensions);
-            checkEditStandartSquare.Text = this.Publication.SizeOptions.Square.HasValue ? (this.Publication.SizeOptions.Square.Value.ToString("#,##0.00") + " col. in.") : string.Empty;
+            checkEditStandartSquare.Text = this.Publication.SizeOptions.Square.HasValue ? (this.Publication.SizeOptions.Square.Value.ToString("#,##0.00#") + " col. in.") : string.Empty;
             checkEditStandartSquare.Visible = this.Publication.SizeOptions.Square.HasValue;
-            checkEditTotalSquare.Text = this.Publication.TotalSquare.HasValue && this.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage ? ("Total Inches: " + this.Publication.TotalSquare.Value.ToString("#,##0.00")) : string.Empty;
+            checkEditTotalSquare.Text = this.Publication.TotalSquare.HasValue && this.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage ? ("Total Inches: " + this.Publication.TotalSquare.Value.ToString("#,##0.00#")) : string.Empty;
             checkEditTotalSquare.Visible = this.Publication.TotalSquare.HasValue && this.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage;
             checkEditStandartPageSize.Visible = !string.IsNullOrEmpty(this.Publication.SizeOptions.PageSize);
             checkEditStandartPageSize.Text = !string.IsNullOrEmpty(this.Publication.SizeOptions.PageSize) ? this.Publication.SizeOptions.PageSize : string.Empty;

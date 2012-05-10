@@ -1364,7 +1364,7 @@ namespace AdScheduleBuilder.BusinessClasses
         {
             get
             {
-                return this.PublicationSquare.HasValue && this.PublicationSquare.Value > 0 ? (this.PublicationSquare.Value.ToString("#,###.00")) : null;
+                return this.PublicationSquare.HasValue && this.PublicationSquare.Value > 0 ? (this.PublicationSquare.Value.ToString("#,###.00#")) : null;
             }
         }
 
@@ -1676,7 +1676,7 @@ namespace AdScheduleBuilder.BusinessClasses
         {
             get
             {
-                return this.Square.HasValue ? (string.Format("{0}{1} x {2}{3}", new object[] { this.Width.ToString("#,##0.00"), this.ShortWidthMeasure, this.Height.ToString("#,###.00"), this.ShortHeightMeasure })) : null;
+                return this.Square.HasValue ? (string.Format("{0}{1} x {2}{3}", new object[] { this.Width.ToString("#,##0.00"), this.ShortWidthMeasure, this.Height.ToString("#,###.00#"), this.ShortHeightMeasure })) : null;
             }
         }
 
@@ -1684,7 +1684,7 @@ namespace AdScheduleBuilder.BusinessClasses
         {
             get
             {
-                return this.Square.HasValue ? (string.Format("{0}x{1}", new object[] { this.Width.ToString("#,##0.00"), this.Height.ToString("#,###.00") })) : "N/A";
+                return this.Square.HasValue ? (string.Format("{0}x{1}", new object[] { this.Width.ToString("#,##0.00"), this.Height.ToString("#,###.00#") })) : "N/A";
             }
         }
 
@@ -1711,7 +1711,7 @@ namespace AdScheduleBuilder.BusinessClasses
                 BusinessClasses.ShareUnit shareUnit = new BusinessClasses.ShareUnit();
                 shareUnit.Width = this.Width.ToString("#,##0.00");
                 shareUnit.WidthMeasureUnit = this.WidthMeasure;
-                shareUnit.Height = this.Height.ToString("#,##0.00");
+                shareUnit.Height = this.Height.ToString("#,##0.00#");
                 shareUnit.HeightMeasureUnit = this.HeightMeasure;
                 return shareUnit;
             }

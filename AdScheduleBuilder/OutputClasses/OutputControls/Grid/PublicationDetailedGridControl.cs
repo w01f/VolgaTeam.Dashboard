@@ -540,7 +540,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 if (OutputDetailedGridControl.Instance.SlideBulletsState.ShowDimensions)
                     values.Add("Col. x Inches: " + this.Publication.SizeOptions.Dimensions);
                 if (OutputDetailedGridControl.Instance.SlideBulletsState.ShowColumnInches && this.Publication.SizeOptions.Square.HasValue)
-                    values.Add("Total Col. In.: " + this.Publication.SizeOptions.Square.Value.ToString("#,###.00"));
+                    values.Add("Total Col. In.: " + this.Publication.SizeOptions.Square.Value.ToString("#,###.00#"));
                 if (OutputDetailedGridControl.Instance.SlideBulletsState.ShowAvgAdCost)
                     values.Add("BW Ad Cost: " + this.Publication.AvgADRate.ToString("$#,###.00"));
                 if (OutputDetailedGridControl.Instance.SlideBulletsState.ShowAvgFinalCost)
@@ -558,7 +558,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 if (OutputDetailedGridControl.Instance.SlideBulletsState.ShowTotalFinalCost)
                     values.Add("Investment: " + this.Publication.TotalFinalRate.ToString("$#,###.00"));
                 if (OutputDetailedGridControl.Instance.SlideBulletsState.ShowTotalSquare && this.Publication.TotalSquare.HasValue)
-                    values.Add("Total Inches: " + this.Publication.TotalSquare.Value.ToString("#,###.00"));
+                    values.Add("Total Inches: " + this.Publication.TotalSquare.Value.ToString("#,###.00#"));
                 return values.ToArray();
             }
         }

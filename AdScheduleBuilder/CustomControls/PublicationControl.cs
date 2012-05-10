@@ -600,7 +600,7 @@ namespace AdScheduleBuilder.CustomControls
         public void UpdateTotals()
         {
             laTotalInsertsValue.Text = this.Publication.TotalInserts.ToString("#,##0");
-            laTotalSquareValue.Text = this.Publication.TotalSquare.HasValue ? this.Publication.TotalSquare.Value.ToString("#,##0.00") : "N/A";
+            laTotalSquareValue.Text = this.Publication.TotalSquare.HasValue ? this.Publication.TotalSquare.Value.ToString("#,##0.00#") : "N/A";
             laAvgADRateValue.Text = this.Publication.AvgADRate.ToString("$#,##0.00");
             laAvgPCIRateValue.Text = this.Publication.AvgPCIRate > 0 ? this.Publication.AvgPCIRate.ToString("$#,##0.00") : "N/A";
             laTotalDiscountRateValue.Text = this.Publication.TotalDiscountRate.ToString("$#,##0.00");

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -12,31 +15,33 @@ namespace CommandCentral.TabMainDashboard
     {
         private const string SourceFileName = @"Data\!Main_Dashboard\Radio Source\Radio Strategy.xls";
         private const string DestinationFileName = @"Data\!Main_Dashboard\Radio XML\Radio Strategy.xml";
+        private const string ImageSourceFolder = @"Data\!Main_Dashboard\Radio Source\Radio Images";
 
         public const string ButtonText = "Radio Strategy\nData";
 
-        private static List<CommonClasses.RadioStation> _radioStations = new List<CommonClasses.RadioStation>();
+        private static List<CommonClasses.NameCodePair> _dayparts = new List<CommonClasses.NameCodePair>();
+        private static List<CommonClasses.RadioProgram> _programs = new List<CommonClasses.RadioProgram>();
 
-        private static void GetStations(OleDbConnection connection)
+        private static void GetDayparts(OleDbConnection connection)
         {
             DataTable dataTable;
             try
             {
-                _radioStations.Clear();
+                _dayparts.Clear();
                 dataTable = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    CommonClasses.RadioStation radioStation = new CommonClasses.RadioStation();
-                    radioStation.Name = row["TABLE_NAME"].ToString().Replace("$", "").Replace('"'.ToString(), "'").Replace("'", "");
-                    if (!radioStation.Name.Trim().Equals("Headers-Positioning Point") && !radioStation.Name.Trim().Equals("Length"))
-                        _radioStations.Add(radioStation);
+                    CommonClasses.NameCodePair daypart = new CommonClasses.NameCodePair();
+                    daypart.Name = row["TABLE_NAME"].ToString().Replace("$", "").Replace('"'.ToString(), "'").Replace("'", "");
+
+                    if (!daypart.Name.Trim().Equals("Headers-Positioning Point") && !daypart.Name.Trim().Equals("Length") && !daypart.Name.Trim().Equals("Dayparts") && !daypart.Name.Trim().Equals("Stations") && !daypart.Name.Trim().Equals("Client Type") && !daypart.Name.Trim().Equals("Custom Demos") && !daypart.Name.Trim().Equals("Sources") && !daypart.Name.Trim().Equals("File-Status"))
+                        _dayparts.Add(daypart);
                 }
             }
             catch
             {
             }
         }
-
 
         public static void ViewDataFile()
         {
@@ -53,8 +58,13 @@ namespace CommandCentral.TabMainDashboard
             List<CommonClasses.SlideHeader> slideHeaders = new List<CommonClasses.SlideHeader>();
             List<string> positioningPoints = new List<string>();
             List<string> lenghts = new List<string>();
+            List<string> clientTypes = new List<string>();
+            List<string> customDemos = new List<string>();
+            List<string> sources = new List<string>();
+            List<CommonClasses.SlideHeader> statuses = new List<CommonClasses.SlideHeader>();
+            List<CommonClasses.Station> stations = new List<CommonClasses.Station>();
 
-            string connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=No;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
+            string connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
             OleDbConnection connection = new OleDbConnection(connnectionString);
             try
             {
@@ -75,23 +85,16 @@ namespace CommandCentral.TabMainDashboard
                 dataAdapter = new OleDbDataAdapter("SELECT * FROM [Headers-Positioning Point$]", connection);
                 dataTable = new DataTable();
 
-                bool loadHeaders = false;
+                bool loadHeaders = true;
                 bool loadPositioningPoint = false;
                 slideHeaders.Clear();
                 positioningPoints.Clear();
-
                 try
                 {
                     dataAdapter.Fill(dataTable);
                     if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
                         foreach (DataRow row in dataTable.Rows)
                         {
-                            if (row[0].ToString().Trim().Equals("*Slide Headers"))
-                            {
-                                loadHeaders = true;
-                                loadPositioningPoint = false;
-                                continue;
-                            }
                             if (row[0].ToString().Trim().Equals("*Positioning Point"))
                             {
                                 loadHeaders = false;
@@ -122,10 +125,46 @@ namespace CommandCentral.TabMainDashboard
                     {
                         int result = y.IsDefault.CompareTo(x.IsDefault);
                         if (result == 0)
-                            result = InteropClasses.WinAPIHelper.StrCmpLogicalW(x.Value, y.Value);
+                            result = 1;
                         return result;
                     });
                     positioningPoints.Sort((x, y) => InteropClasses.WinAPIHelper.StrCmpLogicalW(x, y));
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    dataAdapter.Dispose();
+                    dataTable.Dispose();
+                }
+
+                //Load Statuses
+                dataAdapter = new OleDbDataAdapter("SELECT * FROM [File-Status$]", connection);
+                dataTable = new DataTable();
+                statuses.Clear();
+                try
+                {
+                    dataAdapter.Fill(dataTable);
+                    if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            CommonClasses.SlideHeader status = new CommonClasses.SlideHeader();
+                            status.Value = row[0].ToString().Trim();
+                            if (dataTable.Columns.Count > 1)
+                                if (row[1] != null)
+                                    status.IsDefault = row[1].ToString().Trim().ToLower().Equals("d");
+                            if (!string.IsNullOrEmpty(status.Value))
+                                statuses.Add(status);
+                        }
+
+                    statuses.Sort((x, y) =>
+                    {
+                        int result = y.IsDefault.CompareTo(x.IsDefault);
+                        if (result == 0)
+                            result = InteropClasses.WinAPIHelper.StrCmpLogicalW(x.Value, y.Value);
+                        return result;
+                    });
                 }
                 catch
                 {
@@ -160,87 +199,163 @@ namespace CommandCentral.TabMainDashboard
                     dataTable.Dispose();
                 }
 
-                //Load RadioStations
-                GetStations(connection);
-                foreach (var radioStation in _radioStations)
+                //Load Client Types
+                dataAdapter = new OleDbDataAdapter("SELECT * FROM [Client Type$]", connection);
+                dataTable = new DataTable();
+                clientTypes.Clear();
+                try
                 {
-                    dataAdapter = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}$]", radioStation.Name), connection);
+                    dataAdapter.Fill(dataTable);
+                    if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            string clientType = row[0].ToString().Trim();
+                            if (!string.IsNullOrEmpty(clientType))
+                                clientTypes.Add(clientType);
+                        }
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    dataAdapter.Dispose();
+                    dataTable.Dispose();
+                }
+
+                //Load Dayparts
+                GetDayparts(connection);
+                dataAdapter = new OleDbDataAdapter("SELECT * FROM [Dayparts$]", connection);
+                dataTable = new DataTable();
+                try
+                {
+                    dataAdapter.Fill(dataTable);
+                    if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 1)
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            string code = row[1].ToString().Trim();
+                            CommonClasses.NameCodePair daypart = _dayparts.Where(x => x.Name.Equals(code)).FirstOrDefault();
+                            if (daypart != null)
+                                daypart.Code = row[0].ToString().Trim();
+                        }
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    dataAdapter.Dispose();
+                    dataTable.Dispose();
+                }
+
+                //Load Custom Demos
+                dataAdapter = new OleDbDataAdapter("SELECT * FROM [Custom Demos$]", connection);
+                dataTable = new DataTable();
+                customDemos.Clear();
+                try
+                {
+                    dataAdapter.Fill(dataTable);
+                    if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            string customDemo = row[0].ToString().Trim();
+                            if (!string.IsNullOrEmpty(customDemo))
+                                customDemos.Add(customDemo);
+                        }
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    dataAdapter.Dispose();
+                    dataTable.Dispose();
+                }
+
+                //Load Sources
+                dataAdapter = new OleDbDataAdapter("SELECT * FROM [Sources$]", connection);
+                dataTable = new DataTable();
+                sources.Clear();
+                try
+                {
+                    dataAdapter.Fill(dataTable);
+                    if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            string source = row[0].ToString().Trim();
+                            if (!string.IsNullOrEmpty(source))
+                                sources.Add(source);
+                        }
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    dataAdapter.Dispose();
+                    dataTable.Dispose();
+                }
+
+                //Load Stations
+                dataAdapter = new OleDbDataAdapter("SELECT * FROM [Stations$]", connection);
+                dataTable = new DataTable();
+                stations.Clear();
+                try
+                {
+                    dataAdapter.Fill(dataTable);
+                    if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 1)
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            CommonClasses.Station station = new CommonClasses.Station();
+                            station.Name = row[0].ToString().Trim();
+                            string filePath = Path.Combine(Application.StartupPath, ImageSourceFolder, row[1].ToString().Trim());
+                            if (File.Exists(filePath))
+                                station.Logo = new Bitmap(filePath);
+                            if (!string.IsNullOrEmpty(station.Name))
+                                stations.Add(station);
+                        }
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    dataAdapter.Dispose();
+                    dataTable.Dispose();
+                }
+
+                //Load Radio Programs
+                _programs.Clear();
+                foreach (var daypart in _dayparts)
+                {
+                    dataAdapter = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}$]", daypart.Name), connection);
                     dataTable = new DataTable();
-
-                    bool loadPrograms = false;
-                    bool loadDaypartRotations = false;
-
                     try
                     {
                         dataAdapter.Fill(dataTable);
-                        if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
+                        if (dataTable.Rows.Count > 0 && dataTable.Columns.Count >= 4)
                             foreach (DataRow row in dataTable.Rows)
                             {
-                                if (row[0].ToString().Trim().Equals("*Program"))
+                                CommonClasses.RadioProgram program = new CommonClasses.RadioProgram();
+                                program.Station = row[0].ToString().Trim();
+                                program.Name = row[1].ToString().Trim();
+                                program.Day = row[2].ToString().Trim();
+                                program.Time = row[3].ToString().Trim();
+                                program.Daypart = daypart.Code;
+                                for (int i = 4; i < 44; i++)
                                 {
-                                    loadPrograms = true;
-                                    loadDaypartRotations = false;
-                                    for (int i = 0; i < 40; i++)
-                                    {
-                                        if (dataTable.Columns.Count > (i + 3))
-                                            if (row[i + 3] != null)
-                                                if (!string.IsNullOrEmpty(row[i + 3].ToString().Trim()))
-                                                {
-                                                    CommonClasses.Demo demo = new CommonClasses.Demo();
-                                                    demo.Name = string.Format("Demo{0}", i + 1);
-                                                    demo.Value = row[i + 3].ToString().Trim();
-                                                    radioStation.Demos.Add(demo);
-                                                }
-                                    }
-                                    continue;
+                                    if (dataTable.Columns.Count > i)
+                                        if (row[i] != null)
+                                        {
+                                            CommonClasses.Demo demo = new CommonClasses.Demo();
+                                            demo.Name = dataTable.Columns[i].ColumnName;
+                                            demo.Value = row[i].ToString().Trim();
+                                            if (!string.IsNullOrEmpty(demo.Name) && !string.IsNullOrEmpty(demo.Value))
+                                                program.Demos.Add(demo);
+                                        }
                                 }
-                                if (row[0].ToString().Trim().Equals("*Daypart Rotations"))
-                                {
-                                    loadPrograms = false;
-                                    loadDaypartRotations = true;
-                                    continue;
-                                }
-
-                                if (loadPrograms)
-                                {
-                                    CommonClasses.RadioProgram radioProgram = new CommonClasses.RadioProgram();
-                                    radioProgram.Name = row[0].ToString().Trim();
-                                    if (dataTable.Columns.Count > 1)
-                                        if (row[1] != null)
-                                            radioProgram.Day = row[1].ToString().Trim();
-                                    if (dataTable.Columns.Count > 2)
-                                        if (row[2] != null)
-                                            radioProgram.Time = row[2].ToString().Trim();
-                                    for (int i = 0; i < radioStation.Demos.Count; i++)
-                                    {
-                                        if (dataTable.Columns.Count > (i + 3))
-                                            if (row[i + 3] != null)
-                                                radioProgram.DemoValues.Add(row[i + 3].ToString().Trim());
-                                    }
-
-                                    if (!string.IsNullOrEmpty(radioProgram.Name))
-                                        radioStation.Programs.Add(radioProgram);
-                                }
-
-                                if (loadDaypartRotations)
-                                {
-                                    CommonClasses.DaypartRotation daypartRotation = new CommonClasses.DaypartRotation();
-                                    daypartRotation.Name = row[0].ToString().Trim();
-                                    if (dataTable.Columns.Count > 1)
-                                        if (row[1] != null)
-                                            daypartRotation.Day = row[1].ToString().Trim();
-                                    if (dataTable.Columns.Count > 2)
-                                        if (row[2] != null)
-                                            daypartRotation.Time = row[2].ToString().Trim();
-                                    for (int i = 0; i < radioStation.Demos.Count; i++)
-                                    {
-                                        if (dataTable.Columns.Count > (i + 3))
-                                            if (row[i + 3] != null)
-                                                daypartRotation.DemoValues.Add(row[i + 3].ToString().Trim());
-                                    }
-                                    if (!string.IsNullOrEmpty(daypartRotation.Name))
-                                        radioStation.DaypartRotatiions.Add(daypartRotation);
-                                }
+                                if (!string.IsNullOrEmpty(program.Name))
+                                    _programs.Add(program);
                             }
                     }
                     catch
@@ -264,6 +379,12 @@ namespace CommandCentral.TabMainDashboard
                     xml.Append("IsDefault = \"" + header.IsDefault + "\" ");
                     xml.AppendLine(@"/>");
                 }
+                foreach (var status in statuses)
+                {
+                    xml.Append(@"<Status ");
+                    xml.Append("Value = \"" + status.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+                    xml.AppendLine(@"/>");
+                }
                 foreach (var positionPoint in positioningPoints)
                 {
                     xml.Append(@"<Statement ");
@@ -276,39 +397,56 @@ namespace CommandCentral.TabMainDashboard
                     xml.Append("Value = \"" + lenght.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
                     xml.AppendLine(@"/>");
                 }
-                foreach (var radioStation in _radioStations)
+                foreach (var daypart in _dayparts)
                 {
-                    xml.Append(@"<RadioStation ");
-                    xml.Append("Name = \"" + radioStation.Name.Replace(@"#", ".").Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+                    xml.Append(@"<Daypart ");
+                    xml.Append("Name = \"" + daypart.Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+                    xml.Append("Code = \"" + daypart.Code.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+                    xml.AppendLine(@"/>");
+                }
+                TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+                foreach (var station in stations)
+                {
+                    xml.Append(@"<Station ");
+                    xml.Append("Name = \"" + station.Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+                    xml.Append("Logo = \"" + Convert.ToBase64String((byte[])converter.ConvertTo(station.Logo, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+                    xml.AppendLine(@"/>");
+                }
+                foreach (var clientType in clientTypes)
+                {
+                    xml.Append(@"<ClientType ");
+                    xml.Append("Value = \"" + clientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+                    xml.AppendLine(@"/>");
+                }
+                foreach (var customDemo in customDemos)
+                {
+                    xml.Append(@"<CustomDemo ");
+                    xml.Append("Value = \"" + customDemo.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+                    xml.AppendLine(@"/>");
+                }
+                foreach (var source in sources)
+                {
+                    xml.Append(@"<Source ");
+                    xml.Append("Value = \"" + source.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+                    xml.AppendLine(@"/>");
+                }
+                foreach (var program in _programs)
+                {
+                    xml.Append(@"<Program ");
+                    xml.Append("Name = \"" + program.Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+                    xml.Append("Station = \"" + program.Station.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+                    xml.Append("Daypart = \"" + program.Daypart.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+                    xml.Append("Day = \"" + program.Day.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+                    xml.Append("Time = \"" + program.Time.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
                     xml.AppendLine(@">");
-                    foreach (var demo in radioStation.Demos)
+                    foreach (var demo in program.Demos)
                     {
                         xml.Append(@"<Demo ");
                         xml.Append("Name = \"" + demo.Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
                         xml.Append("Value = \"" + demo.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
                         xml.AppendLine(@"/>");
                     }
-                    foreach (var program in radioStation.Programs)
-                    {
-                        xml.Append(@"<Program ");
-                        xml.Append("Name = \"" + program.Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-                        xml.Append("Day = \"" + program.Day.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-                        xml.Append("Time = \"" + program.Time.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-                        for (int i = 0; i < program.DemoValues.Count; i++)
-                            xml.Append(radioStation.Demos[i].Name + " = \"" + program.DemoValues[i].Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-                        xml.AppendLine(@"/>");
-                    }
-                    foreach (var daypartRotation in radioStation.DaypartRotatiions)
-                    {
-                        xml.Append(@"<DaypartRotation ");
-                        xml.Append("Name = \"" + daypartRotation.Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-                        xml.Append("Day = \"" + daypartRotation.Day.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-                        xml.Append("Time = \"" + daypartRotation.Time.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-                        for (int i = 0; i < daypartRotation.DemoValues.Count; i++)
-                            xml.Append(radioStation.Demos[i].Name + " = \"" + daypartRotation.DemoValues[i].Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-                        xml.AppendLine(@"/>");
-                    }
-                    xml.AppendLine(@"</RadioStation>");
+                    xml.AppendLine(@"</Program>");
                 }
                 xml.AppendLine(@"</RadioStrategy>");
 

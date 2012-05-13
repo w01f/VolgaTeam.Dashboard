@@ -24,6 +24,7 @@ namespace CommandCentral
             buttonItemRadioStrategy.Click += new EventHandler(TabMainDashboard.MainDashboardPage.Instance.MainDashboardButton_Click);
             buttonItemNewspaperStrategy.Click += new EventHandler(TabMainDashboard.MainDashboardPage.Instance.MainDashboardButton_Click);
             buttonItemTVStrategy.Click += new EventHandler(TabMainDashboard.MainDashboardPage.Instance.MainDashboardButton_Click);
+            buttonItemQuickList.Click += new EventHandler(TabMainDashboard.MainDashboardPage.Instance.MainDashboardButton_Click);
             #endregion
 
             #region Media Library Buttons

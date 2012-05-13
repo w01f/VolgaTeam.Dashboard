@@ -153,6 +153,15 @@ namespace CommandCentral.TabMainDashboard
                 _updateData = TVStrategyManager.UpdateData;
                 pnMain.Controls.Add(DataControl.Instance);
             }
+            else if (FormMain.Instance.buttonItemQuickList != null && FormMain.Instance.buttonItemQuickList.Checked)
+            {
+                laTitle.Visible = true;
+                DataControl.Instance.ViewSource = QuickListManager.ViewSourceFile;
+                DataControl.Instance.ButtonText = QuickListManager.ButtonText;
+                _viewFile = QuickListManager.ViewDataFile;
+                _updateData = QuickListManager.UpdateData;
+                pnMain.Controls.Add(DataControl.Instance);
+            }
             pnMain.Parent = parent;
             pnMain.BringToFront();
         }

@@ -104,6 +104,7 @@
     <Compile Include="InteropClasses\WinAPIHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TabMainDashboardForms\QuickListManager.cs" />
     <Compile Include="TabMainDashboardForms\TVStrategyManager.cs" />
     <Compile Include="TabSalesProForms\SalesProMainPage.cs">
       <SubType>UserControl</SubType>
@@ -295,6 +296,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\EmptyImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QuickList.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

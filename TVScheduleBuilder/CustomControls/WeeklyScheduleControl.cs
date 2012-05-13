@@ -110,15 +110,8 @@ namespace TVScheduleBuilder.CustomControls
             {
                 bool result = false;
                 if (this.SettingsNotSaved)
-                {
-                    if (AppManager.ShowWarningQuestion("Schedule settings have changed.\nDo you want to save changes?") == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        if (SaveSchedule())
-                            result = true;
-                    }
-                }
-                else
-                    result = true;
+                    SaveSchedule();
+                result = true;
                 return result;
             }
         }
@@ -588,9 +581,31 @@ namespace TVScheduleBuilder.CustomControls
         #endregion
 
         #region Output Staff
-        private BusinessClasses.OutputSchedule[] PrepareOutputScheduleExcelBased()
+        private int GetEstimatedSlideNumber()
         {
-            List<BusinessClasses.OutputSchedule> outputPages = new List<BusinessClasses.OutputSchedule>();
+            int result = 0;
+            if (_localSchedule != null)
+            {
+                int programsPerSlide = 10;
+                programsPerSlide = _localSchedule.WeeklySchedule.Programs.Count > programsPerSlide ? programsPerSlide : _localSchedule.WeeklySchedule.Programs.Count;
+
+                int totalSpotsCount = 0;
+                if (FormMain.Instance.buttonItemWeeklyScheduleSpots.Checked)
+                {
+                    BusinessClasses.Program defaultProgram = _localSchedule.WeeklySchedule.Programs.FirstOrDefault();
+                    if (defaultProgram != null)
+                        totalSpotsCount = defaultProgram.Spots.Count;
+                }
+                for (int i = 0; i < _localSchedule.WeeklySchedule.Programs.Count; i += programsPerSlide)
+                    for (int k = 0, n = 0; k < (totalSpotsCount == 0 ? 1 : totalSpotsCount); k += 26, n++)
+                        result++;
+            }
+            return result;
+        }
+
+        private BusinessClasses.OutputScheduleGridBased[] PrepareOutputExcelBased()
+        {
+            List<BusinessClasses.OutputScheduleGridBased> outputPages = new List<BusinessClasses.OutputScheduleGridBased>();
 
             int programsPerSlide = 10;
             programsPerSlide = _localSchedule.WeeklySchedule.Programs.Count > programsPerSlide ? programsPerSlide : _localSchedule.WeeklySchedule.Programs.Count;
@@ -606,7 +621,7 @@ namespace TVScheduleBuilder.CustomControls
             {
                 for (int k = 0; k < (totalSpotsCount == 0 ? 1 : totalSpotsCount); k += 13)
                 {
-                    BusinessClasses.OutputSchedule outputPage = new BusinessClasses.OutputSchedule(_localSchedule);
+                    BusinessClasses.OutputScheduleGridBased outputPage = new BusinessClasses.OutputScheduleGridBased(_localSchedule.WeeklySchedule);
                     outputPage.Advertiser = _localSchedule.BusinessName;
                     outputPage.DecisionMaker = _localSchedule.DecisionMaker;
                     outputPage.Demo = _localSchedule.Demo + (!string.IsNullOrEmpty(_localSchedule.Source) ? (" (" + _localSchedule.Source + ")") : string.Empty);
@@ -654,7 +669,7 @@ namespace TVScheduleBuilder.CustomControls
                         if ((i + j) < _localSchedule.WeeklySchedule.Programs.Count)
                         {
                             BusinessClasses.Program program = _localSchedule.WeeklySchedule.Programs[i + j];
-                            BusinessClasses.OutputProgram outputProgram = new BusinessClasses.OutputProgram(outputPage);
+                            BusinessClasses.OutputProgramGridBased outputProgram = new BusinessClasses.OutputProgramGridBased(outputPage);
                             outputProgram.Name = program.Name + (FormMain.Instance.buttonItemWeeklyScheduleDaypart.Checked ? ("-" + program.Daypart) : string.Empty);
                             outputProgram.LineID = program.Index.ToString();
                             outputProgram.Station = program.Station;
@@ -720,9 +735,9 @@ namespace TVScheduleBuilder.CustomControls
             return outputPages.ToArray();
         }
 
-        private BusinessClasses.OutputSchedule PrepareOutputScheduleGridBased()
+        private BusinessClasses.OutputScheduleGridBased PrepareOutputTableBased()
         {
-            BusinessClasses.OutputSchedule outputPage = new BusinessClasses.OutputSchedule(_localSchedule);
+            BusinessClasses.OutputScheduleGridBased outputPage = new BusinessClasses.OutputScheduleGridBased(_localSchedule.WeeklySchedule);
             BusinessClasses.Program defaultProgram = _localSchedule.WeeklySchedule.Programs.FirstOrDefault();
 
             int totalSpotsCount = 0;
@@ -774,7 +789,7 @@ namespace TVScheduleBuilder.CustomControls
             #region Set OutputProgram Values
             foreach (BusinessClasses.Program program in _localSchedule.WeeklySchedule.Programs)
             {
-                BusinessClasses.OutputProgram outputProgram = new BusinessClasses.OutputProgram(outputPage);
+                BusinessClasses.OutputProgramGridBased outputProgram = new BusinessClasses.OutputProgramGridBased(outputPage);
                 outputProgram.Name = program.Name + (FormMain.Instance.buttonItemWeeklyScheduleDaypart.Checked ? ("-" + program.Daypart) : string.Empty);
                 outputProgram.LineID = program.Index.ToString();
                 outputProgram.Station = program.Station;
@@ -819,9 +834,141 @@ namespace TVScheduleBuilder.CustomControls
             outputPage.TotalGRP = _localSchedule.WeeklySchedule.TotalGRP.ToString(_localSchedule.RatingAsCPP ? "#,###.0" : "#,##0");
             #endregion
 
-            outputPage.PopulateWeeklyScheduleReplacementsList();
+            outputPage.PopulateScheduleReplacementsList();
 
             return outputPage;
+        }
+
+        private BusinessClasses.OutputScheduleTagsBased[] PrepareOutputTagsBased()
+        {
+            List<string> temp = new List<string>();
+            List<BusinessClasses.OutputScheduleTagsBased> outputPages = new List<BusinessClasses.OutputScheduleTagsBased>();
+
+            if (_localSchedule != null)
+            {
+                int programsPerSlide = 10;
+                programsPerSlide = _localSchedule.WeeklySchedule.Programs.Count > programsPerSlide ? programsPerSlide : _localSchedule.WeeklySchedule.Programs.Count;
+
+                int totalSpotsCount = 0;
+                if (FormMain.Instance.buttonItemWeeklyScheduleSpots.Checked)
+                {
+                    BusinessClasses.Program defaultProgram = _localSchedule.WeeklySchedule.Programs.FirstOrDefault();
+                    if (defaultProgram != null)
+                        totalSpotsCount = defaultProgram.Spots.Count;
+                }
+                for (int i = 0; i < _localSchedule.WeeklySchedule.Programs.Count; i += programsPerSlide)
+                {
+                    for (int k = 0; k < (totalSpotsCount == 0 ? 1 : totalSpotsCount); k += 13)
+                    {
+                        BusinessClasses.OutputScheduleTagsBased outputPage = new BusinessClasses.OutputScheduleTagsBased(_localSchedule.WeeklySchedule);
+                        outputPage.Advertiser = _localSchedule.BusinessName;
+                        outputPage.DecisionMaker = _localSchedule.DecisionMaker;
+
+                        outputPage.ProgramsPerSlide = programsPerSlide;
+                        outputPage.SpotsPerSlide = totalSpotsCount > 0 ? (totalSpotsCount > 13 ? 13 : totalSpotsCount) : 0;
+
+                        outputPage.ShowRating = FormMain.Instance.buttonItemWeeklyScheduleRating.Checked;
+                        outputPage.ShowRates = FormMain.Instance.buttonItemWeeklyScheduleRate.Checked;
+                        outputPage.ShowCPP = FormMain.Instance.buttonItemWeeklyScheduleCPP.Checked;
+                        outputPage.ShowGRP = FormMain.Instance.buttonItemWeeklyScheduleGRP.Checked;
+
+                        outputPage.ColumnsPerSlide = 1;
+                        if (FormMain.Instance.buttonItemWeeklyScheduleCPP.Checked)
+                            outputPage.ColumnsPerSlide++;
+                        if (FormMain.Instance.buttonItemWeeklyScheduleGRP.Checked)
+                            outputPage.ColumnsPerSlide++;
+                        if (FormMain.Instance.buttonItemWeeklyScheduleCost.Checked)
+                            outputPage.ColumnsPerSlide++;
+
+                        outputPage.ShowTotalInvestment = FormMain.Instance.buttonItemWeeklyScheduleTotalCost.Checked;
+                        outputPage.ShowDiscount = FormMain.Instance.buttonItemWeeklyScheduleDiscount.Checked;
+                        outputPage.ShowNetCost = FormMain.Instance.buttonItemWeeklyScheduleNetRate.Checked;
+                        outputPage.ShowTotalSpots = FormMain.Instance.buttonItemWeeklyScheduleTotalSpots.Checked;
+                        outputPage.ShowWeeks = FormMain.Instance.buttonItemWeeklyScheduleTotalPeriods.Checked;
+
+                        #region Set OutputProgram Values
+                        for (int j = 0; j < programsPerSlide; j++)
+                        {
+                            if ((i + j) < _localSchedule.WeeklySchedule.Programs.Count)
+                            {
+                                BusinessClasses.Program program = _localSchedule.WeeklySchedule.Programs[i + j];
+                                BusinessClasses.OutputProgramTagsBased outputProgram = new BusinessClasses.OutputProgramTagsBased();
+                                outputProgram.Name = program.Name + (FormMain.Instance.buttonItemWeeklyScheduleLength.Checked ? string.Format("    ({0})", program.Length) : string.Empty);
+                                outputProgram.LineID = program.Index.ToString();
+                                outputProgram.CPP = FormMain.Instance.buttonItemWeeklyScheduleCPP.Checked ? program.CPP.ToString("$#,###.00") : string.Empty;
+                                outputProgram.GRP = FormMain.Instance.buttonItemWeeklyScheduleGRP.Checked ? program.GRP.ToString(_localSchedule.RatingAsCPP ? "#,###.0" : "#,##0") : string.Empty;
+                                outputProgram.TotalRate = FormMain.Instance.buttonItemWeeklyScheduleCost.Checked ? program.Cost.ToString("$#,##0") : string.Empty;
+                                outputProgram.TotalSpots = program.TotalSpots.ToString("#,##0");
+
+                                string properties = string.Empty;
+
+                                temp.Clear();
+                                if (FormMain.Instance.buttonItemWeeklyScheduleStation.Checked)
+                                    temp.Add(program.Station);
+                                if (FormMain.Instance.buttonItemWeeklyScheduleDay.Checked)
+                                    temp.Add(program.Day);
+                                if (FormMain.Instance.buttonItemWeeklyScheduleTime.Checked)
+                                    temp.Add(program.Time);
+                                if (FormMain.Instance.buttonItemWeeklyScheduleRate.Checked)
+                                    temp.Add("Rate: " + program.Cost.ToString("$#,##0"));
+                                if (FormMain.Instance.buttonItemWeeklyScheduleRating.Checked && program.Rating.HasValue)
+                                    temp.Add((_localSchedule.RatingAsCPP ? "Rtg: " : "000s: ") + program.Rating.Value.ToString(_localSchedule.RatingAsCPP ? "#,###.0" : "#,##0"));
+                                if (temp.Count > 0)
+                                    properties = string.Join("    ", temp.ToArray());
+                                outputProgram.Properties = properties;
+
+
+                                #region Set Spots Values
+                                for (int l = 0; l < 13; l++)
+                                {
+                                    if ((k + l) < totalSpotsCount)
+                                    {
+                                        string value = program.Spots[k + l].Count > 0 ? program.Spots[k + l].Count.ToString() : "-";
+                                        outputProgram.Spots.Add(value);
+                                    }
+                                    else
+                                        break;
+                                }
+                                #endregion
+
+                                outputPage.Programs.Add(outputProgram);
+                            }
+                            else
+                                break;
+                        }
+                        #endregion
+
+                        #region Set Total Values
+                        BusinessClasses.Program defaultProgram = _localSchedule.WeeklySchedule.Programs.FirstOrDefault();
+                        if (defaultProgram != null)
+                        {
+
+                            for (int l = 0; l < 13; l++)
+                            {
+                                if ((k + l) < totalSpotsCount)
+                                {
+                                    BusinessClasses.OutputTotalSpot outputTotalSpot = new BusinessClasses.OutputTotalSpot();
+                                    outputTotalSpot.Day = defaultProgram.Spots[k + l].Date.Day.ToString();
+                                    outputTotalSpot.Month = BusinessClasses.Spot.GetMonthAbbreviation(defaultProgram.Spots[k + l].Date.Month);
+                                    int sum = _localSchedule.WeeklySchedule.Programs.Select(x => x.Spots.Where(y => y.Date.Equals(defaultProgram.Spots[k + l].Date)).FirstOrDefault()).Where(z => z.Count.HasValue).Select(z => z.Count.Value).Sum();
+                                    outputTotalSpot.Value = sum > 0 ? sum.ToString() : "-";
+                                    outputPage.TotalSpots.Add(outputTotalSpot);
+                                }
+                                else
+                                    break;
+                            }
+                        }
+                        outputPage.TotalCost = FormMain.Instance.buttonItemWeeklyScheduleCost.Checked ? _localSchedule.WeeklySchedule.TotalCost.ToString("$#,##0") : string.Empty;
+                        outputPage.TotalSpot = _localSchedule.WeeklySchedule.TotalSpots.ToString("#,##0");
+                        outputPage.TotalCPP = FormMain.Instance.buttonItemWeeklyScheduleCPP.Checked ? _localSchedule.WeeklySchedule.TotalCPP.ToString("$#,###.00") : string.Empty;
+                        outputPage.TotalGRP = FormMain.Instance.buttonItemWeeklyScheduleCPP.Checked ? _localSchedule.WeeklySchedule.TotalGRP.ToString(_localSchedule.RatingAsCPP ? "#,###.0" : "#,##0") : string.Empty;
+                        #endregion
+
+                        outputPages.Add(outputPage);
+                    }
+                }
+            }
+            return outputPages.ToArray();
         }
 
         public void PrintOutput()
@@ -839,20 +986,82 @@ namespace TVScheduleBuilder.CustomControls
                         this.Enabled = false;
                         using (ToolForms.FormSelectOutput formSelect = new ToolForms.FormSelectOutput())
                         {
-                            BusinessClasses.OutputSchedule outputSchedule = PrepareOutputScheduleGridBased();
-                            formSelect.buttonXGrid.Enabled = _localSchedule.WeeklySchedule.Programs.Count <= 4 && outputSchedule.SpotsPerSlide <= 13 && _localSchedule.WeeklySchedule.Programs.Count <= 4 && File.Exists(Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetGridBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetGridBasedTemplateFileName, new object[] { outputSchedule.ProgramsPerSlide.ToString(), outputSchedule.SpotsPerSlide.ToString() })));
+                            BusinessClasses.OutputScheduleGridBased outputSchedule = null;
+                            System.Threading.Thread thread = null;
+                            thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                            {
+                                this.Invoke((MethodInvoker)delegate
+                                {
+                                    outputSchedule = PrepareOutputTableBased();
+                                });
+                            }));
+                            thread.Start();
+                            while (thread.IsAlive)
+                                System.Windows.Forms.Application.DoEvents();
+                            formSelect.ExcelBasedSlideCount = GetEstimatedSlideNumber();
+                            formSelect.TagsBasedSlideCount = formSelect.ExcelBasedSlideCount;
+                            formSelect.TableBasedSlideCount = 1;
+                            formSelect.IsEmailOutput = false;
+                            formSelect.buttonXGrid.Enabled = _localSchedule.WeeklySchedule.Programs.Count <= 4 && outputSchedule.SpotsPerSlide <= 13 && _localSchedule.WeeklySchedule.Programs.Count <= 4 && File.Exists(Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetTableBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetTableBasedTemplateFileName, new object[] { outputSchedule.ProgramsPerSlide.ToString(), outputSchedule.SpotsPerSlide.ToString() })));
                             DialogResult result = formSelect.ShowDialog();
                             if (result == DialogResult.Yes)
                             {
                                 form.Show();
-                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetGridBased(outputSchedule);
+                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetTableBased(outputSchedule);
                                 form.Close();
                                 showResultForm = true;
                             }
-                            else
+                            else if (result == DialogResult.No || result == DialogResult.Ignore)
                             {
                                 form.Show();
-                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetExcelBased(PrepareOutputScheduleExcelBased(), result == DialogResult.Ignore);
+                                BusinessClasses.OutputScheduleGridBased[] outputPages = null;
+                                thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                                {
+                                    this.Invoke((MethodInvoker)delegate
+                                    {
+                                        outputPages = PrepareOutputExcelBased();
+                                    });
+                                }));
+                                thread.Start();
+                                while (thread.IsAlive)
+                                    System.Windows.Forms.Application.DoEvents();
+                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetExcelBased(outputPages, result == DialogResult.Ignore);
+                                form.Close();
+                                showResultForm = true;
+                            }
+                            else if (result == DialogResult.Retry)
+                            {
+                                form.Show();
+                                BusinessClasses.OutputScheduleTagsBased[] outputPages = null;
+                                thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                                {
+                                    this.Invoke((MethodInvoker)delegate
+                                    {
+                                        outputPages = PrepareOutputTagsBased();
+                                    });
+                                }));
+                                thread.Start();
+                                while (thread.IsAlive)
+                                    System.Windows.Forms.Application.DoEvents();
+                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetSlideMasterBased(outputPages);
+                                form.Close();
+                                showResultForm = true;
+                            }
+                            else if (result == DialogResult.Abort)
+                            {
+                                form.Show();
+                                BusinessClasses.OutputScheduleTagsBased[] outputPages = null;
+                                thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                                {
+                                    this.Invoke((MethodInvoker)delegate
+                                    {
+                                        outputPages = PrepareOutputTagsBased();
+                                    });
+                                }));
+                                thread.Start();
+                                while (thread.IsAlive)
+                                    System.Windows.Forms.Application.DoEvents();
+                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetGroupedTextBased(outputPages);
                                 form.Close();
                                 showResultForm = true;
                             }
@@ -881,27 +1090,71 @@ namespace TVScheduleBuilder.CustomControls
                 BusinessClasses.Program program = _localSchedule.WeeklySchedule.Programs.FirstOrDefault();
                 if (program != null)
                 {
+
                     string tempFileName = Path.Combine(ConfigurationClasses.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
                     using (ToolForms.FormProgress form = new ToolForms.FormProgress())
                     {
                         form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
                         form.TopMost = true;
                         this.Enabled = false;
-                        BusinessClasses.OutputSchedule outputSchedule = PrepareOutputScheduleGridBased();
                         using (ToolForms.FormSelectOutput formSelect = new ToolForms.FormSelectOutput())
                         {
-                            formSelect.buttonXGrid.Enabled = _localSchedule.WeeklySchedule.Programs.Count <= 4 && outputSchedule.SpotsPerSlide <= 13 && _localSchedule.WeeklySchedule.Programs.Count <= 4 && File.Exists(Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetGridBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetGridBasedTemplateFileName, new object[] { outputSchedule.ProgramsPerSlide.ToString(), outputSchedule.SpotsPerSlide.ToString() })));
+                            formSelect.ExcelBasedSlideCount = GetEstimatedSlideNumber();
+                            formSelect.TagsBasedSlideCount = formSelect.ExcelBasedSlideCount;
+                            formSelect.TableBasedSlideCount = 1;
+                            formSelect.IsEmailOutput = true;
+                            formSelect.buttonXGrid.Enabled = false;
+                            System.Threading.Thread thread = null;
                             DialogResult result = formSelect.ShowDialog();
-                            if (result == DialogResult.Yes)
+                            if (result == DialogResult.No || result == DialogResult.Ignore)
                             {
                                 form.Show();
-                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailGridBased(tempFileName, outputSchedule);
+                                BusinessClasses.OutputScheduleGridBased[] outputPackages = null;
+                                thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                                {
+                                    this.Invoke((MethodInvoker)delegate
+                                    {
+                                        outputPackages = PrepareOutputExcelBased();
+                                    });
+                                }));
+                                thread.Start();
+                                while (thread.IsAlive)
+                                    System.Windows.Forms.Application.DoEvents();
+                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailExcelBased(tempFileName, outputPackages, result == DialogResult.Ignore);
                                 form.Close();
                             }
-                            else
+                            else if (result == DialogResult.Retry)
                             {
                                 form.Show();
-                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailExcelBased(tempFileName, PrepareOutputScheduleExcelBased(), result == DialogResult.Ignore);
+                                BusinessClasses.OutputScheduleTagsBased[] outputPackages = null;
+                                thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                                {
+                                    this.Invoke((MethodInvoker)delegate
+                                    {
+                                        outputPackages = PrepareOutputTagsBased();
+                                    });
+                                }));
+                                thread.Start();
+                                while (thread.IsAlive)
+                                    System.Windows.Forms.Application.DoEvents();
+                                InteropClasses.PowerPointHelper.Instance.PrepareQuickGridSlideMasterBasedEmail(tempFileName, outputPackages);
+                                form.Close();
+                            }
+                            else if (result == DialogResult.Abort)
+                            {
+                                form.Show();
+                                BusinessClasses.OutputScheduleTagsBased[] outputPackages = null;
+                                thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                                {
+                                    this.Invoke((MethodInvoker)delegate
+                                    {
+                                        outputPackages = PrepareOutputTagsBased();
+                                    });
+                                }));
+                                thread.Start();
+                                while (thread.IsAlive)
+                                    System.Windows.Forms.Application.DoEvents();
+                                InteropClasses.PowerPointHelper.Instance.PrepareQuickGridGroupedTextBasedEmail(tempFileName, outputPackages);
                                 form.Close();
                             }
                         }
@@ -910,7 +1163,7 @@ namespace TVScheduleBuilder.CustomControls
                     if (File.Exists(tempFileName))
                         using (ToolForms.FormEmail formEmail = new ToolForms.FormEmail())
                         {
-                            formEmail.Text = "Email this Detailed Planner";
+                            formEmail.Text = "Email this Weekly Schedule";
                             formEmail.PresentationFile = tempFileName;
                             formEmail.ShowDialog();
                         }

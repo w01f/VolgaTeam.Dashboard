@@ -32,8 +32,8 @@
             this.pbWeeklySchedule = new System.Windows.Forms.PictureBox();
             this.pnRight = new System.Windows.Forms.Panel();
             this.pnDayparts = new System.Windows.Forms.Panel();
-            this.pnStations = new System.Windows.Forms.Panel();
             this.daypartsControl = new TVScheduleBuilder.CustomControls.DaypartsControl();
+            this.pnStations = new System.Windows.Forms.Panel();
             this.stationsControl = new TVScheduleBuilder.CustomControls.StationsControl();
             ((System.ComponentModel.ISupportInitialize)(this.pbMonthlySchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbWeeklySchedule)).BeginInit();
@@ -44,7 +44,6 @@
             // 
             // pbMonthlySchedule
             // 
-            this.pbMonthlySchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbMonthlySchedule.Image = global::TVScheduleBuilder.Properties.Resources.MonthlyScheduleButton;
             this.pbMonthlySchedule.Location = new System.Drawing.Point(19, 285);
             this.pbMonthlySchedule.Name = "pbMonthlySchedule";
@@ -88,16 +87,6 @@
             this.pnDayparts.Size = new System.Drawing.Size(320, 250);
             this.pnDayparts.TabIndex = 1;
             // 
-            // pnStations
-            // 
-            this.pnStations.Controls.Add(this.stationsControl);
-            this.pnStations.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnStations.Location = new System.Drawing.Point(0, 0);
-            this.pnStations.Name = "pnStations";
-            this.pnStations.Padding = new System.Windows.Forms.Padding(10);
-            this.pnStations.Size = new System.Drawing.Size(320, 289);
-            this.pnStations.TabIndex = 0;
-            // 
             // daypartsControl
             // 
             this.daypartsControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
@@ -109,6 +98,16 @@
             this.daypartsControl.Padding = new System.Windows.Forms.Padding(3);
             this.daypartsControl.Size = new System.Drawing.Size(300, 230);
             this.daypartsControl.TabIndex = 0;
+            // 
+            // pnStations
+            // 
+            this.pnStations.Controls.Add(this.stationsControl);
+            this.pnStations.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnStations.Location = new System.Drawing.Point(0, 0);
+            this.pnStations.Name = "pnStations";
+            this.pnStations.Padding = new System.Windows.Forms.Padding(10);
+            this.pnStations.Size = new System.Drawing.Size(320, 289);
+            this.pnStations.TabIndex = 0;
             // 
             // stationsControl
             // 

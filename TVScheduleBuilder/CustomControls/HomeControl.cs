@@ -57,18 +57,25 @@ namespace TVScheduleBuilder.CustomControls
             {
                 bool result = false;
                 if (this.SettingsNotSaved || stationsControl.HasChanged || daypartsControl.HasChanged)
-                {
-                    if (AppManager.ShowWarningQuestion("Schedule settings have changed.\nDo you want to save changes?") == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        if (SaveSchedule())
-                            result = true;
-                    }
-                }
-                else
-                    result = true;
+                    SaveSchedule();
+                result = true;
                 return result;
             }
         }
+
+        private void UpdateScheduleControls()
+        {
+            bool enableSchedules = FormMain.Instance.comboBoxEditBusinessName.EditValue != null &
+                FormMain.Instance.comboBoxEditDecisionMaker.EditValue != null &
+                FormMain.Instance.comboBoxEditClientType.EditValue != null &
+                FormMain.Instance.dateEditPresentationDate.EditValue != null &
+                FormMain.Instance.dateEditFlightDatesStart.EditValue != null &
+                FormMain.Instance.dateEditFlightDatesEnd.EditValue != null;
+            FormMain.Instance.UpdateScheduleTabs(enableSchedules);
+            pbWeeklySchedule.Image = enableSchedules ? Properties.Resources.WeeklyScheduleButton : Properties.Resources.WeeklyScheduleButtonGray;
+            pbMonthlySchedule.Image = enableSchedules ? Properties.Resources.MonthlyScheduleButton : Properties.Resources.MonthlyScheduleButtonGray;
+        }
+
 
         private void UncheckSalesStrategyButtons()
         {
@@ -148,12 +155,7 @@ namespace TVScheduleBuilder.CustomControls
 
                 _allowTosave = true;
             }
-            FormMain.Instance.UpdateScheduleTabs(FormMain.Instance.comboBoxEditBusinessName.EditValue != null &
-                    FormMain.Instance.comboBoxEditDecisionMaker.EditValue != null &
-                    FormMain.Instance.comboBoxEditClientType.EditValue != null &
-                    FormMain.Instance.dateEditPresentationDate.EditValue != null &
-                    FormMain.Instance.dateEditFlightDatesStart.EditValue != null &
-                    FormMain.Instance.dateEditFlightDatesEnd.EditValue != null);
+            UpdateScheduleControls();
             this.SettingsNotSaved = false;
         }
 
@@ -276,12 +278,7 @@ namespace TVScheduleBuilder.CustomControls
             FormMain.Instance.comboBoxEditBusinessName.Properties.Items.AddRange(BusinessClasses.ListManager.Instance.Advertisers.ToArray());
             FormMain.Instance.comboBoxEditDecisionMaker.Properties.Items.Clear();
             FormMain.Instance.comboBoxEditDecisionMaker.Properties.Items.AddRange(BusinessClasses.ListManager.Instance.DecisionMakers.ToArray());
-            FormMain.Instance.UpdateScheduleTabs(FormMain.Instance.comboBoxEditBusinessName.EditValue != null &
-                FormMain.Instance.comboBoxEditDecisionMaker.EditValue != null &
-                FormMain.Instance.comboBoxEditClientType.EditValue != null &
-                FormMain.Instance.dateEditPresentationDate.EditValue != null &
-                FormMain.Instance.dateEditFlightDatesStart.EditValue != null &
-                FormMain.Instance.dateEditFlightDatesEnd.EditValue != null);
+            UpdateScheduleControls();
             BusinessClasses.ScheduleManager.Instance.SaveSchedule(_localSchedule, quickSave, this);
             this.SettingsNotSaved = false;
             stationsControl.HasChanged = false;
@@ -363,12 +360,7 @@ namespace TVScheduleBuilder.CustomControls
         {
             if (_allowTosave)
             {
-                FormMain.Instance.UpdateScheduleTabs(FormMain.Instance.comboBoxEditBusinessName.EditValue != null &
-                    FormMain.Instance.comboBoxEditDecisionMaker.EditValue != null &
-                    FormMain.Instance.comboBoxEditClientType.EditValue != null &
-                    FormMain.Instance.dateEditPresentationDate.EditValue != null &
-                    FormMain.Instance.dateEditFlightDatesStart.EditValue != null &
-                    FormMain.Instance.dateEditFlightDatesEnd.EditValue != null);
+                UpdateScheduleControls();
                 this.SettingsNotSaved = true;
             }
         }

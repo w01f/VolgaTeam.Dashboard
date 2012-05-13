@@ -249,13 +249,14 @@ namespace TVScheduleBuilder.InteropClasses
             }
         }
 
-        public void AppendSlide(PowerPoint.Presentation sourcePresentation, int slideIndex, PowerPoint.Presentation destinationPresentation = null)
+        public void AppendSlide(PowerPoint.Presentation sourcePresentation, int slideIndex, PowerPoint.Presentation destinationPresentation = null, bool appendCleanslate = false)
         {
             PowerPoint.Slide slide;
             PowerPoint.SlideRange pastedRange;
             PowerPoint.Design design;
-            int currentSlideIndex = 0;
             int indexToPaste;
+            int cleanslateSlideIndex = 0;
+            int currentSlideIndex = 0;
             Microsoft.Office.Core.MsoTriState masterShape;
 
             MessageFilter.Register();
@@ -269,6 +270,7 @@ namespace TVScheduleBuilder.InteropClasses
             }
             else
                 indexToPaste = destinationPresentation.Slides.Count + 1;
+
             PowerPoint.Slides slides = sourcePresentation.Slides;
             for (int i = 1; i <= slides.Count; i++)
             {
@@ -281,12 +283,10 @@ namespace TVScheduleBuilder.InteropClasses
                     indexToPaste++;
                     design = GetDesignFromSlide(slide, destinationPresentation);
                     if (design != null)
-                    {
                         pastedRange.Design = design;
-                    }
                     else
                     {
-                        PowerPoint.Design slideDesign = sourcePresentation.SlideMaster.Design;
+                        PowerPoint.Design slideDesign = slide.Design;
                         pastedRange.Design = slideDesign;
                         AppManager.ReleaseComObject(slideDesign);
                     }
@@ -357,8 +357,11 @@ namespace TVScheduleBuilder.InteropClasses
                     AppManager.ReleaseComObject(activeSlides);
                 }
             }
+            if (cleanslateSlideIndex != 0)
+            {
+                destinationPresentation.Slides[cleanslateSlideIndex].Delete();
+            }
             AppManager.ReleaseComObject(slides);
-            MessageFilter.Revoke();
         }
 
         private PowerPoint.Design GetDesignFromSlide(PowerPoint.Slide slide, PowerPoint.Presentation presentation)

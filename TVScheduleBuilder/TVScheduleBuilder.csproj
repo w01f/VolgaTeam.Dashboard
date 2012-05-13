@@ -403,6 +403,21 @@
   <ItemGroup>
     <None Include="Resources\Dayparts.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SlideMaster.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TextGrouped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OutputLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonthlyScheduleButtonGray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WeeklyScheduleButtonGray.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe" sign /f d:\temp\NewBizWiz\NLDCertificate.pfx /t http://timestamp.verisign.com/scripts/timstamp.dll  /p bubbadude TVScheduleBuilder.dll

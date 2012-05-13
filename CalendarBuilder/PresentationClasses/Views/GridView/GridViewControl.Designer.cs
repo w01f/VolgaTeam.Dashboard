@@ -28,47 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GridViewControl));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject25 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject26 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject27 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject28 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject29 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject33 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject34 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject35 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject36 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject37 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject38 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject39 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject40 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject41 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject42 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject43 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject44 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject45 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject46 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject47 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject48 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject49 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject50 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject51 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject52 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject53 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject54 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject55 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject56 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject57 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject58 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject59 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject60 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject61 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject62 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject63 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject64 = new DevExpress.Utils.SerializableAppearanceObject();
             this.pnGrid = new System.Windows.Forms.Panel();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlDigital = new DevExpress.XtraGrid.GridControl();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
             this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository(this.components);
+            this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository();
             this.repositoryItemDateEdit = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.repositoryItemComboBoxDigitalCategory = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemComboBoxDigitalSubCategory = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
@@ -140,8 +142,14 @@
             this.bandedGridColumnBigImage = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumnSmallImage = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumnTinyLogo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.styleController = new DevExpress.XtraEditors.StyleController();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.gridColumnDigitalQuickList = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemComboBoxQuickList = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemComboBoxQuickListDisplay = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemComboBoxQuickListFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemComboBoxQuickListDisplayFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.gridColumnNewspaperQuickList = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
             this.xtraTabControl.SuspendLayout();
@@ -198,6 +206,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListDisplay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListFirstRow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListDisplayFirstRow)).BeginInit();
             this.SuspendLayout();
             // 
             // pnGrid
@@ -264,7 +276,7 @@
             this.toolStripMenuItemClone,
             this.toolStripMenuItemDelete});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(171, 186);
+            this.contextMenuStrip.Size = new System.Drawing.Size(162, 164);
             // 
             // toolStripMenuItemCopy
             // 
@@ -273,7 +285,7 @@
             this.toolStripMenuItemCopy.Image = global::CalendarBuilder.Properties.Resources.CopySmall;
             this.toolStripMenuItemCopy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
-            this.toolStripMenuItemCopy.Size = new System.Drawing.Size(170, 40);
+            this.toolStripMenuItemCopy.Size = new System.Drawing.Size(161, 40);
             this.toolStripMenuItemCopy.Text = "Copy Data";
             this.toolStripMenuItemCopy.Click += new System.EventHandler(this.toolStripMenuItemCopy_Click);
             // 
@@ -284,7 +296,7 @@
             this.toolStripMenuItemPaste.Image = global::CalendarBuilder.Properties.Resources.PasteSmall;
             this.toolStripMenuItemPaste.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemPaste.Name = "toolStripMenuItemPaste";
-            this.toolStripMenuItemPaste.Size = new System.Drawing.Size(170, 40);
+            this.toolStripMenuItemPaste.Size = new System.Drawing.Size(161, 40);
             this.toolStripMenuItemPaste.Text = "Paste Data";
             this.toolStripMenuItemPaste.Click += new System.EventHandler(this.toolStripMenuItemPaste_Click);
             // 
@@ -295,7 +307,7 @@
             this.toolStripMenuItemClone.Image = global::CalendarBuilder.Properties.Resources.CloneSmall;
             this.toolStripMenuItemClone.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemClone.Name = "toolStripMenuItemClone";
-            this.toolStripMenuItemClone.Size = new System.Drawing.Size(170, 40);
+            this.toolStripMenuItemClone.Size = new System.Drawing.Size(161, 40);
             this.toolStripMenuItemClone.Text = "Clone Day";
             this.toolStripMenuItemClone.Click += new System.EventHandler(this.toolStripMenuItemClone_Click);
             // 
@@ -306,7 +318,7 @@
             this.toolStripMenuItemDelete.Image = global::CalendarBuilder.Properties.Resources.DeleteData;
             this.toolStripMenuItemDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
-            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(170, 40);
+            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(161, 40);
             this.toolStripMenuItemDelete.Text = "Delete Data";
             this.toolStripMenuItemDelete.Click += new System.EventHandler(this.toolStripMenuItemDelete_Click);
             // 
@@ -350,7 +362,11 @@
             this.repositoryItemSpinEditNewspaperTotalCostDisplayFirstRow,
             this.repositoryItemPictureEdit,
             this.repositoryItemButtonEditLogoSelector,
-            this.repositoryItemButtonEditLogoSelectorFirstRow});
+            this.repositoryItemButtonEditLogoSelectorFirstRow,
+            this.repositoryItemComboBoxQuickList,
+            this.repositoryItemComboBoxQuickListDisplay,
+            this.repositoryItemComboBoxQuickListFirstRow,
+            this.repositoryItemComboBoxQuickListDisplayFirstRow});
             // 
             // repositoryItemDateEdit
             // 
@@ -718,7 +734,7 @@
             this.repositoryItemComboBoxDigitalCategoryFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxDigitalCategoryFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxDigitalCategoryFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxDigitalCategoryFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject33, "", null, null, true)});
             this.repositoryItemComboBoxDigitalCategoryFirstRow.Name = "repositoryItemComboBoxDigitalCategoryFirstRow";
             this.repositoryItemComboBoxDigitalCategoryFirstRow.NullText = "Select Category...";
             this.repositoryItemComboBoxDigitalCategoryFirstRow.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -740,7 +756,7 @@
             this.repositoryItemComboBoxDigitalSubCategoryFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxDigitalSubCategoryFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxDigitalSubCategoryFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxDigitalSubCategoryFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject34, "", null, null, true)});
             this.repositoryItemComboBoxDigitalSubCategoryFirstRow.Name = "repositoryItemComboBoxDigitalSubCategoryFirstRow";
             this.repositoryItemComboBoxDigitalSubCategoryFirstRow.NullText = "Select Sub-Group...";
             this.repositoryItemComboBoxDigitalSubCategoryFirstRow.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -762,7 +778,7 @@
             this.repositoryItemComboBoxDigitalProductFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxDigitalProductFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxDigitalProductFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxDigitalProductFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject35, "", null, null, true)});
             this.repositoryItemComboBoxDigitalProductFirstRow.Name = "repositoryItemComboBoxDigitalProductFirstRow";
             this.repositoryItemComboBoxDigitalProductFirstRow.NullText = "Type or Select Digital Inventory...";
             this.repositoryItemComboBoxDigitalProductFirstRow.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemComboBox_Closed);
@@ -780,7 +796,7 @@
             this.repositoryItemButtonEditCustomCommentFirstRow.AppearanceReadOnly.Options.UseFont = true;
             this.repositoryItemButtonEditCustomCommentFirstRow.AutoHeight = false;
             this.repositoryItemButtonEditCustomCommentFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditCustomCommentFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditCustomCommentFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject36, "", null, null, true)});
             this.repositoryItemButtonEditCustomCommentFirstRow.Name = "repositoryItemButtonEditCustomCommentFirstRow";
             this.repositoryItemButtonEditCustomCommentFirstRow.NullText = "Type Custom Comment...";
             this.repositoryItemButtonEditCustomCommentFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxCustomNoteFirstRow_ButtonClick);
@@ -800,7 +816,7 @@
             this.repositoryItemComboBoxNewspaperPublicationFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxNewspaperPublicationFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperPublicationFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperPublicationFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject37, "", null, null, true)});
             this.repositoryItemComboBoxNewspaperPublicationFirstRow.Name = "repositoryItemComboBoxNewspaperPublicationFirstRow";
             this.repositoryItemComboBoxNewspaperPublicationFirstRow.NullText = "Select Newspaper...";
             this.repositoryItemComboBoxNewspaperPublicationFirstRow.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -822,7 +838,7 @@
             this.repositoryItemComboBoxNewspaperSectionFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxNewspaperSectionFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperSectionFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperSectionFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject38, "", null, null, true)});
             this.repositoryItemComboBoxNewspaperSectionFirstRow.Name = "repositoryItemComboBoxNewspaperSectionFirstRow";
             this.repositoryItemComboBoxNewspaperSectionFirstRow.NullText = "Select or Type: Section...";
             this.repositoryItemComboBoxNewspaperSectionFirstRow.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemComboBox_Closed);
@@ -843,7 +859,7 @@
             this.repositoryItemComboBoxNewspaperPageSizeFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxNewspaperPageSizeFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperPageSizeFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject7, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperPageSizeFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject39, "", null, null, true)});
             this.repositoryItemComboBoxNewspaperPageSizeFirstRow.Name = "repositoryItemComboBoxNewspaperPageSizeFirstRow";
             this.repositoryItemComboBoxNewspaperPageSizeFirstRow.NullText = "Select or Type: Ad-Size...";
             this.repositoryItemComboBoxNewspaperPageSizeFirstRow.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemComboBox_Closed);
@@ -864,7 +880,7 @@
             this.repositoryItemComboBoxNewspaperColorFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxNewspaperColorFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperColorFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject8, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperColorFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject40, "", null, null, true)});
             this.repositoryItemComboBoxNewspaperColorFirstRow.Items.AddRange(new object[] {
             "Full Color",
             "Spot Color",
@@ -889,7 +905,7 @@
             this.repositoryItemSpinEditNewspaperTotalCostFirstRow.AutoHeight = false;
             this.repositoryItemSpinEditNewspaperTotalCostFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditNewspaperTotalCostFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditNewspaperTotalCostFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject41, "", null, null, true)});
             this.repositoryItemSpinEditNewspaperTotalCostFirstRow.DisplayFormat.FormatString = "$#,###.00";
             this.repositoryItemSpinEditNewspaperTotalCostFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.repositoryItemSpinEditNewspaperTotalCostFirstRow.EditFormat.FormatString = "$#,###.00";
@@ -916,8 +932,8 @@
             this.repositoryItemComboBoxDigitalCategoryDisplayFirstRow.AppearanceReadOnly.Options.UseFont = true;
             this.repositoryItemComboBoxDigitalCategoryDisplayFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxDigitalCategoryDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject10, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxDigitalCategoryDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject11, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject42, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxDigitalCategoryDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject43, "", null, null, true)});
             this.repositoryItemComboBoxDigitalCategoryDisplayFirstRow.Name = "repositoryItemComboBoxDigitalCategoryDisplayFirstRow";
             this.repositoryItemComboBoxDigitalCategoryDisplayFirstRow.NullText = "Select Category...";
             this.repositoryItemComboBoxDigitalCategoryDisplayFirstRow.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -937,8 +953,8 @@
             this.repositoryItemComboBoxDigitalSubCategoryDisplayFirstRow.AppearanceReadOnly.Options.UseFont = true;
             this.repositoryItemComboBoxDigitalSubCategoryDisplayFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxDigitalSubCategoryDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject12, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxDigitalSubCategoryDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject44, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxDigitalSubCategoryDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject45, "", null, null, true)});
             this.repositoryItemComboBoxDigitalSubCategoryDisplayFirstRow.Name = "repositoryItemComboBoxDigitalSubCategoryDisplayFirstRow";
             this.repositoryItemComboBoxDigitalSubCategoryDisplayFirstRow.NullText = "Select Sub-Group...";
             this.repositoryItemComboBoxDigitalSubCategoryDisplayFirstRow.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -958,8 +974,8 @@
             this.repositoryItemComboBoxDigitalProductDisplayFirstRow.AppearanceReadOnly.Options.UseFont = true;
             this.repositoryItemComboBoxDigitalProductDisplayFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxDigitalProductDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject14, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxDigitalProductDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject15, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject46, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxDigitalProductDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject47, "", null, null, true)});
             this.repositoryItemComboBoxDigitalProductDisplayFirstRow.Name = "repositoryItemComboBoxDigitalProductDisplayFirstRow";
             this.repositoryItemComboBoxDigitalProductDisplayFirstRow.NullText = "Type or Select Digital Inventory...";
             this.repositoryItemComboBoxDigitalProductDisplayFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxDigitalProductFirstRow_ButtonClick);
@@ -978,8 +994,8 @@
             this.repositoryItemComboBoxNewspaperPublicationDisplayFirstRow.AppearanceReadOnly.Options.UseFont = true;
             this.repositoryItemComboBoxNewspaperPublicationDisplayFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxNewspaperPublicationDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject16, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperPublicationDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject48, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperPublicationDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject49, "", null, null, true)});
             this.repositoryItemComboBoxNewspaperPublicationDisplayFirstRow.Name = "repositoryItemComboBoxNewspaperPublicationDisplayFirstRow";
             this.repositoryItemComboBoxNewspaperPublicationDisplayFirstRow.NullText = "Select Newspaper...";
             this.repositoryItemComboBoxNewspaperPublicationDisplayFirstRow.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -999,8 +1015,8 @@
             this.repositoryItemComboBoxNewspaperSectionDisplayFirstRow.AppearanceReadOnly.Options.UseFont = true;
             this.repositoryItemComboBoxNewspaperSectionDisplayFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxNewspaperSectionDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject18, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperSectionDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject19, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject50, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperSectionDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject51, "", null, null, true)});
             this.repositoryItemComboBoxNewspaperSectionDisplayFirstRow.Name = "repositoryItemComboBoxNewspaperSectionDisplayFirstRow";
             this.repositoryItemComboBoxNewspaperSectionDisplayFirstRow.NullText = "Select or Type: Section...";
             this.repositoryItemComboBoxNewspaperSectionDisplayFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxNewspaperSectionFirstRow_ButtonClick);
@@ -1019,8 +1035,8 @@
             this.repositoryItemComboBoxNewspaperPageSizeDisplayFirstRow.AppearanceReadOnly.Options.UseFont = true;
             this.repositoryItemComboBoxNewspaperPageSizeDisplayFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxNewspaperPageSizeDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject20, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperPageSizeDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject52, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperPageSizeDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject53, "", null, null, true)});
             this.repositoryItemComboBoxNewspaperPageSizeDisplayFirstRow.Name = "repositoryItemComboBoxNewspaperPageSizeDisplayFirstRow";
             this.repositoryItemComboBoxNewspaperPageSizeDisplayFirstRow.NullText = "Select or Type: Ad-Size...";
             this.repositoryItemComboBoxNewspaperPageSizeDisplayFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxNewspaperPageSizeFirstRow_ButtonClick);
@@ -1039,8 +1055,8 @@
             this.repositoryItemComboBoxNewspaperColorDisplayFirstRow.AppearanceReadOnly.Options.UseFont = true;
             this.repositoryItemComboBoxNewspaperColorDisplayFirstRow.AutoHeight = false;
             this.repositoryItemComboBoxNewspaperColorDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject22, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperColorDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject23, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject54, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxNewspaperColorDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject55, "", null, null, true)});
             this.repositoryItemComboBoxNewspaperColorDisplayFirstRow.Items.AddRange(new object[] {
             "Full Color",
             "Spot Color",
@@ -1063,8 +1079,8 @@
             this.repositoryItemSpinEditNewspaperTotalCostDisplayFirstRow.AppearanceReadOnly.Options.UseFont = true;
             this.repositoryItemSpinEditNewspaperTotalCostDisplayFirstRow.AutoHeight = false;
             this.repositoryItemSpinEditNewspaperTotalCostDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject24, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditNewspaperTotalCostDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject25, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject56, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditNewspaperTotalCostDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject57, "", null, null, true)});
             this.repositoryItemSpinEditNewspaperTotalCostDisplayFirstRow.DisplayFormat.FormatString = "$#,###.00";
             this.repositoryItemSpinEditNewspaperTotalCostDisplayFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.repositoryItemSpinEditNewspaperTotalCostDisplayFirstRow.EditFormat.FormatString = "$#,###.00";
@@ -1100,8 +1116,8 @@
             // 
             this.repositoryItemButtonEditLogoSelector.AutoHeight = false;
             this.repositoryItemButtonEditLogoSelector.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 30, true, false, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditLogoSelector.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject26, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", 30, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject27, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 30, true, false, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditLogoSelector.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject58, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", 30, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject59, "", null, null, true)});
             this.repositoryItemButtonEditLogoSelector.Name = "repositoryItemButtonEditLogoSelector";
             this.repositoryItemButtonEditLogoSelector.ReadOnly = true;
             this.repositoryItemButtonEditLogoSelector.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -1111,8 +1127,8 @@
             // 
             this.repositoryItemButtonEditLogoSelectorFirstRow.AutoHeight = false;
             this.repositoryItemButtonEditLogoSelectorFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 30, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditLogoSelectorFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject28, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", 30, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject29, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 30, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditLogoSelectorFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject60, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", 30, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject61, "", null, null, true)});
             this.repositoryItemButtonEditLogoSelectorFirstRow.Name = "repositoryItemButtonEditLogoSelectorFirstRow";
             this.repositoryItemButtonEditLogoSelectorFirstRow.ReadOnly = true;
             this.repositoryItemButtonEditLogoSelectorFirstRow.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -1135,7 +1151,8 @@
             this.gridColumnDigitalSubCategory,
             this.gridColumnDigitalProduct,
             this.gridColumnDigitalCustomNote,
-            this.gridColumnDigitalDay});
+            this.gridColumnDigitalDay,
+            this.gridColumnDigitalQuickList});
             this.gridViewDigital.GridControl = this.gridControlDigital;
             this.gridViewDigital.Name = "gridViewDigital";
             this.gridViewDigital.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -1205,7 +1222,7 @@
             this.gridColumnDigitalCustomNote.FieldName = "CustomNote";
             this.gridColumnDigitalCustomNote.Name = "gridColumnDigitalCustomNote";
             this.gridColumnDigitalCustomNote.Visible = true;
-            this.gridColumnDigitalCustomNote.VisibleIndex = 4;
+            this.gridColumnDigitalCustomNote.VisibleIndex = 5;
             this.gridColumnDigitalCustomNote.Width = 540;
             // 
             // gridColumnDigitalDay
@@ -1260,7 +1277,8 @@
             this.gridColumnNewspaperCustomNote,
             this.gridColumnNewspaperDay,
             this.gridColumnNewspaperColor,
-            this.gridColumnNewspaperCost});
+            this.gridColumnNewspaperCost,
+            this.gridColumnNewspaperQuickList});
             this.gridViewNewspaper.GridControl = this.gridControlNewspaper;
             this.gridViewNewspaper.Name = "gridViewNewspaper";
             this.gridViewNewspaper.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -1289,6 +1307,7 @@
             this.gridViewNewspaper.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.gridViewNewspaper_CustomRowCellEditForEditing);
             this.gridViewNewspaper.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gridView_PopupMenuShowing);
             this.gridViewNewspaper.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridViewNewspaper_SelectionChanged);
+            this.gridViewNewspaper.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridViewNewspaper_ShowingEditor);
             this.gridViewNewspaper.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewNewspaper_FocusedRowChanged);
             this.gridViewNewspaper.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewNewspaper_CellValueChanged);
             // 
@@ -1329,7 +1348,7 @@
             this.gridColumnNewspaperCustomNote.FieldName = "CustomNote";
             this.gridColumnNewspaperCustomNote.Name = "gridColumnNewspaperCustomNote";
             this.gridColumnNewspaperCustomNote.Visible = true;
-            this.gridColumnNewspaperCustomNote.VisibleIndex = 6;
+            this.gridColumnNewspaperCustomNote.VisibleIndex = 7;
             this.gridColumnNewspaperCustomNote.Width = 540;
             // 
             // gridColumnNewspaperDay
@@ -1626,6 +1645,102 @@
             // 
             this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
             // 
+            // gridColumnDigitalQuickList
+            // 
+            this.gridColumnDigitalQuickList.Caption = "Quick List";
+            this.gridColumnDigitalQuickList.ColumnEdit = this.repositoryItemComboBoxQuickList;
+            this.gridColumnDigitalQuickList.FieldName = "QuickListRecord";
+            this.gridColumnDigitalQuickList.Name = "gridColumnDigitalQuickList";
+            this.gridColumnDigitalQuickList.Visible = true;
+            this.gridColumnDigitalQuickList.VisibleIndex = 4;
+            this.gridColumnDigitalQuickList.Width = 240;
+            // 
+            // repositoryItemComboBoxQuickList
+            // 
+            this.repositoryItemComboBoxQuickList.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickList.Appearance.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickList.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickList.AppearanceDisabled.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickList.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickList.AppearanceDropDown.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickList.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickList.AppearanceFocused.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickList.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickList.AppearanceReadOnly.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickList.AutoHeight = false;
+            this.repositoryItemComboBoxQuickList.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBoxQuickList.Name = "repositoryItemComboBoxQuickList";
+            this.repositoryItemComboBoxQuickList.NullText = "Type or Select from Quick List...";
+            this.repositoryItemComboBoxQuickList.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxQuickList_ButtonClick);
+            // 
+            // repositoryItemComboBoxQuickListDisplay
+            // 
+            this.repositoryItemComboBoxQuickListDisplay.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplay.Appearance.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceDisabled.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceDropDown.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceFocused.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceReadOnly.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplay.AutoHeight = false;
+            this.repositoryItemComboBoxQuickListDisplay.Name = "repositoryItemComboBoxQuickListDisplay";
+            this.repositoryItemComboBoxQuickListDisplay.NullText = "Type or Select from Quick List...";
+            this.repositoryItemComboBoxQuickListDisplay.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxQuickList_ButtonClick);
+            // 
+            // repositoryItemComboBoxQuickListFirstRow
+            // 
+            this.repositoryItemComboBoxQuickListFirstRow.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListFirstRow.Appearance.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceDisabled.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceDropDown.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceFocused.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceReadOnly.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListFirstRow.AutoHeight = false;
+            this.repositoryItemComboBoxQuickListFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxQuickListFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject62, "", null, null, true)});
+            this.repositoryItemComboBoxQuickListFirstRow.Name = "repositoryItemComboBoxQuickListFirstRow";
+            this.repositoryItemComboBoxQuickListFirstRow.NullText = "Type or Select from Quick List...";
+            this.repositoryItemComboBoxQuickListFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxQuickList_ButtonClick);
+            // 
+            // repositoryItemComboBoxQuickListDisplayFirstRow
+            // 
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.Appearance.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceDisabled.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceDropDown.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceFocused.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceReadOnly.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AutoHeight = false;
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject63, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxQuickListDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject64, "", null, null, true)});
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.Name = "repositoryItemComboBoxQuickListDisplayFirstRow";
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.NullText = "Type or Select from Quick List...";
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxQuickList_ButtonClick);
+            // 
+            // gridColumnNewspaperQuickList
+            // 
+            this.gridColumnNewspaperQuickList.Caption = "Quick List";
+            this.gridColumnNewspaperQuickList.ColumnEdit = this.repositoryItemComboBoxQuickList;
+            this.gridColumnNewspaperQuickList.FieldName = "QuickListRecord";
+            this.gridColumnNewspaperQuickList.Name = "gridColumnNewspaperQuickList";
+            this.gridColumnNewspaperQuickList.Visible = true;
+            this.gridColumnNewspaperQuickList.VisibleIndex = 6;
+            this.gridColumnNewspaperQuickList.Width = 240;
+            // 
             // GridViewControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1691,6 +1806,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListDisplay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListFirstRow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListDisplayFirstRow)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1780,5 +1899,11 @@
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPaste;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemClone;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDelete;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnDigitalQuickList;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxQuickList;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxQuickListDisplay;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxQuickListFirstRow;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxQuickListDisplayFirstRow;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnNewspaperQuickList;
     }
 }

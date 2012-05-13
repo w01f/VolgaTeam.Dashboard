@@ -129,7 +129,7 @@ namespace CalendarBuilder.ToolForms
                                     _rangesToDelete.AddRange(_selectedRanges.Where(x => x.StartDate >= startDate && x.FinishDate <= finishDate));
                                     foreach (BusinessClasses.DateRange rande in _rangesToDelete)
                                         _selectedRanges.Remove(rande);
-                                    _selectedRanges.AddRange(BusinessClasses.CalendarNote.CalculateDateRange(new DateTime[] { startDate, finishDate }));
+                                    _selectedRanges.AddRange(_sourceNote.Parent.CalculateDateRange(new DateTime[] { startDate, finishDate }));
                                     UpdateSelectedDates();
                                     _selectedDate = null;
                                 }

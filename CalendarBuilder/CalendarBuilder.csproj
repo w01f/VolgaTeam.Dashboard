@@ -88,6 +88,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager.cs" />
+    <Compile Include="PresentationClasses\Calendars\TVCalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Calendars\TVCalendarControl.Designer.cs">
+      <DependentUpon>TVCalendarControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\Calendars\SimpleCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -289,6 +295,9 @@
     <Compile Include="ToolForms\FormSlideOutput.Designer.cs">
       <DependentUpon>FormSlideOutput.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="PresentationClasses\Calendars\TVCalendarControl.resx">
+      <DependentUpon>TVCalendarControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Calendars\SimpleCalendarControl.resx">
       <DependentUpon>SimpleCalendarControl.cs</DependentUpon>
     </EmbeddedResource>

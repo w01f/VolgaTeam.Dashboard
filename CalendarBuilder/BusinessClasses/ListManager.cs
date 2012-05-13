@@ -29,6 +29,7 @@ namespace CalendarBuilder.BusinessClasses
         private const string PrintStrategyFileName = @"Newspaper XML\Print Strategy.xml";
         private const string OnlineStrategyFileName = @"Online XML\Online Strategy.xml";
         private const string MobileStrategyFileName = @"Mobile XML\Mobile Strategy.xml";
+        private const string QuickListFileName = @"QuickList XML\Quick List.xml";
 
         private static ListManager _instance = new ListManager();
 
@@ -45,7 +46,11 @@ namespace CalendarBuilder.BusinessClasses
         public List<PrintSource> PrintSources { get; private set; }
         public List<string> PrintPageSizes { get; private set; }
         public List<PrintSection> PrintSections { get; private set; }
+        public List<string> PrintQuickList { get; private set; }
         #endregion
+
+        #region Digital Lists
+        public List<string> DigitalQuickList { get; private set; }
 
         #region Online Lists
         public List<DigitalCategory> OnlineCategories { get; private set; }
@@ -55,6 +60,15 @@ namespace CalendarBuilder.BusinessClasses
         #region Mobile Lists
         public List<DigitalCategory> MobileCategories { get; private set; }
         public List<DigitalSource> MobileSources { get; private set; }
+        #endregion
+        #endregion
+
+        #region TV Lists
+        public List<string> TVQuickList { get; private set; }
+        #endregion
+
+        #region Radio Lists
+        public List<string> RadioQuickList { get; private set; }
         #endregion
 
         private ListManager()
@@ -74,16 +88,29 @@ namespace CalendarBuilder.BusinessClasses
             this.PrintSources = new List<PrintSource>();
             this.PrintPageSizes = new List<string>();
             this.PrintSections = new List<PrintSection>();
+            this.PrintQuickList = new List<string>();
             #endregion
 
-            #region Online Classes
+            #region Digital Lists
+            this.DigitalQuickList = new List<string>();
+
+            #region Online Lists
             this.OnlineCategories = new List<DigitalCategory>();
             this.OnlineSources = new List<DigitalSource>();
             #endregion
 
-            #region Mobile Classes
+            #region Mobile Lists
             this.MobileCategories = new List<DigitalCategory>();
             this.MobileSources = new List<DigitalSource>();
+            #endregion
+            #endregion
+
+            #region TV Lists
+            this.TVQuickList = new List<string>();
+            #endregion
+
+            #region Radio Lists
+            this.RadioQuickList = new List<string>();
             #endregion
 
             LoadLists();
@@ -105,6 +132,7 @@ namespace CalendarBuilder.BusinessClasses
             LoadOnlineStrategy();
             LoadMobileStrategy();
             LoadImages();
+            LoadQuickLists();
         }
 
         private void LoadAdvertisers()
@@ -380,6 +408,71 @@ namespace CalendarBuilder.BusinessClasses
                     imageSource.TinyImage = new Bitmap(tinyImageFilePath);
                     imageSource.XtraTinyImage = new Bitmap(xtraTinyImageFilePath);
                     this.Images.Add(imageSource);
+                }
+            }
+        }
+
+        private void LoadQuickLists()
+        {
+            this.PrintQuickList.Clear();
+            this.DigitalQuickList.Clear();
+            this.TVQuickList.Clear();
+            this.RadioQuickList.Clear();
+            string listPath = Path.Combine(this.ListsFolder, QuickListFileName);
+            if (File.Exists(listPath))
+            {
+                XmlDocument document = new XmlDocument();
+                document.Load(listPath);
+
+                XmlNode node = document.SelectSingleNode(@"/QuickList");
+                if (node != null)
+                {
+                    foreach (XmlNode childeNode in node.ChildNodes)
+                    {
+                        switch (childeNode.Name)
+                        {
+                            case "Print":
+                                foreach (XmlAttribute attribute in childeNode.Attributes)
+                                    switch (attribute.Name)
+                                    {
+                                        case "Value":
+                                            if (!this.PrintQuickList.Contains(attribute.Value))
+                                                this.PrintQuickList.Add(attribute.Value);
+                                            break;
+                                    }
+                                break;
+                            case "Digital":
+                                foreach (XmlAttribute attribute in childeNode.Attributes)
+                                    switch (attribute.Name)
+                                    {
+                                        case "Value":
+                                            if (!this.DigitalQuickList.Contains(attribute.Value))
+                                                this.DigitalQuickList.Add(attribute.Value);
+                                            break;
+                                    }
+                                break;
+                            case "TV":
+                                foreach (XmlAttribute attribute in childeNode.Attributes)
+                                    switch (attribute.Name)
+                                    {
+                                        case "Value":
+                                            if (!this.TVQuickList.Contains(attribute.Value))
+                                                this.TVQuickList.Add(attribute.Value);
+                                            break;
+                                    }
+                                break;
+                            case "Radio":
+                                foreach (XmlAttribute attribute in childeNode.Attributes)
+                                    switch (attribute.Name)
+                                    {
+                                        case "Value":
+                                            if (!this.RadioQuickList.Contains(attribute.Value))
+                                                this.RadioQuickList.Add(attribute.Value);
+                                            break;
+                                    }
+                                break;
+                        }
+                    }
                 }
             }
         }

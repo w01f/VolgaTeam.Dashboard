@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.memoEditCustomNote = new DevExpress.XtraEditors.MemoEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+            this.styleController = new DevExpress.XtraEditors.StyleController();
             this.comboBoxEditQuickList = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEditCategory = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEditSubCategory = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -91,8 +90,7 @@
             this.comboBoxEditQuickList.Name = "comboBoxEditQuickList";
             this.comboBoxEditQuickList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditQuickList.Properties.NullText = "My Favorite Quick List";
-            this.comboBoxEditQuickList.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboBoxEditQuickList.Properties.NullText = "Type or Select from Quick List...";
             this.comboBoxEditQuickList.Size = new System.Drawing.Size(280, 22);
             this.comboBoxEditQuickList.StyleController = this.styleController;
             this.comboBoxEditQuickList.TabIndex = 9;
@@ -171,12 +169,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXQuickList.AutoCheckOnClick = true;
             this.buttonXQuickList.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXQuickList.Enabled = false;
             this.buttonXQuickList.Location = new System.Drawing.Point(10, 170);
             this.buttonXQuickList.Name = "buttonXQuickList";
             this.buttonXQuickList.Size = new System.Drawing.Size(280, 24);
             this.buttonXQuickList.TabIndex = 22;
-            this.buttonXQuickList.Text = "B. My Favorite Quick List";
+            this.buttonXQuickList.Text = "B. Add from Quick List";
             this.buttonXQuickList.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             this.buttonXQuickList.TextColor = System.Drawing.Color.Black;
             this.buttonXQuickList.CheckedChanged += new System.EventHandler(this.checkEditQuickList_CheckedChanged);

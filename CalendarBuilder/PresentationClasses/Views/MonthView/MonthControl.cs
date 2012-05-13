@@ -8,16 +8,18 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
     [System.ComponentModel.ToolboxItem(false)]
     public partial class MonthControl : UserControl
     {
+        private bool _weekSundayStarted = true;
         private List<WeekControl> _weekControls = new List<WeekControl>();
         private List<CalendarNoteControl> _noteControls = new List<CalendarNoteControl>();
 
         public bool HasData { get; private set; }
 
-        public MonthControl()
+        public MonthControl(bool weekSundayStarted)
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
             this.HasData = false;
+            _weekSundayStarted = weekSundayStarted;
             pnMain.Resize += new EventHandler(MonthViewControl_Resize);
         }
 
@@ -60,13 +62,40 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         private void FitHeader()
         {
             double width = this.Width / 7;
-            laSunday.Width = (int)width;
-            laMonday.Width = (int)width;
-            laTuesday.Width = (int)width;
-            laWednesday.Width = (int)width;
-            laThursday.Width = (int)width;
-            laFriday.Width = (int)width;
-            laSaturday.Width = this.Width - ((int)width * 6);
+            if (_weekSundayStarted)
+            {
+                laSunday.BringToFront();
+                laMonday.BringToFront();
+                laTuesday.BringToFront();
+                laWednesday.BringToFront();
+                laThursday.BringToFront();
+                laFriday.BringToFront();
+                laSaturday.BringToFront();
+                laSunday.Width = (int)width;
+                laMonday.Width = (int)width;
+                laTuesday.Width = (int)width;
+                laWednesday.Width = (int)width;
+                laThursday.Width = (int)width;
+                laFriday.Width = (int)width;
+                laSaturday.Width = this.Width - ((int)width * 6);
+            }
+            else
+            {
+                laMonday.BringToFront();
+                laTuesday.BringToFront();
+                laWednesday.BringToFront();
+                laThursday.BringToFront();
+                laFriday.BringToFront();
+                laSaturday.BringToFront();
+                laSunday.BringToFront();
+                laMonday.Width = (int)width;
+                laTuesday.Width = (int)width;
+                laWednesday.Width = (int)width;
+                laThursday.Width = (int)width;
+                laFriday.Width = (int)width;
+                laSaturday.Width = (int)width;
+                laSunday.Width = this.Width - ((int)width * 6);
+            }
         }
 
         private void FitWeekControls()

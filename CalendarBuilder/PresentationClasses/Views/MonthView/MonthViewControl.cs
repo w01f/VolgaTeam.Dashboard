@@ -67,8 +67,8 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
                 ClearContainer();
                 foreach (BusinessClasses.CalendarMonth monthData in this.Calendar.CalendarData.Months)
                 {
-                    MonthControl month = new MonthControl();
-                    this.Months.Add(monthData.StartDate, month);
+                    MonthControl month = new MonthControl(!(_style == BusinessClasses.CalendarStyle.TV));
+                    this.Months.Add(monthData.Date, month);
                 }
             }
             else
@@ -105,7 +105,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
             this.SelectionManager.ClearSelection();
             pnMain.Controls.Clear();
             this.CopyPasteManager.ResetCopy();
-            calendarMonth = this.Calendar.CalendarData.Months.Where(x => x.StartDate.Equals(date)).FirstOrDefault();
+            calendarMonth = this.Calendar.CalendarData.Months.Where(x => x.Date.Equals(date)).FirstOrDefault();
             if (this.Months.ContainsKey(date))
             {
                 month = this.Months[date];
@@ -121,7 +121,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
                             this.Invoke((MethodInvoker)delegate
                             {
                                 List<Views.MonthView.DayControl[]> weeks = new List<Views.MonthView.DayControl[]>();
-                                DateTime[][] datesByWeeks = BusinessClasses.Schedule.GetDaysByWeek(calendarMonth.StartDate, calendarMonth.EndDate);
+                                DateTime[][] datesByWeeks = this.Calendar.CalendarData.GetDaysByWeek(calendarMonth.DaysRangeBegin, calendarMonth.DaysRangeEnd);
                                 foreach (DateTime[] weekDays in datesByWeeks)
                                 {
                                     List<Views.MonthView.DayControl> week = new List<Views.MonthView.DayControl>();
@@ -177,12 +177,12 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
                                             dayControl.DayMouseMove += new EventHandler<MouseEventArgs>((sender, e) =>
                                             {
                                                 foreach (DayControl day in _days)
-                                                    if(day.Day.BelongsToSchedules && day.ClientRectangle.Contains(day.PointToClient(Cursor.Position)))
+                                                    if (day.Day.BelongsToSchedules && day.ClientRectangle.Contains(day.PointToClient(Cursor.Position)))
                                                         this.SelectionManager.SelectDay(day.Day, Keys.Control);
                                             });
                                             dayControl.NoteAdded += new EventHandler<EventArgs>((sender, e) =>
                                             {
-                                                BusinessClasses.DateRange noteDateRange = BusinessClasses.CalendarNote.CalculateDateRange(this.SelectionManager.SelectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
+                                                BusinessClasses.DateRange noteDateRange = this.Calendar.CalendarData.CalculateDateRange(this.SelectionManager.SelectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
                                                 AddNote(noteDateRange);
                                                 RefreshData();
                                             });
@@ -308,7 +308,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         private CalendarNoteControl[][] GetNotesByWeeeks(BusinessClasses.CalendarMonth month)
         {
             List<Views.MonthView.CalendarNoteControl[]> monthNotes = new List<Views.MonthView.CalendarNoteControl[]>();
-            DateTime[][] datesByWeeks = BusinessClasses.Schedule.GetDaysByWeek(month.StartDate, month.EndDate);
+            DateTime[][] datesByWeeks = this.Calendar.CalendarData.GetDaysByWeek(month.DaysRangeBegin, month.DaysRangeEnd);
             foreach (DateTime[] weekDays in datesByWeeks)
             {
                 List<Views.MonthView.CalendarNoteControl> weekNotes = new List<Views.MonthView.CalendarNoteControl>();
@@ -351,7 +351,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
                                     if (form.ApplyForAll)
                                         foreach (BusinessClasses.CalendarNote calendarNote in this.Calendar.CalendarData.Notes)
                                             calendarNote.BackgroundColor = note.BackgroundColor;
-                                    foreach(MonthControl monthControl in this.Months.Values)
+                                    foreach (MonthControl monthControl in this.Months.Values)
                                         monthControl.RefreshNotes();
                                 }
                             }
@@ -371,9 +371,9 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
                 this.Calendar.CalendarData.AddNote(noteRange, noteText);
                 this.Calendar.SettingsNotSaved = true;
 
-                BusinessClasses.CalendarMonth calendarMonth = this.Calendar.CalendarData.Months.Where(x => x.StartDate.Equals(new DateTime(noteRange.FinishDate.Year, noteRange.FinishDate.Month, 1))).FirstOrDefault();
+                BusinessClasses.CalendarMonth calendarMonth = this.Calendar.CalendarData.Months.Where(x => x.Date.Equals(new DateTime(noteRange.FinishDate.Year, noteRange.FinishDate.Month, 1))).FirstOrDefault();
                 if (calendarMonth != null)
-                    this.Months[calendarMonth.StartDate].AddNotes(GetNotesByWeeeks(calendarMonth));
+                    this.Months[calendarMonth.Date].AddNotes(GetNotesByWeeeks(calendarMonth));
             }
         }
 
@@ -381,19 +381,19 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         {
             if (this.CopyPasteManager.SourceNote != null)
             {
-                BusinessClasses.DateRange noteDateRange = BusinessClasses.CalendarNote.CalculateDateRange(this.SelectionManager.SelectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
+                BusinessClasses.DateRange noteDateRange = this.Calendar.CalendarData.CalculateDateRange(this.SelectionManager.SelectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
                 AddNote(noteDateRange, this.CopyPasteManager.SourceNote.Note);
             }
         }
 
         private void DeleteNote(BusinessClasses.CalendarNote note)
         {
-            BusinessClasses.CalendarMonth calendarMonth = this.Calendar.CalendarData.Months.Where(x => x.StartDate.Equals(new DateTime(note.FinishDay.Year, note.FinishDay.Month, 1))).FirstOrDefault();
+            BusinessClasses.CalendarMonth calendarMonth = this.Calendar.CalendarData.Months.Where(x => x.Date.Equals(new DateTime(note.FinishDay.Year, note.FinishDay.Month, 1))).FirstOrDefault();
             if (calendarMonth != null)
             {
                 this.Calendar.CalendarData.DeleteNote(note);
                 this.Calendar.SettingsNotSaved = true;
-                this.Months[calendarMonth.StartDate].AddNotes(GetNotesByWeeeks(calendarMonth));
+                this.Months[calendarMonth.Date].AddNotes(GetNotesByWeeeks(calendarMonth));
             }
         }
         #endregion

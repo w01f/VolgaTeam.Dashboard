@@ -14,6 +14,7 @@ namespace CalendarBuilder.ConfigurationClasses
         public CalendarSettings AdvancedCalendarSettings { get; private set; }
         public CalendarSettings GraphicCalendarSettings { get; private set; }
         public CalendarSettings SimpleCalendarSettings { get; private set; }
+        public CalendarSettings TVCalendarSettings { get; private set; }
 
         public LocalSettings()
         {
@@ -22,6 +23,7 @@ namespace CalendarBuilder.ConfigurationClasses
             this.AdvancedCalendarSettings = new CalendarSettings();
             this.GraphicCalendarSettings = new CalendarSettings();
             this.SimpleCalendarSettings = new CalendarSettings();
+            this.TVCalendarSettings = new CalendarSettings();
             Load();
         }
 
@@ -48,6 +50,10 @@ namespace CalendarBuilder.ConfigurationClasses
                 node = document.SelectSingleNode(@"/LocalSettings/SimpleCalendarSettings");
                 if (node != null)
                     this.SimpleCalendarSettings.Deserialize(node);
+                
+                node = document.SelectSingleNode(@"/LocalSettings/TVCalendarSettings");
+                if (node != null)
+                    this.TVCalendarSettings.Deserialize(node);
             }
         }
 
@@ -60,6 +66,7 @@ namespace CalendarBuilder.ConfigurationClasses
             xml.AppendLine(@"<AdvancedCalendarSettings>" + this.AdvancedCalendarSettings.Serialize() + @"</AdvancedCalendarSettings>");
             xml.AppendLine(@"<GraphicCalendarSettings>" + this.GraphicCalendarSettings.Serialize() + @"</GraphicCalendarSettings>");
             xml.AppendLine(@"<SimpleCalendarSettings>" + this.SimpleCalendarSettings.Serialize() + @"</SimpleCalendarSettings>");
+            xml.AppendLine(@"<TVCalendarSettings>" + this.TVCalendarSettings.Serialize() + @"</TVCalendarSettings>");
             xml.AppendLine(@"</LocalSettings>");
 
             string userConfigurationPath = this.LocalSettingsPath;

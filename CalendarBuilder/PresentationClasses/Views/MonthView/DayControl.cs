@@ -121,7 +121,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
             toolStripMenuItemPasteNote.Enabled = false;
             if (selectedDays.Length > 1)
             {
-                BusinessClasses.DateRange noteDateRange = BusinessClasses.CalendarNote.CalculateDateRange(selectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
+                BusinessClasses.DateRange noteDateRange = this.Day.Parent.CalculateDateRange(selectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
                 if (noteDateRange != null)
                 {
                     toolStripMenuItemAddNote.Text = "Add Note " + string.Format("({0}-{1})", new string[] { noteDateRange.StartDate.ToString("MM/dd"), noteDateRange.FinishDate.ToString("MM/dd") });
@@ -188,7 +188,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         #region Common Event Handlers
         private void Control_DoubleClick(object sender, EventArgs e)
         {
-            if (this.Day.BelongsToSchedules && _style != BusinessClasses.CalendarStyle.Simple)
+            if (this.Day.BelongsToSchedules && (_style == BusinessClasses.CalendarStyle.Advanced || _style == BusinessClasses.CalendarStyle.Graphic))
             {
                 if (this.PropertiesRequested != null)
                     this.PropertiesRequested(sender, new EventArgs());

@@ -376,6 +376,18 @@ namespace CalendarBuilder.PresentationClasses
             if (FormMain.Instance.ribbonTabItemGraphicCalendar.Enabled)
                 FormMain.Instance.ribbonTabItemGraphicCalendar.Select();
         }
+
+        private void pbSimpleCalendar_Click(object sender, EventArgs e)
+        {
+            if (FormMain.Instance.ribbonTabItemSimpleCalendar.Enabled)
+                FormMain.Instance.ribbonTabItemSimpleCalendar.Select();
+        }
+
+        private void pbTVCalendar_Click(object sender, EventArgs e)
+        {
+            if (FormMain.Instance.ribbonTabItemTVCalendar.Enabled)
+                FormMain.Instance.ribbonTabItemTVCalendar.Select();
+        }
         #endregion
     }
 }

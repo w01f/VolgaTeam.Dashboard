@@ -96,6 +96,12 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
             repositoryItemSpinEditNewspaperTotalCostFirstRow.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
             repositoryItemSpinEditNewspaperTotalCostFirstRow.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
             repositoryItemSpinEditNewspaperTotalCostFirstRow.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
+            repositoryItemComboBoxQuickList.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
+            repositoryItemComboBoxQuickList.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
+            repositoryItemComboBoxQuickList.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
+            repositoryItemComboBoxQuickListFirstRow.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
+            repositoryItemComboBoxQuickListFirstRow.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
+            repositoryItemComboBoxQuickListFirstRow.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
         }
 
         #region Interface Methods
@@ -192,7 +198,7 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
         {
             BusinessClasses.CalendarMonth calendarMonth = null;
             this.CopyPasteManager.ResetCopy();
-            calendarMonth = this.Calendar.CalendarData.Months.Where(x => x.StartDate.Equals(date)).FirstOrDefault();
+            calendarMonth = this.Calendar.CalendarData.Months.Where(x => x.Date.Equals(date)).FirstOrDefault();
             if (calendarMonth != null)
             {
                 _selectedMonth = calendarMonth;
@@ -225,8 +231,8 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
             xtraTabPageDigital.PageVisible = style == BusinessClasses.CalendarStyle.Advanced;
             xtraTabPageNewspaper.PageVisible = style == BusinessClasses.CalendarStyle.Advanced;
             xtraTabPageLogo.PageVisible = style == BusinessClasses.CalendarStyle.Graphic;
-            gridColumnComment2.Visible = style != BusinessClasses.CalendarStyle.Simple;
-            gridColumnComment2.Caption = style != BusinessClasses.CalendarStyle.Simple ? "Comment #1" : "Comment";
+            gridColumnComment2.Visible = style == BusinessClasses.CalendarStyle.Advanced || style == BusinessClasses.CalendarStyle.Graphic;
+            gridColumnComment2.Caption = style == BusinessClasses.CalendarStyle.Advanced || style == BusinessClasses.CalendarStyle.Graphic ? "Comment #1" : "Comment";
         }
 
         #region Copy-Paste Methods and Event Handlers
@@ -425,6 +431,13 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
                     }
                 }
             }
+            else if (gridViewDigital.FocusedColumn == gridColumnDigitalQuickList)
+            {
+                repositoryItemComboBoxQuickList.Items.Clear();
+                repositoryItemComboBoxQuickList.Items.AddRange(BusinessClasses.ListManager.Instance.DigitalQuickList);
+                repositoryItemComboBoxQuickListFirstRow.Items.Clear();
+                repositoryItemComboBoxQuickListFirstRow.Items.AddRange(BusinessClasses.ListManager.Instance.DigitalQuickList);
+            }
         }
 
         private void gridViewDigital_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -467,6 +480,13 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
                 else
                     e.RepositoryItem = repositoryItemTextEditCustomComment;
             }
+            else if (e.Column == gridColumnDigitalQuickList)
+            {
+                if (e.RowHandle == 0)
+                    e.RepositoryItem = repositoryItemComboBoxQuickListDisplayFirstRow;
+                else
+                    e.RepositoryItem = repositoryItemComboBoxQuickListDisplay;
+            }
         }
 
         private void gridViewDigital_CustomRowCellEditForEditing(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
@@ -498,6 +518,13 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
                     e.RepositoryItem = repositoryItemButtonEditCustomCommentFirstRow;
                 else
                     e.RepositoryItem = repositoryItemTextEditCustomComment;
+            }
+            else if (e.Column == gridColumnDigitalQuickList)
+            {
+                if (e.RowHandle == 0)
+                    e.RepositoryItem = repositoryItemComboBoxQuickListFirstRow;
+                else
+                    e.RepositoryItem = repositoryItemComboBoxQuickList;
             }
         }
 
@@ -571,6 +598,31 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
             }
         }
 
+        private void repositoryItemComboBoxQuickList_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (e.Button.Index == 1)
+            {
+                if (xtraTabControl.SelectedTabPage == xtraTabPageDigital)
+                {
+                    gridViewDigital.CloseEditor();
+                    object value = gridViewDigital.GetRowCellValue(0, gridColumnDigitalQuickList);
+                    for (int i = 1; i < gridViewDigital.RowCount; i++)
+                    {
+                        gridViewDigital.SetRowCellValue(i, gridColumnDigitalQuickList, value);
+                    }
+                }
+                else if (xtraTabControl.SelectedTabPage == xtraTabPageNewspaper)
+                {
+                    gridViewNewspaper.CloseEditor();
+                    object value = gridViewNewspaper.GetRowCellValue(0, gridColumnNewspaperQuickList);
+                    for (int i = 1; i < gridViewNewspaper.RowCount; i++)
+                    {
+                        gridViewNewspaper.SetRowCellValue(i, gridColumnNewspaperQuickList, value);
+                    }
+                }
+            }
+        }
+
         private void gridViewDigital_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
             _allowToSave = false;
@@ -591,6 +643,17 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
         private void gridViewNewspaper_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             propertiesControl_PropertiesChanged(null, null);
+        }
+
+        private void gridViewNewspaper_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            if (gridViewNewspaper.FocusedColumn == gridColumnNewspaperQuickList)
+            {
+                repositoryItemComboBoxQuickList.Items.Clear();
+                repositoryItemComboBoxQuickList.Items.AddRange(BusinessClasses.ListManager.Instance.PrintQuickList);
+                repositoryItemComboBoxQuickListFirstRow.Items.Clear();
+                repositoryItemComboBoxQuickListFirstRow.Items.AddRange(BusinessClasses.ListManager.Instance.PrintQuickList);
+            }
         }
 
         private void gridViewNewspaper_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -647,6 +710,13 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
                 else
                     e.RepositoryItem = repositoryItemTextEditCustomComment;
             }
+            else if (e.Column == gridColumnNewspaperQuickList)
+            {
+                if (e.RowHandle == 0)
+                    e.RepositoryItem = repositoryItemComboBoxQuickListDisplayFirstRow;
+                else
+                    e.RepositoryItem = repositoryItemComboBoxQuickListDisplay;
+            }
         }
 
         private void gridViewNewspaper_CustomRowCellEditForEditing(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
@@ -692,6 +762,13 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
                     e.RepositoryItem = repositoryItemButtonEditCustomCommentFirstRow;
                 else
                     e.RepositoryItem = repositoryItemTextEditCustomComment;
+            }
+            else if (e.Column == gridColumnNewspaperQuickList)
+            {
+                if (e.RowHandle == 0)
+                    e.RepositoryItem = repositoryItemComboBoxQuickListFirstRow;
+                else
+                    e.RepositoryItem = repositoryItemComboBoxQuickList;
             }
         }
 

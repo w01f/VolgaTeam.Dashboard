@@ -21,6 +21,9 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
             memoEditCustomNote.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
             memoEditCustomNote.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
             memoEditCustomNote.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
+            comboBoxEditQuickList.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
+            comboBoxEditQuickList.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
+            comboBoxEditQuickList.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
             comboBoxEditProduct.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
             comboBoxEditProduct.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
             comboBoxEditProduct.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
@@ -33,6 +36,12 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
             _alowToSave = false;
             buttonXCustomNote.Checked = !string.IsNullOrEmpty(_day.Digital.CustomNote);
             memoEditCustomNote.EditValue = !string.IsNullOrEmpty(_day.Digital.CustomNote) ? _day.Digital.CustomNote : null;
+
+            comboBoxEditQuickList.Properties.Items.Clear();
+            comboBoxEditQuickList.Properties.Items.AddRange(BusinessClasses.ListManager.Instance.DigitalQuickList);
+            buttonXQuickList.Enabled = comboBoxEditQuickList.Properties.Items.Count > 0;
+            buttonXQuickList.Checked = !string.IsNullOrEmpty(_day.Digital.QuickListRecord) & comboBoxEditQuickList.Properties.Items.Count > 0;
+            comboBoxEditQuickList.EditValue = !string.IsNullOrEmpty(_day.Digital.QuickListRecord) & comboBoxEditQuickList.Properties.Items.Count > 0 ? _day.Digital.QuickListRecord : null;
 
             comboBoxEditCategory.Properties.Items.Clear();
             comboBoxEditCategory.Properties.Items.AddRange(BusinessClasses.ListManager.Instance.OnlineCategories.Select(x => ("Web: " + x.Name)).ToArray());
@@ -58,6 +67,7 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
             if (_day != null)
             {
                 _day.Digital.CustomNote = (buttonXCustomNote.Checked && memoEditCustomNote.EditValue != null) ? memoEditCustomNote.EditValue.ToString() : null;
+                _day.Digital.QuickListRecord = (buttonXQuickList.Checked && comboBoxEditQuickList.EditValue != null) ? comboBoxEditQuickList.EditValue.ToString() : null;
                 _day.Digital.Category = (buttonXInventory.Checked && comboBoxEditCategory.EditValue != null) ? comboBoxEditCategory.EditValue.ToString() : null;
                 _day.Digital.SubCategory = (buttonXInventory.Checked && comboBoxEditSubCategory.EditValue != null) ? comboBoxEditSubCategory.EditValue.ToString() : null;
                 _day.Digital.ProductName = (buttonXInventory.Checked && comboBoxEditProduct.EditValue != null) ? comboBoxEditProduct.EditValue.ToString() : null;

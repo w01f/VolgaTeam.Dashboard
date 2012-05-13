@@ -386,7 +386,7 @@ namespace CalendarBuilder.InteropClasses
             bool result = false;
             try
             {
-                Excel.Workbook workBook = _excelObject.Workbooks.Open(Path.Combine(BusinessClasses.OutputManager.Instance.CalendarBackgroundFolderPath, string.Format(BusinessClasses.OutputManager.ExcelBackgroundFileName, new object[] { monthOutputData.SlideColor, monthOutputData.Parent.StartDate.ToString("yyyy") })));
+                Excel.Workbook workBook = _excelObject.Workbooks.Open(Path.Combine(BusinessClasses.OutputManager.Instance.CalendarBackgroundFolderPath, string.Format(BusinessClasses.OutputManager.ExcelBackgroundFileName, new object[] { monthOutputData.SlideColor, monthOutputData.Parent.Date.ToString("yyyy") })));
                 workBook.Sheets[monthOutputData.BackgroundSheetName].Range["A1:N37"].Copy();
                 result = true;
             }

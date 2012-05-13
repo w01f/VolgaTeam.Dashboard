@@ -21,6 +21,9 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
             memoEditCustomNote.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
             memoEditCustomNote.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
             memoEditCustomNote.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
+            comboBoxEditQuickList.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
+            comboBoxEditQuickList.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
+            comboBoxEditQuickList.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
             comboBoxEditSection.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
             comboBoxEditSection.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
             comboBoxEditSection.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
@@ -39,6 +42,12 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
 
             buttonXCustomNote.Checked = !string.IsNullOrEmpty(_day.Newspaper.CustomNote);
             memoEditCustomNote.EditValue = !string.IsNullOrEmpty(_day.Newspaper.CustomNote) ? _day.Newspaper.CustomNote : null;
+
+            comboBoxEditQuickList.Properties.Items.Clear();
+            comboBoxEditQuickList.Properties.Items.AddRange(BusinessClasses.ListManager.Instance.PrintQuickList);
+            buttonXQuickList.Enabled = comboBoxEditQuickList.Properties.Items.Count > 0;
+            buttonXQuickList.Checked = !string.IsNullOrEmpty(_day.Newspaper.QuickListRecord) & comboBoxEditQuickList.Properties.Items.Count > 0;
+            comboBoxEditQuickList.EditValue = !string.IsNullOrEmpty(_day.Newspaper.QuickListRecord) & comboBoxEditQuickList.Properties.Items.Count > 0 ? _day.Newspaper.QuickListRecord : null;
 
             comboBoxEditPublication.Properties.Items.Clear();
             comboBoxEditPublication.Properties.Items.AddRange(BusinessClasses.ListManager.Instance.PrintSources.Select(x => x.Name).Distinct().ToArray());
@@ -72,6 +81,7 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
             if (_day != null)
             {
                 _day.Newspaper.CustomNote = buttonXCustomNote.Checked && memoEditCustomNote.EditValue != null ? memoEditCustomNote.EditValue.ToString() : null;
+                _day.Newspaper.QuickListRecord = (buttonXQuickList.Checked && comboBoxEditQuickList.EditValue != null) ? comboBoxEditQuickList.EditValue.ToString() : null;
                 _day.Newspaper.PublicationName = buttonXPublication.Checked && comboBoxEditPublication.EditValue != null ? comboBoxEditPublication.EditValue.ToString() : null;
                 _day.Newspaper.Section = checkEditSection.Checked && comboBoxEditSection.EditValue != null ? comboBoxEditSection.EditValue.ToString() : null;
                 _day.Newspaper.PageSize = checkEditPageSize.Checked && comboBoxEditPageSize.EditValue != null ? comboBoxEditPageSize.EditValue.ToString() : null;

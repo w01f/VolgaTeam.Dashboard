@@ -70,7 +70,7 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
         {
             xtraTabPageDigital.PageVisible = style == BusinessClasses.CalendarStyle.Advanced;
             xtraTabPageNewspaper.PageVisible = style == BusinessClasses.CalendarStyle.Advanced;
-            xtraTabPageTV.PageVisible = style == BusinessClasses.CalendarStyle.Advanced;
+            xtraTabPageTV.PageVisible = style == BusinessClasses.CalendarStyle.TV;
             xtraTabPageLogo.PageVisible = style == BusinessClasses.CalendarStyle.Graphic;
         }
 

@@ -145,11 +145,11 @@ namespace CalendarBuilder.PresentationClasses.SlideInfo
             if (_month != null)
             {
                 _allowToSave = false;
-                this.MonthTitle = "Slide Info - " + _month.StartDate.ToString("MMMM yyyy");
+                this.MonthTitle = "Slide Info - " + _month.Date.ToString("MMMM yyyy");
 
                 #region Basic
                 buttonXBasicCalendarMonth.Checked = _month.OutputData.ShowMonth;
-                laBasicCalendarMonth.Text = _month.StartDate.ToString("MMMM yyyy");
+                laBasicCalendarMonth.Text = _month.Date.ToString("MMMM yyyy");
 
                 buttonXBasicSlideTitle.Checked = _month.OutputData.ShowHeader;
                 comboBoxEditBasicSlideTitle.Properties.Items.Clear();

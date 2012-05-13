@@ -56,13 +56,13 @@
             // 
             // pbTVCalendar
             // 
-            this.pbTVCalendar.Enabled = false;
             this.pbTVCalendar.Image = global::CalendarBuilder.Properties.Resources.HomeCalendar4;
             this.pbTVCalendar.Location = new System.Drawing.Point(28, 426);
             this.pbTVCalendar.Name = "pbTVCalendar";
             this.pbTVCalendar.Size = new System.Drawing.Size(726, 98);
             this.pbTVCalendar.TabIndex = 25;
             this.pbTVCalendar.TabStop = false;
+            this.pbTVCalendar.Click += new System.EventHandler(this.pbTVCalendar_Click);
             this.pbTVCalendar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pbTVCalendar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
@@ -85,6 +85,7 @@
             this.pbSimpleCalendar.Size = new System.Drawing.Size(726, 98);
             this.pbSimpleCalendar.TabIndex = 19;
             this.pbSimpleCalendar.TabStop = false;
+            this.pbSimpleCalendar.Click += new System.EventHandler(this.pbSimpleCalendar_Click);
             this.pbSimpleCalendar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pbSimpleCalendar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 

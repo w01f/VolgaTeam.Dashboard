@@ -245,6 +245,17 @@ namespace NewBizWizForm
                     ribbonTabItemDigital.Visible = false;
                     ribbonTabItemCalendar.Visible = true;
                     break;
+                case 18:
+                    ribbonTabItemCable.Visible = false;
+                    ribbonTabItemMobile.Visible = false;
+                    ribbonTabItemNewspaper.Visible = false;
+                    ribbonTabItemOnline.Visible = false;
+                    ribbonTabItemRadio.Visible = true;
+                    ribbonTabItemTV.Visible = true;
+                    ribbonTabItemStar.Visible = false;
+                    ribbonTabItemDigital.Visible = true;
+                    ribbonTabItemCalendar.Visible = true;
+                    break;
                 case 30:
                     ribbonTabItemCable.Visible = false;
                     ribbonTabItemMobile.Visible = false;

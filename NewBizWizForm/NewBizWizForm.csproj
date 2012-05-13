@@ -166,6 +166,9 @@
     <EmbeddedResource Include="TabCalendarForms\TabCalendarMainPage.resx">
       <DependentUpon>TabCalendarMainPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode18Control.resx">
+      <DependentUpon>DashboardCode18Control.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode31Control.resx">
       <DependentUpon>DashboardCode31Control.cs</DependentUpon>
     </EmbeddedResource>
@@ -346,6 +349,12 @@
     </Compile>
     <Compile Include="TabCalendarForms\TabCalendarMainPage.Designer.cs">
       <DependentUpon>TabCalendarMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode18Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\Dashboard\DashboardCode18Control.Designer.cs">
+      <DependentUpon>DashboardCode18Control.cs</DependentUpon>
     </Compile>
     <Compile Include="TabHomeForms\Dashboard\DashboardCode31Control.cs">
       <SubType>UserControl</SubType>

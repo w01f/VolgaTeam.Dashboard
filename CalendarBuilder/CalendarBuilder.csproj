@@ -88,12 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager.cs" />
-    <Compile Include="PresentationClasses\Calendars\TVCalendarControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Calendars\TVCalendarControl.Designer.cs">
-      <DependentUpon>TVCalendarControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\Calendars\SimpleCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -116,6 +110,18 @@
     <Compile Include="ConfigurationClasses\RegistryHelper.cs" />
     <Compile Include="ConfigurationClasses\SettingsManager.cs" />
     <Compile Include="ConfigurationClasses\ViewSettings.cs" />
+    <Compile Include="PresentationClasses\DayProperties\RadioPropertiesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\DayProperties\RadioPropertiesControl.Designer.cs">
+      <DependentUpon>RadioPropertiesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\DayProperties\TVPropertiesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\DayProperties\TVPropertiesControl.Designer.cs">
+      <DependentUpon>TVPropertiesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\DayProperties\LogoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -295,14 +301,17 @@
     <Compile Include="ToolForms\FormSlideOutput.Designer.cs">
       <DependentUpon>FormSlideOutput.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="PresentationClasses\Calendars\TVCalendarControl.resx">
-      <DependentUpon>TVCalendarControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Calendars\SimpleCalendarControl.resx">
       <DependentUpon>SimpleCalendarControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Calendars\GraphicCalendarControl.resx">
       <DependentUpon>GraphicCalendarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\DayProperties\RadioPropertiesControl.resx">
+      <DependentUpon>RadioPropertiesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\DayProperties\TVPropertiesControl.resx">
+      <DependentUpon>TVPropertiesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\DayProperties\LogoControl.resx">
       <DependentUpon>LogoControl.cs</DependentUpon>

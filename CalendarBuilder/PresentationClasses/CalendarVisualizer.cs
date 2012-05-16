@@ -9,7 +9,6 @@ namespace CalendarBuilder.PresentationClasses
         private Calendars.AdvancedCalendarControl _advancedCalendar = new Calendars.AdvancedCalendarControl();
         private Calendars.GraphicCalendarControl _graphicCalendar = new Calendars.GraphicCalendarControl();
         private Calendars.SimpleCalendarControl _simpleCalendar = new Calendars.SimpleCalendarControl();
-        private Calendars.TVCalendarControl _tvCalendar = new Calendars.TVCalendarControl();
 
         #region Operation Buttons
         public DevExpress.XtraEditors.ImageListBoxControl MonthsListBoxControl { get; set; }
@@ -37,7 +36,6 @@ namespace CalendarBuilder.PresentationClasses
         {
         }
 
-
         public static void RemoveInstance()
         {
             try
@@ -45,7 +43,6 @@ namespace CalendarBuilder.PresentationClasses
                 _instance._advancedCalendar.Dispose();
                 _instance._graphicCalendar.Dispose();
                 _instance._simpleCalendar.Dispose();
-                _instance._tvCalendar.Dispose();
             }
             catch
             {
@@ -76,7 +73,6 @@ namespace CalendarBuilder.PresentationClasses
             _advancedCalendar.LoadCalendar(false);
             _graphicCalendar.LoadCalendar(false);
             _simpleCalendar.LoadCalendar(false);
-            _tvCalendar.LoadCalendar(false);
         }
 
         public ICalendarControl SelectCalendar(Control container, BusinessClasses.CalendarStyle calendarStyle)
@@ -114,16 +110,6 @@ namespace CalendarBuilder.PresentationClasses
                     this.CopyButtonItem = FormMain.Instance.buttonItemSimpleCalendarCopy;
                     this.PasteButtonItem = FormMain.Instance.buttonItemSimpleCalendarPaste;
                     this.CloneButtonItem = FormMain.Instance.buttonItemSimpleCalendarClone;
-                    break;
-                case BusinessClasses.CalendarStyle.TV:
-                    this.SelectedCalendarControl = _tvCalendar;
-                    this.MonthsListBoxControl = FormMain.Instance.listBoxControlTVCalendar;
-                    this.MonthViewButtonItem = FormMain.Instance.buttonItemTVCalendarMonth;
-                    this.GridViewButtonItem = FormMain.Instance.buttonItemTVCalendarGrid;
-                    this.SlideInfoButtonItem = FormMain.Instance.buttonItemTVCalendarSlideInfo;
-                    this.CopyButtonItem = FormMain.Instance.buttonItemTVCalendarCopy;
-                    this.PasteButtonItem = FormMain.Instance.buttonItemTVCalendarPaste;
-                    this.CloneButtonItem = FormMain.Instance.buttonItemTVCalendarClone;
                     break;
                 default:
                     this.SelectedCalendarControl = _advancedCalendar;

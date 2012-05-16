@@ -10,20 +10,16 @@ namespace CalendarBuilder.ConfigurationClasses
     public class LocalSettings
     {
         public string LocalSettingsPath { get; set; }
-        public string FirstDayOfWeek { get; set; }
         public CalendarSettings AdvancedCalendarSettings { get; private set; }
         public CalendarSettings GraphicCalendarSettings { get; private set; }
         public CalendarSettings SimpleCalendarSettings { get; private set; }
-        public CalendarSettings TVCalendarSettings { get; private set; }
 
         public LocalSettings()
         {
             this.LocalSettingsPath = string.Format(@"{0}\newlocaldirect.com\xml\app\CalendarSettings.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-            this.FirstDayOfWeek = "Sunday";
             this.AdvancedCalendarSettings = new CalendarSettings();
             this.GraphicCalendarSettings = new CalendarSettings();
             this.SimpleCalendarSettings = new CalendarSettings();
-            this.TVCalendarSettings = new CalendarSettings();
             Load();
         }
 
@@ -34,10 +30,6 @@ namespace CalendarBuilder.ConfigurationClasses
             {
                 XmlDocument document = new XmlDocument();
                 document.Load(this.LocalSettingsPath);
-
-                node = document.SelectSingleNode(@"/LocalSettings/FirstDayOfWeek");
-                if (node != null)
-                    this.FirstDayOfWeek = node.InnerText;
 
                 node = document.SelectSingleNode(@"/LocalSettings/AdvancedCalendarSettings");
                 if (node != null)
@@ -50,10 +42,6 @@ namespace CalendarBuilder.ConfigurationClasses
                 node = document.SelectSingleNode(@"/LocalSettings/SimpleCalendarSettings");
                 if (node != null)
                     this.SimpleCalendarSettings.Deserialize(node);
-                
-                node = document.SelectSingleNode(@"/LocalSettings/TVCalendarSettings");
-                if (node != null)
-                    this.TVCalendarSettings.Deserialize(node);
             }
         }
 
@@ -62,11 +50,9 @@ namespace CalendarBuilder.ConfigurationClasses
             StringBuilder xml = new StringBuilder();
 
             xml.AppendLine(@"<LocalSettings>");
-            xml.AppendLine(@"<FirstDayOfWeek>" + this.FirstDayOfWeek + @"</FirstDayOfWeek>");
             xml.AppendLine(@"<AdvancedCalendarSettings>" + this.AdvancedCalendarSettings.Serialize() + @"</AdvancedCalendarSettings>");
             xml.AppendLine(@"<GraphicCalendarSettings>" + this.GraphicCalendarSettings.Serialize() + @"</GraphicCalendarSettings>");
             xml.AppendLine(@"<SimpleCalendarSettings>" + this.SimpleCalendarSettings.Serialize() + @"</SimpleCalendarSettings>");
-            xml.AppendLine(@"<TVCalendarSettings>" + this.TVCalendarSettings.Serialize() + @"</TVCalendarSettings>");
             xml.AppendLine(@"</LocalSettings>");
 
             string userConfigurationPath = this.LocalSettingsPath;

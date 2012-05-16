@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             this.laTitle = new System.Windows.Forms.Label();
-            this.pbTVCalendar = new System.Windows.Forms.PictureBox();
             this.pbBetaTest = new System.Windows.Forms.PictureBox();
             this.pbSimpleCalendar = new System.Windows.Forms.PictureBox();
             this.pbGraphicCalendar = new System.Windows.Forms.PictureBox();
             this.pbAdvancedCalendar = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTVCalendar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBetaTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSimpleCalendar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbGraphicCalendar)).BeginInit();
@@ -54,18 +52,6 @@
             this.laTitle.Text = "What kind of Ad Calendar do you want to BUILD?";
             this.laTitle.UseMnemonic = false;
             // 
-            // pbTVCalendar
-            // 
-            this.pbTVCalendar.Image = global::CalendarBuilder.Properties.Resources.HomeCalendar4;
-            this.pbTVCalendar.Location = new System.Drawing.Point(28, 426);
-            this.pbTVCalendar.Name = "pbTVCalendar";
-            this.pbTVCalendar.Size = new System.Drawing.Size(726, 98);
-            this.pbTVCalendar.TabIndex = 25;
-            this.pbTVCalendar.TabStop = false;
-            this.pbTVCalendar.Click += new System.EventHandler(this.pbTVCalendar_Click);
-            this.pbTVCalendar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pbTVCalendar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
             // pbBetaTest
             // 
             this.pbBetaTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -80,7 +66,7 @@
             // pbSimpleCalendar
             // 
             this.pbSimpleCalendar.Image = global::CalendarBuilder.Properties.Resources.HomeCalendar3;
-            this.pbSimpleCalendar.Location = new System.Drawing.Point(28, 312);
+            this.pbSimpleCalendar.Location = new System.Drawing.Point(28, 409);
             this.pbSimpleCalendar.Name = "pbSimpleCalendar";
             this.pbSimpleCalendar.Size = new System.Drawing.Size(726, 98);
             this.pbSimpleCalendar.TabIndex = 19;
@@ -92,7 +78,7 @@
             // pbGraphicCalendar
             // 
             this.pbGraphicCalendar.Image = global::CalendarBuilder.Properties.Resources.HomeCalendar2;
-            this.pbGraphicCalendar.Location = new System.Drawing.Point(28, 198);
+            this.pbGraphicCalendar.Location = new System.Drawing.Point(28, 247);
             this.pbGraphicCalendar.Name = "pbGraphicCalendar";
             this.pbGraphicCalendar.Size = new System.Drawing.Size(726, 98);
             this.pbGraphicCalendar.TabIndex = 18;
@@ -117,7 +103,6 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.Controls.Add(this.pbTVCalendar);
             this.Controls.Add(this.pbBetaTest);
             this.Controls.Add(this.laTitle);
             this.Controls.Add(this.pbSimpleCalendar);
@@ -125,7 +110,6 @@
             this.Controls.Add(this.pbAdvancedCalendar);
             this.Name = "HomeControl";
             this.Size = new System.Drawing.Size(1005, 624);
-            ((System.ComponentModel.ISupportInitialize)(this.pbTVCalendar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBetaTest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSimpleCalendar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbGraphicCalendar)).EndInit();
@@ -141,7 +125,6 @@
         private System.Windows.Forms.PictureBox pbSimpleCalendar;
         private System.Windows.Forms.Label laTitle;
         private System.Windows.Forms.PictureBox pbBetaTest;
-        private System.Windows.Forms.PictureBox pbTVCalendar;
 
     }
 }

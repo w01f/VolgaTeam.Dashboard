@@ -14,8 +14,7 @@ namespace CalendarBuilder.BusinessClasses
     {
         Simple = 0,
         Graphic,
-        Advanced,
-        TV
+        Advanced
     }
 
     public enum SalesStrategy
@@ -235,13 +234,18 @@ namespace CalendarBuilder.BusinessClasses
         public string Status { get; set; }
         public SalesStrategy SalesStrategy { get; set; }
         public DateTime? PresentationDate { get; set; }
+        public bool SundayBased { get; set; }
         public DateTime? FlightDateStart { get; set; }
         public DateTime? FlightDateEnd { get; set; }
 
         public Calendar AdvancedCalendar { get; private set; }
         public Calendar GraphicCalendar { get; private set; }
         public Calendar SimpleCalendar { get; private set; }
-        public Calendar TVCalendar { get; private set; }
+
+        public bool ShowNewspaper { get; set; }
+        public bool ShowDigital { get; set; }
+        public bool ShowTV { get; set; }
+        public bool ShowRadio { get; set; }
 
         public string Name
         {
@@ -280,10 +284,11 @@ namespace CalendarBuilder.BusinessClasses
             this.DecisionMaker = string.Empty;
             this.ClientType = string.Empty;
             this.Status = ListManager.Instance.Statuses.FirstOrDefault();
-            this.AdvancedCalendar = new CalendarSundayBased(this);
-            this.GraphicCalendar = new CalendarSundayBased(this);
-            this.SimpleCalendar = new CalendarSundayBased(this);
-            this.TVCalendar = new CalendarMondayBased(this);
+            this.SundayBased = true;
+            this.ShowNewspaper = true;
+            this.ShowDigital = true;
+            this.ShowTV = true;
+            this.ShowRadio = true;
 
             _calendarFile = new FileInfo(fileName);
             if (!File.Exists(fileName))
@@ -300,13 +305,15 @@ namespace CalendarBuilder.BusinessClasses
                 _calendarFile = new FileInfo(fileName);
             }
             else
-                Load();
+                LoadSettings();
+            LoadCalendars();
         }
 
-        private void Load()
+        private void LoadSettings()
         {
             int tempInt;
             DateTime tempDateTime;
+            bool tempBool;
 
             XmlNode node;
             if (_calendarFile.Exists)
@@ -335,6 +342,11 @@ namespace CalendarBuilder.BusinessClasses
                     if (int.TryParse(node.InnerText, out tempInt))
                         this.SalesStrategy = (SalesStrategy)tempInt;
 
+                node = document.SelectSingleNode(@"/Schedule/SundayBased");
+                if (node != null)
+                    if (bool.TryParse(node.InnerText, out tempBool))
+                        this.SundayBased = tempBool;
+
                 node = document.SelectSingleNode(@"/Schedule/PresentationDate");
                 if (node != null)
                     if (DateTime.TryParse(node.InnerText, out tempDateTime))
@@ -349,6 +361,49 @@ namespace CalendarBuilder.BusinessClasses
                 if (node != null)
                     if (DateTime.TryParse(node.InnerText, out tempDateTime))
                         this.FlightDateEnd = tempDateTime;
+
+                node = document.SelectSingleNode(@"/Schedule/ShowNewspaper");
+                if (node != null)
+                    if (bool.TryParse(node.InnerText, out tempBool))
+                        this.ShowNewspaper = tempBool;
+
+                node = document.SelectSingleNode(@"/Schedule/ShowDigital");
+                if (node != null)
+                    if (bool.TryParse(node.InnerText, out tempBool))
+                        this.ShowDigital = tempBool;
+
+                node = document.SelectSingleNode(@"/Schedule/ShowTV");
+                if (node != null)
+                    if (bool.TryParse(node.InnerText, out tempBool))
+                        this.ShowTV = tempBool;
+
+                node = document.SelectSingleNode(@"/Schedule/ShowRadio");
+                if (node != null)
+                    if (bool.TryParse(node.InnerText, out tempBool))
+                        this.ShowRadio = tempBool;
+            }
+        }
+
+        private void LoadCalendars()
+        {
+            if (this.SundayBased)
+            {
+                this.AdvancedCalendar = new CalendarSundayBased(this);
+                this.GraphicCalendar = new CalendarSundayBased(this);
+                this.SimpleCalendar = new CalendarSundayBased(this);
+            }
+            else
+            {
+                this.AdvancedCalendar = new CalendarMondayBased(this);
+                this.GraphicCalendar = new CalendarMondayBased(this);
+                this.SimpleCalendar = new CalendarMondayBased(this);
+            }
+
+            if (_calendarFile.Exists)
+            {
+                XmlNode node;
+                XmlDocument document = new XmlDocument();
+                document.Load(_calendarFile.FullName);
 
                 node = document.SelectSingleNode(@"/Schedule/AdvancedCalendar");
                 if (node != null)
@@ -385,18 +440,6 @@ namespace CalendarBuilder.BusinessClasses
                     this.SimpleCalendar.UpdateMonthCollection();
                     this.SimpleCalendar.UpdateNotesCollection();
                 }
-
-                node = document.SelectSingleNode(@"/Schedule/TVCalendar");
-                if (node != null)
-                {
-                    this.TVCalendar.Deserialize(node);
-                }
-                else
-                {
-                    this.TVCalendar.UpdateDaysCollection();
-                    this.TVCalendar.UpdateMonthCollection();
-                    this.TVCalendar.UpdateNotesCollection();
-                }
             }
         }
 
@@ -421,6 +464,11 @@ namespace CalendarBuilder.BusinessClasses
             xml.AppendLine(@"<Status>" + (this.Status != null ? this.Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
             xml.AppendLine(@"<ClientType>" + this.ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
             xml.AppendLine(@"<SalesStrategy>" + (int)this.SalesStrategy + @"</SalesStrategy>");
+            xml.AppendLine(@"<SundayBased>" + this.SundayBased + @"</SundayBased>");
+            xml.AppendLine(@"<ShowNewspaper>" + this.ShowNewspaper + @"</ShowNewspaper>");
+            xml.AppendLine(@"<ShowDigital>" + this.ShowDigital + @"</ShowDigital>");
+            xml.AppendLine(@"<ShowTV>" + this.ShowTV + @"</ShowTV>");
+            xml.AppendLine(@"<ShowRadio>" + this.ShowRadio + @"</ShowRadio>");
             if (PresentationDate.HasValue)
                 xml.AppendLine(@"<PresentationDate>" + this.PresentationDate.Value.ToString() + @"</PresentationDate>");
             if (this.FlightDateStart.HasValue)
@@ -431,7 +479,6 @@ namespace CalendarBuilder.BusinessClasses
             xml.AppendLine(@"<AdvancedCalendar>" + this.AdvancedCalendar.Serialize() + @"</AdvancedCalendar>");
             xml.AppendLine(@"<GraphicCalendar>" + this.GraphicCalendar.Serialize() + @"</GraphicCalendar>");
             xml.AppendLine(@"<SimpleCalendar>" + this.SimpleCalendar.Serialize() + @"</SimpleCalendar>");
-            xml.AppendLine(@"<TVCalendar>" + this.TVCalendar.Serialize() + @"</TVCalendar>");
 
             xml.AppendLine(@"</Schedule>");
 

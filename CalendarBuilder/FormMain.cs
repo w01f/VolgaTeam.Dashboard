@@ -35,7 +35,7 @@ namespace CalendarBuilder
                 ribbonBarHomeFlightDates.RecalcLayout();
                 ribbonBarHomeHelp.RecalcLayout();
                 ribbonBarHomeSave.RecalcLayout();
-                ribbonBarSalesStrategy.RecalcLayout();
+                ribbonBarHomeSalesStrategy.RecalcLayout();
                 ribbonBarSuccessModels.RecalcLayout();
                 ribbonBarSuccessModelsExit.RecalcLayout();
                 ribbonBarSuccessModelsHelp.RecalcLayout();
@@ -96,7 +96,6 @@ namespace CalendarBuilder
             ribbonTabItemAdvancedCalendar.Enabled = enable;
             ribbonTabItemGraphicCalendar.Enabled = enable;
             ribbonTabItemSimpleCalendar.Enabled = enable;
-            ribbonTabItemTVCalendar.Enabled = enable;
         }
 
         private void FormMain_Shown(object sender, EventArgs e)
@@ -114,6 +113,14 @@ namespace CalendarBuilder
             buttonItemHomeSalesStrategyEmail.CheckedChanged += new EventHandler(PresentationClasses.HomeControl.Instance.SchedulePropertyEditValueChanged);
             buttonItemHomeSalesStrategyFax.CheckedChanged += new EventHandler(PresentationClasses.HomeControl.Instance.SchedulePropertyEditValueChanged);
             buttonItemHomeSalesStrategyFaceCall.CheckedChanged += new EventHandler(PresentationClasses.HomeControl.Instance.SchedulePropertyEditValueChanged);
+            buttonItemHomeCalendarTypeSunday.Click += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeCalendarType_Click);
+            buttonItemHomeCalendarTypeMonday.Click += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeCalendarType_Click);
+            buttonItemHomeCalendarTypeSunday.CheckedChanged += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeCalendarType_CheckedChanged);
+            buttonItemHomeCalendarTypeMonday.CheckedChanged += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeCalendarType_CheckedChanged);
+            buttonItemHomeProductsDigital.CheckedChanged += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeProducts_CheckedChanged);
+            buttonItemHomeProductsNewspaper.CheckedChanged += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeProducts_CheckedChanged);
+            buttonItemHomeProductsTV.CheckedChanged += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeProducts_CheckedChanged);
+            buttonItemHomeProductsRadio.CheckedChanged += new EventHandler(PresentationClasses.HomeControl.Instance.buttonItemHomeProducts_CheckedChanged);
             dateEditPresentationDate.EditValueChanged += new EventHandler(PresentationClasses.HomeControl.Instance.SchedulePropertyEditValueChanged);
             dateEditFlightDatesStart.EditValueChanged += new EventHandler(PresentationClasses.HomeControl.Instance.FlightDateStartEditValueChanged);
             dateEditFlightDatesEnd.EditValueChanged += new EventHandler(PresentationClasses.HomeControl.Instance.FlightDateEndEditValueChanged);
@@ -183,23 +190,6 @@ namespace CalendarBuilder
             buttonItemSimpleCalendarHelp.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleHelp_Click);
             #endregion
 
-            #region TV Calendar Events
-            listBoxControlTVCalendar.SelectedIndexChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.imageListBoxEditCalendar_SelectedIndexChanged);
-            buttonItemTVCalendarSlideInfo.CheckedChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarSlideInfo_CheckedChanged);
-            buttonItemTVCalendarMonth.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_Click);
-            buttonItemTVCalendarGrid.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_Click);
-            buttonItemTVCalendarMonth.CheckedChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_CheckedChanged);
-            buttonItemTVCalendarGrid.CheckedChanged += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarView_CheckedChanged);
-            buttonItemTVCalendarCopy.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarCopy_Click);
-            buttonItemTVCalendarPaste.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarPaste_Click);
-            buttonItemTVCalendarClone.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarClone_Click);
-            buttonItemTVCalendarSave.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSave_Click);
-            buttonItemTVCalendarSaveAs.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSaveAs_Click);
-            buttonItemTVCalendarPowerPoint.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklySchedulePowerPoint_Click);
-            buttonItemTVCalendarEmail.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklyScheduleEmail_Click);
-            buttonItemTVCalendarHelp.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleHelp_Click);
-            #endregion
-
             #region Success Models Events
             buttonItemSuccessModelsHelp.Click += new EventHandler(PresentationClasses.ModelsOfSuccessContainerControl.Instance.buttonItemSuccessModelsHelp_Click);
             #endregion
@@ -267,12 +257,6 @@ namespace CalendarBuilder
             {
                 if (AllowToLeaveCurrentControl())
                     _currentControl = PresentationClasses.CalendarVisualizer.Instance.SelectCalendar(pnMain, BusinessClasses.CalendarStyle.Simple) as Control;
-                _currentControl.BringToFront();
-            }
-            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemTVCalendar)
-            {
-                if (AllowToLeaveCurrentControl())
-                    _currentControl = PresentationClasses.CalendarVisualizer.Instance.SelectCalendar(pnMain, BusinessClasses.CalendarStyle.TV) as Control;
                 _currentControl.BringToFront();
             }
             else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSuccessModels)

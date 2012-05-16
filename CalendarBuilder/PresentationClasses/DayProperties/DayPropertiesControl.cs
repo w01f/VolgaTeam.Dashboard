@@ -6,6 +6,7 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
 {
     public partial class DayPropertiesControl : UserControl
     {
+        private BusinessClasses.CalendarStyle _style;
         public BusinessClasses.CalendarDay Day { get; set; }
 
         public bool SettingsNotSaved { get; set; }
@@ -33,8 +34,14 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
             this.Day = day;
             LoadCurrentDayData();
 
+            xtraTabPageDigital.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced && this.Day.Parent.Schedule.ShowDigital;
+            xtraTabPageNewspaper.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced && this.Day.Parent.Schedule.ShowNewspaper;
+            xtraTabPageTV.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced && this.Day.Parent.Schedule.ShowTV;
+            xtraTabPageRadio.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced && this.Day.Parent.Schedule.ShowRadio;
+            xtraTabPageLogo.PageVisible = _style == BusinessClasses.CalendarStyle.Graphic;
+
             if (this.PropertiesGroupChanged != null)
-                this.PropertiesGroupChanged(xtraTabControl, new DevExpress.XtraTab.TabPageChangedEventArgs(null,xtraTabControl.SelectedTabPage));
+                this.PropertiesGroupChanged(xtraTabControl, new DevExpress.XtraTab.TabPageChangedEventArgs(null, xtraTabControl.SelectedTabPage));
         }
 
         public void LoadCurrentDayData()
@@ -44,6 +51,7 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
                 xtraTabPageDigital.Tooltip = "Digital Info: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
                 xtraTabPageNewspaper.Tooltip = "Newspaper Info: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
                 xtraTabPageTV.Tooltip = "TV Info: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
+                xtraTabPageRadio.Tooltip = "Radio Info: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
                 xtraTabPageComment.Tooltip = "Comment: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
                 xtraTabPageLogo.Tooltip = "Logo: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
                 digitalPropertiesControl.LoadData(this.Day);
@@ -58,6 +66,8 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
         {
             digitalPropertiesControl.SaveData();
             newspaperPropertiesControl.SaveData();
+            tvPropertiesControl.SaveData();
+            radioPropertiesControl.SaveData();
             commentControl.SaveData();
             logoControl.SaveData();
             this.SettingsNotSaved = false;
@@ -68,10 +78,7 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
 
         public void Decorate(BusinessClasses.CalendarStyle style)
         {
-            xtraTabPageDigital.PageVisible = style == BusinessClasses.CalendarStyle.Advanced;
-            xtraTabPageNewspaper.PageVisible = style == BusinessClasses.CalendarStyle.Advanced;
-            xtraTabPageTV.PageVisible = style == BusinessClasses.CalendarStyle.TV;
-            xtraTabPageLogo.PageVisible = style == BusinessClasses.CalendarStyle.Graphic;
+            _style = style;
         }
 
         private void barLargeButtonItemApply_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

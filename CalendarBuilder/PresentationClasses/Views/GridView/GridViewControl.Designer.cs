@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GridViewControl));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject33 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject34 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -65,12 +66,12 @@
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlDigital = new DevExpress.XtraGrid.GridControl();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository();
+            this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository(this.components);
             this.repositoryItemDateEdit = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.repositoryItemComboBoxDigitalCategory = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemComboBoxDigitalSubCategory = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
@@ -109,12 +110,17 @@
             this.repositoryItemPictureEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.repositoryItemButtonEditLogoSelector = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repositoryItemButtonEditLogoSelectorFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.repositoryItemComboBoxQuickList = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemComboBoxQuickListDisplay = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemComboBoxQuickListFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemComboBoxQuickListDisplayFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.gridViewDigital = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnDigitalCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnDigitalSubCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnDigitalProduct = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnDigitalCustomNote = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnDigitalDay = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnDigitalQuickList = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraTabPageNewspaper = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlNewspaper = new DevExpress.XtraGrid.GridControl();
             this.gridViewNewspaper = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -125,6 +131,7 @@
             this.gridColumnNewspaperDay = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnNewspaperColor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnNewspaperCost = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnNewspaperQuickList = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraTabPageComment = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlComment = new DevExpress.XtraGrid.GridControl();
             this.gridViewComment = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -142,14 +149,10 @@
             this.bandedGridColumnBigImage = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumnSmallImage = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumnTinyLogo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.styleController = new DevExpress.XtraEditors.StyleController();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            this.gridColumnDigitalQuickList = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemComboBoxQuickList = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.repositoryItemComboBoxQuickListDisplay = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.repositoryItemComboBoxQuickListFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.repositoryItemComboBoxQuickListDisplayFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.gridColumnNewspaperQuickList = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.xtraTabPageTV = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPageRadio = new DevExpress.XtraTab.XtraTabPage();
             this.pnGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
             this.xtraTabControl.SuspendLayout();
@@ -195,6 +198,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditLogoSelector)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditLogoSelectorFirstRow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListDisplay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListFirstRow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListDisplayFirstRow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDigital)).BeginInit();
             this.xtraTabPageNewspaper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlNewspaper)).BeginInit();
@@ -206,10 +213,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListDisplay)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListFirstRow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListDisplayFirstRow)).BeginInit();
             this.SuspendLayout();
             // 
             // pnGrid
@@ -245,6 +248,8 @@
             this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageDigital,
             this.xtraTabPageNewspaper,
+            this.xtraTabPageTV,
+            this.xtraTabPageRadio,
             this.xtraTabPageComment,
             this.xtraTabPageLogo});
             // 
@@ -1134,6 +1139,82 @@
             this.repositoryItemButtonEditLogoSelectorFirstRow.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.repositoryItemButtonEditLogoSelectorFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditLogoSelector_ButtonClick);
             // 
+            // repositoryItemComboBoxQuickList
+            // 
+            this.repositoryItemComboBoxQuickList.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickList.Appearance.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickList.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickList.AppearanceDisabled.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickList.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickList.AppearanceDropDown.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickList.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickList.AppearanceFocused.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickList.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickList.AppearanceReadOnly.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickList.AutoHeight = false;
+            this.repositoryItemComboBoxQuickList.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBoxQuickList.Name = "repositoryItemComboBoxQuickList";
+            this.repositoryItemComboBoxQuickList.NullText = "Type or Select from Quick List...";
+            this.repositoryItemComboBoxQuickList.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxQuickList_ButtonClick);
+            // 
+            // repositoryItemComboBoxQuickListDisplay
+            // 
+            this.repositoryItemComboBoxQuickListDisplay.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplay.Appearance.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceDisabled.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceDropDown.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceFocused.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplay.AppearanceReadOnly.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplay.AutoHeight = false;
+            this.repositoryItemComboBoxQuickListDisplay.Name = "repositoryItemComboBoxQuickListDisplay";
+            this.repositoryItemComboBoxQuickListDisplay.NullText = "Type or Select from Quick List...";
+            this.repositoryItemComboBoxQuickListDisplay.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxQuickList_ButtonClick);
+            // 
+            // repositoryItemComboBoxQuickListFirstRow
+            // 
+            this.repositoryItemComboBoxQuickListFirstRow.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListFirstRow.Appearance.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceDisabled.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceDropDown.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceFocused.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListFirstRow.AppearanceReadOnly.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListFirstRow.AutoHeight = false;
+            this.repositoryItemComboBoxQuickListFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxQuickListFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject62, "", null, null, true)});
+            this.repositoryItemComboBoxQuickListFirstRow.Name = "repositoryItemComboBoxQuickListFirstRow";
+            this.repositoryItemComboBoxQuickListFirstRow.NullText = "Type or Select from Quick List...";
+            this.repositoryItemComboBoxQuickListFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxQuickList_ButtonClick);
+            // 
+            // repositoryItemComboBoxQuickListDisplayFirstRow
+            // 
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.Appearance.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceDisabled.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceDropDown.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceFocused.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceReadOnly.Options.UseFont = true;
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.AutoHeight = false;
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject63, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxQuickListDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject64, "", null, null, true)});
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.Name = "repositoryItemComboBoxQuickListDisplayFirstRow";
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.NullText = "Type or Select from Quick List...";
+            this.repositoryItemComboBoxQuickListDisplayFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxQuickList_ButtonClick);
+            // 
             // gridViewDigital
             // 
             this.gridViewDigital.Appearance.EvenRow.Font = new System.Drawing.Font("Arial", 9.75F);
@@ -1237,6 +1318,16 @@
             this.gridColumnDigitalDay.Visible = true;
             this.gridColumnDigitalDay.VisibleIndex = 0;
             this.gridColumnDigitalDay.Width = 180;
+            // 
+            // gridColumnDigitalQuickList
+            // 
+            this.gridColumnDigitalQuickList.Caption = "Quick List";
+            this.gridColumnDigitalQuickList.ColumnEdit = this.repositoryItemComboBoxQuickList;
+            this.gridColumnDigitalQuickList.FieldName = "QuickListRecord";
+            this.gridColumnDigitalQuickList.Name = "gridColumnDigitalQuickList";
+            this.gridColumnDigitalQuickList.Visible = true;
+            this.gridColumnDigitalQuickList.VisibleIndex = 4;
+            this.gridColumnDigitalQuickList.Width = 240;
             // 
             // xtraTabPageNewspaper
             // 
@@ -1384,12 +1475,22 @@
             this.gridColumnNewspaperCost.VisibleIndex = 5;
             this.gridColumnNewspaperCost.Width = 98;
             // 
+            // gridColumnNewspaperQuickList
+            // 
+            this.gridColumnNewspaperQuickList.Caption = "Quick List";
+            this.gridColumnNewspaperQuickList.ColumnEdit = this.repositoryItemComboBoxQuickList;
+            this.gridColumnNewspaperQuickList.FieldName = "QuickListRecord";
+            this.gridColumnNewspaperQuickList.Name = "gridColumnNewspaperQuickList";
+            this.gridColumnNewspaperQuickList.Visible = true;
+            this.gridColumnNewspaperQuickList.VisibleIndex = 6;
+            this.gridColumnNewspaperQuickList.Width = 240;
+            // 
             // xtraTabPageComment
             // 
             this.xtraTabPageComment.Controls.Add(this.gridControlComment);
             this.xtraTabPageComment.Name = "xtraTabPageComment";
             this.xtraTabPageComment.Size = new System.Drawing.Size(816, 378);
-            this.xtraTabPageComment.Text = "Comment";
+            this.xtraTabPageComment.Text = "Comments";
             // 
             // gridControlComment
             // 
@@ -1645,101 +1746,17 @@
             // 
             this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
             // 
-            // gridColumnDigitalQuickList
+            // xtraTabPageTV
             // 
-            this.gridColumnDigitalQuickList.Caption = "Quick List";
-            this.gridColumnDigitalQuickList.ColumnEdit = this.repositoryItemComboBoxQuickList;
-            this.gridColumnDigitalQuickList.FieldName = "QuickListRecord";
-            this.gridColumnDigitalQuickList.Name = "gridColumnDigitalQuickList";
-            this.gridColumnDigitalQuickList.Visible = true;
-            this.gridColumnDigitalQuickList.VisibleIndex = 4;
-            this.gridColumnDigitalQuickList.Width = 240;
+            this.xtraTabPageTV.Name = "xtraTabPageTV";
+            this.xtraTabPageTV.Size = new System.Drawing.Size(816, 378);
+            this.xtraTabPageTV.Text = "TV";
             // 
-            // repositoryItemComboBoxQuickList
+            // xtraTabPageRadio
             // 
-            this.repositoryItemComboBoxQuickList.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickList.Appearance.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickList.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickList.AppearanceDisabled.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickList.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickList.AppearanceDropDown.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickList.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickList.AppearanceFocused.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickList.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickList.AppearanceReadOnly.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickList.AutoHeight = false;
-            this.repositoryItemComboBoxQuickList.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBoxQuickList.Name = "repositoryItemComboBoxQuickList";
-            this.repositoryItemComboBoxQuickList.NullText = "Type or Select from Quick List...";
-            this.repositoryItemComboBoxQuickList.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxQuickList_ButtonClick);
-            // 
-            // repositoryItemComboBoxQuickListDisplay
-            // 
-            this.repositoryItemComboBoxQuickListDisplay.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListDisplay.Appearance.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListDisplay.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListDisplay.AppearanceDisabled.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListDisplay.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListDisplay.AppearanceDropDown.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListDisplay.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListDisplay.AppearanceFocused.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListDisplay.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListDisplay.AppearanceReadOnly.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListDisplay.AutoHeight = false;
-            this.repositoryItemComboBoxQuickListDisplay.Name = "repositoryItemComboBoxQuickListDisplay";
-            this.repositoryItemComboBoxQuickListDisplay.NullText = "Type or Select from Quick List...";
-            this.repositoryItemComboBoxQuickListDisplay.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxQuickList_ButtonClick);
-            // 
-            // repositoryItemComboBoxQuickListFirstRow
-            // 
-            this.repositoryItemComboBoxQuickListFirstRow.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListFirstRow.Appearance.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListFirstRow.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListFirstRow.AppearanceDisabled.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListFirstRow.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListFirstRow.AppearanceDropDown.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListFirstRow.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListFirstRow.AppearanceFocused.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListFirstRow.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListFirstRow.AppearanceReadOnly.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListFirstRow.AutoHeight = false;
-            this.repositoryItemComboBoxQuickListFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxQuickListFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject62, "", null, null, true)});
-            this.repositoryItemComboBoxQuickListFirstRow.Name = "repositoryItemComboBoxQuickListFirstRow";
-            this.repositoryItemComboBoxQuickListFirstRow.NullText = "Type or Select from Quick List...";
-            this.repositoryItemComboBoxQuickListFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxQuickList_ButtonClick);
-            // 
-            // repositoryItemComboBoxQuickListDisplayFirstRow
-            // 
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.Appearance.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceDisabled.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceDropDown.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceFocused.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.AppearanceReadOnly.Options.UseFont = true;
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.AutoHeight = false;
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject63, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemComboBoxQuickListDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject64, "", null, null, true)});
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.Name = "repositoryItemComboBoxQuickListDisplayFirstRow";
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.NullText = "Type or Select from Quick List...";
-            this.repositoryItemComboBoxQuickListDisplayFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxQuickList_ButtonClick);
-            // 
-            // gridColumnNewspaperQuickList
-            // 
-            this.gridColumnNewspaperQuickList.Caption = "Quick List";
-            this.gridColumnNewspaperQuickList.ColumnEdit = this.repositoryItemComboBoxQuickList;
-            this.gridColumnNewspaperQuickList.FieldName = "QuickListRecord";
-            this.gridColumnNewspaperQuickList.Name = "gridColumnNewspaperQuickList";
-            this.gridColumnNewspaperQuickList.Visible = true;
-            this.gridColumnNewspaperQuickList.VisibleIndex = 6;
-            this.gridColumnNewspaperQuickList.Width = 240;
+            this.xtraTabPageRadio.Name = "xtraTabPageRadio";
+            this.xtraTabPageRadio.Size = new System.Drawing.Size(816, 378);
+            this.xtraTabPageRadio.Text = "Radio";
             // 
             // GridViewControl
             // 
@@ -1795,6 +1812,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditLogoSelector)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditLogoSelectorFirstRow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListDisplay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListFirstRow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListDisplayFirstRow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDigital)).EndInit();
             this.xtraTabPageNewspaper.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlNewspaper)).EndInit();
@@ -1806,10 +1827,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListDisplay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListFirstRow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxQuickListDisplayFirstRow)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1905,5 +1922,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxQuickListFirstRow;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxQuickListDisplayFirstRow;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnNewspaperQuickList;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageTV;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageRadio;
     }
 }

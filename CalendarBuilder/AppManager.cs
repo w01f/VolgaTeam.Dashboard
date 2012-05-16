@@ -17,7 +17,6 @@ namespace CalendarBuilder
                         if (!string.IsNullOrEmpty(from.ScheduleName))
                         {
                             ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-                            SetCulture();
                             string fileName = from.ScheduleName.Trim();
                             BusinessClasses.SuccessModelsManager.Instance.Load();
                             BusinessClasses.OutputManager.Instance.LoadCalendarTemplates();
@@ -48,7 +47,6 @@ namespace CalendarBuilder
                     if (InteropClasses.PowerPointHelper.Instance.Connect())
                     {
                         ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-                        SetCulture();
                         string fileName = dialog.FileName;
                         ConfigurationClasses.SettingsManager.Instance.SaveFolder = new FileInfo(fileName).Directory.FullName;
                         BusinessClasses.SuccessModelsManager.Instance.Load();
@@ -68,7 +66,6 @@ namespace CalendarBuilder
             if (InteropClasses.PowerPointHelper.Instance.Connect())
             {
                 ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-                SetCulture();
                 BusinessClasses.SuccessModelsManager.Instance.Load();
                 BusinessClasses.OutputManager.Instance.LoadCalendarTemplates();
                 BusinessClasses.ScheduleManager.Instance.OpenCalendar(fileName);
@@ -118,14 +115,6 @@ namespace CalendarBuilder
         public static void ShowInformation(string text)
         {
             MessageBox.Show(text, "Ninja Calendar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private static void SetCulture()
-        {
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
-            System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-            System.Threading.Thread.CurrentThread.CurrentUICulture = System.Threading.Thread.CurrentThread.CurrentCulture;
         }
 
         private static void RestoreCulture()

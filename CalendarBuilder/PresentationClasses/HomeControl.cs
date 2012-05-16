@@ -8,7 +8,7 @@ namespace CalendarBuilder.PresentationClasses
     public partial class HomeControl : UserControl
     {
         private static HomeControl _instance = null;
-        private bool _allowTosave = false;
+        private bool _allowToSave = false;
         private BusinessClasses.Schedule _localCalendar;
         public bool SettingsNotSaved { get; set; }
 
@@ -83,7 +83,7 @@ namespace CalendarBuilder.PresentationClasses
 
             if (!quickLoad)
             {
-                _allowTosave = false;
+                _allowToSave = false;
 
                 FormMain.Instance.comboBoxEditBusinessName.Properties.Items.Clear();
                 FormMain.Instance.comboBoxEditBusinessName.Properties.Items.AddRange(BusinessClasses.ListManager.Instance.Advertisers.ToArray());
@@ -115,11 +115,37 @@ namespace CalendarBuilder.PresentationClasses
                         break;
                 }
 
+                if (_localCalendar.SundayBased)
+                {
+                    FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked = true;
+                    FormMain.Instance.buttonItemHomeCalendarTypeMonday.Checked = false;
+                    System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                    System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
+                    System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+                }
+                else
+                {
+                    FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked = false;
+                    FormMain.Instance.buttonItemHomeCalendarTypeMonday.Checked = true;
+                    System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-GB");
+                    System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
+                    System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+                }
+
+                FormMain.Instance.buttonItemHomeProductsNewspaper.Checked = _localCalendar.ShowNewspaper;
+                FormMain.Instance.buttonItemHomeProductsDigital.Checked = _localCalendar.ShowDigital;
+                FormMain.Instance.buttonItemHomeProductsTV.Checked = _localCalendar.ShowTV;
+                FormMain.Instance.buttonItemHomeProductsRadio.Checked = _localCalendar.ShowRadio;
+
                 FormMain.Instance.dateEditPresentationDate.EditValue = _localCalendar.PresentationDate;
                 FormMain.Instance.dateEditFlightDatesStart.EditValue = _localCalendar.FlightDateStart;
                 FormMain.Instance.dateEditFlightDatesEnd.EditValue = _localCalendar.FlightDateEnd;
                 FormMain.Instance.ribbonPanelHome.PerformLayout();
-                _allowTosave = true;
+                _allowToSave = true;
             }
             FormMain.Instance.UpdateScheduleTabs(FormMain.Instance.comboBoxEditBusinessName.EditValue != null &
                     FormMain.Instance.comboBoxEditDecisionMaker.EditValue != null &
@@ -174,23 +200,31 @@ namespace CalendarBuilder.PresentationClasses
                 return false;
             }
 
+            bool sundayBased = _localCalendar.SundayBased;
+            _localCalendar.SundayBased = FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked;
+            quickSave &= sundayBased == _localCalendar.SundayBased;
+
+            _localCalendar.ShowNewspaper = FormMain.Instance.buttonItemHomeProductsNewspaper.Checked;
+            _localCalendar.ShowDigital = FormMain.Instance.buttonItemHomeProductsDigital.Checked;
+            _localCalendar.ShowTV = FormMain.Instance.buttonItemHomeProductsTV.Checked;
+            _localCalendar.ShowRadio = FormMain.Instance.buttonItemHomeProductsRadio.Checked;
+
             if (FormMain.Instance.dateEditFlightDatesStart.EditValue != null && FormMain.Instance.dateEditFlightDatesEnd.EditValue != null)
             {
                 DateTime startDate = FormMain.Instance.dateEditFlightDatesStart.DateTime;
                 DateTime endDate = FormMain.Instance.dateEditFlightDatesEnd.DateTime;
-                if (startDate.DayOfWeek != DayOfWeek.Sunday)
+                if (startDate.DayOfWeek != (_localCalendar.SundayBased ? DayOfWeek.Sunday : DayOfWeek.Monday))
                 {
-                    AppManager.ShowWarning("Campaign Start Date must be Sunday\nCampaign End Date must be Saturday\nCampaign Start Date must be less then Campaign End Date.");
+                    AppManager.ShowWarning(string.Format("Campaign Start Date must be {0}\nCampaign End Date must be {1}\nCampaign Start Date must be less then Campaign End Date.", new string[] { _localCalendar.SundayBased ? "Sunday" : "Monday", _localCalendar.SundayBased ? "Saturday" : "Sunday" }));
                     return false;
                 }
-                if (endDate.DayOfWeek != DayOfWeek.Saturday || _localCalendar.FlightDateEnd < _localCalendar.FlightDateStart)
+                if (endDate.DayOfWeek != (_localCalendar.SundayBased ? DayOfWeek.Saturday : DayOfWeek.Sunday) || _localCalendar.FlightDateEnd < _localCalendar.FlightDateStart)
                 {
-                    AppManager.ShowWarning("Campaign Start Date must be Sunday\nCampaign End Date must be Saturday\nCampaign Start Date must be less then Campaign End Date.");
+                    AppManager.ShowWarning(string.Format("Campaign Start Date must be {0}\nCampaign End Date must be {1}\nCampaign Start Date must be less then Campaign End Date.", new string[] { _localCalendar.SundayBased ? "Sunday" : "Monday", _localCalendar.SundayBased ? "Saturday" : "Sunday" }));
                     return false;
                 }
 
-                if (_localCalendar.FlightDateStart != startDate || _localCalendar.FlightDateEnd != endDate)
-                    quickSave = false;
+                quickSave &= !(_localCalendar.FlightDateStart != startDate || _localCalendar.FlightDateEnd != endDate);
                 _localCalendar.FlightDateStart = startDate;
                 _localCalendar.FlightDateEnd = endDate;
             }
@@ -211,7 +245,7 @@ namespace CalendarBuilder.PresentationClasses
                 FormMain.Instance.dateEditFlightDatesStart.EditValue != null &
                 FormMain.Instance.dateEditFlightDatesEnd.EditValue != null);
             BusinessClasses.ScheduleManager.Instance.SaveCalendar(_localCalendar, quickSave, this);
-            this.SettingsNotSaved = false;
+            LoadCalendar(true);
             return true;
         }
         #endregion
@@ -234,12 +268,56 @@ namespace CalendarBuilder.PresentationClasses
             UncheckSalesStrategyButtons();
             FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked = true;
         }
+
+        public void buttonItemHomeCalendarType_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_allowToSave)
+            {
+                if (FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked)
+                {
+                    System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                    System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
+                    System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                }
+                else
+                {
+                    System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-GB");
+                    System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
+                    System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                }
+                FormMain.Instance.dateEditFlightDatesStart.EditValue = null;
+                FormMain.Instance.dateEditFlightDatesEnd.EditValue = null;
+                this.SettingsNotSaved = true;
+            }
+        }
+
+        public void buttonItemHomeCalendarType_Click(object sender, EventArgs e)
+        {
+            DevComponents.DotNetBar.ButtonItem button = sender as DevComponents.DotNetBar.ButtonItem;
+            if (button != null && !button.Checked)
+            {
+                if (AppManager.ShowWarningQuestion("Campaign Dates and Calendars will be reset after you change Calendar Type.\nDo you want to proceed?") == DialogResult.Yes)
+                {
+                    FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked = false;
+                    FormMain.Instance.buttonItemHomeCalendarTypeMonday.Checked = false;
+                    button.Checked = true;
+                }
+            }
+        }
+
+        public void buttonItemHomeProducts_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_allowToSave)
+                this.SettingsNotSaved = true;
+        }
         #endregion
 
         #region Editors Events
         public void SchedulePropertyEditValueChanged(object sender, EventArgs e)
         {
-            if (_allowTosave)
+            if (_allowToSave)
             {
                 FormMain.Instance.UpdateScheduleTabs(FormMain.Instance.comboBoxEditBusinessName.EditValue != null &
                     FormMain.Instance.comboBoxEditDecisionMaker.EditValue != null &
@@ -253,13 +331,13 @@ namespace CalendarBuilder.PresentationClasses
 
         public void FlightDateStartEditValueChanged(object sender, EventArgs e)
         {
-            if (FormMain.Instance.dateEditFlightDatesStart.EditValue != null && _allowTosave)
+            if (FormMain.Instance.dateEditFlightDatesStart.EditValue != null && _allowToSave)
             {
                 DateTime dateStart = FormMain.Instance.dateEditFlightDatesStart.DateTime;
                 this.SettingsNotSaved = true;
                 if (FormMain.Instance.dateEditFlightDatesEnd.EditValue == null)
                 {
-                    while (dateStart.DayOfWeek != DayOfWeek.Saturday)
+                    while (dateStart.DayOfWeek != (FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked ? DayOfWeek.Saturday : DayOfWeek.Sunday))
                         dateStart = dateStart.AddDays(1);
                     FormMain.Instance.dateEditFlightDatesEnd.EditValue = dateStart;
                 }
@@ -269,7 +347,7 @@ namespace CalendarBuilder.PresentationClasses
 
         public void FlightDateEndEditValueChanged(object sender, EventArgs e)
         {
-            if (FormMain.Instance.dateEditFlightDatesStart.EditValue != null && _allowTosave)
+            if (FormMain.Instance.dateEditFlightDatesStart.EditValue != null && _allowToSave)
                 this.SettingsNotSaved = true;
             SchedulePropertyEditValueChanged(null, null);
         }
@@ -294,7 +372,7 @@ namespace CalendarBuilder.PresentationClasses
                 DateTime temp = DateTime.MinValue;
                 if (DateTime.TryParse(e.Value.ToString(), out temp))
                 {
-                    while (temp.DayOfWeek != DayOfWeek.Sunday)
+                    while (temp.DayOfWeek != (FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked ? DayOfWeek.Sunday : DayOfWeek.Monday))
                         temp = temp.AddDays(-1);
                     e.Value = temp;
                 }
@@ -308,7 +386,7 @@ namespace CalendarBuilder.PresentationClasses
                 DateTime temp = DateTime.MinValue;
                 if (DateTime.TryParse(e.Value.ToString(), out temp))
                 {
-                    while (temp.DayOfWeek != DayOfWeek.Saturday)
+                    while (temp.DayOfWeek != (FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked ? DayOfWeek.Saturday : DayOfWeek.Sunday))
                         temp = temp.AddDays(1);
                     e.Value = temp;
                 }
@@ -381,12 +459,6 @@ namespace CalendarBuilder.PresentationClasses
         {
             if (FormMain.Instance.ribbonTabItemSimpleCalendar.Enabled)
                 FormMain.Instance.ribbonTabItemSimpleCalendar.Select();
-        }
-
-        private void pbTVCalendar_Click(object sender, EventArgs e)
-        {
-            if (FormMain.Instance.ribbonTabItemTVCalendar.Enabled)
-                FormMain.Instance.ribbonTabItemTVCalendar.Select();
         }
         #endregion
     }

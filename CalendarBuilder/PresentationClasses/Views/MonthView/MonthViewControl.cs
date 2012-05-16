@@ -67,7 +67,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
                 ClearContainer();
                 foreach (BusinessClasses.CalendarMonth monthData in this.Calendar.CalendarData.Months)
                 {
-                    MonthControl month = new MonthControl(!(_style == BusinessClasses.CalendarStyle.TV));
+                    MonthControl month = new MonthControl(this.Calendar.CalendarData.Schedule.SundayBased);
                     this.Months.Add(monthData.Date, month);
                 }
             }

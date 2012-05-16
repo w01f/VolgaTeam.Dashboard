@@ -56,7 +56,6 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 
             #region Month View Initialization
             this.MonthView = new Views.MonthView.MonthViewControl(this);
-            this.MonthView.Decorate(BusinessClasses.CalendarStyle.Advanced);
             this.MonthView.DataSaved += new EventHandler<EventArgs>((sender, e) =>
             {
                 this.GridView.RefreshData();
@@ -66,7 +65,6 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 
             #region Grid  View Initialization
             this.GridView = new Views.GridView.GridViewControl(this);
-            this.GridView.Decorate(BusinessClasses.CalendarStyle.Advanced);
             this.GridView.DataSaved += new EventHandler<EventArgs>((sender, e) =>
             {
                 this.MonthView.RefreshData();
@@ -79,7 +77,6 @@ namespace CalendarBuilder.PresentationClasses.Calendars
             #region Day Properties Initialization
             this.DayProperties = new DayProperties.DayPropertiesWrapper(this, dockPanelDayProperties);
             CalendarVisualizer.AssignCloseActiveEditorsonOutSideClick(this.DayProperties.ContainedControl);
-            this.DayProperties.Decorate(BusinessClasses.CalendarStyle.Advanced);
             dockPanelDayProperties.Controls.Add(this.DayProperties.ContainedControl);
             this.DayProperties.Shown += new EventHandler<EventArgs>((sender, e) =>
             {
@@ -100,7 +97,6 @@ namespace CalendarBuilder.PresentationClasses.Calendars
             #region Slide Info Initialization
             this.SlideInfo = new SlideInfo.SlideInfoWrapper(this, dockPanelSlideInfo);
             CalendarVisualizer.AssignCloseActiveEditorsonOutSideClick(this.SlideInfo.ContainedControl);
-            this.SlideInfo.Decorate(BusinessClasses.CalendarStyle.Advanced);
             dockPanelSlideInfo.Controls.Add(this.SlideInfo.ContainedControl);
             this.SlideInfo.Shown += new EventHandler<EventArgs>((sender, e) =>
             {
@@ -167,8 +163,19 @@ namespace CalendarBuilder.PresentationClasses.Calendars
             laCalendarWindow.Text = this.CalendarData.Schedule.FlightDateStart.HasValue && this.CalendarData.Schedule.FlightDateEnd.HasValue ? string.Format("{0} - {1}", new object[] { this.CalendarData.Schedule.FlightDateStart.Value.ToString("MM/dd/yy"), this.CalendarData.Schedule.FlightDateEnd.Value.ToString("MM/dd/yy") }) : string.Empty;
             laCalendarName.Text = this.CalendarData.Schedule.Name;
 
+            FormMain.Instance.buttonItemAdvancedCalendarPowerPoint.Enabled = _localSchedule.SundayBased;
+            FormMain.Instance.buttonItemAdvancedCalendarEmail.Enabled = _localSchedule.SundayBased;
+            
             this.MonthView.LoadData(quickLoad);
             this.GridView.LoadData(quickLoad);
+
+            this.MonthView.Decorate(BusinessClasses.CalendarStyle.Advanced);
+            this.GridView.Decorate(BusinessClasses.CalendarStyle.Advanced);
+            this.DayProperties.Decorate(BusinessClasses.CalendarStyle.Advanced);
+            this.SlideInfo.Decorate(BusinessClasses.CalendarStyle.Advanced);
+
+            this.DayProperties.Close();
+
             this.SettingsNotSaved = false;
         }
 

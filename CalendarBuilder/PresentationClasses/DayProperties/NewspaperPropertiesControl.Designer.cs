@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.memoEditCustomNote = new DevExpress.XtraEditors.MemoEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController();
+            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.comboBoxEditQuickList = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEditPublication = new DevExpress.XtraEditors.ComboBoxEdit();
             this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
@@ -69,7 +70,7 @@
             this.memoEditCustomNote.Location = new System.Drawing.Point(10, 34);
             this.memoEditCustomNote.Name = "memoEditCustomNote";
             this.memoEditCustomNote.Properties.NullText = "Type Here";
-            this.memoEditCustomNote.Size = new System.Drawing.Size(281, 69);
+            this.memoEditCustomNote.Size = new System.Drawing.Size(281, 64);
             this.memoEditCustomNote.StyleController = this.styleController;
             this.memoEditCustomNote.TabIndex = 7;
             this.memoEditCustomNote.EditValueChanged += new System.EventHandler(this.Editor_EditValueChanged);
@@ -94,7 +95,7 @@
             this.comboBoxEditQuickList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxEditQuickList.Enabled = false;
-            this.comboBoxEditQuickList.Location = new System.Drawing.Point(10, 157);
+            this.comboBoxEditQuickList.Location = new System.Drawing.Point(10, 152);
             this.comboBoxEditQuickList.Name = "comboBoxEditQuickList";
             this.comboBoxEditQuickList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -109,7 +110,7 @@
             this.comboBoxEditPublication.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxEditPublication.Enabled = false;
-            this.comboBoxEditPublication.Location = new System.Drawing.Point(10, 233);
+            this.comboBoxEditPublication.Location = new System.Drawing.Point(10, 228);
             this.comboBoxEditPublication.Name = "comboBoxEditPublication";
             this.comboBoxEditPublication.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -151,7 +152,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXAdInfo.AutoCheckOnClick = true;
             this.buttonXAdInfo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXAdInfo.Location = new System.Drawing.Point(10, 278);
+            this.buttonXAdInfo.Location = new System.Drawing.Point(10, 273);
             this.buttonXAdInfo.Name = "buttonXAdInfo";
             this.buttonXAdInfo.Size = new System.Drawing.Size(281, 24);
             this.buttonXAdInfo.TabIndex = 27;
@@ -167,7 +168,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXPublication.AutoCheckOnClick = true;
             this.buttonXPublication.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXPublication.Location = new System.Drawing.Point(10, 203);
+            this.buttonXPublication.Location = new System.Drawing.Point(10, 198);
             this.buttonXPublication.Name = "buttonXPublication";
             this.buttonXPublication.Size = new System.Drawing.Size(281, 24);
             this.buttonXPublication.TabIndex = 26;
@@ -183,7 +184,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXQuickList.AutoCheckOnClick = true;
             this.buttonXQuickList.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXQuickList.Location = new System.Drawing.Point(10, 127);
+            this.buttonXQuickList.Location = new System.Drawing.Point(10, 122);
             this.buttonXQuickList.Name = "buttonXQuickList";
             this.buttonXQuickList.Size = new System.Drawing.Size(281, 24);
             this.buttonXQuickList.TabIndex = 25;
@@ -213,7 +214,7 @@
             this.checkEditTotalCost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkEditTotalCost.Enabled = false;
-            this.checkEditTotalCost.Location = new System.Drawing.Point(8, 392);
+            this.checkEditTotalCost.Location = new System.Drawing.Point(8, 387);
             this.checkEditTotalCost.Name = "checkEditTotalCost";
             this.checkEditTotalCost.Properties.AutoWidth = true;
             this.checkEditTotalCost.Properties.Caption = "";
@@ -230,7 +231,7 @@
             0,
             0});
             this.spinEditTotalCost.Enabled = false;
-            this.spinEditTotalCost.Location = new System.Drawing.Point(28, 392);
+            this.spinEditTotalCost.Location = new System.Drawing.Point(28, 387);
             this.spinEditTotalCost.Name = "spinEditTotalCost";
             this.spinEditTotalCost.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.spinEditTotalCost.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -254,7 +255,7 @@
             this.comboBoxEditColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxEditColor.Enabled = false;
-            this.comboBoxEditColor.Location = new System.Drawing.Point(28, 364);
+            this.comboBoxEditColor.Location = new System.Drawing.Point(28, 359);
             this.comboBoxEditColor.Name = "comboBoxEditColor";
             this.comboBoxEditColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -274,7 +275,7 @@
             this.checkEditColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkEditColor.Enabled = false;
-            this.checkEditColor.Location = new System.Drawing.Point(8, 364);
+            this.checkEditColor.Location = new System.Drawing.Point(8, 359);
             this.checkEditColor.Name = "checkEditColor";
             this.checkEditColor.Properties.AutoWidth = true;
             this.checkEditColor.Properties.Caption = "";
@@ -288,7 +289,7 @@
             this.comboBoxEditPageSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxEditPageSize.Enabled = false;
-            this.comboBoxEditPageSize.Location = new System.Drawing.Point(28, 336);
+            this.comboBoxEditPageSize.Location = new System.Drawing.Point(28, 331);
             this.comboBoxEditPageSize.Name = "comboBoxEditPageSize";
             this.comboBoxEditPageSize.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -303,7 +304,7 @@
             this.checkEditPageSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkEditPageSize.Enabled = false;
-            this.checkEditPageSize.Location = new System.Drawing.Point(8, 336);
+            this.checkEditPageSize.Location = new System.Drawing.Point(8, 331);
             this.checkEditPageSize.Name = "checkEditPageSize";
             this.checkEditPageSize.Properties.AutoWidth = true;
             this.checkEditPageSize.Properties.Caption = "";
@@ -317,7 +318,7 @@
             this.comboBoxEditSection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxEditSection.Enabled = false;
-            this.comboBoxEditSection.Location = new System.Drawing.Point(28, 308);
+            this.comboBoxEditSection.Location = new System.Drawing.Point(28, 303);
             this.comboBoxEditSection.Name = "comboBoxEditSection";
             this.comboBoxEditSection.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -332,7 +333,7 @@
             this.checkEditSection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkEditSection.Enabled = false;
-            this.checkEditSection.Location = new System.Drawing.Point(8, 308);
+            this.checkEditSection.Location = new System.Drawing.Point(8, 303);
             this.checkEditSection.Name = "checkEditSection";
             this.checkEditSection.Properties.AutoWidth = true;
             this.checkEditSection.Properties.Caption = "";

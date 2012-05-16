@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.memoEditCustomNote = new DevExpress.XtraEditors.MemoEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController();
+            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.comboBoxEditQuickList = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEditCategory = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxEditSubCategory = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -86,7 +87,7 @@
             this.comboBoxEditQuickList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxEditQuickList.Enabled = false;
-            this.comboBoxEditQuickList.Location = new System.Drawing.Point(10, 200);
+            this.comboBoxEditQuickList.Location = new System.Drawing.Point(10, 205);
             this.comboBoxEditQuickList.Name = "comboBoxEditQuickList";
             this.comboBoxEditQuickList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -101,7 +102,7 @@
             this.comboBoxEditCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxEditCategory.Enabled = false;
-            this.comboBoxEditCategory.Location = new System.Drawing.Point(30, 315);
+            this.comboBoxEditCategory.Location = new System.Drawing.Point(30, 324);
             this.comboBoxEditCategory.Name = "comboBoxEditCategory";
             this.comboBoxEditCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -117,7 +118,7 @@
             this.comboBoxEditSubCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxEditSubCategory.Enabled = false;
-            this.comboBoxEditSubCategory.Location = new System.Drawing.Point(30, 352);
+            this.comboBoxEditSubCategory.Location = new System.Drawing.Point(30, 353);
             this.comboBoxEditSubCategory.Name = "comboBoxEditSubCategory";
             this.comboBoxEditSubCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -133,7 +134,7 @@
             this.comboBoxEditProduct.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxEditProduct.Enabled = false;
-            this.comboBoxEditProduct.Location = new System.Drawing.Point(30, 389);
+            this.comboBoxEditProduct.Location = new System.Drawing.Point(30, 383);
             this.comboBoxEditProduct.Name = "comboBoxEditProduct";
             this.comboBoxEditProduct.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -169,7 +170,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXQuickList.AutoCheckOnClick = true;
             this.buttonXQuickList.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXQuickList.Location = new System.Drawing.Point(10, 170);
+            this.buttonXQuickList.Location = new System.Drawing.Point(10, 175);
             this.buttonXQuickList.Name = "buttonXQuickList";
             this.buttonXQuickList.Size = new System.Drawing.Size(280, 24);
             this.buttonXQuickList.TabIndex = 22;
@@ -201,7 +202,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXInventory.AutoCheckOnClick = true;
             this.buttonXInventory.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXInventory.Location = new System.Drawing.Point(10, 276);
+            this.buttonXInventory.Location = new System.Drawing.Point(10, 285);
             this.buttonXInventory.Name = "buttonXInventory";
             this.buttonXInventory.Size = new System.Drawing.Size(280, 24);
             this.buttonXInventory.TabIndex = 20;
@@ -214,7 +215,7 @@
             // 
             this.checkEditShowProduct.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkEditShowProduct.Location = new System.Drawing.Point(8, 389);
+            this.checkEditShowProduct.Location = new System.Drawing.Point(8, 383);
             this.checkEditShowProduct.Name = "checkEditShowProduct";
             this.checkEditShowProduct.Properties.AutoWidth = true;
             this.checkEditShowProduct.Properties.Caption = "";
@@ -227,7 +228,7 @@
             // 
             this.checkEditShowSubCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkEditShowSubCategory.Location = new System.Drawing.Point(8, 352);
+            this.checkEditShowSubCategory.Location = new System.Drawing.Point(8, 353);
             this.checkEditShowSubCategory.Name = "checkEditShowSubCategory";
             this.checkEditShowSubCategory.Properties.AutoWidth = true;
             this.checkEditShowSubCategory.Properties.Caption = "";
@@ -240,7 +241,7 @@
             // 
             this.checkEditShowCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkEditShowCategory.Location = new System.Drawing.Point(8, 315);
+            this.checkEditShowCategory.Location = new System.Drawing.Point(8, 324);
             this.checkEditShowCategory.Name = "checkEditShowCategory";
             this.checkEditShowCategory.Properties.AutoWidth = true;
             this.checkEditShowCategory.Properties.Caption = "";

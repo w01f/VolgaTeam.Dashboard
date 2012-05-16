@@ -228,8 +228,10 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
 
         public void Decorate(BusinessClasses.CalendarStyle style)
         {
-            xtraTabPageDigital.PageVisible = style == BusinessClasses.CalendarStyle.Advanced;
-            xtraTabPageNewspaper.PageVisible = style == BusinessClasses.CalendarStyle.Advanced;
+            xtraTabPageDigital.PageVisible = style == BusinessClasses.CalendarStyle.Advanced && this.Calendar.CalendarData.Schedule.ShowDigital;
+            xtraTabPageNewspaper.PageVisible = style == BusinessClasses.CalendarStyle.Advanced && this.Calendar.CalendarData.Schedule.ShowNewspaper;
+            xtraTabPageTV.PageVisible = style == BusinessClasses.CalendarStyle.Advanced && this.Calendar.CalendarData.Schedule.ShowTV;
+            xtraTabPageRadio.PageVisible = style == BusinessClasses.CalendarStyle.Advanced && this.Calendar.CalendarData.Schedule.ShowRadio;
             xtraTabPageLogo.PageVisible = style == BusinessClasses.CalendarStyle.Graphic;
             gridColumnComment2.Visible = style == BusinessClasses.CalendarStyle.Advanced || style == BusinessClasses.CalendarStyle.Graphic;
             gridColumnComment2.Caption = style == BusinessClasses.CalendarStyle.Advanced || style == BusinessClasses.CalendarStyle.Graphic ? "Comment #1" : "Comment";

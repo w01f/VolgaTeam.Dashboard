@@ -50,20 +50,27 @@
             this.xtraTabPageComment = new DevExpress.XtraTab.XtraTabPage();
             this.commentControl = new CalendarBuilder.PresentationClasses.DayProperties.CommentControl();
             this.laCommentTitle = new System.Windows.Forms.Label();
+            this.xtraTabPageLogo = new DevExpress.XtraTab.XtraTabPage();
+            this.logoControl = new CalendarBuilder.PresentationClasses.DayProperties.LogoControl();
+            this.laLogoTitle = new System.Windows.Forms.Label();
+            this.xtraTabPageRadio = new DevExpress.XtraTab.XtraTabPage();
             this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.xtraTabPageLogo = new DevExpress.XtraTab.XtraTabPage();
-            this.laLogoTitle = new System.Windows.Forms.Label();
-            this.logoControl = new CalendarBuilder.PresentationClasses.DayProperties.LogoControl();
+            this.tvPropertiesControl = new CalendarBuilder.PresentationClasses.DayProperties.TVPropertiesControl();
+            this.laTVTitle = new System.Windows.Forms.Label();
+            this.radioPropertiesControl = new CalendarBuilder.PresentationClasses.DayProperties.RadioPropertiesControl();
+            this.laRadioTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.pnNavbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
             this.xtraTabControl.SuspendLayout();
             this.xtraTabPageDigital.SuspendLayout();
             this.xtraTabPageNewspaper.SuspendLayout();
+            this.xtraTabPageTV.SuspendLayout();
             this.xtraTabPageComment.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
             this.xtraTabPageLogo.SuspendLayout();
+            this.xtraTabPageRadio.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager
@@ -192,6 +199,7 @@
             this.xtraTabPageDigital,
             this.xtraTabPageNewspaper,
             this.xtraTabPageTV,
+            this.xtraTabPageRadio,
             this.xtraTabPageComment,
             this.xtraTabPageLogo});
             this.xtraTabControl.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl_SelectedPageChanged);
@@ -235,7 +243,7 @@
             this.xtraTabPageNewspaper.Controls.Add(this.laNewspaperTitle);
             this.xtraTabPageNewspaper.Name = "xtraTabPageNewspaper";
             this.xtraTabPageNewspaper.Size = new System.Drawing.Size(294, 547);
-            this.xtraTabPageNewspaper.Text = "Newspaper";
+            this.xtraTabPageNewspaper.Text = "Print";
             // 
             // newspaperPropertiesControl
             // 
@@ -264,8 +272,9 @@
             // 
             // xtraTabPageTV
             // 
+            this.xtraTabPageTV.Controls.Add(this.tvPropertiesControl);
+            this.xtraTabPageTV.Controls.Add(this.laTVTitle);
             this.xtraTabPageTV.Name = "xtraTabPageTV";
-            this.xtraTabPageTV.PageEnabled = false;
             this.xtraTabPageTV.Size = new System.Drawing.Size(294, 547);
             this.xtraTabPageTV.Text = "TV";
             // 
@@ -275,7 +284,7 @@
             this.xtraTabPageComment.Controls.Add(this.laCommentTitle);
             this.xtraTabPageComment.Name = "xtraTabPageComment";
             this.xtraTabPageComment.Size = new System.Drawing.Size(294, 547);
-            this.xtraTabPageComment.Text = "Comment";
+            this.xtraTabPageComment.Text = "Comments";
             // 
             // commentControl
             // 
@@ -303,6 +312,48 @@
             this.laCommentTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.laCommentTitle.UseMnemonic = false;
             // 
+            // xtraTabPageLogo
+            // 
+            this.xtraTabPageLogo.Controls.Add(this.logoControl);
+            this.xtraTabPageLogo.Controls.Add(this.laLogoTitle);
+            this.xtraTabPageLogo.Name = "xtraTabPageLogo";
+            this.xtraTabPageLogo.Size = new System.Drawing.Size(294, 547);
+            this.xtraTabPageLogo.Text = "Logo";
+            // 
+            // logoControl
+            // 
+            this.logoControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.logoControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logoControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.logoControl.ForeColor = System.Drawing.Color.Black;
+            this.logoControl.Location = new System.Drawing.Point(0, 31);
+            this.logoControl.Name = "logoControl";
+            this.logoControl.Size = new System.Drawing.Size(294, 516);
+            this.logoControl.TabIndex = 4;
+            this.logoControl.PropertiesChanged += new System.EventHandler(this.propertiesControl_PropertiesChanged);
+            // 
+            // laLogoTitle
+            // 
+            this.laLogoTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.laLogoTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.laLogoTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laLogoTitle.ForeColor = System.Drawing.Color.White;
+            this.laLogoTitle.Location = new System.Drawing.Point(0, 0);
+            this.laLogoTitle.Name = "laLogoTitle";
+            this.laLogoTitle.Size = new System.Drawing.Size(294, 31);
+            this.laLogoTitle.TabIndex = 3;
+            this.laLogoTitle.Text = "Add a Logo to this Date:";
+            this.laLogoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.laLogoTitle.UseMnemonic = false;
+            // 
+            // xtraTabPageRadio
+            // 
+            this.xtraTabPageRadio.Controls.Add(this.radioPropertiesControl);
+            this.xtraTabPageRadio.Controls.Add(this.laRadioTitle);
+            this.xtraTabPageRadio.Name = "xtraTabPageRadio";
+            this.xtraTabPageRadio.Size = new System.Drawing.Size(294, 547);
+            this.xtraTabPageRadio.Text = "Radio";
+            // 
             // styleController
             // 
             this.styleController.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -322,39 +373,53 @@
             // 
             this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
             // 
-            // xtraTabPageLogo
+            // tvPropertiesControl
             // 
-            this.xtraTabPageLogo.Controls.Add(this.logoControl);
-            this.xtraTabPageLogo.Controls.Add(this.laLogoTitle);
-            this.xtraTabPageLogo.Name = "xtraTabPageLogo";
-            this.xtraTabPageLogo.Size = new System.Drawing.Size(294, 547);
-            this.xtraTabPageLogo.Text = "Logo";
+            this.tvPropertiesControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.tvPropertiesControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvPropertiesControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tvPropertiesControl.ForeColor = System.Drawing.Color.Black;
+            this.tvPropertiesControl.Location = new System.Drawing.Point(0, 31);
+            this.tvPropertiesControl.Name = "tvPropertiesControl";
+            this.tvPropertiesControl.Size = new System.Drawing.Size(294, 516);
+            this.tvPropertiesControl.TabIndex = 0;
             // 
-            // laLogoTitle
+            // laTVTitle
             // 
-            this.laLogoTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.laLogoTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.laLogoTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laLogoTitle.ForeColor = System.Drawing.Color.White;
-            this.laLogoTitle.Location = new System.Drawing.Point(0, 0);
-            this.laLogoTitle.Name = "laLogoTitle";
-            this.laLogoTitle.Size = new System.Drawing.Size(294, 31);
-            this.laLogoTitle.TabIndex = 3;
-            this.laLogoTitle.Text = "Add a Logo to this Date:";
-            this.laLogoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.laLogoTitle.UseMnemonic = false;
+            this.laTVTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.laTVTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.laTVTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laTVTitle.ForeColor = System.Drawing.Color.White;
+            this.laTVTitle.Location = new System.Drawing.Point(0, 0);
+            this.laTVTitle.Name = "laTVTitle";
+            this.laTVTitle.Size = new System.Drawing.Size(294, 31);
+            this.laTVTitle.TabIndex = 2;
+            this.laTVTitle.Text = "What TV products are you selling?";
+            this.laTVTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // logoControl
+            // radioPropertiesControl
             // 
-            this.logoControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.logoControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.logoControl.ForeColor = System.Drawing.Color.Black;
-            this.logoControl.Location = new System.Drawing.Point(0, 31);
-            this.logoControl.Name = "logoControl";
-            this.logoControl.Size = new System.Drawing.Size(294, 516);
-            this.logoControl.TabIndex = 4;
-            this.logoControl.PropertiesChanged += new System.EventHandler(this.propertiesControl_PropertiesChanged);
+            this.radioPropertiesControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.radioPropertiesControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioPropertiesControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioPropertiesControl.ForeColor = System.Drawing.Color.Black;
+            this.radioPropertiesControl.Location = new System.Drawing.Point(0, 31);
+            this.radioPropertiesControl.Name = "radioPropertiesControl";
+            this.radioPropertiesControl.Size = new System.Drawing.Size(294, 516);
+            this.radioPropertiesControl.TabIndex = 0;
+            // 
+            // laRadioTitle
+            // 
+            this.laRadioTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.laRadioTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.laRadioTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laRadioTitle.ForeColor = System.Drawing.Color.White;
+            this.laRadioTitle.Location = new System.Drawing.Point(0, 0);
+            this.laRadioTitle.Name = "laRadioTitle";
+            this.laRadioTitle.Size = new System.Drawing.Size(294, 31);
+            this.laRadioTitle.TabIndex = 3;
+            this.laRadioTitle.Text = "What Radio products are you selling?";
+            this.laRadioTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DayPropertiesControl
             // 
@@ -371,9 +436,11 @@
             this.xtraTabControl.ResumeLayout(false);
             this.xtraTabPageDigital.ResumeLayout(false);
             this.xtraTabPageNewspaper.ResumeLayout(false);
+            this.xtraTabPageTV.ResumeLayout(false);
             this.xtraTabPageComment.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
             this.xtraTabPageLogo.ResumeLayout(false);
+            this.xtraTabPageRadio.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -406,5 +473,10 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPageLogo;
         private System.Windows.Forms.Label laLogoTitle;
         private LogoControl logoControl;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageRadio;
+        private System.Windows.Forms.Label laTVTitle;
+        private TVPropertiesControl tvPropertiesControl;
+        private RadioPropertiesControl radioPropertiesControl;
+        private System.Windows.Forms.Label laRadioTitle;
     }
 }

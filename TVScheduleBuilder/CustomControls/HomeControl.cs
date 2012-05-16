@@ -74,6 +74,8 @@ namespace TVScheduleBuilder.CustomControls
             FormMain.Instance.UpdateScheduleTabs(enableSchedules);
             pbWeeklySchedule.Image = enableSchedules ? Properties.Resources.WeeklyScheduleButton : Properties.Resources.WeeklyScheduleButtonGray;
             pbMonthlySchedule.Image = enableSchedules ? Properties.Resources.MonthlyScheduleButton : Properties.Resources.MonthlyScheduleButtonGray;
+            pbWeeklySchedule.Enabled = enableSchedules;
+            pbMonthlySchedule.Enabled = enableSchedules;
         }
 
 

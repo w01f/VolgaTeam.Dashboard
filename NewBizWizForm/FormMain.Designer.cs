@@ -149,7 +149,7 @@ namespace NewBizWizForm
             this.buttonItemTVNew = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarTVScheduleBuilder = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItemTVScheduleBuilder = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarTVLogo2 = new DevComponents.DotNetBar.RibbonBar();
+            this.ribbonBarTVLogo = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItemTVLogo = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonPanelIPad = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarIPadExit = new DevComponents.DotNetBar.RibbonBar();
@@ -195,6 +195,12 @@ namespace NewBizWizForm
             this.panelExMainInternal = new DevComponents.DotNetBar.PanelEx();
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
+            this.ribbonBarRadioDelete = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemRadioDelete = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarRadioOpen = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemRadioOpen = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarRadioNew = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemRadioNew = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonControl.SuspendLayout();
             this.ribbonPanelHome.SuspendLayout();
             this.ribbonPanelStar.SuspendLayout();
@@ -228,16 +234,16 @@ namespace NewBizWizForm
             // 
             this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonControl.Controls.Add(this.ribbonPanelHome);
+            this.ribbonControl.Controls.Add(this.ribbonPanelRadio);
+            this.ribbonControl.Controls.Add(this.ribbonPanelCable);
+            this.ribbonControl.Controls.Add(this.ribbonPanelMobile);
+            this.ribbonControl.Controls.Add(this.ribbonPanelDigital);
+            this.ribbonControl.Controls.Add(this.ribbonPanelTV);
             this.ribbonControl.Controls.Add(this.ribbonPanelStar);
             this.ribbonControl.Controls.Add(this.ribbonPanelNewspaper);
             this.ribbonControl.Controls.Add(this.ribbonPanelCalendar);
-            this.ribbonControl.Controls.Add(this.ribbonPanelDigital);
             this.ribbonControl.Controls.Add(this.ribbonPanelOnline);
-            this.ribbonControl.Controls.Add(this.ribbonPanelMobile);
-            this.ribbonControl.Controls.Add(this.ribbonPanelTV);
             this.ribbonControl.Controls.Add(this.ribbonPanelIPad);
-            this.ribbonControl.Controls.Add(this.ribbonPanelCable);
-            this.ribbonControl.Controls.Add(this.ribbonPanelRadio);
             this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.ribbonControl.EnableQatPlacement = false;
             this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -1439,10 +1445,10 @@ namespace NewBizWizForm
             this.ribbonPanelDigital.Controls.Add(this.ribbonBarDigitalScheduleBuilder);
             this.ribbonPanelDigital.Controls.Add(this.ribbonBarDigitalLogo);
             this.ribbonPanelDigital.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelDigital.Location = new System.Drawing.Point(0, 25);
+            this.ribbonPanelDigital.Location = new System.Drawing.Point(0, 26);
             this.ribbonPanelDigital.Name = "ribbonPanelDigital";
             this.ribbonPanelDigital.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelDigital.Size = new System.Drawing.Size(919, 103);
+            this.ribbonPanelDigital.Size = new System.Drawing.Size(919, 102);
             // 
             // 
             // 
@@ -1478,7 +1484,7 @@ namespace NewBizWizForm
             this.ribbonBarDigitalExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarDigitalExit.Location = new System.Drawing.Point(644, 0);
             this.ribbonBarDigitalExit.Name = "ribbonBarDigitalExit";
-            this.ribbonBarDigitalExit.Size = new System.Drawing.Size(94, 100);
+            this.ribbonBarDigitalExit.Size = new System.Drawing.Size(94, 99);
             this.ribbonBarDigitalExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarDigitalExit.TabIndex = 30;
             this.ribbonBarDigitalExit.Text = "EXIT";
@@ -1519,7 +1525,7 @@ namespace NewBizWizForm
             this.ribbonBarDigitalHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarDigitalHelp.Location = new System.Drawing.Point(560, 0);
             this.ribbonBarDigitalHelp.Name = "ribbonBarDigitalHelp";
-            this.ribbonBarDigitalHelp.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarDigitalHelp.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarDigitalHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarDigitalHelp.TabIndex = 31;
             this.ribbonBarDigitalHelp.Text = "HELP";
@@ -1559,7 +1565,7 @@ namespace NewBizWizForm
             this.ribbonBarDigitalDelete.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarDigitalDelete.Location = new System.Drawing.Point(476, 0);
             this.ribbonBarDigitalDelete.Name = "ribbonBarDigitalDelete";
-            this.ribbonBarDigitalDelete.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarDigitalDelete.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarDigitalDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarDigitalDelete.TabIndex = 34;
             this.ribbonBarDigitalDelete.Text = "Delete";
@@ -1598,7 +1604,7 @@ namespace NewBizWizForm
             this.ribbonBarDigitalOpen.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarDigitalOpen.Location = new System.Drawing.Point(392, 0);
             this.ribbonBarDigitalOpen.Name = "ribbonBarDigitalOpen";
-            this.ribbonBarDigitalOpen.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarDigitalOpen.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarDigitalOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarDigitalOpen.TabIndex = 33;
             this.ribbonBarDigitalOpen.Text = "Open";
@@ -1637,7 +1643,7 @@ namespace NewBizWizForm
             this.ribbonBarDigitalNew.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarDigitalNew.Location = new System.Drawing.Point(308, 0);
             this.ribbonBarDigitalNew.Name = "ribbonBarDigitalNew";
-            this.ribbonBarDigitalNew.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarDigitalNew.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarDigitalNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarDigitalNew.TabIndex = 32;
             this.ribbonBarDigitalNew.Text = "New";
@@ -1676,7 +1682,7 @@ namespace NewBizWizForm
             this.ribbonBarDigitalScheduleBuilder.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarDigitalScheduleBuilder.Location = new System.Drawing.Point(198, 0);
             this.ribbonBarDigitalScheduleBuilder.Name = "ribbonBarDigitalScheduleBuilder";
-            this.ribbonBarDigitalScheduleBuilder.Size = new System.Drawing.Size(110, 100);
+            this.ribbonBarDigitalScheduleBuilder.Size = new System.Drawing.Size(110, 99);
             this.ribbonBarDigitalScheduleBuilder.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarDigitalScheduleBuilder.TabIndex = 29;
             this.ribbonBarDigitalScheduleBuilder.Text = "Schedule Builder";
@@ -1717,7 +1723,7 @@ namespace NewBizWizForm
             this.ribbonBarDigitalLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarDigitalLogo.Location = new System.Drawing.Point(3, 0);
             this.ribbonBarDigitalLogo.Name = "ribbonBarDigitalLogo";
-            this.ribbonBarDigitalLogo.Size = new System.Drawing.Size(195, 100);
+            this.ribbonBarDigitalLogo.Size = new System.Drawing.Size(195, 99);
             this.ribbonBarDigitalLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarDigitalLogo.TabIndex = 28;
             this.ribbonBarDigitalLogo.Text = "Sell RIGHT!   Sell FAST!    Sell MORE!";
@@ -2068,10 +2074,10 @@ namespace NewBizWizForm
             this.ribbonPanelMobile.Controls.Add(this.ribbonBarMobileScheduleBuilder);
             this.ribbonPanelMobile.Controls.Add(this.ribbonBarMobileLogo);
             this.ribbonPanelMobile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelMobile.Location = new System.Drawing.Point(0, 25);
+            this.ribbonPanelMobile.Location = new System.Drawing.Point(0, 26);
             this.ribbonPanelMobile.Name = "ribbonPanelMobile";
             this.ribbonPanelMobile.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelMobile.Size = new System.Drawing.Size(919, 103);
+            this.ribbonPanelMobile.Size = new System.Drawing.Size(919, 102);
             // 
             // 
             // 
@@ -2108,7 +2114,7 @@ namespace NewBizWizForm
             this.ribbonBarMobileExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMobileExit.Location = new System.Drawing.Point(651, 0);
             this.ribbonBarMobileExit.Name = "ribbonBarMobileExit";
-            this.ribbonBarMobileExit.Size = new System.Drawing.Size(85, 100);
+            this.ribbonBarMobileExit.Size = new System.Drawing.Size(85, 99);
             this.ribbonBarMobileExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMobileExit.TabIndex = 16;
             this.ribbonBarMobileExit.Text = "EXIT";
@@ -2150,7 +2156,7 @@ namespace NewBizWizForm
             this.ribbonBarMobileHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMobileHelp.Location = new System.Drawing.Point(567, 0);
             this.ribbonBarMobileHelp.Name = "ribbonBarMobileHelp";
-            this.ribbonBarMobileHelp.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarMobileHelp.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarMobileHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMobileHelp.TabIndex = 24;
             this.ribbonBarMobileHelp.Text = "HELP";
@@ -2190,7 +2196,7 @@ namespace NewBizWizForm
             this.ribbonBarMobileDelete.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMobileDelete.Location = new System.Drawing.Point(483, 0);
             this.ribbonBarMobileDelete.Name = "ribbonBarMobileDelete";
-            this.ribbonBarMobileDelete.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarMobileDelete.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarMobileDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMobileDelete.TabIndex = 20;
             this.ribbonBarMobileDelete.Text = "Delete";
@@ -2229,7 +2235,7 @@ namespace NewBizWizForm
             this.ribbonBarMobileOpen.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMobileOpen.Location = new System.Drawing.Point(399, 0);
             this.ribbonBarMobileOpen.Name = "ribbonBarMobileOpen";
-            this.ribbonBarMobileOpen.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarMobileOpen.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarMobileOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMobileOpen.TabIndex = 19;
             this.ribbonBarMobileOpen.Text = "Open";
@@ -2268,7 +2274,7 @@ namespace NewBizWizForm
             this.ribbonBarMobileNew.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMobileNew.Location = new System.Drawing.Point(315, 0);
             this.ribbonBarMobileNew.Name = "ribbonBarMobileNew";
-            this.ribbonBarMobileNew.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarMobileNew.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarMobileNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMobileNew.TabIndex = 17;
             this.ribbonBarMobileNew.Text = "New";
@@ -2308,7 +2314,7 @@ namespace NewBizWizForm
             this.ribbonBarMobileScheduleBuilder.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMobileScheduleBuilder.Location = new System.Drawing.Point(201, 0);
             this.ribbonBarMobileScheduleBuilder.Name = "ribbonBarMobileScheduleBuilder";
-            this.ribbonBarMobileScheduleBuilder.Size = new System.Drawing.Size(114, 100);
+            this.ribbonBarMobileScheduleBuilder.Size = new System.Drawing.Size(114, 99);
             this.ribbonBarMobileScheduleBuilder.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMobileScheduleBuilder.TabIndex = 15;
             this.ribbonBarMobileScheduleBuilder.Text = "Schedule Builder";
@@ -2350,7 +2356,7 @@ namespace NewBizWizForm
             this.ribbonBarMobileLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMobileLogo.Location = new System.Drawing.Point(3, 0);
             this.ribbonBarMobileLogo.Name = "ribbonBarMobileLogo";
-            this.ribbonBarMobileLogo.Size = new System.Drawing.Size(198, 100);
+            this.ribbonBarMobileLogo.Size = new System.Drawing.Size(198, 99);
             this.ribbonBarMobileLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMobileLogo.TabIndex = 4;
             this.ribbonBarMobileLogo.Text = "Sell RIGHT!   Sell FAST!    Sell MORE!";
@@ -2383,12 +2389,12 @@ namespace NewBizWizForm
             this.ribbonPanelTV.Controls.Add(this.ribbonBarTVOpen);
             this.ribbonPanelTV.Controls.Add(this.ribbonBarTVNew);
             this.ribbonPanelTV.Controls.Add(this.ribbonBarTVScheduleBuilder);
-            this.ribbonPanelTV.Controls.Add(this.ribbonBarTVLogo2);
+            this.ribbonPanelTV.Controls.Add(this.ribbonBarTVLogo);
             this.ribbonPanelTV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelTV.Location = new System.Drawing.Point(0, 25);
+            this.ribbonPanelTV.Location = new System.Drawing.Point(0, 26);
             this.ribbonPanelTV.Name = "ribbonPanelTV";
             this.ribbonPanelTV.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelTV.Size = new System.Drawing.Size(919, 103);
+            this.ribbonPanelTV.Size = new System.Drawing.Size(919, 102);
             // 
             // 
             // 
@@ -2424,7 +2430,7 @@ namespace NewBizWizForm
             this.ribbonBarTVExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarTVExit.Location = new System.Drawing.Point(650, 0);
             this.ribbonBarTVExit.Name = "ribbonBarTVExit";
-            this.ribbonBarTVExit.Size = new System.Drawing.Size(94, 100);
+            this.ribbonBarTVExit.Size = new System.Drawing.Size(94, 99);
             this.ribbonBarTVExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarTVExit.TabIndex = 15;
             this.ribbonBarTVExit.Text = "EXIT";
@@ -2466,7 +2472,7 @@ namespace NewBizWizForm
             this.ribbonBarTVHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarTVHelp.Location = new System.Drawing.Point(566, 0);
             this.ribbonBarTVHelp.Name = "ribbonBarTVHelp";
-            this.ribbonBarTVHelp.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarTVHelp.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarTVHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarTVHelp.TabIndex = 23;
             this.ribbonBarTVHelp.Text = "HELP";
@@ -2506,7 +2512,7 @@ namespace NewBizWizForm
             this.ribbonBarTVDelete.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarTVDelete.Location = new System.Drawing.Point(482, 0);
             this.ribbonBarTVDelete.Name = "ribbonBarTVDelete";
-            this.ribbonBarTVDelete.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarTVDelete.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarTVDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarTVDelete.TabIndex = 26;
             this.ribbonBarTVDelete.Text = "Delete";
@@ -2545,7 +2551,7 @@ namespace NewBizWizForm
             this.ribbonBarTVOpen.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarTVOpen.Location = new System.Drawing.Point(398, 0);
             this.ribbonBarTVOpen.Name = "ribbonBarTVOpen";
-            this.ribbonBarTVOpen.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarTVOpen.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarTVOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarTVOpen.TabIndex = 25;
             this.ribbonBarTVOpen.Text = "Open";
@@ -2584,7 +2590,7 @@ namespace NewBizWizForm
             this.ribbonBarTVNew.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarTVNew.Location = new System.Drawing.Point(314, 0);
             this.ribbonBarTVNew.Name = "ribbonBarTVNew";
-            this.ribbonBarTVNew.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarTVNew.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarTVNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarTVNew.TabIndex = 24;
             this.ribbonBarTVNew.Text = "New";
@@ -2623,7 +2629,7 @@ namespace NewBizWizForm
             this.ribbonBarTVScheduleBuilder.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarTVScheduleBuilder.Location = new System.Drawing.Point(204, 0);
             this.ribbonBarTVScheduleBuilder.Name = "ribbonBarTVScheduleBuilder";
-            this.ribbonBarTVScheduleBuilder.Size = new System.Drawing.Size(110, 100);
+            this.ribbonBarTVScheduleBuilder.Size = new System.Drawing.Size(110, 99);
             this.ribbonBarTVScheduleBuilder.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarTVScheduleBuilder.TabIndex = 8;
             this.ribbonBarTVScheduleBuilder.Text = "Schedule Builder";
@@ -2647,38 +2653,38 @@ namespace NewBizWizForm
             this.buttonItemTVScheduleBuilder.Name = "buttonItemTVScheduleBuilder";
             this.buttonItemTVScheduleBuilder.SubItemsExpandWidth = 14;
             // 
-            // ribbonBarTVLogo2
+            // ribbonBarTVLogo
             // 
-            this.ribbonBarTVLogo2.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarTVLogo2.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarTVLogo.AutoOverflowEnabled = true;
             // 
             // 
             // 
-            this.ribbonBarTVLogo2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarTVLogo2.ContainerControlProcessDialogKey = true;
-            this.ribbonBarTVLogo2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarTVLogo2.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.ribbonBarTVLogo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarTVLogo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarTVLogo.ContainerControlProcessDialogKey = true;
+            this.ribbonBarTVLogo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarTVLogo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemTVLogo});
-            this.ribbonBarTVLogo2.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarTVLogo2.Location = new System.Drawing.Point(3, 0);
-            this.ribbonBarTVLogo2.Name = "ribbonBarTVLogo2";
-            this.ribbonBarTVLogo2.Size = new System.Drawing.Size(201, 100);
-            this.ribbonBarTVLogo2.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarTVLogo2.TabIndex = 7;
-            this.ribbonBarTVLogo2.Text = "Sell RIGHT!   Sell FAST!    Sell MORE!";
+            this.ribbonBarTVLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarTVLogo.Location = new System.Drawing.Point(3, 0);
+            this.ribbonBarTVLogo.Name = "ribbonBarTVLogo";
+            this.ribbonBarTVLogo.Size = new System.Drawing.Size(201, 99);
+            this.ribbonBarTVLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarTVLogo.TabIndex = 7;
+            this.ribbonBarTVLogo.Text = "Sell RIGHT!   Sell FAST!    Sell MORE!";
             // 
             // 
             // 
-            this.ribbonBarTVLogo2.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarTVLogo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.ribbonBarTVLogo2.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarTVLogo2.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-            this.ribbonBarTVLogo2.Click += new System.EventHandler(this.Outside_Click);
+            this.ribbonBarTVLogo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarTVLogo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+            this.ribbonBarTVLogo.Click += new System.EventHandler(this.Outside_Click);
             // 
             // buttonItemTVLogo
             // 
@@ -2927,10 +2933,10 @@ namespace NewBizWizForm
             this.ribbonPanelCable.Controls.Add(this.ribbonBarCableScheduleBuilder);
             this.ribbonPanelCable.Controls.Add(this.ribbonBarCableLogo);
             this.ribbonPanelCable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelCable.Location = new System.Drawing.Point(0, 25);
+            this.ribbonPanelCable.Location = new System.Drawing.Point(0, 26);
             this.ribbonPanelCable.Name = "ribbonPanelCable";
             this.ribbonPanelCable.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelCable.Size = new System.Drawing.Size(919, 103);
+            this.ribbonPanelCable.Size = new System.Drawing.Size(919, 102);
             // 
             // 
             // 
@@ -2966,7 +2972,7 @@ namespace NewBizWizForm
             this.ribbonBarCableExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarCableExit.Location = new System.Drawing.Point(398, 0);
             this.ribbonBarCableExit.Name = "ribbonBarCableExit";
-            this.ribbonBarCableExit.Size = new System.Drawing.Size(94, 100);
+            this.ribbonBarCableExit.Size = new System.Drawing.Size(94, 99);
             this.ribbonBarCableExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCableExit.TabIndex = 21;
             this.ribbonBarCableExit.Text = "EXIT";
@@ -3007,7 +3013,7 @@ namespace NewBizWizForm
             this.ribbonBarCableHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarCableHelp.Location = new System.Drawing.Point(314, 0);
             this.ribbonBarCableHelp.Name = "ribbonBarCableHelp";
-            this.ribbonBarCableHelp.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarCableHelp.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarCableHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCableHelp.TabIndex = 24;
             this.ribbonBarCableHelp.Text = "HELP";
@@ -3047,7 +3053,7 @@ namespace NewBizWizForm
             this.ribbonBarCableScheduleBuilder.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarCableScheduleBuilder.Location = new System.Drawing.Point(204, 0);
             this.ribbonBarCableScheduleBuilder.Name = "ribbonBarCableScheduleBuilder";
-            this.ribbonBarCableScheduleBuilder.Size = new System.Drawing.Size(110, 100);
+            this.ribbonBarCableScheduleBuilder.Size = new System.Drawing.Size(110, 99);
             this.ribbonBarCableScheduleBuilder.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCableScheduleBuilder.TabIndex = 20;
             this.ribbonBarCableScheduleBuilder.Text = "Schedule Builder";
@@ -3089,7 +3095,7 @@ namespace NewBizWizForm
             this.ribbonBarCableLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarCableLogo.Location = new System.Drawing.Point(3, 0);
             this.ribbonBarCableLogo.Name = "ribbonBarCableLogo";
-            this.ribbonBarCableLogo.Size = new System.Drawing.Size(201, 100);
+            this.ribbonBarCableLogo.Size = new System.Drawing.Size(201, 99);
             this.ribbonBarCableLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarCableLogo.TabIndex = 19;
             this.ribbonBarCableLogo.Text = "Sell RIGHT!   Sell FAST!    Sell MORE!";
@@ -3118,13 +3124,16 @@ namespace NewBizWizForm
             this.ribbonPanelRadio.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioExit);
             this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioHelp);
+            this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioDelete);
+            this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioOpen);
+            this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioNew);
             this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioScheduleBuilder);
             this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioLogo);
             this.ribbonPanelRadio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelRadio.Location = new System.Drawing.Point(0, 25);
+            this.ribbonPanelRadio.Location = new System.Drawing.Point(0, 26);
             this.ribbonPanelRadio.Name = "ribbonPanelRadio";
             this.ribbonPanelRadio.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelRadio.Size = new System.Drawing.Size(919, 103);
+            this.ribbonPanelRadio.Size = new System.Drawing.Size(919, 102);
             // 
             // 
             // 
@@ -3158,9 +3167,9 @@ namespace NewBizWizForm
             this.buttonItemRadioExit});
             this.ribbonBarRadioExit.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
             this.ribbonBarRadioExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarRadioExit.Location = new System.Drawing.Point(398, 0);
+            this.ribbonBarRadioExit.Location = new System.Drawing.Point(650, 0);
             this.ribbonBarRadioExit.Name = "ribbonBarRadioExit";
-            this.ribbonBarRadioExit.Size = new System.Drawing.Size(94, 100);
+            this.ribbonBarRadioExit.Size = new System.Drawing.Size(94, 99);
             this.ribbonBarRadioExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarRadioExit.TabIndex = 18;
             this.ribbonBarRadioExit.Text = "EXIT";
@@ -3199,9 +3208,9 @@ namespace NewBizWizForm
             this.ribbonBarRadioHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemRadioHelp});
             this.ribbonBarRadioHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarRadioHelp.Location = new System.Drawing.Point(314, 0);
+            this.ribbonBarRadioHelp.Location = new System.Drawing.Point(566, 0);
             this.ribbonBarRadioHelp.Name = "ribbonBarRadioHelp";
-            this.ribbonBarRadioHelp.Size = new System.Drawing.Size(84, 100);
+            this.ribbonBarRadioHelp.Size = new System.Drawing.Size(84, 99);
             this.ribbonBarRadioHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarRadioHelp.TabIndex = 24;
             this.ribbonBarRadioHelp.Text = "HELP";
@@ -3241,7 +3250,7 @@ namespace NewBizWizForm
             this.ribbonBarRadioScheduleBuilder.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarRadioScheduleBuilder.Location = new System.Drawing.Point(204, 0);
             this.ribbonBarRadioScheduleBuilder.Name = "ribbonBarRadioScheduleBuilder";
-            this.ribbonBarRadioScheduleBuilder.Size = new System.Drawing.Size(110, 100);
+            this.ribbonBarRadioScheduleBuilder.Size = new System.Drawing.Size(110, 99);
             this.ribbonBarRadioScheduleBuilder.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarRadioScheduleBuilder.TabIndex = 17;
             this.ribbonBarRadioScheduleBuilder.Text = "Schedule Builder";
@@ -3283,7 +3292,7 @@ namespace NewBizWizForm
             this.ribbonBarRadioLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarRadioLogo.Location = new System.Drawing.Point(3, 0);
             this.ribbonBarRadioLogo.Name = "ribbonBarRadioLogo";
-            this.ribbonBarRadioLogo.Size = new System.Drawing.Size(201, 100);
+            this.ribbonBarRadioLogo.Size = new System.Drawing.Size(201, 99);
             this.ribbonBarRadioLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarRadioLogo.TabIndex = 16;
             this.ribbonBarRadioLogo.Text = "Sell RIGHT!   Sell FAST!    Sell MORE!";
@@ -3427,6 +3436,122 @@ namespace NewBizWizForm
             // 
             this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             // 
+            // ribbonBarRadioDelete
+            // 
+            this.ribbonBarRadioDelete.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarRadioDelete.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarRadioDelete.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarRadioDelete.ContainerControlProcessDialogKey = true;
+            this.ribbonBarRadioDelete.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarRadioDelete.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemRadioDelete});
+            this.ribbonBarRadioDelete.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarRadioDelete.Location = new System.Drawing.Point(482, 0);
+            this.ribbonBarRadioDelete.Name = "ribbonBarRadioDelete";
+            this.ribbonBarRadioDelete.Size = new System.Drawing.Size(84, 99);
+            this.ribbonBarRadioDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarRadioDelete.TabIndex = 29;
+            this.ribbonBarRadioDelete.Text = "Delete";
+            // 
+            // 
+            // 
+            this.ribbonBarRadioDelete.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarRadioDelete.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemRadioDelete
+            // 
+            this.buttonItemRadioDelete.Enabled = false;
+            this.buttonItemRadioDelete.Image = global::NewBizWizForm.Properties.Resources.DeleteSchedule;
+            this.buttonItemRadioDelete.Name = "buttonItemRadioDelete";
+            this.buttonItemRadioDelete.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemRadioDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete TV Schedule", "", "Delete the selected TV Schedule Below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // ribbonBarRadioOpen
+            // 
+            this.ribbonBarRadioOpen.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarRadioOpen.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarRadioOpen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarRadioOpen.ContainerControlProcessDialogKey = true;
+            this.ribbonBarRadioOpen.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarRadioOpen.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemRadioOpen});
+            this.ribbonBarRadioOpen.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarRadioOpen.Location = new System.Drawing.Point(398, 0);
+            this.ribbonBarRadioOpen.Name = "ribbonBarRadioOpen";
+            this.ribbonBarRadioOpen.Size = new System.Drawing.Size(84, 99);
+            this.ribbonBarRadioOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarRadioOpen.TabIndex = 28;
+            this.ribbonBarRadioOpen.Text = "Open";
+            // 
+            // 
+            // 
+            this.ribbonBarRadioOpen.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarRadioOpen.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemRadioOpen
+            // 
+            this.buttonItemRadioOpen.Enabled = false;
+            this.buttonItemRadioOpen.Image = global::NewBizWizForm.Properties.Resources.OpenSchedule;
+            this.buttonItemRadioOpen.Name = "buttonItemRadioOpen";
+            this.buttonItemRadioOpen.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemRadioOpen, new DevComponents.DotNetBar.SuperTooltipInfo("Open TV Schedule", "", "Open a TV Schedule you already built", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            // 
+            // ribbonBarRadioNew
+            // 
+            this.ribbonBarRadioNew.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarRadioNew.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarRadioNew.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarRadioNew.ContainerControlProcessDialogKey = true;
+            this.ribbonBarRadioNew.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarRadioNew.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemRadioNew});
+            this.ribbonBarRadioNew.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarRadioNew.Location = new System.Drawing.Point(314, 0);
+            this.ribbonBarRadioNew.Name = "ribbonBarRadioNew";
+            this.ribbonBarRadioNew.Size = new System.Drawing.Size(84, 99);
+            this.ribbonBarRadioNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarRadioNew.TabIndex = 27;
+            this.ribbonBarRadioNew.Text = "New";
+            // 
+            // 
+            // 
+            this.ribbonBarRadioNew.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarRadioNew.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemRadioNew
+            // 
+            this.buttonItemRadioNew.Image = global::NewBizWizForm.Properties.Resources.NewSchedule;
+            this.buttonItemRadioNew.Name = "buttonItemRadioNew";
+            this.buttonItemRadioNew.SubItemsExpandWidth = 14;
+            this.superTooltip.SetSuperTooltip(this.buttonItemRadioNew, new DevComponents.DotNetBar.SuperTooltipInfo("New TV Schedule", "", "Build a Quick TV Schedule for your client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
+            // 
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -3533,7 +3658,7 @@ namespace NewBizWizForm
         public DevComponents.DotNetBar.RibbonTabItem ribbonTabItemCable;
         private DevComponents.DotNetBar.RibbonBar ribbonBarTVScheduleBuilder;
         public DevComponents.DotNetBar.ButtonItem buttonItemTVScheduleBuilder;
-        private DevComponents.DotNetBar.RibbonBar ribbonBarTVLogo2;
+        private DevComponents.DotNetBar.RibbonBar ribbonBarTVLogo;
         public DevComponents.DotNetBar.ButtonItem buttonItemTVLogo;
         private DevComponents.DotNetBar.RibbonBar ribbonBarTVExit;
         private DevComponents.DotNetBar.ButtonItem buttonItemTVExit;
@@ -3629,6 +3754,12 @@ namespace NewBizWizForm
         public DevComponents.DotNetBar.ButtonItem buttonItemCalendarOpen;
         public DevComponents.DotNetBar.RibbonBar ribbonBarCalendarNew;
         public DevComponents.DotNetBar.ButtonItem buttonItemCalendarNew;
+        private DevComponents.DotNetBar.RibbonBar ribbonBarRadioDelete;
+        public DevComponents.DotNetBar.ButtonItem buttonItemRadioDelete;
+        private DevComponents.DotNetBar.RibbonBar ribbonBarRadioOpen;
+        public DevComponents.DotNetBar.ButtonItem buttonItemRadioOpen;
+        public DevComponents.DotNetBar.RibbonBar ribbonBarRadioNew;
+        public DevComponents.DotNetBar.ButtonItem buttonItemRadioNew;
     }
 }
 

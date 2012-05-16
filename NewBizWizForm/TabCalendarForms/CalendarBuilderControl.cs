@@ -83,7 +83,7 @@ namespace NewBizWizForm.TabCalendarForms
 
         public void buttonXNewCalendar_Click(object sender, EventArgs e)
         {
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 3, 0, 0);
+            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 9, 0, 0);
             FormMain.Instance.Opacity = 0;
             ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
             CalendarBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormCalendarResize);
@@ -96,13 +96,13 @@ namespace NewBizWizForm.TabCalendarForms
                 ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                 LoadCalendars();
             }
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 4, 0, 0);
+            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 10, 0, 0);
             AppManager.Instance.ActivateMiniBar();
         }
 
         public void buttonXOpenCalendar_Click(object sender, EventArgs e)
         {
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 3, 0, 0);
+            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 9, 0, 0);
             FormMain.Instance.Opacity = 0;
             ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
             CalendarBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormCalendarResize);
@@ -115,7 +115,7 @@ namespace NewBizWizForm.TabCalendarForms
                 ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                 LoadCalendars();
             }
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 4, 0, 0);
+            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 10, 0, 0);
             AppManager.Instance.ActivateMiniBar();
         }
 

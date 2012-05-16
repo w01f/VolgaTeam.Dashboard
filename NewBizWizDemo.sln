@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdSalesAddIn", "AdSalesAddI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPointLoader", "PowerPointLoader\PowerPointLoader.csproj", "{FBB8EE30-CE9B-41CA-8113-3AD4F385BB37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadioScheduleBuilder", "RadioScheduleBuilder\RadioScheduleBuilder.csproj", "{D127B824-535C-48B9-A574-7EB167B85775}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -251,6 +253,18 @@ Global
 		{FBB8EE30-CE9B-41CA-8113-3AD4F385BB37}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FBB8EE30-CE9B-41CA-8113-3AD4F385BB37}.Release|Win32.ActiveCfg = Release|Any CPU
 		{FBB8EE30-CE9B-41CA-8113-3AD4F385BB37}.Release|x86.ActiveCfg = Release|Any CPU
+		{D127B824-535C-48B9-A574-7EB167B85775}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{D127B824-535C-48B9-A574-7EB167B85775}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{D127B824-535C-48B9-A574-7EB167B85775}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{D127B824-535C-48B9-A574-7EB167B85775}.Debug|Win32.ActiveCfg = Debug|x86
+		{D127B824-535C-48B9-A574-7EB167B85775}.Debug|x86.ActiveCfg = Debug|x86
+		{D127B824-535C-48B9-A574-7EB167B85775}.Debug|x86.Build.0 = Debug|x86
+		{D127B824-535C-48B9-A574-7EB167B85775}.Release|Any CPU.ActiveCfg = Release|x86
+		{D127B824-535C-48B9-A574-7EB167B85775}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{D127B824-535C-48B9-A574-7EB167B85775}.Release|Mixed Platforms.Build.0 = Release|x86
+		{D127B824-535C-48B9-A574-7EB167B85775}.Release|Win32.ActiveCfg = Release|x86
+		{D127B824-535C-48B9-A574-7EB167B85775}.Release|x86.ActiveCfg = Release|x86
+		{D127B824-535C-48B9-A574-7EB167B85775}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

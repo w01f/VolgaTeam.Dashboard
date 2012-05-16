@@ -17,6 +17,7 @@ namespace NewBizWizForm.BusinessClasses
         public const string OnlineScheduleSlideFolderName = @"{0}\Online Slides";
         public const string MobileScheduleSlideFolderName = @"{0}\Mobile Slides";
         public const string TVScheduleSlideFolderName = @"{0}\TV Slides";
+        public const string RadioScheduleSlideFolderName = @"{0}\Radio Slides";
         public const string CalendarSlideFolderName = @"{0}\Calendar Slides";
 
         #region Home Constants
@@ -170,6 +171,14 @@ namespace NewBizWizForm.BusinessClasses
                 return Path.Combine(this.Folder.FullName, string.Format(MasterWizardManager.TVScheduleSlideFolderName, ConfigurationClasses.SettingsManager.Instance.SlideFolder));
             }
         }
+        public string RadioScheduleSlideFolder
+        {
+            get
+            {
+                return Path.Combine(this.Folder.FullName, string.Format(MasterWizardManager.RadioScheduleSlideFolderName, ConfigurationClasses.SettingsManager.Instance.SlideFolder));
+            }
+        }
+
         public string CalendarSlideFolder
         {
             get

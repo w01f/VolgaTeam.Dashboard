@@ -31,7 +31,7 @@ namespace NewBizWizForm.TabRadioForms
             this.Controls.Clear();
             if (FormMain.Instance.buttonItemRadioScheduleBuilder != null && FormMain.Instance.buttonItemRadioScheduleBuilder.Checked)
             {
-                this.Controls.Add(RadioOverviewControl.Instance);
+                this.Controls.Add(RadioScheduleBuilderControl.Instance);
             }
             else
             {

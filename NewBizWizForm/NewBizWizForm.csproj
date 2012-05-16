@@ -286,11 +286,11 @@
     <EmbeddedResource Include="TabiPad\TabiPadMainPage.resx">
       <DependentUpon>TabiPadMainPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabRadioForms\RadioOverviewControl.resx">
-      <DependentUpon>RadioOverviewControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="TabRadioForms\TabRadioMainPage.resx">
       <DependentUpon>TabRadioMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabRadioForms\RadioScheduleBuilderControl.resx">
+      <DependentUpon>RadioScheduleBuilderControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TabTVForms\TVScheduleBuilderControl.resx">
       <DependentUpon>TVScheduleBuilderControl.cs</DependentUpon>
@@ -590,17 +590,17 @@
     <Compile Include="TabiPad\TabiPadMainPage.Designer.cs">
       <DependentUpon>TabiPadMainPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabRadioForms\RadioOverviewControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabRadioForms\RadioOverviewControl.Designer.cs">
-      <DependentUpon>RadioOverviewControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="TabRadioForms\TabRadioMainPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="TabRadioForms\TabRadioMainPage.Designer.cs">
       <DependentUpon>TabRadioMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabRadioForms\RadioScheduleBuilderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabRadioForms\RadioScheduleBuilderControl.Designer.cs">
+      <DependentUpon>RadioScheduleBuilderControl.cs</DependentUpon>
     </Compile>
     <Compile Include="TabTVForms\TVScheduleBuilderControl.cs">
       <SubType>UserControl</SubType>
@@ -778,6 +778,10 @@
     <ProjectReference Include="..\OnlineScheduleBuilder\OnlineScheduleBuilder.csproj">
       <Project>{1C9B33CD-0FE1-431C-BBC4-88463568F891}</Project>
       <Name>OnlineScheduleBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RadioScheduleBuilder\RadioScheduleBuilder.csproj">
+      <Project>{D127B824-535C-48B9-A574-7EB167B85775}</Project>
+      <Name>RadioScheduleBuilder</Name>
     </ProjectReference>
     <ProjectReference Include="..\TVScheduleBuilder\TVScheduleBuilder.csproj">
       <Project>{56864914-D91D-4157-A441-E0FE1F95F25E}</Project>

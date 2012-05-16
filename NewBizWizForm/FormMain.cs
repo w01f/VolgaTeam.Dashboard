@@ -312,6 +312,9 @@ namespace NewBizWizForm
             buttonItemCalendarNew.Click += new EventHandler(TabCalendarForms.CalendarBuilderControl.Instance.buttonXNewCalendar_Click);
             buttonItemCalendarOpen.Click += new EventHandler(TabCalendarForms.CalendarBuilderControl.Instance.buttonXOpenCalendar_Click);
             buttonItemCalendarDelete.Click += new EventHandler(TabCalendarForms.CalendarBuilderControl.Instance.buttonXDeleteCalendar_Click);
+            buttonItemRadioNew.Click += new EventHandler(TabRadioForms.RadioScheduleBuilderControl.Instance.buttonXNewSchedule_Click);
+            buttonItemRadioOpen.Click += new EventHandler(TabRadioForms.RadioScheduleBuilderControl.Instance.buttonXOpenSchedule_Click);
+            buttonItemRadioDelete.Click += new EventHandler(TabRadioForms.RadioScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click);
         }
 
         private void FormMain_Shown(object sender, EventArgs e)
@@ -407,6 +410,22 @@ namespace NewBizWizForm
             {
                 f.Opacity = 1;
                 InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 9, 0, 0);
+            }
+        }
+
+        public void FormRadioScheduleResize(object sender, EventArgs e)
+        {
+            Form f = sender as Form;
+            if (f.WindowState == FormWindowState.Minimized)
+            {
+                InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 12, 0, 0);
+                f.Opacity = 0;
+                AppManager.Instance.ActivateMiniBar();
+            }
+            else
+            {
+                f.Opacity = 1;
+                InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 11, 0, 0);
             }
         }
 

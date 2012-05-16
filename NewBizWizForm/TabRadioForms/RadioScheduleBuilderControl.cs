@@ -3,16 +3,16 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 
-namespace NewBizWizForm.TabTVForms
+namespace NewBizWizForm.TabRadioForms
 {
     [System.ComponentModel.ToolboxItem(false)]
-    public partial class TVScheduleBuilderControl : UserControl
+    public partial class RadioScheduleBuilderControl : UserControl
     {
-        private TVScheduleBuilder.BusinessClasses.ShortSchedule[] _scheduleList = null;
+        private RadioScheduleBuilder.BusinessClasses.ShortSchedule[] _scheduleList = null;
 
-        private static TVScheduleBuilderControl _instance;
+        private static RadioScheduleBuilderControl _instance;
 
-        private TVScheduleBuilderControl()
+        private RadioScheduleBuilderControl()
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
@@ -20,7 +20,6 @@ namespace NewBizWizForm.TabTVForms
             if ((base.CreateGraphics()).DpiX > 96)
             {
                 laTitle.Font = new System.Drawing.Font(laTitle.Font.Name, laTitle.Font.Size - 5, laTitle.Font.Style);
-                laSubtitle.Font = new System.Drawing.Font(laSubtitle.Font.Name, laSubtitle.Font.Size - 3, laSubtitle.Font.Style);
                 laNoDataWarning.Font = new System.Drawing.Font(laNoDataWarning.Font.Name, laNoDataWarning.Font.Size - 5, laNoDataWarning.Font.Style);
                 laNoSlidesWarningText1.Font = new System.Drawing.Font(laNoSlidesWarningText1.Font.Name, laNoSlidesWarningText1.Font.Size - 3, laNoSlidesWarningText1.Font.Style);
                 laNoSlidesWarningText2.Font = new System.Drawing.Font(laNoSlidesWarningText2.Font.Name, laNoSlidesWarningText2.Font.Size - 3, laNoSlidesWarningText2.Font.Style);
@@ -28,12 +27,12 @@ namespace NewBizWizForm.TabTVForms
             }
         }
 
-        public static TVScheduleBuilderControl Instance
+        public static RadioScheduleBuilderControl Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new TVScheduleBuilderControl();
+                    _instance = new RadioScheduleBuilderControl();
                 return _instance;
             }
         }
@@ -42,18 +41,18 @@ namespace NewBizWizForm.TabTVForms
         {
             gridViewSchedules.FocusedRowChanged -= new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridViewSchedules_FocusedRowChanged);
             OutsideClick();
-            _scheduleList = TVScheduleBuilder.AppManager.GetShortScheduleList();
-            if (!TVScheduleBuilder.AppManager.ProgramDataAvailable)
+            _scheduleList = RadioScheduleBuilder.AppManager.GetShortScheduleList();
+            if (!RadioScheduleBuilder.AppManager.ProgramDataAvailable)
             {
-                FormMain.Instance.buttonItemTVNew.Enabled = false;
+                FormMain.Instance.buttonItemRadioNew.Enabled = false;
                 gridControlSchedules.Visible = false;
                 pnNoSlidesWarning.Visible = false;
                 pnNoDataWarning.Visible = true;
                 gridControlSchedules.DataSource = null;
             }
-            else if (!Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) || Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length == 0)
+            else if (!Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) || Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length == 0)
             {
-                FormMain.Instance.buttonItemTVNew.Enabled = false;
+                FormMain.Instance.buttonItemRadioNew.Enabled = false;
                 gridControlSchedules.Visible = false;
                 pnNoSlidesWarning.Visible = true;
                 laNoSlidesWarningText2.Text = string.Format("{0} {1}",new object[] {BusinessClasses.MasterWizardManager.Instance.SelectedWizard.Name, ConfigurationClasses.SettingsManager.Instance.Size});
@@ -62,13 +61,13 @@ namespace NewBizWizForm.TabTVForms
             }
             else
             {
-                FormMain.Instance.buttonItemTVNew.Enabled = true;
+                FormMain.Instance.buttonItemRadioNew.Enabled = true;
                 gridControlSchedules.Visible = true;
                 pnNoSlidesWarning.Visible = false;
                 pnNoDataWarning.Visible = false;
                 repositoryItemComboBoxStatus.Items.Clear();
-                repositoryItemComboBoxStatus.Items.AddRange(TVScheduleBuilder.BusinessClasses.ListManager.Instance.Statuses);
-                gridControlSchedules.DataSource = new BindingList<TVScheduleBuilder.BusinessClasses.ShortSchedule>(_scheduleList);
+                repositoryItemComboBoxStatus.Items.AddRange(RadioScheduleBuilder.BusinessClasses.ListManager.Instance.Statuses);
+                gridControlSchedules.DataSource = new BindingList<RadioScheduleBuilder.BusinessClasses.ShortSchedule>(_scheduleList);
             }
             gridViewSchedules.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridViewSchedules_FocusedRowChanged);
         }
@@ -78,18 +77,18 @@ namespace NewBizWizForm.TabTVForms
             gridViewSchedules.FocusedRowHandle = -1;
             gridViewSchedules.FocusedColumn = gridColumnBusinessName;
             gridViewSchedules.OptionsSelection.EnableAppearanceFocusedRow = false;
-            FormMain.Instance.buttonItemTVOpen.Enabled = false;
-            FormMain.Instance.buttonItemTVDelete.Enabled = false;
+            FormMain.Instance.buttonItemRadioOpen.Enabled = false;
+            FormMain.Instance.buttonItemRadioDelete.Enabled = false;
         }
 
         public void buttonXNewSchedule_Click(object sender, EventArgs e)
         {
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 7, 0, 0);
+            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 11, 0, 0);
             FormMain.Instance.Opacity = 0;
             ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
-            TVScheduleBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormTVScheduleResize);
-            TVScheduleBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormTVScheduleResize);
-            TVScheduleBuilder.AppManager.NewSchedule();
+            RadioScheduleBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormRadioScheduleResize);
+            RadioScheduleBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormRadioScheduleResize);
+            RadioScheduleBuilder.AppManager.NewSchedule();
             if (!FormMain.Instance.IsDead)
             {
                 FormMain.Instance.Opacity = 1;
@@ -97,18 +96,18 @@ namespace NewBizWizForm.TabTVForms
                 ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                 LoadSchedules();
             }
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 8, 0, 0);
+            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 12, 0, 0);
             AppManager.Instance.ActivateMiniBar();
         }
 
         public void buttonXOpenSchedule_Click(object sender, EventArgs e)
         {
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 7, 0, 0);
+            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 11, 0, 0);
             FormMain.Instance.Opacity = 0;
             ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
-            TVScheduleBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormTVScheduleResize);
-            TVScheduleBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormTVScheduleResize);
-            TVScheduleBuilder.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
+            RadioScheduleBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormRadioScheduleResize);
+            RadioScheduleBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormRadioScheduleResize);
+            RadioScheduleBuilder.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
             if (!FormMain.Instance.IsDead)
             {
                 FormMain.Instance.Opacity = 1;
@@ -116,7 +115,7 @@ namespace NewBizWizForm.TabTVForms
                 ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                 LoadSchedules();
             }
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 8, 0, 0);
+            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 12, 0, 0);
             AppManager.Instance.ActivateMiniBar();
         }
 
@@ -141,8 +140,8 @@ namespace NewBizWizForm.TabTVForms
         private void gridViewSchedules_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             gridViewSchedules.OptionsSelection.EnableAppearanceFocusedRow = true;
-            FormMain.Instance.buttonItemTVOpen.Enabled = gridViewSchedules.SelectedRowsCount > 0;
-            FormMain.Instance.buttonItemTVDelete.Enabled = gridViewSchedules.SelectedRowsCount > 0;
+            FormMain.Instance.buttonItemRadioOpen.Enabled = gridViewSchedules.SelectedRowsCount > 0;
+            FormMain.Instance.buttonItemRadioDelete.Enabled = gridViewSchedules.SelectedRowsCount > 0;
         }
 
         private void gridViewSchedules_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
@@ -159,38 +158,9 @@ namespace NewBizWizForm.TabTVForms
             OutsideClick();
         }
 
-        #region Picture Box Clicks Habdlers
-        /// <summary>
-        /// Buttonize the PictureBox 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-        {
-            PictureBox pic = (PictureBox)(sender);
-            pic.Top += 1;
-        }
-
-        private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-        {
-            PictureBox pic = (PictureBox)(sender);
-            pic.Top -= 1;
-        }
-        #endregion
-
-        private void pbOneDomain_Click(object sender, EventArgs e)
-        {
-            AppManager.Instance.RunOneDomain();
-        }
-
-        private void pbOtherSources_Click(object sender, EventArgs e)
-        {
-            AppManager.Instance.ShowInformation("This App is in development. Coming SOON!");
-        }
-
         private void gridViewSchedules_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            TVScheduleBuilder.BusinessClasses.ShortSchedule schedule = _scheduleList[gridViewSchedules.GetDataSourceRowIndex(e.RowHandle)];
+            RadioScheduleBuilder.BusinessClasses.ShortSchedule schedule = _scheduleList[gridViewSchedules.GetDataSourceRowIndex(e.RowHandle)];
             schedule.Save();
         }
 

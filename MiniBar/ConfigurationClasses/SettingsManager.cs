@@ -45,6 +45,7 @@ namespace MiniBar.ConfigurationClasses
         public string SyncSettingsFolderPath { get; set; }
         public string HelpLinksPath { get; set; }
         public string MinibarLoaderPath { get; set; }
+        public string PowerPointLoaderPath { get; set; }
         #endregion
 
         public Guid AppID { get; set; }
@@ -129,6 +130,7 @@ namespace MiniBar.ConfigurationClasses
             this.SyncSettingsFolderPath = string.Format(@"{0}\newlocaldirect.com\!Update_Settings", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\MinibarHelp.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.MinibarLoaderPath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\MiniBarLoader.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+            this.PowerPointLoaderPath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\PowerPointLoader.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
         }
 
         public static SettingsManager Instance

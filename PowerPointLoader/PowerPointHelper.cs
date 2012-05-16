@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
-namespace MiniBar.InteropClasses
+namespace PowerPointLoader.InteropClasses
 {
     public partial class PowerPointHelper
     {
         private static PowerPointHelper instance = new PowerPointHelper();
 
         private PowerPoint.Application _powerPointObject = null;
-        private int _powerPointProcessId = 0;
-        private PowerPoint.Presentation _activePresentation;
-        private IntPtr _windowHandle = IntPtr.Zero;
-        private bool _is2003 = false;
+        private PowerPoint.Presentation _activePresentation = null;
 
         private PowerPointHelper()
         {
@@ -29,188 +24,24 @@ namespace MiniBar.InteropClasses
             }
         }
 
-        public PowerPoint.Application PowerPointObject
-        {
-            get
-            {
-                return _powerPointObject;
-            }
-        }
-
-        public bool IsMinimized
-        {
-            get
-            {
-                return WinAPIHelper.IsIconic(_windowHandle);
-            }
-        }
-
-        public bool IsActive
-        {
-            get
-            {
-                return WinAPIHelper.IsWindowVisible(_windowHandle);
-            }
-        }
-
-        public bool Is2003
-        {
-            get
-            {
-                return _is2003;
-            }
-        }
-
-        public string ActiveFileName
-        {
-            get
-            {
-                try
-                {
-                    return _powerPointObject.ActivePresentation.Name;
-                }
-                catch
-                {
-                    return string.Empty;
-                }
-            }
-        }
-
-        public string ActiveFilePath
-        {
-            get
-            {
-                try
-                {
-                    return _powerPointObject.ActivePresentation.FullName;
-                }
-                catch
-                {
-                    return string.Empty;
-                }
-            }
-        }
-
-
-        public bool Connect()
-        {
-            bool result = false;
-            _containsPageNumbers = false;
-            try
-            {
-                MessageFilter.Register();
-                try
-                {
-                    if (_powerPointObject == null)
-                    {
-                        _powerPointObject =
-                            System.Runtime.InteropServices.Marshal.GetActiveObject("PowerPoint.Application") as PowerPoint.Application;
-                    }
-                }
-                catch
-                {
-                }
-                _is2003 = _powerPointObject.Version.Equals("11.0");
-                uint lpdwProcessId = 0;
-                WinAPIHelper.GetWindowThreadProcessId(new IntPtr(_powerPointObject.HWND), out lpdwProcessId);
-                _powerPointProcessId = (int)lpdwProcessId;
-                _windowHandle = new IntPtr(_powerPointObject.HWND);
-                _powerPointObject.DisplayAlerts = Microsoft.Office.Interop.PowerPoint.PpAlertLevel.ppAlertsNone;
-                GetActivePresentation();
-                SearchPageNumbers();
-                _powerPointObject.PresentationClose += new PowerPoint.EApplication_PresentationCloseEventHandler(_powerPointObject_PresentationClose);
-                result = true;
-            }
-            catch
-            {
-                _powerPointObject = null;
-                result = false;
-            }
-            finally
-            {
-                MessageFilter.Revoke();
-            }
-            return result;
-        }
-
-        private void _powerPointObject_PresentationClose(PowerPoint.Presentation Pres)
+        public void Connect()
         {
             try
             {
                 MessageFilter.Register();
-                _powerPointObject.Quit();
-            }
-            catch
-            {
-                _activePresentation = null;
-            }
-            finally
-            {
-                MessageFilter.Revoke();
-                AppManager.Instance.ReleaseComObject(_activePresentation);
-                AppManager.Instance.ReleaseComObject(_powerPointObject);
-                _powerPointObject = null;
-                System.Threading.Thread.Sleep(500);
-            }
-        }
-
-        public void ActivatePowerPoint()
-        {
-            if (_powerPointObject != null)
-            {
-                IntPtr powerPointHandle = new IntPtr(_powerPointObject.HWND);
-                InteropClasses.WinAPIHelper.ShowWindow(powerPointHandle, InteropClasses.WindowShowStyle.ShowMaximized);
-            }
-        }
-
-        public bool PowerPointDetected()
-        {
-            bool result = false;
-            while (Process.GetProcesses().Where(x => x.ProcessName.Equals("POWERPNT")).Count() > 0)
-            {
-                PowerPoint.Application powerPoint = null;
                 try
                 {
-                    powerPoint = System.Runtime.InteropServices.Marshal.GetActiveObject("PowerPoint.Application") as PowerPoint.Application;
-                    if (powerPoint.Visible == Microsoft.Office.Core.MsoTriState.msoFalse)
-                    {
-                        uint lpdwProcessId = 0;
-                        WinAPIHelper.GetWindowThreadProcessId(new IntPtr(powerPoint.HWND), out lpdwProcessId);
-                        Process.GetProcessById((int)lpdwProcessId).Kill();
-                    }
-                    else
-                    {
-                        result = true;
-                        break;
-                    }
+                    _powerPointObject = System.Runtime.InteropServices.Marshal.GetActiveObject("PowerPoint.Application") as PowerPoint.Application;
                 }
                 catch
                 {
-                }
-                finally
-                {
-                    AppManager.Instance.ReleaseComObject(powerPoint);
-                }
-            }
-            return result;
-        }
-
-        public void GetActivePresentation()
-        {
-            try
-            {
-                _activePresentation = _powerPointObject.ActivePresentation;
-            }
-            catch
-            {
-                try
-                {
-                    MessageFilter.Register();
-                    if (_powerPointObject.Presentations.Count == 0)
+                    try
                     {
+                        _powerPointObject = new Microsoft.Office.Interop.PowerPoint.Application();
+                        _powerPointObject.Visible = Microsoft.Office.Core.MsoTriState.msoCTrue;
+                        _powerPointObject.DisplayAlerts = Microsoft.Office.Interop.PowerPoint.PpAlertLevel.ppAlertsNone;
                         PowerPoint.Presentations presentations = _powerPointObject.Presentations;
                         _activePresentation = presentations.Add(Microsoft.Office.Core.MsoTriState.msoCTrue);
-                        AppManager.Instance.ReleaseComObject(presentations);
                         if (ConfigurationClasses.SettingsManager.Instance.SlideTemplateEnabled && File.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.CleanslateFile))
                         {
                             AppendCleanslate();
@@ -219,19 +50,40 @@ namespace MiniBar.InteropClasses
                         {
                             PowerPoint.Slides slides = _activePresentation.Slides;
                             slides.Add(1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutTitle);
-                            AppManager.Instance.ReleaseComObject(slides);
                         }
+                        SetPresentationSettings();
+                        IntPtr powerPointHandle = new IntPtr(_powerPointObject.HWND);
+                        InteropClasses.WinAPIHelper.ShowWindow(powerPointHandle, InteropClasses.WindowShowStyle.ShowMaximized);
                     }
-                    else
-                    {
-                        PowerPoint.Presentations presentations = _powerPointObject.Presentations;
-                        _activePresentation = presentations[1];
-                        AppManager.Instance.ReleaseComObject(presentations);
+                    catch
+                    { 
                     }
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                MessageFilter.Revoke();
+            }
+        }
+
+        public void AppendCleanslate()
+        {
+            if (File.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.CleanslateFile))
+            {
+                string presentationTemplatePath = BusinessClasses.MasterWizardManager.Instance.SelectedWizard.CleanslateFile;
+                try
+                {
+                    MessageFilter.Register();
+                    PowerPoint.Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: Microsoft.Office.Core.MsoTriState.msoFalse);
+                    AppendSlide(presentation, -1);
+                    presentation.Close();
+
                 }
                 catch
                 {
-                    _activePresentation = null;
                 }
                 finally
                 {
@@ -281,8 +133,6 @@ namespace MiniBar.InteropClasses
             int currentSlideIndex = 0;
             Microsoft.Office.Core.MsoTriState masterShape;
 
-
-            GetActivePresentation();
             if (indexToPaste == 0)
                 indexToPaste = GetActiveSlideIndex();
             if (firstSlide || indexToPaste == 0)
@@ -307,11 +157,9 @@ namespace MiniBar.InteropClasses
                         {
                             PowerPoint.Design slideDesign = slide.Design;
                             pastedRange.Design = slideDesign;
-                            AppManager.Instance.ReleaseComObject(slideDesign);
                         }
                         PowerPoint.ColorScheme colorScheme = slide.ColorScheme;
                         pastedRange.ColorScheme = colorScheme;
-                        AppManager.Instance.ReleaseComObject(colorScheme);
 
                         if (slide.FollowMasterBackground == Microsoft.Office.Core.MsoTriState.msoFalse)
                         {
@@ -370,38 +218,9 @@ namespace MiniBar.InteropClasses
                         MakeDesignUnique(slide, pastedRange.Design);
                         activeSlides[indexToPaste - 1].Select();
                         currentSlideIndex = indexToPaste - 1;
-                        AppManager.Instance.ReleaseComObject(pastedRange);
-                        AppManager.Instance.ReleaseComObject(design);
-                        AppManager.Instance.ReleaseComObject(slide);
-                        AppManager.Instance.ReleaseComObject(activeSlides);
                     }
                 }
             }
-            AppManager.Instance.ReleaseComObject(slides);
-        }
-
-        private PowerPoint.Slide GetActiveSlide()
-        {
-            PowerPoint.Slide activeSlide = null;
-            try
-            {
-                if (_powerPointObject.Windows.Count > 0)
-                {
-                    _powerPointObject.Activate();
-                    if (_powerPointObject.ActiveWindow != null)
-                    {
-                        _powerPointObject.ActiveWindow.ViewType = Microsoft.Office.Interop.PowerPoint.PpViewType.ppViewNormal;
-                        activeSlide = (PowerPoint.Slide)_powerPointObject.ActiveWindow.View.Slide;
-                    }
-                }
-            }
-            catch
-            {
-            }
-            finally
-            {
-            }
-            return activeSlide;
         }
 
         private int GetActiveSlideIndex()
@@ -414,12 +233,9 @@ namespace MiniBar.InteropClasses
                 if (activeWindow != null)
                 {
                     PowerPoint.View view = activeWindow.View;
-                    PowerPoint.Slide slide = (PowerPoint.Slide)view.Slide;
+                    PowerPoint.Slide slide = view.Slide as PowerPoint.Slide;
                     slideIndex = slide.SlideIndex;
-                    AppManager.Instance.ReleaseComObject(slide);
-                    AppManager.Instance.ReleaseComObject(view);
                 }
-                AppManager.Instance.ReleaseComObject(activeWindow);
             }
             catch
             {
@@ -448,24 +264,6 @@ namespace MiniBar.InteropClasses
                     design.SlideMaster.Shapes[design.SlideMaster.Shapes.Count].Delete();
                 else
                     break;
-            }
-        }
-
-        public void SavePDF(string fileName)
-        {
-            try
-            {
-                MessageFilter.Register();
-                GetActivePresentation();
-                if (_activePresentation != null)
-                    _activePresentation.SaveAs(fileName, Microsoft.Office.Interop.PowerPoint.PpSaveAsFileType.ppSaveAsPDF, Microsoft.Office.Core.MsoTriState.msoCTrue);
-            }
-            catch
-            {
-            }
-            finally
-            {
-                MessageFilter.Revoke();
             }
         }
     }

@@ -265,9 +265,7 @@ namespace MiniBar
 
         private void RunPowerPoint()
         {
-            InteropClasses.PowerPointHelper.Instance.Connect(true);
-            InteropClasses.PowerPointHelper.Instance.SetPresentationSettings();
-            InteropClasses.PowerPointHelper.Instance.ActivatePowerPoint();
+            AppManager.Instance.RunPowerPointLoader();
         }
 
         private void SetPresentationSettings()
@@ -511,7 +509,7 @@ namespace MiniBar
             (sender as DevComponents.DotNetBar.ButtonItem).Checked = true;
             UpdateSlideTemplateStatus();
             ConfigurationClasses.SettingsManager.Instance.SaveSharedSettings();
-            InteropClasses.PowerPointHelper.Instance.Connect(false);
+            InteropClasses.PowerPointHelper.Instance.Connect();
             InteropClasses.PowerPointHelper.Instance.SetPresentationSettings();
         }
 
@@ -647,7 +645,7 @@ namespace MiniBar
                         else
                             return;
                     }
-                    InteropClasses.PowerPointHelper.Instance.Connect(false);
+                    InteropClasses.PowerPointHelper.Instance.Connect();
                     InteropClasses.PowerPointHelper.Instance.AppendGenericCover(true);
                     AppManager.Instance.ActivateForm(this.Handle, false);
                 }
@@ -663,7 +661,7 @@ namespace MiniBar
                 else
                     return;
             }
-            InteropClasses.PowerPointHelper.Instance.Connect(false);
+            InteropClasses.PowerPointHelper.Instance.Connect();
             InteropClasses.PowerPointHelper.Instance.AppendCleanslate();
             AppManager.Instance.ActivateForm(this.Handle, false);
         }
@@ -736,7 +734,7 @@ namespace MiniBar
             string presentationName = string.Empty;
             if (InteropClasses.PowerPointHelper.Instance.PowerPointDetected())
             {
-                InteropClasses.PowerPointHelper.Instance.Connect(false);
+                InteropClasses.PowerPointHelper.Instance.Connect();
                 if (InteropClasses.PowerPointHelper.Instance.Is2003)
                 {
                     AppManager.Instance.ShowWarning("Your Version of PowerPoint will not Convert to PDF.\nPDF Converting  Only works with Office 2007 and 2010.");
@@ -779,7 +777,7 @@ namespace MiniBar
             string presentationName = string.Empty;
             if (InteropClasses.PowerPointHelper.Instance.PowerPointDetected())
             {
-                InteropClasses.PowerPointHelper.Instance.Connect(false);
+                InteropClasses.PowerPointHelper.Instance.Connect();
                 if (InteropClasses.PowerPointHelper.Instance.Is2003)
                 {
                     AppManager.Instance.ShowWarning("Your Version of PowerPoint will not Convert to PDF.\nPDF Converting  Only works with Office 2007 and 2010.");
@@ -818,7 +816,7 @@ namespace MiniBar
             string presentationName = string.Empty;
             if (InteropClasses.PowerPointHelper.Instance.PowerPointDetected())
             {
-                InteropClasses.PowerPointHelper.Instance.Connect(false);
+                InteropClasses.PowerPointHelper.Instance.Connect();
                 if (InteropClasses.PowerPointHelper.Instance.IsActive && InteropClasses.PowerPointHelper.Instance.PowerPointObject.WindowState != Microsoft.Office.Interop.PowerPoint.PpWindowState.ppWindowMinimized)
                 {
                     presentationName = InteropClasses.PowerPointHelper.Instance.ActiveFileName;
@@ -854,7 +852,7 @@ namespace MiniBar
                 AppManager.Instance.ShowWarning("You have no Active PowerPoint Presentation.");
                 return;
             }
-            InteropClasses.PowerPointHelper.Instance.Connect(false);
+            InteropClasses.PowerPointHelper.Instance.Connect();
             AppManager.Instance.ActivateForm(this.Handle, false);
             using (ToolForms.FormSlideContentTools form = new ToolForms.FormSlideContentTools())
             {
@@ -870,7 +868,7 @@ namespace MiniBar
                 AppManager.Instance.ShowWarning("You have no Active PowerPoint Presentation.");
                 return;
             }
-            InteropClasses.PowerPointHelper.Instance.Connect(false);
+            InteropClasses.PowerPointHelper.Instance.Connect();
             AppManager.Instance.ActivateForm(this.Handle, false);
             using (ToolForms.FormPageNumbersTools form = new ToolForms.FormPageNumbersTools())
             {
@@ -886,7 +884,7 @@ namespace MiniBar
                 AppManager.Instance.ShowWarning("You have no Active PowerPoint Presentation.");
                 return;
             }
-            InteropClasses.PowerPointHelper.Instance.Connect(false);
+            InteropClasses.PowerPointHelper.Instance.Connect();
             AppManager.Instance.ActivateForm(this.Handle, false);
             using (ToolForms.FormSlideHeadersTools form = new ToolForms.FormSlideHeadersTools())
             {
@@ -902,7 +900,7 @@ namespace MiniBar
                 AppManager.Instance.ShowWarning("You have no Active PowerPoint Presentation.");
                 return;
             }
-            InteropClasses.PowerPointHelper.Instance.Connect(false);
+            InteropClasses.PowerPointHelper.Instance.Connect();
             AppManager.Instance.ActivateForm(this.Handle, false);
             InteropClasses.PowerPointHelper.Instance.AddContents(true);
             InteropClasses.PowerPointHelper.Instance.AddPageNumbers();

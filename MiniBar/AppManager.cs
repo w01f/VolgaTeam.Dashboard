@@ -44,7 +44,7 @@ namespace MiniBar
             UpdateSyncFiles();
             if (LoadSettings())
             {
-                InteropClasses.PowerPointHelper.Instance.Connect(false);
+                InteropClasses.PowerPointHelper.Instance.Connect();
                 InteropClasses.PowerPointHelper.Instance.SetPresentationSettings();
                 Application.Run(FormMain.Instance);
             }
@@ -153,6 +153,19 @@ namespace MiniBar
             }
             else
                 ShowWarning("Couldn't find Minibar Loader app");
+        }
+
+        public void RunPowerPointLoader()
+        {
+            if (File.Exists(ConfigurationClasses.SettingsManager.Instance.PowerPointLoaderPath))
+            {
+                Process process = new Process();
+                process.StartInfo.Arguments = "-f";
+                process.StartInfo.FileName = ConfigurationClasses.SettingsManager.Instance.PowerPointLoaderPath;
+                process.Start();
+            }
+            else
+                ShowWarning("Couldn't find PowerPointLoader app");
         }
 
         public void RunClientLogos()

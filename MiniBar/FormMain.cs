@@ -282,6 +282,14 @@ namespace MiniBar
                         lock (_locker)
                             this.RibbonVisible = true;
                         break;
+                    case (int)(InteropClasses.WinAPIHelper.WM_APP + 11):
+                        lock (_locker)
+                            this.RibbonVisible = false;
+                        break;
+                    case (int)(InteropClasses.WinAPIHelper.WM_APP + 12):
+                        lock (_locker)
+                            this.RibbonVisible = true;
+                        break;
                     default:
                         base.WndProc(ref m);
                         break;

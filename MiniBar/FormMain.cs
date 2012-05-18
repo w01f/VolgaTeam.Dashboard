@@ -90,6 +90,7 @@ namespace MiniBar
                 else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemTraining)
                     FormMainExpanded.Instance.ribbonTabItemTraining.Select();
                 ribbonControl.SelectedRibbonTabItem.Checked = false;
+                BusinessClasses.ServiceDataManager.Instance.WriteActivity();
             }
         }
         #endregion

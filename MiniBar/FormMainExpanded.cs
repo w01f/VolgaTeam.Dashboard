@@ -109,6 +109,55 @@ namespace MiniBar
                 ribbonPanelSync.PerformLayout();
                 ribbonPanelTraining.PerformLayout();
             }
+
+            #region Init Activity Recording Events
+            buttonItemAppsHelp.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemClipartClientLogos.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemClipartHelp.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemClipartSalesGallery.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemClipartWebArt.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemDashboard.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemDashboardCleanslate.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemDashboardCover.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemDashboardHelp.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemPdfEmailPdf.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemPdfEmailPpt.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemPdfHelp.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemPdfSavePdf.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemPowerPointHelp.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemPowerPointLaunch.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemPowerPointSize1.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemPowerPointSize2.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemPowerPointSize3.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemPowerPointSize4.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemPowerPointSize5.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemPowerPointTemplateDisabled.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemPowerPointTemplateEnabled.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSalesDepotHelp.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSalesDepotLogo.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSettingsDesktop.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSettingsHelp.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSettingsKillExcel.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSettingsKilPowerPoint.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSettingsMinibar.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSettingsMonitor1.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSettingsMonitor2.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSettingsReset.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSettingsSoftwareUpdates.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSyncHelp.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSyncHourlyOff.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSyncHourlyOn.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemSyncStart.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemToolsContent.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemToolsHelp.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemToolsPageNumbers.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemToolsSave.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemToolsSlideHeader.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemTrainingHelp.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemTrainingLiveMeeting.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemTrainingLocationCopy.Click += new EventHandler(ribbonTabItem_Click);
+            buttonItemTrainingMeetingIDCopy.Click += new EventHandler(ribbonTabItem_Click);
+            #endregion
         }
 
         #region Form Event Handlers
@@ -197,6 +246,11 @@ namespace MiniBar
         #endregion
 
         #region Buttons Clicks
+        private void ribbonTabItem_Click(object sender, EventArgs e)
+        {
+            BusinessClasses.ServiceDataManager.Instance.WriteActivity();
+        }
+
         private void buttonItemSalesDepot_Click(object sender, EventArgs e)
         {
             AppManager.Instance.RunSalesDepot();
@@ -204,6 +258,7 @@ namespace MiniBar
 
         private void buttonItemExit_Click(object sender, EventArgs e)
         {
+            BusinessClasses.ServiceDataManager.Instance.WriteActivity();
             if (ConfigurationClasses.SettingsManager.Instance.CloseFloat)
             {
                 ShowFloater();

@@ -46,6 +46,7 @@ namespace MiniBar.ConfigurationClasses
         public string HelpLinksPath { get; set; }
         public string MinibarLoaderPath { get; set; }
         public string PowerPointLoaderPath { get; set; }
+        public string ServiceDataFilePath { get; set; }
         #endregion
 
         public Guid AppID { get; set; }
@@ -338,6 +339,8 @@ namespace MiniBar.ConfigurationClasses
                 this.AppID = Guid.NewGuid();
                 SaveAppID();
             }
+            this.ServiceDataFilePath = string.Format(@"{0}\newlocaldirect.com\sync\Outgoing\AppID-" + this.AppID.ToString() + ".xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+            BusinessClasses.ServiceDataManager.Instance.LoadData();
             CheckAppIDFolders();
         }
 
@@ -417,15 +420,6 @@ namespace MiniBar.ConfigurationClasses
                 string appIDFolder = string.Format(@"{0}\newlocaldirect.com\sync\Outgoing\AppID-" + this.AppID.ToString(), System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
                 if (!Directory.Exists(appIDFolder))
                     Directory.CreateDirectory(appIDFolder);
-
-                string appIDFile = string.Format(@"{0}\newlocaldirect.com\sync\Outgoing\AppID-" + this.AppID.ToString() + ".xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-                if (!File.Exists(appIDFile))
-                    using (StreamWriter sw = new StreamWriter(appIDFile, false))
-                    {
-                        sw.Write("");
-                        sw.Flush();
-                        sw.Close();
-                    }
 
                 if (!Directory.Exists(Path.Combine(appIDFolder, "power_points")))
                     Directory.CreateDirectory(Path.Combine(appIDFolder, "power_points"));

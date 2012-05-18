@@ -92,6 +92,7 @@ namespace MiniBar.BusinessClasses
             string executablePath = this.Executable;
             if (File.Exists(this.Executable))
                 Process.Start(this.Executable);
+            BusinessClasses.ServiceDataManager.Instance.WriteActivity();
         }
 
 

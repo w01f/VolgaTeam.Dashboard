@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMainExpanded));
             this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
             this.ribbonPanelPowerPoint = new DevComponents.DotNetBar.RibbonPanel();
@@ -41,7 +40,7 @@
             this.buttonItemPowerPointTemplateDisabled = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarPowerPointPresentationSettings = new DevComponents.DotNetBar.RibbonBar();
             this.comboBoxEditPowerPointStyle = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+            this.styleController = new DevExpress.XtraEditors.StyleController();
             this.itemContainerPowerPointStyle = new DevComponents.DotNetBar.ItemContainer();
             this.controlContainerItemPowerPointStyle = new DevComponents.DotNetBar.ControlContainerItem();
             this.itemContainerPowerPointSizeOuter = new DevComponents.DotNetBar.ItemContainer();
@@ -182,7 +181,7 @@
             this.ribbonTabItemSettings = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemTraining = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemSync = new DevComponents.DotNetBar.RibbonTabItem();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
             this.ribbonControl.SuspendLayout();
             this.ribbonPanelPowerPoint.SuspendLayout();
@@ -231,14 +230,14 @@
             this.ribbonControl.BackgroundStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
             this.ribbonControl.Controls.Add(this.ribbonPanelPowerPoint);
             this.ribbonControl.Controls.Add(this.ribbonPanelApps);
-            this.ribbonControl.Controls.Add(this.ribbonPanelClipart);
             this.ribbonControl.Controls.Add(this.ribbonPanelSalesDepot);
             this.ribbonControl.Controls.Add(this.ribbonPanelDashboard);
+            this.ribbonControl.Controls.Add(this.ribbonPanelSync);
             this.ribbonControl.Controls.Add(this.ribbonPanelTraining);
+            this.ribbonControl.Controls.Add(this.ribbonPanelClipart);
             this.ribbonControl.Controls.Add(this.ribbonPanelSettings);
             this.ribbonControl.Controls.Add(this.ribbonPanelTools);
             this.ribbonControl.Controls.Add(this.ribbonPanelPDF);
-            this.ribbonControl.Controls.Add(this.ribbonPanelSync);
             this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ribbonControl.EnableQatPlacement = false;
             this.ribbonControl.FadeEffect = false;
@@ -1034,10 +1033,10 @@
             this.ribbonPanelSalesDepot.Controls.Add(this.ribbonBarSalesDepotHelp);
             this.ribbonPanelSalesDepot.Controls.Add(this.ribbonBarSalesDepot);
             this.ribbonPanelSalesDepot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelSalesDepot.Location = new System.Drawing.Point(0, 25);
+            this.ribbonPanelSalesDepot.Location = new System.Drawing.Point(0, 28);
             this.ribbonPanelSalesDepot.Name = "ribbonPanelSalesDepot";
             this.ribbonPanelSalesDepot.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelSalesDepot.Size = new System.Drawing.Size(548, 103);
+            this.ribbonPanelSalesDepot.Size = new System.Drawing.Size(548, 100);
             // 
             // 
             // 
@@ -1071,7 +1070,7 @@
             this.ribbonBarSlidesExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarSlidesExit.Location = new System.Drawing.Point(279, 0);
             this.ribbonBarSlidesExit.Name = "ribbonBarSlidesExit";
-            this.ribbonBarSlidesExit.Size = new System.Drawing.Size(80, 100);
+            this.ribbonBarSlidesExit.Size = new System.Drawing.Size(80, 97);
             this.ribbonBarSlidesExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSlidesExit.TabIndex = 4;
             this.ribbonBarSlidesExit.Text = "Close Minibar";
@@ -1109,7 +1108,7 @@
             this.ribbonBarSalesDepotHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarSalesDepotHelp.Location = new System.Drawing.Point(191, 0);
             this.ribbonBarSalesDepotHelp.Name = "ribbonBarSalesDepotHelp";
-            this.ribbonBarSalesDepotHelp.Size = new System.Drawing.Size(88, 100);
+            this.ribbonBarSalesDepotHelp.Size = new System.Drawing.Size(88, 97);
             this.ribbonBarSalesDepotHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSalesDepotHelp.TabIndex = 29;
             this.ribbonBarSalesDepotHelp.Text = "HELP";
@@ -1150,7 +1149,7 @@
             this.ribbonBarSalesDepot.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarSalesDepot.Location = new System.Drawing.Point(3, 0);
             this.ribbonBarSalesDepot.Name = "ribbonBarSalesDepot";
-            this.ribbonBarSalesDepot.Size = new System.Drawing.Size(188, 100);
+            this.ribbonBarSalesDepot.Size = new System.Drawing.Size(188, 97);
             this.ribbonBarSalesDepot.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSalesDepot.TabIndex = 0;
             this.ribbonBarSalesDepot.Text = "Launch Sales Library";
@@ -1198,10 +1197,10 @@
             this.ribbonPanelDashboard.Controls.Add(this.ribbonBarDashboardStarterSlides);
             this.ribbonPanelDashboard.Controls.Add(this.ribbonBarDashboard);
             this.ribbonPanelDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelDashboard.Location = new System.Drawing.Point(0, 25);
+            this.ribbonPanelDashboard.Location = new System.Drawing.Point(0, 28);
             this.ribbonPanelDashboard.Name = "ribbonPanelDashboard";
             this.ribbonPanelDashboard.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelDashboard.Size = new System.Drawing.Size(548, 103);
+            this.ribbonPanelDashboard.Size = new System.Drawing.Size(548, 100);
             // 
             // 
             // 
@@ -1235,7 +1234,7 @@
             this.ribbonBarDashboardExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarDashboardExit.Location = new System.Drawing.Point(392, 0);
             this.ribbonBarDashboardExit.Name = "ribbonBarDashboardExit";
-            this.ribbonBarDashboardExit.Size = new System.Drawing.Size(80, 100);
+            this.ribbonBarDashboardExit.Size = new System.Drawing.Size(80, 97);
             this.ribbonBarDashboardExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarDashboardExit.TabIndex = 7;
             this.ribbonBarDashboardExit.Text = "Close Minibar";
@@ -1273,7 +1272,7 @@
             this.ribbonBarDashboardHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarDashboardHelp.Location = new System.Drawing.Point(304, 0);
             this.ribbonBarDashboardHelp.Name = "ribbonBarDashboardHelp";
-            this.ribbonBarDashboardHelp.Size = new System.Drawing.Size(88, 100);
+            this.ribbonBarDashboardHelp.Size = new System.Drawing.Size(88, 97);
             this.ribbonBarDashboardHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarDashboardHelp.TabIndex = 29;
             this.ribbonBarDashboardHelp.Text = "HELP";
@@ -1314,7 +1313,7 @@
             this.ribbonBarDashboardStarterSlides.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarDashboardStarterSlides.Location = new System.Drawing.Point(191, 0);
             this.ribbonBarDashboardStarterSlides.Name = "ribbonBarDashboardStarterSlides";
-            this.ribbonBarDashboardStarterSlides.Size = new System.Drawing.Size(113, 100);
+            this.ribbonBarDashboardStarterSlides.Size = new System.Drawing.Size(113, 97);
             this.ribbonBarDashboardStarterSlides.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarDashboardStarterSlides.TabIndex = 17;
             this.ribbonBarDashboardStarterSlides.Text = "Starter Slides";
@@ -1375,7 +1374,7 @@
             this.ribbonBarDashboard.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarDashboard.Location = new System.Drawing.Point(3, 0);
             this.ribbonBarDashboard.Name = "ribbonBarDashboard";
-            this.ribbonBarDashboard.Size = new System.Drawing.Size(188, 100);
+            this.ribbonBarDashboard.Size = new System.Drawing.Size(188, 97);
             this.ribbonBarDashboard.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarDashboard.TabIndex = 0;
             this.ribbonBarDashboard.Text = "Launch the Sales Dashboard";
@@ -1435,10 +1434,10 @@
             this.ribbonPanelTraining.Controls.Add(this.ribbonBarTrainingWebcast);
             this.ribbonPanelTraining.Controls.Add(this.ribbonBarTrainingLiveMeeting);
             this.ribbonPanelTraining.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelTraining.Location = new System.Drawing.Point(0, 27);
+            this.ribbonPanelTraining.Location = new System.Drawing.Point(0, 28);
             this.ribbonPanelTraining.Name = "ribbonPanelTraining";
             this.ribbonPanelTraining.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelTraining.Size = new System.Drawing.Size(548, 101);
+            this.ribbonPanelTraining.Size = new System.Drawing.Size(548, 100);
             // 
             // 
             // 
@@ -1472,7 +1471,7 @@
             this.ribbonBarTrainingExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarTrainingExit.Location = new System.Drawing.Point(377, 0);
             this.ribbonBarTrainingExit.Name = "ribbonBarTrainingExit";
-            this.ribbonBarTrainingExit.Size = new System.Drawing.Size(80, 98);
+            this.ribbonBarTrainingExit.Size = new System.Drawing.Size(80, 97);
             this.ribbonBarTrainingExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarTrainingExit.TabIndex = 8;
             this.ribbonBarTrainingExit.Text = "Close Minibar";
@@ -1510,7 +1509,7 @@
             this.ribbonBarTrainingHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarTrainingHelp.Location = new System.Drawing.Point(283, 0);
             this.ribbonBarTrainingHelp.Name = "ribbonBarTrainingHelp";
-            this.ribbonBarTrainingHelp.Size = new System.Drawing.Size(94, 98);
+            this.ribbonBarTrainingHelp.Size = new System.Drawing.Size(94, 97);
             this.ribbonBarTrainingHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarTrainingHelp.TabIndex = 27;
             this.ribbonBarTrainingHelp.Text = "HELP";
@@ -1552,7 +1551,7 @@
             this.ribbonBarTrainingWebcast.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarTrainingWebcast.Location = new System.Drawing.Point(86, 0);
             this.ribbonBarTrainingWebcast.Name = "ribbonBarTrainingWebcast";
-            this.ribbonBarTrainingWebcast.Size = new System.Drawing.Size(197, 98);
+            this.ribbonBarTrainingWebcast.Size = new System.Drawing.Size(197, 97);
             this.ribbonBarTrainingWebcast.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarTrainingWebcast.TabIndex = 26;
             this.ribbonBarTrainingWebcast.Text = "Webcast Information";
@@ -1567,7 +1566,7 @@
             // 
             // comboBoxEditMeetingID
             // 
-            this.comboBoxEditMeetingID.Location = new System.Drawing.Point(6, 8);
+            this.comboBoxEditMeetingID.Location = new System.Drawing.Point(6, 9);
             this.comboBoxEditMeetingID.Name = "comboBoxEditMeetingID";
             this.comboBoxEditMeetingID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1580,7 +1579,7 @@
             // 
             // textEditLocation
             // 
-            this.textEditLocation.Location = new System.Drawing.Point(6, 48);
+            this.textEditLocation.Location = new System.Drawing.Point(6, 49);
             this.textEditLocation.Name = "textEditLocation";
             this.textEditLocation.Size = new System.Drawing.Size(150, 22);
             this.textEditLocation.StyleController = this.styleController;
@@ -1670,7 +1669,7 @@
             this.ribbonBarTrainingLiveMeeting.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarTrainingLiveMeeting.Location = new System.Drawing.Point(3, 0);
             this.ribbonBarTrainingLiveMeeting.Name = "ribbonBarTrainingLiveMeeting";
-            this.ribbonBarTrainingLiveMeeting.Size = new System.Drawing.Size(83, 98);
+            this.ribbonBarTrainingLiveMeeting.Size = new System.Drawing.Size(83, 97);
             this.ribbonBarTrainingLiveMeeting.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarTrainingLiveMeeting.TabIndex = 24;
             this.ribbonBarTrainingLiveMeeting.Text = "LiveMeeting";
@@ -2432,10 +2431,10 @@
             this.ribbonPanelSync.Controls.Add(this.ribbonBarSyncHourly);
             this.ribbonPanelSync.Controls.Add(this.ribbonBarSyncStatus);
             this.ribbonPanelSync.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelSync.Location = new System.Drawing.Point(0, 27);
+            this.ribbonPanelSync.Location = new System.Drawing.Point(0, 28);
             this.ribbonPanelSync.Name = "ribbonPanelSync";
             this.ribbonPanelSync.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelSync.Size = new System.Drawing.Size(548, 101);
+            this.ribbonPanelSync.Size = new System.Drawing.Size(548, 100);
             // 
             // 
             // 
@@ -2469,7 +2468,7 @@
             this.ribbonBarSyncExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarSyncExit.Location = new System.Drawing.Point(432, 0);
             this.ribbonBarSyncExit.Name = "ribbonBarSyncExit";
-            this.ribbonBarSyncExit.Size = new System.Drawing.Size(80, 98);
+            this.ribbonBarSyncExit.Size = new System.Drawing.Size(80, 97);
             this.ribbonBarSyncExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSyncExit.TabIndex = 9;
             this.ribbonBarSyncExit.Text = "Close Minibar";
@@ -2507,7 +2506,7 @@
             this.ribbonBarSyncHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarSyncHelp.Location = new System.Drawing.Point(338, 0);
             this.ribbonBarSyncHelp.Name = "ribbonBarSyncHelp";
-            this.ribbonBarSyncHelp.Size = new System.Drawing.Size(94, 98);
+            this.ribbonBarSyncHelp.Size = new System.Drawing.Size(94, 97);
             this.ribbonBarSyncHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSyncHelp.TabIndex = 28;
             this.ribbonBarSyncHelp.Text = "HELP";
@@ -2547,7 +2546,7 @@
             this.ribbonBarSyncStart.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarSyncStart.Location = new System.Drawing.Point(229, 0);
             this.ribbonBarSyncStart.Name = "ribbonBarSyncStart";
-            this.ribbonBarSyncStart.Size = new System.Drawing.Size(109, 98);
+            this.ribbonBarSyncStart.Size = new System.Drawing.Size(109, 97);
             this.ribbonBarSyncStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSyncStart.TabIndex = 1;
             this.ribbonBarSyncStart.Text = "Update Files";
@@ -2587,7 +2586,7 @@
             this.ribbonBarSyncHourly.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarSyncHourly.Location = new System.Drawing.Point(124, 0);
             this.ribbonBarSyncHourly.Name = "ribbonBarSyncHourly";
-            this.ribbonBarSyncHourly.Size = new System.Drawing.Size(105, 98);
+            this.ribbonBarSyncHourly.Size = new System.Drawing.Size(105, 97);
             this.ribbonBarSyncHourly.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSyncHourly.TabIndex = 10;
             this.ribbonBarSyncHourly.Text = "Hourly File Sync";
@@ -2655,7 +2654,7 @@
             this.ribbonBarSyncStatus.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarSyncStatus.Location = new System.Drawing.Point(3, 0);
             this.ribbonBarSyncStatus.Name = "ribbonBarSyncStatus";
-            this.ribbonBarSyncStatus.Size = new System.Drawing.Size(121, 98);
+            this.ribbonBarSyncStatus.Size = new System.Drawing.Size(121, 97);
             this.ribbonBarSyncStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSyncStatus.TabIndex = 0;
             this.ribbonBarSyncStatus.Text = "Sync Status";
@@ -2729,6 +2728,7 @@
             this.ribbonTabItemPowerPoint.Name = "ribbonTabItemPowerPoint";
             this.ribbonTabItemPowerPoint.Panel = this.ribbonPanelPowerPoint;
             this.ribbonTabItemPowerPoint.Text = "PowerPoint";
+            this.ribbonTabItemPowerPoint.Click += new System.EventHandler(this.ribbonTabItem_Click);
             // 
             // ribbonTabItemDashboard
             // 
@@ -2737,12 +2737,14 @@
             this.ribbonTabItemDashboard.Panel = this.ribbonPanelDashboard;
             this.ribbonTabItemDashboard.RibbonWordWrap = false;
             this.ribbonTabItemDashboard.Text = "Dashboard";
+            this.ribbonTabItemDashboard.Click += new System.EventHandler(this.ribbonTabItem_Click);
             // 
             // ribbonTabItemSalesDepot
             // 
             this.ribbonTabItemSalesDepot.Name = "ribbonTabItemSalesDepot";
             this.ribbonTabItemSalesDepot.Panel = this.ribbonPanelSalesDepot;
             this.ribbonTabItemSalesDepot.Text = "Sales Depot";
+            this.ribbonTabItemSalesDepot.Click += new System.EventHandler(this.ribbonTabItem_Click);
             // 
             // ribbonTabItemApps
             // 
@@ -2750,42 +2752,49 @@
             this.ribbonTabItemApps.Panel = this.ribbonPanelApps;
             this.ribbonTabItemApps.RibbonWordWrap = false;
             this.ribbonTabItemApps.Text = "Apps";
+            this.ribbonTabItemApps.Click += new System.EventHandler(this.ribbonTabItem_Click);
             // 
             // ribbonTabItemClipart
             // 
             this.ribbonTabItemClipart.Name = "ribbonTabItemClipart";
             this.ribbonTabItemClipart.Panel = this.ribbonPanelClipart;
             this.ribbonTabItemClipart.Text = "Clipart";
+            this.ribbonTabItemClipart.Click += new System.EventHandler(this.ribbonTabItem_Click);
             // 
             // ribbonTabItemPDF
             // 
             this.ribbonTabItemPDF.Name = "ribbonTabItemPDF";
             this.ribbonTabItemPDF.Panel = this.ribbonPanelPDF;
             this.ribbonTabItemPDF.Text = "PDF";
+            this.ribbonTabItemPDF.Click += new System.EventHandler(this.ribbonTabItem_Click);
             // 
             // ribbonTabItemTools
             // 
             this.ribbonTabItemTools.Name = "ribbonTabItemTools";
             this.ribbonTabItemTools.Panel = this.ribbonPanelTools;
             this.ribbonTabItemTools.Text = "Tools";
+            this.ribbonTabItemTools.Click += new System.EventHandler(this.ribbonTabItem_Click);
             // 
             // ribbonTabItemSettings
             // 
             this.ribbonTabItemSettings.Name = "ribbonTabItemSettings";
             this.ribbonTabItemSettings.Panel = this.ribbonPanelSettings;
             this.ribbonTabItemSettings.Text = "Settings";
+            this.ribbonTabItemSettings.Click += new System.EventHandler(this.ribbonTabItem_Click);
             // 
             // ribbonTabItemTraining
             // 
             this.ribbonTabItemTraining.Name = "ribbonTabItemTraining";
             this.ribbonTabItemTraining.Panel = this.ribbonPanelTraining;
             this.ribbonTabItemTraining.Text = "Training";
+            this.ribbonTabItemTraining.Click += new System.EventHandler(this.ribbonTabItem_Click);
             // 
             // ribbonTabItemSync
             // 
             this.ribbonTabItemSync.Name = "ribbonTabItemSync";
             this.ribbonTabItemSync.Panel = this.ribbonPanelSync;
             this.ribbonTabItemSync.Text = "Sync";
+            this.ribbonTabItemSync.Click += new System.EventHandler(this.ribbonTabItem_Click);
             // 
             // defaultLookAndFeel
             // 

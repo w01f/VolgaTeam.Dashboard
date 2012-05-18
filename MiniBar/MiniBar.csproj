@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager.cs" />
+    <Compile Include="BusinessClasses\ServiceDataManager.cs" />
     <Compile Include="BusinessClasses\ApplicationsManager.cs" />
     <Compile Include="BusinessClasses\HelpManager.cs" />
     <Compile Include="BusinessClasses\MasterWizardManager.cs" />

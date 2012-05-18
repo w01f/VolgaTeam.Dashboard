@@ -70,6 +70,7 @@
     <Compile Include="AppManager.cs" />
     <Compile Include="CommonClasses\AdSize.cs" />
     <Compile Include="CommonClasses\Category.cs" />
+    <Compile Include="CommonClasses\SalesDepotUserLibraries.cs" />
     <Compile Include="CommonClasses\Station.cs" />
     <Compile Include="CommonClasses\ShareUnit.cs" />
     <Compile Include="CommonClasses\NameCodePair.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TabMainDashboardForms\QuickListManager.cs" />
     <Compile Include="TabMainDashboardForms\TVStrategyManager.cs" />
+    <Compile Include="TabSalesDepotForms\SalesDepotAccessRightsManager.cs" />
     <Compile Include="TabSalesProForms\SalesProMainPage.cs">
       <SubType>UserControl</SubType>
     </Compile>

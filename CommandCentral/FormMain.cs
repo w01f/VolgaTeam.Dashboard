@@ -59,6 +59,7 @@ namespace CommandCentral
             buttonItemSalesDepotViewFile.Click += new EventHandler(TabSalesDepotForms.SalesDepotMainPage.Instance.buttonItemSalesDepotViewFile_Click);
             buttonItemSalesDepotUpdate.Click += new EventHandler(TabSalesDepotForms.SalesDepotMainPage.Instance.buttonItemSalesDepotUpdate_Click);
             buttonItemSalesDepotSearch.Click += new EventHandler(TabSalesDepotForms.SalesDepotMainPage.Instance.SalesDepotButton_Click);
+            buttonItemSalesDepotAccessRights.Click += new EventHandler(TabSalesDepotForms.SalesDepotMainPage.Instance.SalesDepotButton_Click);
             #endregion
         }
 

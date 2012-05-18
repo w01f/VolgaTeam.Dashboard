@@ -30,6 +30,7 @@ namespace CommandCentral.TabSalesDepotForms
         private void UncheckButtons()
         {
             FormMain.Instance.buttonItemSalesDepotSearch.Checked = false;
+            FormMain.Instance.buttonItemSalesDepotAccessRights.Checked = false;
         }
 
         public void UpdatePageAccordingToggledButton()
@@ -45,6 +46,13 @@ namespace CommandCentral.TabSalesDepotForms
                 DataControl.Instance.ButtonText = SalesDepotSearchManager.ButtonText;
                 _viewFile = SalesDepotSearchManager.ViewDataFile;
                 _updateData = SalesDepotSearchManager.UpdateData;
+            }
+            else if (FormMain.Instance.buttonItemSalesDepotAccessRights != null && FormMain.Instance.buttonItemSalesDepotAccessRights.Checked)
+            {
+                DataControl.Instance.ViewSource = SalesDepotAccessRightsManager.ViewSourceFile;
+                DataControl.Instance.ButtonText = SalesDepotAccessRightsManager.ButtonText;
+                _viewFile = SalesDepotAccessRightsManager.ViewDataFile;
+                _updateData = SalesDepotAccessRightsManager.UpdateData;
             }
             pnMain.Controls.Add(DataControl.Instance);
             pnMain.Parent = parent;

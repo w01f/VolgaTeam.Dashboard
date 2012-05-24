@@ -83,6 +83,7 @@ namespace MiniBar
                 ribbonBarPowerPointPresentationSettings.RecalcLayout();
                 ribbonBarPowerPointSlideTemplate.RecalcLayout();
                 ribbonBarSalesDepot.RecalcLayout();
+                ribbonBarSalesDepotRemote.RecalcLayout();
                 ribbonBarSalesDepotHelp.RecalcLayout();
                 ribbonBarSetingsHelp.RecalcLayout();
                 ribbonBarSettingsExit.RecalcLayout();
@@ -254,6 +255,11 @@ namespace MiniBar
         private void buttonItemSalesDepot_Click(object sender, EventArgs e)
         {
             AppManager.Instance.RunSalesDepot();
+        }
+
+        private void buttonItemSalesDepotRemote_Click(object sender, EventArgs e)
+        {
+            AppManager.Instance.RunSalesDepotRemote();
         }
 
         private void buttonItemExit_Click(object sender, EventArgs e)
@@ -976,6 +982,12 @@ namespace MiniBar
                 AppManager.Instance.KillExcel();
         }
 
+        private void buttonItemSettingsKillFMAutoSync_Click(object sender, EventArgs e)
+        {
+            if (AppManager.Instance.ShowWarningQuestion("Are you sure you want to terminate FM AutoSync process?") == System.Windows.Forms.DialogResult.Yes)
+                AppManager.Instance.KillFMAutoSync();
+        }
+
         private void buttonItemSettingsReset_Click(object sender, EventArgs e)
         {
             if (AppManager.Instance.ShowWarningQuestion("THIS ACTION WILL REMOVE ALL SETTINGS!\n\nARE YOU SURE YOU WANT TO DO THIS?") == System.Windows.Forms.DialogResult.Yes)
@@ -1073,10 +1085,7 @@ namespace MiniBar
         #region Sync Methods
         private void buttonItemSyncStart_Click(object sender, EventArgs e)
         {
-            if (InteropClasses.PowerPointHelper.Instance.PowerPointDetected())
-                AppManager.Instance.ShowWarning("Your Computer will only SYNC if PowerPoint is Closed.\nPlease Save any Open PowerPoint files, then Close PowerPoint before you SYNC.");
-            else
-                BusinessClasses.SyncManager.RegularSynchronize();
+            BusinessClasses.SyncManager.RegularSynchronize();
         }
 
         public void DisplayNextSync(object param)
@@ -1144,7 +1153,11 @@ namespace MiniBar
 
             labelItemSalesDepot.Text = ConfigurationClasses.SettingsManager.Instance.SalesDepotName;
             ribbonBarSalesDepot.RecalcLayout();
+
+            ribbonBarSalesDepotRemote.Visible = System.IO.Directory.Exists(ConfigurationClasses.SettingsManager.Instance.SalesDepotRemoteRootPath) & ConfigurationClasses.SettingsManager.Instance.UseRemoteSalesDepot;
+
             ribbonPanelSalesDepot.PerformLayout();
+
             SetPresentationSettings();
 
             comboBoxEditPowerPointStyle.EditValueChanging -= new DevExpress.XtraEditors.Controls.ChangingEventHandler(comboBoxEditPowerPointStyle_EditValueChanging);

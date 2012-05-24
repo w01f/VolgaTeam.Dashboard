@@ -142,6 +142,19 @@ namespace MiniBar
                 ShowWarning("Couldn't find Sales Depot app");
         }
 
+        public void RunSalesDepotRemote()
+        {
+            if (File.Exists(ConfigurationClasses.SettingsManager.Instance.SalesDepotExecutablePath))
+            {
+                Process process = new Process();
+                process.StartInfo.Arguments = "-remote";
+                process.StartInfo.FileName = ConfigurationClasses.SettingsManager.Instance.SalesDepotExecutablePath;
+                process.Start();
+            }
+            else
+                ShowWarning("Couldn't find Remote Libraries app");
+        }
+
         public void RunMinibarLoader()
         {
             if (File.Exists(ConfigurationClasses.SettingsManager.Instance.MinibarLoaderPath))
@@ -160,7 +173,6 @@ namespace MiniBar
             if (File.Exists(ConfigurationClasses.SettingsManager.Instance.PowerPointLoaderPath))
             {
                 Process process = new Process();
-                process.StartInfo.Arguments = "-f";
                 process.StartInfo.FileName = ConfigurationClasses.SettingsManager.Instance.PowerPointLoaderPath;
                 process.Start();
             }
@@ -207,6 +219,12 @@ namespace MiniBar
         public void KillExcel()
         {
             foreach (Process process in Process.GetProcesses().Where(x => x.ProcessName.ToUpper().Equals("EXCEL")))
+                process.Kill();
+        }
+
+        public void KillFMAutoSync()
+        {
+            foreach (Process process in Process.GetProcesses().Where(x => x.ProcessName.ToUpper().Equals("AUTOFMSYNC")))
                 process.Kill();
         }
         #endregion

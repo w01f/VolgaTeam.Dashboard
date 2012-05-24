@@ -256,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mini.ico" />
+    <None Include="Resources\RemoteSalesDepot.png" />
     <None Include="Resources\SlideHeader.png" />
     <None Include="Resources\PageNumber.png" />
     <None Include="Resources\SlideContent.png" />

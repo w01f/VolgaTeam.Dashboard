@@ -28,12 +28,14 @@ namespace MiniBar.ConfigurationClasses
         private string _salesDepotNamePath = string.Empty;
         private string _appIDFile = string.Empty;
         private string _slidesFolderPath = string.Empty;
+        private string _approvedLibrariesFile = string.Empty;
         public string SyncFilesSourcePath { get; set; }
         public string NBWApplicationsRootPath { get; set; }
         public string DashboardPath { get; set; }
         public string DashboardLogoPath { get; set; }
         public string DashboardIconPath { get; set; }
         public string SalesDepotExecutablePath { get; set; }
+        public string SalesDepotRemoteRootPath { get; set; }
         public string SalesDepotLogoPath { get; set; }
         public string SalesDepotIconPath { get; set; }
         public string ClientLogosPath { get; set; }
@@ -104,6 +106,8 @@ namespace MiniBar.ConfigurationClasses
         public List<string> MeetingIDs { get; set; }
         #endregion
 
+        public bool UseRemoteSalesDepot { get; set; }
+
         private SettingsManager()
         {
             _sharedSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app\SharedSettings.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
@@ -113,6 +117,7 @@ namespace MiniBar.ConfigurationClasses
             _dashboardNamePath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\Tab2Name.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             _salesDepotNamePath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\SDName.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             _slidesFolderPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+            _approvedLibrariesFile = string.Format(@"{0}\newlocaldirect.com\Sales Depot\ApprovedLibraries.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
 
             this.SyncFilesSourcePath = string.Format(@"{0}\newlocaldirect.com\app\adsync_patch", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.NBWApplicationsRootPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\applications", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
@@ -120,6 +125,7 @@ namespace MiniBar.ConfigurationClasses
             this.DashboardLogoPath = string.Format(@"{0}\newlocaldirect.com\app\tab2btn.png", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.DashboardIconPath = string.Format(@"{0}\newlocaldirect.com\app\tab2icon.ico", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.SalesDepotExecutablePath = string.Format(@"{0}\newlocaldirect.com\Sales Depot\SalesDepot.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+            this.SalesDepotRemoteRootPath = string.Format(@"{0}\newlocaldirect.com\Sales Depot\Remote Libraries", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.SalesDepotLogoPath = string.Format(@"{0}\newlocaldirect.com\Sales Depot\sdbutton.png", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.SalesDepotIconPath = string.Format(@"{0}\newlocaldirect.com\Sales Depot\sdicon.ico", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.ClientLogosPath = string.Format(@"{0}\newlocaldirect.com\app\Client Logos\ClientLogos.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
@@ -254,7 +260,7 @@ namespace MiniBar.ConfigurationClasses
                     document.Load(_sharedSettingsFile);
                 }
                 catch
-                { 
+                {
                 }
 
                 node = document.SelectSingleNode(@"/SharedSettings/SelectedWizard");
@@ -292,6 +298,7 @@ namespace MiniBar.ConfigurationClasses
             LoadAppID();
             LoadDashboardName();
             LoadSalesDepotName();
+            LoadApprovedLibraries();
             LoadWebcastSettings();
         }
 
@@ -326,7 +333,7 @@ namespace MiniBar.ConfigurationClasses
                     document.Load(appIDPath);
                 }
                 catch
-                { 
+                {
                 }
 
                 XmlNode node = document.SelectSingleNode(@"/AppID");
@@ -467,6 +474,41 @@ namespace MiniBar.ConfigurationClasses
             }
         }
 
+        private void LoadApprovedLibraries()
+        {
+            if (File.Exists(_approvedLibrariesFile))
+            {
+                XmlDocument document = new XmlDocument();
+                document.Load(_approvedLibrariesFile);
+
+                XmlNode node = document.SelectSingleNode(@"/ApprovedLibraries");
+                if (node != null)
+                    foreach (XmlNode userNode in node.ChildNodes)
+                        if (userNode.Name.Equals("User"))
+                        {
+                            string userName = string.Empty;
+                            bool useRemoteLibraries = false;
+                            foreach (XmlAttribute attribute in userNode.Attributes)
+                            {
+                                switch (attribute.Name)
+                                {
+                                    case "Name":
+                                        userName = attribute.Value;
+                                        break;
+                                    case "UseRemoteLibraries":
+                                        bool.TryParse(attribute.Value, out useRemoteLibraries);
+                                        break;
+                                }
+                            }
+                            if (userName.Equals(Environment.UserName))
+                            {
+                                this.UseRemoteSalesDepot = useRemoteLibraries;
+                                break;
+                            }
+                        }
+            }
+        }
+
         public void LoadMinibarSettings()
         {
             lock (AppManager.Locker)
@@ -491,7 +533,7 @@ namespace MiniBar.ConfigurationClasses
                         document.Load(_minibarSettingsFile);
                     }
                     catch
-                    { 
+                    {
                     }
 
                     node = document.SelectSingleNode(@"/MinibarSettings/LastSync");
@@ -571,7 +613,7 @@ namespace MiniBar.ConfigurationClasses
                         document.Load(_minibarAppSettingsFile);
                     }
                     catch
-                    { 
+                    {
                     }
 
                     node = document.SelectSingleNode(@"/MinibarSettings/AutoRunNormal");
@@ -704,7 +746,7 @@ namespace MiniBar.ConfigurationClasses
                     document.Load(_webcastSettingsFile);
                 }
                 catch
-                { 
+                {
                 }
                 node = document.SelectSingleNode(@"/Webcast");
                 if (node != null)

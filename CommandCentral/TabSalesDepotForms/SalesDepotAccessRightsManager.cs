@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -46,8 +47,8 @@ namespace CommandCentral.TabSalesDepotForms
                 OleDbDataAdapter dataAdapter;
                 DataTable dataTable;
 
-                //Load Approved Sales Libraries
-                dataAdapter = new OleDbDataAdapter("SELECT * FROM [SalesLibraries$]", connection);
+                //Load Approved Local Sales Libraries
+                dataAdapter = new OleDbDataAdapter("SELECT * FROM [LocalLibraries$]", connection);
                 dataTable = new DataTable();
                 try
                 {
@@ -55,16 +56,28 @@ namespace CommandCentral.TabSalesDepotForms
                     if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 2)
                         foreach (DataRow row in dataTable.Rows)
                         {
-                            CommonClasses.SalesDepotUserLibraries approvedLibrariesForUser = new CommonClasses.SalesDepotUserLibraries();
                             Guid tempGuid;
                             if (Guid.TryParse(row[0].ToString().Trim().ToLower().Replace("appid-", string.Empty), out tempGuid))
                             {
-                                approvedLibrariesForUser.AppID = tempGuid;
-                                approvedLibrariesForUser.UserName = row[1].ToString().Trim();
+                                string userName = row[1].ToString().Trim();
+                                CommonClasses.SalesDepotUserLibraries approvedLibrariesForUser = approvedLibraries.Where(x => x.AppID.Equals(tempGuid) && x.UserName.Equals(userName)).FirstOrDefault();
+                                if (approvedLibrariesForUser == null)
+                                {
+                                    approvedLibrariesForUser = new CommonClasses.SalesDepotUserLibraries();
+                                    approvedLibrariesForUser.AppID = tempGuid;
+                                    approvedLibrariesForUser.UserName = userName;
+                                    approvedLibraries.Add(approvedLibrariesForUser);
+                                }
                                 for (int i = 2; i < dataTable.Columns.Count; i++)
-                                    if (row[i] != null && !string.IsNullOrEmpty(row[i].ToString().Trim()))
-                                        approvedLibrariesForUser.Libraries.Add(row[i].ToString().Trim());
-                                approvedLibraries.Add(approvedLibrariesForUser);
+                                {
+                                    if (row[i] != null)
+                                    {
+                                        string libararyName = dataTable.Columns[i].ColumnName.Trim();
+                                        bool approveLibrary = row[i].ToString().Trim().ToLower().Equals("yes");
+                                        if (approveLibrary && !string.IsNullOrEmpty(libararyName))
+                                            approvedLibrariesForUser.LocalLibraries.Add(libararyName);
+                                    }
+                                }
                             }
                         }
                 }
@@ -77,8 +90,50 @@ namespace CommandCentral.TabSalesDepotForms
                     dataTable.Dispose();
                 }
 
+                //Load Approved Remote Sales Libraries
+                dataAdapter = new OleDbDataAdapter("SELECT * FROM [RemoteLibraries$]", connection);
+                dataTable = new DataTable();
+                try
+                {
+                    dataAdapter.Fill(dataTable);
+                    if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 3)
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            Guid tempGuid;
+                            if (Guid.TryParse(row[0].ToString().Trim().ToLower().Replace("appid-", string.Empty), out tempGuid))
+                            {
+                                string userName = row[1].ToString().Trim();
+                                CommonClasses.SalesDepotUserLibraries approvedLibrariesForUser = approvedLibraries.Where(x => x.AppID.Equals(tempGuid) && x.UserName.Equals(userName)).FirstOrDefault();
+                                if (approvedLibrariesForUser == null)
+                                {
+                                    approvedLibrariesForUser = new CommonClasses.SalesDepotUserLibraries();
+                                    approvedLibrariesForUser.AppID = tempGuid;
+                                    approvedLibrariesForUser.UserName = userName;
+                                    approvedLibraries.Add(approvedLibrariesForUser);
+                                }
+                                approvedLibrariesForUser.UseRemoteLibraries = row[2].ToString().Trim().ToLower().Equals("yes");
+                                for (int i = 3; i < dataTable.Columns.Count; i++)
+                                {
+                                    if (row[i] != null)
+                                    {
+                                        string libararyName = dataTable.Columns[i].ColumnName.Trim();
+                                        bool approveLibrary = row[i].ToString().Trim().ToLower().Equals("yes");
+                                        if (approveLibrary && !string.IsNullOrEmpty(libararyName))
+                                            approvedLibrariesForUser.RemoteLibraries.Add(libararyName);
+                                    }
+                                }
+                            }
+                        }
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    dataAdapter.Dispose();
+                    dataTable.Dispose();
+                }
                 connection.Close();
-
                 //Save XML
                 StringBuilder xml = new StringBuilder();
                 xml.AppendLine("<ApprovedLibraries>");
@@ -87,9 +142,12 @@ namespace CommandCentral.TabSalesDepotForms
                     xml.Append(@"<User ");
                     xml.Append("Name = \"" + approvedLibrariesForUser.UserName.Replace(@"&", "&#38;").Replace(@"<", "&#60;").Replace("\"", "&quot;") + "\" ");
                     xml.Append("AppID = \"" + approvedLibrariesForUser.AppID.ToString() + "\" ");
+                    xml.Append("UseRemoteLibraries = \"" + approvedLibrariesForUser.UseRemoteLibraries.ToString() + "\" ");
                     xml.AppendLine(@">");
-                    foreach (string library in approvedLibrariesForUser.Libraries)
-                        xml.AppendLine(@"<Library>" + library.Replace(@"&", "&#38;").Replace(@"<", "&#60;").Replace("\"", "&quot;") + @"</Library>");
+                    foreach (string library in approvedLibrariesForUser.LocalLibraries)
+                        xml.AppendLine(@"<LocalLibrary>" + library.Replace(@"&", "&#38;").Replace(@"<", "&#60;").Replace("\"", "&quot;") + @"</LocalLibrary>");
+                    foreach (string library in approvedLibrariesForUser.RemoteLibraries)
+                        xml.AppendLine(@"<RemoteLibrary>" + library.Replace(@"&", "&#38;").Replace(@"<", "&#60;").Replace("\"", "&quot;") + @"</RemoteLibrary>");
                     xml.AppendLine(@"</User>");
                 }
                 xml.AppendLine(@"</ApprovedLibraries>");

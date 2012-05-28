@@ -476,6 +476,7 @@ namespace MiniBar.ConfigurationClasses
 
         private void LoadApprovedLibraries()
         {
+            this.UseRemoteSalesDepot = true;
             if (File.Exists(_approvedLibrariesFile))
             {
                 XmlDocument document = new XmlDocument();

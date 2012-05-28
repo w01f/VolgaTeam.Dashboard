@@ -54,6 +54,9 @@ namespace CustomSlidesAddIn.ConfigurationClasses
             this.CustomSlidesRootPath = string.Format(@"{0}\newlocaldirect.com\slides4ppt\slides", programFilesFolderPath);
             this.HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\CustomSlidesHelp.xml", programFilesFolderPath);
 
+            this.ApplicationName = "Custom Slides";
+            this.HighDPI = BusinessClasses.CommonMethods.IsHighDPI();
+
             LoadApplicationSettings();
 
             this.SizeWidth = 10;
@@ -103,6 +106,7 @@ namespace CustomSlidesAddIn.ConfigurationClasses
         {
             XmlNode node;
             bool tempBool;
+
             if (File.Exists(_configFilePath))
             {
                 XmlDocument document = new XmlDocument();
@@ -123,18 +127,17 @@ namespace CustomSlidesAddIn.ConfigurationClasses
                     if (bool.TryParse(node.InnerText, out tempBool))
                         this.ChangeSizeAutomatically = tempBool;
 
-                this.HighDPI = BusinessClasses.CommonMethods.IsHighDPI();
+            }
 
-                if (this.HighDPI)
-                {
-                    if (File.Exists(_applicationLogoHighDPIPath))
-                        this.ApplicationLogo = new Bitmap(_applicationLogoHighDPIPath);
-                }
-                else
-                {
-                    if (File.Exists(_applicationLogoRegularDPIPath))
-                        this.ApplicationLogo = new Bitmap(_applicationLogoRegularDPIPath);
-                }
+            if (this.HighDPI)
+            {
+                if (File.Exists(_applicationLogoHighDPIPath))
+                    this.ApplicationLogo = new Bitmap(_applicationLogoHighDPIPath);
+            }
+            else
+            {
+                if (File.Exists(_applicationLogoRegularDPIPath))
+                    this.ApplicationLogo = new Bitmap(_applicationLogoRegularDPIPath);
             }
         }
     }

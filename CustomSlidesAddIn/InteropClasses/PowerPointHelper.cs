@@ -48,7 +48,7 @@ namespace CustomSlidesAddIn.InteropClasses
                 GetActivePresentation();
                 if (_powerPointObject != null)
                 {
-                    if (_activePresentation != null)
+                    if (_activePresentation != null && ConfigurationClasses.SettingsManager.Instance.ChangeSizeAutomatically)
                     {
                         _activePresentation.PageSetup.SlideWidth = (float)ConfigurationClasses.SettingsManager.Instance.SizeWidth * 72;
                         _activePresentation.PageSetup.SlideHeight = (float)ConfigurationClasses.SettingsManager.Instance.SizeHeght * 72;
@@ -199,14 +199,14 @@ namespace CustomSlidesAddIn.InteropClasses
                             presentation.Close();
                             BusinessClasses.CommonMethods.ReleaseComObject(presentation);
                         }));
-                        
+
                         form.Show();
                         System.Windows.Forms.Application.DoEvents();
 
                         thread.Start();
                         while (thread.IsAlive)
                             System.Windows.Forms.Application.DoEvents();
-                        
+
                         form.Close();
                     }
                 }

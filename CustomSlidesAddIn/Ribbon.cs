@@ -119,8 +119,7 @@ namespace CustomSlidesAddIn
                 ConfigurationClasses.SettingsManager.Instance.Orientation = "Portrait";
             }
 
-            if (ConfigurationClasses.SettingsManager.Instance.ChangeSizeAutomatically)
-                InteropClasses.PowerPointHelper.Instance.SetPresentationSettings();
+            InteropClasses.PowerPointHelper.Instance.SetPresentationSettings();
 
             groupCustomSlides.SuspendLayout();
             galleryCustomSlides34.Visible = toggleButtonSlideFormat34.Checked;

@@ -722,6 +722,14 @@ namespace AdScheduleBuilder.BusinessClasses
             this.ViewSettings = new ConfigurationClasses.PublicationViewSettings();
             this.SizeOptions = new SizeOptions();
             this.AdPricingStrategy = ListManager.Instance.DefaultPricingStrategy;
+
+            this.AllowSundaySelect = true;
+            this.AllowMondaySelect = true;
+            this.AllowTuesdaySelect = true;
+            this.AllowWednesdaySelect = true;
+            this.AllowThursdaySelect = true;
+            this.AllowFridaySelect = true;
+            this.AllowSaturdaySelect = true;
             this.AvailableDays = new List<DateTime>();
         }
 

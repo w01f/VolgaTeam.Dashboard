@@ -497,12 +497,10 @@
             this.repositoryItemSpinEditDiscountsDisplay.AutoHeight = false;
             this.repositoryItemSpinEditDiscountsDisplay.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
-            this.repositoryItemSpinEditDiscountsDisplay.DisplayFormat.FormatString = "  #0\\%";
+            this.repositoryItemSpinEditDiscountsDisplay.DisplayFormat.FormatString = "  #0.##\\%";
             this.repositoryItemSpinEditDiscountsDisplay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.repositoryItemSpinEditDiscountsDisplay.EditFormat.FormatString = "  #0\\%";
+            this.repositoryItemSpinEditDiscountsDisplay.EditFormat.FormatString = "  #0.##\\%";
             this.repositoryItemSpinEditDiscountsDisplay.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.repositoryItemSpinEditDiscountsDisplay.IsFloatValue = false;
-            this.repositoryItemSpinEditDiscountsDisplay.Mask.EditMask = "N00";
             this.repositoryItemSpinEditDiscountsDisplay.MaxValue = new decimal(new int[] {
             2147483647,
             0,
@@ -775,12 +773,10 @@
             this.repositoryItemSpinEditDiscountsDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject18, "", null, null, true),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditDiscountsDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject19, "Apply this Discount on Line 1 to all Ads in this schedule", null, null, true)});
-            this.repositoryItemSpinEditDiscountsDisplayFirstRow.DisplayFormat.FormatString = "  #0\\%";
+            this.repositoryItemSpinEditDiscountsDisplayFirstRow.DisplayFormat.FormatString = "  #0.##\\%";
             this.repositoryItemSpinEditDiscountsDisplayFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.repositoryItemSpinEditDiscountsDisplayFirstRow.EditFormat.FormatString = "  #0\\%";
+            this.repositoryItemSpinEditDiscountsDisplayFirstRow.EditFormat.FormatString = "  #0.##\\%";
             this.repositoryItemSpinEditDiscountsDisplayFirstRow.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.repositoryItemSpinEditDiscountsDisplayFirstRow.IsFloatValue = false;
-            this.repositoryItemSpinEditDiscountsDisplayFirstRow.Mask.EditMask = "N00";
             this.repositoryItemSpinEditDiscountsDisplayFirstRow.MaxValue = new decimal(new int[] {
             2147483647,
             0,
@@ -794,12 +790,10 @@
             this.repositoryItemSpinEditDiscountsEdit.AutoHeight = false;
             this.repositoryItemSpinEditDiscountsEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.repositoryItemSpinEditDiscountsEdit.DisplayFormat.FormatString = "  #0\\%";
+            this.repositoryItemSpinEditDiscountsEdit.DisplayFormat.FormatString = "  #0.##\\%";
             this.repositoryItemSpinEditDiscountsEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.repositoryItemSpinEditDiscountsEdit.EditFormat.FormatString = "  #0\\%";
+            this.repositoryItemSpinEditDiscountsEdit.EditFormat.FormatString = "  #0.##\\%";
             this.repositoryItemSpinEditDiscountsEdit.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.repositoryItemSpinEditDiscountsEdit.IsFloatValue = false;
-            this.repositoryItemSpinEditDiscountsEdit.Mask.EditMask = "N00";
             this.repositoryItemSpinEditDiscountsEdit.MaxValue = new decimal(new int[] {
             2147483647,
             0,
@@ -872,12 +866,10 @@
             this.repositoryItemSpinEditDiscountsEditFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditDiscountsEditFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject23, "Apply this Discount on Line 1 to all Ads in this schedule", null, null, true)});
-            this.repositoryItemSpinEditDiscountsEditFirstRow.DisplayFormat.FormatString = "  #0\\%";
+            this.repositoryItemSpinEditDiscountsEditFirstRow.DisplayFormat.FormatString = "  #0.##\\%";
             this.repositoryItemSpinEditDiscountsEditFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.repositoryItemSpinEditDiscountsEditFirstRow.EditFormat.FormatString = "  #0\\%";
+            this.repositoryItemSpinEditDiscountsEditFirstRow.EditFormat.FormatString = "  #0.##\\%";
             this.repositoryItemSpinEditDiscountsEditFirstRow.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.repositoryItemSpinEditDiscountsEditFirstRow.IsFloatValue = false;
-            this.repositoryItemSpinEditDiscountsEditFirstRow.Mask.EditMask = "N00";
             this.repositoryItemSpinEditDiscountsEditFirstRow.MaxValue = new decimal(new int[] {
             2147483647,
             0,

@@ -10,6 +10,7 @@ namespace MiniBar.ConfigurationClasses
     class SettingsManager
     {
         #region Constant Names
+        private const string DefaultUserName = "Default";
         public const string RegularSyncName = @"adSync4.exe";
         public const string SilentSyncName = @"adSync5.exe";
         public const string SyncSettingsFileName = @"syncfile.xml";
@@ -476,7 +477,9 @@ namespace MiniBar.ConfigurationClasses
 
         private void LoadApprovedLibraries()
         {
-            this.UseRemoteSalesDepot = true;
+            this.UseRemoteSalesDepot = false;
+            bool defaultUseRemoteSalesDepot = false;
+            bool userExisted = false;
             if (File.Exists(_approvedLibrariesFile))
             {
                 XmlDocument document = new XmlDocument();
@@ -503,11 +506,18 @@ namespace MiniBar.ConfigurationClasses
                             }
                             if (userName.Equals(Environment.UserName))
                             {
+                                userExisted = true;
                                 this.UseRemoteSalesDepot = useRemoteLibraries;
                                 break;
                             }
+                            else if (userName.Equals(DefaultUserName))
+                            {
+                                defaultUseRemoteSalesDepot = useRemoteLibraries;
+                            }
                         }
             }
+            if (!userExisted)
+                this.UseRemoteSalesDepot = defaultUseRemoteSalesDepot;
         }
 
         public void LoadMinibarSettings()

@@ -11,6 +11,7 @@ namespace CommandCentral.TabSalesDepotForms
 {
     class SalesDepotAccessRightsManager
     {
+        private const string DefaultUserName = "Default";
         private const string SalesDepotAccessRightsSourceFileName = @"Data\!Main_Dashboard\SalesLibraryAccess Source\ApprovedLibraries.xls";
         private const string SalesDepotAccessRightsDestinationFileName = @"Data\!Main_Dashboard\SalesLibraryAccess XML\ApprovedLibraries.xml";
 
@@ -47,8 +48,47 @@ namespace CommandCentral.TabSalesDepotForms
                 OleDbDataAdapter dataAdapter;
                 DataTable dataTable;
 
-                //Load Approved Local Sales Libraries
-                dataAdapter = new OleDbDataAdapter("SELECT * FROM [LocalLibraries$]", connection);
+                //Load Default Approved Local Sales Libraries
+                dataAdapter = new OleDbDataAdapter("SELECT * FROM [LocalLibraries-ALLUSERS$]", connection);
+                dataTable = new DataTable();
+                try
+                {
+                    dataAdapter.Fill(dataTable);
+                    if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 2)
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            CommonClasses.SalesDepotUserLibraries approvedLibrariesForUser = approvedLibraries.Where(x => x.AppID.Equals(Guid.Empty) && x.UserName.Equals(DefaultUserName)).FirstOrDefault();
+                            if (approvedLibrariesForUser == null)
+                            {
+                                approvedLibrariesForUser = new CommonClasses.SalesDepotUserLibraries();
+                                approvedLibrariesForUser.AppID = Guid.Empty;
+                                approvedLibrariesForUser.UserName = DefaultUserName;
+                                approvedLibraries.Add(approvedLibrariesForUser);
+                            }
+                            for (int i = 0; i < dataTable.Columns.Count; i++)
+                            {
+                                if (row[i] != null)
+                                {
+                                    string libararyName = dataTable.Columns[i].ColumnName.Trim();
+                                    bool approveLibrary = row[i].ToString().Trim().ToLower().Equals("yes");
+                                    if (approveLibrary && !string.IsNullOrEmpty(libararyName))
+                                        approvedLibrariesForUser.LocalLibraries.Add(libararyName);
+                                }
+                            }
+                        }
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    dataAdapter.Dispose();
+                    dataTable.Dispose();
+                }
+
+
+                //Load Approved Local Sales Libraries for Custom Users
+                dataAdapter = new OleDbDataAdapter("SELECT * FROM [LocalLibraries-EXCEPTIONS$]", connection);
                 dataTable = new DataTable();
                 try
                 {
@@ -90,8 +130,47 @@ namespace CommandCentral.TabSalesDepotForms
                     dataTable.Dispose();
                 }
 
-                //Load Approved Remote Sales Libraries
-                dataAdapter = new OleDbDataAdapter("SELECT * FROM [RemoteLibraries$]", connection);
+                //Load Default Approved Remote Sales Libraries
+                dataAdapter = new OleDbDataAdapter("SELECT * FROM [RemoteLibraries-ALLUSERS$]", connection);
+                dataTable = new DataTable();
+                try
+                {
+                    dataAdapter.Fill(dataTable);
+                    if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 3)
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                                CommonClasses.SalesDepotUserLibraries approvedLibrariesForUser = approvedLibraries.Where(x => x.AppID.Equals(Guid.Empty) && x.UserName.Equals(DefaultUserName)).FirstOrDefault();
+                                if (approvedLibrariesForUser == null)
+                                {
+                                    approvedLibrariesForUser = new CommonClasses.SalesDepotUserLibraries();
+                                    approvedLibrariesForUser.AppID = Guid.Empty;
+                                    approvedLibrariesForUser.UserName = DefaultUserName;
+                                    approvedLibraries.Add(approvedLibrariesForUser);
+                                }
+                                approvedLibrariesForUser.UseRemoteLibraries = row[0].ToString().Trim().ToLower().Equals("yes");
+                                for (int i = 1; i < dataTable.Columns.Count; i++)
+                                {
+                                    if (row[i] != null)
+                                    {
+                                        string libararyName = dataTable.Columns[i].ColumnName.Trim();
+                                        bool approveLibrary = row[i].ToString().Trim().ToLower().Equals("yes");
+                                        if (approveLibrary && !string.IsNullOrEmpty(libararyName))
+                                            approvedLibrariesForUser.RemoteLibraries.Add(libararyName);
+                                    }
+                                }
+                        }
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    dataAdapter.Dispose();
+                    dataTable.Dispose();
+                }
+
+                //Load Approved Remote Sales Libraries for Custom Users
+                dataAdapter = new OleDbDataAdapter("SELECT * FROM [RemoteLibraries-EXCEPTIONS$]", connection);
                 dataTable = new DataTable();
                 try
                 {

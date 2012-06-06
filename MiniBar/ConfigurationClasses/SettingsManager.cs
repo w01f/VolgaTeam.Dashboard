@@ -477,7 +477,7 @@ namespace MiniBar.ConfigurationClasses
 
         private void LoadApprovedLibraries()
         {
-            this.UseRemoteSalesDepot = false;
+            this.UseRemoteSalesDepot = true;
             bool defaultUseRemoteSalesDepot = false;
             bool userExisted = false;
             if (File.Exists(_approvedLibrariesFile))
@@ -515,9 +515,9 @@ namespace MiniBar.ConfigurationClasses
                                 defaultUseRemoteSalesDepot = useRemoteLibraries;
                             }
                         }
+                if (!userExisted)
+                    this.UseRemoteSalesDepot = defaultUseRemoteSalesDepot;
             }
-            if (!userExisted)
-                this.UseRemoteSalesDepot = defaultUseRemoteSalesDepot;
         }
 
         public void LoadMinibarSettings()

@@ -90,11 +90,25 @@ namespace MiniBar
                             string destinationFilePath = Path.Combine(ConfigurationClasses.SettingsManager.Instance.SyncSettingsFolderPath, sourceFile.Name);
                             if (File.Exists(destinationFilePath))
                             {
-                                File.SetAttributes(destinationFilePath, FileAttributes.Normal);
+                                while (Process.GetProcesses().Where(x => x.ProcessName.ToLower().Contains(Path.GetFileNameWithoutExtension(destinationFilePath).ToLower())).Count() > 0)
+                                    System.Threading.Thread.Sleep(1000);
                                 if (File.GetLastWriteTime(destinationFilePath) >= sourceFile.LastWriteTime)
                                     continue;
+                                try
+                                {
+                                    File.SetAttributes(destinationFilePath, FileAttributes.Normal);
+                                }
+                                catch
+                                {
+                                }
                             }
-                            sourceFile.CopyTo(destinationFilePath, true);
+                            try
+                            {
+                                sourceFile.CopyTo(destinationFilePath, true);
+                            }
+                            catch
+                            {
+                            }
                         }
                     }
                 }

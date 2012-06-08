@@ -12,5 +12,11 @@ namespace RadioScheduleBuilder.ToolForms
                 laProgress.Font = new System.Drawing.Font(laProgress.Font.FontFamily, laProgress.Font.Size - 2, laProgress.Font.Style);
             }
         }
+
+        private void FormProgress_Shown(object sender, System.EventArgs e)
+        {
+            laProgress.Focus();
+            circularProgress.IsRunning = true;
+        }
     }
 }

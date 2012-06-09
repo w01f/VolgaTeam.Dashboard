@@ -28,47 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.prbProgress = new System.Windows.Forms.ProgressBar();
             this.laTopCaption = new System.Windows.Forms.Label();
             this.laBottomCaption = new System.Windows.Forms.Label();
             this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.circularProgress1 = new DevComponents.DotNetBar.Controls.CircularProgress();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
             // 
-            // prbProgress
-            // 
-            this.prbProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.prbProgress.Location = new System.Drawing.Point(12, 121);
-            this.prbProgress.Maximum = 12;
-            this.prbProgress.Name = "prbProgress";
-            this.prbProgress.Size = new System.Drawing.Size(349, 23);
-            this.prbProgress.Step = 1;
-            this.prbProgress.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.prbProgress.TabIndex = 3;
-            this.prbProgress.UseWaitCursor = true;
-            // 
             // laTopCaption
             // 
-            this.laTopCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.laTopCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.laTopCaption.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.laTopCaption.ForeColor = System.Drawing.Color.White;
-            this.laTopCaption.Location = new System.Drawing.Point(113, 9);
+            this.laTopCaption.Location = new System.Drawing.Point(113, 12);
             this.laTopCaption.Name = "laTopCaption";
-            this.laTopCaption.Size = new System.Drawing.Size(248, 63);
+            this.laTopCaption.Size = new System.Drawing.Size(256, 60);
             this.laTopCaption.TabIndex = 5;
             this.laTopCaption.Text = "PowerPoint is Loading Your\r\nDashboard...";
             // 
             // laBottomCaption
             // 
-            this.laBottomCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.laBottomCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.laBottomCaption.Font = new System.Drawing.Font("Arial", 8F);
             this.laBottomCaption.ForeColor = System.Drawing.Color.White;
             this.laBottomCaption.Location = new System.Drawing.Point(114, 72);
             this.laBottomCaption.Name = "laBottomCaption";
-            this.laBottomCaption.Size = new System.Drawing.Size(247, 46);
+            this.laBottomCaption.Size = new System.Drawing.Size(255, 35);
             this.laBottomCaption.TabIndex = 6;
             this.laBottomCaption.Text = "This may take a few seconds, depending on\r\nthe speed of your PC";
             // 
@@ -76,23 +63,38 @@
             // 
             this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbLogo.Image = global::NewBizWizForm.Properties.Resources.PowerPoint07;
-            this.pbLogo.Location = new System.Drawing.Point(12, 6);
+            this.pbLogo.Location = new System.Drawing.Point(12, 12);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(95, 95);
             this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbLogo.TabIndex = 4;
             this.pbLogo.TabStop = false;
             // 
+            // circularProgress1
+            // 
+            // 
+            // 
+            // 
+            this.circularProgress1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.circularProgress1.FocusCuesEnabled = false;
+            this.circularProgress1.Location = new System.Drawing.Point(366, 24);
+            this.circularProgress1.Name = "circularProgress1";
+            this.circularProgress1.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot;
+            this.circularProgress1.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.circularProgress1.Size = new System.Drawing.Size(88, 70);
+            this.circularProgress1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
+            this.circularProgress1.TabIndex = 7;
+            // 
             // FormLoadSplash
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(373, 156);
+            this.ClientSize = new System.Drawing.Size(466, 119);
             this.ControlBox = false;
-            this.Controls.Add(this.laBottomCaption);
-            this.Controls.Add(this.laTopCaption);
+            this.Controls.Add(this.circularProgress1);
             this.Controls.Add(this.pbLogo);
-            this.Controls.Add(this.prbProgress);
+            this.Controls.Add(this.laTopCaption);
+            this.Controls.Add(this.laBottomCaption);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormLoadSplash";
             this.ShowIcon = false;
@@ -107,9 +109,9 @@
 
         #endregion
 
-        internal System.Windows.Forms.ProgressBar prbProgress;
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Label laTopCaption;
         private System.Windows.Forms.Label laBottomCaption;
+        private DevComponents.DotNetBar.Controls.CircularProgress circularProgress1;
     }
 }

@@ -129,6 +129,12 @@
     <Compile Include="BusinessClasses\MasterWizardManager.cs" />
     <Compile Include="ConfigurationClasses\SettingsManager.cs" />
     <Compile Include="ConfigurationClasses\ViewSettings.cs" />
+    <Compile Include="FormFloater.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFloater.designer.cs">
+      <DependentUpon>FormFloater.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,9 @@
     <Compile Include="InteropClasses\HomeHelpers\LeadoffStatementsHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormFloater.resx">
+      <DependentUpon>FormFloater.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -674,6 +683,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\Floater.png" />
     <None Include="Resources\HomeSalesDepotBig.png" />
     <None Include="Resources\HomeClientSolutionBig.png" />
     <None Include="Resources\BetaTest.png" />

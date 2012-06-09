@@ -13,6 +13,7 @@ namespace NewBizWizForm.ToolForms
                 laTopCaption.Font = new Font(laTopCaption.Font.FontFamily, laTopCaption.Font.Size - 3, laTopCaption.Font.Style);
                 laBottomCaption.Font = new Font(laBottomCaption.Font.FontFamily, laBottomCaption.Font.Size - 2, laBottomCaption.Font.Style);
             }
+            circularProgress1.IsRunning = true;
         }
     }
 }

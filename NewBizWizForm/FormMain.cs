@@ -8,6 +8,10 @@ namespace NewBizWizForm
     public partial class FormMain : Form
     {
         private static FormMain _instance;
+
+        private int _floaterPositionX = int.MinValue;
+        private int _floaterPositionY = int.MinValue;
+
         public AppManager.EmptyParametersDelegate OutputClick { get; set; }
         public AppManager.EmptyParametersDelegate OutsideClick { get; set; }
         public bool IsDead { get; set; }
@@ -438,6 +442,7 @@ namespace NewBizWizForm
                 InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 6, 0, 0);
                 InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 8, 0, 0);
                 InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 10, 0, 0);
+                InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 12, 0, 0);
                 AppManager.Instance.ActivateMiniBar();
                 Environment.Exit(-1);
             }
@@ -516,6 +521,28 @@ namespace NewBizWizForm
         #endregion
 
         #region Ribbon Buttons's Clicks Event Handlers
+        public void buttonItemFloater_Click(object sender, EventArgs e)
+        {
+            FormMain.Instance.Opacity = 0;
+            ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+            using (FormFloater form = new FormFloater(this.Left + this.Width, this.Top, _floaterPositionX, _floaterPositionY, buttonItemHomeOverview.Image, ribbonBarHomeOverview.Text))
+            {
+                if (form.ShowDialog() != System.Windows.Forms.DialogResult.No)
+                {
+                    _floaterPositionY = form.Top;
+                    _floaterPositionX = form.Left;
+                    if (!FormMain.Instance.IsDead)
+                    {
+                        FormMain.Instance.Opacity = 1;
+                        ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                        ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                        AppManager.Instance.ActivateMainForm();
+                    }
+                }
+                else
+                    Application.Exit();
+            }
+        }
 
         public void buttonItemExit_Click(object sender, EventArgs e)
         {

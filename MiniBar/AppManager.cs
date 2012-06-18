@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace MiniBar
@@ -189,6 +190,16 @@ namespace MiniBar
                 Process process = new Process();
                 process.StartInfo.FileName = ConfigurationClasses.SettingsManager.Instance.PowerPointLoaderPath;
                 process.Start();
+
+                Thread thread = new Thread(new System.Threading.ThreadStart(delegate()
+                {
+                    while (Process.GetProcesses().Where(x => x.ProcessName.ToLower().Contains(Path.GetFileNameWithoutExtension(ConfigurationClasses.SettingsManager.Instance.PowerPointLoaderPath).ToLower())).Count() > 0)
+                        System.Threading.Thread.Sleep(1000);
+                }));
+                thread.Start();
+
+                while (thread.IsAlive)
+                    Application.DoEvents();
             }
             else
                 ShowWarning("Couldn't find PowerPointLoader app");

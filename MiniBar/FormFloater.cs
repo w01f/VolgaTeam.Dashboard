@@ -31,10 +31,7 @@ namespace MiniBar
 
         private void buttonXSync_Click(object sender, EventArgs e)
         {
-            if (InteropClasses.PowerPointHelper.Instance.PowerPointDetected())
-                AppManager.Instance.ShowWarning("Your Computer will only SYNC if PowerPoint is Closed.\nPlease Save any Open PowerPoint files, then Close PowerPoint before you SYNC.");
-            else
-                BusinessClasses.SyncManager.RegularSynchronize();
+            BusinessClasses.SyncManager.RegularSynchronize();
         }
 
         private void _hideTimer_Tick(object sender, EventArgs e)
@@ -106,7 +103,7 @@ namespace MiniBar
                     this.Size = size;
                 }
                 catch
-                { 
+                {
                 }
             }
         }

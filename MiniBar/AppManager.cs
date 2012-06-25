@@ -46,7 +46,6 @@ namespace MiniBar
             if (LoadSettings())
             {
                 InteropClasses.PowerPointHelper.Instance.Connect();
-                InteropClasses.PowerPointHelper.Instance.SetPresentationSettings();
                 Application.Run(FormMain.Instance);
             }
         }
@@ -122,17 +121,17 @@ namespace MiniBar
 
         public void ShowWarning(string text)
         {
-            MessageBox.Show(text, "Minibar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            MessageBox.Show(text, "adSALESapps.com", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         public DialogResult ShowWarningQuestion(string text)
         {
-            return MessageBox.Show(text, "Minibar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            return MessageBox.Show(text, "adSALESapps.com", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
         }
 
         public void ShowInformation(string text)
         {
-            MessageBox.Show(text, "Minibar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(text, "adSALESapps.com", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #region Run Internal Apps

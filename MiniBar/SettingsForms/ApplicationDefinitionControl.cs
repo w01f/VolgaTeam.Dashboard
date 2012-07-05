@@ -48,17 +48,7 @@ namespace MiniBar.SettingsForms
 
         private void pbLogo_Click(object sender, EventArgs e)
         {
-            using (vbAccelerator.Components.Shell.ShellLink shortcut = new vbAccelerator.Components.Shell.ShellLink())
-            {
-                shortcut.Target = this.Application.Executable;
-                shortcut.WorkingDirectory = Path.GetDirectoryName(this.Application.Executable);
-                shortcut.Description = this.Application.Title.Replace("\n", " ").Replace("\r", string.Empty);
-                shortcut.DisplayMode = vbAccelerator.Components.Shell.ShellLink.LinkDisplayMode.edmNormal;
-                if (File.Exists(this.Application.Icon))
-                    shortcut.IconPath = this.Application.Icon;
-                shortcut.IconIndex = 0;
-                shortcut.Save(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop), this.Application.Title.Replace("\n", " ").Replace("\r", string.Empty) + ".lnk"));
-            }
+            this.Application.CreateShortcut();
         }
     }
 }

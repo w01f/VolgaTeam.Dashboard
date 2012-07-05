@@ -163,6 +163,9 @@
   <data name="SalesRep" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SalesRep.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RemoteSalesDepot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RemoteSalesDepot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -208,7 +211,7 @@
   <data name="SlideContent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SlideContent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RemoteSalesDepot" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RemoteSalesDepot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AppCode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppCode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

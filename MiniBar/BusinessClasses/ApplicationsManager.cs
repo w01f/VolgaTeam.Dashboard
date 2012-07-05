@@ -49,6 +49,7 @@ namespace MiniBar.BusinessClasses
         public int Order { get; set; }
         public bool UseSlideTemplates { get; set; }
         public string SlideTemplatesPath { get; set; }
+        public string AccessCode { get; set; }
 
         public DevComponents.DotNetBar.LabelItem AppLabel { get; private set; }
         public DevComponents.DotNetBar.ButtonItem AppButton { get; set; }
@@ -91,10 +92,82 @@ namespace MiniBar.BusinessClasses
         {
             string executablePath = this.Executable;
             if (File.Exists(this.Executable))
-                Process.Start(this.Executable);
+            {
+                bool allowAccess = true;
+                if (!string.IsNullOrEmpty(this.AccessCode))
+                {
+                    allowAccess = false;
+                    using (ToolForms.FormAppCode form = new ToolForms.FormAppCode())
+                    {
+                        System.Windows.Forms.DialogResult result = System.Windows.Forms.DialogResult.OK;
+                        while (result == System.Windows.Forms.DialogResult.OK)
+                        {
+                            result = form.ShowDialog();
+
+                            if (result == System.Windows.Forms.DialogResult.OK)
+                            {
+                                if (form.Code.Equals(this.AccessCode))
+                                {
+                                    allowAccess = true;
+                                    break;
+                                }
+                                else
+                                    AppManager.Instance.ShowWarning("Incorrect Access Code.\nTry again");
+                            }
+                        }
+                    }
+                }
+                if (allowAccess)
+                    Process.Start(this.Executable);
+            }
             BusinessClasses.ServiceDataManager.Instance.WriteActivity();
         }
 
+        public void CreateShortcut()
+        {
+            string executablePath = this.Executable;
+            if (File.Exists(this.Executable))
+            {
+                bool allowAccess = true;
+                if (!string.IsNullOrEmpty(this.AccessCode))
+                {
+                    allowAccess = false;
+                    using (ToolForms.FormAppCode form = new ToolForms.FormAppCode())
+                    {
+                        System.Windows.Forms.DialogResult result = System.Windows.Forms.DialogResult.OK;
+                        while (result == System.Windows.Forms.DialogResult.OK)
+                        {
+                            result = form.ShowDialog();
+
+                            if (result == System.Windows.Forms.DialogResult.OK)
+                            {
+                                if (form.Code.Equals(this.AccessCode))
+                                {
+                                    allowAccess = true;
+                                    break;
+                                }
+                                else
+                                    AppManager.Instance.ShowWarning("Incorrect Access Code.\nTry again");
+                            }
+                        }
+                    }
+                }
+                if (allowAccess)
+                {
+                    using (vbAccelerator.Components.Shell.ShellLink shortcut = new vbAccelerator.Components.Shell.ShellLink())
+                    {
+                        shortcut.Target = this.Executable;
+                        shortcut.WorkingDirectory = Path.GetDirectoryName(this.Executable);
+                        shortcut.Description = this.Title.Replace("\n", " ").Replace("\r", string.Empty);
+                        shortcut.DisplayMode = vbAccelerator.Components.Shell.ShellLink.LinkDisplayMode.edmNormal;
+                        if (File.Exists(this.Icon))
+                            shortcut.IconPath = this.Icon;
+                        shortcut.IconIndex = 0;
+                        shortcut.Save(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop), this.Title.Replace("\n", " ").Replace("\r", string.Empty) + ".lnk"));
+                    }
+                }
+            }
+        }
 
         public void LoadManifest()
         {
@@ -133,6 +206,9 @@ namespace MiniBar.BusinessClasses
                     int.TryParse(node.InnerText, out tempInt);
                     this.Order = tempInt;
                 }
+                node = document.SelectSingleNode(@"/Manifest/password");
+                if (node != null)
+                    this.AccessCode = node.InnerText;
             }
         }
     }

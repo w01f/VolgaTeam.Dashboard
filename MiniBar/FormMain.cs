@@ -371,5 +371,34 @@ namespace MiniBar
             timer.Start();
         }
         #endregion
+
+        #region Select All in Editor Handlers
+        private bool enter = false;
+        private bool needSelect = false;
+
+        public void Editor_Enter(object sender, EventArgs e)
+        {
+            enter = true;
+            BeginInvoke(new MethodInvoker(ResetEnterFlag));
+        }
+
+        public void Editor_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (needSelect)
+            {
+                (sender as DevExpress.XtraEditors.BaseEdit).SelectAll();
+            }
+        }
+
+        public void Editor_MouseDown(object sender, MouseEventArgs e)
+        {
+            needSelect = enter;
+        }
+
+        private void ResetEnterFlag()
+        {
+            enter = false;
+        }
+        #endregion
     }
 }

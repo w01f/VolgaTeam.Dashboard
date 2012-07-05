@@ -134,6 +134,12 @@
     <Compile Include="SettingsForms\FormMinibarOptions.Designer.cs">
       <DependentUpon>FormMinibarOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormAppCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormAppCode.Designer.cs">
+      <DependentUpon>FormAppCode.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormSlideOutput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +216,9 @@
     <EmbeddedResource Include="SettingsForms\FormMinibarOptions.resx">
       <DependentUpon>FormMinibarOptions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormAppCode.resx">
+      <DependentUpon>FormAppCode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormSlideOutput.resx">
       <DependentUpon>FormSlideOutput.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,6 +265,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mini.ico" />
+    <None Include="Resources\AppCode.png" />
     <None Include="Resources\RemoteSalesDepot.png" />
     <None Include="Resources\SlideHeader.png" />
     <None Include="Resources\PageNumber.png" />

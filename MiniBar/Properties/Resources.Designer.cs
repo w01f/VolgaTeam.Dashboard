@@ -60,6 +60,13 @@ namespace MiniBar.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap AppCode {
+            get {
+                object obj = ResourceManager.GetObject("AppCode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap BlueCopy {
             get {
                 object obj = ResourceManager.GetObject("BlueCopy", resourceCulture);

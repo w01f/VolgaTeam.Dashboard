@@ -38,7 +38,7 @@
             // pbLogo
             // 
             this.pbLogo.Image = global::MiniBar.Properties.Resources.Output;
-            this.pbLogo.Location = new System.Drawing.Point(3, 2);
+            this.pbLogo.Location = new System.Drawing.Point(3, 6);
             this.pbLogo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(64, 67);
@@ -47,13 +47,13 @@
             // 
             // laTitle
             // 
-            this.laTitle.AutoSize = true;
             this.laTitle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laTitle.Location = new System.Drawing.Point(73, 2);
+            this.laTitle.Location = new System.Drawing.Point(73, 6);
             this.laTitle.Name = "laTitle";
-            this.laTitle.Size = new System.Drawing.Size(256, 46);
+            this.laTitle.Size = new System.Drawing.Size(262, 67);
             this.laTitle.TabIndex = 1;
             this.laTitle.Text = "Your Slides have been added\r\nto the Active Presentation:";
+            this.laTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // buttonXShow
             // 
@@ -101,7 +101,6 @@
             this.Text = "Slide Output Success!";
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

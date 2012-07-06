@@ -10,10 +10,73 @@ namespace MiniBar.BusinessClasses
     public class ServiceDataManager
     {
         private static ServiceDataManager _instance = null;
-        private string _currentUser = Environment.UserName;
 
         public List<UserActivity> UserActivities { get; private set; }
 
+        private string _currentUser
+        {
+            get
+            {
+                return Environment.UserName;
+            }
+        }
+
+        private string _computerName
+        {
+            get
+            {
+                return Environment.MachineName;
+            }
+        }
+
+        private string _osVersion
+        {
+            get
+            {
+                System.OperatingSystem os = System.Environment.OSVersion;
+                string osName = "Unknown";
+                switch (os.Platform)
+                {
+                    case System.PlatformID.Win32NT:
+                        switch (os.Version.Major)
+                        {
+                            case 5:
+                                if (os.Version.Minor == 0)
+                                    osName = "Win2000";
+                                else if (os.Version.Minor == 1)
+                                    osName = "WinXP";
+                                break;
+                            case 6:
+                                if (os.Version.Minor == 0)
+                                    osName = "Vista";
+                                else if (os.Version.Minor == 1)
+                                    osName = string.Format("Win7{0}", InteropClasses.WinAPIHelper.InternalCheckIsWow64() ? "x64" : "x86");
+                                break;
+                        }
+                        break;
+                }
+                return osName;
+            }
+        }
+
+        private string _officeVersion
+        {
+            get
+            {
+                return InteropClasses.PowerPointHelper.Version;
+            }
+        }
+
+        private string _syncMethod
+        {
+            get
+            {
+                if (ConfigurationClasses.SettingsManager.Instance.SyncHourly)
+                    return "Hourly";
+                else
+                    return "Daily at " + ConfigurationClasses.SettingsManager.Instance.NextSync.ToString("h:mm tt");
+            }
+        }
 
         public static ServiceDataManager Instance
         {
@@ -61,6 +124,10 @@ namespace MiniBar.BusinessClasses
             StringBuilder xml = new StringBuilder();
 
             xml.AppendLine(@"<ServiceData>");
+            xml.Append(@"<ComputerName>" + _computerName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ComputerName>");
+            xml.Append(@"<OSVersion>" + _osVersion.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</OSVersion>");
+            xml.Append(@"<OfficeVersion>" + _officeVersion.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</OfficeVersion>");
+            xml.Append(@"<SyncMethod>" + _syncMethod.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SyncMethod>");
             xml.AppendLine(@"<UserActivities>");
             foreach (UserActivity userActivity in this.UserActivities)
                 if (!string.IsNullOrEmpty(userActivity.UserName))

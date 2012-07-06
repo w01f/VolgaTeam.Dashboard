@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace MiniBar.InteropClasses
@@ -57,8 +58,8 @@ namespace MiniBar.InteropClasses
         /// top-level window in the Z order.</summary>
         /// <remarks>See SW_MINIMIZE</remarks>
         Minimize = 6,
-          /// <summary>Displays the window as a minimized window. This value is 
-          /// similar to "ShowMinimized", except the window is not activated.</summary>
+        /// <summary>Displays the window as a minimized window. This value is 
+        /// similar to "ShowMinimized", except the window is not activated.</summary>
         /// <remarks>See SW_SHOWMINNOACTIVE</remarks>
         ShowMinNoActivate = 7,
         /// <summary>Displays the window in its current size and position. This 
@@ -164,7 +165,7 @@ namespace MiniBar.InteropClasses
         public static extern bool ShowWindowAsync(IntPtr hWnd, WindowShowStyle cmdShow);
 
         [DllImport("user32.dll")]
-        public static extern bool AttachThreadInput(uint idAttach, uint idAttachTo,bool fAttach);
+        public static extern bool AttachThreadInput(uint idAttach, uint idAttachTo, bool fAttach);
 
         [DllImport("kernel32.dll")]
         public static extern uint GetCurrentThreadId();
@@ -190,6 +191,9 @@ namespace MiniBar.InteropClasses
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetWindowPlacement(IntPtr hWnd, out WINDOWPLACEMENT lpwndpl);
 
+        [DllImport("kernel32.dll", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool IsWow64Process([In] IntPtr hProcess, [Out] out bool wow64Process);
         #endregion
 
         public static void MakeTopMost(IntPtr handle)
@@ -210,6 +214,27 @@ namespace MiniBar.InteropClasses
         public static void MakeBottom(IntPtr handle)
         {
             SetWindowPos(handle, HWND_BOTTOM, 0, 0, 0, 0, TOPMOST_FLAGS);
+        }
+
+        public static bool InternalCheckIsWow64()
+        {
+            if ((Environment.OSVersion.Version.Major == 5 && Environment.OSVersion.Version.Minor >= 1) ||
+                Environment.OSVersion.Version.Major >= 6)
+            {
+                using (Process p = Process.GetCurrentProcess())
+                {
+                    bool retVal;
+                    if (!IsWow64Process(p.Handle, out retVal))
+                    {
+                        return false;
+                    }
+                    return retVal;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

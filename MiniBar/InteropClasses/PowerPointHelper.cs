@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Microsoft.Win32;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
 namespace MiniBar.InteropClasses
@@ -58,6 +59,77 @@ namespace MiniBar.InteropClasses
             get
             {
                 return _is2003;
+            }
+        }
+
+        public static string Version
+        {
+            get
+            {
+                string regKey = @"Software\Microsoft\Windows\CurrentVersion\App Paths";
+                string key = "powerpnt.exe";
+                string powerPointPath = string.Empty;
+
+                //looks inside CURRENT_USER:
+                RegistryKey mainKey = Registry.CurrentUser;
+                try
+                {
+                    mainKey = mainKey.OpenSubKey(regKey + @"\" + key, false);
+                    if (mainKey != null)
+                    {
+                        powerPointPath = mainKey.GetValue(string.Empty).ToString();
+                    }
+                }
+                catch
+                { }
+
+                //if not found, looks inside LOCAL_MACHINE:
+                mainKey = Registry.LocalMachine;
+                if (string.IsNullOrEmpty(powerPointPath))
+                {
+                    try
+                    {
+                        mainKey = mainKey.OpenSubKey(regKey + @"\" + key, false);
+                        if (mainKey != null)
+                        {
+                            powerPointPath = mainKey.GetValue(string.Empty).ToString();
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
+
+                //closing the handle:
+                if (mainKey != null)
+                    mainKey.Close();
+
+                int majorVersion = 0;
+                try
+                {
+                    FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(powerPointPath);
+                    majorVersion = fileVersion.FileMajorPart;
+                }
+                catch
+                { }
+
+                switch (majorVersion)
+                {
+                    case 11:
+                        return "2003";
+                    case 12:
+                        return "2007";
+                    case 14:
+                        string bitness = string.Empty;
+                        try
+                        {
+                            bitness = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Office\14.0\Outlook", false).GetValue("Bitness").ToString();
+                        }
+                        catch { }
+                        return string.Format("2010{0}", bitness);
+                    default:
+                        return "Unknown";
+                }
             }
         }
 

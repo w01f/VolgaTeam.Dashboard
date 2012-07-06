@@ -232,11 +232,11 @@
             this.ribbonControl.BackgroundStyle.CornerTypeBottomRight = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonControl.BackgroundStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
             this.ribbonControl.BackgroundStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.ribbonControl.Controls.Add(this.ribbonPanelSync);
             this.ribbonControl.Controls.Add(this.ribbonPanelPowerPoint);
             this.ribbonControl.Controls.Add(this.ribbonPanelSalesDepot);
             this.ribbonControl.Controls.Add(this.ribbonPanelSettings);
             this.ribbonControl.Controls.Add(this.ribbonPanelTraining);
-            this.ribbonControl.Controls.Add(this.ribbonPanelSync);
             this.ribbonControl.Controls.Add(this.ribbonPanelApps);
             this.ribbonControl.Controls.Add(this.ribbonPanelDashboard);
             this.ribbonControl.Controls.Add(this.ribbonPanelClipart);
@@ -307,6 +307,7 @@
             // 
             this.ribbonPanelPowerPoint.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanelPowerPoint.TabIndex = 12;
+            this.ribbonPanelPowerPoint.Visible = false;
             // 
             // ribbonBarPowerPointExit
             // 
@@ -1439,10 +1440,10 @@
             this.ribbonPanelSync.Controls.Add(this.ribbonBarSyncHourly);
             this.ribbonPanelSync.Controls.Add(this.ribbonBarSyncStatus);
             this.ribbonPanelSync.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelSync.Location = new System.Drawing.Point(0, 0);
+            this.ribbonPanelSync.Location = new System.Drawing.Point(0, 28);
             this.ribbonPanelSync.Name = "ribbonPanelSync";
             this.ribbonPanelSync.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelSync.Size = new System.Drawing.Size(548, 128);
+            this.ribbonPanelSync.Size = new System.Drawing.Size(548, 100);
             // 
             // 
             // 
@@ -1456,7 +1457,6 @@
             // 
             this.ribbonPanelSync.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonPanelSync.TabIndex = 8;
-            this.ribbonPanelSync.Visible = false;
             // 
             // ribbonBarSyncExit
             // 
@@ -1476,7 +1476,7 @@
             this.ribbonBarSyncExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarSyncExit.Location = new System.Drawing.Point(432, 0);
             this.ribbonBarSyncExit.Name = "ribbonBarSyncExit";
-            this.ribbonBarSyncExit.Size = new System.Drawing.Size(80, 125);
+            this.ribbonBarSyncExit.Size = new System.Drawing.Size(80, 97);
             this.ribbonBarSyncExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSyncExit.TabIndex = 9;
             this.ribbonBarSyncExit.Text = "Close Minibar";
@@ -1514,7 +1514,7 @@
             this.ribbonBarSyncHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarSyncHelp.Location = new System.Drawing.Point(338, 0);
             this.ribbonBarSyncHelp.Name = "ribbonBarSyncHelp";
-            this.ribbonBarSyncHelp.Size = new System.Drawing.Size(94, 125);
+            this.ribbonBarSyncHelp.Size = new System.Drawing.Size(94, 97);
             this.ribbonBarSyncHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSyncHelp.TabIndex = 28;
             this.ribbonBarSyncHelp.Text = "HELP";
@@ -1554,7 +1554,7 @@
             this.ribbonBarSyncStart.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarSyncStart.Location = new System.Drawing.Point(229, 0);
             this.ribbonBarSyncStart.Name = "ribbonBarSyncStart";
-            this.ribbonBarSyncStart.Size = new System.Drawing.Size(109, 125);
+            this.ribbonBarSyncStart.Size = new System.Drawing.Size(109, 97);
             this.ribbonBarSyncStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSyncStart.TabIndex = 1;
             this.ribbonBarSyncStart.Text = "Update Files";
@@ -1594,7 +1594,7 @@
             this.ribbonBarSyncHourly.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarSyncHourly.Location = new System.Drawing.Point(124, 0);
             this.ribbonBarSyncHourly.Name = "ribbonBarSyncHourly";
-            this.ribbonBarSyncHourly.Size = new System.Drawing.Size(105, 125);
+            this.ribbonBarSyncHourly.Size = new System.Drawing.Size(105, 97);
             this.ribbonBarSyncHourly.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSyncHourly.TabIndex = 10;
             this.ribbonBarSyncHourly.Text = "Hourly File Sync";
@@ -1662,7 +1662,7 @@
             this.ribbonBarSyncStatus.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarSyncStatus.Location = new System.Drawing.Point(3, 0);
             this.ribbonBarSyncStatus.Name = "ribbonBarSyncStatus";
-            this.ribbonBarSyncStatus.Size = new System.Drawing.Size(121, 125);
+            this.ribbonBarSyncStatus.Size = new System.Drawing.Size(121, 97);
             this.ribbonBarSyncStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarSyncStatus.TabIndex = 0;
             this.ribbonBarSyncStatus.Text = "Sync Status";
@@ -2778,7 +2778,6 @@
             // 
             // ribbonTabItemPowerPoint
             // 
-            this.ribbonTabItemPowerPoint.Checked = true;
             this.ribbonTabItemPowerPoint.Name = "ribbonTabItemPowerPoint";
             this.ribbonTabItemPowerPoint.Panel = this.ribbonPanelPowerPoint;
             this.ribbonTabItemPowerPoint.Text = "PowerPoint";
@@ -2845,6 +2844,7 @@
             // 
             // ribbonTabItemSync
             // 
+            this.ribbonTabItemSync.Checked = true;
             this.ribbonTabItemSync.Name = "ribbonTabItemSync";
             this.ribbonTabItemSync.Panel = this.ribbonPanelSync;
             this.ribbonTabItemSync.Text = "Sync";

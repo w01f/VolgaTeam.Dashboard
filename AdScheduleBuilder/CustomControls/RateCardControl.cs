@@ -68,7 +68,7 @@ namespace AdScheduleBuilder.CustomControls
 
         public void buttonItemRateCardHelp_Click(object sender, EventArgs e)
         {
-            BusinessClasses.HelpManager.Instance.OpenHelpLink("mos");
+            BusinessClasses.HelpManager.Instance.OpenHelpLink("ratecard");
         }
     }
 }

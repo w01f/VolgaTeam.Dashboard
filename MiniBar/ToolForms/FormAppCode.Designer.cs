@@ -103,6 +103,7 @@
             this.textEditCode.Name = "textEditCode";
             this.textEditCode.Properties.Appearance.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textEditCode.Properties.Appearance.Options.UseFont = true;
+            this.textEditCode.Properties.MaxLength = 5;
             this.textEditCode.Size = new System.Drawing.Size(95, 40);
             this.textEditCode.TabIndex = 1;
             this.textEditCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textEditCode_KeyDown);

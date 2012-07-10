@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -13,7 +14,9 @@ namespace Runner
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            CalendarBuilder.AppManager.OpenSchedule();
+            TVScheduleBuilder.AppManager.OpenSchedule();
+
         }
     }
 }
+

@@ -264,6 +264,8 @@ namespace AdScheduleBuilder
             buttonItemSuccessModelsHelp.Click += new EventHandler(CustomControls.ModelsOfSuccessContainerControl.Instance.buttonItemSuccessModelsHelp_Click);
             #endregion
 
+            ribbonTabItemSuccessModels.Enabled = false;
+
             if ((base.CreateGraphics()).DpiX > 96)
             {
                 Font font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 1, styleController.Appearance.Font.Style);

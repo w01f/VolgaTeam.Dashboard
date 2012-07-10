@@ -371,7 +371,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
         #region Other Ribbon Operations
         public void OpenHelp()
         {
-            BusinessClasses.HelpManager.Instance.OpenHelpLink("ninja");
+            BusinessClasses.HelpManager.Instance.OpenHelpLink("nerd");
         }
         #endregion
 

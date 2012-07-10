@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
             this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
@@ -44,7 +43,7 @@
             this.buttonItemHomeSaveAs = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
             this.dateEditFlightDatesStart = new DevExpress.XtraEditors.DateEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+            this.styleController = new DevExpress.XtraEditors.StyleController();
             this.dateEditFlightDatesEnd = new DevExpress.XtraEditors.DateEdit();
             this.itemContainerHomeFlightDates = new DevComponents.DotNetBar.ItemContainer();
             this.itemContainerFlightDatesStart = new DevComponents.DotNetBar.ItemContainer();
@@ -82,33 +81,33 @@
             this.controlContainerItemBusinessName = new DevComponents.DotNetBar.ControlContainerItem();
             this.controlContainerItemDecisionMaker = new DevComponents.DotNetBar.ControlContainerItem();
             this.controlContainerItemClientType = new DevComponents.DotNetBar.ControlContainerItem();
-            this.ribbonPanelAdvancedCalendar = new DevComponents.DotNetBar.RibbonPanel();
-            this.ribbonBarAdvancedCalendarExit = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemAdvancedCalendarExit = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarAdvancedCalendarHelp = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemAdvancedCalendarHelp = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarAdvancedCalendarEmail = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemAdvancedCalendarEmail = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarAdvancedCalendarPowerPoint = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemAdvancedCalendarPowerPoint = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarAdvancedCalendarSave = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemAdvancedCalendarSave = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemAdvancedCalendarSaveAs = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarAdvancedCalendarEdit = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemAdvancedCalendarCopy = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemAdvancedCalendarPaste = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemAdvancedCalendarClone = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarAdvancedCalendarSlideInfo = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemAdvancedCalendarSlideInfo = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarAdvancedCalendarGrid = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemAdvancedCalendarGrid = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarAdvancedCalendarMonth = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemAdvancedCalendarMonth = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarAdvancedCalendarCalendar = new DevComponents.DotNetBar.RibbonBar();
-            this.listBoxControlAdvancedCalendar = new DevExpress.XtraEditors.ImageListBoxControl();
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
-            this.itemContainerAdvancedCalendarCalendar = new DevComponents.DotNetBar.ItemContainer();
-            this.controlContainerItemAdvancedCalendar = new DevComponents.DotNetBar.ControlContainerItem();
+            this.ribbonPanelSimpleCalendar = new DevComponents.DotNetBar.RibbonPanel();
+            this.ribbonBarSimpleCalendarExit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSimpleCalendarExit = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarSimpleCalendarHelp = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSimpleCalendarHelp = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarSimpleCalendarEmail = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSimpleCalendarEmail = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarSimpleCalendarPowerPoint = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSimpleCalendarPowerPoint = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarSimpleCalendarSave = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSimpleCalendarSave = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemSimpleCalendarSaveAs = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarSimpleCalendarEdit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSimpleCalendarCopy = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemSimpleCalendarPaste = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemSimpleCalendarClone = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarSimpleCalendarSlideInfo = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSimpleCalendarSlideInfo = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarSimpleCalendarGrid = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSimpleCalendarGrid = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarSimpleCalendarMonth = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemSimpleCalendarMonth = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarSimpleCalendarCalendar = new DevComponents.DotNetBar.RibbonBar();
+            this.listBoxControlSimpleCalendar = new DevExpress.XtraEditors.ImageListBoxControl();
+            this.imageList = new System.Windows.Forms.ImageList();
+            this.itemContainerSimpleCalendarCalendar = new DevComponents.DotNetBar.ItemContainer();
+            this.controlContainerItemSimpleCalendar = new DevComponents.DotNetBar.ControlContainerItem();
             this.ribbonPanelGraphicCalendar = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarGraphicCalendarExit = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItemGraphicCalendarExit = new DevComponents.DotNetBar.ButtonItem();
@@ -135,32 +134,32 @@
             this.listBoxControlGraphicCalendar = new DevExpress.XtraEditors.ImageListBoxControl();
             this.itemContainerGraphicCalendarCalendar = new DevComponents.DotNetBar.ItemContainer();
             this.controlContainerItemGraphicCalendar = new DevComponents.DotNetBar.ControlContainerItem();
-            this.ribbonPanelSimpleCalendar = new DevComponents.DotNetBar.RibbonPanel();
-            this.ribbonBarSimpleCalendarExit = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemSimpleCalendarExit = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarSimpleCalendarHelp = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemSimpleCalendarHelp = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarSimpleCalendarEmail = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemSimpleCalendarEmail = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarSimpleCalendarPowerPoint = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemSimpleCalendarPowerPoint = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarSimpleCalendarSave = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemSimpleCalendarSave = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSimpleCalendarSaveAs = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarSimpleCalendarEdit = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemSimpleCalendarCopy = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSimpleCalendarPaste = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSimpleCalendarClone = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarSimpleCalendarSlideInfo = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemSimpleCalendarSlideInfo = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarSimpleCalendarGrid = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemSimpleCalendarGrid = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarSimpleCalendarMonth = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemSimpleCalendarMonth = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarSimpleCalendarCalendar = new DevComponents.DotNetBar.RibbonBar();
-            this.listBoxControlSimpleCalendar = new DevExpress.XtraEditors.ImageListBoxControl();
-            this.itemContainerSimpleCalendarCalendar = new DevComponents.DotNetBar.ItemContainer();
-            this.controlContainerItemSimpleCalendar = new DevComponents.DotNetBar.ControlContainerItem();
+            this.ribbonPanelAdvancedCalendar = new DevComponents.DotNetBar.RibbonPanel();
+            this.ribbonBarAdvancedCalendarExit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemAdvancedCalendarExit = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarAdvancedCalendarHelp = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemAdvancedCalendarHelp = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarAdvancedCalendarEmail = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemAdvancedCalendarEmail = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarAdvancedCalendarPowerPoint = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemAdvancedCalendarPowerPoint = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarAdvancedCalendarSave = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemAdvancedCalendarSave = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemAdvancedCalendarSaveAs = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarAdvancedCalendarEdit = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemAdvancedCalendarCopy = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemAdvancedCalendarPaste = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemAdvancedCalendarClone = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarAdvancedCalendarSlideInfo = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemAdvancedCalendarSlideInfo = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarAdvancedCalendarGrid = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemAdvancedCalendarGrid = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarAdvancedCalendarMonth = new DevComponents.DotNetBar.RibbonBar();
+            this.buttonItemAdvancedCalendarMonth = new DevComponents.DotNetBar.ButtonItem();
+            this.ribbonBarAdvancedCalendarCalendar = new DevComponents.DotNetBar.RibbonBar();
+            this.listBoxControlAdvancedCalendar = new DevExpress.XtraEditors.ImageListBoxControl();
+            this.itemContainerAdvancedCalendarCalendar = new DevComponents.DotNetBar.ItemContainer();
+            this.controlContainerItemAdvancedCalendar = new DevComponents.DotNetBar.ControlContainerItem();
             this.ribbonPanelSuccessModels = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarSuccessModelsExit = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItemSuccessModelsExit = new DevComponents.DotNetBar.ButtonItem();
@@ -173,7 +172,7 @@
             this.ribbonTabItemGraphicCalendar = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemSimpleCalendar = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemSuccessModels = new DevComponents.DotNetBar.RibbonTabItem();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             this.pnMain = new System.Windows.Forms.Panel();
             this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
             this.pnEmpty = new System.Windows.Forms.Panel();
@@ -192,15 +191,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBusinessName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditClientType.Properties)).BeginInit();
-            this.ribbonPanelAdvancedCalendar.SuspendLayout();
-            this.ribbonBarAdvancedCalendarCalendar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlAdvancedCalendar)).BeginInit();
-            this.ribbonPanelGraphicCalendar.SuspendLayout();
-            this.ribbonBarGraphicCalendarCalendar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlGraphicCalendar)).BeginInit();
             this.ribbonPanelSimpleCalendar.SuspendLayout();
             this.ribbonBarSimpleCalendarCalendar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlSimpleCalendar)).BeginInit();
+            this.ribbonPanelGraphicCalendar.SuspendLayout();
+            this.ribbonBarGraphicCalendarCalendar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlGraphicCalendar)).BeginInit();
+            this.ribbonPanelAdvancedCalendar.SuspendLayout();
+            this.ribbonBarAdvancedCalendarCalendar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlAdvancedCalendar)).BeginInit();
             this.ribbonPanelSuccessModels.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -445,7 +444,7 @@
             this.dateEditFlightDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditFlightDatesStart.Properties.Appearance.Options.UseFont = true;
             this.dateEditFlightDatesStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditFlightDatesStart.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -486,7 +485,7 @@
             this.dateEditFlightDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditFlightDatesEnd.Properties.Appearance.Options.UseFont = true;
             this.dateEditFlightDatesEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditFlightDatesEnd.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -754,7 +753,7 @@
             this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
             this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditPresentationDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditPresentationDate.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -950,6 +949,942 @@
             this.controlContainerItemClientType.Control = this.comboBoxEditClientType;
             this.controlContainerItemClientType.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
             this.controlContainerItemClientType.Name = "controlContainerItemClientType";
+            // 
+            // ribbonPanelSimpleCalendar
+            // 
+            this.ribbonPanelSimpleCalendar.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarExit);
+            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarHelp);
+            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarEmail);
+            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarPowerPoint);
+            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarSave);
+            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarEdit);
+            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarSlideInfo);
+            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarGrid);
+            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarMonth);
+            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarCalendar);
+            this.ribbonPanelSimpleCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ribbonPanelSimpleCalendar.Location = new System.Drawing.Point(0, 26);
+            this.ribbonPanelSimpleCalendar.Name = "ribbonPanelSimpleCalendar";
+            this.ribbonPanelSimpleCalendar.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.ribbonPanelSimpleCalendar.Size = new System.Drawing.Size(984, 141);
+            // 
+            // 
+            // 
+            this.ribbonPanelSimpleCalendar.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanelSimpleCalendar.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanelSimpleCalendar.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonPanelSimpleCalendar.TabIndex = 11;
+            this.ribbonPanelSimpleCalendar.Visible = false;
+            // 
+            // ribbonBarSimpleCalendarExit
+            // 
+            this.ribbonBarSimpleCalendarExit.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarExit.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarExit.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarSimpleCalendarExit.ContainerControlProcessDialogKey = true;
+            this.ribbonBarSimpleCalendarExit.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarSimpleCalendarExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemSimpleCalendarExit});
+            this.ribbonBarSimpleCalendarExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarSimpleCalendarExit.Location = new System.Drawing.Point(830, 0);
+            this.ribbonBarSimpleCalendarExit.Name = "ribbonBarSimpleCalendarExit";
+            this.ribbonBarSimpleCalendarExit.Size = new System.Drawing.Size(84, 138);
+            this.ribbonBarSimpleCalendarExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarSimpleCalendarExit.TabIndex = 52;
+            this.ribbonBarSimpleCalendarExit.Text = "EXIT";
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarExit.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarExit.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemSimpleCalendarExit
+            // 
+            this.buttonItemSimpleCalendarExit.Image = global::CalendarBuilder.Properties.Resources.Exit;
+            this.buttonItemSimpleCalendarExit.Name = "buttonItemSimpleCalendarExit";
+            this.buttonItemSimpleCalendarExit.SubItemsExpandWidth = 14;
+            this.buttonItemSimpleCalendarExit.Text = "buttonItem1";
+            this.buttonItemSimpleCalendarExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
+            // 
+            // ribbonBarSimpleCalendarHelp
+            // 
+            this.ribbonBarSimpleCalendarHelp.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarHelp.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarHelp.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarSimpleCalendarHelp.ContainerControlProcessDialogKey = true;
+            this.ribbonBarSimpleCalendarHelp.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarSimpleCalendarHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemSimpleCalendarHelp});
+            this.ribbonBarSimpleCalendarHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarSimpleCalendarHelp.Location = new System.Drawing.Point(748, 0);
+            this.ribbonBarSimpleCalendarHelp.Name = "ribbonBarSimpleCalendarHelp";
+            this.ribbonBarSimpleCalendarHelp.Size = new System.Drawing.Size(82, 138);
+            this.ribbonBarSimpleCalendarHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarSimpleCalendarHelp.TabIndex = 51;
+            this.ribbonBarSimpleCalendarHelp.Text = "HELP";
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarHelp.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarHelp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemSimpleCalendarHelp
+            // 
+            this.buttonItemSimpleCalendarHelp.Image = global::CalendarBuilder.Properties.Resources.Help;
+            this.buttonItemSimpleCalendarHelp.Name = "buttonItemSimpleCalendarHelp";
+            // 
+            // ribbonBarSimpleCalendarEmail
+            // 
+            this.ribbonBarSimpleCalendarEmail.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarEmail.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarEmail.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarSimpleCalendarEmail.ContainerControlProcessDialogKey = true;
+            this.ribbonBarSimpleCalendarEmail.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarSimpleCalendarEmail.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemSimpleCalendarEmail});
+            this.ribbonBarSimpleCalendarEmail.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarSimpleCalendarEmail.Location = new System.Drawing.Point(659, 0);
+            this.ribbonBarSimpleCalendarEmail.Name = "ribbonBarSimpleCalendarEmail";
+            this.ribbonBarSimpleCalendarEmail.Size = new System.Drawing.Size(89, 138);
+            this.ribbonBarSimpleCalendarEmail.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarSimpleCalendarEmail.TabIndex = 55;
+            this.ribbonBarSimpleCalendarEmail.Text = "Email";
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarEmail.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarEmail.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemSimpleCalendarEmail
+            // 
+            this.buttonItemSimpleCalendarEmail.Image = global::CalendarBuilder.Properties.Resources.EmailBig;
+            this.buttonItemSimpleCalendarEmail.Name = "buttonItemSimpleCalendarEmail";
+            this.buttonItemSimpleCalendarEmail.SubItemsExpandWidth = 14;
+            // 
+            // ribbonBarSimpleCalendarPowerPoint
+            // 
+            this.ribbonBarSimpleCalendarPowerPoint.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarPowerPoint.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarPowerPoint.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarSimpleCalendarPowerPoint.ContainerControlProcessDialogKey = true;
+            this.ribbonBarSimpleCalendarPowerPoint.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarSimpleCalendarPowerPoint.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemSimpleCalendarPowerPoint});
+            this.ribbonBarSimpleCalendarPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarSimpleCalendarPowerPoint.Location = new System.Drawing.Point(575, 0);
+            this.ribbonBarSimpleCalendarPowerPoint.Name = "ribbonBarSimpleCalendarPowerPoint";
+            this.ribbonBarSimpleCalendarPowerPoint.Size = new System.Drawing.Size(84, 138);
+            this.ribbonBarSimpleCalendarPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarSimpleCalendarPowerPoint.TabIndex = 54;
+            this.ribbonBarSimpleCalendarPowerPoint.Text = "PowerPoint";
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarPowerPoint.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarPowerPoint.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemSimpleCalendarPowerPoint
+            // 
+            this.buttonItemSimpleCalendarPowerPoint.Image = global::CalendarBuilder.Properties.Resources.PowerPoint;
+            this.buttonItemSimpleCalendarPowerPoint.Name = "buttonItemSimpleCalendarPowerPoint";
+            this.buttonItemSimpleCalendarPowerPoint.SubItemsExpandWidth = 14;
+            // 
+            // ribbonBarSimpleCalendarSave
+            // 
+            this.ribbonBarSimpleCalendarSave.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarSave.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarSave.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarSimpleCalendarSave.ContainerControlProcessDialogKey = true;
+            this.ribbonBarSimpleCalendarSave.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarSimpleCalendarSave.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemSimpleCalendarSave,
+            this.buttonItemSimpleCalendarSaveAs});
+            this.ribbonBarSimpleCalendarSave.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+            this.ribbonBarSimpleCalendarSave.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarSimpleCalendarSave.Location = new System.Drawing.Point(508, 0);
+            this.ribbonBarSimpleCalendarSave.Name = "ribbonBarSimpleCalendarSave";
+            this.ribbonBarSimpleCalendarSave.Size = new System.Drawing.Size(67, 138);
+            this.ribbonBarSimpleCalendarSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarSimpleCalendarSave.TabIndex = 53;
+            this.ribbonBarSimpleCalendarSave.Text = "Save";
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarSave.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarSave.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemSimpleCalendarSave
+            // 
+            this.buttonItemSimpleCalendarSave.Image = global::CalendarBuilder.Properties.Resources.SaveSmall;
+            this.buttonItemSimpleCalendarSave.Name = "buttonItemSimpleCalendarSave";
+            this.buttonItemSimpleCalendarSave.SubItemsExpandWidth = 14;
+            this.buttonItemSimpleCalendarSave.Text = "Save";
+            // 
+            // buttonItemSimpleCalendarSaveAs
+            // 
+            this.buttonItemSimpleCalendarSaveAs.Image = global::CalendarBuilder.Properties.Resources.SaveAs;
+            this.buttonItemSimpleCalendarSaveAs.Name = "buttonItemSimpleCalendarSaveAs";
+            this.buttonItemSimpleCalendarSaveAs.SubItemsExpandWidth = 14;
+            this.buttonItemSimpleCalendarSaveAs.Text = "Save As";
+            // 
+            // ribbonBarSimpleCalendarEdit
+            // 
+            this.ribbonBarSimpleCalendarEdit.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarEdit.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarEdit.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarSimpleCalendarEdit.ContainerControlProcessDialogKey = true;
+            this.ribbonBarSimpleCalendarEdit.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarSimpleCalendarEdit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemSimpleCalendarCopy,
+            this.buttonItemSimpleCalendarPaste,
+            this.buttonItemSimpleCalendarClone});
+            this.ribbonBarSimpleCalendarEdit.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+            this.ribbonBarSimpleCalendarEdit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarSimpleCalendarEdit.Location = new System.Drawing.Point(419, 0);
+            this.ribbonBarSimpleCalendarEdit.Name = "ribbonBarSimpleCalendarEdit";
+            this.ribbonBarSimpleCalendarEdit.Size = new System.Drawing.Size(89, 138);
+            this.ribbonBarSimpleCalendarEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarSimpleCalendarEdit.TabIndex = 60;
+            this.ribbonBarSimpleCalendarEdit.Text = "Edit";
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarEdit.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarEdit.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemSimpleCalendarCopy
+            // 
+            this.buttonItemSimpleCalendarCopy.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemSimpleCalendarCopy.Enabled = false;
+            this.buttonItemSimpleCalendarCopy.Image = global::CalendarBuilder.Properties.Resources.CopySmall;
+            this.buttonItemSimpleCalendarCopy.Name = "buttonItemSimpleCalendarCopy";
+            this.buttonItemSimpleCalendarCopy.SubItemsExpandWidth = 14;
+            this.buttonItemSimpleCalendarCopy.Text = "Copy";
+            // 
+            // buttonItemSimpleCalendarPaste
+            // 
+            this.buttonItemSimpleCalendarPaste.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemSimpleCalendarPaste.Enabled = false;
+            this.buttonItemSimpleCalendarPaste.Image = global::CalendarBuilder.Properties.Resources.PasteSmall;
+            this.buttonItemSimpleCalendarPaste.Name = "buttonItemSimpleCalendarPaste";
+            this.buttonItemSimpleCalendarPaste.SubItemsExpandWidth = 14;
+            this.buttonItemSimpleCalendarPaste.Text = "Paste";
+            // 
+            // buttonItemSimpleCalendarClone
+            // 
+            this.buttonItemSimpleCalendarClone.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemSimpleCalendarClone.Enabled = false;
+            this.buttonItemSimpleCalendarClone.Image = global::CalendarBuilder.Properties.Resources.CloneSmall;
+            this.buttonItemSimpleCalendarClone.Name = "buttonItemSimpleCalendarClone";
+            this.buttonItemSimpleCalendarClone.SubItemsExpandWidth = 14;
+            this.buttonItemSimpleCalendarClone.Text = "Clone";
+            // 
+            // ribbonBarSimpleCalendarSlideInfo
+            // 
+            this.ribbonBarSimpleCalendarSlideInfo.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarSlideInfo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarSlideInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarSimpleCalendarSlideInfo.ContainerControlProcessDialogKey = true;
+            this.ribbonBarSimpleCalendarSlideInfo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarSimpleCalendarSlideInfo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemSimpleCalendarSlideInfo});
+            this.ribbonBarSimpleCalendarSlideInfo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarSimpleCalendarSlideInfo.Location = new System.Drawing.Point(317, 0);
+            this.ribbonBarSimpleCalendarSlideInfo.Name = "ribbonBarSimpleCalendarSlideInfo";
+            this.ribbonBarSimpleCalendarSlideInfo.Size = new System.Drawing.Size(102, 138);
+            this.ribbonBarSimpleCalendarSlideInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarSimpleCalendarSlideInfo.TabIndex = 57;
+            this.ribbonBarSimpleCalendarSlideInfo.Text = "Slide Info";
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarSlideInfo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarSlideInfo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemSimpleCalendarSlideInfo
+            // 
+            this.buttonItemSimpleCalendarSlideInfo.AutoCheckOnClick = true;
+            this.buttonItemSimpleCalendarSlideInfo.Image = global::CalendarBuilder.Properties.Resources.SlideInfo;
+            this.buttonItemSimpleCalendarSlideInfo.Name = "buttonItemSimpleCalendarSlideInfo";
+            this.buttonItemSimpleCalendarSlideInfo.SubItemsExpandWidth = 14;
+            // 
+            // ribbonBarSimpleCalendarGrid
+            // 
+            this.ribbonBarSimpleCalendarGrid.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarGrid.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarGrid.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarSimpleCalendarGrid.ContainerControlProcessDialogKey = true;
+            this.ribbonBarSimpleCalendarGrid.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarSimpleCalendarGrid.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemSimpleCalendarGrid});
+            this.ribbonBarSimpleCalendarGrid.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarSimpleCalendarGrid.Location = new System.Drawing.Point(236, 0);
+            this.ribbonBarSimpleCalendarGrid.Name = "ribbonBarSimpleCalendarGrid";
+            this.ribbonBarSimpleCalendarGrid.Size = new System.Drawing.Size(81, 138);
+            this.ribbonBarSimpleCalendarGrid.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarSimpleCalendarGrid.TabIndex = 58;
+            this.ribbonBarSimpleCalendarGrid.Text = "Grid View";
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarGrid.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarGrid.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemSimpleCalendarGrid
+            // 
+            this.buttonItemSimpleCalendarGrid.Image = global::CalendarBuilder.Properties.Resources.Grid;
+            this.buttonItemSimpleCalendarGrid.Name = "buttonItemSimpleCalendarGrid";
+            this.buttonItemSimpleCalendarGrid.SubItemsExpandWidth = 14;
+            // 
+            // ribbonBarSimpleCalendarMonth
+            // 
+            this.ribbonBarSimpleCalendarMonth.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarMonth.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarMonth.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarSimpleCalendarMonth.ContainerControlProcessDialogKey = true;
+            this.ribbonBarSimpleCalendarMonth.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarSimpleCalendarMonth.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemSimpleCalendarMonth});
+            this.ribbonBarSimpleCalendarMonth.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarSimpleCalendarMonth.Location = new System.Drawing.Point(147, 0);
+            this.ribbonBarSimpleCalendarMonth.Name = "ribbonBarSimpleCalendarMonth";
+            this.ribbonBarSimpleCalendarMonth.Size = new System.Drawing.Size(89, 138);
+            this.ribbonBarSimpleCalendarMonth.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarSimpleCalendarMonth.TabIndex = 59;
+            this.ribbonBarSimpleCalendarMonth.Text = "Month View";
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarMonth.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarMonth.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemSimpleCalendarMonth
+            // 
+            this.buttonItemSimpleCalendarMonth.Image = global::CalendarBuilder.Properties.Resources.Calendar;
+            this.buttonItemSimpleCalendarMonth.Name = "buttonItemSimpleCalendarMonth";
+            this.buttonItemSimpleCalendarMonth.SubItemsExpandWidth = 14;
+            // 
+            // ribbonBarSimpleCalendarCalendar
+            // 
+            this.ribbonBarSimpleCalendarCalendar.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarCalendar.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarSimpleCalendarCalendar.ContainerControlProcessDialogKey = true;
+            this.ribbonBarSimpleCalendarCalendar.Controls.Add(this.listBoxControlSimpleCalendar);
+            this.ribbonBarSimpleCalendarCalendar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarSimpleCalendarCalendar.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.itemContainerSimpleCalendarCalendar});
+            this.ribbonBarSimpleCalendarCalendar.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarSimpleCalendarCalendar.Location = new System.Drawing.Point(3, 0);
+            this.ribbonBarSimpleCalendarCalendar.Name = "ribbonBarSimpleCalendarCalendar";
+            this.ribbonBarSimpleCalendarCalendar.Size = new System.Drawing.Size(144, 138);
+            this.ribbonBarSimpleCalendarCalendar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarSimpleCalendarCalendar.TabIndex = 56;
+            this.ribbonBarSimpleCalendarCalendar.Text = "Calendar";
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarCalendar.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarSimpleCalendarCalendar.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // listBoxControlSimpleCalendar
+            // 
+            this.listBoxControlSimpleCalendar.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listBoxControlSimpleCalendar.Appearance.Options.UseFont = true;
+            this.listBoxControlSimpleCalendar.Appearance.Options.UseTextOptions = true;
+            this.listBoxControlSimpleCalendar.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.listBoxControlSimpleCalendar.ImageList = this.imageList;
+            this.listBoxControlSimpleCalendar.ItemHeight = 25;
+            this.listBoxControlSimpleCalendar.Location = new System.Drawing.Point(6, 4);
+            this.listBoxControlSimpleCalendar.Name = "listBoxControlSimpleCalendar";
+            this.listBoxControlSimpleCalendar.Size = new System.Drawing.Size(129, 115);
+            this.listBoxControlSimpleCalendar.TabIndex = 1;
+            // 
+            // imageList
+            // 
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "Calendar 2.png");
+            // 
+            // itemContainerSimpleCalendarCalendar
+            // 
+            // 
+            // 
+            // 
+            this.itemContainerSimpleCalendarCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.itemContainerSimpleCalendarCalendar.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+            this.itemContainerSimpleCalendarCalendar.Name = "itemContainerSimpleCalendarCalendar";
+            this.itemContainerSimpleCalendarCalendar.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.controlContainerItemSimpleCalendar});
+            // 
+            // controlContainerItemSimpleCalendar
+            // 
+            this.controlContainerItemSimpleCalendar.AllowItemResize = false;
+            this.controlContainerItemSimpleCalendar.Control = this.listBoxControlSimpleCalendar;
+            this.controlContainerItemSimpleCalendar.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
+            this.controlContainerItemSimpleCalendar.Name = "controlContainerItemSimpleCalendar";
+            // 
+            // ribbonPanelGraphicCalendar
+            // 
+            this.ribbonPanelGraphicCalendar.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarExit);
+            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarHelp);
+            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarEmail);
+            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarPowerPoint);
+            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarSave);
+            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarEdit);
+            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGrapicCalendarSlideInfo);
+            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarGrid);
+            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarMonth);
+            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarCalendar);
+            this.ribbonPanelGraphicCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ribbonPanelGraphicCalendar.Location = new System.Drawing.Point(0, 26);
+            this.ribbonPanelGraphicCalendar.Name = "ribbonPanelGraphicCalendar";
+            this.ribbonPanelGraphicCalendar.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.ribbonPanelGraphicCalendar.Size = new System.Drawing.Size(984, 141);
+            // 
+            // 
+            // 
+            this.ribbonPanelGraphicCalendar.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanelGraphicCalendar.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonPanelGraphicCalendar.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonPanelGraphicCalendar.TabIndex = 10;
+            this.ribbonPanelGraphicCalendar.Visible = false;
+            // 
+            // ribbonBarGraphicCalendarExit
+            // 
+            this.ribbonBarGraphicCalendarExit.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarExit.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarExit.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarGraphicCalendarExit.ContainerControlProcessDialogKey = true;
+            this.ribbonBarGraphicCalendarExit.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarGraphicCalendarExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemGraphicCalendarExit});
+            this.ribbonBarGraphicCalendarExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarGraphicCalendarExit.Location = new System.Drawing.Point(830, 0);
+            this.ribbonBarGraphicCalendarExit.Name = "ribbonBarGraphicCalendarExit";
+            this.ribbonBarGraphicCalendarExit.Size = new System.Drawing.Size(84, 138);
+            this.ribbonBarGraphicCalendarExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarGraphicCalendarExit.TabIndex = 42;
+            this.ribbonBarGraphicCalendarExit.Text = "EXIT";
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarExit.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarExit.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemGraphicCalendarExit
+            // 
+            this.buttonItemGraphicCalendarExit.Image = global::CalendarBuilder.Properties.Resources.Exit;
+            this.buttonItemGraphicCalendarExit.Name = "buttonItemGraphicCalendarExit";
+            this.buttonItemGraphicCalendarExit.SubItemsExpandWidth = 14;
+            this.buttonItemGraphicCalendarExit.Text = "buttonItem1";
+            this.buttonItemGraphicCalendarExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
+            // 
+            // ribbonBarGraphicCalendarHelp
+            // 
+            this.ribbonBarGraphicCalendarHelp.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarHelp.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarHelp.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarGraphicCalendarHelp.ContainerControlProcessDialogKey = true;
+            this.ribbonBarGraphicCalendarHelp.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarGraphicCalendarHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemGraphicCalendarHelp});
+            this.ribbonBarGraphicCalendarHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarGraphicCalendarHelp.Location = new System.Drawing.Point(748, 0);
+            this.ribbonBarGraphicCalendarHelp.Name = "ribbonBarGraphicCalendarHelp";
+            this.ribbonBarGraphicCalendarHelp.Size = new System.Drawing.Size(82, 138);
+            this.ribbonBarGraphicCalendarHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarGraphicCalendarHelp.TabIndex = 41;
+            this.ribbonBarGraphicCalendarHelp.Text = "HELP";
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarHelp.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarHelp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemGraphicCalendarHelp
+            // 
+            this.buttonItemGraphicCalendarHelp.Image = global::CalendarBuilder.Properties.Resources.Help;
+            this.buttonItemGraphicCalendarHelp.Name = "buttonItemGraphicCalendarHelp";
+            // 
+            // ribbonBarGraphicCalendarEmail
+            // 
+            this.ribbonBarGraphicCalendarEmail.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarEmail.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarEmail.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarGraphicCalendarEmail.ContainerControlProcessDialogKey = true;
+            this.ribbonBarGraphicCalendarEmail.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarGraphicCalendarEmail.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemGraphicCalendarEmail});
+            this.ribbonBarGraphicCalendarEmail.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarGraphicCalendarEmail.Location = new System.Drawing.Point(659, 0);
+            this.ribbonBarGraphicCalendarEmail.Name = "ribbonBarGraphicCalendarEmail";
+            this.ribbonBarGraphicCalendarEmail.Size = new System.Drawing.Size(89, 138);
+            this.ribbonBarGraphicCalendarEmail.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarGraphicCalendarEmail.TabIndex = 45;
+            this.ribbonBarGraphicCalendarEmail.Text = "Email";
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarEmail.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarEmail.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemGraphicCalendarEmail
+            // 
+            this.buttonItemGraphicCalendarEmail.Image = global::CalendarBuilder.Properties.Resources.EmailBig;
+            this.buttonItemGraphicCalendarEmail.Name = "buttonItemGraphicCalendarEmail";
+            this.buttonItemGraphicCalendarEmail.SubItemsExpandWidth = 14;
+            // 
+            // ribbonBarGraphicCalendarPowerPoint
+            // 
+            this.ribbonBarGraphicCalendarPowerPoint.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarPowerPoint.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarPowerPoint.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarGraphicCalendarPowerPoint.ContainerControlProcessDialogKey = true;
+            this.ribbonBarGraphicCalendarPowerPoint.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarGraphicCalendarPowerPoint.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemGraphicCalendarPowerPoint});
+            this.ribbonBarGraphicCalendarPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarGraphicCalendarPowerPoint.Location = new System.Drawing.Point(575, 0);
+            this.ribbonBarGraphicCalendarPowerPoint.Name = "ribbonBarGraphicCalendarPowerPoint";
+            this.ribbonBarGraphicCalendarPowerPoint.Size = new System.Drawing.Size(84, 138);
+            this.ribbonBarGraphicCalendarPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarGraphicCalendarPowerPoint.TabIndex = 44;
+            this.ribbonBarGraphicCalendarPowerPoint.Text = "PowerPoint";
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarPowerPoint.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarPowerPoint.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemGraphicCalendarPowerPoint
+            // 
+            this.buttonItemGraphicCalendarPowerPoint.Image = global::CalendarBuilder.Properties.Resources.PowerPoint;
+            this.buttonItemGraphicCalendarPowerPoint.Name = "buttonItemGraphicCalendarPowerPoint";
+            this.buttonItemGraphicCalendarPowerPoint.SubItemsExpandWidth = 14;
+            // 
+            // ribbonBarGraphicCalendarSave
+            // 
+            this.ribbonBarGraphicCalendarSave.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarSave.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarSave.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarGraphicCalendarSave.ContainerControlProcessDialogKey = true;
+            this.ribbonBarGraphicCalendarSave.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarGraphicCalendarSave.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemGraphicCalendarSave,
+            this.buttonItemGraphicCalendarSaveAs});
+            this.ribbonBarGraphicCalendarSave.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+            this.ribbonBarGraphicCalendarSave.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarGraphicCalendarSave.Location = new System.Drawing.Point(508, 0);
+            this.ribbonBarGraphicCalendarSave.Name = "ribbonBarGraphicCalendarSave";
+            this.ribbonBarGraphicCalendarSave.Size = new System.Drawing.Size(67, 138);
+            this.ribbonBarGraphicCalendarSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarGraphicCalendarSave.TabIndex = 43;
+            this.ribbonBarGraphicCalendarSave.Text = "Save";
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarSave.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarSave.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemGraphicCalendarSave
+            // 
+            this.buttonItemGraphicCalendarSave.Image = global::CalendarBuilder.Properties.Resources.SaveSmall;
+            this.buttonItemGraphicCalendarSave.Name = "buttonItemGraphicCalendarSave";
+            this.buttonItemGraphicCalendarSave.SubItemsExpandWidth = 14;
+            this.buttonItemGraphicCalendarSave.Text = "Save";
+            // 
+            // buttonItemGraphicCalendarSaveAs
+            // 
+            this.buttonItemGraphicCalendarSaveAs.Image = global::CalendarBuilder.Properties.Resources.SaveAs;
+            this.buttonItemGraphicCalendarSaveAs.Name = "buttonItemGraphicCalendarSaveAs";
+            this.buttonItemGraphicCalendarSaveAs.SubItemsExpandWidth = 14;
+            this.buttonItemGraphicCalendarSaveAs.Text = "Save As";
+            // 
+            // ribbonBarGraphicCalendarEdit
+            // 
+            this.ribbonBarGraphicCalendarEdit.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarEdit.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarEdit.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarGraphicCalendarEdit.ContainerControlProcessDialogKey = true;
+            this.ribbonBarGraphicCalendarEdit.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarGraphicCalendarEdit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemGraphicCalendarCopy,
+            this.buttonItemGraphicCalendarPaste,
+            this.buttonItemGraphicCalendarClone});
+            this.ribbonBarGraphicCalendarEdit.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+            this.ribbonBarGraphicCalendarEdit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarGraphicCalendarEdit.Location = new System.Drawing.Point(419, 0);
+            this.ribbonBarGraphicCalendarEdit.Name = "ribbonBarGraphicCalendarEdit";
+            this.ribbonBarGraphicCalendarEdit.Size = new System.Drawing.Size(89, 138);
+            this.ribbonBarGraphicCalendarEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarGraphicCalendarEdit.TabIndex = 50;
+            this.ribbonBarGraphicCalendarEdit.Text = "Edit";
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarEdit.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarEdit.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemGraphicCalendarCopy
+            // 
+            this.buttonItemGraphicCalendarCopy.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemGraphicCalendarCopy.Enabled = false;
+            this.buttonItemGraphicCalendarCopy.Image = global::CalendarBuilder.Properties.Resources.CopySmall;
+            this.buttonItemGraphicCalendarCopy.Name = "buttonItemGraphicCalendarCopy";
+            this.buttonItemGraphicCalendarCopy.SubItemsExpandWidth = 14;
+            this.buttonItemGraphicCalendarCopy.Text = "Copy";
+            // 
+            // buttonItemGraphicCalendarPaste
+            // 
+            this.buttonItemGraphicCalendarPaste.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemGraphicCalendarPaste.Enabled = false;
+            this.buttonItemGraphicCalendarPaste.Image = global::CalendarBuilder.Properties.Resources.PasteSmall;
+            this.buttonItemGraphicCalendarPaste.Name = "buttonItemGraphicCalendarPaste";
+            this.buttonItemGraphicCalendarPaste.SubItemsExpandWidth = 14;
+            this.buttonItemGraphicCalendarPaste.Text = "Paste";
+            // 
+            // buttonItemGraphicCalendarClone
+            // 
+            this.buttonItemGraphicCalendarClone.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItemGraphicCalendarClone.Enabled = false;
+            this.buttonItemGraphicCalendarClone.Image = global::CalendarBuilder.Properties.Resources.CloneSmall;
+            this.buttonItemGraphicCalendarClone.Name = "buttonItemGraphicCalendarClone";
+            this.buttonItemGraphicCalendarClone.SubItemsExpandWidth = 14;
+            this.buttonItemGraphicCalendarClone.Text = "Clone";
+            // 
+            // ribbonBarGrapicCalendarSlideInfo
+            // 
+            this.ribbonBarGrapicCalendarSlideInfo.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarGrapicCalendarSlideInfo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGrapicCalendarSlideInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarGrapicCalendarSlideInfo.ContainerControlProcessDialogKey = true;
+            this.ribbonBarGrapicCalendarSlideInfo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarGrapicCalendarSlideInfo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemGraphicCalendarSlideInfo});
+            this.ribbonBarGrapicCalendarSlideInfo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarGrapicCalendarSlideInfo.Location = new System.Drawing.Point(317, 0);
+            this.ribbonBarGrapicCalendarSlideInfo.Name = "ribbonBarGrapicCalendarSlideInfo";
+            this.ribbonBarGrapicCalendarSlideInfo.Size = new System.Drawing.Size(102, 138);
+            this.ribbonBarGrapicCalendarSlideInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarGrapicCalendarSlideInfo.TabIndex = 47;
+            this.ribbonBarGrapicCalendarSlideInfo.Text = "Slide Info";
+            // 
+            // 
+            // 
+            this.ribbonBarGrapicCalendarSlideInfo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGrapicCalendarSlideInfo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemGraphicCalendarSlideInfo
+            // 
+            this.buttonItemGraphicCalendarSlideInfo.AutoCheckOnClick = true;
+            this.buttonItemGraphicCalendarSlideInfo.Image = global::CalendarBuilder.Properties.Resources.SlideInfo;
+            this.buttonItemGraphicCalendarSlideInfo.Name = "buttonItemGraphicCalendarSlideInfo";
+            this.buttonItemGraphicCalendarSlideInfo.SubItemsExpandWidth = 14;
+            // 
+            // ribbonBarGraphicCalendarGrid
+            // 
+            this.ribbonBarGraphicCalendarGrid.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarGrid.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarGrid.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarGraphicCalendarGrid.ContainerControlProcessDialogKey = true;
+            this.ribbonBarGraphicCalendarGrid.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarGraphicCalendarGrid.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemGraphicCalendarGrid});
+            this.ribbonBarGraphicCalendarGrid.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarGraphicCalendarGrid.Location = new System.Drawing.Point(236, 0);
+            this.ribbonBarGraphicCalendarGrid.Name = "ribbonBarGraphicCalendarGrid";
+            this.ribbonBarGraphicCalendarGrid.Size = new System.Drawing.Size(81, 138);
+            this.ribbonBarGraphicCalendarGrid.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarGraphicCalendarGrid.TabIndex = 48;
+            this.ribbonBarGraphicCalendarGrid.Text = "Grid View";
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarGrid.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarGrid.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemGraphicCalendarGrid
+            // 
+            this.buttonItemGraphicCalendarGrid.Image = global::CalendarBuilder.Properties.Resources.Grid;
+            this.buttonItemGraphicCalendarGrid.Name = "buttonItemGraphicCalendarGrid";
+            this.buttonItemGraphicCalendarGrid.SubItemsExpandWidth = 14;
+            // 
+            // ribbonBarGraphicCalendarMonth
+            // 
+            this.ribbonBarGraphicCalendarMonth.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarMonth.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarMonth.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarGraphicCalendarMonth.ContainerControlProcessDialogKey = true;
+            this.ribbonBarGraphicCalendarMonth.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarGraphicCalendarMonth.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemGraphicCalendarMonth});
+            this.ribbonBarGraphicCalendarMonth.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarGraphicCalendarMonth.Location = new System.Drawing.Point(147, 0);
+            this.ribbonBarGraphicCalendarMonth.Name = "ribbonBarGraphicCalendarMonth";
+            this.ribbonBarGraphicCalendarMonth.Size = new System.Drawing.Size(89, 138);
+            this.ribbonBarGraphicCalendarMonth.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarGraphicCalendarMonth.TabIndex = 49;
+            this.ribbonBarGraphicCalendarMonth.Text = "Month View";
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarMonth.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarMonth.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // buttonItemGraphicCalendarMonth
+            // 
+            this.buttonItemGraphicCalendarMonth.Image = global::CalendarBuilder.Properties.Resources.Calendar;
+            this.buttonItemGraphicCalendarMonth.Name = "buttonItemGraphicCalendarMonth";
+            this.buttonItemGraphicCalendarMonth.SubItemsExpandWidth = 14;
+            // 
+            // ribbonBarGraphicCalendarCalendar
+            // 
+            this.ribbonBarGraphicCalendarCalendar.AutoOverflowEnabled = true;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarCalendar.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBarGraphicCalendarCalendar.ContainerControlProcessDialogKey = true;
+            this.ribbonBarGraphicCalendarCalendar.Controls.Add(this.listBoxControlGraphicCalendar);
+            this.ribbonBarGraphicCalendarCalendar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBarGraphicCalendarCalendar.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.itemContainerGraphicCalendarCalendar});
+            this.ribbonBarGraphicCalendarCalendar.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.ribbonBarGraphicCalendarCalendar.Location = new System.Drawing.Point(3, 0);
+            this.ribbonBarGraphicCalendarCalendar.Name = "ribbonBarGraphicCalendarCalendar";
+            this.ribbonBarGraphicCalendarCalendar.Size = new System.Drawing.Size(144, 138);
+            this.ribbonBarGraphicCalendarCalendar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBarGraphicCalendarCalendar.TabIndex = 46;
+            this.ribbonBarGraphicCalendarCalendar.Text = "Calendar";
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarCalendar.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.ribbonBarGraphicCalendarCalendar.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // listBoxControlGraphicCalendar
+            // 
+            this.listBoxControlGraphicCalendar.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listBoxControlGraphicCalendar.Appearance.Options.UseFont = true;
+            this.listBoxControlGraphicCalendar.Appearance.Options.UseTextOptions = true;
+            this.listBoxControlGraphicCalendar.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.listBoxControlGraphicCalendar.ImageList = this.imageList;
+            this.listBoxControlGraphicCalendar.ItemHeight = 25;
+            this.listBoxControlGraphicCalendar.Location = new System.Drawing.Point(6, 4);
+            this.listBoxControlGraphicCalendar.Name = "listBoxControlGraphicCalendar";
+            this.listBoxControlGraphicCalendar.Size = new System.Drawing.Size(129, 115);
+            this.listBoxControlGraphicCalendar.TabIndex = 1;
+            // 
+            // itemContainerGraphicCalendarCalendar
+            // 
+            // 
+            // 
+            // 
+            this.itemContainerGraphicCalendarCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.itemContainerGraphicCalendarCalendar.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+            this.itemContainerGraphicCalendarCalendar.Name = "itemContainerGraphicCalendarCalendar";
+            this.itemContainerGraphicCalendarCalendar.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.controlContainerItemGraphicCalendar});
+            // 
+            // controlContainerItemGraphicCalendar
+            // 
+            this.controlContainerItemGraphicCalendar.AllowItemResize = false;
+            this.controlContainerItemGraphicCalendar.Control = this.listBoxControlGraphicCalendar;
+            this.controlContainerItemGraphicCalendar.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
+            this.controlContainerItemGraphicCalendar.Name = "controlContainerItemGraphicCalendar";
             // 
             // ribbonPanelAdvancedCalendar
             // 
@@ -1398,16 +2333,10 @@
             this.listBoxControlAdvancedCalendar.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.listBoxControlAdvancedCalendar.ImageList = this.imageList;
             this.listBoxControlAdvancedCalendar.ItemHeight = 25;
-            this.listBoxControlAdvancedCalendar.Location = new System.Drawing.Point(6, 3);
+            this.listBoxControlAdvancedCalendar.Location = new System.Drawing.Point(6, 4);
             this.listBoxControlAdvancedCalendar.Name = "listBoxControlAdvancedCalendar";
             this.listBoxControlAdvancedCalendar.Size = new System.Drawing.Size(129, 115);
             this.listBoxControlAdvancedCalendar.TabIndex = 1;
-            // 
-            // imageList
-            // 
-            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList.Images.SetKeyName(0, "Calendar 2.png");
             // 
             // itemContainerAdvancedCalendarCalendar
             // 
@@ -1426,936 +2355,6 @@
             this.controlContainerItemAdvancedCalendar.Control = this.listBoxControlAdvancedCalendar;
             this.controlContainerItemAdvancedCalendar.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
             this.controlContainerItemAdvancedCalendar.Name = "controlContainerItemAdvancedCalendar";
-            // 
-            // ribbonPanelGraphicCalendar
-            // 
-            this.ribbonPanelGraphicCalendar.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarExit);
-            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarHelp);
-            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarEmail);
-            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarPowerPoint);
-            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarSave);
-            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarEdit);
-            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGrapicCalendarSlideInfo);
-            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarGrid);
-            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarMonth);
-            this.ribbonPanelGraphicCalendar.Controls.Add(this.ribbonBarGraphicCalendarCalendar);
-            this.ribbonPanelGraphicCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelGraphicCalendar.Location = new System.Drawing.Point(0, 26);
-            this.ribbonPanelGraphicCalendar.Name = "ribbonPanelGraphicCalendar";
-            this.ribbonPanelGraphicCalendar.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelGraphicCalendar.Size = new System.Drawing.Size(984, 141);
-            // 
-            // 
-            // 
-            this.ribbonPanelGraphicCalendar.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanelGraphicCalendar.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanelGraphicCalendar.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonPanelGraphicCalendar.TabIndex = 10;
-            this.ribbonPanelGraphicCalendar.Visible = false;
-            // 
-            // ribbonBarGraphicCalendarExit
-            // 
-            this.ribbonBarGraphicCalendarExit.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarExit.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarExit.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarGraphicCalendarExit.ContainerControlProcessDialogKey = true;
-            this.ribbonBarGraphicCalendarExit.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarGraphicCalendarExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemGraphicCalendarExit});
-            this.ribbonBarGraphicCalendarExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarGraphicCalendarExit.Location = new System.Drawing.Point(830, 0);
-            this.ribbonBarGraphicCalendarExit.Name = "ribbonBarGraphicCalendarExit";
-            this.ribbonBarGraphicCalendarExit.Size = new System.Drawing.Size(84, 138);
-            this.ribbonBarGraphicCalendarExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarGraphicCalendarExit.TabIndex = 42;
-            this.ribbonBarGraphicCalendarExit.Text = "EXIT";
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarExit.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarExit.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemGraphicCalendarExit
-            // 
-            this.buttonItemGraphicCalendarExit.Image = global::CalendarBuilder.Properties.Resources.Exit;
-            this.buttonItemGraphicCalendarExit.Name = "buttonItemGraphicCalendarExit";
-            this.buttonItemGraphicCalendarExit.SubItemsExpandWidth = 14;
-            this.buttonItemGraphicCalendarExit.Text = "buttonItem1";
-            this.buttonItemGraphicCalendarExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
-            // 
-            // ribbonBarGraphicCalendarHelp
-            // 
-            this.ribbonBarGraphicCalendarHelp.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarHelp.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarHelp.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarGraphicCalendarHelp.ContainerControlProcessDialogKey = true;
-            this.ribbonBarGraphicCalendarHelp.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarGraphicCalendarHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemGraphicCalendarHelp});
-            this.ribbonBarGraphicCalendarHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarGraphicCalendarHelp.Location = new System.Drawing.Point(748, 0);
-            this.ribbonBarGraphicCalendarHelp.Name = "ribbonBarGraphicCalendarHelp";
-            this.ribbonBarGraphicCalendarHelp.Size = new System.Drawing.Size(82, 138);
-            this.ribbonBarGraphicCalendarHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarGraphicCalendarHelp.TabIndex = 41;
-            this.ribbonBarGraphicCalendarHelp.Text = "HELP";
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarHelp.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarHelp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemGraphicCalendarHelp
-            // 
-            this.buttonItemGraphicCalendarHelp.Image = global::CalendarBuilder.Properties.Resources.Help;
-            this.buttonItemGraphicCalendarHelp.Name = "buttonItemGraphicCalendarHelp";
-            // 
-            // ribbonBarGraphicCalendarEmail
-            // 
-            this.ribbonBarGraphicCalendarEmail.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarEmail.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarEmail.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarGraphicCalendarEmail.ContainerControlProcessDialogKey = true;
-            this.ribbonBarGraphicCalendarEmail.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarGraphicCalendarEmail.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemGraphicCalendarEmail});
-            this.ribbonBarGraphicCalendarEmail.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarGraphicCalendarEmail.Location = new System.Drawing.Point(659, 0);
-            this.ribbonBarGraphicCalendarEmail.Name = "ribbonBarGraphicCalendarEmail";
-            this.ribbonBarGraphicCalendarEmail.Size = new System.Drawing.Size(89, 138);
-            this.ribbonBarGraphicCalendarEmail.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarGraphicCalendarEmail.TabIndex = 45;
-            this.ribbonBarGraphicCalendarEmail.Text = "Email";
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarEmail.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarEmail.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemGraphicCalendarEmail
-            // 
-            this.buttonItemGraphicCalendarEmail.Image = global::CalendarBuilder.Properties.Resources.EmailBig;
-            this.buttonItemGraphicCalendarEmail.Name = "buttonItemGraphicCalendarEmail";
-            this.buttonItemGraphicCalendarEmail.SubItemsExpandWidth = 14;
-            // 
-            // ribbonBarGraphicCalendarPowerPoint
-            // 
-            this.ribbonBarGraphicCalendarPowerPoint.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarPowerPoint.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarPowerPoint.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarGraphicCalendarPowerPoint.ContainerControlProcessDialogKey = true;
-            this.ribbonBarGraphicCalendarPowerPoint.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarGraphicCalendarPowerPoint.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemGraphicCalendarPowerPoint});
-            this.ribbonBarGraphicCalendarPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarGraphicCalendarPowerPoint.Location = new System.Drawing.Point(575, 0);
-            this.ribbonBarGraphicCalendarPowerPoint.Name = "ribbonBarGraphicCalendarPowerPoint";
-            this.ribbonBarGraphicCalendarPowerPoint.Size = new System.Drawing.Size(84, 138);
-            this.ribbonBarGraphicCalendarPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarGraphicCalendarPowerPoint.TabIndex = 44;
-            this.ribbonBarGraphicCalendarPowerPoint.Text = "PowerPoint";
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarPowerPoint.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarPowerPoint.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemGraphicCalendarPowerPoint
-            // 
-            this.buttonItemGraphicCalendarPowerPoint.Image = global::CalendarBuilder.Properties.Resources.PowerPoint;
-            this.buttonItemGraphicCalendarPowerPoint.Name = "buttonItemGraphicCalendarPowerPoint";
-            this.buttonItemGraphicCalendarPowerPoint.SubItemsExpandWidth = 14;
-            // 
-            // ribbonBarGraphicCalendarSave
-            // 
-            this.ribbonBarGraphicCalendarSave.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarSave.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarSave.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarGraphicCalendarSave.ContainerControlProcessDialogKey = true;
-            this.ribbonBarGraphicCalendarSave.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarGraphicCalendarSave.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemGraphicCalendarSave,
-            this.buttonItemGraphicCalendarSaveAs});
-            this.ribbonBarGraphicCalendarSave.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.ribbonBarGraphicCalendarSave.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarGraphicCalendarSave.Location = new System.Drawing.Point(508, 0);
-            this.ribbonBarGraphicCalendarSave.Name = "ribbonBarGraphicCalendarSave";
-            this.ribbonBarGraphicCalendarSave.Size = new System.Drawing.Size(67, 138);
-            this.ribbonBarGraphicCalendarSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarGraphicCalendarSave.TabIndex = 43;
-            this.ribbonBarGraphicCalendarSave.Text = "Save";
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarSave.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarSave.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemGraphicCalendarSave
-            // 
-            this.buttonItemGraphicCalendarSave.Image = global::CalendarBuilder.Properties.Resources.SaveSmall;
-            this.buttonItemGraphicCalendarSave.Name = "buttonItemGraphicCalendarSave";
-            this.buttonItemGraphicCalendarSave.SubItemsExpandWidth = 14;
-            this.buttonItemGraphicCalendarSave.Text = "Save";
-            // 
-            // buttonItemGraphicCalendarSaveAs
-            // 
-            this.buttonItemGraphicCalendarSaveAs.Image = global::CalendarBuilder.Properties.Resources.SaveAs;
-            this.buttonItemGraphicCalendarSaveAs.Name = "buttonItemGraphicCalendarSaveAs";
-            this.buttonItemGraphicCalendarSaveAs.SubItemsExpandWidth = 14;
-            this.buttonItemGraphicCalendarSaveAs.Text = "Save As";
-            // 
-            // ribbonBarGraphicCalendarEdit
-            // 
-            this.ribbonBarGraphicCalendarEdit.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarEdit.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarEdit.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarGraphicCalendarEdit.ContainerControlProcessDialogKey = true;
-            this.ribbonBarGraphicCalendarEdit.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarGraphicCalendarEdit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemGraphicCalendarCopy,
-            this.buttonItemGraphicCalendarPaste,
-            this.buttonItemGraphicCalendarClone});
-            this.ribbonBarGraphicCalendarEdit.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.ribbonBarGraphicCalendarEdit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarGraphicCalendarEdit.Location = new System.Drawing.Point(419, 0);
-            this.ribbonBarGraphicCalendarEdit.Name = "ribbonBarGraphicCalendarEdit";
-            this.ribbonBarGraphicCalendarEdit.Size = new System.Drawing.Size(89, 138);
-            this.ribbonBarGraphicCalendarEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarGraphicCalendarEdit.TabIndex = 50;
-            this.ribbonBarGraphicCalendarEdit.Text = "Edit";
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarEdit.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarEdit.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemGraphicCalendarCopy
-            // 
-            this.buttonItemGraphicCalendarCopy.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemGraphicCalendarCopy.Enabled = false;
-            this.buttonItemGraphicCalendarCopy.Image = global::CalendarBuilder.Properties.Resources.CopySmall;
-            this.buttonItemGraphicCalendarCopy.Name = "buttonItemGraphicCalendarCopy";
-            this.buttonItemGraphicCalendarCopy.SubItemsExpandWidth = 14;
-            this.buttonItemGraphicCalendarCopy.Text = "Copy";
-            // 
-            // buttonItemGraphicCalendarPaste
-            // 
-            this.buttonItemGraphicCalendarPaste.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemGraphicCalendarPaste.Enabled = false;
-            this.buttonItemGraphicCalendarPaste.Image = global::CalendarBuilder.Properties.Resources.PasteSmall;
-            this.buttonItemGraphicCalendarPaste.Name = "buttonItemGraphicCalendarPaste";
-            this.buttonItemGraphicCalendarPaste.SubItemsExpandWidth = 14;
-            this.buttonItemGraphicCalendarPaste.Text = "Paste";
-            // 
-            // buttonItemGraphicCalendarClone
-            // 
-            this.buttonItemGraphicCalendarClone.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemGraphicCalendarClone.Enabled = false;
-            this.buttonItemGraphicCalendarClone.Image = global::CalendarBuilder.Properties.Resources.CloneSmall;
-            this.buttonItemGraphicCalendarClone.Name = "buttonItemGraphicCalendarClone";
-            this.buttonItemGraphicCalendarClone.SubItemsExpandWidth = 14;
-            this.buttonItemGraphicCalendarClone.Text = "Clone";
-            // 
-            // ribbonBarGrapicCalendarSlideInfo
-            // 
-            this.ribbonBarGrapicCalendarSlideInfo.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarGrapicCalendarSlideInfo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGrapicCalendarSlideInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarGrapicCalendarSlideInfo.ContainerControlProcessDialogKey = true;
-            this.ribbonBarGrapicCalendarSlideInfo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarGrapicCalendarSlideInfo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemGraphicCalendarSlideInfo});
-            this.ribbonBarGrapicCalendarSlideInfo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarGrapicCalendarSlideInfo.Location = new System.Drawing.Point(317, 0);
-            this.ribbonBarGrapicCalendarSlideInfo.Name = "ribbonBarGrapicCalendarSlideInfo";
-            this.ribbonBarGrapicCalendarSlideInfo.Size = new System.Drawing.Size(102, 138);
-            this.ribbonBarGrapicCalendarSlideInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarGrapicCalendarSlideInfo.TabIndex = 47;
-            this.ribbonBarGrapicCalendarSlideInfo.Text = "Slide Info";
-            // 
-            // 
-            // 
-            this.ribbonBarGrapicCalendarSlideInfo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGrapicCalendarSlideInfo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemGraphicCalendarSlideInfo
-            // 
-            this.buttonItemGraphicCalendarSlideInfo.AutoCheckOnClick = true;
-            this.buttonItemGraphicCalendarSlideInfo.Image = global::CalendarBuilder.Properties.Resources.SlideInfo;
-            this.buttonItemGraphicCalendarSlideInfo.Name = "buttonItemGraphicCalendarSlideInfo";
-            this.buttonItemGraphicCalendarSlideInfo.SubItemsExpandWidth = 14;
-            // 
-            // ribbonBarGraphicCalendarGrid
-            // 
-            this.ribbonBarGraphicCalendarGrid.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarGrid.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarGrid.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarGraphicCalendarGrid.ContainerControlProcessDialogKey = true;
-            this.ribbonBarGraphicCalendarGrid.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarGraphicCalendarGrid.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemGraphicCalendarGrid});
-            this.ribbonBarGraphicCalendarGrid.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarGraphicCalendarGrid.Location = new System.Drawing.Point(236, 0);
-            this.ribbonBarGraphicCalendarGrid.Name = "ribbonBarGraphicCalendarGrid";
-            this.ribbonBarGraphicCalendarGrid.Size = new System.Drawing.Size(81, 138);
-            this.ribbonBarGraphicCalendarGrid.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarGraphicCalendarGrid.TabIndex = 48;
-            this.ribbonBarGraphicCalendarGrid.Text = "Grid View";
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarGrid.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarGrid.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemGraphicCalendarGrid
-            // 
-            this.buttonItemGraphicCalendarGrid.Image = global::CalendarBuilder.Properties.Resources.Grid;
-            this.buttonItemGraphicCalendarGrid.Name = "buttonItemGraphicCalendarGrid";
-            this.buttonItemGraphicCalendarGrid.SubItemsExpandWidth = 14;
-            // 
-            // ribbonBarGraphicCalendarMonth
-            // 
-            this.ribbonBarGraphicCalendarMonth.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarMonth.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarMonth.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarGraphicCalendarMonth.ContainerControlProcessDialogKey = true;
-            this.ribbonBarGraphicCalendarMonth.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarGraphicCalendarMonth.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemGraphicCalendarMonth});
-            this.ribbonBarGraphicCalendarMonth.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarGraphicCalendarMonth.Location = new System.Drawing.Point(147, 0);
-            this.ribbonBarGraphicCalendarMonth.Name = "ribbonBarGraphicCalendarMonth";
-            this.ribbonBarGraphicCalendarMonth.Size = new System.Drawing.Size(89, 138);
-            this.ribbonBarGraphicCalendarMonth.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarGraphicCalendarMonth.TabIndex = 49;
-            this.ribbonBarGraphicCalendarMonth.Text = "Month View";
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarMonth.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarMonth.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemGraphicCalendarMonth
-            // 
-            this.buttonItemGraphicCalendarMonth.Image = global::CalendarBuilder.Properties.Resources.Calendar;
-            this.buttonItemGraphicCalendarMonth.Name = "buttonItemGraphicCalendarMonth";
-            this.buttonItemGraphicCalendarMonth.SubItemsExpandWidth = 14;
-            // 
-            // ribbonBarGraphicCalendarCalendar
-            // 
-            this.ribbonBarGraphicCalendarCalendar.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarCalendar.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarGraphicCalendarCalendar.ContainerControlProcessDialogKey = true;
-            this.ribbonBarGraphicCalendarCalendar.Controls.Add(this.listBoxControlGraphicCalendar);
-            this.ribbonBarGraphicCalendarCalendar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarGraphicCalendarCalendar.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.itemContainerGraphicCalendarCalendar});
-            this.ribbonBarGraphicCalendarCalendar.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarGraphicCalendarCalendar.Location = new System.Drawing.Point(3, 0);
-            this.ribbonBarGraphicCalendarCalendar.Name = "ribbonBarGraphicCalendarCalendar";
-            this.ribbonBarGraphicCalendarCalendar.Size = new System.Drawing.Size(144, 138);
-            this.ribbonBarGraphicCalendarCalendar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarGraphicCalendarCalendar.TabIndex = 46;
-            this.ribbonBarGraphicCalendarCalendar.Text = "Calendar";
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarCalendar.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarGraphicCalendarCalendar.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // listBoxControlGraphicCalendar
-            // 
-            this.listBoxControlGraphicCalendar.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.listBoxControlGraphicCalendar.Appearance.Options.UseFont = true;
-            this.listBoxControlGraphicCalendar.Appearance.Options.UseTextOptions = true;
-            this.listBoxControlGraphicCalendar.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.listBoxControlGraphicCalendar.ImageList = this.imageList;
-            this.listBoxControlGraphicCalendar.ItemHeight = 25;
-            this.listBoxControlGraphicCalendar.Location = new System.Drawing.Point(6, 3);
-            this.listBoxControlGraphicCalendar.Name = "listBoxControlGraphicCalendar";
-            this.listBoxControlGraphicCalendar.Size = new System.Drawing.Size(129, 115);
-            this.listBoxControlGraphicCalendar.TabIndex = 1;
-            // 
-            // itemContainerGraphicCalendarCalendar
-            // 
-            // 
-            // 
-            // 
-            this.itemContainerGraphicCalendarCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itemContainerGraphicCalendarCalendar.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.itemContainerGraphicCalendarCalendar.Name = "itemContainerGraphicCalendarCalendar";
-            this.itemContainerGraphicCalendarCalendar.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.controlContainerItemGraphicCalendar});
-            // 
-            // controlContainerItemGraphicCalendar
-            // 
-            this.controlContainerItemGraphicCalendar.AllowItemResize = false;
-            this.controlContainerItemGraphicCalendar.Control = this.listBoxControlGraphicCalendar;
-            this.controlContainerItemGraphicCalendar.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
-            this.controlContainerItemGraphicCalendar.Name = "controlContainerItemGraphicCalendar";
-            // 
-            // ribbonPanelSimpleCalendar
-            // 
-            this.ribbonPanelSimpleCalendar.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarExit);
-            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarHelp);
-            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarEmail);
-            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarPowerPoint);
-            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarSave);
-            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarEdit);
-            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarSlideInfo);
-            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarGrid);
-            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarMonth);
-            this.ribbonPanelSimpleCalendar.Controls.Add(this.ribbonBarSimpleCalendarCalendar);
-            this.ribbonPanelSimpleCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelSimpleCalendar.Location = new System.Drawing.Point(0, 26);
-            this.ribbonPanelSimpleCalendar.Name = "ribbonPanelSimpleCalendar";
-            this.ribbonPanelSimpleCalendar.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelSimpleCalendar.Size = new System.Drawing.Size(984, 141);
-            // 
-            // 
-            // 
-            this.ribbonPanelSimpleCalendar.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanelSimpleCalendar.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonPanelSimpleCalendar.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonPanelSimpleCalendar.TabIndex = 11;
-            this.ribbonPanelSimpleCalendar.Visible = false;
-            // 
-            // ribbonBarSimpleCalendarExit
-            // 
-            this.ribbonBarSimpleCalendarExit.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarExit.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarExit.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarSimpleCalendarExit.ContainerControlProcessDialogKey = true;
-            this.ribbonBarSimpleCalendarExit.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarSimpleCalendarExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSimpleCalendarExit});
-            this.ribbonBarSimpleCalendarExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarSimpleCalendarExit.Location = new System.Drawing.Point(830, 0);
-            this.ribbonBarSimpleCalendarExit.Name = "ribbonBarSimpleCalendarExit";
-            this.ribbonBarSimpleCalendarExit.Size = new System.Drawing.Size(84, 138);
-            this.ribbonBarSimpleCalendarExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarSimpleCalendarExit.TabIndex = 52;
-            this.ribbonBarSimpleCalendarExit.Text = "EXIT";
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarExit.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarExit.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemSimpleCalendarExit
-            // 
-            this.buttonItemSimpleCalendarExit.Image = global::CalendarBuilder.Properties.Resources.Exit;
-            this.buttonItemSimpleCalendarExit.Name = "buttonItemSimpleCalendarExit";
-            this.buttonItemSimpleCalendarExit.SubItemsExpandWidth = 14;
-            this.buttonItemSimpleCalendarExit.Text = "buttonItem1";
-            this.buttonItemSimpleCalendarExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
-            // 
-            // ribbonBarSimpleCalendarHelp
-            // 
-            this.ribbonBarSimpleCalendarHelp.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarHelp.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarHelp.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarSimpleCalendarHelp.ContainerControlProcessDialogKey = true;
-            this.ribbonBarSimpleCalendarHelp.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarSimpleCalendarHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSimpleCalendarHelp});
-            this.ribbonBarSimpleCalendarHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarSimpleCalendarHelp.Location = new System.Drawing.Point(748, 0);
-            this.ribbonBarSimpleCalendarHelp.Name = "ribbonBarSimpleCalendarHelp";
-            this.ribbonBarSimpleCalendarHelp.Size = new System.Drawing.Size(82, 138);
-            this.ribbonBarSimpleCalendarHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarSimpleCalendarHelp.TabIndex = 51;
-            this.ribbonBarSimpleCalendarHelp.Text = "HELP";
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarHelp.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarHelp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemSimpleCalendarHelp
-            // 
-            this.buttonItemSimpleCalendarHelp.Image = global::CalendarBuilder.Properties.Resources.Help;
-            this.buttonItemSimpleCalendarHelp.Name = "buttonItemSimpleCalendarHelp";
-            // 
-            // ribbonBarSimpleCalendarEmail
-            // 
-            this.ribbonBarSimpleCalendarEmail.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarEmail.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarEmail.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarSimpleCalendarEmail.ContainerControlProcessDialogKey = true;
-            this.ribbonBarSimpleCalendarEmail.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarSimpleCalendarEmail.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSimpleCalendarEmail});
-            this.ribbonBarSimpleCalendarEmail.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarSimpleCalendarEmail.Location = new System.Drawing.Point(659, 0);
-            this.ribbonBarSimpleCalendarEmail.Name = "ribbonBarSimpleCalendarEmail";
-            this.ribbonBarSimpleCalendarEmail.Size = new System.Drawing.Size(89, 138);
-            this.ribbonBarSimpleCalendarEmail.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarSimpleCalendarEmail.TabIndex = 55;
-            this.ribbonBarSimpleCalendarEmail.Text = "Email";
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarEmail.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarEmail.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemSimpleCalendarEmail
-            // 
-            this.buttonItemSimpleCalendarEmail.Image = global::CalendarBuilder.Properties.Resources.EmailBig;
-            this.buttonItemSimpleCalendarEmail.Name = "buttonItemSimpleCalendarEmail";
-            this.buttonItemSimpleCalendarEmail.SubItemsExpandWidth = 14;
-            // 
-            // ribbonBarSimpleCalendarPowerPoint
-            // 
-            this.ribbonBarSimpleCalendarPowerPoint.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarPowerPoint.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarPowerPoint.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarSimpleCalendarPowerPoint.ContainerControlProcessDialogKey = true;
-            this.ribbonBarSimpleCalendarPowerPoint.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarSimpleCalendarPowerPoint.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSimpleCalendarPowerPoint});
-            this.ribbonBarSimpleCalendarPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarSimpleCalendarPowerPoint.Location = new System.Drawing.Point(575, 0);
-            this.ribbonBarSimpleCalendarPowerPoint.Name = "ribbonBarSimpleCalendarPowerPoint";
-            this.ribbonBarSimpleCalendarPowerPoint.Size = new System.Drawing.Size(84, 138);
-            this.ribbonBarSimpleCalendarPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarSimpleCalendarPowerPoint.TabIndex = 54;
-            this.ribbonBarSimpleCalendarPowerPoint.Text = "PowerPoint";
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarPowerPoint.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarPowerPoint.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemSimpleCalendarPowerPoint
-            // 
-            this.buttonItemSimpleCalendarPowerPoint.Image = global::CalendarBuilder.Properties.Resources.PowerPoint;
-            this.buttonItemSimpleCalendarPowerPoint.Name = "buttonItemSimpleCalendarPowerPoint";
-            this.buttonItemSimpleCalendarPowerPoint.SubItemsExpandWidth = 14;
-            // 
-            // ribbonBarSimpleCalendarSave
-            // 
-            this.ribbonBarSimpleCalendarSave.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarSave.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarSave.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarSimpleCalendarSave.ContainerControlProcessDialogKey = true;
-            this.ribbonBarSimpleCalendarSave.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarSimpleCalendarSave.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSimpleCalendarSave,
-            this.buttonItemSimpleCalendarSaveAs});
-            this.ribbonBarSimpleCalendarSave.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.ribbonBarSimpleCalendarSave.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarSimpleCalendarSave.Location = new System.Drawing.Point(508, 0);
-            this.ribbonBarSimpleCalendarSave.Name = "ribbonBarSimpleCalendarSave";
-            this.ribbonBarSimpleCalendarSave.Size = new System.Drawing.Size(67, 138);
-            this.ribbonBarSimpleCalendarSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarSimpleCalendarSave.TabIndex = 53;
-            this.ribbonBarSimpleCalendarSave.Text = "Save";
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarSave.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarSave.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemSimpleCalendarSave
-            // 
-            this.buttonItemSimpleCalendarSave.Image = global::CalendarBuilder.Properties.Resources.SaveSmall;
-            this.buttonItemSimpleCalendarSave.Name = "buttonItemSimpleCalendarSave";
-            this.buttonItemSimpleCalendarSave.SubItemsExpandWidth = 14;
-            this.buttonItemSimpleCalendarSave.Text = "Save";
-            // 
-            // buttonItemSimpleCalendarSaveAs
-            // 
-            this.buttonItemSimpleCalendarSaveAs.Image = global::CalendarBuilder.Properties.Resources.SaveAs;
-            this.buttonItemSimpleCalendarSaveAs.Name = "buttonItemSimpleCalendarSaveAs";
-            this.buttonItemSimpleCalendarSaveAs.SubItemsExpandWidth = 14;
-            this.buttonItemSimpleCalendarSaveAs.Text = "Save As";
-            // 
-            // ribbonBarSimpleCalendarEdit
-            // 
-            this.ribbonBarSimpleCalendarEdit.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarEdit.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarEdit.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarSimpleCalendarEdit.ContainerControlProcessDialogKey = true;
-            this.ribbonBarSimpleCalendarEdit.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarSimpleCalendarEdit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSimpleCalendarCopy,
-            this.buttonItemSimpleCalendarPaste,
-            this.buttonItemSimpleCalendarClone});
-            this.ribbonBarSimpleCalendarEdit.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.ribbonBarSimpleCalendarEdit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarSimpleCalendarEdit.Location = new System.Drawing.Point(419, 0);
-            this.ribbonBarSimpleCalendarEdit.Name = "ribbonBarSimpleCalendarEdit";
-            this.ribbonBarSimpleCalendarEdit.Size = new System.Drawing.Size(89, 138);
-            this.ribbonBarSimpleCalendarEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarSimpleCalendarEdit.TabIndex = 60;
-            this.ribbonBarSimpleCalendarEdit.Text = "Edit";
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarEdit.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarEdit.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemSimpleCalendarCopy
-            // 
-            this.buttonItemSimpleCalendarCopy.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemSimpleCalendarCopy.Enabled = false;
-            this.buttonItemSimpleCalendarCopy.Image = global::CalendarBuilder.Properties.Resources.CopySmall;
-            this.buttonItemSimpleCalendarCopy.Name = "buttonItemSimpleCalendarCopy";
-            this.buttonItemSimpleCalendarCopy.SubItemsExpandWidth = 14;
-            this.buttonItemSimpleCalendarCopy.Text = "Copy";
-            // 
-            // buttonItemSimpleCalendarPaste
-            // 
-            this.buttonItemSimpleCalendarPaste.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemSimpleCalendarPaste.Enabled = false;
-            this.buttonItemSimpleCalendarPaste.Image = global::CalendarBuilder.Properties.Resources.PasteSmall;
-            this.buttonItemSimpleCalendarPaste.Name = "buttonItemSimpleCalendarPaste";
-            this.buttonItemSimpleCalendarPaste.SubItemsExpandWidth = 14;
-            this.buttonItemSimpleCalendarPaste.Text = "Paste";
-            // 
-            // buttonItemSimpleCalendarClone
-            // 
-            this.buttonItemSimpleCalendarClone.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItemSimpleCalendarClone.Enabled = false;
-            this.buttonItemSimpleCalendarClone.Image = global::CalendarBuilder.Properties.Resources.CloneSmall;
-            this.buttonItemSimpleCalendarClone.Name = "buttonItemSimpleCalendarClone";
-            this.buttonItemSimpleCalendarClone.SubItemsExpandWidth = 14;
-            this.buttonItemSimpleCalendarClone.Text = "Clone";
-            // 
-            // ribbonBarSimpleCalendarSlideInfo
-            // 
-            this.ribbonBarSimpleCalendarSlideInfo.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarSlideInfo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarSlideInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarSimpleCalendarSlideInfo.ContainerControlProcessDialogKey = true;
-            this.ribbonBarSimpleCalendarSlideInfo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarSimpleCalendarSlideInfo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSimpleCalendarSlideInfo});
-            this.ribbonBarSimpleCalendarSlideInfo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarSimpleCalendarSlideInfo.Location = new System.Drawing.Point(317, 0);
-            this.ribbonBarSimpleCalendarSlideInfo.Name = "ribbonBarSimpleCalendarSlideInfo";
-            this.ribbonBarSimpleCalendarSlideInfo.Size = new System.Drawing.Size(102, 138);
-            this.ribbonBarSimpleCalendarSlideInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarSimpleCalendarSlideInfo.TabIndex = 57;
-            this.ribbonBarSimpleCalendarSlideInfo.Text = "Slide Info";
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarSlideInfo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarSlideInfo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemSimpleCalendarSlideInfo
-            // 
-            this.buttonItemSimpleCalendarSlideInfo.AutoCheckOnClick = true;
-            this.buttonItemSimpleCalendarSlideInfo.Image = global::CalendarBuilder.Properties.Resources.SlideInfo;
-            this.buttonItemSimpleCalendarSlideInfo.Name = "buttonItemSimpleCalendarSlideInfo";
-            this.buttonItemSimpleCalendarSlideInfo.SubItemsExpandWidth = 14;
-            // 
-            // ribbonBarSimpleCalendarGrid
-            // 
-            this.ribbonBarSimpleCalendarGrid.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarGrid.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarGrid.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarSimpleCalendarGrid.ContainerControlProcessDialogKey = true;
-            this.ribbonBarSimpleCalendarGrid.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarSimpleCalendarGrid.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSimpleCalendarGrid});
-            this.ribbonBarSimpleCalendarGrid.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarSimpleCalendarGrid.Location = new System.Drawing.Point(236, 0);
-            this.ribbonBarSimpleCalendarGrid.Name = "ribbonBarSimpleCalendarGrid";
-            this.ribbonBarSimpleCalendarGrid.Size = new System.Drawing.Size(81, 138);
-            this.ribbonBarSimpleCalendarGrid.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarSimpleCalendarGrid.TabIndex = 58;
-            this.ribbonBarSimpleCalendarGrid.Text = "Grid View";
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarGrid.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarGrid.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemSimpleCalendarGrid
-            // 
-            this.buttonItemSimpleCalendarGrid.Image = global::CalendarBuilder.Properties.Resources.Grid;
-            this.buttonItemSimpleCalendarGrid.Name = "buttonItemSimpleCalendarGrid";
-            this.buttonItemSimpleCalendarGrid.SubItemsExpandWidth = 14;
-            // 
-            // ribbonBarSimpleCalendarMonth
-            // 
-            this.ribbonBarSimpleCalendarMonth.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarMonth.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarMonth.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarSimpleCalendarMonth.ContainerControlProcessDialogKey = true;
-            this.ribbonBarSimpleCalendarMonth.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarSimpleCalendarMonth.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemSimpleCalendarMonth});
-            this.ribbonBarSimpleCalendarMonth.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarSimpleCalendarMonth.Location = new System.Drawing.Point(147, 0);
-            this.ribbonBarSimpleCalendarMonth.Name = "ribbonBarSimpleCalendarMonth";
-            this.ribbonBarSimpleCalendarMonth.Size = new System.Drawing.Size(89, 138);
-            this.ribbonBarSimpleCalendarMonth.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarSimpleCalendarMonth.TabIndex = 59;
-            this.ribbonBarSimpleCalendarMonth.Text = "Month View";
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarMonth.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarMonth.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // buttonItemSimpleCalendarMonth
-            // 
-            this.buttonItemSimpleCalendarMonth.Image = global::CalendarBuilder.Properties.Resources.Calendar;
-            this.buttonItemSimpleCalendarMonth.Name = "buttonItemSimpleCalendarMonth";
-            this.buttonItemSimpleCalendarMonth.SubItemsExpandWidth = 14;
-            // 
-            // ribbonBarSimpleCalendarCalendar
-            // 
-            this.ribbonBarSimpleCalendarCalendar.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarCalendar.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarSimpleCalendarCalendar.ContainerControlProcessDialogKey = true;
-            this.ribbonBarSimpleCalendarCalendar.Controls.Add(this.listBoxControlSimpleCalendar);
-            this.ribbonBarSimpleCalendarCalendar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarSimpleCalendarCalendar.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.itemContainerSimpleCalendarCalendar});
-            this.ribbonBarSimpleCalendarCalendar.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarSimpleCalendarCalendar.Location = new System.Drawing.Point(3, 0);
-            this.ribbonBarSimpleCalendarCalendar.Name = "ribbonBarSimpleCalendarCalendar";
-            this.ribbonBarSimpleCalendarCalendar.Size = new System.Drawing.Size(144, 138);
-            this.ribbonBarSimpleCalendarCalendar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarSimpleCalendarCalendar.TabIndex = 56;
-            this.ribbonBarSimpleCalendarCalendar.Text = "Calendar";
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarCalendar.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarSimpleCalendarCalendar.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // listBoxControlSimpleCalendar
-            // 
-            this.listBoxControlSimpleCalendar.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.listBoxControlSimpleCalendar.Appearance.Options.UseFont = true;
-            this.listBoxControlSimpleCalendar.Appearance.Options.UseTextOptions = true;
-            this.listBoxControlSimpleCalendar.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.listBoxControlSimpleCalendar.ImageList = this.imageList;
-            this.listBoxControlSimpleCalendar.ItemHeight = 25;
-            this.listBoxControlSimpleCalendar.Location = new System.Drawing.Point(6, 3);
-            this.listBoxControlSimpleCalendar.Name = "listBoxControlSimpleCalendar";
-            this.listBoxControlSimpleCalendar.Size = new System.Drawing.Size(129, 115);
-            this.listBoxControlSimpleCalendar.TabIndex = 1;
-            // 
-            // itemContainerSimpleCalendarCalendar
-            // 
-            // 
-            // 
-            // 
-            this.itemContainerSimpleCalendarCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itemContainerSimpleCalendarCalendar.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.itemContainerSimpleCalendarCalendar.Name = "itemContainerSimpleCalendarCalendar";
-            this.itemContainerSimpleCalendarCalendar.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.controlContainerItemSimpleCalendar});
-            // 
-            // controlContainerItemSimpleCalendar
-            // 
-            this.controlContainerItemSimpleCalendar.AllowItemResize = false;
-            this.controlContainerItemSimpleCalendar.Control = this.listBoxControlSimpleCalendar;
-            this.controlContainerItemSimpleCalendar.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
-            this.controlContainerItemSimpleCalendar.Name = "controlContainerItemSimpleCalendar";
             // 
             // ribbonPanelSuccessModels
             // 
@@ -2587,15 +2586,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBusinessName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditClientType.Properties)).EndInit();
-            this.ribbonPanelAdvancedCalendar.ResumeLayout(false);
-            this.ribbonBarAdvancedCalendarCalendar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlAdvancedCalendar)).EndInit();
-            this.ribbonPanelGraphicCalendar.ResumeLayout(false);
-            this.ribbonBarGraphicCalendarCalendar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlGraphicCalendar)).EndInit();
             this.ribbonPanelSimpleCalendar.ResumeLayout(false);
             this.ribbonBarSimpleCalendarCalendar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlSimpleCalendar)).EndInit();
+            this.ribbonPanelGraphicCalendar.ResumeLayout(false);
+            this.ribbonBarGraphicCalendarCalendar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlGraphicCalendar)).EndInit();
+            this.ribbonPanelAdvancedCalendar.ResumeLayout(false);
+            this.ribbonBarAdvancedCalendarCalendar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlAdvancedCalendar)).EndInit();
             this.ribbonPanelSuccessModels.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -1097,14 +1097,32 @@ namespace TVScheduleBuilder.CustomControls
                         this.Enabled = false;
                         using (ToolForms.FormSelectOutput formSelect = new ToolForms.FormSelectOutput())
                         {
+                            BusinessClasses.OutputScheduleGridBased outputSchedule = null;
+                            System.Threading.Thread thread = null;
+                            thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                            {
+                                this.Invoke((MethodInvoker)delegate
+                                {
+                                    outputSchedule = PrepareOutputTableBased();
+                                });
+                            }));
+                            thread.Start();
+                            while (thread.IsAlive)
+                                System.Windows.Forms.Application.DoEvents();
+
                             formSelect.ExcelBasedSlideCount = GetEstimatedSlideNumber();
                             formSelect.TagsBasedSlideCount = formSelect.ExcelBasedSlideCount;
                             formSelect.TableBasedSlideCount = 1;
                             formSelect.IsEmailOutput = true;
-                            formSelect.buttonXGrid.Enabled = false;
-                            System.Threading.Thread thread = null;
+                            formSelect.buttonXGrid.Enabled = _localSchedule.WeeklySchedule.Programs.Count <= 4 && outputSchedule.SpotsPerSlide <= 13 && _localSchedule.WeeklySchedule.Programs.Count <= 4 && File.Exists(Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetTableBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetTableBasedTemplateFileName, new object[] { outputSchedule.ProgramsPerSlide.ToString(), outputSchedule.SpotsPerSlide.ToString() })));
                             DialogResult result = formSelect.ShowDialog();
-                            if (result == DialogResult.No || result == DialogResult.Ignore)
+                            if (result == DialogResult.Yes)
+                            {
+                                form.Show();
+                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailTableBased(tempFileName, outputSchedule);
+                                form.Close();
+                            }
+                            else if (result == DialogResult.No || result == DialogResult.Ignore)
                             {
                                 form.Show();
                                 BusinessClasses.OutputScheduleGridBased[] outputPackages = null;

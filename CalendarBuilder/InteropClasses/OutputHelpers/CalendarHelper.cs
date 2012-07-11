@@ -24,7 +24,6 @@ namespace CalendarBuilder.InteropClasses
                         System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
                         {
                             monthOutputData.PrepareDayLogoPaths();
-                            monthOutputData.PrepareNotes();
                             int daysCount = monthOutputData.DayOutput.Length;
                             MessageFilter.Register();
 

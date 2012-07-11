@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -43,7 +44,7 @@
             this.buttonItemHomeSaveAs = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
             this.dateEditFlightDatesStart = new DevExpress.XtraEditors.DateEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController();
+            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.dateEditFlightDatesEnd = new DevExpress.XtraEditors.DateEdit();
             this.itemContainerHomeFlightDates = new DevComponents.DotNetBar.ItemContainer();
             this.itemContainerFlightDatesStart = new DevComponents.DotNetBar.ItemContainer();
@@ -105,7 +106,7 @@
             this.buttonItemSimpleCalendarMonth = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarSimpleCalendarCalendar = new DevComponents.DotNetBar.RibbonBar();
             this.listBoxControlSimpleCalendar = new DevExpress.XtraEditors.ImageListBoxControl();
-            this.imageList = new System.Windows.Forms.ImageList();
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.itemContainerSimpleCalendarCalendar = new DevComponents.DotNetBar.ItemContainer();
             this.controlContainerItemSimpleCalendar = new DevComponents.DotNetBar.ControlContainerItem();
             this.ribbonPanelGraphicCalendar = new DevComponents.DotNetBar.RibbonPanel();
@@ -172,7 +173,7 @@
             this.ribbonTabItemGraphicCalendar = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemSimpleCalendar = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemSuccessModels = new DevComponents.DotNetBar.RibbonTabItem();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.pnMain = new System.Windows.Forms.Panel();
             this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
             this.pnEmpty = new System.Windows.Forms.Panel();
@@ -296,7 +297,7 @@
             this.ribbonBarHomeExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeExit});
             this.ribbonBarHomeExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarHomeExit.Location = new System.Drawing.Point(727, 0);
+            this.ribbonBarHomeExit.Location = new System.Drawing.Point(731, 0);
             this.ribbonBarHomeExit.Name = "ribbonBarHomeExit";
             this.ribbonBarHomeExit.Size = new System.Drawing.Size(84, 138);
             this.ribbonBarHomeExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -335,7 +336,7 @@
             this.ribbonBarHomeHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeHelp});
             this.ribbonBarHomeHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarHomeHelp.Location = new System.Drawing.Point(645, 0);
+            this.ribbonBarHomeHelp.Location = new System.Drawing.Point(649, 0);
             this.ribbonBarHomeHelp.Name = "ribbonBarHomeHelp";
             this.ribbonBarHomeHelp.Size = new System.Drawing.Size(82, 138);
             this.ribbonBarHomeHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -373,7 +374,7 @@
             this.buttonItemHomeSaveAs});
             this.ribbonBarHomeSave.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
             this.ribbonBarHomeSave.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarHomeSave.Location = new System.Drawing.Point(578, 0);
+            this.ribbonBarHomeSave.Location = new System.Drawing.Point(582, 0);
             this.ribbonBarHomeSave.Name = "ribbonBarHomeSave";
             this.ribbonBarHomeSave.Size = new System.Drawing.Size(67, 138);
             this.ribbonBarHomeSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -420,7 +421,7 @@
             this.ribbonBarHomeFlightDates.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.itemContainerHomeFlightDates});
             this.ribbonBarHomeFlightDates.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarHomeFlightDates.Location = new System.Drawing.Point(470, 0);
+            this.ribbonBarHomeFlightDates.Location = new System.Drawing.Point(474, 0);
             this.ribbonBarHomeFlightDates.Name = "ribbonBarHomeFlightDates";
             this.ribbonBarHomeFlightDates.Size = new System.Drawing.Size(108, 138);
             this.ribbonBarHomeFlightDates.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -594,7 +595,7 @@
             this.ribbonBarHomeProducts.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarHomeProducts.Location = new System.Drawing.Point(414, 0);
             this.ribbonBarHomeProducts.Name = "ribbonBarHomeProducts";
-            this.ribbonBarHomeProducts.Size = new System.Drawing.Size(56, 138);
+            this.ribbonBarHomeProducts.Size = new System.Drawing.Size(60, 138);
             this.ribbonBarHomeProducts.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarHomeProducts.TabIndex = 29;
             this.ribbonBarHomeProducts.Text = "Products";
@@ -618,8 +619,8 @@
             this.itemContainerHomeProducts.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeProductsDigital,
             this.buttonItemHomeProductsNewspaper,
-            this.buttonItemHomeProductsTV,
-            this.buttonItemHomeProductsRadio});
+            this.buttonItemHomeProductsRadio,
+            this.buttonItemHomeProductsTV});
             // 
             // buttonItemHomeProductsDigital
             // 
@@ -640,6 +641,7 @@
             // buttonItemHomeProductsTV
             // 
             this.buttonItemHomeProductsTV.AutoCheckOnClick = true;
+            this.buttonItemHomeProductsTV.Enabled = false;
             this.buttonItemHomeProductsTV.FixedSize = new System.Drawing.Size(48, 28);
             this.buttonItemHomeProductsTV.ForeColor = System.Drawing.Color.Black;
             this.buttonItemHomeProductsTV.Name = "buttonItemHomeProductsTV";
@@ -648,6 +650,7 @@
             // buttonItemHomeProductsRadio
             // 
             this.buttonItemHomeProductsRadio.AutoCheckOnClick = true;
+            this.buttonItemHomeProductsRadio.Enabled = false;
             this.buttonItemHomeProductsRadio.FixedSize = new System.Drawing.Size(48, 28);
             this.buttonItemHomeProductsRadio.ForeColor = System.Drawing.Color.Black;
             this.buttonItemHomeProductsRadio.Name = "buttonItemHomeProductsRadio";
@@ -706,6 +709,7 @@
             // 
             // buttonItemHomeCalendarTypeMonday
             // 
+            this.buttonItemHomeCalendarTypeMonday.Enabled = false;
             this.buttonItemHomeCalendarTypeMonday.FixedSize = new System.Drawing.Size(82, 48);
             this.buttonItemHomeCalendarTypeMonday.ForeColor = System.Drawing.Color.Black;
             this.buttonItemHomeCalendarTypeMonday.Name = "buttonItemHomeCalendarTypeMonday";

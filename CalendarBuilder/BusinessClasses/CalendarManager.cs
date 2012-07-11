@@ -2365,7 +2365,7 @@ namespace CalendarBuilder.BusinessClasses
         public void PrepareNotes()
         {
             this.Notes.Clear();
-            this.Notes.AddRange(this.Parent.Parent.Notes.Where(x => x.StartDay >= this.Parent.Date && x.FinishDay <= this.Parent.Date));
+            this.Notes.AddRange(this.Parent.Parent.Notes.Where(x => x.StartDay >= this.Parent.Date && x.FinishDay < this.Parent.Date.AddMonths(1)));
         }
     }
 

@@ -165,7 +165,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 
             FormMain.Instance.buttonItemAdvancedCalendarPowerPoint.Enabled = _localSchedule.SundayBased;
             FormMain.Instance.buttonItemAdvancedCalendarEmail.Enabled = _localSchedule.SundayBased;
-            
+
             this.MonthView.LoadData(quickLoad);
             this.GridView.LoadData(quickLoad);
 
@@ -237,6 +237,8 @@ namespace CalendarBuilder.PresentationClasses.Calendars
             if (CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex >= 0)
             {
                 BusinessClasses.CalendarMonth selectedMonth = this.CalendarData.Months[CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex];
+                foreach (BusinessClasses.CalendarMonth month in this.CalendarData.Months)
+                    month.OutputData.PrepareNotes();
                 using (ToolForms.FormSelectCalendar form = new ToolForms.FormSelectCalendar())
                 {
                     form.Text = "Ad Calendar Slide Output";
@@ -244,7 +246,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
                     form.laTitle.Text = "You have several Calendars available for your presentation…";
                     form.buttonXCurrentPublication.Text = string.Format("Send ONLY {0} Calendar Slide to PowerPoint", selectedMonth.Date.ToString("MMMM, yyyy"));
                     form.buttonXSelectedPublications.Text = "Send all of the Selected Calendars to PowerPoint";
-                    foreach (BusinessClasses.CalendarMonth month in this.CalendarData.Months.Where(y => y.Days.Where(z => z.ContainsData).Count() > 0))
+                    foreach (BusinessClasses.CalendarMonth month in this.CalendarData.Months.Where(y => y.Days.Where(z => z.ContainsData).Count() > 0 || y.OutputData.Notes.Count > 0))
                         form.checkedListBoxControlMonths.Items.Add(month, month.Date.ToString("MMMM, yyyy"), CheckState.Checked, true);
                     ConfigurationClasses.RegistryHelper.MainFormHandle = form.Handle;
                     ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
@@ -259,7 +261,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
                             if (result == DialogResult.Yes)
                             {
                                 formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
-                                if (selectedMonth.Days.Where(x => x.ContainsData).Count() == 0)
+                                if (selectedMonth.Days.Where(x => x.ContainsData).Count() == 0 && selectedMonth.OutputData.Notes.Count == 0)
                                     if (AppManager.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to send this slide to PowerPoint?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
                                         return;
                                 formProgress.Show();
@@ -300,7 +302,8 @@ namespace CalendarBuilder.PresentationClasses.Calendars
             if (CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex >= 0)
             {
                 BusinessClasses.CalendarMonth selectedMonth = this.CalendarData.Months[CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex];
-
+                foreach (BusinessClasses.CalendarMonth month in this.CalendarData.Months)
+                    month.OutputData.PrepareNotes();
                 using (ToolForms.FormSelectCalendar form = new ToolForms.FormSelectCalendar())
                 {
                     form.Text = "Ad Calendar Email Output";
@@ -308,7 +311,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
                     form.laTitle.Text = "You have several Calendars that can be ATTACHED to an email…";
                     form.buttonXCurrentPublication.Text = string.Format("Attach just the {0} Calendar Slide to my email message", selectedMonth.Date.ToString("MMMM, yyyy"));
                     form.buttonXSelectedPublications.Text = "Attach ALL Selected Calendars to my email message";
-                    foreach (BusinessClasses.CalendarMonth month in this.CalendarData.Months.Where(y => y.Days.Where(z => z.ContainsData).Count() > 0))
+                    foreach (BusinessClasses.CalendarMonth month in this.CalendarData.Months.Where(y => y.Days.Where(z => z.ContainsData).Count() > 0 || y.OutputData.Notes.Count > 0))
                         form.checkedListBoxControlMonths.Items.Add(month, month.Date.ToString("MMMM, yyyy"), CheckState.Checked, true);
                     ConfigurationClasses.RegistryHelper.MainFormHandle = form.Handle;
                     ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;

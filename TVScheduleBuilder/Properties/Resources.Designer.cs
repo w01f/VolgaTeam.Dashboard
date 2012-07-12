@@ -102,6 +102,13 @@ namespace TVScheduleBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ExcelInactive {
+            get {
+                object obj = ResourceManager.GetObject("ExcelInactive", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Exit {
             get {
                 object obj = ResourceManager.GetObject("Exit", resourceCulture);
@@ -130,6 +137,13 @@ namespace TVScheduleBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap GridInactive {
+            get {
+                object obj = ResourceManager.GetObject("GridInactive", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Help {
             get {
                 object obj = ResourceManager.GetObject("Help", resourceCulture);
@@ -140,6 +154,13 @@ namespace TVScheduleBuilder.Properties {
         internal static System.Drawing.Bitmap Image {
             get {
                 object obj = ResourceManager.GetObject("Image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImageInactive {
+            get {
+                object obj = ResourceManager.GetObject("ImageInactive", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -214,6 +235,13 @@ namespace TVScheduleBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Preview {
+            get {
+                object obj = ResourceManager.GetObject("Preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap RegularEmail {
             get {
                 object obj = ResourceManager.GetObject("RegularEmail", resourceCulture);
@@ -242,6 +270,13 @@ namespace TVScheduleBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap SlideMasterInactive {
+            get {
+                object obj = ResourceManager.GetObject("SlideMasterInactive", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Stations {
             get {
                 object obj = ResourceManager.GetObject("Stations", resourceCulture);
@@ -252,6 +287,13 @@ namespace TVScheduleBuilder.Properties {
         internal static System.Drawing.Bitmap TextGrouped {
             get {
                 object obj = ResourceManager.GetObject("TextGrouped", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap TextGroupedInactive {
+            get {
+                object obj = ResourceManager.GetObject("TextGroupedInactive", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

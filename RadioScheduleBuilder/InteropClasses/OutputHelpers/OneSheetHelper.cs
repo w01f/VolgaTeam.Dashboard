@@ -363,7 +363,7 @@ namespace RadioScheduleBuilder.InteropClasses
                         break;
                 }
                 AppManager.ReleaseComObject(presentations);
-                //AppendOneSheetExcelBased(pages, presentation);
+                AppendOneSheetExcelBased(pages, pasteAsImage, presentation);
                 MessageFilter.Register();
                 System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
                 {
@@ -646,7 +646,7 @@ namespace RadioScheduleBuilder.InteropClasses
             }
         }
 
-        public void PrepareQuickGridSlideMasterBasedEmail(string fileName, BusinessClasses.OutputScheduleTagsBased[] pages)
+        public void PrepareOneSheetEmailSlideMasterBased(string fileName, BusinessClasses.OutputScheduleTagsBased[] pages)
         {
             try
             {
@@ -755,7 +755,7 @@ namespace RadioScheduleBuilder.InteropClasses
             }
         }
 
-        public void PrepareQuickGridGroupedTextBasedEmail(string fileName, BusinessClasses.OutputScheduleTagsBased[] pages)
+        public void PrepareOneSheetEmailGroupedTextBased(string fileName, BusinessClasses.OutputScheduleTagsBased[] pages)
         {
             try
             {

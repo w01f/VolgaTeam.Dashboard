@@ -984,13 +984,13 @@ namespace RadioScheduleBuilder.CustomControls
                         this.Enabled = false;
                         using (ToolForms.FormSelectOutput formSelect = new ToolForms.FormSelectOutput())
                         {
-                            BusinessClasses.OutputScheduleGridBased outputSchedule = null;
+                            BusinessClasses.OutputScheduleGridBased outputPage = null;
                             System.Threading.Thread thread = null;
                             thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
                             {
                                 this.Invoke((MethodInvoker)delegate
                                 {
-                                    outputSchedule = PrepareOutputTableBased();
+                                    outputPage = PrepareOutputTableBased();
                                 });
                             }));
                             thread.Start();
@@ -1000,12 +1000,169 @@ namespace RadioScheduleBuilder.CustomControls
                             formSelect.TagsBasedSlideCount = formSelect.ExcelBasedSlideCount;
                             formSelect.TableBasedSlideCount = 1;
                             formSelect.IsEmailOutput = false;
-                            formSelect.buttonXGrid.Enabled = _localSchedule.MonthlySchedule.Programs.Count <= 4 && outputSchedule.SpotsPerSlide <= 13 && _localSchedule.MonthlySchedule.Programs.Count <= 4 && File.Exists(Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetTableBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetTableBasedTemplateFileName, new object[] { outputSchedule.ProgramsPerSlide.ToString(), outputSchedule.SpotsPerSlide.ToString() })));
+                            formSelect.buttonXGrid.Enabled = _localSchedule.MonthlySchedule.Programs.Count <= 4 && outputPage.SpotsPerSlide <= 13 && _localSchedule.MonthlySchedule.Programs.Count <= 4 && File.Exists(Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetTableBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetTableBasedTemplateFileName, new object[] { outputPage.ProgramsPerSlide.ToString(), outputPage.SpotsPerSlide.ToString() })));
+                            formSelect.buttonXPreview.Click += new EventHandler((sender, e) =>
+                            {
+                                using (ToolForms.FormPreview formPreview = new ToolForms.FormPreview())
+                                {
+                                    using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
+                                    {
+                                        formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating preview slides...";
+                                        formProgress.TopMost = true;
+
+                                        string tempFileName = Path.Combine(ConfigurationClasses.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+
+                                        switch (formSelect.buttonXOutput.DialogResult)
+                                        {
+                                            case DialogResult.Yes:
+                                                {
+                                                    formProgress.Show();
+                                                    InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailTableBased(tempFileName, outputPage);
+                                                    formProgress.Hide();
+                                                }
+                                                formPreview.OutputClick += new EventHandler<EventArgs>((senderPreview, ePreview) =>
+                                                {
+                                                    formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+                                                    formProgress.TopMost = true;
+                                                    formProgress.Show();
+                                                    InteropClasses.PowerPointHelper.Instance.AppendOneSheetTableBased(outputPage);
+                                                    formProgress.Hide();
+                                                    using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
+                                                    {
+                                                        if (formResult.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                                                        {
+                                                            AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                                                            AppManager.ActivateForm(formSelect.Handle, false, false);
+                                                            AppManager.ActivateForm(formPreview.Handle, false, false);
+                                                        }
+                                                    }
+                                                });
+                                                break;
+                                            case DialogResult.No:
+                                            case DialogResult.Ignore:
+                                                {
+                                                    formProgress.Show();
+                                                    BusinessClasses.OutputScheduleGridBased[] outputPages = null;
+                                                    System.Threading.Thread previewThread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                                                    {
+                                                        this.Invoke((MethodInvoker)delegate
+                                                        {
+                                                            outputPages = PrepareOutputExcelBased();
+                                                        });
+                                                    }));
+                                                    previewThread.Start();
+                                                    while (previewThread.IsAlive)
+                                                        System.Windows.Forms.Application.DoEvents();
+                                                    InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailExcelBased(tempFileName, outputPages, formSelect.buttonXOutput.DialogResult == DialogResult.Ignore);
+                                                    formProgress.Hide();
+
+                                                    formPreview.OutputClick += new EventHandler<EventArgs>((senderPreview, ePreview) =>
+                                                    {
+                                                        formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+                                                        formProgress.TopMost = true;
+                                                        formProgress.Show();
+                                                        InteropClasses.PowerPointHelper.Instance.AppendOneSheetExcelBased(outputPages, formSelect.buttonXOutput.DialogResult == DialogResult.Ignore);
+                                                        formProgress.Hide();
+                                                        using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
+                                                        {
+                                                            if (formResult.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                                                            {
+                                                                AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                                                                AppManager.ActivateForm(formSelect.Handle, false, false);
+                                                                AppManager.ActivateForm(formPreview.Handle, false, false);
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                                break;
+                                            case DialogResult.Retry:
+                                                {
+                                                    formProgress.Show();
+                                                    BusinessClasses.OutputScheduleTagsBased[] outputPages = null;
+                                                    System.Threading.Thread previewThread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                                                    {
+                                                        this.Invoke((MethodInvoker)delegate
+                                                        {
+                                                            outputPages = PrepareOutputTagsBased();
+                                                        });
+                                                    }));
+                                                    previewThread.Start();
+                                                    while (previewThread.IsAlive)
+                                                        System.Windows.Forms.Application.DoEvents();
+                                                    InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailSlideMasterBased(tempFileName, outputPages);
+                                                    formProgress.Hide();
+
+                                                    formPreview.OutputClick += new EventHandler<EventArgs>((senderPreview, ePreview) =>
+                                                    {
+                                                        formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+                                                        formProgress.TopMost = true;
+                                                        formProgress.Show();
+                                                        InteropClasses.PowerPointHelper.Instance.AppendOneSheetSlideMasterBased(outputPages);
+                                                        formProgress.Hide();
+                                                        using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
+                                                        {
+                                                            if (formResult.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                                                            {
+                                                                AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                                                                AppManager.ActivateForm(formSelect.Handle, false, false);
+                                                                AppManager.ActivateForm(formPreview.Handle, false, false);
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                                break;
+                                            case DialogResult.Abort:
+                                                {
+                                                    formProgress.Show();
+                                                    BusinessClasses.OutputScheduleTagsBased[] outputPages = null;
+                                                    System.Threading.Thread previewThread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                                                    {
+                                                        this.Invoke((MethodInvoker)delegate
+                                                        {
+                                                            outputPages = PrepareOutputTagsBased();
+                                                        });
+                                                    }));
+                                                    previewThread.Start();
+                                                    while (previewThread.IsAlive)
+                                                        System.Windows.Forms.Application.DoEvents();
+                                                    InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailGroupedTextBased(tempFileName, outputPages);
+                                                    formProgress.Hide();
+
+                                                    formPreview.OutputClick += new EventHandler<EventArgs>((senderPreview, ePreview) =>
+                                                    {
+                                                        formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+                                                        formProgress.TopMost = true;
+                                                        formProgress.Show();
+                                                        InteropClasses.PowerPointHelper.Instance.AppendOneSheetGroupedTextBased(outputPages);
+                                                        formProgress.Hide();
+                                                        using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
+                                                        {
+                                                            if (formResult.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                                                            {
+                                                                AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                                                                AppManager.ActivateForm(formSelect.Handle, false, false);
+                                                                AppManager.ActivateForm(formPreview.Handle, false, false);
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                                break;
+                                        }
+                                        if (File.Exists(tempFileName))
+                                        {
+                                            formPreview.Text = "Monthly Schedule - Quick View";
+                                            formPreview.PresentationFile = tempFileName;
+                                            formPreview.ShowDialog();
+                                        }
+                                        formProgress.Close();
+                                    }
+                                }
+                            });
                             DialogResult result = formSelect.ShowDialog();
                             if (result == DialogResult.Yes)
                             {
                                 form.Show();
-                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetTableBased(outputSchedule);
+                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetTableBased(outputPage);
                                 form.Close();
                                 showResultForm = true;
                             }
@@ -1135,7 +1292,7 @@ namespace RadioScheduleBuilder.CustomControls
                                 thread.Start();
                                 while (thread.IsAlive)
                                     System.Windows.Forms.Application.DoEvents();
-                                InteropClasses.PowerPointHelper.Instance.PrepareQuickGridSlideMasterBasedEmail(tempFileName, outputPackages);
+                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailSlideMasterBased(tempFileName, outputPackages);
                                 form.Close();
                             }
                             else if (result == DialogResult.Abort)
@@ -1152,7 +1309,7 @@ namespace RadioScheduleBuilder.CustomControls
                                 thread.Start();
                                 while (thread.IsAlive)
                                     System.Windows.Forms.Application.DoEvents();
-                                InteropClasses.PowerPointHelper.Instance.PrepareQuickGridGroupedTextBasedEmail(tempFileName, outputPackages);
+                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailGroupedTextBased(tempFileName, outputPackages);
                                 form.Close();
                             }
                         }

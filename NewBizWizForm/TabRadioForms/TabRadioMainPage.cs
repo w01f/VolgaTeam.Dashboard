@@ -31,6 +31,8 @@ namespace NewBizWizForm.TabRadioForms
             this.Controls.Clear();
             if (FormMain.Instance.buttonItemRadioScheduleBuilder != null && FormMain.Instance.buttonItemRadioScheduleBuilder.Checked)
             {
+                RadioScheduleBuilderControl.Instance.LoadSchedules();
+                FormMain.Instance.OutsideClick = RadioScheduleBuilderControl.Instance.OutsideClick;
                 this.Controls.Add(RadioScheduleBuilderControl.Instance);
             }
             else
@@ -41,9 +43,6 @@ namespace NewBizWizForm.TabRadioForms
                 borderedControl.panelExTop.Parent = null;
                 borderedControl.panelExTop.Controls.Clear();
                 borderedControl.OutputClick = null;
-
-                //if (FormMain.Instance.buttonItemPrintScheduleBuilder != null && FormMain.Instance.buttonItemPrintScheduleBuilder.Checked)
-                //    borderedControl.panelExTop.Controls.Add(PrintScheduleBuilderControl.Instance);
 
                 borderedControl.panelExTop.Parent = parentSecond;
             }

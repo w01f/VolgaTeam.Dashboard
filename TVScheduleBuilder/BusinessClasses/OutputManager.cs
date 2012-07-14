@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace TVScheduleBuilder.BusinessClasses
 {
@@ -214,6 +215,8 @@ namespace TVScheduleBuilder.BusinessClasses
                 value = this.TotalSpots[i].Value;
                 if (!this.ReplacementsList.Keys.Contains(key))
                     this.ReplacementsList.Add(key, value);
+
+                Application.DoEvents();
             }
             for (int i = 0; i < this.ProgramsPerSlide; i++)
             {
@@ -387,6 +390,7 @@ namespace TVScheduleBuilder.BusinessClasses
                     value = this.Programs[i].Spots[j];
                     if (!this.ReplacementsList.Keys.Contains(key))
                         this.ReplacementsList.Add(key, value);
+                    Application.DoEvents();
                 }
 
                 if (!string.IsNullOrEmpty(_parent.Parent.Demo))
@@ -407,6 +411,7 @@ namespace TVScheduleBuilder.BusinessClasses
                     if (!this.ReplacementsList.Keys.Contains(key))
                         this.ReplacementsList.Add(key, value);
                 }
+                Application.DoEvents();
             }
         }
 

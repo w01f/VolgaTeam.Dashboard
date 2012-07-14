@@ -196,6 +196,7 @@ namespace TVScheduleBuilder
             buttonItemWeeklyScheduleStation.CheckedChanged += new EventHandler(CustomControls.WeeklyScheduleControl.Instance.button_CheckedChanged);
             buttonItemWeeklyScheduleTime.CheckedChanged += new EventHandler(CustomControls.WeeklyScheduleControl.Instance.button_CheckedChanged);
             buttonItemWeeklyScheduleSpots.CheckedChanged += new EventHandler(CustomControls.WeeklyScheduleControl.Instance.button_CheckedChanged);
+            buttonItemWeeklyScheduleEmptySpots.CheckedChanged += new EventHandler(CustomControls.WeeklyScheduleControl.Instance.button_CheckedChanged);
             buttonItemWeeklyScheduleTotalPeriods.CheckedChanged += new EventHandler(CustomControls.WeeklyScheduleControl.Instance.button_CheckedChanged);
             buttonItemWeeklyScheduleTotalSpots.CheckedChanged += new EventHandler(CustomControls.WeeklyScheduleControl.Instance.button_CheckedChanged);
             buttonItemWeeklyScheduleTotalCPP.CheckedChanged += new EventHandler(CustomControls.WeeklyScheduleControl.Instance.button_CheckedChanged);
@@ -225,6 +226,7 @@ namespace TVScheduleBuilder
             buttonItemMonthlyScheduleStation.CheckedChanged += new EventHandler(CustomControls.MonthlyScheduleControl.Instance.button_CheckedChanged);
             buttonItemMonthlyScheduleTime.CheckedChanged += new EventHandler(CustomControls.MonthlyScheduleControl.Instance.button_CheckedChanged);
             buttonItemMonthlyScheduleSpots.CheckedChanged += new EventHandler(CustomControls.MonthlyScheduleControl.Instance.button_CheckedChanged);
+            buttonItemMonthlyScheduleEmptySpots.CheckedChanged += new EventHandler(CustomControls.MonthlyScheduleControl.Instance.button_CheckedChanged);
             buttonItemMonthlyScheduleTotalPeriods.CheckedChanged += new EventHandler(CustomControls.MonthlyScheduleControl.Instance.button_CheckedChanged);
             buttonItemMonthlyScheduleTotalSpots.CheckedChanged += new EventHandler(CustomControls.MonthlyScheduleControl.Instance.button_CheckedChanged);
             buttonItemMonthlyScheduleTotalCPP.CheckedChanged += new EventHandler(CustomControls.MonthlyScheduleControl.Instance.button_CheckedChanged);

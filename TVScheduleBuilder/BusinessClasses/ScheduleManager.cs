@@ -503,6 +503,7 @@ namespace TVScheduleBuilder.BusinessClasses
         public bool ShowCPP { get; set; }
         public bool ShowGRP { get; set; }
         public bool ShowSpots { get; set; }
+        public bool ShowEmptySpots { get; set; }
         public bool ShowCost { get; set; }
 
         public bool ShowTotalPeriods { get; set; }
@@ -520,7 +521,13 @@ namespace TVScheduleBuilder.BusinessClasses
         {
             get
             {
-                return this.Programs.Count > 0 ? this.Programs.FirstOrDefault().Spots.Count : 0;
+                Program defaultprogram = this.Programs.FirstOrDefault();
+                if (defaultprogram != null)
+                {
+                    return this.ShowEmptySpots ? defaultprogram.Spots.Count : defaultprogram.SpotsNotEmpty.Length;
+                }
+                else
+                    return 0;
             }
         }
 
@@ -597,6 +604,7 @@ namespace TVScheduleBuilder.BusinessClasses
             this.ShowCPP = false;
             this.ShowGRP = false;
             this.ShowSpots = true;
+            this.ShowEmptySpots = true;
             this.ShowCost = true;
 
             this.ShowTotalPeriods = true;
@@ -625,6 +633,7 @@ namespace TVScheduleBuilder.BusinessClasses
             result.AppendLine(@"<ShowCPP>" + this.ShowCPP.ToString() + @"</ShowCPP>");
             result.AppendLine(@"<ShowGRP>" + this.ShowGRP.ToString() + @"</ShowGRP>");
             result.AppendLine(@"<ShowSpots>" + this.ShowSpots.ToString() + @"</ShowSpots>");
+            result.AppendLine(@"<ShowEmptySpots>" + this.ShowEmptySpots.ToString() + @"</ShowEmptySpots>");
             result.AppendLine(@"<ShowCost>" + this.ShowCost.ToString() + @"</ShowCost>");
             result.AppendLine(@"<ShowAverageRate>" + this.ShowAverageRate.ToString() + @"</ShowAverageRate>");
             result.AppendLine(@"<ShowDiscount>" + this.ShowDiscount.ToString() + @"</ShowDiscount>");
@@ -705,6 +714,10 @@ namespace TVScheduleBuilder.BusinessClasses
                     case "ShowSpots":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowSpots = tempBool;
+                        break;
+                    case "ShowEmptySpots":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowEmptySpots = tempBool;
                         break;
                     case "ShowTotalCPP":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -1009,6 +1022,14 @@ namespace TVScheduleBuilder.BusinessClasses
             get
             {
                 return this.Spots.Select(x => x.Count.HasValue ? x.Count.Value : 0).Sum();
+            }
+        }
+
+        public Spot[] SpotsNotEmpty
+        {
+            get
+            {
+                return this.Spots.Where(x => this.Parent.Programs.Select(z => z.Spots.Where(y => y.Date.Equals(x.Date)).FirstOrDefault()).Sum(w => w.Count) > 0).ToArray();
             }
         }
         #endregion

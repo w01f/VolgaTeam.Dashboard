@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace RadioScheduleBuilder.BusinessClasses
 {
@@ -199,23 +200,30 @@ namespace RadioScheduleBuilder.BusinessClasses
             {
                 key = string.Format("MO {0}", (i + 1).ToString("00"));
                 value = this.TotalSpots[i].Month + (char)13 + this.TotalSpots[i].Day;
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
                 key = string.Format("MO  {0}", (i + 1).ToString("00"));
                 value = this.TotalSpots[i].Month + (char)13 + this.TotalSpots[i].Day;
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
                 key = string.Format("M0  {0}", (i + 1).ToString("00"));
                 value = this.TotalSpots[i].Month + (char)13 + this.TotalSpots[i].Day;
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
 
                 key = string.Format("t{0}", new object[] { (i + 1).ToString() });
                 value = this.TotalSpots[i].Value;
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
+
+                Application.DoEvents();
             }
             for (int i = 0; i < this.ProgramsPerSlide; i++)
             {
                 key = string.Format("Program{0}", (i + 1).ToString());
                 value = this.Programs[i].Name;
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
 
                 key = string.Format("Station{0}-dt{0}-Length{0}", (i + 1).ToString());
                 temp.Clear();
@@ -230,21 +238,25 @@ namespace RadioScheduleBuilder.BusinessClasses
                 if (this.ShowLength)
                     temp.Add("    " + this.Programs[i].Length);
                 value = string.Join("", temp.ToArray());
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
 
                 key = string.Format("Rate_{0}", (i + 1).ToString());
                 value = this.Programs[i].Rate;
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
 
                 if (this.ShowCost && this.ShowSpots)
                 {
                     key = string.Format("Cost{0}", (i + 1).ToString());
                     value = this.Programs[i].TotalRate;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
 
                     key = string.Format("Spots{0}", (i + 1).ToString());
                     value = this.Programs[i].TotalSpots;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
 
                     key = "tspots";
                     value = _parent.TotalSpots.ToString("#,##0");
@@ -270,7 +282,8 @@ namespace RadioScheduleBuilder.BusinessClasses
 
                     key = string.Format("SpotsCost{0}", (i + 1).ToString());
                     value = this.Programs[i].TotalSpots;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
                 }
                 else if (this.ShowCost)
                 {
@@ -286,7 +299,8 @@ namespace RadioScheduleBuilder.BusinessClasses
 
                     key = string.Format("SpotsCost{0}", (i + 1).ToString());
                     value = this.Programs[i].TotalRate;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
                 }
                 string spotPrefix = "a";
                 switch (i)
@@ -374,7 +388,9 @@ namespace RadioScheduleBuilder.BusinessClasses
                 {
                     key = string.Format("{0}{1}", new object[] { spotPrefix, (j + 1).ToString() });
                     value = this.Programs[i].Spots[j];
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
+                    Application.DoEvents();
                 }
 
                 if (!string.IsNullOrEmpty(_parent.Parent.Demo))
@@ -382,16 +398,20 @@ namespace RadioScheduleBuilder.BusinessClasses
                     string demoSuffix = "a";
                     key = string.Format("RTG{0}{1}", new object[] { (i + 1).ToString(), demoSuffix });
                     value = this.Programs[i].DemoValue1;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
 
                     key = string.Format("GRP{0}{1}", new object[] { (i + 1).ToString(), demoSuffix });
                     value = this.Programs[i].DemoValue2;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
 
                     key = string.Format("CPP{0}{1}", new object[] { (i + 1).ToString(), demoSuffix });
                     value = this.Programs[i].DemoValue3;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
                 }
+                Application.DoEvents();
             }
         }
 

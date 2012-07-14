@@ -1,8 +1,8 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.BandedGrid;
@@ -270,6 +270,8 @@ namespace RadioScheduleBuilder.CustomControls
             FormMain.Instance.buttonItemMonthlyScheduleStation.Checked = _localSchedule.MonthlySchedule.ShowStation;
             FormMain.Instance.buttonItemMonthlyScheduleTime.Checked = _localSchedule.MonthlySchedule.ShowTime;
             FormMain.Instance.buttonItemMonthlyScheduleSpots.Checked = _localSchedule.MonthlySchedule.ShowSpots;
+            FormMain.Instance.buttonItemMonthlyScheduleEmptySpots.Enabled = _localSchedule.MonthlySchedule.ShowSpots;
+            FormMain.Instance.buttonItemMonthlyScheduleEmptySpots.Checked = _localSchedule.MonthlySchedule.ShowEmptySpots;
 
             FormMain.Instance.buttonItemMonthlyScheduleTotalPeriods.Checked = _localSchedule.MonthlySchedule.ShowTotalPeriods;
             FormMain.Instance.buttonItemMonthlyScheduleTotalSpots.Checked = _localSchedule.MonthlySchedule.ShowTotalSpots;
@@ -446,7 +448,16 @@ namespace RadioScheduleBuilder.CustomControls
                 _localSchedule.MonthlySchedule.ShowLenght = FormMain.Instance.buttonItemMonthlyScheduleLength.Checked;
                 _localSchedule.MonthlySchedule.ShowStation = FormMain.Instance.buttonItemMonthlyScheduleStation.Checked;
                 _localSchedule.MonthlySchedule.ShowTime = FormMain.Instance.buttonItemMonthlyScheduleTime.Checked;
+
                 _localSchedule.MonthlySchedule.ShowSpots = FormMain.Instance.buttonItemMonthlyScheduleSpots.Checked;
+                if (!_localSchedule.MonthlySchedule.ShowSpots)
+                {
+                    _allowTosave = false;
+                    FormMain.Instance.buttonItemMonthlyScheduleEmptySpots.Checked = false;
+                    _allowTosave = true;
+                }
+                FormMain.Instance.buttonItemMonthlyScheduleEmptySpots.Enabled = _localSchedule.MonthlySchedule.ShowSpots;
+                _localSchedule.MonthlySchedule.ShowEmptySpots = FormMain.Instance.buttonItemMonthlyScheduleEmptySpots.Checked;
 
                 _localSchedule.MonthlySchedule.ShowTotalPeriods = FormMain.Instance.buttonItemMonthlyScheduleTotalPeriods.Checked;
                 _localSchedule.MonthlySchedule.ShowTotalSpots = FormMain.Instance.buttonItemMonthlyScheduleTotalSpots.Checked;
@@ -592,7 +603,7 @@ namespace RadioScheduleBuilder.CustomControls
                 {
                     BusinessClasses.Program defaultProgram = _localSchedule.MonthlySchedule.Programs.FirstOrDefault();
                     if (defaultProgram != null)
-                        totalSpotsCount = defaultProgram.Spots.Count;
+                        totalSpotsCount = defaultProgram.Parent.ShowEmptySpots ? defaultProgram.Spots.Count : defaultProgram.SpotsNotEmpty.Length;
                 }
                 for (int i = 0; i < _localSchedule.MonthlySchedule.Programs.Count; i += programsPerSlide)
                     for (int k = 0, n = 0; k < (totalSpotsCount == 0 ? 1 : totalSpotsCount); k += 13, n++)
@@ -613,7 +624,7 @@ namespace RadioScheduleBuilder.CustomControls
             {
                 BusinessClasses.Program defaultProgram = _localSchedule.MonthlySchedule.Programs.FirstOrDefault();
                 if (defaultProgram != null)
-                    totalSpotsCount = defaultProgram.Spots.Count;
+                    totalSpotsCount = defaultProgram.Parent.ShowEmptySpots ? defaultProgram.Spots.Count : defaultProgram.SpotsNotEmpty.Length;
             }
             for (int i = 0; i < _localSchedule.MonthlySchedule.Programs.Count; i += programsPerSlide)
             {
@@ -682,11 +693,12 @@ namespace RadioScheduleBuilder.CustomControls
                             outputProgram.TotalSpots = program.TotalSpots.ToString("#,##0");
 
                             #region Set Spots Values
+                            BusinessClasses.Spot[] spotsNotEmpy = program.SpotsNotEmpty;
                             for (int l = 0; l < 13; l++)
                             {
                                 if ((k + l) < totalSpotsCount)
                                 {
-                                    string value = program.Spots[k + l].Count > 0 ? program.Spots[k + l].Count.ToString() : "-";
+                                    string value = !program.Parent.ShowEmptySpots ? (spotsNotEmpy[k + l].Count > 0 ? spotsNotEmpy[k + l].Count.ToString() : "-") : (program.Spots[k + l].Count > 0 ? program.Spots[k + l].Count.ToString() : "-");
                                     outputProgram.Spots.Add(value);
                                 }
                                 else
@@ -698,6 +710,7 @@ namespace RadioScheduleBuilder.CustomControls
                         }
                         else
                             break;
+                        Application.DoEvents();
                     }
                     #endregion
 
@@ -705,20 +718,26 @@ namespace RadioScheduleBuilder.CustomControls
                     BusinessClasses.Program defaultProgram = _localSchedule.MonthlySchedule.Programs.FirstOrDefault();
                     if (defaultProgram != null)
                     {
-
+                        BusinessClasses.Spot[] defaultSpotsNotEmpy = defaultProgram.SpotsNotEmpty;
                         for (int l = 0; l < 13; l++)
                         {
                             if ((k + l) < totalSpotsCount)
                             {
                                 BusinessClasses.OutputTotalSpot outputTotalSpot = new BusinessClasses.OutputTotalSpot();
-                                outputTotalSpot.Day = defaultProgram.Spots[k + l].Date.Day.ToString();
-                                outputTotalSpot.Month = BusinessClasses.Spot.GetMonthAbbreviation(defaultProgram.Spots[k + l].Date.Month);
-                                int sum = _localSchedule.MonthlySchedule.Programs.Select(x => x.Spots.Where(y => y.Date.Equals(defaultProgram.Spots[k + l].Date)).FirstOrDefault()).Where(z => z.Count.HasValue).Select(z => z.Count.Value).Sum();
+                                outputTotalSpot.Day = !defaultProgram.Parent.ShowEmptySpots ? (defaultSpotsNotEmpy[k + l].Date.Day.ToString()) : (defaultProgram.Spots[k + l].Date.Day.ToString());
+                                outputTotalSpot.Month = BusinessClasses.Spot.GetMonthAbbreviation(!defaultProgram.Parent.ShowEmptySpots ? defaultSpotsNotEmpy[k + l].Date.Month : defaultProgram.Spots[k + l].Date.Month);
+
+                                int sum = 0;
+                                if (!defaultProgram.Parent.ShowEmptySpots)
+                                    sum = defaultProgram.Parent.Programs.Select(x => x.SpotsNotEmpty.Where(y => y.Date.Equals(defaultSpotsNotEmpy[k + l].Date)).FirstOrDefault()).Where(z => z.Count.HasValue).Select(z => z.Count.Value).Sum();
+                                else
+                                    sum = defaultProgram.Parent.Programs.Select(x => x.Spots.Where(y => y.Date.Equals(defaultProgram.Spots[k + l].Date)).FirstOrDefault()).Where(z => z.Count.HasValue).Select(z => z.Count.Value).Sum();
                                 outputTotalSpot.Value = sum > 0 ? sum.ToString() : "-";
                                 outputPage.TotalSpots.Add(outputTotalSpot);
                             }
                             else
                                 break;
+                            Application.DoEvents();
                         }
                     }
                     outputPage.TotalCost = _localSchedule.MonthlySchedule.TotalCost.ToString("$#,##0");
@@ -728,6 +747,8 @@ namespace RadioScheduleBuilder.CustomControls
                     #endregion
 
                     outputPages.Add(outputPage);
+                    
+                    Application.DoEvents();
                 }
             }
             return outputPages.ToArray();
@@ -741,7 +762,7 @@ namespace RadioScheduleBuilder.CustomControls
             int totalSpotsCount = 0;
             if (FormMain.Instance.buttonItemMonthlyScheduleSpots.Checked)
                 if (defaultProgram != null)
-                    totalSpotsCount = defaultProgram.Spots.Count;
+                    totalSpotsCount = defaultProgram.Parent.ShowEmptySpots ? defaultProgram.Spots.Count : defaultProgram.SpotsNotEmpty.Length;
 
             outputPage.Advertiser = _localSchedule.BusinessName;
             outputPage.DecisionMaker = _localSchedule.DecisionMaker;
@@ -802,28 +823,31 @@ namespace RadioScheduleBuilder.CustomControls
                 outputProgram.TotalSpots = (totalSpotsCount >= 8 ? "Spots: " : string.Empty) + program.TotalSpots.ToString("#,##0");
 
                 #region Set Spots Values
-                foreach (BusinessClasses.Spot spot in program.Spots)
+                foreach (BusinessClasses.Spot spot in program.Spots.Where(x => program.Parent.ShowEmptySpots || program.Parent.Programs.Select(z => z.Spots.Where(y => y.Date.Equals(x.Date)).FirstOrDefault()).Sum(w => w.Count) > 0))
                 {
                     string value = spot.Count > 0 ? spot.Count.ToString() : "-";
                     outputProgram.Spots.Add(value);
+                    Application.DoEvents();
                 }
                 #endregion
 
                 outputPage.Programs.Add(outputProgram);
+                Application.DoEvents();
             }
             #endregion
 
             #region Set Total Values
             if (defaultProgram != null)
             {
-                foreach (BusinessClasses.Spot spot in defaultProgram.Spots)
+                foreach (BusinessClasses.Spot spot in defaultProgram.Spots.Where(x => defaultProgram.Parent.ShowEmptySpots || defaultProgram.Parent.Programs.Select(z => z.Spots.Where(y => y.Date.Equals(x.Date)).FirstOrDefault()).Sum(w => w.Count) > 0))
                 {
                     BusinessClasses.OutputTotalSpot outputTotalSpot = new BusinessClasses.OutputTotalSpot();
                     outputTotalSpot.Day = spot.Date.Day.ToString();
                     outputTotalSpot.Month = BusinessClasses.Spot.GetMonthAbbreviation(spot.Date.Month);
-                    int sum = _localSchedule.MonthlySchedule.Programs.Select(x => x.Spots.Where(y => y.Date.Equals(spot.Date)).FirstOrDefault()).Where(z => z.Count.HasValue).Select(z => z.Count.Value).Sum();
+                    int sum = defaultProgram.Parent.Programs.Select(x => x.Spots.Where(y => y.Date.Equals(spot.Date)).FirstOrDefault()).Where(z => z.Count.HasValue).Select(z => z.Count.Value).Sum();
                     outputTotalSpot.Value = sum > 0 ? sum.ToString() : "-";
                     outputPage.TotalSpots.Add(outputTotalSpot);
+                    Application.DoEvents();
                 }
             }
             outputPage.TotalCost = _localSchedule.MonthlySchedule.TotalCost.ToString("$#,##0");
@@ -852,7 +876,7 @@ namespace RadioScheduleBuilder.CustomControls
                 {
                     BusinessClasses.Program defaultProgram = _localSchedule.MonthlySchedule.Programs.FirstOrDefault();
                     if (defaultProgram != null)
-                        totalSpotsCount = defaultProgram.Spots.Count;
+                        totalSpotsCount = defaultProgram.Parent.ShowEmptySpots ? defaultProgram.Spots.Count : defaultProgram.SpotsNotEmpty.Length;
                 }
                 for (int i = 0; i < _localSchedule.MonthlySchedule.Programs.Count; i += programsPerSlide)
                 {
@@ -915,17 +939,18 @@ namespace RadioScheduleBuilder.CustomControls
                                     properties = string.Join("    ", temp.ToArray());
                                 outputProgram.Properties = properties;
 
-
                                 #region Set Spots Values
+                                BusinessClasses.Spot[] spotsNotEmpy = program.SpotsNotEmpty;
                                 for (int l = 0; l < 13; l++)
                                 {
                                     if ((k + l) < totalSpotsCount)
                                     {
-                                        string value = program.Spots[k + l].Count > 0 ? program.Spots[k + l].Count.ToString() : "-";
+                                        string value = !program.Parent.ShowEmptySpots ? (spotsNotEmpy[k + l].Count > 0 ? spotsNotEmpy[k + l].Count.ToString() : "-") : (program.Spots[k + l].Count > 0 ? program.Spots[k + l].Count.ToString() : "-");
                                         outputProgram.Spots.Add(value);
                                     }
                                     else
                                         break;
+                                    Application.DoEvents();
                                 }
                                 #endregion
 
@@ -933,6 +958,7 @@ namespace RadioScheduleBuilder.CustomControls
                             }
                             else
                                 break;
+                            Application.DoEvents();
                         }
                         #endregion
 
@@ -940,20 +966,26 @@ namespace RadioScheduleBuilder.CustomControls
                         BusinessClasses.Program defaultProgram = _localSchedule.MonthlySchedule.Programs.FirstOrDefault();
                         if (defaultProgram != null)
                         {
-
+                            BusinessClasses.Spot[] defaultSpotsNotEmpy = defaultProgram.SpotsNotEmpty;
                             for (int l = 0; l < 13; l++)
                             {
                                 if ((k + l) < totalSpotsCount)
                                 {
                                     BusinessClasses.OutputTotalSpot outputTotalSpot = new BusinessClasses.OutputTotalSpot();
-                                    outputTotalSpot.Day = defaultProgram.Spots[k + l].Date.Day.ToString();
-                                    outputTotalSpot.Month = BusinessClasses.Spot.GetMonthAbbreviation(defaultProgram.Spots[k + l].Date.Month);
-                                    int sum = _localSchedule.MonthlySchedule.Programs.Select(x => x.Spots.Where(y => y.Date.Equals(defaultProgram.Spots[k + l].Date)).FirstOrDefault()).Where(z => z.Count.HasValue).Select(z => z.Count.Value).Sum();
+                                    outputTotalSpot.Day = !defaultProgram.Parent.ShowEmptySpots ? (defaultSpotsNotEmpy[k + l].Date.Day.ToString()) : (defaultProgram.Spots[k + l].Date.Day.ToString());
+                                    outputTotalSpot.Month = BusinessClasses.Spot.GetMonthAbbreviation(!defaultProgram.Parent.ShowEmptySpots ? defaultSpotsNotEmpy[k + l].Date.Month : defaultProgram.Spots[k + l].Date.Month);
+
+                                    int sum = 0;
+                                    if (!defaultProgram.Parent.ShowEmptySpots)
+                                        sum = defaultProgram.Parent.Programs.Select(x => x.SpotsNotEmpty.Where(y => y.Date.Equals(defaultSpotsNotEmpy[k + l].Date)).FirstOrDefault()).Where(z => z.Count.HasValue).Select(z => z.Count.Value).Sum();
+                                    else
+                                        sum = defaultProgram.Parent.Programs.Select(x => x.Spots.Where(y => y.Date.Equals(defaultProgram.Spots[k + l].Date)).FirstOrDefault()).Where(z => z.Count.HasValue).Select(z => z.Count.Value).Sum();
                                     outputTotalSpot.Value = sum > 0 ? sum.ToString() : "-";
                                     outputPage.TotalSpots.Add(outputTotalSpot);
                                 }
                                 else
                                     break;
+                                Application.DoEvents();
                             }
                         }
                         outputPage.TotalCost = FormMain.Instance.buttonItemMonthlyScheduleCost.Checked ? _localSchedule.MonthlySchedule.TotalCost.ToString("$#,##0") : string.Empty;
@@ -963,7 +995,10 @@ namespace RadioScheduleBuilder.CustomControls
                         #endregion
 
                         outputPages.Add(outputPage);
+
+                        Application.DoEvents();
                     }
+                    Application.DoEvents();
                 }
             }
             return outputPages.ToArray();
@@ -1000,7 +1035,7 @@ namespace RadioScheduleBuilder.CustomControls
                             formSelect.TagsBasedSlideCount = formSelect.ExcelBasedSlideCount;
                             formSelect.TableBasedSlideCount = 1;
                             formSelect.IsEmailOutput = false;
-                            formSelect.buttonXGrid.Enabled = _localSchedule.MonthlySchedule.Programs.Count <= 4 && outputPage.SpotsPerSlide <= 13 && _localSchedule.MonthlySchedule.Programs.Count <= 4 && File.Exists(Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetTableBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetTableBasedTemplateFileName, new object[] { outputPage.ProgramsPerSlide.ToString(), outputPage.SpotsPerSlide.ToString() })));
+                            formSelect.buttonXGrid.Enabled = _localSchedule.MonthlySchedule.Programs.Count <= 4 && outputPage.SpotsPerSlide <= 13 && File.Exists(Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetTableBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetTableBasedTemplateFileName, new object[] { outputPage.ProgramsPerSlide.ToString(), outputPage.SpotsPerSlide.ToString() })));
                             formSelect.buttonXPreview.Click += new EventHandler((sender, e) =>
                             {
                                 using (ToolForms.FormPreview formPreview = new ToolForms.FormPreview())
@@ -1027,6 +1062,13 @@ namespace RadioScheduleBuilder.CustomControls
                                                     formProgress.Show();
                                                     formPreview.Hide();
                                                     formSelect.Hide();
+                                                    System.Threading.Thread previewThread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                                                    {
+                                                        outputPage.PopulateScheduleReplacementsList();
+                                                    }));
+                                                    previewThread.Start();
+                                                    while (previewThread.IsAlive)
+                                                        System.Windows.Forms.Application.DoEvents();
                                                     InteropClasses.PowerPointHelper.Instance.AppendOneSheetTableBased(outputPage);
                                                     formProgress.Hide();
                                                     using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
@@ -1282,14 +1324,32 @@ namespace RadioScheduleBuilder.CustomControls
                         this.Enabled = false;
                         using (ToolForms.FormSelectOutput formSelect = new ToolForms.FormSelectOutput())
                         {
+                            BusinessClasses.OutputScheduleGridBased outputSchedule = null;
+                            System.Threading.Thread thread = null;
+                            thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                            {
+                                this.Invoke((MethodInvoker)delegate
+                                {
+                                    outputSchedule = PrepareOutputTableBased();
+                                });
+                            }));
+                            thread.Start();
+                            while (thread.IsAlive)
+                                System.Windows.Forms.Application.DoEvents();
+
                             formSelect.ExcelBasedSlideCount = GetEstimatedSlideNumber();
                             formSelect.TagsBasedSlideCount = formSelect.ExcelBasedSlideCount;
                             formSelect.TableBasedSlideCount = 1;
                             formSelect.IsEmailOutput = true;
-                            formSelect.buttonXGrid.Enabled = false;
-                            System.Threading.Thread thread = null;
+                            formSelect.buttonXGrid.Enabled = _localSchedule.MonthlySchedule.Programs.Count <= 4 && outputSchedule.SpotsPerSlide <= 13 && _localSchedule.MonthlySchedule.Programs.Count <= 4 && File.Exists(Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetTableBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetTableBasedTemplateFileName, new object[] { outputSchedule.ProgramsPerSlide.ToString(), outputSchedule.SpotsPerSlide.ToString() })));
                             DialogResult result = formSelect.ShowDialog();
-                            if (result == DialogResult.No || result == DialogResult.Ignore)
+                            if (result == DialogResult.Yes)
+                            {
+                                form.Show();
+                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailTableBased(tempFileName, outputSchedule);
+                                form.Close();
+                            }
+                            else if (result == DialogResult.No || result == DialogResult.Ignore)
                             {
                                 form.Show();
                                 BusinessClasses.OutputScheduleGridBased[] outputPackages = null;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -43,7 +44,7 @@
             this.buttonItemHomeSaveAs = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBarHomeDemo = new DevComponents.DotNetBar.RibbonBar();
             this.comboBoxEditDemo = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController();
+            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.comboBoxEditSource = new DevExpress.XtraEditors.ComboBoxEdit();
             this.itemContainerHomeDemos = new DevComponents.DotNetBar.ItemContainer();
             this.checkBoxItemHomeDemoNo = new DevComponents.DotNetBar.CheckBoxItem();
@@ -187,8 +188,10 @@
             this.ribbonTabItemWeeklySchedule = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemMonthlySchedule = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemSuccessModels = new DevComponents.DotNetBar.RibbonTabItem();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.pnMain = new System.Windows.Forms.Panel();
+            this.buttonItemWeeklyScheduleEmptySpots = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItemMonthlyScheduleEmptySpots = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonControl.SuspendLayout();
             this.ribbonPanelHome.SuspendLayout();
             this.ribbonBarHomeDemo.SuspendLayout();
@@ -221,9 +224,9 @@
             this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonControl.CanCustomize = false;
             this.ribbonControl.Controls.Add(this.ribbonPanelHome);
-            this.ribbonControl.Controls.Add(this.ribbonPanelSuccessModels);
-            this.ribbonControl.Controls.Add(this.ribbonPanelWeeklySchedule);
             this.ribbonControl.Controls.Add(this.ribbonPanelMonthlySchedule);
+            this.ribbonControl.Controls.Add(this.ribbonPanelWeeklySchedule);
+            this.ribbonControl.Controls.Add(this.ribbonPanelSuccessModels);
             this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.ribbonControl.EnableQatPlacement = false;
             this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -1663,7 +1666,8 @@
             this.itemContainerWeeklyScheduleLineOptions3.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemWeeklyScheduleCPP,
             this.buttonItemWeeklyScheduleGRP,
-            this.buttonItemWeeklyScheduleCost});
+            this.buttonItemWeeklyScheduleCost,
+            this.buttonItemWeeklyScheduleEmptySpots});
             // 
             // buttonItemWeeklyScheduleCPP
             // 
@@ -1772,10 +1776,10 @@
             this.ribbonPanelMonthlySchedule.Controls.Add(this.ribbonBarMonthlyScheduleDelete);
             this.ribbonPanelMonthlySchedule.Controls.Add(this.ribbonBarMonthlyScheduleAdd);
             this.ribbonPanelMonthlySchedule.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ribbonPanelMonthlySchedule.Location = new System.Drawing.Point(0, 25);
+            this.ribbonPanelMonthlySchedule.Location = new System.Drawing.Point(0, 26);
             this.ribbonPanelMonthlySchedule.Name = "ribbonPanelMonthlySchedule";
             this.ribbonPanelMonthlySchedule.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelMonthlySchedule.Size = new System.Drawing.Size(984, 138);
+            this.ribbonPanelMonthlySchedule.Size = new System.Drawing.Size(984, 137);
             // 
             // 
             // 
@@ -1809,7 +1813,7 @@
             this.ribbonBarMonthlyScheduleExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMonthlyScheduleExit.Location = new System.Drawing.Point(794, 0);
             this.ribbonBarMonthlyScheduleExit.Name = "ribbonBarMonthlyScheduleExit";
-            this.ribbonBarMonthlyScheduleExit.Size = new System.Drawing.Size(84, 135);
+            this.ribbonBarMonthlyScheduleExit.Size = new System.Drawing.Size(84, 134);
             this.ribbonBarMonthlyScheduleExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMonthlyScheduleExit.TabIndex = 26;
             this.ribbonBarMonthlyScheduleExit.Text = "EXIT";
@@ -1848,7 +1852,7 @@
             this.ribbonBarMonthlyScheduleHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMonthlyScheduleHelp.Location = new System.Drawing.Point(706, 0);
             this.ribbonBarMonthlyScheduleHelp.Name = "ribbonBarMonthlyScheduleHelp";
-            this.ribbonBarMonthlyScheduleHelp.Size = new System.Drawing.Size(88, 135);
+            this.ribbonBarMonthlyScheduleHelp.Size = new System.Drawing.Size(88, 134);
             this.ribbonBarMonthlyScheduleHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMonthlyScheduleHelp.TabIndex = 27;
             this.ribbonBarMonthlyScheduleHelp.Text = "HELP";
@@ -1886,7 +1890,7 @@
             this.ribbonBarMonthlyScheduleEmail.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMonthlyScheduleEmail.Location = new System.Drawing.Point(617, 0);
             this.ribbonBarMonthlyScheduleEmail.Name = "ribbonBarMonthlyScheduleEmail";
-            this.ribbonBarMonthlyScheduleEmail.Size = new System.Drawing.Size(89, 135);
+            this.ribbonBarMonthlyScheduleEmail.Size = new System.Drawing.Size(89, 134);
             this.ribbonBarMonthlyScheduleEmail.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMonthlyScheduleEmail.TabIndex = 37;
             this.ribbonBarMonthlyScheduleEmail.Text = "Email";
@@ -1923,7 +1927,7 @@
             this.ribbonBarMonthlySchedulePowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMonthlySchedulePowerPoint.Location = new System.Drawing.Point(533, 0);
             this.ribbonBarMonthlySchedulePowerPoint.Name = "ribbonBarMonthlySchedulePowerPoint";
-            this.ribbonBarMonthlySchedulePowerPoint.Size = new System.Drawing.Size(84, 135);
+            this.ribbonBarMonthlySchedulePowerPoint.Size = new System.Drawing.Size(84, 134);
             this.ribbonBarMonthlySchedulePowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMonthlySchedulePowerPoint.TabIndex = 32;
             this.ribbonBarMonthlySchedulePowerPoint.Text = "PowerPoint";
@@ -1962,7 +1966,7 @@
             this.ribbonBarMonthlyScheduleSave.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMonthlyScheduleSave.Location = new System.Drawing.Point(466, 0);
             this.ribbonBarMonthlyScheduleSave.Name = "ribbonBarMonthlyScheduleSave";
-            this.ribbonBarMonthlyScheduleSave.Size = new System.Drawing.Size(67, 135);
+            this.ribbonBarMonthlyScheduleSave.Size = new System.Drawing.Size(67, 134);
             this.ribbonBarMonthlyScheduleSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMonthlyScheduleSave.TabIndex = 31;
             this.ribbonBarMonthlyScheduleSave.Text = "Save";
@@ -2008,7 +2012,7 @@
             this.ribbonBarMonthlyScheduleScheduleTotals.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMonthlyScheduleScheduleTotals.Location = new System.Drawing.Point(295, 0);
             this.ribbonBarMonthlyScheduleScheduleTotals.Name = "ribbonBarMonthlyScheduleScheduleTotals";
-            this.ribbonBarMonthlyScheduleScheduleTotals.Size = new System.Drawing.Size(171, 135);
+            this.ribbonBarMonthlyScheduleScheduleTotals.Size = new System.Drawing.Size(171, 134);
             this.ribbonBarMonthlyScheduleScheduleTotals.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMonthlyScheduleScheduleTotals.TabIndex = 36;
             this.ribbonBarMonthlyScheduleScheduleTotals.Text = "Schedule Totals";
@@ -2127,7 +2131,7 @@
             this.ribbonBarMonthlyScheduleLineOptions.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMonthlyScheduleLineOptions.Location = new System.Drawing.Point(163, 0);
             this.ribbonBarMonthlyScheduleLineOptions.Name = "ribbonBarMonthlyScheduleLineOptions";
-            this.ribbonBarMonthlyScheduleLineOptions.Size = new System.Drawing.Size(132, 135);
+            this.ribbonBarMonthlyScheduleLineOptions.Size = new System.Drawing.Size(132, 134);
             this.ribbonBarMonthlyScheduleLineOptions.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMonthlyScheduleLineOptions.TabIndex = 35;
             this.ribbonBarMonthlyScheduleLineOptions.Text = "Line Options";
@@ -2238,7 +2242,8 @@
             this.itemContainerMonthlyScheduleLineOptions3.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemMonthlyScheduleCPP,
             this.buttonItemMonthlyScheduleGRP,
-            this.buttonItemMonthlyScheduleCost});
+            this.buttonItemMonthlyScheduleCost,
+            this.buttonItemMonthlyScheduleEmptySpots});
             // 
             // buttonItemMonthlyScheduleCPP
             // 
@@ -2279,7 +2284,7 @@
             this.ribbonBarMonthlyScheduleDelete.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMonthlyScheduleDelete.Location = new System.Drawing.Point(83, 0);
             this.ribbonBarMonthlyScheduleDelete.Name = "ribbonBarMonthlyScheduleDelete";
-            this.ribbonBarMonthlyScheduleDelete.Size = new System.Drawing.Size(80, 135);
+            this.ribbonBarMonthlyScheduleDelete.Size = new System.Drawing.Size(80, 134);
             this.ribbonBarMonthlyScheduleDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMonthlyScheduleDelete.TabIndex = 34;
             this.ribbonBarMonthlyScheduleDelete.Text = "Delete";
@@ -2315,7 +2320,7 @@
             this.ribbonBarMonthlyScheduleAdd.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.ribbonBarMonthlyScheduleAdd.Location = new System.Drawing.Point(3, 0);
             this.ribbonBarMonthlyScheduleAdd.Name = "ribbonBarMonthlyScheduleAdd";
-            this.ribbonBarMonthlyScheduleAdd.Size = new System.Drawing.Size(80, 135);
+            this.ribbonBarMonthlyScheduleAdd.Size = new System.Drawing.Size(80, 134);
             this.ribbonBarMonthlyScheduleAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.ribbonBarMonthlyScheduleAdd.TabIndex = 33;
             this.ribbonBarMonthlyScheduleAdd.Text = "Add";
@@ -2372,6 +2377,20 @@
             this.pnMain.Size = new System.Drawing.Size(984, 547);
             this.pnMain.TabIndex = 2;
             this.pnMain.Click += new System.EventHandler(this.pnMain_Click);
+            // 
+            // buttonItemWeeklyScheduleEmptySpots
+            // 
+            this.buttonItemWeeklyScheduleEmptySpots.AutoCheckOnClick = true;
+            this.buttonItemWeeklyScheduleEmptySpots.ForeColor = System.Drawing.Color.Black;
+            this.buttonItemWeeklyScheduleEmptySpots.Name = "buttonItemWeeklyScheduleEmptySpots";
+            this.buttonItemWeeklyScheduleEmptySpots.Text = "Empty";
+            // 
+            // buttonItemMonthlyScheduleEmptySpots
+            // 
+            this.buttonItemMonthlyScheduleEmptySpots.AutoCheckOnClick = true;
+            this.buttonItemMonthlyScheduleEmptySpots.ForeColor = System.Drawing.Color.Black;
+            this.buttonItemMonthlyScheduleEmptySpots.Name = "buttonItemMonthlyScheduleEmptySpots";
+            this.buttonItemMonthlyScheduleEmptySpots.Text = "Empty";
             // 
             // FormMain
             // 
@@ -2574,6 +2593,8 @@
         private DevComponents.DotNetBar.RibbonBar ribbonBarMonthlyScheduleAdd;
         public DevComponents.DotNetBar.ButtonItem buttonItemMonthlyScheduleAdd;
         public DevComponents.DotNetBar.RibbonPanel ribbonPanelMonthlySchedule;
+        public DevComponents.DotNetBar.ButtonItem buttonItemMonthlyScheduleEmptySpots;
+        public DevComponents.DotNetBar.ButtonItem buttonItemWeeklyScheduleEmptySpots;
     }
 }
 

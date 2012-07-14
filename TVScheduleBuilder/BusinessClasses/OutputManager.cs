@@ -199,23 +199,28 @@ namespace TVScheduleBuilder.BusinessClasses
             {
                 key = string.Format("MO {0}", (i + 1).ToString("00"));
                 value = this.TotalSpots[i].Month + (char)13 + this.TotalSpots[i].Day;
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
                 key = string.Format("MO  {0}", (i + 1).ToString("00"));
                 value = this.TotalSpots[i].Month + (char)13 + this.TotalSpots[i].Day;
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
                 key = string.Format("M0  {0}", (i + 1).ToString("00"));
                 value = this.TotalSpots[i].Month + (char)13 + this.TotalSpots[i].Day;
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
 
                 key = string.Format("t{0}", new object[] { (i + 1).ToString() });
                 value = this.TotalSpots[i].Value;
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
             }
             for (int i = 0; i < this.ProgramsPerSlide; i++)
             {
                 key = string.Format("Program{0}", (i + 1).ToString());
                 value = this.Programs[i].Name;
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
 
                 key = string.Format("Station{0}-dt{0}-Length{0}", (i + 1).ToString());
                 temp.Clear();
@@ -230,21 +235,25 @@ namespace TVScheduleBuilder.BusinessClasses
                 if (this.ShowLength)
                     temp.Add("    " + this.Programs[i].Length);
                 value = string.Join("", temp.ToArray());
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
 
                 key = string.Format("Rate_{0}", (i + 1).ToString());
                 value = this.Programs[i].Rate;
-                this.ReplacementsList.Add(key, value);
+                if (!this.ReplacementsList.Keys.Contains(key))
+                    this.ReplacementsList.Add(key, value);
 
                 if (this.ShowCost && this.ShowSpots)
                 {
                     key = string.Format("Cost{0}", (i + 1).ToString());
                     value = this.Programs[i].TotalRate;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
 
                     key = string.Format("Spots{0}", (i + 1).ToString());
                     value = this.Programs[i].TotalSpots;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
 
                     key = "tspots";
                     value = _parent.TotalSpots.ToString("#,##0");
@@ -270,7 +279,8 @@ namespace TVScheduleBuilder.BusinessClasses
 
                     key = string.Format("SpotsCost{0}", (i + 1).ToString());
                     value = this.Programs[i].TotalSpots;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
                 }
                 else if (this.ShowCost)
                 {
@@ -286,7 +296,8 @@ namespace TVScheduleBuilder.BusinessClasses
 
                     key = string.Format("SpotsCost{0}", (i + 1).ToString());
                     value = this.Programs[i].TotalRate;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
                 }
                 string spotPrefix = "a";
                 switch (i)
@@ -303,12 +314,79 @@ namespace TVScheduleBuilder.BusinessClasses
                     case 3:
                         spotPrefix = "d";
                         break;
+                    case 4:
+                        spotPrefix = "e";
+                        break;
+                    case 5:
+                        spotPrefix = "f";
+                        break;
+                    case 6:
+                        spotPrefix = "g";
+                        break;
+                    case 7:
+                        spotPrefix = "h";
+                        break;
+                    case 8:
+                        spotPrefix = "i";
+                        break;
+                    case 9:
+                        spotPrefix = "j";
+                        break;
+                    case 10:
+                        spotPrefix = "k";
+                        break;
+                    case 11:
+                        spotPrefix = "l";
+                        break;
+                    case 12:
+                        spotPrefix = "m";
+                        break;
+                    case 13:
+                        spotPrefix = "n";
+                        break;
+                    case 14:
+                        spotPrefix = "o";
+                        break;
+                    case 15:
+                        spotPrefix = "p";
+                        break;
+                    case 16:
+                        spotPrefix = "q";
+                        break;
+                    case 17:
+                        spotPrefix = "r";
+                        break;
+                    case 18:
+                        spotPrefix = "s";
+                        break;
+                    case 19:
+                        spotPrefix = "t";
+                        break;
+                    case 20:
+                        spotPrefix = "u";
+                        break;
+                    case 21:
+                        spotPrefix = "v";
+                        break;
+                    case 22:
+                        spotPrefix = "w";
+                        break;
+                    case 23:
+                        spotPrefix = "x";
+                        break;
+                    case 24:
+                        spotPrefix = "y";
+                        break;
+                    case 25:
+                        spotPrefix = "z";
+                        break;
                 }
                 for (int j = 0; j < this.SpotsPerSlide; j++)
                 {
                     key = string.Format("{0}{1}", new object[] { spotPrefix, (j + 1).ToString() });
                     value = this.Programs[i].Spots[j];
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
                 }
 
                 if (!string.IsNullOrEmpty(_parent.Parent.Demo))
@@ -316,15 +394,18 @@ namespace TVScheduleBuilder.BusinessClasses
                     string demoSuffix = "a";
                     key = string.Format("RTG{0}{1}", new object[] { (i + 1).ToString(), demoSuffix });
                     value = this.Programs[i].DemoValue1;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
 
                     key = string.Format("GRP{0}{1}", new object[] { (i + 1).ToString(), demoSuffix });
                     value = this.Programs[i].DemoValue2;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
 
                     key = string.Format("CPP{0}{1}", new object[] { (i + 1).ToString(), demoSuffix });
                     value = this.Programs[i].DemoValue3;
-                    this.ReplacementsList.Add(key, value);
+                    if (!this.ReplacementsList.Keys.Contains(key))
+                        this.ReplacementsList.Add(key, value);
                 }
             }
         }

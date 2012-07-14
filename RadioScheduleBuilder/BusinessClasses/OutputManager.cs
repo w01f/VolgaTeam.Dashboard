@@ -303,6 +303,72 @@ namespace RadioScheduleBuilder.BusinessClasses
                     case 3:
                         spotPrefix = "d";
                         break;
+                    case 4:
+                        spotPrefix = "e";
+                        break;
+                    case 5:
+                        spotPrefix = "f";
+                        break;
+                    case 6:
+                        spotPrefix = "g";
+                        break;
+                    case 7:
+                        spotPrefix = "h";
+                        break;
+                    case 8:
+                        spotPrefix = "i";
+                        break;
+                    case 9:
+                        spotPrefix = "j";
+                        break;
+                    case 10:
+                        spotPrefix = "k";
+                        break;
+                    case 11:
+                        spotPrefix = "l";
+                        break;
+                    case 12:
+                        spotPrefix = "m";
+                        break;
+                    case 13:
+                        spotPrefix = "n";
+                        break;
+                    case 14:
+                        spotPrefix = "o";
+                        break;
+                    case 15:
+                        spotPrefix = "p";
+                        break;
+                    case 16:
+                        spotPrefix = "q";
+                        break;
+                    case 17:
+                        spotPrefix = "r";
+                        break;
+                    case 18:
+                        spotPrefix = "s";
+                        break;
+                    case 19:
+                        spotPrefix = "t";
+                        break;
+                    case 20:
+                        spotPrefix = "u";
+                        break;
+                    case 21:
+                        spotPrefix = "v";
+                        break;
+                    case 22:
+                        spotPrefix = "w";
+                        break;
+                    case 23:
+                        spotPrefix = "x";
+                        break;
+                    case 24:
+                        spotPrefix = "y";
+                        break;
+                    case 25:
+                        spotPrefix = "z";
+                        break;
                 }
                 for (int j = 0; j < this.SpotsPerSlide; j++)
                 {

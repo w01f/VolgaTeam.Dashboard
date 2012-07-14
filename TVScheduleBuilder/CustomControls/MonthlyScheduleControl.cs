@@ -595,7 +595,7 @@ namespace TVScheduleBuilder.CustomControls
                         totalSpotsCount = defaultProgram.Spots.Count;
                 }
                 for (int i = 0; i < _localSchedule.MonthlySchedule.Programs.Count; i += programsPerSlide)
-                    for (int k = 0, n = 0; k < (totalSpotsCount == 0 ? 1 : totalSpotsCount); k += 26, n++)
+                    for (int k = 0, n = 0; k < (totalSpotsCount == 0 ? 1 : totalSpotsCount); k += 13, n++)
                         result++;
             }
             return result;
@@ -1025,6 +1025,8 @@ namespace TVScheduleBuilder.CustomControls
                                                     formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
                                                     formProgress.TopMost = true;
                                                     formProgress.Show();
+                                                    formPreview.Hide();
+                                                    formSelect.Hide();
                                                     InteropClasses.PowerPointHelper.Instance.AppendOneSheetTableBased(outputPage);
                                                     formProgress.Hide();
                                                     using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
@@ -1034,6 +1036,11 @@ namespace TVScheduleBuilder.CustomControls
                                                             AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
                                                             AppManager.ActivateForm(formSelect.Handle, false, false);
                                                             AppManager.ActivateForm(formPreview.Handle, false, false);
+                                                        }
+                                                        else
+                                                        {
+                                                            formPreview.Close();
+                                                            formSelect.Close();
                                                         }
                                                     }
                                                 });
@@ -1061,6 +1068,8 @@ namespace TVScheduleBuilder.CustomControls
                                                         formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
                                                         formProgress.TopMost = true;
                                                         formProgress.Show();
+                                                        formPreview.Hide();
+                                                        formSelect.Hide();
                                                         InteropClasses.PowerPointHelper.Instance.AppendOneSheetExcelBased(outputPages, formSelect.buttonXOutput.DialogResult == DialogResult.Ignore);
                                                         formProgress.Hide();
                                                         using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
@@ -1070,6 +1079,11 @@ namespace TVScheduleBuilder.CustomControls
                                                                 AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
                                                                 AppManager.ActivateForm(formSelect.Handle, false, false);
                                                                 AppManager.ActivateForm(formPreview.Handle, false, false);
+                                                            }
+                                                            else
+                                                            {
+                                                                formPreview.Close();
+                                                                formSelect.Close();
                                                             }
                                                         }
                                                     });
@@ -1097,6 +1111,8 @@ namespace TVScheduleBuilder.CustomControls
                                                         formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
                                                         formProgress.TopMost = true;
                                                         formProgress.Show();
+                                                        formPreview.Hide();
+                                                        formSelect.Hide();
                                                         InteropClasses.PowerPointHelper.Instance.AppendOneSheetSlideMasterBased(outputPages);
                                                         formProgress.Hide();
                                                         using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
@@ -1106,6 +1122,11 @@ namespace TVScheduleBuilder.CustomControls
                                                                 AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
                                                                 AppManager.ActivateForm(formSelect.Handle, false, false);
                                                                 AppManager.ActivateForm(formPreview.Handle, false, false);
+                                                            }
+                                                            else
+                                                            {
+                                                                formPreview.Close();
+                                                                formSelect.Close();
                                                             }
                                                         }
                                                     });
@@ -1133,6 +1154,8 @@ namespace TVScheduleBuilder.CustomControls
                                                         formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
                                                         formProgress.TopMost = true;
                                                         formProgress.Show();
+                                                        formPreview.Hide();
+                                                        formSelect.Hide();
                                                         InteropClasses.PowerPointHelper.Instance.AppendOneSheetGroupedTextBased(outputPages);
                                                         formProgress.Hide();
                                                         using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
@@ -1142,6 +1165,11 @@ namespace TVScheduleBuilder.CustomControls
                                                                 AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
                                                                 AppManager.ActivateForm(formSelect.Handle, false, false);
                                                                 AppManager.ActivateForm(formPreview.Handle, false, false);
+                                                            }
+                                                            else
+                                                            {
+                                                                formPreview.Close();
+                                                                formSelect.Close();
                                                             }
                                                         }
                                                     });

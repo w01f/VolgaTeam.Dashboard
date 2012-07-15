@@ -66,7 +66,7 @@
             // pbSimpleCalendar
             // 
             this.pbSimpleCalendar.Image = global::CalendarBuilder.Properties.Resources.HomeCalendar3;
-            this.pbSimpleCalendar.Location = new System.Drawing.Point(28, 409);
+            this.pbSimpleCalendar.Location = new System.Drawing.Point(16, 409);
             this.pbSimpleCalendar.Name = "pbSimpleCalendar";
             this.pbSimpleCalendar.Size = new System.Drawing.Size(726, 98);
             this.pbSimpleCalendar.TabIndex = 19;

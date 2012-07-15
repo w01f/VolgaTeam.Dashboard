@@ -36,8 +36,10 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
 
             xtraTabPageDigital.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced && this.Day.Parent.Schedule.ShowDigital;
             xtraTabPageNewspaper.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced && this.Day.Parent.Schedule.ShowNewspaper;
-            xtraTabPageTV.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced && this.Day.Parent.Schedule.ShowTV;
-            xtraTabPageRadio.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced && this.Day.Parent.Schedule.ShowRadio;
+            xtraTabPageTV.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced;
+            xtraTabPageRadio.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced;
+            xtraTabPageTV.PageEnabled = this.Day.Parent.Schedule.ShowTV;
+            xtraTabPageRadio.PageEnabled = this.Day.Parent.Schedule.ShowRadio;
             xtraTabPageLogo.PageVisible = _style == BusinessClasses.CalendarStyle.Graphic;
 
             if (this.PropertiesGroupChanged != null)

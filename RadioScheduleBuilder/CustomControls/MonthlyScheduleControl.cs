@@ -1075,9 +1075,9 @@ namespace RadioScheduleBuilder.CustomControls
                                                     {
                                                         if (formResult.ShowDialog() != System.Windows.Forms.DialogResult.OK)
                                                         {
+                                                            formPreview.Close();
+                                                            formSelect.Close();
                                                             AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
-                                                            AppManager.ActivateForm(formSelect.Handle, false, false);
-                                                            AppManager.ActivateForm(formPreview.Handle, false, false);
                                                         }
                                                         else
                                                         {
@@ -1118,9 +1118,9 @@ namespace RadioScheduleBuilder.CustomControls
                                                         {
                                                             if (formResult.ShowDialog() != System.Windows.Forms.DialogResult.OK)
                                                             {
+                                                                formPreview.Close();
+                                                                formSelect.Close();
                                                                 AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
-                                                                AppManager.ActivateForm(formSelect.Handle, false, false);
-                                                                AppManager.ActivateForm(formPreview.Handle, false, false);
                                                             }
                                                             else
                                                             {
@@ -1161,9 +1161,9 @@ namespace RadioScheduleBuilder.CustomControls
                                                         {
                                                             if (formResult.ShowDialog() != System.Windows.Forms.DialogResult.OK)
                                                             {
+                                                                formPreview.Close();
+                                                                formSelect.Close();
                                                                 AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
-                                                                AppManager.ActivateForm(formSelect.Handle, false, false);
-                                                                AppManager.ActivateForm(formPreview.Handle, false, false);
                                                             }
                                                             else
                                                             {
@@ -1204,9 +1204,9 @@ namespace RadioScheduleBuilder.CustomControls
                                                         {
                                                             if (formResult.ShowDialog() != System.Windows.Forms.DialogResult.OK)
                                                             {
+                                                                formPreview.Close();
+                                                                formSelect.Close();
                                                                 AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
-                                                                AppManager.ActivateForm(formSelect.Handle, false, false);
-                                                                AppManager.ActivateForm(formPreview.Handle, false, false);
                                                             }
                                                             else
                                                             {
@@ -1223,12 +1223,16 @@ namespace RadioScheduleBuilder.CustomControls
                                             formPreview.Text = "Monthly Schedule - Quick View";
                                             formPreview.PresentationFile = tempFileName;
                                             formPreview.ShowDialog();
+                                            ConfigurationClasses.RegistryHelper.MainFormHandle = formSelect.Handle;
+                                            ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                                         }
                                         formProgress.Close();
                                     }
                                 }
                             });
                             DialogResult result = formSelect.ShowDialog();
+                            ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                            ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
                             if (result == DialogResult.Yes)
                             {
                                 form.Show();
@@ -1343,6 +1347,8 @@ namespace RadioScheduleBuilder.CustomControls
                             formSelect.IsEmailOutput = true;
                             formSelect.buttonXGrid.Enabled = _localSchedule.MonthlySchedule.Programs.Count <= 4 && outputSchedule.SpotsPerSlide <= 13 && _localSchedule.MonthlySchedule.Programs.Count <= 4 && File.Exists(Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetTableBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetTableBasedTemplateFileName, new object[] { outputSchedule.ProgramsPerSlide.ToString(), outputSchedule.SpotsPerSlide.ToString() })));
                             DialogResult result = formSelect.ShowDialog();
+                            ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                            ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
                             if (result == DialogResult.Yes)
                             {
                                 form.Show();
@@ -1409,6 +1415,8 @@ namespace RadioScheduleBuilder.CustomControls
                             formEmail.Text = "Email this Monthly Schedule";
                             formEmail.PresentationFile = tempFileName;
                             formEmail.ShowDialog();
+                            ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                            ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
                         }
                 }
             }

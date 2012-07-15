@@ -125,6 +125,8 @@ namespace RadioScheduleBuilder.ToolForms
                 buttonXGrid.Checked = true;
             else
                 buttonXSlideMaster.Checked = true;
+            ConfigurationClasses.RegistryHelper.MainFormHandle = this.Handle;
+            ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
         }
 
         private void pbHelp_Click(object sender, EventArgs e)

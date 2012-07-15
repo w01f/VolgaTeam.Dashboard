@@ -34,6 +34,8 @@ namespace RadioScheduleBuilder.ToolForms
                 comboBoxEditSlides_SelectedIndexChanged(null, null);
                 comboBoxEditSlides.SelectedIndexChanged += new EventHandler(comboBoxEditSlides_SelectedIndexChanged);
             }
+            ConfigurationClasses.RegistryHelper.MainFormHandle = this.Handle;
+            ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
         }
 
         private void FormQuickView_FormClosed(object sender, FormClosedEventArgs e)

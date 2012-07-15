@@ -33,6 +33,8 @@ namespace TVScheduleBuilder.ToolForms
                     comboBoxEditSlides.SelectedIndex = 0;
                 comboBoxEditSlides_SelectedIndexChanged(null, null);
                 comboBoxEditSlides.SelectedIndexChanged += new EventHandler(comboBoxEditSlides_SelectedIndexChanged);
+                ConfigurationClasses.RegistryHelper.MainFormHandle = this.Handle;
+                ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
             }
         }
 

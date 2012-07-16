@@ -294,6 +294,11 @@ namespace NewBizWizForm
             SetDashboardCode();
         }
 
+        private void FormMain_Activated(object sender, EventArgs e)
+        {
+            AppManager.Instance.ActivateMainForm();
+        }
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             if (File.Exists(ConfigurationClasses.SettingsManager.Instance.IconPath))
@@ -523,21 +528,20 @@ namespace NewBizWizForm
         #region Ribbon Buttons's Clicks Event Handlers
         public void buttonItemFloater_Click(object sender, EventArgs e)
         {
-            FormMain.Instance.Opacity = 0;
-            ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+            Form formSender = sender as Form;
+            if (formSender == null)
+                formSender = FormMain.Instance;
+
+            formSender.Opacity = 0;
             using (FormFloater form = new FormFloater(this.Left + this.Width, this.Top, _floaterPositionX, _floaterPositionY, buttonItemHomeOverview.Image, ribbonBarHomeOverview.Text))
             {
                 if (form.ShowDialog() != System.Windows.Forms.DialogResult.No)
                 {
                     _floaterPositionY = form.Top;
                     _floaterPositionX = form.Left;
-                    if (!FormMain.Instance.IsDead)
-                    {
-                        FormMain.Instance.Opacity = 1;
-                        ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-                        ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
-                        AppManager.Instance.ActivateMainForm();
-                    }
+
+                    formSender.Opacity = 1;
+                    AppManager.Instance.ActivateMainForm();
                 }
                 else
                     Application.Exit();

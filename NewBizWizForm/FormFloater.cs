@@ -29,7 +29,6 @@ namespace NewBizWizForm
             this.Text = ConfigurationClasses.SettingsManager.Instance.DashboardName;
             buttonItemDashboard.Image = defaultImage;
             ribbonBarDashboard.Text = defaultText;
-            ConfigurationClasses.RegistryHelper.MainFormHandle = this.Handle;
         }
 
         private void buttonItemExit_Click(object sender, EventArgs e)

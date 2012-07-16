@@ -88,6 +88,8 @@ namespace NewBizWizForm.TabNewspaperForms
             ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
             AdScheduleBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormAdScheduleResize);
             AdScheduleBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormAdScheduleResize);
+            AdScheduleBuilder.FormMain.Instance.FloaterRequested -= new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
+            AdScheduleBuilder.FormMain.Instance.FloaterRequested += new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
             AdScheduleBuilder.AppManager.NewSchedule();
             if (!FormMain.Instance.IsDead)
             {
@@ -107,6 +109,8 @@ namespace NewBizWizForm.TabNewspaperForms
             ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
             AdScheduleBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormAdScheduleResize);
             AdScheduleBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormAdScheduleResize);
+            AdScheduleBuilder.FormMain.Instance.FloaterRequested -= new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
+            AdScheduleBuilder.FormMain.Instance.FloaterRequested += new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
             AdScheduleBuilder.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
             if (!FormMain.Instance.IsDead)
             {

@@ -30,10 +30,9 @@ namespace NewBizWizForm
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.toolTip = new System.Windows.Forms.ToolTip();
+            this.timer = new System.Windows.Forms.Timer();
             this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
             this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
@@ -221,7 +220,7 @@ namespace NewBizWizForm
             this.ribbonTabItemIPad = new DevComponents.DotNetBar.RibbonTabItem();
             this.panelExMain = new DevComponents.DotNetBar.PanelEx();
             this.panelExMainInternal = new DevComponents.DotNetBar.PanelEx();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
             this.ribbonControl.SuspendLayout();
             this.ribbonPanelHome.SuspendLayout();
@@ -4021,6 +4020,7 @@ namespace NewBizWizForm
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Schedule APP";
+            this.Activated += new System.EventHandler(this.FormMain_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.Shown += new System.EventHandler(this.FormMain_Shown);

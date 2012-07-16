@@ -10,7 +10,6 @@ namespace NewBizWizForm
         private static AppManager _instance = new AppManager();
         public delegate void EmptyParametersDelegate();
         public delegate void SingleParameterDelegate(bool parameter);
-        private IntPtr _mainFormHandle = IntPtr.Zero;
 
         public bool ShowCover { get; set; }
 
@@ -55,7 +54,6 @@ namespace NewBizWizForm
                 form.Close();
             }
             FormMain.Instance.Init();
-            _mainFormHandle = FormMain.Instance.Handle;
             ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
             Application.Run(FormMain.Instance);
         }
@@ -89,31 +87,29 @@ namespace NewBizWizForm
                     Process.Start(ConfigurationClasses.SettingsManager.Instance.SalesDepotApplicationPath);
         }
 
-
         public void ActivateMainForm()
         {
-            if (_mainFormHandle.ToInt32() == 0)
-                _mainFormHandle = ConfigurationClasses.RegistryHelper.MainFormHandle;
-            if (_mainFormHandle.ToInt32() == 0)
+            IntPtr mainFormHandle = ConfigurationClasses.RegistryHelper.MainFormHandle;
+            if (mainFormHandle.ToInt32() == 0)
             {
                 Process[] processList = Process.GetProcesses();
                 foreach (Process process in processList.Where(x => x.ProcessName.Contains("adSALESapp")))
                 {
                     if (process.MainWindowHandle.ToInt32() != 0)
                     {
-                        _mainFormHandle = process.MainWindowHandle;
+                        mainFormHandle = process.MainWindowHandle;
                         break;
                     }
                 }
             }
-            if (_mainFormHandle.ToInt32() != 0)
+            if (mainFormHandle.ToInt32() != 0)
             {
-                InteropClasses.WinAPIHelper.ShowWindow(_mainFormHandle, ConfigurationClasses.RegistryHelper.MaximizeMainForm? InteropClasses.WindowShowStyle.ShowMaximized:InteropClasses.WindowShowStyle.ShowNormal);
-                InteropClasses.WinAPIHelper.MakeTopMost(_mainFormHandle);
-                InteropClasses.WinAPIHelper.MakeNormal(_mainFormHandle);
+                InteropClasses.WinAPIHelper.ShowWindow(mainFormHandle, ConfigurationClasses.RegistryHelper.MaximizeMainForm ? InteropClasses.WindowShowStyle.ShowMaximized : InteropClasses.WindowShowStyle.ShowNormal);
+                InteropClasses.WinAPIHelper.MakeTopMost(mainFormHandle);
+                InteropClasses.WinAPIHelper.MakeNormal(mainFormHandle);
                 uint lpdwProcessId = 0;
                 InteropClasses.WinAPIHelper.AttachThreadInput(InteropClasses.WinAPIHelper.GetCurrentThreadId(), InteropClasses.WinAPIHelper.GetWindowThreadProcessId(InteropClasses.WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), true);
-                InteropClasses.WinAPIHelper.SetForegroundWindow(_mainFormHandle);
+                InteropClasses.WinAPIHelper.SetForegroundWindow(mainFormHandle);
                 InteropClasses.WinAPIHelper.AttachThreadInput(InteropClasses.WinAPIHelper.GetCurrentThreadId(), InteropClasses.WinAPIHelper.GetWindowThreadProcessId(InteropClasses.WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), false);
             }
         }

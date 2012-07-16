@@ -418,6 +418,30 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                     }
             }
         }
+
+        public void Preview()
+        {
+            using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
+            {
+                formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
+                formProgress.TopMost = true;
+                formProgress.Show();
+                string tempFileName = Path.Combine(ConfigurationClasses.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+                InteropClasses.PowerPointHelper.Instance.PrepareSnapshotEmail(tempFileName);
+                formProgress.Close();
+                if (File.Exists(tempFileName))
+                    using (OutputForms.FormPreview formPreview = new OutputForms.FormPreview())
+                    {
+                        formPreview.Text = "Preview this Ad Schedule Snapshot";
+                        formPreview.PresentationFile = tempFileName;
+                        ConfigurationClasses.RegistryHelper.MainFormHandle = formPreview.Handle;
+                        ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                        formPreview.ShowDialog();
+                        ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                        ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                    }
+            }
+        }
         #endregion
     }
 }

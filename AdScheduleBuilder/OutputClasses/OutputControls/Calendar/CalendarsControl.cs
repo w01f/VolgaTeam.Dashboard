@@ -220,6 +220,12 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             }
         }
 
+        public void buttonItemCalendarsPreview_Click(object sender, EventArgs e)
+        {
+            if (_selectedOutput != null)
+                _selectedOutput.Preview();
+        }
+
         public void buttonItemCalendarsPowerPoint_Click(object sender, EventArgs e)
         {
             if (_selectedOutput != null)
@@ -277,6 +283,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         void UpdateOutput(bool quickLoad);
         void PrintOutput();
         void Email();
+        void Preview();
         void OpenHelp();
     }
 }

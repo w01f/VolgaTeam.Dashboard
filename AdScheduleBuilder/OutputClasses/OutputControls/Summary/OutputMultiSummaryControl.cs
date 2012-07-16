@@ -23,7 +23,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             InitializeComponent();
             this.Dock = DockStyle.Fill;
 
-            this.HelpToolTip = new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me understand how to use the Multi-Publication Summary slide", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
+            this.HelpToolTip = new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Learn more about the Multi-Publication Analysis", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 
             BusinessClasses.ScheduleManager.Instance.SettingsSaved += new EventHandler<BusinessClasses.SavingingEventArgs>((sender, e) =>
             {
@@ -142,7 +142,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         public void OpenHelp()
         {
-            BusinessClasses.HelpManager.Instance.OpenHelpLink("multisummary");
+            BusinessClasses.HelpManager.Instance.OpenHelpLink("analysis");
         }
 
         private void checkEditSchedule_CheckedChanged(object sender, EventArgs e)
@@ -396,11 +396,35 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 if (File.Exists(tempFileName))
                     using (OutputForms.FormEmail formEmail = new OutputForms.FormEmail())
                     {
-                        formEmail.Text = "Email this Multi-Publication Summary";
+                        formEmail.Text = "Email this Multi-Publication Analysis";
                         formEmail.PresentationFile = tempFileName;
                         ConfigurationClasses.RegistryHelper.MainFormHandle = formEmail.Handle;
                         ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                         formEmail.ShowDialog();
+                        ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                        ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                    }
+            }
+        }
+
+        public void Preview()
+        {
+            using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
+            {
+                formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
+                formProgress.TopMost = true;
+                formProgress.Show();
+                string tempFileName = Path.Combine(ConfigurationClasses.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+                InteropClasses.PowerPointHelper.Instance.PrepareMultiSummaryEmail(tempFileName);
+                formProgress.Close();
+                if (File.Exists(tempFileName))
+                    using (OutputForms.FormPreview formPreview = new OutputForms.FormPreview())
+                    {
+                        formPreview.Text = "Preview Multi-Publication Analysis";
+                        formPreview.PresentationFile = tempFileName;
+                        ConfigurationClasses.RegistryHelper.MainFormHandle = formPreview.Handle;
+                        ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                        formPreview.ShowDialog();
                         ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
                         ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                     }

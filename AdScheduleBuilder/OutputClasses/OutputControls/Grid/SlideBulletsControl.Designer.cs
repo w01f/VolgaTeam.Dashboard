@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.components = new System.ComponentModel.Container();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.pnMain = new System.Windows.Forms.Panel();
             this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
             this.checkEditReadership = new DevExpress.XtraEditors.CheckEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController();
+            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.checkEditDelivery = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditTotalDiscounts = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditTotalColor = new DevExpress.XtraEditors.CheckEdit();

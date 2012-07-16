@@ -21,7 +21,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
-            this.HelpToolTip = new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me understand how to use the Basic Overview slide", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
+            this.HelpToolTip = new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Learn more about the Basic Overview Slide", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
             BusinessClasses.ScheduleManager.Instance.SettingsSaved += new EventHandler<BusinessClasses.SavingingEventArgs>((sender, e) =>
             {
                 if (sender != this)
@@ -110,7 +110,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         public void OpenHelp()
         {
-            BusinessClasses.HelpManager.Instance.OpenHelpLink("basicoverview");
+            BusinessClasses.HelpManager.Instance.OpenHelpLink("overview");
         }
 
         #region Output Stuff
@@ -119,7 +119,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             using (OutputForms.FormSelectPublication form = new OutputForms.FormSelectPublication())
             {
                 form.Text = "Basic Overview Slide Output";
-                form.pbLogo.Image = Properties.Resources.BasicOverview;
+                form.pbLogo.Image = Properties.Resources.AdNoteNormal;
                 form.laTitle.Text = "You have Several Publications in this Basic Overview Summary…";
                 form.buttonXCurrentPublication.Text = "Send just the Current Publication Overview to my PowerPoint presentation";
                 form.buttonXSelectedPublications.Text = "Send all Selected Publications to my PowerPoint presentation";
@@ -220,6 +220,67 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                             ConfigurationClasses.RegistryHelper.MainFormHandle = formEmail.Handle;
                             ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                             formEmail.ShowDialog();
+                            ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                            ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                        }
+                }
+            }
+        }
+
+        public void Preview()
+        {
+            using (OutputForms.FormSelectPublication form = new OutputForms.FormSelectPublication())
+            {
+                form.Text = "Basic Overview Output Preview";
+                form.pbLogo.Image = Properties.Resources.Preview;
+                form.laTitle.Text = "You have Several Publications in this Basic Overview Summary…";
+                form.buttonXCurrentPublication.Text = "Preview just the Current Publication Overview";
+                form.buttonXSelectedPublications.Text = "Preview all Selected Publications";
+                foreach (PublicationBasicOverviewControl tabPage in _tabPages)
+                    if (tabPage.PageEnabled)
+                        form.checkedListBoxControlPublications.Items.Add(tabPage.Publication.UniqueID, tabPage.Publication.Name, CheckState.Checked, true);
+                DialogResult result = DialogResult.Yes;
+                if (form.checkedListBoxControlPublications.Items.Count > 1)
+                {
+                    ConfigurationClasses.RegistryHelper.MainFormHandle = form.Handle;
+                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                    result = form.ShowDialog();
+                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                    ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                    if (result == DialogResult.Cancel)
+                        return;
+                }
+                using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
+                {
+                    formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
+                    formProgress.TopMost = true;
+                    formProgress.Show();
+                    string tempFileName = Path.Combine(ConfigurationClasses.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+                    if (result == DialogResult.Yes)
+                        InteropClasses.PowerPointHelper.Instance.PrepareBasicOverviewEmail(tempFileName, new PublicationBasicOverviewControl[] { xtraTabControlPublications.TabPages[xtraTabControlPublications.SelectedTabPageIndex] as PublicationBasicOverviewControl });
+                    else if (result == DialogResult.No)
+                    {
+                        List<PublicationBasicOverviewControl> emailPages = new List<PublicationBasicOverviewControl>();
+                        foreach (DevExpress.XtraEditors.Controls.CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
+                        {
+                            if (item.CheckState == CheckState.Checked)
+                            {
+                                PublicationBasicOverviewControl tabPage = _tabPages.Where(x => x.Publication.UniqueID.Equals(item.Value)).FirstOrDefault();
+                                if (tabPage != null)
+                                    emailPages.Add(tabPage);
+                            }
+                        }
+                        InteropClasses.PowerPointHelper.Instance.PrepareBasicOverviewEmail(tempFileName, emailPages.ToArray());
+                    }
+                    formProgress.Close();
+                    if (File.Exists(tempFileName))
+                        using (OutputForms.FormPreview formPreview = new OutputForms.FormPreview())
+                        {
+                            formPreview.Text = "Preview Basic Overview";
+                            formPreview.PresentationFile = tempFileName;
+                            ConfigurationClasses.RegistryHelper.MainFormHandle = formPreview.Handle;
+                            ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                            formPreview.ShowDialog();
                             ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
                             ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                         }

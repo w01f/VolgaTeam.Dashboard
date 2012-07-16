@@ -39,7 +39,10 @@
             this.ckDeleteAllDiscounts = new System.Windows.Forms.CheckBox();
             this.ckDeleteAllColorRates = new System.Windows.Forms.CheckBox();
             this.pictureBoxImage = new System.Windows.Forms.PictureBox();
+            this.pbHelp = new System.Windows.Forms.PictureBox();
+            this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
             this.SuspendLayout();
             // 
             // laHeader
@@ -49,7 +52,7 @@
             this.laHeader.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.laHeader.Location = new System.Drawing.Point(80, 0);
             this.laHeader.Name = "laHeader";
-            this.laHeader.Size = new System.Drawing.Size(444, 31);
+            this.laHeader.Size = new System.Drawing.Size(401, 31);
             this.laHeader.TabIndex = 0;
             this.laHeader.Text = "You are CHANGING YOUR PRICING STRATEGY for:";
             this.laHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -61,7 +64,7 @@
             this.laPublication.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.laPublication.Location = new System.Drawing.Point(83, 31);
             this.laPublication.Name = "laPublication";
-            this.laPublication.Size = new System.Drawing.Size(441, 28);
+            this.laPublication.Size = new System.Drawing.Size(398, 28);
             this.laPublication.TabIndex = 1;
             this.laPublication.Text = "Publication";
             // 
@@ -117,9 +120,9 @@
             this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonXOK.Location = new System.Drawing.Point(363, 238);
+            this.buttonXOK.Location = new System.Drawing.Point(132, 252);
             this.buttonXOK.Name = "buttonXOK";
-            this.buttonXOK.Size = new System.Drawing.Size(75, 34);
+            this.buttonXOK.Size = new System.Drawing.Size(141, 43);
             this.buttonXOK.TabIndex = 7;
             this.buttonXOK.Text = "Continue";
             this.buttonXOK.TextColor = System.Drawing.Color.Black;
@@ -130,9 +133,9 @@
             this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonXCancel.Location = new System.Drawing.Point(449, 238);
+            this.buttonXCancel.Location = new System.Drawing.Point(303, 252);
             this.buttonXCancel.Name = "buttonXCancel";
-            this.buttonXCancel.Size = new System.Drawing.Size(75, 34);
+            this.buttonXCancel.Size = new System.Drawing.Size(141, 43);
             this.buttonXCancel.TabIndex = 8;
             this.buttonXCancel.Text = "Cancel";
             this.buttonXCancel.TextColor = System.Drawing.Color.Black;
@@ -169,11 +172,31 @@
             this.pictureBoxImage.TabIndex = 11;
             this.pictureBoxImage.TabStop = false;
             // 
+            // pbHelp
+            // 
+            this.pbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
+            this.pbHelp.Location = new System.Drawing.Point(498, 0);
+            this.pbHelp.Name = "pbHelp";
+            this.pbHelp.Size = new System.Drawing.Size(76, 81);
+            this.pbHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.superTooltip.SetSuperTooltip(this.pbHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Learn about Pricing Strategy", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.pbHelp.TabIndex = 26;
+            this.pbHelp.TabStop = false;
+            this.pbHelp.Click += new System.EventHandler(this.pbHelp_Click);
+            this.pbHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // superTooltip
+            // 
+            this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            // 
             // FormChangeAdStrategy
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(536, 280);
+            this.ClientSize = new System.Drawing.Size(577, 303);
+            this.Controls.Add(this.pbHelp);
             this.Controls.Add(this.pictureBoxImage);
             this.Controls.Add(this.ckDeleteAllColorRates);
             this.Controls.Add(this.ckDeleteAllDiscounts);
@@ -195,6 +218,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Change Pricing Strategy?";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,5 +237,7 @@
         public System.Windows.Forms.CheckBox ckDeleteAllDiscounts;
         public System.Windows.Forms.CheckBox ckDeleteAllColorRates;
         public System.Windows.Forms.PictureBox pictureBoxImage;
+        private System.Windows.Forms.PictureBox pbHelp;
+        public DevComponents.DotNetBar.SuperTooltip superTooltip;
     }
 }

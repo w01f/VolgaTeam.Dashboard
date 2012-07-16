@@ -9,6 +9,10 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         private static SummariesControl _instance;
         private ISummaryOutputControl _selectedOutput = null;
 
+        #region Operation Buttons
+        public DevComponents.DotNetBar.ButtonItem HelpButtonItem { get; set; }
+        #endregion
+
         private SummariesControl()
         {
             InitializeComponent();
@@ -69,27 +73,27 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             }
         }
 
-        private void UncheckOutputOptions()
+        public void SelectSummary(SummaryType summaryType)
         {
-            FormMain.Instance.buttonItemSummariesBasicOverview.Checked = false;
-            FormMain.Instance.buttonItemSummariesMultiSummary.Checked = false;
-            FormMain.Instance.buttonItemSummariesSnapshot.Checked = false;
-            FormMain.Instance.itemContainerSnapshotButtonsGroup1.Visible = false;
-            FormMain.Instance.itemContainerSnapshotButtonsGroup2.Visible = false;
-            FormMain.Instance.itemContainerSnapshotButtonsGroup3.Visible = false;
-            FormMain.Instance.ribbonBarSummariesSnapshot.RecalcLayout();
-            FormMain.Instance.ribbonPanelSummaries.PerformLayout();
-        }
+            switch (summaryType)
+            {
+                case SummaryType.Overview:
+                    _selectedOutput = OutputControls.OutputBasicOverviewControl.Instance;
+                    this.HelpButtonItem = FormMain.Instance.buttonItemOverviewHelp;
+                    break;
+                case SummaryType.MultiSummary:
+                    _selectedOutput = OutputControls.OutputMultiSummaryControl.Instance;
+                    this.HelpButtonItem = FormMain.Instance.buttonItemMultiSummaryHelp;
+                    break;
+                case SummaryType.Snapshot:
+                    _selectedOutput = OutputControls.OutputSnapshotControl.Instance;
+                    this.HelpButtonItem = FormMain.Instance.buttonItemSnapshotHelp;
+                    break;
+                default:
+                    _selectedOutput = null;
+                    break;
+            }
 
-        public void UpdatePageAccordingToggledButton()
-        {
-            _selectedOutput = null;
-            if (FormMain.Instance.buttonItemSummariesBasicOverview != null && FormMain.Instance.buttonItemSummariesBasicOverview.Checked)
-                _selectedOutput = OutputControls.OutputBasicOverviewControl.Instance;
-            else if (FormMain.Instance.buttonItemSummariesMultiSummary != null && FormMain.Instance.buttonItemSummariesMultiSummary.Checked)
-                _selectedOutput = OutputControls.OutputMultiSummaryControl.Instance;
-            else if (FormMain.Instance.buttonItemSummariesSnapshot != null && FormMain.Instance.buttonItemSummariesSnapshot.Checked)
-                _selectedOutput = OutputControls.OutputSnapshotControl.Instance;
             if (_selectedOutput != null)
             {
                 if (!pnMain.Controls.Contains(_selectedOutput as Control))
@@ -103,51 +107,18 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                     Application.DoEvents();
                 }
                 (_selectedOutput as Control).BringToFront();
-                FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemSummariesHelp, _selectedOutput.HelpToolTip);
+                FormMain.Instance.superTooltip.SetSuperTooltip(this.HelpButtonItem, _selectedOutput.HelpToolTip);
             }
             else
             {
                 pnEmpty.BringToFront();
-                FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemSummariesHelp, null);
+                FormMain.Instance.superTooltip.SetSuperTooltip(this.HelpButtonItem, null);
             }
         }
 
-        public void buttonItemSummariesBasicOverview_Click(object sender, EventArgs e)
+        public void buttonItemSummariesPreview_Click(object sender, EventArgs e)
         {
-            if (!(sender as DevComponents.DotNetBar.ButtonItem).Checked)
-                if (this.AllowToLeaveControl)
-                {
-                    UncheckOutputOptions();
-                    FormMain.Instance.buttonItemSummariesBasicOverview.Checked = true;
-                    UpdatePageAccordingToggledButton();
-                }
-        }
-
-        public void buttonItemSummariesMultiSummary_Click(object sender, EventArgs e)
-        {
-            if (!(sender as DevComponents.DotNetBar.ButtonItem).Checked)
-                if (this.AllowToLeaveControl)
-                {
-                    UncheckOutputOptions();
-                    FormMain.Instance.buttonItemSummariesMultiSummary.Checked = true;
-                    UpdatePageAccordingToggledButton();
-                }
-        }
-
-        public void buttonItemSummariesSnapshot_Click(object sender, EventArgs e)
-        {
-            if (!(sender as DevComponents.DotNetBar.ButtonItem).Checked)
-                if (this.AllowToLeaveControl)
-                {
-                    UncheckOutputOptions();
-                    FormMain.Instance.buttonItemSummariesSnapshot.Checked = true;
-                    FormMain.Instance.itemContainerSnapshotButtonsGroup1.Visible = true;
-                    FormMain.Instance.itemContainerSnapshotButtonsGroup2.Visible = true;
-                    FormMain.Instance.itemContainerSnapshotButtonsGroup3.Visible = true;
-                    FormMain.Instance.ribbonBarSummariesSnapshot.RecalcLayout();
-                    FormMain.Instance.ribbonPanelSummaries.PerformLayout();
-                    UpdatePageAccordingToggledButton();
-                }
+            _selectedOutput.Preview();
         }
 
         public void buttonItemSummariesPowerPoint_Click(object sender, EventArgs e)
@@ -188,6 +159,13 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         }
     }
 
+    public enum SummaryType
+    { 
+        Overview,
+        MultiSummary,
+        Snapshot
+    }
+
     public interface ISummaryOutputControl
     {
         BusinessClasses.Schedule LocalSchedule { get; set; }
@@ -196,6 +174,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         void UpdateOutput(bool quickLoad);
         void PrintOutput();
         void Email();
+        void Preview();
         void OpenHelp();
     }
 }

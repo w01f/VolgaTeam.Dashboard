@@ -72,7 +72,6 @@ namespace AdScheduleBuilder.CustomControls
                 && control != FormMain.Instance.comboBoxEditClientType
                 && control != FormMain.Instance.comboBoxEditDecisionMaker
                 && control != FormMain.Instance.textEditAccountNumber
-                && control != FormMain.Instance.listBoxControlCalendar
                 && control != FormMain.Instance.comboBoxEditRateCard
                 && control != FormMain.Instance.comboBoxEditRateCards
                 && control != FormMain.Instance.dateEditFlightDatesEnd
@@ -127,25 +126,25 @@ namespace AdScheduleBuilder.CustomControls
                 if (!string.IsNullOrEmpty(_localSchedule.ClientType))
                     FormMain.Instance.comboBoxEditClientType.SelectedIndex = FormMain.Instance.comboBoxEditClientType.Properties.Items.IndexOf(_localSchedule.ClientType);
 
-                FormMain.Instance.checkBoxItemAccountNumber.Checked = !string.IsNullOrEmpty(_localSchedule.AccountNumber);
+                FormMain.Instance.checkBoxItemHomeAccountNumber.Checked = !string.IsNullOrEmpty(_localSchedule.AccountNumber);
                 FormMain.Instance.textEditAccountNumber.EditValue = _localSchedule.AccountNumber;
 
                 switch (_localSchedule.SalesStrategy)
                 {
                     case BusinessClasses.SalesStrategies.Email:
-                        FormMain.Instance.buttonItemSalesStrategyEmail.Checked = true;
-                        FormMain.Instance.buttonItemSalesStrategyFax.Checked = false;
-                        FormMain.Instance.buttonItemSalesStrategyFaceCall.Checked = false;
+                        FormMain.Instance.buttonItemHomeSalesStrategyEmail.Checked = true;
+                        FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked = false;
+                        FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked = false;
                         break;
                     case BusinessClasses.SalesStrategies.Fax:
-                        FormMain.Instance.buttonItemSalesStrategyEmail.Checked = false;
-                        FormMain.Instance.buttonItemSalesStrategyFax.Checked = true;
-                        FormMain.Instance.buttonItemSalesStrategyFaceCall.Checked = false;
+                        FormMain.Instance.buttonItemHomeSalesStrategyEmail.Checked = false;
+                        FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked = true;
+                        FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked = false;
                         break;
                     case BusinessClasses.SalesStrategies.InPerson:
-                        FormMain.Instance.buttonItemSalesStrategyEmail.Checked = false;
-                        FormMain.Instance.buttonItemSalesStrategyFax.Checked = false;
-                        FormMain.Instance.buttonItemSalesStrategyFaceCall.Checked = true;
+                        FormMain.Instance.buttonItemHomeSalesStrategyEmail.Checked = false;
+                        FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked = false;
+                        FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked = true;
                         break;
                 }
                 FormMain.Instance.dateEditPresentationDate.EditValue = _localSchedule.PresentationDateObject;
@@ -164,18 +163,18 @@ namespace AdScheduleBuilder.CustomControls
 
         private void LoadView()
         {
-            FormMain.Instance.buttonItemSalesStrategyAbbreviation.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowCode;
-            FormMain.Instance.buttonItemSalesStrategyLogo.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowLogo;
-            FormMain.Instance.buttonItemSalesStrategyDelivery.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowDelivery;
-            FormMain.Instance.buttonItemSalesStrategyReadership.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowReadership;
+            FormMain.Instance.buttonItemHomeOptionsAbbreviation.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowCode;
+            FormMain.Instance.buttonItemHomeOptionsLogo.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowLogo;
+            FormMain.Instance.buttonItemHomeOptionsDelivery.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowDelivery;
+            FormMain.Instance.buttonItemHomeOptionsReadership.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowReadership;
         }
 
         private void SaveView()
         {
-            _localSchedule.ViewSettings.HomeViewSettings.ShowCode = FormMain.Instance.buttonItemSalesStrategyAbbreviation.Checked;
-            _localSchedule.ViewSettings.HomeViewSettings.ShowLogo = FormMain.Instance.buttonItemSalesStrategyLogo.Checked;
-            _localSchedule.ViewSettings.HomeViewSettings.ShowDelivery = FormMain.Instance.buttonItemSalesStrategyDelivery.Checked;
-            _localSchedule.ViewSettings.HomeViewSettings.ShowReadership = FormMain.Instance.buttonItemSalesStrategyReadership.Checked;
+            _localSchedule.ViewSettings.HomeViewSettings.ShowCode = FormMain.Instance.buttonItemHomeOptionsAbbreviation.Checked;
+            _localSchedule.ViewSettings.HomeViewSettings.ShowLogo = FormMain.Instance.buttonItemHomeOptionsLogo.Checked;
+            _localSchedule.ViewSettings.HomeViewSettings.ShowDelivery = FormMain.Instance.buttonItemHomeOptionsDelivery.Checked;
+            _localSchedule.ViewSettings.HomeViewSettings.ShowReadership = FormMain.Instance.buttonItemHomeOptionsReadership.Checked;
         }
 
         private bool AllowToAddPublication()
@@ -218,16 +217,16 @@ namespace AdScheduleBuilder.CustomControls
                 return false;
             }
 
-            if (FormMain.Instance.checkBoxItemAccountNumber.Checked && FormMain.Instance.textEditAccountNumber.EditValue != null)
+            if (FormMain.Instance.checkBoxItemHomeAccountNumber.Checked && FormMain.Instance.textEditAccountNumber.EditValue != null)
                 _localSchedule.AccountNumber = FormMain.Instance.textEditAccountNumber.EditValue.ToString();
             else
                 _localSchedule.AccountNumber = string.Empty;
 
-            if (FormMain.Instance.buttonItemSalesStrategyEmail.Checked)
+            if (FormMain.Instance.buttonItemHomeSalesStrategyEmail.Checked)
                 _localSchedule.SalesStrategy = BusinessClasses.SalesStrategies.Email;
-            else if (FormMain.Instance.buttonItemSalesStrategyFax.Checked)
+            else if (FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked)
                 _localSchedule.SalesStrategy = BusinessClasses.SalesStrategies.Fax;
-            else if (FormMain.Instance.buttonItemSalesStrategyFaceCall.Checked)
+            else if (FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked)
                 _localSchedule.SalesStrategy = BusinessClasses.SalesStrategies.InPerson;
 
             if (FormMain.Instance.dateEditPresentationDate.DateTime != null)
@@ -290,9 +289,9 @@ namespace AdScheduleBuilder.CustomControls
 
         private void UncheckSalesStrategyButtons()
         {
-            FormMain.Instance.buttonItemSalesStrategyFaceCall.Checked = false;
-            FormMain.Instance.buttonItemSalesStrategyEmail.Checked = false;
-            FormMain.Instance.buttonItemSalesStrategyFax.Checked = false;
+            FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked = false;
+            FormMain.Instance.buttonItemHomeSalesStrategyEmail.Checked = false;
+            FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked = false;
         }
 
         private void ScheduleSettingsControl_Load(object sender, EventArgs e)
@@ -314,19 +313,19 @@ namespace AdScheduleBuilder.CustomControls
         public void buttonItemSalesStrategyFaceCall_Click(object sender, EventArgs e)
         {
             UncheckSalesStrategyButtons();
-            FormMain.Instance.buttonItemSalesStrategyFaceCall.Checked = true;
+            FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked = true;
         }
 
         public void buttonItemSalesStrategyEmail_Click(object sender, EventArgs e)
         {
             UncheckSalesStrategyButtons();
-            FormMain.Instance.buttonItemSalesStrategyEmail.Checked = true;
+            FormMain.Instance.buttonItemHomeSalesStrategyEmail.Checked = true;
         }
 
         public void buttonItemSalesStrategyFax_Click(object sender, EventArgs e)
         {
             UncheckSalesStrategyButtons();
-            FormMain.Instance.buttonItemSalesStrategyFax.Checked = true;
+            FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked = true;
         }
 
 
@@ -430,20 +429,20 @@ namespace AdScheduleBuilder.CustomControls
 
         public void CalcWeeksOnFlightDatesChange(object sender, EventArgs e)
         {
-            FormMain.Instance.labelItemFlightDatesWeeks.Text = "";
-            FormMain.Instance.labelItemFlightDatesWeeks.Visible = false;
+            FormMain.Instance.labelItemHomeFlightDatesWeeks.Text = "";
+            FormMain.Instance.labelItemHomeFlightDatesWeeks.Visible = false;
             if (FormMain.Instance.dateEditFlightDatesStart.DateTime != null && FormMain.Instance.dateEditFlightDatesEnd.DateTime != null)
             {
                 TimeSpan datesRange = FormMain.Instance.dateEditFlightDatesEnd.DateTime - FormMain.Instance.dateEditFlightDatesStart.DateTime;
                 int weeksCount = datesRange.Days / 7 + 1;
-                FormMain.Instance.labelItemFlightDatesWeeks.Text = weeksCount.ToString() + (weeksCount > 1 ? " Weeks" : " Week");
-                FormMain.Instance.labelItemFlightDatesWeeks.Visible = true;
+                FormMain.Instance.labelItemHomeFlightDatesWeeks.Text = weeksCount.ToString() + (weeksCount > 1 ? " Weeks" : " Week");
+                FormMain.Instance.labelItemHomeFlightDatesWeeks.Visible = true;
             }
         }
 
         public void checkBoxItemAccountNumber_CheckedChanged(object sender, DevComponents.DotNetBar.CheckBoxChangeEventArgs e)
         {
-            FormMain.Instance.textEditAccountNumber.Enabled = FormMain.Instance.checkBoxItemAccountNumber.Checked;
+            FormMain.Instance.textEditAccountNumber.Enabled = FormMain.Instance.checkBoxItemHomeAccountNumber.Checked;
             SchedulePropertyEditValueChanged(null, null);
         }
 
@@ -527,21 +526,21 @@ namespace AdScheduleBuilder.CustomControls
 
         public void buttonItemSalesStrategyAbbreviation_CheckedChanged(object sender, EventArgs e)
         {
-            gridBandAbbreviation.Visible = FormMain.Instance.buttonItemSalesStrategyAbbreviation.Checked;
+            gridBandAbbreviation.Visible = FormMain.Instance.buttonItemHomeOptionsAbbreviation.Checked;
             this.SettingsNotSaved = true;
         }
 
         public void buttonItemSalesStrategyLogo_CheckedChanged(object sender, EventArgs e)
         {
-            gridBandLogo.Visible = FormMain.Instance.buttonItemSalesStrategyLogo.Checked;
+            gridBandLogo.Visible = FormMain.Instance.buttonItemHomeOptionsLogo.Checked;
             this.SettingsNotSaved = true;
         }
 
         public void buttonItemSalesStrategyReadership_CheckedChanged(object sender, EventArgs e)
         {
-            gridColumnDailyReadership.Visible = FormMain.Instance.buttonItemSalesStrategyReadership.Checked;
-            gridColumnSundayReadership.Visible = FormMain.Instance.buttonItemSalesStrategyReadership.Checked;
-            if (!FormMain.Instance.buttonItemSalesStrategyReadership.Checked && !FormMain.Instance.buttonItemSalesStrategyDelivery.Checked)
+            gridColumnDailyReadership.Visible = FormMain.Instance.buttonItemHomeOptionsReadership.Checked;
+            gridColumnSundayReadership.Visible = FormMain.Instance.buttonItemHomeOptionsReadership.Checked;
+            if (!FormMain.Instance.buttonItemHomeOptionsReadership.Checked && !FormMain.Instance.buttonItemHomeOptionsDelivery.Checked)
                 gridColumnName.RowCount = 2;
             else
                 gridColumnName.RowCount = 1;
@@ -550,9 +549,9 @@ namespace AdScheduleBuilder.CustomControls
 
         public void buttonItemSalesStrategyDelivery_CheckedChanged(object sender, EventArgs e)
         {
-            gridColumnDailyDelivery.Visible = FormMain.Instance.buttonItemSalesStrategyDelivery.Checked;
-            gridColumnSundayDelivery.Visible = FormMain.Instance.buttonItemSalesStrategyDelivery.Checked;
-            if (!FormMain.Instance.buttonItemSalesStrategyReadership.Checked && !FormMain.Instance.buttonItemSalesStrategyDelivery.Checked)
+            gridColumnDailyDelivery.Visible = FormMain.Instance.buttonItemHomeOptionsDelivery.Checked;
+            gridColumnSundayDelivery.Visible = FormMain.Instance.buttonItemHomeOptionsDelivery.Checked;
+            if (!FormMain.Instance.buttonItemHomeOptionsReadership.Checked && !FormMain.Instance.buttonItemHomeOptionsDelivery.Checked)
                 gridColumnName.RowCount = 2;
             else
                 gridColumnName.RowCount = 1;

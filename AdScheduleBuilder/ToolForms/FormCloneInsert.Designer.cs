@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCloneInsert));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.laOriginalDate = new System.Windows.Forms.Label();
             this.checkEditPCIRate = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditDiscount = new DevExpress.XtraEditors.CheckEdit();
@@ -43,6 +44,7 @@
             this.checkEditDeadline = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditMechanicals = new DevExpress.XtraEditors.CheckEdit();
             this.pnTop = new System.Windows.Forms.Panel();
+            this.pbHelp = new System.Windows.Forms.PictureBox();
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.laOriginalRate = new System.Windows.Forms.Label();
             this.pnMain = new System.Windows.Forms.Panel();
@@ -62,6 +64,7 @@
             this.pnBottom = new System.Windows.Forms.Panel();
             this.labelControlClonedRate = new DevExpress.XtraEditors.LabelControl();
             this.labelControlClonedNumber = new DevExpress.XtraEditors.LabelControl();
+            this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditPCIRate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditDiscount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditColorRate.Properties)).BeginInit();
@@ -70,6 +73,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEditDeadline.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditMechanicals.Properties)).BeginInit();
             this.pnTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.pnMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlClone)).BeginInit();
@@ -93,7 +97,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.laOriginalDate.AutoSize = true;
             this.laOriginalDate.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laOriginalDate.Location = new System.Drawing.Point(96, 19);
+            this.laOriginalDate.Location = new System.Drawing.Point(96, 23);
             this.laOriginalDate.Name = "laOriginalDate";
             this.laOriginalDate.Size = new System.Drawing.Size(92, 39);
             this.laOriginalDate.TabIndex = 3;
@@ -220,19 +224,34 @@
             // pnTop
             // 
             this.pnTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnTop.Controls.Add(this.pbHelp);
             this.pnTop.Controls.Add(this.pbLogo);
             this.pnTop.Controls.Add(this.laOriginalRate);
             this.pnTop.Controls.Add(this.laOriginalDate);
             this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnTop.Location = new System.Drawing.Point(0, 0);
             this.pnTop.Name = "pnTop";
-            this.pnTop.Size = new System.Drawing.Size(605, 80);
+            this.pnTop.Size = new System.Drawing.Size(605, 88);
             this.pnTop.TabIndex = 16;
+            // 
+            // pbHelp
+            // 
+            this.pbHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
+            this.pbHelp.Location = new System.Drawing.Point(525, 2);
+            this.pbHelp.Name = "pbHelp";
+            this.pbHelp.Size = new System.Drawing.Size(76, 81);
+            this.pbHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.superTooltip.SetSuperTooltip(this.pbHelp, new DevComponents.DotNetBar.SuperTooltipInfo("Clone Line", "", "Learn more about Cloning Ads in your schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.pbHelp.TabIndex = 24;
+            this.pbHelp.TabStop = false;
+            this.pbHelp.Click += new System.EventHandler(this.pbHelp_Click);
+            this.pbHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
             // pbLogo
             // 
             this.pbLogo.Image = global::AdScheduleBuilder.Properties.Resources.CloneSchedule;
-            this.pbLogo.Location = new System.Drawing.Point(3, -1);
+            this.pbLogo.Location = new System.Drawing.Point(3, 3);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(87, 79);
             this.pbLogo.TabIndex = 5;
@@ -243,9 +262,9 @@
             this.laOriginalRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.laOriginalRate.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laOriginalRate.Location = new System.Drawing.Point(373, 26);
+            this.laOriginalRate.Location = new System.Drawing.Point(364, 17);
             this.laOriginalRate.Name = "laOriginalRate";
-            this.laOriginalRate.Size = new System.Drawing.Size(225, 24);
+            this.laOriginalRate.Size = new System.Drawing.Size(155, 51);
             this.laOriginalRate.TabIndex = 4;
             this.laOriginalRate.Text = "Rate";
             this.laOriginalRate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -257,9 +276,9 @@
             this.pnMain.Controls.Add(this.labelControlFlightDates);
             this.pnMain.Controls.Add(this.gridControlDays);
             this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnMain.Location = new System.Drawing.Point(0, 80);
+            this.pnMain.Location = new System.Drawing.Point(0, 88);
             this.pnMain.Name = "pnMain";
-            this.pnMain.Size = new System.Drawing.Size(605, 284);
+            this.pnMain.Size = new System.Drawing.Size(605, 285);
             this.pnMain.TabIndex = 17;
             // 
             // xtraTabControlClone
@@ -278,7 +297,7 @@
             this.xtraTabControlClone.Location = new System.Drawing.Point(171, 33);
             this.xtraTabControlClone.Name = "xtraTabControlClone";
             this.xtraTabControlClone.SelectedTabPage = this.xtraTabPageDays;
-            this.xtraTabControlClone.Size = new System.Drawing.Size(430, 247);
+            this.xtraTabControlClone.Size = new System.Drawing.Size(430, 248);
             this.xtraTabControlClone.TabIndex = 5;
             this.xtraTabControlClone.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageDays,
@@ -292,7 +311,7 @@
             this.xtraTabPageDays.Controls.Add(this.monthCalendarClone);
             this.xtraTabPageDays.Controls.Add(this.buttonXClearAll);
             this.xtraTabPageDays.Name = "xtraTabPageDays";
-            this.xtraTabPageDays.Size = new System.Drawing.Size(428, 221);
+            this.xtraTabPageDays.Size = new System.Drawing.Size(428, 222);
             this.xtraTabPageDays.Text = "Days";
             // 
             // labelControlDayTitle
@@ -387,7 +406,7 @@
             this.xtraTabPageOptions.Controls.Add(this.checkEditComment);
             this.xtraTabPageOptions.Controls.Add(this.checkEditSections);
             this.xtraTabPageOptions.Name = "xtraTabPageOptions";
-            this.xtraTabPageOptions.Size = new System.Drawing.Size(428, 221);
+            this.xtraTabPageOptions.Size = new System.Drawing.Size(428, 222);
             this.xtraTabPageOptions.Text = "Options";
             // 
             // laOptionsTitle
@@ -421,7 +440,7 @@
             this.gridControlDays.Name = "gridControlDays";
             this.gridControlDays.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit});
-            this.gridControlDays.Size = new System.Drawing.Size(171, 280);
+            this.gridControlDays.Size = new System.Drawing.Size(171, 281);
             this.gridControlDays.TabIndex = 4;
             this.gridControlDays.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDays});
@@ -484,7 +503,7 @@
             this.pnBottom.Controls.Add(this.buttonXOK);
             this.pnBottom.Controls.Add(this.buttonXCancel);
             this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnBottom.Location = new System.Drawing.Point(0, 364);
+            this.pnBottom.Location = new System.Drawing.Point(0, 373);
             this.pnBottom.Name = "pnBottom";
             this.pnBottom.Size = new System.Drawing.Size(605, 60);
             this.pnBottom.TabIndex = 18;
@@ -511,11 +530,15 @@
             this.labelControlClonedNumber.TabIndex = 10;
             this.labelControlClonedNumber.Text = "Cloned Ads: <b>{0}</b>";
             // 
+            // superTooltip
+            // 
+            this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            // 
             // FormCloneInsert
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(605, 424);
+            this.ClientSize = new System.Drawing.Size(605, 433);
             this.Controls.Add(this.pnMain);
             this.Controls.Add(this.pnBottom);
             this.Controls.Add(this.pnTop);
@@ -536,6 +559,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEditMechanicals.Properties)).EndInit();
             this.pnTop.ResumeLayout(false);
             this.pnTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.pnMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlClone)).EndInit();
@@ -585,5 +609,7 @@
         private DevExpress.XtraEditors.LabelControl labelControlClonedRate;
         private DevExpress.XtraEditors.LabelControl labelControlClonedNumber;
         private System.Windows.Forms.PictureBox pbLogo;
+        private System.Windows.Forms.PictureBox pbHelp;
+        public DevComponents.DotNetBar.SuperTooltip superTooltip;
     }
 }

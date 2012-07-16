@@ -36,5 +36,29 @@ namespace AdScheduleBuilder.ToolForms
                 ckDeleteAllDiscounts.Checked = false;
             }
         }
+
+        private void pbHelp_Click(object sender, EventArgs e)
+        {
+            BusinessClasses.HelpManager.Instance.OpenHelpLink("pricestrategy");
+        }
+
+        #region Picture Box Clicks Habdlers
+        /// <summary>
+        /// Buttonize the PictureBox 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            PictureBox pic = (PictureBox)(sender);
+            pic.Top += 1;
+        }
+
+        private void pictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            PictureBox pic = (PictureBox)(sender);
+            pic.Top -= 1;
+        }
+        #endregion
     }
 }

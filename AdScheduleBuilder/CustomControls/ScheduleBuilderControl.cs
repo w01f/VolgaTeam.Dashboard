@@ -82,7 +82,6 @@ namespace AdScheduleBuilder.CustomControls
                 && control != FormMain.Instance.comboBoxEditClientType
                 && control != FormMain.Instance.comboBoxEditDecisionMaker
                 && control != FormMain.Instance.textEditAccountNumber
-                && control != FormMain.Instance.listBoxControlCalendar
                 && control != FormMain.Instance.comboBoxEditRateCard
                 && control != FormMain.Instance.comboBoxEditRateCards
                 && control != FormMain.Instance.dateEditFlightDatesEnd
@@ -177,14 +176,14 @@ namespace AdScheduleBuilder.CustomControls
             _allowToSave = false;
 
             #region Clear Pricing
-            FormMain.Instance.buttonItemAdPricingColumnInches.Checked = false;
-            FormMain.Instance.buttonItemAdPricingFlat.Checked = false;
-            FormMain.Instance.buttonItemAdPricingPagePercent.Checked = false;
+            FormMain.Instance.buttonItemSchedulesAdPricingColumnInches.Checked = false;
+            FormMain.Instance.buttonItemSchedulesAdPricingFlat.Checked = false;
+            FormMain.Instance.buttonItemSchedulesAdPricingPagePercent.Checked = false;
             #endregion
 
             #region Clear Size
-            FormMain.Instance.itemContainerAdSizeStandart.Visible = false;
-            FormMain.Instance.checkBoxItemAdSizeStandartSquare.Checked = false;
+            FormMain.Instance.itemContainerSchedulesAdSizeStandart.Visible = false;
+            FormMain.Instance.checkBoxItemSchedulesAdSizeStandartSquare.Checked = false;
             FormMain.Instance.spinEditStandartHeight.Enabled = false;
             FormMain.Instance.spinEditStandartWidth.Enabled = false;
             FormMain.Instance.spinEditStandartWidth.Value = 0;
@@ -194,15 +193,15 @@ namespace AdScheduleBuilder.CustomControls
             FormMain.Instance.laStandartSquareMetric.Visible = false;
             FormMain.Instance.laStandartSquareValue.Visible = false;
             FormMain.Instance.laStandartSquareValue.Text = "0.00";
-            FormMain.Instance.checkBoxItemStandartPageSize.Checked = false;
+            FormMain.Instance.checkBoxItemSchedulesStandartPageSize.Checked = false;
             FormMain.Instance.comboBoxEditStandartPageSize.Enabled = false;
             FormMain.Instance.comboBoxEditStandartPageSize.EditValue = null;
 
-            FormMain.Instance.itemContainerAdSizeSharePage.Visible = false;
+            FormMain.Instance.itemContainerSchedulesAdSizeSharePage.Visible = false;
             FormMain.Instance.comboBoxEditRateCard.EditValue = null;
             FormMain.Instance.comboBoxEditPercentOfPage.EditValue = null;
             FormMain.Instance.comboBoxEditPercentOfPage.Enabled = false;
-            FormMain.Instance.checkBoxItemSharePagePageSize.Checked = false;
+            FormMain.Instance.checkBoxItemSchedulesSharePagePageSize.Checked = false;
             FormMain.Instance.comboBoxEditSharePagePageSize.Enabled = false;
             FormMain.Instance.comboBoxEditSharePagePageSize.EditValue = null;
             FormMain.Instance.checkedListBoxControlSharePageSquare.Items.Clear();
@@ -210,16 +209,16 @@ namespace AdScheduleBuilder.CustomControls
             #endregion
 
             #region Clear Color
-            FormMain.Instance.buttonItemColorOptionsSingle.Checked = false;
-            FormMain.Instance.buttonItemColorOptionsSpot.Checked = false;
-            FormMain.Instance.buttonItemColorOptionsFull.Checked = false;
-            FormMain.Instance.buttonItemColorOptionsCostPerAd.Checked = false;
-            FormMain.Instance.buttonItemColorOptionsCostPerAd.Enabled = false;
-            FormMain.Instance.buttonItemColorOptionsPercentOfAd.Checked = false;
-            FormMain.Instance.buttonItemColorOptionsPercentOfAd.Enabled = false;
-            FormMain.Instance.buttonItemColorOptionsIncluded.Checked = false;
-            FormMain.Instance.buttonItemColorOptionsIncluded.Enabled = false;
-            FormMain.Instance.buttonItemColorOptionsPCI.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsSingle.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsSpot.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsFull.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsCostPerAd.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsCostPerAd.Enabled = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsPercentOfAd.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsPercentOfAd.Enabled = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsIncluded.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsIncluded.Enabled = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsPCI.Checked = false;
             FormMain.Instance.spinEditCostPerInch.Value = 0;
             FormMain.Instance.spinEditCostPerInch.Enabled = false;
             #endregion
@@ -233,9 +232,9 @@ namespace AdScheduleBuilder.CustomControls
             if (publicationControl != null)
             {
                 BusinessClasses.Publication publication = publicationControl.Publication;
-                FormMain.Instance.buttonItemDeleteInsert.Enabled = publication.Inserts.Count > 0;
-                FormMain.Instance.buttonItemCloneInsert.Enabled = publication.Inserts.Count > 0;
-                FormMain.Instance.buttonItemAdPricingPagePercent.Enabled = BusinessClasses.ListManager.Instance.ShareUnits.Count > 0;
+                FormMain.Instance.buttonItemSchedulesDeleteInsert.Enabled = publication.Inserts.Count > 0;
+                FormMain.Instance.buttonItemSchedulesCloneInsert.Enabled = publication.Inserts.Count > 0;
+                FormMain.Instance.buttonItemSchedulesAdPricingPagePercent.Enabled = BusinessClasses.ListManager.Instance.ShareUnits.Count > 0;
                 ClearSettings();
                 LoadPricingOptions(publicationControl);
                 LoadSizeOptions(publicationControl);
@@ -311,19 +310,19 @@ namespace AdScheduleBuilder.CustomControls
             switch (publication.AdPricingStrategy)
             {
                 case BusinessClasses.AdPricingStrategies.StandartPCI:
-                    FormMain.Instance.buttonItemAdPricingColumnInches.Checked = true;
-                    FormMain.Instance.buttonItemAdPricingFlat.Checked = false;
-                    FormMain.Instance.buttonItemAdPricingPagePercent.Checked = false;
+                    FormMain.Instance.buttonItemSchedulesAdPricingColumnInches.Checked = true;
+                    FormMain.Instance.buttonItemSchedulesAdPricingFlat.Checked = false;
+                    FormMain.Instance.buttonItemSchedulesAdPricingPagePercent.Checked = false;
                     break;
                 case BusinessClasses.AdPricingStrategies.FlatModular:
-                    FormMain.Instance.buttonItemAdPricingColumnInches.Checked = false;
-                    FormMain.Instance.buttonItemAdPricingFlat.Checked = true;
-                    FormMain.Instance.buttonItemAdPricingPagePercent.Checked = false;
+                    FormMain.Instance.buttonItemSchedulesAdPricingColumnInches.Checked = false;
+                    FormMain.Instance.buttonItemSchedulesAdPricingFlat.Checked = true;
+                    FormMain.Instance.buttonItemSchedulesAdPricingPagePercent.Checked = false;
                     break;
                 case BusinessClasses.AdPricingStrategies.SharePage:
-                    FormMain.Instance.buttonItemAdPricingColumnInches.Checked = false;
-                    FormMain.Instance.buttonItemAdPricingFlat.Checked = false;
-                    FormMain.Instance.buttonItemAdPricingPagePercent.Checked = true;
+                    FormMain.Instance.buttonItemSchedulesAdPricingColumnInches.Checked = false;
+                    FormMain.Instance.buttonItemSchedulesAdPricingFlat.Checked = false;
+                    FormMain.Instance.buttonItemSchedulesAdPricingPagePercent.Checked = true;
                     break;
             }
             FormatAccordingPricingOptions(publicationControl);
@@ -336,11 +335,11 @@ namespace AdScheduleBuilder.CustomControls
             switch (publication.AdPricingStrategy)
             {
                 case BusinessClasses.AdPricingStrategies.StandartPCI:
-                    FormMain.Instance.itemContainerAdSizeStandart.Visible = true;
-                    FormMain.Instance.itemContainerAdSizeSharePage.Visible = false;
-                    FormMain.Instance.checkBoxItemAdSizeStandartSquare.Enabled = false;
-                    FormMain.Instance.checkBoxItemAdSizeStandartSquare.Checked = true;
-                    FormMain.Instance.buttonItemColorOptionsPCI.Enabled = publicationControl.Publication.ColorOption != BusinessClasses.ColorOptions.BlackWhite;
+                    FormMain.Instance.itemContainerSchedulesAdSizeStandart.Visible = true;
+                    FormMain.Instance.itemContainerSchedulesAdSizeSharePage.Visible = false;
+                    FormMain.Instance.checkBoxItemSchedulesAdSizeStandartSquare.Enabled = false;
+                    FormMain.Instance.checkBoxItemSchedulesAdSizeStandartSquare.Checked = true;
+                    FormMain.Instance.buttonItemSchedulesColorOptionsPCI.Enabled = publicationControl.Publication.ColorOption != BusinessClasses.ColorOptions.BlackWhite;
                     FormMain.Instance.spinEditCostPerInch.Enabled = publicationControl.Publication.ColorOption != BusinessClasses.ColorOptions.BlackWhite & publicationControl.Publication.ColorPricing == BusinessClasses.ColorPricingType.CostPerInch;
 
                     publicationControl.gridBandPCIRate.Caption = "PCI";
@@ -377,11 +376,11 @@ namespace AdScheduleBuilder.CustomControls
                     publicationControl.repositoryItemSpinEditADRateDisplayNullFirstRow.AppearanceReadOnly.ForeColor = Color.Gray;
                     break;
                 case BusinessClasses.AdPricingStrategies.FlatModular:
-                    FormMain.Instance.itemContainerAdSizeStandart.Visible = true;
-                    FormMain.Instance.itemContainerAdSizeSharePage.Visible = false;
-                    FormMain.Instance.checkBoxItemAdSizeStandartSquare.Enabled = true;
-                    FormMain.Instance.checkBoxItemAdSizeStandartSquare.Enabled = true;
-                    FormMain.Instance.buttonItemColorOptionsPCI.Enabled = publication.SizeOptions.EnableSquare & publicationControl.Publication.ColorOption != BusinessClasses.ColorOptions.BlackWhite;
+                    FormMain.Instance.itemContainerSchedulesAdSizeStandart.Visible = true;
+                    FormMain.Instance.itemContainerSchedulesAdSizeSharePage.Visible = false;
+                    FormMain.Instance.checkBoxItemSchedulesAdSizeStandartSquare.Enabled = true;
+                    FormMain.Instance.checkBoxItemSchedulesAdSizeStandartSquare.Enabled = true;
+                    FormMain.Instance.buttonItemSchedulesColorOptionsPCI.Enabled = publication.SizeOptions.EnableSquare & publicationControl.Publication.ColorOption != BusinessClasses.ColorOptions.BlackWhite;
                     FormMain.Instance.spinEditCostPerInch.Enabled = publication.SizeOptions.EnableSquare & publicationControl.Publication.ColorOption != BusinessClasses.ColorOptions.BlackWhite & publicationControl.Publication.ColorPricing == BusinessClasses.ColorPricingType.CostPerInch;
 
                     publicationControl.gridBandPCIRate.Caption = "Package PCI";
@@ -418,10 +417,10 @@ namespace AdScheduleBuilder.CustomControls
                     publicationControl.repositoryItemSpinEditADRateDisplayNullFirstRow.AppearanceReadOnly.ForeColor = Color.Black;
                     break;
                 case BusinessClasses.AdPricingStrategies.SharePage:
-                    FormMain.Instance.itemContainerAdSizeStandart.Visible = false;
-                    FormMain.Instance.itemContainerAdSizeSharePage.Visible = true;
-                    FormMain.Instance.checkBoxItemAdSizeStandartSquare.Enabled = false;
-                    FormMain.Instance.buttonItemColorOptionsPCI.Enabled = false;
+                    FormMain.Instance.itemContainerSchedulesAdSizeStandart.Visible = false;
+                    FormMain.Instance.itemContainerSchedulesAdSizeSharePage.Visible = true;
+                    FormMain.Instance.checkBoxItemSchedulesAdSizeStandartSquare.Enabled = false;
+                    FormMain.Instance.buttonItemSchedulesColorOptionsPCI.Enabled = false;
                     FormMain.Instance.spinEditCostPerInch.Enabled = false;
                     FormMain.Instance.spinEditCostPerInch.Value = 0;
 
@@ -459,7 +458,7 @@ namespace AdScheduleBuilder.CustomControls
                     publicationControl.repositoryItemSpinEditADRateDisplayNullFirstRow.AppearanceReadOnly.ForeColor = Color.Black;
                     break;
             }
-            FormMain.Instance.ribbonBarAdSize.RecalcLayout();
+            FormMain.Instance.ribbonBarSchedulesAdSize.RecalcLayout();
             FormMain.Instance.ribbonPanelBuildSchedules.PerformLayout();
         }
 
@@ -485,17 +484,17 @@ namespace AdScheduleBuilder.CustomControls
 
                 string newPricingStrategy = string.Empty;
                 Image newPricingStrategyImage = null;
-                if (sender == FormMain.Instance.buttonItemAdPricingColumnInches)
+                if (sender == FormMain.Instance.buttonItemSchedulesAdPricingColumnInches)
                 {
                     newPricingStrategy = "Column Inches";
                     newPricingStrategyImage = Properties.Resources.ColumnInchesBig;
                 }
-                else if (sender == FormMain.Instance.buttonItemAdPricingFlat)
+                else if (sender == FormMain.Instance.buttonItemSchedulesAdPricingFlat)
                 {
                     newPricingStrategy = "Flat Rate";
                     newPricingStrategyImage = Properties.Resources.FlatRateBig;
                 }
-                else if (sender == FormMain.Instance.buttonItemAdPricingPagePercent)
+                else if (sender == FormMain.Instance.buttonItemSchedulesAdPricingPagePercent)
                 {
                     newPricingStrategy = "% Share of Page";
                     newPricingStrategyImage = Properties.Resources.SharePageBig;
@@ -550,9 +549,9 @@ namespace AdScheduleBuilder.CustomControls
                                             publicationControl.LoadInserts();
                                     }
                                     _allowToSave = false;
-                                    FormMain.Instance.buttonItemAdPricingColumnInches.Checked = false;
-                                    FormMain.Instance.buttonItemAdPricingFlat.Checked = false;
-                                    FormMain.Instance.buttonItemAdPricingPagePercent.Checked = false;
+                                    FormMain.Instance.buttonItemSchedulesAdPricingColumnInches.Checked = false;
+                                    FormMain.Instance.buttonItemSchedulesAdPricingFlat.Checked = false;
+                                    FormMain.Instance.buttonItemSchedulesAdPricingPagePercent.Checked = false;
                                     _allowToSave = true;
                                     (sender as DevComponents.DotNetBar.ButtonItem).Checked = true;
                                 }
@@ -569,15 +568,15 @@ namespace AdScheduleBuilder.CustomControls
             if (publicationControl != null && _allowToSave)
             {
                 BusinessClasses.Publication publication = publicationControl.Publication;
-                if (FormMain.Instance.buttonItemAdPricingColumnInches.Checked)
+                if (FormMain.Instance.buttonItemSchedulesAdPricingColumnInches.Checked)
                 {
                     if (publication.AdPricingStrategy == BusinessClasses.AdPricingStrategies.SharePage)
                         publication.SizeOptions.ResetToDefaults(BusinessClasses.AdPricingStrategies.StandartPCI);
                     publication.AdPricingStrategy = BusinessClasses.AdPricingStrategies.StandartPCI;
                 }
-                else if (FormMain.Instance.buttonItemAdPricingFlat.Checked || FormMain.Instance.buttonItemAdPricingPagePercent.Checked)
+                else if (FormMain.Instance.buttonItemSchedulesAdPricingFlat.Checked || FormMain.Instance.buttonItemSchedulesAdPricingPagePercent.Checked)
                 {
-                    if (FormMain.Instance.buttonItemAdPricingFlat.Checked)
+                    if (FormMain.Instance.buttonItemSchedulesAdPricingFlat.Checked)
                     {
                         BusinessClasses.AdPricingStrategies prevStrategy = publication.AdPricingStrategy;
                         publication.AdPricingStrategy = BusinessClasses.AdPricingStrategies.FlatModular;
@@ -586,7 +585,7 @@ namespace AdScheduleBuilder.CustomControls
                             publication.SizeOptions.ResetToDefaults(BusinessClasses.AdPricingStrategies.FlatModular);
                         }
                     }
-                    else if (FormMain.Instance.buttonItemAdPricingPagePercent.Checked)
+                    else if (FormMain.Instance.buttonItemSchedulesAdPricingPagePercent.Checked)
                     {
                         BusinessClasses.ColorPricingType prevColorPricing = publication.ColorPricing;
                         if (publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage)
@@ -597,16 +596,16 @@ namespace AdScheduleBuilder.CustomControls
                             switch (BusinessClasses.ListManager.Instance.DefaultColorPricing)
                             {
                                 case BusinessClasses.ColorPricingType.CostPerAd:
-                                    buttonItemColorOptions_Click(FormMain.Instance.buttonItemColorOptionsCostPerAd, null);
+                                    buttonItemColorOptions_Click(FormMain.Instance.buttonItemSchedulesColorOptionsCostPerAd, null);
                                     break;
                                 case BusinessClasses.ColorPricingType.PercentOfAdRate:
-                                    buttonItemColorOptions_Click(FormMain.Instance.buttonItemColorOptionsPercentOfAd, null);
+                                    buttonItemColorOptions_Click(FormMain.Instance.buttonItemSchedulesColorOptionsPercentOfAd, null);
                                     break;
                                 case BusinessClasses.ColorPricingType.ColorIncluded:
-                                    buttonItemColorOptions_Click(FormMain.Instance.buttonItemColorOptionsIncluded, null);
+                                    buttonItemColorOptions_Click(FormMain.Instance.buttonItemSchedulesColorOptionsIncluded, null);
                                     break;
                                 case BusinessClasses.ColorPricingType.CostPerInch:
-                                    buttonItemColorOptions_Click(FormMain.Instance.buttonItemColorOptionsPCI, null);
+                                    buttonItemColorOptions_Click(FormMain.Instance.buttonItemSchedulesColorOptionsPCI, null);
                                     break;
                             }
                         }
@@ -633,15 +632,15 @@ namespace AdScheduleBuilder.CustomControls
             FormMain.Instance.comboBoxEditSharePagePageSize.Properties.Items.AddRange(BusinessClasses.ListManager.Instance.PageSizes.ToArray());
             FormMain.Instance.comboBoxEditRateCard.Properties.Items.Clear();
             FormMain.Instance.comboBoxEditRateCard.Properties.Items.AddRange(BusinessClasses.ListManager.Instance.ShareUnits.Select(x => x.RateCard).Distinct().ToArray());
-            FormMain.Instance.checkBoxItemStandartPageSize.Checked = sizeOptions.EnablePageSize;
+            FormMain.Instance.checkBoxItemSchedulesStandartPageSize.Checked = sizeOptions.EnablePageSize;
             FormMain.Instance.comboBoxEditStandartPageSize.EditValue = sizeOptions.PageSize;
-            FormMain.Instance.checkBoxItemSharePagePageSize.Checked = sizeOptions.EnablePageSize;
+            FormMain.Instance.checkBoxItemSchedulesSharePagePageSize.Checked = sizeOptions.EnablePageSize;
             FormMain.Instance.comboBoxEditSharePagePageSize.EditValue = sizeOptions.PageSize;
             switch (publicationControl.Publication.AdPricingStrategy)
             {
                 case BusinessClasses.AdPricingStrategies.StandartPCI:
                 case BusinessClasses.AdPricingStrategies.FlatModular:
-                    FormMain.Instance.checkBoxItemAdSizeStandartSquare.Checked = sizeOptions.EnableSquare;
+                    FormMain.Instance.checkBoxItemSchedulesAdSizeStandartSquare.Checked = sizeOptions.EnableSquare;
                     FormMain.Instance.spinEditStandartWidth.Value = (decimal)sizeOptions.Width;
                     FormMain.Instance.spinEditStandartHeight.Value = (decimal)sizeOptions.Height;
                     break;
@@ -683,16 +682,16 @@ namespace AdScheduleBuilder.CustomControls
                     FormMain.Instance.checkedListBoxControlSharePageSquare.Items.Clear();
                     _allowToSave = true;
 
-                    sizeOptions.EnableSquare = FormMain.Instance.checkBoxItemAdSizeStandartSquare.Checked;
+                    sizeOptions.EnableSquare = FormMain.Instance.checkBoxItemSchedulesAdSizeStandartSquare.Checked;
                     sizeOptions.Width = sizeOptions.EnableSquare ? (double)FormMain.Instance.spinEditStandartWidth.Value : 0;
                     sizeOptions.Height = sizeOptions.EnableSquare ? (double)FormMain.Instance.spinEditStandartHeight.Value : 0;
-                    sizeOptions.EnablePageSize = FormMain.Instance.checkBoxItemStandartPageSize.Checked;
+                    sizeOptions.EnablePageSize = FormMain.Instance.checkBoxItemSchedulesStandartPageSize.Checked;
                     sizeOptions.PageSize = sizeOptions.EnablePageSize && !string.IsNullOrEmpty((string)FormMain.Instance.comboBoxEditStandartPageSize.EditValue) ? FormMain.Instance.comboBoxEditStandartPageSize.EditValue.ToString() : null;
                     break;
                 case BusinessClasses.AdPricingStrategies.SharePage:
                     sizeOptions.ResetToDefaults(BusinessClasses.AdPricingStrategies.SharePage);
                     _allowToSave = false;
-                    FormMain.Instance.checkBoxItemAdSizeStandartSquare.Checked = false;
+                    FormMain.Instance.checkBoxItemSchedulesAdSizeStandartSquare.Checked = false;
                     FormMain.Instance.spinEditStandartHeight.Value = 0;
                     FormMain.Instance.spinEditStandartWidth.Value = 0;
                     _allowToSave = true;
@@ -709,7 +708,7 @@ namespace AdScheduleBuilder.CustomControls
                     sizeOptions.HeightMeasure = shareUnit != null ? shareUnit.HeightMeasureUnit : sizeOptions.HeightMeasure;
                     sizeOptions.Width = shareUnit != null ? shareUnit.WidthValue : 0;
                     sizeOptions.WidthMeasure = shareUnit != null ? shareUnit.WidthMeasureUnit : sizeOptions.WidthMeasure;
-                    sizeOptions.EnablePageSize = FormMain.Instance.checkBoxItemSharePagePageSize.Checked;
+                    sizeOptions.EnablePageSize = FormMain.Instance.checkBoxItemSchedulesSharePagePageSize.Checked;
                     sizeOptions.EnableSquare = false;
                     sizeOptions.PageSize = sizeOptions.EnablePageSize && !string.IsNullOrEmpty((string)FormMain.Instance.comboBoxEditSharePagePageSize.EditValue) ? FormMain.Instance.comboBoxEditSharePagePageSize.EditValue.ToString() : null;
                     break;
@@ -730,14 +729,14 @@ namespace AdScheduleBuilder.CustomControls
             FormMain.Instance.laStandartSquareValue.Text = sizeOptions.Square.HasValue ? sizeOptions.Square.Value.ToString("#,##0.00#") : string.Empty;
             FormMain.Instance.comboBoxEditStandartPageSize.Enabled = sizeOptions.EnablePageSize;
             FormMain.Instance.comboBoxEditSharePagePageSize.Enabled = sizeOptions.EnablePageSize;
-            FormMain.Instance.buttonItemColorOptionsPCI.Enabled = sizeOptions.EnableSquare & publicationControl.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage & publicationControl.Publication.ColorOption != BusinessClasses.ColorOptions.BlackWhite;
+            FormMain.Instance.buttonItemSchedulesColorOptionsPCI.Enabled = sizeOptions.EnableSquare & publicationControl.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage & publicationControl.Publication.ColorOption != BusinessClasses.ColorOptions.BlackWhite;
             FormMain.Instance.spinEditCostPerInch.Enabled = sizeOptions.EnableSquare & publicationControl.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage & publicationControl.Publication.ColorOption != BusinessClasses.ColorOptions.BlackWhite & publicationControl.Publication.ColorPricing == BusinessClasses.ColorPricingType.CostPerInch;
             FormMain.Instance.comboBoxEditPercentOfPage.Enabled = !string.IsNullOrEmpty(sizeOptions.RateCard);
-            FormMain.Instance.labelItemAdSizeSharePagePercentOfPage.ForeColor = !string.IsNullOrEmpty(sizeOptions.RateCard) ? Color.Black : Color.Gray;
+            FormMain.Instance.labelItemSchedulesAdSizeSharePagePercentOfPage.ForeColor = !string.IsNullOrEmpty(sizeOptions.RateCard) ? Color.Black : Color.Gray;
             FormMain.Instance.checkedListBoxControlSharePageSquare.Enabled = FormMain.Instance.checkedListBoxControlSharePageSquare.ItemCount > 0;
             FormMain.Instance.checkedListBoxControlSharePageSquare.BackColor = FormMain.Instance.checkedListBoxControlSharePageSquare.ItemCount > 0 ? Color.White : Color.FromArgb(197, 214, 232);
-            FormMain.Instance.labelItemAdSizeSharePageDimensions.ForeColor = FormMain.Instance.checkedListBoxControlSharePageSquare.ItemCount > 0 ? Color.Black : Color.Gray;
-            FormMain.Instance.ribbonBarAdSize.RecalcLayout();
+            FormMain.Instance.labelItemSchedulesAdSizeSharePageDimensions.ForeColor = FormMain.Instance.checkedListBoxControlSharePageSquare.ItemCount > 0 ? Color.Black : Color.Gray;
+            FormMain.Instance.ribbonBarSchedulesAdSize.RecalcLayout();
             FormMain.Instance.ribbonPanelBuildSchedules.PerformLayout();
         }
 
@@ -746,7 +745,7 @@ namespace AdScheduleBuilder.CustomControls
             PublicationControl publicationControl = xtraTabControlPublications.SelectedTabPage as PublicationControl;
             if (publicationControl != null && _allowToSave)
             {
-                if (!FormMain.Instance.checkBoxItemAdSizeStandartSquare.Checked)
+                if (!FormMain.Instance.checkBoxItemSchedulesAdSizeStandartSquare.Checked)
                 {
                     BusinessClasses.ColorPricingType prevColorPricing = publicationControl.Publication.ColorPricing;
                     if (prevColorPricing == BusinessClasses.ColorPricingType.CostPerInch)
@@ -754,16 +753,16 @@ namespace AdScheduleBuilder.CustomControls
                         switch (BusinessClasses.ListManager.Instance.DefaultColorPricing)
                         {
                             case BusinessClasses.ColorPricingType.CostPerAd:
-                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemColorOptionsCostPerAd, null);
+                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemSchedulesColorOptionsCostPerAd, null);
                                 break;
                             case BusinessClasses.ColorPricingType.PercentOfAdRate:
-                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemColorOptionsPercentOfAd, null);
+                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemSchedulesColorOptionsPercentOfAd, null);
                                 break;
                             case BusinessClasses.ColorPricingType.ColorIncluded:
-                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemColorOptionsIncluded, null);
+                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemSchedulesColorOptionsIncluded, null);
                                 break;
                             case BusinessClasses.ColorPricingType.CostPerInch:
-                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemColorOptionsPCI, null);
+                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemSchedulesColorOptionsPCI, null);
                                 break;
                         }
                     }
@@ -848,9 +847,11 @@ namespace AdScheduleBuilder.CustomControls
             PublicationControl publicationControl = xtraTabControlPublications.SelectedTabPage as PublicationControl;
             if (publicationControl != null && _allowToSave)
             {
+                _allowToSave = false;
                 foreach (DevExpress.XtraEditors.Controls.CheckedListBoxItem item in FormMain.Instance.checkedListBoxControlSharePageSquare.Items)
-                    if (item != FormMain.Instance.checkedListBoxControlSharePageSquare.Items[e.Index])
+                    if (item.Description != FormMain.Instance.checkedListBoxControlSharePageSquare.Items[e.Index].Description)
                         item.CheckState = CheckState.Unchecked;
+                _allowToSave = true;
                 SetSizeOptions(publicationControl);
                 this.SettingsNotSaved = true;
             }
@@ -866,28 +867,28 @@ namespace AdScheduleBuilder.CustomControls
             switch (publication.ColorOption)
             {
                 case BusinessClasses.ColorOptions.BlackWhite:
-                    FormMain.Instance.buttonItemColorOptionsSingle.Checked = true;
+                    FormMain.Instance.buttonItemSchedulesColorOptionsSingle.Checked = true;
                     break;
                 case BusinessClasses.ColorOptions.SpotColor:
                 case BusinessClasses.ColorOptions.FullColor:
 
                     if (publication.ColorOption == BusinessClasses.ColorOptions.SpotColor)
-                        FormMain.Instance.buttonItemColorOptionsSpot.Checked = true;
+                        FormMain.Instance.buttonItemSchedulesColorOptionsSpot.Checked = true;
                     else if (publication.ColorOption == BusinessClasses.ColorOptions.FullColor)
-                        FormMain.Instance.buttonItemColorOptionsFull.Checked = true;
+                        FormMain.Instance.buttonItemSchedulesColorOptionsFull.Checked = true;
                     switch (publication.ColorPricing)
                     {
                         case BusinessClasses.ColorPricingType.CostPerAd:
-                            FormMain.Instance.buttonItemColorOptionsCostPerAd.Checked = true;
+                            FormMain.Instance.buttonItemSchedulesColorOptionsCostPerAd.Checked = true;
                             break;
                         case BusinessClasses.ColorPricingType.PercentOfAdRate:
-                            FormMain.Instance.buttonItemColorOptionsPercentOfAd.Checked = true;
+                            FormMain.Instance.buttonItemSchedulesColorOptionsPercentOfAd.Checked = true;
                             break;
                         case BusinessClasses.ColorPricingType.ColorIncluded:
-                            FormMain.Instance.buttonItemColorOptionsIncluded.Checked = true;
+                            FormMain.Instance.buttonItemSchedulesColorOptionsIncluded.Checked = true;
                             break;
                         case BusinessClasses.ColorPricingType.CostPerInch:
-                            FormMain.Instance.buttonItemColorOptionsPCI.Checked = true;
+                            FormMain.Instance.buttonItemSchedulesColorOptionsPCI.Checked = true;
                             FormMain.Instance.spinEditCostPerInch.Value = (decimal)publication.ColorInchRate;
                             break;
                     }
@@ -903,10 +904,10 @@ namespace AdScheduleBuilder.CustomControls
             switch (publication.ColorOption)
             {
                 case BusinessClasses.ColorOptions.BlackWhite:
-                    FormMain.Instance.buttonItemColorOptionsCostPerAd.Enabled = false;
-                    FormMain.Instance.buttonItemColorOptionsPercentOfAd.Enabled = false;
-                    FormMain.Instance.buttonItemColorOptionsIncluded.Enabled = false;
-                    FormMain.Instance.buttonItemColorOptionsPCI.Enabled = false;
+                    FormMain.Instance.buttonItemSchedulesColorOptionsCostPerAd.Enabled = false;
+                    FormMain.Instance.buttonItemSchedulesColorOptionsPercentOfAd.Enabled = false;
+                    FormMain.Instance.buttonItemSchedulesColorOptionsIncluded.Enabled = false;
+                    FormMain.Instance.buttonItemSchedulesColorOptionsPCI.Enabled = false;
                     FormMain.Instance.spinEditCostPerInch.Enabled = false;
                     FormMain.Instance.spinEditCostPerInch.Value = 0;
 
@@ -921,10 +922,10 @@ namespace AdScheduleBuilder.CustomControls
                     break;
                 case BusinessClasses.ColorOptions.SpotColor:
                 case BusinessClasses.ColorOptions.FullColor:
-                    FormMain.Instance.buttonItemColorOptionsCostPerAd.Enabled = true;
-                    FormMain.Instance.buttonItemColorOptionsPercentOfAd.Enabled = true;
-                    FormMain.Instance.buttonItemColorOptionsIncluded.Enabled = true;
-                    FormMain.Instance.buttonItemColorOptionsPCI.Enabled = publication.SizeOptions.EnableSquare & publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage;
+                    FormMain.Instance.buttonItemSchedulesColorOptionsCostPerAd.Enabled = true;
+                    FormMain.Instance.buttonItemSchedulesColorOptionsPercentOfAd.Enabled = true;
+                    FormMain.Instance.buttonItemSchedulesColorOptionsIncluded.Enabled = true;
+                    FormMain.Instance.buttonItemSchedulesColorOptionsPCI.Enabled = publication.SizeOptions.EnableSquare & publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage;
                     publicationControl.repositoryItemSpinEditColorPricingDisplay.NullText = "Included";
                     publicationControl.repositoryItemSpinEditColorPricingDisplayFirstRow.NullText = "Included";
 
@@ -991,9 +992,9 @@ namespace AdScheduleBuilder.CustomControls
         {
             DevComponents.DotNetBar.ButtonItem button = (DevComponents.DotNetBar.ButtonItem)sender;
             _allowToSave = false;
-            FormMain.Instance.buttonItemColorOptionsSingle.Checked = false;
-            FormMain.Instance.buttonItemColorOptionsSpot.Checked = false;
-            FormMain.Instance.buttonItemColorOptionsFull.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsSingle.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsSpot.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsFull.Checked = false;
             _allowToSave = true;
             button.Checked = true;
         }
@@ -1005,15 +1006,15 @@ namespace AdScheduleBuilder.CustomControls
             {
                 BusinessClasses.Publication publication = publicationControl.Publication;
                 BusinessClasses.ColorOptions prevColorOption = publication.ColorOption;
-                if (FormMain.Instance.buttonItemColorOptionsSingle.Checked)
+                if (FormMain.Instance.buttonItemSchedulesColorOptionsSingle.Checked)
                 {
                     publication.ColorOption = BusinessClasses.ColorOptions.BlackWhite;
                 }
                 else
                 {
-                    if (FormMain.Instance.buttonItemColorOptionsSpot.Checked)
+                    if (FormMain.Instance.buttonItemSchedulesColorOptionsSpot.Checked)
                         publication.ColorOption = BusinessClasses.ColorOptions.SpotColor;
-                    else if (FormMain.Instance.buttonItemColorOptionsFull.Checked)
+                    else if (FormMain.Instance.buttonItemSchedulesColorOptionsFull.Checked)
                         publication.ColorOption = BusinessClasses.ColorOptions.FullColor;
 
                     if (prevColorOption == BusinessClasses.ColorOptions.BlackWhite)
@@ -1021,16 +1022,16 @@ namespace AdScheduleBuilder.CustomControls
                         switch (BusinessClasses.ListManager.Instance.DefaultColorPricing)
                         {
                             case BusinessClasses.ColorPricingType.CostPerAd:
-                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemColorOptionsCostPerAd, null);
+                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemSchedulesColorOptionsCostPerAd, null);
                                 break;
                             case BusinessClasses.ColorPricingType.PercentOfAdRate:
-                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemColorOptionsPercentOfAd, null);
+                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemSchedulesColorOptionsPercentOfAd, null);
                                 break;
                             case BusinessClasses.ColorPricingType.ColorIncluded:
-                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemColorOptionsIncluded, null);
+                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemSchedulesColorOptionsIncluded, null);
                                 break;
                             case BusinessClasses.ColorPricingType.CostPerInch:
-                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemColorOptionsPCI, null);
+                                buttonItemColorOptions_Click(FormMain.Instance.buttonItemSchedulesColorOptionsPCI, null);
                                 break;
                         }
                     }
@@ -1047,10 +1048,10 @@ namespace AdScheduleBuilder.CustomControls
         public void buttonItemColorOptions_Click(object sender, EventArgs e)
         {
             _allowToSave = false;
-            FormMain.Instance.buttonItemColorOptionsCostPerAd.Checked = false;
-            FormMain.Instance.buttonItemColorOptionsPercentOfAd.Checked = false;
-            FormMain.Instance.buttonItemColorOptionsIncluded.Checked = false;
-            FormMain.Instance.buttonItemColorOptionsPCI.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsCostPerAd.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsPercentOfAd.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsIncluded.Checked = false;
+            FormMain.Instance.buttonItemSchedulesColorOptionsPCI.Checked = false;
             _allowToSave = true;
             (sender as DevComponents.DotNetBar.ButtonItem).Checked = true;
         }
@@ -1061,22 +1062,22 @@ namespace AdScheduleBuilder.CustomControls
             if (publicationControl != null && _allowToSave)
             {
                 BusinessClasses.Publication publication = publicationControl.Publication;
-                FormMain.Instance.spinEditCostPerInch.Enabled = FormMain.Instance.buttonItemColorOptionsPCI.Checked;
-                if (FormMain.Instance.buttonItemColorOptionsPCI.Checked)
+                FormMain.Instance.spinEditCostPerInch.Enabled = FormMain.Instance.buttonItemSchedulesColorOptionsPCI.Checked;
+                if (FormMain.Instance.buttonItemSchedulesColorOptionsPCI.Checked)
                 {
                     publication.ColorPricing = BusinessClasses.ColorPricingType.CostPerInch;
                 }
-                else if (FormMain.Instance.buttonItemColorOptionsCostPerAd.Checked)
+                else if (FormMain.Instance.buttonItemSchedulesColorOptionsCostPerAd.Checked)
                 {
                     publication.ColorPricing = BusinessClasses.ColorPricingType.CostPerAd;
                     publication.ColorInchRate = 0;
                 }
-                else if (FormMain.Instance.buttonItemColorOptionsPercentOfAd.Checked)
+                else if (FormMain.Instance.buttonItemSchedulesColorOptionsPercentOfAd.Checked)
                 {
                     publication.ColorPricing = BusinessClasses.ColorPricingType.PercentOfAdRate;
                     publication.ColorInchRate = 0;
                 }
-                else if (FormMain.Instance.buttonItemColorOptionsIncluded.Checked)
+                else if (FormMain.Instance.buttonItemSchedulesColorOptionsIncluded.Checked)
                 {
                     publication.ColorPricing = BusinessClasses.ColorPricingType.ColorIncluded;
                     publication.ColorInchRate = 0;

@@ -31,11 +31,11 @@
             this.buttonXCurrentPublication = new DevComponents.DotNetBar.ButtonX();
             this.buttonXSelectedPublications = new DevComponents.DotNetBar.ButtonX();
             this.buttonXClose = new DevComponents.DotNetBar.ButtonX();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.laTitle = new System.Windows.Forms.Label();
             this.checkedListBoxControlPublications = new DevExpress.XtraEditors.CheckedListBoxControl();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPublications)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonXCurrentPublication
@@ -77,15 +77,6 @@
             this.buttonXClose.Text = "Cancel";
             this.buttonXClose.TextColor = System.Drawing.Color.Black;
             // 
-            // pbLogo
-            // 
-            this.pbLogo.Image = global::AdScheduleBuilder.Properties.Resources.EmailBig;
-            this.pbLogo.Location = new System.Drawing.Point(12, 12);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(78, 71);
-            this.pbLogo.TabIndex = 13;
-            this.pbLogo.TabStop = false;
-            // 
             // laTitle
             // 
             this.laTitle.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -112,6 +103,15 @@
             this.checkedListBoxControlPublications.Size = new System.Drawing.Size(299, 229);
             this.checkedListBoxControlPublications.TabIndex = 15;
             // 
+            // pbLogo
+            // 
+            this.pbLogo.Image = global::AdScheduleBuilder.Properties.Resources.EmailBig;
+            this.pbLogo.Location = new System.Drawing.Point(12, 12);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(78, 71);
+            this.pbLogo.TabIndex = 13;
+            this.pbLogo.TabStop = false;
+            // 
             // FormSelectPublication
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -131,8 +131,8 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calendar Output Options";
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPublications)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -38,8 +38,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             }
         }
 
-        public bool ShowGridDetails { get; set; }
-
         #region Column Positions
         public int PositionID { get; set; }
         public int PositionIndex { get; set; }
@@ -468,7 +466,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             this.PositionDeadlineInPreview = 11;
             #endregion
 
-            this.HelpToolTip = new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me understand how to use the Multi-Publication Grid", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
+            this.HelpToolTip = new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Learn more about the Logo Grid", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 
             BusinessClasses.ScheduleManager.Instance.SettingsSaved += new EventHandler<BusinessClasses.SavingingEventArgs>((sender, e) =>
             {
@@ -568,15 +566,13 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         public void OpenHelp()
         {
-            BusinessClasses.HelpManager.Instance.OpenHelpLink("multigrid");
+            BusinessClasses.HelpManager.Instance.OpenHelpLink("logogrid");
         }
         #endregion
 
         #region View Methods
         private void LoadView()
         {
-            this.ShowGridDetails = this.LocalSchedule.ViewSettings.ShowGridDetails;
-
             this.PositionID = this.LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IDPosition;
             this.PositionIndex = this.LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IndexPosition;
             this.PositionDate = this.LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DatePosition;
@@ -690,8 +686,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             if (this.AllowToSave)
             {
-                this.LocalSchedule.ViewSettings.ShowGridDetails = this.ShowGridDetails;
-
                 this.LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IDPosition = this.PositionID;
                 this.LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IndexPosition = this.PositionIndex;
                 this.LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DatePosition = this.PositionDate;
@@ -816,26 +810,24 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             if (this.AllowToSave)
             {
-                this.ShowGridDetails = FormMain.Instance.buttonItemGridsDetails.Checked;
-
-                this.ShowIDHeader = FormMain.Instance.buttonItemGridsColumnsID.Checked;
-                this.ShowDateHeader = FormMain.Instance.buttonItemGridsColumnsDate.Checked;
-                this.ShowPCIHeader = FormMain.Instance.buttonItemGridsColumnsPCI.Checked;
-                this.ShowCostHeader = FormMain.Instance.buttonItemGridsColumnsCost.Checked;
-                this.ShowDiscountHeader = FormMain.Instance.buttonItemGridsColumnsDiscounts.Checked;
-                this.ShowColorHeader = FormMain.Instance.buttonItemGridsColumnsColor.Checked;
-                this.ShowFinalCostHeader = FormMain.Instance.buttonItemGridsColumnsFinalCost.Checked;
-                this.ShowIndexHeader = FormMain.Instance.buttonItemGridsColumnsIndex.Checked;
-                this.ShowSquareHeader = FormMain.Instance.buttonItemGridsColumnsSquare.Checked;
-                this.ShowPageSizeHeader = FormMain.Instance.buttonItemGridsColumnsPageSize.Checked;
-                this.ShowPercentOfPageHeader = FormMain.Instance.buttonItemGridsColumnsPercentOfPage.Checked;
-                this.ShowDimensionsHeader = FormMain.Instance.buttonItemGridsColumnsDimensions.Checked;
-                this.ShowMechanicalsHeader = FormMain.Instance.buttonItemGridsColumnsMechanicals.Checked;
-                this.ShowPublicationHeader = FormMain.Instance.buttonItemGridsColumnsPublication.Checked;
-                this.ShowReadershipHeader = FormMain.Instance.buttonItemGridsColumnsReadership.Checked;
-                this.ShowSectionHeader = FormMain.Instance.buttonItemGridsColumnsSection.Checked;
-                this.ShowDeliveryHeader = FormMain.Instance.buttonItemGridsColumnsDelivery.Checked;
-                this.ShowDeadlineHeader = FormMain.Instance.buttonItemGridsColumnsDeadline.Checked;
+                this.ShowIDHeader = GridsControl.Instance.ColumnIDButtonItem.Checked;
+                this.ShowDateHeader = GridsControl.Instance.ColumnDateButtonItem.Checked;
+                this.ShowPCIHeader = GridsControl.Instance.ColumnPCIButtonItem.Checked;
+                this.ShowCostHeader = GridsControl.Instance.ColumnCostButtonItem.Checked;
+                this.ShowDiscountHeader = GridsControl.Instance.ColumnDiscountsButtonItem.Checked;
+                this.ShowColorHeader = GridsControl.Instance.ColumnColorButtonItem.Checked;
+                this.ShowFinalCostHeader = GridsControl.Instance.ColumnTotalCostButtonItem.Checked;
+                this.ShowIndexHeader = GridsControl.Instance.ColumnIndexButtonItem.Checked;
+                this.ShowSquareHeader = GridsControl.Instance.ColumnSquareButtonItem.Checked;
+                this.ShowPageSizeHeader = GridsControl.Instance.ColumnPageSizeButtonItem.Checked;
+                this.ShowPercentOfPageHeader = GridsControl.Instance.ColumnPercentOfPageButtonItem.Checked;
+                this.ShowDimensionsHeader = GridsControl.Instance.ColumnDimensionsButtonItem.Checked;
+                this.ShowMechanicalsHeader = GridsControl.Instance.ColumnMechanicalsButtonItem.Checked;
+                this.ShowPublicationHeader = GridsControl.Instance.ColumnPublicationButtonItem.Checked;
+                this.ShowReadershipHeader = GridsControl.Instance.ColumnReadershipButtonItem.Checked;
+                this.ShowSectionHeader = GridsControl.Instance.ColumnSectionButtonItem.Checked;
+                this.ShowDeliveryHeader = GridsControl.Instance.ColumnDeliveryButtonItem.Checked;
+                this.ShowDeadlineHeader = GridsControl.Instance.ColumnDeadlineButtonItem.Checked;
 
                 this.AdNotes.LoadAdNotes();
                 SetColumnsState();
@@ -1647,11 +1639,49 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                         if (File.Exists(tempFileName))
                             using (OutputForms.FormEmail formEmail = new OutputForms.FormEmail())
                             {
-                                formEmail.Text = "Email this Multi-Publication Grid";
+                                formEmail.Text = "Email this Logo Grid";
                                 formEmail.PresentationFile = tempFileName;
                                 ConfigurationClasses.RegistryHelper.MainFormHandle = formEmail.Handle;
                                 ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                                 formEmail.ShowDialog();
+                                ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                                ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                            }
+                    }
+                }
+            }
+        }
+
+        public void Preview()
+        {
+            using (ToolForms.FormGridType formGridType = new ToolForms.FormGridType())
+            {
+                formGridType.buttonXTable.Visible = this.SelectedColumnsCount >= 4 && this.SelectedColumnsCount <= 5 && Directory.Exists(BusinessClasses.OutputManager.Instance.MultiGridGridBasedTemlatesFolderPath);
+                DialogResult gridTypeResult = formGridType.ShowDialog();
+                if (gridTypeResult != DialogResult.Cancel)
+                {
+                    bool pasteAsImage = gridTypeResult == DialogResult.No;
+                    bool excelOutput = gridTypeResult != DialogResult.Ignore;
+                    using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
+                    {
+                        formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
+                        formProgress.TopMost = true;
+                        formProgress.Show();
+                        PrepareOutput(excelOutput);
+                        string tempFileName = Path.Combine(ConfigurationClasses.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+                        if (excelOutput)
+                            InteropClasses.PowerPointHelper.Instance.PrepareMultiGridExcelBasedEmail(tempFileName, pasteAsImage);
+                        else
+                            InteropClasses.PowerPointHelper.Instance.PrepareMultiGridGridBasedEmail(tempFileName);
+                        formProgress.Close();
+                        if (File.Exists(tempFileName))
+                            using (OutputForms.FormPreview formPreview = new OutputForms.FormPreview())
+                            {
+                                formPreview.Text = "Preview Logo Grid";
+                                formPreview.PresentationFile = tempFileName;
+                                ConfigurationClasses.RegistryHelper.MainFormHandle = formPreview.Handle;
+                                ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                                formPreview.ShowDialog();
                                 ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
                                 ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                             }

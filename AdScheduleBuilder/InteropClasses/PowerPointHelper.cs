@@ -249,6 +249,34 @@ namespace AdScheduleBuilder.InteropClasses
             }
         }
 
+        public void AppendSlidesFromFile(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                try
+                {
+                    System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                    {
+                        MessageFilter.Register();
+                        PowerPoint.Presentation presentation = _powerPointObject.Presentations.Open(FileName: filePath, WithWindow: Microsoft.Office.Core.MsoTriState.msoFalse);
+                        AppendSlide(presentation, -1);
+                        presentation.Close();
+                    }));
+                    thread.Start();
+
+                    while (thread.IsAlive)
+                        System.Windows.Forms.Application.DoEvents();
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    MessageFilter.Revoke();
+                }
+            }
+        }
+
         public void AppendSlide(PowerPoint.Presentation sourcePresentation, int slideIndex, PowerPoint.Presentation destinationPresentation = null)
         {
             PowerPoint.Slide slide;

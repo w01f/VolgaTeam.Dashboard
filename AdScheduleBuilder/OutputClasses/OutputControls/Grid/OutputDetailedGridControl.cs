@@ -37,8 +37,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             }
         }
 
-        public bool ShowGridDetails { get; set; }
-
         #region Column Positions
         public int PositionID { get; set; }
         public int PositionIndex { get; set; }
@@ -491,8 +489,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         private void LoadView()
         {
-            this.ShowGridDetails = this.LocalSchedule.ViewSettings.ShowGridDetails;
-
             this.PositionID = this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.IDPosition;
             this.PositionIndex = this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.IndexPosition;
             this.PositionDate = this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.DatePosition;
@@ -606,8 +602,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             if (this.AllowToSave)
             {
-                this.LocalSchedule.ViewSettings.ShowGridDetails = this.ShowGridDetails;
-
                 this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.IDPosition = this.PositionID;
                 this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.IndexPosition = this.PositionIndex;
                 this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.DatePosition = this.PositionDate;
@@ -717,26 +711,24 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             if (this.AllowToSave)
             {
-                this.ShowGridDetails = FormMain.Instance.buttonItemGridsDetails.Checked;
-
-                this.ShowIDHeader = FormMain.Instance.buttonItemGridsColumnsID.Checked;
-                this.ShowDateHeader = FormMain.Instance.buttonItemGridsColumnsDate.Checked;
-                this.ShowPCIHeader = FormMain.Instance.buttonItemGridsColumnsPCI.Checked;
-                this.ShowCostHeader = FormMain.Instance.buttonItemGridsColumnsCost.Checked;
-                this.ShowDiscountHeader = FormMain.Instance.buttonItemGridsColumnsDiscounts.Checked;
-                this.ShowColorHeader = FormMain.Instance.buttonItemGridsColumnsColor.Checked;
-                this.ShowFinalCostHeader = FormMain.Instance.buttonItemGridsColumnsFinalCost.Checked;
-                this.ShowIndexHeader = FormMain.Instance.buttonItemGridsColumnsIndex.Checked;
-                this.ShowSquareHeader = FormMain.Instance.buttonItemGridsColumnsSquare.Checked;
-                this.ShowPageSizeHeader = FormMain.Instance.buttonItemGridsColumnsPageSize.Checked;
-                this.ShowPercentOfPageHeader = FormMain.Instance.buttonItemGridsColumnsPercentOfPage.Checked;
-                this.ShowDimensionsHeader = FormMain.Instance.buttonItemGridsColumnsDimensions.Checked;
-                this.ShowMechanicalsHeader = FormMain.Instance.buttonItemGridsColumnsMechanicals.Checked;
-                this.ShowPublicationHeader = FormMain.Instance.buttonItemGridsColumnsPublication.Checked;
-                this.ShowReadershipHeader = FormMain.Instance.buttonItemGridsColumnsReadership.Checked;
-                this.ShowSectionHeader = FormMain.Instance.buttonItemGridsColumnsSection.Checked;
-                this.ShowDeliveryHeader = FormMain.Instance.buttonItemGridsColumnsDelivery.Checked;
-                this.ShowDeadlineHeader = FormMain.Instance.buttonItemGridsColumnsDeadline.Checked;
+                this.ShowIDHeader = GridsControl.Instance.ColumnIDButtonItem.Checked;
+                this.ShowDateHeader = GridsControl.Instance.ColumnDateButtonItem.Checked;
+                this.ShowPCIHeader = GridsControl.Instance.ColumnPCIButtonItem.Checked;
+                this.ShowCostHeader = GridsControl.Instance.ColumnCostButtonItem.Checked;
+                this.ShowDiscountHeader = GridsControl.Instance.ColumnDiscountsButtonItem.Checked;
+                this.ShowColorHeader = GridsControl.Instance.ColumnColorButtonItem.Checked;
+                this.ShowFinalCostHeader = GridsControl.Instance.ColumnTotalCostButtonItem.Checked;
+                this.ShowIndexHeader = GridsControl.Instance.ColumnIndexButtonItem.Checked;
+                this.ShowSquareHeader = GridsControl.Instance.ColumnSquareButtonItem.Checked;
+                this.ShowPageSizeHeader = GridsControl.Instance.ColumnPageSizeButtonItem.Checked;
+                this.ShowPercentOfPageHeader = GridsControl.Instance.ColumnPercentOfPageButtonItem.Checked;
+                this.ShowDimensionsHeader = GridsControl.Instance.ColumnDimensionsButtonItem.Checked;
+                this.ShowMechanicalsHeader = GridsControl.Instance.ColumnMechanicalsButtonItem.Checked;
+                this.ShowPublicationHeader = GridsControl.Instance.ColumnPublicationButtonItem.Checked;
+                this.ShowReadershipHeader = GridsControl.Instance.ColumnReadershipButtonItem.Checked;
+                this.ShowSectionHeader = GridsControl.Instance.ColumnSectionButtonItem.Checked;
+                this.ShowDeliveryHeader = GridsControl.Instance.ColumnDeliveryButtonItem.Checked;
+                this.ShowDeadlineHeader = GridsControl.Instance.ColumnDeadlineButtonItem.Checked;
 
                 this.AdNotes.LoadAdNotes();
                 SetColumnsState();
@@ -1099,6 +1091,93 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                                     ConfigurationClasses.RegistryHelper.MainFormHandle = formEmail.Handle;
                                     ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                                     formEmail.ShowDialog();
+                                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                                    ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                                }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void Preview()
+        {
+            using (OutputForms.FormSelectPublication form = new OutputForms.FormSelectPublication())
+            {
+                form.Text = "Detailed Advertising Grid Preview";
+                form.pbLogo.Image = Properties.Resources.Preview;
+                form.laTitle.Text = "You have Several Publications in this Detailed Advertising Grid…";
+                form.buttonXCurrentPublication.Text = "Preview the Current Advertising Grid";
+                form.buttonXSelectedPublications.Text = "Preview all Selected Advertising Grids";
+                foreach (PublicationDetailedGridControl tabPage in _tabPages)
+                    if (tabPage.PageEnabled)
+                        form.checkedListBoxControlPublications.Items.Add(tabPage.Publication.UniqueID, tabPage.Publication.Name, CheckState.Checked, true);
+                DialogResult result = DialogResult.Yes;
+                if (form.checkedListBoxControlPublications.Items.Count > 1)
+                {
+                    ConfigurationClasses.RegistryHelper.MainFormHandle = form.Handle;
+                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                    result = form.ShowDialog();
+                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                    ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                    if (result == DialogResult.Cancel)
+                        return;
+                }
+                using (ToolForms.FormGridType formGridType = new ToolForms.FormGridType())
+                {
+                    formGridType.buttonXTable.Visible = this.SelectedColumnsCount >= 4 && this.SelectedColumnsCount <= 6 && Directory.Exists(BusinessClasses.OutputManager.Instance.DetailedGridGridBasedTemlatesFolderPath);
+                    DialogResult gridTypeResult = formGridType.ShowDialog();
+                    if (gridTypeResult != DialogResult.Cancel)
+                    {
+                        bool pasteAsImage = gridTypeResult == DialogResult.No;
+                        bool excelOutput = gridTypeResult != DialogResult.Ignore;
+                        using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
+                        {
+                            formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
+                            formProgress.TopMost = true;
+                            formProgress.Show();
+                            string tempFileName = Path.Combine(ConfigurationClasses.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+                            if (result == DialogResult.Yes)
+                            {
+                                PublicationDetailedGridControl outputControl = xtraTabControlPublications.TabPages[xtraTabControlPublications.SelectedTabPageIndex] as PublicationDetailedGridControl;
+                                if (outputControl != null)
+                                {
+                                    outputControl.PrepareOutput(excelOutput);
+                                    if (excelOutput)
+                                        InteropClasses.PowerPointHelper.Instance.PrepareDetailedGridExcelBasedEmail(tempFileName, new PublicationDetailedGridControl[] { outputControl }, pasteAsImage);
+                                    else
+                                        InteropClasses.PowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, new PublicationDetailedGridControl[] { outputControl });
+                                }
+                            }
+                            else if (result == DialogResult.No)
+                            {
+                                List<PublicationDetailedGridControl> emailPages = new List<PublicationDetailedGridControl>();
+                                foreach (DevExpress.XtraEditors.Controls.CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
+                                {
+                                    if (item.CheckState == CheckState.Checked)
+                                    {
+                                        PublicationDetailedGridControl tabPage = _tabPages.Where(x => x.Publication.UniqueID.Equals(item.Value)).FirstOrDefault();
+                                        if (tabPage != null)
+                                        {
+                                            tabPage.PrepareOutput(excelOutput);
+                                            emailPages.Add(tabPage);
+                                        }
+                                    }
+                                }
+                                if (excelOutput)
+                                    InteropClasses.PowerPointHelper.Instance.PrepareDetailedGridExcelBasedEmail(tempFileName, emailPages.ToArray(), pasteAsImage);
+                                else
+                                    InteropClasses.PowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, emailPages.ToArray());
+                            }
+                            formProgress.Close();
+                            if (File.Exists(tempFileName))
+                                using (OutputForms.FormPreview formPreview = new OutputForms.FormPreview())
+                                {
+                                    formPreview.Text = "Preview Detailed Advertising Grid";
+                                    formPreview.PresentationFile = tempFileName;
+                                    ConfigurationClasses.RegistryHelper.MainFormHandle = formPreview.Handle;
+                                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                                    formPreview.ShowDialog();
                                     ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
                                     ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                                 }

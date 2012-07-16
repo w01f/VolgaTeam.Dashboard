@@ -344,6 +344,12 @@
     <Compile Include="OutputClasses\OutputForms\FormCalendarOutputOptions.designer.cs">
       <DependentUpon>FormCalendarOutputOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="OutputClasses\OutputForms\FormPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutputClasses\OutputForms\FormPreview.designer.cs">
+      <DependentUpon>FormPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="OutputClasses\OutputForms\FormSelectPublication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -595,6 +601,9 @@
     <EmbeddedResource Include="OutputClasses\OutputForms\FormCalendarOutputOptions.resx">
       <DependentUpon>FormCalendarOutputOptions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OutputClasses\OutputForms\FormPreview.resx">
+      <DependentUpon>FormPreview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OutputClasses\OutputForms\FormSelectPublication.resx">
       <DependentUpon>FormSelectPublication.cs</DependentUpon>
     </EmbeddedResource>
@@ -746,18 +755,6 @@
     <None Include="Resources\DownArrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\BasicOverview.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MultiSummary.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DetailedGrid.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MultiGrid.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Calendar.png" />
   </ItemGroup>
   <ItemGroup>
@@ -833,16 +830,10 @@
     <None Include="Resources\CalendarEditButton.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Chronological.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Warning.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SaveAs.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Snapshot.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="AcroPDFLib">
@@ -1055,6 +1046,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CalendarDeadline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Floater.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PreviewCalendar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

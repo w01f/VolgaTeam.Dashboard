@@ -9,6 +9,32 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         private static GridsControl _instance;
         private IGridOutputControl _selectedOutput = null;
 
+        public bool ShowGridDetails { get; set; }
+
+        #region Operation Buttons
+        public DevComponents.DotNetBar.ButtonItem HelpButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem DetailsButtonItem { get; set; }
+
+        public DevComponents.DotNetBar.ButtonItem ColumnIDButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnIndexButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnDateButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnPCIButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnPercentOfPageButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnColorButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnCostButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnSectionButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnTotalCostButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnPublicationButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnDimensionsButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnMechanicalsButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnDeliveryButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnDiscountsButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnPageSizeButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnSquareButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnDeadlineButtonItem { get; set; }
+        public DevComponents.DotNetBar.ButtonItem ColumnReadershipButtonItem { get; set; }
+        #endregion
+
         private GridsControl()
         {
             InitializeComponent();
@@ -69,66 +95,97 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             }
         }
 
-        private void UncheckOutputOptions()
+        public void SelectGrid(GridType gridType)
         {
-            FormMain.Instance.buttonItemGridsDetailedGrid.Checked = false;
-            FormMain.Instance.buttonItemGridsMultiGrid.Checked = false;
-            FormMain.Instance.buttonItemGridsChronological.Checked = false;
-        }
+            switch (gridType)
+            {
+                case GridType.DetailedGrid:
+                    if (_selectedOutput == null)
+                        this.ShowGridDetails = OutputControls.OutputDetailedGridControl.Instance.LocalSchedule.ViewSettings.ShowGridDetails;
+                    _selectedOutput = OutputControls.OutputDetailedGridControl.Instance;
+                    this.HelpButtonItem = FormMain.Instance.buttonItemDetailedGridHelp;
+                    this.DetailsButtonItem = FormMain.Instance.buttonItemDetailedGridDetails;
 
-        public void UpdateButtonsStateAccordingSelectedOutput()
-        {
+                    this.ColumnIDButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsID;
+                    this.ColumnIndexButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsIndex;
+                    this.ColumnDateButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsDate;
+                    this.ColumnPCIButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsPCI;
+                    this.ColumnPercentOfPageButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsPercentOfPage;
+                    this.ColumnColorButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsColor;
+                    this.ColumnCostButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsCost;
+                    this.ColumnSectionButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsSection;
+                    this.ColumnTotalCostButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsTotalCost;
+                    this.ColumnPublicationButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsPublication;
+                    this.ColumnDimensionsButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsDimensions;
+                    this.ColumnMechanicalsButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsMechanicals;
+                    this.ColumnDeliveryButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsDelivery;
+                    this.ColumnDiscountsButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsDiscounts;
+                    this.ColumnPageSizeButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsPageSize;
+                    this.ColumnSquareButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsSquare;
+                    this.ColumnDeadlineButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsDeadline;
+                    this.ColumnReadershipButtonItem = FormMain.Instance.buttonItemDetailedGridColumnsReadership;
+                    break;
+                case GridType.MultiGrid:
+                    if (_selectedOutput == null)
+                        this.ShowGridDetails = OutputControls.OutputMultiGridControl.Instance.LocalSchedule.ViewSettings.ShowGridDetails;
+                    _selectedOutput = OutputControls.OutputMultiGridControl.Instance;
+                    this.HelpButtonItem = FormMain.Instance.buttonItemMultiGridHelp;
+                    this.DetailsButtonItem = FormMain.Instance.buttonItemMultiGridDetails;
+
+                    this.ColumnIDButtonItem = FormMain.Instance.buttonItemMultiGridColumnsID;
+                    this.ColumnIndexButtonItem = FormMain.Instance.buttonItemMultiGridColumnsIndex;
+                    this.ColumnDateButtonItem = FormMain.Instance.buttonItemMultiGridColumnsDate;
+                    this.ColumnPCIButtonItem = FormMain.Instance.buttonItemMultiGridColumnsPCI;
+                    this.ColumnPercentOfPageButtonItem = FormMain.Instance.buttonItemMultiGridColumnsPercentOfPage;
+                    this.ColumnColorButtonItem = FormMain.Instance.buttonItemMultiGridColumnsColor;
+                    this.ColumnCostButtonItem = FormMain.Instance.buttonItemMultiGridColumnsCost;
+                    this.ColumnSectionButtonItem = FormMain.Instance.buttonItemMultiGridColumnsSection;
+                    this.ColumnTotalCostButtonItem = FormMain.Instance.buttonItemMultiGridColumnsTotalCost;
+                    this.ColumnPublicationButtonItem = FormMain.Instance.buttonItemMultiGridColumnsPublication;
+                    this.ColumnDimensionsButtonItem = FormMain.Instance.buttonItemMultiGridColumnsDimensions;
+                    this.ColumnMechanicalsButtonItem = FormMain.Instance.buttonItemMultiGridColumnsMechanicals;
+                    this.ColumnDeliveryButtonItem = FormMain.Instance.buttonItemMultiGridColumnsDelivery;
+                    this.ColumnDiscountsButtonItem = FormMain.Instance.buttonItemMultiGridColumnsDiscounts;
+                    this.ColumnPageSizeButtonItem = FormMain.Instance.buttonItemMultiGridColumnsPageSize;
+                    this.ColumnSquareButtonItem = FormMain.Instance.buttonItemMultiGridColumnsSquare;
+                    this.ColumnDeadlineButtonItem = FormMain.Instance.buttonItemMultiGridColumnsDeadline;
+                    this.ColumnReadershipButtonItem = FormMain.Instance.buttonItemMultiGridColumnsReadership;
+                    break;
+                case GridType.ChronoGrid:
+                    if (_selectedOutput == null)
+                        this.ShowGridDetails = OutputControls.OutputChronologicalControl.Instance.LocalSchedule.ViewSettings.ShowGridDetails;
+                    _selectedOutput = OutputControls.OutputChronologicalControl.Instance;
+                    this.HelpButtonItem = FormMain.Instance.buttonItemChronoGridHelp;
+                    this.DetailsButtonItem = FormMain.Instance.buttonItemChronoGridDetails;
+
+                    this.ColumnIDButtonItem = FormMain.Instance.buttonItemChronoGridColumnsID;
+                    this.ColumnIndexButtonItem = FormMain.Instance.buttonItemChronoGridColumnsIndex;
+                    this.ColumnDateButtonItem = FormMain.Instance.buttonItemChronoGridColumnsDate;
+                    this.ColumnPCIButtonItem = FormMain.Instance.buttonItemChronoGridColumnsPCI;
+                    this.ColumnPercentOfPageButtonItem = FormMain.Instance.buttonItemChronoGridColumnsPercentOfPage;
+                    this.ColumnColorButtonItem = FormMain.Instance.buttonItemChronoGridColumnsColor;
+                    this.ColumnCostButtonItem = FormMain.Instance.buttonItemChronoGridColumnsCost;
+                    this.ColumnSectionButtonItem = FormMain.Instance.buttonItemChronoGridColumnsSection;
+                    this.ColumnTotalCostButtonItem = FormMain.Instance.buttonItemChronoGridColumnsTotalCost;
+                    this.ColumnPublicationButtonItem = FormMain.Instance.buttonItemChronoGridColumnsPublication;
+                    this.ColumnDimensionsButtonItem = FormMain.Instance.buttonItemChronoGridColumnsDimensions;
+                    this.ColumnMechanicalsButtonItem = FormMain.Instance.buttonItemChronoGridColumnsMechanicals;
+                    this.ColumnDeliveryButtonItem = FormMain.Instance.buttonItemChronoGridColumnsDelivery;
+                    this.ColumnDiscountsButtonItem = FormMain.Instance.buttonItemChronoGridColumnsDiscounts;
+                    this.ColumnPageSizeButtonItem = FormMain.Instance.buttonItemChronoGridColumnsPageSize;
+                    this.ColumnSquareButtonItem = FormMain.Instance.buttonItemChronoGridColumnsSquare;
+                    this.ColumnDeadlineButtonItem = FormMain.Instance.buttonItemChronoGridColumnsDeadline;
+                    this.ColumnReadershipButtonItem = FormMain.Instance.buttonItemChronoGridColumnsReadership;
+                    break;
+                default:
+                    _selectedOutput = null;
+                    break;
+            }
+
             if (_selectedOutput != null)
             {
-                _selectedOutput.AllowToSave = false;
-                FormMain.Instance.buttonItemGridsDetails.Checked = FormMain.Instance.buttonItemGridsDetails.Checked | _selectedOutput.ShowGridDetails;
+                UpdateButtonsStateAccordingSelectedOutput();
 
-                FormMain.Instance.buttonItemGridsColumnsPercentOfPage.Enabled = BusinessClasses.ListManager.Instance.ShareUnits.Count > 0;
-                FormMain.Instance.buttonItemGridsColumnsDate.Enabled = _selectedOutput.EnableDateButton;
-                FormMain.Instance.buttonItemGridsColumnsPublication.Enabled = _selectedOutput.EnablePublicationButton;
-                FormMain.Instance.buttonItemGridsColumnsID.Enabled = _selectedOutput.EnableIDButton;
-                FormMain.Instance.buttonItemGridsColumnsColor.Checked = _selectedOutput.ShowColorHeader;
-                FormMain.Instance.buttonItemGridsColumnsCost.Checked = _selectedOutput.ShowCostHeader;
-                FormMain.Instance.buttonItemGridsColumnsDate.Checked = _selectedOutput.ShowDateHeader;
-                FormMain.Instance.buttonItemGridsColumnsDeadline.Checked = _selectedOutput.ShowDeadlineHeader;
-                FormMain.Instance.buttonItemGridsColumnsDelivery.Checked = _selectedOutput.ShowDeliveryHeader;
-                FormMain.Instance.buttonItemGridsColumnsDiscounts.Checked = _selectedOutput.ShowDiscountHeader;
-                FormMain.Instance.buttonItemGridsColumnsFinalCost.Checked = _selectedOutput.ShowFinalCostHeader;
-                FormMain.Instance.buttonItemGridsColumnsID.Checked = _selectedOutput.ShowIDHeader;
-                FormMain.Instance.buttonItemGridsColumnsIndex.Checked = _selectedOutput.ShowIndexHeader;
-                FormMain.Instance.buttonItemGridsColumnsMechanicals.Checked = _selectedOutput.ShowMechanicalsHeader;
-                FormMain.Instance.buttonItemGridsColumnsPageSize.Checked = _selectedOutput.ShowPageSizeHeader;
-                FormMain.Instance.buttonItemGridsColumnsPercentOfPage.Checked = _selectedOutput.ShowPercentOfPageHeader & FormMain.Instance.buttonItemGridsColumnsPercentOfPage.Enabled;
-                FormMain.Instance.buttonItemGridsColumnsPCI.Checked = _selectedOutput.ShowPCIHeader;
-                FormMain.Instance.buttonItemGridsColumnsPublication.Checked = _selectedOutput.ShowPublicationHeader;
-                FormMain.Instance.buttonItemGridsColumnsDimensions.Checked = _selectedOutput.ShowDimensionsHeader;
-                FormMain.Instance.buttonItemGridsColumnsReadership.Checked = _selectedOutput.ShowReadershipHeader;
-                FormMain.Instance.buttonItemGridsColumnsSection.Checked = _selectedOutput.ShowSectionHeader;
-                FormMain.Instance.buttonItemGridsColumnsSquare.Checked = _selectedOutput.ShowSquareHeader;
-                _selectedOutput.AllowToSave = true;
-            }
-        }
-
-        public void UpdatePageAccordingToggledButton()
-        {
-            _selectedOutput = null;
-            if (FormMain.Instance.buttonItemGridsDetailedGrid != null && FormMain.Instance.buttonItemGridsDetailedGrid.Checked)
-            {
-                _selectedOutput = OutputControls.OutputDetailedGridControl.Instance;
-                UpdateButtonsStateAccordingSelectedOutput();
-            }
-            else if (FormMain.Instance.buttonItemGridsMultiGrid != null && FormMain.Instance.buttonItemGridsMultiGrid.Checked)
-            {
-                _selectedOutput = OutputControls.OutputMultiGridControl.Instance;
-                UpdateButtonsStateAccordingSelectedOutput();
-            }
-            else if (FormMain.Instance.buttonItemGridsChronological != null && FormMain.Instance.buttonItemGridsChronological.Checked)
-            {
-                _selectedOutput = OutputControls.OutputChronologicalControl.Instance;
-                UpdateButtonsStateAccordingSelectedOutput();
-            }
-            if (_selectedOutput != null)
-            {
                 if (!pnMain.Controls.Contains(_selectedOutput as Control))
                 {
                     Application.DoEvents();
@@ -161,8 +218,50 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                     xtraTabPageSlideHeaders.Controls.Add(_selectedOutput.SlideHeader);
                 }
                 _selectedOutput.SlideHeader.BringToFront();
+
+                FormMain.Instance.superTooltip.SetSuperTooltip(this.HelpButtonItem, _selectedOutput.HelpToolTip);
             }
-            FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemGridsHelp, _selectedOutput.HelpToolTip);
+            else
+            {
+                pnEmpty.BringToFront();
+                FormMain.Instance.superTooltip.SetSuperTooltip(this.HelpButtonItem, null);
+            }
+        }
+
+        public void UpdateButtonsStateAccordingSelectedOutput()
+        {
+            if (_selectedOutput != null)
+            {
+                _selectedOutput.AllowToSave = false;
+
+                this.DetailsButtonItem.Checked = this.ShowGridDetails;
+
+                this.ColumnPercentOfPageButtonItem.Enabled = BusinessClasses.ListManager.Instance.ShareUnits.Count > 0;
+                this.ColumnDateButtonItem.Enabled = _selectedOutput.EnableDateButton;
+                this.ColumnPublicationButtonItem.Enabled = _selectedOutput.EnablePublicationButton;
+                this.ColumnIDButtonItem.Enabled = _selectedOutput.EnableIDButton;
+                this.ColumnColorButtonItem.Checked = _selectedOutput.ShowColorHeader;
+                this.ColumnCostButtonItem.Checked = _selectedOutput.ShowCostHeader;
+                this.ColumnDateButtonItem.Checked = _selectedOutput.ShowDateHeader;
+                this.ColumnDeadlineButtonItem.Checked = _selectedOutput.ShowDeadlineHeader;
+                this.ColumnDeliveryButtonItem.Checked = _selectedOutput.ShowDeliveryHeader;
+                this.ColumnDiscountsButtonItem.Checked = _selectedOutput.ShowDiscountHeader;
+                this.ColumnTotalCostButtonItem.Checked = _selectedOutput.ShowFinalCostHeader;
+                this.ColumnIDButtonItem.Checked = _selectedOutput.ShowIDHeader;
+                this.ColumnIndexButtonItem.Checked = _selectedOutput.ShowIndexHeader;
+                this.ColumnMechanicalsButtonItem.Checked = _selectedOutput.ShowMechanicalsHeader;
+                this.ColumnPageSizeButtonItem.Checked = _selectedOutput.ShowPageSizeHeader;
+                this.ColumnPercentOfPageButtonItem.Checked = _selectedOutput.ShowPercentOfPageHeader & this.ColumnPercentOfPageButtonItem.Enabled;
+                this.ColumnPCIButtonItem.Checked = _selectedOutput.ShowPCIHeader;
+                this.ColumnPublicationButtonItem.Checked = _selectedOutput.ShowPublicationHeader;
+                this.ColumnDimensionsButtonItem.Checked = _selectedOutput.ShowDimensionsHeader;
+                this.ColumnReadershipButtonItem.Checked = _selectedOutput.ShowReadershipHeader;
+                this.ColumnSectionButtonItem.Checked = _selectedOutput.ShowSectionHeader;
+                this.ColumnSquareButtonItem.Checked = _selectedOutput.ShowSquareHeader;
+
+                splitContainerControl.PanelVisibility = this.ShowGridDetails ? DevExpress.XtraEditors.SplitPanelVisibility.Both : DevExpress.XtraEditors.SplitPanelVisibility.Panel2;
+                _selectedOutput.AllowToSave = true;
+            }
         }
 
         private bool AllowCheckColumnsButton(bool checkState)
@@ -174,39 +273,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 return count > 4;
             else
                 return count < 12;
-        }
-
-        public void buttonItemGridsDetailedGrid_Click(object sender, EventArgs e)
-        {
-            if (!(sender as DevComponents.DotNetBar.ButtonItem).Checked)
-                if (this.AllowToLeaveControl)
-                {
-                    UncheckOutputOptions();
-                    FormMain.Instance.buttonItemGridsDetailedGrid.Checked = true;
-                    UpdatePageAccordingToggledButton();
-                }
-        }
-
-        public void buttonItemGridsMultiGrid_Click(object sender, EventArgs e)
-        {
-            if (!(sender as DevComponents.DotNetBar.ButtonItem).Checked)
-                if (this.AllowToLeaveControl)
-                {
-                    UncheckOutputOptions();
-                    FormMain.Instance.buttonItemGridsMultiGrid.Checked = true;
-                    UpdatePageAccordingToggledButton();
-                }
-        }
-
-        public void buttonItemGridsChronological_Click(object sender, EventArgs e)
-        {
-            if (!(sender as DevComponents.DotNetBar.ButtonItem).Checked)
-                if (this.AllowToLeaveControl)
-                {
-                    UncheckOutputOptions();
-                    FormMain.Instance.buttonItemGridsChronological.Checked = true;
-                    UpdatePageAccordingToggledButton();
-                }
         }
 
         public void buttonItemGridsColumns_Click(object sender, EventArgs e)
@@ -224,8 +290,18 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         public void buttonItemGridsDetails_CheckedChanged(object sender, EventArgs e)
         {
-            _selectedOutput.SetToggleState();
-            splitContainerControl.PanelVisibility = FormMain.Instance.buttonItemGridsDetails.Checked ? DevExpress.XtraEditors.SplitPanelVisibility.Both : DevExpress.XtraEditors.SplitPanelVisibility.Panel2;
+            if (_selectedOutput.AllowToSave)
+            {
+                this.ShowGridDetails = this.DetailsButtonItem.Checked;
+                _selectedOutput.LocalSchedule.ViewSettings.ShowGridDetails = this.ShowGridDetails;
+                _selectedOutput.SettingsNotSaved = true;
+                splitContainerControl.PanelVisibility = this.DetailsButtonItem.Checked ? DevExpress.XtraEditors.SplitPanelVisibility.Both : DevExpress.XtraEditors.SplitPanelVisibility.Panel2;
+            }
+        }
+
+        public void buttonItemGridsPreview_Click(object sender, EventArgs e)
+        {
+            _selectedOutput.Preview();
         }
 
         public void buttonItemGridsPowerPoint_Click(object sender, EventArgs e)
@@ -264,6 +340,28 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             _selectedOutput.OpenHelp();
         }
+
+        private void buttonXAdNotesHelp_Click(object sender, EventArgs e)
+        {
+            BusinessClasses.HelpManager.Instance.OpenHelpLink("adnotesnavbar");
+        }
+
+        private void buttonXHeadersHelp_Click(object sender, EventArgs e)
+        {
+            BusinessClasses.HelpManager.Instance.OpenHelpLink("headersnavbar");
+        }
+
+        private void buttonXTotalsHelp_Click(object sender, EventArgs e)
+        {
+            BusinessClasses.HelpManager.Instance.OpenHelpLink("totalsnavbar");
+        }
+    }
+
+    public enum GridType
+    {
+        DetailedGrid,
+        MultiGrid,
+        ChronoGrid
     }
 
     public interface IGridOutputControl : ISettingsContainer
@@ -280,8 +378,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         bool EnableDateButton { get; }
         bool EnablePublicationButton { get; }
         bool EnableIDButton { get; }
-
-        bool ShowGridDetails { get; set; }
 
         bool ShowIDHeader { get; set; }
         bool ShowDateHeader { get; set; }
@@ -338,5 +434,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         void OpenHelp();
         void PrintOutput();
         void Email();
+        void Preview();
     }
 }

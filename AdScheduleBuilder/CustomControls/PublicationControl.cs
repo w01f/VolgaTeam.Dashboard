@@ -87,8 +87,8 @@ namespace AdScheduleBuilder.CustomControls
             this.Publication.AddInsert();
             LoadInserts();
             advBandedGridViewPublication.FocusedRowHandle = advBandedGridViewPublication.RowCount - 1;
-            FormMain.Instance.buttonItemDeleteInsert.Enabled = this.Publication.Inserts.Count > 0;
-            FormMain.Instance.buttonItemCloneInsert.Enabled = this.Publication.Inserts.Count > 0;
+            FormMain.Instance.buttonItemSchedulesDeleteInsert.Enabled = this.Publication.Inserts.Count > 0;
+            FormMain.Instance.buttonItemSchedulesCloneInsert.Enabled = this.Publication.Inserts.Count > 0;
         }
 
         public void DeleteInsert()
@@ -99,8 +99,8 @@ namespace AdScheduleBuilder.CustomControls
                 this.Publication.RebuildInserts();
                 LoadInserts();
                 ScheduleBuilderControl.Instance.SettingsNotSaved = true;
-                FormMain.Instance.buttonItemDeleteInsert.Enabled = this.Publication.Inserts.Count > 0;
-                FormMain.Instance.buttonItemCloneInsert.Enabled = this.Publication.Inserts.Count > 0;
+                FormMain.Instance.buttonItemSchedulesDeleteInsert.Enabled = this.Publication.Inserts.Count > 0;
+                FormMain.Instance.buttonItemSchedulesCloneInsert.Enabled = this.Publication.Inserts.Count > 0;
             }
         }
 

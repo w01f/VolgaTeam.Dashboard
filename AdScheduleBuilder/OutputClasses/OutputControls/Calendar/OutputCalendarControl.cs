@@ -23,7 +23,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
-            this.HelpToolTip = new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me understand how to use the Advertising Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
+            this.HelpToolTip = new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Learn more about the Advertising Calendar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
             _monthViews = new List<MonthViewControl>();
             this.Inserts = new List<BusinessClasses.Insert>();
             BusinessClasses.ScheduleManager.Instance.SettingsSaved += new EventHandler<BusinessClasses.SavingingEventArgs>((sender, e) =>
@@ -114,11 +114,11 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         public virtual void UpdateMonthView()
         {
-            if (this.AllowToSave && FormMain.Instance.listBoxControlCalendar.Items.Count > 0)
+            if (this.AllowToSave && comboBoxEditMonthSelector.Properties.Items.Count > 0)
             {
                 ShowEmpty();
                 pnCalendarView.Controls.Clear();
-                DateTime selectedMonth = this.LocalSchedule.ScheduleMonths[FormMain.Instance.listBoxControlCalendar.SelectedIndex];
+                DateTime selectedMonth = this.LocalSchedule.ScheduleMonths[comboBoxEditMonthSelector.SelectedIndex];
                 _selectedMonth = _monthViews.Where(x => x.Settings.Month.Month.Equals(selectedMonth.Month) && x.Settings.Month.Year.Equals(selectedMonth.Year)).FirstOrDefault();
                 if (_selectedMonth == null)
                 {
@@ -298,10 +298,10 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
                 PrepareMonthViews();
 
-                FormMain.Instance.listBoxControlCalendar.Items.Clear();
-                FormMain.Instance.listBoxControlCalendar.Items.AddRange(this.LocalSchedule.ScheduleMonths.Select(x => new DevExpress.XtraEditors.Controls.ImageListBoxItem(x.ToString("MMM, yyyy"), 0)).ToArray());
-                if (FormMain.Instance.listBoxControlCalendar.Items.Count > 0)
-                    FormMain.Instance.listBoxControlCalendar.SelectedIndex = 0;
+                comboBoxEditMonthSelector.Properties.Items.Clear();
+                comboBoxEditMonthSelector.Properties.Items.AddRange(this.LocalSchedule.ScheduleMonths.Select(x => new DevExpress.XtraEditors.Controls.ImageListBoxItem(x.ToString("MMM, yyyy"), 0)).ToArray());
+                if (comboBoxEditMonthSelector.Properties.Items.Count > 0)
+                    comboBoxEditMonthSelector.SelectedIndex = 0;
 
                 UpdateMonthView();
                 this.AllowToSave = true;
@@ -315,6 +315,11 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         public void OpenHelp()
         {
             BusinessClasses.HelpManager.Instance.OpenHelpLink("calendars");
+        }
+
+        private void comboBoxEditMonthSelector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateMonthView();
         }
 
         #region Output Staff
@@ -438,6 +443,73 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                                 ConfigurationClasses.RegistryHelper.MainFormHandle = formEmail.Handle;
                                 ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                                 formEmail.ShowDialog();
+                                ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                                ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                            }
+                    }
+                }
+            }
+        }
+
+        public void Preview()
+        {
+            using (OutputForms.FormSelectPublication form = new OutputForms.FormSelectPublication())
+            {
+                form.Text = "Ad Calendar Preview";
+                form.pbLogo.Image = Properties.Resources.Preview;
+                form.laTitle.Text = "You have several Advertising Calendars that can be ATTACHED to an email…";
+                form.buttonXCurrentPublication.Text = string.Format("Preview just the {0} Calendar Slide", _selectedMonth.Settings.Month.ToString("MMMM, yyyy"));
+                form.buttonXSelectedPublications.Text = "Preview ALL Selected Ad Calendars";
+                foreach (MonthViewControl monthView in _monthViews.Where(x => this.Inserts.Where(y => y.Date.Year.Equals(x.Month.Year) && y.Date.Month.Equals(x.Month.Month)).Count() > 0))
+                    form.checkedListBoxControlPublications.Items.Add(monthView, monthView.Settings.Month.ToString("MMMM, yyyy"), CheckState.Checked, true);
+                ConfigurationClasses.RegistryHelper.MainFormHandle = form.Handle;
+                ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                DialogResult result = form.ShowDialog();
+                ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                if (result != DialogResult.Cancel)
+                {
+                    using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
+                    {
+                        formProgress.TopMost = true;
+                        string tempFileName = Path.Combine(ConfigurationClasses.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+                        if (result == DialogResult.Yes)
+                        {
+                            formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
+                            if (this.Inserts.Where(y => y.Date.Year.Equals(_selectedMonth.Month.Year) && y.Date.Month.Equals(_selectedMonth.Month.Month)).Count() == 0)
+                                if (AppManager.ShowWarningQuestion(string.Format("There are no Ads scheduled for {0}.\nDo you still want to create this slide?", _selectedMonth.Month.ToString("MMMM, yyyy"))) == DialogResult.No)
+                                    return;
+                            formProgress.Show();
+                            this.Enabled = false;
+                            InteropClasses.PowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, new MonthViewControl[] { _selectedMonth });
+                        }
+                        else if (result == DialogResult.No)
+                        {
+                            formProgress.laProgress.Text = form.checkedListBoxControlPublications.CheckedItems.Count == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Several Calendar slides…\nThis will take a few minutes…";
+                            formProgress.Show();
+                            this.Enabled = false;
+                            List<MonthViewControl> emailPages = new List<MonthViewControl>();
+                            foreach (DevExpress.XtraEditors.Controls.CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
+                            {
+                                if (item.CheckState == CheckState.Checked)
+                                {
+                                    MonthViewControl monthView = item.Value as MonthViewControl;
+                                    if (monthView != null)
+                                        emailPages.Add(monthView);
+                                }
+                            }
+                            InteropClasses.PowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, emailPages.ToArray());
+                        }
+                        this.Enabled = true;
+                        formProgress.Close();
+                        if (File.Exists(tempFileName))
+                            using (OutputForms.FormPreview formPreview = new OutputForms.FormPreview())
+                            {
+                                formPreview.Text = "Preview Advertising Calendar";
+                                formPreview.PresentationFile = tempFileName;
+                                ConfigurationClasses.RegistryHelper.MainFormHandle = formPreview.Handle;
+                                ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                                formPreview.ShowDialog();
                                 ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
                                 ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                             }

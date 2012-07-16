@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace AdScheduleBuilder
 {
@@ -176,6 +174,44 @@ namespace AdScheduleBuilder
                 InteropClasses.WinAPIHelper.MakeTopMost(handle);
             else
                 InteropClasses.WinAPIHelper.MakeNormal(handle);
+        }
+
+        public static void ActivatePowerPoint()
+        {
+            if (InteropClasses.PowerPointHelper.Instance.PowerPointObject != null)
+            {
+                IntPtr powerPointHandle = new IntPtr(InteropClasses.PowerPointHelper.Instance.PowerPointObject.HWND);
+                InteropClasses.WinAPIHelper.ShowWindow(powerPointHandle, InteropClasses.WindowShowStyle.ShowMaximized);
+                uint lpdwProcessId = 0;
+                InteropClasses.WinAPIHelper.AttachThreadInput(InteropClasses.WinAPIHelper.GetCurrentThreadId(), InteropClasses.WinAPIHelper.GetWindowThreadProcessId(InteropClasses.WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), true);
+                InteropClasses.WinAPIHelper.SetForegroundWindow(powerPointHandle);
+                InteropClasses.WinAPIHelper.AttachThreadInput(InteropClasses.WinAPIHelper.GetCurrentThreadId(), InteropClasses.WinAPIHelper.GetWindowThreadProcessId(InteropClasses.WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), false);
+            }
+        }
+
+        public static void ActivateMiniBar()
+        {
+            IntPtr minibarHandle = ConfigurationClasses.RegistryHelper.MinibarHandle;
+            if (minibarHandle.ToInt32() == 0)
+            {
+                Process[] processList = Process.GetProcesses();
+                foreach (Process process in processList.Where(x => x.ProcessName.Contains("MiniBar")))
+                {
+                    if (process.MainWindowHandle.ToInt32() != 0)
+                    {
+                        minibarHandle = process.MainWindowHandle;
+                        break;
+                    }
+                }
+            }
+            if (minibarHandle.ToInt32() != 0)
+            {
+                uint lpdwProcessId = 0;
+                InteropClasses.WinAPIHelper.MakeTopMost(minibarHandle);
+                InteropClasses.WinAPIHelper.AttachThreadInput(InteropClasses.WinAPIHelper.GetCurrentThreadId(), InteropClasses.WinAPIHelper.GetWindowThreadProcessId(InteropClasses.WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), true);
+                InteropClasses.WinAPIHelper.SetForegroundWindow(minibarHandle);
+                InteropClasses.WinAPIHelper.AttachThreadInput(InteropClasses.WinAPIHelper.GetCurrentThreadId(), InteropClasses.WinAPIHelper.GetWindowThreadProcessId(InteropClasses.WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), false);
+            }
         }
 
         public static string GetLetterByDigit(int digit)

@@ -287,8 +287,8 @@ namespace CalendarBuilder.BusinessClasses
             this.SundayBased = true;
             this.ShowNewspaper = true;
             this.ShowDigital = true;
-            this.ShowTV = true;
-            this.ShowRadio = true;
+            this.ShowTV = false;
+            this.ShowRadio = false;
 
             _calendarFile = new FileInfo(fileName);
             if (!File.Exists(fileName))

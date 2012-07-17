@@ -298,6 +298,13 @@ namespace AdScheduleBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ExcelInactive {
+            get {
+                object obj = ResourceManager.GetObject("ExcelInactive", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Exit {
             get {
                 object obj = ResourceManager.GetObject("Exit", resourceCulture);
@@ -382,9 +389,37 @@ namespace AdScheduleBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap HelpAdNotes {
+            get {
+                object obj = ResourceManager.GetObject("HelpAdNotes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap HelpSlideBulltes {
+            get {
+                object obj = ResourceManager.GetObject("HelpSlideBulltes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap HelpSlideHeaders {
+            get {
+                object obj = ResourceManager.GetObject("HelpSlideHeaders", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Image {
             get {
                 object obj = ResourceManager.GetObject("Image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImageInactive {
+            get {
+                object obj = ResourceManager.GetObject("ImageInactive", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -466,6 +501,13 @@ namespace AdScheduleBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap OutputLogo {
+            get {
+                object obj = ResourceManager.GetObject("OutputLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap PDFEmail {
             get {
                 object obj = ResourceManager.GetObject("PDFEmail", resourceCulture);
@@ -490,6 +532,13 @@ namespace AdScheduleBuilder.Properties {
         internal static System.Drawing.Bitmap PreviewCalendar {
             get {
                 object obj = ResourceManager.GetObject("PreviewCalendar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PreviewSelector {
+            get {
+                object obj = ResourceManager.GetObject("PreviewSelector", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -616,6 +665,13 @@ namespace AdScheduleBuilder.Properties {
         internal static System.Drawing.Bitmap Table {
             get {
                 object obj = ResourceManager.GetObject("Table", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap TableInactive {
+            get {
+                object obj = ResourceManager.GetObject("TableInactive", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

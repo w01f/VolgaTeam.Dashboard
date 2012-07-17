@@ -350,6 +350,12 @@
     <Compile Include="OutputClasses\OutputForms\FormPreview.designer.cs">
       <DependentUpon>FormPreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="OutputClasses\OutputForms\FormSelectOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutputClasses\OutputForms\FormSelectOutput.Designer.cs">
+      <DependentUpon>FormSelectOutput.cs</DependentUpon>
+    </Compile>
     <Compile Include="OutputClasses\OutputForms\FormSelectPublication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -385,12 +391,6 @@
     </Compile>
     <Compile Include="ToolForms\FormChangeAdStrategyWarning.Designer.cs">
       <DependentUpon>FormChangeAdStrategyWarning.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ToolForms\FormGridType.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormGridType.Designer.cs">
-      <DependentUpon>FormGridType.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormProgress.cs">
       <SubType>Form</SubType>
@@ -604,6 +604,9 @@
     <EmbeddedResource Include="OutputClasses\OutputForms\FormPreview.resx">
       <DependentUpon>FormPreview.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OutputClasses\OutputForms\FormSelectOutput.resx">
+      <DependentUpon>FormSelectOutput.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OutputClasses\OutputForms\FormSelectPublication.resx">
       <DependentUpon>FormSelectPublication.cs</DependentUpon>
     </EmbeddedResource>
@@ -621,9 +624,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormChangeAdStrategyWarning.resx">
       <DependentUpon>FormChangeAdStrategyWarning.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormGridType.resx">
-      <DependentUpon>FormGridType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
@@ -1055,6 +1055,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PreviewCalendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExcelInactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImageInactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TableInactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OutputLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PreviewSelector.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HelpAdNotes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HelpSlideHeaders.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HelpSlideBulltes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

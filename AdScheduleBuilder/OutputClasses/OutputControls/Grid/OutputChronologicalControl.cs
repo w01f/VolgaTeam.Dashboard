@@ -1633,14 +1633,14 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         public void PrintOutput()
         {
-            using (ToolForms.FormGridType formGridType = new ToolForms.FormGridType())
+            using (OutputForms.FormSelectOutput formGridType = new OutputForms.FormSelectOutput(OutputForms.OutputType.PowerPoint))
             {
-                formGridType.buttonXTable.Visible = this.SelectedColumnsCount >= 4 && this.SelectedColumnsCount <= 6 && Directory.Exists(BusinessClasses.OutputManager.Instance.ChronoGridGridBasedTemlatesFolderPath);
+                formGridType.buttonXGrid.Enabled = this.SelectedColumnsCount >= 4 && this.SelectedColumnsCount <= 6 && Directory.Exists(BusinessClasses.OutputManager.Instance.ChronoGridGridBasedTemlatesFolderPath);
                 DialogResult gridTypeResult = formGridType.ShowDialog();
                 if (gridTypeResult != DialogResult.Cancel)
                 {
-                    bool pasteAsImage = gridTypeResult == DialogResult.No;
-                    bool excelOutput = gridTypeResult != DialogResult.Ignore;
+                    bool pasteAsImage = gridTypeResult == DialogResult.Ignore;
+                    bool excelOutput = gridTypeResult == DialogResult.No;
                     using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
                     {
                         formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -1665,14 +1665,14 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         public void Email()
         {
-            using (ToolForms.FormGridType formGridType = new ToolForms.FormGridType())
+            using (OutputForms.FormSelectOutput formGridType = new OutputForms.FormSelectOutput(OutputForms.OutputType.Email))
             {
-                formGridType.buttonXTable.Visible = this.SelectedColumnsCount >= 4 && this.SelectedColumnsCount <= 6 && Directory.Exists(BusinessClasses.OutputManager.Instance.MultiGridGridBasedTemlatesFolderPath);
+                formGridType.buttonXGrid.Enabled = this.SelectedColumnsCount >= 4 && this.SelectedColumnsCount <= 6 && Directory.Exists(BusinessClasses.OutputManager.Instance.MultiGridGridBasedTemlatesFolderPath);
                 DialogResult gridTypeResult = formGridType.ShowDialog();
                 if (gridTypeResult != DialogResult.Cancel)
                 {
-                    bool pasteAsImage = gridTypeResult == DialogResult.No;
-                    bool excelOutput = gridTypeResult != DialogResult.Ignore;
+                    bool pasteAsImage = gridTypeResult == DialogResult.Ignore;
+                    bool excelOutput = gridTypeResult == DialogResult.No;
                     using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
                     {
                         formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
@@ -1703,14 +1703,14 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         public void Preview()
         {
-            using (ToolForms.FormGridType formGridType = new ToolForms.FormGridType())
+            using (OutputForms.FormSelectOutput formGridType = new OutputForms.FormSelectOutput(OutputForms.OutputType.Preview))
             {
-                formGridType.buttonXTable.Visible = this.SelectedColumnsCount >= 4 && this.SelectedColumnsCount <= 6 && Directory.Exists(BusinessClasses.OutputManager.Instance.MultiGridGridBasedTemlatesFolderPath);
+                formGridType.buttonXGrid.Enabled = this.SelectedColumnsCount >= 4 && this.SelectedColumnsCount <= 6 && Directory.Exists(BusinessClasses.OutputManager.Instance.MultiGridGridBasedTemlatesFolderPath);
                 DialogResult gridTypeResult = formGridType.ShowDialog();
                 if (gridTypeResult != DialogResult.Cancel)
                 {
-                    bool pasteAsImage = gridTypeResult == DialogResult.No;
-                    bool excelOutput = gridTypeResult != DialogResult.Ignore;
+                    bool pasteAsImage = gridTypeResult == DialogResult.Ignore;
+                    bool excelOutput = gridTypeResult == DialogResult.No;
                     using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
                     {
                         formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";

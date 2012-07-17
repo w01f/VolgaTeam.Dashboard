@@ -355,6 +355,25 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             BusinessClasses.HelpManager.Instance.OpenHelpLink("totalsnavbar");
         }
+
+        #region Picture Box Clicks Habdlers
+        /// <summary>
+        /// Buttonize the PictureBox 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            PictureBox pic = (PictureBox)(sender);
+            pic.Top += 1;
+        }
+
+        private void pictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            PictureBox pic = (PictureBox)(sender);
+            pic.Top -= 1;
+        }
+        #endregion
     }
 
     public enum GridType

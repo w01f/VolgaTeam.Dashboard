@@ -36,20 +36,27 @@
             this.xtraTabPageAdNotes = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPageSlideHeaders = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPageSlideBullets = new DevExpress.XtraTab.XtraTabPage();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.pnHelp = new System.Windows.Forms.Panel();
-            this.buttonXAdNotesHelp = new DevComponents.DotNetBar.ButtonX();
-            this.buttonXHeadersHelp = new DevComponents.DotNetBar.ButtonX();
-            this.buttonXTotalsHelp = new DevComponents.DotNetBar.ButtonX();
+            this.pbTotalsHelp = new System.Windows.Forms.PictureBox();
+            this.pbHeadersHelp = new System.Windows.Forms.PictureBox();
+            this.laHelpDescription = new System.Windows.Forms.Label();
+            this.pbAdNotesHelp = new System.Windows.Forms.PictureBox();
+            this.pbOutputLogo = new System.Windows.Forms.PictureBox();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+            this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
             this.splitContainerControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlDetails)).BeginInit();
             this.xtraTabControlDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
             this.xtraTabPage1.SuspendLayout();
             this.pnHelp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTotalsHelp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeadersHelp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAdNotesHelp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOutputLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
             this.SuspendLayout();
             // 
             // pnEmpty
@@ -128,6 +135,88 @@
             this.xtraTabPageSlideBullets.Size = new System.Drawing.Size(248, 464);
             this.xtraTabPageSlideBullets.Text = "Totals";
             // 
+            // xtraTabPage1
+            // 
+            this.xtraTabPage1.Controls.Add(this.pnHelp);
+            this.xtraTabPage1.Name = "xtraTabPage1";
+            this.xtraTabPage1.Size = new System.Drawing.Size(248, 464);
+            this.xtraTabPage1.Text = "Help";
+            // 
+            // pnHelp
+            // 
+            this.pnHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.pnHelp.Controls.Add(this.pbTotalsHelp);
+            this.pnHelp.Controls.Add(this.pbHeadersHelp);
+            this.pnHelp.Controls.Add(this.laHelpDescription);
+            this.pnHelp.Controls.Add(this.pbAdNotesHelp);
+            this.pnHelp.Controls.Add(this.pbOutputLogo);
+            this.pnHelp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnHelp.Location = new System.Drawing.Point(0, 0);
+            this.pnHelp.Name = "pnHelp";
+            this.pnHelp.Size = new System.Drawing.Size(248, 464);
+            this.pnHelp.TabIndex = 0;
+            // 
+            // pbTotalsHelp
+            // 
+            this.pbTotalsHelp.Image = global::AdScheduleBuilder.Properties.Resources.HelpSlideBulltes;
+            this.pbTotalsHelp.Location = new System.Drawing.Point(7, 380);
+            this.pbTotalsHelp.Name = "pbTotalsHelp";
+            this.pbTotalsHelp.Size = new System.Drawing.Size(238, 49);
+            this.superTooltip.SetSuperTooltip(this.pbTotalsHelp, new DevComponents.DotNetBar.SuperTooltipInfo("Totals", "", "Learn more about financial totals and other specific data you may want to add to " +
+            "the slide", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.pbTotalsHelp.TabIndex = 4;
+            this.pbTotalsHelp.TabStop = false;
+            this.pbTotalsHelp.Click += new System.EventHandler(this.buttonXTotalsHelp_Click);
+            this.pbTotalsHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbTotalsHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pbHeadersHelp
+            // 
+            this.pbHeadersHelp.Image = global::AdScheduleBuilder.Properties.Resources.HelpSlideHeaders;
+            this.pbHeadersHelp.Location = new System.Drawing.Point(7, 277);
+            this.pbHeadersHelp.Name = "pbHeadersHelp";
+            this.pbHeadersHelp.Size = new System.Drawing.Size(238, 49);
+            this.superTooltip.SetSuperTooltip(this.pbHeadersHelp, new DevComponents.DotNetBar.SuperTooltipInfo("Headers", "", "Learn more about Slide Header Data for your schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.pbHeadersHelp.TabIndex = 3;
+            this.pbHeadersHelp.TabStop = false;
+            this.pbHeadersHelp.Click += new System.EventHandler(this.buttonXHeadersHelp_Click);
+            this.pbHeadersHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbHeadersHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // laHelpDescription
+            // 
+            this.laHelpDescription.AutoSize = true;
+            this.laHelpDescription.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laHelpDescription.ForeColor = System.Drawing.Color.White;
+            this.laHelpDescription.Location = new System.Drawing.Point(3, 122);
+            this.laHelpDescription.Name = "laHelpDescription";
+            this.laHelpDescription.Size = new System.Drawing.Size(167, 35);
+            this.laHelpDescription.TabIndex = 2;
+            this.laHelpDescription.Text = "Learn More:";
+            // 
+            // pbAdNotesHelp
+            // 
+            this.pbAdNotesHelp.Image = global::AdScheduleBuilder.Properties.Resources.HelpAdNotes;
+            this.pbAdNotesHelp.Location = new System.Drawing.Point(7, 179);
+            this.pbAdNotesHelp.Name = "pbAdNotesHelp";
+            this.pbAdNotesHelp.Size = new System.Drawing.Size(238, 49);
+            this.superTooltip.SetSuperTooltip(this.pbAdNotesHelp, new DevComponents.DotNetBar.SuperTooltipInfo("AdNotes", "", "Learn about adding AdNotes to this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+            this.pbAdNotesHelp.TabIndex = 1;
+            this.pbAdNotesHelp.TabStop = false;
+            this.pbAdNotesHelp.Click += new System.EventHandler(this.buttonXAdNotesHelp_Click);
+            this.pbAdNotesHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbAdNotesHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pbOutputLogo
+            // 
+            this.pbOutputLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pbOutputLogo.Image = global::AdScheduleBuilder.Properties.Resources.OutputLogo;
+            this.pbOutputLogo.Location = new System.Drawing.Point(0, 0);
+            this.pbOutputLogo.Name = "pbOutputLogo";
+            this.pbOutputLogo.Size = new System.Drawing.Size(248, 86);
+            this.pbOutputLogo.TabIndex = 0;
+            this.pbOutputLogo.TabStop = false;
+            // 
             // defaultLookAndFeel
             // 
             this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
@@ -147,78 +236,9 @@
             this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
             this.styleController.AppearanceReadOnly.Options.UseFont = true;
             // 
-            // xtraTabPage1
+            // superTooltip
             // 
-            this.xtraTabPage1.Controls.Add(this.pnHelp);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(248, 464);
-            this.xtraTabPage1.Text = "Help";
-            // 
-            // pnHelp
-            // 
-            this.pnHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.pnHelp.Controls.Add(this.buttonXTotalsHelp);
-            this.pnHelp.Controls.Add(this.buttonXHeadersHelp);
-            this.pnHelp.Controls.Add(this.buttonXAdNotesHelp);
-            this.pnHelp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnHelp.Location = new System.Drawing.Point(0, 0);
-            this.pnHelp.Name = "pnHelp";
-            this.pnHelp.Size = new System.Drawing.Size(248, 464);
-            this.pnHelp.TabIndex = 0;
-            // 
-            // buttonXAdNotesHelp
-            // 
-            this.buttonXAdNotesHelp.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonXAdNotesHelp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonXAdNotesHelp.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXAdNotesHelp.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXAdNotesHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
-            this.buttonXAdNotesHelp.ImageFixedSize = new System.Drawing.Size(48, 56);
-            this.buttonXAdNotesHelp.Location = new System.Drawing.Point(13, 13);
-            this.buttonXAdNotesHelp.Name = "buttonXAdNotesHelp";
-            this.buttonXAdNotesHelp.Size = new System.Drawing.Size(222, 67);
-            this.buttonXAdNotesHelp.TabIndex = 20;
-            this.buttonXAdNotesHelp.Text = " Learn more\r\n about AdNotes";
-            this.buttonXAdNotesHelp.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.buttonXAdNotesHelp.TextColor = System.Drawing.Color.Black;
-            this.buttonXAdNotesHelp.Click += new System.EventHandler(this.buttonXAdNotesHelp_Click);
-            // 
-            // buttonXHeadersHelp
-            // 
-            this.buttonXHeadersHelp.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonXHeadersHelp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonXHeadersHelp.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXHeadersHelp.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXHeadersHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
-            this.buttonXHeadersHelp.ImageFixedSize = new System.Drawing.Size(48, 56);
-            this.buttonXHeadersHelp.Location = new System.Drawing.Point(13, 118);
-            this.buttonXHeadersHelp.Name = "buttonXHeadersHelp";
-            this.buttonXHeadersHelp.Size = new System.Drawing.Size(222, 67);
-            this.buttonXHeadersHelp.TabIndex = 21;
-            this.buttonXHeadersHelp.Text = " Learn more\r\n about Headers";
-            this.buttonXHeadersHelp.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.buttonXHeadersHelp.TextColor = System.Drawing.Color.Black;
-            this.buttonXHeadersHelp.Click += new System.EventHandler(this.buttonXHeadersHelp_Click);
-            // 
-            // buttonXTotalsHelp
-            // 
-            this.buttonXTotalsHelp.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonXTotalsHelp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonXTotalsHelp.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXTotalsHelp.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonXTotalsHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
-            this.buttonXTotalsHelp.ImageFixedSize = new System.Drawing.Size(48, 56);
-            this.buttonXTotalsHelp.Location = new System.Drawing.Point(13, 224);
-            this.buttonXTotalsHelp.Name = "buttonXTotalsHelp";
-            this.buttonXTotalsHelp.Size = new System.Drawing.Size(222, 67);
-            this.buttonXTotalsHelp.TabIndex = 22;
-            this.buttonXTotalsHelp.Text = " Learn more\r\n about Totals";
-            this.buttonXTotalsHelp.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
-            this.buttonXTotalsHelp.TextColor = System.Drawing.Color.Black;
-            this.buttonXTotalsHelp.Click += new System.EventHandler(this.buttonXTotalsHelp_Click);
+            this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             // 
             // GridsControl
             // 
@@ -233,9 +253,14 @@
             this.splitContainerControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlDetails)).EndInit();
             this.xtraTabControlDetails.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
             this.xtraTabPage1.ResumeLayout(false);
             this.pnHelp.ResumeLayout(false);
+            this.pnHelp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTotalsHelp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeadersHelp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAdNotesHelp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOutputLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -253,8 +278,11 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPageSlideBullets;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private System.Windows.Forms.Panel pnHelp;
-        private DevComponents.DotNetBar.ButtonX buttonXTotalsHelp;
-        private DevComponents.DotNetBar.ButtonX buttonXHeadersHelp;
-        private DevComponents.DotNetBar.ButtonX buttonXAdNotesHelp;
+        private System.Windows.Forms.PictureBox pbAdNotesHelp;
+        private System.Windows.Forms.PictureBox pbOutputLogo;
+        private System.Windows.Forms.PictureBox pbHeadersHelp;
+        private System.Windows.Forms.Label laHelpDescription;
+        private System.Windows.Forms.PictureBox pbTotalsHelp;
+        private DevComponents.DotNetBar.SuperTooltip superTooltip;
     }
 }

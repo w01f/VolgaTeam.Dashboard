@@ -509,10 +509,10 @@
             this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonControl.CanCustomize = false;
             this.ribbonControl.Controls.Add(this.ribbonPanelScheduleSettings);
-            this.ribbonControl.Controls.Add(this.ribbonPanelCalendars);
             this.ribbonControl.Controls.Add(this.ribbonPanelChronoGrid);
             this.ribbonControl.Controls.Add(this.ribbonPanelMultiGrid);
             this.ribbonControl.Controls.Add(this.ribbonPanelDetailedGrid);
+            this.ribbonControl.Controls.Add(this.ribbonPanelCalendars);
             this.ribbonControl.Controls.Add(this.ribbonPanelSnapshot);
             this.ribbonControl.Controls.Add(this.ribbonPanelMultiSummary);
             this.ribbonControl.Controls.Add(this.ribbonPanelOverview);
@@ -2416,7 +2416,7 @@
             this.ribbonBarChronoGridDetails.Size = new System.Drawing.Size(88, 135);
             this.ribbonBarChronoGridDetails.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBarChronoGridDetails.TabIndex = 57;
-            this.ribbonBarChronoGridDetails.Text = "Details";
+            this.ribbonBarChronoGridDetails.Text = "Options";
             // 
             // 
             // 
@@ -3027,7 +3027,7 @@
             this.ribbonBarMultiGridDetails.Size = new System.Drawing.Size(88, 135);
             this.ribbonBarMultiGridDetails.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBarMultiGridDetails.TabIndex = 48;
-            this.ribbonBarMultiGridDetails.Text = "Details";
+            this.ribbonBarMultiGridDetails.Text = "Options";
             // 
             // 
             // 
@@ -3638,7 +3638,7 @@
             this.ribbonBarDetailedGridDetails.Size = new System.Drawing.Size(88, 135);
             this.ribbonBarDetailedGridDetails.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBarDetailedGridDetails.TabIndex = 39;
-            this.ribbonBarDetailedGridDetails.Text = "Details";
+            this.ribbonBarDetailedGridDetails.Text = "Options";
             // 
             // 
             // 

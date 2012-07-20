@@ -294,9 +294,10 @@ namespace NewBizWizForm
             SetDashboardCode();
         }
 
-        private void FormMain_Activated(object sender, EventArgs e)
+        public void FormMain_Activated(object sender, EventArgs e)
         {
-            AppManager.Instance.ActivateMainForm();
+            if (ConfigurationClasses.RegistryHelper.MainFormHandle != FormMain.Instance.Handle)
+                AppManager.Instance.ActivateMainForm();
         }
 
         private void FormMain_Load(object sender, EventArgs e)

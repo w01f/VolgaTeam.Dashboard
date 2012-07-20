@@ -60,7 +60,7 @@ namespace NewBizWizForm.InteropClasses
             {
                 try
                 {
-                    return WinAPIHelper.IsIconic(new IntPtr(_powerPointObject.HWND));
+                    return WinAPIHelper.IsIconic(_windowHandle);
                 }
                 catch
                 {
@@ -73,7 +73,7 @@ namespace NewBizWizForm.InteropClasses
         {
             get
             {
-                return WinAPIHelper.IsWindowVisible(_windowHandle);
+                return WinAPIHelper.IsWindowVisible(_windowHandle) || this.IsMinimized;
             }
         }
 

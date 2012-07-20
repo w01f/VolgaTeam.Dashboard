@@ -92,7 +92,7 @@
             this.laTitle.Name = "laTitle";
             this.laTitle.Size = new System.Drawing.Size(645, 73);
             this.laTitle.TabIndex = 22;
-            this.laTitle.Text = "Quickly BUILD an Advertising Calendar in\r\nPowerPoint for your Client...";
+            this.laTitle.Text = "Build VERY COOL Calendars for your clients with NINJA SALES SKILLS!";
             this.laTitle.UseMnemonic = false;
             this.laTitle.Click += new System.EventHandler(this.gridControlCalendars_Click);
             // 

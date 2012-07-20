@@ -74,31 +74,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls.Calendar.SettingsViewer
     }
 
     [System.ComponentModel.ToolboxItem(false)]
-    public class DateViewerControl : TextSettingsViewerControl
-    {
-        public override string Title
-        {
-            get
-            {
-                return "Calendar Month Title";
-            }
-        }
-
-        public override string FormToggleChangeCaption
-        {
-            get
-            {
-                return "Calendar Month Title";
-            }
-        }
-
-        public override void LoadValue()
-        {
-            laValue.Text = _settings.Month.ToString("MMMM, yy");
-        }
-    }
-
-    [System.ComponentModel.ToolboxItem(false)]
     public class BusinessNameViewerControl : TextSettingsViewerControl
     {
         public override string Title

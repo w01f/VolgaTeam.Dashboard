@@ -11,17 +11,25 @@ namespace AdScheduleBuilder
 
         public event EventHandler<EventArgs> FloaterRequested;
 
+        public bool IsMaximized
+        {
+            get
+            {
+                return this.WindowState == FormWindowState.Normal ? false : true;
+            }
+        }
+
         private FormMain()
         {
             InitializeComponent();
 
             #region Schedule Settings Events
-            buttonItemHomeHelp.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemScheduleSettingsHelp_Click);
-            buttonItemHomePublicationsAdd.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPublicationsAdd_Click);
-            buttonItemHomePublicationsClone.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPublicationsClone_Click);
-            buttonItemHomePublicationsDelete.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPublicationsDelete_Click);
-            buttonItemHomeSave.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemScheduleSettingsSave_Click);
-            buttonItemHomeSaveAs.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemScheduleSettingsSaveAs_Click);
+            buttonItemHomeHelp.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPrintScheduleettingsHelp_Click);
+            buttonItemHomeProductAdd.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPublicationsAdd_Click);
+            buttonItemHomeProductClone.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPublicationsClone_Click);
+            buttonItemHomeProductDelete.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPublicationsDelete_Click);
+            buttonItemHomeSave.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPrintScheduleettingsSave_Click);
+            buttonItemHomeSaveAs.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPrintScheduleettingsSaveAs_Click);
             comboBoxEditBusinessName.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
             comboBoxEditDecisionMaker.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
             comboBoxEditClientType.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
@@ -60,18 +68,18 @@ namespace AdScheduleBuilder
             #endregion
 
             #region Schedule Builder Events
-            buttonItemSchedulesHelp.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemSchedulesHelp_Click);
-            buttonItemSchedulesSave.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemSchedulesSave_Click);
-            buttonItemSchedulesSaveAs.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemSchedulesSaveAs_Click);
-            buttonItemSchedulesAdPricingColumnInches.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricingColumnInches_Click);
-            buttonItemSchedulesAdPricingFlat.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricingColumnInches_Click);
-            buttonItemSchedulesAdPricingPagePercent.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricingColumnInches_Click);
-            buttonItemSchedulesAdPricingColumnInches.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricing_CheckedChanged);
-            buttonItemSchedulesAdPricingFlat.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricing_CheckedChanged);
-            buttonItemSchedulesAdPricingPagePercent.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricing_CheckedChanged);
-            checkBoxItemSchedulesAdSizeStandartSquare.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.ScheduleBuilderControl.Instance.checkBoxItemAdSizeStandartSquare_CheckedChanged);
-            checkBoxItemSchedulesStandartPageSize.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.ScheduleBuilderControl.Instance.checkBoxItemSizeOptions_CheckedChanged);
-            checkBoxItemSchedulesSharePagePageSize.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.ScheduleBuilderControl.Instance.checkBoxItemSizeOptions_CheckedChanged);
+            buttonItemPrintScheduleHelp.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemPrintScheduleHelp_Click);
+            buttonItemPrintScheduleSave.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemPrintScheduleSave_Click);
+            buttonItemPrintScheduleSaveAs.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemPrintScheduleSaveAs_Click);
+            buttonItemPrintScheduleAdPricingColumnInches.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricingColumnInches_Click);
+            buttonItemPrintScheduleAdPricingFlat.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricingColumnInches_Click);
+            buttonItemPrintScheduleAdPricingPagePercent.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricingColumnInches_Click);
+            buttonItemPrintScheduleAdPricingColumnInches.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricing_CheckedChanged);
+            buttonItemPrintScheduleAdPricingFlat.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricing_CheckedChanged);
+            buttonItemPrintScheduleAdPricingPagePercent.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricing_CheckedChanged);
+            checkBoxItemPrintScheduleAdSizeStandartSquare.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.ScheduleBuilderControl.Instance.checkBoxItemAdSizeStandartSquare_CheckedChanged);
+            checkBoxItemPrintScheduleStandartPageSize.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.ScheduleBuilderControl.Instance.checkBoxItemSizeOptions_CheckedChanged);
+            checkBoxItemPrintScheduleSharePagePageSize.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.ScheduleBuilderControl.Instance.checkBoxItemSizeOptions_CheckedChanged);
             spinEditStandartHeight.EditValueChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.spinEditStandart_EditValueChanged);
             spinEditStandartWidth.EditValueChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.spinEditStandart_EditValueChanged);
             comboBoxEditStandartPageSize.EditValueChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.comboBoxEditSizeOptions_EditValueChanged);
@@ -79,24 +87,24 @@ namespace AdScheduleBuilder
             comboBoxEditRateCard.EditValueChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.comboBoxEditRateCard_EditValueChanged);
             comboBoxEditPercentOfPage.EditValueChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.comboBoxEditPercentOfPage_EditValueChanged);
             checkedListBoxControlSharePageSquare.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(CustomControls.ScheduleBuilderControl.Instance.checkedListBoxControlSharePageSquare_ItemCheck);
-            buttonItemSchedulesColorOptionsSingle.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_Click);
-            buttonItemSchedulesColorOptionsSpot.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_Click);
-            buttonItemSchedulesColorOptionsFull.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_Click);
-            buttonItemSchedulesColorOptionsSingle.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_CheckedChanged);
-            buttonItemSchedulesColorOptionsSpot.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_CheckedChanged);
-            buttonItemSchedulesColorOptionsFull.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_CheckedChanged);
-            buttonItemSchedulesColorOptionsCostPerAd.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_Click);
-            buttonItemSchedulesColorOptionsPercentOfAd.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_Click);
-            buttonItemSchedulesColorOptionsIncluded.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_Click);
-            buttonItemSchedulesColorOptionsPCI.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_Click);
-            buttonItemSchedulesColorOptionsCostPerAd.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged);
-            buttonItemSchedulesColorOptionsPercentOfAd.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged);
-            buttonItemSchedulesColorOptionsIncluded.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged);
-            buttonItemSchedulesColorOptionsPCI.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged);
+            buttonItemPrintScheduleColorOptionsSingle.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_Click);
+            buttonItemPrintScheduleColorOptionsSpot.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_Click);
+            buttonItemPrintScheduleColorOptionsFull.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_Click);
+            buttonItemPrintScheduleColorOptionsSingle.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_CheckedChanged);
+            buttonItemPrintScheduleColorOptionsSpot.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_CheckedChanged);
+            buttonItemPrintScheduleColorOptionsFull.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_CheckedChanged);
+            buttonItemPrintScheduleColorOptionsCostPerAd.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_Click);
+            buttonItemPrintScheduleColorOptionsPercentOfAd.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_Click);
+            buttonItemPrintScheduleColorOptionsIncluded.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_Click);
+            buttonItemPrintScheduleColorOptionsPCI.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_Click);
+            buttonItemPrintScheduleColorOptionsCostPerAd.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged);
+            buttonItemPrintScheduleColorOptionsPercentOfAd.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged);
+            buttonItemPrintScheduleColorOptionsIncluded.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged);
+            buttonItemPrintScheduleColorOptionsPCI.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged);
             spinEditCostPerInch.EditValueChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.spinEditCostPerInch_EditValueChanged);
-            buttonItemSchedulesAdd.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAddInsert_Click);
-            buttonItemSchedulesCloneInsert.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemCloneInsert_Click);
-            buttonItemSchedulesDeleteInsert.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemDeleteInsert_Click);
+            buttonItemPrintScheduleAdd.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAddInsert_Click);
+            buttonItemPrintScheduleCloneInsert.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemCloneInsert_Click);
+            buttonItemPrintScheduleDeleteInsert.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemDeleteInsert_Click);
             spinEditCostPerInch.Enter += new EventHandler(Editor_Enter);
             spinEditCostPerInch.MouseDown += new MouseEventHandler(Editor_MouseDown);
             spinEditCostPerInch.MouseUp += new MouseEventHandler(Editor_MouseUp);
@@ -127,84 +135,19 @@ namespace AdScheduleBuilder
             buttonItemMultiSummarySave.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesSave_Click);
             buttonItemMultiSummarySaveAs.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesSaveAs_Click);
             buttonItemMultiSummaryPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPowerPoint_Click);
+            buttonItemSnapshotOptions.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotOptions_CheckedChanged);
             buttonItemSnapshotPreview.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPreview_Click);
             buttonItemSnapshotEmail.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesEmail_Click);
             buttonItemSnapshotHelp.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesHelp_Click);
             buttonItemSnapshotSave.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesSave_Click);
             buttonItemSnapshotSaveAs.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesSaveAs_Click);
             buttonItemSnapshotPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPowerPoint_Click);
-            buttonItemSnapshotAvgAdCost.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotAvgFinalCost.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotAvgPCI.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotDelivery.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotDimensions.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotLogo.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotPageSize.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotPercentOfPage.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotReadership.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotSquare.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotTotalColorRate.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotTotalDiscounts.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotTotalFinalCost.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotTotalInserts.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotTotalSquare.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotToggle_CheckedChanged);
-            buttonItemSnapshotAvgAdCost.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotAvgFinalCost.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotAvgPCI.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotDelivery.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotDimensions.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotLogo.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotPageSize.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotPercentOfPage.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotReadership.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotSquare.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotTotalColorRate.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotTotalDiscounts.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotTotalFinalCost.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotTotalInserts.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
-            buttonItemSnapshotTotalSquare.Click += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotButton_Click);
             #endregion
 
             #region Grids Events
             buttonItemDetailedGridHelp.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsHelp_Click);
             buttonItemDetailedGridSave.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSave_Click);
             buttonItemDetailedGridSaveAs.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSaveAs_Click);
-            buttonItemDetailedGridColumnsColor.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsCost.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsDate.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsDeadline.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsDelivery.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsDiscounts.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsTotalCost.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsID.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsIndex.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsMechanicals.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsPageSize.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsPercentOfPage.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsDimensions.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsPCI.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsPublication.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsReadership.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsSection.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsSquare.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemDetailedGridColumnsColor.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsCost.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsDate.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsDeadline.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsDelivery.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsDiscounts.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsTotalCost.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsID.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsIndex.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsMechanicals.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsPageSize.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsPercentOfPage.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsDimensions.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsPCI.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsPublication.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsReadership.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsSection.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemDetailedGridColumnsSquare.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
             buttonItemDetailedGridDetails.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsDetails_CheckedChanged);
             buttonItemDetailedGridPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsPowerPoint_Click);
             buttonItemDetailedGridEmail.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsEmail_Click);
@@ -213,42 +156,6 @@ namespace AdScheduleBuilder
             buttonItemMultiGridHelp.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsHelp_Click);
             buttonItemMultiGridSave.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSave_Click);
             buttonItemMultiGridSaveAs.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSaveAs_Click);
-            buttonItemMultiGridColumnsColor.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsCost.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsDate.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsDeadline.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsDelivery.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsDiscounts.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsTotalCost.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsID.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsIndex.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsMechanicals.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsPageSize.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsPercentOfPage.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsDimensions.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsPCI.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsPublication.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsReadership.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsSection.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsSquare.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemMultiGridColumnsColor.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsCost.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsDate.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsDeadline.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsDelivery.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsDiscounts.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsTotalCost.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsID.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsIndex.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsMechanicals.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsPageSize.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsPercentOfPage.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsDimensions.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsPCI.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsPublication.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsReadership.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsSection.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemMultiGridColumnsSquare.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
             buttonItemMultiGridDetails.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsDetails_CheckedChanged);
             buttonItemMultiGridPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsPowerPoint_Click);
             buttonItemMultiGridEmail.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsEmail_Click);
@@ -257,42 +164,6 @@ namespace AdScheduleBuilder
             buttonItemChronoGridHelp.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsHelp_Click);
             buttonItemChronoGridSave.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSave_Click);
             buttonItemChronoGridSaveAs.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSaveAs_Click);
-            buttonItemChronoGridColumnsColor.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsCost.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsDate.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsDeadline.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsDelivery.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsDiscounts.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsTotalCost.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsID.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsIndex.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsMechanicals.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsPageSize.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsPercentOfPage.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsDimensions.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsPCI.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsPublication.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsReadership.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsSection.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsSquare.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_Click);
-            buttonItemChronoGridColumnsColor.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsCost.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsDate.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsDeadline.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsDelivery.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsDiscounts.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsTotalCost.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsID.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsIndex.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsMechanicals.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsPageSize.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsPercentOfPage.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsDimensions.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsPCI.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsPublication.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsReadership.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsSection.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
-            buttonItemChronoGridColumnsSquare.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsColumns_CheckedChanged);
             buttonItemChronoGridDetails.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsDetails_CheckedChanged);
             buttonItemChronoGridPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsPowerPoint_Click);
             buttonItemChronoGridEmail.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsEmail_Click);
@@ -316,7 +187,6 @@ namespace AdScheduleBuilder
             buttonItemCalendarsShowPercentOfPage.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
             buttonItemCalendarsShowLegend.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
             buttonItemCalendarsShowTitle.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowDate.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
             buttonItemCalendarsShowBusinessName.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
             buttonItemCalendarsShowDecisionMaker.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
             buttonItemCalendarsShowLogo.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
@@ -327,7 +197,6 @@ namespace AdScheduleBuilder
             buttonItemCalendarsShowComment.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
             buttonItemCalendarsShowLegend.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
             buttonItemCalendarsShowTitle.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
-            buttonItemCalendarsShowDate.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
             buttonItemCalendarsShowBusinessName.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
             buttonItemCalendarsShowDecisionMaker.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
             buttonItemCalendarsShowLogo.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
@@ -362,6 +231,7 @@ namespace AdScheduleBuilder
             buttonItemSuccessModelsHelp.Click += new EventHandler(CustomControls.ModelsOfSuccessContainerControl.Instance.buttonItemSuccessModelsHelp_Click);
             #endregion
 
+            ribbonTabItemDigitalSchedule.Enabled = false;
             ribbonTabItemSuccessModels.Enabled = false;
 
             if ((base.CreateGraphics()).DpiX > 96)
@@ -396,28 +266,27 @@ namespace AdScheduleBuilder
                 laStandartSquareMetric.Font = new Font(laStandartSquareMetric.Font.FontFamily, laStandartSquareMetric.Font.Size - 2, laStandartSquareMetric.Font.Style);
                 laStandartSquareValue.Font = new Font(laStandartSquareValue.Font.FontFamily, laStandartSquareValue.Font.Size - 2, laStandartSquareValue.Font.Style);
 
-                ribbonBarSchedulesAdPricingStrategy.RecalcLayout();
-                ribbonBarSchedulesAdSize.RecalcLayout();
+                ribbonBarPrintScheduleAdPricingStrategy.RecalcLayout();
+                ribbonBarPrintScheduleAdSize.RecalcLayout();
                 ribbonBarHomeAdvertiser.RecalcLayout();
                 ribbonBarCalendarsExit.RecalcLayout();
                 ribbonBarCalendarsHelp.RecalcLayout();
-                ribbonBarCalendarsPowerPoint.RecalcLayout();
                 ribbonBarCalendarsSave.RecalcLayout();
                 ribbonBarCalendarsDayOptions.RecalcLayout();
                 ribbonBarCalendarsThemeColor.RecalcLayout();
-                ribbonBarSchedulesColorPricing.RecalcLayout();
+                ribbonBarPrintScheduleColorPricing.RecalcLayout();
                 ribbonBarHomeFlightDates.RecalcLayout();
                 ribbonBarHomeExit.RecalcLayout();
-                ribbonBarHomePublications.RecalcLayout();
+                ribbonBarHomeProduct.RecalcLayout();
                 ribbonBarModelsOfSuccess.RecalcLayout();
                 ribbonBarRateCards.RecalcLayout();
                 ribbonBarSalesStrategy.RecalcLayout();
-                ribbonBarSchedulesLines.RecalcLayout();
+                ribbonBarPrintScheduleLines.RecalcLayout();
                 ribbonBarHomeHelp.RecalcLayout();
                 ribbonBarHomeSave.RecalcLayout();
-                ribbonBarSchedulesExit.RecalcLayout();
-                ribbonBarSchedulesHelp.RecalcLayout();
-                ribbonBarSchedulesSave.RecalcLayout();
+                ribbonBarPrintScheduleExit.RecalcLayout();
+                ribbonBarPrintScheduleHelp.RecalcLayout();
+                ribbonBarPrintScheduleSave.RecalcLayout();
                 ribbonBarSuccessModelsExit.RecalcLayout();
                 ribbonBarSuccessModelsHelp.RecalcLayout();
                 ribbonBarSnapshotExit.RecalcLayout();
@@ -425,7 +294,7 @@ namespace AdScheduleBuilder
                 ribbonBarSnapshotPowerPoint.RecalcLayout();
                 ribbonBarSnapshotSave.RecalcLayout();
                 ribbonBarSnapshotOptions.RecalcLayout();
-                ribbonPanelBuildSchedules.PerformLayout();
+                ribbonPanelPrintSchedule.PerformLayout();
                 ribbonPanelScheduleSettings.PerformLayout();
                 ribbonPanelCalendars.PerformLayout();
                 ribbonPanelSuccessModels.PerformLayout();
@@ -479,7 +348,7 @@ namespace AdScheduleBuilder
 
         public void UpdateScheduleTab(bool enable)
         {
-            ribbonTabItemBuildSchedules.Enabled = enable;
+            ribbonTabItemPrintSchedule.Enabled = enable;
         }
 
         public void UpdateOutputTabs(bool enable)
@@ -491,6 +360,11 @@ namespace AdScheduleBuilder
             ribbonTabItemMultiGrid.Enabled = enable;
             ribbonTabItemChronoGrid.Enabled = enable;
             ribbonTabItemCalendars.Enabled = enable;
+        }
+
+        private void FormMain_ClientSizeChanged(object sender, EventArgs e)
+        {
+            ConfigurationClasses.RegistryHelper.MaximizeMainForm = this.IsMaximized;
         }
 
         private void FormMain_Shown(object sender, EventArgs e)
@@ -527,8 +401,8 @@ namespace AdScheduleBuilder
                 form.Close();
             }
 
-            FormMain.Instance.ribbonTabItemRateCard.Visible = BusinessClasses.RateCardManager.Instance.RateCardFolders.Count > 0;
-            ribbonControl.SelectedRibbonTabItem = ribbonTabItemScheduleSettings;
+            FormMain.Instance.ribbonTabItemRateCard.Enabled = BusinessClasses.RateCardManager.Instance.RateCardFolders.Count > 0;
+            ribbonControl.SelectedRibbonTabItem = ribbonTabItemPrintScheduleettings;
             ribbonControl.SelectedRibbonTabChanged -= new EventHandler(ribbonControl_SelectedRibbonTabChanged);
             ribbonControl_SelectedRibbonTabChanged(null, null);
             ribbonControl.SelectedRibbonTabChanged += new EventHandler(ribbonControl_SelectedRibbonTabChanged);
@@ -541,7 +415,7 @@ namespace AdScheduleBuilder
 
         private void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
         {
-            if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemScheduleSettings)
+            if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemPrintScheduleettings)
             {
                 if (AllowToLeaveCurrentControl() || _currentControl == null)
                 {
@@ -561,7 +435,7 @@ namespace AdScheduleBuilder
                 else
                     _currentControl.BringToFront();
             }
-            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemBuildSchedules)
+            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemPrintSchedule)
             {
                 if (AllowToLeaveCurrentControl() || _currentControl == null)
                 {
@@ -827,15 +701,5 @@ namespace AdScheduleBuilder
             enter = false;
         }
         #endregion
-
-        private void buttonItemCalendarsShowTitle_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonItemDetailedGridId_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

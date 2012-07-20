@@ -19,6 +19,7 @@ namespace AdScheduleBuilder
                         if (!string.IsNullOrEmpty(from.ScheduleName))
                         {
                             ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                            ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
                             SetCulture();
                             BusinessClasses.SuccessModelsManager.Instance.Load();
                             BusinessClasses.OutputManager.Instance.LoadCalendarTemplates();
@@ -49,6 +50,7 @@ namespace AdScheduleBuilder
                     if (InteropClasses.PowerPointHelper.Instance.Connect())
                     {
                         ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                        ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
                         SetCulture();
                         ConfigurationClasses.SettingsManager.Instance.SaveFolder = new FileInfo(dialog.FileName).Directory.FullName;
                         BusinessClasses.SuccessModelsManager.Instance.Load();
@@ -68,6 +70,7 @@ namespace AdScheduleBuilder
             if (InteropClasses.PowerPointHelper.Instance.Connect())
             {
                 ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
                 SetCulture();
                 BusinessClasses.SuccessModelsManager.Instance.Load();
                 BusinessClasses.OutputManager.Instance.LoadCalendarTemplates();

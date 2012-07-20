@@ -86,8 +86,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 result = new Calendar.SettingsViewers.TotalDaysViewerControl();
             else if (toggledButton == FormMain.Instance.buttonItemCalendarsShowAvgCost)
                 result = new Calendar.SettingsViewers.AvgCostViewerControl();
-            else if (toggledButton == FormMain.Instance.buttonItemCalendarsShowDate)
-                result = new Calendar.SettingsViewers.DateViewerControl();
             else if (toggledButton == FormMain.Instance.buttonItemCalendarsShowDecisionMaker)
                 result = new Calendar.SettingsViewers.DecisionMakerViewerControl();
             else if (toggledButton == FormMain.Instance.buttonItemCalendarsShowTotalAds)

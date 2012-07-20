@@ -59,23 +59,25 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         private void LoadView()
         {
             _allowToSave = false;
-            FormMain.Instance.buttonItemSnapshotPercentOfPage.Enabled = BusinessClasses.ListManager.Instance.ShareUnits.Count > 0;
+            FormMain.Instance.buttonItemSnapshotOptions.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowOptions;
+            xtraTabControlOptions.SelectedTabPageIndex = this.LocalSchedule.ViewSettings.SnapshotViewSettings.SelectedOptionChapterIndex;
 
-            FormMain.Instance.buttonItemSnapshotAvgAdCost.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgCost;
-            FormMain.Instance.buttonItemSnapshotAvgFinalCost.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgFinalCost;
-            FormMain.Instance.buttonItemSnapshotAvgPCI.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgPCI;
-            FormMain.Instance.buttonItemSnapshotDelivery.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDelivery;
-            FormMain.Instance.buttonItemSnapshotDimensions.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDimensions;
-            FormMain.Instance.buttonItemSnapshotLogo.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowLogo;
-            FormMain.Instance.buttonItemSnapshotPageSize.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPageSize;
-            FormMain.Instance.buttonItemSnapshotPercentOfPage.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPercentOfPage & FormMain.Instance.buttonItemSnapshotPercentOfPage.Enabled;
-            FormMain.Instance.buttonItemSnapshotReadership.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowReadership;
-            FormMain.Instance.buttonItemSnapshotSquare.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowSquare;
-            FormMain.Instance.buttonItemSnapshotTotalColorRate.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalColor;
-            FormMain.Instance.buttonItemSnapshotTotalDiscounts.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalDiscounts;
-            FormMain.Instance.buttonItemSnapshotTotalFinalCost.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalFinalCost;
-            FormMain.Instance.buttonItemSnapshotTotalInserts.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalInserts;
-            FormMain.Instance.buttonItemSnapshotTotalSquare.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalSquare;
+            buttonXPercentOfPage.Enabled = BusinessClasses.ListManager.Instance.ShareUnits.Count > 0;
+            buttonXAvgAdCost.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgCost;
+            buttonXAvgFinalCost.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgFinalCost;
+            buttonXAvgPCI.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgPCI;
+            buttonXDelivery.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDelivery;
+            buttonXDimensions.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDimensions;
+            buttonXLogo.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowLogo;
+            buttonXPageSize.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPageSize;
+            buttonXPercentOfPage.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPercentOfPage & buttonXPercentOfPage.Enabled;
+            buttonXReadership.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowReadership;
+            buttonXSquare.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowSquare;
+            buttonXTotalColorRate.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalColor;
+            buttonXTotalDiscounts.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalDiscounts;
+            buttonXTotalFinalCost.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalFinalCost;
+            buttonXTotalInserts.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalInserts;
+            buttonXTotalSquare.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalSquare;
             _allowToSave = true;
         }
 
@@ -83,21 +85,24 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             if (_allowToSave)
             {
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgCost = FormMain.Instance.buttonItemSnapshotAvgAdCost.Checked;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgFinalCost = FormMain.Instance.buttonItemSnapshotAvgFinalCost.Checked;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgPCI = FormMain.Instance.buttonItemSnapshotAvgPCI.Checked;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDelivery = FormMain.Instance.buttonItemSnapshotDelivery.Checked;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDimensions = FormMain.Instance.buttonItemSnapshotDimensions.Checked;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowLogo = FormMain.Instance.buttonItemSnapshotLogo.Checked;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPageSize = FormMain.Instance.buttonItemSnapshotPageSize.Checked;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPercentOfPage = FormMain.Instance.buttonItemSnapshotPercentOfPage.Checked & FormMain.Instance.buttonItemSnapshotPercentOfPage.Enabled;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowReadership = FormMain.Instance.buttonItemSnapshotReadership.Checked;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowSquare = FormMain.Instance.buttonItemSnapshotSquare.Checked;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalColor = FormMain.Instance.buttonItemSnapshotTotalColorRate.Checked;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalDiscounts = FormMain.Instance.buttonItemSnapshotTotalDiscounts.Checked;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalFinalCost = FormMain.Instance.buttonItemSnapshotTotalFinalCost.Checked;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalInserts = FormMain.Instance.buttonItemSnapshotTotalInserts.Checked;
-                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalSquare = FormMain.Instance.buttonItemSnapshotTotalSquare.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowOptions = FormMain.Instance.buttonItemSnapshotOptions.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.SelectedOptionChapterIndex = xtraTabControlOptions.SelectedTabPageIndex;
+
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgCost = buttonXAvgAdCost.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgFinalCost = buttonXAvgFinalCost.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgPCI = buttonXAvgPCI.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDelivery = buttonXDelivery.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDimensions = buttonXDimensions.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowLogo = buttonXLogo.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPageSize = buttonXPageSize.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPercentOfPage = buttonXPercentOfPage.Checked & buttonXPercentOfPage.Enabled;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowReadership = buttonXReadership.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowSquare = buttonXSquare.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalColor = buttonXTotalColorRate.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalDiscounts = buttonXTotalDiscounts.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalFinalCost = buttonXTotalFinalCost.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalInserts = buttonXTotalInserts.Checked;
+                this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalSquare = buttonXTotalSquare.Checked;
                 this.SettingsNotSaved = true;
             }
         }
@@ -153,33 +158,33 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         private bool AllowShowColumn()
         {
             int count = 0;
-            if (FormMain.Instance.buttonItemSnapshotAvgAdCost.Checked)
+            if (buttonXAvgAdCost.Checked)
                 count++;
-            if (FormMain.Instance.buttonItemSnapshotAvgFinalCost.Checked)
+            if (buttonXAvgFinalCost.Checked)
                 count++;
-            if (FormMain.Instance.buttonItemSnapshotAvgPCI.Checked)
+            if (buttonXAvgPCI.Checked)
                 count++;
-            if (FormMain.Instance.buttonItemSnapshotDelivery.Checked)
+            if (buttonXDelivery.Checked)
                 count++;
-            if (FormMain.Instance.buttonItemSnapshotDimensions.Checked)
+            if (buttonXDimensions.Checked)
                 count++;
-            if (FormMain.Instance.buttonItemSnapshotPageSize.Checked)
+            if (buttonXPageSize.Checked)
                 count++;
-            if (FormMain.Instance.buttonItemSnapshotPercentOfPage.Checked)
+            if (buttonXPercentOfPage.Checked)
                 count++;
-            if (FormMain.Instance.buttonItemSnapshotReadership.Checked)
+            if (buttonXReadership.Checked)
                 count++;
-            if (FormMain.Instance.buttonItemSnapshotSquare.Checked)
+            if (buttonXSquare.Checked)
                 count++;
-            if (FormMain.Instance.buttonItemSnapshotTotalColorRate.Checked)
+            if (buttonXTotalColorRate.Checked)
                 count++;
-            if (FormMain.Instance.buttonItemSnapshotTotalDiscounts.Checked)
+            if (buttonXTotalDiscounts.Checked)
                 count++;
-            if (FormMain.Instance.buttonItemSnapshotTotalFinalCost.Checked)
+            if (buttonXTotalFinalCost.Checked)
                 count++;
-            if (FormMain.Instance.buttonItemSnapshotTotalInserts.Checked)
+            if (buttonXTotalInserts.Checked)
                 count++;
-            if (FormMain.Instance.buttonItemSnapshotTotalSquare.Checked)
+            if (buttonXTotalSquare.Checked)
                 count++;
             return count < 5;
         }
@@ -199,6 +204,13 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             }
         }
 
+        public void buttonItemSnapshotOptions_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_allowToSave)
+                SaveView();
+            splitContainerControl.PanelVisibility = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowOptions ? DevExpress.XtraEditors.SplitPanelVisibility.Both : DevExpress.XtraEditors.SplitPanelVisibility.Panel2;
+        }
+
         private void checkEdit_CheckedChanged(object sender, EventArgs e)
         {
             if (_allowToSave)
@@ -210,25 +222,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowSlideHeader = checkEditSchedule.Checked;
                 this.SettingsNotSaved = true;
             }
-        }
-
-        public void buttonItemSnapshotToggle_CheckedChanged(object sender, EventArgs e)
-        {
-            SaveView();
-            outputSnapshotContainer.UpdateColumns(this.LocalSchedule);
-        }
-
-        public void buttonItemSnapshotButton_Click(object sender, EventArgs e)
-        {
-            if (!(sender as DevComponents.DotNetBar.ButtonItem).Checked)
-            {
-                if (AllowShowColumn())
-                    (sender as DevComponents.DotNetBar.ButtonItem).Checked = true;
-                else
-                    AppManager.ShowWarning("You already have 5 items enabled");
-            }
-            else
-                (sender as DevComponents.DotNetBar.ButtonItem).Checked = false;
         }
 
         private void checkEdit_MouseDown(object sender, MouseEventArgs e)
@@ -246,12 +239,48 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             xtraScrollableControl.Focus();
         }
 
+        #region Options Panel Stuff
+        private void xtraTabControlOptions_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        {
+            if (_allowToSave)
+                SaveView();
+        }
+
+        #region Print
+        public void buttonItemSnapshotToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_allowToSave)
+                SaveView();
+            outputSnapshotContainer.UpdateColumns(this.LocalSchedule);
+        }
+
+        public void buttonItemSnapshotButton_Click(object sender, EventArgs e)
+        {
+            DevComponents.DotNetBar.ButtonX button = sender as DevComponents.DotNetBar.ButtonX;
+            if (button != null && !button.Checked)
+            {
+                if (AllowShowColumn())
+                    button.Checked = true;
+                else
+                    AppManager.ShowWarning("You already have 5 items enabled");
+            }
+            else
+                button.Checked = false;
+        }
+
+        private void pbPrintHelp_Click(object sender, EventArgs e)
+        {
+            BusinessClasses.HelpManager.Instance.OpenHelpLink("snapshotnavbar");
+        }
+        #endregion
+        #endregion
+
         #region Output Staff
         public int OutputFileIndex
         {
             get
             {
-                return FormMain.Instance.buttonItemSnapshotLogo.Checked ? 1 : 2;
+                return buttonXLogo.Checked ? 1 : 2;
             }
         }
 
@@ -391,7 +420,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             using (OutputForms.FormSlideOutput formOutput = new OutputForms.FormSlideOutput())
             {
                 if (formOutput.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-                    AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                    AppManager.ActivateForm(FormMain.Instance.Handle, FormMain.Instance.IsMaximized, false);
             }
         }
 
@@ -437,10 +466,29 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                         ConfigurationClasses.RegistryHelper.MainFormHandle = formPreview.Handle;
                         ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                         formPreview.ShowDialog();
-                        ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                        ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                         ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                     }
             }
+        }
+        #endregion
+
+        #region Picture Box Clicks Habdlers
+        /// <summary>
+        /// Buttonize the PictureBox 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            PictureBox pic = (PictureBox)(sender);
+            pic.Top += 1;
+        }
+
+        private void pictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            PictureBox pic = (PictureBox)(sender);
+            pic.Top -= 1;
         }
         #endregion
     }

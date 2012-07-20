@@ -32,30 +32,26 @@
             this.pnEmpty = new System.Windows.Forms.Panel();
             this.pnMain = new System.Windows.Forms.Panel();
             this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
-            this.xtraTabControlDetails = new DevExpress.XtraTab.XtraTabControl();
+            this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
+            this.xtraTabPagePrint = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPageAdNotes = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPageSlideHeaders = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPageSlideBullets = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.pnHelp = new System.Windows.Forms.Panel();
-            this.pbTotalsHelp = new System.Windows.Forms.PictureBox();
-            this.pbHeadersHelp = new System.Windows.Forms.PictureBox();
-            this.laHelpDescription = new System.Windows.Forms.Label();
-            this.pbAdNotesHelp = new System.Windows.Forms.PictureBox();
-            this.pbOutputLogo = new System.Windows.Forms.PictureBox();
+            this.xtraTabPageSlideInfo = new DevExpress.XtraTab.XtraTabPage();
+            this.pnSlideInfoBody = new System.Windows.Forms.Panel();
+            this.pnSlideInfoHeader = new System.Windows.Forms.Panel();
+            this.pbInfoHelp = new System.Windows.Forms.PictureBox();
+            this.buttonXSlideBullets = new DevComponents.DotNetBar.ButtonX();
+            this.buttonXSlideHeaders = new DevComponents.DotNetBar.ButtonX();
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
             this.splitContainerControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlDetails)).BeginInit();
-            this.xtraTabControlDetails.SuspendLayout();
-            this.xtraTabPage1.SuspendLayout();
-            this.pnHelp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTotalsHelp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbHeadersHelp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbAdNotesHelp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOutputLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).BeginInit();
+            this.xtraTabControlOptions.SuspendLayout();
+            this.xtraTabPageSlideInfo.SuspendLayout();
+            this.pnSlideInfoHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbInfoHelp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +60,7 @@
             this.pnEmpty.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnEmpty.Location = new System.Drawing.Point(0, 0);
             this.pnEmpty.Name = "pnEmpty";
-            this.pnEmpty.Size = new System.Drawing.Size(197, 490);
+            this.pnEmpty.Size = new System.Drawing.Size(177, 490);
             this.pnEmpty.TabIndex = 0;
             // 
             // pnMain
@@ -72,7 +68,7 @@
             this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnMain.Location = new System.Drawing.Point(0, 0);
             this.pnMain.Name = "pnMain";
-            this.pnMain.Size = new System.Drawing.Size(197, 490);
+            this.pnMain.Size = new System.Drawing.Size(177, 490);
             this.pnMain.TabIndex = 1;
             // 
             // splitContainerControl
@@ -80,8 +76,8 @@
             this.splitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl.Name = "splitContainerControl";
-            this.splitContainerControl.Panel1.Controls.Add(this.xtraTabControlDetails);
-            this.splitContainerControl.Panel1.MinSize = 250;
+            this.splitContainerControl.Panel1.Controls.Add(this.xtraTabControlOptions);
+            this.splitContainerControl.Panel1.MinSize = 270;
             this.splitContainerControl.Panel1.Text = "Panel1";
             this.splitContainerControl.Panel2.Controls.Add(this.pnMain);
             this.splitContainerControl.Panel2.Controls.Add(this.pnEmpty);
@@ -93,129 +89,123 @@
             // 
             // xtraTabControlDetails
             // 
-            this.xtraTabControlDetails.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.xtraTabControlDetails.Appearance.Options.UseFont = true;
-            this.xtraTabControlDetails.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.xtraTabControlDetails.AppearancePage.Header.Options.UseFont = true;
-            this.xtraTabControlDetails.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.xtraTabControlDetails.AppearancePage.HeaderActive.Options.UseFont = true;
-            this.xtraTabControlDetails.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.xtraTabControlDetails.AppearancePage.HeaderDisabled.Options.UseFont = true;
-            this.xtraTabControlDetails.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.xtraTabControlDetails.AppearancePage.HeaderHotTracked.Options.UseFont = true;
-            this.xtraTabControlDetails.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.xtraTabControlDetails.AppearancePage.PageClient.Options.UseFont = true;
-            this.xtraTabControlDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControlDetails.Location = new System.Drawing.Point(0, 0);
-            this.xtraTabControlDetails.Name = "xtraTabControlDetails";
-            this.xtraTabControlDetails.SelectedTabPage = this.xtraTabPageAdNotes;
-            this.xtraTabControlDetails.Size = new System.Drawing.Size(250, 490);
-            this.xtraTabControlDetails.TabIndex = 0;
-            this.xtraTabControlDetails.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabControlOptions.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.xtraTabControlOptions.Appearance.Options.UseFont = true;
+            this.xtraTabControlOptions.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.xtraTabControlOptions.AppearancePage.Header.Options.UseFont = true;
+            this.xtraTabControlOptions.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.xtraTabControlOptions.AppearancePage.HeaderActive.Options.UseFont = true;
+            this.xtraTabControlOptions.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.xtraTabControlOptions.AppearancePage.HeaderDisabled.Options.UseFont = true;
+            this.xtraTabControlOptions.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.xtraTabControlOptions.AppearancePage.HeaderHotTracked.Options.UseFont = true;
+            this.xtraTabControlOptions.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.xtraTabControlOptions.AppearancePage.PageClient.Options.UseFont = true;
+            this.xtraTabControlOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControlOptions.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControlOptions.Name = "xtraTabControlDetails";
+            this.xtraTabControlOptions.SelectedTabPage = this.xtraTabPagePrint;
+            this.xtraTabControlOptions.Size = new System.Drawing.Size(270, 490);
+            this.xtraTabControlOptions.TabIndex = 0;
+            this.xtraTabControlOptions.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPagePrint,
+            this.xtraTabPageDigital,
             this.xtraTabPageAdNotes,
-            this.xtraTabPageSlideHeaders,
-            this.xtraTabPageSlideBullets,
-            this.xtraTabPage1});
+            this.xtraTabPageSlideInfo});
+            this.xtraTabControlOptions.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlDetails_SelectedPageChanged);
+            // 
+            // xtraTabPagePrint
+            // 
+            this.xtraTabPagePrint.Name = "xtraTabPagePrint";
+            this.xtraTabPagePrint.Size = new System.Drawing.Size(268, 464);
+            this.xtraTabPagePrint.Text = "Print";
+            // 
+            // xtraTabPageDigital
+            // 
+            this.xtraTabPageDigital.Name = "xtraTabPageDigital";
+            this.xtraTabPageDigital.PageEnabled = false;
+            this.xtraTabPageDigital.Size = new System.Drawing.Size(268, 464);
+            this.xtraTabPageDigital.Text = "Digital";
             // 
             // xtraTabPageAdNotes
             // 
             this.xtraTabPageAdNotes.Name = "xtraTabPageAdNotes";
-            this.xtraTabPageAdNotes.Size = new System.Drawing.Size(248, 464);
-            this.xtraTabPageAdNotes.Text = "AdNotes";
+            this.xtraTabPageAdNotes.Size = new System.Drawing.Size(268, 464);
+            this.xtraTabPageAdNotes.Text = "Notes";
             // 
-            // xtraTabPageSlideHeaders
+            // xtraTabPageSlideInfo
             // 
-            this.xtraTabPageSlideHeaders.Name = "xtraTabPageSlideHeaders";
-            this.xtraTabPageSlideHeaders.Size = new System.Drawing.Size(248, 464);
-            this.xtraTabPageSlideHeaders.Text = "Headers";
+            this.xtraTabPageSlideInfo.Controls.Add(this.pnSlideInfoBody);
+            this.xtraTabPageSlideInfo.Controls.Add(this.pnSlideInfoHeader);
+            this.xtraTabPageSlideInfo.Name = "xtraTabPageSlideInfo";
+            this.xtraTabPageSlideInfo.Size = new System.Drawing.Size(268, 464);
+            this.xtraTabPageSlideInfo.Text = "Info";
             // 
-            // xtraTabPageSlideBullets
+            // pnSlideInfoBody
             // 
-            this.xtraTabPageSlideBullets.Name = "xtraTabPageSlideBullets";
-            this.xtraTabPageSlideBullets.Size = new System.Drawing.Size(248, 464);
-            this.xtraTabPageSlideBullets.Text = "Totals";
+            this.pnSlideInfoBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.pnSlideInfoBody.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnSlideInfoBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnSlideInfoBody.Location = new System.Drawing.Point(0, 56);
+            this.pnSlideInfoBody.Name = "pnSlideInfoBody";
+            this.pnSlideInfoBody.Size = new System.Drawing.Size(268, 408);
+            this.pnSlideInfoBody.TabIndex = 0;
             // 
-            // xtraTabPage1
+            // pnSlideInfoHeader
             // 
-            this.xtraTabPage1.Controls.Add(this.pnHelp);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(248, 464);
-            this.xtraTabPage1.Text = "Help";
+            this.pnSlideInfoHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.pnSlideInfoHeader.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnSlideInfoHeader.Controls.Add(this.pbInfoHelp);
+            this.pnSlideInfoHeader.Controls.Add(this.buttonXSlideBullets);
+            this.pnSlideInfoHeader.Controls.Add(this.buttonXSlideHeaders);
+            this.pnSlideInfoHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnSlideInfoHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnSlideInfoHeader.Name = "pnSlideInfoHeader";
+            this.pnSlideInfoHeader.Size = new System.Drawing.Size(268, 56);
+            this.pnSlideInfoHeader.TabIndex = 1;
             // 
-            // pnHelp
+            // pbInfoHelp
             // 
-            this.pnHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.pnHelp.Controls.Add(this.pbTotalsHelp);
-            this.pnHelp.Controls.Add(this.pbHeadersHelp);
-            this.pnHelp.Controls.Add(this.laHelpDescription);
-            this.pnHelp.Controls.Add(this.pbAdNotesHelp);
-            this.pnHelp.Controls.Add(this.pbOutputLogo);
-            this.pnHelp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnHelp.Location = new System.Drawing.Point(0, 0);
-            this.pnHelp.Name = "pnHelp";
-            this.pnHelp.Size = new System.Drawing.Size(248, 464);
-            this.pnHelp.TabIndex = 0;
+            this.pbInfoHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbInfoHelp.Image = global::AdScheduleBuilder.Properties.Resources.Help;
+            this.pbInfoHelp.Location = new System.Drawing.Point(213, 1);
+            this.pbInfoHelp.Name = "pbInfoHelp";
+            this.pbInfoHelp.Size = new System.Drawing.Size(48, 48);
+            this.pbInfoHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbInfoHelp.TabIndex = 38;
+            this.pbInfoHelp.TabStop = false;
+            this.pbInfoHelp.Click += new System.EventHandler(this.InfoHelp_Click);
+            this.pbInfoHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbInfoHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
-            // pbTotalsHelp
+            // buttonXSlideBullets
             // 
-            this.pbTotalsHelp.Image = global::AdScheduleBuilder.Properties.Resources.HelpSlideBulltes;
-            this.pbTotalsHelp.Location = new System.Drawing.Point(7, 380);
-            this.pbTotalsHelp.Name = "pbTotalsHelp";
-            this.pbTotalsHelp.Size = new System.Drawing.Size(238, 49);
-            this.superTooltip.SetSuperTooltip(this.pbTotalsHelp, new DevComponents.DotNetBar.SuperTooltipInfo("Totals", "", "Learn more about financial totals and other specific data you may want to add to " +
-            "the slide", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.pbTotalsHelp.TabIndex = 4;
-            this.pbTotalsHelp.TabStop = false;
-            this.pbTotalsHelp.Click += new System.EventHandler(this.buttonXTotalsHelp_Click);
-            this.pbTotalsHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pbTotalsHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            this.buttonXSlideBullets.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXSlideBullets.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXSlideBullets.Location = new System.Drawing.Point(110, 6);
+            this.buttonXSlideBullets.Name = "buttonXSlideBullets";
+            this.buttonXSlideBullets.Size = new System.Drawing.Size(91, 40);
+            this.buttonXSlideBullets.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonXSlideBullets.TabIndex = 1;
+            this.buttonXSlideBullets.Text = "Totals";
+            this.buttonXSlideBullets.TextColor = System.Drawing.Color.Black;
+            this.buttonXSlideBullets.CheckedChanged += new System.EventHandler(this.buttonXSlideHeaders_CheckedChanged);
+            this.buttonXSlideBullets.Click += new System.EventHandler(this.buttonXSlideInfoSelector_Click);
             // 
-            // pbHeadersHelp
+            // buttonXSlideHeaders
             // 
-            this.pbHeadersHelp.Image = global::AdScheduleBuilder.Properties.Resources.HelpSlideHeaders;
-            this.pbHeadersHelp.Location = new System.Drawing.Point(7, 277);
-            this.pbHeadersHelp.Name = "pbHeadersHelp";
-            this.pbHeadersHelp.Size = new System.Drawing.Size(238, 49);
-            this.superTooltip.SetSuperTooltip(this.pbHeadersHelp, new DevComponents.DotNetBar.SuperTooltipInfo("Headers", "", "Learn more about Slide Header Data for your schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.pbHeadersHelp.TabIndex = 3;
-            this.pbHeadersHelp.TabStop = false;
-            this.pbHeadersHelp.Click += new System.EventHandler(this.buttonXHeadersHelp_Click);
-            this.pbHeadersHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pbHeadersHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // laHelpDescription
-            // 
-            this.laHelpDescription.AutoSize = true;
-            this.laHelpDescription.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laHelpDescription.ForeColor = System.Drawing.Color.White;
-            this.laHelpDescription.Location = new System.Drawing.Point(3, 122);
-            this.laHelpDescription.Name = "laHelpDescription";
-            this.laHelpDescription.Size = new System.Drawing.Size(167, 35);
-            this.laHelpDescription.TabIndex = 2;
-            this.laHelpDescription.Text = "Learn More:";
-            // 
-            // pbAdNotesHelp
-            // 
-            this.pbAdNotesHelp.Image = global::AdScheduleBuilder.Properties.Resources.HelpAdNotes;
-            this.pbAdNotesHelp.Location = new System.Drawing.Point(7, 179);
-            this.pbAdNotesHelp.Name = "pbAdNotesHelp";
-            this.pbAdNotesHelp.Size = new System.Drawing.Size(238, 49);
-            this.superTooltip.SetSuperTooltip(this.pbAdNotesHelp, new DevComponents.DotNetBar.SuperTooltipInfo("AdNotes", "", "Learn about adding AdNotes to this schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-            this.pbAdNotesHelp.TabIndex = 1;
-            this.pbAdNotesHelp.TabStop = false;
-            this.pbAdNotesHelp.Click += new System.EventHandler(this.buttonXAdNotesHelp_Click);
-            this.pbAdNotesHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pbAdNotesHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pbOutputLogo
-            // 
-            this.pbOutputLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pbOutputLogo.Image = global::AdScheduleBuilder.Properties.Resources.OutputLogo;
-            this.pbOutputLogo.Location = new System.Drawing.Point(0, 0);
-            this.pbOutputLogo.Name = "pbOutputLogo";
-            this.pbOutputLogo.Size = new System.Drawing.Size(248, 86);
-            this.pbOutputLogo.TabIndex = 0;
-            this.pbOutputLogo.TabStop = false;
+            this.buttonXSlideHeaders.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXSlideHeaders.Checked = true;
+            this.buttonXSlideHeaders.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXSlideHeaders.Location = new System.Drawing.Point(3, 6);
+            this.buttonXSlideHeaders.Name = "buttonXSlideHeaders";
+            this.buttonXSlideHeaders.Size = new System.Drawing.Size(91, 40);
+            this.buttonXSlideHeaders.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonXSlideHeaders.TabIndex = 0;
+            this.buttonXSlideHeaders.Text = "Headers";
+            this.buttonXSlideHeaders.TextColor = System.Drawing.Color.Black;
+            this.buttonXSlideHeaders.CheckedChanged += new System.EventHandler(this.buttonXSlideHeaders_CheckedChanged);
+            this.buttonXSlideHeaders.Click += new System.EventHandler(this.buttonXSlideInfoSelector_Click);
             // 
             // defaultLookAndFeel
             // 
@@ -251,15 +241,11 @@
             this.Size = new System.Drawing.Size(453, 490);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
             this.splitContainerControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlDetails)).EndInit();
-            this.xtraTabControlDetails.ResumeLayout(false);
-            this.xtraTabPage1.ResumeLayout(false);
-            this.pnHelp.ResumeLayout(false);
-            this.pnHelp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTotalsHelp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbHeadersHelp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbAdNotesHelp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOutputLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).EndInit();
+            this.xtraTabControlOptions.ResumeLayout(false);
+            this.xtraTabPageSlideInfo.ResumeLayout(false);
+            this.pnSlideInfoHeader.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbInfoHelp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
             this.ResumeLayout(false);
 
@@ -272,17 +258,16 @@
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         private DevExpress.XtraEditors.StyleController styleController;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControlDetails;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControlOptions;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageAdNotes;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPageSlideHeaders;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPageSlideBullets;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private System.Windows.Forms.Panel pnHelp;
-        private System.Windows.Forms.PictureBox pbAdNotesHelp;
-        private System.Windows.Forms.PictureBox pbOutputLogo;
-        private System.Windows.Forms.PictureBox pbHeadersHelp;
-        private System.Windows.Forms.Label laHelpDescription;
-        private System.Windows.Forms.PictureBox pbTotalsHelp;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageSlideInfo;
         private DevComponents.DotNetBar.SuperTooltip superTooltip;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPagePrint;
+        private System.Windows.Forms.Panel pnSlideInfoBody;
+        private System.Windows.Forms.Panel pnSlideInfoHeader;
+        private DevComponents.DotNetBar.ButtonX buttonXSlideBullets;
+        private DevComponents.DotNetBar.ButtonX buttonXSlideHeaders;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageDigital;
+        private System.Windows.Forms.PictureBox pbInfoHelp;
     }
 }

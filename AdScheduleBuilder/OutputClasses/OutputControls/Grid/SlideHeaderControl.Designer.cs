@@ -67,7 +67,7 @@
             this.checkEditAdvertiser.AutoSizeInLayoutControl = true;
             this.checkEditAdvertiser.Dock = System.Windows.Forms.DockStyle.Top;
             this.checkEditAdvertiser.EditValue = true;
-            this.checkEditAdvertiser.Location = new System.Drawing.Point(0, 46);
+            this.checkEditAdvertiser.Location = new System.Drawing.Point(0, 43);
             this.checkEditAdvertiser.Name = "checkEditAdvertiser";
             this.checkEditAdvertiser.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkEditAdvertiser.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -75,7 +75,7 @@
             this.checkEditAdvertiser.Properties.Appearance.Options.UseForeColor = true;
             this.checkEditAdvertiser.Properties.AutoHeight = false;
             this.checkEditAdvertiser.Properties.Caption = "Advertiser";
-            this.checkEditAdvertiser.Size = new System.Drawing.Size(261, 46);
+            this.checkEditAdvertiser.Size = new System.Drawing.Size(261, 43);
             this.checkEditAdvertiser.StyleController = this.styleController;
             this.checkEditAdvertiser.TabIndex = 23;
             this.checkEditAdvertiser.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -119,74 +119,74 @@
             this.pnMain.Size = new System.Drawing.Size(261, 516);
             this.pnMain.TabIndex = 24;
             // 
-            // checkEditPublicationLogo4
+            // checkEditLogo4
             // 
             this.checkEditLogo4.AutoSizeInLayoutControl = true;
             this.checkEditLogo4.Dock = System.Windows.Forms.DockStyle.Top;
             this.checkEditLogo4.EditValue = true;
-            this.checkEditLogo4.Location = new System.Drawing.Point(0, 414);
-            this.checkEditLogo4.Name = "checkEditPublicationLogo4";
+            this.checkEditLogo4.Location = new System.Drawing.Point(0, 387);
+            this.checkEditLogo4.Name = "checkEditLogo4";
             this.checkEditLogo4.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkEditLogo4.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ControlText;
             this.checkEditLogo4.Properties.Appearance.Options.UseFont = true;
             this.checkEditLogo4.Properties.Appearance.Options.UseForeColor = true;
             this.checkEditLogo4.Properties.AutoHeight = false;
             this.checkEditLogo4.Properties.Caption = "Logo 4";
-            this.checkEditLogo4.Size = new System.Drawing.Size(261, 46);
+            this.checkEditLogo4.Size = new System.Drawing.Size(261, 43);
             this.checkEditLogo4.StyleController = this.styleController;
             this.checkEditLogo4.TabIndex = 32;
             this.checkEditLogo4.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
             // 
-            // checkEditPublicationLogo3
+            // checkEditLogo3
             // 
             this.checkEditLogo3.AutoSizeInLayoutControl = true;
             this.checkEditLogo3.Dock = System.Windows.Forms.DockStyle.Top;
             this.checkEditLogo3.EditValue = true;
-            this.checkEditLogo3.Location = new System.Drawing.Point(0, 368);
-            this.checkEditLogo3.Name = "checkEditPublicationLogo3";
+            this.checkEditLogo3.Location = new System.Drawing.Point(0, 344);
+            this.checkEditLogo3.Name = "checkEditLogo3";
             this.checkEditLogo3.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkEditLogo3.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ControlText;
             this.checkEditLogo3.Properties.Appearance.Options.UseFont = true;
             this.checkEditLogo3.Properties.Appearance.Options.UseForeColor = true;
             this.checkEditLogo3.Properties.AutoHeight = false;
             this.checkEditLogo3.Properties.Caption = "Logo 3";
-            this.checkEditLogo3.Size = new System.Drawing.Size(261, 46);
+            this.checkEditLogo3.Size = new System.Drawing.Size(261, 43);
             this.checkEditLogo3.StyleController = this.styleController;
             this.checkEditLogo3.TabIndex = 31;
             this.checkEditLogo3.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
             // 
-            // checkEditPublicationLogo2
+            // checkEditLogo2
             // 
             this.checkEditLogo2.AutoSizeInLayoutControl = true;
             this.checkEditLogo2.Dock = System.Windows.Forms.DockStyle.Top;
             this.checkEditLogo2.EditValue = true;
-            this.checkEditLogo2.Location = new System.Drawing.Point(0, 322);
-            this.checkEditLogo2.Name = "checkEditPublicationLogo2";
+            this.checkEditLogo2.Location = new System.Drawing.Point(0, 301);
+            this.checkEditLogo2.Name = "checkEditLogo2";
             this.checkEditLogo2.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkEditLogo2.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ControlText;
             this.checkEditLogo2.Properties.Appearance.Options.UseFont = true;
             this.checkEditLogo2.Properties.Appearance.Options.UseForeColor = true;
             this.checkEditLogo2.Properties.AutoHeight = false;
             this.checkEditLogo2.Properties.Caption = "Logo 2";
-            this.checkEditLogo2.Size = new System.Drawing.Size(261, 46);
+            this.checkEditLogo2.Size = new System.Drawing.Size(261, 43);
             this.checkEditLogo2.StyleController = this.styleController;
             this.checkEditLogo2.TabIndex = 30;
             this.checkEditLogo2.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
             // 
-            // checkEditPublicationLogo1
+            // checkEditLogo1
             // 
             this.checkEditLogo1.AutoSizeInLayoutControl = true;
             this.checkEditLogo1.Dock = System.Windows.Forms.DockStyle.Top;
             this.checkEditLogo1.EditValue = true;
-            this.checkEditLogo1.Location = new System.Drawing.Point(0, 276);
-            this.checkEditLogo1.Name = "checkEditPublicationLogo1";
+            this.checkEditLogo1.Location = new System.Drawing.Point(0, 258);
+            this.checkEditLogo1.Name = "checkEditLogo1";
             this.checkEditLogo1.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkEditLogo1.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ControlText;
             this.checkEditLogo1.Properties.Appearance.Options.UseFont = true;
             this.checkEditLogo1.Properties.Appearance.Options.UseForeColor = true;
             this.checkEditLogo1.Properties.AutoHeight = false;
             this.checkEditLogo1.Properties.Caption = "Logo 1";
-            this.checkEditLogo1.Size = new System.Drawing.Size(261, 46);
+            this.checkEditLogo1.Size = new System.Drawing.Size(261, 43);
             this.checkEditLogo1.StyleController = this.styleController;
             this.checkEditLogo1.TabIndex = 29;
             this.checkEditLogo1.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -196,7 +196,7 @@
             this.checkEditPublicationName.AutoSizeInLayoutControl = true;
             this.checkEditPublicationName.Dock = System.Windows.Forms.DockStyle.Top;
             this.checkEditPublicationName.EditValue = true;
-            this.checkEditPublicationName.Location = new System.Drawing.Point(0, 230);
+            this.checkEditPublicationName.Location = new System.Drawing.Point(0, 215);
             this.checkEditPublicationName.Name = "checkEditPublicationName";
             this.checkEditPublicationName.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkEditPublicationName.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -204,7 +204,7 @@
             this.checkEditPublicationName.Properties.Appearance.Options.UseForeColor = true;
             this.checkEditPublicationName.Properties.AutoHeight = false;
             this.checkEditPublicationName.Properties.Caption = "Publication Name";
-            this.checkEditPublicationName.Size = new System.Drawing.Size(261, 46);
+            this.checkEditPublicationName.Size = new System.Drawing.Size(261, 43);
             this.checkEditPublicationName.StyleController = this.styleController;
             this.checkEditPublicationName.TabIndex = 28;
             this.checkEditPublicationName.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -214,7 +214,7 @@
             this.checkEditFlightDates.AutoSizeInLayoutControl = true;
             this.checkEditFlightDates.Dock = System.Windows.Forms.DockStyle.Top;
             this.checkEditFlightDates.EditValue = true;
-            this.checkEditFlightDates.Location = new System.Drawing.Point(0, 184);
+            this.checkEditFlightDates.Location = new System.Drawing.Point(0, 172);
             this.checkEditFlightDates.Name = "checkEditFlightDates";
             this.checkEditFlightDates.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkEditFlightDates.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -222,7 +222,7 @@
             this.checkEditFlightDates.Properties.Appearance.Options.UseForeColor = true;
             this.checkEditFlightDates.Properties.AutoHeight = false;
             this.checkEditFlightDates.Properties.Caption = "Schedule Window";
-            this.checkEditFlightDates.Size = new System.Drawing.Size(261, 46);
+            this.checkEditFlightDates.Size = new System.Drawing.Size(261, 43);
             this.checkEditFlightDates.StyleController = this.styleController;
             this.checkEditFlightDates.TabIndex = 27;
             this.checkEditFlightDates.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -232,7 +232,7 @@
             this.checkEditPresentationDate.AutoSizeInLayoutControl = true;
             this.checkEditPresentationDate.Dock = System.Windows.Forms.DockStyle.Top;
             this.checkEditPresentationDate.EditValue = true;
-            this.checkEditPresentationDate.Location = new System.Drawing.Point(0, 138);
+            this.checkEditPresentationDate.Location = new System.Drawing.Point(0, 129);
             this.checkEditPresentationDate.Name = "checkEditPresentationDate";
             this.checkEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkEditPresentationDate.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -240,7 +240,7 @@
             this.checkEditPresentationDate.Properties.Appearance.Options.UseForeColor = true;
             this.checkEditPresentationDate.Properties.AutoHeight = false;
             this.checkEditPresentationDate.Properties.Caption = "Presentation Date";
-            this.checkEditPresentationDate.Size = new System.Drawing.Size(261, 46);
+            this.checkEditPresentationDate.Size = new System.Drawing.Size(261, 43);
             this.checkEditPresentationDate.StyleController = this.styleController;
             this.checkEditPresentationDate.TabIndex = 25;
             this.checkEditPresentationDate.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -250,7 +250,7 @@
             this.checkEditDecisionMaker.AutoSizeInLayoutControl = true;
             this.checkEditDecisionMaker.Dock = System.Windows.Forms.DockStyle.Top;
             this.checkEditDecisionMaker.EditValue = true;
-            this.checkEditDecisionMaker.Location = new System.Drawing.Point(0, 92);
+            this.checkEditDecisionMaker.Location = new System.Drawing.Point(0, 86);
             this.checkEditDecisionMaker.Name = "checkEditDecisionMaker";
             this.checkEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkEditDecisionMaker.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -258,7 +258,7 @@
             this.checkEditDecisionMaker.Properties.Appearance.Options.UseForeColor = true;
             this.checkEditDecisionMaker.Properties.AutoHeight = false;
             this.checkEditDecisionMaker.Properties.Caption = "Decision Maker";
-            this.checkEditDecisionMaker.Size = new System.Drawing.Size(261, 46);
+            this.checkEditDecisionMaker.Size = new System.Drawing.Size(261, 43);
             this.checkEditDecisionMaker.StyleController = this.styleController;
             this.checkEditDecisionMaker.TabIndex = 24;
             this.checkEditDecisionMaker.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -276,7 +276,7 @@
             this.checkEditSlideTitle.Properties.Appearance.Options.UseForeColor = true;
             this.checkEditSlideTitle.Properties.AutoHeight = false;
             this.checkEditSlideTitle.Properties.Caption = "Slide Title";
-            this.checkEditSlideTitle.Size = new System.Drawing.Size(261, 46);
+            this.checkEditSlideTitle.Size = new System.Drawing.Size(261, 43);
             this.checkEditSlideTitle.StyleController = this.styleController;
             this.checkEditSlideTitle.TabIndex = 26;
             this.checkEditSlideTitle.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);

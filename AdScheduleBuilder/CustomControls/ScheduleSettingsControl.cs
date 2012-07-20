@@ -376,13 +376,13 @@ namespace AdScheduleBuilder.CustomControls
             }
         }
 
-        public void buttonItemScheduleSettingsSave_Click(object sender, EventArgs e)
+        public void buttonItemPrintScheduleettingsSave_Click(object sender, EventArgs e)
         {
             if (SaveSchedule())
                 AppManager.ShowInformation("Schedule Saved");
         }
 
-        public void buttonItemScheduleSettingsSaveAs_Click(object sender, EventArgs e)
+        public void buttonItemPrintScheduleettingsSaveAs_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog dialog = new SaveFileDialog())
             {
@@ -479,7 +479,7 @@ namespace AdScheduleBuilder.CustomControls
             }
         }
 
-        public void buttonItemScheduleSettingsHelp_Click(object sender, EventArgs e)
+        public void buttonItemPrintScheduleettingsHelp_Click(object sender, EventArgs e)
         {
             BusinessClasses.HelpManager.Instance.OpenHelpLink("home");
         }

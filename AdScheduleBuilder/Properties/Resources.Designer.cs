@@ -291,6 +291,13 @@ namespace AdScheduleBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap EmailMidle {
+            get {
+                object obj = ResourceManager.GetObject("EmailMidle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Excel {
             get {
                 object obj = ResourceManager.GetObject("Excel", resourceCulture);
@@ -308,6 +315,13 @@ namespace AdScheduleBuilder.Properties {
         internal static System.Drawing.Bitmap Exit {
             get {
                 object obj = ResourceManager.GetObject("Exit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ExportCalendar {
+            get {
+                object obj = ResourceManager.GetObject("ExportCalendar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -522,6 +536,13 @@ namespace AdScheduleBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap PowerPointSmall {
+            get {
+                object obj = ResourceManager.GetObject("PowerPointSmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Preview {
             get {
                 object obj = ResourceManager.GetObject("Preview", resourceCulture);
@@ -532,6 +553,13 @@ namespace AdScheduleBuilder.Properties {
         internal static System.Drawing.Bitmap PreviewCalendar {
             get {
                 object obj = ResourceManager.GetObject("PreviewCalendar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PreviewCalendarSmall {
+            get {
+                object obj = ResourceManager.GetObject("PreviewCalendarSmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

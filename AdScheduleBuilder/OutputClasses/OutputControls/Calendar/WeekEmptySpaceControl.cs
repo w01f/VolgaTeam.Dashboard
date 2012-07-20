@@ -9,6 +9,13 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         public WeekEmptySpaceControl()
         {
             InitializeComponent();
+
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.ResizeRedraw, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
+            UpdateStyles();
         }
 
         private void WeekEmptySpaceControl_Paint(object sender, PaintEventArgs e)

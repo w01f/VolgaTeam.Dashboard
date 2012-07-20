@@ -157,7 +157,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowBigDate = FormMain.Instance.buttonItemCalendarsShowBigDates.Checked;
                 this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowLegend = FormMain.Instance.buttonItemCalendarsShowLegend.Checked;
                 this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowTitle = FormMain.Instance.buttonItemCalendarsShowTitle.Checked;
-                this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowDate = FormMain.Instance.buttonItemCalendarsShowDate.Checked;
                 this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowBusinessName = FormMain.Instance.buttonItemCalendarsShowBusinessName.Checked;
                 this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowDecisionMaker = FormMain.Instance.buttonItemCalendarsShowDecisionMaker.Checked;
                 this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowLogo = FormMain.Instance.buttonItemCalendarsShowLogo.Checked;
@@ -239,7 +238,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             FormMain.Instance.buttonItemCalendarsShowBigDates.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowBigDate;
             FormMain.Instance.buttonItemCalendarsShowLegend.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowLegend;
             FormMain.Instance.buttonItemCalendarsShowTitle.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowTitle;
-            FormMain.Instance.buttonItemCalendarsShowDate.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowDate;
             FormMain.Instance.buttonItemCalendarsShowBusinessName.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowBusinessName;
             FormMain.Instance.buttonItemCalendarsShowDecisionMaker.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowDecisionMaker;
             FormMain.Instance.buttonItemCalendarsShowLogo.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowLogo;
@@ -339,7 +337,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                     ConfigurationClasses.RegistryHelper.MainFormHandle = form.Handle;
                     ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                     DialogResult result = form.ShowDialog();
-                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                     ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                     if (result != DialogResult.Cancel)
                     {
@@ -377,7 +375,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                         using (OutputForms.FormSlideOutput formOutput = new OutputForms.FormSlideOutput())
                         {
                             if (formOutput.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-                                AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                                AppManager.ActivateForm(FormMain.Instance.Handle, FormMain.Instance.IsMaximized, false);
                         }
                     }
                 }
@@ -443,7 +441,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                                 ConfigurationClasses.RegistryHelper.MainFormHandle = formEmail.Handle;
                                 ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                                 formEmail.ShowDialog();
-                                ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                                ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                                 ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                             }
                     }
@@ -456,7 +454,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             using (OutputForms.FormSelectPublication form = new OutputForms.FormSelectPublication())
             {
                 form.Text = "Ad Calendar Preview";
-                form.pbLogo.Image = Properties.Resources.Preview;
+                form.pbLogo.Image = Properties.Resources.PreviewCalendar;
                 form.laTitle.Text = "You have several Advertising Calendars that can be ATTACHED to an email…";
                 form.buttonXCurrentPublication.Text = string.Format("Preview just the {0} Calendar Slide", _selectedMonth.Settings.Month.ToString("MMMM, yyyy"));
                 form.buttonXSelectedPublications.Text = "Preview ALL Selected Ad Calendars";
@@ -510,7 +508,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                                 ConfigurationClasses.RegistryHelper.MainFormHandle = formPreview.Handle;
                                 ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                                 formPreview.ShowDialog();
-                                ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                                ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                                 ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                             }
                     }

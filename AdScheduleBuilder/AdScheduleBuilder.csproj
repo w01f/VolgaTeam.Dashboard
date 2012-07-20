@@ -231,6 +231,12 @@
     <Compile Include="OutputClasses\OutputControls\Grid\AdNotesControl.Designer.cs">
       <DependentUpon>AdNotesControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="OutputClasses\OutputControls\Grid\PrintControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OutputClasses\OutputControls\Grid\PrintControl.Designer.cs">
+      <DependentUpon>PrintControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="OutputClasses\OutputControls\Grid\SlideHeaderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -549,6 +555,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OutputClasses\OutputControls\Grid\AdNotesControl.resx">
       <DependentUpon>AdNotesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutputClasses\OutputControls\Grid\PrintControl.resx">
+      <DependentUpon>PrintControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OutputClasses\OutputControls\Grid\SlideHeaderControl.resx">
       <DependentUpon>SlideHeaderControl.cs</DependentUpon>
@@ -1079,6 +1088,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HelpSlideBulltes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExportCalendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PreviewCalendarSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EmailMidle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PowerPointSmall.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

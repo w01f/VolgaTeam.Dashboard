@@ -40,13 +40,13 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         private void FitHeader()
         {
             double width = this.Width / 7;
-            laSunday.Width = (int)width;
-            laMonday.Width = (int)width;
-            laTuesday.Width = (int)width;
-            laWednesday.Width = (int)width;
-            laThursday.Width = (int)width;
-            laFriday.Width = (int)width;
-            laSaturday.Width = this.Width - ((int)width * 6);
+            pnSunday.Width = (int)width;
+            pnMonday.Width = (int)width;
+            pnTuesday.Width = (int)width;
+            pnWednesday.Width = (int)width;
+            pnThursday.Width = (int)width;
+            pnFriday.Width = (int)width;
+            pnSaturday.Width = this.Width - ((int)width * 6);
         }
 
         private void FitWeekControls()

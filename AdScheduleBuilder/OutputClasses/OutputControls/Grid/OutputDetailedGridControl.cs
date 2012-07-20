@@ -12,6 +12,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         private static OutputDetailedGridControl _instance;
         private List<PublicationDetailedGridControl> _tabPages = new List<PublicationDetailedGridControl>();
         public BusinessClasses.Schedule LocalSchedule { get; set; }
+        public PrintControl PrintColumns { get; private set; }
         public AdNotesControl AdNotes { get; private set; }
         public SlideBulletsControl SlideBullets { get; private set; }
         public SlideHeaderControl SlideHeader { get; private set; }
@@ -36,6 +37,9 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 return this.LocalSchedule.ViewSettings.DetailedGridViewSettings.SlideHeaderState;
             }
         }
+
+        public bool ShowOptions { get; set; }
+        public int SelectedOptionChapterIndex { get; set; }
 
         #region Column Positions
         public int PositionID { get; set; }
@@ -426,6 +430,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             InitializeComponent();
             this.Dock = DockStyle.Fill;
 
+            this.PrintColumns = new PrintControl(this);
             this.AdNotes = new AdNotesControl(this);
             this.SlideBullets = new SlideBulletsControl(this);
             this.SlideHeader = new SlideHeaderControl(this);
@@ -489,6 +494,9 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         private void LoadView()
         {
+            this.ShowOptions = this.LocalSchedule.ViewSettings.DetailedGridViewSettings.ShowOptions;
+            this.SelectedOptionChapterIndex = this.LocalSchedule.ViewSettings.DetailedGridViewSettings.SelectedOptionChapterIndex;
+
             this.PositionID = this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.IDPosition;
             this.PositionIndex = this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.IndexPosition;
             this.PositionDate = this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.DatePosition;
@@ -590,6 +598,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             this.CaptionReadership = this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.ReadershipCaption;
             this.CaptionDeadline = this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.DeadlineCaption;
 
+            this.PrintColumns.LoadColumnsState();
             this.AdNotes.LoadAdNotes();
             this.SlideBullets.LoadSlideBullets();
             this.SlideHeader.LoadSlideHeader();
@@ -602,6 +611,9 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             if (this.AllowToSave)
             {
+                this.LocalSchedule.ViewSettings.DetailedGridViewSettings.ShowOptions = this.ShowOptions;
+                this.LocalSchedule.ViewSettings.DetailedGridViewSettings.SelectedOptionChapterIndex = this.SelectedOptionChapterIndex;
+
                 this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.IDPosition = this.PositionID;
                 this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.IndexPosition = this.PositionIndex;
                 this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.DatePosition = this.PositionDate;
@@ -707,29 +719,10 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             }
         }
 
-        public void SetToggleState()
+        public void UpdateColumnsAccordingToggles()
         {
             if (this.AllowToSave)
             {
-                this.ShowIDHeader = GridsControl.Instance.ColumnIDButtonItem.Checked;
-                this.ShowDateHeader = GridsControl.Instance.ColumnDateButtonItem.Checked;
-                this.ShowPCIHeader = GridsControl.Instance.ColumnPCIButtonItem.Checked;
-                this.ShowCostHeader = GridsControl.Instance.ColumnCostButtonItem.Checked;
-                this.ShowDiscountHeader = GridsControl.Instance.ColumnDiscountsButtonItem.Checked;
-                this.ShowColorHeader = GridsControl.Instance.ColumnColorButtonItem.Checked;
-                this.ShowFinalCostHeader = GridsControl.Instance.ColumnTotalCostButtonItem.Checked;
-                this.ShowIndexHeader = GridsControl.Instance.ColumnIndexButtonItem.Checked;
-                this.ShowSquareHeader = GridsControl.Instance.ColumnSquareButtonItem.Checked;
-                this.ShowPageSizeHeader = GridsControl.Instance.ColumnPageSizeButtonItem.Checked;
-                this.ShowPercentOfPageHeader = GridsControl.Instance.ColumnPercentOfPageButtonItem.Checked;
-                this.ShowDimensionsHeader = GridsControl.Instance.ColumnDimensionsButtonItem.Checked;
-                this.ShowMechanicalsHeader = GridsControl.Instance.ColumnMechanicalsButtonItem.Checked;
-                this.ShowPublicationHeader = GridsControl.Instance.ColumnPublicationButtonItem.Checked;
-                this.ShowReadershipHeader = GridsControl.Instance.ColumnReadershipButtonItem.Checked;
-                this.ShowSectionHeader = GridsControl.Instance.ColumnSectionButtonItem.Checked;
-                this.ShowDeliveryHeader = GridsControl.Instance.ColumnDeliveryButtonItem.Checked;
-                this.ShowDeadlineHeader = GridsControl.Instance.ColumnDeadlineButtonItem.Checked;
-
                 this.AdNotes.LoadAdNotes();
                 SetColumnsState();
             }
@@ -749,7 +742,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             this.ShowReadershipHeader &= !this.ShowReadershipInPreview;
 
             SetColumnsState();
-            GridsControl.Instance.UpdateButtonsStateAccordingSelectedOutput();
+            this.PrintColumns.LoadColumnsState();
         }
 
         private void SetColumnsState()
@@ -969,7 +962,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                     ConfigurationClasses.RegistryHelper.MainFormHandle = form.Handle;
                     ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                     result = form.ShowDialog();
-                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                     ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                     if (result == DialogResult.Cancel)
                         return;
@@ -981,7 +974,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                     if (gridTypeResult != DialogResult.Cancel)
                     {
                         bool pasteAsImage = gridTypeResult == DialogResult.Ignore;
-                        bool excelOutput = gridTypeResult == DialogResult.No;
+                        bool excelOutput = gridTypeResult == DialogResult.No || gridTypeResult == DialogResult.Ignore;
                         using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
                         {
                             formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -1031,7 +1024,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                     ConfigurationClasses.RegistryHelper.MainFormHandle = form.Handle;
                     ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                     result = form.ShowDialog();
-                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                     ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                     if (result == DialogResult.Cancel)
                         return;
@@ -1043,7 +1036,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                     if (gridTypeResult != DialogResult.Cancel)
                     {
                         bool pasteAsImage = gridTypeResult == DialogResult.Ignore;
-                        bool excelOutput = gridTypeResult == DialogResult.No;
+                        bool excelOutput = gridTypeResult == DialogResult.No || gridTypeResult == DialogResult.Ignore;
                         using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
                         {
                             formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
@@ -1091,7 +1084,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                                     ConfigurationClasses.RegistryHelper.MainFormHandle = formEmail.Handle;
                                     ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                                     formEmail.ShowDialog();
-                                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                                     ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                                 }
                         }
@@ -1130,7 +1123,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                     if (gridTypeResult != DialogResult.Cancel)
                     {
                         bool pasteAsImage = gridTypeResult == DialogResult.Ignore;
-                        bool excelOutput = gridTypeResult == DialogResult.No;
+                        bool excelOutput = gridTypeResult == DialogResult.No || gridTypeResult == DialogResult.Ignore;
                         using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
                         {
                             formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
@@ -1178,7 +1171,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                                     ConfigurationClasses.RegistryHelper.MainFormHandle = formPreview.Handle;
                                     ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                                     formPreview.ShowDialog();
-                                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                                    ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                                     ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                                 }
                         }

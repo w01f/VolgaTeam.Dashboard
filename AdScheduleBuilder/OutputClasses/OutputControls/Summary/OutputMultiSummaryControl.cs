@@ -379,7 +379,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             using (OutputForms.FormSlideOutput formOutput = new OutputForms.FormSlideOutput())
             {
                 if (formOutput.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-                    AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                    AppManager.ActivateForm(FormMain.Instance.Handle, FormMain.Instance.IsMaximized, false);
             }
         }
 
@@ -401,7 +401,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                         ConfigurationClasses.RegistryHelper.MainFormHandle = formEmail.Handle;
                         ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                         formEmail.ShowDialog();
-                        ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                        ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                         ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                     }
             }
@@ -425,7 +425,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                         ConfigurationClasses.RegistryHelper.MainFormHandle = formPreview.Handle;
                         ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
                         formPreview.ShowDialog();
-                        ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                        ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                         ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                     }
             }

@@ -19,7 +19,6 @@ namespace AdScheduleBuilder.ConfigurationClasses
         public DetailedGridViewSettings DetailedGridViewSettings { get; set; }
         public MultiGridViewSettings MultiGridViewSettings { get; set; }
         public ChronoGridViewSettings ChronoGridViewSettings { get; set; }
-        public bool ShowGridDetails { get; set; }
 
         public CalendarViewSettings CalendarViewSettings { get; set; }
 
@@ -35,8 +34,6 @@ namespace AdScheduleBuilder.ConfigurationClasses
             this.ChronoGridViewSettings = new ChronoGridViewSettings();
 
             this.CalendarViewSettings = new CalendarViewSettings();
-
-            LoadDefaultSettings();
         }
 
         public string Serialize()
@@ -51,7 +48,6 @@ namespace AdScheduleBuilder.ConfigurationClasses
             result.AppendLine(@"<DetailedGridViewSettings>" + this.DetailedGridViewSettings.Serialize() + @"</DetailedGridViewSettings>");
             result.AppendLine(@"<MultiGridViewSettings>" + this.MultiGridViewSettings.Serialize() + @"</MultiGridViewSettings>");
             result.AppendLine(@"<ChronoGridViewSettings>" + this.ChronoGridViewSettings.Serialize() + @"</ChronoGridViewSettings>");
-            result.AppendLine(@"<ShowGridDetails>" + this.ShowGridDetails.ToString() + @"</ShowGridDetails>");
 
             result.AppendLine(@"<CalendarViewSettings>" + this.CalendarViewSettings.Serialize() + @"</CalendarViewSettings>");
             return result.ToString();
@@ -59,7 +55,6 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
         public void Deserialize(XmlNode node)
         {
-            bool tempBool;
             foreach (XmlNode childNode in node.ChildNodes)
             {
                 switch (childNode.Name)
@@ -82,30 +77,10 @@ namespace AdScheduleBuilder.ConfigurationClasses
                     case "ChronoGridViewSettings":
                         this.ChronoGridViewSettings.Deserialize(childNode);
                         break;
-                    case "ShowGridDetails":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowGridDetails = tempBool;
-                        break;
                     case "CalendarViewSettings":
                         this.CalendarViewSettings.Deserialize(childNode);
                         break;
                 }
-            }
-        }
-
-        private void LoadDefaultSettings()
-        {
-            XmlNode node;
-            bool tempBool;
-            if (File.Exists(ConfigurationClasses.SettingsManager.Instance.LocalSettingsPath))
-            {
-                XmlDocument document = new XmlDocument();
-                document.Load(ConfigurationClasses.SettingsManager.Instance.LocalSettingsPath);
-
-                node = document.SelectSingleNode(@"/AdScheduleSettings/ShowGridDetails");
-                if (node != null)
-                    if (bool.TryParse(node.InnerText, out tempBool))
-                        this.ShowGridDetails = tempBool;
             }
         }
 
@@ -780,6 +755,8 @@ namespace AdScheduleBuilder.ConfigurationClasses
         public bool ShowAdvertiser { get; set; }
         public bool ShowDecisionMaker { get; set; }
         public bool ShowFlightDates { get; set; }
+        public bool ShowOptions { get; set; }
+        public int SelectedOptionChapterIndex { get; set; }
 
         public bool ShowLogo { get; set; }
         public bool ShowTotalInserts { get; set; }
@@ -806,6 +783,8 @@ namespace AdScheduleBuilder.ConfigurationClasses
             this.ShowAdvertiser = true;
             this.ShowDecisionMaker = true;
             this.ShowFlightDates = true;
+            this.ShowOptions = true;
+            this.SelectedOptionChapterIndex = 0;
 
             this.ShowLogo = true;
             this.ShowTotalInserts = true;
@@ -851,6 +830,8 @@ namespace AdScheduleBuilder.ConfigurationClasses
             result.AppendLine(@"<ShowFlightDates>" + this.ShowFlightDates + @"</ShowFlightDates>");
             result.AppendLine(@"<ShowPresentationDate>" + this.ShowPresentationDate + @"</ShowPresentationDate>");
             result.AppendLine(@"<ShowSlideHeader>" + this.ShowSlideHeader + @"</ShowSlideHeader>");
+            result.AppendLine(@"<ShowOptions>" + this.ShowOptions + @"</ShowOptions>");
+            result.AppendLine(@"<SelectedOptionChapterIndex>" + this.SelectedOptionChapterIndex + @"</SelectedOptionChapterIndex>");
             result.AppendLine(@"<ShowAvgCost>" + this.ShowAvgCost + @"</ShowAvgCost>");
             result.AppendLine(@"<ShowAvgFinalCost>" + this.ShowAvgFinalCost + @"</ShowAvgFinalCost>");
             result.AppendLine(@"<ShowAvgPCI>" + this.ShowAvgPCI + @"</ShowAvgPCI>");
@@ -875,6 +856,7 @@ namespace AdScheduleBuilder.ConfigurationClasses
         public void Deserialize(XmlNode node)
         {
             bool tempBool = false;
+            int tempInt;
 
             foreach (XmlNode childNode in node.ChildNodes)
             {
@@ -904,6 +886,16 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         tempBool = false;
                         bool.TryParse(childNode.InnerText, out tempBool);
                         this.ShowSlideHeader = tempBool;
+                        break;
+                    case "ShowOptions":
+                        tempBool = false;
+                        bool.TryParse(childNode.InnerText, out tempBool);
+                        this.ShowOptions = tempBool;
+                        break;
+                    case "SelectedOptionChapterIndex":
+                        tempInt = 0;
+                        int.TryParse(childNode.InnerText, out tempInt);
+                        this.SelectedOptionChapterIndex = tempInt;
                         break;
                     case "ShowAvgCost":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -980,6 +972,9 @@ namespace AdScheduleBuilder.ConfigurationClasses
         public SlideBulletsState SlideBulletsState { get; set; }
         public SlideHeaderState SlideHeaderState { get; set; }
 
+        public bool ShowOptions { get; set; }
+        public int SelectedOptionChapterIndex { get; set; }
+
         public DetailedGridViewSettings()
         {
             this.GridColumnsState = new GridColumnsState();
@@ -987,6 +982,10 @@ namespace AdScheduleBuilder.ConfigurationClasses
             this.SlideBulletsState = new SlideBulletsState();
             this.SlideHeaderState = new SlideHeaderState();
             this.GridColumnsState.ShowID = true;
+
+            this.ShowOptions = true;
+            this.SelectedOptionChapterIndex = 0;
+
             LoadDefaultSettings();
         }
 
@@ -1012,12 +1011,17 @@ namespace AdScheduleBuilder.ConfigurationClasses
             result.AppendLine(@"<AdNotesState>" + this.AdNotesState.Serialize() + @"</AdNotesState>");
             result.AppendLine(@"<SlideBulletsState>" + this.SlideBulletsState.Serialize() + @"</SlideBulletsState>");
             result.AppendLine(@"<SlideHeaderState>" + this.SlideHeaderState.Serialize() + @"</SlideHeaderState>");
+            result.AppendLine(@"<ShowOptions>" + this.ShowOptions.ToString() + @"</ShowOptions>");
+            result.AppendLine(@"<SelectedOptionChapterIndex>" + this.SelectedOptionChapterIndex.ToString() + @"</SelectedOptionChapterIndex>");
 
             return result.ToString();
         }
 
         public void Deserialize(XmlNode node)
         {
+            bool tempBool;
+            int tempInt;
+
             foreach (XmlNode childNode in node.ChildNodes)
             {
                 switch (childNode.Name)
@@ -1034,6 +1038,14 @@ namespace AdScheduleBuilder.ConfigurationClasses
                     case "SlideHeaderState":
                         this.SlideHeaderState.Deserialize(childNode);
                         break;
+                    case "ShowOptions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowOptions = tempBool;
+                        break;
+                    case "SelectedOptionChapterIndex":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.SelectedOptionChapterIndex = tempInt;
+                        break;
                 }
             }
         }
@@ -1046,7 +1058,9 @@ namespace AdScheduleBuilder.ConfigurationClasses
         public SlideBulletsState SlideBulletsState { get; set; }
         public SlideHeaderState SlideHeaderState { get; set; }
 
-
+        public bool ShowOptions { get; set; }
+        public int SelectedOptionChapterIndex { get; set; }
+        
         public string SlideHeader { get; set; }
 
         public MultiGridViewSettings()
@@ -1058,6 +1072,8 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
             this.GridColumnsState.ShowID = true;
             this.SlideHeader = string.Empty;
+            this.ShowOptions = true;
+            this.SelectedOptionChapterIndex = 0;
 
             LoadDefaultSettings();
         }
@@ -1084,6 +1100,8 @@ namespace AdScheduleBuilder.ConfigurationClasses
             result.AppendLine(@"<AdNotesState>" + this.AdNotesState.Serialize() + @"</AdNotesState>");
             result.AppendLine(@"<SlideBulletsState>" + this.SlideBulletsState.Serialize() + @"</SlideBulletsState>");
             result.AppendLine(@"<SlideHeaderState>" + this.SlideHeaderState.Serialize() + @"</SlideHeaderState>");
+            result.AppendLine(@"<ShowOptions>" + this.ShowOptions.ToString() + @"</ShowOptions>");
+            result.AppendLine(@"<SelectedOptionChapterIndex>" + this.SelectedOptionChapterIndex.ToString() + @"</SelectedOptionChapterIndex>");
             result.AppendLine(@"<SlideHeader>" + this.SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
 
             return result.ToString();
@@ -1091,6 +1109,9 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
         public void Deserialize(XmlNode node)
         {
+            bool tempBool;
+            int tempInt;
+
             foreach (XmlNode childNode in node.ChildNodes)
             {
                 switch (childNode.Name)
@@ -1107,6 +1128,14 @@ namespace AdScheduleBuilder.ConfigurationClasses
                     case "SlideHeaderState":
                         this.SlideHeaderState.Deserialize(childNode);
                         break;
+                    case "ShowOptions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowOptions = tempBool;
+                        break;
+                    case "SelectedOptionChapterIndex":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.SelectedOptionChapterIndex = tempInt;
+                        break;
                     case "SlideHeader":
                         this.SlideHeader = childNode.InnerText;
                         break;
@@ -1121,6 +1150,9 @@ namespace AdScheduleBuilder.ConfigurationClasses
         public AdNotesState AdNotesState { get; set; }
         public SlideBulletsState SlideBulletsState { get; set; }
         public SlideHeaderState SlideHeaderState { get; set; }
+
+        public bool ShowOptions { get; set; }
+        public int SelectedOptionChapterIndex { get; set; }
 
         public string SlideHeader { get; set; }
         public Image Logo1 { get; set; }
@@ -1140,6 +1172,8 @@ namespace AdScheduleBuilder.ConfigurationClasses
             this.GridColumnsState.PublicationPosition = 1;
 
             this.SlideHeader = string.Empty;
+            this.ShowOptions = true;
+            this.SelectedOptionChapterIndex = 0;
 
             LoadDefaultSettings();
         }
@@ -1167,6 +1201,8 @@ namespace AdScheduleBuilder.ConfigurationClasses
             result.AppendLine(@"<AdNotesState>" + this.AdNotesState.Serialize() + @"</AdNotesState>");
             result.AppendLine(@"<SlideBulletsState>" + this.SlideBulletsState.Serialize() + @"</SlideBulletsState>");
             result.AppendLine(@"<SlideHeaderState>" + this.SlideHeaderState.Serialize() + @"</SlideHeaderState>");
+            result.AppendLine(@"<ShowOptions>" + this.ShowOptions.ToString() + @"</ShowOptions>");
+            result.AppendLine(@"<SelectedOptionChapterIndex>" + this.SelectedOptionChapterIndex.ToString() + @"</SelectedOptionChapterIndex>");
             result.AppendLine(@"<SlideHeader>" + this.SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
             result.AppendLine(@"<Logo1>" + Convert.ToBase64String((byte[])converter.ConvertTo(this.Logo1, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo1>");
             result.AppendLine(@"<Logo2>" + Convert.ToBase64String((byte[])converter.ConvertTo(this.Logo2, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo2>");
@@ -1178,6 +1214,9 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
         public void Deserialize(XmlNode node)
         {
+            bool tempBool;
+            int tempInt;
+
             foreach (XmlNode childNode in node.ChildNodes)
             {
                 switch (childNode.Name)
@@ -1196,6 +1235,14 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         break;
                     case "SlideHeader":
                         this.SlideHeader = childNode.InnerText;
+                        break;
+                    case "ShowOptions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowOptions = tempBool;
+                        break;
+                    case "SelectedOptionChapterIndex":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.SelectedOptionChapterIndex = tempInt;
                         break;
                     case "Logo1":
                         if (string.IsNullOrEmpty(childNode.InnerText))

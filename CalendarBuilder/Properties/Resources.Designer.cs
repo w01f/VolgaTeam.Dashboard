@@ -200,6 +200,13 @@ namespace CalendarBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap EmailMidle {
+            get {
+                object obj = ResourceManager.GetObject("EmailMidle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Exit {
             get {
                 object obj = ResourceManager.GetObject("Exit", resourceCulture);
@@ -217,6 +224,13 @@ namespace CalendarBuilder.Properties {
         internal static System.Drawing.Bitmap Fax {
             get {
                 object obj = ResourceManager.GetObject("Fax", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Floater {
+            get {
+                object obj = ResourceManager.GetObject("Floater", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -252,6 +266,13 @@ namespace CalendarBuilder.Properties {
         internal static System.Drawing.Bitmap Help {
             get {
                 object obj = ResourceManager.GetObject("Help", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap HelpSmall {
+            get {
+                object obj = ResourceManager.GetObject("HelpSmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -343,6 +364,27 @@ namespace CalendarBuilder.Properties {
         internal static System.Drawing.Bitmap PowerPoint {
             get {
                 object obj = ResourceManager.GetObject("PowerPoint", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PowerPointSmall {
+            get {
+                object obj = ResourceManager.GetObject("PowerPointSmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Preview {
+            get {
+                object obj = ResourceManager.GetObject("Preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PreviewSmall {
+            get {
+                object obj = ResourceManager.GetObject("PreviewSmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

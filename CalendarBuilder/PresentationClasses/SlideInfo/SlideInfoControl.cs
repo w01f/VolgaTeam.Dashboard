@@ -9,6 +9,7 @@ namespace CalendarBuilder.PresentationClasses.SlideInfo
     {
         private BusinessClasses.CalendarMonth _month = null;
         private bool _allowToSave = false;
+        private string _helpKey = string.Empty;
         public string MonthTitle { get; set; }
         public bool SettingsNotSaved { get; set; }
 
@@ -457,6 +458,11 @@ namespace CalendarBuilder.PresentationClasses.SlideInfo
                 this.PropertiesSaved(sender, e);
         }
 
+        private void barLargeButtonItemHelp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            BusinessClasses.HelpManager.Instance.OpenHelpLink(_helpKey);
+        }
+
         private void barLargeButtonItemClose_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (this.Closed != null)
@@ -466,6 +472,22 @@ namespace CalendarBuilder.PresentationClasses.SlideInfo
         private void propertiesControl_PropertiesChanged(object sender, EventArgs e)
         {
             this.SettingsNotSaved = true;
+        }
+
+        private void xtraTabControl_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        {
+            if (xtraTabControl.SelectedTabPage == xtraTabPageBasic)
+                _helpKey = "leftbarinfo";
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageCost)
+                _helpKey = "leftbarcost";
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageLegend)
+                _helpKey = "leftbarlegend";
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageNotes)
+                _helpKey = "leftbarnotes";
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageStyle)
+                _helpKey = "leftbarstyle";
+            else
+                _helpKey = string.Empty;
         }
 
         #region Basic Event Handlers

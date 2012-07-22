@@ -44,12 +44,15 @@ namespace CalendarBuilder.BusinessClasses
     public class ScheduleManager
     {
         private static ScheduleManager _instance = new ScheduleManager();
-        private Schedule _currentCalendar;
+        private Schedule _currentSchedule;
+
+        public List<AdScheduleBuilder.BusinessClasses.ShortSchedule> AdSchedules { get; private set; }
 
         public event EventHandler<SavingingEventArgs> SettingsSaved;
 
         private ScheduleManager()
         {
+            this.AdSchedules = new List<AdScheduleBuilder.BusinessClasses.ShortSchedule>();
         }
 
         public static ScheduleManager Instance
@@ -60,34 +63,46 @@ namespace CalendarBuilder.BusinessClasses
             }
         }
 
-        public void OpenCalendar(string scheduleName, bool create)
+        public void CreateSchedule(string scheduleName)
         {
-            string calendarFilePath = GetCalendarFileName(scheduleName);
-            if (create && File.Exists(calendarFilePath))
+            string calendarFilePath = GetScheduleFileName(scheduleName);
+            if (File.Exists(calendarFilePath))
                 if (AppManager.ShowWarningQuestion(string.Format("An older Calendar is already saved with this same file name.\nDo you want to replace this file with a newer calendar?", scheduleName)) == DialogResult.Yes)
                     File.Delete(calendarFilePath);
-            _currentCalendar = new Schedule(calendarFilePath);
+            OpenSchedule(calendarFilePath);
         }
 
-        public void OpenCalendar(string scheduleFilePath)
+        public void ImportSchedule(AdScheduleBuilder.BusinessClasses.Schedule sourceSchedule, bool buildAdvanced, bool buildGraphic, bool buildSimple)
         {
-            _currentCalendar = new Schedule(scheduleFilePath);
+            string scheduleName = Path.GetFileNameWithoutExtension(sourceSchedule.ScheduleFile.FullName);
+            string calendarFilePath = GetScheduleFileName(scheduleName);
+            if (File.Exists(calendarFilePath))
+                if (AppManager.ShowWarningQuestion(string.Format("An older Calendar is already saved with this same file name.\nDo you want to replace this file with a newer calendar?", scheduleName)) == DialogResult.Yes)
+                    File.Delete(calendarFilePath);
+            OpenSchedule(calendarFilePath);
+            _currentSchedule.ImportCalendars(sourceSchedule, buildAdvanced, buildGraphic, buildSimple);
+            _currentSchedule.Save();
         }
 
-        public string GetCalendarFileName(string calendarName)
+        public void OpenSchedule(string scheduleFilePath)
+        {
+            _currentSchedule = new Schedule(scheduleFilePath);
+        }
+
+        public string GetScheduleFileName(string calendarName)
         {
             return Path.Combine(ConfigurationClasses.SettingsManager.Instance.SaveFolder, calendarName + ".xml");
         }
 
-        public Schedule GetLocalCalendar()
+        public Schedule GetLocalSchedule()
         {
-            return new Schedule(_currentCalendar.CalendarFile.FullName);
+            return new Schedule(_currentSchedule.CalendarFile.FullName);
         }
 
-        public void SaveCalendar(Schedule localCalendar, bool quickSave, Control sender)
+        public void SaveSchedule(Schedule localCalendar, bool quickSave, Control sender)
         {
             localCalendar.Save();
-            _currentCalendar = localCalendar;
+            _currentSchedule = localCalendar;
             using (ToolForms.FormProgress form = new ToolForms.FormProgress())
             {
                 form.laProgress.Text = "Chill-Out for a few seconds...\nSaving settings...";
@@ -122,6 +137,12 @@ namespace CalendarBuilder.BusinessClasses
                     calendarList.Add(schedule);
             }
             return calendarList.ToArray();
+        }
+
+        public void LoadAdSchedules()
+        {
+            this.AdSchedules.Clear();
+            this.AdSchedules.AddRange(AdScheduleBuilder.AppManager.GetShortScheduleList());
         }
 
         public void RemoveInstance()
@@ -489,7 +510,53 @@ namespace CalendarBuilder.BusinessClasses
             }
         }
 
+        public void ImportCalendars(AdScheduleBuilder.BusinessClasses.Schedule sourceSchedule, bool buildAdvanced, bool buildGraphic, bool buildSimple)
+        {
+            this.BusinessName = sourceSchedule.BusinessName;
+            this.DecisionMaker = sourceSchedule.DecisionMaker;
+            this.ClientType = sourceSchedule.ClientType;
+            this.SalesStrategy = (SalesStrategy)((int)sourceSchedule.SalesStrategy);
+            this.PresentationDate = sourceSchedule.PresentationDate;
+            this.FlightDateStart = sourceSchedule.FlightDateStart;
+            this.FlightDateEnd = sourceSchedule.FlightDateEnd;
+            this.Status = ListManager.Instance.Statuses.FirstOrDefault();
+            this.SundayBased = true;
+            this.ShowNewspaper = true;
+            this.ShowDigital = true;
+            this.ShowTV = false;
+            this.ShowRadio = false;
 
+            if (this.SundayBased)
+            {
+                this.AdvancedCalendar = new CalendarSundayBased(this);
+                this.GraphicCalendar = new CalendarSundayBased(this);
+                this.SimpleCalendar = new CalendarSundayBased(this);
+            }
+            else
+            {
+                this.AdvancedCalendar = new CalendarMondayBased(this);
+                this.GraphicCalendar = new CalendarMondayBased(this);
+                this.SimpleCalendar = new CalendarMondayBased(this);
+            }
+
+            this.AdvancedCalendar.UpdateDaysCollection();
+            this.AdvancedCalendar.UpdateMonthCollection();
+            this.AdvancedCalendar.UpdateNotesCollection();
+            if (buildAdvanced)
+                this.AdvancedCalendar.ImportDays(sourceSchedule, true);
+
+            this.GraphicCalendar.UpdateDaysCollection();
+            this.GraphicCalendar.UpdateMonthCollection();
+            this.GraphicCalendar.UpdateNotesCollection();
+            if (buildGraphic)
+                this.GraphicCalendar.ImportDays(sourceSchedule, false);
+
+            this.SimpleCalendar.UpdateDaysCollection();
+            this.SimpleCalendar.UpdateMonthCollection();
+            this.SimpleCalendar.UpdateNotesCollection();
+            if (buildSimple)
+                this.SimpleCalendar.ImportDays(sourceSchedule, false);
+        }
     }
 
     public abstract class Calendar
@@ -595,6 +662,37 @@ namespace CalendarBuilder.BusinessClasses
         {
             this.Notes.Remove(note);
             UpdateDayAndNoteLinks();
+        }
+
+        public void ImportDays(AdScheduleBuilder.BusinessClasses.Schedule sourceSchedule, bool useAdvancedStyle)
+        {
+            foreach (CalendarDay day in this.Days)
+            {
+                StringBuilder customNoteConstructor = new StringBuilder();
+                foreach (AdScheduleBuilder.BusinessClasses.Publication publication in sourceSchedule.Publications)
+                    foreach (AdScheduleBuilder.BusinessClasses.Insert insert in publication.Inserts.Where(x => x.Date.Year == day.Date.Year && x.Date.Month == day.Date.Month && x.Date.Day == day.Date.Day))
+                    {
+                        List<string> properties = new List<string>();
+                        if (!string.IsNullOrEmpty(insert.Publication))
+                            properties.Add(insert.Publication);
+                        if (!string.IsNullOrEmpty(insert.Section))
+                            properties.Add(insert.Section);
+                        if (!string.IsNullOrEmpty(insert.DimensionsShort))
+                            properties.Add(insert.DimensionsShort);
+                        if (!string.IsNullOrEmpty(insert.PageSize))
+                            properties.Add(insert.PageSize);
+                        if (!string.IsNullOrEmpty(insert.PercentOfPage))
+                            properties.Add(insert.PercentOfPage);
+                        if (!string.IsNullOrEmpty(insert.PublicationColor))
+                            properties.Add(insert.PublicationColor);
+                        properties.Add(insert.FinalRate.ToString("$#,##0"));
+                        customNoteConstructor.AppendLine(string.Join(", ", properties.ToArray()));
+                    }
+                if (useAdvancedStyle)
+                    day.Newspaper.CustomNote = customNoteConstructor.ToString();
+                else
+                    day.Comment1 = customNoteConstructor.ToString();
+            }
         }
     }
 
@@ -725,7 +823,6 @@ namespace CalendarBuilder.BusinessClasses
                 weeks.Add(week.ToArray());
             return weeks.ToArray();
         }
-
 
         public override DateRange[] CalculateDateRange(DateTime[] dates)
         {

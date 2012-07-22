@@ -268,7 +268,7 @@
             // DayControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.Controls.Add(this.pnData);
             this.Controls.Add(this.laSmallDayCaption);
             this.Cursor = System.Windows.Forms.Cursors.Default;

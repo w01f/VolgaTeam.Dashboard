@@ -7,12 +7,12 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
 {
     public partial class TVPropertiesControl : UserControl
     {
-        private bool _alowToSave = false;
+        //private bool _alowToSave = false;
         private BusinessClasses.CalendarDay _day = null;
 
-        [Browsable(true)]
-        [Category("Action")]
-        public event EventHandler PropertiesChanged;
+        //[Browsable(true)]
+        //[Category("Action")]
+        //public event EventHandler PropertiesChanged;
 
         public TVPropertiesControl()
         {
@@ -22,9 +22,9 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
         public void LoadData(BusinessClasses.CalendarDay day)
         {
             _day = day;
-            _alowToSave = false;
+            //_alowToSave = false;
 
-            _alowToSave = true;
+            //_alowToSave = true;
         }
 
         public void SaveData()

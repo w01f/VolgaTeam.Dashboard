@@ -10,6 +10,16 @@ namespace CalendarBuilder
         private static FormMain _instance = null;
         private Control _currentControl = null;
 
+        public event EventHandler<EventArgs> FloaterRequested;
+
+        public bool IsMaximized
+        {
+            get
+            {
+                return this.WindowState == FormWindowState.Normal ? false : true;
+            }
+        }
+
         private FormMain()
         {
             InitializeComponent();
@@ -39,10 +49,10 @@ namespace CalendarBuilder
                 ribbonBarSuccessModels.RecalcLayout();
                 ribbonBarSuccessModelsExit.RecalcLayout();
                 ribbonBarSuccessModelsHelp.RecalcLayout();
-                ribbonBarAdvancedCalendarEmail.RecalcLayout();
+                ribbonBarAdvancedCalendarFloater.RecalcLayout();
                 ribbonBarAdvancedCalendarExit.RecalcLayout();
                 ribbonBarAdvancedCalendarHelp.RecalcLayout();
-                ribbonBarAdvancedCalendarPowerPoint.RecalcLayout();
+                ribbonBarAdvancedCalendarOutput.RecalcLayout();
                 ribbonBarAdvancedCalendarSave.RecalcLayout();
                 ribbonPanelHome.PerformLayout();
                 ribbonPanelSuccessModels.PerformLayout();
@@ -98,6 +108,45 @@ namespace CalendarBuilder
             ribbonTabItemSimpleCalendar.Enabled = enable;
         }
 
+        public void LoadData()
+        {
+            ribbonControl.Enabled = false;
+            using (ToolForms.FormProgress form = new ToolForms.FormProgress())
+            {
+                form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Ninja Calendar...";
+                form.TopMost = true;
+                System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        PresentationClasses.HomeControl.Instance.LoadCalendar(false);
+                        System.Windows.Forms.Application.DoEvents();
+                        PresentationClasses.CalendarVisualizer.Instance.LoadData();
+                        System.Windows.Forms.Application.DoEvents();
+                    });
+                }));
+
+                form.Show();
+                System.Windows.Forms.Application.DoEvents();
+
+                thread.Start();
+
+                while (thread.IsAlive)
+                    System.Windows.Forms.Application.DoEvents();
+                form.Close();
+            }
+
+            ribbonControl.SelectedRibbonTabItem = ribbonTabItemHome;
+            ribbonControl_SelectedRibbonTabChanged(null, null);
+            ribbonControl.SelectedRibbonTabChanged += new EventHandler(ribbonControl_SelectedRibbonTabChanged);
+            ribbonControl.Enabled = true;
+        }
+
+        private void FormMain_ClientSizeChanged(object sender, EventArgs e)
+        {
+            ConfigurationClasses.RegistryHelper.MaximizeMainForm = this.IsMaximized;
+        }
+
         private void FormMain_Shown(object sender, EventArgs e)
         {
             #region Home Events
@@ -149,11 +198,12 @@ namespace CalendarBuilder
             buttonItemAdvancedCalendarCopy.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarCopy_Click);
             buttonItemAdvancedCalendarPaste.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarPaste_Click);
             buttonItemAdvancedCalendarClone.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarClone_Click);
-            buttonItemAdvancedCalendarSave.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSave_Click);
-            buttonItemAdvancedCalendarSaveAs.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSaveAs_Click);
-            buttonItemAdvancedCalendarPowerPoint.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklySchedulePowerPoint_Click);
-            buttonItemAdvancedCalendarEmail.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklyScheduleEmail_Click);
-            buttonItemAdvancedCalendarHelp.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleHelp_Click);
+            buttonItemAdvancedCalendarSave.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarSave_Click);
+            buttonItemAdvancedCalendarSaveAs.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarSaveAs_Click);
+            buttonItemAdvancedCalendarPreview.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarPreview_Click);
+            buttonItemAdvancedCalendarPowerPoint.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarPowerPoint_Click);
+            buttonItemAdvancedCalendarEmail.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarEmail_Click);
+            buttonItemAdvancedCalendarHelp.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarHelp_Click);
             #endregion
 
             #region Graphic Calendar Events
@@ -166,11 +216,12 @@ namespace CalendarBuilder
             buttonItemGraphicCalendarCopy.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarCopy_Click);
             buttonItemGraphicCalendarPaste.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarPaste_Click);
             buttonItemGraphicCalendarClone.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarClone_Click);
-            buttonItemGraphicCalendarSave.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSave_Click);
-            buttonItemGraphicCalendarSaveAs.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSaveAs_Click);
-            buttonItemGraphicCalendarPowerPoint.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklySchedulePowerPoint_Click);
-            buttonItemGraphicCalendarEmail.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklyScheduleEmail_Click);
-            buttonItemGraphicCalendarHelp.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleHelp_Click);
+            buttonItemGraphicCalendarSave.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarSave_Click);
+            buttonItemGraphicCalendarSaveAs.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarSaveAs_Click);
+            buttonItemGraphicCalendarPreview.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarPreview_Click);
+            buttonItemGraphicCalendarPowerPoint.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarPowerPoint_Click);
+            buttonItemGraphicCalendarEmail.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarEmail_Click);
+            buttonItemGraphicCalendarHelp.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarHelp_Click);
             #endregion
 
             #region Simple Calendar Events
@@ -183,11 +234,12 @@ namespace CalendarBuilder
             buttonItemSimpleCalendarCopy.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarCopy_Click);
             buttonItemSimpleCalendarPaste.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarPaste_Click);
             buttonItemSimpleCalendarClone.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarClone_Click);
-            buttonItemSimpleCalendarSave.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSave_Click);
-            buttonItemSimpleCalendarSaveAs.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleSaveAs_Click);
-            buttonItemSimpleCalendarPowerPoint.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklySchedulePowerPoint_Click);
-            buttonItemSimpleCalendarEmail.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemWeeklyScheduleEmail_Click);
-            buttonItemSimpleCalendarHelp.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemScheduleHelp_Click);
+            buttonItemSimpleCalendarSave.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarSave_Click);
+            buttonItemSimpleCalendarSaveAs.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarSaveAs_Click);
+            buttonItemSimpleCalendarPreview.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarPreview_Click);
+            buttonItemSimpleCalendarPowerPoint.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarPowerPoint_Click);
+            buttonItemSimpleCalendarEmail.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarEmail_Click);
+            buttonItemSimpleCalendarHelp.Click += new EventHandler(PresentationClasses.CalendarVisualizer.Instance.buttonItemCalendarHelp_Click);
             #endregion
 
             #region Success Models Events
@@ -196,36 +248,8 @@ namespace CalendarBuilder
 
             if (!string.IsNullOrEmpty(ConfigurationClasses.SettingsManager.Instance.SelectedWizard))
                 FormMain.Instance.Text = "Ninja Calendar BETA - " + ConfigurationClasses.SettingsManager.Instance.SelectedWizard + " - " + ConfigurationClasses.SettingsManager.Instance.Size;
-            ribbonControl.Enabled = false;
-            using (ToolForms.FormProgress form = new ToolForms.FormProgress())
-            {
-                form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Ninja Calendar...";
-                form.TopMost = true;
-                System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
-                {
-                    this.Invoke((MethodInvoker)delegate
-                    {
-                        PresentationClasses.HomeControl.Instance.LoadCalendar(false);
-                        System.Windows.Forms.Application.DoEvents();
-                        PresentationClasses.CalendarVisualizer.Instance.LoadData();
-                        System.Windows.Forms.Application.DoEvents();
-                    });
-                }));
 
-                form.Show();
-                System.Windows.Forms.Application.DoEvents();
-
-                thread.Start();
-
-                while (thread.IsAlive)
-                    System.Windows.Forms.Application.DoEvents();
-                form.Close();
-            }
-
-            ribbonControl.SelectedRibbonTabItem = ribbonTabItemHome;
-            ribbonControl_SelectedRibbonTabChanged(null, null);
-            ribbonControl.SelectedRibbonTabChanged += new EventHandler(ribbonControl_SelectedRibbonTabChanged);
-            ribbonControl.Enabled = true;
+            LoadData();
         }
 
         public void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
@@ -281,7 +305,13 @@ namespace CalendarBuilder
                 PresentationClasses.CalendarVisualizer.Instance.SelectedCalendarControl.LeaveCalendar();
         }
 
-        private void buttonItemHomeExit_Click(object sender, EventArgs e)
+        private void buttonItemFloater_Click(object sender, EventArgs e)
+        {
+            if (FloaterRequested != null)
+                this.FloaterRequested(this, e);
+        }
+
+        private void buttonItemExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }

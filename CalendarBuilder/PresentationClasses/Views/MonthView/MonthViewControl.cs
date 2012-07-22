@@ -12,7 +12,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         private BusinessClasses.CalendarStyle _style;
         private List<DayControl> _days = new List<DayControl>();
 
-        public ICalendarControl Calendar { get; private set; }
+        public Calendars.ICalendarControl Calendar { get; private set; }
         public Dictionary<DateTime, MonthControl> Months { get; private set; }
         public SelectionManager SelectionManager { get; private set; }
         public CopyPasteManager CopyPasteManager { get; private set; }
@@ -20,7 +20,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         public bool SettingsNotSaved { get; set; }
         public event EventHandler<EventArgs> DataSaved;
 
-        public MonthViewControl(ICalendarControl calendar)
+        public MonthViewControl(Calendars.ICalendarControl calendar)
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;

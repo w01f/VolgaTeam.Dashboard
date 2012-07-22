@@ -101,6 +101,7 @@
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.barToolbar = new DevExpress.XtraBars.Bar();
             this.barLargeButtonItemApply = new DevExpress.XtraBars.BarLargeButtonItem();
+            this.barLargeButtonItemHelp = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barLargeButtonItemClose = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -177,6 +178,7 @@
             this.xtraTabPageStyle,
             this.xtraTabPageNotes,
             this.xtraTabPageLegend});
+            this.xtraTabControl.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl_SelectedPageChanged);
             // 
             // xtraTabPageBasic
             // 
@@ -1218,8 +1220,9 @@
             this.barManager.Form = this;
             this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barLargeButtonItemApply,
-            this.barLargeButtonItemClose});
-            this.barManager.MaxItemId = 10;
+            this.barLargeButtonItemClose,
+            this.barLargeButtonItemHelp});
+            this.barManager.MaxItemId = 11;
             // 
             // barToolbar
             // 
@@ -1230,6 +1233,7 @@
             this.barToolbar.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.barToolbar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemApply),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemHelp),
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemClose)});
             this.barToolbar.OptionsBar.AllowQuickCustomization = false;
             this.barToolbar.OptionsBar.DrawDragBorder = false;
@@ -1243,6 +1247,15 @@
             this.barLargeButtonItemApply.Id = 8;
             this.barLargeButtonItemApply.Name = "barLargeButtonItemApply";
             this.barLargeButtonItemApply.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemApply_ItemClick);
+            // 
+            // barLargeButtonItemHelp
+            // 
+            this.barLargeButtonItemHelp.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.barLargeButtonItemHelp.Caption = "Help";
+            this.barLargeButtonItemHelp.Glyph = global::CalendarBuilder.Properties.Resources.HelpSmall;
+            this.barLargeButtonItemHelp.Id = 10;
+            this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
+            this.barLargeButtonItemHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemHelp_ItemClick);
             // 
             // barLargeButtonItemClose
             // 
@@ -1424,5 +1437,6 @@
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemApply;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemClose;
         private System.Windows.Forms.Label laThemeColor;
+        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemHelp;
     }
 }

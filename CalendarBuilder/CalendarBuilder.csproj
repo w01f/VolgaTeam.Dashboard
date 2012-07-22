@@ -88,17 +88,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager.cs" />
+    <Compile Include="PresentationClasses\Calendars\CalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Calendars\CalendarControl.Designer.cs">
+      <DependentUpon>CalendarControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\Calendars\SimpleCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\Calendars\SimpleCalendarControl.Designer.cs">
-      <DependentUpon>SimpleCalendarControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\Calendars\GraphicCalendarControl.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Calendars\GraphicCalendarControl.Designer.cs">
-      <DependentUpon>GraphicCalendarControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\CalendarVisualizer.cs" />
     <Compile Include="PresentationClasses\CopyPasterManager.cs" />
@@ -128,7 +128,7 @@
     <Compile Include="PresentationClasses\DayProperties\LogoControl.Designer.cs">
       <DependentUpon>LogoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ICalendarControl.cs" />
+    <Compile Include="PresentationClasses\Calendars\ICalendarControl.cs" />
     <Compile Include="PresentationClasses\SelectionManager.cs" />
     <Compile Include="PresentationClasses\Views\IView.cs" />
     <Compile Include="PresentationClasses\Views\MonthView\CalendarNoteControl.cs">
@@ -207,9 +207,6 @@
     <Compile Include="PresentationClasses\Calendars\AdvancedCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\Calendars\AdvancedCalendarControl.Designer.cs">
-      <DependentUpon>AdvancedCalendarControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\ModelOfSuccessControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -239,6 +236,12 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\SlideInfo\SlideInfoWrapper.cs" />
+    <Compile Include="ToolForms\FormImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormImport.Designer.cs">
+      <DependentUpon>FormImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormNoteColor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -283,6 +286,12 @@
     </Compile>
     <Compile Include="InteropClasses\WinAPIHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolForms\FormPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormPreview.designer.cs">
+      <DependentUpon>FormPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormProgress.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,11 +310,8 @@
     <Compile Include="ToolForms\FormSlideOutput.Designer.cs">
       <DependentUpon>FormSlideOutput.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="PresentationClasses\Calendars\SimpleCalendarControl.resx">
-      <DependentUpon>SimpleCalendarControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Calendars\GraphicCalendarControl.resx">
-      <DependentUpon>GraphicCalendarControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\Calendars\CalendarControl.resx">
+      <DependentUpon>CalendarControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\DayProperties\RadioPropertiesControl.resx">
       <DependentUpon>RadioPropertiesControl.cs</DependentUpon>
@@ -352,9 +358,6 @@
     <EmbeddedResource Include="PresentationClasses\HomeControl.resx">
       <DependentUpon>HomeControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Calendars\AdvancedCalendarControl.resx">
-      <DependentUpon>AdvancedCalendarControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ModelOfSuccessControl.resx">
       <DependentUpon>ModelOfSuccessControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -366,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormImport.resx">
+      <DependentUpon>FormImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormNoteColor.resx">
       <DependentUpon>FormNoteColor.cs</DependentUpon>
@@ -399,6 +405,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ToolForms\FormPreview.resx">
+      <DependentUpon>FormPreview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
     </EmbeddedResource>
@@ -626,6 +635,10 @@
     <None Include="Resources\CloneSmall.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdScheduleBuilder\AdScheduleBuilder.csproj">
+      <Project>{B096C96B-E96F-4223-AE01-B32D3730DC82}</Project>
+      <Name>AdScheduleBuilder</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MonthCalendar\MonthCalendar.csproj">
       <Project>{898ECB12-D464-4514-AE2E-45FE430FE04E}</Project>
       <Name>MonthCalendar</Name>
@@ -651,6 +664,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EmailMidle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PowerPointSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PreviewSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Floater.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HelpSmall.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

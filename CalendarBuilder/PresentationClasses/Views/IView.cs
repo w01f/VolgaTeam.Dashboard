@@ -8,7 +8,7 @@ namespace CalendarBuilder.PresentationClasses.Views
 {
     public interface IView
     {
-        ICalendarControl Calendar { get; }
+        Calendars.ICalendarControl Calendar { get; }
         CopyPasteManager CopyPasteManager { get; }
         bool SettingsNotSaved { get; set; }
 

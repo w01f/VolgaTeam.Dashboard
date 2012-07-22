@@ -16,13 +16,13 @@ namespace CalendarBuilder.PresentationClasses.Views.GridView
         private List<BusinessClasses.CalendarDay> _dayComments = new List<BusinessClasses.CalendarDay>();
         private List<BusinessClasses.ImageSource> _logos = new List<BusinessClasses.ImageSource>();
 
-        public ICalendarControl Calendar { get; private set; }
+        public Calendars.ICalendarControl Calendar { get; private set; }
         public CopyPasteManager CopyPasteManager { get; private set; }
 
         public bool SettingsNotSaved { get; set; }
         public event EventHandler<EventArgs> DataSaved;
 
-        public GridViewControl(ICalendarControl calendar)
+        public GridViewControl(Calendars.ICalendarControl calendar)
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;

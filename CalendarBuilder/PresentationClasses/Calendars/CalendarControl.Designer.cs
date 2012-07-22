@@ -1,6 +1,6 @@
 ﻿namespace CalendarBuilder.PresentationClasses.Calendars
 {
-    partial class GraphicCalendarControl
+    partial class CalendarControl
     {
         /// <summary> 
         /// Required designer variable.

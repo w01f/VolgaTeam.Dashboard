@@ -79,7 +79,7 @@ namespace CalendarBuilder.PresentationClasses
         #region Calendar Methods
         public void LoadCalendar(bool quickLoad)
         {
-            _localCalendar = BusinessClasses.ScheduleManager.Instance.GetLocalCalendar();
+            _localCalendar = BusinessClasses.ScheduleManager.Instance.GetLocalSchedule();
 
             if (!quickLoad)
             {
@@ -145,6 +145,7 @@ namespace CalendarBuilder.PresentationClasses
                 FormMain.Instance.dateEditFlightDatesStart.EditValue = _localCalendar.FlightDateStart;
                 FormMain.Instance.dateEditFlightDatesEnd.EditValue = _localCalendar.FlightDateEnd;
                 FormMain.Instance.ribbonPanelHome.PerformLayout();
+
                 _allowToSave = true;
             }
             FormMain.Instance.UpdateScheduleTabs(FormMain.Instance.comboBoxEditBusinessName.EditValue != null &
@@ -244,7 +245,7 @@ namespace CalendarBuilder.PresentationClasses
                 FormMain.Instance.dateEditPresentationDate.EditValue != null &
                 FormMain.Instance.dateEditFlightDatesStart.EditValue != null &
                 FormMain.Instance.dateEditFlightDatesEnd.EditValue != null);
-            BusinessClasses.ScheduleManager.Instance.SaveCalendar(_localCalendar, quickSave, this);
+            BusinessClasses.ScheduleManager.Instance.SaveSchedule(_localCalendar, quickSave, this);
             LoadCalendar(true);
             return true;
         }

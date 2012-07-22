@@ -64,37 +64,37 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
             double width = this.Width / 7;
             if (_weekSundayStarted)
             {
-                laSunday.BringToFront();
-                laMonday.BringToFront();
-                laTuesday.BringToFront();
-                laWednesday.BringToFront();
-                laThursday.BringToFront();
-                laFriday.BringToFront();
-                laSaturday.BringToFront();
-                laSunday.Width = (int)width;
-                laMonday.Width = (int)width;
-                laTuesday.Width = (int)width;
-                laWednesday.Width = (int)width;
-                laThursday.Width = (int)width;
-                laFriday.Width = (int)width;
-                laSaturday.Width = this.Width - ((int)width * 6);
+                pnSunday.BringToFront();
+                pnMonday.BringToFront();
+                pnTuesday.BringToFront();
+                pnWednesday.BringToFront();
+                pnThursday.BringToFront();
+                pnFriday.BringToFront();
+                pnSaturday.BringToFront();
+                pnSunday.Width = (int)width;
+                pnMonday.Width = (int)width;
+                pnTuesday.Width = (int)width;
+                pnWednesday.Width = (int)width;
+                pnThursday.Width = (int)width;
+                pnFriday.Width = (int)width;
+                pnSaturday.Width = this.Width - ((int)width * 6);
             }
             else
             {
-                laMonday.BringToFront();
-                laTuesday.BringToFront();
-                laWednesday.BringToFront();
-                laThursday.BringToFront();
-                laFriday.BringToFront();
-                laSaturday.BringToFront();
-                laSunday.BringToFront();
-                laMonday.Width = (int)width;
-                laTuesday.Width = (int)width;
-                laWednesday.Width = (int)width;
-                laThursday.Width = (int)width;
-                laFriday.Width = (int)width;
-                laSaturday.Width = (int)width;
-                laSunday.Width = this.Width - ((int)width * 6);
+                pnMonday.BringToFront();
+                pnTuesday.BringToFront();
+                pnWednesday.BringToFront();
+                pnThursday.BringToFront();
+                pnFriday.BringToFront();
+                pnSaturday.BringToFront();
+                pnSunday.BringToFront();
+                pnMonday.Width = (int)width;
+                pnTuesday.Width = (int)width;
+                pnWednesday.Width = (int)width;
+                pnThursday.Width = (int)width;
+                pnFriday.Width = (int)width;
+                pnSaturday.Width = (int)width;
+                pnSunday.Width = this.Width - ((int)width * 6);
             }
         }
 
@@ -117,23 +117,6 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
             FitWeekControls();
             FitHeader();
             pnMain.BringToFront();
-        }
-
-        private void WeekDayTitle_Paint(object sender, PaintEventArgs e)
-        {
-            Rectangle rect;
-            if (e.ClipRectangle.Top == 0)
-                rect = new Rectangle(e.ClipRectangle.Left, e.ClipRectangle.Top, e.ClipRectangle.Width, this.Height);
-            else
-                rect = new Rectangle(e.ClipRectangle.Left, 0, e.ClipRectangle.Width, e.ClipRectangle.Bottom);
-            for (int i = 0; i < 1; i++)
-            {
-                ControlPaint.DrawBorder(e.Graphics, rect, Color.DarkGray, ButtonBorderStyle.Solid);
-                rect.X = rect.X + 1;
-                rect.Y = rect.Y + 1;
-                rect.Width = rect.Width - 2;
-                rect.Height = rect.Height - 2;
-            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CalendarBuilder.ToolForms
 {
-    partial class FormEmail
+    partial class FormPreview
     {
         /// <summary>
         /// Required designer variable.
@@ -38,20 +38,12 @@
             DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEmail));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPreview));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.barOperations = new DevExpress.XtraBars.Bar();
-            this.barLargeButtonItemRegularEmail = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.barLargeButtonItemLockedEmail = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.barLargeButtonItemPDFEmail = new DevExpress.XtraBars.BarLargeButtonItem();
+            this.barLargeButtonItemOutput = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barLargeButtonItemHelp = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barLargeButtonItemExit = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -84,11 +76,9 @@
             this.barManager.DockControls.Add(this.barDockControlRight);
             this.barManager.Form = this;
             this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barLargeButtonItemRegularEmail,
+            this.barLargeButtonItemOutput,
             this.barLargeButtonItemHelp,
-            this.barLargeButtonItemExit,
-            this.barLargeButtonItemLockedEmail,
-            this.barLargeButtonItemPDFEmail});
+            this.barLargeButtonItemExit});
             this.barManager.MaxItemId = 15;
             // 
             // barOperations
@@ -99,9 +89,7 @@
             this.barOperations.DockRow = 0;
             this.barOperations.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.barOperations.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barLargeButtonItemRegularEmail, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barLargeButtonItemLockedEmail, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barLargeButtonItemPDFEmail, "", false, true, false, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barLargeButtonItemOutput, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barLargeButtonItemHelp, DevExpress.XtraBars.BarItemPaintStyle.Standard),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barLargeButtonItemExit, DevExpress.XtraBars.BarItemPaintStyle.Standard)});
             this.barOperations.OptionsBar.AllowQuickCustomization = false;
@@ -111,53 +99,23 @@
             this.barOperations.OptionsBar.UseWholeRow = true;
             this.barOperations.Text = "Tools";
             // 
-            // barLargeButtonItemRegularEmail
+            // barLargeButtonItemOutput
             // 
-            this.barLargeButtonItemRegularEmail.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.barLargeButtonItemRegularEmail.Caption = "Send Schedule\r\nas a Regular\r\nPowerPoint";
-            this.barLargeButtonItemRegularEmail.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-            this.barLargeButtonItemRegularEmail.Glyph = global::CalendarBuilder.Properties.Resources.RegularEmail;
-            this.barLargeButtonItemRegularEmail.Id = 4;
-            this.barLargeButtonItemRegularEmail.Name = "barLargeButtonItemRegularEmail";
-            toolTipTitleItem1.Text = "Email PowerPoint file";
+            this.barLargeButtonItemOutput.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.barLargeButtonItemOutput.Appearance.Options.UseForeColor = true;
+            this.barLargeButtonItemOutput.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.barLargeButtonItemOutput.Caption = "Send to\r\nPowerPoint";
+            this.barLargeButtonItemOutput.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
+            this.barLargeButtonItemOutput.Glyph = global::CalendarBuilder.Properties.Resources.PowerPoint;
+            this.barLargeButtonItemOutput.Id = 4;
+            this.barLargeButtonItemOutput.Name = "barLargeButtonItemOutput";
+            toolTipTitleItem1.Text = "Send to PowerPoint";
             toolTipItem1.LeftIndent = 6;
-            toolTipItem1.Text = "Send this Calendar as a PowerPoint email attachment";
+            toolTipItem1.Text = "Send this Calendar to PowerPoint";
             superToolTip1.Items.Add(toolTipTitleItem1);
             superToolTip1.Items.Add(toolTipItem1);
-            this.barLargeButtonItemRegularEmail.SuperTip = superToolTip1;
-            this.barLargeButtonItemRegularEmail.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemRegularEmail_ItemClick);
-            // 
-            // barLargeButtonItemLockedEmail
-            // 
-            this.barLargeButtonItemLockedEmail.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.barLargeButtonItemLockedEmail.Caption = "Send Schedule\r\nas a Locked\r\nPowerPoint";
-            this.barLargeButtonItemLockedEmail.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-            this.barLargeButtonItemLockedEmail.Glyph = global::CalendarBuilder.Properties.Resources.LockedEmail;
-            this.barLargeButtonItemLockedEmail.Id = 13;
-            this.barLargeButtonItemLockedEmail.Name = "barLargeButtonItemLockedEmail";
-            toolTipTitleItem2.Text = "Email Locked PowerPoint";
-            toolTipItem2.LeftIndent = 6;
-            toolTipItem2.Text = "Send this Calendar as a PowerPoint Image File that is locked for editing";
-            superToolTip2.Items.Add(toolTipTitleItem2);
-            superToolTip2.Items.Add(toolTipItem2);
-            this.barLargeButtonItemLockedEmail.SuperTip = superToolTip2;
-            this.barLargeButtonItemLockedEmail.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemLockedEmail_ItemClick);
-            // 
-            // barLargeButtonItemPDFEmail
-            // 
-            this.barLargeButtonItemPDFEmail.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.barLargeButtonItemPDFEmail.Caption = "Send Schedule\r\nas Adobe PDF\r\nfile";
-            this.barLargeButtonItemPDFEmail.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-            this.barLargeButtonItemPDFEmail.Glyph = global::CalendarBuilder.Properties.Resources.PDFEmail;
-            this.barLargeButtonItemPDFEmail.Id = 14;
-            this.barLargeButtonItemPDFEmail.Name = "barLargeButtonItemPDFEmail";
-            toolTipTitleItem3.Text = "Email as PDF";
-            toolTipItem3.LeftIndent = 6;
-            toolTipItem3.Text = "Send this Calendar as a PDF file email attachment";
-            superToolTip3.Items.Add(toolTipTitleItem3);
-            superToolTip3.Items.Add(toolTipItem3);
-            this.barLargeButtonItemPDFEmail.SuperTip = superToolTip3;
-            this.barLargeButtonItemPDFEmail.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemPDFEmail_ItemClick);
+            this.barLargeButtonItemOutput.SuperTip = superToolTip1;
+            this.barLargeButtonItemOutput.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemOutput_ItemClick);
             // 
             // barLargeButtonItemHelp
             // 
@@ -166,12 +124,12 @@
             this.barLargeButtonItemHelp.Glyph = global::CalendarBuilder.Properties.Resources.Help;
             this.barLargeButtonItemHelp.Id = 6;
             this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
-            toolTipTitleItem4.Text = "HELP";
-            toolTipItem4.LeftIndent = 6;
-            toolTipItem4.Text = "Help me understand how to Email my Calendars";
-            superToolTip4.Items.Add(toolTipTitleItem4);
-            superToolTip4.Items.Add(toolTipItem4);
-            this.barLargeButtonItemHelp.SuperTip = superToolTip4;
+            toolTipTitleItem2.Text = "HELP";
+            toolTipItem2.LeftIndent = 6;
+            toolTipItem2.Text = "Learn more about how to preview your calendar";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            superToolTip2.Items.Add(toolTipItem2);
+            this.barLargeButtonItemHelp.SuperTip = superToolTip2;
             this.barLargeButtonItemHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemHelp_ItemClick);
             // 
             // barLargeButtonItemExit
@@ -181,12 +139,12 @@
             this.barLargeButtonItemExit.Glyph = global::CalendarBuilder.Properties.Resources.Exit;
             this.barLargeButtonItemExit.Id = 7;
             this.barLargeButtonItemExit.Name = "barLargeButtonItemExit";
-            toolTipTitleItem5.Text = "EXIT";
-            toolTipItem5.LeftIndent = 6;
-            toolTipItem5.Text = "Close this Window";
-            superToolTip5.Items.Add(toolTipTitleItem5);
-            superToolTip5.Items.Add(toolTipItem5);
-            this.barLargeButtonItemExit.SuperTip = superToolTip5;
+            toolTipTitleItem3.Text = "EXIT";
+            toolTipItem3.LeftIndent = 6;
+            toolTipItem3.Text = "Close this Window";
+            superToolTip3.Items.Add(toolTipTitleItem3);
+            superToolTip3.Items.Add(toolTipItem3);
+            this.barLargeButtonItemExit.SuperTip = superToolTip3;
             this.barLargeButtonItemExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemExit_ItemClick);
             // 
             // barDockControlTop
@@ -284,7 +242,7 @@
             this.pictureBoxPreview.TabIndex = 5;
             this.pictureBoxPreview.TabStop = false;
             // 
-            // FormEmail
+            // FormPreview
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
@@ -296,11 +254,11 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "FormEmail";
+            this.Name = "FormPreview";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Email this Basic Overview";
+            this.Text = "Quick View";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormQuickView_FormClosed);
             this.Shown += new System.EventHandler(this.FormQuickView_Shown);
             this.Resize += new System.EventHandler(this.FormQuickView_Resize);
@@ -320,7 +278,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemRegularEmail;
+        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemOutput;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemHelp;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemExit;
         private System.Windows.Forms.Panel pnNavigationArea;
@@ -328,8 +286,6 @@
         private System.Windows.Forms.Label laSlideNumber;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSlides;
         private System.Windows.Forms.PictureBox pictureBoxPreview;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemLockedEmail;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemPDFEmail;
 
     }
 }

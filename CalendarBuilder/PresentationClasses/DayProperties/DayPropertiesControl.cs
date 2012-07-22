@@ -7,6 +7,7 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
     public partial class DayPropertiesControl : UserControl
     {
         private BusinessClasses.CalendarStyle _style;
+        private string _helpKey = string.Empty;
         public BusinessClasses.CalendarDay Day { get; set; }
 
         public bool SettingsNotSaved { get; set; }
@@ -95,6 +96,11 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
             this.SettingsNotSaved = true;
         }
 
+        private void barLargeButtonItemHelp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            BusinessClasses.HelpManager.Instance.OpenHelpLink(_helpKey);
+        }
+
         private void barLargeButtonItemClose_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (this.Closed != null)
@@ -110,6 +116,21 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
         {
             if (this.PropertiesGroupChanged != null)
                 this.PropertiesGroupChanged(sender, e);
+            
+            if (xtraTabControl.SelectedTabPage == xtraTabPageComment)
+                _helpKey = "rightbarcomments";
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageDigital)
+                _helpKey = "rightbardigital";
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageLogo)
+                _helpKey = "rightbarlogo";
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageNewspaper)
+                _helpKey = "rightbarprint";
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageRadio)
+                _helpKey = string.Empty;
+            else if (xtraTabControl.SelectedTabPage == xtraTabPageTV)
+                _helpKey = string.Empty;
+            else
+                _helpKey = string.Empty;
         }
     }
 }

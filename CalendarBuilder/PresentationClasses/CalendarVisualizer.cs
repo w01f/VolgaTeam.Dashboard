@@ -20,7 +20,7 @@ namespace CalendarBuilder.PresentationClasses
         public DevComponents.DotNetBar.ButtonItem CloneButtonItem { get; set; }
         #endregion
 
-        public ICalendarControl SelectedCalendarControl { get; private set; }
+        public Calendars.ICalendarControl SelectedCalendarControl { get; private set; }
 
         public static CalendarVisualizer Instance
         {
@@ -75,7 +75,7 @@ namespace CalendarBuilder.PresentationClasses
             _simpleCalendar.LoadCalendar(false);
         }
 
-        public ICalendarControl SelectCalendar(Control container, BusinessClasses.CalendarStyle calendarStyle)
+        public Calendars.ICalendarControl SelectCalendar(Control container, BusinessClasses.CalendarStyle calendarStyle)
         {
             if (this.SelectedCalendarControl != null)
                 this.SelectedCalendarControl.LeaveCalendar();
@@ -187,13 +187,13 @@ namespace CalendarBuilder.PresentationClasses
             }
         }
 
-        public void buttonItemScheduleSave_Click(object sender, EventArgs e)
+        public void buttonItemCalendarSave_Click(object sender, EventArgs e)
         {
             if (this.SelectedCalendarControl.SaveCalendarData())
                 AppManager.ShowInformation("Calendar Saved");
         }
 
-        public void buttonItemScheduleSaveAs_Click(object sender, EventArgs e)
+        public void buttonItemCalendarSaveAs_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog dialog = new SaveFileDialog())
             {
@@ -209,17 +209,22 @@ namespace CalendarBuilder.PresentationClasses
             }
         }
 
-        public void buttonItemWeeklySchedulePowerPoint_Click(object sender, EventArgs e)
+        public void buttonItemCalendarPreview_Click(object sender, EventArgs e)
+        {
+            this.SelectedCalendarControl.Preview();
+        }
+
+        public void buttonItemCalendarPowerPoint_Click(object sender, EventArgs e)
         {
             this.SelectedCalendarControl.Print();
         }
 
-        public void buttonItemWeeklyScheduleEmail_Click(object sender, EventArgs e)
+        public void buttonItemCalendarEmail_Click(object sender, EventArgs e)
         {
             this.SelectedCalendarControl.Email();
         }
 
-        public void buttonItemScheduleHelp_Click(object sender, EventArgs e)
+        public void buttonItemCalendarHelp_Click(object sender, EventArgs e)
         {
             this.SelectedCalendarControl.OpenHelp();
         }

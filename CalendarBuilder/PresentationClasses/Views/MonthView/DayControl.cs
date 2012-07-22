@@ -44,24 +44,6 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         }
 
         #region Coomon Methods
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-            Rectangle rect;
-            if (e.ClipRectangle.Top == 0)
-                rect = new Rectangle(e.ClipRectangle.Left, e.ClipRectangle.Top, e.ClipRectangle.Width, this.Height);
-            else
-                rect = new Rectangle(e.ClipRectangle.Left, 0, e.ClipRectangle.Width, e.ClipRectangle.Bottom);
-            for (int i = 0; i < 1; i++)
-            {
-                ControlPaint.DrawBorder(e.Graphics, rect, Color.DarkGray, ButtonBorderStyle.Solid);
-                rect.X = rect.X + 1;
-                rect.Y = rect.Y + 1;
-                rect.Width = rect.Width - 2;
-                rect.Height = rect.Height - 2;
-            }
-        }
-
         public void RefreshData()
         {
             _allowToSave = false;
@@ -70,7 +52,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
             pbLogo.Visible = _style == BusinessClasses.CalendarStyle.Graphic && this.Day.Logo.XtraTinyImage != null;
             memoEditSimpleComment.EditValue = this.Day.Comment1;
             toolStripMenuItemDelete.Enabled = this.Day.ContainsData;
-            this.BackColor = this.BackColor == Color.Blue || this.BackColor == Color.Green ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.FromArgb(175, 210, 255);
+            this.BackColor = this.BackColor == Color.Blue || this.BackColor == Color.Green ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.DarkGray;
             if (!this.Day.BelongsToSchedules)
             {
                 memoEditSimpleComment.BackColor = Color.LightGray;
@@ -109,7 +91,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
             _isSelected = select;
             this.Padding = new Padding(select ? 5 : 1);
             pnCalendarNoteArea.Height = select ? 35 : 40;
-            this.BackColor = _isSelected ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.FromArgb(175, 210, 255);
+            this.BackColor = _isSelected ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.DarkGray;
             this.Refresh();
         }
 

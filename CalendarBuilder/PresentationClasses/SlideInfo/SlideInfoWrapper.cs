@@ -5,7 +5,7 @@ namespace CalendarBuilder.PresentationClasses.SlideInfo
 {
     public class SlideInfoWrapper
     {
-        private ICalendarControl _parentCalendar = null;
+        private Calendars.ICalendarControl _parentCalendar = null;
         private DevExpress.XtraBars.Docking.DockPanel _container = null;
         private bool _allowToSave = false;
 
@@ -23,7 +23,7 @@ namespace CalendarBuilder.PresentationClasses.SlideInfo
             }
         }
 
-        public SlideInfoWrapper(ICalendarControl parentCalendar, DevExpress.XtraBars.Docking.DockPanel container)
+        public SlideInfoWrapper(Calendars.ICalendarControl parentCalendar, DevExpress.XtraBars.Docking.DockPanel container)
         {
             _parentCalendar = parentCalendar;
 

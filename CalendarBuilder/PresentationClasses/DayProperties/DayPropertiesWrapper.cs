@@ -5,7 +5,7 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
 {
     public class DayPropertiesWrapper
     {
-        private ICalendarControl _parentCalendar = null;
+        private Calendars.ICalendarControl _parentCalendar = null;
         private DevExpress.XtraBars.Docking.DockPanel _container = null;
         private bool _allowToSave = false;
         
@@ -23,7 +23,7 @@ namespace CalendarBuilder.PresentationClasses.DayProperties
             } 
         }
 
-        public DayPropertiesWrapper(ICalendarControl parentCalendar, DevExpress.XtraBars.Docking.DockPanel container)
+        public DayPropertiesWrapper(Calendars.ICalendarControl parentCalendar, DevExpress.XtraBars.Docking.DockPanel container)
         {
             _parentCalendar = parentCalendar;
 

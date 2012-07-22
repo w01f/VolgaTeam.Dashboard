@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CalendarBuilder.PresentationClasses
+namespace CalendarBuilder.PresentationClasses.Calendars
 {
     public interface ICalendarControl
     {
@@ -21,6 +21,7 @@ namespace CalendarBuilder.PresentationClasses
         bool SaveCalendarData(string scheduleName = "");
         void LoadView();
         void SaveView();
+        void Preview();
         void Print();
         void Email();
         void OpenHelp();

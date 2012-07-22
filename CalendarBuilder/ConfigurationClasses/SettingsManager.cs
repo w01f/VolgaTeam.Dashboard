@@ -88,7 +88,7 @@ namespace CalendarBuilder.ConfigurationClasses
         {
             _sharedSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app\SharedSettings.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             _appIDFile = string.Format(@"{0}\newlocaldirect.com\xml\app\AppID.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-            this.HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\CalHelp.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+            this.HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\NinjaCalHelp.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.SuccessModelsPath = string.Format(@"{0}\newlocaldirect.com\app\models\CalendarBuilder", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
 
             LoadAppID();

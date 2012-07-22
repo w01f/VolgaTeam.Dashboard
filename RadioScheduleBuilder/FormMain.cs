@@ -10,11 +10,19 @@ namespace RadioScheduleBuilder
         private static FormMain _instance = null;
         private Control _currentControl = null;
 
+        public bool IsMaximized
+        {
+            get
+            {
+                return this.WindowState == FormWindowState.Normal ? false : true;
+            }
+        }
+
         private FormMain()
         {
             InitializeComponent();
 
-            ribbonTabItemSuccessModels.Enabled = false;
+            ribbonTabItemDigitalSchedule.Enabled = false;
 
             if ((base.CreateGraphics()).DpiX > 96)
             {
@@ -130,6 +138,11 @@ namespace RadioScheduleBuilder
         {
             ribbonTabItemWeeklySchedule.Enabled = enable;
             ribbonTabItemMonthlySchedule.Enabled = enable;
+        }
+
+        private void FormMain_ClientSizeChanged(object sender, EventArgs e)
+        {
+            ConfigurationClasses.RegistryHelper.MaximizeMainForm = this.IsMaximized;
         }
 
         private void FormMain_Shown(object sender, EventArgs e)

@@ -151,6 +151,13 @@ namespace TVScheduleBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap HomeBottomDescription {
+            get {
+                object obj = ResourceManager.GetObject("HomeBottomDescription", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Image {
             get {
                 object obj = ResourceManager.GetObject("Image", resourceCulture);

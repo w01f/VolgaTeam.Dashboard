@@ -747,7 +747,7 @@ namespace TVScheduleBuilder.CustomControls
                     #endregion
 
                     outputPages.Add(outputPage);
-                    
+
                     Application.DoEvents();
                 }
             }
@@ -1077,7 +1077,7 @@ namespace TVScheduleBuilder.CustomControls
                                                         {
                                                             formPreview.Close();
                                                             formSelect.Close();
-                                                            AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                                                            AppManager.ActivateForm(FormMain.Instance.Handle, FormMain.Instance.IsMaximized, false);
                                                         }
                                                         else
                                                         {
@@ -1120,7 +1120,7 @@ namespace TVScheduleBuilder.CustomControls
                                                             {
                                                                 formPreview.Close();
                                                                 formSelect.Close();
-                                                                AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                                                                AppManager.ActivateForm(FormMain.Instance.Handle, FormMain.Instance.IsMaximized, false);
                                                             }
                                                             else
                                                             {
@@ -1163,7 +1163,7 @@ namespace TVScheduleBuilder.CustomControls
                                                             {
                                                                 formPreview.Close();
                                                                 formSelect.Close();
-                                                                AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                                                                AppManager.ActivateForm(FormMain.Instance.Handle, FormMain.Instance.IsMaximized, false);
                                                             }
                                                             else
                                                             {
@@ -1206,7 +1206,7 @@ namespace TVScheduleBuilder.CustomControls
                                                             {
                                                                 formPreview.Close();
                                                                 formSelect.Close();
-                                                                AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                                                                AppManager.ActivateForm(FormMain.Instance.Handle, FormMain.Instance.IsMaximized, false);
                                                             }
                                                             else
                                                             {
@@ -1232,7 +1232,7 @@ namespace TVScheduleBuilder.CustomControls
                             });
                             DialogResult result = formSelect.ShowDialog();
                             ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-                            ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                            ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                             if (result == DialogResult.Yes)
                             {
                                 form.Show();
@@ -1301,7 +1301,7 @@ namespace TVScheduleBuilder.CustomControls
                         using (ToolForms.FormSlideOutput form = new ToolForms.FormSlideOutput())
                         {
                             if (form.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-                                AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                                AppManager.ActivateForm(FormMain.Instance.Handle, FormMain.Instance.IsMaximized, false);
                         }
                 }
             }
@@ -1348,7 +1348,7 @@ namespace TVScheduleBuilder.CustomControls
                             formSelect.buttonXGrid.Enabled = _localSchedule.MonthlySchedule.Programs.Count <= 4 && outputSchedule.SpotsPerSlide <= 13 && _localSchedule.MonthlySchedule.Programs.Count <= 4 && File.Exists(Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetTableBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetTableBasedTemplateFileName, new object[] { outputSchedule.ProgramsPerSlide.ToString(), outputSchedule.SpotsPerSlide.ToString() })));
                             DialogResult result = formSelect.ShowDialog();
                             ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-                            ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                            ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                             if (result == DialogResult.Yes)
                             {
                                 form.Show();
@@ -1416,7 +1416,7 @@ namespace TVScheduleBuilder.CustomControls
                             formEmail.PresentationFile = tempFileName;
                             formEmail.ShowDialog();
                             ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-                            ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+                            ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                         }
                 }
             }

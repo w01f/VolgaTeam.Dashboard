@@ -522,12 +522,5 @@ namespace RadioScheduleBuilder.CustomControls
             FormMain.Instance.ribbonTabItemMonthlySchedule.Select();
         }
         #endregion
-
-        #region Common Methods and Event Handlers
-        private void pnRight_Resize(object sender, EventArgs e)
-        {
-            pnStations.Height = pnRight.Height / 2;
-        }
-        #endregion
     }
 }

@@ -69,6 +69,7 @@ namespace NewBizWizForm.TabCalendarForms
                 repositoryItemComboBoxStatus.Items.AddRange(CalendarBuilder.BusinessClasses.ListManager.Instance.Statuses);
                 gridControlCalendars.DataSource = new BindingList<CalendarBuilder.BusinessClasses.ShortSchedule>(_calendarList);
             }
+            FormMain.Instance.buttonItemCalendarImport.Enabled = AdScheduleBuilder.AppManager.GetShortScheduleList().Length > 0;
             gridViewCalendars.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridViewCalendars_FocusedRowChanged);
         }
 
@@ -88,6 +89,8 @@ namespace NewBizWizForm.TabCalendarForms
             ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
             CalendarBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormCalendarResize);
             CalendarBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormCalendarResize);
+            CalendarBuilder.FormMain.Instance.FloaterRequested -= new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
+            CalendarBuilder.FormMain.Instance.FloaterRequested += new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
             CalendarBuilder.AppManager.NewSchedule();
             if (!FormMain.Instance.IsDead)
             {
@@ -107,6 +110,8 @@ namespace NewBizWizForm.TabCalendarForms
             ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
             CalendarBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormCalendarResize);
             CalendarBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormCalendarResize);
+            CalendarBuilder.FormMain.Instance.FloaterRequested -= new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
+            CalendarBuilder.FormMain.Instance.FloaterRequested += new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
             CalendarBuilder.AppManager.OpenSchedule(_calendarList[gridViewCalendars.GetFocusedDataSourceRowIndex()].FullFileName);
             if (!FormMain.Instance.IsDead)
             {
@@ -135,6 +140,27 @@ namespace NewBizWizForm.TabCalendarForms
                 }
                 LoadCalendars();
             }
+        }
+
+        public void buttonXImportCalendar_Click(object sender, EventArgs e)
+        {
+            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 9, 0, 0);
+            FormMain.Instance.Opacity = 0;
+            ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+            CalendarBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormCalendarResize);
+            CalendarBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormCalendarResize);
+            CalendarBuilder.FormMain.Instance.FloaterRequested -= new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
+            CalendarBuilder.FormMain.Instance.FloaterRequested += new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
+            CalendarBuilder.AppManager.ImportSchedule();
+            if (!FormMain.Instance.IsDead)
+            {
+                FormMain.Instance.Opacity = 1;
+                ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+                LoadCalendars();
+            }
+            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 10, 0, 0);
+            AppManager.Instance.ActivateMiniBar();
         }
 
         private void gridViewCalendars_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)

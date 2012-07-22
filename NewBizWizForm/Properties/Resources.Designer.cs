@@ -424,6 +424,13 @@ namespace NewBizWizForm.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ImportCalendar {
+            get {
+                object obj = ResourceManager.GetObject("ImportCalendar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap iPad {
             get {
                 object obj = ResourceManager.GetObject("iPad", resourceCulture);

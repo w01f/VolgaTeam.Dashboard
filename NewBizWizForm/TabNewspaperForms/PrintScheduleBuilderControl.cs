@@ -81,6 +81,26 @@ namespace NewBizWizForm.TabNewspaperForms
             FormMain.Instance.buttonItemNewspaperDelete.Enabled = false;
         }
 
+        public void ExportEventHandler(object sender, AdScheduleBuilder.BusinessClasses.ExportEventArgs e)
+        {
+            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 9, 0, 0);
+            FormMain.Instance.Opacity = 0;
+            ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
+            CalendarBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormCalendarResize);
+            CalendarBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormCalendarResize);
+            CalendarBuilder.FormMain.Instance.FloaterRequested -= new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
+            CalendarBuilder.FormMain.Instance.FloaterRequested += new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
+            CalendarBuilder.AppManager.ImportSchedule(e.SourceSchedule,e.BuildAdvanced,e.BuildGraphic,e.BuildSimple);
+            if (!FormMain.Instance.IsDead)
+            {
+                FormMain.Instance.Opacity = 1;
+                ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
+            }
+            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 10, 0, 0);
+            AppManager.Instance.ActivateMiniBar();
+        }
+
         public void buttonXNewSchedule_Click(object sender, EventArgs e)
         {
             InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 1, 0, 0);
@@ -90,6 +110,8 @@ namespace NewBizWizForm.TabNewspaperForms
             AdScheduleBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormAdScheduleResize);
             AdScheduleBuilder.FormMain.Instance.FloaterRequested -= new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
             AdScheduleBuilder.FormMain.Instance.FloaterRequested += new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
+            AdScheduleBuilder.FormMain.Instance.ScheduleExported -= new EventHandler<AdScheduleBuilder.BusinessClasses.ExportEventArgs>(ExportEventHandler);
+            AdScheduleBuilder.FormMain.Instance.ScheduleExported += new EventHandler<AdScheduleBuilder.BusinessClasses.ExportEventArgs>(ExportEventHandler);
             AdScheduleBuilder.AppManager.NewSchedule();
             if (!FormMain.Instance.IsDead)
             {
@@ -111,6 +133,8 @@ namespace NewBizWizForm.TabNewspaperForms
             AdScheduleBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormAdScheduleResize);
             AdScheduleBuilder.FormMain.Instance.FloaterRequested -= new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
             AdScheduleBuilder.FormMain.Instance.FloaterRequested += new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
+            AdScheduleBuilder.FormMain.Instance.ScheduleExported -= new EventHandler<AdScheduleBuilder.BusinessClasses.ExportEventArgs>(ExportEventHandler);
+            AdScheduleBuilder.FormMain.Instance.ScheduleExported += new EventHandler<AdScheduleBuilder.BusinessClasses.ExportEventArgs>(ExportEventHandler);
             AdScheduleBuilder.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
             if (!FormMain.Instance.IsDead)
             {

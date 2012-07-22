@@ -127,9 +127,6 @@
   <data name="SlideSharkLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SlideSharkLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CableLittle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CableLittle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="LeadoffStatement" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LeadoffStatement.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -166,8 +163,8 @@
   <data name="RedWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RedWarning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WideOrbitLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WideOrbitLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CoverMiddle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CoverMiddle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HomeCable" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeCable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,6 +187,9 @@
   <data name="DropboxLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DropboxLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AdConnectionsLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AdConnectionsLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="iPad" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iPad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -204,6 +204,9 @@
   </data>
   <data name="NewspaperLittle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NewspaperLittle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Floater" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Floater.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HomeClientSolutionBig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeClientSolutionBig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -229,6 +232,9 @@
   <data name="HomeRadioBig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeRadioBig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="GoogleDocsLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GoogleDocsLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SavedFiles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SavedFiles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -246,12 +252,6 @@
   </data>
   <data name="BetaTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BetaTest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HomeRadio" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HomeRadio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HomeHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HomeHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PowerPoint07" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PowerPoint07.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -282,6 +282,9 @@
   </data>
   <data name="TargetCustomer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TargetCustomer.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HomeDigital" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HomeDigital.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SendSettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SendSettings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -319,11 +322,11 @@
   <data name="CleanslateMiddle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CleanslateMiddle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GoogleDocsLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GoogleDocsLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CableLittle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CableLittle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AdConnectionsLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AdConnectionsLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="HomeRadio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HomeRadio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HomeSalesDepotBig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeSalesDepotBig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -334,8 +337,8 @@
   <data name="Advertiser" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Advertiser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HomeDigital" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HomeDigital.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="HomeHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HomeHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HomeOnlineSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeOnlineSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -358,8 +361,8 @@
   <data name="Dates" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Dates.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CoverMiddle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CoverMiddle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="WideOrbitLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WideOrbitLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HomeCalendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeCalendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -373,7 +376,7 @@
   <data name="HomeDigitalSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeDigitalSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Floater" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Floater.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ImportCalendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImportCalendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

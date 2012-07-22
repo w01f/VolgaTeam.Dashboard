@@ -322,6 +322,7 @@ namespace NewBizWizForm
             buttonItemCalendarNew.Click += new EventHandler(TabCalendarForms.CalendarBuilderControl.Instance.buttonXNewCalendar_Click);
             buttonItemCalendarOpen.Click += new EventHandler(TabCalendarForms.CalendarBuilderControl.Instance.buttonXOpenCalendar_Click);
             buttonItemCalendarDelete.Click += new EventHandler(TabCalendarForms.CalendarBuilderControl.Instance.buttonXDeleteCalendar_Click);
+            buttonItemCalendarImport.Click += new EventHandler(TabCalendarForms.CalendarBuilderControl.Instance.buttonXImportCalendar_Click);
             buttonItemRadioNew.Click += new EventHandler(TabRadioForms.RadioScheduleBuilderControl.Instance.buttonXNewSchedule_Click);
             buttonItemRadioOpen.Click += new EventHandler(TabRadioForms.RadioScheduleBuilderControl.Instance.buttonXOpenSchedule_Click);
             buttonItemRadioDelete.Click += new EventHandler(TabRadioForms.RadioScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click);

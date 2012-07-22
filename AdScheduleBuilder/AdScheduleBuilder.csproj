@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager.cs" />
+    <Compile Include="BusinessClasses\ExportEventArgs.cs" />
     <Compile Include="BusinessClasses\HelpManager.cs" />
     <Compile Include="BusinessClasses\ListManager.cs" />
     <Compile Include="BusinessClasses\OutputManager.cs" />
@@ -398,6 +399,12 @@
     <Compile Include="ToolForms\FormChangeAdStrategyWarning.Designer.cs">
       <DependentUpon>FormChangeAdStrategyWarning.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormExport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormExport.Designer.cs">
+      <DependentUpon>FormExport.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormProgress.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -633,6 +640,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormChangeAdStrategyWarning.resx">
       <DependentUpon>FormChangeAdStrategyWarning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormExport.resx">
+      <DependentUpon>FormExport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>

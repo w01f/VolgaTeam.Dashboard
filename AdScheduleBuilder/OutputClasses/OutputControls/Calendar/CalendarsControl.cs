@@ -236,6 +236,23 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 _selectedOutput.Email();
         }
 
+        public void buttonItemCalendarsExport_Click(object sender, EventArgs e)
+        {
+            if (_selectedOutput != null)
+            {
+                if (this.AllowToLeaveControl)
+                {
+                    using (ToolForms.FormExport form = new ToolForms.FormExport())
+                    {
+                        if (form.ShowDialog() == DialogResult.OK)
+                        {
+                            FormMain.Instance.Export(_selectedOutput.LocalSchedule, form.BuildAdvanced, form.BuildGraphic, form.BuildSimple);
+                        }
+                    }
+                }
+            }
+        }
+
         public void buttonItemCalendarSave_Click(object sender, EventArgs e)
         {
             SaveSchedule();

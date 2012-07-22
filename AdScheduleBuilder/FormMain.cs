@@ -10,6 +10,7 @@ namespace AdScheduleBuilder
         private Control _currentControl = null;
 
         public event EventHandler<EventArgs> FloaterRequested;
+        public event EventHandler<BusinessClasses.ExportEventArgs> ScheduleExported;
 
         public bool IsMaximized
         {
@@ -220,6 +221,7 @@ namespace AdScheduleBuilder
             buttonItemCalendarsPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsPowerPoint_Click);
             buttonItemCalendarsEmail.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsEmail_Click);
             buttonItemCalendarsPreview.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsPreview_Click);
+            buttonItemCalendarsExport.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsExport_Click);
             #endregion
 
             #region Rate Card Events
@@ -360,6 +362,14 @@ namespace AdScheduleBuilder
             ribbonTabItemMultiGrid.Enabled = enable;
             ribbonTabItemChronoGrid.Enabled = enable;
             ribbonTabItemCalendars.Enabled = enable;
+        }
+
+        public void Export(BusinessClasses.Schedule sourceSchedule, bool buildAdvanced, bool buildGraphic, bool buildSimple)
+        {
+            this.Opacity = 0;
+            if (this.ScheduleExported != null)
+                this.ScheduleExported(this, new BusinessClasses.ExportEventArgs(sourceSchedule, buildAdvanced, buildGraphic, buildSimple));
+            this.Close();
         }
 
         private void FormMain_ClientSizeChanged(object sender, EventArgs e)

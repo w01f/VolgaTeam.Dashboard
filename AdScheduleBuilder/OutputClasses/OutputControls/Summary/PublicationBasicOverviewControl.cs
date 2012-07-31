@@ -321,7 +321,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             get
             {
                 string result = string.Empty;
-                if (checkEditName.Checked && checkEditLogo.Checked)
+                if (checkEditName.Checked && !checkEditLogo.Checked)
                     result = this.Text;
                 return result.Replace("&&", "&");
             }
@@ -332,7 +332,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             get
             {
                 string result = string.Empty;
-                if (checkEditDate.Checked && checkEditLogo.Checked)
+                if (checkEditDate.Checked && !checkEditLogo.Checked)
                     result = checkEditDate.Text;
                 return result;
             }

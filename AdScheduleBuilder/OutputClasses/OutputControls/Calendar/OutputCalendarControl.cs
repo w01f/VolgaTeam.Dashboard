@@ -376,6 +376,11 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                         {
                             if (formOutput.ShowDialog() != System.Windows.Forms.DialogResult.OK)
                                 AppManager.ActivateForm(FormMain.Instance.Handle, FormMain.Instance.IsMaximized, false);
+                            else
+                            {
+                                AppManager.ActivatePowerPoint();
+                                AppManager.ActivateMiniBar();
+                            }
                         }
                     }
                 }
@@ -507,7 +512,13 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                                 formPreview.PresentationFile = tempFileName;
                                 ConfigurationClasses.RegistryHelper.MainFormHandle = formPreview.Handle;
                                 ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
-                                formPreview.ShowDialog();
+                                if (formPreview.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                                    AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                                else
+                                {
+                                    AppManager.ActivatePowerPoint();
+                                    AppManager.ActivateMiniBar();
+                                }
                                 ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                                 ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                             }

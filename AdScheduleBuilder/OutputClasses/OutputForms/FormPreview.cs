@@ -49,8 +49,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputForms
         #region Button Clicks
         private void barButtonItemOutput_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.Hide();
-            this.Close();
+            DialogResult result = System.Windows.Forms.DialogResult.Cancel;
             if (!string.IsNullOrEmpty(this.PresentationFile))
             {
                 using (ToolForms.FormProgress formProgress = new ToolForms.FormProgress())
@@ -62,16 +61,11 @@ namespace AdScheduleBuilder.OutputClasses.OutputForms
                     formProgress.Close();
                     using (OutputForms.FormSlideOutput formOutput = new OutputForms.FormSlideOutput())
                     {
-                        if (formOutput.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-                            AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
-                        else
-                        {
-                            AppManager.ActivatePowerPoint();
-                            AppManager.ActivateMiniBar();
-                        }
+                        result = formOutput.ShowDialog();
                     }
                 }
             }
+            this.DialogResult = result;
         }
 
         private void barLargeButtonItemHelp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

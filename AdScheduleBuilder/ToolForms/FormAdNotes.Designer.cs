@@ -308,7 +308,7 @@
             this.tabItemComments.AttachedControl = this.tabControlPanelComments;
             this.tabItemComments.Image = global::AdScheduleBuilder.Properties.Resources.Unselected;
             this.tabItemComments.Name = "tabItemComments";
-            this.tabItemComments.Text = "Comments";
+            this.tabItemComments.Text = "Comments && Publications";
             // 
             // tabControlPanelSections
             // 

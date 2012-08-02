@@ -1727,15 +1727,16 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                                 formPreview.PresentationFile = tempFileName;
                                 ConfigurationClasses.RegistryHelper.MainFormHandle = formPreview.Handle;
                                 ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
-                                if (formPreview.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                                DialogResult previewResult = formPreview.ShowDialog();
+                                ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
+                                ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                                if (previewResult != System.Windows.Forms.DialogResult.OK)
                                     AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
                                 else
                                 {
                                     AppManager.ActivatePowerPoint();
                                     AppManager.ActivateMiniBar();
                                 }
-                                ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
-                                ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                             }
                     }
                 }

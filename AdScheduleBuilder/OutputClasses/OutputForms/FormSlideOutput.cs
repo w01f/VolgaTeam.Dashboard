@@ -19,11 +19,5 @@ namespace AdScheduleBuilder.OutputClasses.OutputForms
             AppManager.ActivateMiniBar();
             AppManager.ActivateForm(this.Handle, false, true);
         }
-
-        private void FormSlideOutput_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            AppManager.ActivatePowerPoint();
-            AppManager.ActivateMiniBar();
-        }
     }
 }

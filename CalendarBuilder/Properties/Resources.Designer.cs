@@ -102,9 +102,30 @@ namespace CalendarBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap CalendarAdvanced {
+            get {
+                object obj = ResourceManager.GetObject("CalendarAdvanced", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap CalendarGraphic {
+            get {
+                object obj = ResourceManager.GetObject("CalendarGraphic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap CalendarMonth {
             get {
                 object obj = ResourceManager.GetObject("CalendarMonth", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap CalendarSimple {
+            get {
+                object obj = ResourceManager.GetObject("CalendarSimple", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

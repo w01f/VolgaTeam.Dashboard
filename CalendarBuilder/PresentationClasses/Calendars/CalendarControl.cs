@@ -310,6 +310,11 @@ namespace CalendarBuilder.PresentationClasses.Calendars
                         {
                             if (formOutput.ShowDialog() != System.Windows.Forms.DialogResult.OK)
                                 AppManager.ActivateForm(FormMain.Instance.Handle, FormMain.Instance.IsMaximized, false);
+                            else
+                            {
+                                AppManager.ActivatePowerPoint();
+                                AppManager.ActivateMiniBar();
+                            }
                         }
                     }
                 }
@@ -446,15 +451,22 @@ namespace CalendarBuilder.PresentationClasses.Calendars
                             this.Enabled = true;
                             formProgress.Close();
                             if (File.Exists(tempFileName))
-                                using (ToolForms.FormPreview formEmail = new ToolForms.FormPreview())
+                                using (ToolForms.FormPreview formPreview = new ToolForms.FormPreview())
                                 {
-                                    formEmail.Text = "Preview this Calendar";
-                                    formEmail.PresentationFile = tempFileName;
-                                    ConfigurationClasses.RegistryHelper.MainFormHandle = formEmail.Handle;
+                                    formPreview.Text = "Preview this Calendar";
+                                    formPreview.PresentationFile = tempFileName;
+                                    ConfigurationClasses.RegistryHelper.MainFormHandle = formPreview.Handle;
                                     ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
-                                    formEmail.ShowDialog();
+                                    DialogResult previewResult = formPreview.ShowDialog();
                                     ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
                                     ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+                                    if (previewResult != System.Windows.Forms.DialogResult.OK)
+                                        AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+                                    else
+                                    {
+                                        AppManager.ActivatePowerPoint();
+                                        AppManager.ActivateMiniBar();
+                                    }
                                 }
                         }
                     }

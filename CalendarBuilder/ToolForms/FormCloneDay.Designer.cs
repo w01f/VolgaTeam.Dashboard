@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCloneDay));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.laOriginalDate = new System.Windows.Forms.Label();
             this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
@@ -55,6 +55,7 @@
             this.repositoryItemButtonEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.pnBottom = new System.Windows.Forms.Panel();
             this.labelControlClonedNumber = new DevExpress.XtraEditors.LabelControl();
+            this.pbHelp = new System.Windows.Forms.PictureBox();
             this.pnTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.pnMain.SuspendLayout();
@@ -66,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit)).BeginInit();
             this.pnBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
             this.SuspendLayout();
             // 
             // defaultLookAndFeel
@@ -78,7 +80,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.laOriginalDate.AutoSize = true;
             this.laOriginalDate.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laOriginalDate.Location = new System.Drawing.Point(96, 19);
+            this.laOriginalDate.Location = new System.Drawing.Point(96, 23);
             this.laOriginalDate.Name = "laOriginalDate";
             this.laOriginalDate.Size = new System.Drawing.Size(92, 39);
             this.laOriginalDate.TabIndex = 3;
@@ -127,18 +129,19 @@
             // pnTop
             // 
             this.pnTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnTop.Controls.Add(this.pbHelp);
             this.pnTop.Controls.Add(this.pbLogo);
             this.pnTop.Controls.Add(this.laOriginalDate);
             this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnTop.Location = new System.Drawing.Point(0, 0);
             this.pnTop.Name = "pnTop";
-            this.pnTop.Size = new System.Drawing.Size(605, 80);
+            this.pnTop.Size = new System.Drawing.Size(605, 88);
             this.pnTop.TabIndex = 16;
             // 
             // pbLogo
             // 
             this.pbLogo.Image = global::CalendarBuilder.Properties.Resources.Clone;
-            this.pbLogo.Location = new System.Drawing.Point(3, 3);
+            this.pbLogo.Location = new System.Drawing.Point(3, 5);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(87, 75);
             this.pbLogo.TabIndex = 5;
@@ -151,9 +154,9 @@
             this.pnMain.Controls.Add(this.labelControlFlightDates);
             this.pnMain.Controls.Add(this.gridControlDays);
             this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnMain.Location = new System.Drawing.Point(0, 80);
+            this.pnMain.Location = new System.Drawing.Point(0, 88);
             this.pnMain.Name = "pnMain";
-            this.pnMain.Size = new System.Drawing.Size(605, 284);
+            this.pnMain.Size = new System.Drawing.Size(605, 276);
             this.pnMain.TabIndex = 17;
             // 
             // xtraTabControlClone
@@ -172,7 +175,7 @@
             this.xtraTabControlClone.Location = new System.Drawing.Point(171, 33);
             this.xtraTabControlClone.Name = "xtraTabControlClone";
             this.xtraTabControlClone.SelectedTabPage = this.xtraTabPageDays;
-            this.xtraTabControlClone.Size = new System.Drawing.Size(430, 247);
+            this.xtraTabControlClone.Size = new System.Drawing.Size(430, 239);
             this.xtraTabControlClone.TabIndex = 5;
             this.xtraTabControlClone.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageDays,
@@ -188,7 +191,7 @@
             this.xtraTabPageDays.Controls.Add(this.monthCalendarClone);
             this.xtraTabPageDays.Controls.Add(this.buttonXClearAll);
             this.xtraTabPageDays.Name = "xtraTabPageDays";
-            this.xtraTabPageDays.Size = new System.Drawing.Size(428, 221);
+            this.xtraTabPageDays.Size = new System.Drawing.Size(428, 213);
             this.xtraTabPageDays.Text = "Days";
             // 
             // buttonXSelectFirstDays
@@ -325,7 +328,7 @@
             this.gridControlDays.Name = "gridControlDays";
             this.gridControlDays.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit});
-            this.gridControlDays.Size = new System.Drawing.Size(171, 280);
+            this.gridControlDays.Size = new System.Drawing.Size(171, 272);
             this.gridControlDays.TabIndex = 4;
             this.gridControlDays.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDays});
@@ -371,7 +374,7 @@
             // repositoryItemButtonEdit
             // 
             this.repositoryItemButtonEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
             this.repositoryItemButtonEdit.DisplayFormat.FormatString = "ddd, M/d/yy";
             this.repositoryItemButtonEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.repositoryItemButtonEdit.EditFormat.FormatString = "ddd, M/d/yy";
@@ -404,6 +407,20 @@
             this.labelControlClonedNumber.TabIndex = 10;
             this.labelControlClonedNumber.Text = "Cloned Days: <b>{0}</b>";
             // 
+            // pbHelp
+            // 
+            this.pbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbHelp.Image = global::CalendarBuilder.Properties.Resources.Help;
+            this.pbHelp.Location = new System.Drawing.Point(524, 2);
+            this.pbHelp.Name = "pbHelp";
+            this.pbHelp.Size = new System.Drawing.Size(76, 81);
+            this.pbHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbHelp.TabIndex = 27;
+            this.pbHelp.TabStop = false;
+            this.pbHelp.Click += new System.EventHandler(this.pbHelp_Click);
+            this.pbHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pbHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
             // FormCloneDay
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -432,6 +449,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit)).EndInit();
             this.pnBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -462,5 +480,6 @@
         private System.Windows.Forms.PictureBox pbLogo;
         private DevComponents.DotNetBar.ButtonX buttonXSelectFirstDays;
         private DevComponents.DotNetBar.ButtonX buttonXSelectAllDays;
+        private System.Windows.Forms.PictureBox pbHelp;
     }
 }

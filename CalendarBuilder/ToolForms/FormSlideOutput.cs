@@ -8,5 +8,12 @@ namespace CalendarBuilder.ToolForms
         {
             InitializeComponent();
         }
+
+        private void FormSlideOutput_Shown(object sender, System.EventArgs e)
+        {
+            AppManager.ActivatePowerPoint();
+            AppManager.ActivateMiniBar();
+            AppManager.ActivateForm(this.Handle, false, true);
+        }
     }
 }

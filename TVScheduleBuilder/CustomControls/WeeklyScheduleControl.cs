@@ -1042,6 +1042,8 @@ namespace TVScheduleBuilder.CustomControls
                             formSelect.TableBasedSlideCount = 1;
                             formSelect.IsEmailOutput = false;
                             formSelect.buttonXGrid.Enabled = _localSchedule.WeeklySchedule.Programs.Count <= 4 && outputPage.SpotsPerSlide <= 13 && File.Exists(Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetTableBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetTableBasedTemplateFileName, new object[] { outputPage.ProgramsPerSlide.ToString(), outputPage.SpotsPerSlide.ToString() })));
+                            formSelect.buttonXSlideMaster.Enabled = Directory.Exists(BusinessClasses.OutputManager.Instance.OneSheetTagsBasedTemplatesFolderPath);
+                            formSelect.buttonXGroupedObjects.Enabled = Directory.Exists(BusinessClasses.OutputManager.Instance.OneSheetTagsBasedTemplatesFolderPath);
                             formSelect.buttonXPreview.Click += new EventHandler((sender, e) =>
                             {
                                 using (ToolForms.FormPreview formPreview = new ToolForms.FormPreview())
@@ -1352,6 +1354,8 @@ namespace TVScheduleBuilder.CustomControls
                             formSelect.TableBasedSlideCount = 1;
                             formSelect.IsEmailOutput = true;
                             formSelect.buttonXGrid.Enabled = _localSchedule.WeeklySchedule.Programs.Count <= 4 && outputSchedule.SpotsPerSlide <= 13 && _localSchedule.WeeklySchedule.Programs.Count <= 4 && File.Exists(Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetTableBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetTableBasedTemplateFileName, new object[] { outputSchedule.ProgramsPerSlide.ToString(), outputSchedule.SpotsPerSlide.ToString() })));
+                            formSelect.buttonXSlideMaster.Enabled = Directory.Exists(BusinessClasses.OutputManager.Instance.OneSheetTagsBasedTemplatesFolderPath);
+                            formSelect.buttonXGroupedObjects.Enabled = Directory.Exists(BusinessClasses.OutputManager.Instance.OneSheetTagsBasedTemplatesFolderPath);
                             DialogResult result = formSelect.ShowDialog();
                             ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
                             ConfigurationClasses.RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;

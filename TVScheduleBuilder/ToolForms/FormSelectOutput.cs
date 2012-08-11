@@ -123,8 +123,14 @@ namespace TVScheduleBuilder.ToolForms
 
             if (buttonXGrid.Enabled)
                 buttonXGrid.Checked = true;
-            else
+            else if (buttonXSlideMaster.Enabled)
                 buttonXSlideMaster.Checked = true;
+            else if (buttonXGroupedObjects.Enabled)
+                buttonXGroupedObjects.Checked = true;
+            else if (buttonXImage.Enabled)
+                buttonXImage.Checked = true;
+            else if (buttonXExcel.Enabled)
+                buttonXExcel.Checked = true;
 
             ConfigurationClasses.RegistryHelper.MainFormHandle = this.Handle;
             ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;

@@ -293,8 +293,6 @@
         private DevComponents.DotNetBar.ButtonX buttonXExcel;
         public DevComponents.DotNetBar.ButtonX buttonXGrid;
         private DevComponents.DotNetBar.ButtonX buttonXImage;
-        private DevComponents.DotNetBar.ButtonX buttonXSlideMaster;
-        private DevComponents.DotNetBar.ButtonX buttonXGroupedObjects;
         private System.Windows.Forms.GroupBox groupBox;
         private System.Windows.Forms.Label laOutputDescription;
         private System.Windows.Forms.PictureBox pictureBoxTitle;
@@ -305,5 +303,7 @@
         private DevComponents.DotNetBar.SuperTooltip superTooltip;
         public DevComponents.DotNetBar.ButtonX buttonXCancel;
         public DevComponents.DotNetBar.ButtonX buttonXPreview;
+        public DevComponents.DotNetBar.ButtonX buttonXSlideMaster;
+        public DevComponents.DotNetBar.ButtonX buttonXGroupedObjects;
     }
 }

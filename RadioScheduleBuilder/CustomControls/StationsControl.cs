@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace RadioScheduleBuilder.CustomControls
@@ -18,7 +17,9 @@ namespace RadioScheduleBuilder.CustomControls
         {
             _stations.Clear();
             _stations.AddRange(schedule.Stations);
-            gridControlItems.DataSource = new BindingList<BusinessClasses.Station>(_stations);
+            checkedListBoxControl.Items.Clear();
+            foreach (BusinessClasses.Station station in _stations)
+                checkedListBoxControl.Items.Add(station.Name, station.Name, station.Available ? CheckState.Checked : CheckState.Unchecked, true);
             this.HasChanged = false;
         }
 
@@ -27,14 +28,10 @@ namespace RadioScheduleBuilder.CustomControls
             return _stations.ToArray();
         }
 
-        private void gridViewItems_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        private void checkedListBoxControl_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e)
         {
+            _stations[e.Index].Available = e.State == CheckState.Checked;
             this.HasChanged = true;
-        }
-
-        private void repositoryItemCheckEdit_CheckedChanged(object sender, System.EventArgs e)
-        {
-            gridViewItems.CloseEditor();
         }
     }
 }

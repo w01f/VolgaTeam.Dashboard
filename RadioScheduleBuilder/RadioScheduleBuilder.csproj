@@ -409,12 +409,6 @@
     <None Include="Resources\Image.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Stations.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Dayparts.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\SlideMaster.png" />
   </ItemGroup>
   <ItemGroup>
@@ -446,9 +440,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ExcelInactive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HomeBottomDescription.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -29,145 +29,82 @@
         private void InitializeComponent()
         {
             this.panelExMain = new DevComponents.DotNetBar.PanelEx();
-            this.gridControlItems = new DevExpress.XtraGrid.GridControl();
-            this.gridViewItems = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumnName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnAvailable = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.checkedListBoxControl = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.panelExTop = new DevComponents.DotNetBar.PanelEx();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.laTitle = new System.Windows.Forms.Label();
             this.panelExMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl)).BeginInit();
             this.panelExTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // panelExMain
             // 
             this.panelExMain.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelExMain.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.panelExMain.Controls.Add(this.gridControlItems);
+            this.panelExMain.Controls.Add(this.checkedListBoxControl);
             this.panelExMain.Controls.Add(this.panelExTop);
             this.panelExMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelExMain.Location = new System.Drawing.Point(3, 3);
             this.panelExMain.Name = "panelExMain";
-            this.panelExMain.Size = new System.Drawing.Size(257, 310);
+            this.panelExMain.Size = new System.Drawing.Size(649, 310);
             this.panelExMain.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelExMain.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
             this.panelExMain.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelExMain.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.panelExMain.Style.BorderColor.Color = System.Drawing.Color.White;
             this.panelExMain.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.panelExMain.Style.GradientAngle = 90;
             this.panelExMain.TabIndex = 2;
             // 
-            // gridControlItems
+            // checkedListBoxControl
             // 
-            this.gridControlItems.AllowDrop = true;
-            this.gridControlItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControlItems.Location = new System.Drawing.Point(1, 58);
-            this.gridControlItems.MainView = this.gridViewItems;
-            this.gridControlItems.Name = "gridControlItems";
-            this.gridControlItems.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemCheckEdit});
-            this.gridControlItems.Size = new System.Drawing.Size(255, 251);
-            this.gridControlItems.TabIndex = 7;
-            this.gridControlItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewItems});
-            // 
-            // gridViewItems
-            // 
-            this.gridViewItems.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.gridViewItems.Appearance.FocusedRow.Options.UseFont = true;
-            this.gridViewItems.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gridViewItems.Appearance.Row.Options.UseFont = true;
-            this.gridViewItems.Appearance.SelectedRow.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.gridViewItems.Appearance.SelectedRow.Options.UseFont = true;
-            this.gridViewItems.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumnName,
-            this.gridColumnAvailable});
-            this.gridViewItems.GridControl = this.gridControlItems;
-            this.gridViewItems.Name = "gridViewItems";
-            this.gridViewItems.OptionsCustomization.AllowColumnMoving = false;
-            this.gridViewItems.OptionsCustomization.AllowColumnResizing = false;
-            this.gridViewItems.OptionsCustomization.AllowFilter = false;
-            this.gridViewItems.OptionsCustomization.AllowGroup = false;
-            this.gridViewItems.OptionsCustomization.AllowQuickHideColumns = false;
-            this.gridViewItems.OptionsCustomization.AllowSort = false;
-            this.gridViewItems.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridViewItems.OptionsSelection.EnableAppearanceFocusedRow = false;
-            this.gridViewItems.OptionsSelection.EnableAppearanceHideSelection = false;
-            this.gridViewItems.OptionsView.RowAutoHeight = true;
-            this.gridViewItems.OptionsView.ShowColumnHeaders = false;
-            this.gridViewItems.OptionsView.ShowDetailButtons = false;
-            this.gridViewItems.OptionsView.ShowGroupExpandCollapseButtons = false;
-            this.gridViewItems.OptionsView.ShowGroupPanel = false;
-            this.gridViewItems.OptionsView.ShowIndicator = false;
-            this.gridViewItems.RowHeight = 35;
-            this.gridViewItems.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewItems_CellValueChanged);
-            // 
-            // gridColumnName
-            // 
-            this.gridColumnName.AppearanceCell.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gridColumnName.AppearanceCell.Options.UseFont = true;
-            this.gridColumnName.Caption = "Logo";
-            this.gridColumnName.FieldName = "Name";
-            this.gridColumnName.Name = "gridColumnName";
-            this.gridColumnName.OptionsColumn.AllowEdit = false;
-            this.gridColumnName.OptionsColumn.ReadOnly = true;
-            this.gridColumnName.Visible = true;
-            this.gridColumnName.VisibleIndex = 1;
-            this.gridColumnName.Width = 201;
-            // 
-            // gridColumnAvailable
-            // 
-            this.gridColumnAvailable.Caption = "gridColumnAvailable";
-            this.gridColumnAvailable.ColumnEdit = this.repositoryItemCheckEdit;
-            this.gridColumnAvailable.FieldName = "Available";
-            this.gridColumnAvailable.Name = "gridColumnAvailable";
-            this.gridColumnAvailable.OptionsColumn.FixedWidth = true;
-            this.gridColumnAvailable.Visible = true;
-            this.gridColumnAvailable.VisibleIndex = 0;
-            this.gridColumnAvailable.Width = 50;
-            // 
-            // repositoryItemCheckEdit
-            // 
-            this.repositoryItemCheckEdit.AutoHeight = false;
-            this.repositoryItemCheckEdit.Name = "repositoryItemCheckEdit";
-            this.repositoryItemCheckEdit.CheckedChanged += new System.EventHandler(this.repositoryItemCheckEdit_CheckedChanged);
+            this.checkedListBoxControl.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.checkedListBoxControl.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkedListBoxControl.Appearance.ForeColor = System.Drawing.Color.White;
+            this.checkedListBoxControl.Appearance.Options.UseBackColor = true;
+            this.checkedListBoxControl.Appearance.Options.UseFont = true;
+            this.checkedListBoxControl.Appearance.Options.UseForeColor = true;
+            this.checkedListBoxControl.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.checkedListBoxControl.CheckOnClick = true;
+            this.checkedListBoxControl.ColumnWidth = 200;
+            this.checkedListBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkedListBoxControl.ItemHeight = 35;
+            this.checkedListBoxControl.Location = new System.Drawing.Point(0, 40);
+            this.checkedListBoxControl.MultiColumn = true;
+            this.checkedListBoxControl.Name = "checkedListBoxControl";
+            this.checkedListBoxControl.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.checkedListBoxControl.Size = new System.Drawing.Size(649, 270);
+            this.checkedListBoxControl.TabIndex = 8;
+            this.checkedListBoxControl.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControl_ItemCheck);
             // 
             // panelExTop
             // 
             this.panelExTop.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelExTop.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.panelExTop.Controls.Add(this.pbLogo);
+            this.panelExTop.Controls.Add(this.laTitle);
             this.panelExTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelExTop.Location = new System.Drawing.Point(0, 0);
             this.panelExTop.Name = "panelExTop";
             this.panelExTop.Padding = new System.Windows.Forms.Padding(10, 1, 1, 1);
-            this.panelExTop.Size = new System.Drawing.Size(257, 58);
+            this.panelExTop.Size = new System.Drawing.Size(649, 40);
             this.panelExTop.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelExTop.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
             this.panelExTop.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelExTop.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.panelExTop.Style.BorderColor.Color = System.Drawing.Color.White;
             this.panelExTop.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.panelExTop.Style.GradientAngle = 90;
             this.panelExTop.TabIndex = 6;
             // 
-            // pbLogo
+            // laTitle
             // 
-            this.pbLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbLogo.Image = global::TVScheduleBuilder.Properties.Resources.Dayparts;
-            this.pbLogo.Location = new System.Drawing.Point(10, 1);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(246, 56);
-            this.pbLogo.TabIndex = 0;
-            this.pbLogo.TabStop = false;
+            this.laTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.laTitle.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laTitle.ForeColor = System.Drawing.Color.White;
+            this.laTitle.Location = new System.Drawing.Point(10, 1);
+            this.laTitle.Name = "laTitle";
+            this.laTitle.Size = new System.Drawing.Size(638, 38);
+            this.laTitle.TabIndex = 1;
+            this.laTitle.Text = "Dayparts:";
+            this.laTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DaypartsControl
             // 
@@ -177,13 +114,10 @@
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "DaypartsControl";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(263, 316);
+            this.Size = new System.Drawing.Size(655, 316);
             this.panelExMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl)).EndInit();
             this.panelExTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -191,12 +125,8 @@
         #endregion
 
         private DevComponents.DotNetBar.PanelEx panelExMain;
-        private DevExpress.XtraGrid.GridControl gridControlItems;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewItems;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnName;
         private DevComponents.DotNetBar.PanelEx panelExTop;
-        private System.Windows.Forms.PictureBox pbLogo;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnAvailable;
-        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit;
+        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControl;
+        private System.Windows.Forms.Label laTitle;
     }
 }

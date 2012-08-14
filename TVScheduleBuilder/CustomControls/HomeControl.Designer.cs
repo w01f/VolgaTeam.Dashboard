@@ -29,11 +29,10 @@
         private void InitializeComponent()
         {
             this.pnBottom = new System.Windows.Forms.Panel();
-            this.pnStations = new System.Windows.Forms.Panel();
-            this.stationsControl = new TVScheduleBuilder.CustomControls.StationsControl();
             this.pnDayparts = new System.Windows.Forms.Panel();
             this.daypartsControl = new TVScheduleBuilder.CustomControls.DaypartsControl();
-            this.pbBottomDescription = new System.Windows.Forms.PictureBox();
+            this.pnStations = new System.Windows.Forms.Panel();
+            this.stationsControl = new TVScheduleBuilder.CustomControls.StationsControl();
             this.pbMonthlySchedule = new System.Windows.Forms.PictureBox();
             this.pbWeeklySchedule = new System.Windows.Forms.PictureBox();
             this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
@@ -43,9 +42,8 @@
             this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
             this.pnDigital = new System.Windows.Forms.Panel();
             this.pnBottom.SuspendLayout();
-            this.pnStations.SuspendLayout();
             this.pnDayparts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBottomDescription)).BeginInit();
+            this.pnStations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMonthlySchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbWeeklySchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -57,45 +55,23 @@
             // 
             // pnBottom
             // 
-            this.pnBottom.Controls.Add(this.pnStations);
+            this.pnBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.pnBottom.Controls.Add(this.pnDayparts);
-            this.pnBottom.Controls.Add(this.pbBottomDescription);
-            this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnBottom.Location = new System.Drawing.Point(0, 315);
+            this.pnBottom.Controls.Add(this.pnStations);
+            this.pnBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnBottom.Location = new System.Drawing.Point(0, 210);
             this.pnBottom.Name = "pnBottom";
-            this.pnBottom.Size = new System.Drawing.Size(1018, 325);
+            this.pnBottom.Size = new System.Drawing.Size(1018, 430);
             this.pnBottom.TabIndex = 17;
-            // 
-            // pnStations
-            // 
-            this.pnStations.Controls.Add(this.stationsControl);
-            this.pnStations.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnStations.Location = new System.Drawing.Point(714, 0);
-            this.pnStations.Name = "pnStations";
-            this.pnStations.Padding = new System.Windows.Forms.Padding(5);
-            this.pnStations.Size = new System.Drawing.Size(304, 325);
-            this.pnStations.TabIndex = 0;
-            // 
-            // stationsControl
-            // 
-            this.stationsControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.stationsControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stationsControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.stationsControl.HasChanged = false;
-            this.stationsControl.Location = new System.Drawing.Point(5, 5);
-            this.stationsControl.Name = "stationsControl";
-            this.stationsControl.Padding = new System.Windows.Forms.Padding(3);
-            this.stationsControl.Size = new System.Drawing.Size(294, 315);
-            this.stationsControl.TabIndex = 0;
             // 
             // pnDayparts
             // 
             this.pnDayparts.Controls.Add(this.daypartsControl);
-            this.pnDayparts.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnDayparts.Location = new System.Drawing.Point(410, 0);
+            this.pnDayparts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnDayparts.Location = new System.Drawing.Point(0, 106);
             this.pnDayparts.Name = "pnDayparts";
-            this.pnDayparts.Padding = new System.Windows.Forms.Padding(5);
-            this.pnDayparts.Size = new System.Drawing.Size(304, 325);
+            this.pnDayparts.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.pnDayparts.Size = new System.Drawing.Size(1018, 324);
             this.pnDayparts.TabIndex = 1;
             // 
             // daypartsControl
@@ -104,22 +80,33 @@
             this.daypartsControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.daypartsControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.daypartsControl.HasChanged = false;
-            this.daypartsControl.Location = new System.Drawing.Point(5, 5);
+            this.daypartsControl.Location = new System.Drawing.Point(10, 0);
             this.daypartsControl.Name = "daypartsControl";
             this.daypartsControl.Padding = new System.Windows.Forms.Padding(3);
-            this.daypartsControl.Size = new System.Drawing.Size(294, 315);
+            this.daypartsControl.Size = new System.Drawing.Size(1008, 324);
             this.daypartsControl.TabIndex = 0;
             // 
-            // pbBottomDescription
+            // pnStations
             // 
-            this.pbBottomDescription.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pbBottomDescription.Image = global::TVScheduleBuilder.Properties.Resources.HomeBottomDescription;
-            this.pbBottomDescription.Location = new System.Drawing.Point(0, 0);
-            this.pbBottomDescription.Name = "pbBottomDescription";
-            this.pbBottomDescription.Size = new System.Drawing.Size(410, 325);
-            this.pbBottomDescription.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbBottomDescription.TabIndex = 2;
-            this.pbBottomDescription.TabStop = false;
+            this.pnStations.Controls.Add(this.stationsControl);
+            this.pnStations.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnStations.Location = new System.Drawing.Point(0, 0);
+            this.pnStations.Name = "pnStations";
+            this.pnStations.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.pnStations.Size = new System.Drawing.Size(1018, 106);
+            this.pnStations.TabIndex = 0;
+            // 
+            // stationsControl
+            // 
+            this.stationsControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.stationsControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stationsControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.stationsControl.HasChanged = false;
+            this.stationsControl.Location = new System.Drawing.Point(10, 0);
+            this.stationsControl.Name = "stationsControl";
+            this.stationsControl.Padding = new System.Windows.Forms.Padding(3);
+            this.stationsControl.Size = new System.Drawing.Size(1008, 106);
+            this.stationsControl.TabIndex = 0;
             // 
             // pbMonthlySchedule
             // 
@@ -175,6 +162,9 @@
             // 
             // xtraTabPageTV
             // 
+            this.xtraTabPageTV.Appearance.PageClient.BackColor = System.Drawing.Color.DarkRed;
+            this.xtraTabPageTV.Appearance.PageClient.Options.UseBackColor = true;
+            this.xtraTabPageTV.Controls.Add(this.pnBottom);
             this.xtraTabPageTV.Controls.Add(this.pnTV);
             this.xtraTabPageTV.Name = "xtraTabPageTV";
             this.xtraTabPageTV.Size = new System.Drawing.Size(1018, 640);
@@ -183,13 +173,12 @@
             // pnTV
             // 
             this.pnTV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.pnTV.Controls.Add(this.pnBottom);
             this.pnTV.Controls.Add(this.pbMonthlySchedule);
             this.pnTV.Controls.Add(this.pbWeeklySchedule);
-            this.pnTV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnTV.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnTV.Location = new System.Drawing.Point(0, 0);
             this.pnTV.Name = "pnTV";
-            this.pnTV.Size = new System.Drawing.Size(1018, 640);
+            this.pnTV.Size = new System.Drawing.Size(1018, 210);
             this.pnTV.TabIndex = 0;
             // 
             // xtraTabPageDigital
@@ -217,9 +206,8 @@
             this.Name = "HomeControl";
             this.Size = new System.Drawing.Size(1020, 666);
             this.pnBottom.ResumeLayout(false);
-            this.pnStations.ResumeLayout(false);
             this.pnDayparts.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbBottomDescription)).EndInit();
+            this.pnStations.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbMonthlySchedule)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbWeeklySchedule)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
@@ -240,7 +228,6 @@
         private System.Windows.Forms.Panel pnStations;
         private StationsControl stationsControl;
         private DaypartsControl daypartsControl;
-        private System.Windows.Forms.PictureBox pbBottomDescription;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageTV;

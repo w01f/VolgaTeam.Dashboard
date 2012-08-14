@@ -67,13 +67,6 @@ namespace TVScheduleBuilder.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Dayparts {
-            get {
-                object obj = ResourceManager.GetObject("Dayparts", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap DeleteLine {
             get {
                 object obj = ResourceManager.GetObject("DeleteLine", resourceCulture);
@@ -147,13 +140,6 @@ namespace TVScheduleBuilder.Properties {
         internal static System.Drawing.Bitmap Help {
             get {
                 object obj = ResourceManager.GetObject("Help", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap HomeBottomDescription {
-            get {
-                object obj = ResourceManager.GetObject("HomeBottomDescription", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -280,13 +266,6 @@ namespace TVScheduleBuilder.Properties {
         internal static System.Drawing.Bitmap SlideMasterInactive {
             get {
                 object obj = ResourceManager.GetObject("SlideMasterInactive", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Stations {
-            get {
-                object obj = ResourceManager.GetObject("Stations", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

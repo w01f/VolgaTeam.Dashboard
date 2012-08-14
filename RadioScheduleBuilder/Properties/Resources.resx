@@ -133,9 +133,6 @@
   <data name="Grid" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Grid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Stations" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Stations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -181,9 +178,6 @@
   <data name="LockedEmail" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LockedEmail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Dayparts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Dayparts.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="EmailBig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EmailBig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -228,8 +222,5 @@
   </data>
   <data name="TextGroupedInactive" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TextGroupedInactive.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HomeBottomDescription" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HomeBottomDescription.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

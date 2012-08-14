@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace TVScheduleBuilder.CustomControls
 {
     public partial class DaypartsControl : UserControl
     {
-        private List<BusinessClasses.Daypart> dayparts = new List<BusinessClasses.Daypart>();
+        private List<BusinessClasses.Daypart> _dayparts = new List<BusinessClasses.Daypart>();
         public bool HasChanged { get; set; }
 
         public DaypartsControl()
@@ -16,25 +15,23 @@ namespace TVScheduleBuilder.CustomControls
 
         public void LoadData(BusinessClasses.Schedule schedule)
         {
-            dayparts.Clear();
-            dayparts.AddRange(schedule.Dayparts);
-            gridControlItems.DataSource = new BindingList<BusinessClasses.Daypart>(dayparts);
+            _dayparts.Clear();
+            _dayparts.AddRange(schedule.Dayparts);
+            checkedListBoxControl.Items.Clear();
+            foreach (BusinessClasses.Daypart daypart in _dayparts)
+                checkedListBoxControl.Items.Add(daypart.Code, daypart.Name, daypart.Available ? CheckState.Checked : CheckState.Unchecked, true);
             this.HasChanged = false;
         }
 
         public BusinessClasses.Daypart[] GetData()
         {
-            return dayparts.ToArray();
+            return _dayparts.ToArray();
         }
 
-        private void gridViewItems_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        private void checkedListBoxControl_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e)
         {
+            _dayparts[e.Index].Available = e.State == CheckState.Checked;
             this.HasChanged = true;
-        }
-
-        private void repositoryItemCheckEdit_CheckedChanged(object sender, System.EventArgs e)
-        {
-            gridViewItems.CloseEditor();
         }
     }
 }

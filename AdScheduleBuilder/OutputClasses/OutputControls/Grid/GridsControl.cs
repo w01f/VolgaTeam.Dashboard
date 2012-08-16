@@ -212,6 +212,12 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             }
         }
 
+        public void buttonItemGridsReset_Click(object sender, EventArgs e)
+        {
+            _selectedOutput.ResetToDefault();
+            SaveSchedule();
+        }
+
         public void buttonItemGridsHelp_Click(object sender, EventArgs e)
         {
             _selectedOutput.OpenHelp();
@@ -304,32 +310,60 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         DevComponents.DotNetBar.SuperTooltipInfo HelpToolTip { get; }
 
-        bool EnableDateButton { get; }
-        bool EnablePublicationButton { get; }
-        bool EnableIDButton { get; }
-
         bool ShowOptions { get; set; }
         int SelectedOptionChapterIndex { get; set; }
 
+        bool EnableIDHeader { get; set; }
+        bool EnableIndexHeader { get; set; }
+        bool EnableDateHeader { get; set; }
+        bool EnableColorHeader { get; set; }
+        bool EnableSectionHeader { get; set; }
+        bool EnablePCIHeader { get; set; }
+        bool EnableFinalCostHeader { get; set; }
+        bool EnablePublicationHeader { get; set; }
+        bool EnablePercentOfPageHeader { get; set; }
+        bool EnableCostHeader { get; set; }
+        bool EnableDimensionsHeader { get; set; }
+        bool EnableMechanicalsHeader { get; set; }
+        bool EnableDeliveryHeader { get; set; }
+        bool EnableDiscountHeader { get; set; }
+        bool EnablePageSizeHeader { get; set; }
+        bool EnableSquareHeader { get; set; }
+        bool EnableDeadlineHeader { get; set; }
+        bool EnableReadershipHeader { get; set; }
+        bool EnableCommentsHeader { get; set; }
+
         bool ShowIDHeader { get; set; }
-        bool ShowDateHeader { get; set; }
-        bool ShowPCIHeader { get; set; }
-        bool ShowCostHeader { get; set; }
-        bool ShowDiscountHeader { get; set; }
-        bool ShowColorHeader { get; set; }
-        bool ShowFinalCostHeader { get; set; }
         bool ShowIndexHeader { get; set; }
-        bool ShowCommentsHeader { get; set; }
-        bool ShowSquareHeader { get; set; }
-        bool ShowPageSizeHeader { get; set; }
+        bool ShowDateHeader { get; set; }
+        bool ShowColorHeader { get; set; }
+        bool ShowSectionHeader { get; set; }
+        bool ShowPCIHeader { get; set; }
+        bool ShowFinalCostHeader { get; set; }
+        bool ShowPublicationHeader { get; set; }
         bool ShowPercentOfPageHeader { get; set; }
+        bool ShowCostHeader { get; set; }
         bool ShowDimensionsHeader { get; set; }
         bool ShowMechanicalsHeader { get; set; }
-        bool ShowPublicationHeader { get; set; }
-        bool ShowSectionHeader { get; set; }
-        bool ShowReadershipHeader { get; set; }
         bool ShowDeliveryHeader { get; set; }
+        bool ShowDiscountHeader { get; set; }
+        bool ShowPageSizeHeader { get; set; }
+        bool ShowSquareHeader { get; set; }
         bool ShowDeadlineHeader { get; set; }
+        bool ShowReadershipHeader { get; set; }
+        bool ShowCommentsHeader { get; set; }
+
+        bool EnableCommentsInPreview { get; set; }
+        bool EnableSectionInPreview { get; set; }
+        bool EnableMechanicalsInPreview { get; set; }
+        bool EnableColumnInchesInPreview { get; set; }
+        bool EnablePublicationInPreview { get; set; }
+        bool EnablePageSizeInPreview { get; set; }
+        bool EnablePercentOfPageInPreview { get; set; }
+        bool EnableDimensionsInPreview { get; set; }
+        bool EnableReadershipInPreview { get; set; }
+        bool EnableDeliveryInPreview { get; set; }
+        bool EnableDeadlineInPreview { get; set; }
 
         bool ShowCommentsInPreview { get; set; }
         bool ShowSectionInPreview { get; set; }
@@ -363,6 +397,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         void SetSlideHeader();
         void SaveView();
         void UpdateOutput(bool quickLoad);
+        void ResetToDefault();
         void OpenHelp();
         void PrintOutput();
         void Email();

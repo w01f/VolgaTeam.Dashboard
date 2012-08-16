@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace AdScheduleBuilder.ConfigurationClasses
 {
-    public class ScheduleViewSettings
+    public class ScheduleBuilderViewSettings
     {
         public HomeViewSettings HomeViewSettings { get; set; }
 
@@ -22,18 +22,22 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
         public CalendarViewSettings CalendarViewSettings { get; set; }
 
-        public ScheduleViewSettings()
+        public ScheduleBuilderViewSettings()
         {
             this.HomeViewSettings = new HomeViewSettings();
+            this.HomeViewSettings.ResetToDefault();
 
             this.MultiSummaryViewSettings = new MultiSummaryViewSettings();
+
             this.SnapshotViewSettings = new SnapshotViewSettings();
+            this.SnapshotViewSettings.ResetToDefault();
 
             this.DetailedGridViewSettings = new DetailedGridViewSettings();
             this.MultiGridViewSettings = new MultiGridViewSettings();
             this.ChronoGridViewSettings = new ChronoGridViewSettings();
 
             this.CalendarViewSettings = new CalendarViewSettings();
+            this.CalendarViewSettings.ResetToDefault();
         }
 
         public string Serialize()
@@ -109,7 +113,11 @@ namespace AdScheduleBuilder.ConfigurationClasses
         public PublicationViewSettings()
         {
             this.BasicOverviewSettings = new PublicationBasicOverviewSettings();
+            this.BasicOverviewSettings.ResetToDefault();
+
             this.MultiSummarySettings = new PublicationMultiSummarySettings();
+            this.MultiSummarySettings.ResetToDefault();
+
             this.DetailedGridSettings = new PublicationDetailedGridSettings();
         }
 
@@ -146,6 +154,7 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
     public class PublicationBasicOverviewSettings
     {
+
         public bool ShowName { get; set; }
         public bool ShowLogo { get; set; }
         public bool ShowFlightDates { get; set; }
@@ -154,6 +163,11 @@ namespace AdScheduleBuilder.ConfigurationClasses
         public bool ShowAdvertiser { get; set; }
         public bool ShowDecisionMaker { get; set; }
 
+        public bool EnableDimensions { get; set; }
+        public bool EnablePageSize { get; set; }
+        public bool EnablePercentOfPage { get; set; }
+        public bool EnableSquare { get; set; }
+        public bool EnableColor { get; set; }
         public bool ShowAdSizeDetails { get; set; }
         public bool ShowDimensions { get; set; }
         public bool ShowPageSize { get; set; }
@@ -162,16 +176,25 @@ namespace AdScheduleBuilder.ConfigurationClasses
         public bool ShowColor { get; set; }
         public bool ShowMechanicals { get; set; }
 
+        public bool EnableTotalInserts { get; set; }
+        public bool EnableTotalSquare { get; set; }
         public bool ShowTotalDetails { get; set; }
         public bool ShowTotalInserts { get; set; }
         public bool ShowTotalSquare { get; set; }
 
+        public bool EnableAvgAdCost { get; set; }
+        public bool EnableAvgPCI { get; set; }
+        public bool EnableDiscounts { get; set; }
+        public bool EnableInvestment { get; set; }
         public bool ShowInvestmentDetails { get; set; }
         public bool ShowAvgAdCost { get; set; }
         public bool ShowAvgPCI { get; set; }
         public bool ShowDiscounts { get; set; }
         public bool ShowInvestment { get; set; }
 
+        public bool EnableFlightDates2 { get; set; }
+        public bool EnableDates { get; set; }
+        public bool EnableComments { get; set; }
         public bool ShowDateDetails { get; set; }
         public bool ShowFlightDates2 { get; set; }
         public bool ShowDates { get; set; }
@@ -190,24 +213,38 @@ namespace AdScheduleBuilder.ConfigurationClasses
             this.ShowAdvertiser = true;
             this.ShowDecisionMaker = true;
 
+            this.EnableDimensions = true;
+            this.EnablePageSize = true;
+            this.EnablePercentOfPage = true;
+            this.EnableSquare = true;
+            this.EnableColor = true;
             this.ShowAdSizeDetails = true;
-            this.ShowDimensions = true;
+            this.ShowDimensions = false;
             this.ShowPageSize = true;
             this.ShowPercentOfPage = true;
             this.ShowSquare = true;
             this.ShowColor = true;
             this.ShowMechanicals = true;
 
+            this.EnableTotalInserts = true;
+            this.EnableTotalSquare = true;
             this.ShowTotalDetails = true;
             this.ShowTotalInserts = true;
             this.ShowTotalSquare = true;
 
+            this.EnableAvgAdCost = true;
+            this.EnableAvgPCI = true;
+            this.EnableDiscounts = true;
+            this.EnableInvestment = true;
             this.ShowInvestmentDetails = true;
             this.ShowAvgAdCost = true;
             this.ShowAvgPCI = true;
-            this.ShowDiscounts = true;
+            this.ShowDiscounts = false;
             this.ShowInvestment = true;
 
+            this.EnableFlightDates2 = true;
+            this.EnableDates = true;
+            this.EnableComments = true;
             this.ShowDateDetails = true;
             this.ShowFlightDates2 = true;
             this.ShowDates = true;
@@ -215,6 +252,13 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
             this.Comments = string.Empty;
             this.SlideHeader = string.Empty;
+        }
+
+        public void ResetToDefault()
+        {
+            XmlDocument defaultSettings = new XmlDocument();
+            defaultSettings.LoadXml(@"<DefaultSettings>" + BusinessClasses.ListManager.Instance.DefaultPublicationBasicOverviewSettings.Serialize() + @"</DefaultSettings>");
+            this.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
         }
 
         public string Serialize()
@@ -230,6 +274,11 @@ namespace AdScheduleBuilder.ConfigurationClasses
             result.AppendLine(@"<ShowSlideHeader>" + this.ShowSlideHeader + @"</ShowSlideHeader>");
             result.AppendLine(@"<SlideHeader>" + this.SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
 
+            result.AppendLine(@"<EnableDimensions>" + this.EnableDimensions + @"</EnableDimensions>");
+            result.AppendLine(@"<EnablePageSize>" + this.EnablePageSize + @"</EnablePageSize>");
+            result.AppendLine(@"<EnablePercentOfPage>" + this.EnablePercentOfPage + @"</EnablePercentOfPage>");
+            result.AppendLine(@"<EnableSquare>" + this.EnableSquare + @"</EnableSquare>");
+            result.AppendLine(@"<EnableColor>" + this.EnableColor + @"</EnableColor>");
             result.AppendLine(@"<ShowAdSizeDetails>" + this.ShowAdSizeDetails + @"</ShowAdSizeDetails>");
             result.AppendLine(@"<ShowDimensions>" + this.ShowDimensions + @"</ShowDimensions>");
             result.AppendLine(@"<ShowPageSize>" + this.ShowPageSize + @"</ShowPageSize>");
@@ -238,16 +287,25 @@ namespace AdScheduleBuilder.ConfigurationClasses
             result.AppendLine(@"<ShowColor>" + this.ShowColor + @"</ShowColor>");
             result.AppendLine(@"<ShowMechanicals>" + this.ShowMechanicals + @"</ShowMechanicals>");
 
+            result.AppendLine(@"<EnableTotalInserts>" + this.EnableTotalInserts + @"</EnableTotalInserts>");
+            result.AppendLine(@"<EnableTotalSquare>" + this.EnableTotalSquare + @"</EnableTotalSquare>");
             result.AppendLine(@"<ShowTotalDetails>" + this.ShowTotalDetails + @"</ShowTotalDetails>");
             result.AppendLine(@"<ShowTotalInserts>" + this.ShowTotalInserts + @"</ShowTotalInserts>");
             result.AppendLine(@"<ShowTotalSquare>" + this.ShowTotalSquare + @"</ShowTotalSquare>");
 
+            result.AppendLine(@"<EnableAvgAdCost>" + this.EnableAvgAdCost + @"</EnableAvgAdCost>");
+            result.AppendLine(@"<EnableAvgPCI>" + this.EnableAvgPCI + @"</EnableAvgPCI>");
+            result.AppendLine(@"<EnableDiscounts>" + this.EnableDiscounts + @"</EnableDiscounts>");
+            result.AppendLine(@"<EnableInvestment>" + this.EnableInvestment + @"</EnableInvestment>");
             result.AppendLine(@"<ShowInvestmentDetails>" + this.ShowInvestmentDetails + @"</ShowInvestmentDetails>");
             result.AppendLine(@"<ShowAvgAdCost>" + this.ShowAvgAdCost + @"</ShowAvgAdCost>");
             result.AppendLine(@"<ShowAvgPCI>" + this.ShowAvgPCI + @"</ShowAvgPCI>");
             result.AppendLine(@"<ShowDiscounts>" + this.ShowDiscounts + @"</ShowDiscounts>");
             result.AppendLine(@"<ShowInvestment>" + this.ShowInvestment + @"</ShowInvestment>");
 
+            result.AppendLine(@"<EnableFlightDates2>" + this.EnableFlightDates2 + @"</EnableFlightDates2>");
+            result.AppendLine(@"<EnableDates>" + this.EnableDates + @"</EnableDates>");
+            result.AppendLine(@"<EnableComments>" + this.EnableComments + @"</EnableComments>");
             result.AppendLine(@"<ShowDateDetails>" + this.ShowDateDetails + @"</ShowDateDetails>");
             result.AppendLine(@"<ShowFlightDates2>" + this.ShowFlightDates2 + @"</ShowFlightDates2>");
             result.AppendLine(@"<ShowDates>" + this.ShowDates + @"</ShowDates>");
@@ -265,44 +323,57 @@ namespace AdScheduleBuilder.ConfigurationClasses
                 switch (childNode.Name)
                 {
                     case "ShowName":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowName = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowName = tempBool;
                         break;
                     case "ShowLogo":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowLogo = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowLogo = tempBool;
                         break;
                     case "ShowFlightDates":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowFlightDates = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowFlightDates = tempBool;
                         break;
                     case "ShowAdvertiser":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowAdvertiser = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowAdvertiser = tempBool;
                         break;
                     case "ShowDecisionMaker":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowDecisionMaker = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDecisionMaker = tempBool;
                         break;
                     case "ShowPresentationDate":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowPresentationDate = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPresentationDate = tempBool;
                         break;
                     case "ShowSlideHeader":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowSlideHeader = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowSlideHeader = tempBool;
                         break;
                     case "SlideHeader":
                         this.SlideHeader = childNode.InnerText;
                         break;
 
+                    case "EnablePageSize":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePageSize = tempBool;
+                        break;
+                    case "EnableDimensions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDimensions = tempBool;
+                        break;
+                    case "EnableSquare":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSquare = tempBool;
+                        break;
+                    case "EnableColor":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableColor = tempBool;
+                        break;
+                    case "EnablePercentOfPage":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePercentOfPage = tempBool;
+                        break;
                     case "ShowAdSizeDetails":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowAdSizeDetails = tempBool;
@@ -323,11 +394,23 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowColor = tempBool;
                         break;
+                    case "ShowPercentOfPage":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPercentOfPage = tempBool;
+                        break;
                     case "ShowMechanicals":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowMechanicals = tempBool;
                         break;
 
+                    case "EnableTotalInserts":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalInserts = tempBool;
+                        break;
+                    case "EnableTotalSquare":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalSquare = tempBool;
+                        break;
                     case "ShowTotalDetails":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowTotalDetails = tempBool;
@@ -341,10 +424,27 @@ namespace AdScheduleBuilder.ConfigurationClasses
                             this.ShowTotalSquare = tempBool;
                         break;
 
+                    case "EnableAvgAdCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAvgAdCost = tempBool;
+                        break;
+                    case "EnableAvgPCI":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAvgPCI = tempBool;
+                        break;
+                    case "EnableDiscounts":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDiscounts = tempBool;
+                        break;
+                    case "EnableInvestment":
+                        tempBool = false;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableInvestment = tempBool;
+                        break;
                     case "ShowInvestmentDetails":
                         tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowInvestmentDetails = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowInvestmentDetails = tempBool;
                         break;
                     case "ShowAvgAdCost":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -360,35 +460,61 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         break;
                     case "ShowInvestment":
                         tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowInvestment = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowInvestment = tempBool;
                         break;
 
+                    case "EnableFlightDates2":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableFlightDates2 = tempBool;
+                        break;
+                    case "EnableDates":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDates = tempBool;
+                        break;
+                    case "EnableComments":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableComments = tempBool;
+                        break;
                     case "ShowDateDetails":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowDateDetails = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDateDetails = tempBool;
                         break;
                     case "ShowFlightDates2":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowFlightDates2 = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowFlightDates2 = tempBool;
                         break;
                     case "ShowDates":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowDates = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDates = tempBool;
                         break;
                     case "ShowComments":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowComments = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowComments = tempBool;
                         break;
                     case "Comments":
                         this.Comments = childNode.InnerText;
                         break;
                 }
             }
+
+            this.ShowDimensions &= this.EnableDimensions;
+            this.ShowPageSize &= this.EnablePageSize;
+            this.ShowPercentOfPage &= this.EnablePercentOfPage;
+            this.ShowSquare &= this.EnableSquare;
+            this.ShowColor &= this.EnableColor;
+
+            this.ShowTotalInserts &= this.EnableTotalInserts;
+            this.ShowTotalSquare &= this.EnableTotalSquare;
+
+            this.ShowAvgAdCost &= this.EnableAvgAdCost;
+            this.ShowAvgPCI &= this.EnableAvgPCI;
+            this.ShowDiscounts &= this.EnableDiscounts;
+            this.ShowInvestment &= this.EnableInvestment;
+
+            this.ShowFlightDates2 &= this.EnableFlightDates2;
+            this.ShowDates &= this.EnableDates;
+            this.ShowComments &= this.EnableComments;
         }
     }
 
@@ -397,23 +523,37 @@ namespace AdScheduleBuilder.ConfigurationClasses
         public bool ShowName { get; set; }
         public bool ShowLogo { get; set; }
         public bool ShowInvestment { get; set; }
+
+        public bool EnableFlightDates { get; set; }
+        public bool EnableDates { get; set; }
+        public bool EnableComments { get; set; }
         public bool ShowFlightDates { get; set; }
         public bool ShowDates { get; set; }
         public bool ShowComments { get; set; }
 
+        public bool EnableTotalInserts { get; set; }
+        public bool EnableDimensions { get; set; }
+        public bool EnablePageSize { get; set; }
+        public bool EnablePercentOfPage { get; set; }
+        public bool EnableTotalColor { get; set; }
+        public bool EnableAvgAdCost { get; set; }
+        public bool EnableAvgFinalCost { get; set; }
+        public bool EnableDiscounts { get; set; }
+        public bool EnableSection { get; set; }
         public bool ShowTotalInserts { get; set; }
-        public bool ShowTotalSquare { get; set; }
-        public bool ShowSquare { get; set; }
         public bool ShowDimensions { get; set; }
+        public bool ShowPageSize { get; set; }
+        public bool ShowPercentOfPage { get; set; }
         public bool ShowTotalColor { get; set; }
-        public bool ShowAvgPCI { get; set; }
         public bool ShowAvgAdCost { get; set; }
         public bool ShowAvgFinalCost { get; set; }
         public bool ShowDiscounts { get; set; }
-        public bool ShowPageSize { get; set; }
-        public bool ShowPercentOfPage { get; set; }
-        public bool ShowMechanicals { get; set; }
         public bool ShowSection { get; set; }
+
+        public bool ShowAvgPCI { get; set; }
+        public bool ShowTotalSquare { get; set; }
+        public bool ShowSquare { get; set; }
+        public bool ShowMechanicals { get; set; }
 
         public string InvestmentType { get; set; }
         public string Comments { get; set; }
@@ -423,26 +563,47 @@ namespace AdScheduleBuilder.ConfigurationClasses
             this.ShowName = true;
             this.ShowLogo = true;
             this.ShowInvestment = true;
+
+            this.EnableFlightDates = true;
+            this.EnableDates = true;
+            this.EnableComments = true;
             this.ShowFlightDates = true;
             this.ShowDates = true;
             this.ShowComments = false;
 
+            this.EnableTotalInserts = true;
+            this.EnableDimensions = true;
+            this.EnablePageSize = true;
+            this.EnablePercentOfPage = true;
+            this.EnableTotalColor = true;
+            this.EnableAvgAdCost = true;
+            this.EnableAvgFinalCost = true;
+            this.EnableDiscounts = true;
+            this.EnableSection = true;
             this.ShowTotalInserts = true;
-            this.ShowTotalSquare = true;
-            this.ShowSquare = true;
-            this.ShowDimensions = true;
+            this.ShowDimensions = false;
             this.ShowPageSize = true;
-            this.ShowPercentOfPage = true;
+            this.ShowPercentOfPage = false;
             this.ShowTotalColor = false;
             this.ShowAvgAdCost = false;
             this.ShowAvgFinalCost = false;
-            this.ShowAvgPCI = false;
             this.ShowDiscounts = false;
-            this.ShowMechanicals = false;
             this.ShowSection = false;
+
+            this.ShowAvgPCI = false;
+            this.ShowTotalSquare = false;
+            this.ShowSquare = false;
+            this.ShowMechanicals = false;
 
             this.InvestmentType = "Total";
             this.Comments = string.Empty;
+        }
+
+        public void ResetToDefault()
+        {
+            XmlDocument defaultSettings = new XmlDocument();
+            defaultSettings.LoadXml(@"<DefaultSettings>" + BusinessClasses.ListManager.Instance.DefaultPublicationMultiSummarySettings.Serialize() + @"</DefaultSettings>");
+            this.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
         }
 
         public string Serialize()
@@ -452,23 +613,37 @@ namespace AdScheduleBuilder.ConfigurationClasses
             result.AppendLine(@"<ShowName>" + this.ShowName + @"</ShowName>");
             result.AppendLine(@"<ShowLogo>" + this.ShowLogo + @"</ShowLogo>");
             result.AppendLine(@"<ShowInvestment>" + this.ShowInvestment + @"</ShowInvestment>");
+
+            result.AppendLine(@"<EnableFlightDates>" + this.EnableFlightDates + @"</EnableFlightDates>");
+            result.AppendLine(@"<EnableDates>" + this.EnableDates + @"</EnableDates>");
+            result.AppendLine(@"<EnableComments>" + this.EnableComments + @"</EnableComments>");
             result.AppendLine(@"<ShowFlightDates>" + this.ShowFlightDates + @"</ShowFlightDates>");
             result.AppendLine(@"<ShowDates>" + this.ShowDates + @"</ShowDates>");
             result.AppendLine(@"<ShowComments>" + this.ShowComments + @"</ShowComments>");
 
-            result.AppendLine(@"<ShowAvgAdCost>" + this.ShowAvgAdCost + @"</ShowAvgAdCost>");
-            result.AppendLine(@"<ShowAvgFinalCost>" + this.ShowAvgFinalCost + @"</ShowAvgFinalCost>");
-            result.AppendLine(@"<ShowAvgPCI>" + this.ShowAvgPCI + @"</ShowAvgPCI>");
-            result.AppendLine(@"<ShowSquare>" + this.ShowSquare + @"</ShowSquare>");
+            result.AppendLine(@"<EnableTotalInserts>" + this.EnableTotalInserts + @"</EnableTotalInserts>");
+            result.AppendLine(@"<EnableDimensions>" + this.EnableDimensions + @"</EnableDimensions>");
+            result.AppendLine(@"<EnablePageSize>" + this.EnablePageSize + @"</EnablePageSize>");
+            result.AppendLine(@"<EnablePercentOfPage>" + this.EnablePercentOfPage + @"</EnablePercentOfPage>");
+            result.AppendLine(@"<EnableTotalColor>" + this.EnableTotalColor + @"</EnableTotalColor>");
+            result.AppendLine(@"<EnableAvgAdCost>" + this.EnableAvgAdCost + @"</EnableAvgAdCost>");
+            result.AppendLine(@"<EnableAvgFinalCost>" + this.EnableAvgFinalCost + @"</EnableAvgFinalCost>");
+            result.AppendLine(@"<EnableDiscounts>" + this.EnableDiscounts + @"</EnableDiscounts>");
+            result.AppendLine(@"<EnableSection>" + this.EnableSection + @"</EnableSection>");
+            result.AppendLine(@"<ShowTotalInserts>" + this.ShowTotalInserts + @"</ShowTotalInserts>");
+            result.AppendLine(@"<ShowDimensions>" + this.ShowDimensions + @"</ShowDimensions>");
             result.AppendLine(@"<ShowPageSize>" + this.ShowPageSize + @"</ShowPageSize>");
             result.AppendLine(@"<ShowPercentOfPage>" + this.ShowPercentOfPage + @"</ShowPercentOfPage>");
-            result.AppendLine(@"<ShowDimensions>" + this.ShowDimensions + @"</ShowDimensions>");
-            result.AppendLine(@"<ShowDiscounts>" + this.ShowDiscounts + @"</ShowDiscounts>");
-            result.AppendLine(@"<ShowMechanicals>" + this.ShowMechanicals + @"</ShowMechanicals>");
-            result.AppendLine(@"<ShowSection>" + this.ShowSection + @"</ShowSection>");
             result.AppendLine(@"<ShowTotalColor>" + this.ShowTotalColor + @"</ShowTotalColor>");
-            result.AppendLine(@"<ShowTotalInserts>" + this.ShowTotalInserts + @"</ShowTotalInserts>");
+            result.AppendLine(@"<ShowAvgAdCost>" + this.ShowAvgAdCost + @"</ShowAvgAdCost>");
+            result.AppendLine(@"<ShowAvgFinalCost>" + this.ShowAvgFinalCost + @"</ShowAvgFinalCost>");
+            result.AppendLine(@"<ShowDiscounts>" + this.ShowDiscounts + @"</ShowDiscounts>");
+            result.AppendLine(@"<ShowSection>" + this.ShowSection + @"</ShowSection>");
+
+            result.AppendLine(@"<ShowAvgPCI>" + this.ShowAvgPCI + @"</ShowAvgPCI>");
             result.AppendLine(@"<ShowTotalSquare>" + this.ShowTotalSquare + @"</ShowTotalSquare>");
+            result.AppendLine(@"<ShowSquare>" + this.ShowSquare + @"</ShowSquare>");
+            result.AppendLine(@"<ShowMechanicals>" + this.ShowMechanicals + @"</ShowMechanicals>");
 
             result.AppendLine(@"<InvestmentType>" + this.InvestmentType + @"</InvestmentType>");
             result.AppendLine(@"<Comments>" + this.Comments.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comments>");
@@ -484,34 +659,98 @@ namespace AdScheduleBuilder.ConfigurationClasses
                 switch (childNode.Name)
                 {
                     case "ShowName":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowName = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowName = tempBool;
                         break;
                     case "ShowLogo":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowLogo = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowLogo = tempBool;
                         break;
                     case "ShowInvestment":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowInvestment = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowInvestment = tempBool;
+                        break;
+
+                    case "EnableFlightDates":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableFlightDates = tempBool;
+                        break;
+                    case "EnableDates":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDates = tempBool;
+                        break;
+                    case "EnableComments":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableComments = tempBool;
                         break;
                     case "ShowFlightDates":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowFlightDates = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowFlightDates = tempBool;
                         break;
                     case "ShowDates":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowDates = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDates = tempBool;
                         break;
                     case "ShowComments":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowComments = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowComments = tempBool;
+                        break;
+
+                    case "EnableTotalInserts":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalInserts = tempBool;
+                        break;
+                    case "EnableDimensions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDimensions = tempBool;
+                        break;
+                    case "EnablePageSize":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePageSize = tempBool;
+                        break;
+                    case "EnablePercentOfPage":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePercentOfPage = tempBool;
+                        break;
+                    case "EnableTotalColor":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalColor = tempBool;
+                        break;
+                    case "EnableAvgAdCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAvgAdCost = tempBool;
+                        break;
+                    case "EnableAvgFinalCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAvgFinalCost = tempBool;
+                        break;
+                    case "EnableDiscounts":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDiscounts = tempBool;
+                        break;
+                    case "EnableSection":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSection = tempBool;
+                        break;
+                    case "ShowTotalInserts":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowTotalInserts = tempBool;
+                        break;
+                    case "ShowDimensions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDimensions = tempBool;
+                        break;
+                    case "ShowPageSize":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPageSize = tempBool;
+                        break;
+                    case "ShowPercentOfPage":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPercentOfPage = tempBool;
+                        break;
+                    case "ShowTotalColor":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowTotalColor = tempBool;
                         break;
                     case "ShowAvgAdCost":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -521,49 +760,30 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowAvgFinalCost = tempBool;
                         break;
-                    case "ShowAvgPCI":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowAvgPCI = tempBool;
-                        break;
-                    case "ShowSquare":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowSquare = tempBool;
-                        break;
-                    case "ShowPercentOfPage":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowPercentOfPage = tempBool;
-                        break;
-                    case "ShowPageSize":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowPageSize = tempBool;
-                        break;
-                    case "ShowDimensions":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowDimensions = tempBool;
-                        break;
                     case "ShowDiscounts":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowDiscounts = tempBool;
-                        break;
-                    case "ShowMechanicals":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowMechanicals = tempBool;
                         break;
                     case "ShowSection":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowSection = tempBool;
                         break;
-                    case "ShowTotalColor":
+
+                    case "ShowAvgPCI":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowTotalColor = tempBool;
-                        break;
-                    case "ShowTotalInserts":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowTotalInserts = tempBool;
+                            this.ShowAvgPCI = tempBool;
                         break;
                     case "ShowTotalSquare":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowTotalSquare = tempBool;
+                        break;
+                    case "ShowSquare":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowSquare = tempBool;
+                        break;
+                    case "ShowMechanicals":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowMechanicals = tempBool;
                         break;
 
                     case "InvestmentType":
@@ -574,6 +794,20 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         break;
                 }
             }
+
+            this.ShowFlightDates &= this.EnableFlightDates;
+            this.ShowDates &= this.EnableDates;
+            this.ShowComments &= this.EnableComments;
+
+            this.ShowTotalInserts &= this.EnableTotalInserts;
+            this.ShowDimensions &= this.EnableDimensions;
+            this.ShowPageSize &= this.EnablePageSize;
+            this.ShowPercentOfPage &= this.EnablePercentOfPage;
+            this.ShowTotalColor &= this.EnableTotalColor;
+            this.ShowAvgAdCost &= this.EnableAvgAdCost;
+            this.ShowAvgFinalCost &= this.EnableAvgFinalCost;
+            this.ShowDiscounts &= this.EnableDiscounts;
+            this.ShowSection &= this.EnableSection;
         }
     }
 
@@ -609,6 +843,19 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
     public class HomeViewSettings
     {
+        public bool EnableAccountNumber { get; set; }
+        public bool EnableSalesStrategyPerson { get; set; }
+        public bool EnableSalesStrategyEmail { get; set; }
+        public bool EnableSalesStrategyFax { get; set; }
+        public bool EnableDelivery { get; set; }
+        public bool EnableReadership { get; set; }
+        public bool EnableLogo { get; set; }
+        public bool EnableCode { get; set; }
+
+        public bool ShowAccountNumber { get; set; }
+        public bool ShowSalesStrategyPerson { get; set; }
+        public bool ShowSalesStrategyEmail { get; set; }
+        public bool ShowSalesStrategyFax { get; set; }
         public bool ShowDelivery { get; set; }
         public bool ShowReadership { get; set; }
         public bool ShowLogo { get; set; }
@@ -616,16 +863,49 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
         public HomeViewSettings()
         {
+            this.EnableAccountNumber = true;
+            this.EnableSalesStrategyPerson = true;
+            this.EnableSalesStrategyEmail = true;
+            this.EnableSalesStrategyFax = true;
+            this.EnableDelivery = true;
+            this.EnableReadership = true;
+            this.EnableLogo = true;
+            this.EnableCode = true;
+
+            this.ShowAccountNumber = false;
+            this.ShowSalesStrategyPerson = true;
+            this.ShowSalesStrategyEmail = false;
+            this.ShowSalesStrategyFax = false;
             this.ShowDelivery = false;
             this.ShowReadership = false;
             this.ShowLogo = true;
             this.ShowCode = true;
         }
 
+        public void ResetToDefault()
+        {
+            XmlDocument defaultSettings = new XmlDocument();
+            defaultSettings.LoadXml(@"<DefaultSettings>" + BusinessClasses.ListManager.Instance.DefaultHomeViewSettings.Serialize() + @"</DefaultSettings>");
+            this.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
+        }
+
         public string Serialize()
         {
             StringBuilder result = new StringBuilder();
 
+            result.AppendLine(@"<EnableAccountNumber>" + this.EnableAccountNumber + @"</EnableAccountNumber>");
+            result.AppendLine(@"<EnableSalesStrategyPerson>" + this.EnableSalesStrategyPerson + @"</EnableSalesStrategyPerson>");
+            result.AppendLine(@"<EnableSalesStrategyEmail>" + this.EnableSalesStrategyEmail + @"</EnableSalesStrategyEmail>");
+            result.AppendLine(@"<EnableSalesStrategyFax>" + this.EnableSalesStrategyFax + @"</EnableSalesStrategyFax>");
+            result.AppendLine(@"<EnableCode>" + this.EnableCode + @"</EnableCode>");
+            result.AppendLine(@"<EnableDelivery>" + this.EnableDelivery + @"</EnableDelivery>");
+            result.AppendLine(@"<EnableLogo>" + this.EnableLogo + @"</EnableLogo>");
+            result.AppendLine(@"<EnableReadership>" + this.EnableReadership + @"</EnableReadership>");
+
+            result.AppendLine(@"<ShowAccountNumber>" + this.ShowAccountNumber + @"</ShowAccountNumber>");
+            result.AppendLine(@"<ShowSalesStrategyPerson>" + this.ShowSalesStrategyPerson + @"</ShowSalesStrategyPerson>");
+            result.AppendLine(@"<ShowSalesStrategyEmail>" + this.ShowSalesStrategyEmail + @"</ShowSalesStrategyEmail>");
+            result.AppendLine(@"<ShowSalesStrategyFax>" + this.ShowSalesStrategyFax + @"</ShowSalesStrategyFax>");
             result.AppendLine(@"<ShowCode>" + this.ShowCode + @"</ShowCode>");
             result.AppendLine(@"<ShowDelivery>" + this.ShowDelivery + @"</ShowDelivery>");
             result.AppendLine(@"<ShowLogo>" + this.ShowLogo + @"</ShowLogo>");
@@ -642,6 +922,55 @@ namespace AdScheduleBuilder.ConfigurationClasses
             {
                 switch (childNode.Name)
                 {
+                    case "EnableAccountNumber":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAccountNumber = tempBool;
+                        break;
+                    case "EnableSalesStrategyPerson":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSalesStrategyPerson = tempBool;
+                        break;
+                    case "EnableSalesStrategyEmail":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSalesStrategyEmail = tempBool;
+                        break;
+                    case "EnableSalesStrategyFax":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSalesStrategyFax = tempBool;
+                        break;
+                    case "EnableCode":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableCode = tempBool;
+                        break;
+                    case "EnableDelivery":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDelivery = tempBool;
+                        break;
+                    case "EnableLogo":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableLogo = tempBool;
+                        break;
+                    case "EnableReadership":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableReadership = tempBool;
+                        break;
+
+                    case "ShowAccountNumber":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowAccountNumber = tempBool;
+                        break;
+                    case "ShowSalesStrategyPerson":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowSalesStrategyPerson = tempBool;
+                        break;
+                    case "ShowSalesStrategyEmail":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowSalesStrategyEmail = tempBool;
+                        break;
+                    case "ShowSalesStrategyFax":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowSalesStrategyFax = tempBool;
+                        break;
                     case "ShowCode":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowCode = tempBool;
@@ -660,6 +989,202 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         break;
                 }
             }
+
+            this.ShowAccountNumber &= this.EnableAccountNumber;
+            this.ShowSalesStrategyPerson &= this.EnableSalesStrategyPerson;
+            this.ShowSalesStrategyEmail &= this.EnableSalesStrategyEmail;
+            this.ShowSalesStrategyFax &= this.EnableSalesStrategyFax;
+            this.ShowDelivery &= this.EnableDelivery;
+            this.ShowReadership &= this.EnableReadership;
+            this.ShowLogo &= this.EnableLogo;
+            this.ShowCode &= this.EnableCode;
+        }
+    }
+
+    public class PrintScheduleViewSettings
+    {
+        public bool EnablePCI { get; set; }
+        public bool EnableFlat { get; set; }
+        public bool EnableShare { get; set; }
+        public bool EnableBlackWhite { get; set; }
+        public bool EnableSpotColor { get; set; }
+        public bool EnableFullColor { get; set; }
+        public bool EnableCostPerAd { get; set; }
+        public bool EnablePercentOfAd { get; set; }
+        public bool EnableColorIncluded { get; set; }
+        public bool EnableCostPerInch { get; set; }
+
+        public bool DefaultPCI { get; set; }
+        public bool DefaultFlat { get; set; }
+        public bool DefaultShare { get; set; }
+        public bool DefaultBlackWhite { get; set; }
+        public bool DefaultSpotColor { get; set; }
+        public bool DefaultFullColor { get; set; }
+        public bool DefaultCostPerAd { get; set; }
+        public bool DefaultPercentOfAd { get; set; }
+        public bool DefaultColorIncluded { get; set; }
+        public bool DefaultCostPerInch { get; set; }
+
+        public PrintScheduleViewSettings()
+        {
+            this.EnablePCI = true;
+            this.EnableFlat = true;
+            this.EnableShare = true;
+            this.EnableBlackWhite = true;
+            this.EnableSpotColor = true;
+            this.EnableFullColor = true;
+            this.EnableCostPerAd = true;
+            this.EnablePercentOfAd = true;
+            this.EnableColorIncluded = true;
+            this.EnableCostPerInch = true;
+
+            this.DefaultPCI = false;
+            this.DefaultFlat = false;
+            this.DefaultShare = true;
+            this.DefaultBlackWhite = false;
+            this.DefaultSpotColor = false;
+            this.DefaultFullColor = true;
+            this.DefaultCostPerAd = false;
+            this.DefaultPercentOfAd = false;
+            this.DefaultColorIncluded = true;
+            this.DefaultCostPerInch = false;
+        }
+
+        private void LoadDefaultSettings()
+        {
+        }
+
+        public string Serialize()
+        {
+            StringBuilder result = new StringBuilder();
+
+            result.AppendLine(@"<EnablePCI>" + this.EnablePCI + @"</EnablePCI>");
+            result.AppendLine(@"<EnableFlat>" + this.EnableFlat + @"</EnableFlat>");
+            result.AppendLine(@"<EnableShare>" + this.EnableShare + @"</EnableShare>");
+            result.AppendLine(@"<EnableBlackWhite>" + this.EnableBlackWhite + @"</EnableBlackWhite>");
+            result.AppendLine(@"<EnableSpotColor>" + this.EnableSpotColor + @"</EnableSpotColor>");
+            result.AppendLine(@"<EnableFullColor>" + this.EnableFullColor + @"</EnableFullColor>");
+            result.AppendLine(@"<EnableCostPerAd>" + this.EnableCostPerAd + @"</EnableCostPerAd>");
+            result.AppendLine(@"<EnablePercentOfAd>" + this.EnablePercentOfAd + @"</EnablePercentOfAd>");
+            result.AppendLine(@"<EnableColorIncluded>" + this.EnableColorIncluded + @"</EnableColorIncluded>");
+            result.AppendLine(@"<EnableCostPerInch>" + this.EnableCostPerInch + @"</EnableCostPerInch>");
+
+            result.AppendLine(@"<DefaultPCI>" + this.DefaultPCI + @"</DefaultPCI>");
+            result.AppendLine(@"<DefaultFlat>" + this.DefaultFlat + @"</DefaultFlat>");
+            result.AppendLine(@"<DefaultShare>" + this.DefaultShare + @"</DefaultShare>");
+            result.AppendLine(@"<DefaultBlackWhite>" + this.DefaultBlackWhite + @"</DefaultBlackWhite>");
+            result.AppendLine(@"<DefaultSpotColor>" + this.DefaultSpotColor + @"</DefaultSpotColor>");
+            result.AppendLine(@"<DefaultFullColor>" + this.DefaultFullColor + @"</DefaultFullColor>");
+            result.AppendLine(@"<DefaultCostPerAd>" + this.DefaultCostPerAd + @"</DefaultCostPerAd>");
+            result.AppendLine(@"<DefaultPercentOfAd>" + this.DefaultPercentOfAd + @"</DefaultPercentOfAd>");
+            result.AppendLine(@"<DefaultColorIncluded>" + this.DefaultColorIncluded + @"</DefaultColorIncluded>");
+            result.AppendLine(@"<DefaultCostPerInch>" + this.DefaultCostPerInch + @"</DefaultCostPerInch>");
+
+            return result.ToString();
+        }
+
+        public void Deserialize(XmlNode node)
+        {
+            bool tempBool = false;
+
+            foreach (XmlNode childNode in node.ChildNodes)
+            {
+                switch (childNode.Name)
+                {
+                    case "EnablePCI":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePCI = tempBool;
+                        break;
+                    case "EnableFlat":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableFlat = tempBool;
+                        break;
+                    case "EnableShare":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableShare = tempBool;
+                        break;
+                    case "EnableBlackWhite":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableBlackWhite = tempBool;
+                        break;
+                    case "EnableSpotColor":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSpotColor = tempBool;
+                        break;
+                    case "EnableFullColor":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableFullColor = tempBool;
+                        break;
+                    case "EnableCostPerAd":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableCostPerAd = tempBool;
+                        break;
+                    case "EnablePercentOfAd":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePercentOfAd = tempBool;
+                        break;
+                    case "EnableColorIncluded":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableColorIncluded = tempBool;
+                        break;
+                    case "EnableCostPerInch":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableCostPerInch = tempBool;
+                        break;
+
+                    case "DefaultPCI":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.DefaultPCI = tempBool;
+                        break;
+                    case "DefaultFlat":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.DefaultFlat = tempBool;
+                        break;
+                    case "DefaultShare":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.DefaultShare = tempBool;
+                        break;
+                    case "DefaultBlackWhite":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.DefaultBlackWhite = tempBool;
+                        break;
+                    case "DefaultSpotColor":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.DefaultSpotColor = tempBool;
+                        break;
+                    case "DefaultFullColor":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.DefaultFullColor = tempBool;
+                        break;
+                    case "DefaultCostPerAd":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.DefaultCostPerAd = tempBool;
+                        break;
+                    case "DefaultPercentOfAd":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.DefaultPercentOfAd = tempBool;
+                        break;
+                    case "DefaultColorIncluded":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.DefaultColorIncluded = tempBool;
+                        break;
+                    case "DefaultCostPerInch":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.DefaultCostPerInch = tempBool;
+                        break;
+                }
+            }
+
+            this.DefaultPCI &= this.EnablePCI;
+            this.DefaultFlat &= this.EnableFlat;
+            this.DefaultShare &= this.EnableShare;
+            this.DefaultBlackWhite &= this.EnableBlackWhite;
+            this.DefaultSpotColor &= this.EnableSpotColor;
+            this.DefaultFullColor &= this.EnableFullColor;
+            this.DefaultCostPerAd &= this.EnableCostPerAd;
+            this.DefaultPercentOfAd &= this.EnablePercentOfAd;
+            this.DefaultColorIncluded &= this.EnableColorIncluded;
+            this.DefaultCostPerInch &= this.EnableCostPerInch;
         }
     }
 
@@ -711,34 +1236,28 @@ namespace AdScheduleBuilder.ConfigurationClasses
                 switch (childNode.Name)
                 {
                     case "ShowAdvertiser":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowAdvertiser = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowAdvertiser = tempBool;
                         break;
                     case "ShowDecisionMaker":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowDecisionMaker = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDecisionMaker = tempBool;
                         break;
                     case "ShowFlightDates":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowFlightDates = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowFlightDates = tempBool;
                         break;
                     case "ShowPresentationDate":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowPresentationDate = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPresentationDate = tempBool;
                         break;
                     case "ShowOnePublicationPerSlide":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowOnePublicationPerSlide = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowOnePublicationPerSlide = tempBool;
                         break;
                     case "ShowSlideHeader":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowSlideHeader = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowSlideHeader = tempBool;
                         break;
                     case "SlideHeader":
                         this.SlideHeader = childNode.InnerText;
@@ -758,21 +1277,36 @@ namespace AdScheduleBuilder.ConfigurationClasses
         public bool ShowOptions { get; set; }
         public int SelectedOptionChapterIndex { get; set; }
 
+        public bool EnableLogo { get; set; }
+        public bool EnableTotalInserts { get; set; }
+        public bool EnableTotalFinalCost { get; set; }
+        public bool EnablePageSize { get; set; }
+        public bool EnableDimensions { get; set; }
+        public bool EnableSquare { get; set; }
+        public bool EnableTotalSquare { get; set; }
+        public bool EnableAvgPCI { get; set; }
+        public bool EnableAvgCost { get; set; }
+        public bool EnableAvgFinalCost { get; set; }
+        public bool EnableTotalColor { get; set; }
+        public bool EnableTotalDiscounts { get; set; }
+        public bool EnableReadership { get; set; }
+        public bool EnableDelivery { get; set; }
+        public bool EnablePercentOfPage { get; set; }
         public bool ShowLogo { get; set; }
         public bool ShowTotalInserts { get; set; }
+        public bool ShowTotalFinalCost { get; set; }
         public bool ShowPageSize { get; set; }
-        public bool ShowPercentOfPage { get; set; }
         public bool ShowDimensions { get; set; }
         public bool ShowSquare { get; set; }
         public bool ShowTotalSquare { get; set; }
         public bool ShowAvgPCI { get; set; }
         public bool ShowAvgCost { get; set; }
         public bool ShowAvgFinalCost { get; set; }
-        public bool ShowTotalFinalCost { get; set; }
         public bool ShowTotalColor { get; set; }
         public bool ShowTotalDiscounts { get; set; }
         public bool ShowReadership { get; set; }
         public bool ShowDelivery { get; set; }
+        public bool ShowPercentOfPage { get; set; }
 
         public string SlideHeader { get; set; }
 
@@ -786,39 +1320,45 @@ namespace AdScheduleBuilder.ConfigurationClasses
             this.ShowOptions = true;
             this.SelectedOptionChapterIndex = 0;
 
+            this.EnableLogo = true;
+            this.EnableTotalInserts = true;
+            this.EnableTotalFinalCost = true;
+            this.EnablePageSize = true;
+            this.EnableDimensions = true;
+            this.EnableSquare = true;
+            this.EnableTotalSquare = true;
+            this.EnableAvgPCI = true;
+            this.EnableAvgCost = true;
+            this.EnableAvgFinalCost = true;
+            this.EnableTotalColor = true;
+            this.EnableTotalDiscounts = true;
+            this.EnableReadership = true;
+            this.EnableDelivery = true;
+            this.EnablePercentOfPage = true;
             this.ShowLogo = true;
             this.ShowTotalInserts = true;
+            this.ShowTotalFinalCost = true;
             this.ShowPageSize = false;
             this.ShowDimensions = false;
             this.ShowSquare = false;
-            this.ShowPercentOfPage = false;
             this.ShowTotalSquare = false;
             this.ShowAvgPCI = false;
             this.ShowAvgCost = false;
-            this.ShowAvgFinalCost = true;
-            this.ShowTotalFinalCost = true;
+            this.ShowAvgFinalCost = false;
             this.ShowTotalColor = false;
             this.ShowTotalDiscounts = false;
             this.ShowReadership = false;
             this.ShowDelivery = false;
+            this.ShowPercentOfPage = false;
 
             this.SlideHeader = string.Empty;
-
-            LoadDefaultSettings();
         }
 
-        private void LoadDefaultSettings()
+        public void ResetToDefault()
         {
-            XmlNode node;
-            if (File.Exists(ConfigurationClasses.SettingsManager.Instance.LocalSettingsPath))
-            {
-                XmlDocument document = new XmlDocument();
-                document.Load(ConfigurationClasses.SettingsManager.Instance.LocalSettingsPath);
-
-                node = document.SelectSingleNode(@"/AdScheduleSettings/SnapshotViewSettings");
-                if (node != null)
-                    this.Deserialize(node);
-            }
+            XmlDocument defaultSettings = new XmlDocument();
+            defaultSettings.LoadXml(@"<DefaultSettings>" + BusinessClasses.ListManager.Instance.DefaultSnapshotViewSettings.Serialize() + @"</DefaultSettings>");
+            this.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
         }
 
         public string Serialize()
@@ -832,21 +1372,37 @@ namespace AdScheduleBuilder.ConfigurationClasses
             result.AppendLine(@"<ShowSlideHeader>" + this.ShowSlideHeader + @"</ShowSlideHeader>");
             result.AppendLine(@"<ShowOptions>" + this.ShowOptions + @"</ShowOptions>");
             result.AppendLine(@"<SelectedOptionChapterIndex>" + this.SelectedOptionChapterIndex + @"</SelectedOptionChapterIndex>");
+
+            result.AppendLine(@"<EnableLogo>" + this.EnableLogo + @"</EnableLogo>");
+            result.AppendLine(@"<EnableTotalInserts>" + this.EnableTotalInserts + @"</EnableTotalInserts>");
+            result.AppendLine(@"<EnableTotalFinalCost>" + this.EnableTotalFinalCost + @"</EnableTotalFinalCost>");
+            result.AppendLine(@"<EnablePageSize>" + this.EnablePageSize + @"</EnablePageSize>");
+            result.AppendLine(@"<EnableDimensions>" + this.EnableDimensions + @"</EnableDimensions>");
+            result.AppendLine(@"<EnableSquare>" + this.EnableSquare + @"</EnableSquare>");
+            result.AppendLine(@"<EnableTotalSquare>" + this.EnableTotalSquare + @"</EnableTotalSquare>");
+            result.AppendLine(@"<EnableAvgPCI>" + this.EnableAvgPCI + @"</EnableAvgPCI>");
+            result.AppendLine(@"<EnableAvgCost>" + this.EnableAvgCost + @"</EnableAvgCost>");
+            result.AppendLine(@"<EnableAvgFinalCost>" + this.EnableAvgFinalCost + @"</EnableAvgFinalCost>");
+            result.AppendLine(@"<EnableTotalColor>" + this.EnableTotalColor + @"</EnableTotalColor>");
+            result.AppendLine(@"<EnableTotalDiscounts>" + this.EnableTotalDiscounts + @"</EnableTotalDiscounts>");
+            result.AppendLine(@"<EnableReadership>" + this.EnableReadership + @"</EnableReadership>");
+            result.AppendLine(@"<EnableDelivery>" + this.EnableDelivery + @"</EnableDelivery>");
+            result.AppendLine(@"<EnablePercentOfPage>" + this.EnablePercentOfPage + @"</EnablePercentOfPage>");
+            result.AppendLine(@"<ShowLogo>" + this.ShowLogo + @"</ShowLogo>");
+            result.AppendLine(@"<ShowTotalInserts>" + this.ShowTotalInserts + @"</ShowTotalInserts>");
+            result.AppendLine(@"<ShowTotalFinalCost>" + this.ShowTotalFinalCost + @"</ShowTotalFinalCost>");
+            result.AppendLine(@"<ShowPageSize>" + this.ShowPageSize + @"</ShowPageSize>");
+            result.AppendLine(@"<ShowDimensions>" + this.ShowDimensions + @"</ShowDimensions>");
+            result.AppendLine(@"<ShowSquare>" + this.ShowSquare + @"</ShowSquare>");
+            result.AppendLine(@"<ShowTotalSquare>" + this.ShowTotalSquare + @"</ShowTotalSquare>");
+            result.AppendLine(@"<ShowAvgPCI>" + this.ShowAvgPCI + @"</ShowAvgPCI>");
             result.AppendLine(@"<ShowAvgCost>" + this.ShowAvgCost + @"</ShowAvgCost>");
             result.AppendLine(@"<ShowAvgFinalCost>" + this.ShowAvgFinalCost + @"</ShowAvgFinalCost>");
-            result.AppendLine(@"<ShowAvgPCI>" + this.ShowAvgPCI + @"</ShowAvgPCI>");
-            result.AppendLine(@"<ShowDelivery>" + this.ShowDelivery + @"</ShowDelivery>");
-            result.AppendLine(@"<ShowDimensions>" + this.ShowDimensions + @"</ShowDimensions>");
-            result.AppendLine(@"<ShowLogo>" + this.ShowLogo + @"</ShowLogo>");
-            result.AppendLine(@"<ShowPageSize>" + this.ShowPageSize + @"</ShowPageSize>");
-            result.AppendLine(@"<ShowPercentOfPage>" + this.ShowPercentOfPage + @"</ShowPercentOfPage>");
-            result.AppendLine(@"<ShowReadership>" + this.ShowReadership + @"</ShowReadership>");
-            result.AppendLine(@"<ShowSquare>" + this.ShowSquare + @"</ShowSquare>");
             result.AppendLine(@"<ShowTotalColor>" + this.ShowTotalColor + @"</ShowTotalColor>");
             result.AppendLine(@"<ShowTotalDiscounts>" + this.ShowTotalDiscounts + @"</ShowTotalDiscounts>");
-            result.AppendLine(@"<ShowTotalFinalCost>" + this.ShowTotalFinalCost + @"</ShowTotalFinalCost>");
-            result.AppendLine(@"<ShowTotalInserts>" + this.ShowTotalInserts + @"</ShowTotalInserts>");
-            result.AppendLine(@"<ShowTotalSquare>" + this.ShowTotalSquare + @"</ShowTotalSquare>");
+            result.AppendLine(@"<ShowReadership>" + this.ShowReadership + @"</ShowReadership>");
+            result.AppendLine(@"<ShowDelivery>" + this.ShowDelivery + @"</ShowDelivery>");
+            result.AppendLine(@"<ShowPercentOfPage>" + this.ShowPercentOfPage + @"</ShowPercentOfPage>");
 
             result.AppendLine(@"<SlideHeader>" + this.SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
 
@@ -863,39 +1419,125 @@ namespace AdScheduleBuilder.ConfigurationClasses
                 switch (childNode.Name)
                 {
                     case "ShowAdvertiser":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowAdvertiser = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowAdvertiser = tempBool;
                         break;
                     case "ShowDecisionMaker":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowDecisionMaker = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDecisionMaker = tempBool;
                         break;
                     case "ShowFlightDates":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowFlightDates = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowFlightDates = tempBool;
                         break;
                     case "ShowPresentationDate":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowPresentationDate = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPresentationDate = tempBool;
                         break;
                     case "ShowSlideHeader":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowSlideHeader = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowSlideHeader = tempBool;
                         break;
                     case "ShowOptions":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowOptions = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowOptions = tempBool;
                         break;
                     case "SelectedOptionChapterIndex":
-                        tempInt = 0;
-                        int.TryParse(childNode.InnerText, out tempInt);
-                        this.SelectedOptionChapterIndex = tempInt;
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.SelectedOptionChapterIndex = tempInt;
+                        break;
+
+                    case "EnableLogo":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableLogo = tempBool;
+                        break;
+                    case "EnableTotalInserts":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalInserts = tempBool;
+                        break;
+                    case "EnableTotalFinalCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalFinalCost = tempBool;
+                        break;
+                    case "EnablePageSize":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePageSize = tempBool;
+                        break;
+                    case "EnableDimensions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDimensions = tempBool;
+                        break;
+                    case "EnableSquare":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSquare = tempBool;
+                        break;
+                    case "EnableTotalSquare":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalSquare = tempBool;
+                        break;
+                    case "EnableAvgPCI":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAvgPCI = tempBool;
+                        break;
+                    case "EnableAvgCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAvgCost = tempBool;
+                        break;
+                    case "EnableAvgFinalCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAvgFinalCost = tempBool;
+                        break;
+                    case "EnableTotalColor":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalColor = tempBool;
+                        break;
+                    case "EnableTotalDiscounts":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalDiscounts = tempBool;
+                        break;
+                    case "EnableReadership":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableReadership = tempBool;
+                        break;
+                    case "EnableDelivery":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDelivery = tempBool;
+                        break;
+                    case "EnablePercentOfPage":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePercentOfPage = tempBool;
+                        break;
+                    case "ShowLogo":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowLogo = tempBool;
+                        break;
+                    case "ShowTotalInserts":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowTotalInserts = tempBool;
+                        break;
+                    case "ShowTotalFinalCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowTotalFinalCost = tempBool;
+                        break;
+                    case "ShowPageSize":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPageSize = tempBool;
+                        break;
+                    case "ShowDimensions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDimensions = tempBool;
+                        break;
+                    case "ShowSquare":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowSquare = tempBool;
+                        break;
+                    case "ShowTotalSquare":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowTotalSquare = tempBool;
+                        break;
+                    case "ShowAvgPCI":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowAvgPCI = tempBool;
                         break;
                     case "ShowAvgCost":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -905,38 +1547,6 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowAvgFinalCost = tempBool;
                         break;
-                    case "ShowAvgPCI":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowAvgPCI = tempBool;
-                        break;
-                    case "ShowDelivery":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowDelivery = tempBool;
-                        break;
-                    case "ShowDimensions":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowDimensions = tempBool;
-                        break;
-                    case "ShowLogo":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowLogo = tempBool;
-                        break;
-                    case "ShowPageSize":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowPageSize = tempBool;
-                        break;
-                    case "ShowPercentOfPage":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowPercentOfPage = tempBool;
-                        break;
-                    case "ShowReadership":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowReadership = tempBool;
-                        break;
-                    case "ShowSquare":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowSquare = tempBool;
-                        break;
                     case "ShowTotalColor":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowTotalColor = tempBool;
@@ -945,23 +1555,40 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowTotalDiscounts = tempBool;
                         break;
-                    case "ShowTotalFinalCost":
+                    case "ShowReadership":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowTotalFinalCost = tempBool;
+                            this.ShowReadership = tempBool;
                         break;
-                    case "ShowTotalInserts":
+                    case "ShowDelivery":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowTotalInserts = tempBool;
+                            this.ShowDelivery = tempBool;
                         break;
-                    case "ShowTotalSquare":
+                    case "ShowPercentOfPage":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowTotalSquare = tempBool;
+                            this.ShowPercentOfPage = tempBool;
                         break;
+
                     case "SlideHeader":
                         this.SlideHeader = childNode.InnerText;
                         break;
                 }
             }
+
+            this.ShowLogo &= this.EnableLogo;
+            this.ShowTotalInserts &= this.EnableTotalInserts;
+            this.ShowTotalFinalCost &= this.EnableTotalFinalCost;
+            this.ShowPageSize &= this.EnablePageSize;
+            this.ShowDimensions &= this.EnableDimensions;
+            this.ShowSquare &= this.EnableSquare;
+            this.ShowTotalSquare &= this.EnableTotalSquare;
+            this.ShowAvgPCI &= this.EnableAvgPCI;
+            this.ShowAvgCost &= this.EnableAvgCost;
+            this.ShowAvgFinalCost &= this.EnableAvgFinalCost;
+            this.ShowTotalColor &= this.EnableTotalColor;
+            this.ShowTotalDiscounts &= this.EnableTotalDiscounts;
+            this.ShowReadership &= this.EnableReadership;
+            this.ShowDelivery &= this.EnableDelivery;
+            this.ShowPercentOfPage &= this.EnablePercentOfPage;
         }
     }
 
@@ -981,26 +1608,28 @@ namespace AdScheduleBuilder.ConfigurationClasses
             this.AdNotesState = new AdNotesState();
             this.SlideBulletsState = new SlideBulletsState();
             this.SlideHeaderState = new SlideHeaderState();
-            this.GridColumnsState.ShowID = true;
+
+            ResetToDefault();
+        }
+
+        public void ResetToDefault()
+        {
+            XmlDocument defaultSettings = new XmlDocument();
+
+            defaultSettings.LoadXml(@"<DefaultSettings>" + BusinessClasses.ListManager.Instance.DefaultDetailedGridColumnState.Serialize() + @"</DefaultSettings>");
+            this.GridColumnsState.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
+
+            defaultSettings.LoadXml(@"<DefaultSettings>" + BusinessClasses.ListManager.Instance.DefaultDetailedGridAdNotesState.Serialize() + @"</DefaultSettings>");
+            this.AdNotesState.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
+
+            defaultSettings.LoadXml(@"<DefaultSettings>" + BusinessClasses.ListManager.Instance.DefaultDetailedGridSlideBulletsState.Serialize() + @"</DefaultSettings>");
+            this.SlideBulletsState.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
+
+            defaultSettings.LoadXml(@"<DefaultSettings>" + BusinessClasses.ListManager.Instance.DefaultDetailedGridSlideHeaderState.Serialize() + @"</DefaultSettings>");
+            this.SlideHeaderState.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
 
             this.ShowOptions = true;
             this.SelectedOptionChapterIndex = 0;
-
-            LoadDefaultSettings();
-        }
-
-        private void LoadDefaultSettings()
-        {
-            XmlNode node;
-            if (File.Exists(ConfigurationClasses.SettingsManager.Instance.LocalSettingsPath))
-            {
-                XmlDocument document = new XmlDocument();
-                document.Load(ConfigurationClasses.SettingsManager.Instance.LocalSettingsPath);
-
-                node = document.SelectSingleNode(@"/AdScheduleSettings/DetailedGridViewSettings");
-                if (node != null)
-                    this.Deserialize(node);
-            }
         }
 
         public string Serialize()
@@ -1060,7 +1689,7 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
         public bool ShowOptions { get; set; }
         public int SelectedOptionChapterIndex { get; set; }
-        
+
         public string SlideHeader { get; set; }
 
         public MultiGridViewSettings()
@@ -1070,26 +1699,28 @@ namespace AdScheduleBuilder.ConfigurationClasses
             this.SlideBulletsState = new SlideBulletsState();
             this.SlideHeaderState = new SlideHeaderState();
 
-            this.GridColumnsState.ShowID = true;
+            ResetToDefault();
+        }
+
+        public void ResetToDefault()
+        {
+            XmlDocument defaultSettings = new XmlDocument();
+
+            defaultSettings.LoadXml(@"<DefaultSettings>" + BusinessClasses.ListManager.Instance.DefaultMultiGridColumnState.Serialize() + @"</DefaultSettings>");
+            this.GridColumnsState.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
+
+            defaultSettings.LoadXml(@"<DefaultSettings>" + BusinessClasses.ListManager.Instance.DefaultMultiGridAdNotesState.Serialize() + @"</DefaultSettings>");
+            this.AdNotesState.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
+
+            defaultSettings.LoadXml(@"<DefaultSettings>" + BusinessClasses.ListManager.Instance.DefaultMultiGridSlideBulletsState.Serialize() + @"</DefaultSettings>");
+            this.SlideBulletsState.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
+
+            defaultSettings.LoadXml(@"<DefaultSettings>" + BusinessClasses.ListManager.Instance.DefaultMultiGridSlideHeaderState.Serialize() + @"</DefaultSettings>");
+            this.SlideHeaderState.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
+
             this.SlideHeader = string.Empty;
             this.ShowOptions = true;
             this.SelectedOptionChapterIndex = 0;
-
-            LoadDefaultSettings();
-        }
-
-        private void LoadDefaultSettings()
-        {
-            XmlNode node;
-            if (File.Exists(ConfigurationClasses.SettingsManager.Instance.LocalSettingsPath))
-            {
-                XmlDocument document = new XmlDocument();
-                document.Load(ConfigurationClasses.SettingsManager.Instance.LocalSettingsPath);
-
-                node = document.SelectSingleNode(@"/AdScheduleSettings/MultiGridViewSettings");
-                if (node != null)
-                    this.Deserialize(node);
-            }
         }
 
         public string Serialize()
@@ -1275,47 +1906,69 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
     public class GridColumnsState
     {
+        #region Enable
+        public bool EnableID { get; set; }
+        public bool EnableIndex { get; set; }
+        public bool EnableDate { get; set; }
+        public bool EnableColor { get; set; }
+        public bool EnableSection { get; set; }
+        public bool EnablePCI { get; set; }
+        public bool EnableFinalCost { get; set; }
+        public bool EnablePublication { get; set; }
+        public bool EnablePercentOfPage { get; set; }
+        public bool EnableCost { get; set; }
+        public bool EnableDimensions { get; set; }
+        public bool EnableMechanicals { get; set; }
+        public bool EnableDelivery { get; set; }
+        public bool EnableDiscount { get; set; }
+        public bool EnablePageSize { get; set; }
+        public bool EnableSquare { get; set; }
+        public bool EnableDeadline { get; set; }
+        public bool EnableReadership { get; set; }
+        public bool EnableAdNotes { get; set; }
+        #endregion
+
         #region Show
         public bool ShowID { get; set; }
         public bool ShowIndex { get; set; }
         public bool ShowDate { get; set; }
-        public bool ShowPCI { get; set; }
-        public bool ShowCost { get; set; }
-        public bool ShowFinalCost { get; set; }
-        public bool ShowDiscount { get; set; }
         public bool ShowColor { get; set; }
+        public bool ShowSection { get; set; }
+        public bool ShowPCI { get; set; }
+        public bool ShowFinalCost { get; set; }
         public bool ShowPublication { get; set; }
-        public bool ShowAdNotes { get; set; }
-        public bool ShowSquare { get; set; }
-        public bool ShowPageSize { get; set; }
         public bool ShowPercentOfPage { get; set; }
+        public bool ShowCost { get; set; }
         public bool ShowDimensions { get; set; }
         public bool ShowMechanicals { get; set; }
-        public bool ShowSection { get; set; }
         public bool ShowDelivery { get; set; }
-        public bool ShowReadership { get; set; }
+        public bool ShowDiscount { get; set; }
+        public bool ShowPageSize { get; set; }
+        public bool ShowSquare { get; set; }
         public bool ShowDeadline { get; set; }
+        public bool ShowReadership { get; set; }
+        public bool ShowAdNotes { get; set; }
         #endregion
 
         #region Position
         public int IDPosition { get; set; }
         public int IndexPosition { get; set; }
         public int DatePosition { get; set; }
-        public int PCIPosition { get; set; }
-        public int CostPosition { get; set; }
-        public int FinalCostPosition { get; set; }
-        public int DiscountPosition { get; set; }
         public int ColorPosition { get; set; }
+        public int SectionPosition { get; set; }
+        public int PCIPosition { get; set; }
+        public int FinalCostPosition { get; set; }
         public int PublicationPosition { get; set; }
-        public int SquarePosition { get; set; }
-        public int PageSizePosition { get; set; }
         public int PercentOfPagePosition { get; set; }
+        public int CostPosition { get; set; }
         public int DimensionsPosition { get; set; }
         public int MechanicalsPosition { get; set; }
-        public int SectionPosition { get; set; }
         public int DeliveryPosition { get; set; }
-        public int ReadershipPosition { get; set; }
+        public int DiscountPosition { get; set; }
+        public int PageSizePosition { get; set; }
+        public int SquarePosition { get; set; }
         public int DeadlinePosition { get; set; }
+        public int ReadershipPosition { get; set; }
         #endregion
 
         #region Width
@@ -1362,47 +2015,69 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
         public GridColumnsState()
         {
+            #region Enable
+            this.EnableID = true;
+            this.EnableIndex = true;
+            this.EnableDate = true;
+            this.EnableColor = true;
+            this.EnableSection = true;
+            this.EnablePCI = true;
+            this.EnableFinalCost = true;
+            this.EnablePublication = true;
+            this.EnablePercentOfPage = true;
+            this.EnableCost = true;
+            this.EnableDimensions = true;
+            this.EnableMechanicals = true;
+            this.EnableDelivery = true;
+            this.EnableDiscount = true;
+            this.EnablePageSize = true;
+            this.EnableSquare = true;
+            this.EnableDeadline = true;
+            this.EnableReadership = true;
+            this.EnableAdNotes = true;
+            #endregion
+
             #region Show
-            this.ShowID = false;
-            this.ShowIndex = false;
+            this.ShowID = true;
+            this.ShowIndex = true;
             this.ShowDate = true;
-            this.ShowPCI = false;
-            this.ShowCost = false;
-            this.ShowFinalCost = true;
-            this.ShowDiscount = false;
             this.ShowColor = false;
-            this.ShowPublication = false;
-            this.ShowAdNotes = false;
-            this.ShowSquare = false;
-            this.ShowPageSize = false;
-            this.ShowPercentOfPage = true;
-            this.ShowDimensions = true;
-            this.ShowMechanicals = false;
             this.ShowSection = false;
+            this.ShowPCI = false;
+            this.ShowFinalCost = false;
+            this.ShowPublication = true;
+            this.ShowPercentOfPage = false;
+            this.ShowCost = false;
+            this.ShowDimensions = false;
+            this.ShowMechanicals = false;
             this.ShowDelivery = false;
-            this.ShowReadership = false;
+            this.ShowDiscount = false;
+            this.ShowPageSize = false;
+            this.ShowSquare = false;
             this.ShowDeadline = false;
+            this.ShowReadership = false;
+            this.ShowAdNotes = true;
             #endregion
 
             #region Position
             this.IDPosition = 0;
-            this.DatePosition = 1;
-            this.DimensionsPosition = 2;
-            this.PercentOfPagePosition = 3;
-            this.FinalCostPosition = 4;
-            this.PCIPosition = 5;
-            this.CostPosition = 6;
-            this.ColorPosition = 7;
-            this.IndexPosition = 8;
-            this.DiscountPosition = 9;
-            this.PublicationPosition = 10;
-            this.SquarePosition = 11;
-            this.PageSizePosition = 12;
-            this.MechanicalsPosition = 13;
-            this.SectionPosition = 14;
-            this.DeliveryPosition = 15;
-            this.ReadershipPosition = 16;
-            this.DeadlinePosition = 17;
+            this.IndexPosition = 1;
+            this.DatePosition = 2;
+            this.ColorPosition = 4;
+            this.SectionPosition = 5;
+            this.PCIPosition = 6;
+            this.FinalCostPosition = 7;
+            this.PublicationPosition = 3;
+            this.PercentOfPagePosition = 8;
+            this.CostPosition = 9;
+            this.DimensionsPosition = 10;
+            this.MechanicalsPosition = 11;
+            this.DeliveryPosition = 12;
+            this.DiscountPosition = 13;
+            this.PageSizePosition = 14;
+            this.SquarePosition = 15;
+            this.DeadlinePosition = 16;
+            this.ReadershipPosition = 17;
             #endregion
 
             #region Width
@@ -1452,47 +2127,69 @@ namespace AdScheduleBuilder.ConfigurationClasses
         {
             StringBuilder result = new StringBuilder();
 
+            #region Enable
+            result.AppendLine(@"<EnableID>" + this.EnableID + @"</EnableID>");
+            result.AppendLine(@"<EnableIndex>" + this.EnableIndex + @"</EnableIndex>");
+            result.AppendLine(@"<EnableDate>" + this.EnableDate + @"</EnableDate>");
+            result.AppendLine(@"<EnableColor>" + this.EnableColor + @"</EnableColor>");
+            result.AppendLine(@"<EnableSection>" + this.EnableSection + @"</EnableSection>");
+            result.AppendLine(@"<EnablePCI>" + this.EnablePCI + @"</EnablePCI>");
+            result.AppendLine(@"<EnableFinalCost>" + this.EnableFinalCost + @"</EnableFinalCost>");
+            result.AppendLine(@"<EnablePublication>" + this.EnablePublication + @"</EnablePublication>");
+            result.AppendLine(@"<EnablePercentOfPage>" + this.EnablePercentOfPage + @"</EnablePercentOfPage>");
+            result.AppendLine(@"<EnableCost>" + this.EnableCost + @"</EnableCost>");
+            result.AppendLine(@"<EnableDimensions>" + this.EnableDimensions + @"</EnableDimensions>");
+            result.AppendLine(@"<EnableMechanicals>" + this.EnableMechanicals + @"</EnableMechanicals>");
+            result.AppendLine(@"<EnableDelivery>" + this.EnableDelivery + @"</EnableDelivery>");
+            result.AppendLine(@"<EnableDiscount>" + this.EnableDiscount + @"</EnableDiscount>");
+            result.AppendLine(@"<EnablePageSize>" + this.EnablePageSize + @"</EnablePageSize>");
+            result.AppendLine(@"<EnableSquare>" + this.EnableSquare + @"</EnableSquare>");
+            result.AppendLine(@"<EnableDeadline>" + this.EnableDeadline + @"</EnableDeadline>");
+            result.AppendLine(@"<EnableReadership>" + this.EnableReadership + @"</EnableReadership>");
+            result.AppendLine(@"<EnableAdNotes>" + this.EnableAdNotes + @"</EnableAdNotes>");
+            #endregion
+
             #region Show
             result.AppendLine(@"<ShowID>" + this.ShowID + @"</ShowID>");
             result.AppendLine(@"<ShowIndex>" + this.ShowIndex + @"</ShowIndex>");
             result.AppendLine(@"<ShowDate>" + this.ShowDate + @"</ShowDate>");
-            result.AppendLine(@"<ShowPCI>" + this.ShowPCI + @"</ShowPCI>");
-            result.AppendLine(@"<ShowCost>" + this.ShowCost + @"</ShowCost>");
-            result.AppendLine(@"<ShowFinalCost>" + this.ShowFinalCost + @"</ShowFinalCost>");
-            result.AppendLine(@"<ShowDiscount>" + this.ShowDiscount + @"</ShowDiscount>");
             result.AppendLine(@"<ShowColor>" + this.ShowColor + @"</ShowColor>");
+            result.AppendLine(@"<ShowSection>" + this.ShowSection + @"</ShowSection>");
+            result.AppendLine(@"<ShowPCI>" + this.ShowPCI + @"</ShowPCI>");
+            result.AppendLine(@"<ShowFinalCost>" + this.ShowFinalCost + @"</ShowFinalCost>");
             result.AppendLine(@"<ShowPublication>" + this.ShowPublication + @"</ShowPublication>");
-            result.AppendLine(@"<ShowAdNotes>" + this.ShowAdNotes + @"</ShowAdNotes>");
-            result.AppendLine(@"<ShowSquare>" + this.ShowSquare + @"</ShowSquare>");
-            result.AppendLine(@"<ShowPageSize>" + this.ShowPageSize + @"</ShowPageSize>");
             result.AppendLine(@"<ShowPercentOfPage>" + this.ShowPercentOfPage + @"</ShowPercentOfPage>");
+            result.AppendLine(@"<ShowCost>" + this.ShowCost + @"</ShowCost>");
             result.AppendLine(@"<ShowDimensions>" + this.ShowDimensions + @"</ShowDimensions>");
             result.AppendLine(@"<ShowMechanicals>" + this.ShowMechanicals + @"</ShowMechanicals>");
-            result.AppendLine(@"<ShowSection>" + this.ShowSection + @"</ShowSection>");
-            result.AppendLine(@"<ShowDeadline>" + this.ShowDeadline + @"</ShowDeadline>");
             result.AppendLine(@"<ShowDelivery>" + this.ShowDelivery + @"</ShowDelivery>");
+            result.AppendLine(@"<ShowDiscount>" + this.ShowDiscount + @"</ShowDiscount>");
+            result.AppendLine(@"<ShowPageSize>" + this.ShowPageSize + @"</ShowPageSize>");
+            result.AppendLine(@"<ShowSquare>" + this.ShowSquare + @"</ShowSquare>");
+            result.AppendLine(@"<ShowDeadline>" + this.ShowDeadline + @"</ShowDeadline>");
             result.AppendLine(@"<ShowReadership>" + this.ShowReadership + @"</ShowReadership>");
+            result.AppendLine(@"<ShowAdNotes>" + this.ShowAdNotes + @"</ShowAdNotes>");
             #endregion
 
             #region Position
             result.AppendLine(@"<IDPosition>" + this.IDPosition + @"</IDPosition>");
             result.AppendLine(@"<IndexPosition>" + this.IndexPosition + @"</IndexPosition>");
             result.AppendLine(@"<DatePosition>" + this.DatePosition + @"</DatePosition>");
-            result.AppendLine(@"<PCIPosition>" + this.PCIPosition + @"</PCIPosition>");
-            result.AppendLine(@"<CostPosition>" + this.CostPosition + @"</CostPosition>");
-            result.AppendLine(@"<FinalCostPosition>" + this.FinalCostPosition + @"</FinalCostPosition>");
-            result.AppendLine(@"<DiscountPosition>" + this.DiscountPosition + @"</DiscountPosition>");
             result.AppendLine(@"<ColorPosition>" + this.ColorPosition + @"</ColorPosition>");
+            result.AppendLine(@"<SectionPosition>" + this.SectionPosition + @"</SectionPosition>");
+            result.AppendLine(@"<PCIPosition>" + this.PCIPosition + @"</PCIPosition>");
+            result.AppendLine(@"<FinalCostPosition>" + this.FinalCostPosition + @"</FinalCostPosition>");
             result.AppendLine(@"<PublicationPosition>" + this.PublicationPosition + @"</PublicationPosition>");
-            result.AppendLine(@"<SquarePosition>" + this.SquarePosition + @"</SquarePosition>");
-            result.AppendLine(@"<PageSizePosition>" + this.PageSizePosition + @"</PageSizePosition>");
             result.AppendLine(@"<PercentOfPagePosition>" + this.PercentOfPagePosition + @"</PercentOfPagePosition>");
+            result.AppendLine(@"<CostPosition>" + this.CostPosition + @"</CostPosition>");
             result.AppendLine(@"<DimensionsPosition>" + this.DimensionsPosition + @"</DimensionsPosition>");
             result.AppendLine(@"<MechanicalsPosition>" + this.MechanicalsPosition + @"</MechanicalsPosition>");
-            result.AppendLine(@"<SectionPosition>" + this.SectionPosition + @"</SectionPosition>");
             result.AppendLine(@"<DeliveryPosition>" + this.DeliveryPosition + @"</DeliveryPosition>");
-            result.AppendLine(@"<ReadershipPosition>" + this.ReadershipPosition + @"</ReadershipPosition>");
+            result.AppendLine(@"<DiscountPosition>" + this.DiscountPosition + @"</DiscountPosition>");
+            result.AppendLine(@"<PageSizePosition>" + this.PageSizePosition + @"</PageSizePosition>");
+            result.AppendLine(@"<SquarePosition>" + this.SquarePosition + @"</SquarePosition>");
             result.AppendLine(@"<DeadlinePosition>" + this.DeadlinePosition + @"</DeadlinePosition>");
+            result.AppendLine(@"<ReadershipPosition>" + this.ReadershipPosition + @"</ReadershipPosition>");
             #endregion
 
             #region Width
@@ -1549,43 +2246,86 @@ namespace AdScheduleBuilder.ConfigurationClasses
             {
                 switch (childNode.Name)
                 {
+                    #region Enable
+                    case "EnableID":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableID = tempBool;
+                        break;
+                    case "EnableIndex":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableIndex = tempBool;
+                        break;
+                    case "EnableDate":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDate = tempBool;
+                        break;
+                    case "EnableColor":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableColor = tempBool;
+                        break;
+                    case "EnableSection":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSection = tempBool;
+                        break;
+                    case "EnablePCI":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePCI = tempBool;
+                        break;
+                    case "EnableFinalCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableFinalCost = tempBool;
+                        break;
+                    case "EnablePublication":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePublication = tempBool;
+                        break;
+                    case "EnablePercentOfPage":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePercentOfPage = tempBool;
+                        break;
+                    case "EnableCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableCost = tempBool;
+                        break;
+                    case "EnableDimensions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDimensions = tempBool;
+                        break;
+                    case "EnableMechanicals":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableMechanicals = tempBool;
+                        break;
+                    case "EnableDelivery":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDelivery = tempBool;
+                        break;
+                    case "EnableDiscount":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDiscount = tempBool;
+                        break;
+                    case "EnablePageSize":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePageSize = tempBool;
+                        break;
+                    case "EnableSquare":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSquare = tempBool;
+                        break;
+                    case "EnableDeadline":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDeadline = tempBool;
+                        break;
+                    case "EnableReadership":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableReadership = tempBool;
+                        break;
+                    case "EnableAdNotes":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAdNotes = tempBool;
+                        break;
+                    #endregion
+
                     #region Show
-                    case "ShowAdNotes":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowAdNotes = tempBool;
-                        break;
-                    case "ShowColor":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowColor = tempBool;
-                        break;
-                    case "ShowCost":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowCost = tempBool;
-                        break;
-                    case "ShowDate":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowDate = tempBool;
-                        break;
-                    case "ShowDeadline":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowDeadline = tempBool;
-                        break;
-                    case "ShowDelivery":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowDelivery = tempBool;
-                        break;
-                    case "ShowDimensions":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowDimensions = tempBool;
-                        break;
-                    case "ShowDiscount":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowDiscount = tempBool;
-                        break;
-                    case "ShowFinalCost":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowFinalCost = tempBool;
-                        break;
                     case "ShowID":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowID = tempBool;
@@ -1594,73 +2334,77 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowIndex = tempBool;
                         break;
-                    case "ShowMechanicals":
+                    case "ShowDate":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowMechanicals = tempBool;
+                            this.ShowDate = tempBool;
                         break;
-                    case "ShowPageSize":
+                    case "ShowColor":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowPageSize = tempBool;
-                        break;
-                    case "ShowPercentOfPage":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowPercentOfPage = tempBool;
-                        break;
-                    case "ShowPCI":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowPCI = tempBool;
-                        break;
-                    case "ShowPublication":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowPublication = tempBool;
-                        break;
-                    case "ShowReadership":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowReadership = tempBool;
+                            this.ShowColor = tempBool;
                         break;
                     case "ShowSection":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowSection = tempBool;
                         break;
+                    case "ShowPCI":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPCI = tempBool;
+                        break;
+                    case "ShowFinalCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowFinalCost = tempBool;
+                        break;
+                    case "ShowPublication":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPublication = tempBool;
+                        break;
+                    case "ShowPercentOfPage":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPercentOfPage = tempBool;
+                        break;
+                    case "ShowCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowCost = tempBool;
+                        break;
+                    case "ShowDimensions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDimensions = tempBool;
+                        break;
+                    case "ShowMechanicals":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowMechanicals = tempBool;
+                        break;
+                    case "ShowDelivery":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDelivery = tempBool;
+                        break;
+                    case "ShowDiscount":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDiscount = tempBool;
+                        break;
+                    case "ShowPageSize":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPageSize = tempBool;
+                        break;
                     case "ShowSquare":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowSquare = tempBool;
                         break;
+                    case "ShowDeadline":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDeadline = tempBool;
+                        break;
+                    case "ShowReadership":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowReadership = tempBool;
+                        break;
+                    case "ShowAdNotes":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowAdNotes = tempBool;
+                        break;
                     #endregion
 
                     #region Position
-                    case "ColorPosition":
-                        if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.ColorPosition = tempInt;
-                        break;
-                    case "CostPosition":
-                        if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.CostPosition = tempInt;
-                        break;
-                    case "DatePosition":
-                        if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.DatePosition = tempInt;
-                        break;
-                    case "DeadlinePosition":
-                        if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.DeadlinePosition = tempInt;
-                        break;
-                    case "DeliveryPosition":
-                        if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.DeliveryPosition = tempInt;
-                        break;
-                    case "DimensionsPosition":
-                        if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.DimensionsPosition = tempInt;
-                        break;
-                    case "DiscountPosition":
-                        if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.DiscountPosition = tempInt;
-                        break;
-                    case "FinalCostPosition":
-                        if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.FinalCostPosition = tempInt;
-                        break;
                     case "IDPosition":
                         if (int.TryParse(childNode.InnerText, out tempInt))
                             this.IDPosition = tempInt;
@@ -1669,37 +2413,69 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         if (int.TryParse(childNode.InnerText, out tempInt))
                             this.IndexPosition = tempInt;
                         break;
-                    case "MechanicalsPosition":
+                    case "DatePosition":
                         if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.MechanicalsPosition = tempInt;
+                            this.DatePosition = tempInt;
                         break;
-                    case "PageSizePosition":
+                    case "ColorPosition":
                         if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.PageSizePosition = tempInt;
-                        break;
-                    case "PercentOfPagePosition":
-                        if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.PercentOfPagePosition = tempInt;
-                        break;
-                    case "PCIPosition":
-                        if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.PCIPosition = tempInt;
-                        break;
-                    case "PublicationPosition":
-                        if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.PublicationPosition = tempInt;
-                        break;
-                    case "ReadershipPosition":
-                        if (int.TryParse(childNode.InnerText, out tempInt))
-                            this.ReadershipPosition = tempInt;
+                            this.ColorPosition = tempInt;
                         break;
                     case "SectionPosition":
                         if (int.TryParse(childNode.InnerText, out tempInt))
                             this.SectionPosition = tempInt;
                         break;
+                    case "PCIPosition":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.PCIPosition = tempInt;
+                        break;
+                    case "FinalCostPosition":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.FinalCostPosition = tempInt;
+                        break;
+                    case "PublicationPosition":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.PublicationPosition = tempInt;
+                        break;
+                    case "PercentOfPagePosition":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.PercentOfPagePosition = tempInt;
+                        break;
+                    case "CostPosition":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.CostPosition = tempInt;
+                        break;
+                    case "DimensionsPosition":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.DimensionsPosition = tempInt;
+                        break;
+                    case "MechanicalsPosition":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.MechanicalsPosition = tempInt;
+                        break;
+                    case "DeliveryPosition":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.DeliveryPosition = tempInt;
+                        break;
+                    case "DiscountPosition":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.DiscountPosition = tempInt;
+                        break;
+                    case "PageSizePosition":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.PageSizePosition = tempInt;
+                        break;
                     case "SquarePosition":
                         if (int.TryParse(childNode.InnerText, out tempInt))
                             this.SquarePosition = tempInt;
+                        break;
+                    case "DeadlinePosition":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.DeadlinePosition = tempInt;
+                        break;
+                    case "ReadershipPosition":
+                        if (int.TryParse(childNode.InnerText, out tempInt))
+                            this.ReadershipPosition = tempInt;
                         break;
                     #endregion
 
@@ -1836,11 +2612,45 @@ namespace AdScheduleBuilder.ConfigurationClasses
                     #endregion
                 }
             }
+
+            this.ShowID &= this.EnableID;
+            this.ShowIndex &= this.EnableIndex;
+            this.ShowDate &= this.EnableDate;
+            this.ShowColor &= this.EnableColor;
+            this.ShowSection &= this.EnableSection;
+            this.ShowPCI &= this.EnablePCI;
+            this.ShowFinalCost &= this.EnableFinalCost;
+            this.ShowPublication &= this.EnablePublication;
+            this.ShowPercentOfPage &= this.EnablePercentOfPage;
+            this.ShowCost &= this.EnableCost;
+            this.ShowDimensions &= this.EnableDimensions;
+            this.ShowMechanicals &= this.EnableMechanicals;
+            this.ShowDelivery &= this.EnableDelivery;
+            this.ShowDiscount &= this.EnableDiscount;
+            this.ShowPageSize &= this.EnablePageSize;
+            this.ShowSquare &= this.EnableSquare;
+            this.ShowDeadline &= this.EnableDeadline;
+            this.ShowReadership &= this.EnableReadership;
+            this.ShowAdNotes &= this.EnableAdNotes;
         }
     }
 
     public class AdNotesState
     {
+        #region Enable
+        public bool EnableComments { get; set; }
+        public bool EnableSection { get; set; }
+        public bool EnableMechanicals { get; set; }
+        public bool EnableDimensions { get; set; }
+        public bool EnableDelivery { get; set; }
+        public bool EnablePublication { get; set; }
+        public bool EnableSquare { get; set; }
+        public bool EnablePageSize { get; set; }
+        public bool EnablePercentOfPage { get; set; }
+        public bool EnableReadership { get; set; }
+        public bool EnableDeadline { get; set; }
+        #endregion
+
         #region Show
         public bool ShowComments { get; set; }
         public bool ShowSection { get; set; }
@@ -1871,9 +2681,23 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
         public AdNotesState()
         {
+            #region Enable
+            this.EnableComments = true;
+            this.EnableSection = true;
+            this.EnableMechanicals = true;
+            this.EnableDimensions = true;
+            this.EnableDelivery = true;
+            this.EnablePublication = true;
+            this.EnableSquare = true;
+            this.EnablePageSize = true;
+            this.EnablePercentOfPage = true;
+            this.EnableReadership = true;
+            this.EnableDeadline = true;
+            #endregion
+
             #region Show
-            this.ShowComments = false;
-            this.ShowSection = false;
+            this.ShowComments = true;
+            this.ShowSection = true;
             this.ShowMechanicals = false;
             this.ShowDimensions = false;
             this.ShowDelivery = false;
@@ -1903,6 +2727,18 @@ namespace AdScheduleBuilder.ConfigurationClasses
         public string Serialize()
         {
             StringBuilder result = new StringBuilder();
+
+            result.AppendLine(@"<EnableComments>" + this.EnableComments + @"</EnableComments>");
+            result.AppendLine(@"<EnableDeadline>" + this.EnableDeadline + @"</EnableDeadline>");
+            result.AppendLine(@"<EnableDelivery>" + this.EnableDelivery + @"</EnableDelivery>");
+            result.AppendLine(@"<EnableDimensions>" + this.EnableDimensions + @"</EnableDimensions>");
+            result.AppendLine(@"<EnableMechanicals>" + this.EnableMechanicals + @"</EnableMechanicals>");
+            result.AppendLine(@"<EnablePageSize>" + this.EnablePageSize + @"</EnablePageSize>");
+            result.AppendLine(@"<EnablePercentOfPage>" + this.EnablePercentOfPage + @"</EnablePercentOfPage>");
+            result.AppendLine(@"<EnablePublication>" + this.EnablePublication + @"</EnablePublication>");
+            result.AppendLine(@"<EnableReadership>" + this.EnableReadership + @"</EnableReadership>");
+            result.AppendLine(@"<EnableSection>" + this.EnableSection + @"</EnableSection>");
+            result.AppendLine(@"<EnableSquare>" + this.EnableSquare + @"</EnableSquare>");
 
             result.AppendLine(@"<ShowComments>" + this.ShowComments + @"</ShowComments>");
             result.AppendLine(@"<ShowDeadline>" + this.ShowDeadline + @"</ShowDeadline>");
@@ -1940,6 +2776,51 @@ namespace AdScheduleBuilder.ConfigurationClasses
             {
                 switch (childNode.Name)
                 {
+                    case "EnableComments":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableComments = tempBool;
+                        break;
+                    case "EnableDeadline":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDeadline = tempBool;
+                        break;
+                    case "EnableDelivery":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDelivery = tempBool;
+                        break;
+                    case "EnableDimensions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDimensions = tempBool;
+                        break;
+                    case "EnableMechanicals":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableMechanicals = tempBool;
+                        break;
+                    case "EnablePageSize":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePageSize = tempBool;
+                        break;
+                    case "EnablePercentOfPage":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePercentOfPage = tempBool;
+                        break;
+                    case "EnablePublication":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePublication = tempBool;
+                        break;
+                    case "EnableSection":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSection = tempBool;
+                        break;
+                    case "EnableReadership":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableReadership = tempBool;
+                        break;
+                    case "EnableSquare":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSquare = tempBool;
+                        break;
+
                     case "ShowComments":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowComments = tempBool;
@@ -2031,48 +2912,96 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         break;
                 }
             }
+
+            this.ShowComments &= this.EnableComments;
+            this.ShowSection &= this.EnableSection;
+            this.ShowMechanicals &= this.EnableMechanicals;
+            this.ShowDimensions &= this.EnableDimensions;
+            this.ShowDelivery &= this.EnableDelivery;
+            this.ShowPublication &= this.EnablePublication;
+            this.ShowSquare &= this.EnableSquare;
+            this.ShowPageSize &= this.EnablePageSize;
+            this.ShowPercentOfPage &= this.EnablePercentOfPage;
+            this.ShowReadership &= this.EnableReadership;
+            this.ShowDeadline &= this.EnableDeadline;
         }
     }
 
     public class SlideBulletsState
     {
         public bool EnableSlideBullets { get; set; }
+        public bool EnableOnlyOnLastSlide { get; set; }
+        public bool EnableTotalInserts { get; set; }
+        public bool EnableTotalFinalCost { get; set; }
+        public bool EnablePageSize { get; set; }
+        public bool EnableDimensions { get; set; }
+        public bool EnablePercentOfPage { get; set; }
+        public bool EnableColumnInches { get; set; }
+        public bool EnableTotalSquare { get; set; }
+        public bool EnableAvgAdCost { get; set; }
+        public bool EnableAvgFinalCost { get; set; }
+        public bool EnableAvgPCI { get; set; }
+        public bool EnableTotalColor { get; set; }
+        public bool EnableDiscounts { get; set; }
+        public bool EnableDelivery { get; set; }
+        public bool EnableReadership { get; set; }
+        public bool EnableSignature { get; set; }
+
+        public bool ShowSlideBullets { get; set; }
+        public bool ShowOnlyOnLastSlide { get; set; }
         public bool ShowTotalInserts { get; set; }
+        public bool ShowTotalFinalCost { get; set; }
+        public bool ShowPageSize { get; set; }
+        public bool ShowDimensions { get; set; }
+        public bool ShowPercentOfPage { get; set; }
+        public bool ShowColumnInches { get; set; }
+        public bool ShowTotalSquare { get; set; }
         public bool ShowAvgAdCost { get; set; }
         public bool ShowAvgFinalCost { get; set; }
         public bool ShowAvgPCI { get; set; }
         public bool ShowTotalColor { get; set; }
         public bool ShowDiscounts { get; set; }
-        public bool ShowTotalFinalCost { get; set; }
-        public bool ShowTotalSquare { get; set; }
-        public bool ShowPageSize { get; set; }
-        public bool ShowPercentOfPage { get; set; }
-        public bool ShowDimensions { get; set; }
-        public bool ShowColumnInches { get; set; }
         public bool ShowDelivery { get; set; }
         public bool ShowReadership { get; set; }
         public bool ShowSignature { get; set; }
-        public bool ShowOnlyOnLastSlide { get; set; }
 
         public SlideBulletsState()
         {
             this.EnableSlideBullets = true;
+            this.EnableOnlyOnLastSlide = true;
+            this.EnableTotalInserts = true;
+            this.EnableTotalFinalCost = true;
+            this.EnablePageSize = true;
+            this.EnableDimensions = true;
+            this.EnablePercentOfPage = true;
+            this.EnableColumnInches = true;
+            this.EnableTotalSquare = true;
+            this.EnableAvgAdCost = true;
+            this.EnableAvgFinalCost = true;
+            this.EnableAvgPCI = true;
+            this.EnableTotalColor = true;
+            this.EnableDiscounts = true;
+            this.EnableDelivery = true;
+            this.EnableReadership = true;
+            this.EnableSignature = true;
+
+            this.ShowSlideBullets = true;
+            this.ShowOnlyOnLastSlide = true;
             this.ShowTotalInserts = true;
+            this.ShowTotalFinalCost = true;
+            this.ShowPageSize = false;
+            this.ShowDimensions = false;
+            this.ShowPercentOfPage = false;
+            this.ShowColumnInches = false;
+            this.ShowTotalSquare = false;
             this.ShowAvgAdCost = false;
             this.ShowAvgFinalCost = false;
             this.ShowAvgPCI = false;
             this.ShowTotalColor = false;
             this.ShowDiscounts = false;
-            this.ShowTotalFinalCost = true;
-            this.ShowTotalSquare = false;
-            this.ShowPageSize = false;
-            this.ShowPercentOfPage = false;
-            this.ShowDimensions = false;
-            this.ShowColumnInches = false;
             this.ShowDelivery = false;
             this.ShowReadership = false;
             this.ShowSignature = true;
-            this.ShowOnlyOnLastSlide = true;
         }
 
         public string Serialize()
@@ -2080,22 +3009,40 @@ namespace AdScheduleBuilder.ConfigurationClasses
             StringBuilder result = new StringBuilder();
 
             result.AppendLine(@"<EnableSlideBullets>" + this.EnableSlideBullets + @"</EnableSlideBullets>");
+            result.AppendLine(@"<EnableOnlyOnLastSlide>" + this.EnableOnlyOnLastSlide + @"</EnableOnlyOnLastSlide>");
+            result.AppendLine(@"<EnableTotalInserts>" + this.EnableTotalInserts + @"</EnableTotalInserts>");
+            result.AppendLine(@"<EnableTotalFinalCost>" + this.EnableTotalFinalCost + @"</EnableTotalFinalCost>");
+            result.AppendLine(@"<EnablePageSize>" + this.EnablePageSize + @"</EnablePageSize>");
+            result.AppendLine(@"<EnableDimensions>" + this.EnableDimensions + @"</EnableDimensions>");
+            result.AppendLine(@"<EnablePercentOfPage>" + this.EnablePercentOfPage + @"</EnablePercentOfPage>");
+            result.AppendLine(@"<EnableColumnInches>" + this.EnableColumnInches + @"</EnableColumnInches>");
+            result.AppendLine(@"<EnableTotalSquare>" + this.EnableTotalSquare + @"</EnableTotalSquare>");
+            result.AppendLine(@"<EnableAvgAdCost>" + this.EnableAvgAdCost + @"</EnableAvgAdCost>");
+            result.AppendLine(@"<EnableAvgFinalCost>" + this.EnableAvgFinalCost + @"</EnableAvgFinalCost>");
+            result.AppendLine(@"<EnableAvgPCI>" + this.EnableAvgPCI + @"</EnableAvgPCI>");
+            result.AppendLine(@"<EnableTotalColor>" + this.EnableTotalColor + @"</EnableTotalColor>");
+            result.AppendLine(@"<EnableDiscounts>" + this.EnableDiscounts + @"</EnableDiscounts>");
+            result.AppendLine(@"<EnableDelivery>" + this.EnableDelivery + @"</EnableDelivery>");
+            result.AppendLine(@"<EnableReadership>" + this.EnableReadership + @"</EnableReadership>");
+            result.AppendLine(@"<EnableSignature>" + this.EnableSignature + @"</EnableSignature>");
+
+            result.AppendLine(@"<ShowSlideBullets>" + this.ShowSlideBullets + @"</ShowSlideBullets>");
+            result.AppendLine(@"<ShowOnlyOnLastSlide>" + this.ShowOnlyOnLastSlide + @"</ShowOnlyOnLastSlide>");
+            result.AppendLine(@"<ShowTotalInserts>" + this.ShowTotalInserts + @"</ShowTotalInserts>");
+            result.AppendLine(@"<ShowTotalFinalCost>" + this.ShowTotalFinalCost + @"</ShowTotalFinalCost>");
+            result.AppendLine(@"<ShowPageSize>" + this.ShowPageSize + @"</ShowPageSize>");
+            result.AppendLine(@"<ShowDimensions>" + this.ShowDimensions + @"</ShowDimensions>");
+            result.AppendLine(@"<ShowPercentOfPage>" + this.ShowPercentOfPage + @"</ShowPercentOfPage>");
+            result.AppendLine(@"<ShowColumnInches>" + this.ShowColumnInches + @"</ShowColumnInches>");
+            result.AppendLine(@"<ShowTotalSquare>" + this.ShowTotalSquare + @"</ShowTotalSquare>");
             result.AppendLine(@"<ShowAvgAdCost>" + this.ShowAvgAdCost + @"</ShowAvgAdCost>");
             result.AppendLine(@"<ShowAvgFinalCost>" + this.ShowAvgFinalCost + @"</ShowAvgFinalCost>");
             result.AppendLine(@"<ShowAvgPCI>" + this.ShowAvgPCI + @"</ShowAvgPCI>");
-            result.AppendLine(@"<ShowColumnInches>" + this.ShowColumnInches + @"</ShowColumnInches>");
-            result.AppendLine(@"<ShowDelivery>" + this.ShowDelivery + @"</ShowDelivery>");
-            result.AppendLine(@"<ShowDimensions>" + this.ShowDimensions + @"</ShowDimensions>");
+            result.AppendLine(@"<ShowTotalColor>" + this.ShowTotalColor + @"</ShowTotalColor>");
             result.AppendLine(@"<ShowDiscounts>" + this.ShowDiscounts + @"</ShowDiscounts>");
-            result.AppendLine(@"<ShowOnlyOnLastSlide>" + this.ShowOnlyOnLastSlide + @"</ShowOnlyOnLastSlide>");
-            result.AppendLine(@"<ShowPageSize>" + this.ShowPageSize + @"</ShowPageSize>");
-            result.AppendLine(@"<ShowPercentOfPage>" + this.ShowPercentOfPage + @"</ShowPercentOfPage>");
+            result.AppendLine(@"<ShowDelivery>" + this.ShowDelivery + @"</ShowDelivery>");
             result.AppendLine(@"<ShowReadership>" + this.ShowReadership + @"</ShowReadership>");
             result.AppendLine(@"<ShowSignature>" + this.ShowSignature + @"</ShowSignature>");
-            result.AppendLine(@"<ShowTotalColor>" + this.ShowTotalColor + @"</ShowTotalColor>");
-            result.AppendLine(@"<ShowTotalFinalCost>" + this.ShowTotalFinalCost + @"</ShowTotalFinalCost>");
-            result.AppendLine(@"<ShowTotalInserts>" + this.ShowTotalInserts + @"</ShowTotalInserts>");
-            result.AppendLine(@"<ShowTotalSquare>" + this.ShowTotalSquare + @"</ShowTotalSquare>");
 
             return result.ToString();
         }
@@ -2111,6 +3058,107 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.EnableSlideBullets = tempBool;
                         break;
+                    case "EnableOnlyOnLastSlide":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableOnlyOnLastSlide = tempBool;
+                        break;
+                    case "EnableTotalInserts":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalInserts = tempBool;
+                        break;
+                    case "EnableTotalFinalCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalFinalCost = tempBool;
+                        break;
+                    case "EnablePageSize":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePageSize = tempBool;
+                        break;
+                    case "EnableDimensions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDimensions = tempBool;
+                        break;
+                    case "EnablePercentOfPage":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePercentOfPage = tempBool;
+                        break;
+                    case "EnableColumnInches":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableColumnInches = tempBool;
+                        break;
+                    case "EnableTotalSquare":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalSquare = tempBool;
+                        break;
+                    case "EnableAvgAdCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAvgAdCost = tempBool;
+                        break;
+                    case "EnableAvgFinalCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAvgFinalCost = tempBool;
+                        break;
+                    case "EnableAvgPCI":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAvgPCI = tempBool;
+                        break;
+                    case "EnableTotalColor":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalColor = tempBool;
+                        break;
+                    case "EnableDiscounts":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDiscounts = tempBool;
+                        break;
+                    case "EnableDelivery":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDelivery = tempBool;
+                        break;
+                    case "EnableReadership":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableReadership = tempBool;
+                        break;
+                    case "EnableSignature":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSignature = tempBool;
+                        break;
+
+                    case "ShowSlideBullets":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowSlideBullets = tempBool;
+                        break;
+                    case "ShowOnlyOnLastSlide":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowOnlyOnLastSlide = tempBool;
+                        break;
+                    case "ShowTotalInserts":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowTotalInserts = tempBool;
+                        break;
+                    case "ShowTotalFinalCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowTotalFinalCost = tempBool;
+                        break;
+                    case "ShowPageSize":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPageSize = tempBool;
+                        break;
+                    case "ShowDimensions":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDimensions = tempBool;
+                        break;
+                    case "ShowPercentOfPage":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPercentOfPage = tempBool;
+                        break;
+                    case "ShowColumnInches":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowColumnInches = tempBool;
+                        break;
+                    case "ShowTotalSquare":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowTotalSquare = tempBool;
+                        break;
                     case "ShowAvgAdCost":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowAvgAdCost = tempBool;
@@ -2123,53 +3171,21 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowAvgPCI = tempBool;
                         break;
-                    case "ShowColumnInches":
+                    case "ShowTotalColor":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowColumnInches = tempBool;
-                        break;
-                    case "ShowDelivery":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowDelivery = tempBool;
-                        break;
-                    case "ShowDimensions":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowDimensions = tempBool;
+                            this.ShowTotalColor = tempBool;
                         break;
                     case "ShowDiscounts":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowDiscounts = tempBool;
                         break;
-                    case "ShowOnlyOnLastSlide":
+                    case "ShowDelivery":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowOnlyOnLastSlide = tempBool;
-                        break;
-                    case "ShowPageSize":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowPageSize = tempBool;
-                        break;
-                    case "ShowPercentOfPage":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowPercentOfPage = tempBool;
+                            this.ShowDelivery = tempBool;
                         break;
                     case "ShowReadership":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowReadership = tempBool;
-                        break;
-                    case "ShowTotalColor":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowTotalColor = tempBool;
-                        break;
-                    case "ShowTotalFinalCost":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowTotalFinalCost = tempBool;
-                        break;
-                    case "ShowTotalInserts":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowTotalInserts = tempBool;
-                        break;
-                    case "ShowTotalSquare":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowTotalSquare = tempBool;
                         break;
                     case "ShowSignature":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -2177,52 +3193,106 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         break;
                 }
             }
+            this.ShowSlideBullets &= this.EnableSlideBullets;
+            this.ShowOnlyOnLastSlide &= this.EnableOnlyOnLastSlide;
+            this.ShowTotalInserts &= this.EnableTotalInserts;
+            this.ShowTotalFinalCost &= this.EnableTotalFinalCost;
+            this.ShowPageSize &= this.EnablePageSize;
+            this.ShowDimensions &= this.EnableDimensions;
+            this.ShowPercentOfPage &= this.EnablePercentOfPage;
+            this.ShowColumnInches &= this.EnableColumnInches;
+            this.ShowTotalSquare &= this.EnableTotalSquare;
+            this.ShowAvgAdCost &= this.EnableAvgAdCost;
+            this.ShowAvgFinalCost &= this.EnableAvgFinalCost;
+            this.ShowAvgPCI &= this.EnableAvgPCI;
+            this.ShowTotalColor &= this.EnableTotalColor;
+            this.ShowDiscounts &= this.EnableDiscounts;
+            this.ShowDelivery &= this.EnableDelivery;
+            this.ShowReadership &= this.EnableReadership;
+            this.ShowSignature &= this.EnableSignature;
         }
     }
 
     public class SlideHeaderState
     {
+        public bool EnableSlideInfo { get; set; }
         public bool EnableSlideHeader { get; set; }
+        public bool EnableAdvertiser { get; set; }
+        public bool EnableDecisionMaker { get; set; }
+        public bool EnablePresentationDate { get; set; }
+        public bool EnableFlightDates { get; set; }
+        public bool EnableName { get; set; }
+        public bool EnableLogo1 { get; set; }
+        public bool EnableLogo2 { get; set; }
+        public bool EnableLogo3 { get; set; }
+        public bool EnableLogo4 { get; set; }
+
+        public bool ShowSlideInfo { get; set; }
+        public bool ShowSlideHeader { get; set; }
+        public bool ShowAdvertiser { get; set; }
+        public bool ShowDecisionMaker { get; set; }
+        public bool ShowPresentationDate { get; set; }
+        public bool ShowFlightDates { get; set; }
         public bool ShowName { get; set; }
         public bool ShowLogo1 { get; set; }
         public bool ShowLogo2 { get; set; }
         public bool ShowLogo3 { get; set; }
         public bool ShowLogo4 { get; set; }
-        public bool ShowSlideHeader { get; set; }
-        public bool ShowPresentationDate { get; set; }
-        public bool ShowAdvertiser { get; set; }
-        public bool ShowDecisionMaker { get; set; }
-        public bool ShowFlightDates { get; set; }
 
         public SlideHeaderState()
         {
+            this.EnableSlideInfo = true;
             this.EnableSlideHeader = true;
+            this.EnableAdvertiser = true;
+            this.EnableDecisionMaker = true;
+            this.EnablePresentationDate = true;
+            this.EnableFlightDates = true;
+            this.EnableName = true;
+            this.EnableLogo1 = true;
+            this.EnableLogo2 = false;
+            this.EnableLogo3 = false;
+            this.EnableLogo4 = false;
+
+            this.ShowSlideInfo = true;
+            this.ShowSlideHeader = true;
+            this.ShowAdvertiser = true;
+            this.ShowDecisionMaker = false;
+            this.ShowPresentationDate = false;
+            this.ShowFlightDates = false;
             this.ShowName = true;
             this.ShowLogo1 = true;
-            this.ShowLogo2 = true;
-            this.ShowLogo3 = true;
-            this.ShowLogo4 = true;
-            this.ShowSlideHeader = true;
-            this.ShowPresentationDate = true;
-            this.ShowAdvertiser = true;
-            this.ShowDecisionMaker = true;
-            this.ShowFlightDates = true;
+            this.ShowLogo2 = false;
+            this.ShowLogo3 = false;
+            this.ShowLogo4 = false;
         }
 
         public string Serialize()
         {
             StringBuilder result = new StringBuilder();
+            result.AppendLine(@"<EnableSlideInfo>" + this.EnableSlideInfo + @"</EnableSlideInfo>");
             result.AppendLine(@"<EnableSlideHeader>" + this.EnableSlideHeader + @"</EnableSlideHeader>");
+            result.AppendLine(@"<EnableAdvertiser>" + this.EnableAdvertiser + @"</EnableAdvertiser>");
+            result.AppendLine(@"<EnableDecisionMaker>" + this.EnableDecisionMaker + @"</EnableDecisionMaker>");
+            result.AppendLine(@"<EnablePresentationDate>" + this.EnablePresentationDate + @"</EnablePresentationDate>");
+            result.AppendLine(@"<EnableFlightDates>" + this.EnableFlightDates + @"</EnableFlightDates>");
+            result.AppendLine(@"<EnableName>" + this.EnableName + @"</EnableName>");
+            result.AppendLine(@"<EnableLogo1>" + this.EnableLogo1 + @"</EnableLogo1>");
+            result.AppendLine(@"<EnableLogo2>" + this.EnableLogo2 + @"</EnableLogo2>");
+            result.AppendLine(@"<EnableLogo3>" + this.EnableLogo3 + @"</EnableLogo3>");
+            result.AppendLine(@"<EnableLogo4>" + this.EnableLogo4 + @"</EnableLogo4>");
+
+            result.AppendLine(@"<ShowSlideInfo>" + this.ShowSlideInfo + @"</ShowSlideInfo>");
+            result.AppendLine(@"<ShowSlideHeader>" + this.ShowSlideHeader + @"</ShowSlideHeader>");
+            result.AppendLine(@"<ShowAdvertiser>" + this.ShowAdvertiser + @"</ShowAdvertiser>");
+            result.AppendLine(@"<ShowDecisionMaker>" + this.ShowDecisionMaker + @"</ShowDecisionMaker>");
+            result.AppendLine(@"<ShowPresentationDate>" + this.ShowPresentationDate + @"</ShowPresentationDate>");
+            result.AppendLine(@"<ShowFlightDates>" + this.ShowFlightDates + @"</ShowFlightDates>");
             result.AppendLine(@"<ShowName>" + this.ShowName + @"</ShowName>");
             result.AppendLine(@"<ShowLogo1>" + this.ShowLogo1 + @"</ShowLogo1>");
             result.AppendLine(@"<ShowLogo2>" + this.ShowLogo2 + @"</ShowLogo2>");
             result.AppendLine(@"<ShowLogo3>" + this.ShowLogo3 + @"</ShowLogo3>");
             result.AppendLine(@"<ShowLogo4>" + this.ShowLogo4 + @"</ShowLogo4>");
-            result.AppendLine(@"<ShowAdvertiser>" + this.ShowAdvertiser + @"</ShowAdvertiser>");
-            result.AppendLine(@"<ShowDecisionMaker>" + this.ShowDecisionMaker + @"</ShowDecisionMaker>");
-            result.AppendLine(@"<ShowFlightDates>" + this.ShowFlightDates + @"</ShowFlightDates>");
-            result.AppendLine(@"<ShowPresentationDate>" + this.ShowPresentationDate + @"</ShowPresentationDate>");
-            result.AppendLine(@"<ShowSlideHeader>" + this.ShowSlideHeader + @"</ShowSlideHeader>");
+
             return result.ToString();
         }
 
@@ -2233,60 +3303,94 @@ namespace AdScheduleBuilder.ConfigurationClasses
             {
                 switch (childNode.Name)
                 {
+                    case "EnableSlideInfo":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSlideInfo = tempBool;
+                        break;
                     case "EnableSlideHeader":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.EnableSlideHeader = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSlideHeader = tempBool;
                         break;
-                    case "ShowName":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowName = tempBool;
+                    case "EnableAdvertiser":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAdvertiser = tempBool;
                         break;
-                    case "ShowLogo1":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowLogo1 = tempBool;
+                    case "EnableDecisionMaker":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableDecisionMaker = tempBool;
                         break;
-                    case "ShowLogo2":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowLogo2 = tempBool;
+                    case "EnablePresentationDate":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePresentationDate = tempBool;
                         break;
-                    case "ShowLogo3":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowLogo3 = tempBool;
+                    case "EnableFlightDates":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableFlightDates = tempBool;
                         break;
-                    case "ShowLogo4":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowLogo4 = tempBool;
+                    case "EnableName":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableName = tempBool;
                         break;
-                    case "ShowAdvertiser":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowAdvertiser = tempBool;
+                    case "EnableLogo1":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableLogo1 = tempBool;
                         break;
-                    case "ShowDecisionMaker":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowDecisionMaker = tempBool;
+                    case "EnableLogo2":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableLogo2 = tempBool;
                         break;
-                    case "ShowFlightDates":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowFlightDates = tempBool;
+                    case "EnableLogo3":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableLogo3 = tempBool;
                         break;
-                    case "ShowPresentationDate":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowPresentationDate = tempBool;
+                    case "EnableLogo4":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableLogo4 = tempBool;
+                        break;
+
+                    case "ShowSlideInfo":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowSlideInfo = tempBool;
                         break;
                     case "ShowSlideHeader":
-                        tempBool = false;
-                        bool.TryParse(childNode.InnerText, out tempBool);
-                        this.ShowSlideHeader = tempBool;
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowSlideHeader = tempBool;
+                        break;
+                    case "ShowAdvertiser":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowAdvertiser = tempBool;
+                        break;
+                    case "ShowDecisionMaker":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowDecisionMaker = tempBool;
+                        break;
+                    case "ShowPresentationDate":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowPresentationDate = tempBool;
+                        break;
+                    case "ShowFlightDates":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowFlightDates = tempBool;
+                        break;
+                    case "ShowName":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowName = tempBool;
+                        break;
+                    case "ShowLogo1":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowLogo1 = tempBool;
+                        break;
+                    case "ShowLogo2":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowLogo2 = tempBool;
+                        break;
+                    case "ShowLogo3":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowLogo3 = tempBool;
+                        break;
+                    case "ShowLogo4":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowLogo4 = tempBool;
                         break;
                 }
             }
@@ -2295,27 +3399,52 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
     public class CalendarViewSettings
     {
-        public bool ShowAbbreviationOnly { get; set; }
+        public bool EnableSection { get; set; }
+        public bool EnableCost { get; set; }
+        public bool EnableColor { get; set; }
+        public bool EnableAbbreviationOnly { get; set; }
+        public bool EnableAdSize { get; set; }
+        public bool EnablePageSize { get; set; }
+        public bool EnablePercentOfPage { get; set; }
+        public bool EnableBigDate { get; set; }
+
         public bool ShowSection { get; set; }
+        public bool ShowCost { get; set; }
+        public bool ShowColor { get; set; }
+        public bool ShowAbbreviationOnly { get; set; }
         public bool ShowAdSize { get; set; }
         public bool ShowPageSize { get; set; }
         public bool ShowPercentOfPage { get; set; }
-        public bool ShowColor { get; set; }
-        public bool ShowCost { get; set; }
         public bool ShowBigDate { get; set; }
 
-        public bool ShowLegend { get; set; }
+        public bool EnableTitle { get; set; }
+        public bool EnableLogo { get; set; }
+        public bool EnableBusinessName { get; set; }
+        public bool EnableDecisionMaker { get; set; }
+        public bool EnableTotalCost { get; set; }
+        public bool EnableLegend { get; set; }
+        public bool EnableAvgCost { get; set; }
+        public bool EnableComments { get; set; }
+        public bool EnableTotalAds { get; set; }
+        public bool EnableActiveDays { get; set; }
+
         public bool ShowTitle { get; set; }
-        public bool ShowDate { get; set; }
+        public bool ShowLogo { get; set; }
         public bool ShowBusinessName { get; set; }
         public bool ShowDecisionMaker { get; set; }
         public bool ShowTotalCost { get; set; }
+        public bool ShowLegend { get; set; }
         public bool ShowAvgCost { get; set; }
+        public bool ShowComments { get; set; }
         public bool ShowTotalAds { get; set; }
         public bool ShowActiveDays { get; set; }
-        public bool ShowComments { get; set; }
-        public bool ShowLogo { get; set; }
 
+        public bool EnableGray { get; set; }
+        public bool EnableBlack { get; set; }
+        public bool EnableBlue { get; set; }
+        public bool EnableTeal { get; set; }
+        public bool EnableOrange { get; set; }
+        public bool EnableGreen { get; set; }
         public string SlideColor { get; set; }
 
         public List<MonthCalendarViewSettings> MonthCalendarViewSettingsList { get; set; }
@@ -2324,30 +3453,64 @@ namespace AdScheduleBuilder.ConfigurationClasses
 
         public CalendarViewSettings()
         {
-            this.ShowAbbreviationOnly = false;
-            this.ShowSection = true;
-            this.ShowAdSize = true;
-            this.ShowPageSize = false;
-            this.ShowPercentOfPage = false;
-            this.ShowColor = true;
+            this.EnableSection = true;
+            this.EnableCost = true;
+            this.EnableColor = true;
+            this.EnableAbbreviationOnly = true;
+            this.EnableAdSize = true;
+            this.EnablePageSize = true;
+            this.EnablePercentOfPage = true;
+            this.EnableBigDate = true;
+
+            this.ShowSection = false;
             this.ShowCost = true;
+            this.ShowColor = false;
+            this.ShowAbbreviationOnly = false;
+            this.ShowAdSize = false;
+            this.ShowPageSize = false;
+            this.ShowPercentOfPage = true;
             this.ShowBigDate = true;
-            this.ShowLegend = false;
+
+            this.EnableTitle = true;
+            this.EnableLogo = true;
+            this.EnableBusinessName = true;
+            this.EnableDecisionMaker = true;
+            this.EnableTotalCost = true;
+            this.EnableLegend = true;
+            this.EnableAvgCost = true;
+            this.EnableComments = true;
+            this.EnableTotalAds = true;
+            this.EnableActiveDays = true;
+
             this.ShowTitle = true;
-            this.ShowDate = true;
+            this.ShowLogo = true;
             this.ShowBusinessName = true;
             this.ShowDecisionMaker = true;
-            this.ShowLogo = true;
             this.ShowTotalCost = false;
+            this.ShowLegend = false;
             this.ShowAvgCost = false;
+            this.ShowComments = false;
             this.ShowTotalAds = false;
             this.ShowActiveDays = false;
-            this.ShowComments = false;
 
+            this.EnableGray = true;
+            this.EnableBlack = true;
+            this.EnableBlue = true;
+            this.EnableTeal = true;
+            this.EnableOrange = true;
+            this.EnableGreen = true;
             this.SlideColor = "gray";
+
             this.MonthCalendarViewSettingsList = new List<MonthCalendarViewSettings>();
             this.DayCustomNotes = new List<CalendarDayInfo>();
             this.DayDeadlines = new List<CalendarDayInfo>();
+        }
+
+        public void ResetToDefault()
+        {
+            XmlDocument defaultSettings = new XmlDocument();
+            defaultSettings.LoadXml(@"<DefaultSettings>" + BusinessClasses.ListManager.Instance.DefaultCalendarViewSettings.Serialize() + @"</DefaultSettings>");
+            this.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
         }
 
         public string Serialize()
@@ -2355,26 +3518,54 @@ namespace AdScheduleBuilder.ConfigurationClasses
             StringBuilder result = new StringBuilder();
             TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
 
+            result.AppendLine(@"<EnableSection>" + this.EnableSection + @"</EnableSection>");
+            result.AppendLine(@"<EnableCost>" + this.EnableCost + @"</EnableCost>");
+            result.AppendLine(@"<EnableColor>" + this.EnableColor + @"</EnableColor>");
+            result.AppendLine(@"<EnableAbbreviationOnly>" + this.EnableAbbreviationOnly + @"</EnableAbbreviationOnly>");
+            result.AppendLine(@"<EnableAdSize>" + this.EnableAdSize + @"</EnableAdSize>");
+            result.AppendLine(@"<EnablePageSize>" + this.EnablePageSize + @"</EnablePageSize>");
+            result.AppendLine(@"<EnablePercentOfPage>" + this.EnablePercentOfPage + @"</EnablePercentOfPage>");
+            result.AppendLine(@"<EnableBigDate>" + this.EnableBigDate + @"</EnableBigDate>");
+
+            result.AppendLine(@"<ShowSection>" + this.ShowSection + @"</ShowSection>");
+            result.AppendLine(@"<ShowCost>" + this.ShowCost + @"</ShowCost>");
+            result.AppendLine(@"<ShowColor>" + this.ShowColor + @"</ShowColor>");
             result.AppendLine(@"<ShowAbbreviationOnly>" + this.ShowAbbreviationOnly + @"</ShowAbbreviationOnly>");
             result.AppendLine(@"<ShowAdSize>" + this.ShowAdSize + @"</ShowAdSize>");
             result.AppendLine(@"<ShowPageSize>" + this.ShowPageSize + @"</ShowPageSize>");
             result.AppendLine(@"<ShowPercentOfPage>" + this.ShowPercentOfPage + @"</ShowPercentOfPage>");
-            result.AppendLine(@"<ShowColor>" + this.ShowColor + @"</ShowColor>");
-            result.AppendLine(@"<ShowCost>" + this.ShowCost + @"</ShowCost>");
-            result.AppendLine(@"<ShowSection>" + this.ShowSection + @"</ShowSection>");
-            result.AppendLine(@"<SlideColor>" + this.SlideColor.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideColor>");
             result.AppendLine(@"<ShowBigDate>" + this.ShowBigDate + @"</ShowBigDate>");
-            result.AppendLine(@"<ShowLegend>" + this.ShowLegend + @"</ShowLegend>");
-            result.AppendLine(@"<ShowActiveDays>" + this.ShowActiveDays + @"</ShowActiveDays>");
-            result.AppendLine(@"<ShowAvgCost>" + this.ShowAvgCost + @"</ShowAvgCost>");
-            result.AppendLine(@"<ShowComments>" + this.ShowComments + @"</ShowComments>");
-            result.AppendLine(@"<ShowDate>" + this.ShowDate + @"</ShowDate>");
+
+            result.AppendLine(@"<EnableTitle>" + this.EnableTitle + @"</EnableTitle>");
+            result.AppendLine(@"<EnableLogo>" + this.EnableLogo + @"</EnableLogo>");
+            result.AppendLine(@"<EnableBusinessName>" + this.EnableBusinessName + @"</EnableBusinessName>");
+            result.AppendLine(@"<EnableDecisionMaker>" + this.EnableDecisionMaker + @"</EnableDecisionMaker>");
+            result.AppendLine(@"<EnableTotalCost>" + this.EnableTotalCost + @"</EnableTotalCost>");
+            result.AppendLine(@"<EnableLegend>" + this.EnableLegend + @"</EnableLegend>");
+            result.AppendLine(@"<EnableAvgCost>" + this.EnableAvgCost + @"</EnableAvgCost>");
+            result.AppendLine(@"<EnableComments>" + this.EnableComments + @"</EnableComments>");
+            result.AppendLine(@"<EnableTotalAds>" + this.EnableTotalAds + @"</EnableTotalAds>");
+            result.AppendLine(@"<EnableActiveDays>" + this.EnableActiveDays + @"</EnableActiveDays>");
+
             result.AppendLine(@"<ShowTitle>" + this.ShowTitle + @"</ShowTitle>");
+            result.AppendLine(@"<ShowLogo>" + this.ShowLogo + @"</ShowLogo>");
             result.AppendLine(@"<ShowBusinessName>" + this.ShowBusinessName + @"</ShowBusinessName>");
             result.AppendLine(@"<ShowDecisionMaker>" + this.ShowDecisionMaker + @"</ShowDecisionMaker>");
-            result.AppendLine(@"<ShowLogo>" + this.ShowLogo + @"</ShowLogo>");
-            result.AppendLine(@"<ShowTotalAds>" + this.ShowTotalAds + @"</ShowTotalAds>");
             result.AppendLine(@"<ShowTotalCost>" + this.ShowTotalCost + @"</ShowTotalCost>");
+            result.AppendLine(@"<ShowLegend>" + this.ShowLegend + @"</ShowLegend>");
+            result.AppendLine(@"<ShowAvgCost>" + this.ShowAvgCost + @"</ShowAvgCost>");
+            result.AppendLine(@"<ShowComments>" + this.ShowComments + @"</ShowComments>");
+            result.AppendLine(@"<ShowTotalAds>" + this.ShowTotalAds + @"</ShowTotalAds>");
+            result.AppendLine(@"<ShowActiveDays>" + this.ShowActiveDays + @"</ShowActiveDays>");
+
+            result.AppendLine(@"<EnableGray>" + this.EnableGray + @"</EnableGray>");
+            result.AppendLine(@"<EnableBlack>" + this.EnableBlack + @"</EnableBlack>");
+            result.AppendLine(@"<EnableBlue>" + this.EnableBlue + @"</EnableBlue>");
+            result.AppendLine(@"<EnableTeal>" + this.EnableTeal + @"</EnableTeal>");
+            result.AppendLine(@"<EnableOrange>" + this.EnableOrange + @"</EnableOrange>");
+            result.AppendLine(@"<EnableGreen>" + this.EnableGreen + @"</EnableGreen>");
+            result.AppendLine(@"<SlideColor>" + this.SlideColor.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideColor>");
+
             result.AppendLine(@"<MonthCalendarViewSettings>");
             foreach (var calendarSettings in this.MonthCalendarViewSettingsList)
             {
@@ -2403,6 +3594,51 @@ namespace AdScheduleBuilder.ConfigurationClasses
             {
                 switch (childNode.Name)
                 {
+                    case "EnableSection":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableSection = tempBool;
+                        break;
+                    case "EnableCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableCost = tempBool;
+                        break;
+                    case "EnableColor":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableColor = tempBool;
+                        break;
+                    case "EnableAbbreviationOnly":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAbbreviationOnly = tempBool;
+                        break;
+                    case "EnableAdSize":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAdSize = tempBool;
+                        break;
+                    case "EnablePageSize":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePageSize = tempBool;
+                        break;
+                    case "EnablePercentOfPage":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnablePercentOfPage = tempBool;
+                        break;
+                    case "EnableBigDate":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableBigDate = tempBool;
+                        break;
+
+                    case "ShowSection":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowSection = tempBool;
+                        break;
+                    case "ShowCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowCost = tempBool;
+                        break;
+                    case "ShowColor":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowColor = tempBool;
+                        break;
                     case "ShowAbbreviationOnly":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowAbbreviationOnly = tempBool;
@@ -2419,52 +3655,59 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowPercentOfPage = tempBool;
                         break;
-                    case "ShowColor":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowColor = tempBool;
-                        break;
-                    case "ShowCost":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowCost = tempBool;
-                        break;
-                    case "ShowSection":
-                        if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowSection = tempBool;
-                        break;
-                    case "SlideColor":
-                        this.SlideColor = childNode.InnerText;
-                        break;
                     case "ShowBigDate":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowBigDate = tempBool;
                         break;
-                    case "ShowLegend":
+
+                    case "EnableTitle":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowLegend = tempBool;
+                            this.EnableTitle = tempBool;
                         break;
-                    case "ShowActiveDays":
+                    case "EnableLogo":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowActiveDays = tempBool;
+                            this.EnableLogo = tempBool;
                         break;
-                    case "ShowTotalCost":
+                    case "EnableBusinessName":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowTotalCost = tempBool;
+                            this.EnableBusinessName = tempBool;
                         break;
-                    case "ShowAvgCost":
+                    case "EnableDecisionMaker":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowAvgCost = tempBool;
+                            this.EnableDecisionMaker = tempBool;
                         break;
-                    case "ShowComments":
+                    case "EnableTotalCost":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowComments = tempBool;
+                            this.EnableTotalCost = tempBool;
                         break;
-                    case "ShowDate":
+                    case "EnableLegend":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowDate = tempBool;
+                            this.EnableLegend = tempBool;
                         break;
+                    case "EnableAvgCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableAvgCost = tempBool;
+                        break;
+                    case "EnableComments":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableComments = tempBool;
+                        break;
+                    case "EnableTotalAds":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTotalAds = tempBool;
+                        break;
+                    case "EnableActiveDays":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableActiveDays = tempBool;
+                        break;
+
                     case "ShowTitle":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowTitle = tempBool;
+                        break;
+                    case "ShowLogo":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowLogo = tempBool;
                         break;
                     case "ShowBusinessName":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -2474,14 +3717,59 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowDecisionMaker = tempBool;
                         break;
-                    case "ShowLogo":
+                    case "ShowTotalCost":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
-                            this.ShowLogo = tempBool;
+                            this.ShowTotalCost = tempBool;
+                        break;
+                    case "ShowLegend":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowLegend = tempBool;
+                        break;
+                    case "ShowAvgCost":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowAvgCost = tempBool;
+                        break;
+                    case "ShowComments":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowComments = tempBool;
                         break;
                     case "ShowTotalAds":
                         if (bool.TryParse(childNode.InnerText, out tempBool))
                             this.ShowTotalAds = tempBool;
                         break;
+                    case "ShowActiveDays":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.ShowActiveDays = tempBool;
+                        break;
+
+                    case "EnableGray":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableGray = tempBool;
+                        break;
+                    case "EnableBlack":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableBlack = tempBool;
+                        break;
+                    case "EnableBlue":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableBlue = tempBool;
+                        break;
+                    case "EnableTeal":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableTeal = tempBool;
+                        break;
+                    case "EnableOrange":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableOrange = tempBool;
+                        break;
+                    case "EnableGreen":
+                        if (bool.TryParse(childNode.InnerText, out tempBool))
+                            this.EnableGreen = tempBool;
+                        break;
+                    case "SlideColor":
+                        this.SlideColor = childNode.InnerText;
+                        break;
+
                     case "MonthCalendarViewSettings":
                         this.MonthCalendarViewSettingsList.Clear();
                         foreach (XmlNode calendarNode in childNode.ChildNodes)
@@ -2516,6 +3804,26 @@ namespace AdScheduleBuilder.ConfigurationClasses
                         break;
                 }
             }
+
+            this.ShowSection &= this.EnableSection;
+            this.ShowCost &= this.EnableCost;
+            this.ShowColor &= this.EnableColor;
+            this.ShowAbbreviationOnly &= this.EnableAbbreviationOnly;
+            this.ShowAdSize &= this.EnableAdSize;
+            this.ShowPageSize &= this.EnablePageSize;
+            this.ShowPercentOfPage &= this.EnablePercentOfPage;
+            this.ShowBigDate &= this.EnableBigDate;
+
+            this.ShowTitle &= this.EnableTitle;
+            this.ShowLogo &= this.EnableLogo;
+            this.ShowBusinessName &= this.EnableBusinessName;
+            this.ShowDecisionMaker &= this.EnableDecisionMaker;
+            this.ShowTotalCost &= this.EnableTotalCost;
+            this.ShowLegend &= this.EnableLegend;
+            this.ShowAvgCost &= this.EnableAvgCost;
+            this.ShowComments &= this.EnableComments;
+            this.ShowTotalAds &= this.EnableTotalAds;
+            this.ShowActiveDays &= this.EnableActiveDays;
         }
     }
 
@@ -2692,7 +4000,7 @@ namespace AdScheduleBuilder.ConfigurationClasses
         {
             this.Info = string.Empty;
         }
-        
+
         public string Serialize()
         {
             StringBuilder result = new StringBuilder();

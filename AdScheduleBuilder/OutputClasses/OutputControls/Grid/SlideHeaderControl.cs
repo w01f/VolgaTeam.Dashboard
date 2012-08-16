@@ -43,7 +43,20 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         public void LoadSlideHeader()
         {
             _allowToSave = false;
-            checkEditEnableSlideHeader.Checked = _settingsContainer.SlideHeaderState.EnableSlideHeader;
+
+            checkEditEnableSlideHeader.Enabled = _settingsContainer.SlideHeaderState.EnableSlideInfo;
+            checkEditAdvertiser.Enabled = _settingsContainer.SlideHeaderState.EnableAdvertiser;
+            checkEditDecisionMaker.Enabled = _settingsContainer.SlideHeaderState.EnableDecisionMaker;
+            checkEditFlightDates.Enabled = _settingsContainer.SlideHeaderState.EnableFlightDates;
+            checkEditPresentationDate.Enabled = _settingsContainer.SlideHeaderState.EnablePresentationDate;
+            checkEditLogo1.Enabled = _settingsContainer.SlideHeaderState.EnableLogo1;
+            checkEditLogo2.Enabled = _settingsContainer.SlideHeaderState.EnableLogo2;
+            checkEditLogo3.Enabled = _settingsContainer.SlideHeaderState.EnableLogo3;
+            checkEditLogo4.Enabled = _settingsContainer.SlideHeaderState.EnableLogo4;
+            checkEditPublicationName.Enabled = _settingsContainer.SlideHeaderState.EnableName;
+            checkEditSlideTitle.Enabled = _settingsContainer.SlideHeaderState.EnableSlideHeader;
+
+            checkEditEnableSlideHeader.Checked = _settingsContainer.SlideHeaderState.ShowSlideInfo;
             checkEditAdvertiser.Checked =  _settingsContainer.SlideHeaderState.ShowAdvertiser;
             checkEditDecisionMaker.Checked = _settingsContainer.SlideHeaderState.ShowDecisionMaker;
             checkEditFlightDates.Checked = _settingsContainer.SlideHeaderState.ShowFlightDates;
@@ -62,7 +75,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             if (_allowToSave)
             {
-                _settingsContainer.SlideHeaderState.EnableSlideHeader = checkEditEnableSlideHeader.Checked;
+                _settingsContainer.SlideHeaderState.ShowSlideInfo = checkEditEnableSlideHeader.Checked;
                 _settingsContainer.SlideHeaderState.ShowAdvertiser = checkEditAdvertiser.Checked & checkEditEnableSlideHeader.Checked;
                 _settingsContainer.SlideHeaderState.ShowDecisionMaker = checkEditDecisionMaker.Checked & checkEditEnableSlideHeader.Checked;
                 _settingsContainer.SlideHeaderState.ShowFlightDates = checkEditFlightDates.Checked & checkEditEnableSlideHeader.Checked;

@@ -124,12 +124,14 @@ namespace AdScheduleBuilder
             #endregion
 
             #region Summaries Events
+            buttonItemOverviewReset.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesReset_Click);
             buttonItemOverviewPreview.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPreview_Click);
             buttonItemOverviewEmail.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesEmail_Click);
             buttonItemOverviewHelp.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesHelp_Click);
             buttonItemOverviewSave.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesSave_Click);
             buttonItemOverviewSaveAs.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesSaveAs_Click);
             buttonItemOverviewPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPowerPoint_Click);
+            buttonItemMultiSummaryReset.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesReset_Click);
             buttonItemMultiSummaryPreview.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPreview_Click);
             buttonItemMultiSummaryEmail.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesEmail_Click);
             buttonItemMultiSummaryHelp.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesHelp_Click);
@@ -137,6 +139,7 @@ namespace AdScheduleBuilder
             buttonItemMultiSummarySaveAs.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesSaveAs_Click);
             buttonItemMultiSummaryPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPowerPoint_Click);
             buttonItemSnapshotOptions.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotOptions_CheckedChanged);
+            buttonItemSnapshotReset.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesReset_Click);
             buttonItemSnapshotPreview.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPreview_Click);
             buttonItemSnapshotEmail.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesEmail_Click);
             buttonItemSnapshotHelp.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesHelp_Click);
@@ -146,6 +149,7 @@ namespace AdScheduleBuilder
             #endregion
 
             #region Grids Events
+            buttonItemDetailedGridReset.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsReset_Click);
             buttonItemDetailedGridHelp.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsHelp_Click);
             buttonItemDetailedGridSave.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSave_Click);
             buttonItemDetailedGridSaveAs.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSaveAs_Click);
@@ -154,6 +158,7 @@ namespace AdScheduleBuilder
             buttonItemDetailedGridEmail.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsEmail_Click);
             buttonItemDetailedGridPreview.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsPreview_Click);
 
+            buttonItemMultiGridReset.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsReset_Click);
             buttonItemMultiGridHelp.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsHelp_Click);
             buttonItemMultiGridSave.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSave_Click);
             buttonItemMultiGridSaveAs.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSaveAs_Click);
@@ -162,6 +167,7 @@ namespace AdScheduleBuilder
             buttonItemMultiGridEmail.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsEmail_Click);
             buttonItemMultiGridPreview.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsPreview_Click);
 
+            buttonItemChronoGridReset.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsReset_Click);
             buttonItemChronoGridHelp.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsHelp_Click);
             buttonItemChronoGridSave.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSave_Click);
             buttonItemChronoGridSaveAs.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSaveAs_Click);
@@ -172,6 +178,7 @@ namespace AdScheduleBuilder
             #endregion
 
             #region Calendars Events
+            buttonItemCalendarsReset.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsReset_Click);
             buttonItemCalendarsHelp.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsHelp_Click);
             buttonItemCalendarsSave.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarSave_Click);
             buttonItemCalendarsSaveAs.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarSaveAs_Click);

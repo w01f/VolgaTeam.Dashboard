@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.pnHeader = new System.Windows.Forms.Panel();
-            this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.checkEditLogo = new DevExpress.XtraEditors.CheckEdit();
             this.comboBoxEditSchedule = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -39,6 +38,7 @@
             this.checkEditDate = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditBusinessName = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditDecisionMaker = new DevExpress.XtraEditors.CheckEdit();
+            this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
             this.pnMain = new System.Windows.Forms.Panel();
             this.pnBody = new System.Windows.Forms.Panel();
             this.pnInvestmentDetails = new System.Windows.Forms.Panel();
@@ -82,7 +82,6 @@
             this.checkEditStandartDimensions = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditStandartSquare = new DevExpress.XtraEditors.CheckEdit();
             this.pnHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditLogo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSchedule.Properties)).BeginInit();
@@ -91,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEditDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditBusinessName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditDecisionMaker.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).BeginInit();
             this.pnMain.SuspendLayout();
             this.pnBody.SuspendLayout();
             this.pnInvestmentDetails.SuspendLayout();
@@ -150,29 +150,6 @@
             this.pnHeader.Size = new System.Drawing.Size(1000, 150);
             this.pnHeader.TabIndex = 41;
             // 
-            // checkEditFlightDates
-            // 
-            this.checkEditFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkEditFlightDates.EditValue = true;
-            this.checkEditFlightDates.Location = new System.Drawing.Point(608, 109);
-            this.checkEditFlightDates.Name = "checkEditFlightDates";
-            this.checkEditFlightDates.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkEditFlightDates.Properties.Appearance.Options.UseFont = true;
-            this.checkEditFlightDates.Properties.Appearance.Options.UseTextOptions = true;
-            this.checkEditFlightDates.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditFlightDates.Properties.AppearanceDisabled.Options.UseTextOptions = true;
-            this.checkEditFlightDates.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditFlightDates.Properties.AppearanceFocused.Options.UseTextOptions = true;
-            this.checkEditFlightDates.Properties.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditFlightDates.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-            this.checkEditFlightDates.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditFlightDates.Properties.Caption = "Flight Dates Tag";
-            this.checkEditFlightDates.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditFlightDates.Size = new System.Drawing.Size(382, 21);
-            this.checkEditFlightDates.TabIndex = 45;
-            this.checkEditFlightDates.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-            this.checkEditFlightDates.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
-            // 
             // pbLogo
             // 
             this.pbLogo.Location = new System.Drawing.Point(29, 9);
@@ -216,7 +193,7 @@
             this.checkEditSchedule.Properties.Caption = "";
             this.checkEditSchedule.Size = new System.Drawing.Size(19, 19);
             this.checkEditSchedule.TabIndex = 38;
-            this.checkEditSchedule.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+            this.checkEditSchedule.CheckedChanged += new System.EventHandler(this.checkEditSchedule_CheckedChanged);
             this.checkEditSchedule.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
             // 
             // pnLine
@@ -306,6 +283,29 @@
             this.checkEditDecisionMaker.TabIndex = 6;
             this.checkEditDecisionMaker.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
             this.checkEditDecisionMaker.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
+            // 
+            // checkEditFlightDates
+            // 
+            this.checkEditFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkEditFlightDates.EditValue = true;
+            this.checkEditFlightDates.Location = new System.Drawing.Point(608, 109);
+            this.checkEditFlightDates.Name = "checkEditFlightDates";
+            this.checkEditFlightDates.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkEditFlightDates.Properties.Appearance.Options.UseFont = true;
+            this.checkEditFlightDates.Properties.Appearance.Options.UseTextOptions = true;
+            this.checkEditFlightDates.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.checkEditFlightDates.Properties.AppearanceDisabled.Options.UseTextOptions = true;
+            this.checkEditFlightDates.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.checkEditFlightDates.Properties.AppearanceFocused.Options.UseTextOptions = true;
+            this.checkEditFlightDates.Properties.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.checkEditFlightDates.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+            this.checkEditFlightDates.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.checkEditFlightDates.Properties.Caption = "Flight Dates Tag";
+            this.checkEditFlightDates.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.checkEditFlightDates.Size = new System.Drawing.Size(382, 21);
+            this.checkEditFlightDates.TabIndex = 45;
+            this.checkEditFlightDates.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+            this.checkEditFlightDates.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
             // 
             // pnMain
             // 
@@ -465,7 +465,7 @@
             this.checkEditRunDatesComment.Properties.Caption = "";
             this.checkEditRunDatesComment.Size = new System.Drawing.Size(19, 19);
             this.checkEditRunDatesComment.TabIndex = 34;
-            this.checkEditRunDatesComment.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+            this.checkEditRunDatesComment.CheckedChanged += new System.EventHandler(this.checkEditTextEdit_CheckedChanged);
             this.checkEditRunDatesComment.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
             // 
             // textEditRunDatesComment
@@ -490,7 +490,7 @@
             this.checkEditDates.Properties.Caption = "";
             this.checkEditDates.Size = new System.Drawing.Size(19, 19);
             this.checkEditDates.TabIndex = 36;
-            this.checkEditDates.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+            this.checkEditDates.CheckedChanged += new System.EventHandler(this.checkEditDates_CheckedChanged);
             this.checkEditDates.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
             // 
             // checkEditAdSizePicture
@@ -955,7 +955,6 @@
             this.Name = "PublicationBasicOverviewControl";
             this.Size = new System.Drawing.Size(1000, 491);
             this.pnHeader.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditLogo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSchedule.Properties)).EndInit();
@@ -964,6 +963,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEditDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditBusinessName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditDecisionMaker.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).EndInit();
             this.pnMain.ResumeLayout(false);
             this.pnBody.ResumeLayout(false);
             this.pnBody.PerformLayout();

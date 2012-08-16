@@ -110,9 +110,25 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         #endregion
 
         #region Enable Columns
-        public bool EnableIDButton { get; set; }
-        public bool EnableDateButton { get; set; }
-        public bool EnablePublicationButton { get; set; }
+        public bool EnableIDHeader { get; set; }
+        public bool EnableIndexHeader { get; set; }
+        public bool EnableDateHeader { get; set; }
+        public bool EnableColorHeader { get; set; }
+        public bool EnableSectionHeader { get; set; }
+        public bool EnablePCIHeader { get; set; }
+        public bool EnableFinalCostHeader { get; set; }
+        public bool EnablePublicationHeader { get; set; }
+        public bool EnablePercentOfPageHeader { get; set; }
+        public bool EnableCostHeader { get; set; }
+        public bool EnableDimensionsHeader { get; set; }
+        public bool EnableMechanicalsHeader { get; set; }
+        public bool EnableDeliveryHeader { get; set; }
+        public bool EnableDiscountHeader { get; set; }
+        public bool EnablePageSizeHeader { get; set; }
+        public bool EnableSquareHeader { get; set; }
+        public bool EnableDeadlineHeader { get; set; }
+        public bool EnableReadershipHeader { get; set; }
+        public bool EnableCommentsHeader { get; set; }
         #endregion
 
         #region Show Columns
@@ -357,6 +373,20 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         }
         #endregion
 
+        #region Enable AdNotes
+        public bool EnableCommentsInPreview { get; set; }
+        public bool EnableSectionInPreview { get; set; }
+        public bool EnableMechanicalsInPreview { get; set; }
+        public bool EnableColumnInchesInPreview { get; set; }
+        public bool EnablePublicationInPreview { get; set; }
+        public bool EnablePageSizeInPreview { get; set; }
+        public bool EnablePercentOfPageInPreview { get; set; }
+        public bool EnableDimensionsInPreview { get; set; }
+        public bool EnableReadershipInPreview { get; set; }
+        public bool EnableDeliveryInPreview { get; set; }
+        public bool EnableDeadlineInPreview { get; set; }
+        #endregion
+
         #region Show AdNotes
         public bool ShowCommentsInPreview { get; set; }
         public bool ShowSectionInPreview { get; set; }
@@ -450,25 +480,6 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             this.SlideBullets.checkEditReadership.Visible = false;
             this.SlideHeader = new SlideHeaderControl(this);
             this.SlideHeader.checkEditPublicationName.Visible = false;
-
-
-            #region Set Default Values
-            this.EnableIDButton = false;
-            this.EnableDateButton = false;
-            this.EnablePublicationButton = false;
-
-            this.PositionCommentsInPreview = 1;
-            this.PositionSectionInPreview = 2;
-            this.PositionMechanicalsInPreview = 3;
-            this.PositionColumnInchesInPreview = 4;
-            this.PositionPublicationInPreview = 0;
-            this.PositionPageSizeInPreview = 6;
-            this.PositionPercentOfPageInPreview = 7;
-            this.PositionDimensionsInPreview = 8;
-            this.PositionReadershipInPreview = 9;
-            this.PositionDeliveryInPreview = 10;
-            this.PositionDeadlineInPreview = 11;
-            #endregion
 
             this.HelpToolTip = new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Learn more about the Summary Grid", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 
@@ -567,6 +578,17 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             this.SettingsNotSaved = false;
         }
 
+        public void ResetToDefault()
+        {
+            this.LocalSchedule.ViewSettings.MultiGridViewSettings.ResetToDefault();
+
+            this.AllowToSave = false;
+            LoadView();
+            SetColumnsState();
+            UpdateSlideBullets();
+            this.AllowToSave = true;
+        }
+
         public void OpenHelp()
         {
             BusinessClasses.HelpManager.Instance.OpenHelpLink("summarygrid");
@@ -610,6 +632,26 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             this.PositionReadershipInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.PositionReadership;
             this.PositionSectionInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.PositionSection;
 
+            this.EnableColorHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableColor;
+            this.EnableCommentsHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableAdNotes;
+            this.EnableCostHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableCost;
+            this.EnableDateHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableDate;
+            this.EnableDeadlineHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableDeadline;
+            this.EnableDeliveryHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableDelivery;
+            this.EnableDimensionsHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableDimensions;
+            this.EnableDiscountHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableDiscount;
+            this.EnableFinalCostHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableFinalCost;
+            this.EnableIDHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableID;
+            this.EnableIndexHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableIndex;
+            this.EnableMechanicalsHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableMechanicals;
+            this.EnablePageSizeHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnablePageSize;
+            this.EnablePercentOfPageHeader = this.LocalSchedule.ViewSettings.DetailedGridViewSettings.GridColumnsState.EnablePercentOfPage & BusinessClasses.ListManager.Instance.ShareUnits.Count > 0;
+            this.EnablePCIHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnablePCI;
+            this.EnablePublicationHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnablePublication;
+            this.EnableReadershipHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableReadership;
+            this.EnableSectionHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableSection;
+            this.EnableSquareHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.EnableSquare;
+
             _showColorHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.ShowColor;
             _showCommentsHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.ShowAdNotes;
             _showCostHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.ShowCost;
@@ -629,6 +671,18 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             _showReadershipHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.ShowReadership;
             _showSectionHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.ShowSection;
             _showSquareHeader = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.GridColumnsState.ShowSquare;
+
+            this.EnableColumnInchesInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.EnableSquare;
+            this.EnableCommentsInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.EnableComments;
+            this.EnableDeadlineInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.EnableDeadline;
+            this.EnableDeliveryInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.EnableDelivery;
+            this.EnableDimensionsInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.EnableDimensions;
+            this.EnableMechanicalsInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.EnableMechanicals;
+            this.EnablePageSizeInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.EnablePageSize;
+            this.EnablePercentOfPageInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.EnablePercentOfPage;
+            this.EnablePublicationInPreview = false;
+            this.EnableReadershipInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.EnableReadership;
+            this.EnableSectionInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.EnableSection;
 
             this.ShowColumnInchesInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.ShowSquare;
             this.ShowCommentsInPreview = this.LocalSchedule.ViewSettings.ChronoGridViewSettings.AdNotesState.ShowComments;
@@ -1311,7 +1365,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             get
             {
-                return !this.SlideBulletsState.EnableSlideBullets;
+                return !this.SlideBulletsState.ShowSlideBullets;
             }
         }
 
@@ -1461,8 +1515,8 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                             int maxNumber = 12;
                             if (this.ShowCommentsInPreview && !string.IsNullOrEmpty(_inserts[i + j].FullComment))
                                 adNotes.Add(this.PositionCommentsInPreview > 0 && !adNotes.Keys.Contains(this.PositionCommentsInPreview) ? this.PositionCommentsInPreview : ++maxNumber, _inserts[i + j].FullComment);
-                            if (this.ShowSectionInPreview && !string.IsNullOrEmpty(_inserts[i + j].Section))
-                                adNotes.Add(this.PositionSectionInPreview > 0 && !adNotes.Keys.Contains(this.PositionSectionInPreview) ? this.PositionSectionInPreview : ++maxNumber, "Section: " + _inserts[i + j].Section);
+                            if (this.ShowSectionInPreview && !string.IsNullOrEmpty(_inserts[i + j].FullSection))
+                                adNotes.Add(this.PositionSectionInPreview > 0 && !adNotes.Keys.Contains(this.PositionSectionInPreview) ? this.PositionSectionInPreview : ++maxNumber, "Section: " + _inserts[i + j].FullSection);
                             if (this.ShowMechanicalsInPreview && !string.IsNullOrEmpty(_inserts[i + j].Mechanicals))
                                 adNotes.Add(this.PositionMechanicalsInPreview > 0 && !adNotes.Keys.Contains(this.PositionMechanicalsInPreview) ? this.PositionMechanicalsInPreview : ++maxNumber, "Mech: " + _inserts[i + j].MechanicalsOutput);
                             if (this.ShowDeliveryInPreview && !string.IsNullOrEmpty(_inserts[i + j].Delivery))
@@ -1513,7 +1567,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                         if (this.PositionDimensions != -1)
                             row.Add(this.PositionDimensions, _inserts[i + j].DimensionsOutput);
                         if (this.PositionSection != -1)
-                            row.Add(this.PositionSection, _inserts[i + j].Section);
+                            row.Add(this.PositionSection, _inserts[i + j].FullSection);
                         if (this.PositionReadership != -1)
                             row.Add(this.PositionReadership, _inserts[i + j].Readership);
                         if (this.PositionDelivery != -1)

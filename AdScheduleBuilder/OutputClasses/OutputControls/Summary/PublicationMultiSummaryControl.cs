@@ -85,7 +85,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             checkEditDimensions.Text = !string.IsNullOrEmpty(this.Publication.SizeOptions.Dimensions) ? ("Dimensions: " + this.Publication.SizeOptions.Dimensions) : string.Empty;
             checkEditDimensions.Visible = !string.IsNullOrEmpty(this.Publication.SizeOptions.Dimensions);
             checkEditDiscounts.Text = "Discounts: " + this.Publication.TotalDiscountRate.ToString("$#,##0.00");
-            labelControlSections.Text = "Sections: " + string.Join(", ", this.Publication.Inserts.Where(x => !string.IsNullOrEmpty(x.Section)).Select(x => x.Section).Distinct());
+            labelControlSections.Text = "Sections: " + string.Join(", ", this.Publication.Inserts.Where(x => !string.IsNullOrEmpty(x.FullSection)).Select(x => x.FullSection).Distinct());
 
             switch (this.Publication.ColorOption)
             {
@@ -109,24 +109,41 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             laInvestment.Text = "Investment: " + this.Publication.TotalFinalRate.ToString("$#,##0.00");
 
             _allowToSave = false;
-            checkEditPageSize.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowPageSize & !string.IsNullOrEmpty(this.Publication.SizeOptions.PageSize);
-            checkEditPercentOfPage.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowPercentOfPage & !string.IsNullOrEmpty(this.Publication.SizeOptions.PercentOfPage);
-            checkEditAvgAdCost.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowAvgAdCost;
-            checkEditAvgFinalCost.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowAvgFinalCost;
-            checkEditAvgPCI.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowAvgPCI & this.Publication.AvgPCIRate > 0;
-            checkEditSquare.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowSquare & this.Publication.SizeOptions.Square.HasValue && this.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage;
+            checkEditName.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowName;
+            checkEditLogo.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowLogo;
+            checkEditInvestment.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowInvestment;
+
+            checkEditFlightDates.Enabled = this.Publication.ViewSettings.MultiSummarySettings.EnableFlightDates;
+            checkEditComments.Enabled = this.Publication.ViewSettings.MultiSummarySettings.EnableComments;
+            checkEditDates.Enabled = this.Publication.ViewSettings.MultiSummarySettings.EnableDates;
+            checkEditFlightDates.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowFlightDates;
             checkEditComments.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowComments;
             checkEditDates.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowDates;
-            checkEditDimensions.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowDimensions & !string.IsNullOrEmpty(this.Publication.SizeOptions.Dimensions);
-            checkEditDiscounts.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowDiscounts;
-            checkEditFlightDates.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowFlightDates;
-            checkEditInvestment.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowInvestment;
-            checkEditLogo.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowLogo;
-            checkEditName.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowName;
-            checkEditSections.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowSection;
-            checkEditColor.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowTotalColor;
+
+            checkEditTotalAds.Enabled = this.Publication.ViewSettings.MultiSummarySettings.EnableTotalInserts;
+            checkEditDimensions.Enabled = this.Publication.ViewSettings.MultiSummarySettings.EnableDimensions;
+            checkEditPageSize.Enabled = this.Publication.ViewSettings.MultiSummarySettings.EnablePageSize;
+            checkEditPercentOfPage.Enabled = this.Publication.ViewSettings.MultiSummarySettings.EnablePercentOfPage;
+            checkEditColor.Enabled = this.Publication.ViewSettings.MultiSummarySettings.EnableTotalColor;
+            checkEditAvgAdCost.Enabled = this.Publication.ViewSettings.MultiSummarySettings.EnableAvgAdCost;
+            checkEditAvgFinalCost.Enabled = this.Publication.ViewSettings.MultiSummarySettings.EnableAvgFinalCost;
+            checkEditDiscounts.Enabled = this.Publication.ViewSettings.MultiSummarySettings.EnableDiscounts;
+            checkEditSections.Enabled = this.Publication.ViewSettings.MultiSummarySettings.EnableSection;
             checkEditTotalAds.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowTotalInserts;
+            checkEditDimensions.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowDimensions & !string.IsNullOrEmpty(this.Publication.SizeOptions.Dimensions);
+            checkEditPageSize.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowPageSize & !string.IsNullOrEmpty(this.Publication.SizeOptions.PageSize);
+            checkEditPercentOfPage.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowPercentOfPage & !string.IsNullOrEmpty(this.Publication.SizeOptions.PercentOfPage);
+            checkEditColor.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowTotalColor;
+            checkEditAvgAdCost.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowAvgAdCost;
+            checkEditAvgFinalCost.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowAvgFinalCost;
+            checkEditDiscounts.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowDiscounts;
+            checkEditSections.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowSection;
+
+            checkEditAvgPCI.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowAvgPCI & this.Publication.AvgPCIRate > 0;
             checkEditTotalSquare.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowTotalSquare & this.Publication.TotalSquare.HasValue && this.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage;
+            checkEditSquare.Checked = this.Publication.ViewSettings.MultiSummarySettings.ShowSquare & this.Publication.SizeOptions.Square.HasValue && this.Publication.AdPricingStrategy != BusinessClasses.AdPricingStrategies.SharePage;
+            checkEditMechanicals.Checked =  this.Publication.ViewSettings.MultiSummarySettings.ShowMechanicals;
+            
             comboBoxEditInvestment.EditValue = this.Publication.ViewSettings.MultiSummarySettings.InvestmentType;
             memoEditComments.EditValue = this.Publication.ViewSettings.MultiSummarySettings.Comments;
             _allowToSave = true;

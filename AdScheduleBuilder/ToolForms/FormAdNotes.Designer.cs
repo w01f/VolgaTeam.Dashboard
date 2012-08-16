@@ -747,7 +747,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ad-Notes";
-            this.Load += new System.EventHandler(this.FormComment_Load);
+            this.Load += new System.EventHandler(this.FormAdNotes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ckComment.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditComment.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlComments)).EndInit();

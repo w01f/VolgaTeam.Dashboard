@@ -11,6 +11,7 @@ namespace AdScheduleBuilder.CustomControls
     {
         private static ScheduleSettingsControl _instance;
         private BusinessClasses.Schedule _localSchedule;
+        private bool _allowToSave = false;
         public bool SettingsNotSaved { get; set; }
 
         private ScheduleSettingsControl()
@@ -105,11 +106,13 @@ namespace AdScheduleBuilder.CustomControls
 
         public void LoadSchedule(bool quickLoad)
         {
+            _allowToSave = false;
             _localSchedule = BusinessClasses.ScheduleManager.Instance.GetLocalSchedule();
             gridControlPublications.DataSource = new BindingList<BusinessClasses.Publication>(_localSchedule.Publications);
             laScheduleName.Text = _localSchedule.Name;
             if (!quickLoad)
             {
+                LoadView();
 
                 repositoryItemComboBox.Items.Clear();
                 repositoryItemComboBox.Items.AddRange(BusinessClasses.ListManager.Instance.PublicationSources.Where(x => !x.Name.Equals("Default")).Select(x => x.Name).Distinct().ToArray());
@@ -155,14 +158,26 @@ namespace AdScheduleBuilder.CustomControls
 
                 FormMain.Instance.UpdateScheduleTab(_localSchedule.Publications.Count > 0);
                 FormMain.Instance.UpdateOutputTabs(_localSchedule.Publications.Select(x => x.Inserts.Count).Sum() > 0);
-
-                LoadView();
             }
             this.SettingsNotSaved = false;
+            _allowToSave = true;
         }
 
         private void LoadView()
         {
+            FormMain.Instance.checkBoxItemHomeAccountNumber.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnableAccountNumber;
+            FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnableSalesStrategyPerson;
+            FormMain.Instance.buttonItemHomeSalesStrategyEmail.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnableSalesStrategyEmail;
+            FormMain.Instance.buttonItemHomeSalesStrategyFax.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnableSalesStrategyFax;
+            FormMain.Instance.buttonItemHomeOptionsAbbreviation.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnableCode;
+            FormMain.Instance.buttonItemHomeOptionsLogo.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnableLogo;
+            FormMain.Instance.buttonItemHomeOptionsDelivery.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnableDelivery;
+            FormMain.Instance.buttonItemHomeOptionsReadership.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnableReadership;
+
+            FormMain.Instance.checkBoxItemHomeAccountNumber.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowAccountNumber;
+            FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowSalesStrategyPerson;
+            FormMain.Instance.buttonItemHomeSalesStrategyEmail.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowSalesStrategyEmail;
+            FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowSalesStrategyFax;
             FormMain.Instance.buttonItemHomeOptionsAbbreviation.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowCode;
             FormMain.Instance.buttonItemHomeOptionsLogo.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowLogo;
             FormMain.Instance.buttonItemHomeOptionsDelivery.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowDelivery;
@@ -359,7 +374,10 @@ namespace AdScheduleBuilder.CustomControls
                 UpdatePublicationsCount();
                 FormMain.Instance.UpdateScheduleTab(_localSchedule.Publications.Count > 0);
                 FormMain.Instance.UpdateOutputTabs(_localSchedule.Publications.Select(x => x.Inserts.Count).Sum() > 0);
-                this.SettingsNotSaved = true;
+                if (_allowToSave)
+                {
+                    this.SettingsNotSaved = true;
+                }
             }
         }
 
@@ -372,7 +390,10 @@ namespace AdScheduleBuilder.CustomControls
                 UpdatePublicationsCount();
                 FormMain.Instance.UpdateScheduleTab(_localSchedule.Publications.Count > 0);
                 FormMain.Instance.UpdateOutputTabs(_localSchedule.Publications.Select(x => x.Inserts.Count).Sum() > 0);
-                this.SettingsNotSaved = true;
+                if (_allowToSave)
+                {
+                    this.SettingsNotSaved = true;
+                }
             }
         }
 
@@ -413,7 +434,10 @@ namespace AdScheduleBuilder.CustomControls
                         gridViewPublications.FocusedRowHandle++;
                     break;
             }
-            this.SettingsNotSaved = true;
+            if (_allowToSave)
+            {
+                this.SettingsNotSaved = true;
+            }
         }
 
         public void FlightDateStartEditValueChanged(object sender, EventArgs e)
@@ -448,7 +472,10 @@ namespace AdScheduleBuilder.CustomControls
 
         public void SchedulePropertyEditValueChanged(object sender, EventArgs e)
         {
-            this.SettingsNotSaved = true;
+            if (_allowToSave)
+            {
+                this.SettingsNotSaved = true;
+            }
         }
 
         public void dateEditFlightDatesStart_CloseUp(object sender, DevExpress.XtraEditors.Controls.CloseUpEventArgs e)
@@ -527,13 +554,19 @@ namespace AdScheduleBuilder.CustomControls
         public void buttonItemSalesStrategyAbbreviation_CheckedChanged(object sender, EventArgs e)
         {
             gridBandAbbreviation.Visible = FormMain.Instance.buttonItemHomeOptionsAbbreviation.Checked;
-            this.SettingsNotSaved = true;
+            if (_allowToSave)
+            {
+                this.SettingsNotSaved = true;
+            }
         }
 
         public void buttonItemSalesStrategyLogo_CheckedChanged(object sender, EventArgs e)
         {
             gridBandLogo.Visible = FormMain.Instance.buttonItemHomeOptionsLogo.Checked;
-            this.SettingsNotSaved = true;
+            if (_allowToSave)
+            {
+                this.SettingsNotSaved = true;
+            }
         }
 
         public void buttonItemSalesStrategyReadership_CheckedChanged(object sender, EventArgs e)
@@ -544,7 +577,10 @@ namespace AdScheduleBuilder.CustomControls
                 gridColumnName.RowCount = 2;
             else
                 gridColumnName.RowCount = 1;
-            this.SettingsNotSaved = true;
+            if (_allowToSave)
+            {
+                this.SettingsNotSaved = true;
+            }
         }
 
         public void buttonItemSalesStrategyDelivery_CheckedChanged(object sender, EventArgs e)
@@ -555,7 +591,10 @@ namespace AdScheduleBuilder.CustomControls
                 gridColumnName.RowCount = 2;
             else
                 gridColumnName.RowCount = 1;
-            this.SettingsNotSaved = true;
+            if (_allowToSave)
+            {
+                this.SettingsNotSaved = true;
+            }
         }
     }
 }

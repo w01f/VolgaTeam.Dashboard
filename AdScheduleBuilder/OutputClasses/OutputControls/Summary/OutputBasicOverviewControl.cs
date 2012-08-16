@@ -108,6 +108,21 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             this.SettingsNotSaved = false;
         }
 
+        public void ResetToDefault()
+        {
+            foreach (BusinessClasses.Publication publication in this.LocalSchedule.Publications)
+            {
+                publication.ViewSettings.BasicOverviewSettings.ResetToDefault();
+                if (!string.IsNullOrEmpty(publication.Name))
+                {
+                    PublicationBasicOverviewControl publicationTab = _tabPages.Where(x => x.Publication.UniqueID.Equals(publication.UniqueID)).FirstOrDefault();
+                    if (publicationTab != null)
+                        publicationTab.LoadPublication();
+                    Application.DoEvents();
+                }
+            }
+        }
+
         public void OpenHelp()
         {
             BusinessClasses.HelpManager.Instance.OpenHelpLink("overview");

@@ -675,8 +675,8 @@ namespace CalendarBuilder.BusinessClasses
                         List<string> properties = new List<string>();
                         if (!string.IsNullOrEmpty(insert.Publication))
                             properties.Add(insert.Publication);
-                        if (!string.IsNullOrEmpty(insert.Section))
-                            properties.Add(insert.Section);
+                        if (!string.IsNullOrEmpty(insert.FullSection))
+                            properties.Add(insert.FullSection);
                         if (!string.IsNullOrEmpty(insert.DimensionsShort))
                             properties.Add(insert.DimensionsShort);
                         if (!string.IsNullOrEmpty(insert.PageSize))

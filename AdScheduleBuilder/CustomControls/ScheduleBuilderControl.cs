@@ -234,7 +234,21 @@ namespace AdScheduleBuilder.CustomControls
                 BusinessClasses.Publication publication = publicationControl.Publication;
                 FormMain.Instance.buttonItemPrintScheduleDeleteInsert.Enabled = publication.Inserts.Count > 0;
                 FormMain.Instance.buttonItemPrintScheduleCloneInsert.Enabled = publication.Inserts.Count > 0;
-                FormMain.Instance.buttonItemPrintScheduleAdPricingPagePercent.Enabled = BusinessClasses.ListManager.Instance.ShareUnits.Count > 0;
+
+                FormMain.Instance.buttonItemPrintScheduleAdPricingColumnInches.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnablePCI;
+                FormMain.Instance.buttonItemPrintScheduleAdPricingFlat.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableFlat;
+                FormMain.Instance.buttonItemPrintScheduleAdPricingPagePercent.Enabled = BusinessClasses.ListManager.Instance.ShareUnits.Count > 0 & BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableShare;
+
+                FormMain.Instance.buttonItemPrintScheduleColorOptionsSingle.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableBlackWhite;
+                FormMain.Instance.buttonItemPrintScheduleColorOptionsSpot.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableSpotColor;
+                FormMain.Instance.buttonItemPrintScheduleColorOptionsFull.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableFullColor;
+                
+                FormMain.Instance.buttonItemPrintScheduleColorOptionsCostPerAd.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableCostPerAd;
+                FormMain.Instance.buttonItemPrintScheduleColorOptionsPercentOfAd.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnablePercentOfAd;
+                FormMain.Instance.buttonItemPrintScheduleColorOptionsIncluded.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableColorIncluded;
+                FormMain.Instance.buttonItemPrintScheduleColorOptionsPCI.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableCostPerInch;
+                FormMain.Instance.spinEditCostPerInch.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableCostPerInch;
+                
                 ClearSettings();
                 LoadPricingOptions(publicationControl);
                 LoadSizeOptions(publicationControl);
@@ -541,7 +555,8 @@ namespace AdScheduleBuilder.CustomControls
                                             {
                                                 insert.CustomComment = string.Empty;
                                                 insert.Comments.Clear();
-                                                insert.Section = string.Empty;
+                                                insert.CustomSection = string.Empty;
+                                                insert.Sections.Clear();
                                                 insert.Deadline = string.Empty;
                                                 insert.Mechanicals = null;
                                             }

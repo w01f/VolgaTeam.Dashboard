@@ -91,8 +91,8 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
             text += "<b>" + ((_insertsCount <= 1 || _isDayView) && !_parent.ParentMonth.Settings.Parent.ShowAbbreviationOnly ? _insert.Publication : _parent.ParentMonth.Settings.GetLegendCodeByDescription(_insert.Publication)) + "</b>";
 
-            if (!string.IsNullOrEmpty(_insert.Section) && _parent.ParentMonth.Settings.Parent.ShowSection)
-                text += " " + (_isDayView ? _insert.Section : _parent.ParentMonth.Settings.GetLegendCodeByDescription(_insert.Section));
+            if (!string.IsNullOrEmpty(_insert.FullSection) && _parent.ParentMonth.Settings.Parent.ShowSection)
+                text += " " + _insert.FullSection;
 
             if (!string.IsNullOrEmpty(_insert.DimensionsShort) && _parent.ParentMonth.Settings.Parent.ShowAdSize && _insert.PublicationSquare > 0)
                 text += " " + _insert.DimensionsShort;
@@ -147,7 +147,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             if (dayCustomNote != null && !string.IsNullOrEmpty(dayCustomNote.Info))
                 text.Add(dayCustomNote.Info);
             ConfigurationClasses.CalendarDayInfo dayDeadline = _parent.ParentMonth.ParentCalendar.LocalSchedule.ViewSettings.CalendarViewSettings.DayDeadlines.Where(x => x.Day.Equals(_parent.Date)).FirstOrDefault();
-            if (dayDeadline != null && !string.IsNullOrEmpty(dayDeadline.Info) )
+            if (dayDeadline != null && !string.IsNullOrEmpty(dayDeadline.Info))
                 text.Add(dayDeadline.Info);
             return string.Join(", ", text.ToArray());
         }

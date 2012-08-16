@@ -153,6 +153,12 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             }
         }
 
+        public void buttonItemSummariesReset_Click(object sender, EventArgs e)
+        {
+            _selectedOutput.ResetToDefault();
+            SaveSchedule();
+        }
+
         public void buttonItemSummariesHelp_Click(object sender, EventArgs e)
         {
             _selectedOutput.OpenHelp();
@@ -160,7 +166,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
     }
 
     public enum SummaryType
-    { 
+    {
         Overview,
         MultiSummary,
         Snapshot
@@ -172,6 +178,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         bool SettingsNotSaved { get; set; }
         DevComponents.DotNetBar.SuperTooltipInfo HelpToolTip { get; }
         void UpdateOutput(bool quickLoad);
+        void ResetToDefault();
         void PrintOutput();
         void Email();
         void Preview();

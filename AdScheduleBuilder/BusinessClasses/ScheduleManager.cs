@@ -244,7 +244,7 @@ namespace AdScheduleBuilder.BusinessClasses
         public DateTime FlightDateEnd { get; set; }
         public List<Publication> Publications { get; set; }
 
-        public ConfigurationClasses.ScheduleViewSettings ViewSettings { get; set; }
+        public ConfigurationClasses.ScheduleBuilderViewSettings ViewSettings { get; set; }
 
         private List<DateTime> _scheduleMonths = new List<DateTime>();
 
@@ -321,7 +321,7 @@ namespace AdScheduleBuilder.BusinessClasses
             this.AccountNumber = string.Empty;
             this.Status = ListManager.Instance.Statuses.FirstOrDefault();
             this.Publications = new List<Publication>();
-            this.ViewSettings = new ConfigurationClasses.ScheduleViewSettings();
+            this.ViewSettings = new ConfigurationClasses.ScheduleBuilderViewSettings();
 
             _scheduleFile = new FileInfo(fileName);
             if (!File.Exists(fileName))
@@ -339,6 +339,24 @@ namespace AdScheduleBuilder.BusinessClasses
             }
             else
                 Load();
+
+
+            if (ListManager.Instance.DefaultHomeViewSettings.EnableAccountNumber)
+                this.AccountNumber = string.Empty;
+
+            if ((this.SalesStrategy == SalesStrategies.InPerson && !ListManager.Instance.DefaultHomeViewSettings.EnableSalesStrategyPerson) ||
+                (this.SalesStrategy == SalesStrategies.Email && !ListManager.Instance.DefaultHomeViewSettings.EnableSalesStrategyEmail) ||
+                (this.SalesStrategy == SalesStrategies.Fax && !ListManager.Instance.DefaultHomeViewSettings.EnableSalesStrategyFax))
+            {
+                SalesStrategies defaultStrategy = SalesStrategies.InPerson;
+                if (ListManager.Instance.DefaultHomeViewSettings.EnableSalesStrategyPerson)
+                    defaultStrategy = SalesStrategies.InPerson;
+                else if (ListManager.Instance.DefaultHomeViewSettings.EnableSalesStrategyEmail)
+                    defaultStrategy = SalesStrategies.Email;
+                else if (ListManager.Instance.DefaultHomeViewSettings.EnableSalesStrategyFax)
+                    defaultStrategy = SalesStrategies.Fax;
+                this.SalesStrategy = defaultStrategy;
+            }
         }
 
         private void Load()
@@ -715,13 +733,16 @@ namespace AdScheduleBuilder.BusinessClasses
         {
             this.Parent = parent;
             this.UniqueID = Guid.NewGuid();
-            _colorPricing = ColorPricingType.None;
+
             this.Inserts = new List<Insert>();
             this.Index = this.Parent.Publications.Count + 1;
             this.Note = string.Empty;
             this.ViewSettings = new ConfigurationClasses.PublicationViewSettings();
             this.SizeOptions = new SizeOptions();
+
+            this.ColorOption = ListManager.Instance.DefaultColor;
             this.AdPricingStrategy = ListManager.Instance.DefaultPricingStrategy;
+            _colorPricing = ListManager.Instance.DefaultColorPricing;
 
             this.AllowSundaySelect = true;
             this.AllowMondaySelect = true;
@@ -914,6 +935,22 @@ namespace AdScheduleBuilder.BusinessClasses
                         break;
                 }
             }
+
+            if ((this.AdPricingStrategy == AdPricingStrategies.StandartPCI && !ListManager.Instance.DefaultPrintScheduleViewSettings.EnablePCI) ||
+                (this.AdPricingStrategy == AdPricingStrategies.FlatModular && !ListManager.Instance.DefaultPrintScheduleViewSettings.EnableFlat) ||
+                (this.AdPricingStrategy == AdPricingStrategies.SharePage && !ListManager.Instance.DefaultPrintScheduleViewSettings.EnableShare))
+                this.AdPricingStrategy = ListManager.Instance.DefaultPricingStrategy;
+
+            if ((this.ColorOption == ColorOptions.BlackWhite && !ListManager.Instance.DefaultPrintScheduleViewSettings.EnableBlackWhite) ||
+                (this.ColorOption == ColorOptions.SpotColor && !ListManager.Instance.DefaultPrintScheduleViewSettings.EnableSpotColor) ||
+                (this.ColorOption == ColorOptions.FullColor && !ListManager.Instance.DefaultPrintScheduleViewSettings.EnableFullColor))
+                this.ColorOption = ListManager.Instance.DefaultColor;
+
+            if ((this.ColorPricing == ColorPricingType.CostPerAd && !ListManager.Instance.DefaultPrintScheduleViewSettings.EnableCostPerAd) ||
+                (this.ColorPricing == ColorPricingType.PercentOfAdRate && !ListManager.Instance.DefaultPrintScheduleViewSettings.EnablePercentOfAd) ||
+                (this.ColorPricing == ColorPricingType.ColorIncluded && !ListManager.Instance.DefaultPrintScheduleViewSettings.EnableColorIncluded) ||
+                (this.ColorPricing == ColorPricingType.CostPerInch && !ListManager.Instance.DefaultPrintScheduleViewSettings.EnableCostPerInch))
+                this.ColorPricing = ListManager.Instance.DefaultColorPricing;
         }
 
         public void AddInsert()
@@ -980,7 +1017,16 @@ namespace AdScheduleBuilder.BusinessClasses
                     }
                 }
                 if (section)
-                    insert.Section = originalInsert.Section;
+                {
+                    insert.CustomSection = originalInsert.CustomSection;
+                    foreach (NameCodePair originalSection in originalInsert.Sections)
+                    {
+                        NameCodePair newSection = new NameCodePair();
+                        newSection.Name = originalSection.Name;
+                        newSection.Code = originalSection.Code;
+                        insert.Sections.Add(newSection);
+                    }
+                }
                 if (deadline)
                     insert.Deadline = originalInsert.Deadline;
                 if (mechanicals)
@@ -1107,11 +1153,12 @@ namespace AdScheduleBuilder.BusinessClasses
         public double Discounts { get; set; }
         public double ColorPricing { get; set; }
         public double ColorPricingPercent { get; set; }
-        public string Section { get; set; }
         public string CustomComment { get; set; }
+        public string CustomSection { get; set; }
         public string Deadline { get; set; }
         public string Mechanicals { get; set; }
         public List<NameCodePair> Comments { get; private set; }
+        public List<NameCodePair> Sections { get; private set; }
 
         public Guid ParentID
         {
@@ -1265,18 +1312,6 @@ namespace AdScheduleBuilder.BusinessClasses
             }
         }
 
-        public string SectionAbbreviation
-        {
-            get
-            {
-                Section section = ListManager.Instance.Sections.Where(x => x.Name.Equals(this.Section)).FirstOrDefault();
-                if (section != null)
-                    return section.Abbreviation;
-                else
-                    return this.Section.Substring(0, 2);
-            }
-        }
-
         public double? PublicationSquare
         {
             get
@@ -1300,6 +1335,27 @@ namespace AdScheduleBuilder.BusinessClasses
                         comments.Add(comment.Name);
                 }
                 return string.Join(", ", comments.ToArray());
+            }
+        }
+
+        public string FullSection
+        {
+            get
+            {
+                List<string> sections = new List<string>();
+                if (!string.IsNullOrEmpty(this.CustomSection))
+                    sections.Add(this.CustomSection);
+                foreach (NameCodePair section in this.Sections)
+                {
+                    if (!string.IsNullOrEmpty(section.Code) && (this.Sections.Count + (!string.IsNullOrEmpty(this.CustomSection) ? 1 : 0)) >= ListManager.Instance.SelectedSectionsBorderValue)
+                        sections.Add(section.Code);
+                    else if (!string.IsNullOrEmpty(section.Name))
+                        sections.Add(section.Name);
+                }
+                if (sections.Count > 0)
+                    return string.Join(", ", sections.ToArray());
+                else
+                    return string.Empty;
             }
         }
 
@@ -1511,10 +1567,11 @@ namespace AdScheduleBuilder.BusinessClasses
             this.UniqueID = Guid.NewGuid();
             this.Date = DateTime.MinValue;
             this.Index = 1;
-            this.Section = string.Empty;
+            this.CustomSection = string.Empty;
             this.CustomComment = string.Empty;
             this.Deadline = string.Empty;
             this.Comments = new List<NameCodePair>();
+            this.Sections = new List<NameCodePair>();
         }
 
         public string Serialize()
@@ -1529,13 +1586,19 @@ namespace AdScheduleBuilder.BusinessClasses
             xml.Append("Discounts = \"" + this.Discounts + "\" ");
             xml.Append("ColorPricing = \"" + this.ColorPricing + "\" ");
             xml.Append("ColorPricingPercent = \"" + this.ColorPricingPercent + "\" ");
-            xml.Append("Section = \"" + this.Section.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+            xml.Append("CustomSection = \"" + this.CustomSection.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
             xml.Append("CustomComment = \"" + this.CustomComment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
             xml.Append("Deadline = \"" + this.Deadline.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
             xml.Append("Mechanicals = \"" + (this.Mechanicals != null ? this.Mechanicals.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + "\" ");
             xml.AppendLine(@">");
+            xml.AppendLine(@"<Comments>");
             foreach (NameCodePair comment in this.Comments)
                 xml.AppendLine(comment.Serialize());
+            xml.AppendLine(@"</Comments>");
+            xml.AppendLine(@"<Sections>");
+            foreach (NameCodePair section in this.Sections)
+                xml.AppendLine(section.Serialize());
+            xml.AppendLine(@"</Sections>");
             xml.AppendLine(@"</Insert>");
 
             return xml.ToString();
@@ -1578,8 +1641,8 @@ namespace AdScheduleBuilder.BusinessClasses
                         if (double.TryParse(attribute.Value, out tempDouble))
                             this.ColorPricingPercent = tempDouble;
                         break;
-                    case "Section":
-                        this.Section = attribute.Value;
+                    case "CustomSection":
+                        this.CustomSection = attribute.Value;
                         break;
                     case "CustomComment":
                         this.CustomComment = attribute.Value;
@@ -1596,10 +1659,23 @@ namespace AdScheduleBuilder.BusinessClasses
             {
                 switch (childNode.Name)
                 {
-                    case "NameCodePair":
-                        NameCodePair comment = new NameCodePair();
-                        comment.Deserialize(childNode);
-                        this.Comments.Add(comment);
+                    case "Comments":
+                        this.Comments.Clear();
+                        foreach (XmlNode commentNode in childNode.ChildNodes)
+                        {
+                            NameCodePair comment = new NameCodePair();
+                            comment.Deserialize(commentNode);
+                            this.Comments.Add(comment);
+                        }
+                        break;
+                    case "Sections":
+                        this.Sections.Clear();
+                        foreach (XmlNode sectionNode in childNode.ChildNodes)
+                        {
+                            NameCodePair section = new NameCodePair();
+                            section.Deserialize(sectionNode);
+                            this.Sections.Add(section);
+                        }
                         break;
                 }
             }

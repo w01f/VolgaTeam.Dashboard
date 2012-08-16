@@ -92,18 +92,25 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                     legend.Code = (publication.Length > 3 ? publication.Substring(0, 3) : publication).ToUpper();
                 _legendsFromPublication.Add(legend);
             }
-            foreach (string section in this.ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).GroupBy(x => x.Section).Select(x => x.Key).Distinct())
+            foreach (BusinessClasses.Insert insert in this.ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year))
             {
-                legend = new ConfigurationClasses.CalendarLegend();
-                legend.Description = section;
-                BusinessClasses.Section sectionSource = BusinessClasses.ListManager.Instance.Sections.Where(x => x.Name.Equals(section)).FirstOrDefault();
-                if (sectionSource != null)
-                    legend.Code = sectionSource.Abbreviation;
-                else
-                    legend.Code = section.Length > 2 ? section.Substring(0, 2) : section;
-                _legendsFromPublication.Add(legend);
+                foreach (BusinessClasses.NameCodePair section in insert.Sections)
+                {
+                    legend = new ConfigurationClasses.CalendarLegend();
+                    legend.Description = section.Name;
+                    legend.Code = section.Code;
+                    if (!_legendsFromPublication.Select(x => x.Description).Contains(legend.Description))
+                        _legendsFromPublication.Add(legend);
+                }
+                if (!string.IsNullOrEmpty(insert.CustomSection))
+                {
+                    legend = new ConfigurationClasses.CalendarLegend();
+                    legend.Description = insert.CustomSection;
+                    legend.Code = insert.CustomSection.Length > 2 ? insert.CustomSection.Substring(0, 2).ToUpper() : insert.CustomSection;
+                    if (!_legendsFromPublication.Select(x => x.Description).Contains(legend.Description))
+                        _legendsFromPublication.Add(legend);
+                }
             }
-
             _newLegends.AddRange(_settings.Legend.Where(x => _legendsFromPublication.Select(y => y.Description).Contains(x.Description)));
             _newLegends.AddRange(_legendsFromPublication.Where(x => !_settings.Legend.Select(y => y.Description).Contains(x.Description)));
             _settings.Legend.Clear();
@@ -269,8 +276,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             get
             {
                 string result = string.Empty;
-                if (_settings.Parent.ShowDate)
-                    result = _settings.Month.ToString("MMMM yyyy");
+                result = _settings.Month.ToString("MMMM yyyy");
                 return result;
             }
         }

@@ -41,10 +41,25 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         public void LoadColumnsState()
         {
             _allowToSave = false;
-            buttonXPercentOfPage.Enabled = BusinessClasses.ListManager.Instance.ShareUnits.Count > 0;
-            buttonXDate.Enabled = _settingsContainer.EnableDateButton;
-            buttonXPublication.Enabled = _settingsContainer.EnablePublicationButton;
-            buttonXID.Enabled = _settingsContainer.EnableIDButton;
+            buttonXColor.Enabled = _settingsContainer.EnableColorHeader;
+            buttonXCost.Enabled = _settingsContainer.EnableCostHeader;
+            buttonXDate.Enabled = _settingsContainer.EnableDateHeader;
+            buttonXDeadline.Enabled = _settingsContainer.EnableDeadlineHeader;
+            buttonXDelivery.Enabled = _settingsContainer.EnableDeliveryHeader;
+            buttonXDiscounts.Enabled = _settingsContainer.EnableDiscountHeader;
+            buttonXTotalCost.Enabled = _settingsContainer.EnableFinalCostHeader;
+            buttonXID.Enabled = _settingsContainer.EnableIDHeader;
+            buttonXIndex.Enabled = _settingsContainer.EnableIndexHeader;
+            buttonXMechanicals.Enabled = _settingsContainer.EnableMechanicalsHeader;
+            buttonXPageSize.Enabled = _settingsContainer.EnablePageSizeHeader;
+            buttonXPercentOfPage.Enabled = BusinessClasses.ListManager.Instance.ShareUnits.Count > 0 && _settingsContainer.EnablePercentOfPageHeader;
+            buttonXPCI.Enabled = _settingsContainer.EnablePCIHeader;
+            buttonXPublication.Enabled = _settingsContainer.EnablePublicationHeader;
+            buttonXDimensions.Enabled = _settingsContainer.EnableDimensionsHeader;
+            buttonXReadership.Enabled = _settingsContainer.EnableReadershipHeader;
+            buttonXSection.Enabled = _settingsContainer.EnableSectionHeader;
+            buttonXSquare.Enabled = _settingsContainer.EnableSquareHeader;
+
             buttonXColor.Checked = _settingsContainer.ShowColorHeader;
             buttonXCost.Checked = _settingsContainer.ShowCostHeader;
             buttonXDate.Checked = _settingsContainer.ShowDateHeader;

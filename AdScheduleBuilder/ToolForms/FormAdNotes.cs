@@ -14,6 +14,7 @@ namespace AdScheduleBuilder.ToolForms
         private int _selectedSectionRecordNumber = -1;
         private int _selectedDeadlineRecordNumber = -1;
         private bool _useMultiLineComment = false;
+        private bool _useMultiLineSection = false;
 
         public DateTime Date { get; set; }
 
@@ -74,35 +75,60 @@ namespace AdScheduleBuilder.ToolForms
             }
         }
 
-        public string Section
+        public string CustomSection
         {
             get
             {
-                if (ckSection.Checked)
-                    return textEditSection.Text;
+                return ckSection.Checked && textEditSection.EditValue != null ? textEditSection.EditValue.ToString() : string.Empty;
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    textEditSection.EditValue = value;
+                    ckSection.Checked = true;
+                }
                 else
-                    return checkedListBoxControlSections.CheckedIndices.Count > 0 ? (checkedListBoxControlSections.Items[checkedListBoxControlSections.CheckedIndices[0]] as CheckedListBoxItem).Description : string.Empty;
+                {
+                    textEditSection.EditValue = null;
+                    ckSection.Checked = false;
+                }
+                UpdateSectionState();
+            }
+        }
+
+        public BusinessClasses.NameCodePair[] Sections
+        {
+            get
+            {
+                List<BusinessClasses.NameCodePair> Sections = new List<BusinessClasses.NameCodePair>();
+                foreach (CheckedListBoxItem item in checkedListBoxControlSections.Items)
+                {
+                    if (item.CheckState == CheckState.Checked)
+                    {
+                        BusinessClasses.NameCodePair Section = new BusinessClasses.NameCodePair();
+                        Section.Name = item.Description;
+                        if (item.Value != null)
+                            Section.Code = item.Value.ToString();
+                        Sections.Add(Section);
+                    }
+                }
+                return Sections.ToArray();
             }
             set
             {
                 checkedListBoxControlSections.Items.Clear();
-                foreach (BusinessClasses.Section comment in BusinessClasses.ListManager.Instance.Sections)
-                    checkedListBoxControlSections.Items.Add(comment.Name, comment.Name, CheckState.Unchecked, true);
-
-                textEditSection.Text = value;
+                _useMultiLineSection = BusinessClasses.ListManager.Instance.Sections.Where(x => !string.IsNullOrEmpty(x.Code)).Count() > 0;
                 int i = 0;
-                foreach (CheckedListBoxItem item in checkedListBoxControlSections.Items)
+                foreach (BusinessClasses.NameCodePair section in BusinessClasses.ListManager.Instance.Sections)
                 {
-                    if (item.Description.Equals(value))
-                    {
-                        item.CheckState = CheckState.Checked;
+                    bool itemChecked = value.Where(x => x.Name.Equals(section.Name) && x.Code.Equals(section.Code)).Count() > 0;
+                    checkedListBoxControlSections.Items.Add(section.Code, section.Name, itemChecked ? CheckState.Checked : CheckState.Unchecked, true);
+                    if (itemChecked && _selectedSectionRecordNumber == -1)
                         _selectedSectionRecordNumber = i;
-                        textEditSection.Text = string.Empty;
-                        ckSection.Checked = false;
-                        break;
-                    }
                     i++;
                 }
+                UpdateSectionState();
             }
         }
 
@@ -171,6 +197,7 @@ namespace AdScheduleBuilder.ToolForms
             }
             else
                 tabItemMechanicals.Visible = false;
+            tabItemDeadlines.Visible = BusinessClasses.ListManager.Instance.Deadlines.Count > 0;
         }
 
         private void UpdateCommentState()
@@ -183,7 +210,7 @@ namespace AdScheduleBuilder.ToolForms
 
         private void UpdateSectionState()
         {
-            if (!string.IsNullOrEmpty(textEditSection.Text) || checkedListBoxControlSections.CheckedItems.Count > 0)
+            if (textEditSection.EditValue != null || checkedListBoxControlSections.CheckedItems.Count > 0)
                 tabItemSections.Image = Properties.Resources.Selected;
             else
                 tabItemSections.Image = Properties.Resources.Unselected;
@@ -265,7 +292,7 @@ namespace AdScheduleBuilder.ToolForms
 
         private void buttonXClearComment_Click(object sender, EventArgs e)
         {
-            if (AppManager.ShowWarningQuestion("Are you sure you want to clear selected comment?") == System.Windows.Forms.DialogResult.Yes)
+            if (AppManager.ShowWarningQuestion("Are you sure you want to clear selected comments?") == System.Windows.Forms.DialogResult.Yes)
             {
                 ckComment.Checked = false;
                 textEditComment.EditValue = null;
@@ -276,11 +303,10 @@ namespace AdScheduleBuilder.ToolForms
 
         private void ckSection_CheckedChanged(object sender, EventArgs e)
         {
-            if (ckSection.Checked)
+            if (ckSection.Checked && !_useMultiLineSection)
                 checkedListBoxControlSections.UnCheckAll();
-            else
-                textEditSection.EditValue = string.Empty;
             textEditSection.Enabled = ckSection.Checked;
+            textEditSection.EditValue = ckSection.Checked ? textEditSection.EditValue : null;
         }
 
         private void textEditSection_EditValueChanged(object sender, EventArgs e)
@@ -290,7 +316,7 @@ namespace AdScheduleBuilder.ToolForms
 
         private void checkedListBoxControlSections_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e)
         {
-            if (e.State == CheckState.Checked)
+            if (e.State == CheckState.Checked && !_useMultiLineSection)
             {
                 ckSection.Checked = false;
                 foreach (CheckedListBoxItem item in checkedListBoxControlSections.Items)
@@ -306,10 +332,12 @@ namespace AdScheduleBuilder.ToolForms
 
         private void buttonXClearSection_Click(object sender, EventArgs e)
         {
-            if (AppManager.ShowWarningQuestion("Are you sure you want to clear selected section?") == System.Windows.Forms.DialogResult.Yes)
+            if (AppManager.ShowWarningQuestion("Are you sure you want to clear selected sections?") == System.Windows.Forms.DialogResult.Yes)
             {
-                ckSection.Checked = true;
-                textEditSection.EditValue = string.Empty;
+                ckSection.Checked = false;
+                textEditSection.EditValue = null;
+                foreach (CheckedListBoxItem item in checkedListBoxControlSections.Items)
+                    item.CheckState = CheckState.Unchecked;
             }
         }
 
@@ -373,7 +401,7 @@ namespace AdScheduleBuilder.ToolForms
             }
         }
 
-        private void FormComment_Load(object sender, EventArgs e)
+        private void FormAdNotes_Load(object sender, EventArgs e)
         {
             if (_selectedCommentRecordNumber != -1)
                 checkedListBoxControlComments.MakeItemVisible(_selectedCommentRecordNumber);
@@ -385,7 +413,7 @@ namespace AdScheduleBuilder.ToolForms
 
         private void tabControlAdNotes_SelectedTabChanged(object sender, DevComponents.DotNetBar.TabStripTabChangedEventArgs e)
         {
-            FormComment_Load(null, null);
+            FormAdNotes_Load(null, null);
         }
 
         private void pbHelp_Click(object sender, EventArgs e)

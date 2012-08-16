@@ -276,6 +276,12 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 }
         }
 
+        public void buttonItemCalendarsReset_Click(object sender, EventArgs e)
+        {
+            _selectedOutput.ResetToDefault();
+            SaveSchedule();
+        }
+
         public void buttonItemCalendarsHelp_Click(object sender, EventArgs e)
         {
             if (_selectedOutput != null)
@@ -296,6 +302,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         void UpdateToggledOptions();
         void ShowOutputOptions(Calendar.SettingsViewers.ICalendarSettingsViewer settingsViewer);
         void UpdateOutput(bool quickLoad);
+        void ResetToDefault();
         void PrintOutput();
         void Email();
         void Preview();

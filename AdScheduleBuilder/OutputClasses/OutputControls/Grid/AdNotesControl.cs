@@ -26,19 +26,30 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             SortedDictionary<int, string> adNotes = new SortedDictionary<int, string>();
             int maxNumber = 12;
-            adNotes.Add(_settingsContainer.PositionColumnInchesInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionColumnInchesInPreview) ? _settingsContainer.PositionColumnInchesInPreview : ++maxNumber, "Total Col In");
-            adNotes.Add(_settingsContainer.PositionCommentsInPreview, "Comment");
-            adNotes.Add(_settingsContainer.PositionDeadlineInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionDeadlineInPreview) ? _settingsContainer.PositionDeadlineInPreview : ++maxNumber, "Deadline");
-            adNotes.Add(_settingsContainer.PositionDeliveryInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionDeliveryInPreview) ? _settingsContainer.PositionDeliveryInPreview : ++maxNumber, "Delivery");
-            adNotes.Add(_settingsContainer.PositionDimensionsInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionDimensionsInPreview) ? _settingsContainer.PositionDimensionsInPreview : ++maxNumber, "Col. x Inches");
-            adNotes.Add(_settingsContainer.PositionMechanicalsInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionMechanicalsInPreview) ? _settingsContainer.PositionMechanicalsInPreview : ++maxNumber, "Mechanicals");
-            adNotes.Add(_settingsContainer.PositionPageSizeInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionPageSizeInPreview) ? _settingsContainer.PositionPageSizeInPreview : ++maxNumber, "Page Size");
-            if (BusinessClasses.ListManager.Instance.ShareUnits.Count > 0)
+            if (_settingsContainer.EnableColumnInchesInPreview)
+                adNotes.Add(_settingsContainer.PositionColumnInchesInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionColumnInchesInPreview) ? _settingsContainer.PositionColumnInchesInPreview : ++maxNumber, "Total Col In");
+            if (_settingsContainer.EnableCommentsInPreview)
+                adNotes.Add(_settingsContainer.PositionCommentsInPreview, "Comment");
+            if (_settingsContainer.EnableDeadlineInPreview)
+                adNotes.Add(_settingsContainer.PositionDeadlineInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionDeadlineInPreview) ? _settingsContainer.PositionDeadlineInPreview : ++maxNumber, "Deadline");
+            if (_settingsContainer.EnableDeliveryInPreview)
+                adNotes.Add(_settingsContainer.PositionDeliveryInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionDeliveryInPreview) ? _settingsContainer.PositionDeliveryInPreview : ++maxNumber, "Delivery");
+            if (_settingsContainer.EnableDimensionsInPreview)
+                adNotes.Add(_settingsContainer.PositionDimensionsInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionDimensionsInPreview) ? _settingsContainer.PositionDimensionsInPreview : ++maxNumber, "Col. x Inches");
+            if (_settingsContainer.EnableMechanicalsInPreview)
+                adNotes.Add(_settingsContainer.PositionMechanicalsInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionMechanicalsInPreview) ? _settingsContainer.PositionMechanicalsInPreview : ++maxNumber, "Mechanicals");
+            if (_settingsContainer.EnablePageSizeInPreview)
+                adNotes.Add(_settingsContainer.PositionPageSizeInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionPageSizeInPreview) ? _settingsContainer.PositionPageSizeInPreview : ++maxNumber, "Page Size");
+            if (_settingsContainer.EnablePercentOfPageInPreview && BusinessClasses.ListManager.Instance.ShareUnits.Count > 0)
                 adNotes.Add(_settingsContainer.PositionPercentOfPageInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionPercentOfPageInPreview) ? _settingsContainer.PositionPercentOfPageInPreview : ++maxNumber, "% of Page");
-            if (_settingsContainer.GetType() != typeof(OutputChronologicalControl))
+            if (_settingsContainer.EnablePublicationInPreview && _settingsContainer.GetType() != typeof(OutputChronologicalControl))
                 adNotes.Add(_settingsContainer.PositionPublicationInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionPublicationInPreview) ? _settingsContainer.PositionPublicationInPreview : ++maxNumber, "Publication");
-            adNotes.Add(_settingsContainer.PositionReadershipInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionReadershipInPreview) ? _settingsContainer.PositionReadershipInPreview : ++maxNumber, "Readership");
-            adNotes.Add(_settingsContainer.PositionSectionInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionSectionInPreview) ? _settingsContainer.PositionSectionInPreview : ++maxNumber, "Section");
+            if (_settingsContainer.EnableReadershipInPreview)
+                adNotes.Add(_settingsContainer.PositionReadershipInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionReadershipInPreview) ? _settingsContainer.PositionReadershipInPreview : ++maxNumber, "Readership");
+            if (_settingsContainer.EnableSectionInPreview)
+                adNotes.Add(_settingsContainer.PositionSectionInPreview > 0 && !adNotes.Keys.Contains(_settingsContainer.PositionSectionInPreview) ? _settingsContainer.PositionSectionInPreview : ++maxNumber, "Section");
+
+            checkEditShowAdNotes.Enabled = _settingsContainer.EnableCommentsHeader;
             checkEditShowAdNotes.Checked = _settingsContainer.ShowCommentsHeader;
 
             checkedListBoxAdNotes.Items.Clear();

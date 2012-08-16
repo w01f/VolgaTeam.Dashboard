@@ -62,22 +62,38 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             FormMain.Instance.buttonItemSnapshotOptions.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowOptions;
             xtraTabControlOptions.SelectedTabPageIndex = this.LocalSchedule.ViewSettings.SnapshotViewSettings.SelectedOptionChapterIndex;
 
-            buttonXPercentOfPage.Enabled = BusinessClasses.ListManager.Instance.ShareUnits.Count > 0;
+            buttonXLogo.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnableLogo;
+            buttonXTotalInserts.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnableTotalInserts;
+            buttonXTotalFinalCost.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnableTotalFinalCost;
+            buttonXPageSize.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnablePageSize;
+            buttonXDimensions.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnableDimensions;
+            buttonXSquare.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnableSquare;
+            buttonXTotalSquare.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnableTotalSquare;
+            buttonXAvgPCI.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnableAvgPCI;
+            buttonXAvgAdCost.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnableAvgCost;
+            buttonXAvgFinalCost.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnableAvgFinalCost;
+            buttonXTotalColorRate.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnableTotalColor;
+            buttonXTotalDiscounts.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnableTotalDiscounts;
+            buttonXReadership.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnableReadership;
+            buttonXDelivery.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnableDelivery;
+            buttonXPercentOfPage.Enabled = this.LocalSchedule.ViewSettings.SnapshotViewSettings.EnablePercentOfPage & BusinessClasses.ListManager.Instance.ShareUnits.Count > 0;
+
+            buttonXLogo.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowLogo;
+            buttonXTotalInserts.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalInserts;
+            buttonXTotalFinalCost.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalFinalCost;
+            buttonXPageSize.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPageSize;
+            buttonXDimensions.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDimensions;
+            buttonXSquare.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowSquare;
+            buttonXTotalSquare.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalSquare;
+            buttonXAvgPCI.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgPCI;
             buttonXAvgAdCost.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgCost;
             buttonXAvgFinalCost.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgFinalCost;
-            buttonXAvgPCI.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgPCI;
-            buttonXDelivery.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDelivery;
-            buttonXDimensions.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDimensions;
-            buttonXLogo.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowLogo;
-            buttonXPageSize.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPageSize;
-            buttonXPercentOfPage.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPercentOfPage & buttonXPercentOfPage.Enabled;
-            buttonXReadership.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowReadership;
-            buttonXSquare.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowSquare;
             buttonXTotalColorRate.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalColor;
             buttonXTotalDiscounts.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalDiscounts;
-            buttonXTotalFinalCost.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalFinalCost;
-            buttonXTotalInserts.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalInserts;
-            buttonXTotalSquare.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalSquare;
+            buttonXReadership.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowReadership;
+            buttonXDelivery.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDelivery;
+            buttonXPercentOfPage.Checked = this.LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPercentOfPage & buttonXPercentOfPage.Enabled;
+            
             _allowToSave = true;
         }
 
@@ -148,6 +164,13 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 LoadView();
             }
             this.SettingsNotSaved = false;
+        }
+
+        public void ResetToDefault()
+        {
+            this.LocalSchedule.ViewSettings.SnapshotViewSettings.ResetToDefault();
+            LoadView();
+            outputSnapshotContainer.UpdateColumns(this.LocalSchedule);
         }
 
         public void OpenHelp()

@@ -599,6 +599,13 @@ namespace AdScheduleBuilder.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Reset {
+            get {
+                object obj = ResourceManager.GetObject("Reset", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap RightGreenArrow {
             get {
                 object obj = ResourceManager.GetObject("RightGreenArrow", resourceCulture);

@@ -226,26 +226,53 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         public void ApplySettings()
         {
             this.AllowToSave = false;
-            FormMain.Instance.buttonItemCalendarsShowPercentOfPage.Enabled = BusinessClasses.ListManager.Instance.ShareUnits.Count > 0;
 
+            FormMain.Instance.buttonItemCalendarsShowSection.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableSection;
+            FormMain.Instance.buttonItemCalendarsShowCost.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableCost;
+            FormMain.Instance.buttonItemCalendarsShowColor.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableColor;
+            FormMain.Instance.buttonItemCalendarsShowAbbreviation.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableAbbreviationOnly;
+            FormMain.Instance.buttonItemCalendarsShowAdSize.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableAdSize;
+            FormMain.Instance.buttonItemCalendarsShowPageSize.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnablePageSize;
+            FormMain.Instance.buttonItemCalendarsShowPercentOfPage.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnablePercentOfPage & FormMain.Instance.buttonItemCalendarsShowPercentOfPage.Enabled;
+            FormMain.Instance.buttonItemCalendarsShowBigDates.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableBigDate;
+
+            FormMain.Instance.buttonItemCalendarsShowSection.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowSection;
+            FormMain.Instance.buttonItemCalendarsShowCost.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowCost;
+            FormMain.Instance.buttonItemCalendarsShowColor.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowColor;
             FormMain.Instance.buttonItemCalendarsShowAbbreviation.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowAbbreviationOnly;
             FormMain.Instance.buttonItemCalendarsShowAdSize.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowAdSize;
             FormMain.Instance.buttonItemCalendarsShowPageSize.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowPageSize;
-            FormMain.Instance.buttonItemCalendarsShowPercentOfPage.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowPercentOfPage & FormMain.Instance.buttonItemCalendarsShowPercentOfPage.Enabled;
-            FormMain.Instance.buttonItemCalendarsShowColor.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowColor;
-            FormMain.Instance.buttonItemCalendarsShowCost.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowCost;
-            FormMain.Instance.buttonItemCalendarsShowSection.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowSection;
+            FormMain.Instance.buttonItemCalendarsShowPercentOfPage.Checked = BusinessClasses.ListManager.Instance.ShareUnits.Count > 0 && this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowPercentOfPage & FormMain.Instance.buttonItemCalendarsShowPercentOfPage.Enabled;
             FormMain.Instance.buttonItemCalendarsShowBigDates.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowBigDate;
-            FormMain.Instance.buttonItemCalendarsShowLegend.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowLegend;
+
+            FormMain.Instance.buttonItemCalendarsShowTitle.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableTitle;
+            FormMain.Instance.buttonItemCalendarsShowLogo.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableLogo;
+            FormMain.Instance.buttonItemCalendarsShowBusinessName.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableBusinessName;
+            FormMain.Instance.buttonItemCalendarsShowDecisionMaker.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableDecisionMaker;
+            FormMain.Instance.buttonItemCalendarsShowTotalCost.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableTotalCost;
+            FormMain.Instance.buttonItemCalendarsShowLegend.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableLegend;
+            FormMain.Instance.buttonItemCalendarsShowAvgCost.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableAvgCost;
+            FormMain.Instance.buttonItemCalendarsShowComment.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableComments;
+            FormMain.Instance.buttonItemCalendarsShowTotalAds.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableTotalAds;
+            FormMain.Instance.buttonItemCalendarsShowActiveDays.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableActiveDays;
+            
             FormMain.Instance.buttonItemCalendarsShowTitle.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowTitle;
+            FormMain.Instance.buttonItemCalendarsShowLogo.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowLogo;
             FormMain.Instance.buttonItemCalendarsShowBusinessName.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowBusinessName;
             FormMain.Instance.buttonItemCalendarsShowDecisionMaker.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowDecisionMaker;
-            FormMain.Instance.buttonItemCalendarsShowLogo.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowLogo;
             FormMain.Instance.buttonItemCalendarsShowTotalCost.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowTotalCost;
+            FormMain.Instance.buttonItemCalendarsShowLegend.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowLegend;
             FormMain.Instance.buttonItemCalendarsShowAvgCost.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowAvgCost;
+            FormMain.Instance.buttonItemCalendarsShowComment.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowComments;
             FormMain.Instance.buttonItemCalendarsShowTotalAds.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowTotalAds;
             FormMain.Instance.buttonItemCalendarsShowActiveDays.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowActiveDays;
-            FormMain.Instance.buttonItemCalendarsShowComment.Checked = this.LocalSchedule.ViewSettings.CalendarViewSettings.ShowComments;
+
+            FormMain.Instance.buttonItemCalendarsColorBlack.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableBlack;
+            FormMain.Instance.buttonItemCalendarsColorBlue.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableBlue;
+            FormMain.Instance.buttonItemCalendarsColorGray.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableGray;
+            FormMain.Instance.buttonItemCalendarsColorGreen.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableGreen;
+            FormMain.Instance.buttonItemCalendarsColorOrange.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableOrange;
+            FormMain.Instance.buttonItemCalendarsColorTeal.Enabled = this.LocalSchedule.ViewSettings.CalendarViewSettings.EnableTeal;
 
             FormMain.Instance.buttonItemCalendarsColorBlack.Checked = false;
             FormMain.Instance.buttonItemCalendarsColorBlue.Checked = false;
@@ -308,6 +335,16 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                 UpdateMonthSettings();
 
             this.SettingsNotSaved = false;
+        }
+
+        public void ResetToDefault()
+        {
+            this.LocalSchedule.ViewSettings.CalendarViewSettings.ResetToDefault();
+            ApplySettings();
+            this.AllowToSave = false;
+            UpdateMonthView();
+            _selectedMonth.RefreshData();
+            this.AllowToSave = true;
         }
 
         public void OpenHelp()

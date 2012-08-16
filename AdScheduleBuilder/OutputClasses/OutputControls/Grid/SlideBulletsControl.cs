@@ -258,7 +258,27 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             _allowToCheckSlideOptions = false;
             _allowToSave = false;
-            checkEditEnableSlideBullets.Checked = _settingsContainer.SlideBulletsState.EnableSlideBullets;
+
+            checkEditEnableSlideBullets.Enabled = _settingsContainer.SlideBulletsState.EnableSlideBullets;
+            checkEditAvgAdCost.Enabled = _settingsContainer.SlideBulletsState.EnableAvgAdCost;
+            checkEditAvgFinalCost.Enabled = _settingsContainer.SlideBulletsState.EnableAvgFinalCost;
+            checkEditAvgPCI.Enabled = _settingsContainer.SlideBulletsState.EnableAvgPCI;
+            checkEditColumnInches.Enabled = _settingsContainer.SlideBulletsState.EnableColumnInches;
+            checkEditDelivery.Enabled = _settingsContainer.SlideBulletsState.EnableDelivery;
+            checkEditDimensions.Enabled = _settingsContainer.SlideBulletsState.EnableDimensions;
+            checkEditPageSize.Enabled = _settingsContainer.SlideBulletsState.EnablePageSize;
+            checkEditPercentOfPage.Enabled = _settingsContainer.SlideBulletsState.EnablePercentOfPage;
+            checkEditReadership.Enabled = _settingsContainer.SlideBulletsState.EnableReadership;
+            checkEditSignature.Enabled = _settingsContainer.SlideBulletsState.EnableSignature;
+            checkEditTotalColor.Enabled = _settingsContainer.SlideBulletsState.EnableTotalColor;
+            checkEditTotalDiscounts.Enabled = _settingsContainer.SlideBulletsState.EnableDiscounts;
+            checkEditTotalFinalCost.Enabled = _settingsContainer.SlideBulletsState.EnableTotalFinalCost;
+            checkEditTotalInserts.Enabled = _settingsContainer.SlideBulletsState.EnableTotalInserts;
+            checkEditTotalSquare.Enabled = _settingsContainer.SlideBulletsState.EnableTotalSquare;
+            checkEditLastSlide.Enabled = _settingsContainer.SlideBulletsState.EnableOnlyOnLastSlide;
+            checkEditAllSlides.Enabled = !_settingsContainer.SlideBulletsState.EnableOnlyOnLastSlide;
+
+            checkEditEnableSlideBullets.Checked = _settingsContainer.SlideBulletsState.ShowSlideBullets;
             checkEditAvgAdCost.Checked = _settingsContainer.SlideBulletsState.ShowAvgAdCost;
             checkEditAvgFinalCost.Checked = _settingsContainer.SlideBulletsState.ShowAvgFinalCost;
             checkEditAvgPCI.Checked = _settingsContainer.SlideBulletsState.ShowAvgPCI;
@@ -276,6 +296,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             checkEditTotalSquare.Checked = _settingsContainer.SlideBulletsState.ShowTotalSquare;
             checkEditLastSlide.Checked = _settingsContainer.SlideBulletsState.ShowOnlyOnLastSlide;
             checkEditAllSlides.Checked = !_settingsContainer.SlideBulletsState.ShowOnlyOnLastSlide;
+            
             _allowToCheckSlideOptions = true;
             _allowToSave = true;
         }
@@ -284,7 +305,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             if (_allowToSave)
             {
-                _settingsContainer.SlideBulletsState.EnableSlideBullets = checkEditEnableSlideBullets.Checked;
+                _settingsContainer.SlideBulletsState.ShowSlideBullets = checkEditEnableSlideBullets.Checked;
                 _settingsContainer.SlideBulletsState.ShowAvgAdCost = checkEditAvgAdCost.Checked & checkEditEnableSlideBullets.Checked;
                 _settingsContainer.SlideBulletsState.ShowAvgFinalCost = checkEditAvgFinalCost.Checked & checkEditEnableSlideBullets.Checked;
                 _settingsContainer.SlideBulletsState.ShowAvgPCI = checkEditAvgPCI.Checked & checkEditEnableSlideBullets.Checked;

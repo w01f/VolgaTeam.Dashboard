@@ -316,8 +316,8 @@ namespace AdScheduleBuilder.CustomControls
 
                     if (!string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(hi.RowHandle)].FullComment))
                         adNotes.Add(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(hi.RowHandle)].FullComment);
-                    if (!string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(hi.RowHandle)].Section))
-                        adNotes.Add(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(hi.RowHandle)].Section);
+                    if (!string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(hi.RowHandle)].FullSection))
+                        adNotes.Add(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(hi.RowHandle)].FullSection);
                     if (!string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(hi.RowHandle)].Deadline))
                         adNotes.Add("Deadline: " + this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(hi.RowHandle)].DeadlineForOutput);
                     if (!string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(hi.RowHandle)].Mechanicals))
@@ -369,7 +369,7 @@ namespace AdScheduleBuilder.CustomControls
                 if (e.RowHandle >= 0)
                 {
                     if (string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullComment) &&
-                        string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Section) &&
+                        string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullSection) &&
                         string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Mechanicals) &&
                         string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Deadline))
                     {
@@ -436,7 +436,7 @@ namespace AdScheduleBuilder.CustomControls
             if (e.Column == gridColumnADRate && (this.Publication.AdPricingStrategy == BusinessClasses.AdPricingStrategies.FlatModular || this.Publication.AdPricingStrategy == BusinessClasses.AdPricingStrategies.SharePage))
             {
                 if (string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullComment) &&
-                    string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Section) &&
+                    string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullSection) &&
                     string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Mechanicals) &&
                     string.IsNullOrEmpty(this.Publication.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Deadline))
                 {
@@ -525,6 +525,7 @@ namespace AdScheduleBuilder.CustomControls
             }
             else if (e.Button.Index == 2)
             {
+                advBandedGridViewPublication.CloseEditor();
                 using (ToolForms.FormAdNotes form = new ToolForms.FormAdNotes())
                 {
                     if (advBandedGridViewPublication.GetFocusedDataSourceRowIndex() >= 0)
@@ -535,7 +536,8 @@ namespace AdScheduleBuilder.CustomControls
                         form.laFinalRate.Text = this.Publication.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].FinalRate.ToString("$#,###.00");
                         form.CustomComment = this.Publication.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].CustomComment;
                         form.Comments = this.Publication.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Comments.ToArray();
-                        form.Section = this.Publication.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Section;
+                        form.CustomSection = this.Publication.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].CustomSection;
+                        form.Sections = this.Publication.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Sections.ToArray();
                         form.Deadline = this.Publication.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Deadline;
                         form.Mechanicals = this.Publication.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Mechanicals;
                         if (form.ShowDialog() == DialogResult.OK)
@@ -561,10 +563,18 @@ namespace AdScheduleBuilder.CustomControls
                             {
                                 DayOfWeek[] selectedDays = form.adNotesWeekdaysSelectorSections.SelectedDays;
                                 foreach (var insert in this.Publication.Inserts.Where(x => selectedDays.Contains(x.Date.DayOfWeek)))
-                                    insert.Section = form.Section;
+                                {
+                                    insert.CustomSection = form.CustomSection;
+                                    insert.Sections.Clear();
+                                    insert.Sections.AddRange(form.Sections);
+                                }
                             }
                             else
-                                this.Publication.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Section = form.Section;
+                            {
+                                this.Publication.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].CustomSection = form.CustomSection;
+                                this.Publication.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Sections.Clear();
+                                this.Publication.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Sections.AddRange(form.Sections);
+                            }
 
                             if (form.adNotesWeekdaysSelectorDeadlines.SelectedDays.Length > 0)
                             {
@@ -586,7 +596,6 @@ namespace AdScheduleBuilder.CustomControls
 
                             LoadInserts();
 
-                            advBandedGridViewPublication.CloseEditor();
                             ScheduleBuilderControl.Instance.SettingsNotSaved = true;
                         }
                     }

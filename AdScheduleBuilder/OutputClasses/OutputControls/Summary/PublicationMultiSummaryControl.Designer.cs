@@ -617,6 +617,7 @@
             // 
             this.Controls.Add(this.pnMain);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Name = "PublicationMultiSummaryControl";
             this.Size = new System.Drawing.Size(949, 420);
             ((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).EndInit();
             this.pnItems.ResumeLayout(false);

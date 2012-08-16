@@ -522,7 +522,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
         {
             get
             {
-                return !OutputDetailedGridControl.Instance.SlideBulletsState.EnableSlideBullets;
+                return !OutputDetailedGridControl.Instance.SlideBulletsState.ShowSlideBullets;
             }
         }
 
@@ -678,8 +678,8 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                             int maxNumber = 12;
                             if (OutputDetailedGridControl.Instance.ShowCommentsInPreview && !string.IsNullOrEmpty(publication.Inserts[i + j].FullComment))
                                 adNotes.Add(OutputDetailedGridControl.Instance.PositionCommentsInPreview > 0 && !adNotes.Keys.Contains(OutputDetailedGridControl.Instance.PositionCommentsInPreview) ? OutputDetailedGridControl.Instance.PositionCommentsInPreview : ++maxNumber, publication.Inserts[i + j].FullComment);
-                            if (OutputDetailedGridControl.Instance.ShowSectionInPreview && !string.IsNullOrEmpty(publication.Inserts[i + j].Section))
-                                adNotes.Add(OutputDetailedGridControl.Instance.PositionSectionInPreview > 0 && !adNotes.Keys.Contains(OutputDetailedGridControl.Instance.PositionSectionInPreview) ? OutputDetailedGridControl.Instance.PositionSectionInPreview : ++maxNumber, "Section: " + publication.Inserts[i + j].Section);
+                            if (OutputDetailedGridControl.Instance.ShowSectionInPreview && !string.IsNullOrEmpty(publication.Inserts[i + j].FullSection))
+                                adNotes.Add(OutputDetailedGridControl.Instance.PositionSectionInPreview > 0 && !adNotes.Keys.Contains(OutputDetailedGridControl.Instance.PositionSectionInPreview) ? OutputDetailedGridControl.Instance.PositionSectionInPreview : ++maxNumber, "Section: " + publication.Inserts[i + j].FullSection);
                             if (OutputDetailedGridControl.Instance.ShowMechanicalsInPreview && !string.IsNullOrEmpty(publication.Inserts[i + j].Mechanicals))
                                 adNotes.Add(OutputDetailedGridControl.Instance.PositionMechanicalsInPreview > 0 && !adNotes.Keys.Contains(OutputDetailedGridControl.Instance.PositionMechanicalsInPreview) ? OutputDetailedGridControl.Instance.PositionMechanicalsInPreview : ++maxNumber, "Mech: " + publication.Inserts[i + j].MechanicalsOutput);
                             if (OutputDetailedGridControl.Instance.ShowDeliveryInPreview && !string.IsNullOrEmpty(publication.Inserts[i + j].Delivery))
@@ -732,7 +732,7 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
                         if (OutputDetailedGridControl.Instance.PositionDimensions != -1 && OutputDetailedGridControl.Instance.ShowDimensionsHeader)
                             row.Add(OutputDetailedGridControl.Instance.PositionDimensions, publication.Inserts[i + j].DimensionsOutput);
                         if (OutputDetailedGridControl.Instance.PositionSection != -1 && OutputDetailedGridControl.Instance.ShowSectionHeader)
-                            row.Add(OutputDetailedGridControl.Instance.PositionSection, publication.Inserts[i + j].Section);
+                            row.Add(OutputDetailedGridControl.Instance.PositionSection, publication.Inserts[i + j].FullSection);
                         if (OutputDetailedGridControl.Instance.PositionReadership != -1 && OutputDetailedGridControl.Instance.ShowReadershipHeader)
                             row.Add(OutputDetailedGridControl.Instance.PositionReadership, publication.Inserts[i + j].Readership);
                         if (OutputDetailedGridControl.Instance.PositionDelivery != -1 && OutputDetailedGridControl.Instance.ShowDeliveryHeader)

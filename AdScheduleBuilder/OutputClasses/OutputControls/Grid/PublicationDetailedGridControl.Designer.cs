@@ -421,7 +421,7 @@
             this.gridColumnSection.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumnSection.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumnSection.Caption = "Section";
-            this.gridColumnSection.FieldName = "Section";
+            this.gridColumnSection.FieldName = "FullSection";
             this.gridColumnSection.Name = "gridColumnSection";
             this.gridColumnSection.Visible = true;
             this.gridColumnSection.VisibleIndex = 14;

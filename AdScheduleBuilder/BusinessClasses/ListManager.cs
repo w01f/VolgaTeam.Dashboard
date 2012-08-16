@@ -25,14 +25,37 @@ namespace AdScheduleBuilder.BusinessClasses
         public List<NameCodePair> Notes { get; set; }
         public List<string> OutputHeaders { get; set; }
         public List<string> ClientTypes { get; set; }
-        public List<Section> Sections { get; set; }
+        public List<NameCodePair> Sections { get; set; }
         public List<MechanicalType> Mechanicals { get; set; }
         public List<string> Deadlines { get; set; }
         public List<string> Statuses { get; set; }
         public List<ShareUnit> ShareUnits { get; set; }
+        public int SelectedCommentsBorderValue { get; set; }
+        public int SelectedSectionsBorderValue { get; set; }
+
         public AdPricingStrategies DefaultPricingStrategy { get; set; }
         public ColorPricingType DefaultColorPricing { get; set; }
-        public int SelectedCommentsBorderValue { get; set; }
+        public ColorOptions DefaultColor { get; set; }
+
+        public ConfigurationClasses.HomeViewSettings DefaultHomeViewSettings { get; private set; }
+
+        public ConfigurationClasses.PrintScheduleViewSettings DefaultPrintScheduleViewSettings { get; private set; }
+
+        public ConfigurationClasses.PublicationBasicOverviewSettings DefaultPublicationBasicOverviewSettings { get; private set; }
+        public ConfigurationClasses.PublicationMultiSummarySettings DefaultPublicationMultiSummarySettings { get; private set; }
+        public ConfigurationClasses.SnapshotViewSettings DefaultSnapshotViewSettings { get; private set; }
+
+        public ConfigurationClasses.GridColumnsState DefaultDetailedGridColumnState { get; private set; }
+        public ConfigurationClasses.AdNotesState DefaultDetailedGridAdNotesState { get; private set; }
+        public ConfigurationClasses.SlideBulletsState DefaultDetailedGridSlideBulletsState { get; private set; }
+        public ConfigurationClasses.SlideHeaderState DefaultDetailedGridSlideHeaderState { get; private set; }
+
+        public ConfigurationClasses.GridColumnsState DefaultMultiGridColumnState { get; private set; }
+        public ConfigurationClasses.AdNotesState DefaultMultiGridAdNotesState { get; private set; }
+        public ConfigurationClasses.SlideBulletsState DefaultMultiGridSlideBulletsState { get; private set; }
+        public ConfigurationClasses.SlideHeaderState DefaultMultiGridSlideHeaderState { get; private set; }
+
+        public ConfigurationClasses.CalendarViewSettings DefaultCalendarViewSettings { get; private set; }
 
         private ListManager()
         {
@@ -46,11 +69,56 @@ namespace AdScheduleBuilder.BusinessClasses
             this.Notes = new List<NameCodePair>();
             this.OutputHeaders = new List<string>();
             this.ClientTypes = new List<string>();
-            this.Sections = new List<Section>();
+            this.Sections = new List<NameCodePair>();
             this.Deadlines = new List<string>();
             this.Statuses = new List<string>();
             this.ShareUnits = new List<ShareUnit>();
+
+            this.DefaultHomeViewSettings = new ConfigurationClasses.HomeViewSettings();
+
+            this.DefaultPrintScheduleViewSettings = new ConfigurationClasses.PrintScheduleViewSettings();
+
+            this.DefaultPublicationBasicOverviewSettings = new ConfigurationClasses.PublicationBasicOverviewSettings();
+            this.DefaultPublicationMultiSummarySettings = new ConfigurationClasses.PublicationMultiSummarySettings();
+            this.DefaultSnapshotViewSettings = new ConfigurationClasses.SnapshotViewSettings();
+
+            this.DefaultDetailedGridColumnState = new ConfigurationClasses.GridColumnsState();
+            this.DefaultDetailedGridAdNotesState = new ConfigurationClasses.AdNotesState();
+            this.DefaultDetailedGridSlideBulletsState = new ConfigurationClasses.SlideBulletsState();
+            this.DefaultDetailedGridSlideHeaderState = new ConfigurationClasses.SlideHeaderState();
+
+            this.DefaultMultiGridColumnState = new ConfigurationClasses.GridColumnsState();
+            this.DefaultMultiGridAdNotesState = new ConfigurationClasses.AdNotesState();
+            this.DefaultMultiGridSlideBulletsState = new ConfigurationClasses.SlideBulletsState();
+            this.DefaultMultiGridSlideHeaderState = new ConfigurationClasses.SlideHeaderState();
+
+            this.DefaultCalendarViewSettings = new ConfigurationClasses.CalendarViewSettings();
+
             LoadLists();
+
+            if (this.DefaultPrintScheduleViewSettings.DefaultPCI)
+                this.DefaultPricingStrategy = AdPricingStrategies.StandartPCI;
+            else if (this.DefaultPrintScheduleViewSettings.DefaultFlat)
+                this.DefaultPricingStrategy = AdPricingStrategies.FlatModular;
+            else if (this.DefaultPrintScheduleViewSettings.DefaultShare)
+                this.DefaultPricingStrategy = AdPricingStrategies.SharePage;
+
+            if (this.DefaultPrintScheduleViewSettings.DefaultBlackWhite)
+                this.DefaultColor = ColorOptions.BlackWhite;
+            else if (this.DefaultPrintScheduleViewSettings.DefaultSpotColor)
+                this.DefaultColor = ColorOptions.SpotColor;
+            else if (this.DefaultPrintScheduleViewSettings.DefaultFullColor)
+                this.DefaultColor = ColorOptions.FullColor;
+
+            if (this.DefaultPrintScheduleViewSettings.DefaultCostPerAd)
+                this.DefaultColorPricing = ColorPricingType.CostPerAd;
+            else if (this.DefaultPrintScheduleViewSettings.DefaultPercentOfAd)
+                this.DefaultColorPricing = ColorPricingType.PercentOfAdRate;
+            else if (this.DefaultPrintScheduleViewSettings.DefaultColorIncluded)
+                this.DefaultColorPricing = ColorPricingType.ColorIncluded;
+            else if (this.DefaultPrintScheduleViewSettings.DefaultCostPerInch)
+                this.DefaultColorPricing = ColorPricingType.CostPerInch;
+
         }
 
         public static ListManager Instance
@@ -282,22 +350,6 @@ namespace AdScheduleBuilder.BusinessClasses
                                             break;
                                     }
                                 break;
-                            case "DefaultPricingStrategy":
-                                if (childeNode.InnerText.ToLower().Contains("column"))
-                                    this.DefaultPricingStrategy = AdPricingStrategies.StandartPCI;
-                                else if (childeNode.InnerText.ToLower().Contains("flat"))
-                                    this.DefaultPricingStrategy = AdPricingStrategies.FlatModular;
-                                else if (childeNode.InnerText.ToLower().Contains("share"))
-                                    this.DefaultPricingStrategy = AdPricingStrategies.SharePage;
-                                break;
-                            case "DefaultColorPricing":
-                                if (childeNode.InnerText.ToLower().Contains("per ad"))
-                                    this.DefaultColorPricing = ColorPricingType.CostPerAd;
-                                else if (childeNode.InnerText.ToLower().Contains("% of ad"))
-                                    this.DefaultColorPricing = ColorPricingType.PercentOfAdRate;
-                                else if (childeNode.InnerText.ToLower().Contains("included"))
-                                    this.DefaultColorPricing = ColorPricingType.ColorIncluded;
-                                break;
                             case "Note":
                                 NameCodePair note = new NameCodePair();
                                 foreach (XmlAttribute attribute in childeNode.Attributes)
@@ -338,7 +390,7 @@ namespace AdScheduleBuilder.BusinessClasses
                                     }
                                 break;
                             case "Section":
-                                Section section = new Section();
+                                NameCodePair section = new NameCodePair();
                                 foreach (XmlAttribute attribute in childeNode.Attributes)
                                     switch (attribute.Name)
                                     {
@@ -346,10 +398,14 @@ namespace AdScheduleBuilder.BusinessClasses
                                             section.Name = attribute.Value;
                                             break;
                                         case "Abbreviation":
-                                            section.Abbreviation = attribute.Value;
+                                            section.Code = attribute.Value;
                                             break;
                                     }
                                 this.Sections.Add(section);
+                                break;
+                            case "SelectedSectionsBorderValue":
+                                if (int.TryParse(childeNode.InnerText, out tempInt))
+                                    this.SelectedSectionsBorderValue = tempInt;
                                 break;
                             case "Mechanicals":
                                 MechanicalType mechanicalType = new MechanicalType();
@@ -425,6 +481,48 @@ namespace AdScheduleBuilder.BusinessClasses
                                     }
                                 this.ShareUnits.Add(shareUnit);
                                 break;
+                            case "DefaultHomeViewSettings":
+                                this.DefaultHomeViewSettings.Deserialize(childeNode);
+                                break;
+                            case "DefaultPrintScheduleViewSettings":
+                                this.DefaultPrintScheduleViewSettings.Deserialize(childeNode);
+                                break;
+                            case "DefaultPublicationBasicOverviewSettings":
+                                this.DefaultPublicationBasicOverviewSettings.Deserialize(childeNode);
+                                break;
+                            case "DefaultPublicationMultiSummarySettings":
+                                this.DefaultPublicationMultiSummarySettings.Deserialize(childeNode);
+                                break;
+                            case "DefaultSnapshotViewSettings":
+                                this.DefaultSnapshotViewSettings.Deserialize(childeNode);
+                                break;
+                            case "DefaultDetailedGridColumnState":
+                                this.DefaultDetailedGridColumnState.Deserialize(childeNode);
+                                break;
+                            case "DefaultDetailedGridAdNotesState":
+                                this.DefaultDetailedGridAdNotesState.Deserialize(childeNode);
+                                break;
+                            case "DefaultDetailedGridSlideBulletsState":
+                                this.DefaultDetailedGridSlideBulletsState.Deserialize(childeNode);
+                                break;
+                            case "DefaultDetailedGridSlideHeaderState":
+                                this.DefaultDetailedGridSlideHeaderState.Deserialize(childeNode);
+                                break;
+                            case "DefaultMultiGridColumnState":
+                                this.DefaultMultiGridColumnState.Deserialize(childeNode);
+                                break;
+                            case "DefaultMultiGridAdNotesState":
+                                this.DefaultMultiGridAdNotesState.Deserialize(childeNode);
+                                break;
+                            case "DefaultMultiGridSlideBulletsState":
+                                this.DefaultMultiGridSlideBulletsState.Deserialize(childeNode);
+                                break;
+                            case "DefaultMultiGridSlideHeaderState":
+                                this.DefaultMultiGridSlideHeaderState.Deserialize(childeNode);
+                                break;
+                            case "DefaultCalendarViewSettings":
+                                this.DefaultCalendarViewSettings.Deserialize(childeNode);
+                                break;
                         }
                     }
                 }
@@ -497,18 +595,6 @@ namespace AdScheduleBuilder.BusinessClasses
             this.Name = string.Empty;
             this.Value = string.Empty;
             this.Selected = false;
-        }
-    }
-
-    public class Section
-    {
-        public string Name { get; set; }
-        public string Abbreviation { get; set; }
-
-        public Section()
-        {
-            this.Name = string.Empty;
-            this.Abbreviation = string.Empty;
         }
     }
 

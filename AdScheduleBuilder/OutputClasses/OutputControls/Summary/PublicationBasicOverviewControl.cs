@@ -136,35 +136,58 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
             }
             textEditRunDatesComment.EditValue = this.Publication.ViewSettings.BasicOverviewSettings.Comments;
 
+            checkEditName.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowName;
+            checkEditBusinessName.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowAdvertiser;
+            checkEditDecisionMaker.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowDecisionMaker;
+            checkEditDate.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowPresentationDate;
+            checkEditSchedule.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowSlideHeader;
+            checkEditFlightDates.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowFlightDates;
+            checkEditLogo.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowLogo;
+
+            checkEditStandartPageSize.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnablePageSize;
+            checkEditSharePagePageSize.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnablePageSize;
+            checkEditSharePagePercentOfPage.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnablePercentOfPage;
+            checkEditStandartColor.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableColor;
+            checkEditSharePageColor.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableColor;
+            checkEditStandartDimensions.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableDimensions;
+            checkEditSharePageDimensions.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableDimensions;
+            checkEditStandartSquare.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableSquare;
+            checkEditAdSizePicture.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowAdSizeDetails;
             checkEditStandartPageSize.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowPageSize;
             checkEditSharePagePageSize.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowPageSize;
             checkEditSharePagePercentOfPage.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowPercentOfPage;
-            checkEditBusinessName.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowAdvertiser;
-            checkEditAvgADRate.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowAvgAdCost;
-            checkEditAvgPCIRate.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowAvgPCI;
             checkEditStandartColor.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowColor;
             checkEditSharePageColor.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowColor;
             checkEditStandartDimensions.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowDimensions;
             checkEditSharePageDimensions.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowDimensions;
-            checkEditRunDatesComment.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowComments;
-            checkEditDates.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowDates;
-            checkEditDecisionMaker.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowDecisionMaker;
-            checkEditTotalDiscounts.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowDiscounts && this.Publication.TotalDiscountRate > 0;
-            checkEditFlightDates.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowFlightDates;
-            checkEditFlightDates2.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowFlightDates2;
-            checkEditTotalCost.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowInvestment;
-            checkEditLogo.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowLogo;
-            checkEditStandartMechanicals.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowMechanicals;
-            checkEditName.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowName;
-            checkEditDate.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowPresentationDate;
-            checkEditSchedule.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowSlideHeader;
             checkEditStandartSquare.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowSquare;
+            checkEditStandartMechanicals.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowMechanicals;
+
+            checkEditTotalAds.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableTotalInserts;
+            checkEditTotalSquare.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableTotalSquare;
+            checkEditTotalAdsPicture.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowTotalDetails;
             checkEditTotalAds.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowTotalInserts;
             checkEditTotalSquare.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowTotalSquare;
-            checkEditAdSizePicture.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowAdSizeDetails;
-            checkEditTotalAdsPicture.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowTotalDetails;
+
+            checkEditAvgADRate.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableAvgAdCost;
+            checkEditAvgPCIRate.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableAvgPCI;
+            checkEditTotalCost.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableInvestment;
+            checkEditTotalDiscounts.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableDiscounts;
             checkEditInvestmentDetailsPicture.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowInvestmentDetails;
-            checkEditDatesPicture.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowDateDetails;
+            checkEditAvgADRate.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowAvgAdCost;
+            checkEditAvgPCIRate.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowAvgPCI;
+            checkEditTotalCost.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowInvestment;
+            checkEditTotalDiscounts.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowDiscounts && this.Publication.TotalDiscountRate > 0;
+
+
+            checkEditRunDatesComment.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableComments;
+            checkEditDates.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableDates;
+            checkEditFlightDates2.Enabled = this.Publication.ViewSettings.BasicOverviewSettings.EnableFlightDates2;
+            checkEditDatesPicture.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowDateDetails;            
+            checkEditRunDatesComment.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowComments;
+            checkEditDates.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowDates;
+            checkEditFlightDates2.Checked = this.Publication.ViewSettings.BasicOverviewSettings.ShowFlightDates2;
+
             _allowToSave = true;
         }
 
@@ -199,23 +222,20 @@ namespace AdScheduleBuilder.OutputClasses.OutputControls
 
         private void checkEditAdSizePicture_CheckedChanged(object sender, EventArgs e)
         {
-
         }
 
         private void checkEditTotalAdsPicture_CheckedChanged(object sender, EventArgs e)
         {
-
         }
 
         private void checkEditInvestmentDetailsPicture_CheckedChanged(object sender, EventArgs e)
         {
-
         }
 
         private void checkEditDatesPicture_CheckedChanged(object sender, EventArgs e)
         {
-
         }
+
         private void checkEdit_CheckedChanged(object sender, EventArgs e)
         {
             if (_allowToSave)

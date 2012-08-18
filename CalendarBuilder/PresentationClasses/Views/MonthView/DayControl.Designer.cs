@@ -65,7 +65,7 @@
             this.laSmallDayCaption.Size = new System.Drawing.Size(274, 20);
             this.laSmallDayCaption.TabIndex = 0;
             this.laSmallDayCaption.Text = "label1";
-            this.laSmallDayCaption.Click += new System.EventHandler(this.Control_Click);
+            this.laSmallDayCaption.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_Click);
             this.laSmallDayCaption.DoubleClick += new System.EventHandler(this.Control_DoubleClick);
             this.laSmallDayCaption.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
             this.laSmallDayCaption.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
@@ -183,7 +183,7 @@
             this.xtraScrollableControl.Padding = new System.Windows.Forms.Padding(3);
             this.xtraScrollableControl.Size = new System.Drawing.Size(274, 185);
             this.xtraScrollableControl.TabIndex = 0;
-            this.xtraScrollableControl.Click += new System.EventHandler(this.Control_Click);
+            this.xtraScrollableControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_Click);
             this.xtraScrollableControl.DoubleClick += new System.EventHandler(this.Control_DoubleClick);
             this.xtraScrollableControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
             this.xtraScrollableControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
@@ -200,7 +200,7 @@
             this.labelControlData.StyleController = this.styleController;
             this.labelControlData.TabIndex = 0;
             this.labelControlData.Text = "Data";
-            this.labelControlData.Click += new System.EventHandler(this.Control_Click);
+            this.labelControlData.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_Click);
             this.labelControlData.DoubleClick += new System.EventHandler(this.Control_DoubleClick);
             this.labelControlData.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
             this.labelControlData.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
@@ -229,7 +229,7 @@
             this.pbLogo.Size = new System.Drawing.Size(268, 41);
             this.pbLogo.TabIndex = 1;
             this.pbLogo.TabStop = false;
-            this.pbLogo.Click += new System.EventHandler(this.Control_Click);
+            this.pbLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_Click);
             this.pbLogo.DoubleClick += new System.EventHandler(this.Control_DoubleClick);
             this.pbLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
             this.pbLogo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);

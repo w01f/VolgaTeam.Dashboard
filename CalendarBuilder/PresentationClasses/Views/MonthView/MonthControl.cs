@@ -59,6 +59,12 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
                 note.RefreshColor();
         }
 
+        public void RaiseEvents(bool enable)
+        {
+            foreach (WeekControl week in _weekControls)
+                week.RaiseEvents(enable);
+        }
+
         private void FitHeader()
         {
             double width = this.Width / 7;

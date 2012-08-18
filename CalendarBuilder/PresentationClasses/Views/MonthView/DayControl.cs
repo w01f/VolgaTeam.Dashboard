@@ -14,6 +14,8 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         private bool _isCopySource = false;
 
         public BusinessClasses.CalendarDay Day { get; set; }
+
+        public bool RaiseEvents { get; set; }
         public event EventHandler<SelectDayEventArgs> DaySelected;
         public event EventHandler<EventArgs> PropertiesRequested;
         public event EventHandler<EventArgs> DayCopied;
@@ -85,7 +87,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         }
         #endregion
 
-        #region Selection Methods0
+        #region Selection Methods
         public void ChangeSelection(bool select)
         {
             _isSelected = select;
@@ -114,28 +116,37 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
             }
         }
 
-        private void Control_Click(object sender, EventArgs e)
+        private void Control_Click(object sender, MouseEventArgs e)
         {
-            if (this.Day.BelongsToSchedules)
-                if (this.DaySelected != null)
-                    this.DaySelected(this, new SelectDayEventArgs(this, ModifierKeys));
+            if (this.RaiseEvents)
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                {
+                    if (this.Day.BelongsToSchedules)
+                        if (this.DaySelected != null)
+                            this.DaySelected(this, new SelectDayEventArgs(this, ModifierKeys));
+                }
+            }
         }
 
         private void DayControl_MouseDown(object sender, MouseEventArgs e)
         {
-            this.MultiSelectEnabled = true;
+            if (this.RaiseEvents)
+                this.MultiSelectEnabled = true;
         }
 
         private void DayControl_MouseUp(object sender, MouseEventArgs e)
         {
-            this.MultiSelectEnabled = false;
+            if (this.RaiseEvents)
+                this.MultiSelectEnabled = false;
         }
 
         private void DayControl_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.MultiSelectEnabled)
-                if (this.DayMouseMove != null)
-                    this.DayMouseMove(this, e);
+            if (this.RaiseEvents)
+                if (this.MultiSelectEnabled)
+                    if (this.DayMouseMove != null)
+                        this.DayMouseMove(this, e);
         }
         #endregion
 

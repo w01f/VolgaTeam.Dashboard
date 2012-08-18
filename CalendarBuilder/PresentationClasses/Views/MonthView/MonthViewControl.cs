@@ -102,9 +102,13 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         {
             Views.MonthView.MonthControl month = null;
             BusinessClasses.CalendarMonth calendarMonth = null;
+
             this.SelectionManager.ClearSelection();
             pnMain.Controls.Clear();
             this.CopyPasteManager.ResetCopy();
+            foreach (Views.MonthView.MonthControl existedMonth in this.Months.Values)
+                existedMonth.RaiseEvents(false);
+            
             calendarMonth = this.Calendar.CalendarData.Months.Where(x => x.Date.Equals(date)).FirstOrDefault();
             if (this.Months.ContainsKey(date))
             {
@@ -177,7 +181,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
                                             dayControl.DayMouseMove += new EventHandler<MouseEventArgs>((sender, e) =>
                                             {
                                                 foreach (DayControl day in _days)
-                                                    if (day.Day.BelongsToSchedules && day.ClientRectangle.Contains(day.PointToClient(Cursor.Position)))
+                                                    if (day.Day.BelongsToSchedules && day.ClientRectangle.Contains(day.PointToClient(Cursor.Position)) && day.RaiseEvents)
                                                         this.SelectionManager.SelectDay(day.Day, Keys.Control);
                                             });
                                             dayControl.NoteAdded += new EventHandler<EventArgs>((sender, e) =>
@@ -256,6 +260,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
                     pnMain.Controls.Add(month);
                 }
                 month.BringToFront();
+                month.RaiseEvents(true);
             }
         }
 

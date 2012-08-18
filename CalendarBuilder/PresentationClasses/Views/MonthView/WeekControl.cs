@@ -62,6 +62,12 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
                 day.RefreshData();
         }
 
+        public void RaiseEvents(bool enable)
+        {
+            foreach (DayControl day in _dayControls)
+                day.RaiseEvents = enable;
+        }
+
         private void FitControls()
         {
             FitDays();

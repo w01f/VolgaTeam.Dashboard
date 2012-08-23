@@ -37,13 +37,10 @@ namespace RadioScheduleBuilder
                 comboBoxEditBusinessName.Font = font;
                 comboBoxEditDecisionMaker.Font = font;
                 comboBoxEditClientType.Font = font;
-                comboBoxEditDemo.Font = font;
-                comboBoxEditSource.Font = font;
                 dateEditFlightDatesEnd.Font = font;
                 dateEditFlightDatesStart.Font = font;
                 dateEditPresentationDate.Font = font;
                 ribbonBarHomeAdvertiser.RecalcLayout();
-                ribbonBarHomeDemo.RecalcLayout();
                 ribbonBarHomeExit.RecalcLayout();
                 ribbonBarHomeFlightDates.RecalcLayout();
                 ribbonBarHomeHelp.RecalcLayout();
@@ -167,16 +164,6 @@ namespace RadioScheduleBuilder
             dateEditFlightDatesEnd.EditValueChanged += new EventHandler(CustomControls.HomeControl.Instance.CalcWeeksOnFlightDatesChange);
             dateEditFlightDatesStart.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(CustomControls.HomeControl.Instance.dateEditFlightDatesStart_CloseUp);
             dateEditFlightDatesEnd.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(CustomControls.HomeControl.Instance.dateEditFlightDatesEnd_CloseUp);
-            checkBoxItemHomeDemoCustom.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.HomeControl.Instance.buttonItemHomeDemos_CheckedChanged);
-            checkBoxItemHomeDemoImport.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.HomeControl.Instance.buttonItemHomeDemos_CheckedChanged);
-            checkBoxItemHomeDemoNo.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.HomeControl.Instance.buttonItemHomeDemos_CheckedChanged);
-            buttonItemHome000s.Click += new EventHandler(CustomControls.HomeControl.Instance.buttonItemHomeRatings_Click);
-            buttonItemHomeRating.Click += new EventHandler(CustomControls.HomeControl.Instance.buttonItemHomeRatings_Click);
-            buttonItemHome000s.CheckedChanged += new EventHandler(CustomControls.HomeControl.Instance.buttonItemHomeRatings_CheckedChanged);
-            buttonItemHomeRating.CheckedChanged += new EventHandler(CustomControls.HomeControl.Instance.buttonItemHomeRatings_CheckedChanged);
-            comboBoxEditDemo.EditValueChanged += new EventHandler(CustomControls.HomeControl.Instance.comboBoxEditDemo_EditValueChanged);
-            checkBoxItemSource.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.HomeControl.Instance.buttonItemHomeDemos_CheckedChanged);
-            comboBoxEditSource.EditValueChanged += new EventHandler(CustomControls.HomeControl.Instance.comboBoxEditSource_EditValueChanged);
             comboBoxEditBusinessName.Enter += new EventHandler(Editor_Enter);
             comboBoxEditBusinessName.MouseDown += new MouseEventHandler(Editor_MouseDown);
             comboBoxEditBusinessName.MouseUp += new MouseEventHandler(Editor_MouseUp);
@@ -186,12 +173,6 @@ namespace RadioScheduleBuilder
             comboBoxEditClientType.Enter += new EventHandler(Editor_Enter);
             comboBoxEditClientType.MouseDown += new MouseEventHandler(Editor_MouseDown);
             comboBoxEditClientType.MouseUp += new MouseEventHandler(Editor_MouseUp);
-            comboBoxEditDemo.Enter += new EventHandler(Editor_Enter);
-            comboBoxEditDemo.MouseDown += new MouseEventHandler(Editor_MouseDown);
-            comboBoxEditDemo.MouseUp += new MouseEventHandler(Editor_MouseUp);
-            comboBoxEditSource.Enter += new EventHandler(Editor_Enter);
-            comboBoxEditSource.MouseDown += new MouseEventHandler(Editor_MouseDown);
-            comboBoxEditSource.MouseUp += new MouseEventHandler(Editor_MouseUp);
             #endregion
 
             #region Weekly Schedule Events

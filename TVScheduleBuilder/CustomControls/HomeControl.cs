@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 
 namespace TVScheduleBuilder.CustomControls
 {
@@ -78,7 +79,6 @@ namespace TVScheduleBuilder.CustomControls
             pbMonthlySchedule.Enabled = enableSchedules;
         }
 
-
         private void UncheckSalesStrategyButtons()
         {
             FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked = false;
@@ -128,29 +128,27 @@ namespace TVScheduleBuilder.CustomControls
                 FormMain.Instance.dateEditFlightDatesStart.EditValue = _localSchedule.FlightDateStart;
                 FormMain.Instance.dateEditFlightDatesEnd.EditValue = _localSchedule.FlightDateEnd;
 
-                FormMain.Instance.checkBoxItemHomeDemoNo.Checked = !_localSchedule.UseDemo;
-                FormMain.Instance.checkBoxItemHomeDemoCustom.Checked = _localSchedule.UseDemo & !_localSchedule.ImportDemo;
-                FormMain.Instance.checkBoxItemHomeDemoImport.Checked = _localSchedule.UseDemo & _localSchedule.ImportDemo;
-                FormMain.Instance.itemContainerHomeDemoOptions.Visible = _localSchedule.UseDemo;
-                FormMain.Instance.labelItemHomeDemoSeparator.Visible = _localSchedule.UseDemo;
-                FormMain.Instance.itemContainerHomeDemoType.Visible = !_localSchedule.ImportDemo;
-                FormMain.Instance.comboBoxEditDemo.Properties.Items.Clear();
-                FormMain.Instance.comboBoxEditDemo.Properties.Items.AddRange(_localSchedule.ImportDemo ? BusinessClasses.ListManager.Instance.Demos : BusinessClasses.ListManager.Instance.CustomDemos);
-                FormMain.Instance.comboBoxEditDemo.Enabled = FormMain.Instance.comboBoxEditDemo.Properties.Items.Count > 0;
-                FormMain.Instance.checkBoxItemHomeDemoImport.Enabled = BusinessClasses.ListManager.Instance.Demos.Count > 0;
-                FormMain.Instance.checkBoxItemHomeDemoImport.TextColor = BusinessClasses.ListManager.Instance.Demos.Count > 0 ? Color.Black : Color.Gray;
-                FormMain.Instance.comboBoxEditDemo.EditValue = !string.IsNullOrEmpty(_localSchedule.Demo) && (FormMain.Instance.comboBoxEditDemo.Properties.Items.Count > 0 || _localSchedule.ImportDemo) ? _localSchedule.Demo : null;
+                buttonXDemosNo.Checked = !_localSchedule.UseDemo;
+                buttonXDemosCustom.Checked = _localSchedule.UseDemo & !_localSchedule.ImportDemo;
+                buttonXDemosImport.Checked = _localSchedule.UseDemo & _localSchedule.ImportDemo;
+                pnDemosType.Enabled = _localSchedule.UseDemo & !_localSchedule.ImportDemo;
+                pnDemosSelect.Enabled = _localSchedule.UseDemo;
+                pnDemosSource.Enabled = _localSchedule.UseDemo;
+                comboBoxEditDemos.Properties.Items.Clear();
+                comboBoxEditDemos.Properties.Items.AddRange(_localSchedule.ImportDemo ? BusinessClasses.ListManager.Instance.Demos : BusinessClasses.ListManager.Instance.CustomDemos);
+                comboBoxEditDemos.Enabled = comboBoxEditDemos.Properties.Items.Count > 0;
+                buttonXDemosImport.Enabled = BusinessClasses.ListManager.Instance.Demos.Count > 0;
+                comboBoxEditDemos.EditValue = !string.IsNullOrEmpty(_localSchedule.Demo) && (comboBoxEditDemos.Properties.Items.Count > 0 || _localSchedule.ImportDemo) ? _localSchedule.Demo : null;
 
-                FormMain.Instance.comboBoxEditSource.Properties.Items.Clear();
-                FormMain.Instance.comboBoxEditSource.Properties.Items.AddRange(BusinessClasses.ListManager.Instance.Sources);
-                FormMain.Instance.checkBoxItemSource.Checked = _localSchedule.UseSource & _localSchedule.UseDemo;
-                FormMain.Instance.comboBoxEditSource.Enabled = _localSchedule.UseSource;
-                FormMain.Instance.comboBoxEditSource.EditValue = !string.IsNullOrEmpty(_localSchedule.Source) && FormMain.Instance.comboBoxEditSource.Properties.Items.Count > 0 && _localSchedule.UseSource ? _localSchedule.Source : null;
+                comboBoxEditSource.Properties.Items.Clear();
+                comboBoxEditSource.Properties.Items.AddRange(BusinessClasses.ListManager.Instance.Sources);
+                buttonXDemosSourceEnable.Checked = _localSchedule.UseSource & _localSchedule.UseDemo;
+                buttonXDemosSourceDisable.Checked = !(_localSchedule.UseSource & _localSchedule.UseDemo);
+                comboBoxEditSource.Enabled = _localSchedule.UseSource;
+                comboBoxEditSource.EditValue = !string.IsNullOrEmpty(_localSchedule.Source) && comboBoxEditSource.Properties.Items.Count > 0 && _localSchedule.UseSource ? _localSchedule.Source : null;
 
-                FormMain.Instance.buttonItemHomeRating.Checked = _localSchedule.RatingAsCPP;
-                FormMain.Instance.buttonItemHome000s.Checked = !_localSchedule.RatingAsCPP;
-                FormMain.Instance.ribbonBarHomeDemo.RecalcLayout();
-                FormMain.Instance.ribbonPanelHome.PerformLayout();
+                buttonXDemosRtg.Checked = _localSchedule.RatingAsCPP;
+                buttonXDemosImps.Checked = !_localSchedule.RatingAsCPP;
 
                 stationsControl.LoadData(_localSchedule);
                 daypartsControl.LoadData(_localSchedule);
@@ -258,7 +256,7 @@ namespace TVScheduleBuilder.CustomControls
                 return false;
             }
 
-            if (FormMain.Instance.comboBoxEditDemo.EditValue == null && !FormMain.Instance.checkBoxItemHomeDemoNo.Checked)
+            if (comboBoxEditDemos.EditValue == null && !buttonXDemosNo.Checked)
             {
                 AppManager.ShowWarning("Please select Demo or disable it before you proceed.");
                 return false;
@@ -305,55 +303,6 @@ namespace TVScheduleBuilder.CustomControls
         {
             UncheckSalesStrategyButtons();
             FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked = true;
-        }
-
-        public void buttonItemHomeDemos_CheckedChanged(object sender, DevComponents.DotNetBar.CheckBoxChangeEventArgs e)
-        {
-            if (_allowTosave)
-            {
-                _localSchedule.UseDemo = FormMain.Instance.checkBoxItemHomeDemoCustom.Checked | FormMain.Instance.checkBoxItemHomeDemoImport.Checked;
-
-                _localSchedule.ImportDemo = FormMain.Instance.checkBoxItemHomeDemoImport.Checked;
-                FormMain.Instance.itemContainerHomeDemoOptions.Visible = _localSchedule.UseDemo;
-                FormMain.Instance.labelItemHomeDemoSeparator.Visible = _localSchedule.UseDemo;
-                FormMain.Instance.itemContainerHomeDemoType.Visible = !_localSchedule.ImportDemo;
-                if (!_localSchedule.UseDemo)
-                    FormMain.Instance.comboBoxEditDemo.EditValue = null;
-
-                _localSchedule.UseSource = FormMain.Instance.checkBoxItemSource.Checked & _localSchedule.UseDemo;
-                FormMain.Instance.comboBoxEditSource.Enabled = _localSchedule.UseSource;
-                FormMain.Instance.comboBoxEditSource.EditValue = !string.IsNullOrEmpty(_localSchedule.Source) && FormMain.Instance.comboBoxEditSource.Properties.Items.Count > 0 && _localSchedule.UseSource ? _localSchedule.Source : null;
-                if (!_localSchedule.UseDemo)
-                {
-                    _allowTosave = false;
-                    FormMain.Instance.checkBoxItemSource.Checked = false;
-                    _allowTosave = true;
-                }
-
-                FormMain.Instance.comboBoxEditDemo.Properties.Items.Clear();
-                FormMain.Instance.comboBoxEditDemo.Properties.Items.AddRange(_localSchedule.ImportDemo ? BusinessClasses.ListManager.Instance.Demos : BusinessClasses.ListManager.Instance.CustomDemos);
-                FormMain.Instance.comboBoxEditDemo.Enabled = FormMain.Instance.comboBoxEditDemo.Properties.Items.Count > 0;
-                FormMain.Instance.comboBoxEditDemo.EditValue = !string.IsNullOrEmpty(_localSchedule.Demo) && (FormMain.Instance.comboBoxEditDemo.Properties.Items.Count > 0 || _localSchedule.ImportDemo) ? _localSchedule.Demo : null;
-                FormMain.Instance.ribbonBarHomeDemo.RecalcLayout();
-                FormMain.Instance.ribbonPanelHome.PerformLayout();
-                this.SettingsNotSaved = true;
-            }
-        }
-
-        public void buttonItemHomeRatings_Click(object sender, EventArgs e)
-        {
-            FormMain.Instance.buttonItemHome000s.Checked = false;
-            FormMain.Instance.buttonItemHomeRating.Checked = false;
-            (sender as DevComponents.DotNetBar.ButtonItem).Checked = true;
-        }
-
-        public void buttonItemHomeRatings_CheckedChanged(object sender, EventArgs e)
-        {
-            if (_allowTosave)
-            {
-                _localSchedule.RatingAsCPP = FormMain.Instance.buttonItemHomeRating.Checked;
-                this.SettingsNotSaved = true;
-            }
         }
         #endregion
 
@@ -430,37 +379,6 @@ namespace TVScheduleBuilder.CustomControls
                 }
             }
         }
-
-        public void comboBoxEditDemo_EditValueChanged(object sender, EventArgs e)
-        {
-            if (_allowTosave)
-            {
-                _localSchedule.Demo = FormMain.Instance.comboBoxEditDemo.EditValue != null ? FormMain.Instance.comboBoxEditDemo.EditValue.ToString() : string.Empty;
-                if (_localSchedule.ImportDemo)
-                {
-                    if (_localSchedule.Demo.Contains("Rtg"))
-                    {
-                        FormMain.Instance.buttonItemHomeRating.Checked = true;
-                        FormMain.Instance.buttonItemHome000s.Checked = false;
-                    }
-                    else if (_localSchedule.Demo.Contains("(000)"))
-                    {
-                        FormMain.Instance.buttonItemHomeRating.Checked = false;
-                        FormMain.Instance.buttonItemHome000s.Checked = true;
-                    }
-                }
-                this.SettingsNotSaved = true;
-            }
-        }
-
-        public void comboBoxEditSource_EditValueChanged(object sender, EventArgs e)
-        {
-            if (_allowTosave)
-            {
-                _localSchedule.Source = FormMain.Instance.comboBoxEditSource.EditValue != null ? FormMain.Instance.comboBoxEditSource.EditValue.ToString() : string.Empty;
-                this.SettingsNotSaved = true;
-            }
-        }
         #endregion
 
         #region Ribbon Operations Events
@@ -492,6 +410,138 @@ namespace TVScheduleBuilder.CustomControls
         }
         #endregion
 
+        #region Demos Processing
+        private void buttonXDemos_Click(object sender, EventArgs e)
+        {
+            ButtonX button = sender as ButtonX;
+            if (button != null && !button.Checked)
+            {
+                buttonXDemosNo.Checked = false;
+                buttonXDemosCustom.Checked = false;
+                buttonXDemosImport.Checked = false;
+                button.Checked = true;
+            }
+        }
+
+        private void buttonXDemos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_allowTosave)
+            {
+                _localSchedule.UseDemo = buttonXDemosCustom.Checked | buttonXDemosImport.Checked;
+                _localSchedule.ImportDemo = buttonXDemosImport.Checked;
+                pnDemosType.Enabled = _localSchedule.UseDemo & !_localSchedule.ImportDemo;
+                pnDemosSelect.Enabled = _localSchedule.UseDemo;
+                pnDemosSource.Enabled = _localSchedule.UseDemo;
+                comboBoxEditDemos.EditValue = null;
+
+                _localSchedule.UseSource = buttonXDemosSourceEnable.Checked & _localSchedule.UseDemo;
+                comboBoxEditSource.Enabled = _localSchedule.UseSource;
+                comboBoxEditSource.EditValue = !string.IsNullOrEmpty(_localSchedule.Source) && comboBoxEditSource.Properties.Items.Count > 0 && _localSchedule.UseSource ? _localSchedule.Source : null;
+                if (!_localSchedule.UseDemo)
+                {
+                    _allowTosave = false;
+                    buttonXDemosSourceDisable.Checked = true;
+                    buttonXDemosSourceEnable.Checked = false;
+                    _allowTosave = true;
+                }
+
+                comboBoxEditDemos.Properties.Items.Clear();
+                comboBoxEditDemos.Properties.Items.AddRange(_localSchedule.ImportDemo ? BusinessClasses.ListManager.Instance.Demos : BusinessClasses.ListManager.Instance.CustomDemos);
+                comboBoxEditDemos.Enabled = comboBoxEditDemos.Properties.Items.Count > 0;
+                this.SettingsNotSaved = true;
+            }
+        }
+
+        public void buttonXDemosType_Click(object sender, EventArgs e)
+        {
+            ButtonX button = sender as ButtonX;
+            if (button != null && !button.Checked)
+            {
+                buttonXDemosRtg.Checked = false;
+                buttonXDemosImps.Checked = false;
+                button.Checked = true;
+            }
+        }
+
+        public void buttonXDemosType_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_allowTosave)
+            {
+                _localSchedule.RatingAsCPP = buttonXDemosRtg.Checked;
+                this.SettingsNotSaved = true;
+            }
+        }
+
+        public void comboBoxEditDemos_EditValueChanged(object sender, EventArgs e)
+        {
+            if (_allowTosave)
+            {
+                _localSchedule.Demo = comboBoxEditDemos.EditValue != null ? comboBoxEditDemos.EditValue.ToString() : string.Empty;
+                if (_localSchedule.ImportDemo)
+                {
+                    if (_localSchedule.Demo.Contains("Rtg"))
+                    {
+                        buttonXDemosRtg.Checked = true;
+                        buttonXDemosImps.Checked = false;
+                    }
+                    else if (_localSchedule.Demo.Contains("(000)"))
+                    {
+                        buttonXDemosRtg.Checked = false;
+                        buttonXDemosImps.Checked = true;
+                    }
+                }
+                this.SettingsNotSaved = true;
+            }
+        }
+
+        private void buttonXDemosSource_Click(object sender, EventArgs e)
+        {
+            ButtonX button = sender as ButtonX;
+            if (button != null && !button.Checked)
+            {
+                buttonXDemosSourceEnable.Checked = false;
+                buttonXDemosSourceDisable.Checked = false;
+                button.Checked = true;
+            }
+        }
+
+        private void buttonXDemosSource_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_allowTosave)
+            {
+                _localSchedule.UseSource = buttonXDemosSourceEnable.Checked;
+                comboBoxEditSource.Enabled = buttonXDemosSourceEnable.Checked;
+                this.SettingsNotSaved = true;
+            }
+        }
+
+        public void comboBoxEditSource_EditValueChanged(object sender, EventArgs e)
+        {
+            if (_allowTosave)
+            {
+                _localSchedule.Source = comboBoxEditSource.EditValue != null ? comboBoxEditSource.EditValue.ToString() : string.Empty;
+                this.SettingsNotSaved = true;
+            }
+        }
+        #endregion
+
+        #region Buttons Clicks Events
+        private void pbWeeklySchedule_Click(object sender, EventArgs e)
+        {
+            FormMain.Instance.ribbonTabItemWeeklySchedule.Select();
+        }
+
+        private void pbMonthlySchedule_Click(object sender, EventArgs e)
+        {
+            FormMain.Instance.ribbonTabItemMonthlySchedule.Select();
+        }
+
+        private void pbOptionsHelp_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
         #region Picture Box Clicks Habdlers
         /// <summary>
         /// Buttonize the PictureBox 
@@ -508,18 +558,6 @@ namespace TVScheduleBuilder.CustomControls
         {
             PictureBox pic = (PictureBox)(sender);
             pic.Top -= 1;
-        }
-        #endregion
-
-        #region Buttons Clicks Events
-        private void pbWeeklySchedule_Click(object sender, EventArgs e)
-        {
-            FormMain.Instance.ribbonTabItemWeeklySchedule.Select();
-        }
-
-        private void pbMonthlySchedule_Click(object sender, EventArgs e)
-        {
-            FormMain.Instance.ribbonTabItemMonthlySchedule.Select();
         }
         #endregion
     }

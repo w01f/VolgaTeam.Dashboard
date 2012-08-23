@@ -358,12 +358,9 @@ namespace RadioScheduleBuilder.CustomControls
             if (control != FormMain.Instance.comboBoxEditBusinessName
                 && control != FormMain.Instance.comboBoxEditClientType
                 && control != FormMain.Instance.comboBoxEditDecisionMaker
-                && control != FormMain.Instance.comboBoxEditDemo
-                && control != FormMain.Instance.comboBoxEditSource
                 && control != FormMain.Instance.dateEditFlightDatesEnd
                 && control != FormMain.Instance.dateEditFlightDatesStart
-                && control != FormMain.Instance.dateEditPresentationDate
-                && control != FormMain.Instance.comboBoxEditDemo)
+                && control != FormMain.Instance.dateEditPresentationDate)
             {
                 control.Click += new EventHandler(CloseActiveEditorsonOutSideClick);
                 foreach (Control childControl in control.Controls)

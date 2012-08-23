@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
             this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
             this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
@@ -41,28 +42,7 @@
             this.ribbonBarHomeSave = new DevComponents.DotNetBar.RibbonBar();
             this.buttonItemHomeSave = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItemHomeSaveAs = new DevComponents.DotNetBar.ButtonItem();
-            this.ribbonBarHomeDemo = new DevComponents.DotNetBar.RibbonBar();
-            this.comboBoxEditDemo = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.styleController = new DevExpress.XtraEditors.StyleController();
-            this.comboBoxEditSource = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.itemContainerHomeDemos = new DevComponents.DotNetBar.ItemContainer();
-            this.checkBoxItemHomeDemoNo = new DevComponents.DotNetBar.CheckBoxItem();
-            this.checkBoxItemHomeDemoCustom = new DevComponents.DotNetBar.CheckBoxItem();
-            this.checkBoxItemHomeDemoImport = new DevComponents.DotNetBar.CheckBoxItem();
-            this.labelItemHomeDemoSeparator = new DevComponents.DotNetBar.LabelItem();
-            this.itemContainerHomeDemoOptions = new DevComponents.DotNetBar.ItemContainer();
-            this.itemContainerHomeDemoType = new DevComponents.DotNetBar.ItemContainer();
-            this.labelItemHomeDemoType = new DevComponents.DotNetBar.LabelItem();
-            this.itemContainerHomeDemoTypeValues = new DevComponents.DotNetBar.ItemContainer();
-            this.buttonItemHomeRating = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemHome000s = new DevComponents.DotNetBar.ButtonItem();
-            this.itemContainerHomeDemoList = new DevComponents.DotNetBar.ItemContainer();
-            this.itemContainerHomeDemoLabel = new DevComponents.DotNetBar.ItemContainer();
-            this.labelItemHomeDemo = new DevComponents.DotNetBar.LabelItem();
-            this.controlContainerItemDemo = new DevComponents.DotNetBar.ControlContainerItem();
-            this.itemContainerHomeSourceList = new DevComponents.DotNetBar.ItemContainer();
-            this.checkBoxItemSource = new DevComponents.DotNetBar.CheckBoxItem();
-            this.controlContainerItem1 = new DevComponents.DotNetBar.ControlContainerItem();
+            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
             this.dateEditFlightDatesStart = new DevExpress.XtraEditors.DateEdit();
             this.dateEditFlightDatesEnd = new DevExpress.XtraEditors.DateEdit();
@@ -191,14 +171,11 @@
             this.ribbonTabItemMonthlySchedule = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemDigitalSchedule = new DevComponents.DotNetBar.RibbonTabItem();
             this.ribbonTabItemSuccessModels = new DevComponents.DotNetBar.RibbonTabItem();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.pnMain = new System.Windows.Forms.Panel();
             this.ribbonControl.SuspendLayout();
             this.ribbonPanelHome.SuspendLayout();
-            this.ribbonBarHomeDemo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDemo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSource.Properties)).BeginInit();
             this.ribbonBarHomeFlightDates.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesStart.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesStart.Properties)).BeginInit();
@@ -225,10 +202,10 @@
             this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonControl.CanCustomize = false;
             this.ribbonControl.Controls.Add(this.ribbonPanelHome);
-            this.ribbonControl.Controls.Add(this.ribbonPanelDigitalSchedule);
-            this.ribbonControl.Controls.Add(this.ribbonPanelSuccessModels);
             this.ribbonControl.Controls.Add(this.ribbonPanelWeeklySchedule);
             this.ribbonControl.Controls.Add(this.ribbonPanelMonthlySchedule);
+            this.ribbonControl.Controls.Add(this.ribbonPanelDigitalSchedule);
+            this.ribbonControl.Controls.Add(this.ribbonPanelSuccessModels);
             this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.ribbonControl.EnableQatPlacement = false;
             this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -269,7 +246,6 @@
             this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeExit);
             this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeHelp);
             this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeSave);
-            this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeDemo);
             this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeFlightDates);
             this.ribbonPanelHome.Controls.Add(this.ribbonBarSalesStrategy);
             this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeAdvertiser);
@@ -308,7 +284,7 @@
             this.ribbonBarHomeExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeExit});
             this.ribbonBarHomeExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarHomeExit.Location = new System.Drawing.Point(882, 0);
+            this.ribbonBarHomeExit.Location = new System.Drawing.Point(580, 0);
             this.ribbonBarHomeExit.Name = "ribbonBarHomeExit";
             this.ribbonBarHomeExit.Size = new System.Drawing.Size(84, 134);
             this.ribbonBarHomeExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -347,7 +323,7 @@
             this.ribbonBarHomeHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeHelp});
             this.ribbonBarHomeHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarHomeHelp.Location = new System.Drawing.Point(800, 0);
+            this.ribbonBarHomeHelp.Location = new System.Drawing.Point(498, 0);
             this.ribbonBarHomeHelp.Name = "ribbonBarHomeHelp";
             this.ribbonBarHomeHelp.Size = new System.Drawing.Size(82, 134);
             this.ribbonBarHomeHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -385,7 +361,7 @@
             this.buttonItemHomeSaveAs});
             this.ribbonBarHomeSave.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
             this.ribbonBarHomeSave.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarHomeSave.Location = new System.Drawing.Point(733, 0);
+            this.ribbonBarHomeSave.Location = new System.Drawing.Point(431, 0);
             this.ribbonBarHomeSave.Name = "ribbonBarHomeSave";
             this.ribbonBarHomeSave.Size = new System.Drawing.Size(67, 134);
             this.ribbonBarHomeSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -414,54 +390,6 @@
             this.buttonItemHomeSaveAs.SubItemsExpandWidth = 14;
             this.buttonItemHomeSaveAs.Text = "Save As";
             // 
-            // ribbonBarHomeDemo
-            // 
-            this.ribbonBarHomeDemo.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBarHomeDemo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarHomeDemo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBarHomeDemo.ContainerControlProcessDialogKey = true;
-            this.ribbonBarHomeDemo.Controls.Add(this.comboBoxEditDemo);
-            this.ribbonBarHomeDemo.Controls.Add(this.comboBoxEditSource);
-            this.ribbonBarHomeDemo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ribbonBarHomeDemo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.itemContainerHomeDemos,
-            this.labelItemHomeDemoSeparator,
-            this.itemContainerHomeDemoOptions});
-            this.ribbonBarHomeDemo.ItemSpacing = 3;
-            this.ribbonBarHomeDemo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBarHomeDemo.Location = new System.Drawing.Point(431, 0);
-            this.ribbonBarHomeDemo.Name = "ribbonBarHomeDemo";
-            this.ribbonBarHomeDemo.Size = new System.Drawing.Size(302, 134);
-            this.ribbonBarHomeDemo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.ribbonBarHomeDemo.TabIndex = 31;
-            this.ribbonBarHomeDemo.Text = "Demos";
-            // 
-            // 
-            // 
-            this.ribbonBarHomeDemo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBarHomeDemo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // comboBoxEditDemo
-            // 
-            this.comboBoxEditDemo.Location = new System.Drawing.Point(163, 40);
-            this.comboBoxEditDemo.Name = "comboBoxEditDemo";
-            this.comboBoxEditDemo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditDemo.Properties.NullText = "Select Demo";
-            this.comboBoxEditDemo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEditDemo.Size = new System.Drawing.Size(130, 19);
-            this.comboBoxEditDemo.StyleController = this.styleController;
-            this.comboBoxEditDemo.TabIndex = 3;
-            // 
             // styleController
             // 
             this.styleController.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -476,179 +404,6 @@
             this.styleController.AppearanceFocused.Options.UseFont = true;
             this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.styleController.AppearanceReadOnly.Options.UseFont = true;
-            // 
-            // comboBoxEditSource
-            // 
-            this.comboBoxEditSource.Enabled = false;
-            this.comboBoxEditSource.Location = new System.Drawing.Point(124, 93);
-            this.comboBoxEditSource.Name = "comboBoxEditSource";
-            this.comboBoxEditSource.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditSource.Properties.NullText = "Select Source";
-            this.comboBoxEditSource.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEditSource.Size = new System.Drawing.Size(170, 19);
-            this.comboBoxEditSource.StyleController = this.styleController;
-            this.comboBoxEditSource.TabIndex = 4;
-            // 
-            // itemContainerHomeDemos
-            // 
-            // 
-            // 
-            // 
-            this.itemContainerHomeDemos.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itemContainerHomeDemos.ItemSpacing = 25;
-            this.itemContainerHomeDemos.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.itemContainerHomeDemos.Name = "itemContainerHomeDemos";
-            this.itemContainerHomeDemos.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.checkBoxItemHomeDemoNo,
-            this.checkBoxItemHomeDemoCustom,
-            this.checkBoxItemHomeDemoImport});
-            this.itemContainerHomeDemos.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-            // 
-            // checkBoxItemHomeDemoNo
-            // 
-            this.checkBoxItemHomeDemoNo.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
-            this.checkBoxItemHomeDemoNo.Name = "checkBoxItemHomeDemoNo";
-            this.checkBoxItemHomeDemoNo.Text = "No Demos";
-            this.checkBoxItemHomeDemoNo.TextColor = System.Drawing.Color.Black;
-            // 
-            // checkBoxItemHomeDemoCustom
-            // 
-            this.checkBoxItemHomeDemoCustom.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
-            this.checkBoxItemHomeDemoCustom.Name = "checkBoxItemHomeDemoCustom";
-            this.checkBoxItemHomeDemoCustom.Text = "Custom Estimates\r\n";
-            this.checkBoxItemHomeDemoCustom.TextColor = System.Drawing.Color.Black;
-            // 
-            // checkBoxItemHomeDemoImport
-            // 
-            this.checkBoxItemHomeDemoImport.CheckBoxStyle = DevComponents.DotNetBar.eCheckBoxStyle.RadioButton;
-            this.checkBoxItemHomeDemoImport.Name = "checkBoxItemHomeDemoImport";
-            this.checkBoxItemHomeDemoImport.Text = "Import Estimates";
-            this.checkBoxItemHomeDemoImport.TextColor = System.Drawing.Color.Black;
-            // 
-            // labelItemHomeDemoSeparator
-            // 
-            this.labelItemHomeDemoSeparator.BeginGroup = true;
-            this.labelItemHomeDemoSeparator.Name = "labelItemHomeDemoSeparator";
-            // 
-            // itemContainerHomeDemoOptions
-            // 
-            // 
-            // 
-            // 
-            this.itemContainerHomeDemoOptions.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itemContainerHomeDemoOptions.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
-            this.itemContainerHomeDemoOptions.ItemSpacing = 12;
-            this.itemContainerHomeDemoOptions.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.itemContainerHomeDemoOptions.Name = "itemContainerHomeDemoOptions";
-            this.itemContainerHomeDemoOptions.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.itemContainerHomeDemoType,
-            this.itemContainerHomeDemoList,
-            this.itemContainerHomeSourceList});
-            this.itemContainerHomeDemoOptions.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-            // 
-            // itemContainerHomeDemoType
-            // 
-            // 
-            // 
-            // 
-            this.itemContainerHomeDemoType.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itemContainerHomeDemoType.ItemSpacing = 5;
-            this.itemContainerHomeDemoType.Name = "itemContainerHomeDemoType";
-            this.itemContainerHomeDemoType.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.labelItemHomeDemoType,
-            this.itemContainerHomeDemoTypeValues});
-            // 
-            // labelItemHomeDemoType
-            // 
-            this.labelItemHomeDemoType.ForeColor = System.Drawing.Color.Black;
-            this.labelItemHomeDemoType.Name = "labelItemHomeDemoType";
-            this.labelItemHomeDemoType.Text = " Rating Estimates:";
-            // 
-            // itemContainerHomeDemoTypeValues
-            // 
-            // 
-            // 
-            // 
-            this.itemContainerHomeDemoTypeValues.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itemContainerHomeDemoTypeValues.ItemSpacing = 3;
-            this.itemContainerHomeDemoTypeValues.Name = "itemContainerHomeDemoTypeValues";
-            this.itemContainerHomeDemoTypeValues.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemHomeRating,
-            this.buttonItemHome000s});
-            // 
-            // buttonItemHomeRating
-            // 
-            this.buttonItemHomeRating.ForeColor = System.Drawing.Color.Black;
-            this.buttonItemHomeRating.Name = "buttonItemHomeRating";
-            this.buttonItemHomeRating.Text = "Ratings";
-            // 
-            // buttonItemHome000s
-            // 
-            this.buttonItemHome000s.ForeColor = System.Drawing.Color.Black;
-            this.buttonItemHome000s.Name = "buttonItemHome000s";
-            this.buttonItemHome000s.Text = "000s";
-            // 
-            // itemContainerHomeDemoList
-            // 
-            // 
-            // 
-            // 
-            this.itemContainerHomeDemoList.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itemContainerHomeDemoList.Name = "itemContainerHomeDemoList";
-            this.itemContainerHomeDemoList.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.itemContainerHomeDemoLabel,
-            this.controlContainerItemDemo});
-            // 
-            // itemContainerHomeDemoLabel
-            // 
-            // 
-            // 
-            // 
-            this.itemContainerHomeDemoLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itemContainerHomeDemoLabel.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.itemContainerHomeDemoLabel.Name = "itemContainerHomeDemoLabel";
-            this.itemContainerHomeDemoLabel.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.labelItemHomeDemo});
-            this.itemContainerHomeDemoLabel.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-            // 
-            // labelItemHomeDemo
-            // 
-            this.labelItemHomeDemo.ForeColor = System.Drawing.Color.Black;
-            this.labelItemHomeDemo.Name = "labelItemHomeDemo";
-            this.labelItemHomeDemo.Text = " Demo:";
-            // 
-            // controlContainerItemDemo
-            // 
-            this.controlContainerItemDemo.AllowItemResize = false;
-            this.controlContainerItemDemo.Control = this.comboBoxEditDemo;
-            this.controlContainerItemDemo.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
-            this.controlContainerItemDemo.Name = "controlContainerItemDemo";
-            // 
-            // itemContainerHomeSourceList
-            // 
-            // 
-            // 
-            // 
-            this.itemContainerHomeSourceList.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itemContainerHomeSourceList.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.itemContainerHomeSourceList.Name = "itemContainerHomeSourceList";
-            this.itemContainerHomeSourceList.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.checkBoxItemSource,
-            this.controlContainerItem1});
-            // 
-            // checkBoxItemSource
-            // 
-            this.checkBoxItemSource.Name = "checkBoxItemSource";
-            this.checkBoxItemSource.Text = "Source:";
-            this.checkBoxItemSource.TextColor = System.Drawing.Color.Black;
-            // 
-            // controlContainerItem1
-            // 
-            this.controlContainerItem1.AllowItemResize = false;
-            this.controlContainerItem1.Control = this.comboBoxEditSource;
-            this.controlContainerItem1.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
-            this.controlContainerItem1.Name = "controlContainerItem1";
             // 
             // ribbonBarHomeFlightDates
             // 
@@ -692,7 +447,7 @@
             this.dateEditFlightDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditFlightDatesStart.Properties.Appearance.Options.UseFont = true;
             this.dateEditFlightDatesStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
             this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditFlightDatesStart.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -718,7 +473,7 @@
             this.dateEditFlightDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditFlightDatesEnd.Properties.Appearance.Options.UseFont = true;
             this.dateEditFlightDatesEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditFlightDatesEnd.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -851,7 +606,7 @@
             this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
             this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yy";
             this.dateEditPresentationDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditPresentationDate.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -1055,7 +810,7 @@
             this.ribbonPanelDigitalSchedule.Location = new System.Drawing.Point(0, 26);
             this.ribbonPanelDigitalSchedule.Name = "ribbonPanelDigitalSchedule";
             this.ribbonPanelDigitalSchedule.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelDigitalSchedule.Size = new System.Drawing.Size(992, 137);
+            this.ribbonPanelDigitalSchedule.Size = new System.Drawing.Size(1012, 137);
             // 
             // 
             // 
@@ -1081,7 +836,7 @@
             this.ribbonPanelSuccessModels.Location = new System.Drawing.Point(0, 26);
             this.ribbonPanelSuccessModels.Name = "ribbonPanelSuccessModels";
             this.ribbonPanelSuccessModels.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelSuccessModels.Size = new System.Drawing.Size(992, 137);
+            this.ribbonPanelSuccessModels.Size = new System.Drawing.Size(1012, 137);
             // 
             // 
             // 
@@ -1226,7 +981,7 @@
             this.ribbonPanelWeeklySchedule.Location = new System.Drawing.Point(0, 26);
             this.ribbonPanelWeeklySchedule.Name = "ribbonPanelWeeklySchedule";
             this.ribbonPanelWeeklySchedule.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelWeeklySchedule.Size = new System.Drawing.Size(984, 137);
+            this.ribbonPanelWeeklySchedule.Size = new System.Drawing.Size(1012, 137);
             // 
             // 
             // 
@@ -1812,7 +1567,7 @@
             this.ribbonPanelMonthlySchedule.Location = new System.Drawing.Point(0, 26);
             this.ribbonPanelMonthlySchedule.Name = "ribbonPanelMonthlySchedule";
             this.ribbonPanelMonthlySchedule.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.ribbonPanelMonthlySchedule.Size = new System.Drawing.Size(984, 137);
+            this.ribbonPanelMonthlySchedule.Size = new System.Drawing.Size(1012, 137);
             // 
             // 
             // 
@@ -2445,10 +2200,7 @@
             this.ribbonControl.ResumeLayout(false);
             this.ribbonControl.PerformLayout();
             this.ribbonPanelHome.ResumeLayout(false);
-            this.ribbonBarHomeDemo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDemo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSource.Properties)).EndInit();
             this.ribbonBarHomeFlightDates.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesStart.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFlightDatesStart.Properties)).EndInit();
@@ -2544,7 +2296,6 @@
         public DevComponents.DotNetBar.RibbonPanel ribbonPanelWeeklySchedule;
         public DevComponents.DotNetBar.RibbonBar ribbonBarWeeklyScheduleLineOptions;
         public DevComponents.DotNetBar.ButtonItem buttonItemWeeklyScheduleSpots;
-        public DevExpress.XtraEditors.ComboBoxEdit comboBoxEditDemo;
         private DevComponents.DotNetBar.ControlContainerItem controlContainerItemFlightDatesEnd;
         private DevComponents.DotNetBar.ControlContainerItem controlContainerItemFlightDatesStart;
         private DevComponents.DotNetBar.ItemContainer itemContainerWeeklyScheduleTotals1;
@@ -2558,21 +2309,7 @@
         public DevComponents.DotNetBar.ButtonItem buttonItemWeeklyScheduleDiscount;
         public DevComponents.DotNetBar.RibbonBar ribbonBarWeeklyScheduleTotals;
         public DevComponents.DotNetBar.ButtonItem buttonItemWeeklyScheduleTotalSpots;
-        private DevComponents.DotNetBar.ItemContainer itemContainerHomeDemos;
-        public DevComponents.DotNetBar.LabelItem labelItemHomeDemoSeparator;
-        public DevComponents.DotNetBar.ItemContainer itemContainerHomeDemoOptions;
-        private DevComponents.DotNetBar.ItemContainer itemContainerHomeDemoList;
-        private DevComponents.DotNetBar.ItemContainer itemContainerHomeDemoLabel;
-        private DevComponents.DotNetBar.LabelItem labelItemHomeDemo;
-        private DevComponents.DotNetBar.ControlContainerItem controlContainerItemDemo;
         public DevComponents.DotNetBar.RibbonPanel ribbonPanelHome;
-        public DevComponents.DotNetBar.RibbonBar ribbonBarHomeDemo;
-        public DevComponents.DotNetBar.CheckBoxItem checkBoxItemHomeDemoCustom;
-        public DevComponents.DotNetBar.CheckBoxItem checkBoxItemHomeDemoImport;
-        public DevComponents.DotNetBar.CheckBoxItem checkBoxItemHomeDemoNo;
-        public DevComponents.DotNetBar.ButtonItem buttonItemHomeRating;
-        public DevComponents.DotNetBar.ButtonItem buttonItemHome000s;
-        public DevComponents.DotNetBar.ItemContainer itemContainerHomeDemoType;
         public DevComponents.DotNetBar.ButtonItem buttonItemWeeklyScheduleCost;
         public DevComponents.DotNetBar.ButtonItem buttonItemWeeklyScheduleDaypart;
         private DevComponents.DotNetBar.ItemContainer itemContainerWeeklyScheduleLineOptions3;
@@ -2583,12 +2320,6 @@
         public DevComponents.DotNetBar.RibbonTabItem ribbonTabItemMonthlySchedule;
         private DevComponents.DotNetBar.RibbonBar ribbonBarWeeklyScheduleEmail;
         public DevComponents.DotNetBar.ButtonItem buttonItemWeeklyScheduleEmail;
-        public DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSource;
-        private DevComponents.DotNetBar.ControlContainerItem controlContainerItem1;
-        public DevComponents.DotNetBar.CheckBoxItem checkBoxItemSource;
-        public DevComponents.DotNetBar.ItemContainer itemContainerHomeSourceList;
-        private DevComponents.DotNetBar.LabelItem labelItemHomeDemoType;
-        private DevComponents.DotNetBar.ItemContainer itemContainerHomeDemoTypeValues;
         private DevComponents.DotNetBar.RibbonBar ribbonBarMonthlyScheduleEmail;
         public DevComponents.DotNetBar.ButtonItem buttonItemMonthlyScheduleEmail;
         private DevComponents.DotNetBar.RibbonBar ribbonBarMonthlySchedulePowerPoint;

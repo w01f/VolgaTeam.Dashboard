@@ -95,7 +95,7 @@ namespace RadioScheduleBuilder
             bool result = false;
             if ((_currentControl == CustomControls.HomeControl.Instance))
             {
-                if (CustomControls.HomeControl.Instance.AllowToLeaveControl)
+                if (CustomControls.HomeControl.Instance.AllowToLeaveControl())
                     result = true;
                 else
                 {
@@ -319,7 +319,7 @@ namespace RadioScheduleBuilder
         {
             bool result = true;
             if (_currentControl == CustomControls.HomeControl.Instance)
-                result = CustomControls.HomeControl.Instance.AllowToLeaveControl;
+                result = CustomControls.HomeControl.Instance.AllowToLeaveControl(true);
             else if (_currentControl == CustomControls.WeeklyScheduleControl.Instance)
                 result = CustomControls.WeeklyScheduleControl.Instance.AllowToLeaveControl;
             else if (_currentControl == CustomControls.MonthlyScheduleControl.Instance)

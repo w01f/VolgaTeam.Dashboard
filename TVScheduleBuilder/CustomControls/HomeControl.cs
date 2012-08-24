@@ -52,16 +52,13 @@ namespace TVScheduleBuilder.CustomControls
             }
         }
 
-        public bool AllowToLeaveControl
+        public bool AllowToLeaveControl(bool quiet = false)
         {
-            get
-            {
-                bool result = false;
-                if (this.SettingsNotSaved || stationsControl.HasChanged || daypartsControl.HasChanged)
-                    SaveSchedule();
-                result = true;
-                return result;
-            }
+            bool result = false;
+            if (this.SettingsNotSaved || stationsControl.HasChanged || daypartsControl.HasChanged)
+                SaveSchedule(quiet: quiet);
+            result = true;
+            return result;
         }
 
         private void UpdateScheduleControls()
@@ -128,6 +125,8 @@ namespace TVScheduleBuilder.CustomControls
                 FormMain.Instance.dateEditFlightDatesStart.EditValue = _localSchedule.FlightDateStart;
                 FormMain.Instance.dateEditFlightDatesEnd.EditValue = _localSchedule.FlightDateEnd;
 
+                laTopTitle.Text = _localSchedule.Name;
+
                 buttonXDemosNo.Checked = !_localSchedule.UseDemo;
                 buttonXDemosCustom.Checked = _localSchedule.UseDemo & !_localSchedule.ImportDemo;
                 buttonXDemosImport.Checked = _localSchedule.UseDemo & _localSchedule.ImportDemo;
@@ -159,7 +158,7 @@ namespace TVScheduleBuilder.CustomControls
             this.SettingsNotSaved = false;
         }
 
-        private bool SaveSchedule(string scheduleName = "")
+        private bool SaveSchedule(bool quiet = false, string scheduleName = "")
         {
             bool quickSave = true;
 
@@ -169,14 +168,16 @@ namespace TVScheduleBuilder.CustomControls
                 _localSchedule.BusinessName = FormMain.Instance.comboBoxEditBusinessName.EditValue.ToString();
             else
             {
-                AppManager.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Business Name before you proceed.");
+                if (!quiet)
+                    AppManager.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Business Name before you proceed.");
                 return false;
             }
             if (FormMain.Instance.comboBoxEditDecisionMaker.EditValue != null)
                 _localSchedule.DecisionMaker = FormMain.Instance.comboBoxEditDecisionMaker.EditValue.ToString();
             else
             {
-                AppManager.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Owner/Decision-maker before you proceed.");
+                if (!quiet)
+                    AppManager.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Owner/Decision-maker before you proceed.");
                 return false;
             }
 
@@ -184,7 +185,8 @@ namespace TVScheduleBuilder.CustomControls
                 _localSchedule.ClientType = FormMain.Instance.comboBoxEditClientType.EditValue.ToString();
             else
             {
-                AppManager.ShowWarning("You must set Client type before save");
+                if (!quiet)
+                    AppManager.ShowWarning("You must set Client type before save");
                 return false;
             }
 
@@ -199,7 +201,8 @@ namespace TVScheduleBuilder.CustomControls
                 _localSchedule.PresentationDate = FormMain.Instance.dateEditPresentationDate.DateTime;
             else
             {
-                AppManager.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Presentation Date before you proceed.");
+                if (!quiet)
+                    AppManager.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Presentation Date before you proceed.");
                 return false;
             }
 
@@ -209,22 +212,29 @@ namespace TVScheduleBuilder.CustomControls
                 DateTime endDate = FormMain.Instance.dateEditFlightDatesEnd.DateTime;
                 if (startDate.DayOfWeek != DayOfWeek.Monday)
                 {
-                    AppManager.ShowWarning("Flight Start Date must be Monday\nFlight End Date must be Sunday\nFlight Start Date must be less then Flight End Date.");
+                    if (!quiet)
+                        AppManager.ShowWarning("Flight Start Date must be Monday\nFlight End Date must be Sunday\nFlight Start Date must be less then Flight End Date.");
                     return false;
                 }
                 if (endDate.DayOfWeek != DayOfWeek.Sunday || _localSchedule.FlightDateEnd < _localSchedule.FlightDateStart)
                 {
-                    AppManager.ShowWarning("Flight Start Date must be Monday\nFlight End Date must be Sunday\nFlight Start Date must be less then Flight End Date.");
+                    if (!quiet)
+                        AppManager.ShowWarning("Flight Start Date must be Monday\nFlight End Date must be Sunday\nFlight Start Date must be less then Flight End Date.");
                     return false;
                 }
                 if (_localSchedule.FlightDateStart.HasValue && _localSchedule.FlightDateEnd.HasValue)
                 {
                     if (_localSchedule.FlightDateStart.Value != startDate || _localSchedule.FlightDateEnd.Value != endDate)
                     {
-                        if (AppManager.ShowWarningQuestion("Flight Dates have been changed and all Spots will be recreated\nDo you want to proceed?") == DialogResult.Yes)
-                            quickSave = false;
+                        if (!quiet)
+                        {
+                            if (AppManager.ShowWarningQuestion("Flight Dates have been changed and all Spots will be recreated\nDo you want to proceed?") == DialogResult.Yes)
+                                quickSave = false;
+                            else
+                                return false;
+                        }
                         else
-                            return false;
+                            quickSave = false;
                     }
                 }
                 else
@@ -252,13 +262,15 @@ namespace TVScheduleBuilder.CustomControls
             }
             else
             {
-                AppManager.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Flight Dates before you proceed.");
+                if (!quiet)
+                    AppManager.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Flight Dates before you proceed.");
                 return false;
             }
 
             if (comboBoxEditDemos.EditValue == null && !buttonXDemosNo.Checked)
             {
-                AppManager.ShowWarning("Please select Demo or disable it before you proceed.");
+                if (!quiet)
+                    AppManager.ShowWarning("Please select Demo or disable it before you proceed.");
                 return false;
             }
 
@@ -403,7 +415,7 @@ namespace TVScheduleBuilder.CustomControls
                 dialog.FileName = _localSchedule.Name + ".xml";
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (SaveSchedule(dialog.FileName.Replace(".xml", "")))
+                    if (SaveSchedule(scheduleName: dialog.FileName.Replace(".xml", "")))
                         AppManager.ShowInformation("Schedule was saved");
                 }
             }

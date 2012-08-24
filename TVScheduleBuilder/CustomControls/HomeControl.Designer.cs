@@ -39,8 +39,8 @@
             this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
             this.pnDigital = new System.Windows.Forms.Panel();
             this.daypartsControl = new TVScheduleBuilder.CustomControls.DaypartsControl();
-            this.pnTop = new System.Windows.Forms.Panel();
-            this.laTopTitle = new System.Windows.Forms.Label();
+            this.pnRightTop = new System.Windows.Forms.Panel();
+            this.laRightTopTitle = new System.Windows.Forms.Label();
             this.pbOptionsHelp = new System.Windows.Forms.PictureBox();
             this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageStations = new DevExpress.XtraTab.XtraTabPage();
@@ -50,8 +50,8 @@
             this.pnDemosSource = new System.Windows.Forms.Panel();
             this.comboBoxEditSource = new DevExpress.XtraEditors.ComboBoxEdit();
             this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-            this.buttonXDemosSourceEnable = new DevComponents.DotNetBar.ButtonX();
             this.buttonXDemosSourceDisable = new DevComponents.DotNetBar.ButtonX();
+            this.buttonXDemosSourceEnable = new DevComponents.DotNetBar.ButtonX();
             this.laDemosSource = new System.Windows.Forms.Label();
             this.pnDemosSelect = new System.Windows.Forms.Panel();
             this.comboBoxEditDemos = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -65,6 +65,8 @@
             this.buttonXDemosImport = new DevComponents.DotNetBar.ButtonX();
             this.buttonXDemosNo = new DevComponents.DotNetBar.ButtonX();
             this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
+            this.pnTop = new System.Windows.Forms.Panel();
+            this.laTopTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbMonthlySchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbWeeklySchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).BeginInit();
@@ -72,7 +74,7 @@
             this.xtraTabPageTV.SuspendLayout();
             this.pnTV.SuspendLayout();
             this.xtraTabPageDigital.SuspendLayout();
-            this.pnTop.SuspendLayout();
+            this.pnRightTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbOptionsHelp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).BeginInit();
             this.xtraTabControlOptions.SuspendLayout();
@@ -89,6 +91,7 @@
             this.pnDemosButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
             this.splitContainerControl.SuspendLayout();
+            this.pnTop.SuspendLayout();
             this.SuspendLayout();
             // 
             // stationsControl
@@ -106,9 +109,9 @@
             // pbMonthlySchedule
             // 
             this.pbMonthlySchedule.Image = global::TVScheduleBuilder.Properties.Resources.MonthlyScheduleButton;
-            this.pbMonthlySchedule.Location = new System.Drawing.Point(27, 340);
+            this.pbMonthlySchedule.Location = new System.Drawing.Point(27, 310);
             this.pbMonthlySchedule.Name = "pbMonthlySchedule";
-            this.pbMonthlySchedule.Size = new System.Drawing.Size(438, 156);
+            this.pbMonthlySchedule.Size = new System.Drawing.Size(595, 156);
             this.pbMonthlySchedule.TabIndex = 16;
             this.pbMonthlySchedule.TabStop = false;
             this.pbMonthlySchedule.Click += new System.EventHandler(this.pbMonthlySchedule_Click);
@@ -120,7 +123,7 @@
             this.pbWeeklySchedule.Image = global::TVScheduleBuilder.Properties.Resources.WeeklyScheduleButton;
             this.pbWeeklySchedule.Location = new System.Drawing.Point(27, 56);
             this.pbWeeklySchedule.Name = "pbWeeklySchedule";
-            this.pbWeeklySchedule.Size = new System.Drawing.Size(439, 156);
+            this.pbWeeklySchedule.Size = new System.Drawing.Size(595, 156);
             this.pbWeeklySchedule.TabIndex = 15;
             this.pbWeeklySchedule.TabStop = false;
             this.pbWeeklySchedule.Click += new System.EventHandler(this.pbWeeklySchedule_Click);
@@ -145,11 +148,12 @@
             this.xtraTabControlMain.AppearancePage.HeaderHotTracked.Options.UseFont = true;
             this.xtraTabControlMain.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
             this.xtraTabControlMain.AppearancePage.PageClient.Options.UseFont = true;
+            this.xtraTabControlMain.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.xtraTabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControlMain.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControlMain.Location = new System.Drawing.Point(0, 56);
             this.xtraTabControlMain.Name = "xtraTabControlMain";
             this.xtraTabControlMain.SelectedTabPage = this.xtraTabPageTV;
-            this.xtraTabControlMain.Size = new System.Drawing.Size(664, 666);
+            this.xtraTabControlMain.Size = new System.Drawing.Size(664, 610);
             this.xtraTabControlMain.TabIndex = 18;
             this.xtraTabControlMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageTV,
@@ -161,7 +165,7 @@
             this.xtraTabPageTV.Appearance.PageClient.Options.UseBackColor = true;
             this.xtraTabPageTV.Controls.Add(this.pnTV);
             this.xtraTabPageTV.Name = "xtraTabPageTV";
-            this.xtraTabPageTV.Size = new System.Drawing.Size(662, 640);
+            this.xtraTabPageTV.Size = new System.Drawing.Size(658, 580);
             this.xtraTabPageTV.Text = "Television Strategy";
             // 
             // pnTV
@@ -172,7 +176,7 @@
             this.pnTV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnTV.Location = new System.Drawing.Point(0, 0);
             this.pnTV.Name = "pnTV";
-            this.pnTV.Size = new System.Drawing.Size(662, 640);
+            this.pnTV.Size = new System.Drawing.Size(658, 580);
             this.pnTV.TabIndex = 0;
             // 
             // xtraTabPageDigital
@@ -180,7 +184,7 @@
             this.xtraTabPageDigital.Controls.Add(this.pnDigital);
             this.xtraTabPageDigital.Name = "xtraTabPageDigital";
             this.xtraTabPageDigital.PageEnabled = false;
-            this.xtraTabPageDigital.Size = new System.Drawing.Size(662, 640);
+            this.xtraTabPageDigital.Size = new System.Drawing.Size(658, 580);
             this.xtraTabPageDigital.Text = "Digital Strategy";
             // 
             // pnDigital
@@ -189,7 +193,7 @@
             this.pnDigital.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnDigital.Location = new System.Drawing.Point(0, 0);
             this.pnDigital.Name = "pnDigital";
-            this.pnDigital.Size = new System.Drawing.Size(662, 640);
+            this.pnDigital.Size = new System.Drawing.Size(658, 580);
             this.pnDigital.TabIndex = 0;
             // 
             // daypartsControl
@@ -204,27 +208,27 @@
             this.daypartsControl.Size = new System.Drawing.Size(344, 580);
             this.daypartsControl.TabIndex = 17;
             // 
-            // pnTop
+            // pnRightTop
             // 
-            this.pnTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnTop.Controls.Add(this.laTopTitle);
-            this.pnTop.Controls.Add(this.pbOptionsHelp);
-            this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnTop.Location = new System.Drawing.Point(0, 0);
-            this.pnTop.Name = "pnTop";
-            this.pnTop.Size = new System.Drawing.Size(350, 56);
-            this.pnTop.TabIndex = 0;
+            this.pnRightTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnRightTop.Controls.Add(this.laRightTopTitle);
+            this.pnRightTop.Controls.Add(this.pbOptionsHelp);
+            this.pnRightTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnRightTop.Location = new System.Drawing.Point(0, 0);
+            this.pnRightTop.Name = "pnRightTop";
+            this.pnRightTop.Size = new System.Drawing.Size(350, 56);
+            this.pnRightTop.TabIndex = 0;
             // 
-            // laTopTitle
+            // laRightTopTitle
             // 
-            this.laTopTitle.AutoSize = true;
-            this.laTopTitle.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laTopTitle.ForeColor = System.Drawing.Color.White;
-            this.laTopTitle.Location = new System.Drawing.Point(3, 13);
-            this.laTopTitle.Name = "laTopTitle";
-            this.laTopTitle.Size = new System.Drawing.Size(168, 27);
-            this.laTopTitle.TabIndex = 27;
-            this.laTopTitle.Text = "Schedule Info:";
+            this.laRightTopTitle.AutoSize = true;
+            this.laRightTopTitle.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laRightTopTitle.ForeColor = System.Drawing.Color.White;
+            this.laRightTopTitle.Location = new System.Drawing.Point(3, 13);
+            this.laRightTopTitle.Name = "laRightTopTitle";
+            this.laRightTopTitle.Size = new System.Drawing.Size(168, 27);
+            this.laRightTopTitle.TabIndex = 27;
+            this.laRightTopTitle.Text = "Schedule Info:";
             // 
             // pbOptionsHelp
             // 
@@ -340,20 +344,6 @@
             this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
             this.styleController.AppearanceReadOnly.Options.UseFont = true;
             // 
-            // buttonXDemosSourceEnable
-            // 
-            this.buttonXDemosSourceEnable.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonXDemosSourceEnable.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonXDemosSourceEnable.Location = new System.Drawing.Point(123, 38);
-            this.buttonXDemosSourceEnable.Name = "buttonXDemosSourceEnable";
-            this.buttonXDemosSourceEnable.Size = new System.Drawing.Size(99, 45);
-            this.buttonXDemosSourceEnable.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonXDemosSourceEnable.TabIndex = 4;
-            this.buttonXDemosSourceEnable.Text = "Enable\r\nSource";
-            this.buttonXDemosSourceEnable.TextColor = System.Drawing.Color.Black;
-            this.buttonXDemosSourceEnable.CheckedChanged += new System.EventHandler(this.buttonXDemosSource_CheckedChanged);
-            this.buttonXDemosSourceEnable.Click += new System.EventHandler(this.buttonXDemosSource_Click);
-            // 
             // buttonXDemosSourceDisable
             // 
             this.buttonXDemosSourceDisable.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -367,6 +357,20 @@
             this.buttonXDemosSourceDisable.TextColor = System.Drawing.Color.Black;
             this.buttonXDemosSourceDisable.CheckedChanged += new System.EventHandler(this.buttonXDemosSource_CheckedChanged);
             this.buttonXDemosSourceDisable.Click += new System.EventHandler(this.buttonXDemosSource_Click);
+            // 
+            // buttonXDemosSourceEnable
+            // 
+            this.buttonXDemosSourceEnable.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonXDemosSourceEnable.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonXDemosSourceEnable.Location = new System.Drawing.Point(123, 38);
+            this.buttonXDemosSourceEnable.Name = "buttonXDemosSourceEnable";
+            this.buttonXDemosSourceEnable.Size = new System.Drawing.Size(99, 45);
+            this.buttonXDemosSourceEnable.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonXDemosSourceEnable.TabIndex = 4;
+            this.buttonXDemosSourceEnable.Text = "Enable\r\nSource";
+            this.buttonXDemosSourceEnable.TextColor = System.Drawing.Color.Black;
+            this.buttonXDemosSourceEnable.CheckedChanged += new System.EventHandler(this.buttonXDemosSource_CheckedChanged);
+            this.buttonXDemosSourceEnable.Click += new System.EventHandler(this.buttonXDemosSource_Click);
             // 
             // laDemosSource
             // 
@@ -520,14 +524,36 @@
             this.splitContainerControl.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl.Name = "splitContainerControl";
             this.splitContainerControl.Panel1.Controls.Add(this.xtraTabControlMain);
+            this.splitContainerControl.Panel1.Controls.Add(this.pnTop);
             this.splitContainerControl.Panel1.Text = "Panel1";
             this.splitContainerControl.Panel2.Controls.Add(this.xtraTabControlOptions);
-            this.splitContainerControl.Panel2.Controls.Add(this.pnTop);
+            this.splitContainerControl.Panel2.Controls.Add(this.pnRightTop);
             this.splitContainerControl.Panel2.MinSize = 350;
             this.splitContainerControl.Panel2.Text = "Panel2";
             this.splitContainerControl.Size = new System.Drawing.Size(1020, 666);
             this.splitContainerControl.TabIndex = 19;
             this.splitContainerControl.Text = "splitContainerControl1";
+            // 
+            // pnTop
+            // 
+            this.pnTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnTop.Controls.Add(this.laTopTitle);
+            this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnTop.Location = new System.Drawing.Point(0, 0);
+            this.pnTop.Name = "pnTop";
+            this.pnTop.Size = new System.Drawing.Size(664, 56);
+            this.pnTop.TabIndex = 19;
+            // 
+            // laTopTitle
+            // 
+            this.laTopTitle.AutoSize = true;
+            this.laTopTitle.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laTopTitle.ForeColor = System.Drawing.Color.White;
+            this.laTopTitle.Location = new System.Drawing.Point(3, 13);
+            this.laTopTitle.Name = "laTopTitle";
+            this.laTopTitle.Size = new System.Drawing.Size(168, 27);
+            this.laTopTitle.TabIndex = 27;
+            this.laTopTitle.Text = "Schedule Info:";
             // 
             // HomeControl
             // 
@@ -544,8 +570,8 @@
             this.xtraTabPageTV.ResumeLayout(false);
             this.pnTV.ResumeLayout(false);
             this.xtraTabPageDigital.ResumeLayout(false);
-            this.pnTop.ResumeLayout(false);
-            this.pnTop.PerformLayout();
+            this.pnRightTop.ResumeLayout(false);
+            this.pnRightTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbOptionsHelp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).EndInit();
             this.xtraTabControlOptions.ResumeLayout(false);
@@ -565,6 +591,8 @@
             this.pnDemosButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
             this.splitContainerControl.ResumeLayout(false);
+            this.pnTop.ResumeLayout(false);
+            this.pnTop.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -581,13 +609,13 @@
         private System.Windows.Forms.Panel pnTV;
         private System.Windows.Forms.Panel pnDigital;
         private DaypartsControl daypartsControl;
-        private System.Windows.Forms.Panel pnTop;
+        private System.Windows.Forms.Panel pnRightTop;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlOptions;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageStations;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageDayparts;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
         private System.Windows.Forms.PictureBox pbOptionsHelp;
-        private System.Windows.Forms.Label laTopTitle;
+        private System.Windows.Forms.Label laRightTopTitle;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageDemos;
         private System.Windows.Forms.Panel pnDemos;
         private System.Windows.Forms.Panel pnDemosSelect;
@@ -607,6 +635,8 @@
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSource;
         private DevComponents.DotNetBar.ButtonX buttonXDemosSourceEnable;
         private DevComponents.DotNetBar.ButtonX buttonXDemosSourceDisable;
+        private System.Windows.Forms.Panel pnTop;
+        private System.Windows.Forms.Label laTopTitle;
 
     }
 }

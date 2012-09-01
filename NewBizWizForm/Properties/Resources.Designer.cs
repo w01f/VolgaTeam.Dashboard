@@ -179,6 +179,13 @@ namespace NewBizWizForm.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap DeleteButton {
+            get {
+                object obj = ResourceManager.GetObject("DeleteButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap DeleteSchedule {
             get {
                 object obj = ResourceManager.GetObject("DeleteSchedule", resourceCulture);

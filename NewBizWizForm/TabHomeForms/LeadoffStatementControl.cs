@@ -106,14 +106,11 @@ namespace NewBizWizForm.TabHomeForms
 
         public void LoadFromFile()
         {
-            using (OpenFileDialog dialog = new OpenFileDialog())
+            using (FormSavedLeadoffStatement form = new FormSavedLeadoffStatement())
             {
-                dialog.InitialDirectory = Path.Combine(ConfigurationClasses.SettingsManager.Instance.DashboardSaveFolder, "intro");
-                dialog.Title = "Select Saved Intro File";
-                dialog.Filter = "Intro Files|*.xml";
-                if (dialog.ShowDialog() == DialogResult.OK)
+                if (form.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(form.SelectedFile))
                 {
-                    ConfigurationClasses.ViewSettingsManager.Instance.LeadoffStatementState.Load(dialog.FileName);
+                    ConfigurationClasses.ViewSettingsManager.Instance.LeadoffStatementState.Load(form.SelectedFile);
                     LoadSavedState();
                 }
             }

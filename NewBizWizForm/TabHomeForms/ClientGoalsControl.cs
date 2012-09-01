@@ -103,14 +103,11 @@ namespace NewBizWizForm.TabHomeForms
 
         public void LoadFromFile()
         {
-            using (OpenFileDialog dialog = new OpenFileDialog())
+            using (FormSavedClentGoals form = new FormSavedClentGoals())
             {
-                dialog.InitialDirectory = Path.Combine(ConfigurationClasses.SettingsManager.Instance.DashboardSaveFolder, "needsgoals");
-                dialog.Title = "Select Saved Needs&Goals File";
-                dialog.Filter = "Needs&Goals Files|*.xml";
-                if (dialog.ShowDialog() == DialogResult.OK)
+                if (form.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(form.SelectedFile))
                 {
-                    ConfigurationClasses.ViewSettingsManager.Instance.ClientGoalsState.Load(dialog.FileName);
+                    ConfigurationClasses.ViewSettingsManager.Instance.ClientGoalsState.Load(form.SelectedFile);
                     LoadSavedState();
                 }
             }

@@ -235,6 +235,9 @@
     <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardCode1Control.resx">
       <DependentUpon>DashboardCode1Control.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\FormSavedStates.resx">
+      <DependentUpon>FormSavedStates.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TabHomeForms\SimpleSummaryControl.resx">
       <DependentUpon>SimpleSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -479,6 +482,12 @@
     <Compile Include="TabHomeForms\Dashboard\DashboardCode1Control.Designer.cs">
       <DependentUpon>DashboardCode1Control.cs</DependentUpon>
     </Compile>
+    <Compile Include="TabHomeForms\FormSavedStates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\FormSavedStates.Designer.cs">
+      <DependentUpon>FormSavedStates.cs</DependentUpon>
+    </Compile>
     <Compile Include="TabHomeForms\SimpleSummaryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -683,6 +692,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\DeleteButton.png" />
     <None Include="Resources\ImportCalendar.png" />
     <None Include="Resources\Floater.png" />
     <None Include="Resources\HomeSalesDepotBig.png" />

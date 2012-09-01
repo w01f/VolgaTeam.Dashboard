@@ -215,14 +215,11 @@ namespace NewBizWizForm.TabHomeForms
 
         public void LoadFromFile()
         {
-            using (OpenFileDialog dialog = new OpenFileDialog())
+            using (FormSavedSimpleSummary form = new FormSavedSimpleSummary())
             {
-                dialog.InitialDirectory = Path.Combine(ConfigurationClasses.SettingsManager.Instance.DashboardSaveFolder, "summary");
-                dialog.Title = "Select Saved Simple Summary File";
-                dialog.Filter = "Simple Summary Files|*.xml";
-                if (dialog.ShowDialog() == DialogResult.OK)
+                if (form.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(form.SelectedFile))
                 {
-                    ConfigurationClasses.ViewSettingsManager.Instance.SimpleSummaryState.Load(dialog.FileName);
+                    ConfigurationClasses.ViewSettingsManager.Instance.SimpleSummaryState.Load(form.SelectedFile);
                     LoadSavedState();
                 }
             }

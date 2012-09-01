@@ -294,14 +294,11 @@ namespace NewBizWizForm.TabHomeForms
 
         private void buttonXSavedFiles_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog dialog = new OpenFileDialog())
+            using (FormSavedCover form = new FormSavedCover())
             {
-                dialog.InitialDirectory = Path.Combine(ConfigurationClasses.SettingsManager.Instance.DashboardSaveFolder, "cover");
-                dialog.Title = "Select Saved Cover File";
-                dialog.Filter = "Cover Files|*.xml";
-                if (dialog.ShowDialog() == DialogResult.OK)
+                if (form.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(form.SelectedFile))
                 {
-                    ConfigurationClasses.ViewSettingsManager.Instance.CoverState.Load(dialog.FileName);
+                    ConfigurationClasses.ViewSettingsManager.Instance.CoverState.Load(form.SelectedFile);
                     LoadSavedState();
                 }
             }

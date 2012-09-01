@@ -96,14 +96,11 @@ namespace NewBizWizForm.TabHomeForms
 
         public void LoadFromFile()
         {
-            using (OpenFileDialog dialog = new OpenFileDialog())
+            using (FormSavedTargetCustomers form = new FormSavedTargetCustomers())
             {
-                dialog.InitialDirectory = Path.Combine(ConfigurationClasses.SettingsManager.Instance.DashboardSaveFolder, "target");
-                dialog.Title = "Select Saved Target Customers File";
-                dialog.Filter = "Target Customers Files|*.xml";
-                if (dialog.ShowDialog() == DialogResult.OK)
+                if (form.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(form.SelectedFile))
                 {
-                    ConfigurationClasses.ViewSettingsManager.Instance.TargetCustomersState.Load(dialog.FileName);
+                    ConfigurationClasses.ViewSettingsManager.Instance.TargetCustomersState.Load(form.SelectedFile);
                     LoadSavedState();
                 }
             }

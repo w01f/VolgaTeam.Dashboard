@@ -208,7 +208,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
         private void contextMenuStrip_Opened(object sender, EventArgs e)
         {
             if (!_isSelected)
-                Control_Click(null, null);
+                Control_Click(sender, new MouseEventArgs(System.Windows.Forms.MouseButtons.Left, 1, 0, 0, 0));
         }
 
         private void toolStripMenuItemCopy_Click(object sender, EventArgs e)

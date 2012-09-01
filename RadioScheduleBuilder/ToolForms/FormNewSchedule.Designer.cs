@@ -116,9 +116,9 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pbLogo;
-        private System.Windows.Forms.Label laLogo;
         private DevComponents.DotNetBar.ButtonX buttonXOK;
         private DevComponents.DotNetBar.ButtonX buttonXCancel;
         private DevExpress.XtraEditors.TextEdit textEditScheduleName;
+        public System.Windows.Forms.Label laLogo;
     }
 }

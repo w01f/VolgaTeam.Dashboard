@@ -405,16 +405,21 @@ namespace AdScheduleBuilder.CustomControls
 
         public void buttonItemPrintScheduleettingsSaveAs_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog dialog = new SaveFileDialog())
+            using (ToolForms.FormNewSchedule from = new ToolForms.FormNewSchedule())
             {
-                dialog.InitialDirectory = ConfigurationClasses.SettingsManager.Instance.SaveFolder;
-                dialog.Title = "Save Schedule As...";
-                dialog.Filter = "Schedule Files|*.xml";
-                dialog.FileName = _localSchedule.Name + ".xml";
-                if (dialog.ShowDialog() == DialogResult.OK)
+                from.Text = "Save Schedule";
+                from.laLogo.Text = "Please set a new name for your Schedule:";
+                if (from.ShowDialog() == DialogResult.OK)
                 {
-                    if (SaveSchedule(dialog.FileName.Replace(".xml", "")))
-                        AppManager.ShowInformation("Schedule was saved");
+                    if (!string.IsNullOrEmpty(from.ScheduleName))
+                    {
+                        if (SaveSchedule(from.ScheduleName))
+                            AppManager.ShowInformation("Schedule was saved");
+                    }
+                    else
+                    {
+                        AppManager.ShowWarning("Schedule Name can't be empty");
+                    }
                 }
             }
         }

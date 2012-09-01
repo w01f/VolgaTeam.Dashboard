@@ -195,16 +195,21 @@ namespace CalendarBuilder.PresentationClasses
 
         public void buttonItemCalendarSaveAs_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog dialog = new SaveFileDialog())
+            using (ToolForms.FormNewCalendar from = new ToolForms.FormNewCalendar())
             {
-                dialog.InitialDirectory = ConfigurationClasses.SettingsManager.Instance.SaveFolder;
-                dialog.Title = "Save Calendar As...";
-                dialog.Filter = "Calendar Files|*.xml";
-                dialog.FileName = this.SelectedCalendarControl.CalendarData.Schedule.Name + ".xml";
-                if (dialog.ShowDialog() == DialogResult.OK)
+                from.Text = "Save Calendar";
+                from.laLogo.Text = "Please set a new name for your Calendar:";
+                if (from.ShowDialog() == DialogResult.OK)
                 {
-                    if (this.SelectedCalendarControl.SaveCalendarData(dialog.FileName.Replace(".xml", "")))
-                        AppManager.ShowInformation("Calendar was saved");
+                        if (!string.IsNullOrEmpty(from.ScheduleName))
+                        {
+                            if (this.SelectedCalendarControl.SaveCalendarData(from.ScheduleName))
+                                AppManager.ShowInformation("Calendar was saved");
+                        }
+                        else
+                        {
+                            AppManager.ShowWarning("Calendar Name can't be empty");
+                        }
                 }
             }
         }

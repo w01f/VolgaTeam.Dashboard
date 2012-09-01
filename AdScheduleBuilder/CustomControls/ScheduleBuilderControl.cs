@@ -242,13 +242,13 @@ namespace AdScheduleBuilder.CustomControls
                 FormMain.Instance.buttonItemPrintScheduleColorOptionsSingle.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableBlackWhite;
                 FormMain.Instance.buttonItemPrintScheduleColorOptionsSpot.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableSpotColor;
                 FormMain.Instance.buttonItemPrintScheduleColorOptionsFull.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableFullColor;
-                
+
                 FormMain.Instance.buttonItemPrintScheduleColorOptionsCostPerAd.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableCostPerAd;
                 FormMain.Instance.buttonItemPrintScheduleColorOptionsPercentOfAd.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnablePercentOfAd;
                 FormMain.Instance.buttonItemPrintScheduleColorOptionsIncluded.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableColorIncluded;
                 FormMain.Instance.buttonItemPrintScheduleColorOptionsPCI.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableCostPerInch;
                 FormMain.Instance.spinEditCostPerInch.Enabled = BusinessClasses.ListManager.Instance.DefaultPrintScheduleViewSettings.EnableCostPerInch;
-                
+
                 ClearSettings();
                 LoadPricingOptions(publicationControl);
                 LoadSizeOptions(publicationControl);
@@ -1167,18 +1167,20 @@ namespace AdScheduleBuilder.CustomControls
 
         public void buttonItemPrintScheduleSaveAs_Click(object sender, EventArgs e)
         {
-            if (xtraTabControlPublications.SelectedTabPageIndex >= 0)
+            using (ToolForms.FormNewSchedule from = new ToolForms.FormNewSchedule())
             {
-                using (SaveFileDialog dialog = new SaveFileDialog())
+                from.Text = "Save Schedule";
+                from.laLogo.Text = "Please set a new name for your Schedule:";
+                if (from.ShowDialog() == DialogResult.OK)
                 {
-                    dialog.InitialDirectory = ConfigurationClasses.SettingsManager.Instance.SaveFolder;
-                    dialog.Title = "Save Schedule As...";
-                    dialog.Filter = "Schedule Files|*.xml";
-                    dialog.FileName = this.LocalSchedule.Name + ".xml";
-                    if (dialog.ShowDialog() == DialogResult.OK)
+                    if (!string.IsNullOrEmpty(from.ScheduleName))
                     {
-                        if (SaveSchedule(dialog.FileName.Replace(".xml", "")))
+                        if (SaveSchedule(from.ScheduleName))
                             AppManager.ShowInformation("Schedule was saved");
+                    }
+                    else
+                    {
+                        AppManager.ShowWarning("Scheduke Name can't be empty");
                     }
                 }
             }

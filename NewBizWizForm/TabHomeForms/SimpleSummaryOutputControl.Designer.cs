@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelExMain = new DevComponents.DotNetBar.PanelEx();
+            this.laDetails = new System.Windows.Forms.Label();
             this.ckDetails = new System.Windows.Forms.CheckBox();
             this.ckItem = new System.Windows.Forms.CheckBox();
             this.ckMonthly = new System.Windows.Forms.CheckBox();
@@ -46,11 +47,14 @@
             // 
             // panelExMain
             // 
+            this.panelExMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelExMain.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelExMain.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.panelExMain.Controls.Add(this.laDetails);
             this.panelExMain.Controls.Add(this.ckDetails);
-            this.panelExMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelExMain.Location = new System.Drawing.Point(5, 0);
+            this.panelExMain.Location = new System.Drawing.Point(5, 5);
             this.panelExMain.Name = "panelExMain";
             this.panelExMain.Size = new System.Drawing.Size(621, 49);
             this.panelExMain.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -62,31 +66,45 @@
             this.panelExMain.Style.GradientAngle = 90;
             this.panelExMain.TabIndex = 30;
             // 
+            // laDetails
+            // 
+            this.laDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.laDetails.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.laDetails.Location = new System.Drawing.Point(22, 3);
+            this.laDetails.Name = "laDetails";
+            this.laDetails.Size = new System.Drawing.Size(596, 42);
+            this.laDetails.TabIndex = 34;
+            this.laDetails.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.laDetails.UseMnemonic = false;
+            // 
             // ckDetails
             // 
-            this.ckDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ckDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.ckDetails.Checked = true;
             this.ckDetails.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckDetails.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ckDetails.Location = new System.Drawing.Point(3, 3);
+            this.ckDetails.Location = new System.Drawing.Point(6, 3);
             this.ckDetails.Name = "ckDetails";
-            this.ckDetails.Size = new System.Drawing.Size(615, 43);
+            this.ckDetails.Size = new System.Drawing.Size(20, 43);
             this.ckDetails.TabIndex = 33;
+            this.ckDetails.UseMnemonic = false;
             this.ckDetails.UseVisualStyleBackColor = true;
             this.ckDetails.CheckedChanged += new System.EventHandler(this.ckItem_CheckedChanged);
             // 
             // ckItem
             // 
+            this.ckItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ckItem.Checked = true;
             this.ckItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckItem.Dock = System.Windows.Forms.DockStyle.Left;
             this.ckItem.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ckItem.Location = new System.Drawing.Point(0, 0);
             this.ckItem.Name = "ckItem";
             this.ckItem.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ckItem.Size = new System.Drawing.Size(243, 51);
+            this.ckItem.Size = new System.Drawing.Size(333, 51);
             this.ckItem.TabIndex = 31;
             this.ckItem.UseVisualStyleBackColor = true;
             this.ckItem.CheckedChanged += new System.EventHandler(this.ckItem_CheckedChanged);
@@ -152,7 +170,7 @@
             // pnDetails
             // 
             this.pnDetails.Controls.Add(this.panelExMain);
-            this.pnDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnDetails.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnDetails.Location = new System.Drawing.Point(0, 51);
             this.pnDetails.Name = "pnDetails";
             this.pnDetails.Padding = new System.Windows.Forms.Padding(5, 0, 5, 10);
@@ -166,7 +184,7 @@
             this.Controls.Add(this.pnDetails);
             this.Controls.Add(this.pnHeader);
             this.Name = "SimpleSummaryOutputControl";
-            this.Size = new System.Drawing.Size(631, 110);
+            this.Size = new System.Drawing.Size(631, 315);
             this.panelExMain.ResumeLayout(false);
             this.pnHeader.ResumeLayout(false);
             this.pnMonthly.ResumeLayout(false);
@@ -187,5 +205,6 @@
         private System.Windows.Forms.CheckBox ckTotal;
         public System.Windows.Forms.Panel pnDetails;
         public System.Windows.Forms.Panel pnHeader;
+        private System.Windows.Forms.Label laDetails;
     }
 }

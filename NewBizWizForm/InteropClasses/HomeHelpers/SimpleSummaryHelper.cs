@@ -17,8 +17,6 @@ namespace NewBizWizForm.InteropClasses
                 int mainFileTemplateIndex = itemsCount >= 5 ? 5 : itemsCount;
 
                 int additionalFileTemplateIndex = itemsCount > 5 ? itemsCount % 5 : 0;
-                if (additionalFileTemplateIndex != 0)
-                    additionalFileTemplateIndex += mainFileTemplateIndex;
 
                 int mainFilesCount = itemsCount / 5;
                 if (mainFilesCount == 0 && itemsCount > 0)
@@ -26,7 +24,7 @@ namespace NewBizWizForm.InteropClasses
 
 
                 string mainPresentationTemplatePath = Path.Combine(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.SimpleSummaryFolder, string.Format(BusinessClasses.MasterWizardManager.SimpleSummarySlideTemplate, mainFileTemplateIndex));
-                string additionalPresentationTemplatePath = Path.Combine(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.SimpleSummaryFolder, string.Format(BusinessClasses.MasterWizardManager.SimpleSummarySlideTemplate, additionalFileTemplateIndex));
+                string additionalPresentationTemplatePath = Path.Combine(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.SimpleSummaryFolder, string.Format(BusinessClasses.MasterWizardManager.SimpleSummarySlideTemplate, (additionalFileTemplateIndex + mainFileTemplateIndex)));
 
                 if (File.Exists(mainPresentationTemplatePath))
                 {
@@ -185,7 +183,7 @@ namespace NewBizWizForm.InteropClasses
                         MessageFilter.Revoke();
                     }
 
-                    if (File.Exists(additionalPresentationTemplatePath))
+                    if (additionalFileTemplateIndex != 0 && File.Exists(additionalPresentationTemplatePath))
                     {
                         try
                         {
@@ -235,6 +233,9 @@ namespace NewBizWizForm.InteropClasses
                                                         break;
                                                     case "DECISIONMAKER":
                                                         shape.TextFrame.TextRange.Text = TabHomeForms.SimpleSummaryControl.Instance.DecisionMaker;
+                                                        break;
+                                                    case "MNTHLY1":
+                                                        shape.Visible = TabHomeForms.SimpleSummaryControl.Instance.ShowMonhlyHeader ? Microsoft.Office.Core.MsoTriState.msoTrue : Microsoft.Office.Core.MsoTriState.msoFalse;
                                                         break;
                                                     case "DATE_FORMAT":
                                                         shape.TextFrame.TextRange.Text = TabHomeForms.SimpleSummaryControl.Instance.PresentationDate;

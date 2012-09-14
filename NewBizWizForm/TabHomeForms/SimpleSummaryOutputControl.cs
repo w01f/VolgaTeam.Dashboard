@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace NewBizWizForm.TabHomeForms
@@ -12,7 +7,9 @@ namespace NewBizWizForm.TabHomeForms
     [System.ComponentModel.ToolboxItem(false)]
     public partial class SimpleSummaryOutputControl : UserControl
     {
+        private int _baseDetailHeight = 0;
         public int ItemNumber { get; set; }
+
 
         public SimpleSummaryOutputControl()
         {
@@ -22,10 +19,13 @@ namespace NewBizWizForm.TabHomeForms
             if ((base.CreateGraphics()).DpiX > 96)
             {
                 ckDetails.Font = new Font(ckDetails.Font.FontFamily, ckDetails.Font.Size - 2, ckDetails.Font.Style);
+                laDetails.Font = new Font(laDetails.Font.FontFamily, laDetails.Font.Size - 2, laDetails.Font.Style);
                 ckItem.Font = new Font(ckItem.Font.FontFamily, ckItem.Font.Size - 2, ckItem.Font.Style);
                 ckMonthly.Font = new Font(ckMonthly.Font.FontFamily, ckMonthly.Font.Size - 2, ckMonthly.Font.Style);
                 ckTotal.Font = new Font(ckTotal.Font.FontFamily, ckTotal.Font.Size - 2, ckTotal.Font.Style);
             }
+
+            _baseDetailHeight = laDetails.Height;
         }
 
         public string ItemValue
@@ -56,7 +56,19 @@ namespace NewBizWizForm.TabHomeForms
         {
             set
             {
-                ckDetails.Text = value;
+                laDetails.Text = value;
+
+                SizeF textSize = new SizeF();
+                using (Graphics g = laDetails.CreateGraphics())
+                    textSize = g.MeasureString(laDetails.Text, laDetails.Font, laDetails.Width);
+
+                int textHeight = (int)textSize.Height;
+                if (textHeight < _baseDetailHeight)
+                    textHeight = _baseDetailHeight;
+
+                int heightDifference = textHeight - laDetails.Height;
+                pnDetails.Height += (heightDifference > 0 ? (heightDifference + 10) : 0);
+                SimpleSummaryControl.Instance.simpleSummaryItemContainer.HideDescription();
             }
         }
 

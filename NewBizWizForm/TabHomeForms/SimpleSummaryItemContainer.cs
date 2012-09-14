@@ -205,7 +205,7 @@ namespace NewBizWizForm.TabHomeForms
         public void HideDescription()
         {
             foreach (SimpleSummaryItemControl item in _itemsCollection)
-                item.OutputItem.Height = string.IsNullOrEmpty(item.ItemDetail) ? item.OutputItem.pnHeader.Height : (item.OutputItem.pnHeader.Height * 2);
+                item.OutputItem.Height = string.IsNullOrEmpty(item.ItemDetail) ? item.OutputItem.pnHeader.Height : (item.OutputItem.pnHeader.Height + item.OutputItem.pnDetails.Height);
         }
 
 
@@ -237,7 +237,7 @@ namespace NewBizWizForm.TabHomeForms
                 List<string> result = new List<string>();
                 foreach (SimpleSummaryItemControl item in _itemsCollection)
                     if (!string.IsNullOrEmpty(item.ItemTitle))
-                        result.Add(item.ItemDetailOutput);
+                        result.Add(item.ItemDetailOutput.Replace(Environment.NewLine,"; "));
                 return result.ToArray();
             }
         }

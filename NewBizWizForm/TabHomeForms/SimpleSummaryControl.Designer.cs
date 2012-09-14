@@ -262,9 +262,9 @@
             this.tabControlSimpleSummary.ColorScheme.TabPanelBackground = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.tabControlSimpleSummary.ColorScheme.TabPanelBackground2 = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.tabControlSimpleSummary.ColorScheme.TabPanelBorder = System.Drawing.Color.White;
+            this.tabControlSimpleSummary.Controls.Add(this.tabControlPanelDetails);
             this.tabControlSimpleSummary.Controls.Add(this.tabControlPanelAdvertiser);
             this.tabControlSimpleSummary.Controls.Add(this.tabControlPanelSlideOutput);
-            this.tabControlSimpleSummary.Controls.Add(this.tabControlPanelDetails);
             this.tabControlSimpleSummary.Controls.Add(this.tabControlPanelCampaign);
             this.tabControlSimpleSummary.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabControlSimpleSummary.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -1180,7 +1180,6 @@
         private System.Windows.Forms.Label laDetails;
         private DevComponents.DotNetBar.TabItem tabItemSlideOutput;
         private DevComponents.DotNetBar.TabControlPanel tabControlPanelDetails;
-        private SimpleSummaryItemContainer simpleSummaryItemContainer;
         private DevComponents.DotNetBar.TabItem tabItemPaymentDetails;
         private DevComponents.DotNetBar.TabControlPanel tabControlPanelAdvertiser;
         private DevExpress.XtraEditors.DateEdit dateEditFligtDatesStart;
@@ -1220,6 +1219,7 @@
         private System.Windows.Forms.Panel pnOutputWarning;
         private System.Windows.Forms.PictureBox pbOutputWarning;
         private System.Windows.Forms.Label laOutputWarning;
+        public SimpleSummaryItemContainer simpleSummaryItemContainer;
 
     }
 }

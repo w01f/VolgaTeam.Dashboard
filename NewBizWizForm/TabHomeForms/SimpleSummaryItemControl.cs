@@ -149,7 +149,7 @@ namespace NewBizWizForm.TabHomeForms
         private void memoEditDetails_EditValueChanged(object sender, EventArgs e)
         {
             if (memoEditDetails.EditValue != null)
-                this.OutputItem.DetailsValue = memoEditDetails.EditValue.ToString();
+                this.OutputItem.DetailsValue = memoEditDetails.EditValue.ToString().Replace(Environment.NewLine, "; ");
             else
                 this.OutputItem.DetailsValue = string.Empty;
             if (SimpleSummaryControl.Instance.AllowToSave)

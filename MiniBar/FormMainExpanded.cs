@@ -755,17 +755,10 @@ namespace MiniBar
 
         private void AddAppDefinition(BusinessClasses.NBWApplication nbwApplication)
         {
-            DevComponents.DotNetBar.ItemContainer itemContainerAppText = new DevComponents.DotNetBar.ItemContainer();
-            itemContainerAppText.ItemSpacing = 4;
-            itemContainerAppText.MinimumSize = new System.Drawing.Size(178, 0);
-            itemContainerAppText.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-                nbwApplication.AppLabel});
-            itemContainerAppText.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-
             DevComponents.DotNetBar.ItemContainer itemContainerApp = new DevComponents.DotNetBar.ItemContainer();
             itemContainerApp.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
                 nbwApplication.AppButton,
-                itemContainerAppText});
+                nbwApplication.AppLabel});
 
             galleryContainerApps.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] { itemContainerApp });
         }

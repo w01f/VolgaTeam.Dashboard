@@ -2060,24 +2060,24 @@ namespace AdScheduleBuilder.ConfigurationClasses
             #endregion
 
             #region Position
-            this.IDPosition = 0;
-            this.IndexPosition = 1;
-            this.DatePosition = 2;
-            this.ColorPosition = 4;
-            this.SectionPosition = 5;
-            this.PCIPosition = 6;
-            this.FinalCostPosition = 7;
-            this.PublicationPosition = 3;
-            this.PercentOfPagePosition = 8;
-            this.CostPosition = 9;
-            this.DimensionsPosition = 10;
-            this.MechanicalsPosition = 11;
-            this.DeliveryPosition = 12;
-            this.DiscountPosition = 13;
-            this.PageSizePosition = 14;
-            this.SquarePosition = 15;
-            this.DeadlinePosition = 16;
-            this.ReadershipPosition = 17;
+            this.IDPosition = -1;
+            this.IndexPosition = -1;
+            this.DatePosition = -1;
+            this.ColorPosition = -1;
+            this.SectionPosition = -1;
+            this.PCIPosition = -1;
+            this.FinalCostPosition = -1;
+            this.PublicationPosition = -1;
+            this.PercentOfPagePosition = -1;
+            this.CostPosition = -1;
+            this.DimensionsPosition = -1;
+            this.MechanicalsPosition = -1;
+            this.DeliveryPosition = -1;
+            this.DiscountPosition = -1;
+            this.PageSizePosition = -1;
+            this.SquarePosition = -1;
+            this.DeadlinePosition = -1;
+            this.ReadershipPosition = -1;
             #endregion
 
             #region Width
@@ -2632,6 +2632,25 @@ namespace AdScheduleBuilder.ConfigurationClasses
             this.ShowDeadline &= this.EnableDeadline;
             this.ShowReadership &= this.EnableReadership;
             this.ShowAdNotes &= this.EnableAdNotes;
+
+            this.IDPosition = this.ShowID ? this.IDPosition : -1;
+            this.IndexPosition = this.ShowIndex ? this.IndexPosition : -1;
+            this.DatePosition = this.ShowDate ? this.DatePosition : -1;
+            this.ColorPosition = this.ShowColor ? this.ColorPosition : -1;
+            this.SectionPosition = this.ShowSection ? this.SectionPosition : -1;
+            this.PCIPosition = this.ShowPCI ? this.PCIPosition : -1;
+            this.FinalCostPosition = this.ShowFinalCost ? this.FinalCostPosition : -1;
+            this.PublicationPosition = this.ShowPublication ? this.PublicationPosition : -1;
+            this.PercentOfPagePosition = this.ShowPercentOfPage ? this.PercentOfPagePosition : -1;
+            this.CostPosition = this.ShowCost ? this.CostPosition : -1;
+            this.DimensionsPosition = this.ShowDimensions ? this.DimensionsPosition : -1;
+            this.MechanicalsPosition = this.ShowMechanicals ? this.MechanicalsPosition : -1;
+            this.DeliveryPosition = this.ShowDelivery ? this.DeliveryPosition : -1;
+            this.DiscountPosition = this.ShowDiscount ? this.DiscountPosition : -1;
+            this.PageSizePosition = this.ShowPageSize ? this.PageSizePosition : -1;
+            this.SquarePosition = this.ShowSquare ? this.SquarePosition : -1;
+            this.DeadlinePosition = this.ShowDeadline ? this.DeadlinePosition : -1;
+            this.ReadershipPosition = this.ShowReadership ? this.ReadershipPosition : -1;
         }
     }
 

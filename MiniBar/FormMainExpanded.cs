@@ -734,7 +734,9 @@ namespace MiniBar
             if (BusinessClasses.NBWApplicationsManager.Instance.NBWApplications.Count > 0)
             {
                 foreach (BusinessClasses.NBWApplication nbwApplication in BusinessClasses.NBWApplicationsManager.Instance.NBWApplications)
+                {
                     AddAppDefinition(nbwApplication);
+                }
                 ribbonBarApps.RecalcLayout();
                 ribbonPanelApps.PerformLayout();
             }
@@ -746,9 +748,25 @@ namespace MiniBar
             {
                 if (nbwApplication.UseSlideTemplates && BusinessClasses.MasterWizardManager.Instance.SelectedWizard != null)
                 {
-                    string slideTemplatesFolderPath = Path.Combine(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.Folder.FullName, ConfigurationClasses.SettingsManager.Instance.SlideFolder, nbwApplication.SlideTemplatesPath);
-                    nbwApplication.AppButton.Enabled = Directory.Exists(slideTemplatesFolderPath);
-                    nbwApplication.AppLabel.Enabled = Directory.Exists(slideTemplatesFolderPath);
+                    string slideTemplatesFolderPath = string.Empty;
+                    if (nbwApplication.UseWizard)
+                        slideTemplatesFolderPath = Path.Combine(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.Folder.FullName, ConfigurationClasses.SettingsManager.Instance.SlideFolder, nbwApplication.SlideTemplatesPath);
+                    else
+                        slideTemplatesFolderPath = Path.Combine(BusinessClasses.MasterWizardManager.ScheduleBuildersFolder, ConfigurationClasses.SettingsManager.Instance.SlideFolder, nbwApplication.SlideTemplatesPath);
+                    if (Directory.Exists(slideTemplatesFolderPath))
+                    {
+                        nbwApplication.AppLabel.Enabled = true;
+                        nbwApplication.AppButton.Enabled = true;
+                        //nbwApplication.AppButton.Visible = true;
+                        //nbwApplication.DisabledButton.Visible = false;
+                    }
+                    else
+                    {
+                        nbwApplication.AppLabel.Enabled = false;
+                        nbwApplication.AppButton.Enabled = false;
+                        //nbwApplication.AppButton.Visible = false;
+                        //nbwApplication.DisabledButton.Visible = true;
+                    }
                 }
             }
         }
@@ -758,9 +776,10 @@ namespace MiniBar
             DevComponents.DotNetBar.ItemContainer itemContainerApp = new DevComponents.DotNetBar.ItemContainer();
             itemContainerApp.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
                 nbwApplication.AppButton,
+                nbwApplication.DisabledButton,
                 nbwApplication.AppLabel});
-
             galleryContainerApps.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] { itemContainerApp });
+            superTooltip.SetSuperTooltip(nbwApplication.DisabledButton, new DevComponents.DotNetBar.SuperTooltipInfo("This app is DISABLED", string.Empty, "Check your PowerPoint slide size on the first Tab of this minibar", null, null, DevComponents.DotNetBar.eTooltipColor.Default, true, false, new System.Drawing.Size(0, 0)));
         }
         #endregion
 

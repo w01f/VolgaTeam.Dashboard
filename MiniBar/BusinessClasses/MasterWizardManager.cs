@@ -16,6 +16,7 @@ namespace MiniBar.BusinessClasses
         public const string PageNumbersFileName = @"!pagenumber.ppt";
 
         public static string MasterWizardsFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Dashboard", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+        public static string ScheduleBuildersFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\ScheduleBuilders", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
 
         private static MasterWizardManager _instance = new MasterWizardManager();
         private MasterWizard _selectedWizard = null;

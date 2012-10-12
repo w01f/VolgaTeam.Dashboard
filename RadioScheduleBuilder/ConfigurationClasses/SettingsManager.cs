@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
+using System.Text;
 
 namespace RadioScheduleBuilder.ConfigurationClasses
 {
@@ -12,6 +13,7 @@ namespace RadioScheduleBuilder.ConfigurationClasses
         private string _defaultSaveFolderPath = string.Empty;
         private string _sharedSettingsFile = string.Empty;
         private string _appIDFile = string.Empty;
+        private string _applicationSettingsFile = string.Empty;
 
         public string SaveFolder { get; set; }
         public string ListFolder { get; set; }
@@ -26,6 +28,9 @@ namespace RadioScheduleBuilder.ConfigurationClasses
         public double SizeWidth { get; set; }
         public string Orientation { get; set; }
         public bool SlideTemplateEnabled { get; set; }
+
+        public string LastOpenedSchedule { get; set; }
+        public string SelectedTemplatePath { get; set; }
 
         public string Size
         {
@@ -77,12 +82,15 @@ namespace RadioScheduleBuilder.ConfigurationClasses
         {
             _sharedSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app\SharedSettings.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             _appIDFile = string.Format(@"{0}\newlocaldirect.com\xml\app\AppID.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+            _applicationSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app_radio_seller\Settings.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\RadioHelp.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
             this.SuccessModelsPath = string.Format(@"{0}\newlocaldirect.com\app\models\RadioScheduleBuilder", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+            this.SelectedTemplatePath = string.Empty;
 
             LoadAppID();
             CheckSaveFolder();
             LoadSharedSettings();
+            LoadApplicationSettings();
 
             _defaultSaveFolderPath = Path.Combine(string.Format(@"{0}\newlocaldirect.com\sync\Outgoing", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles)), "AppID-" + this.AppID.ToString(), @"Saved_Schedules\Radio Schedule Builder");
             if (Directory.Exists(_defaultSaveFolderPath))
@@ -173,6 +181,42 @@ namespace RadioScheduleBuilder.ConfigurationClasses
                 if (node != null)
                     if (!string.IsNullOrEmpty(node.InnerText))
                         this.AppID = new Guid(node.InnerText);
+            }
+        }
+
+        private void LoadApplicationSettings()
+        {
+            string settingsFilePath = _applicationSettingsFile;
+            if (File.Exists(settingsFilePath))
+            {
+                XmlDocument document = new XmlDocument();
+
+                document.Load(settingsFilePath);
+
+                XmlNode node = document.SelectSingleNode(@"/Settings/LastOpenedSchedule");
+                if (node != null)
+                {
+                    this.LastOpenedSchedule = node.InnerText;
+                }
+                node = document.SelectSingleNode(@"/Settings/SelectedTemplatePath");
+                if (node != null)
+                    this.SelectedTemplatePath = node.InnerText;
+            }
+        }
+
+        public void SaveApplicationSettings()
+        {
+            StringBuilder xml = new StringBuilder();
+            xml.AppendLine("<Settings>");
+            if (this.LastOpenedSchedule != null)
+                xml.AppendLine(@"<LastOpenedSchedule>" + this.LastOpenedSchedule.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</LastOpenedSchedule>");
+            xml.AppendLine(@"<SelectedTemplatePath>" + this.SelectedTemplatePath.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedTemplatePath>");
+            xml.AppendLine(@"</Settings>");
+
+            using (StreamWriter sw = new StreamWriter(_applicationSettingsFile, false))
+            {
+                sw.Write(xml.ToString());
+                sw.Flush();
             }
         }
     }

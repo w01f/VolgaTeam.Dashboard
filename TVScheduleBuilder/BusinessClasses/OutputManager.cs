@@ -9,7 +9,7 @@ namespace TVScheduleBuilder.BusinessClasses
 {
     class OutputManager
     {
-        public static string MasterWizardsRootFolderPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Dashboard", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+        public static string ScheduleBuildersRootFolderPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\ScheduleBuilders", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
         private const string OneSheetsExcelBasedTemplatesFolderName = @"{0}\TV Slides\onesheets";
         private const string OneSheetsTableBasedTemplatesFolderName = @"{0}\TV Slides\tables";
         private const string OneSheetsTagsBasedTemplatesFolderName = @"{0}\TV Slides\tags";
@@ -33,7 +33,7 @@ namespace TVScheduleBuilder.BusinessClasses
         {
             get
             {
-                return Path.Combine(MasterWizardsRootFolderPath, ConfigurationClasses.SettingsManager.Instance.SelectedWizard, string.Format(OneSheetsExcelBasedTemplatesFolderName, ConfigurationClasses.SettingsManager.Instance.SlideFolder));
+                return Path.Combine(ScheduleBuildersRootFolderPath, string.Format(OneSheetsExcelBasedTemplatesFolderName, ConfigurationClasses.SettingsManager.Instance.SlideFolder));
             }
         }
 
@@ -41,7 +41,7 @@ namespace TVScheduleBuilder.BusinessClasses
         {
             get
             {
-                return Path.Combine(MasterWizardsRootFolderPath, ConfigurationClasses.SettingsManager.Instance.SelectedWizard, string.Format(OneSheetsTableBasedTemplatesFolderName, ConfigurationClasses.SettingsManager.Instance.SlideFolder));
+                return Path.Combine(ScheduleBuildersRootFolderPath, string.Format(OneSheetsTableBasedTemplatesFolderName, ConfigurationClasses.SettingsManager.Instance.SlideFolder));
             }
         }
 
@@ -49,7 +49,7 @@ namespace TVScheduleBuilder.BusinessClasses
         {
             get
             {
-                return Path.Combine(MasterWizardsRootFolderPath, ConfigurationClasses.SettingsManager.Instance.SelectedWizard, string.Format(OneSheetsTagsBasedTemplatesFolderName, ConfigurationClasses.SettingsManager.Instance.SlideFolder));
+                return Path.Combine(ScheduleBuildersRootFolderPath, string.Format(OneSheetsTagsBasedTemplatesFolderName, ConfigurationClasses.SettingsManager.Instance.SlideFolder));
             }
         }
 

@@ -20,7 +20,6 @@ namespace TVScheduleBuilder.ToolForms
         #region Form GUI Event Habdlers
         private void FormQuickView_Shown(object sender, EventArgs e)
         {
-            barOperations.ItemLinks[2].Visible = !InteropClasses.PowerPointHelper.Instance.Is2003;
             if (!string.IsNullOrEmpty(this.PresentationFile))
             {
                 laSlideSize.Text = string.Format("{0} {1} x {2}", new object[] { ConfigurationClasses.SettingsManager.Instance.Orientation, ConfigurationClasses.SettingsManager.Instance.SizeWidth.ToString("#.##"), ConfigurationClasses.SettingsManager.Instance.SizeHeght.ToString("#.##") });

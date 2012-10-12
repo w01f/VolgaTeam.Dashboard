@@ -88,6 +88,7 @@
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="BusinessClasses\ScheduleManager.cs" />
     <Compile Include="BusinessClasses\SuccessModelsManager.cs" />
+    <Compile Include="BusinessClasses\ThemeManager.cs" />
     <Compile Include="ConfigurationClasses\RegistryHelper.cs" />
     <Compile Include="ConfigurationClasses\SettingsManager.cs" />
     <Compile Include="CustomControls\DaypartsControl.cs">

@@ -1062,40 +1062,33 @@ namespace RadioScheduleBuilder.CustomControls
                                             case DialogResult.Yes:
                                                 {
                                                     formProgress.Show();
-                                                    InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailTableBased(tempFileName, outputPage);
+                                                    InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailTableBased(tempFileName, outputPage, formSelect.TemplatePath);
                                                     formProgress.Hide();
+                                                    formPreview.OutputClick += new EventHandler<EventArgs>((senderPreview, ePreview) =>
+                                                    {
+                                                        formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+                                                        formProgress.TopMost = true;
+                                                        formProgress.Show();
+                                                        formPreview.Hide();
+                                                        formSelect.Hide();
+                                                        InteropClasses.PowerPointHelper.Instance.AppendOneSheetTableBased(outputPage, formSelect.TemplatePath);
+                                                        formProgress.Hide();
+                                                        using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
+                                                        {
+                                                            if (formResult.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                                                            {
+                                                                formPreview.Close();
+                                                                formSelect.Close();
+                                                                AppManager.ActivateForm(FormMain.Instance.Handle, FormMain.Instance.IsMaximized, false);
+                                                            }
+                                                            else
+                                                            {
+                                                                formPreview.Close();
+                                                                formSelect.Close();
+                                                            }
+                                                        }
+                                                    });
                                                 }
-                                                formPreview.OutputClick += new EventHandler<EventArgs>((senderPreview, ePreview) =>
-                                                {
-                                                    formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-                                                    formProgress.TopMost = true;
-                                                    formProgress.Show();
-                                                    formPreview.Hide();
-                                                    formSelect.Hide();
-                                                    System.Threading.Thread previewThread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
-                                                    {
-                                                        outputPage.PopulateScheduleReplacementsList();
-                                                    }));
-                                                    previewThread.Start();
-                                                    while (previewThread.IsAlive)
-                                                        System.Windows.Forms.Application.DoEvents();
-                                                    InteropClasses.PowerPointHelper.Instance.AppendOneSheetTableBased(outputPage);
-                                                    formProgress.Hide();
-                                                    using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
-                                                    {
-                                                        if (formResult.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-                                                        {
-                                                            formPreview.Close();
-                                                            formSelect.Close();
-                                                            AppManager.ActivateForm(FormMain.Instance.Handle, FormMain.Instance.IsMaximized, false);
-                                                        }
-                                                        else
-                                                        {
-                                                            formPreview.Close();
-                                                            formSelect.Close();
-                                                        }
-                                                    }
-                                                });
                                                 break;
                                             case DialogResult.No:
                                             case DialogResult.Ignore:
@@ -1112,7 +1105,7 @@ namespace RadioScheduleBuilder.CustomControls
                                                     previewThread.Start();
                                                     while (previewThread.IsAlive)
                                                         System.Windows.Forms.Application.DoEvents();
-                                                    InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailExcelBased(tempFileName, outputPages, formSelect.buttonXOutput.DialogResult == DialogResult.Ignore);
+                                                    InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailExcelBased(tempFileName, outputPages, formSelect.buttonXOutput.DialogResult == DialogResult.Ignore, formSelect.TemplatePath);
                                                     formProgress.Hide();
 
                                                     formPreview.OutputClick += new EventHandler<EventArgs>((senderPreview, ePreview) =>
@@ -1122,7 +1115,7 @@ namespace RadioScheduleBuilder.CustomControls
                                                         formProgress.Show();
                                                         formPreview.Hide();
                                                         formSelect.Hide();
-                                                        InteropClasses.PowerPointHelper.Instance.AppendOneSheetExcelBased(outputPages, formSelect.buttonXOutput.DialogResult == DialogResult.Ignore);
+                                                        InteropClasses.PowerPointHelper.Instance.AppendOneSheetExcelBased(outputPages, formSelect.buttonXOutput.DialogResult == DialogResult.Ignore, formSelect.TemplatePath);
                                                         formProgress.Hide();
                                                         using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
                                                         {
@@ -1155,7 +1148,7 @@ namespace RadioScheduleBuilder.CustomControls
                                                     previewThread.Start();
                                                     while (previewThread.IsAlive)
                                                         System.Windows.Forms.Application.DoEvents();
-                                                    InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailSlideMasterBased(tempFileName, outputPages);
+                                                    InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailSlideMasterBased(tempFileName, outputPages, formSelect.TemplatePath);
                                                     formProgress.Hide();
 
                                                     formPreview.OutputClick += new EventHandler<EventArgs>((senderPreview, ePreview) =>
@@ -1165,7 +1158,7 @@ namespace RadioScheduleBuilder.CustomControls
                                                         formProgress.Show();
                                                         formPreview.Hide();
                                                         formSelect.Hide();
-                                                        InteropClasses.PowerPointHelper.Instance.AppendOneSheetSlideMasterBased(outputPages);
+                                                        InteropClasses.PowerPointHelper.Instance.AppendOneSheetSlideMasterBased(outputPages, formSelect.TemplatePath);
                                                         formProgress.Hide();
                                                         using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
                                                         {
@@ -1198,7 +1191,7 @@ namespace RadioScheduleBuilder.CustomControls
                                                     previewThread.Start();
                                                     while (previewThread.IsAlive)
                                                         System.Windows.Forms.Application.DoEvents();
-                                                    InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailGroupedTextBased(tempFileName, outputPages);
+                                                    InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailGroupedTextBased(tempFileName, outputPages, formSelect.TemplatePath);
                                                     formProgress.Hide();
 
                                                     formPreview.OutputClick += new EventHandler<EventArgs>((senderPreview, ePreview) =>
@@ -1208,7 +1201,7 @@ namespace RadioScheduleBuilder.CustomControls
                                                         formProgress.Show();
                                                         formPreview.Hide();
                                                         formSelect.Hide();
-                                                        InteropClasses.PowerPointHelper.Instance.AppendOneSheetGroupedTextBased(outputPages);
+                                                        InteropClasses.PowerPointHelper.Instance.AppendOneSheetGroupedTextBased(outputPages, formSelect.TemplatePath);
                                                         formProgress.Hide();
                                                         using (ToolForms.FormSlideOutput formResult = new ToolForms.FormSlideOutput())
                                                         {
@@ -1246,7 +1239,7 @@ namespace RadioScheduleBuilder.CustomControls
                             if (result == DialogResult.Yes)
                             {
                                 form.Show();
-                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetTableBased(outputPage);
+                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetTableBased(outputPage, formSelect.TemplatePath);
                                 form.Close();
                                 showResultForm = true;
                             }
@@ -1264,7 +1257,7 @@ namespace RadioScheduleBuilder.CustomControls
                                 thread.Start();
                                 while (thread.IsAlive)
                                     System.Windows.Forms.Application.DoEvents();
-                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetExcelBased(outputPages, result == DialogResult.Ignore);
+                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetExcelBased(outputPages, result == DialogResult.Ignore, formSelect.TemplatePath);
                                 form.Close();
                                 showResultForm = true;
                             }
@@ -1282,7 +1275,7 @@ namespace RadioScheduleBuilder.CustomControls
                                 thread.Start();
                                 while (thread.IsAlive)
                                     System.Windows.Forms.Application.DoEvents();
-                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetSlideMasterBased(outputPages);
+                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetSlideMasterBased(outputPages, formSelect.TemplatePath);
                                 form.Close();
                                 showResultForm = true;
                             }
@@ -1300,7 +1293,7 @@ namespace RadioScheduleBuilder.CustomControls
                                 thread.Start();
                                 while (thread.IsAlive)
                                     System.Windows.Forms.Application.DoEvents();
-                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetGroupedTextBased(outputPages);
+                                InteropClasses.PowerPointHelper.Instance.AppendOneSheetGroupedTextBased(outputPages, formSelect.TemplatePath);
                                 form.Close();
                                 showResultForm = true;
                             }
@@ -1364,7 +1357,7 @@ namespace RadioScheduleBuilder.CustomControls
                             if (result == DialogResult.Yes)
                             {
                                 form.Show();
-                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailTableBased(tempFileName, outputSchedule);
+                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailTableBased(tempFileName, outputSchedule, formSelect.TemplatePath);
                                 form.Close();
                             }
                             else if (result == DialogResult.No || result == DialogResult.Ignore)
@@ -1381,7 +1374,7 @@ namespace RadioScheduleBuilder.CustomControls
                                 thread.Start();
                                 while (thread.IsAlive)
                                     System.Windows.Forms.Application.DoEvents();
-                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailExcelBased(tempFileName, outputPackages, result == DialogResult.Ignore);
+                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailExcelBased(tempFileName, outputPackages, result == DialogResult.Ignore, formSelect.TemplatePath);
                                 form.Close();
                             }
                             else if (result == DialogResult.Retry)
@@ -1398,7 +1391,7 @@ namespace RadioScheduleBuilder.CustomControls
                                 thread.Start();
                                 while (thread.IsAlive)
                                     System.Windows.Forms.Application.DoEvents();
-                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailSlideMasterBased(tempFileName, outputPackages);
+                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailSlideMasterBased(tempFileName, outputPackages, formSelect.TemplatePath);
                                 form.Close();
                             }
                             else if (result == DialogResult.Abort)
@@ -1415,7 +1408,7 @@ namespace RadioScheduleBuilder.CustomControls
                                 thread.Start();
                                 while (thread.IsAlive)
                                     System.Windows.Forms.Application.DoEvents();
-                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailGroupedTextBased(tempFileName, outputPackages);
+                                InteropClasses.PowerPointHelper.Instance.PrepareOneSheetEmailGroupedTextBased(tempFileName, outputPackages, formSelect.TemplatePath);
                                 form.Close();
                             }
                         }

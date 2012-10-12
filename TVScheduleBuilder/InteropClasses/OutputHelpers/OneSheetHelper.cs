@@ -196,7 +196,7 @@ namespace TVScheduleBuilder.InteropClasses
 
     public partial class PowerPointHelper
     {
-        public void AppendOneSheetExcelBased(BusinessClasses.OutputScheduleGridBased[] pages, bool pasteAsImage, PowerPoint.Presentation destinationPresentation = null)
+        public void AppendOneSheetExcelBased(BusinessClasses.OutputScheduleGridBased[] pages, bool pasteAsImage, string templatePath, PowerPoint.Presentation destinationPresentation = null)
         {
             if (Directory.Exists(BusinessClasses.OutputManager.Instance.OneSheetExcelBasedTemplatesFolderPath))
             {
@@ -325,6 +325,8 @@ namespace TVScheduleBuilder.InteropClasses
                                         }
                                     }
                                     slideCounter++;
+                                    if (!string.IsNullOrEmpty(templatePath))
+                                        presentation.ApplyTemplate(templatePath);
                                     AppendSlide(presentation, -1, destinationPresentation);
                                     presentation.Close();
                                 }
@@ -345,7 +347,7 @@ namespace TVScheduleBuilder.InteropClasses
             }
         }
 
-        public void PrepareOneSheetEmailExcelBased(string fileName, BusinessClasses.OutputScheduleGridBased[] pages, bool pasteAsImage)
+        public void PrepareOneSheetEmailExcelBased(string fileName, BusinessClasses.OutputScheduleGridBased[] pages, bool pasteAsImage, string templatePath)
         {
             try
             {
@@ -363,7 +365,7 @@ namespace TVScheduleBuilder.InteropClasses
                         break;
                 }
                 AppManager.ReleaseComObject(presentations);
-                AppendOneSheetExcelBased(pages, pasteAsImage, presentation);
+                AppendOneSheetExcelBased(pages, pasteAsImage, templatePath, presentation);
                 MessageFilter.Register();
                 System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
                 {
@@ -390,7 +392,7 @@ namespace TVScheduleBuilder.InteropClasses
             }
         }
 
-        public void AppendOneSheetTableBased(BusinessClasses.OutputScheduleGridBased page, PowerPoint.Presentation destinationPresentation = null)
+        public void AppendOneSheetTableBased(BusinessClasses.OutputScheduleGridBased page, string templatePath, PowerPoint.Presentation destinationPresentation = null)
         {
             if (Directory.Exists(BusinessClasses.OutputManager.Instance.OneSheetTableBasedTemplatesFolderPath) && page != null)
             {
@@ -401,6 +403,7 @@ namespace TVScheduleBuilder.InteropClasses
                         MessageFilter.Register();
                         if (page != null)
                         {
+                            Dictionary<string, string> copyOfReplacementList = new Dictionary<string, string>(page.ReplacementsList);
                             string presentationTemplatePath = Path.Combine(BusinessClasses.OutputManager.Instance.OneSheetTableBasedTemplatesFolderPath, string.Format(BusinessClasses.OutputManager.OneSheetTableBasedTemplateFileName, new object[] { page.ProgramsPerSlide.ToString(), page.SpotsPerSlide.ToString() }));
                             if (File.Exists(presentationTemplatePath))
                             {
@@ -497,25 +500,27 @@ namespace TVScheduleBuilder.InteropClasses
                                                     if (tableShape.HasTextFrame == Microsoft.Office.Core.MsoTriState.msoTrue)
                                                     {
                                                         string cellText = tableShape.TextFrame.TextRange.Text.Trim();
-                                                        if (page.ReplacementsList.Keys.Contains(cellText))
+                                                        if (copyOfReplacementList.Keys.Contains(cellText))
                                                         {
-                                                            tableShape.TextFrame.TextRange.Text = page.ReplacementsList[cellText];
-                                                            page.ReplacementsList.Remove(cellText);
+                                                            tableShape.TextFrame.TextRange.Text = copyOfReplacementList[cellText];
+                                                            copyOfReplacementList.Remove(cellText);
                                                         }
                                                         else
                                                         {
-                                                            KeyValuePair<string, string>[] replacementRecords = page.ReplacementsList.Where(x => Regex.Split(cellText, @"\W").Any(w => w.Equals(x.Key))).ToArray();
+                                                            KeyValuePair<string, string>[] replacementRecords = copyOfReplacementList.Where(x => Regex.Split(cellText, @"\W").Any(w => w.Equals(x.Key))).ToArray();
                                                             foreach (var replacementRecord in replacementRecords)
                                                             {
                                                                 cellText = cellText.Replace(replacementRecord.Key, replacementRecord.Value.Trim());
                                                                 tableShape.TextFrame.TextRange.Text = cellText;
-                                                                page.ReplacementsList.Remove(replacementRecord.Key);
+                                                                copyOfReplacementList.Remove(replacementRecord.Key);
                                                             }
                                                         }
                                                     }
                                                 }
                                         }
                                     }
+                                    if (!string.IsNullOrEmpty(templatePath))
+                                        presentation.ApplyTemplate(templatePath);
                                     AppendSlide(presentation, outputSlideIndex, destinationPresentation);
                                     presentation.Close();
                                 }
@@ -536,7 +541,7 @@ namespace TVScheduleBuilder.InteropClasses
             }
         }
 
-        public void PrepareOneSheetEmailTableBased(string fileName, BusinessClasses.OutputScheduleGridBased page)
+        public void PrepareOneSheetEmailTableBased(string fileName, BusinessClasses.OutputScheduleGridBased page, string templatePath)
         {
             try
             {
@@ -554,7 +559,7 @@ namespace TVScheduleBuilder.InteropClasses
                         break;
                 }
                 AppManager.ReleaseComObject(presentations);
-                AppendOneSheetTableBased(page, presentation);
+                AppendOneSheetTableBased(page, templatePath, presentation);
                 MessageFilter.Register();
                 System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
                 {
@@ -581,7 +586,7 @@ namespace TVScheduleBuilder.InteropClasses
             }
         }
 
-        public void AppendOneSheetSlideMasterBased(BusinessClasses.OutputScheduleTagsBased[] pages, PowerPoint.Presentation destinationPresentation = null)
+        public void AppendOneSheetSlideMasterBased(BusinessClasses.OutputScheduleTagsBased[] pages, string templatePath, PowerPoint.Presentation destinationPresentation = null)
         {
             if (Directory.Exists(BusinessClasses.OutputManager.Instance.OneSheetTagsBasedTemplatesFolderPath))
             {
@@ -603,7 +608,15 @@ namespace TVScheduleBuilder.InteropClasses
                                     PowerPoint.Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: Microsoft.Office.Core.MsoTriState.msoFalse);
                                     PowerPoint.Slide tagedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;
                                     PowerPoint.Slide newSlide = presentation.Slides.Add(1, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);
-                                    PowerPoint.Design design = presentation.Designs.Add(DateTime.Now.ToString("MMddyy-hhmmsstt"));
+                                    PowerPoint.Design design = null;
+                                    if (!string.IsNullOrEmpty(templatePath))
+                                    {
+                                        presentation.ApplyTemplate(templatePath);
+                                        design = presentation.Designs[presentation.Designs.Count];
+                                        design.Name = DateTime.Now.ToString("MMddyy-hhmmsstt");
+                                    }
+                                    else
+                                        design = presentation.Designs.Add(DateTime.Now.ToString("MMddyy-hhmmsstt"));
                                     if (tagedSlide != null)
                                     {
                                         foreach (PowerPoint.Shape shape in tagedSlide.Shapes)
@@ -646,7 +659,7 @@ namespace TVScheduleBuilder.InteropClasses
             }
         }
 
-        public void PrepareOneSheetEmailSlideMasterBased(string fileName, BusinessClasses.OutputScheduleTagsBased[] pages)
+        public void PrepareOneSheetEmailSlideMasterBased(string fileName, BusinessClasses.OutputScheduleTagsBased[] pages, string templatePath)
         {
             try
             {
@@ -664,7 +677,7 @@ namespace TVScheduleBuilder.InteropClasses
                         break;
                 }
                 AppManager.ReleaseComObject(presentations);
-                AppendOneSheetSlideMasterBased(pages, presentation);
+                AppendOneSheetSlideMasterBased(pages, templatePath, presentation);
                 MessageFilter.Register();
                 System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
                 {
@@ -691,7 +704,7 @@ namespace TVScheduleBuilder.InteropClasses
             }
         }
 
-        public void AppendOneSheetGroupedTextBased(BusinessClasses.OutputScheduleTagsBased[] pages, PowerPoint.Presentation destinationPresentation = null)
+        public void AppendOneSheetGroupedTextBased(BusinessClasses.OutputScheduleTagsBased[] pages, string templatePath, PowerPoint.Presentation destinationPresentation = null)
         {
             if (Directory.Exists(BusinessClasses.OutputManager.Instance.OneSheetTagsBasedTemplatesFolderPath))
             {
@@ -732,6 +745,8 @@ namespace TVScheduleBuilder.InteropClasses
                                     }
                                     newSlide.Shapes.Range(shapesIndexes.ToArray()).Group();
                                     slideCounter++;
+                                    if (!string.IsNullOrEmpty(templatePath))
+                                        presentation.ApplyTemplate(templatePath);
                                     AppendSlide(presentation, 1, destinationPresentation);
                                     presentation.Close();
                                     AppManager.ReleaseComObject(tagedSlide);
@@ -755,7 +770,7 @@ namespace TVScheduleBuilder.InteropClasses
             }
         }
 
-        public void PrepareOneSheetEmailGroupedTextBased(string fileName, BusinessClasses.OutputScheduleTagsBased[] pages)
+        public void PrepareOneSheetEmailGroupedTextBased(string fileName, BusinessClasses.OutputScheduleTagsBased[] pages, string templatePath)
         {
             try
             {
@@ -773,7 +788,7 @@ namespace TVScheduleBuilder.InteropClasses
                         break;
                 }
                 AppManager.ReleaseComObject(presentations);
-                AppendOneSheetGroupedTextBased(pages, presentation);
+                AppendOneSheetGroupedTextBased(pages, templatePath, presentation);
                 MessageFilter.Register();
                 System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
                 {

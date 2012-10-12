@@ -214,7 +214,8 @@ namespace RadioScheduleBuilder.BusinessClasses
                                             station.Name = attribute.Value;
                                             break;
                                         case "Logo":
-                                            station.Logo = new Bitmap(new MemoryStream(Convert.FromBase64String(attribute.Value)));
+                                            if (!string.IsNullOrEmpty(attribute.Value))
+                                                station.Logo = new Bitmap(new MemoryStream(Convert.FromBase64String(attribute.Value)));
                                             break;
                                     }
                                 }

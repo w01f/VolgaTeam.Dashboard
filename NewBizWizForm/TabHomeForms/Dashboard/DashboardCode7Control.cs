@@ -10,6 +10,16 @@ namespace NewBizWizForm.TabHomeForms.Dashboard
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
+            if (!System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) || System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length == 0)
+            {
+                pbTVSmall.Image = Properties.Resources.HomeTVSmallDisabled;
+                pbTVSmall.Enabled = false;
+            }
+            if (!System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) || System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length == 0)
+            {
+                pbRadioSmall.Image = Properties.Resources.HomeRadioSmallDisabled;
+                pbRadioSmall.Enabled = false;
+            }
         }
 
         #region Picture Box Clicks Habdlers
@@ -38,7 +48,8 @@ namespace NewBizWizForm.TabHomeForms.Dashboard
 
         private void pbRadio_Click(object sender, EventArgs e)
         {
-            FormMain.Instance.ribbonTabItemRadio.Select();
+            if (pbRadioSmall.Enabled)
+                FormMain.Instance.ribbonTabItemRadio.Select();
         }
 
         private void pbOnline_Click(object sender, EventArgs e)
@@ -53,7 +64,8 @@ namespace NewBizWizForm.TabHomeForms.Dashboard
 
         private void pbTV_Click(object sender, EventArgs e)
         {
-            FormMain.Instance.ribbonTabItemTV.Select();
+            if (pbTVSmall.Enabled)
+                FormMain.Instance.ribbonTabItemTV.Select();
         }
 
         private void pbCable_Click(object sender, EventArgs e)

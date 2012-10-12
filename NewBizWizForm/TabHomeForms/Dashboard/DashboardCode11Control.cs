@@ -10,6 +10,11 @@ namespace NewBizWizForm.TabHomeForms.Dashboard
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
+            if (!System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) || System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length == 0)
+            {
+                pbRadioBig.Image = Properties.Resources.HomeRadioBigDIsabled;
+                pbRadioBig.Enabled = false;
+            }
         }
 
         #region Picture Box Clicks Habdlers
@@ -33,7 +38,8 @@ namespace NewBizWizForm.TabHomeForms.Dashboard
 
         private void pbRadio_Click(object sender, EventArgs e)
         {
-            FormMain.Instance.ribbonTabItemRadio.Select();
+            if (pbRadioBig.Enabled)
+                FormMain.Instance.ribbonTabItemRadio.Select();
         }
 
         private void pbDigitalBig_Click(object sender, EventArgs e)

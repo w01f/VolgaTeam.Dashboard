@@ -382,4 +382,22 @@
   <data name="DeleteButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="HomeRadioBigDIsabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HomeRadioBigDIsabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HomeRadioDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HomeRadioDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HomeRadioSmallDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HomeRadioSmallDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HomeTVBigDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HomeTVBigDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HomeTVDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HomeTVDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HomeTVSmallDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HomeTVSmallDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

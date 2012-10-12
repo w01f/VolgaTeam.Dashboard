@@ -692,6 +692,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\HomeTVSmallDisabled.png" />
+    <None Include="Resources\HomeTVDisabled.png" />
+    <None Include="Resources\HomeTVBigDisabled.png" />
+    <None Include="Resources\HomeRadioSmallDisabled.png" />
+    <None Include="Resources\HomeRadioDisabled.png" />
+    <None Include="Resources\HomeRadioBigDIsabled.png" />
     <None Include="Resources\DeleteButton.png" />
     <None Include="Resources\ImportCalendar.png" />
     <None Include="Resources\Floater.png" />

@@ -35,6 +35,7 @@ namespace NewBizWizForm.BusinessClasses
         #endregion
 
         public static string MasterWizardsFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Dashboard", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+        public static string ScheduleBuildersFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\ScheduleBuilders", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
 
         public static string NoRibbonLogoPath = string.Format(@"{0}\newlocaldirect.com\app\no_ribbon_logo.png", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
         public static string RibbonLogoPath = string.Format(@"{0}\newlocaldirect.com\app\ribbon_logo.png", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
@@ -164,18 +165,19 @@ namespace NewBizWizForm.BusinessClasses
                 return Path.Combine(this.Folder.FullName, string.Format(MasterWizardManager.MobileScheduleSlideFolderName, ConfigurationClasses.SettingsManager.Instance.SlideFolder));
             }
         }
+
         public string TVScheduleSlideFolder
         {
             get
             {
-                return Path.Combine(this.Folder.FullName, string.Format(MasterWizardManager.TVScheduleSlideFolderName, ConfigurationClasses.SettingsManager.Instance.SlideFolder));
+                return Path.Combine(MasterWizardManager.ScheduleBuildersFolder, string.Format(MasterWizardManager.TVScheduleSlideFolderName, ConfigurationClasses.SettingsManager.Instance.SlideFolder));
             }
         }
         public string RadioScheduleSlideFolder
         {
             get
             {
-                return Path.Combine(this.Folder.FullName, string.Format(MasterWizardManager.RadioScheduleSlideFolderName, ConfigurationClasses.SettingsManager.Instance.SlideFolder));
+                return Path.Combine(MasterWizardManager.ScheduleBuildersFolder, string.Format(MasterWizardManager.RadioScheduleSlideFolderName, ConfigurationClasses.SettingsManager.Instance.SlideFolder));
             }
         }
 

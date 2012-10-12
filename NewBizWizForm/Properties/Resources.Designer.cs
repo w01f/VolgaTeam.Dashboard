@@ -389,9 +389,30 @@ namespace NewBizWizForm.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap HomeRadioBigDIsabled {
+            get {
+                object obj = ResourceManager.GetObject("HomeRadioBigDIsabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap HomeRadioDisabled {
+            get {
+                object obj = ResourceManager.GetObject("HomeRadioDisabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap HomeRadioSmall {
             get {
                 object obj = ResourceManager.GetObject("HomeRadioSmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap HomeRadioSmallDisabled {
+            get {
+                object obj = ResourceManager.GetObject("HomeRadioSmallDisabled", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -424,9 +445,30 @@ namespace NewBizWizForm.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap HomeTVBigDisabled {
+            get {
+                object obj = ResourceManager.GetObject("HomeTVBigDisabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap HomeTVDisabled {
+            get {
+                object obj = ResourceManager.GetObject("HomeTVDisabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap HomeTVSmall {
             get {
                 object obj = ResourceManager.GetObject("HomeTVSmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap HomeTVSmallDisabled {
+            get {
+                object obj = ResourceManager.GetObject("HomeTVSmallDisabled", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

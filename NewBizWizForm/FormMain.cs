@@ -80,6 +80,7 @@ namespace NewBizWizForm
                     ribbonTabItemOnline.Visible = true;
                     ribbonTabItemRadio.Visible = false;
                     ribbonTabItemTV.Visible = true;
+                    ribbonTabItemTV.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
                     ribbonTabItemStar.Visible = false;
                     ribbonTabItemDigital.Visible = false;
                     ribbonTabItemCalendar.Visible = false;
@@ -90,6 +91,7 @@ namespace NewBizWizForm
                     ribbonTabItemNewspaper.Visible = false;
                     ribbonTabItemOnline.Visible = true;
                     ribbonTabItemRadio.Visible = true;
+                    ribbonTabItemRadio.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
                     ribbonTabItemTV.Visible = false;
                     ribbonTabItemStar.Visible = false;
                     ribbonTabItemDigital.Visible = false;
@@ -102,6 +104,7 @@ namespace NewBizWizForm
                     ribbonTabItemOnline.Visible = true;
                     ribbonTabItemRadio.Visible = false;
                     ribbonTabItemTV.Visible = true;
+                    ribbonTabItemTV.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
                     ribbonTabItemStar.Visible = false;
                     ribbonTabItemDigital.Visible = false;
                     ribbonTabItemCalendar.Visible = false;
@@ -112,7 +115,9 @@ namespace NewBizWizForm
                     ribbonTabItemNewspaper.Visible = false;
                     ribbonTabItemOnline.Visible = true;
                     ribbonTabItemRadio.Visible = true;
+                    ribbonTabItemRadio.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
                     ribbonTabItemTV.Visible = true;
+                    ribbonTabItemTV.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
                     ribbonTabItemStar.Visible = false;
                     ribbonTabItemDigital.Visible = false;
                     ribbonTabItemCalendar.Visible = false;
@@ -134,7 +139,9 @@ namespace NewBizWizForm
                     ribbonTabItemNewspaper.Visible = true;
                     ribbonTabItemOnline.Visible = true;
                     ribbonTabItemRadio.Visible = true;
+                    ribbonTabItemRadio.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
                     ribbonTabItemTV.Visible = true;
+                    ribbonTabItemTV.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
                     ribbonTabItemStar.Visible = false;
                     ribbonTabItemDigital.Visible = false;
                     ribbonTabItemCalendar.Visible = false;
@@ -168,6 +175,7 @@ namespace NewBizWizForm
                     ribbonTabItemOnline.Visible = false;
                     ribbonTabItemRadio.Visible = false;
                     ribbonTabItemTV.Visible = true;
+                    ribbonTabItemTV.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
                     ribbonTabItemStar.Visible = false;
                     ribbonTabItemDigital.Visible = true;
                     ribbonTabItemCalendar.Visible = false;
@@ -178,6 +186,7 @@ namespace NewBizWizForm
                     ribbonTabItemNewspaper.Visible = false;
                     ribbonTabItemOnline.Visible = false;
                     ribbonTabItemRadio.Visible = true;
+                    ribbonTabItemRadio.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
                     ribbonTabItemTV.Visible = false;
                     ribbonTabItemStar.Visible = false;
                     ribbonTabItemDigital.Visible = true;
@@ -201,6 +210,7 @@ namespace NewBizWizForm
                     ribbonTabItemOnline.Visible = false;
                     ribbonTabItemRadio.Visible = false;
                     ribbonTabItemTV.Visible = true;
+                    ribbonTabItemTV.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
                     ribbonTabItemStar.Visible = false;
                     ribbonTabItemDigital.Visible = true;
                     ribbonTabItemCalendar.Visible = true;
@@ -211,6 +221,7 @@ namespace NewBizWizForm
                     ribbonTabItemNewspaper.Visible = false;
                     ribbonTabItemOnline.Visible = false;
                     ribbonTabItemRadio.Visible = true;
+                    ribbonTabItemRadio.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
                     ribbonTabItemTV.Visible = false;
                     ribbonTabItemStar.Visible = false;
                     ribbonTabItemDigital.Visible = true;
@@ -223,6 +234,7 @@ namespace NewBizWizForm
                     ribbonTabItemOnline.Visible = false;
                     ribbonTabItemRadio.Visible = false;
                     ribbonTabItemTV.Visible = true;
+                    ribbonTabItemTV.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
                     ribbonTabItemStar.Visible = false;
                     ribbonTabItemDigital.Visible = true;
                     ribbonTabItemCalendar.Visible = false;
@@ -234,6 +246,7 @@ namespace NewBizWizForm
                     ribbonTabItemOnline.Visible = false;
                     ribbonTabItemRadio.Visible = false;
                     ribbonTabItemTV.Visible = true;
+                    ribbonTabItemTV.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
                     ribbonTabItemStar.Visible = false;
                     ribbonTabItemDigital.Visible = true;
                     ribbonTabItemCalendar.Visible = true;
@@ -245,6 +258,7 @@ namespace NewBizWizForm
                     ribbonTabItemOnline.Visible = true;
                     ribbonTabItemRadio.Visible = false;
                     ribbonTabItemTV.Visible = true;
+                    ribbonTabItemTV.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
                     ribbonTabItemStar.Visible = false;
                     ribbonTabItemDigital.Visible = false;
                     ribbonTabItemCalendar.Visible = true;
@@ -255,7 +269,9 @@ namespace NewBizWizForm
                     ribbonTabItemNewspaper.Visible = false;
                     ribbonTabItemOnline.Visible = false;
                     ribbonTabItemRadio.Visible = true;
+                    ribbonTabItemRadio.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
                     ribbonTabItemTV.Visible = true;
+                    ribbonTabItemTV.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
                     ribbonTabItemStar.Visible = false;
                     ribbonTabItemDigital.Visible = true;
                     ribbonTabItemCalendar.Visible = true;
@@ -267,6 +283,7 @@ namespace NewBizWizForm
                     ribbonTabItemOnline.Visible = false;
                     ribbonTabItemRadio.Visible = false;
                     ribbonTabItemTV.Visible = true;
+                    ribbonTabItemTV.Enabled = System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
                     ribbonTabItemStar.Visible = true;
                     ribbonTabItemDigital.Visible = true;
                     ribbonTabItemCalendar.Visible = false;

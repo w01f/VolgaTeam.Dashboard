@@ -10,6 +10,12 @@ namespace NewBizWizForm.TabHomeForms.Dashboard
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
+            if (!System.IO.Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) || System.IO.Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length == 0)
+            {
+                pbTV.Image = Properties.Resources.HomeTVDisabled;
+                pbTV.Enabled = false;
+            }
+
         }
 
         #region Picture Box Clicks Habdlers
@@ -33,7 +39,8 @@ namespace NewBizWizForm.TabHomeForms.Dashboard
 
         private void pbTV_Click(object sender, EventArgs e)
         {
-            FormMain.Instance.ribbonTabItemTV.Select();
+            if (pbTV.Enabled)
+                FormMain.Instance.ribbonTabItemTV.Select();
         }
 
         private void pbOnline_Click(object sender, EventArgs e)

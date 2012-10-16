@@ -51,9 +51,9 @@ namespace RadioScheduleBuilder.CustomControls
             repositoryItemComboBoxLengths.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
             repositoryItemComboBoxLengths.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
             repositoryItemComboBoxLengths.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
-            repositoryItemComboBoxPrograms.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
-            repositoryItemComboBoxPrograms.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
-            repositoryItemComboBoxPrograms.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
+            repositoryItemPopupContainerEditProgram.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
+            repositoryItemPopupContainerEditProgram.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
+            repositoryItemPopupContainerEditProgram.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
             repositoryItemComboBoxStations.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
             repositoryItemComboBoxStations.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
             repositoryItemComboBoxStations.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
@@ -319,8 +319,6 @@ namespace RadioScheduleBuilder.CustomControls
 
             if (!quickLoad)
             {
-                repositoryItemComboBoxPrograms.Items.Clear();
-                repositoryItemComboBoxPrograms.Items.AddRange(BusinessClasses.ListManager.Instance.ProgramNames);
                 repositoryItemComboBoxLengths.Items.Clear();
                 repositoryItemComboBoxLengths.Items.AddRange(BusinessClasses.ListManager.Instance.Lengths);
                 repositoryItemComboBoxDays.Items.Clear();
@@ -511,26 +509,7 @@ namespace RadioScheduleBuilder.CustomControls
         #region Grid Events
         private void advBandedGridViewSchedule_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            if (e.Column == bandedGridColumnName && e.Value != null)
-            {
-                string programName = e.Value.ToString();
-                BusinessClasses.SourceProgram program = BusinessClasses.ListManager.Instance.SourcePrograms.Where(x => x.Name.Equals(programName)).FirstOrDefault();
-                if (program != null)
-                {
-                    if (advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnDaypart) == null || string.IsNullOrEmpty(advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnDaypart).ToString()))
-                        advBandedGridViewSchedule.SetRowCellValue(e.RowHandle, bandedGridColumnDaypart, program.Daypart);
-                    advBandedGridViewSchedule.SetRowCellValue(e.RowHandle, bandedGridColumnDay, program.Day);
-                    advBandedGridViewSchedule.SetRowCellValue(e.RowHandle, bandedGridColumnTime, program.Time);
-                    if (string.IsNullOrEmpty(advBandedGridViewSchedule.GetRowCellValue(e.RowHandle, bandedGridColumnLength).ToString()))
-                        advBandedGridViewSchedule.SetRowCellValue(e.RowHandle, bandedGridColumnLength, BusinessClasses.ListManager.Instance.Lengths.FirstOrDefault());
-                    if (_localSchedule.ImportDemo && _localSchedule.UseDemo)
-                    {
-                        BusinessClasses.Demo demo = program.Demos.Where(x => x.Name.Equals(_localSchedule.Demo)).FirstOrDefault();
-                        if (demo != null)
-                            advBandedGridViewSchedule.SetRowCellValue(e.RowHandle, bandedGridColumnRating, demo.Value);
-                    }
-                }
-            }
+            advBandedGridViewSchedule.CloseEditor();
             advBandedGridViewSchedule.UpdateCurrentRow();
             this.SettingsNotSaved = true;
         }
@@ -568,17 +547,63 @@ namespace RadioScheduleBuilder.CustomControls
         {
             if (advBandedGridViewSchedule.FocusedColumn == bandedGridColumnName && advBandedGridViewSchedule.FocusedRowHandle >= 0)
             {
-                repositoryItemComboBoxPrograms.Items.Clear();
                 object station = advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnStation);
                 object daypart = advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnDaypart);
+                gridColumnProgramSourceStation.Visible = station == null || string.IsNullOrEmpty(station.ToString());
+                gridColumnProgramSourceDaypart.Visible = daypart == null || string.IsNullOrEmpty(daypart.ToString());
+                gridColumnProgramSourceName.Caption = string.Format("Program ({0})", daypart != null && !string.IsNullOrEmpty(daypart.ToString()) ? BusinessClasses.ListManager.Instance.Dayparts.FirstOrDefault(x => x.Code.Equals(daypart.ToString())).Name : "All Programming");
+                List<BusinessClasses.SourceProgram> dataSource = new List<BusinessClasses.SourceProgram>();
                 if (station != null && (daypart != null || !_localSchedule.WeeklySchedule.ShowDaypart))
-                    repositoryItemComboBoxPrograms.Items.AddRange(BusinessClasses.ListManager.Instance.SourcePrograms.Where(x => (x.Station.Equals(station.ToString()) || string.IsNullOrEmpty(station.ToString())) && (!_localSchedule.WeeklySchedule.ShowDaypart || (x.Daypart.Equals(daypart.ToString()) || string.IsNullOrEmpty(daypart.ToString())))).Select(x => x.Name).Distinct().ToArray());
+                {
+                    dataSource.AddRange(BusinessClasses.ListManager.Instance.SourcePrograms.Where(x => (x.Station.Equals(station.ToString()) || string.IsNullOrEmpty(station.ToString())) && (!_localSchedule.WeeklySchedule.ShowDaypart || (x.Daypart.Equals(daypart.ToString()) || string.IsNullOrEmpty(daypart.ToString())))));
+                }
                 else
-                    repositoryItemComboBoxPrograms.Items.AddRange(BusinessClasses.ListManager.Instance.SourcePrograms.Select(x => x.Name).Distinct().ToArray());
+                {
+                    dataSource.AddRange(BusinessClasses.ListManager.Instance.SourcePrograms);
+                    dataSource.Sort((x, y) => BusinessClasses.ListManager.Instance.Dayparts.Select((n, i) => new { daypart = n, index = i }).FirstOrDefault(l => l.daypart.Equals(x.Daypart)).index.CompareTo(BusinessClasses.ListManager.Instance.Dayparts.Select((n, i) => new { daypart = n, index = i }).FirstOrDefault(l => l.daypart.Equals(y.Daypart)).index));
+                }
+                gridViewProgramSource.DoubleClick -= new EventHandler(gridViewProgramSource_DoubleClick);
+                gridControlProgramSource.DataSource = dataSource;
+                gridViewProgramSource.DoubleClick += new EventHandler(gridViewProgramSource_DoubleClick);
             }
         }
 
-        private void repositoryItemComboBoxPrograms_Closed(object sender, DevExpress.XtraEditors.Controls.ClosedEventArgs e)
+        void gridViewProgramSource_DoubleClick(object sender, EventArgs e)
+        {
+            popupContainerControlProgramSource.OwnerEdit.ClosePopup();
+        }
+
+        private void repositoryItemPopupContainerEditProgram_CloseUp(object sender, DevExpress.XtraEditors.Controls.CloseUpEventArgs e)
+        {
+            if (e.CloseMode == DevExpress.XtraEditors.PopupCloseMode.Normal)
+            {
+                if (gridViewProgramSource.FocusedRowHandle >= 0)
+                {
+                    BusinessClasses.SourceProgram program = BusinessClasses.ListManager.Instance.SourcePrograms.Where(x => x.Id.Equals(gridViewProgramSource.GetRowCellValue(gridViewProgramSource.FocusedRowHandle, gridColumnProgramSourceId).ToString())).FirstOrDefault();
+                    if (program != null)
+                    {
+                        advBandedGridViewSchedule.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(advBandedGridViewSchedule_CellValueChanged);
+                        e.Value = program.Name;
+                        if (advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnDaypart) == null || string.IsNullOrEmpty(advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnDaypart).ToString()))
+                            advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnDaypart, program.Daypart);
+                        advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnDay, program.Day);
+                        advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnTime, program.Time);
+                        if (string.IsNullOrEmpty(advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnLength).ToString()))
+                            advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnLength, BusinessClasses.ListManager.Instance.Lengths.FirstOrDefault());
+                        if (_localSchedule.ImportDemo && _localSchedule.UseDemo)
+                        {
+                            BusinessClasses.Demo demo = program.Demos.Where(x => x.Name.Equals(_localSchedule.Demo)).FirstOrDefault();
+                            if (demo != null)
+                                advBandedGridViewSchedule.SetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnRating, demo.Value);
+                        }
+                        advBandedGridViewSchedule.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(advBandedGridViewSchedule_CellValueChanged);
+                    }
+                }
+                e.AcceptValue = true;
+            }
+        }
+
+        private void repositoryItemPopupContainerEditProgram_Closed(object sender, DevExpress.XtraEditors.Controls.ClosedEventArgs e)
         {
             advBandedGridViewSchedule.CloseEditor();
         }

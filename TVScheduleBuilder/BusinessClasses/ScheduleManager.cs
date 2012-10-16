@@ -1153,6 +1153,7 @@ namespace TVScheduleBuilder.BusinessClasses
 
     public class SourceProgram
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Station { get; set; }
         public string Daypart { get; set; }
@@ -1162,6 +1163,7 @@ namespace TVScheduleBuilder.BusinessClasses
 
         public SourceProgram()
         {
+            this.Id = Guid.NewGuid().ToString();
             this.Name = string.Empty;
             this.Station = string.Empty;
             this.Daypart = string.Empty;

@@ -148,7 +148,7 @@ namespace TVScheduleBuilder.ToolForms
                 _descriptionSlideMaster = string.Format("Send your Television Schedule to PowerPoint as a Unique Slide Master.{0}{0}The Schedule will be LOCKED into position on the slide master, and it fills up most of the slide.{0}{0}These slides usually generate in less than a minute or so.", Environment.NewLine);
                 _descriptionGroupedObjects = string.Format("Send your Television Schedule to the PowerPoint slide as a Grouped Object.{0}{0}All of the individual textboxes and images that make up the schedule are grouped together before they output to the slide.{0}{0}These slides usually generate in less than a minute or so.", Environment.NewLine);
                 this.Text = "Slide Output Options";
-                buttonXOutput.Text = "Send to PowerPoint";
+                buttonXOutput.Text = "Slide Output";
                 buttonXOutput.Image = Properties.Resources.PowerPoint;
                 buttonXOutput.Tooltip = "Output this schedule to your PowerPoint presentation";
                 buttonXPreview.Visible = true;

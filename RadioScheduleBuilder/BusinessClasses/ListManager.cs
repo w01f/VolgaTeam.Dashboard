@@ -23,7 +23,6 @@ namespace RadioScheduleBuilder.BusinessClasses
         public List<string> SlideHeaders { get; set; }
         public List<string> ClientTypes { get; set; }
         public List<string> Lengths { get; set; }
-        public List<string> ProgramNames { get; set; }
         public List<string> Demos { get; set; }
         public List<string> CustomDemos { get; set; }
         public List<string> Sources { get; set; }
@@ -43,7 +42,6 @@ namespace RadioScheduleBuilder.BusinessClasses
             this.ClientTypes = new List<string>();
             this.Lengths = new List<string>();
             this.Stations = new List<Station>();
-            this.ProgramNames = new List<string>();
             this.Demos = new List<string>();
             this.CustomDemos = new List<string>();
             this.Sources = new List<string>();
@@ -114,7 +112,6 @@ namespace RadioScheduleBuilder.BusinessClasses
             this.SourcePrograms.Clear();
             this.Lengths.Clear();
             this.Stations.Clear();
-            this.ProgramNames.Clear();
             this.Demos.Clear();
             this.CustomDemos.Clear();
             this.Sources.Clear();
@@ -244,7 +241,6 @@ namespace RadioScheduleBuilder.BusinessClasses
             }
             if (this.SourcePrograms.Count > 0)
             {
-                this.ProgramNames.AddRange(this.SourcePrograms.Select(x => x.Name).Distinct().ToArray());
                 this.Times.AddRange(this.SourcePrograms.Select(x => x.Time).Distinct().ToArray());
                 this.Days.AddRange(this.SourcePrograms.Select(x => x.Day).Distinct().ToArray());
             }

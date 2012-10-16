@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gridControlSchedule = new DevExpress.XtraGrid.GridControl();
             this.advBandedGridViewSchedule = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
             this.gridBandProgram = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -37,7 +38,16 @@
             this.bandedGridColumnDaypart = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemComboBoxDayparts = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.bandedGridColumnName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.repositoryItemComboBoxPrograms = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemPopupContainerEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
+            this.popupContainerControlProgramSource = new DevExpress.XtraEditors.PopupContainerControl();
+            this.gridControlProgramSource = new DevExpress.XtraGrid.GridControl();
+            this.gridViewProgramSource = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumnProgramSourceId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnProgramSourceName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnProgramSourceStation = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnProgramSourceDaypart = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnProgramSourceDay = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnProgramSourceTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridBandDate = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumnDay = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemComboBoxDays = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
@@ -64,7 +74,7 @@
             this.laDemoName = new System.Windows.Forms.Label();
             this.laAdvertiser = new System.Windows.Forms.Label();
             this.laScheduleName = new System.Windows.Forms.Label();
-            this.styleController = new DevExpress.XtraEditors.StyleController();
+            this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
             this.pnBottom = new System.Windows.Forms.Panel();
             this.pnAgencyDiscount = new System.Windows.Forms.Panel();
             this.laAgencyDiscountValue = new System.Windows.Forms.Label();
@@ -90,12 +100,17 @@
             this.pnTotalPeriods = new System.Windows.Forms.Panel();
             this.laTotalPeriodsValue = new System.Windows.Forms.Label();
             this.laTotalPeriodsTitle = new System.Windows.Forms.Label();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.laProgramSourceInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewSchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDayparts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxPrograms)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEditProgram)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControlProgramSource)).BeginInit();
+            this.popupContainerControlProgramSource.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlProgramSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewProgramSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxTimes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxLengths)).BeginInit();
@@ -124,7 +139,6 @@
             this.gridControlSchedule.Name = "gridControlSchedule";
             this.gridControlSchedule.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBoxStations,
-            this.repositoryItemComboBoxPrograms,
             this.repositoryItemComboBoxDays,
             this.repositoryItemComboBoxTimes,
             this.repositoryItemComboBoxLengths,
@@ -132,8 +146,9 @@
             this.repositoryItemSpinEditRating,
             this.repositoryItemSpinEditSpot,
             this.repositoryItemSpinEdit000s,
-            this.repositoryItemComboBoxDayparts});
-            this.gridControlSchedule.Size = new System.Drawing.Size(1000, 286);
+            this.repositoryItemComboBoxDayparts,
+            this.repositoryItemPopupContainerEditProgram});
+            this.gridControlSchedule.Size = new System.Drawing.Size(923, 435);
             this.gridControlSchedule.TabIndex = 0;
             this.gridControlSchedule.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridViewSchedule});
@@ -378,38 +393,145 @@
             this.bandedGridColumnName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumnName.AutoFillDown = true;
             this.bandedGridColumnName.Caption = "Program";
-            this.bandedGridColumnName.ColumnEdit = this.repositoryItemComboBoxPrograms;
+            this.bandedGridColumnName.ColumnEdit = this.repositoryItemPopupContainerEditProgram;
             this.bandedGridColumnName.FieldName = "Name";
             this.bandedGridColumnName.Name = "bandedGridColumnName";
             this.bandedGridColumnName.Visible = true;
             this.bandedGridColumnName.Width = 243;
             // 
-            // repositoryItemComboBoxPrograms
+            // repositoryItemPopupContainerEditProgram
             // 
-            this.repositoryItemComboBoxPrograms.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxPrograms.Appearance.Options.UseFont = true;
-            this.repositoryItemComboBoxPrograms.Appearance.Options.UseTextOptions = true;
-            this.repositoryItemComboBoxPrograms.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.repositoryItemComboBoxPrograms.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxPrograms.AppearanceDisabled.Options.UseFont = true;
-            this.repositoryItemComboBoxPrograms.AppearanceDisabled.Options.UseTextOptions = true;
-            this.repositoryItemComboBoxPrograms.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.repositoryItemComboBoxPrograms.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxPrograms.AppearanceDropDown.Options.UseFont = true;
-            this.repositoryItemComboBoxPrograms.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxPrograms.AppearanceFocused.Options.UseFont = true;
-            this.repositoryItemComboBoxPrograms.AppearanceFocused.Options.UseTextOptions = true;
-            this.repositoryItemComboBoxPrograms.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.repositoryItemComboBoxPrograms.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.repositoryItemComboBoxPrograms.AppearanceReadOnly.Options.UseFont = true;
-            this.repositoryItemComboBoxPrograms.AppearanceReadOnly.Options.UseTextOptions = true;
-            this.repositoryItemComboBoxPrograms.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.repositoryItemComboBoxPrograms.AutoHeight = false;
-            this.repositoryItemComboBoxPrograms.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.repositoryItemPopupContainerEditProgram.Appearance.Options.UseTextOptions = true;
+            this.repositoryItemPopupContainerEditProgram.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.repositoryItemPopupContainerEditProgram.AppearanceDisabled.Options.UseTextOptions = true;
+            this.repositoryItemPopupContainerEditProgram.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.repositoryItemPopupContainerEditProgram.AppearanceDropDown.Options.UseTextOptions = true;
+            this.repositoryItemPopupContainerEditProgram.AppearanceDropDown.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.repositoryItemPopupContainerEditProgram.AppearanceFocused.Options.UseTextOptions = true;
+            this.repositoryItemPopupContainerEditProgram.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.repositoryItemPopupContainerEditProgram.AppearanceReadOnly.Options.UseTextOptions = true;
+            this.repositoryItemPopupContainerEditProgram.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.repositoryItemPopupContainerEditProgram.AutoHeight = false;
+            this.repositoryItemPopupContainerEditProgram.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBoxPrograms.Name = "repositoryItemComboBoxPrograms";
-            this.repositoryItemComboBoxPrograms.NullText = "Select or Type";
-            this.repositoryItemComboBoxPrograms.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemComboBoxPrograms_Closed);
+            this.repositoryItemPopupContainerEditProgram.Name = "repositoryItemPopupContainerEditProgram";
+            this.repositoryItemPopupContainerEditProgram.PopupControl = this.popupContainerControlProgramSource;
+            this.repositoryItemPopupContainerEditProgram.PopupFormSize = new System.Drawing.Size(550, 200);
+            this.repositoryItemPopupContainerEditProgram.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.repositoryItemPopupContainerEditProgram.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this.repositoryItemPopupContainerEditProgram_CloseUp);
+            this.repositoryItemPopupContainerEditProgram.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemPopupContainerEditProgram_Closed);
+            // 
+            // popupContainerControlProgramSource
+            // 
+            this.popupContainerControlProgramSource.Controls.Add(this.gridControlProgramSource);
+            this.popupContainerControlProgramSource.Controls.Add(this.laProgramSourceInfo);
+            this.popupContainerControlProgramSource.Location = new System.Drawing.Point(38, 191);
+            this.popupContainerControlProgramSource.Name = "popupContainerControlProgramSource";
+            this.popupContainerControlProgramSource.Size = new System.Drawing.Size(474, 199);
+            this.popupContainerControlProgramSource.TabIndex = 3;
+            // 
+            // gridControlProgramSource
+            // 
+            this.gridControlProgramSource.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlProgramSource.Location = new System.Drawing.Point(0, 0);
+            this.gridControlProgramSource.MainView = this.gridViewProgramSource;
+            this.gridControlProgramSource.Name = "gridControlProgramSource";
+            this.gridControlProgramSource.Size = new System.Drawing.Size(474, 168);
+            this.gridControlProgramSource.TabIndex = 0;
+            this.gridControlProgramSource.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewProgramSource});
+            // 
+            // gridViewProgramSource
+            // 
+            this.gridViewProgramSource.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.gridViewProgramSource.Appearance.FocusedRow.Options.UseFont = true;
+            this.gridViewProgramSource.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.gridViewProgramSource.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridViewProgramSource.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.gridViewProgramSource.Appearance.Row.Options.UseFont = true;
+            this.gridViewProgramSource.Appearance.SelectedRow.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.gridViewProgramSource.Appearance.SelectedRow.Options.UseFont = true;
+            this.gridViewProgramSource.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumnProgramSourceId,
+            this.gridColumnProgramSourceName,
+            this.gridColumnProgramSourceStation,
+            this.gridColumnProgramSourceDaypart,
+            this.gridColumnProgramSourceDay,
+            this.gridColumnProgramSourceTime});
+            this.gridViewProgramSource.GridControl = this.gridControlProgramSource;
+            this.gridViewProgramSource.Name = "gridViewProgramSource";
+            this.gridViewProgramSource.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewProgramSource.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewProgramSource.OptionsBehavior.AutoPopulateColumns = false;
+            this.gridViewProgramSource.OptionsBehavior.AutoSelectAllInEditor = false;
+            this.gridViewProgramSource.OptionsBehavior.AutoUpdateTotalSummary = false;
+            this.gridViewProgramSource.OptionsBehavior.CopyToClipboardWithColumnHeaders = false;
+            this.gridViewProgramSource.OptionsBehavior.Editable = false;
+            this.gridViewProgramSource.OptionsBehavior.ReadOnly = true;
+            this.gridViewProgramSource.OptionsCustomization.AllowFilter = false;
+            this.gridViewProgramSource.OptionsCustomization.AllowGroup = false;
+            this.gridViewProgramSource.OptionsCustomization.AllowQuickHideColumns = false;
+            this.gridViewProgramSource.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridViewProgramSource.OptionsSelection.EnableAppearanceHideSelection = false;
+            this.gridViewProgramSource.OptionsView.ShowDetailButtons = false;
+            this.gridViewProgramSource.OptionsView.ShowGroupExpandCollapseButtons = false;
+            this.gridViewProgramSource.OptionsView.ShowGroupPanel = false;
+            this.gridViewProgramSource.OptionsView.ShowIndicator = false;
+            // 
+            // gridColumnProgramSourceId
+            // 
+            this.gridColumnProgramSourceId.Caption = "Id";
+            this.gridColumnProgramSourceId.FieldName = "Id";
+            this.gridColumnProgramSourceId.Name = "gridColumnProgramSourceId";
+            // 
+            // gridColumnProgramSourceName
+            // 
+            this.gridColumnProgramSourceName.Caption = "Program";
+            this.gridColumnProgramSourceName.FieldName = "Name";
+            this.gridColumnProgramSourceName.Name = "gridColumnProgramSourceName";
+            this.gridColumnProgramSourceName.Visible = true;
+            this.gridColumnProgramSourceName.VisibleIndex = 0;
+            this.gridColumnProgramSourceName.Width = 178;
+            // 
+            // gridColumnProgramSourceStation
+            // 
+            this.gridColumnProgramSourceStation.Caption = "Station";
+            this.gridColumnProgramSourceStation.FieldName = "Station";
+            this.gridColumnProgramSourceStation.Name = "gridColumnProgramSourceStation";
+            this.gridColumnProgramSourceStation.OptionsColumn.FixedWidth = true;
+            this.gridColumnProgramSourceStation.Visible = true;
+            this.gridColumnProgramSourceStation.VisibleIndex = 1;
+            this.gridColumnProgramSourceStation.Width = 100;
+            // 
+            // gridColumnProgramSourceDaypart
+            // 
+            this.gridColumnProgramSourceDaypart.Caption = "DP";
+            this.gridColumnProgramSourceDaypart.FieldName = "Daypart";
+            this.gridColumnProgramSourceDaypart.Name = "gridColumnProgramSourceDaypart";
+            this.gridColumnProgramSourceDaypart.OptionsColumn.FixedWidth = true;
+            this.gridColumnProgramSourceDaypart.Visible = true;
+            this.gridColumnProgramSourceDaypart.VisibleIndex = 2;
+            this.gridColumnProgramSourceDaypart.Width = 50;
+            // 
+            // gridColumnProgramSourceDay
+            // 
+            this.gridColumnProgramSourceDay.Caption = "Day";
+            this.gridColumnProgramSourceDay.FieldName = "Day";
+            this.gridColumnProgramSourceDay.Name = "gridColumnProgramSourceDay";
+            this.gridColumnProgramSourceDay.OptionsColumn.FixedWidth = true;
+            this.gridColumnProgramSourceDay.Visible = true;
+            this.gridColumnProgramSourceDay.VisibleIndex = 3;
+            this.gridColumnProgramSourceDay.Width = 50;
+            // 
+            // gridColumnProgramSourceTime
+            // 
+            this.gridColumnProgramSourceTime.Caption = "Time";
+            this.gridColumnProgramSourceTime.FieldName = "Time";
+            this.gridColumnProgramSourceTime.Name = "gridColumnProgramSourceTime";
+            this.gridColumnProgramSourceTime.OptionsColumn.FixedWidth = true;
+            this.gridColumnProgramSourceTime.Visible = true;
+            this.gridColumnProgramSourceTime.VisibleIndex = 4;
+            this.gridColumnProgramSourceTime.Width = 100;
             // 
             // gridBandDate
             // 
@@ -822,7 +944,7 @@
             this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnTop.Location = new System.Drawing.Point(0, 0);
             this.pnTop.Name = "pnTop";
-            this.pnTop.Size = new System.Drawing.Size(1000, 35);
+            this.pnTop.Size = new System.Drawing.Size(923, 35);
             this.pnTop.TabIndex = 1;
             // 
             // laScheduleWindow
@@ -830,7 +952,7 @@
             this.laScheduleWindow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.laScheduleWindow.Location = new System.Drawing.Point(549, 0);
             this.laScheduleWindow.Name = "laScheduleWindow";
-            this.laScheduleWindow.Size = new System.Drawing.Size(221, 35);
+            this.laScheduleWindow.Size = new System.Drawing.Size(144, 35);
             this.laScheduleWindow.TabIndex = 3;
             this.laScheduleWindow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -855,7 +977,7 @@
             // laScheduleName
             // 
             this.laScheduleName.Dock = System.Windows.Forms.DockStyle.Right;
-            this.laScheduleName.Location = new System.Drawing.Point(770, 0);
+            this.laScheduleName.Location = new System.Drawing.Point(693, 0);
             this.laScheduleName.Name = "laScheduleName";
             this.laScheduleName.Size = new System.Drawing.Size(230, 35);
             this.laScheduleName.TabIndex = 1;
@@ -887,9 +1009,9 @@
             this.pnBottom.Controls.Add(this.pnTotalSpots);
             this.pnBottom.Controls.Add(this.pnTotalPeriods);
             this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnBottom.Location = new System.Drawing.Point(0, 321);
+            this.pnBottom.Location = new System.Drawing.Point(0, 470);
             this.pnBottom.Name = "pnBottom";
-            this.pnBottom.Size = new System.Drawing.Size(1000, 42);
+            this.pnBottom.Size = new System.Drawing.Size(923, 42);
             this.pnBottom.TabIndex = 2;
             // 
             // pnAgencyDiscount
@@ -1134,7 +1256,7 @@
             this.laTotalPeriodsValue.Name = "laTotalPeriodsValue";
             this.laTotalPeriodsValue.Size = new System.Drawing.Size(115, 19);
             this.laTotalPeriodsValue.TabIndex = 2;
-            this.laTotalPeriodsValue.Text = "Total Months:";
+            this.laTotalPeriodsValue.Text = "Total Weeks:";
             this.laTotalPeriodsValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // laTotalPeriodsTitle
@@ -1145,29 +1267,46 @@
             this.laTotalPeriodsTitle.Name = "laTotalPeriodsTitle";
             this.laTotalPeriodsTitle.Size = new System.Drawing.Size(115, 19);
             this.laTotalPeriodsTitle.TabIndex = 1;
-            this.laTotalPeriodsTitle.Text = "Total Months:";
+            this.laTotalPeriodsTitle.Text = "Total Weeks:";
             this.laTotalPeriodsTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // defaultLookAndFeel
             // 
             this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
             // 
+            // laProgramSourceInfo
+            // 
+            this.laProgramSourceInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.laProgramSourceInfo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laProgramSourceInfo.ForeColor = System.Drawing.Color.DarkRed;
+            this.laProgramSourceInfo.Location = new System.Drawing.Point(0, 168);
+            this.laProgramSourceInfo.Name = "laProgramSourceInfo";
+            this.laProgramSourceInfo.Size = new System.Drawing.Size(474, 31);
+            this.laProgramSourceInfo.TabIndex = 2;
+            this.laProgramSourceInfo.Text = "Double-Click to Select a Program";
+            this.laProgramSourceInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MonthlyScheduleControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.Controls.Add(this.popupContainerControlProgramSource);
             this.Controls.Add(this.gridControlSchedule);
             this.Controls.Add(this.pnBottom);
             this.Controls.Add(this.pnTop);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "MonthlyScheduleControl";
-            this.Size = new System.Drawing.Size(1000, 363);
+            this.Size = new System.Drawing.Size(923, 512);
             this.Load += new System.EventHandler(this.ScheduleControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSchedule)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewSchedule)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDayparts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxPrograms)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEditProgram)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControlProgramSource)).EndInit();
+            this.popupContainerControlProgramSource.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlProgramSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewProgramSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxTimes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxLengths)).EndInit();
@@ -1208,7 +1347,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnDay;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxStations;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxPrograms;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxDays;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxTimes;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxLengths;
@@ -1255,5 +1393,16 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandSpots;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandTotals;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxDayparts;
+        private DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit repositoryItemPopupContainerEditProgram;
+        private DevExpress.XtraEditors.PopupContainerControl popupContainerControlProgramSource;
+        private DevExpress.XtraGrid.GridControl gridControlProgramSource;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewProgramSource;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnProgramSourceId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnProgramSourceName;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnProgramSourceStation;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnProgramSourceDaypart;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnProgramSourceDay;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnProgramSourceTime;
+        private System.Windows.Forms.Label laProgramSourceInfo;
     }
 }

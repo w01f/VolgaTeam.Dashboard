@@ -238,9 +238,9 @@
             this.buttonXPreview.ImageFixedSize = new System.Drawing.Size(48, 48);
             this.buttonXPreview.Location = new System.Drawing.Point(13, 578);
             this.buttonXPreview.Name = "buttonXPreview";
-            this.buttonXPreview.Size = new System.Drawing.Size(169, 60);
+            this.buttonXPreview.Size = new System.Drawing.Size(194, 60);
             this.buttonXPreview.TabIndex = 25;
-            this.buttonXPreview.Text = "Preview this \r\nslide first";
+            this.buttonXPreview.Text = "Slide Preview";
             this.buttonXPreview.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             this.buttonXPreview.TextColor = System.Drawing.Color.Black;
             this.buttonXPreview.Tooltip = "View this schedule before you send it to PowerPoint";
@@ -253,11 +253,11 @@
             this.buttonXOutput.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonXOutput.Image = global::RadioScheduleBuilder.Properties.Resources.Email;
             this.buttonXOutput.ImageFixedSize = new System.Drawing.Size(48, 48);
-            this.buttonXOutput.Location = new System.Drawing.Point(199, 578);
+            this.buttonXOutput.Location = new System.Drawing.Point(227, 578);
             this.buttonXOutput.Name = "buttonXOutput";
-            this.buttonXOutput.Size = new System.Drawing.Size(169, 60);
+            this.buttonXOutput.Size = new System.Drawing.Size(194, 60);
             this.buttonXOutput.TabIndex = 21;
-            this.buttonXOutput.Text = "Send to \r\nPowerPoint";
+            this.buttonXOutput.Text = "Slide Output";
             this.buttonXOutput.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             this.buttonXOutput.TextColor = System.Drawing.Color.Black;
             this.buttonXOutput.Tooltip = "Output this schedule to your PowerPoint presentation";

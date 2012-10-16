@@ -229,6 +229,7 @@ namespace CommandCentral.TabMainDashboard
                 dataTable = new DataTable();
                 try
                 {
+                    int rowIndex = 0;
                     dataAdapter.Fill(dataTable);
                     if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 1)
                         foreach (DataRow row in dataTable.Rows)
@@ -236,8 +237,13 @@ namespace CommandCentral.TabMainDashboard
                             string code = row[1].ToString().Trim();
                             CommonClasses.NameCodePair daypart = _dayparts.Where(x => x.Name.Equals(code)).FirstOrDefault();
                             if (daypart != null)
+                            {
                                 daypart.Code = row[0].ToString().Trim();
+                                daypart.Index = rowIndex;
+                            }
+                            rowIndex++;
                         }
+                    _dayparts.Sort((x, y) => x.Index.CompareTo(y.Index));
                 }
                 catch
                 {

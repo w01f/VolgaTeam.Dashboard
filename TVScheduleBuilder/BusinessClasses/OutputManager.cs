@@ -1055,7 +1055,7 @@ namespace TVScheduleBuilder.BusinessClasses
 		{
 			get
 			{
-				return this.Month + ((char)13).ToString() + this.Day;
+				return this.Month + (!string.IsNullOrEmpty(this.Day) ? (((char)13).ToString() + this.Day) : string.Empty);
 			}
 		}
 

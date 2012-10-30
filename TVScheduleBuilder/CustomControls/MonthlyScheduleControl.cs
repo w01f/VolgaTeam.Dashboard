@@ -751,7 +751,7 @@ namespace TVScheduleBuilder.CustomControls
 							if ((k + l) < totalSpotsCount)
 							{
 								BusinessClasses.OutputTotalSpot outputTotalSpot = new BusinessClasses.OutputTotalSpot();
-								outputTotalSpot.Day = !defaultProgram.Parent.ShowEmptySpots ? (defaultSpotsNotEmpy[k + l].Date.Day.ToString()) : (defaultProgram.Spots[k + l].Date.Day.ToString());
+								outputTotalSpot.Day = string.Empty;
 								outputTotalSpot.Month = BusinessClasses.Spot.GetMonthAbbreviation(!defaultProgram.Parent.ShowEmptySpots ? defaultSpotsNotEmpy[k + l].Date.Month : defaultProgram.Spots[k + l].Date.Month);
 
 								int sum = 0;
@@ -869,7 +869,7 @@ namespace TVScheduleBuilder.CustomControls
 				foreach (BusinessClasses.Spot spot in defaultProgram.Spots.Where(x => defaultProgram.Parent.ShowEmptySpots || defaultProgram.Parent.Programs.Select(z => z.Spots.Where(y => y.Date.Equals(x.Date)).FirstOrDefault()).Sum(w => w.Count) > 0))
 				{
 					BusinessClasses.OutputTotalSpot outputTotalSpot = new BusinessClasses.OutputTotalSpot();
-					outputTotalSpot.Day = spot.Date.Day.ToString();
+					outputTotalSpot.Day = string.Empty;
 					outputTotalSpot.Month = BusinessClasses.Spot.GetMonthAbbreviation(spot.Date.Month);
 					int sum = defaultProgram.Parent.Programs.Select(x => x.Spots.Where(y => y.Date.Equals(spot.Date)).FirstOrDefault()).Where(z => z.Count.HasValue).Select(z => z.Count.Value).Sum();
 					outputTotalSpot.Value = sum > 0 ? sum.ToString() : "-";
@@ -999,7 +999,7 @@ namespace TVScheduleBuilder.CustomControls
 								if ((k + l) < totalSpotsCount)
 								{
 									BusinessClasses.OutputTotalSpot outputTotalSpot = new BusinessClasses.OutputTotalSpot();
-									outputTotalSpot.Day = !defaultProgram.Parent.ShowEmptySpots ? (defaultSpotsNotEmpy[k + l].Date.Day.ToString()) : (defaultProgram.Spots[k + l].Date.Day.ToString());
+									outputTotalSpot.Day = string.Empty;
 									outputTotalSpot.Month = BusinessClasses.Spot.GetMonthAbbreviation(!defaultProgram.Parent.ShowEmptySpots ? defaultSpotsNotEmpy[k + l].Date.Month : defaultProgram.Spots[k + l].Date.Month);
 
 									int sum = 0;

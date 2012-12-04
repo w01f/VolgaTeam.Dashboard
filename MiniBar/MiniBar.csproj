@@ -265,6 +265,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mini.ico" />
+    <None Include="Resources\IPadLogo.png" />
     <None Include="Resources\AppCode.png" />
     <None Include="Resources\RemoteSalesDepot.png" />
     <None Include="Resources\SlideHeader.png" />
@@ -285,11 +286,8 @@
     <None Include="Resources\On.png" />
     <None Include="Resources\Warning.png" />
     <None Include="Resources\Help.png" />
-    <None Include="Resources\GreenCopy.png" />
-    <None Include="Resources\BlueCopy.png" />
     <None Include="Resources\CoverMiddle.png" />
     <None Include="Resources\CleanslateMiddle.png" />
-    <None Include="Resources\LiveMeeting.png" />
     <None Include="Resources\Sync.png" />
     <None Include="Resources\WebArt.png" />
     <None Include="Resources\ClientLogos.png" />

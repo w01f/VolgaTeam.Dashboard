@@ -142,20 +142,17 @@
   <data name="SavePDF" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SavePDF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CoverMiddle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CoverMiddle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Output" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Output.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LiveMeeting" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LiveMeeting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CoverMiddle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CoverMiddle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GreenCopy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GreenCopy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AppCode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppCode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PowerPointLaunch2007" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PowerPointLaunch2007.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -177,9 +174,6 @@
   </data>
   <data name="ClientLogos" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ClientLogos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BlueCopy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BlueCopy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PowerPointLaunch2003" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PowerPointLaunch2003.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,7 +205,7 @@
   <data name="SlideContent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SlideContent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AppCode" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppCode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="IPadLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IPadLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

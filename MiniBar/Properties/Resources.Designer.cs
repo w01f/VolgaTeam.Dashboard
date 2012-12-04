@@ -67,13 +67,6 @@ namespace MiniBar.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap BlueCopy {
-            get {
-                object obj = ResourceManager.GetObject("BlueCopy", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap CleanslateMiddle {
             get {
                 object obj = ResourceManager.GetObject("CleanslateMiddle", resourceCulture);
@@ -109,13 +102,6 @@ namespace MiniBar.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap GreenCopy {
-            get {
-                object obj = ResourceManager.GetObject("GreenCopy", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap Help {
             get {
                 object obj = ResourceManager.GetObject("Help", resourceCulture);
@@ -123,9 +109,9 @@ namespace MiniBar.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap LiveMeeting {
+        internal static System.Drawing.Bitmap IPadLogo {
             get {
-                object obj = ResourceManager.GetObject("LiveMeeting", resourceCulture);
+                object obj = ResourceManager.GetObject("IPadLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

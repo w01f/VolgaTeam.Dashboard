@@ -31,13 +31,13 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelPowerPoint = new DevComponents.DotNetBar.RibbonPanel();
+			this.ribbonPanelIPad = new DevComponents.DotNetBar.RibbonPanel();
+			this.ribbonPanelDashboard = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonPanelPDF = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonPanelTools = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonPanelSettings = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonPanelSync = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonPanelIPad = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonPanelClipart = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonPanelDashboard = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonPanelSalesDepot = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonPanelApps = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonTabItemPowerPoint = new DevComponents.DotNetBar.RibbonTabItem();
@@ -151,6 +151,52 @@
 			this.ribbonPanelPowerPoint.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonPanelPowerPoint.TabIndex = 12;
 			// 
+			// ribbonPanelIPad
+			// 
+			this.ribbonPanelIPad.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonPanelIPad.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ribbonPanelIPad.Location = new System.Drawing.Point(0, 28);
+			this.ribbonPanelIPad.Name = "ribbonPanelIPad";
+			this.ribbonPanelIPad.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+			this.ribbonPanelIPad.Size = new System.Drawing.Size(548, 0);
+			// 
+			// 
+			// 
+			this.ribbonPanelIPad.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanelIPad.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanelIPad.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelIPad.TabIndex = 10;
+			this.ribbonPanelIPad.Visible = false;
+			// 
+			// ribbonPanelDashboard
+			// 
+			this.ribbonPanelDashboard.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonPanelDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ribbonPanelDashboard.Location = new System.Drawing.Point(0, 28);
+			this.ribbonPanelDashboard.Name = "ribbonPanelDashboard";
+			this.ribbonPanelDashboard.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+			this.ribbonPanelDashboard.Size = new System.Drawing.Size(548, 0);
+			// 
+			// 
+			// 
+			this.ribbonPanelDashboard.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanelDashboard.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanelDashboard.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelDashboard.TabIndex = 4;
+			this.ribbonPanelDashboard.Visible = false;
+			// 
 			// ribbonPanelPDF
 			// 
 			this.ribbonPanelPDF.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -243,29 +289,6 @@
 			this.ribbonPanelSync.TabIndex = 8;
 			this.ribbonPanelSync.Visible = false;
 			// 
-			// ribbonPanelIPad
-			// 
-			this.ribbonPanelIPad.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-			this.ribbonPanelIPad.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelIPad.Location = new System.Drawing.Point(0, 28);
-			this.ribbonPanelIPad.Name = "ribbonPanelIPad";
-			this.ribbonPanelIPad.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelIPad.Size = new System.Drawing.Size(548, 0);
-			// 
-			// 
-			// 
-			this.ribbonPanelIPad.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelIPad.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelIPad.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelIPad.TabIndex = 10;
-			this.ribbonPanelIPad.Visible = false;
-			// 
 			// ribbonPanelClipart
 			// 
 			this.ribbonPanelClipart.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -288,29 +311,6 @@
 			this.ribbonPanelClipart.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonPanelClipart.TabIndex = 6;
 			this.ribbonPanelClipart.Visible = false;
-			// 
-			// ribbonPanelDashboard
-			// 
-			this.ribbonPanelDashboard.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-			this.ribbonPanelDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelDashboard.Location = new System.Drawing.Point(0, 28);
-			this.ribbonPanelDashboard.Name = "ribbonPanelDashboard";
-			this.ribbonPanelDashboard.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelDashboard.Size = new System.Drawing.Size(548, 0);
-			// 
-			// 
-			// 
-			this.ribbonPanelDashboard.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelDashboard.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelDashboard.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelDashboard.TabIndex = 4;
-			this.ribbonPanelDashboard.Visible = false;
 			// 
 			// ribbonPanelSalesDepot
 			// 

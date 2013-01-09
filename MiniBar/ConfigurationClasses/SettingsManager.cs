@@ -4,41 +4,36 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using MiniBar.BusinessClasses;
 
 namespace MiniBar.ConfigurationClasses
 {
-	class SettingsManager
+	internal class SettingsManager
 	{
 		#region Constant Names
-		private const string DefaultUserName = "Default";
 		public const string RegularSyncName = @"adSync4.exe";
 		public const string SilentSyncName = @"adSync5.exe";
 		public const string SyncSettingsFileName = @"syncfile.xml";
 		public const string NBWApplicationManifestFileName = "Manifest.xml";
 		#endregion
 
-		private static SettingsManager _instance = new SettingsManager();
+		private static readonly SettingsManager _instance = new SettingsManager();
 
 		#region Path Variables
-		private string _defaultSaveFolderPath = string.Empty;
-		private string _sharedSettingsFile = string.Empty;
-		private string _minibarSettingsFile = string.Empty;
+		private readonly string _appIDFile = string.Empty;
+		private readonly string _dashboardNamePath = string.Empty;
+		private readonly string _minibarSettingsFile = string.Empty;
+		private readonly string _sharedSettingsFile = string.Empty;
+		private readonly string _slidesFolderPath = string.Empty;
+		private readonly string _webcastSettingsFile = string.Empty;
 		private string _minibarAppSettingsFile = string.Empty;
-		private string _webcastSettingsFile = string.Empty;
-		private string _dashboardNamePath = string.Empty;
-		private string _salesDepotNamePath = string.Empty;
-		private string _appIDFile = string.Empty;
-		private string _slidesFolderPath = string.Empty;
-		private string _approvedLibrariesFile = string.Empty;
+		public TabPageSettings TabPageSettings { get; private set; }
 		public string SyncFilesSourcePath { get; set; }
 		public string NBWApplicationsRootPath { get; set; }
 		public string DashboardPath { get; set; }
 		public string DashboardLogoPath { get; set; }
 		public string DashboardIconPath { get; set; }
-		public string SalesDepotExecutablePath { get; set; }
-		public string SalesDepotRemoteRootPath { get; set; }
-		public string SalesDepotLogoPath { get; set; }
-		public string SalesDepotIconPath { get; set; }
+		public SalesDepotSettings SalesDepotSettings { get; private set; }
 		public string ClientLogosPath { get; set; }
 		public string SalesGalleryPath { get; set; }
 		public string WebArtPath { get; set; }
@@ -54,7 +49,119 @@ namespace MiniBar.ConfigurationClasses
 		public string TeamViewerQJPath { get; set; }
 		#endregion
 
+		private SettingsManager()
+		{
+			_sharedSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app\SharedSettings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			_minibarSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app\MinibarSettings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			_webcastSettingsFile = string.Format(@"{0}\newlocaldirect.com\app\Minibar\webcast.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			_appIDFile = string.Format(@"{0}\newlocaldirect.com\xml\app\AppID.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			_dashboardNamePath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\Tab2Name.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			_slidesFolderPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			SyncFilesSourcePath = string.Format(@"{0}\newlocaldirect.com\app\adsync_patch", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			NBWApplicationsRootPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\applications", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			DashboardPath = string.Format(@"{0}\newlocaldirect.com\app\adSALESapp.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			DashboardLogoPath = string.Format(@"{0}\newlocaldirect.com\app\tab2btn.png", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			DashboardIconPath = string.Format(@"{0}\newlocaldirect.com\app\tab2icon.ico", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			ClientLogosPath = string.Format(@"{0}\newlocaldirect.com\app\Client Logos\ClientLogos.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			SalesGalleryPath = string.Format(@"{0}\newlocaldirect.com\app\Sales Gallery\SalesGallery.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			WebArtPath = string.Format(@"{0}\newlocaldirect.com\app\Web Art\WebArt.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			LibraryPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\libraries", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			ClipartPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\gallery", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			ResetPath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\Reset.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			SyncSettingsFolderPath = string.Format(@"{0}\newlocaldirect.com\!Update_Settings", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\MinibarHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			MinibarLoaderPath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\MiniBarLoader.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			PowerPointLoaderPath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\PowerPointLoader.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			TeamViewerQSPath = string.Format(@"{0}\newlocaldirect.com\app\TeamViewerQS_en.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			TeamViewerQJPath = string.Format(@"{0}\newlocaldirect.com\app\TeamViewerQJ_en.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+
+			TabPageSettings = new TabPageSettings();
+			SalesDepotSettings = new SalesDepotSettings();
+		}
+
 		public Guid AppID { get; set; }
+
+
+		public static SettingsManager Instance
+		{
+			get { return _instance; }
+		}
+
+		public string SlideFolder
+		{
+			get
+			{
+				switch (Orientation)
+				{
+					case "Landscape":
+						if (SizeWidth == 10 && SizeHeght == 7.5)
+							return "Slides43";
+						else if (SizeWidth == 10.75 && SizeHeght == 8.25)
+							return "Slides54";
+						if (SizeWidth == 10 && SizeHeght == 5.63)
+							return "Slides169";
+						else
+							return "Slides43";
+					case "Portrait":
+						if (SizeWidth == 10 && SizeHeght == 7.5)
+							return "Slides34";
+						else if (SizeWidth == 10.75 && SizeHeght == 8.25)
+							return "Slides45";
+						if (SizeWidth == 10 && SizeHeght == 5.63)
+							return "Slides916";
+						else
+							return "Slides43";
+					default:
+						return "Slides43";
+				}
+			}
+		}
+
+		public string SlideSize
+		{
+			get
+			{
+				switch (Orientation)
+				{
+					case "Landscape":
+						if (SizeWidth == 10 && SizeHeght == 7.5)
+							return "Landscape 4 x 3";
+						else if (SizeWidth == 10.75 && SizeHeght == 8.25)
+							return "Landscape 5 x 4";
+						if (SizeWidth == 10 && SizeHeght == 5.63)
+							return "Landscape 16 x 9";
+						else
+							return "Landscape 4 x 3";
+					case "Portrait":
+						if (SizeWidth == 10 && SizeHeght == 7.5)
+							return "Portrait 3 x 4";
+						else if (SizeWidth == 10.75 && SizeHeght == 8.25)
+							return "Portrait 4 x 5";
+						if (SizeWidth == 10 && SizeHeght == 5.63)
+							return "Portrait 9 x 16";
+						else
+							return "Landscape 4 x 3";
+					default:
+						return "Landscape 4 x 3";
+				}
+			}
+		}
+
+		public bool SlidesReadyFull
+		{
+			get
+			{
+				bool result = Directory.Exists(_slidesFolderPath);
+				if (result)
+					result = Directory.Exists(Path.Combine(_slidesFolderPath, "Artwork")) &
+							 Directory.Exists(Path.Combine(_slidesFolderPath, "Calendar")) &
+							 Directory.Exists(Path.Combine(_slidesFolderPath, "Dashboard")) &
+							 Directory.Exists(Path.Combine(_slidesFolderPath, "Data")) &
+							 Directory.Exists(Path.Combine(_slidesFolderPath, "ExcelOutput03")) &
+							 Directory.Exists(Path.Combine(_slidesFolderPath, "ExcelOutput07"));
+				return result;
+			}
+		}
 
 		#region Shared Settings
 		public string SelectedWizard { get; set; }
@@ -66,7 +173,6 @@ namespace MiniBar.ConfigurationClasses
 
 		#region Application Names
 		public string DashboardName { get; set; }
-		public string SalesDepotName { get; set; }
 		#endregion
 
 		#region Minibar Settings
@@ -77,9 +183,9 @@ namespace MiniBar.ConfigurationClasses
 			get
 			{
 				DateTime now = DateTime.Now;
-				DateTime next = new DateTime(now.Year, now.Month, now.Day, this.SyncHourly ? now.Hour : _nextSync.Hour, _nextSync.Minute, _nextSync.Second);
+				var next = new DateTime(now.Year, now.Month, now.Day, SyncHourly ? now.Hour : _nextSync.Hour, _nextSync.Minute, _nextSync.Second);
 				if (next < now)
-					return this.SyncHourly ? next.AddHours(1) : next.AddDays(1);
+					return SyncHourly ? next.AddHours(1) : next.AddDays(1);
 				else
 					return next;
 			}
@@ -109,175 +215,56 @@ namespace MiniBar.ConfigurationClasses
 		public List<string> MeetingIDs { get; set; }
 		#endregion
 
-		public bool UseRemoteSalesDepot { get; set; }
-
-		private SettingsManager()
-		{
-			_sharedSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app\SharedSettings.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			_minibarSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app\MinibarSettings.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			_webcastSettingsFile = string.Format(@"{0}\newlocaldirect.com\app\Minibar\webcast.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			_appIDFile = string.Format(@"{0}\newlocaldirect.com\xml\app\AppID.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			_dashboardNamePath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\Tab2Name.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			_salesDepotNamePath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\SDName.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			_slidesFolderPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			_approvedLibrariesFile = string.Format(@"{0}\newlocaldirect.com\Sales Depot\ApprovedLibraries.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-
-			this.SyncFilesSourcePath = string.Format(@"{0}\newlocaldirect.com\app\adsync_patch", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.NBWApplicationsRootPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\applications", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.DashboardPath = string.Format(@"{0}\newlocaldirect.com\app\adSALESapp.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.DashboardLogoPath = string.Format(@"{0}\newlocaldirect.com\app\tab2btn.png", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.DashboardIconPath = string.Format(@"{0}\newlocaldirect.com\app\tab2icon.ico", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.SalesDepotExecutablePath = string.Format(@"{0}\newlocaldirect.com\Sales Depot\SalesDepot.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.SalesDepotRemoteRootPath = string.Format(@"{0}\newlocaldirect.com\Sales Depot\Remote Libraries", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.SalesDepotLogoPath = string.Format(@"{0}\newlocaldirect.com\Sales Depot\sdbutton.png", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.SalesDepotIconPath = string.Format(@"{0}\newlocaldirect.com\Sales Depot\sdicon.ico", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.ClientLogosPath = string.Format(@"{0}\newlocaldirect.com\app\Client Logos\ClientLogos.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.SalesGalleryPath = string.Format(@"{0}\newlocaldirect.com\app\Sales Gallery\SalesGallery.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.WebArtPath = string.Format(@"{0}\newlocaldirect.com\app\Web Art\WebArt.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.LibraryPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\libraries", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.ClipartPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\gallery", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.ResetPath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\Reset.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.SyncSettingsFolderPath = string.Format(@"{0}\newlocaldirect.com\!Update_Settings", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\MinibarHelp.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.MinibarLoaderPath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\MiniBarLoader.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.PowerPointLoaderPath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\PowerPointLoader.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.TeamViewerQSPath = string.Format(@"{0}\newlocaldirect.com\app\TeamViewerQS_en.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			this.TeamViewerQJPath = string.Format(@"{0}\newlocaldirect.com\app\TeamViewerQJ_en.exe", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-		}
-
-		public static SettingsManager Instance
-		{
-			get
-			{
-				return _instance;
-			}
-		}
-
-		public string SlideFolder
-		{
-			get
-			{
-				switch (this.Orientation)
-				{
-					case "Landscape":
-						if (this.SizeWidth == 10 && this.SizeHeght == 7.5)
-							return "Slides43";
-						else if (this.SizeWidth == 10.75 && this.SizeHeght == 8.25)
-							return "Slides54";
-						if (this.SizeWidth == 10 && this.SizeHeght == 5.63)
-							return "Slides169";
-						else
-							return "Slides43";
-					case "Portrait":
-						if (this.SizeWidth == 10 && this.SizeHeght == 7.5)
-							return "Slides34";
-						else if (this.SizeWidth == 10.75 && this.SizeHeght == 8.25)
-							return "Slides45";
-						if (this.SizeWidth == 10 && this.SizeHeght == 5.63)
-							return "Slides916";
-						else
-							return "Slides43";
-					default:
-						return "Slides43";
-				}
-			}
-		}
-
-		public string SlideSize
-		{
-			get
-			{
-				switch (this.Orientation)
-				{
-					case "Landscape":
-						if (this.SizeWidth == 10 && this.SizeHeght == 7.5)
-							return "Landscape 4 x 3";
-						else if (this.SizeWidth == 10.75 && this.SizeHeght == 8.25)
-							return "Landscape 5 x 4";
-						if (this.SizeWidth == 10 && this.SizeHeght == 5.63)
-							return "Landscape 16 x 9";
-						else
-							return "Landscape 4 x 3";
-					case "Portrait":
-						if (this.SizeWidth == 10 && this.SizeHeght == 7.5)
-							return "Portrait 3 x 4";
-						else if (this.SizeWidth == 10.75 && this.SizeHeght == 8.25)
-							return "Portrait 4 x 5";
-						if (this.SizeWidth == 10 && this.SizeHeght == 5.63)
-							return "Portrait 9 x 16";
-						else
-							return "Landscape 4 x 3";
-					default:
-						return "Landscape 4 x 3";
-				}
-			}
-		}
-
-		public bool SlidesReadyFull
-		{
-			get
-			{
-				bool result = Directory.Exists(_slidesFolderPath);
-				if (result)
-					result = Directory.Exists(Path.Combine(_slidesFolderPath, "Artwork")) &
-							 Directory.Exists(Path.Combine(_slidesFolderPath, "Calendar")) &
-							 Directory.Exists(Path.Combine(_slidesFolderPath, "Dashboard")) &
-							 Directory.Exists(Path.Combine(_slidesFolderPath, "Data")) &
-							 Directory.Exists(Path.Combine(_slidesFolderPath, "ExcelOutput03")) &
-							 Directory.Exists(Path.Combine(_slidesFolderPath, "ExcelOutput07"));
-				return result;
-			}
-		}
-
 		public void LoadSharedSettings()
 		{
-			this.SelectedWizard = string.Empty;
-			this.SizeWidth = 10;
-			this.SizeHeght = 7.5;
-			this.Orientation = "Landscape";
-			this.SlideTemplateEnabled = false;
+			SelectedWizard = string.Empty;
+			SizeWidth = 10;
+			SizeHeght = 7.5;
+			Orientation = "Landscape";
+			SlideTemplateEnabled = false;
 
-			this.PrimaryApplications = new List<string>();
-			this.PrimaryApplications.AddRange(new string[]{"excel",
-                                                            "winword",
-                                                            "iexplore",
-                                                            "skype",
-                                                            "ois",
-                                                            "chrome",
-                                                            "safari",
-                                                            "firefox",
-                                                            "AcroRd32",
-                                                            "vmware",
-                                                            "SalesDepot",
-                                                            "Outlook",
-                                                            "Filezilla",
-                                                            "OneDomain",
-                                                            "PWConsole",
-                                                            "MediaOffice"});
+			PrimaryApplications = new List<string>();
+			PrimaryApplications.AddRange(new[]
+			                             {
+				                             "excel",
+				                             "winword",
+				                             "iexplore",
+				                             "skype",
+				                             "ois",
+				                             "chrome",
+				                             "safari",
+				                             "firefox",
+				                             "AcroRd32",
+				                             "vmware",
+				                             "SalesDepot",
+				                             "Outlook",
+				                             "Filezilla",
+				                             "OneDomain",
+				                             "PWConsole",
+				                             "MediaOffice"
+			                             });
 			XmlNode node;
 			double tempDouble;
 			bool tempBool;
 			if (File.Exists(_sharedSettingsFile))
 			{
-				XmlDocument document = new XmlDocument();
+				var document = new XmlDocument();
 				try
 				{
 					document.Load(_sharedSettingsFile);
 				}
-				catch
-				{
-				}
+				catch { }
 
 				node = document.SelectSingleNode(@"/SharedSettings/SelectedWizard");
 				if (node != null)
-					this.SelectedWizard = node.InnerText;
+					SelectedWizard = node.InnerText;
 				node = document.SelectSingleNode(@"/SharedSettings/SizeWidth");
 				if (node != null)
 				{
 					tempDouble = 0;
 					double.TryParse(node.InnerText, out tempDouble);
 					if (tempDouble != 0)
-						this.SizeWidth = tempDouble;
+						SizeWidth = tempDouble;
 				}
 				node = document.SelectSingleNode(@"/SharedSettings/SizeHeght");
 				if (node != null)
@@ -285,41 +272,39 @@ namespace MiniBar.ConfigurationClasses
 					tempDouble = 0;
 					double.TryParse(node.InnerText, out tempDouble);
 					if (tempDouble != 0)
-						this.SizeHeght = tempDouble;
+						SizeHeght = tempDouble;
 				}
 				node = document.SelectSingleNode(@"/SharedSettings/Orientation");
 				if (node != null)
-					this.Orientation = node.InnerText;
+					Orientation = node.InnerText;
 				node = document.SelectSingleNode(@"/SharedSettings/SlideTemplateEnabled");
 				if (node != null)
 				{
 					tempBool = false;
 					bool.TryParse(node.InnerText, out tempBool);
-					this.SlideTemplateEnabled = tempBool;
+					SlideTemplateEnabled = tempBool;
 				}
 				node = document.SelectSingleNode(@"/SharedSettings/HideAdSchedule");
 			}
 
 			LoadAppID();
 			LoadDashboardName();
-			LoadSalesDepotName();
-			LoadApprovedLibraries();
 			LoadWebcastSettings();
 		}
 
 		public void SaveSharedSettings()
 		{
-			StringBuilder xml = new StringBuilder();
+			var xml = new StringBuilder();
 
 			xml.AppendLine(@"<SharedSettings>");
-			xml.AppendLine(@"<SelectedWizard>" + this.SelectedWizard.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedWizard>");
-			xml.AppendLine(@"<SizeHeght>" + this.SizeHeght.ToString() + @"</SizeHeght>");
-			xml.AppendLine(@"<SizeWidth>" + this.SizeWidth.ToString() + @"</SizeWidth>");
-			xml.AppendLine(@"<Orientation>" + this.Orientation.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Orientation>");
-			xml.AppendLine(@"<SlideTemplateEnabled>" + this.SlideTemplateEnabled.ToString() + @"</SlideTemplateEnabled>");
+			xml.AppendLine(@"<SelectedWizard>" + SelectedWizard.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedWizard>");
+			xml.AppendLine(@"<SizeHeght>" + SizeHeght.ToString() + @"</SizeHeght>");
+			xml.AppendLine(@"<SizeWidth>" + SizeWidth.ToString() + @"</SizeWidth>");
+			xml.AppendLine(@"<Orientation>" + Orientation.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Orientation>");
+			xml.AppendLine(@"<SlideTemplateEnabled>" + SlideTemplateEnabled.ToString() + @"</SlideTemplateEnabled>");
 			xml.AppendLine(@"</SharedSettings>");
 
-			using (StreamWriter sw = new StreamWriter(_sharedSettingsFile, false))
+			using (var sw = new StreamWriter(_sharedSettingsFile, false))
 			{
 				sw.Write(xml);
 				sw.Flush();
@@ -328,42 +313,40 @@ namespace MiniBar.ConfigurationClasses
 
 		private void LoadAppID()
 		{
-			this.AppID = Guid.Empty;
+			AppID = Guid.Empty;
 			string appIDPath = Path.Combine(Application.StartupPath.ToLower().Replace(@"\minibar", ""), _appIDFile);
 			if (File.Exists(appIDPath))
 			{
-				XmlDocument document = new XmlDocument();
+				var document = new XmlDocument();
 				try
 				{
 					document.Load(appIDPath);
 				}
-				catch
-				{
-				}
+				catch { }
 
 				XmlNode node = document.SelectSingleNode(@"/AppID");
 				if (node != null)
 					if (!string.IsNullOrEmpty(node.InnerText))
-						this.AppID = new Guid(node.InnerText);
+						AppID = new Guid(node.InnerText);
 			}
-			if (this.AppID.Equals(Guid.Empty))
+			if (AppID.Equals(Guid.Empty))
 			{
-				this.AppID = Guid.NewGuid();
+				AppID = Guid.NewGuid();
 				SaveAppID();
 			}
-			this.ServiceDataFilePath = string.Format(@"{0}\newlocaldirect.com\sync\Outgoing\AppID-" + this.AppID.ToString() + ".xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-			BusinessClasses.ServiceDataManager.Instance.LoadData();
+			ServiceDataFilePath = string.Format(@"{0}\newlocaldirect.com\sync\Outgoing\AppID-" + AppID.ToString() + ".xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			ServiceDataManager.Instance.LoadData();
 			CheckAppIDFolders();
 		}
 
 		private void SaveAppID()
 		{
-			StringBuilder xml = new StringBuilder();
+			var xml = new StringBuilder();
 
-			xml.AppendLine(@"<AppID>" + this.AppID.ToString() + @"</AppID>");
+			xml.AppendLine(@"<AppID>" + AppID.ToString() + @"</AppID>");
 
 			string appIDPath = Path.Combine(Application.StartupPath.ToLower().Replace(@"\minibar", ""), _appIDFile);
-			using (StreamWriter sw = new StreamWriter(appIDPath, false))
+			using (var sw = new StreamWriter(appIDPath, false))
 			{
 				sw.Write(xml);
 				sw.Flush();
@@ -375,7 +358,7 @@ namespace MiniBar.ConfigurationClasses
 		{
 			try
 			{
-				string localSettingsFolder = string.Format(@"{0}\newlocaldirect.com\xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+				string localSettingsFolder = string.Format(@"{0}\newlocaldirect.com\xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 				if (!Directory.Exists(localSettingsFolder))
 					Directory.CreateDirectory(localSettingsFolder);
 				if (!Directory.Exists(Path.Combine(localSettingsFolder, "app")))
@@ -393,7 +376,7 @@ namespace MiniBar.ConfigurationClasses
 				if (!Directory.Exists(Path.Combine(localSettingsFolder, "sales depot", "Settings")))
 					Directory.CreateDirectory(Path.Combine(localSettingsFolder, "sales depot", "Settings"));
 
-				string syncFolder = string.Format(@"{0}\newlocaldirect.com\sync", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+				string syncFolder = string.Format(@"{0}\newlocaldirect.com\sync", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 				if (!Directory.Exists(syncFolder))
 					Directory.CreateDirectory(syncFolder);
 				if (!Directory.Exists(Path.Combine(syncFolder, "Incoming")))
@@ -409,18 +392,16 @@ namespace MiniBar.ConfigurationClasses
 				if (!Directory.Exists(Path.Combine(syncFolder, "Incoming", "update")))
 					Directory.CreateDirectory(Path.Combine(syncFolder, "Incoming", "update"));
 			}
-			catch
-			{
-			}
+			catch { }
 		}
 
 		public void DeleteStaticFolders()
 		{
-			string localSettingsFolder = string.Format(@"{0}\newlocaldirect.com\xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+			string localSettingsFolder = string.Format(@"{0}\newlocaldirect.com\xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			foreach (DirectoryInfo xmlFolder in (new DirectoryInfo(localSettingsFolder)).GetDirectories())
 				xmlFolder.Delete(true);
 
-			string incomingFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+			string incomingFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			foreach (DirectoryInfo incomingSubFolder in (new DirectoryInfo(incomingFolder)).GetDirectories())
 				incomingSubFolder.Delete(true);
 		}
@@ -429,7 +410,7 @@ namespace MiniBar.ConfigurationClasses
 		{
 			try
 			{
-				string appIDFolder = string.Format(@"{0}\newlocaldirect.com\sync\Outgoing\AppID-" + this.AppID.ToString(), System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+				string appIDFolder = string.Format(@"{0}\newlocaldirect.com\sync\Outgoing\AppID-" + AppID.ToString(), Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 				if (!Directory.Exists(appIDFolder))
 					Directory.CreateDirectory(appIDFolder);
 
@@ -442,85 +423,22 @@ namespace MiniBar.ConfigurationClasses
 				if (!Directory.Exists(Path.Combine(appIDFolder, "user_data")))
 					Directory.CreateDirectory(Path.Combine(appIDFolder, "user_data"));
 			}
-			catch
-			{
-			}
+			catch { }
 		}
 
 		private void LoadDashboardName()
 		{
-			this.DashboardName = "Dashboard";
+			DashboardName = "Dashboard";
 
 			XmlNode node;
 			if (File.Exists(_dashboardNamePath))
 			{
-				XmlDocument document = new XmlDocument();
+				var document = new XmlDocument();
 				document.Load(_dashboardNamePath);
 
 				node = document.SelectSingleNode(@"/Tab2Name");
 				if (node != null)
-					this.DashboardName = node.InnerText;
-			}
-		}
-
-		private void LoadSalesDepotName()
-		{
-			this.SalesDepotName = "Sales Depot";
-
-			XmlNode node;
-			if (File.Exists(_salesDepotNamePath))
-			{
-				XmlDocument document = new XmlDocument();
-				document.Load(_salesDepotNamePath);
-
-				node = document.SelectSingleNode(@"/SDName");
-				if (node != null)
-					this.SalesDepotName = node.InnerText;
-			}
-		}
-
-		private void LoadApprovedLibraries()
-		{
-			this.UseRemoteSalesDepot = true;
-			bool defaultUseRemoteSalesDepot = false;
-			bool userExisted = false;
-			if (File.Exists(_approvedLibrariesFile))
-			{
-				XmlDocument document = new XmlDocument();
-				document.Load(_approvedLibrariesFile);
-
-				XmlNode node = document.SelectSingleNode(@"/ApprovedLibraries");
-				if (node != null)
-					foreach (XmlNode userNode in node.ChildNodes)
-						if (userNode.Name.Equals("User"))
-						{
-							string userName = string.Empty;
-							bool useRemoteLibraries = false;
-							foreach (XmlAttribute attribute in userNode.Attributes)
-							{
-								switch (attribute.Name)
-								{
-									case "Name":
-										userName = attribute.Value;
-										break;
-									case "UseRemoteLibraries":
-										bool.TryParse(attribute.Value, out useRemoteLibraries);
-										break;
-								}
-							}
-							if (userName.Equals(Environment.UserName))
-							{
-								userExisted = true;
-								this.UseRemoteSalesDepot = useRemoteLibraries;
-								break;
-							}
-							else if (userName.Equals(DefaultUserName))
-							{
-								defaultUseRemoteSalesDepot = useRemoteLibraries;
-							}
-						}
-				if (!userExisted)
-					this.UseRemoteSalesDepot = defaultUseRemoteSalesDepot;
+					DashboardName = node.InnerText;
 			}
 		}
 
@@ -528,13 +446,13 @@ namespace MiniBar.ConfigurationClasses
 		{
 			lock (AppManager.Locker)
 			{
-				this.LastSync = DateTime.Now;
-				this.SyncHourly = false;
-				this.OwnControl = false;
-				this.OnPrimaryScreen = true;
-				this.QuickRetraction = true;
-				this.FloaterLeft = 0;
-				this.FloaterTop = 0;
+				LastSync = DateTime.Now;
+				SyncHourly = false;
+				OwnControl = false;
+				OnPrimaryScreen = true;
+				QuickRetraction = true;
+				FloaterLeft = 0;
+				FloaterTop = 0;
 
 				XmlNode node;
 				DateTime tempDateTime;
@@ -542,49 +460,47 @@ namespace MiniBar.ConfigurationClasses
 				int tempInt;
 				if (File.Exists(_minibarSettingsFile))
 				{
-					XmlDocument document = new XmlDocument();
+					var document = new XmlDocument();
 					try
 					{
 						document.Load(_minibarSettingsFile);
 					}
-					catch
-					{
-					}
+					catch { }
 
 					node = document.SelectSingleNode(@"/MinibarSettings/LastSync");
 					if (node != null)
 						if (DateTime.TryParse(node.InnerText, out tempDateTime))
-							this.LastSync = tempDateTime;
+							LastSync = tempDateTime;
 					node = document.SelectSingleNode(@"/MinibarSettings/SyncHourly");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.SyncHourly = tempBool;
+							SyncHourly = tempBool;
 					node = document.SelectSingleNode(@"/MinibarSettings/OwnControl");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.OwnControl = tempBool;
+							OwnControl = tempBool;
 					node = document.SelectSingleNode(@"/MinibarSettings/OnPrimaryScreen");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.OnPrimaryScreen = tempBool;
+							OnPrimaryScreen = tempBool;
 					node = document.SelectSingleNode(@"/MinibarSettings/FloaterLeft");
 					if (node != null)
 						if (int.TryParse(node.InnerText, out tempInt))
-							this.FloaterLeft = tempInt;
+							FloaterLeft = tempInt;
 					node = document.SelectSingleNode(@"/MinibarSettings/FloaterTop");
 					if (node != null)
 						if (int.TryParse(node.InnerText, out tempInt))
-							this.FloaterTop = tempInt;
+							FloaterTop = tempInt;
 					//node = document.SelectSingleNode(@"/MinibarSettings/QuickRetraction");
 					//if (node != null)
 					//    if (bool.TryParse(node.InnerText, out tempBool))
 					//        this.QuickRetraction = tempBool;
 				}
 
-				if (File.Exists(Path.Combine(this.SyncSettingsFolderPath, SyncSettingsFileName)))
+				if (File.Exists(Path.Combine(SyncSettingsFolderPath, SyncSettingsFileName)))
 				{
-					XmlDocument document = new XmlDocument();
-					document.Load(Path.Combine(this.SyncSettingsFolderPath, SyncSettingsFileName));
+					var document = new XmlDocument();
+					document.Load(Path.Combine(SyncSettingsFolderPath, SyncSettingsFileName));
 
 					node = document.SelectSingleNode(@"/Settings/MediaProperty/SyncTime");
 					if (node != null)
@@ -601,92 +517,90 @@ namespace MiniBar.ConfigurationClasses
 		{
 			lock (AppManager.Locker)
 			{
-				this.AutoRunNormal = true;
-				this.AutoRunHidden = false;
-				this.AutoRunFloat = false;
-				this.HideAll = true;
-				this.HideSpecificProgram = false;
-				this.HideSpecificProgramMaximized = false;
-				this.VisiblePowerPoint = false;
-				this.VisiblePowerPointMaximaized = false;
-				this.CloseShutdown = false;
-				this.CloseHide = true;
-				this.CloseFloat = false;
+				AutoRunNormal = true;
+				AutoRunHidden = false;
+				AutoRunFloat = false;
+				HideAll = true;
+				HideSpecificProgram = false;
+				HideSpecificProgramMaximized = false;
+				VisiblePowerPoint = false;
+				VisiblePowerPointMaximaized = false;
+				CloseShutdown = false;
+				CloseHide = true;
+				CloseFloat = false;
 
 				XmlNode node;
 				bool tempBool;
-				if (this.OwnControl)
-					_minibarAppSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app\MinibarAppSettings.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+				if (OwnControl)
+					_minibarAppSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app\MinibarAppSettings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 				else
-					_minibarAppSettingsFile = string.Format(@"{0}\newlocaldirect.com\app\Minibar\MinibarAppSettings.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
+					_minibarAppSettingsFile = string.Format(@"{0}\newlocaldirect.com\app\Minibar\MinibarAppSettings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 
 				if (File.Exists(_minibarAppSettingsFile))
 				{
-					XmlDocument document = new XmlDocument();
+					var document = new XmlDocument();
 					try
 					{
 						document.Load(_minibarAppSettingsFile);
 					}
-					catch
-					{
-					}
+					catch { }
 
 					node = document.SelectSingleNode(@"/MinibarSettings/AutoRunNormal");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.AutoRunNormal = tempBool;
+							AutoRunNormal = tempBool;
 					node = document.SelectSingleNode(@"/MinibarSettings/AutoRunHidden");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.AutoRunHidden = tempBool;
+							AutoRunHidden = tempBool;
 					node = document.SelectSingleNode(@"/MinibarSettings/AutoRunFloat");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.AutoRunFloat = tempBool;
+							AutoRunFloat = tempBool;
 
 					node = document.SelectSingleNode(@"/MinibarSettings/HideAll");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.HideAll = tempBool;
+							HideAll = tempBool;
 					node = document.SelectSingleNode(@"/MinibarSettings/HideSpecificProgram");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.HideSpecificProgram = tempBool;
+							HideSpecificProgram = tempBool;
 					node = document.SelectSingleNode(@"/MinibarSettings/HideSpecificProgramMaximized");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.HideSpecificProgramMaximized = tempBool;
+							HideSpecificProgramMaximized = tempBool;
 					node = document.SelectSingleNode(@"/MinibarSettings/VisiblePowerPoint");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.VisiblePowerPoint = tempBool;
+							VisiblePowerPoint = tempBool;
 					node = document.SelectSingleNode(@"/MinibarSettings/VisiblePowerPointMaximaized");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.VisiblePowerPointMaximaized = tempBool;
+							VisiblePowerPointMaximaized = tempBool;
 
 					node = document.SelectSingleNode(@"/MinibarSettings/CloseShutdown");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.CloseShutdown = tempBool;
+							CloseShutdown = tempBool;
 					node = document.SelectSingleNode(@"/MinibarSettings/CloseHide");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.CloseHide = tempBool;
+							CloseHide = tempBool;
 					node = document.SelectSingleNode(@"/MinibarSettings/CloseFloat");
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
-							this.CloseFloat = tempBool;
+							CloseFloat = tempBool;
 					node = document.SelectSingleNode(@"/MinibarSettings/Applications");
 					if (node != null)
 					{
 						if (node.ChildNodes.Count > 0)
-							this.PrimaryApplications.Clear();
+							PrimaryApplications.Clear();
 						foreach (XmlNode childNode in node.ChildNodes)
 							switch (childNode.Name)
 							{
 								case "Application":
-									this.PrimaryApplications.Add(childNode.InnerText);
+									PrimaryApplications.Add(childNode.InnerText);
 									break;
 							}
 					}
@@ -696,50 +610,50 @@ namespace MiniBar.ConfigurationClasses
 
 		public void SaveMinibarSettings()
 		{
-			StringBuilder xml = new StringBuilder();
+			var xml = new StringBuilder();
 
 			xml.AppendLine(@"<MinibarSettings>");
-			xml.AppendLine(@"<LastSync>" + this.LastSync.ToString() + @"</LastSync>");
-			xml.AppendLine(@"<SyncHourly>" + this.SyncHourly.ToString() + @"</SyncHourly>");
-			xml.AppendLine(@"<OwnControl>" + this.OwnControl.ToString() + @"</OwnControl>");
-			xml.AppendLine(@"<OnPrimaryScreen>" + this.OnPrimaryScreen.ToString() + @"</OnPrimaryScreen>");
-			xml.AppendLine(@"<FloaterTop>" + this.FloaterTop.ToString() + @"</FloaterTop>");
-			xml.AppendLine(@"<FloaterLeft>" + this.FloaterLeft.ToString() + @"</FloaterLeft>");
-			xml.AppendLine(@"<QuickRetraction>" + this.QuickRetraction.ToString() + @"</QuickRetraction>");
+			xml.AppendLine(@"<LastSync>" + LastSync.ToString() + @"</LastSync>");
+			xml.AppendLine(@"<SyncHourly>" + SyncHourly.ToString() + @"</SyncHourly>");
+			xml.AppendLine(@"<OwnControl>" + OwnControl.ToString() + @"</OwnControl>");
+			xml.AppendLine(@"<OnPrimaryScreen>" + OnPrimaryScreen.ToString() + @"</OnPrimaryScreen>");
+			xml.AppendLine(@"<FloaterTop>" + FloaterTop.ToString() + @"</FloaterTop>");
+			xml.AppendLine(@"<FloaterLeft>" + FloaterLeft.ToString() + @"</FloaterLeft>");
+			xml.AppendLine(@"<QuickRetraction>" + QuickRetraction.ToString() + @"</QuickRetraction>");
 			xml.AppendLine(@"</MinibarSettings>");
 
-			using (StreamWriter sw = new StreamWriter(_minibarSettingsFile, false))
+			using (var sw = new StreamWriter(_minibarSettingsFile, false))
 			{
 				sw.Write(xml);
 				sw.Flush();
 			}
 
-			if (this.OwnControl)
+			if (OwnControl)
 			{
 				xml.Clear();
 				xml.AppendLine(@"<MinibarSettings>");
-				xml.AppendLine(@"<AutoRunNormal>" + this.AutoRunNormal.ToString() + @"</AutoRunNormal>");
-				xml.AppendLine(@"<AutoRunHidden>" + this.AutoRunHidden.ToString() + @"</AutoRunHidden>");
-				xml.AppendLine(@"<AutoRunFloat>" + this.AutoRunFloat.ToString() + @"</AutoRunFloat>");
+				xml.AppendLine(@"<AutoRunNormal>" + AutoRunNormal.ToString() + @"</AutoRunNormal>");
+				xml.AppendLine(@"<AutoRunHidden>" + AutoRunHidden.ToString() + @"</AutoRunHidden>");
+				xml.AppendLine(@"<AutoRunFloat>" + AutoRunFloat.ToString() + @"</AutoRunFloat>");
 
-				xml.AppendLine(@"<HideAll>" + this.HideAll.ToString() + @"</HideAll>");
-				xml.AppendLine(@"<HideSpecificProgram>" + this.HideSpecificProgram.ToString() + @"</HideSpecificProgram>");
-				xml.AppendLine(@"<HideSpecificProgramMaximized>" + this.HideSpecificProgramMaximized.ToString() + @"</HideSpecificProgramMaximized>");
-				xml.AppendLine(@"<VisiblePowerPoint>" + this.VisiblePowerPoint.ToString() + @"</VisiblePowerPoint>");
-				xml.AppendLine(@"<VisiblePowerPointMaximaized>" + this.VisiblePowerPointMaximaized.ToString() + @"</VisiblePowerPointMaximaized>");
+				xml.AppendLine(@"<HideAll>" + HideAll.ToString() + @"</HideAll>");
+				xml.AppendLine(@"<HideSpecificProgram>" + HideSpecificProgram.ToString() + @"</HideSpecificProgram>");
+				xml.AppendLine(@"<HideSpecificProgramMaximized>" + HideSpecificProgramMaximized.ToString() + @"</HideSpecificProgramMaximized>");
+				xml.AppendLine(@"<VisiblePowerPoint>" + VisiblePowerPoint.ToString() + @"</VisiblePowerPoint>");
+				xml.AppendLine(@"<VisiblePowerPointMaximaized>" + VisiblePowerPointMaximaized.ToString() + @"</VisiblePowerPointMaximaized>");
 
-				xml.AppendLine(@"<CloseShutdown>" + this.CloseShutdown.ToString() + @"</CloseShutdown>");
-				xml.AppendLine(@"<CloseHide>" + this.CloseHide.ToString() + @"</CloseHide>");
-				xml.AppendLine(@"<CloseFloat>" + this.CloseFloat.ToString() + @"</CloseFloat>");
+				xml.AppendLine(@"<CloseShutdown>" + CloseShutdown.ToString() + @"</CloseShutdown>");
+				xml.AppendLine(@"<CloseHide>" + CloseHide.ToString() + @"</CloseHide>");
+				xml.AppendLine(@"<CloseFloat>" + CloseFloat.ToString() + @"</CloseFloat>");
 
 				xml.AppendLine(@"<Applications>");
-				foreach (string application in this.PrimaryApplications)
+				foreach (string application in PrimaryApplications)
 					xml.AppendLine(@"<Application>" + application.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Application>");
 				xml.AppendLine(@"</Applications>");
 				xml.AppendLine(@"</MinibarSettings>");
 
-				_minibarAppSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app\MinibarAppSettings.xml", System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles));
-				using (StreamWriter sw = new StreamWriter(_minibarAppSettingsFile, false))
+				_minibarAppSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app\MinibarAppSettings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+				using (var sw = new StreamWriter(_minibarAppSettingsFile, false))
 				{
 					sw.Write(xml);
 					sw.Flush();
@@ -749,20 +663,18 @@ namespace MiniBar.ConfigurationClasses
 
 		public void LoadWebcastSettings()
 		{
-			this.Location = string.Empty;
-			this.MeetingIDs = new List<string>();
+			Location = string.Empty;
+			MeetingIDs = new List<string>();
 
 			XmlNode node;
 			if (File.Exists(_webcastSettingsFile))
 			{
-				XmlDocument document = new XmlDocument();
+				var document = new XmlDocument();
 				try
 				{
 					document.Load(_webcastSettingsFile);
 				}
-				catch
-				{
-				}
+				catch { }
 				node = document.SelectSingleNode(@"/Webcast");
 				if (node != null)
 				{
@@ -770,10 +682,10 @@ namespace MiniBar.ConfigurationClasses
 						switch (childNode.Name)
 						{
 							case "Location":
-								this.Location = childNode.InnerText;
+								Location = childNode.InnerText;
 								break;
 							case "MeetingID":
-								this.MeetingIDs.Add(childNode.InnerText);
+								MeetingIDs.Add(childNode.InnerText);
 								break;
 						}
 				}

@@ -91,6 +91,8 @@
     <Compile Include="BusinessClasses\MasterWizardManager.cs" />
     <Compile Include="BusinessClasses\SyncManager.cs" />
     <Compile Include="ConfigurationClasses\RegistryHelper.cs" />
+    <Compile Include="ConfigurationClasses\SalesDepotSettings.cs" />
+    <Compile Include="ConfigurationClasses\TabPageSettings.cs" />
     <Compile Include="FormMainExpanded.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,43 +1,34 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using MiniBar.BusinessClasses;
+using MiniBar.ConfigurationClasses;
+using MiniBar.InteropClasses;
 
 namespace MiniBar
 {
 	public partial class FormMain : Form
 	{
-		private static object _locker = new object();
+		private static readonly object _locker = new object();
 		private static FormMain _instance;
-		private Timer _hideTimer = null;
-
-		public bool RibbonVisible { get; set; }
-
-		public static FormMain Instance
-		{
-			get
-			{
-				if (_instance == null)
-					_instance = new FormMain();
-				return _instance;
-			}
-		}
+		private readonly Timer _hideTimer;
 
 		private FormMain()
 		{
 			InitializeComponent();
 
-			this.RibbonVisible = true;
+			RibbonVisible = true;
 
-			ConfigurationClasses.RegistryHelper.MinibarHandle = this.Handle;
+			RegistryHelper.MinibarHandle = Handle;
 
 			ribbonControl.Height = 24;
 
 			_hideTimer = new Timer();
 			_hideTimer.Interval = 1000;
-			_hideTimer.Tick += new EventHandler(_hideTimer_Tick);
+			_hideTimer.Tick += _hideTimer_Tick;
 			_hideTimer.Start();
 
 			if ((base.CreateGraphics()).DpiX > 96)
@@ -90,17 +81,17 @@ namespace MiniBar
 				else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemIPad)
 					FormMainExpanded.Instance.ribbonTabItemIPad.Select();
 				ribbonControl.SelectedRibbonTabItem.Checked = false;
-				BusinessClasses.ServiceDataManager.Instance.WriteActivity();
+				ServiceDataManager.Instance.WriteActivity();
 			}
 		}
 		#endregion
 
 		#region Timer Ticks
-		void ExpandRibbonTimer_Tick(object sender, EventArgs e)
+		private void ExpandRibbonTimer_Tick(object sender, EventArgs e)
 		{
 			if (ribbonControl.Height < (130 - 10))
 			{
-				ribbonControl.Height = ConfigurationClasses.SettingsManager.Instance.QuickRetraction ? 130 : (ribbonControl.Height + 10);
+				ribbonControl.Height = SettingsManager.Instance.QuickRetraction ? 130 : (ribbonControl.Height + 10);
 				Application.DoEvents();
 				return;
 			}
@@ -110,11 +101,11 @@ namespace MiniBar
 			((Timer)sender).Dispose();
 		}
 
-		void RetractRibbonTimer_Tick(object sender, EventArgs e)
+		private void RetractRibbonTimer_Tick(object sender, EventArgs e)
 		{
 			if (ribbonControl.Height > (24 + 10))
 			{
-				ribbonControl.Height = ConfigurationClasses.SettingsManager.Instance.QuickRetraction ? 24 : (ribbonControl.Height - 10);
+				ribbonControl.Height = SettingsManager.Instance.QuickRetraction ? 24 : (ribbonControl.Height - 10);
 				Application.DoEvents();
 				return;
 			}
@@ -126,29 +117,29 @@ namespace MiniBar
 			((Timer)sender).Dispose();
 		}
 
-		void FadeInTimer_Tick(object sender, EventArgs e)
+		private void FadeInTimer_Tick(object sender, EventArgs e)
 		{
-			if (this.Opacity < 1 && !ConfigurationClasses.SettingsManager.Instance.QuickRetraction)
+			if (Opacity < 1 && !SettingsManager.Instance.QuickRetraction)
 			{
-				this.Opacity += 0.07;
+				Opacity += 0.07;
 				Application.DoEvents();
 				return;
 			}
-			this.Opacity = 1;
+			Opacity = 1;
 			Application.DoEvents();
 			((Timer)sender).Enabled = false;
 			((Timer)sender).Dispose();
 		}
 
-		void FadeOutTimer_Tick(object sender, EventArgs e)
+		private void FadeOutTimer_Tick(object sender, EventArgs e)
 		{
-			if (this.Opacity > 0 && !ConfigurationClasses.SettingsManager.Instance.QuickRetraction)
+			if (Opacity > 0 && !SettingsManager.Instance.QuickRetraction)
 			{
-				this.Opacity -= 1;
+				Opacity -= 1;
 				Application.DoEvents();
 				return;
 			}
-			this.Opacity = 0;
+			Opacity = 0;
 			Application.DoEvents();
 			((Timer)sender).Enabled = false;
 			((Timer)sender).Dispose();
@@ -163,31 +154,31 @@ namespace MiniBar
 				bool primaryOnLeftSide = true;
 				if (screensCount > 1)
 				{
-					screen = ConfigurationClasses.SettingsManager.Instance.OnPrimaryScreen ? Screen.PrimaryScreen : Screen.AllScreens.Where(x => !x.Primary).FirstOrDefault();
+					screen = SettingsManager.Instance.OnPrimaryScreen ? Screen.PrimaryScreen : Screen.AllScreens.Where(x => !x.Primary).FirstOrDefault();
 					primaryOnLeftSide = screen.WorkingArea.X >= 0;
 				}
 				if (screen == null)
 					screen = Screen.PrimaryScreen;
 
-				this.Top = screen.WorkingArea.Bottom - this.Height;
-				if (ConfigurationClasses.SettingsManager.Instance.OnPrimaryScreen)
-					this.Left = (screen.WorkingArea.Width - this.Width) / 2;
+				Top = screen.WorkingArea.Bottom - Height;
+				if (SettingsManager.Instance.OnPrimaryScreen)
+					Left = (screen.WorkingArea.Width - Width) / 2;
 				else if (screensCount > 1)
 				{
 					if (primaryOnLeftSide)
-						this.Left = Screen.PrimaryScreen.WorkingArea.Width + (screen.WorkingArea.Width - this.Width) / 2;
+						Left = Screen.PrimaryScreen.WorkingArea.Width + (screen.WorkingArea.Width - Width) / 2;
 					else
-						this.Left = (screen.WorkingArea.Width + this.Width) / 2 * -1;
+						Left = (screen.WorkingArea.Width + Width) / 2 * -1;
 				}
 
-				bool visible = this.RibbonVisible;
+				bool visible = RibbonVisible;
 
-				visible = visible & !ConfigurationClasses.RegistryHelper.ShowHidden;
-				visible = visible & !ConfigurationClasses.RegistryHelper.ShowFloat;
-				visible = visible & !ConfigurationClasses.SettingsManager.Instance.VisiblePowerPoint;
-				visible = visible & !ConfigurationClasses.SettingsManager.Instance.VisiblePowerPointMaximaized;
+				visible = visible & !RegistryHelper.ShowHidden;
+				visible = visible & !RegistryHelper.ShowFloat;
+				visible = visible & !SettingsManager.Instance.VisiblePowerPoint;
+				visible = visible & !SettingsManager.Instance.VisiblePowerPointMaximaized;
 
-				if ((ConfigurationClasses.SettingsManager.Instance.HideAll || ConfigurationClasses.SettingsManager.Instance.HideSpecificProgram || ConfigurationClasses.SettingsManager.Instance.HideSpecificProgramMaximized) && visible)
+				if ((SettingsManager.Instance.HideAll || SettingsManager.Instance.HideSpecificProgram || SettingsManager.Instance.HideSpecificProgramMaximized) && visible)
 				{
 					try
 					{
@@ -195,41 +186,35 @@ namespace MiniBar
 						visible = !activeProcess.MainWindowTitle.ToUpper().Contains(@"\\REMOTE") && !activeProcess.MainWindowTitle.ToUpper().Contains("POWERPOINT SLIDE SHOW");
 						if (visible)
 						{
-							if (ConfigurationClasses.SettingsManager.Instance.HideAll)
+							if (SettingsManager.Instance.HideAll)
 								visible = !AppManager.Instance.IsProcessWindowMaximized(activeProcess) || activeProcess.ProcessName.ToLower().Contains("powerpnt");
-							else if (ConfigurationClasses.SettingsManager.Instance.HideSpecificProgram || ConfigurationClasses.SettingsManager.Instance.HideSpecificProgramMaximized)
+							else if (SettingsManager.Instance.HideSpecificProgram || SettingsManager.Instance.HideSpecificProgramMaximized)
 							{
-								visible = !(ConfigurationClasses.SettingsManager.Instance.PrimaryApplications.Where(x => activeProcess.ProcessName.ToUpper().Contains(x.ToUpper()) && !activeProcess.ProcessName.ToLower().Contains("powerpnt")).Count() > 0);
-								if (ConfigurationClasses.SettingsManager.Instance.HideSpecificProgramMaximized && !visible)
+								visible = !(SettingsManager.Instance.PrimaryApplications.Where(x => activeProcess.ProcessName.ToUpper().Contains(x.ToUpper()) && !activeProcess.ProcessName.ToLower().Contains("powerpnt")).Count() > 0);
+								if (SettingsManager.Instance.HideSpecificProgramMaximized && !visible)
 									visible = !AppManager.Instance.IsProcessWindowMaximized(activeProcess);
 							}
 						}
 					}
-					catch
-					{
-					}
+					catch {}
 				}
-				if (!visible && !ConfigurationClasses.RegistryHelper.ShowFloat && (ConfigurationClasses.SettingsManager.Instance.VisiblePowerPoint || ConfigurationClasses.SettingsManager.Instance.VisiblePowerPointMaximaized))
+				if (!visible && !RegistryHelper.ShowFloat && (SettingsManager.Instance.VisiblePowerPoint || SettingsManager.Instance.VisiblePowerPointMaximaized))
 				{
 					try
 					{
 						Process activeProcess = AppManager.Instance.GetActiveProcess();
 						if (activeProcess.ProcessName.ToLower().Contains("powerpnt"))
 							if (!activeProcess.MainWindowTitle.ToUpper().Contains("POWERPOINT SLIDE SHOW"))
-								visible = ConfigurationClasses.SettingsManager.Instance.VisiblePowerPointMaximaized ? AppManager.Instance.IsProcessWindowMaximized(activeProcess) || activeProcess.ProcessName.ToLower().Contains("minibar") : ConfigurationClasses.SettingsManager.Instance.VisiblePowerPoint;
+								visible = SettingsManager.Instance.VisiblePowerPointMaximaized ? AppManager.Instance.IsProcessWindowMaximized(activeProcess) || activeProcess.ProcessName.ToLower().Contains("minibar") : SettingsManager.Instance.VisiblePowerPoint;
 						if (!visible && activeProcess.ProcessName.ToLower().Contains("minibar"))
 						{
 							Process process = Process.GetProcesses().Where(x => x.ProcessName.ToLower().Contains("powerpnt")).FirstOrDefault();
 							if (process != null)
 								if (!process.MainWindowTitle.ToUpper().Contains("POWERPOINT SLIDE SHOW"))
-									visible = ConfigurationClasses.SettingsManager.Instance.VisiblePowerPointMaximaized ? AppManager.Instance.IsProcessWindowMaximized(process) : !InteropClasses.WinAPIHelper.IsIconic(process.MainWindowHandle);
-
+									visible = SettingsManager.Instance.VisiblePowerPointMaximaized ? AppManager.Instance.IsProcessWindowMaximized(process) : !WinAPIHelper.IsIconic(process.MainWindowHandle);
 						}
 					}
-					catch
-					{
-					}
-
+					catch {}
 				}
 				ribbonControl.Visible = visible;
 			}
@@ -243,53 +228,53 @@ namespace MiniBar
 			{
 				switch (m.Msg)
 				{
-					case (int)(InteropClasses.WinAPIHelper.WM_APP + 1):
+					case (int)(WinAPIHelper.WM_APP + 1):
 						lock (_locker)
-							this.RibbonVisible = false;
+							RibbonVisible = false;
 						break;
-					case (int)(InteropClasses.WinAPIHelper.WM_APP + 2):
+					case (int)(WinAPIHelper.WM_APP + 2):
 						lock (_locker)
-							this.RibbonVisible = true;
+							RibbonVisible = true;
 						break;
-					case (int)(InteropClasses.WinAPIHelper.WM_APP + 3):
+					case (int)(WinAPIHelper.WM_APP + 3):
 						lock (_locker)
-							this.RibbonVisible = false;
+							RibbonVisible = false;
 						break;
-					case (int)(InteropClasses.WinAPIHelper.WM_APP + 4):
+					case (int)(WinAPIHelper.WM_APP + 4):
 						lock (_locker)
-							this.RibbonVisible = true;
+							RibbonVisible = true;
 						break;
-					case (int)(InteropClasses.WinAPIHelper.WM_APP + 5):
+					case (int)(WinAPIHelper.WM_APP + 5):
 						lock (_locker)
-							this.RibbonVisible = false;
+							RibbonVisible = false;
 						break;
-					case (int)(InteropClasses.WinAPIHelper.WM_APP + 6):
+					case (int)(WinAPIHelper.WM_APP + 6):
 						lock (_locker)
-							this.RibbonVisible = true;
+							RibbonVisible = true;
 						break;
-					case (int)(InteropClasses.WinAPIHelper.WM_APP + 7):
+					case (int)(WinAPIHelper.WM_APP + 7):
 						lock (_locker)
-							this.RibbonVisible = false;
+							RibbonVisible = false;
 						break;
-					case (int)(InteropClasses.WinAPIHelper.WM_APP + 8):
+					case (int)(WinAPIHelper.WM_APP + 8):
 						lock (_locker)
-							this.RibbonVisible = true;
+							RibbonVisible = true;
 						break;
-					case (int)(InteropClasses.WinAPIHelper.WM_APP + 9):
+					case (int)(WinAPIHelper.WM_APP + 9):
 						lock (_locker)
-							this.RibbonVisible = false;
+							RibbonVisible = false;
 						break;
-					case (int)(InteropClasses.WinAPIHelper.WM_APP + 10):
+					case (int)(WinAPIHelper.WM_APP + 10):
 						lock (_locker)
-							this.RibbonVisible = true;
+							RibbonVisible = true;
 						break;
-					case (int)(InteropClasses.WinAPIHelper.WM_APP + 11):
+					case (int)(WinAPIHelper.WM_APP + 11):
 						lock (_locker)
-							this.RibbonVisible = false;
+							RibbonVisible = false;
 						break;
-					case (int)(InteropClasses.WinAPIHelper.WM_APP + 12):
+					case (int)(WinAPIHelper.WM_APP + 12):
 						lock (_locker)
-							this.RibbonVisible = true;
+							RibbonVisible = true;
 						break;
 					default:
 						base.WndProc(ref m);
@@ -300,52 +285,56 @@ namespace MiniBar
 
 		public void Init()
 		{
+			InitTabPages();
+
 			if (ribbonControl.SelectedRibbonTabItem != null)
 				ribbonControl.SelectedRibbonTabItem.Checked = false;
 
-			ribbonTabItemDashboard.Text = ConfigurationClasses.SettingsManager.Instance.DashboardName;
-			ribbonTabItemSalesDepot.Text = ConfigurationClasses.SettingsManager.Instance.SalesDepotName;
-
-			bool appVisible = BusinessClasses.NBWApplicationsManager.Instance.NBWApplications.Count > 0;
-			bool salesDepotVisisble = Directory.GetDirectories(ConfigurationClasses.SettingsManager.Instance.LibraryPath).Length > 0;
-			bool clipartVisible = Directory.GetDirectories(ConfigurationClasses.SettingsManager.Instance.ClipartPath).Length > 0;
-
-			if (!salesDepotVisisble && !clipartVisible && !appVisible)
-			{
-				ribbonTabItemIPad.Text = "iPad Options";
-				ribbonTabItemSync.Text = "Synchronize";
-				ribbonTabItemSettings.Text = "My Settings";
-			}
-			else if (!salesDepotVisisble && !clipartVisible)
-			{
-				ribbonTabItemIPad.Text = "iPad Options";
-				ribbonTabItemSync.Text = "Synchronize";
-			}
-			else if (!salesDepotVisisble && !appVisible)
-			{
-				ribbonTabItemIPad.Text = "iPad Options";
-				ribbonTabItemSync.Text = "Synchronize";
-			}
-			else if (!clipartVisible && !appVisible)
-			{
-				ribbonTabItemIPad.Text = "iPad Options";
-			}
-			else if (!salesDepotVisisble)
-			{
-				ribbonTabItemSync.Text = "Synchronize";
-			}
-
-			ribbonTabItemApps.Visible = appVisible;
-			ribbonTabItemSalesDepot.Visible = salesDepotVisisble;
-			ribbonTabItemClipart.Visible = clipartVisible;
-
-			ribbonTabItemDashboard.Enabled = ConfigurationClasses.SettingsManager.Instance.SlidesReadyFull;
-			ribbonTabItemApps.Enabled = ConfigurationClasses.SettingsManager.Instance.SlidesReadyFull;
-			ribbonTabItemTools.Enabled = ConfigurationClasses.SettingsManager.Instance.SlidesReadyFull;
-			ribbonTabItemSettings.Enabled = ConfigurationClasses.SettingsManager.Instance.SlidesReadyFull;
-
 			FormMainExpanded.Instance.Init();
 			FormMainExpanded.Instance.Show();
+		}
+
+		private void InitTabPages()
+		{
+			var tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.PowerPoint);
+			ribbonTabItemPowerPoint.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
+			ribbonTabItemPowerPoint.Enabled = tabPage != null && tabPage.Enabled;
+
+			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Dashboard);
+			ribbonTabItemDashboard.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
+			ribbonTabItemDashboard.Enabled = tabPage != null && tabPage.Enabled;
+
+			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.SalesDepot);
+			ribbonTabItemSalesDepot.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
+			ribbonTabItemSalesDepot.Enabled = tabPage != null && tabPage.Enabled;
+
+			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Apps);
+			ribbonTabItemApps.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
+			ribbonTabItemApps.Enabled = tabPage != null && tabPage.Enabled;
+
+			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Clipart);
+			ribbonTabItemClipart.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
+			ribbonTabItemClipart.Enabled = tabPage != null && tabPage.Enabled;
+
+			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.PDF);
+			ribbonTabItemPDF.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
+			ribbonTabItemPDF.Enabled = tabPage != null && tabPage.Enabled;
+
+			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Tools);
+			ribbonTabItemTools.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
+			ribbonTabItemTools.Enabled = tabPage != null && tabPage.Enabled;
+
+			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Settings);
+			ribbonTabItemSettings.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
+			ribbonTabItemSettings.Enabled = tabPage != null && tabPage.Enabled;
+
+			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.iPad);
+			ribbonTabItemIPad.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
+			ribbonTabItemIPad.Enabled = tabPage != null && tabPage.Enabled;
+
+			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Sync);
+			ribbonTabItemSync.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
+			ribbonTabItemSync.Enabled = tabPage != null && tabPage.Enabled;
 		}
 
 		private void ActivateExpandedForm()
@@ -357,24 +346,24 @@ namespace MiniBar
 
 		public void FadeIn()
 		{
-			Timer timer = new Timer();
+			var timer = new Timer();
 			timer.Interval = 30;
-			timer.Tick += new EventHandler(FadeInTimer_Tick);
+			timer.Tick += FadeInTimer_Tick;
 			timer.Start();
 		}
 
 		public void FadeOut()
 		{
-			Timer timer = new Timer();
+			var timer = new Timer();
 			timer.Interval = 30;
-			timer.Tick += new EventHandler(FadeOutTimer_Tick);
+			timer.Tick += FadeOutTimer_Tick;
 			timer.Start();
 		}
 		#endregion
 
 		#region Select All in Editor Handlers
-		private bool enter = false;
-		private bool needSelect = false;
+		private bool enter;
+		private bool needSelect;
 
 		public void Editor_Enter(object sender, EventArgs e)
 		{
@@ -386,7 +375,7 @@ namespace MiniBar
 		{
 			if (needSelect)
 			{
-				(sender as DevExpress.XtraEditors.BaseEdit).SelectAll();
+				(sender as BaseEdit).SelectAll();
 			}
 		}
 
@@ -400,5 +389,17 @@ namespace MiniBar
 			enter = false;
 		}
 		#endregion
+
+		public bool RibbonVisible { get; set; }
+
+		public static FormMain Instance
+		{
+			get
+			{
+				if (_instance == null)
+					_instance = new FormMain();
+				return _instance;
+			}
+		}
 	}
 }

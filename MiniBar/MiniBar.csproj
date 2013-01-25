@@ -267,6 +267,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mini.ico" />
+    <None Include="Resources\BrowserInternetExplorer.png" />
+    <None Include="Resources\BrowserOpera.png" />
+    <None Include="Resources\BrowserFirefox.png" />
+    <None Include="Resources\BrowserGoogleChrome.png" />
     <None Include="Resources\IPadLogo.png" />
     <None Include="Resources\AppCode.png" />
     <None Include="Resources\RemoteSalesDepot.png" />

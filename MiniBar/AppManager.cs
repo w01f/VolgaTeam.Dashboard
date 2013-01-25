@@ -285,10 +285,31 @@ namespace MiniBar
 
 		public void RunWebSalesDepot()
 		{
-			if (File.Exists(SettingsManager.Instance.SalesDepotSettings.ExecutablePath))
-				Process.Start(SettingsManager.Instance.SalesDepotSettings.Url);
+			var browser = string.Empty;
+			if (SettingsManager.Instance.SalesDepotBrowserChrome)
+				browser = "chrome.exe";
+			else if (SettingsManager.Instance.SalesDepotBrowserFirefox)
+				browser = "firefox.exe";
+			else if (SettingsManager.Instance.SalesDepotBrowserFirefox)
+				browser = "opera.exe";
 			else
-				ShowWarning("Couldn't find Sales Depot app");
+				browser = "iexplore.exe";
+			try
+			{
+				var process = new Process
+				{
+					StartInfo =
+						{
+							FileName = browser,
+							Arguments = SettingsManager.Instance.SalesDepotSettings.Url
+						}
+				};
+				process.Start();
+			}
+			catch
+			{
+				ShowWarning("Couldn't open the website");
+			}
 		}
 
 		public void RunSalesDepotRemote()

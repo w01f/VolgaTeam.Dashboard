@@ -90,7 +90,7 @@ namespace MiniBar
 				ribbonBarSettingsExit.RecalcLayout();
 				ribbonBarSettingsMinibar.RecalcLayout();
 				ribbonBarSettingsStartup.RecalcLayout();
-				ribbonBarSlidesExit.RecalcLayout();
+				ribbonBarSalesDepotExit.RecalcLayout();
 				ribbonBarSyncExit.RecalcLayout();
 				ribbonBarSyncHelp.RecalcLayout();
 				ribbonBarSyncHourly.RecalcLayout();
@@ -813,8 +813,63 @@ namespace MiniBar
 			ribbonBarSalesDepot.RecalcLayout();
 
 			ribbonBarSalesDepotRemote.Visible = Directory.Exists(SettingsManager.Instance.SalesDepotSettings.RemoteRootPath) & SettingsManager.Instance.SalesDepotSettings.UseRemoteSalesDepot;
+			ribbonBarSalesDepotBrowser.Visible = SettingsManager.Instance.SalesDepotSettings.ShowWebButton;
+
+			buttonItemSalesDepotBrowserChrome.Enabled = SettingsManager.Instance.SalesDepotSettings.ShowWebButton && ServiceDataManager.Instance.ChromeInstalled;
+			buttonItemSalesDepotBrowserChrome.Checked = SettingsManager.Instance.SalesDepotBrowserChrome;
+			if (buttonItemSalesDepotBrowserChrome.Enabled)
+			{
+				buttonItemSalesDepotBrowserChrome.Click += buttonItemSalesDepotBrowser_Click;
+				buttonItemSalesDepotBrowserChrome.CheckedChanged += buttonItemSalesDepotBrowser_CheckedChanged;
+			}
+
+			buttonItemSalesDepotBrowserFirefox.Enabled = SettingsManager.Instance.SalesDepotSettings.ShowWebButton && ServiceDataManager.Instance.FirefoxInstalled;
+			buttonItemSalesDepotBrowserFirefox.Checked = SettingsManager.Instance.SalesDepotBrowserFirefox;
+			if (buttonItemSalesDepotBrowserFirefox.Enabled)
+			{
+				buttonItemSalesDepotBrowserFirefox.Click += buttonItemSalesDepotBrowser_Click;
+				buttonItemSalesDepotBrowserFirefox.CheckedChanged += buttonItemSalesDepotBrowser_CheckedChanged;
+			}
+
+			buttonItemSalesDepotBrowserOpera.Enabled = SettingsManager.Instance.SalesDepotSettings.ShowWebButton && ServiceDataManager.Instance.OperaInstalled;
+			buttonItemSalesDepotBrowserOpera.Checked = SettingsManager.Instance.SalesDepotBrowserOpera;
+			if (buttonItemSalesDepotBrowserOpera.Enabled)
+			{
+				buttonItemSalesDepotBrowserOpera.Click += buttonItemSalesDepotBrowser_Click;
+				buttonItemSalesDepotBrowserOpera.CheckedChanged += buttonItemSalesDepotBrowser_CheckedChanged;
+			}
+
+			buttonItemSalesDepotBrowserIE.Checked = SettingsManager.Instance.SalesDepotBrowserIE;
+			buttonItemSalesDepotBrowserIE.Click += buttonItemSalesDepotBrowser_Click;
+			buttonItemSalesDepotBrowserIE.CheckedChanged += buttonItemSalesDepotBrowser_CheckedChanged;
 
 			ribbonPanelSalesDepot.PerformLayout();
+		}
+
+		private void buttonItemSalesDepotBrowser_Click(object sender, EventArgs e)
+		{
+			var button = sender as ButtonItem;
+			if (button != null && !button.Checked)
+			{
+				buttonItemSalesDepotBrowserChrome.Checked = false;
+				buttonItemSalesDepotBrowserFirefox.Checked = false;
+				buttonItemSalesDepotBrowserOpera.Checked = false;
+				buttonItemSalesDepotBrowserIE.Checked = false;
+				button.Checked = true;
+			}
+		}
+
+		private void buttonItemSalesDepotBrowser_CheckedChanged(object sender, EventArgs e)
+		{
+			var button = sender as ButtonItem;
+			if (button != null && button.Checked)
+			{
+				SettingsManager.Instance.SalesDepotBrowserChrome = buttonItemSalesDepotBrowserChrome.Checked;
+				SettingsManager.Instance.SalesDepotBrowserFirefox = buttonItemSalesDepotBrowserFirefox.Checked;
+				SettingsManager.Instance.SalesDepotBrowserOpera = buttonItemSalesDepotBrowserOpera.Checked;
+				SettingsManager.Instance.SalesDepotBrowserIE = buttonItemSalesDepotBrowserIE.Checked;
+				SettingsManager.Instance.SaveMinibarSettings();
+			}
 		}
 		#endregion
 

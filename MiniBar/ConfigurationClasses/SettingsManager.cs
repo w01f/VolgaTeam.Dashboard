@@ -208,6 +208,10 @@ namespace MiniBar.ConfigurationClasses
 		public int FloaterTop { get; set; }
 		public List<string> PrimaryApplications { get; set; }
 		public bool QuickRetraction { get; set; }
+		public bool SalesDepotBrowserChrome { get; set; }
+		public bool SalesDepotBrowserFirefox { get; set; }
+		public bool SalesDepotBrowserOpera { get; set; }
+		public bool SalesDepotBrowserIE { get; set; }
 		#endregion
 
 		#region WebcastSettings
@@ -454,6 +458,11 @@ namespace MiniBar.ConfigurationClasses
 				FloaterLeft = 0;
 				FloaterTop = 0;
 
+				SalesDepotBrowserChrome = ServiceDataManager.Instance.ChromeInstalled;
+				SalesDepotBrowserFirefox = !SalesDepotBrowserChrome && ServiceDataManager.Instance.FirefoxInstalled;
+				SalesDepotBrowserOpera = !SalesDepotBrowserChrome && !SalesDepotBrowserFirefox && ServiceDataManager.Instance.OperaInstalled;
+				SalesDepotBrowserIE = !SalesDepotBrowserChrome && !SalesDepotBrowserFirefox && !SalesDepotBrowserOpera;
+
 				XmlNode node;
 				DateTime tempDateTime;
 				bool tempBool;
@@ -491,11 +500,26 @@ namespace MiniBar.ConfigurationClasses
 					if (node != null)
 						if (int.TryParse(node.InnerText, out tempInt))
 							FloaterTop = tempInt;
-					//node = document.SelectSingleNode(@"/MinibarSettings/QuickRetraction");
-					//if (node != null)
-					//    if (bool.TryParse(node.InnerText, out tempBool))
-					//        this.QuickRetraction = tempBool;
+					node = document.SelectSingleNode(@"/MinibarSettings/SalesDepotBrowserChrome");
+					if (node != null)
+						if (bool.TryParse(node.InnerText, out tempBool))
+							SalesDepotBrowserChrome = tempBool && ServiceDataManager.Instance.ChromeInstalled;
+					node = document.SelectSingleNode(@"/MinibarSettings/SalesDepotBrowserFirefox");
+					if (node != null)
+						if (bool.TryParse(node.InnerText, out tempBool))
+							SalesDepotBrowserFirefox = tempBool && ServiceDataManager.Instance.FirefoxInstalled;
+					node = document.SelectSingleNode(@"/MinibarSettings/SalesDepotBrowserOpera");
+					if (node != null)
+						if (bool.TryParse(node.InnerText, out tempBool))
+							SalesDepotBrowserOpera = tempBool && ServiceDataManager.Instance.OperaInstalled;
+					node = document.SelectSingleNode(@"/MinibarSettings/SalesDepotBrowserIE");
+					if (node != null)
+						if (bool.TryParse(node.InnerText, out tempBool))
+							SalesDepotBrowserIE = tempBool;
 				}
+
+				if (!SalesDepotBrowserIE)
+					SalesDepotBrowserIE = !SalesDepotBrowserChrome && !SalesDepotBrowserFirefox && !SalesDepotBrowserOpera;
 
 				if (File.Exists(Path.Combine(SyncSettingsFolderPath, SyncSettingsFileName)))
 				{
@@ -613,13 +637,17 @@ namespace MiniBar.ConfigurationClasses
 			var xml = new StringBuilder();
 
 			xml.AppendLine(@"<MinibarSettings>");
-			xml.AppendLine(@"<LastSync>" + LastSync.ToString() + @"</LastSync>");
-			xml.AppendLine(@"<SyncHourly>" + SyncHourly.ToString() + @"</SyncHourly>");
-			xml.AppendLine(@"<OwnControl>" + OwnControl.ToString() + @"</OwnControl>");
-			xml.AppendLine(@"<OnPrimaryScreen>" + OnPrimaryScreen.ToString() + @"</OnPrimaryScreen>");
-			xml.AppendLine(@"<FloaterTop>" + FloaterTop.ToString() + @"</FloaterTop>");
-			xml.AppendLine(@"<FloaterLeft>" + FloaterLeft.ToString() + @"</FloaterLeft>");
-			xml.AppendLine(@"<QuickRetraction>" + QuickRetraction.ToString() + @"</QuickRetraction>");
+			xml.AppendLine(@"<LastSync>" + LastSync + @"</LastSync>");
+			xml.AppendLine(@"<SyncHourly>" + SyncHourly + @"</SyncHourly>");
+			xml.AppendLine(@"<OwnControl>" + OwnControl + @"</OwnControl>");
+			xml.AppendLine(@"<OnPrimaryScreen>" + OnPrimaryScreen + @"</OnPrimaryScreen>");
+			xml.AppendLine(@"<FloaterTop>" + FloaterTop + @"</FloaterTop>");
+			xml.AppendLine(@"<FloaterLeft>" + FloaterLeft + @"</FloaterLeft>");
+			xml.AppendLine(@"<QuickRetraction>" + QuickRetraction + @"</QuickRetraction>");
+			xml.AppendLine(@"<SalesDepotBrowserChrome>" + SalesDepotBrowserChrome + @"</SalesDepotBrowserChrome>");
+			xml.AppendLine(@"<SalesDepotBrowserFirefox>" + SalesDepotBrowserFirefox + @"</SalesDepotBrowserFirefox>");
+			xml.AppendLine(@"<SalesDepotBrowserOpera>" + SalesDepotBrowserOpera + @"</SalesDepotBrowserOpera>");
+			xml.AppendLine(@"<SalesDepotBrowserIE>" + SalesDepotBrowserIE + @"</SalesDepotBrowserIE>");
 			xml.AppendLine(@"</MinibarSettings>");
 
 			using (var sw = new StreamWriter(_minibarSettingsFile, false))

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,105 @@ namespace MiniBar.BusinessClasses
 		}
 
 		public List<UserActivity> UserActivities { get; private set; }
+
+		private bool _chromeInstalled;
+		private bool _chromeDefinded;
+		public bool ChromeInstalled
+		{
+			get
+			{
+				if (!_chromeDefinded)
+				{
+					try
+					{
+						var process = new Process
+						{
+							StartInfo =
+							{
+								FileName = "chrome.exe",
+								CreateNoWindow = true,
+								WindowStyle = ProcessWindowStyle.Hidden
+							}
+						};
+						process.Start();
+						process.Kill();
+						_chromeInstalled = true;
+					}
+					catch
+					{
+						_chromeInstalled = false;
+					}
+					_chromeDefinded = true;
+				}
+				return _chromeInstalled;
+			}
+		}
+
+		private bool _firefoxInstalled;
+		private bool _firefoxDefinded;
+		public bool FirefoxInstalled
+		{
+			get
+			{
+				if (!_firefoxDefinded)
+				{
+					try
+					{
+						var process = new Process
+						{
+							StartInfo =
+							{
+								FileName = "firefox.exe",
+								CreateNoWindow = true,
+								WindowStyle = ProcessWindowStyle.Hidden
+							}
+						};
+						process.Start();
+						process.Kill();
+						_firefoxInstalled = true;
+					}
+					catch
+					{
+						_firefoxInstalled = false;
+					}
+					_firefoxDefinded = true;
+				}
+				return _firefoxInstalled;
+			}
+		}
+
+		private bool _operaInstalled;
+		private bool _operaDefinded;
+		public bool OperaInstalled
+		{
+			get
+			{
+				if (!_operaDefinded)
+				{
+					try
+					{
+						var process = new Process
+						{
+							StartInfo =
+							{
+								FileName = "opera.exe",
+								CreateNoWindow = true,
+								WindowStyle = ProcessWindowStyle.Hidden
+							}
+						};
+						process.Start();
+						process.Kill();
+						_operaInstalled = true;
+					}
+					catch
+					{
+						_operaInstalled = false;
+					}
+					_operaDefinded = true;
+				}
+				return _operaInstalled;
+			}
+		}
 
 		private string _currentUser
 		{
@@ -96,7 +196,7 @@ namespace MiniBar.BusinessClasses
 				{
 					document.Load(SettingsManager.Instance.ServiceDataFilePath);
 				}
-				catch {}
+				catch { }
 
 				XmlNode node = document.SelectSingleNode(@"/ServiceData/UserActivities");
 				if (node != null)

@@ -35,8 +35,6 @@
 			this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageRadio = new DevExpress.XtraTab.XtraTabPage();
 			this.pnRadio = new System.Windows.Forms.Panel();
-			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
-			this.pnDigital = new System.Windows.Forms.Panel();
 			this.daypartsControl = new RadioScheduleBuilder.CustomControls.DaypartsControl();
 			this.pnRightTop = new System.Windows.Forms.Panel();
 			this.laRightTopTitle = new System.Windows.Forms.Label();
@@ -63,6 +61,9 @@
 			this.buttonXDemosCustom = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXDemosImport = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXDemosNo = new DevComponents.DotNetBar.ButtonX();
+			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
+			this.pnOptionsDigital = new System.Windows.Forms.Panel();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.laTopTitle = new System.Windows.Forms.Label();
@@ -72,7 +73,6 @@
 			this.xtraTabControlMain.SuspendLayout();
 			this.xtraTabPageRadio.SuspendLayout();
 			this.pnRadio.SuspendLayout();
-			this.xtraTabPageDigital.SuspendLayout();
 			this.pnRightTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsHelp)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).BeginInit();
@@ -88,6 +88,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDemos.Properties)).BeginInit();
 			this.pnDemosType.SuspendLayout();
 			this.pnDemosButtons.SuspendLayout();
+			this.xtraTabPageDigital.SuspendLayout();
+			this.pnOptionsDigital.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
 			this.splitContainerControl.SuspendLayout();
 			this.pnTop.SuspendLayout();
@@ -155,8 +157,7 @@
 			this.xtraTabControlMain.Size = new System.Drawing.Size(664, 610);
 			this.xtraTabControlMain.TabIndex = 18;
 			this.xtraTabControlMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPageRadio,
-            this.xtraTabPageDigital});
+            this.xtraTabPageRadio});
 			// 
 			// xtraTabPageRadio
 			// 
@@ -177,23 +178,6 @@
 			this.pnRadio.Name = "pnRadio";
 			this.pnRadio.Size = new System.Drawing.Size(658, 580);
 			this.pnRadio.TabIndex = 0;
-			// 
-			// xtraTabPageDigital
-			// 
-			this.xtraTabPageDigital.Controls.Add(this.pnDigital);
-			this.xtraTabPageDigital.Name = "xtraTabPageDigital";
-			this.xtraTabPageDigital.PageEnabled = false;
-			this.xtraTabPageDigital.Size = new System.Drawing.Size(658, 580);
-			this.xtraTabPageDigital.Text = "Digital Strategy";
-			// 
-			// pnDigital
-			// 
-			this.pnDigital.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnDigital.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnDigital.Location = new System.Drawing.Point(0, 0);
-			this.pnDigital.Name = "pnDigital";
-			this.pnDigital.Size = new System.Drawing.Size(658, 580);
-			this.pnDigital.TabIndex = 0;
 			// 
 			// daypartsControl
 			// 
@@ -267,7 +251,8 @@
 			this.xtraTabControlOptions.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageStations,
             this.xtraTabPageDayparts,
-            this.xtraTabPageDemos});
+            this.xtraTabPageDemos,
+            this.xtraTabPageDigital});
 			// 
 			// xtraTabPageStations
 			// 
@@ -516,6 +501,33 @@
 			this.buttonXDemosNo.CheckedChanged += new System.EventHandler(this.buttonXDemos_CheckedChanged);
 			this.buttonXDemosNo.Click += new System.EventHandler(this.buttonXDemos_Click);
 			// 
+			// xtraTabPageDigital
+			// 
+			this.xtraTabPageDigital.Controls.Add(this.pnOptionsDigital);
+			this.xtraTabPageDigital.Name = "xtraTabPageDigital";
+			this.xtraTabPageDigital.Size = new System.Drawing.Size(344, 580);
+			this.xtraTabPageDigital.Text = "Digital";
+			// 
+			// pnOptionsDigital
+			// 
+			this.pnOptionsDigital.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnOptionsDigital.Controls.Add(this.checkBox1);
+			this.pnOptionsDigital.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnOptionsDigital.Location = new System.Drawing.Point(0, 0);
+			this.pnOptionsDigital.Name = "pnOptionsDigital";
+			this.pnOptionsDigital.Size = new System.Drawing.Size(344, 580);
+			this.pnOptionsDigital.TabIndex = 0;
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(199, 539);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(98, 20);
+			this.checkBox1.TabIndex = 0;
+			this.checkBox1.Text = "test Activate";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			// 
 			// splitContainerControl
 			// 
 			this.splitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -569,7 +581,6 @@
 			this.xtraTabControlMain.ResumeLayout(false);
 			this.xtraTabPageRadio.ResumeLayout(false);
 			this.pnRadio.ResumeLayout(false);
-			this.xtraTabPageDigital.ResumeLayout(false);
 			this.pnRightTop.ResumeLayout(false);
 			this.pnRightTop.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsHelp)).EndInit();
@@ -589,6 +600,9 @@
 			this.pnDemosType.ResumeLayout(false);
 			this.pnDemosType.PerformLayout();
 			this.pnDemosButtons.ResumeLayout(false);
+			this.xtraTabPageDigital.ResumeLayout(false);
+			this.pnOptionsDigital.ResumeLayout(false);
+			this.pnOptionsDigital.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
 			this.splitContainerControl.ResumeLayout(false);
 			this.pnTop.ResumeLayout(false);
@@ -604,10 +618,8 @@
         private StationsControl stationsControl;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlMain;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPageRadio;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPageDigital;
-        private System.Windows.Forms.Panel pnRadio;
-        private System.Windows.Forms.Panel pnDigital;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageRadio;
+		private System.Windows.Forms.Panel pnRadio;
         private DaypartsControl daypartsControl;
         private System.Windows.Forms.Panel pnRightTop;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlOptions;
@@ -637,6 +649,9 @@
         private DevComponents.DotNetBar.ButtonX buttonXDemosSourceDisable;
         private System.Windows.Forms.Panel pnTop;
         private System.Windows.Forms.Label laTopTitle;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageDigital;
+		private System.Windows.Forms.Panel pnOptionsDigital;
+		private System.Windows.Forms.CheckBox checkBox1;
 
     }
 }

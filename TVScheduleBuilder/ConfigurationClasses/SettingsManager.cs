@@ -213,6 +213,9 @@ namespace TVScheduleBuilder.ConfigurationClasses
             xml.AppendLine(@"<SelectedTemplatePath>" + this.SelectedTemplatePath.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedTemplatePath>");
             xml.AppendLine(@"</Settings>");
 
+	        string settingsFolder = Path.GetDirectoryName(_applicationSettingsFile);
+			if (!Directory.Exists(settingsFolder))
+				Directory.CreateDirectory(settingsFolder);
             using (StreamWriter sw = new StreamWriter(_applicationSettingsFile, false))
             {
                 sw.Write(xml.ToString());

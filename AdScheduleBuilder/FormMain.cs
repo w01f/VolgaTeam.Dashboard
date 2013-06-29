@@ -1,722 +1,675 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
+using AdScheduleBuilder.BusinessClasses;
+using AdScheduleBuilder.ConfigurationClasses;
+using AdScheduleBuilder.CustomControls;
+using AdScheduleBuilder.OutputClasses.OutputControls;
+using AdScheduleBuilder.ToolForms;
+using DevExpress.XtraEditors;
 
 namespace AdScheduleBuilder
 {
-    public partial class FormMain : Form
-    {
-        private static FormMain _instance = null;
-        private Control _currentControl = null;
+	public partial class FormMain : Form
+	{
+		private static FormMain _instance;
+		private Control _currentControl;
 
-        public event EventHandler<EventArgs> FloaterRequested;
-        public event EventHandler<BusinessClasses.ExportEventArgs> ScheduleExported;
+		private FormMain()
+		{
+			InitializeComponent();
 
-        public bool IsMaximized
-        {
-            get
-            {
-                return this.WindowState == FormWindowState.Normal ? false : true;
-            }
-        }
+			#region Schedule Settings Events
+			buttonItemHomeHelp.Click += ScheduleSettingsControl.Instance.buttonItemPrintScheduleettingsHelp_Click;
+			buttonItemHomeProductAdd.Click += ScheduleSettingsControl.Instance.buttonItemPublicationsAdd_Click;
+			buttonItemHomeProductClone.Click += ScheduleSettingsControl.Instance.buttonItemPublicationsClone_Click;
+			buttonItemHomeProductDelete.Click += ScheduleSettingsControl.Instance.buttonItemPublicationsDelete_Click;
+			buttonItemHomeSave.Click += ScheduleSettingsControl.Instance.buttonItemPrintScheduleettingsSave_Click;
+			buttonItemHomeSaveAs.Click += ScheduleSettingsControl.Instance.buttonItemPrintScheduleettingsSaveAs_Click;
+			comboBoxEditBusinessName.EditValueChanged += ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged;
+			comboBoxEditDecisionMaker.EditValueChanged += ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged;
+			comboBoxEditClientType.EditValueChanged += ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged;
+			textEditAccountNumber.EditValueChanged += ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged;
+			checkBoxItemHomeAccountNumber.CheckedChanged += ScheduleSettingsControl.Instance.checkBoxItemAccountNumber_CheckedChanged;
+			dateEditPresentationDate.EditValueChanged += ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged;
+			dateEditFlightDatesStart.EditValueChanged += ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged;
+			dateEditFlightDatesStart.EditValueChanged += ScheduleSettingsControl.Instance.FlightDateStartEditValueChanged;
+			dateEditFlightDatesStart.EditValueChanged += ScheduleSettingsControl.Instance.CalcWeeksOnFlightDatesChange;
+			dateEditFlightDatesEnd.EditValueChanged += ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged;
+			dateEditFlightDatesEnd.EditValueChanged += ScheduleSettingsControl.Instance.CalcWeeksOnFlightDatesChange;
+			dateEditFlightDatesStart.CloseUp += ScheduleSettingsControl.Instance.dateEditFlightDatesStart_CloseUp;
+			dateEditFlightDatesEnd.CloseUp += ScheduleSettingsControl.Instance.dateEditFlightDatesEnd_CloseUp;
+			comboBoxEditBusinessName.Enter += Editor_Enter;
+			comboBoxEditBusinessName.MouseDown += Editor_MouseDown;
+			comboBoxEditBusinessName.MouseUp += Editor_MouseUp;
+			comboBoxEditDecisionMaker.Enter += Editor_Enter;
+			comboBoxEditDecisionMaker.MouseDown += Editor_MouseDown;
+			comboBoxEditDecisionMaker.MouseUp += Editor_MouseUp;
+			comboBoxEditClientType.Enter += Editor_Enter;
+			comboBoxEditClientType.MouseDown += Editor_MouseDown;
+			comboBoxEditClientType.MouseUp += Editor_MouseUp;
+			textEditAccountNumber.Enter += Editor_Enter;
+			textEditAccountNumber.MouseDown += Editor_MouseDown;
+			textEditAccountNumber.MouseUp += Editor_MouseUp;
+			#endregion
 
-        private FormMain()
-        {
-            InitializeComponent();
+			#region Schedule Builder Events
+			buttonItemPrintScheduleHelp.Click += ScheduleBuilderControl.Instance.buttonItemPrintScheduleHelp_Click;
+			buttonItemPrintScheduleSave.Click += ScheduleBuilderControl.Instance.buttonItemPrintScheduleSave_Click;
+			buttonItemPrintScheduleSaveAs.Click += ScheduleBuilderControl.Instance.buttonItemPrintScheduleSaveAs_Click;
+			buttonItemPrintScheduleAdPricingColumnInches.Click += ScheduleBuilderControl.Instance.buttonItemAdPricingColumnInches_Click;
+			buttonItemPrintScheduleAdPricingFlat.Click += ScheduleBuilderControl.Instance.buttonItemAdPricingColumnInches_Click;
+			buttonItemPrintScheduleAdPricingPagePercent.Click += ScheduleBuilderControl.Instance.buttonItemAdPricingColumnInches_Click;
+			buttonItemPrintScheduleAdPricingColumnInches.CheckedChanged += ScheduleBuilderControl.Instance.buttonItemAdPricing_CheckedChanged;
+			buttonItemPrintScheduleAdPricingFlat.CheckedChanged += ScheduleBuilderControl.Instance.buttonItemAdPricing_CheckedChanged;
+			buttonItemPrintScheduleAdPricingPagePercent.CheckedChanged += ScheduleBuilderControl.Instance.buttonItemAdPricing_CheckedChanged;
+			checkBoxItemPrintScheduleAdSizeStandartSquare.CheckedChanged += ScheduleBuilderControl.Instance.checkBoxItemAdSizeStandartSquare_CheckedChanged;
+			checkBoxItemPrintScheduleStandartPageSize.CheckedChanged += ScheduleBuilderControl.Instance.checkBoxItemSizeOptions_CheckedChanged;
+			checkBoxItemPrintScheduleSharePagePageSize.CheckedChanged += ScheduleBuilderControl.Instance.checkBoxItemSizeOptions_CheckedChanged;
+			spinEditStandartHeight.EditValueChanged += ScheduleBuilderControl.Instance.spinEditStandart_EditValueChanged;
+			spinEditStandartWidth.EditValueChanged += ScheduleBuilderControl.Instance.spinEditStandart_EditValueChanged;
+			comboBoxEditStandartPageSize.EditValueChanged += ScheduleBuilderControl.Instance.comboBoxEditSizeOptions_EditValueChanged;
+			comboBoxEditSharePagePageSize.EditValueChanged += ScheduleBuilderControl.Instance.comboBoxEditSizeOptions_EditValueChanged;
+			comboBoxEditRateCard.EditValueChanged += ScheduleBuilderControl.Instance.comboBoxEditRateCard_EditValueChanged;
+			comboBoxEditPercentOfPage.EditValueChanged += ScheduleBuilderControl.Instance.comboBoxEditPercentOfPage_EditValueChanged;
+			checkedListBoxControlSharePageSquare.ItemCheck += ScheduleBuilderControl.Instance.checkedListBoxControlSharePageSquare_ItemCheck;
+			buttonItemPrintScheduleColorOptionsSingle.Click += ScheduleBuilderControl.Instance.ColorOptions_Click;
+			buttonItemPrintScheduleColorOptionsSpot.Click += ScheduleBuilderControl.Instance.ColorOptions_Click;
+			buttonItemPrintScheduleColorOptionsFull.Click += ScheduleBuilderControl.Instance.ColorOptions_Click;
+			buttonItemPrintScheduleColorOptionsSingle.CheckedChanged += ScheduleBuilderControl.Instance.ColorOptions_CheckedChanged;
+			buttonItemPrintScheduleColorOptionsSpot.CheckedChanged += ScheduleBuilderControl.Instance.ColorOptions_CheckedChanged;
+			buttonItemPrintScheduleColorOptionsFull.CheckedChanged += ScheduleBuilderControl.Instance.ColorOptions_CheckedChanged;
+			buttonItemPrintScheduleColorOptionsCostPerAd.Click += ScheduleBuilderControl.Instance.buttonItemColorOptions_Click;
+			buttonItemPrintScheduleColorOptionsPercentOfAd.Click += ScheduleBuilderControl.Instance.buttonItemColorOptions_Click;
+			buttonItemPrintScheduleColorOptionsIncluded.Click += ScheduleBuilderControl.Instance.buttonItemColorOptions_Click;
+			buttonItemPrintScheduleColorOptionsPCI.Click += ScheduleBuilderControl.Instance.buttonItemColorOptions_Click;
+			buttonItemPrintScheduleColorOptionsCostPerAd.CheckedChanged += ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged;
+			buttonItemPrintScheduleColorOptionsPercentOfAd.CheckedChanged += ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged;
+			buttonItemPrintScheduleColorOptionsIncluded.CheckedChanged += ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged;
+			buttonItemPrintScheduleColorOptionsPCI.CheckedChanged += ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged;
+			spinEditCostPerInch.EditValueChanged += ScheduleBuilderControl.Instance.spinEditCostPerInch_EditValueChanged;
+			buttonItemPrintScheduleAdd.Click += ScheduleBuilderControl.Instance.buttonItemAddInsert_Click;
+			buttonItemPrintScheduleCloneInsert.Click += ScheduleBuilderControl.Instance.buttonItemCloneInsert_Click;
+			buttonItemPrintScheduleDeleteInsert.Click += ScheduleBuilderControl.Instance.buttonItemDeleteInsert_Click;
+			spinEditCostPerInch.Enter += Editor_Enter;
+			spinEditCostPerInch.MouseDown += Editor_MouseDown;
+			spinEditCostPerInch.MouseUp += Editor_MouseUp;
+			spinEditStandartHeight.Enter += Editor_Enter;
+			spinEditStandartHeight.MouseDown += Editor_MouseDown;
+			spinEditStandartHeight.MouseUp += Editor_MouseUp;
+			spinEditStandartWidth.Enter += Editor_Enter;
+			spinEditStandartWidth.MouseDown += Editor_MouseDown;
+			spinEditStandartWidth.MouseUp += Editor_MouseUp;
+			comboBoxEditStandartPageSize.Enter += Editor_Enter;
+			comboBoxEditStandartPageSize.MouseDown += Editor_MouseDown;
+			comboBoxEditStandartPageSize.MouseUp += Editor_MouseUp;
+			comboBoxEditSharePagePageSize.Enter += Editor_Enter;
+			comboBoxEditSharePagePageSize.MouseDown += Editor_MouseDown;
+			comboBoxEditSharePagePageSize.MouseUp += Editor_MouseUp;
+			#endregion
 
-            #region Schedule Settings Events
-            buttonItemHomeHelp.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPrintScheduleettingsHelp_Click);
-            buttonItemHomeProductAdd.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPublicationsAdd_Click);
-            buttonItemHomeProductClone.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPublicationsClone_Click);
-            buttonItemHomeProductDelete.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPublicationsDelete_Click);
-            buttonItemHomeSave.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPrintScheduleettingsSave_Click);
-            buttonItemHomeSaveAs.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemPrintScheduleettingsSaveAs_Click);
-            comboBoxEditBusinessName.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
-            comboBoxEditDecisionMaker.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
-            comboBoxEditClientType.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
-            textEditAccountNumber.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
-            checkBoxItemHomeAccountNumber.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.ScheduleSettingsControl.Instance.checkBoxItemAccountNumber_CheckedChanged);
-            buttonItemHomeSalesStrategyEmail.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemSalesStrategyEmail_Click);
-            buttonItemHomeSalesStrategyFaceCall.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemSalesStrategyFaceCall_Click);
-            buttonItemHomeSalesStrategyFax.Click += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemSalesStrategyFax_Click);
-            buttonItemHomeSalesStrategyEmail.CheckedChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
-            buttonItemHomeSalesStrategyFax.CheckedChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
-            buttonItemHomeSalesStrategyFaceCall.CheckedChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
-            dateEditPresentationDate.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
-            dateEditFlightDatesStart.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
-            dateEditFlightDatesStart.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.FlightDateStartEditValueChanged);
-            dateEditFlightDatesStart.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.CalcWeeksOnFlightDatesChange);
-            dateEditFlightDatesEnd.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.SchedulePropertyEditValueChanged);
-            dateEditFlightDatesEnd.EditValueChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.CalcWeeksOnFlightDatesChange);
-            dateEditFlightDatesStart.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(CustomControls.ScheduleSettingsControl.Instance.dateEditFlightDatesStart_CloseUp);
-            dateEditFlightDatesEnd.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(CustomControls.ScheduleSettingsControl.Instance.dateEditFlightDatesEnd_CloseUp);
-            buttonItemHomeOptionsDelivery.CheckedChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemSalesStrategyDelivery_CheckedChanged);
-            buttonItemHomeOptionsReadership.CheckedChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemSalesStrategyReadership_CheckedChanged);
-            buttonItemHomeOptionsLogo.CheckedChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemSalesStrategyLogo_CheckedChanged);
-            buttonItemHomeOptionsAbbreviation.CheckedChanged += new EventHandler(CustomControls.ScheduleSettingsControl.Instance.buttonItemSalesStrategyAbbreviation_CheckedChanged);
-            comboBoxEditBusinessName.Enter += new EventHandler(Editor_Enter);
-            comboBoxEditBusinessName.MouseDown += new MouseEventHandler(Editor_MouseDown);
-            comboBoxEditBusinessName.MouseUp += new MouseEventHandler(Editor_MouseUp);
-            comboBoxEditDecisionMaker.Enter += new EventHandler(Editor_Enter);
-            comboBoxEditDecisionMaker.MouseDown += new MouseEventHandler(Editor_MouseDown);
-            comboBoxEditDecisionMaker.MouseUp += new MouseEventHandler(Editor_MouseUp);
-            comboBoxEditClientType.Enter += new EventHandler(Editor_Enter);
-            comboBoxEditClientType.MouseDown += new MouseEventHandler(Editor_MouseDown);
-            comboBoxEditClientType.MouseUp += new MouseEventHandler(Editor_MouseUp);
-            textEditAccountNumber.Enter += new EventHandler(Editor_Enter);
-            textEditAccountNumber.MouseDown += new MouseEventHandler(Editor_MouseDown);
-            textEditAccountNumber.MouseUp += new MouseEventHandler(Editor_MouseUp);
-            #endregion
+			#region Summaries Events
+			buttonItemOverviewReset.Click += SummariesControl.Instance.buttonItemSummariesReset_Click;
+			buttonItemOverviewPreview.Click += SummariesControl.Instance.buttonItemSummariesPreview_Click;
+			buttonItemOverviewEmail.Click += SummariesControl.Instance.buttonItemSummariesEmail_Click;
+			buttonItemOverviewHelp.Click += SummariesControl.Instance.buttonItemSummariesHelp_Click;
+			buttonItemOverviewSave.Click += SummariesControl.Instance.buttonItemSummariesSave_Click;
+			buttonItemOverviewSaveAs.Click += SummariesControl.Instance.buttonItemSummariesSaveAs_Click;
+			buttonItemOverviewPowerPoint.Click += SummariesControl.Instance.buttonItemSummariesPowerPoint_Click;
+			buttonItemMultiSummaryReset.Click += SummariesControl.Instance.buttonItemSummariesReset_Click;
+			buttonItemMultiSummaryPreview.Click += SummariesControl.Instance.buttonItemSummariesPreview_Click;
+			buttonItemMultiSummaryEmail.Click += SummariesControl.Instance.buttonItemSummariesEmail_Click;
+			buttonItemMultiSummaryHelp.Click += SummariesControl.Instance.buttonItemSummariesHelp_Click;
+			buttonItemMultiSummarySave.Click += SummariesControl.Instance.buttonItemSummariesSave_Click;
+			buttonItemMultiSummarySaveAs.Click += SummariesControl.Instance.buttonItemSummariesSaveAs_Click;
+			buttonItemMultiSummaryPowerPoint.Click += SummariesControl.Instance.buttonItemSummariesPowerPoint_Click;
+			buttonItemSnapshotOptions.CheckedChanged += OutputSnapshotControl.Instance.buttonItemSnapshotOptions_CheckedChanged;
+			buttonItemSnapshotReset.Click += SummariesControl.Instance.buttonItemSummariesReset_Click;
+			buttonItemSnapshotPreview.Click += SummariesControl.Instance.buttonItemSummariesPreview_Click;
+			buttonItemSnapshotEmail.Click += SummariesControl.Instance.buttonItemSummariesEmail_Click;
+			buttonItemSnapshotHelp.Click += SummariesControl.Instance.buttonItemSummariesHelp_Click;
+			buttonItemSnapshotSave.Click += SummariesControl.Instance.buttonItemSummariesSave_Click;
+			buttonItemSnapshotSaveAs.Click += SummariesControl.Instance.buttonItemSummariesSaveAs_Click;
+			buttonItemSnapshotPowerPoint.Click += SummariesControl.Instance.buttonItemSummariesPowerPoint_Click;
+			#endregion
 
-            #region Schedule Builder Events
-            buttonItemPrintScheduleHelp.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemPrintScheduleHelp_Click);
-            buttonItemPrintScheduleSave.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemPrintScheduleSave_Click);
-            buttonItemPrintScheduleSaveAs.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemPrintScheduleSaveAs_Click);
-            buttonItemPrintScheduleAdPricingColumnInches.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricingColumnInches_Click);
-            buttonItemPrintScheduleAdPricingFlat.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricingColumnInches_Click);
-            buttonItemPrintScheduleAdPricingPagePercent.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricingColumnInches_Click);
-            buttonItemPrintScheduleAdPricingColumnInches.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricing_CheckedChanged);
-            buttonItemPrintScheduleAdPricingFlat.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricing_CheckedChanged);
-            buttonItemPrintScheduleAdPricingPagePercent.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAdPricing_CheckedChanged);
-            checkBoxItemPrintScheduleAdSizeStandartSquare.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.ScheduleBuilderControl.Instance.checkBoxItemAdSizeStandartSquare_CheckedChanged);
-            checkBoxItemPrintScheduleStandartPageSize.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.ScheduleBuilderControl.Instance.checkBoxItemSizeOptions_CheckedChanged);
-            checkBoxItemPrintScheduleSharePagePageSize.CheckedChanged += new DevComponents.DotNetBar.CheckBoxChangeEventHandler(CustomControls.ScheduleBuilderControl.Instance.checkBoxItemSizeOptions_CheckedChanged);
-            spinEditStandartHeight.EditValueChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.spinEditStandart_EditValueChanged);
-            spinEditStandartWidth.EditValueChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.spinEditStandart_EditValueChanged);
-            comboBoxEditStandartPageSize.EditValueChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.comboBoxEditSizeOptions_EditValueChanged);
-            comboBoxEditSharePagePageSize.EditValueChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.comboBoxEditSizeOptions_EditValueChanged);
-            comboBoxEditRateCard.EditValueChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.comboBoxEditRateCard_EditValueChanged);
-            comboBoxEditPercentOfPage.EditValueChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.comboBoxEditPercentOfPage_EditValueChanged);
-            checkedListBoxControlSharePageSquare.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(CustomControls.ScheduleBuilderControl.Instance.checkedListBoxControlSharePageSquare_ItemCheck);
-            buttonItemPrintScheduleColorOptionsSingle.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_Click);
-            buttonItemPrintScheduleColorOptionsSpot.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_Click);
-            buttonItemPrintScheduleColorOptionsFull.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_Click);
-            buttonItemPrintScheduleColorOptionsSingle.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_CheckedChanged);
-            buttonItemPrintScheduleColorOptionsSpot.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_CheckedChanged);
-            buttonItemPrintScheduleColorOptionsFull.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.ColorOptions_CheckedChanged);
-            buttonItemPrintScheduleColorOptionsCostPerAd.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_Click);
-            buttonItemPrintScheduleColorOptionsPercentOfAd.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_Click);
-            buttonItemPrintScheduleColorOptionsIncluded.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_Click);
-            buttonItemPrintScheduleColorOptionsPCI.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_Click);
-            buttonItemPrintScheduleColorOptionsCostPerAd.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged);
-            buttonItemPrintScheduleColorOptionsPercentOfAd.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged);
-            buttonItemPrintScheduleColorOptionsIncluded.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged);
-            buttonItemPrintScheduleColorOptionsPCI.CheckedChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemColorOptions_CheckedChanged);
-            spinEditCostPerInch.EditValueChanged += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.spinEditCostPerInch_EditValueChanged);
-            buttonItemPrintScheduleAdd.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemAddInsert_Click);
-            buttonItemPrintScheduleCloneInsert.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemCloneInsert_Click);
-            buttonItemPrintScheduleDeleteInsert.Click += new EventHandler(CustomControls.ScheduleBuilderControl.Instance.buttonItemDeleteInsert_Click);
-            spinEditCostPerInch.Enter += new EventHandler(Editor_Enter);
-            spinEditCostPerInch.MouseDown += new MouseEventHandler(Editor_MouseDown);
-            spinEditCostPerInch.MouseUp += new MouseEventHandler(Editor_MouseUp);
-            spinEditStandartHeight.Enter += new EventHandler(Editor_Enter);
-            spinEditStandartHeight.MouseDown += new MouseEventHandler(Editor_MouseDown);
-            spinEditStandartHeight.MouseUp += new MouseEventHandler(Editor_MouseUp);
-            spinEditStandartWidth.Enter += new EventHandler(Editor_Enter);
-            spinEditStandartWidth.MouseDown += new MouseEventHandler(Editor_MouseDown);
-            spinEditStandartWidth.MouseUp += new MouseEventHandler(Editor_MouseUp);
-            comboBoxEditStandartPageSize.Enter += new EventHandler(Editor_Enter);
-            comboBoxEditStandartPageSize.MouseDown += new MouseEventHandler(Editor_MouseDown);
-            comboBoxEditStandartPageSize.MouseUp += new MouseEventHandler(Editor_MouseUp);
-            comboBoxEditSharePagePageSize.Enter += new EventHandler(Editor_Enter);
-            comboBoxEditSharePagePageSize.MouseDown += new MouseEventHandler(Editor_MouseDown);
-            comboBoxEditSharePagePageSize.MouseUp += new MouseEventHandler(Editor_MouseUp);
-            #endregion
+			#region Grids Events
+			buttonItemDetailedGridReset.Click += GridsControl.Instance.buttonItemGridsReset_Click;
+			buttonItemDetailedGridHelp.Click += GridsControl.Instance.buttonItemGridsHelp_Click;
+			buttonItemDetailedGridSave.Click += GridsControl.Instance.buttonItemGridsSave_Click;
+			buttonItemDetailedGridSaveAs.Click += GridsControl.Instance.buttonItemGridsSaveAs_Click;
+			buttonItemDetailedGridDetails.CheckedChanged += GridsControl.Instance.buttonItemGridsDetails_CheckedChanged;
+			buttonItemDetailedGridPowerPoint.Click += GridsControl.Instance.buttonItemGridsPowerPoint_Click;
+			buttonItemDetailedGridEmail.Click += GridsControl.Instance.buttonItemGridsEmail_Click;
+			buttonItemDetailedGridPreview.Click += GridsControl.Instance.buttonItemGridsPreview_Click;
 
-            #region Summaries Events
-            buttonItemOverviewReset.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesReset_Click);
-            buttonItemOverviewPreview.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPreview_Click);
-            buttonItemOverviewEmail.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesEmail_Click);
-            buttonItemOverviewHelp.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesHelp_Click);
-            buttonItemOverviewSave.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesSave_Click);
-            buttonItemOverviewSaveAs.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesSaveAs_Click);
-            buttonItemOverviewPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPowerPoint_Click);
-            buttonItemMultiSummaryReset.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesReset_Click);
-            buttonItemMultiSummaryPreview.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPreview_Click);
-            buttonItemMultiSummaryEmail.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesEmail_Click);
-            buttonItemMultiSummaryHelp.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesHelp_Click);
-            buttonItemMultiSummarySave.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesSave_Click);
-            buttonItemMultiSummarySaveAs.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesSaveAs_Click);
-            buttonItemMultiSummaryPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPowerPoint_Click);
-            buttonItemSnapshotOptions.CheckedChanged += new EventHandler(OutputClasses.OutputControls.OutputSnapshotControl.Instance.buttonItemSnapshotOptions_CheckedChanged);
-            buttonItemSnapshotReset.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesReset_Click);
-            buttonItemSnapshotPreview.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPreview_Click);
-            buttonItemSnapshotEmail.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesEmail_Click);
-            buttonItemSnapshotHelp.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesHelp_Click);
-            buttonItemSnapshotSave.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesSave_Click);
-            buttonItemSnapshotSaveAs.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesSaveAs_Click);
-            buttonItemSnapshotPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.SummariesControl.Instance.buttonItemSummariesPowerPoint_Click);
-            #endregion
+			buttonItemMultiGridReset.Click += GridsControl.Instance.buttonItemGridsReset_Click;
+			buttonItemMultiGridHelp.Click += GridsControl.Instance.buttonItemGridsHelp_Click;
+			buttonItemMultiGridSave.Click += GridsControl.Instance.buttonItemGridsSave_Click;
+			buttonItemMultiGridSaveAs.Click += GridsControl.Instance.buttonItemGridsSaveAs_Click;
+			buttonItemMultiGridDetails.CheckedChanged += GridsControl.Instance.buttonItemGridsDetails_CheckedChanged;
+			buttonItemMultiGridPowerPoint.Click += GridsControl.Instance.buttonItemGridsPowerPoint_Click;
+			buttonItemMultiGridEmail.Click += GridsControl.Instance.buttonItemGridsEmail_Click;
+			buttonItemMultiGridPreview.Click += GridsControl.Instance.buttonItemGridsPreview_Click;
 
-            #region Grids Events
-            buttonItemDetailedGridReset.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsReset_Click);
-            buttonItemDetailedGridHelp.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsHelp_Click);
-            buttonItemDetailedGridSave.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSave_Click);
-            buttonItemDetailedGridSaveAs.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSaveAs_Click);
-            buttonItemDetailedGridDetails.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsDetails_CheckedChanged);
-            buttonItemDetailedGridPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsPowerPoint_Click);
-            buttonItemDetailedGridEmail.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsEmail_Click);
-            buttonItemDetailedGridPreview.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsPreview_Click);
+			buttonItemChronoGridReset.Click += GridsControl.Instance.buttonItemGridsReset_Click;
+			buttonItemChronoGridHelp.Click += GridsControl.Instance.buttonItemGridsHelp_Click;
+			buttonItemChronoGridSave.Click += GridsControl.Instance.buttonItemGridsSave_Click;
+			buttonItemChronoGridSaveAs.Click += GridsControl.Instance.buttonItemGridsSaveAs_Click;
+			buttonItemChronoGridDetails.CheckedChanged += GridsControl.Instance.buttonItemGridsDetails_CheckedChanged;
+			buttonItemChronoGridPowerPoint.Click += GridsControl.Instance.buttonItemGridsPowerPoint_Click;
+			buttonItemChronoGridEmail.Click += GridsControl.Instance.buttonItemGridsEmail_Click;
+			buttonItemChronoGridPreview.Click += GridsControl.Instance.buttonItemGridsPreview_Click;
+			#endregion
 
-            buttonItemMultiGridReset.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsReset_Click);
-            buttonItemMultiGridHelp.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsHelp_Click);
-            buttonItemMultiGridSave.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSave_Click);
-            buttonItemMultiGridSaveAs.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSaveAs_Click);
-            buttonItemMultiGridDetails.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsDetails_CheckedChanged);
-            buttonItemMultiGridPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsPowerPoint_Click);
-            buttonItemMultiGridEmail.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsEmail_Click);
-            buttonItemMultiGridPreview.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsPreview_Click);
+			#region Calendars Events
+			buttonItemCalendarsDetails.CheckedChanged += CalendarsControl.Instance.buttonItemCalendarsOptions_CheckedChanged;
+			buttonItemCalendarsReset.Click += CalendarsControl.Instance.buttonItemCalendarsReset_Click;
+			buttonItemCalendarsHelp.Click += CalendarsControl.Instance.buttonItemCalendarsHelp_Click;
+			buttonItemCalendarsSave.Click += CalendarsControl.Instance.buttonItemCalendarSave_Click;
+			buttonItemCalendarsSaveAs.Click += CalendarsControl.Instance.buttonItemCalendarSaveAs_Click;
+			buttonItemCalendarsPowerPoint.Click += CalendarsControl.Instance.buttonItemCalendarsPowerPoint_Click;
+			buttonItemCalendarsEmail.Click += CalendarsControl.Instance.buttonItemCalendarsEmail_Click;
+			buttonItemCalendarsPreview.Click += CalendarsControl.Instance.buttonItemCalendarsPreview_Click;
+			buttonItemCalendarsExport.Click += CalendarsControl.Instance.buttonItemCalendarsExport_Click;
+			#endregion
 
-            buttonItemChronoGridReset.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsReset_Click);
-            buttonItemChronoGridHelp.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsHelp_Click);
-            buttonItemChronoGridSave.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSave_Click);
-            buttonItemChronoGridSaveAs.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsSaveAs_Click);
-            buttonItemChronoGridDetails.CheckedChanged += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsDetails_CheckedChanged);
-            buttonItemChronoGridPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsPowerPoint_Click);
-            buttonItemChronoGridEmail.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsEmail_Click);
-            buttonItemChronoGridPreview.Click += new EventHandler(OutputClasses.OutputControls.GridsControl.Instance.buttonItemGridsPreview_Click);
-            #endregion
+			#region Rate Card Events
+			buttonItemRateCardHelp.Click += RateCardControl.Instance.buttonItemRateCardHelp_Click;
+			comboBoxEditRateCards.EditValueChanged += RateCardControl.Instance.comboBoxEditRateCards_EditValueChanged;
+			#endregion
 
-            #region Calendars Events
-            buttonItemCalendarsReset.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsReset_Click);
-            buttonItemCalendarsHelp.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsHelp_Click);
-            buttonItemCalendarsSave.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarSave_Click);
-            buttonItemCalendarsSaveAs.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarSaveAs_Click);
-            buttonItemCalendarsShowAbbreviation.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowColor.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowCost.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowSection.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowAdSize.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledSize_CheckedChanged);
-            buttonItemCalendarsShowPageSize.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledSize_CheckedChanged);
-            buttonItemCalendarsShowPercentOfPage.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledSize_CheckedChanged);
-            buttonItemCalendarsShowAdSize.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowPageSize.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowBigDates.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowPercentOfPage.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowLegend.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowTitle.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowBusinessName.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowDecisionMaker.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowLogo.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowTotalCost.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowAvgCost.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowTotalAds.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowActiveDays.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowComment.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsShowLegend.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
-            buttonItemCalendarsShowTitle.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
-            buttonItemCalendarsShowBusinessName.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
-            buttonItemCalendarsShowDecisionMaker.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
-            buttonItemCalendarsShowLogo.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
-            buttonItemCalendarsShowTotalCost.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
-            buttonItemCalendarsShowAvgCost.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
-            buttonItemCalendarsShowTotalAds.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
-            buttonItemCalendarsShowActiveDays.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
-            buttonItemCalendarsShowComment.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggledAdditional_Click);
-            buttonItemCalendarsColorBlack.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsThemeColor_Click);
-            buttonItemCalendarsColorBlue.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsThemeColor_Click);
-            buttonItemCalendarsColorGray.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsThemeColor_Click);
-            buttonItemCalendarsColorGreen.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsThemeColor_Click);
-            buttonItemCalendarsColorOrange.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsThemeColor_Click);
-            buttonItemCalendarsColorTeal.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsThemeColor_Click);
-            buttonItemCalendarsColorBlack.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsColorBlue.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsColorGray.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsColorGreen.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsColorOrange.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsColorTeal.CheckedChanged += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsToggled_CheckedChanged);
-            buttonItemCalendarsPowerPoint.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsPowerPoint_Click);
-            buttonItemCalendarsEmail.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsEmail_Click);
-            buttonItemCalendarsPreview.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsPreview_Click);
-            buttonItemCalendarsExport.Click += new EventHandler(OutputClasses.OutputControls.CalendarsControl.Instance.buttonItemCalendarsExport_Click);
-            #endregion
+			#region Success Models Events
+			buttonItemSuccessModelsHelp.Click += ModelsOfSuccessContainerControl.Instance.buttonItemSuccessModelsHelp_Click;
+			#endregion
 
-            #region Rate Card Events
-            buttonItemRateCardHelp.Click += new EventHandler(CustomControls.RateCardControl.Instance.buttonItemRateCardHelp_Click);
-            comboBoxEditRateCards.EditValueChanged += new EventHandler(CustomControls.RateCardControl.Instance.comboBoxEditRateCards_EditValueChanged);
-            #endregion
+			ribbonTabItemSuccessModels.Enabled = false;
 
-            #region Success Models Events
-            buttonItemSuccessModelsHelp.Click += new EventHandler(CustomControls.ModelsOfSuccessContainerControl.Instance.buttonItemSuccessModelsHelp_Click);
-            #endregion
+			if ((base.CreateGraphics()).DpiX > 96)
+			{
+				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 1, styleController.Appearance.Font.Style);
+				ribbonControl.Font = font;
+				styleController.Appearance.Font = font;
+				styleController.AppearanceDisabled.Font = font;
+				styleController.AppearanceDropDown.Font = font;
+				styleController.AppearanceDropDownHeader.Font = font;
+				styleController.AppearanceFocused.Font = font;
+				styleController.AppearanceReadOnly.Font = font;
+				comboBoxEditBusinessName.Font = font;
+				comboBoxEditClientType.Font = font;
+				comboBoxEditDecisionMaker.Font = font;
+				textEditAccountNumber.Font = font;
+				spinEditCostPerInch.Font = font;
+				spinEditStandartHeight.Font = font;
+				spinEditStandartWidth.Font = font;
+				comboBoxEditPercentOfPage.Font = font;
+				comboBoxEditRateCard.Font = font;
+				comboBoxEditRateCards.Font = font;
+				comboBoxEditSharePagePageSize.Font = font;
+				comboBoxEditStandartPageSize.Font = font;
+				checkedListBoxControlSharePageSquare.Font = font;
+				dateEditFlightDatesEnd.Font = font;
+				dateEditFlightDatesStart.Font = font;
+				dateEditPresentationDate.Font = font;
 
-            ribbonTabItemDigitalSchedule.Enabled = false;
-            ribbonTabItemSuccessModels.Enabled = false;
+				laStandartEqualSign.Font = new Font(laStandartEqualSign.Font.FontFamily, laStandartEqualSign.Font.Size - 2, laStandartEqualSign.Font.Style);
+				laRateCards.Font = new Font(laRateCards.Font.FontFamily, laRateCards.Font.Size - 3, laRateCards.Font.Style);
+				laStandartSquareMetric.Font = new Font(laStandartSquareMetric.Font.FontFamily, laStandartSquareMetric.Font.Size - 2, laStandartSquareMetric.Font.Style);
+				laStandartSquareValue.Font = new Font(laStandartSquareValue.Font.FontFamily, laStandartSquareValue.Font.Size - 2, laStandartSquareValue.Font.Style);
 
-            if ((base.CreateGraphics()).DpiX > 96)
-            {
-                Font font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 1, styleController.Appearance.Font.Style);
-                ribbonControl.Font = font;
-                styleController.Appearance.Font = font;
-                styleController.AppearanceDisabled.Font = font;
-                styleController.AppearanceDropDown.Font = font;
-                styleController.AppearanceDropDownHeader.Font = font;
-                styleController.AppearanceFocused.Font = font;
-                styleController.AppearanceReadOnly.Font = font;
-                comboBoxEditBusinessName.Font = font;
-                comboBoxEditClientType.Font = font;
-                comboBoxEditDecisionMaker.Font = font;
-                textEditAccountNumber.Font = font;
-                spinEditCostPerInch.Font = font;
-                spinEditStandartHeight.Font = font;
-                spinEditStandartWidth.Font = font;
-                comboBoxEditPercentOfPage.Font = font;
-                comboBoxEditRateCard.Font = font;
-                comboBoxEditRateCards.Font = font;
-                comboBoxEditSharePagePageSize.Font = font;
-                comboBoxEditStandartPageSize.Font = font;
-                checkedListBoxControlSharePageSquare.Font = font;
-                dateEditFlightDatesEnd.Font = font;
-                dateEditFlightDatesStart.Font = font;
-                dateEditPresentationDate.Font = font;
+				ribbonBarPrintScheduleAdPricingStrategy.RecalcLayout();
+				ribbonBarPrintScheduleAdSize.RecalcLayout();
+				ribbonBarHomeBasicInfo.RecalcLayout();
+				ribbonBarCalendarsExit.RecalcLayout();
+				ribbonBarCalendarsHelp.RecalcLayout();
+				ribbonBarCalendarsSave.RecalcLayout();
+				ribbonBarPrintScheduleColorPricing.RecalcLayout();
+				ribbonBarHomeFlightDates.RecalcLayout();
+				ribbonBarHomeExit.RecalcLayout();
+				ribbonBarHomeProduct.RecalcLayout();
+				ribbonBarModelsOfSuccess.RecalcLayout();
+				ribbonBarRateCards.RecalcLayout();
+				ribbonBarPrintScheduleLines.RecalcLayout();
+				ribbonBarHomeHelp.RecalcLayout();
+				ribbonBarHomeSave.RecalcLayout();
+				ribbonBarPrintScheduleExit.RecalcLayout();
+				ribbonBarPrintScheduleHelp.RecalcLayout();
+				ribbonBarPrintScheduleSave.RecalcLayout();
+				ribbonBarSuccessModelsExit.RecalcLayout();
+				ribbonBarSuccessModelsHelp.RecalcLayout();
+				ribbonBarSnapshotExit.RecalcLayout();
+				ribbonBarSnapshotHelp.RecalcLayout();
+				ribbonBarSnapshotPowerPoint.RecalcLayout();
+				ribbonBarSnapshotSave.RecalcLayout();
+				ribbonBarSnapshotOptions.RecalcLayout();
+				ribbonPanelPrintSchedule.PerformLayout();
+				ribbonPanelScheduleSettings.PerformLayout();
+				ribbonPanelCalendars.PerformLayout();
+				ribbonPanelSuccessModels.PerformLayout();
+				ribbonPanelSnapshot.PerformLayout();
+			}
+		}
 
-                laStandartEqualSign.Font = new Font(laStandartEqualSign.Font.FontFamily, laStandartEqualSign.Font.Size - 2, laStandartEqualSign.Font.Style);
-                laRateCards.Font = new Font(laRateCards.Font.FontFamily, laRateCards.Font.Size - 3, laRateCards.Font.Style);
-                laStandartSquareMetric.Font = new Font(laStandartSquareMetric.Font.FontFamily, laStandartSquareMetric.Font.Size - 2, laStandartSquareMetric.Font.Style);
-                laStandartSquareValue.Font = new Font(laStandartSquareValue.Font.FontFamily, laStandartSquareValue.Font.Size - 2, laStandartSquareValue.Font.Style);
+		public bool IsMaximized
+		{
+			get { return WindowState == FormWindowState.Normal ? false : true; }
+		}
+		public static FormMain Instance
+		{
+			get
+			{
+				if (_instance == null)
+					_instance = new FormMain();
+				return _instance;
+			}
+		}
 
-                ribbonBarPrintScheduleAdPricingStrategy.RecalcLayout();
-                ribbonBarPrintScheduleAdSize.RecalcLayout();
-                ribbonBarHomeAdvertiser.RecalcLayout();
-                ribbonBarCalendarsExit.RecalcLayout();
-                ribbonBarCalendarsHelp.RecalcLayout();
-                ribbonBarCalendarsSave.RecalcLayout();
-                ribbonBarCalendarsDayOptions.RecalcLayout();
-                ribbonBarCalendarsThemeColor.RecalcLayout();
-                ribbonBarPrintScheduleColorPricing.RecalcLayout();
-                ribbonBarHomeFlightDates.RecalcLayout();
-                ribbonBarHomeExit.RecalcLayout();
-                ribbonBarHomeProduct.RecalcLayout();
-                ribbonBarModelsOfSuccess.RecalcLayout();
-                ribbonBarRateCards.RecalcLayout();
-                ribbonBarSalesStrategy.RecalcLayout();
-                ribbonBarPrintScheduleLines.RecalcLayout();
-                ribbonBarHomeHelp.RecalcLayout();
-                ribbonBarHomeSave.RecalcLayout();
-                ribbonBarPrintScheduleExit.RecalcLayout();
-                ribbonBarPrintScheduleHelp.RecalcLayout();
-                ribbonBarPrintScheduleSave.RecalcLayout();
-                ribbonBarSuccessModelsExit.RecalcLayout();
-                ribbonBarSuccessModelsHelp.RecalcLayout();
-                ribbonBarSnapshotExit.RecalcLayout();
-                ribbonBarSnapshotHelp.RecalcLayout();
-                ribbonBarSnapshotPowerPoint.RecalcLayout();
-                ribbonBarSnapshotSave.RecalcLayout();
-                ribbonBarSnapshotOptions.RecalcLayout();
-                ribbonPanelPrintSchedule.PerformLayout();
-                ribbonPanelScheduleSettings.PerformLayout();
-                ribbonPanelCalendars.PerformLayout();
-                ribbonPanelSuccessModels.PerformLayout();
-                ribbonPanelSnapshot.PerformLayout();
-            }
-        }
+		public event EventHandler<EventArgs> FloaterRequested;
+		public event EventHandler<ExportEventArgs> ScheduleExported;
 
-        public static void RemoveInstance()
-        {
-            _instance.Dispose();
-            _instance = null;
-        }
+		public static void RemoveInstance()
+		{
+			_instance.Dispose();
+			_instance = null;
+		}
 
-        public static FormMain Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new FormMain();
-                return _instance;
-            }
-        }
+		private bool AllowToLeaveCurrentControl()
+		{
+			bool result = false;
+			if ((_currentControl == ScheduleSettingsControl.Instance))
+			{
+				result = ScheduleSettingsControl.Instance.AllowToLeaveControl;
+			}
+			else if ((_currentControl == ScheduleBuilderControl.Instance))
+			{
+				result = ScheduleBuilderControl.Instance.AllowToLeaveControl;
+			}
+			else if ((_currentControl == SummariesControl.Instance))
+			{
+				result = SummariesControl.Instance.AllowToLeaveControl;
+			}
+			else if ((_currentControl == GridsControl.Instance))
+			{
+				result = GridsControl.Instance.AllowToLeaveControl;
+			}
+			else if ((_currentControl == CalendarsControl.Instance))
+			{
+				result = CalendarsControl.Instance.AllowToLeaveControl;
+			}
+			else
+				result = true;
+			return result;
+		}
 
-        private bool AllowToLeaveCurrentControl()
-        {
-            bool result = false;
-            if ((_currentControl == CustomControls.ScheduleSettingsControl.Instance))
-            {
-                result = CustomControls.ScheduleSettingsControl.Instance.AllowToLeaveControl;
-            }
-            else if ((_currentControl == CustomControls.ScheduleBuilderControl.Instance))
-            {
-                result = CustomControls.ScheduleBuilderControl.Instance.AllowToLeaveControl;
-            }
-            else if ((_currentControl == OutputClasses.OutputControls.SummariesControl.Instance))
-            {
-                result = OutputClasses.OutputControls.SummariesControl.Instance.AllowToLeaveControl;
-            }
-            else if ((_currentControl == OutputClasses.OutputControls.GridsControl.Instance))
-            {
-                result = OutputClasses.OutputControls.GridsControl.Instance.AllowToLeaveControl;
-            }
-            else if ((_currentControl == OutputClasses.OutputControls.CalendarsControl.Instance))
-            {
-                result = OutputClasses.OutputControls.CalendarsControl.Instance.AllowToLeaveControl;
-            }
-            else
-                result = true;
-            return result;
-        }
+		public void UpdateScheduleTab(bool enable)
+		{
+			ribbonTabItemPrintSchedule.Enabled = enable;
+		}
 
-        public void UpdateScheduleTab(bool enable)
-        {
-            ribbonTabItemPrintSchedule.Enabled = enable;
-        }
+		public void UpdateOutputTabs(bool enable)
+		{
+			ribbonTabItemOverview.Enabled = enable;
+			ribbonTabItemMultiSummary.Enabled = enable;
+			ribbonTabItemSnapshot.Enabled = enable;
+			ribbonTabItemDetailedGrid.Enabled = enable;
+			ribbonTabItemMultiGrid.Enabled = enable;
+			ribbonTabItemChronoGrid.Enabled = enable;
+			ribbonTabItemCalendars.Enabled = enable;
+		}
 
-        public void UpdateOutputTabs(bool enable)
-        {
-            ribbonTabItemOverview.Enabled = enable;
-            ribbonTabItemMultiSummary.Enabled = enable;
-            ribbonTabItemSnapshot.Enabled = enable;
-            ribbonTabItemDetailedGrid.Enabled = enable;
-            ribbonTabItemMultiGrid.Enabled = enable;
-            ribbonTabItemChronoGrid.Enabled = enable;
-            ribbonTabItemCalendars.Enabled = enable;
-        }
+		public void Export(Schedule sourceSchedule, bool buildAdvanced, bool buildGraphic, bool buildSimple)
+		{
+			Opacity = 0;
+			if (ScheduleExported != null)
+				ScheduleExported(this, new ExportEventArgs(sourceSchedule, buildAdvanced, buildGraphic, buildSimple));
+			Close();
+		}
 
-        public void Export(BusinessClasses.Schedule sourceSchedule, bool buildAdvanced, bool buildGraphic, bool buildSimple)
-        {
-            this.Opacity = 0;
-            if (this.ScheduleExported != null)
-                this.ScheduleExported(this, new BusinessClasses.ExportEventArgs(sourceSchedule, buildAdvanced, buildGraphic, buildSimple));
-            this.Close();
-        }
+		private void FormMain_ClientSizeChanged(object sender, EventArgs e)
+		{
+			RegistryHelper.MaximizeMainForm = IsMaximized;
+		}
 
-        private void FormMain_ClientSizeChanged(object sender, EventArgs e)
-        {
-            ConfigurationClasses.RegistryHelper.MaximizeMainForm = this.IsMaximized;
-        }
+		private void FormMain_Shown(object sender, EventArgs e)
+		{
+			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
+				Instance.Text = "Ad Schedule Builder - " + SettingsManager.Instance.SelectedWizard + " - " + SettingsManager.Instance.Size;
+			ribbonControl.Enabled = false;
+			using (var form = new FormProgress())
+			{
+				form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Ad Schedule...";
+				form.TopMost = true;
+				var thread = new Thread(delegate()
+											{
+												Invoke((MethodInvoker)delegate()
+																		  {
+																			  ScheduleSettingsControl.Instance.LoadSchedule(false);
+																			  ScheduleBuilderControl.Instance.LoadSchedule(false);
+																			  OutputBasicOverviewControl.Instance.UpdateOutput(false);
+																			  OutputCalendarControl.Instance.UpdateOutput(false);
+																			  OutputChronologicalControl.Instance.UpdateOutput(false);
+																			  OutputDetailedGridControl.Instance.UpdateOutput(false);
+																			  OutputMultiGridControl.Instance.UpdateOutput(false);
+																			  OutputMultiSummaryControl.Instance.UpdateOutput(false);
+																			  OutputSnapshotControl.Instance.UpdateOutput(false);
+																		  });
+											});
+				thread.Start();
 
-        private void FormMain_Shown(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(ConfigurationClasses.SettingsManager.Instance.SelectedWizard))
-                FormMain.Instance.Text = "Ad Schedule Builder - " + ConfigurationClasses.SettingsManager.Instance.SelectedWizard + " - " + ConfigurationClasses.SettingsManager.Instance.Size;
-            ribbonControl.Enabled = false;
-            using (ToolForms.FormProgress form = new ToolForms.FormProgress())
-            {
-                form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Ad Schedule...";
-                form.TopMost = true;
-                System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()
-                {
-                    this.Invoke((MethodInvoker)delegate
-                    {
-                        CustomControls.ScheduleSettingsControl.Instance.LoadSchedule(false);
-                        CustomControls.ScheduleBuilderControl.Instance.LoadSchedule(false);
-                        OutputClasses.OutputControls.OutputBasicOverviewControl.Instance.UpdateOutput(false);
-                        OutputClasses.OutputControls.OutputCalendarControl.Instance.UpdateOutput(false);
-                        OutputClasses.OutputControls.OutputChronologicalControl.Instance.UpdateOutput(false);
-                        OutputClasses.OutputControls.OutputDetailedGridControl.Instance.UpdateOutput(false);
-                        OutputClasses.OutputControls.OutputMultiGridControl.Instance.UpdateOutput(false);
-                        OutputClasses.OutputControls.OutputMultiSummaryControl.Instance.UpdateOutput(false);
-                        OutputClasses.OutputControls.OutputSnapshotControl.Instance.UpdateOutput(false);
+				form.Show();
 
-                    });
-                }));
-                thread.Start();
+				while (thread.IsAlive)
+					Application.DoEvents();
+				form.Close();
+			}
 
-                form.Show();
+			Instance.ribbonTabItemRateCard.Enabled = RateCardManager.Instance.RateCardFolders.Count > 0;
+			ribbonControl.SelectedRibbonTabItem = ribbonTabItemPrintScheduleettings;
+			ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
+			ribbonControl_SelectedRibbonTabChanged(null, null);
+			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+			if (SettingsManager.Instance.SizeWidth == 10 && SettingsManager.Instance.SizeHeght == 5.63)
+				buttonItemCalendarsPowerPoint.Enabled = false;
+			else
+				buttonItemCalendarsPowerPoint.Enabled = true;
+			ribbonControl.Enabled = true;
+		}
 
-                while (thread.IsAlive)
-                    System.Windows.Forms.Application.DoEvents();
-                form.Close();
-            }
+		private void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
+		{
+			if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemPrintScheduleettings)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					if (!pnMain.Controls.Contains(ScheduleSettingsControl.Instance))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(ScheduleSettingsControl.Instance);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					ScheduleSettingsControl.Instance.BringToFront();
+					_currentControl = ScheduleSettingsControl.Instance;
+				}
+				else
+					_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemPrintSchedule)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					if (!pnMain.Controls.Contains(ScheduleBuilderControl.Instance))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(ScheduleBuilderControl.Instance);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					ScheduleBuilderControl.Instance.BringToFront();
+					_currentControl = ScheduleBuilderControl.Instance;
+				}
+				else
+					_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemOverview)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					SummariesControl.Instance.SelectSummary(SummaryType.Overview);
+					if (!pnMain.Controls.Contains(SummariesControl.Instance))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(SummariesControl.Instance);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					SummariesControl.Instance.BringToFront();
+					_currentControl = SummariesControl.Instance;
+				}
+				else
+					_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemMultiSummary)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					SummariesControl.Instance.SelectSummary(SummaryType.MultiSummary);
+					if (!pnMain.Controls.Contains(SummariesControl.Instance))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(SummariesControl.Instance);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					SummariesControl.Instance.BringToFront();
+					_currentControl = SummariesControl.Instance;
+				}
+				else
+					_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSnapshot)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					SummariesControl.Instance.SelectSummary(SummaryType.Snapshot);
+					if (!pnMain.Controls.Contains(SummariesControl.Instance))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(SummariesControl.Instance);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					SummariesControl.Instance.BringToFront();
+					_currentControl = SummariesControl.Instance;
+				}
+				else
+					_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDetailedGrid)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					GridsControl.Instance.SelectGrid(GridType.DetailedGrid);
+					if (!pnMain.Controls.Contains(GridsControl.Instance))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(GridsControl.Instance);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					GridsControl.Instance.BringToFront();
+					_currentControl = GridsControl.Instance;
+				}
+				else
+					_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemMultiGrid)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					GridsControl.Instance.SelectGrid(GridType.MultiGrid);
+					if (!pnMain.Controls.Contains(GridsControl.Instance))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(GridsControl.Instance);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					GridsControl.Instance.BringToFront();
+					_currentControl = GridsControl.Instance;
+				}
+				else
+					_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemChronoGrid)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					GridsControl.Instance.SelectGrid(GridType.ChronoGrid);
+					if (!pnMain.Controls.Contains(GridsControl.Instance))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(GridsControl.Instance);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					GridsControl.Instance.BringToFront();
+					_currentControl = GridsControl.Instance;
+				}
+				else
+					_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendars)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					CalendarsControl.Instance.UpdatePageAccordingToggledButton();
+					if (!pnMain.Controls.Contains(CalendarsControl.Instance))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(CalendarsControl.Instance);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					CalendarsControl.Instance.BringToFront();
+					_currentControl = CalendarsControl.Instance;
+				}
+				else
+					_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRateCard)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					if (!pnMain.Controls.Contains(RateCardControl.Instance))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						RateCardControl.Instance.LoadRateCards();
+						pnMain.Controls.Add(RateCardControl.Instance);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					RateCardControl.Instance.BringToFront();
+					_currentControl = RateCardControl.Instance;
+				}
+				else
+					_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSuccessModels)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					if (!pnMain.Controls.Contains(ModelsOfSuccessContainerControl.Instance))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(ModelsOfSuccessContainerControl.Instance);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					ModelsOfSuccessContainerControl.Instance.BringToFront();
+					ModelsOfSuccessContainerControl.Instance.UpdateSuccessModels();
+					_currentControl = ModelsOfSuccessContainerControl.Instance;
+				}
+				else
+					_currentControl.BringToFront();
+			}
+		}
 
-            FormMain.Instance.ribbonTabItemRateCard.Enabled = BusinessClasses.RateCardManager.Instance.RateCardFolders.Count > 0;
-            ribbonControl.SelectedRibbonTabItem = ribbonTabItemPrintScheduleettings;
-            ribbonControl.SelectedRibbonTabChanged -= new EventHandler(ribbonControl_SelectedRibbonTabChanged);
-            ribbonControl_SelectedRibbonTabChanged(null, null);
-            ribbonControl.SelectedRibbonTabChanged += new EventHandler(ribbonControl_SelectedRibbonTabChanged);
-            if (ConfigurationClasses.SettingsManager.Instance.SizeWidth == 10 && ConfigurationClasses.SettingsManager.Instance.SizeHeght == 5.63)
-                buttonItemCalendarsPowerPoint.Enabled = false;
-            else
-                buttonItemCalendarsPowerPoint.Enabled = true;
-            ribbonControl.Enabled = true;
-        }
+		private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			bool result = true;
+			if (_currentControl == ScheduleSettingsControl.Instance)
+				result = ScheduleSettingsControl.Instance.AllowToLeaveControl;
+			else if (_currentControl == ScheduleBuilderControl.Instance)
+				result = ScheduleBuilderControl.Instance.AllowToLeaveControl;
+			else if (_currentControl == SummariesControl.Instance)
+				result = SummariesControl.Instance.AllowToLeaveControl;
+			else if (_currentControl == GridsControl.Instance)
+				result = GridsControl.Instance.AllowToLeaveControl;
+			else if (_currentControl == CalendarsControl.Instance)
+				result = CalendarsControl.Instance.AllowToLeaveControl;
+		}
 
-        private void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
-        {
-            if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemPrintScheduleettings)
-            {
-                if (AllowToLeaveCurrentControl() || _currentControl == null)
-                {
-                    if (!pnMain.Controls.Contains(CustomControls.ScheduleSettingsControl.Instance))
-                    {
-                        Application.DoEvents();
-                        pnEmpty.BringToFront();
-                        Application.DoEvents();
-                        pnMain.Controls.Add(CustomControls.ScheduleSettingsControl.Instance);
-                        Application.DoEvents();
-                        pnMain.BringToFront();
-                        Application.DoEvents();
-                    }
-                    CustomControls.ScheduleSettingsControl.Instance.BringToFront();
-                    _currentControl = CustomControls.ScheduleSettingsControl.Instance;
-                }
-                else
-                    _currentControl.BringToFront();
-            }
-            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemPrintSchedule)
-            {
-                if (AllowToLeaveCurrentControl() || _currentControl == null)
-                {
-                    if (!pnMain.Controls.Contains(CustomControls.ScheduleBuilderControl.Instance))
-                    {
-                        Application.DoEvents();
-                        pnEmpty.BringToFront();
-                        Application.DoEvents();
-                        pnMain.Controls.Add(CustomControls.ScheduleBuilderControl.Instance);
-                        Application.DoEvents();
-                        pnMain.BringToFront();
-                        Application.DoEvents();
-                    }
-                    CustomControls.ScheduleBuilderControl.Instance.BringToFront();
-                    _currentControl = CustomControls.ScheduleBuilderControl.Instance;
-                }
-                else
-                    _currentControl.BringToFront();
+		private void buttonItemDigital_Click(object sender, EventArgs e)
+		{
+			using (var form = new FormDigital())
+			{
+				form.ShowDialog();
+			}
+		}
 
-            }
-            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemOverview)
-            {
-                if (AllowToLeaveCurrentControl() || _currentControl == null)
-                {
-                    OutputClasses.OutputControls.SummariesControl.Instance.SelectSummary(OutputClasses.OutputControls.SummaryType.Overview);
-                    if (!pnMain.Controls.Contains(OutputClasses.OutputControls.SummariesControl.Instance))
-                    {
-                        Application.DoEvents();
-                        pnEmpty.BringToFront();
-                        Application.DoEvents();
-                        pnMain.Controls.Add(OutputClasses.OutputControls.SummariesControl.Instance);
-                        Application.DoEvents();
-                        pnMain.BringToFront();
-                        Application.DoEvents();
-                    }
-                    OutputClasses.OutputControls.SummariesControl.Instance.BringToFront();
-                    _currentControl = OutputClasses.OutputControls.SummariesControl.Instance;
-                }
-                else
-                    _currentControl.BringToFront();
-            }
-            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemMultiSummary)
-            {
-                if (AllowToLeaveCurrentControl() || _currentControl == null)
-                {
-                    OutputClasses.OutputControls.SummariesControl.Instance.SelectSummary(OutputClasses.OutputControls.SummaryType.MultiSummary);
-                    if (!pnMain.Controls.Contains(OutputClasses.OutputControls.SummariesControl.Instance))
-                    {
-                        Application.DoEvents();
-                        pnEmpty.BringToFront();
-                        Application.DoEvents();
-                        pnMain.Controls.Add(OutputClasses.OutputControls.SummariesControl.Instance);
-                        Application.DoEvents();
-                        pnMain.BringToFront();
-                        Application.DoEvents();
-                    }
-                    OutputClasses.OutputControls.SummariesControl.Instance.BringToFront();
-                    _currentControl = OutputClasses.OutputControls.SummariesControl.Instance;
-                }
-                else
-                    _currentControl.BringToFront();
-            }
-            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSnapshot)
-            {
-                if (AllowToLeaveCurrentControl() || _currentControl == null)
-                {
-                    OutputClasses.OutputControls.SummariesControl.Instance.SelectSummary(OutputClasses.OutputControls.SummaryType.Snapshot);
-                    if (!pnMain.Controls.Contains(OutputClasses.OutputControls.SummariesControl.Instance))
-                    {
-                        Application.DoEvents();
-                        pnEmpty.BringToFront();
-                        Application.DoEvents();
-                        pnMain.Controls.Add(OutputClasses.OutputControls.SummariesControl.Instance);
-                        Application.DoEvents();
-                        pnMain.BringToFront();
-                        Application.DoEvents();
-                    }
-                    OutputClasses.OutputControls.SummariesControl.Instance.BringToFront();
-                    _currentControl = OutputClasses.OutputControls.SummariesControl.Instance;
-                }
-                else
-                    _currentControl.BringToFront();
-            }
-            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDetailedGrid)
-            {
-                if (AllowToLeaveCurrentControl() || _currentControl == null)
-                {
-                    OutputClasses.OutputControls.GridsControl.Instance.SelectGrid(OutputClasses.OutputControls.GridType.DetailedGrid);
-                    if (!pnMain.Controls.Contains(OutputClasses.OutputControls.GridsControl.Instance))
-                    {
-                        Application.DoEvents();
-                        pnEmpty.BringToFront();
-                        Application.DoEvents();
-                        pnMain.Controls.Add(OutputClasses.OutputControls.GridsControl.Instance);
-                        Application.DoEvents();
-                        pnMain.BringToFront();
-                        Application.DoEvents();
-                    }
-                    OutputClasses.OutputControls.GridsControl.Instance.BringToFront();
-                    _currentControl = OutputClasses.OutputControls.GridsControl.Instance;
-                }
-                else
-                    _currentControl.BringToFront();
-            }
-            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemMultiGrid)
-            {
-                if (AllowToLeaveCurrentControl() || _currentControl == null)
-                {
-                    OutputClasses.OutputControls.GridsControl.Instance.SelectGrid(OutputClasses.OutputControls.GridType.MultiGrid);
-                    if (!pnMain.Controls.Contains(OutputClasses.OutputControls.GridsControl.Instance))
-                    {
-                        Application.DoEvents();
-                        pnEmpty.BringToFront();
-                        Application.DoEvents();
-                        pnMain.Controls.Add(OutputClasses.OutputControls.GridsControl.Instance);
-                        Application.DoEvents();
-                        pnMain.BringToFront();
-                        Application.DoEvents();
-                    }
-                    OutputClasses.OutputControls.GridsControl.Instance.BringToFront();
-                    _currentControl = OutputClasses.OutputControls.GridsControl.Instance;
-                }
-                else
-                    _currentControl.BringToFront();
-            }
-            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemChronoGrid)
-            {
-                if (AllowToLeaveCurrentControl() || _currentControl == null)
-                {
-                    OutputClasses.OutputControls.GridsControl.Instance.SelectGrid(OutputClasses.OutputControls.GridType.ChronoGrid);
-                    if (!pnMain.Controls.Contains(OutputClasses.OutputControls.GridsControl.Instance))
-                    {
-                        Application.DoEvents();
-                        pnEmpty.BringToFront();
-                        Application.DoEvents();
-                        pnMain.Controls.Add(OutputClasses.OutputControls.GridsControl.Instance);
-                        Application.DoEvents();
-                        pnMain.BringToFront();
-                        Application.DoEvents();
-                    }
-                    OutputClasses.OutputControls.GridsControl.Instance.BringToFront();
-                    _currentControl = OutputClasses.OutputControls.GridsControl.Instance;
-                }
-                else
-                    _currentControl.BringToFront();
-            }
-            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendars)
-            {
-                if (AllowToLeaveCurrentControl() || _currentControl == null)
-                {
-                    OutputClasses.OutputControls.CalendarsControl.Instance.UpdatePageAccordingToggledButton();
-                    if (!pnMain.Controls.Contains(OutputClasses.OutputControls.CalendarsControl.Instance))
-                    {
-                        Application.DoEvents();
-                        pnEmpty.BringToFront();
-                        Application.DoEvents();
-                        pnMain.Controls.Add(OutputClasses.OutputControls.CalendarsControl.Instance);
-                        Application.DoEvents();
-                        pnMain.BringToFront();
-                        Application.DoEvents();
-                    }
-                    OutputClasses.OutputControls.CalendarsControl.Instance.BringToFront();
-                    _currentControl = OutputClasses.OutputControls.CalendarsControl.Instance;
-                }
-                else
-                    _currentControl.BringToFront();
-            }
-            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRateCard)
-            {
-                if (AllowToLeaveCurrentControl() || _currentControl == null)
-                {
-                    if (!pnMain.Controls.Contains(CustomControls.RateCardControl.Instance))
-                    {
-                        Application.DoEvents();
-                        pnEmpty.BringToFront();
-                        Application.DoEvents();
-                        CustomControls.RateCardControl.Instance.LoadRateCards();
-                        pnMain.Controls.Add(CustomControls.RateCardControl.Instance);
-                        Application.DoEvents();
-                        pnMain.BringToFront();
-                        Application.DoEvents();
-                    }
-                    CustomControls.RateCardControl.Instance.BringToFront();
-                    _currentControl = CustomControls.RateCardControl.Instance;
-                }
-                else
-                    _currentControl.BringToFront();
-            }
-            else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSuccessModels)
-            {
-                if (AllowToLeaveCurrentControl() || _currentControl == null)
-                {
-                    if (!pnMain.Controls.Contains(CustomControls.ModelsOfSuccessContainerControl.Instance))
-                    {
-                        Application.DoEvents();
-                        pnEmpty.BringToFront();
-                        Application.DoEvents();
-                        pnMain.Controls.Add(CustomControls.ModelsOfSuccessContainerControl.Instance);
-                        Application.DoEvents();
-                        pnMain.BringToFront();
-                        Application.DoEvents();
-                    }
-                    CustomControls.ModelsOfSuccessContainerControl.Instance.BringToFront();
-                    CustomControls.ModelsOfSuccessContainerControl.Instance.UpdateSuccessModels();
-                    _currentControl = CustomControls.ModelsOfSuccessContainerControl.Instance;
-                }
-                else
-                    _currentControl.BringToFront();
-            }
-        }
+		private void buttonItemFloater_Click(object sender, EventArgs e)
+		{
+			if (FloaterRequested != null)
+				FloaterRequested(this, e);
+		}
 
-        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            bool result = true;
-            if (_currentControl == CustomControls.ScheduleSettingsControl.Instance)
-                result = CustomControls.ScheduleSettingsControl.Instance.AllowToLeaveControl;
-            else if (_currentControl == CustomControls.ScheduleBuilderControl.Instance)
-                result = CustomControls.ScheduleBuilderControl.Instance.AllowToLeaveControl;
-            else if (_currentControl == OutputClasses.OutputControls.SummariesControl.Instance)
-                result = OutputClasses.OutputControls.SummariesControl.Instance.AllowToLeaveControl;
-            else if (_currentControl == OutputClasses.OutputControls.GridsControl.Instance)
-                result = OutputClasses.OutputControls.GridsControl.Instance.AllowToLeaveControl;
-            else if (_currentControl == OutputClasses.OutputControls.CalendarsControl.Instance)
-                result = OutputClasses.OutputControls.CalendarsControl.Instance.AllowToLeaveControl;
-        }
+		private void buttonItemExit_Click(object sender, EventArgs e)
+		{
+			Close();
+		}
 
-        private void buttonItemFloater_Click(object sender, EventArgs e)
-        {
-            if (FloaterRequested != null)
-                this.FloaterRequested(this, e);
-        }
+		#region Select All in Editor Handlers
+		private bool enter;
+		private bool needSelect;
 
-        private void buttonItemExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+		public void Editor_Enter(object sender, EventArgs e)
+		{
+			enter = true;
+			BeginInvoke(new MethodInvoker(ResetEnterFlag));
+		}
 
-        #region Select All in Editor Handlers
-        private bool enter = false;
-        private bool needSelect = false;
+		public void Editor_MouseUp(object sender, MouseEventArgs e)
+		{
+			if (needSelect)
+			{
+				(sender as BaseEdit).SelectAll();
+			}
+		}
 
-        public void Editor_Enter(object sender, EventArgs e)
-        {
-            enter = true;
-            BeginInvoke(new MethodInvoker(ResetEnterFlag));
-        }
+		public void Editor_MouseDown(object sender, MouseEventArgs e)
+		{
+			needSelect = enter;
+		}
 
-        public void Editor_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (needSelect)
-            {
-                (sender as DevExpress.XtraEditors.BaseEdit).SelectAll();
-            }
-        }
-
-        public void Editor_MouseDown(object sender, MouseEventArgs e)
-        {
-            needSelect = enter;
-        }
-
-        private void ResetEnterFlag()
-        {
-            enter = false;
-        }
-        #endregion
-    }
+		private void ResetEnterFlag()
+		{
+			enter = false;
+		}
+		#endregion
+	}
 }

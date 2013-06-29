@@ -399,11 +399,11 @@
     <Compile Include="ToolForms\FormChangeAdStrategyWarning.Designer.cs">
       <DependentUpon>FormChangeAdStrategyWarning.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormExport.cs">
+    <Compile Include="ToolForms\FormDigital.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ToolForms\FormExport.Designer.cs">
-      <DependentUpon>FormExport.cs</DependentUpon>
+    <Compile Include="ToolForms\FormDigital.Designer.cs">
+      <DependentUpon>FormDigital.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormProgress.cs">
       <SubType>Form</SubType>
@@ -641,8 +641,8 @@
     <EmbeddedResource Include="ToolForms\FormChangeAdStrategyWarning.resx">
       <DependentUpon>FormChangeAdStrategyWarning.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormExport.resx">
-      <DependentUpon>FormExport.cs</DependentUpon>
+    <EmbeddedResource Include="ToolForms\FormDigital.resx">
+      <DependentUpon>FormDigital.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
@@ -826,15 +826,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Help.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\FaceCall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Email.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Fax.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RightGreenArrow.png" />
@@ -1103,22 +1094,22 @@
     <None Include="Resources\ExportCalendar.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PreviewCalendarSmall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\EmailMidle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PowerPointSmall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CalendarGraphic.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CalendarSimple.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Reset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Digital.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloneProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteProduct.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

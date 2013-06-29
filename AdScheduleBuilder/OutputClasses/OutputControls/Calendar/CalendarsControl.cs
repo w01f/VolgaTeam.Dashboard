@@ -1,316 +1,348 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
+using AdScheduleBuilder.BusinessClasses;
+using AdScheduleBuilder.OutputClasses.OutputControls.Calendar.SettingsViewers;
+using AdScheduleBuilder.OutputClasses.OutputForms;
+using AdScheduleBuilder.ToolForms;
+using DevComponents.DotNetBar;
+using DevExpress.XtraEditors;
 
 namespace AdScheduleBuilder.OutputClasses.OutputControls
 {
-    [System.ComponentModel.ToolboxItem(false)]
-    public partial class CalendarsControl : UserControl
-    {
-        private static CalendarsControl _instance;
-        private ICalendarControl _selectedOutput = null;
+	[ToolboxItem(false)]
+	public partial class CalendarsControl : UserControl
+	{
+		private static CalendarsControl _instance;
+		private ICalendarControl _selectedOutput;
 
-        private CalendarsControl()
-        {
-            InitializeComponent();
-            this.Dock = DockStyle.Fill;
-        }
+		private CalendarsControl()
+		{
+			InitializeComponent();
+			Dock = DockStyle.Fill;
+			pnEmpty.Dock = DockStyle.Fill;
+			pnMain.Dock = DockStyle.Fill;
+		}
 
-        public static CalendarsControl Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new CalendarsControl();
-                return _instance;
-            }
-        }
+		public static CalendarsControl Instance
+		{
+			get
+			{
+				if (_instance == null)
+					_instance = new CalendarsControl();
+				return _instance;
+			}
+		}
 
-        public bool AllowToLeaveControl
-        {
-            get
-            {
-                bool result = false;
-                if (_selectedOutput != null && _selectedOutput.SettingsNotSaved)
-                {
-                    SaveSchedule();
-                    result = true;
-                }
-                else
-                    result = true;
-                return result;
-            }
-        }
+		public bool AllowToLeaveControl
+		{
+			get
+			{
+				bool result = false;
+				if (_selectedOutput != null && _selectedOutput.SettingsNotSaved)
+				{
+					SaveSchedule();
+					result = true;
+				}
+				else
+					result = true;
+				return result;
+			}
+		}
 
-        private void SaveSchedule(string newName = "")
-        {
-            if (_selectedOutput != null)
-            {
-                if (!string.IsNullOrEmpty(newName))
-                    _selectedOutput.LocalSchedule.Name = newName;
-                _selectedOutput.SettingsNotSaved = false;
-                BusinessClasses.ScheduleManager.Instance.SaveSchedule(_selectedOutput.LocalSchedule, true, _selectedOutput as Control);
-                _selectedOutput.UpdateOutput(true);
-            }
-        }
+		private void SaveSchedule(string newName = "")
+		{
+			if (_selectedOutput != null)
+			{
+				if (!string.IsNullOrEmpty(newName))
+					_selectedOutput.LocalSchedule.Name = newName;
+				_selectedOutput.SettingsNotSaved = false;
+				ScheduleManager.Instance.SaveSchedule(_selectedOutput.LocalSchedule, true, _selectedOutput as Control);
+				_selectedOutput.UpdateOutput(true);
+			}
+		}
 
-        public static void RemoveInstance()
-        {
-            try
-            {
-                _instance.Dispose();
-            }
-            catch
-            {
-            }
-            finally
-            {
-                _instance = null;
-            }
-        }
+		public static void RemoveInstance()
+		{
+			try
+			{
+				_instance.Dispose();
+			}
+			catch { }
+			finally
+			{
+				_instance = null;
+			}
+		}
 
-        private Calendar.SettingsViewers.ICalendarSettingsViewer GetSettingsViwerAccordingToggledButton(DevComponents.DotNetBar.ButtonItem toggledButton)
-        {
-            Calendar.SettingsViewers.ICalendarSettingsViewer result = null;
-            if (toggledButton == FormMain.Instance.buttonItemCalendarsShowTitle)
-                result = new Calendar.SettingsViewers.TitleViewerControl();
-            else if (toggledButton == FormMain.Instance.buttonItemCalendarsShowComment)
-                result = new Calendar.SettingsViewers.CommentViewerControl();
-            else if (toggledButton == FormMain.Instance.buttonItemCalendarsShowLegend)
-                result = new Calendar.SettingsViewers.LegendViewerControl();
-            else if (toggledButton == FormMain.Instance.buttonItemCalendarsShowLogo)
-                result = new Calendar.SettingsViewers.LogoViewerControl();
-            else if (toggledButton == FormMain.Instance.buttonItemCalendarsShowBusinessName)
-                result = new Calendar.SettingsViewers.BusinessNameViewerControl();
-            else if (toggledButton == FormMain.Instance.buttonItemCalendarsShowActiveDays)
-                result = new Calendar.SettingsViewers.TotalDaysViewerControl();
-            else if (toggledButton == FormMain.Instance.buttonItemCalendarsShowAvgCost)
-                result = new Calendar.SettingsViewers.AvgCostViewerControl();
-            else if (toggledButton == FormMain.Instance.buttonItemCalendarsShowDecisionMaker)
-                result = new Calendar.SettingsViewers.DecisionMakerViewerControl();
-            else if (toggledButton == FormMain.Instance.buttonItemCalendarsShowTotalAds)
-                result = new Calendar.SettingsViewers.TotalAdsViewerControl();
-            else if (toggledButton == FormMain.Instance.buttonItemCalendarsShowTotalCost)
-                result = new Calendar.SettingsViewers.TotalCostViewerControl();
-            return result;
-        }
+		private ICalendarSettingsViewer GetSettingsViwerAccordingToggledButton(ButtonX toggledButton)
+		{
+			ICalendarSettingsViewer result = null;
+			if (toggledButton == buttonXMonthShowSlideTitle)
+				result = new TitleViewerControl();
+			else if (toggledButton == buttonXMonthShowComment)
+				result = new CommentViewerControl();
+			else if (toggledButton == buttonXMonthShowLegend)
+				result = new LegendViewerControl();
+			else if (toggledButton == buttonXMonthShowLogo)
+				result = new LogoViewerControl();
+			else if (toggledButton == buttonXMonthShowBusinessName)
+				result = new BusinessNameViewerControl();
+			else if (toggledButton == buttonXMonthShowActiveDays)
+				result = new TotalDaysViewerControl();
+			else if (toggledButton == buttonXMonthShowAvgCost)
+				result = new AvgCostViewerControl();
+			else if (toggledButton == buttonXMonthShowDecisionMaker)
+				result = new DecisionMakerViewerControl();
+			else if (toggledButton == buttonXMonthShowTotalAds)
+				result = new TotalAdsViewerControl();
+			else if (toggledButton == buttonXMonthShowTotalCost)
+				result = new TotalCostViewerControl();
+			return result;
+		}
 
-        public void UpdatePageAccordingToggledButton()
-        {
-            _selectedOutput = OutputControls.OutputCalendarControl.Instance;
-            if (_selectedOutput != null)
-            {
-                if (!pnMain.Controls.Contains(_selectedOutput as Control))
-                {
-                    Application.DoEvents();
-                    pnEmpty.BringToFront();
-                    Application.DoEvents();
-                    pnMain.Controls.Add(_selectedOutput as Control);
-                    Application.DoEvents();
-                    pnMain.BringToFront();
-                    Application.DoEvents();
-                }
-                FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemCalendarsHelp, _selectedOutput.HelpToolTip);
-                _selectedOutput.ApplySettings();
-                _selectedOutput.UpdateMonthView();
-                (_selectedOutput as Control).BringToFront();
-                pnMain.BringToFront();
-            }
-            else
-            {
-                pnEmpty.BringToFront();
-                FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemCalendarsHelp, null);
-            }
-        }
+		public void UpdatePageAccordingToggledButton()
+		{
+			_selectedOutput = OutputCalendarControl.Instance;
+			if (_selectedOutput != null)
+			{
+				if (!pnMain.Controls.Contains(_selectedOutput as Control))
+				{
+					Application.DoEvents();
+					pnEmpty.BringToFront();
+					Application.DoEvents();
+					pnMain.Controls.Add(_selectedOutput as Control);
+					Application.DoEvents();
+					pnMain.BringToFront();
+					Application.DoEvents();
+				}
+				FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemCalendarsHelp, _selectedOutput.HelpToolTip);
+				FormMain.Instance.buttonItemCalendarsDetails.Checked = _selectedOutput.LocalSchedule.ViewSettings.CalendarViewSettings.ShowOptions;
+				splitContainerControl.PanelVisibility = _selectedOutput.LocalSchedule.ViewSettings.CalendarViewSettings.ShowOptions ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
+				_selectedOutput.ApplySettings();
+				_selectedOutput.UpdateMonthView();
+				(_selectedOutput as Control).BringToFront();
+				pnMain.BringToFront();
+			}
+			else
+			{
+				pnEmpty.BringToFront();
+				FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemCalendarsHelp, null);
+			}
+		}
 
-        public void comboBoxEditCalendar_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (_selectedOutput != null)
-            {
-                _selectedOutput.UpdateMonthView();
-            }
-        }
+		public void comboBoxEditCalendar_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (_selectedOutput != null)
+			{
+				_selectedOutput.UpdateMonthView();
+			}
+		}
 
-        public void buttonItemCalendarsToggledAdditional_Click(object sender, EventArgs e)
-        {
-            DevComponents.DotNetBar.ButtonItem button = sender as DevComponents.DotNetBar.ButtonItem;
-            if (button != null && _selectedOutput != null)
-            {
-                Calendar.SettingsViewers.ICalendarSettingsViewer settingsViewer = GetSettingsViwerAccordingToggledButton(button);
-                if (button.Checked)
-                {
-                    using (OutputClasses.OutputForms.FormCalendarToggleChange form = new OutputForms.FormCalendarToggleChange())
-                    {
-                        form.Text = settingsViewer.FormToggleChangeCaption;
-                        form.buttonXEdit.Text = settingsViewer.EditButtonText;
-                        DialogResult formResult = form.ShowDialog();
-                        if (formResult == DialogResult.Yes)
-                            button.Checked = false;
-                        else if (formResult == DialogResult.No)
-                        {
-                            _selectedOutput.ShowOutputOptions(settingsViewer);
-                        }
-                    }
-                }
-                else
-                {
-                    button.Checked = true;
-                    _selectedOutput.ShowOutputOptions(settingsViewer);
-                }
-            }
-        }
+		public void buttonItemCalendarsToggledAdditional_Click(object sender, EventArgs e)
+		{
+			var button = sender as ButtonX;
+			if (button != null && _selectedOutput != null)
+			{
+				ICalendarSettingsViewer settingsViewer = GetSettingsViwerAccordingToggledButton(button);
+				if (button.Checked)
+				{
+					using (var form = new FormCalendarToggleChange())
+					{
+						form.Text = settingsViewer.FormToggleChangeCaption;
+						form.buttonXEdit.Text = settingsViewer.EditButtonText;
+						DialogResult formResult = form.ShowDialog();
+						if (formResult == DialogResult.Yes)
+							button.Checked = false;
+						else if (formResult == DialogResult.No)
+						{
+							_selectedOutput.ShowOutputOptions(settingsViewer);
+						}
+					}
+				}
+				else
+				{
+					button.Checked = true;
+					_selectedOutput.ShowOutputOptions(settingsViewer);
+				}
+			}
+		}
 
-        public void buttonItemCalendarsToggled_CheckedChanged(object sender, EventArgs e)
-        {
-            if (_selectedOutput != null)
-                _selectedOutput.UpdateToggledOptions();
-        }
+		public void buttonItemCalendarsToggled_CheckedChanged(object sender, EventArgs e)
+		{
+			if (_selectedOutput != null)
+				_selectedOutput.UpdateToggledOptions();
+		}
 
-        public void buttonItemCalendarsToggledSize_CheckedChanged(object sender, EventArgs e)
-        {
-            if (_selectedOutput != null)
-            {
-                if (_selectedOutput.AllowToSave)
-                {
-                    _selectedOutput.AllowToSave = false;
-                    if (sender == FormMain.Instance.buttonItemCalendarsShowAdSize)
-                    {
-                        if (FormMain.Instance.buttonItemCalendarsShowAdSize.Checked && (FormMain.Instance.buttonItemCalendarsShowPageSize.Checked || FormMain.Instance.buttonItemCalendarsShowPercentOfPage.Checked))
-                        {
-                            FormMain.Instance.buttonItemCalendarsShowPageSize.Checked = false;
-                            FormMain.Instance.buttonItemCalendarsShowPercentOfPage.Checked = false;
-                        }
-                    }
-                    else if (sender == FormMain.Instance.buttonItemCalendarsShowPageSize)
-                    {
-                        if (FormMain.Instance.buttonItemCalendarsShowPageSize.Checked && (FormMain.Instance.buttonItemCalendarsShowAdSize.Checked || FormMain.Instance.buttonItemCalendarsShowPercentOfPage.Checked))
-                        {
-                            FormMain.Instance.buttonItemCalendarsShowAdSize.Checked = false;
-                            FormMain.Instance.buttonItemCalendarsShowPercentOfPage.Checked = false;
-                        }
-                    }
-                    else if (sender == FormMain.Instance.buttonItemCalendarsShowPercentOfPage)
-                    {
-                        if (FormMain.Instance.buttonItemCalendarsShowPercentOfPage.Checked && (FormMain.Instance.buttonItemCalendarsShowAdSize.Checked || FormMain.Instance.buttonItemCalendarsShowPageSize.Checked))
-                        {
-                            FormMain.Instance.buttonItemCalendarsShowAdSize.Checked = false;
-                            FormMain.Instance.buttonItemCalendarsShowPageSize.Checked = false;
-                        }
-                    }
-                    _selectedOutput.AllowToSave = true;
-                }
-            }
-        }
+		public void buttonItemCalendarsToggledSize_CheckedChanged(object sender, EventArgs e)
+		{
+			if (_selectedOutput != null)
+			{
+				if (_selectedOutput.AllowToSave)
+				{
+					_selectedOutput.AllowToSave = false;
+					if (sender == buttonXDayShowAdSize)
+					{
+						if (buttonXDayShowAdSize.Checked && (buttonXDayShowPageSize.Checked || buttonXDayShowPercentOfPage.Checked))
+						{
+							buttonXDayShowPageSize.Checked = false;
+							buttonXDayShowPercentOfPage.Checked = false;
+						}
+					}
+					else if (sender == buttonXDayShowPageSize)
+					{
+						if (buttonXDayShowPageSize.Checked && (buttonXDayShowAdSize.Checked || buttonXDayShowPercentOfPage.Checked))
+						{
+							buttonXDayShowAdSize.Checked = false;
+							buttonXDayShowPercentOfPage.Checked = false;
+						}
+					}
+					else if (sender == buttonXDayShowPercentOfPage)
+					{
+						if (buttonXDayShowPercentOfPage.Checked && (buttonXDayShowAdSize.Checked || buttonXDayShowPageSize.Checked))
+						{
+							buttonXDayShowAdSize.Checked = false;
+							buttonXDayShowPageSize.Checked = false;
+						}
+					}
+					_selectedOutput.AllowToSave = true;
+				}
+			}
+		}
 
-        public void buttonItemCalendarsThemeColor_Click(object sender, EventArgs e)
-        {
-            if (_selectedOutput != null)
-            {
-                _selectedOutput.AllowToSave = false;
-                FormMain.Instance.buttonItemCalendarsColorBlack.Checked = false;
-                FormMain.Instance.buttonItemCalendarsColorBlue.Checked = false;
-                FormMain.Instance.buttonItemCalendarsColorGray.Checked = false;
-                FormMain.Instance.buttonItemCalendarsColorGreen.Checked = false;
-                FormMain.Instance.buttonItemCalendarsColorOrange.Checked = false;
-                FormMain.Instance.buttonItemCalendarsColorTeal.Checked = false;
-                _selectedOutput.AllowToSave = true;
-                (sender as DevComponents.DotNetBar.ButtonItem).Checked = true;
-            }
-        }
+		public void buttonItemCalendarsThemeColor_Click(object sender, EventArgs e)
+		{
+			if (_selectedOutput != null)
+			{
+				_selectedOutput.AllowToSave = false;
+				buttonXColorBlack.Checked = false;
+				buttonXColorBlue.Checked = false;
+				buttonXColorGray.Checked = false;
+				buttonXColorGreen.Checked = false;
+				buttonXColorOrange.Checked = false;
+				buttonXColorTeal.Checked = false;
+				_selectedOutput.AllowToSave = true;
+				(sender as ButtonX).Checked = true;
+			}
+		}
 
-        public void buttonItemCalendarsPreview_Click(object sender, EventArgs e)
-        {
-            if (_selectedOutput != null)
-                _selectedOutput.Preview();
-        }
+		public void buttonItemCalendarsOptions_CheckedChanged(object sender, EventArgs e)
+		{
+			if (_selectedOutput != null && _selectedOutput.AllowToSave)
+			{
+				_selectedOutput.LocalSchedule.ViewSettings.CalendarViewSettings.ShowOptions = FormMain.Instance.buttonItemCalendarsDetails.Checked;
+				splitContainerControl.PanelVisibility = _selectedOutput.LocalSchedule.ViewSettings.CalendarViewSettings.ShowOptions ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
+				_selectedOutput.SettingsNotSaved = true;
+			}
+		}
 
-        public void buttonItemCalendarsPowerPoint_Click(object sender, EventArgs e)
-        {
-            if (_selectedOutput != null)
-                _selectedOutput.PrintOutput();
-        }
+		public void buttonItemCalendarsPreview_Click(object sender, EventArgs e)
+		{
+			if (_selectedOutput != null)
+				_selectedOutput.Preview();
+		}
 
-        public void buttonItemCalendarsEmail_Click(object sender, EventArgs e)
-        {
-            if (_selectedOutput != null)
-                _selectedOutput.Email();
-        }
+		public void buttonItemCalendarsPowerPoint_Click(object sender, EventArgs e)
+		{
+			if (_selectedOutput != null)
+				_selectedOutput.PrintOutput();
+		}
 
-        public void buttonItemCalendarsExport_Click(object sender, EventArgs e)
-        {
-            if (_selectedOutput != null)
-            {
-                if (this.AllowToLeaveControl)
-                {
-                    using (ToolForms.FormExport form = new ToolForms.FormExport())
-                    {
-                        if (form.ShowDialog() == DialogResult.OK)
-                        {
-                            FormMain.Instance.Export(_selectedOutput.LocalSchedule, form.BuildAdvanced, form.BuildGraphic, form.BuildSimple);
-                        }
-                    }
-                }
-            }
-        }
+		public void buttonItemCalendarsEmail_Click(object sender, EventArgs e)
+		{
+			if (_selectedOutput != null)
+				_selectedOutput.Email();
+		}
 
-        public void buttonItemCalendarSave_Click(object sender, EventArgs e)
-        {
-            SaveSchedule();
-            AppManager.ShowInformation("Schedule Saved");
-        }
+		public void buttonItemCalendarsExport_Click(object sender, EventArgs e)
+		{
+			if (_selectedOutput != null)
+			{
+				if (AllowToLeaveControl)
+				{
+					FormMain.Instance.Export(_selectedOutput.LocalSchedule, false, true, false);
+				}
+			}
+		}
 
-        public void buttonItemCalendarSaveAs_Click(object sender, EventArgs e)
-        {
-            if (_selectedOutput != null)
-                using (ToolForms.FormNewSchedule from = new ToolForms.FormNewSchedule())
-                {
-                    from.Text = "Save Schedule";
-                    from.laLogo.Text = "Please set a new name for your Schedule:";
-                    if (from.ShowDialog() == DialogResult.OK)
-                    {
-                        if (!string.IsNullOrEmpty(from.ScheduleName))
-                        {
-                            SaveSchedule(from.ScheduleName);
-                            AppManager.ShowInformation("Schedule was saved");
-                        }
-                        else
-                        {
-                            AppManager.ShowWarning("Schedule Name can't be empty");
-                        }
-                    }
-                }
-        }
+		public void buttonItemCalendarSave_Click(object sender, EventArgs e)
+		{
+			SaveSchedule();
+			AppManager.ShowInformation("Schedule Saved");
+		}
 
-        public void buttonItemCalendarsReset_Click(object sender, EventArgs e)
-        {
-            _selectedOutput.ResetToDefault();
-            SaveSchedule();
-        }
+		public void buttonItemCalendarSaveAs_Click(object sender, EventArgs e)
+		{
+			if (_selectedOutput != null)
+				using (var from = new FormNewSchedule())
+				{
+					from.Text = "Save Schedule";
+					from.laLogo.Text = "Please set a new name for your Schedule:";
+					if (from.ShowDialog() == DialogResult.OK)
+					{
+						if (!string.IsNullOrEmpty(from.ScheduleName))
+						{
+							SaveSchedule(from.ScheduleName);
+							AppManager.ShowInformation("Schedule was saved");
+						}
+						else
+						{
+							AppManager.ShowWarning("Schedule Name can't be empty");
+						}
+					}
+				}
+		}
 
-        public void buttonItemCalendarsHelp_Click(object sender, EventArgs e)
-        {
-            if (_selectedOutput != null)
-                _selectedOutput.OpenHelp();
-        }
-    }
+		public void buttonItemCalendarsReset_Click(object sender, EventArgs e)
+		{
+			_selectedOutput.ResetToDefault();
+			SaveSchedule();
+		}
 
-    public interface ICalendarControl
-    {
-        BusinessClasses.Schedule LocalSchedule { get; set; }
-        bool SettingsNotSaved { get; set; }
-        DevComponents.DotNetBar.SuperTooltipInfo HelpToolTip { get; }
-        bool AllowToSave { get; set; }
-        List<BusinessClasses.Insert> Inserts { get; }
+		public void buttonItemCalendarsHelp_Click(object sender, EventArgs e)
+		{
+			if (_selectedOutput != null)
+				_selectedOutput.OpenHelp();
+		}
 
-        void ApplySettings();
-        void UpdateMonthView();
-        void UpdateToggledOptions();
-        void ShowOutputOptions(Calendar.SettingsViewers.ICalendarSettingsViewer settingsViewer);
-        void UpdateOutput(bool quickLoad);
-        void ResetToDefault();
-        void PrintOutput();
-        void Email();
-        void Preview();
-        void OpenHelp();
-    }
+		#region Picture Box Clicks Habdlers
+		/// <summary>
+		/// Buttonize the PictureBox 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
+		{
+			PictureBox pic = (PictureBox)(sender);
+			pic.Top += 1;
+		}
+
+		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
+		{
+			PictureBox pic = (PictureBox)(sender);
+			pic.Top -= 1;
+		}
+		#endregion
+	}
+
+	public interface ICalendarControl
+	{
+		Schedule LocalSchedule { get; set; }
+		bool SettingsNotSaved { get; set; }
+		SuperTooltipInfo HelpToolTip { get; }
+		bool AllowToSave { get; set; }
+		List<Insert> Inserts { get; }
+
+		void ApplySettings();
+		void UpdateMonthView();
+		void UpdateToggledOptions();
+		void ShowOutputOptions(ICalendarSettingsViewer settingsViewer);
+		void UpdateOutput(bool quickLoad);
+		void ResetToDefault();
+		void PrintOutput();
+		void Email();
+		void Preview();
+		void OpenHelp();
+	}
 }

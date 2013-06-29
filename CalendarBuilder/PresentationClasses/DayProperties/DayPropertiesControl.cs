@@ -1,136 +1,140 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using CalendarBuilder.BusinessClasses;
+using DevExpress.XtraBars;
+using DevExpress.XtraTab;
 
 namespace CalendarBuilder.PresentationClasses.DayProperties
 {
-    public partial class DayPropertiesControl : UserControl
-    {
-        private BusinessClasses.CalendarStyle _style;
-        private string _helpKey = string.Empty;
-        public BusinessClasses.CalendarDay Day { get; set; }
+	public partial class DayPropertiesControl : UserControl
+	{
+		private string _helpKey = string.Empty;
+		private CalendarStyle _style;
 
-        public bool SettingsNotSaved { get; set; }
+		public DayPropertiesControl()
+		{
+			InitializeComponent();
+			Dock = DockStyle.Fill;
+		}
 
-        [Browsable(true)]
-        [Category("Action")]
-        public event EventHandler PropertiesSaved;
+		public CalendarDay Day { get; set; }
 
-        [Browsable(true)]
-        [Category("Action")]
-        public event EventHandler Closed;
+		public bool SettingsNotSaved { get; set; }
 
-        [Browsable(true)]
-        [Category("Action")]
-        public event DevExpress.XtraTab.TabPageChangedEventHandler PropertiesGroupChanged;
+		[Browsable(true)]
+		[Category("Action")]
+		public event EventHandler PropertiesSaved;
 
-        public DayPropertiesControl()
-        {
-            InitializeComponent();
-            this.Dock = DockStyle.Fill;
-        }
+		[Browsable(true)]
+		[Category("Action")]
+		public event EventHandler Closed;
 
-        public void LoadData(BusinessClasses.CalendarDay day)
-        {
-            this.Day = day;
-            LoadCurrentDayData();
+		[Browsable(true)]
+		[Category("Action")]
+		public event TabPageChangedEventHandler PropertiesGroupChanged;
 
-            xtraTabPageDigital.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced && this.Day.Parent.Schedule.ShowDigital;
-            xtraTabPageNewspaper.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced && this.Day.Parent.Schedule.ShowNewspaper;
-            xtraTabPageTV.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced;
-            xtraTabPageRadio.PageVisible = _style == BusinessClasses.CalendarStyle.Advanced;
-            xtraTabPageTV.PageEnabled = this.Day.Parent.Schedule.ShowTV;
-            xtraTabPageRadio.PageEnabled = this.Day.Parent.Schedule.ShowRadio;
-            xtraTabPageLogo.PageVisible = _style == BusinessClasses.CalendarStyle.Graphic;
+		public void LoadData(CalendarDay day)
+		{
+			Day = day;
+			LoadCurrentDayData();
 
-            if (this.PropertiesGroupChanged != null)
-                this.PropertiesGroupChanged(xtraTabControl, new DevExpress.XtraTab.TabPageChangedEventArgs(null, xtraTabControl.SelectedTabPage));
-        }
+			xtraTabPageDigital.PageVisible = _style == CalendarStyle.Advanced && Day.Parent.Schedule.ShowDigital;
+			xtraTabPageNewspaper.PageVisible = _style == CalendarStyle.Advanced && Day.Parent.Schedule.ShowNewspaper;
+			xtraTabPageTV.PageVisible = _style == CalendarStyle.Advanced;
+			xtraTabPageRadio.PageVisible = _style == CalendarStyle.Advanced;
+			xtraTabPageTV.PageEnabled = Day.Parent.Schedule.ShowTV;
+			xtraTabPageRadio.PageEnabled = Day.Parent.Schedule.ShowRadio;
+			xtraTabPageLogo.PageVisible = _style == CalendarStyle.Graphic;
 
-        public void LoadCurrentDayData()
-        {
-            if (this.Day != null)
-            {
-                xtraTabPageDigital.Tooltip = "Digital Info: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
-                xtraTabPageNewspaper.Tooltip = "Newspaper Info: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
-                xtraTabPageTV.Tooltip = "TV Info: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
-                xtraTabPageRadio.Tooltip = "Radio Info: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
-                xtraTabPageComment.Tooltip = "Comment: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
-                xtraTabPageLogo.Tooltip = "Logo: " + this.Day.Date.ToString("dddd, MMMM d, yyyy");
-                digitalPropertiesControl.LoadData(this.Day);
-                newspaperPropertiesControl.LoadData(this.Day);
-                commentControl.LoadData(this.Day);
-                logoControl.LoadData(this.Day);
-                this.SettingsNotSaved = false;
-            }
-        }
+			if (PropertiesGroupChanged != null)
+				PropertiesGroupChanged(xtraTabControl, new TabPageChangedEventArgs(null, xtraTabControl.SelectedTabPage));
+		}
 
-        public void SaveData()
-        {
-            digitalPropertiesControl.SaveData();
-            newspaperPropertiesControl.SaveData();
-            tvPropertiesControl.SaveData();
-            radioPropertiesControl.SaveData();
-            commentControl.SaveData();
-            logoControl.SaveData();
-            this.SettingsNotSaved = false;
+		public void LoadCurrentDayData()
+		{
+			if (Day != null)
+			{
+				xtraTabPageDigital.Tooltip = "Digital Info: " + Day.Date.ToString("dddd, MMMM d, yyyy");
+				xtraTabPageNewspaper.Tooltip = "Newspaper Info: " + Day.Date.ToString("dddd, MMMM d, yyyy");
+				xtraTabPageTV.Tooltip = "TV Info: " + Day.Date.ToString("dddd, MMMM d, yyyy");
+				xtraTabPageRadio.Tooltip = "Radio Info: " + Day.Date.ToString("dddd, MMMM d, yyyy");
+				xtraTabPageComment.Tooltip = "Comment: " + Day.Date.ToString("dddd, MMMM d, yyyy");
+				xtraTabPageLogo.Tooltip = "Logo: " + Day.Date.ToString("dddd, MMMM d, yyyy");
+				digitalPropertiesControl.LoadData(Day);
+				newspaperPropertiesControl.LoadData(Day);
+				commentControl.LoadData(Day);
+				logoControl.LoadData(Day);
+				SettingsNotSaved = false;
+			}
+		}
 
-            if (this.PropertiesSaved != null)
-                this.PropertiesSaved(this, new EventArgs());
-        }
+		public void SaveData()
+		{
+			digitalPropertiesControl.SaveData();
+			newspaperPropertiesControl.SaveData();
+			tvPropertiesControl.SaveData();
+			radioPropertiesControl.SaveData();
+			commentControl.SaveData();
+			logoControl.SaveData();
+			SettingsNotSaved = false;
 
-        public void Decorate(BusinessClasses.CalendarStyle style)
-        {
-            _style = style;
-        }
+			if (PropertiesSaved != null)
+				PropertiesSaved(this, new EventArgs());
+		}
 
-        private void barLargeButtonItemApply_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            SaveData();
-        }
+		public void Decorate(CalendarStyle style)
+		{
+			_style = style;
+		}
 
-        private void barLargeButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            this.Day.ClearData();
-            LoadCurrentDayData();
-            this.SettingsNotSaved = true;
-        }
+		private void barLargeButtonItemApply_ItemClick(object sender, ItemClickEventArgs e)
+		{
+			SaveData();
+		}
 
-        private void barLargeButtonItemHelp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            BusinessClasses.HelpManager.Instance.OpenHelpLink(_helpKey);
-        }
+		private void barLargeButtonItemDelete_ItemClick(object sender, ItemClickEventArgs e)
+		{
+			Day.ClearData();
+			LoadCurrentDayData();
+			SettingsNotSaved = true;
+		}
 
-        private void barLargeButtonItemClose_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (this.Closed != null)
-                this.Closed(sender, e);
-        }
+		private void barLargeButtonItemHelp_ItemClick(object sender, ItemClickEventArgs e)
+		{
+			HelpManager.Instance.OpenHelpLink(_helpKey);
+		}
 
-        private void propertiesControl_PropertiesChanged(object sender, EventArgs e)
-        {
-            this.SettingsNotSaved = true;
-        }
+		private void barLargeButtonItemClose_ItemClick(object sender, ItemClickEventArgs e)
+		{
+			if (Closed != null)
+				Closed(sender, e);
+		}
 
-        private void xtraTabControl_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
-        {
-            if (this.PropertiesGroupChanged != null)
-                this.PropertiesGroupChanged(sender, e);
-            
-            if (xtraTabControl.SelectedTabPage == xtraTabPageComment)
-                _helpKey = "rightbarcomments";
-            else if (xtraTabControl.SelectedTabPage == xtraTabPageDigital)
-                _helpKey = "rightbardigital";
-            else if (xtraTabControl.SelectedTabPage == xtraTabPageLogo)
-                _helpKey = "rightbarlogo";
-            else if (xtraTabControl.SelectedTabPage == xtraTabPageNewspaper)
-                _helpKey = "rightbarprint";
-            else if (xtraTabControl.SelectedTabPage == xtraTabPageRadio)
-                _helpKey = string.Empty;
-            else if (xtraTabControl.SelectedTabPage == xtraTabPageTV)
-                _helpKey = string.Empty;
-            else
-                _helpKey = string.Empty;
-        }
-    }
+		private void propertiesControl_PropertiesChanged(object sender, EventArgs e)
+		{
+			SettingsNotSaved = true;
+		}
+
+		private void xtraTabControl_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
+		{
+			if (PropertiesGroupChanged != null)
+				PropertiesGroupChanged(sender, e);
+
+			if (xtraTabControl.SelectedTabPage == xtraTabPageComment)
+				_helpKey = "rightbarcomments";
+			else if (xtraTabControl.SelectedTabPage == xtraTabPageDigital)
+				_helpKey = "rightbardigital";
+			else if (xtraTabControl.SelectedTabPage == xtraTabPageLogo)
+				_helpKey = "rightbarlogo";
+			else if (xtraTabControl.SelectedTabPage == xtraTabPageNewspaper)
+				_helpKey = "rightbarprint";
+			else if (xtraTabControl.SelectedTabPage == xtraTabPageRadio)
+				_helpKey = string.Empty;
+			else if (xtraTabControl.SelectedTabPage == xtraTabPageTV)
+				_helpKey = string.Empty;
+			else
+				_helpKey = string.Empty;
+		}
+	}
 }

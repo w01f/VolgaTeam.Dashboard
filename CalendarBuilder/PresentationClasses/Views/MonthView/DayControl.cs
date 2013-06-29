@@ -1,282 +1,304 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using CalendarBuilder.BusinessClasses;
+using CalendarBuilder.ToolForms;
 
 namespace CalendarBuilder.PresentationClasses.Views.MonthView
 {
-    [System.ComponentModel.ToolboxItem(false)]
-    public partial class DayControl : UserControl
-    {
-        private BusinessClasses.CalendarStyle _style;
-        private bool _allowToSave = false;
-        private bool _isSelected = false;
-        private bool _isCopySource = false;
+	[ToolboxItem(false)]
+	public partial class DayControl : UserControl
+	{
+		private bool _allowToSave;
+		private bool _isCopySource;
+		private bool _isSelected;
+		private CalendarStyle _style;
 
-        public BusinessClasses.CalendarDay Day { get; set; }
+		public DayControl(CalendarDay day)
+		{
+			InitializeComponent();
+			Day = day;
+			laSmallDayCaption.Text = Day.Date.Day.ToString();
+			RefreshData();
 
-        public bool RaiseEvents { get; set; }
-        public event EventHandler<SelectDayEventArgs> DaySelected;
-        public event EventHandler<EventArgs> PropertiesRequested;
-        public event EventHandler<EventArgs> DayCopied;
-        public event EventHandler<EventArgs> DayPasted;
-        public event EventHandler<EventArgs> DayCloned;
-        public event EventHandler<EventArgs> DayDataDeleted;
-        public event EventHandler<EventArgs> DataChanged;
+			memoEditSimpleComment.Enter += FormMain.Instance.Editor_Enter;
+			memoEditSimpleComment.MouseDown += FormMain.Instance.Editor_MouseDown;
+			memoEditSimpleComment.MouseUp += FormMain.Instance.Editor_MouseUp;
+		}
 
-        public event EventHandler<EventArgs> SelectionStateRequested;
-        public event EventHandler<MouseEventArgs> DayMouseMove;
+		#region Coomon Methods
+		public void RefreshData()
+		{
+			_allowToSave = false;
+			labelControlData.Text = Day.Summary;
+			pbLogo.Image = Day.Logo.XtraTinyImage;
+			pbLogo.Visible = _style == CalendarStyle.Graphic && Day.Logo.XtraTinyImage != null;
+			memoEditSimpleComment.EditValue = Day.Comment1;
+			toolStripMenuItemEdit.Visible= _style == CalendarStyle.Graphic;
+			toolStripMenuItemEdit.Enabled = _style == CalendarStyle.Graphic;
+			toolStripMenuItemDelete.Enabled = Day.ContainsData;
+			BackColor = BackColor == Color.Blue || BackColor == Color.Green ? (Day.ContainsData ? Color.Green : Color.Blue) : Color.DarkGray;
+			if (!Day.BelongsToSchedules)
+			{
+				memoEditSimpleComment.BackColor = Color.LightGray;
+				pnCalendarNoteArea.BackColor = Color.LightGray;
+				xtraScrollableControl.BackColor = Color.LightGray;
+				laSmallDayCaption.BackColor = Color.Gray;
+			}
+			else if (_isCopySource)
+			{
+				memoEditSimpleComment.BackColor = Color.FromArgb(192, 255, 192);
+				pnCalendarNoteArea.BackColor = Color.FromArgb(192, 255, 192);
+				xtraScrollableControl.BackColor = Color.FromArgb(192, 255, 192);
+				laSmallDayCaption.BackColor = Color.DarkSeaGreen;
+			}
+			else
+			{
+				memoEditSimpleComment.BackColor = Color.AliceBlue;
+				pnCalendarNoteArea.BackColor = Color.AliceBlue;
+				xtraScrollableControl.BackColor = Color.AliceBlue;
+				laSmallDayCaption.BackColor = Color.FromArgb(175, 210, 255);
+			}
+			pnCalendarNoteArea.Visible = Day.HasNotes;
+			_allowToSave = true;
+		}
 
-        public event EventHandler<EventArgs> NoteAdded;
-        public event EventHandler<EventArgs> NotePasted;
+		public void Decorate(CalendarStyle style)
+		{
+			_style = style;
+			pbLogo.Visible = _style == CalendarStyle.Graphic && pbLogo.Image != null;
+			toolStripMenuItemEdit.Visible = _style == CalendarStyle.Graphic;
+			toolStripMenuItemEdit.Enabled = _style == CalendarStyle.Graphic;
+		}
+		#endregion
 
-        public bool AllowToPasteNote { get; set; }
-        public bool MultiSelectEnabled { get; set; }
+		#region Selection Methods
+		public void ChangeSelection(bool select)
+		{
+			_isSelected = select;
+			Padding = new Padding(select ? 5 : 1);
+			pnCalendarNoteArea.Height = select ? 35 : 40;
+			BackColor = _isSelected ? (Day.ContainsData ? Color.Green : Color.Blue) : Color.DarkGray;
+			Refresh();
+		}
 
-        public DayControl(BusinessClasses.CalendarDay day)
-        {
-            InitializeComponent();
-            this.Day = day;
-            laSmallDayCaption.Text = this.Day.Date.Day.ToString();
-            RefreshData();
+		public void UpdateNoteMenuAccordingSelection(CalendarDay[] selectedDays)
+		{
+			toolStripMenuItemAddNote.Text = "Add Note";
+			toolStripMenuItemAddNote.Enabled = false;
+			toolStripMenuItemPasteNote.Text = "Paste Note";
+			toolStripMenuItemPasteNote.Enabled = false;
+			if (selectedDays.Length > 1)
+			{
+				DateRange noteDateRange = Day.Parent.CalculateDateRange(selectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
+				if (noteDateRange != null)
+				{
+					toolStripMenuItemAddNote.Text = "Add Note " + string.Format("({0}-{1})", new[] { noteDateRange.StartDate.ToString("MM/dd"), noteDateRange.FinishDate.ToString("MM/dd") });
+					toolStripMenuItemAddNote.Enabled = !Day.HasNotes;
+					toolStripMenuItemPasteNote.Text = "Paste Note " + string.Format("({0}-{1})", new[] { noteDateRange.StartDate.ToString("MM/dd"), noteDateRange.FinishDate.ToString("MM/dd") });
+					toolStripMenuItemPasteNote.Enabled = AllowToPasteNote;
+				}
+			}
+		}
 
-            memoEditSimpleComment.Enter += new EventHandler(FormMain.Instance.Editor_Enter);
-            memoEditSimpleComment.MouseDown += new MouseEventHandler(FormMain.Instance.Editor_MouseDown);
-            memoEditSimpleComment.MouseUp += new MouseEventHandler(FormMain.Instance.Editor_MouseUp);
-        }
+		private void Control_Click(object sender, MouseEventArgs e)
+		{
+			if (RaiseEvents)
+			{
+				if (e.Button == MouseButtons.Left)
+				{
+					if (Day.BelongsToSchedules)
+						if (DaySelected != null)
+							DaySelected(this, new SelectDayEventArgs(this, ModifierKeys));
+				}
+			}
+		}
 
-        #region Coomon Methods
-        public void RefreshData()
-        {
-            _allowToSave = false;
-            labelControlData.Text = this.Day.Summary;
-            pbLogo.Image = this.Day.Logo.XtraTinyImage;
-            pbLogo.Visible = _style == BusinessClasses.CalendarStyle.Graphic && this.Day.Logo.XtraTinyImage != null;
-            memoEditSimpleComment.EditValue = this.Day.Comment1;
-            toolStripMenuItemDelete.Enabled = this.Day.ContainsData;
-            this.BackColor = this.BackColor == Color.Blue || this.BackColor == Color.Green ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.DarkGray;
-            if (!this.Day.BelongsToSchedules)
-            {
-                memoEditSimpleComment.BackColor = Color.LightGray;
-                pnCalendarNoteArea.BackColor = Color.LightGray;
-                xtraScrollableControl.BackColor = Color.LightGray;
-                laSmallDayCaption.BackColor = Color.Gray;
-            }
-            else if (_isCopySource)
-            {
-                memoEditSimpleComment.BackColor = Color.FromArgb(192, 255, 192);
-                pnCalendarNoteArea.BackColor = Color.FromArgb(192, 255, 192);
-                xtraScrollableControl.BackColor = Color.FromArgb(192, 255, 192);
-                laSmallDayCaption.BackColor = Color.DarkSeaGreen;
-            }
-            else
-            {
-                memoEditSimpleComment.BackColor = Color.AliceBlue;
-                pnCalendarNoteArea.BackColor = Color.AliceBlue;
-                xtraScrollableControl.BackColor = Color.AliceBlue;
-                laSmallDayCaption.BackColor = Color.FromArgb(175, 210, 255);
-            }
-            pnCalendarNoteArea.Visible = this.Day.HasNotes;
-            _allowToSave = true;
-        }
+		private void DayControl_MouseDown(object sender, MouseEventArgs e)
+		{
+			Control_Click(sender, e);
+			if (RaiseEvents)
+				MultiSelectEnabled = true;
+		}
 
-        public void Decorate(BusinessClasses.CalendarStyle style)
-        {
-            _style = style;
-            pbLogo.Visible = _style == BusinessClasses.CalendarStyle.Graphic && pbLogo.Image != null;
-        }
-        #endregion
+		private void DayControl_MouseUp(object sender, MouseEventArgs e)
+		{
+			if (RaiseEvents)
+				MultiSelectEnabled = false;
+		}
 
-        #region Selection Methods
-        public void ChangeSelection(bool select)
-        {
-            _isSelected = select;
-            this.Padding = new Padding(select ? 5 : 1);
-            pnCalendarNoteArea.Height = select ? 35 : 40;
-            this.BackColor = _isSelected ? (this.Day.ContainsData ? Color.Green : Color.Blue) : Color.DarkGray;
-            this.Refresh();
-        }
+		private void DayControl_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (RaiseEvents)
+				if (MultiSelectEnabled)
+					if (DayMouseMove != null)
+						DayMouseMove(this, e);
+		}
+		#endregion
 
-        public void UpdateNoteMenuAccordingSelection(BusinessClasses.CalendarDay[] selectedDays)
-        {
-            toolStripMenuItemAddNote.Text = "Add Note";
-            toolStripMenuItemAddNote.Enabled = false;
-            toolStripMenuItemPasteNote.Text = "Paste Note";
-            toolStripMenuItemPasteNote.Enabled = false;
-            if (selectedDays.Length > 1)
-            {
-                BusinessClasses.DateRange noteDateRange = this.Day.Parent.CalculateDateRange(selectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
-                if (noteDateRange != null)
-                {
-                    toolStripMenuItemAddNote.Text = "Add Note " + string.Format("({0}-{1})", new string[] { noteDateRange.StartDate.ToString("MM/dd"), noteDateRange.FinishDate.ToString("MM/dd") });
-                    toolStripMenuItemAddNote.Enabled = !this.Day.HasNotes;
-                    toolStripMenuItemPasteNote.Text = "Paste Note " + string.Format("({0}-{1})", new string[] { noteDateRange.StartDate.ToString("MM/dd"), noteDateRange.FinishDate.ToString("MM/dd") });
-                    toolStripMenuItemPasteNote.Enabled = this.AllowToPasteNote;
-                }
-            }
-        }
+		#region Copy\Paste Methods
+		public void ChangeCopySource(bool isCopySource)
+		{
+			_isCopySource = isCopySource;
+			if (!Day.BelongsToSchedules)
+			{
+				memoEditSimpleComment.BackColor = Color.LightGray;
+				pnCalendarNoteArea.BackColor = Color.LightGray;
+				xtraScrollableControl.BackColor = Color.LightGray;
+				laSmallDayCaption.BackColor = Color.Gray;
+			}
+			else if (_isCopySource)
+			{
+				memoEditSimpleComment.BackColor = Color.FromArgb(192, 255, 192);
+				pnCalendarNoteArea.BackColor = Color.FromArgb(192, 255, 192);
+				xtraScrollableControl.BackColor = Color.FromArgb(192, 255, 192);
+				laSmallDayCaption.BackColor = Color.DarkSeaGreen;
+			}
+			else
+			{
+				memoEditSimpleComment.BackColor = Color.AliceBlue;
+				pnCalendarNoteArea.BackColor = Color.AliceBlue;
+				xtraScrollableControl.BackColor = Color.AliceBlue;
+				laSmallDayCaption.BackColor = Color.FromArgb(175, 210, 255);
+			}
+		}
+		#endregion
 
-        private void Control_Click(object sender, MouseEventArgs e)
-        {
-            if (this.RaiseEvents)
-            {
-                if (e.Button == System.Windows.Forms.MouseButtons.Left)
-                {
-                    if (this.Day.BelongsToSchedules)
-                        if (this.DaySelected != null)
-                            this.DaySelected(this, new SelectDayEventArgs(this, ModifierKeys));
-                }
-            }
-        }
+		#region Common Event Handlers
+		private void Control_DoubleClick(object sender, EventArgs e)
+		{
+			if (Day.BelongsToSchedules && _style == CalendarStyle.Advanced)
+			{
+				if (PropertiesRequested != null)
+					PropertiesRequested(sender, new EventArgs());
+			}
+			else if (Day.BelongsToSchedules && (_style == CalendarStyle.Graphic || _style == CalendarStyle.Simple))
+			{
+				xtraScrollableControl.Padding = new Padding(0);
+				labelControlData.Visible = false;
+				memoEditSimpleComment.Visible = true;
+				memoEditSimpleComment.Focus();
+				memoEditSimpleComment.SelectAll();
+			}
+		}
+		#endregion
 
-        private void DayControl_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (this.RaiseEvents)
-                this.MultiSelectEnabled = true;
-        }
+		#region Popupp Menu Event Handlers
+		private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+		{
+			if (!Day.BelongsToSchedules)
+				e.Cancel = true;
+			else if (SelectionStateRequested != null)
+				SelectionStateRequested(sender, new EventArgs());
+		}
 
-        private void DayControl_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (this.RaiseEvents)
-                this.MultiSelectEnabled = false;
-        }
+		private void contextMenuStrip_Opened(object sender, EventArgs e)
+		{
+			if (!_isSelected)
+				Control_Click(sender, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
+		}
 
-        private void DayControl_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (this.RaiseEvents)
-                if (this.MultiSelectEnabled)
-                    if (this.DayMouseMove != null)
-                        this.DayMouseMove(this, e);
-        }
-        #endregion
+		private void toolStripMenuItemCopy_Click(object sender, EventArgs e)
+		{
+			if (DayCopied != null)
+				DayCopied(sender, new EventArgs());
+		}
 
-        #region Copy\Paste Methods
-        public void ChangeCopySource(bool isCopySource)
-        {
-            _isCopySource = isCopySource;
-            if (!this.Day.BelongsToSchedules)
-            {
-                memoEditSimpleComment.BackColor = Color.LightGray;
-                pnCalendarNoteArea.BackColor = Color.LightGray;
-                xtraScrollableControl.BackColor = Color.LightGray;
-                laSmallDayCaption.BackColor = Color.Gray;
-            }
-            else if (_isCopySource)
-            {
-                memoEditSimpleComment.BackColor = Color.FromArgb(192, 255, 192);
-                pnCalendarNoteArea.BackColor = Color.FromArgb(192, 255, 192);
-                xtraScrollableControl.BackColor = Color.FromArgb(192, 255, 192);
-                laSmallDayCaption.BackColor = Color.DarkSeaGreen;
-            }
-            else
-            {
-                memoEditSimpleComment.BackColor = Color.AliceBlue;
-                pnCalendarNoteArea.BackColor = Color.AliceBlue;
-                xtraScrollableControl.BackColor = Color.AliceBlue;
-                laSmallDayCaption.BackColor = Color.FromArgb(175, 210, 255);
-            }
-        }
-        #endregion
+		private void toolStripMenuItemPaste_Click(object sender, EventArgs e)
+		{
+			if (DayPasted != null)
+				DayPasted(sender, new EventArgs());
+		}
 
-        #region Common Event Handlers
-        private void Control_DoubleClick(object sender, EventArgs e)
-        {
-            if (this.Day.BelongsToSchedules && (_style == BusinessClasses.CalendarStyle.Advanced || _style == BusinessClasses.CalendarStyle.Graphic))
-            {
-                if (this.PropertiesRequested != null)
-                    this.PropertiesRequested(sender, new EventArgs());
-            }
-            else if (this.Day.BelongsToSchedules && _style == BusinessClasses.CalendarStyle.Simple)
-            {
-                memoEditSimpleComment.BringToFront();
-                memoEditSimpleComment.Focus();
-                memoEditSimpleComment.SelectAll();
-                pnCalendarNoteArea.SendToBack();
-            }
-        }
-        #endregion
+		private void toolStripMenuItemEdit_Click(object sender, EventArgs e)
+		{
+			using (var form = new FormDayProperties(Day))
+			{
+				if (form.ShowDialog() == DialogResult.OK)
+				{
+					RefreshData();
+					if (DataChanged != null)
+						DataChanged(sender, new EventArgs());
+				}
+			}
+		}
 
-        #region Popupp Menu Event Handlers
-        private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (!this.Day.BelongsToSchedules)
-                e.Cancel = true;
-            else if (this.SelectionStateRequested != null)
-                this.SelectionStateRequested(sender, new EventArgs());
-        }
+		private void toolStripMenuItemDelete_Click(object sender, EventArgs e)
+		{
+			if (DayDataDeleted != null)
+				DayDataDeleted(sender, new EventArgs());
+		}
 
-        private void contextMenuStrip_Opened(object sender, EventArgs e)
-        {
-            if (!_isSelected)
-                Control_Click(sender, new MouseEventArgs(System.Windows.Forms.MouseButtons.Left, 1, 0, 0, 0));
-        }
+		private void toolStripMenuItemClone_Click(object sender, EventArgs e)
+		{
+			if (DayCloned != null)
+				DayCloned(sender, new EventArgs());
+		}
 
-        private void toolStripMenuItemCopy_Click(object sender, EventArgs e)
-        {
-            if (this.DayCopied != null)
-                this.DayCopied(sender, new EventArgs());
-        }
+		private void toolStripMenuItemAddNote_Click(object sender, EventArgs e)
+		{
+			if (NoteAdded != null)
+				NoteAdded(sender, new EventArgs());
+		}
 
-        private void toolStripMenuItemPaste_Click(object sender, EventArgs e)
-        {
-            if (this.DayPasted != null)
-                this.DayPasted(sender, new EventArgs());
-        }
+		private void toolStripMenuItemPasteNote_Click(object sender, EventArgs e)
+		{
+			if (NotePasted != null)
+				NotePasted(sender, new EventArgs());
+		}
+		#endregion
 
-        private void toolStripMenuItemDelete_Click(object sender, EventArgs e)
-        {
-            if (this.DayDataDeleted != null)
-                this.DayDataDeleted(sender, new EventArgs());
-        }
+		#region Simple Calendar Event Handlers
+		private void memoEditSimpleComment_EditValueChanged(object sender, EventArgs e)
+		{
+			if (_allowToSave)
+			{
+				Day.Comment1 = memoEditSimpleComment.EditValue != null ? memoEditSimpleComment.EditValue.ToString() : string.Empty;
+				RefreshData();
+				if (DataChanged != null)
+					DataChanged(sender, new EventArgs());
+			}
+		}
 
-        private void toolStripMenuItemClone_Click(object sender, EventArgs e)
-        {
-            if (this.DayCloned != null)
-                this.DayCloned(sender, new EventArgs());
-        }
+		private void memoEditSimpleComment_Leave(object sender, EventArgs e)
+		{
+			xtraScrollableControl.Padding = new Padding(3);
+			memoEditSimpleComment.Visible = false;
+			labelControlData.Visible = true;
+		}
+		#endregion
 
-        private void toolStripMenuItemAddNote_Click(object sender, EventArgs e)
-        {
-            if (this.NoteAdded != null)
-                this.NoteAdded(sender, new EventArgs());
-        }
+		public CalendarDay Day { get; set; }
 
-        private void toolStripMenuItemPasteNote_Click(object sender, EventArgs e)
-        {
-            if (this.NotePasted != null)
-                this.NotePasted(sender, new EventArgs());
-        }
-        #endregion
+		public bool RaiseEvents { get; set; }
+		public bool AllowToPasteNote { get; set; }
+		public bool MultiSelectEnabled { get; set; }
+		public event EventHandler<SelectDayEventArgs> DaySelected;
+		public event EventHandler<EventArgs> PropertiesRequested;
+		public event EventHandler<EventArgs> DayCopied;
+		public event EventHandler<EventArgs> DayPasted;
+		public event EventHandler<EventArgs> DayCloned;
+		public event EventHandler<EventArgs> DayDataDeleted;
+		public event EventHandler<EventArgs> DataChanged;
 
-        #region Simple Calendar Event Handlers
-        private void memoEditSimpleComment_EditValueChanged(object sender, EventArgs e)
-        {
-            if (_allowToSave)
-            {
-                this.Day.Comment1 = memoEditSimpleComment.EditValue != null ? memoEditSimpleComment.EditValue.ToString() : string.Empty;
-                RefreshData();
-                if (this.DataChanged != null)
-                    this.DataChanged(sender, new EventArgs());
-            }
-        }
+		public event EventHandler<EventArgs> SelectionStateRequested;
+		public event EventHandler<MouseEventArgs> DayMouseMove;
 
-        private void memoEditSimpleComment_Leave(object sender, EventArgs e)
-        {
-            xtraScrollableControl.BringToFront();
-            pnCalendarNoteArea.SendToBack();
-        }
-        #endregion
-    }
+		public event EventHandler<EventArgs> NoteAdded;
+		public event EventHandler<EventArgs> NotePasted;
+	}
 
-    public class SelectDayEventArgs : EventArgs
-    {
-        public DayControl SelectedDay { get; private set; }
-        public Keys ModifierKeys { get; private set; }
+	public class SelectDayEventArgs : EventArgs
+	{
+		public SelectDayEventArgs(DayControl selectedDay, Keys modifierKeys)
+		{
+			SelectedDay = selectedDay;
+			ModifierKeys = modifierKeys;
+		}
 
-        public SelectDayEventArgs(DayControl selectedDay, Keys modifierKeys)
-        {
-            this.SelectedDay = selectedDay;
-            this.ModifierKeys = modifierKeys;
-        }
-    }
+		public DayControl SelectedDay { get; private set; }
+		public Keys ModifierKeys { get; private set; }
+	}
 }

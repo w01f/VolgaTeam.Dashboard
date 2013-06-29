@@ -1,30 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CalendarBuilder.BusinessClasses;
+using CalendarBuilder.ConfigurationClasses;
+using CalendarBuilder.PresentationClasses.DayProperties;
+using CalendarBuilder.PresentationClasses.SlideInfo;
+using CalendarBuilder.PresentationClasses.Views;
 
 namespace CalendarBuilder.PresentationClasses.Calendars
 {
-    public interface ICalendarControl
-    {
-        bool AllowToSave { get; }
-        bool SettingsNotSaved { get; set; }
+	public interface ICalendarControl
+	{
+		bool AllowToSave { get; }
+		bool SettingsNotSaved { get; set; }
 
-        BusinessClasses.Calendar CalendarData { get; }
-        ConfigurationClasses.CalendarSettings CalendarSettings { get; }
-        Views.IView SelectedView { get; }
-        DayProperties.DayPropertiesWrapper DayProperties { get; }
-        SlideInfo.SlideInfoWrapper SlideInfo { get; }
+		Calendar CalendarData { get; }
+		CalendarSettings CalendarSettings { get; }
+		IView SelectedView { get; }
+		DayPropertiesWrapper DayProperties { get; }
+		SlideInfoWrapper SlideInfo { get; }
 
-        void LeaveCalendar();
-        void ShowCalendar();
-        bool SaveCalendarData(string scheduleName = "");
-        void LoadView();
-        void SaveView();
-        void Preview();
-        void Print();
-        void Email();
-        void OpenHelp();
-        void Splash(bool show);
-    }
+		void LeaveCalendar();
+		void ShowCalendar();
+		bool SaveCalendarData(string scheduleName = "");
+		void LoadView();
+		void SaveView();
+		void Preview();
+		void Print();
+		void Email();
+		void OpenHelp();
+		void Splash(bool show);
+	}
 }

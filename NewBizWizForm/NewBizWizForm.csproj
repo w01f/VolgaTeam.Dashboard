@@ -699,7 +699,6 @@
     <None Include="Resources\HomeRadioDisabled.png" />
     <None Include="Resources\HomeRadioBigDIsabled.png" />
     <None Include="Resources\DeleteButton.png" />
-    <None Include="Resources\ImportCalendar.png" />
     <None Include="Resources\Floater.png" />
     <None Include="Resources\HomeSalesDepotBig.png" />
     <None Include="Resources\HomeClientSolutionBig.png" />

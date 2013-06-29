@@ -236,11 +236,11 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\SlideInfo\SlideInfoWrapper.cs" />
-    <Compile Include="ToolForms\FormImport.cs">
+    <Compile Include="ToolForms\FormDayProperties.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ToolForms\FormImport.Designer.cs">
-      <DependentUpon>FormImport.cs</DependentUpon>
+    <Compile Include="ToolForms\FormDayProperties.designer.cs">
+      <DependentUpon>FormDayProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormNoteColor.cs">
       <SubType>Form</SubType>
@@ -370,8 +370,8 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormImport.resx">
-      <DependentUpon>FormImport.cs</DependentUpon>
+    <EmbeddedResource Include="ToolForms\FormDayProperties.resx">
+      <DependentUpon>FormDayProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormNoteColor.resx">
       <DependentUpon>FormNoteColor.cs</DependentUpon>
@@ -649,12 +649,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HomeCalendar1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HomeCalendar2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HomeCalendar3.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BetaTest.png" />

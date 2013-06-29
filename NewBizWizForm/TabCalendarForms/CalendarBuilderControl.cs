@@ -1,198 +1,175 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using CalendarBuilder.BusinessClasses;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
+using NewBizWizForm.ConfigurationClasses;
+using NewBizWizForm.InteropClasses;
 
 namespace NewBizWizForm.TabCalendarForms
 {
-    [System.ComponentModel.ToolboxItem(false)]
-    public partial class CalendarBuilderControl : UserControl
-    {
-        private CalendarBuilder.BusinessClasses.ShortSchedule[] _calendarList = null;
+	[ToolboxItem(false)]
+	public partial class CalendarBuilderControl : UserControl
+	{
+		private static CalendarBuilderControl _instance;
+		private ShortSchedule[] _calendarList;
 
-        private static CalendarBuilderControl _instance;
+		private CalendarBuilderControl()
+		{
+			InitializeComponent();
+			Dock = DockStyle.Fill;
+			AppManager.Instance.SetClickEventHandler(this);
+			if ((CreateGraphics()).DpiX > 96)
+			{
+				laTitle.Font = new Font(laTitle.Font.Name, laTitle.Font.Size - 5, laTitle.Font.Style);
+				laNoDataWarning.Font = new Font(laNoDataWarning.Font.Name, laNoDataWarning.Font.Size - 5, laNoDataWarning.Font.Style);
+			}
+		}
 
-        private CalendarBuilderControl()
-        {
-            InitializeComponent();
-            this.Dock = DockStyle.Fill;
-            AppManager.Instance.SetClickEventHandler(this);
-            if ((base.CreateGraphics()).DpiX > 96)
-            {
-                laTitle.Font = new System.Drawing.Font(laTitle.Font.Name, laTitle.Font.Size - 5, laTitle.Font.Style);
-                laNoDataWarning.Font = new System.Drawing.Font(laNoDataWarning.Font.Name, laNoDataWarning.Font.Size - 5, laNoDataWarning.Font.Style);
-                laNoSlidesWarningText1.Font = new System.Drawing.Font(laNoSlidesWarningText1.Font.Name, laNoSlidesWarningText1.Font.Size - 3, laNoSlidesWarningText1.Font.Style);
-                laNoSlidesWarningText2.Font = new System.Drawing.Font(laNoSlidesWarningText2.Font.Name, laNoSlidesWarningText2.Font.Size - 3, laNoSlidesWarningText2.Font.Style);
-                laNoSlidesWarningText3.Font = new System.Drawing.Font(laNoSlidesWarningText3.Font.Name, laNoSlidesWarningText3.Font.Size - 3, laNoSlidesWarningText3.Font.Style);
-            }
-        }
+		public static CalendarBuilderControl Instance
+		{
+			get
+			{
+				if (_instance == null)
+					_instance = new CalendarBuilderControl();
+				return _instance;
+			}
+		}
 
-        public static CalendarBuilderControl Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new CalendarBuilderControl();
-                return _instance;
-            }
-        }
+		public void LoadCalendars()
+		{
+			gridViewCalendars.FocusedRowChanged -= gridViewCalendars_FocusedRowChanged;
+			OutsideClick();
+			_calendarList = CalendarBuilder.AppManager.GetShortScheduleList();
+			if (!CalendarBuilder.AppManager.ProgramDataAvailable)
+			{
+				FormMain.Instance.buttonItemCalendarNew.Enabled = false;
+				gridControlCalendars.Visible = false;
+				pnNoDataWarning.Visible = true;
+				gridControlCalendars.DataSource = null;
+			}
+			else
+			{
+				FormMain.Instance.buttonItemCalendarNew.Enabled = true;
+				gridControlCalendars.Visible = true;
+				pnNoDataWarning.Visible = false;
+				repositoryItemComboBoxStatus.Items.Clear();
+				repositoryItemComboBoxStatus.Items.AddRange(ListManager.Instance.Statuses);
+				gridControlCalendars.DataSource = new BindingList<ShortSchedule>(_calendarList);
+			}
+			gridViewCalendars.FocusedRowChanged += gridViewCalendars_FocusedRowChanged;
+		}
 
-        public void LoadCalendars()
-        {
-            gridViewCalendars.FocusedRowChanged -= new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridViewCalendars_FocusedRowChanged);
-            OutsideClick();
-            _calendarList = CalendarBuilder.AppManager.GetShortScheduleList();
-            if (!CalendarBuilder.AppManager.ProgramDataAvailable)
-            {
-                FormMain.Instance.buttonItemCalendarNew.Enabled = false;
-                gridControlCalendars.Visible = false;
-                pnNoSlidesWarning.Visible = false;
-                pnNoDataWarning.Visible = true;
-                gridControlCalendars.DataSource = null;
-            }
-            //else if (!Directory.Exists(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.CalendarSlideFolder) || Directory.GetDirectories(BusinessClasses.MasterWizardManager.Instance.SelectedWizard.CalendarSlideFolder).Length == 0)
-            //{
-            //    FormMain.Instance.buttonItemCalendarNew.Enabled = false;
-            //    gridControlCalendars.Visible = false;
-            //    pnNoSlidesWarning.Visible = true;
-            //    laNoSlidesWarningText2.Text = string.Format("{0} {1}", new object[] { BusinessClasses.MasterWizardManager.Instance.SelectedWizard.Name, ConfigurationClasses.SettingsManager.Instance.Size });
-            //    pnNoDataWarning.Visible = false;
-            //    gridControlCalendars.DataSource = null;
-            //}
-            else
-            {
-                FormMain.Instance.buttonItemCalendarNew.Enabled = true;
-                gridControlCalendars.Visible = true;
-                pnNoSlidesWarning.Visible = false;
-                pnNoDataWarning.Visible = false;
-                repositoryItemComboBoxStatus.Items.Clear();
-                repositoryItemComboBoxStatus.Items.AddRange(CalendarBuilder.BusinessClasses.ListManager.Instance.Statuses);
-                gridControlCalendars.DataSource = new BindingList<CalendarBuilder.BusinessClasses.ShortSchedule>(_calendarList);
-            }
-            FormMain.Instance.buttonItemCalendarImport.Enabled = AdScheduleBuilder.AppManager.GetShortScheduleList().Length > 0;
-            gridViewCalendars.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(gridViewCalendars_FocusedRowChanged);
-        }
+		public void OutsideClick()
+		{
+			gridViewCalendars.FocusedRowHandle = -1;
+			gridViewCalendars.FocusedColumn = gridColumnBusinessName;
+			gridViewCalendars.OptionsSelection.EnableAppearanceFocusedRow = false;
+			FormMain.Instance.buttonItemCalendarOpen.Enabled = false;
+			FormMain.Instance.buttonItemCalendarDelete.Enabled = false;
+		}
 
-        public void OutsideClick()
-        {
-            gridViewCalendars.FocusedRowHandle = -1;
-            gridViewCalendars.FocusedColumn = gridColumnBusinessName;
-            gridViewCalendars.OptionsSelection.EnableAppearanceFocusedRow = false;
-            FormMain.Instance.buttonItemCalendarOpen.Enabled = false;
-            FormMain.Instance.buttonItemCalendarDelete.Enabled = false;
-        }
+		public void buttonXNewCalendar_Click(object sender, EventArgs e)
+		{
+			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 9, 0, 0);
+			FormMain.Instance.Opacity = 0;
+			RegistryHelper.MaximizeMainForm = true;
+			CalendarBuilder.FormMain.Instance.Resize -= FormMain.Instance.FormCalendarResize;
+			CalendarBuilder.FormMain.Instance.Resize += FormMain.Instance.FormCalendarResize;
+			CalendarBuilder.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
+			CalendarBuilder.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
+			CalendarBuilder.AppManager.NewSchedule();
+			if (!FormMain.Instance.IsDead)
+			{
+				FormMain.Instance.Opacity = 1;
+				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				LoadCalendars();
+			}
+			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 10, 0, 0);
+			AppManager.Instance.ActivateMiniBar();
+		}
 
-        public void buttonXNewCalendar_Click(object sender, EventArgs e)
-        {
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 9, 0, 0);
-            FormMain.Instance.Opacity = 0;
-            ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
-            CalendarBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormCalendarResize);
-            CalendarBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormCalendarResize);
-            CalendarBuilder.FormMain.Instance.FloaterRequested -= new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
-            CalendarBuilder.FormMain.Instance.FloaterRequested += new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
-            CalendarBuilder.AppManager.NewSchedule();
-            if (!FormMain.Instance.IsDead)
-            {
-                FormMain.Instance.Opacity = 1;
-                ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-                ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
-                LoadCalendars();
-            }
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 10, 0, 0);
-            AppManager.Instance.ActivateMiniBar();
-        }
+		public void buttonXOpenCalendar_Click(object sender, EventArgs e)
+		{
+			var selectedSchedule = gridViewCalendars.GetFocusedRow() as ShortSchedule;
+			if (selectedSchedule != null)
+			{
+				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 9, 0, 0);
+				FormMain.Instance.Opacity = 0;
+				RegistryHelper.MaximizeMainForm = true;
+				CalendarBuilder.FormMain.Instance.Resize -= FormMain.Instance.FormCalendarResize;
+				CalendarBuilder.FormMain.Instance.Resize += FormMain.Instance.FormCalendarResize;
+				CalendarBuilder.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
+				CalendarBuilder.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
+				if (selectedSchedule.NeedToImport)
+					CalendarBuilder.AppManager.ImportSchedule(selectedSchedule.FullFileName);
+				else
+					CalendarBuilder.AppManager.OpenSchedule(selectedSchedule.FullFileName);
+				if (!FormMain.Instance.IsDead)
+				{
+					FormMain.Instance.Opacity = 1;
+					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+					RegistryHelper.MaximizeMainForm = false;
+					LoadCalendars();
+				}
+				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 10, 0, 0);
+				AppManager.Instance.ActivateMiniBar();
+			}
+		}
 
-        public void buttonXOpenCalendar_Click(object sender, EventArgs e)
-        {
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 9, 0, 0);
-            FormMain.Instance.Opacity = 0;
-            ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
-            CalendarBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormCalendarResize);
-            CalendarBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormCalendarResize);
-            CalendarBuilder.FormMain.Instance.FloaterRequested -= new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
-            CalendarBuilder.FormMain.Instance.FloaterRequested += new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
-            CalendarBuilder.AppManager.OpenSchedule(_calendarList[gridViewCalendars.GetFocusedDataSourceRowIndex()].FullFileName);
-            if (!FormMain.Instance.IsDead)
-            {
-                FormMain.Instance.Opacity = 1;
-                ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-                ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
-                LoadCalendars();
-            }
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 10, 0, 0);
-            AppManager.Instance.ActivateMiniBar();
-        }
+		public void buttonXDeleteCalendar_Click(object sender, EventArgs e)
+		{
+			if (AppManager.Instance.ShowWarningQuestion("Delete this Schedule?") == DialogResult.Yes)
+			{
+				string fileName = _calendarList[gridViewCalendars.GetFocusedDataSourceRowIndex()].FullFileName;
+				try
+				{
+					if (File.Exists(fileName))
+						File.Delete(fileName);
+				}
+				catch
+				{
+					AppManager.Instance.ShowWarning("Couldn't delete selected schedule.");
+				}
+				LoadCalendars();
+			}
+		}
 
-        public void buttonXDeleteCalendar_Click(object sender, EventArgs e)
-        {
-            if (AppManager.Instance.ShowWarningQuestion("Delete this Schedule?") == DialogResult.Yes)
-            {
-                string fileName = _calendarList[gridViewCalendars.GetFocusedDataSourceRowIndex()].FullFileName;
-                try
-                {
-                    if (File.Exists(fileName))
-                        File.Delete(fileName);
-                }
-                catch
-                {
-                    AppManager.Instance.ShowWarning("Couldn't delete selected schedule.");
-                }
-                LoadCalendars();
-            }
-        }
+		private void gridViewCalendars_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
+		{
+			gridViewCalendars.OptionsSelection.EnableAppearanceFocusedRow = true;
+			FormMain.Instance.buttonItemCalendarOpen.Enabled = gridViewCalendars.SelectedRowsCount > 0;
+			FormMain.Instance.buttonItemCalendarDelete.Enabled = gridViewCalendars.SelectedRowsCount > 0;
+		}
 
-        public void buttonXImportCalendar_Click(object sender, EventArgs e)
-        {
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 9, 0, 0);
-            FormMain.Instance.Opacity = 0;
-            ConfigurationClasses.RegistryHelper.MaximizeMainForm = true;
-            CalendarBuilder.FormMain.Instance.Resize -= new EventHandler(FormMain.Instance.FormCalendarResize);
-            CalendarBuilder.FormMain.Instance.Resize += new EventHandler(FormMain.Instance.FormCalendarResize);
-            CalendarBuilder.FormMain.Instance.FloaterRequested -= new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
-            CalendarBuilder.FormMain.Instance.FloaterRequested += new EventHandler<EventArgs>(FormMain.Instance.buttonItemFloater_Click);
-            CalendarBuilder.AppManager.ImportSchedule();
-            if (!FormMain.Instance.IsDead)
-            {
-                FormMain.Instance.Opacity = 1;
-                ConfigurationClasses.RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-                ConfigurationClasses.RegistryHelper.MaximizeMainForm = false;
-                LoadCalendars();
-            }
-            InteropClasses.WinAPIHelper.PostMessage(ConfigurationClasses.RegistryHelper.MinibarHandle, InteropClasses.WinAPIHelper.WM_APP + 10, 0, 0);
-            AppManager.Instance.ActivateMiniBar();
-        }
+		private void gridViewCalendars_RowClick(object sender, RowClickEventArgs e)
+		{
+			gridViewCalendars_FocusedRowChanged(null, null);
+			if (e.Clicks == 2)
+			{
+				buttonXOpenCalendar_Click(null, null);
+			}
+		}
 
-        private void gridViewCalendars_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
-            gridViewCalendars.OptionsSelection.EnableAppearanceFocusedRow = true;
-            FormMain.Instance.buttonItemCalendarOpen.Enabled = gridViewCalendars.SelectedRowsCount > 0;
-            FormMain.Instance.buttonItemCalendarDelete.Enabled = gridViewCalendars.SelectedRowsCount > 0;
-        }
+		private void gridControlCalendars_Click(object sender, EventArgs e)
+		{
+			OutsideClick();
+		}
 
-        private void gridViewCalendars_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-        {
-            gridViewCalendars_FocusedRowChanged(null, null);
-            if (e.Clicks == 2)
-            {
-                buttonXOpenCalendar_Click(null, null);
-            }
-        }
+		private void gridViewCalendars_CellValueChanged(object sender, CellValueChangedEventArgs e)
+		{
+			ShortSchedule schedule = _calendarList[gridViewCalendars.GetDataSourceRowIndex(e.RowHandle)];
+			schedule.Save();
+		}
 
-        private void gridControlCalendars_Click(object sender, EventArgs e)
-        {
-            OutsideClick();
-        }
-
-        private void gridViewCalendars_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-            CalendarBuilder.BusinessClasses.ShortSchedule schedule = _calendarList[gridViewCalendars.GetDataSourceRowIndex(e.RowHandle)];
-            schedule.Save();
-        }
-
-        private void repositoryItemComboBoxStatus_Closed(object sender, DevExpress.XtraEditors.Controls.ClosedEventArgs e)
-        {
-            gridViewCalendars.CloseEditor();
-        }
-    }
+		private void repositoryItemComboBoxStatus_Closed(object sender, ClosedEventArgs e)
+		{
+			gridViewCalendars.CloseEditor();
+		}
+	}
 }

@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A1A7BD50-193C-4AB8-B73E-021B374FFCCA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CommandCentral</RootNamespace>
+    <AssemblyName>CommandCentral</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=10.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppManager.cs" />
+    <Compile Include="CommonClasses\AdSize.cs" />
+    <Compile Include="CommonClasses\Category.cs" />
+    <Compile Include="CommonClasses\NewspaperViewSettings.cs" />
+    <Compile Include="CommonClasses\SalesDepotUserLibraries.cs" />
+    <Compile Include="CommonClasses\Station.cs" />
+    <Compile Include="CommonClasses\ShareUnit.cs" />
+    <Compile Include="CommonClasses\NameCodePair.cs" />
+    <Compile Include="CommonClasses\DaypartRotation.cs" />
+    <Compile Include="CommonClasses\Demo.cs" />
+    <Compile Include="CommonClasses\MechanicalItem.cs" />
+    <Compile Include="CommonClasses\MechanicalType.cs" />
+    <Compile Include="CommonClasses\OnlineSlideSource.cs" />
+    <Compile Include="CommonClasses\Product.cs" />
+    <Compile Include="CommonClasses\Publication.cs" />
+    <Compile Include="CommonClasses\RadioProgram.cs" />
+    <Compile Include="CommonClasses\RadioStation.cs" />
+    <Compile Include="CommonClasses\SearchGroup.cs" />
+    <Compile Include="CommonClasses\Section.cs" />
+    <Compile Include="CommonClasses\Step.cs" />
+    <Compile Include="CommonClasses\TVProgram.cs" />
+    <Compile Include="DataControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataControl.Designer.cs">
+      <DependentUpon>DataControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonClasses\Quote.cs" />
+    <Compile Include="CommonClasses\SlideHeader.cs" />
+    <Compile Include="CommonClasses\User.cs" />
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InteropClasses\WinAPIHelper.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TabMainDashboardForms\QuickListManager.cs" />
+    <Compile Include="TabMainDashboardForms\TVStrategyManager.cs" />
+    <Compile Include="TabSalesDepotForms\SalesDepotAccessRightsManager.cs" />
+    <Compile Include="TabSalesProForms\SalesProMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabSalesProForms\SalesProMainPage.Designer.cs">
+      <DependentUpon>SalesProMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabSalesProForms\BigIdeaManager.cs" />
+    <Compile Include="TabSalesProForms\CampaignSummaryManager.cs" />
+    <Compile Include="TabSalesProForms\CampaignTimelineManager.cs" />
+    <Compile Include="TabSalesProForms\ClientBenefitsManager.cs" />
+    <Compile Include="TabSalesProForms\ValueAnalysisManager.cs" />
+    <Compile Include="TabSalesProForms\ROIFormulaManager.cs" />
+    <Compile Include="TabSalesProForms\InvestmentCalendarManager.cs" />
+    <Compile Include="TabSalesProForms\CreativeStrategyManager.cs" />
+    <Compile Include="TabMainDashboardForms\MainDashboardPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabMainDashboardForms\MainDashboardPage.Designer.cs">
+      <DependentUpon>MainDashboardPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabMainDashboardForms\ClosingSummaryManager.cs" />
+    <Compile Include="TabMainDashboardForms\TargetCustomerManager.cs" />
+    <Compile Include="TabMainDashboardForms\NeedsAnalysisManager.cs" />
+    <Compile Include="TabMainDashboardForms\IntroSlideManager.cs" />
+    <Compile Include="TabMainDashboardForms\CoverManager.cs" />
+    <Compile Include="TabMarketProForms\MarketProManager.cs" />
+    <Compile Include="TabMarketProForms\MarketProMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabMarketProForms\MarketProMainPage.Designer.cs">
+      <DependentUpon>MarketProMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabMainDashboardForms\MobileStrategyManager.cs" />
+    <Compile Include="TabMainDashboardForms\NewspaperStrategyManager.cs" />
+    <Compile Include="TabMainDashboardForms\OnlineStrategyManager.cs" />
+    <Compile Include="TabMainDashboardForms\RadioStrategyManager.cs" />
+    <Compile Include="TabMainDashboardForms\UsersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabMainDashboardForms\UsersControl.Designer.cs">
+      <DependentUpon>UsersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabSalesDepotForms\SalesDepotSearchManager.cs" />
+    <Compile Include="TabSalesDepotForms\SalesDepotMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabSalesDepotForms\SalesDepotMainPage.Designer.cs">
+      <DependentUpon>SalesDepotMainPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DataControl.resx">
+      <DependentUpon>DataControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="TabSalesProForms\SalesProMainPage.resx">
+      <DependentUpon>SalesProMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabMainDashboardForms\MainDashboardPage.resx">
+      <DependentUpon>MainDashboardPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabMarketProForms\MarketProMainPage.resx">
+      <DependentUpon>MarketProMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabMainDashboardForms\UsersControl.resx">
+      <DependentUpon>UsersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabSalesDepotForms\SalesDepotMainPage.resx">
+      <DependentUpon>SalesDepotMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CableLittle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DirectMailLittle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MobileLittle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewspaperLittle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OutdoorLittle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RadioLittle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TVLittle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WebLittle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YellowPagesLittle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MediaStrategy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IntroSlide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NeedsAnalysis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TargetCustomer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClosingSummary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClientBenefits.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BigIdea.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CreativeStrategy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CampaignTimeline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ROIFormula.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\InvestmentCalendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ValueAnalysis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CampaignSummary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SalesDepotSearch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EmptyImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QuickList.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>rem "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe" sign /f d:\temp\NewBizWiz\NLDCertificate.pfx /t http://timestamp.verisign.com/scripts/timstamp.dll  /p bubbadude CommandCentral.exe</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

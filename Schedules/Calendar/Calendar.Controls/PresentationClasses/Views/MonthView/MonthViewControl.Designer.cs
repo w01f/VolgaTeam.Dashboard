@@ -1,4 +1,4 @@
-﻿namespace CalendarBuilder.PresentationClasses.Views.MonthView
+﻿namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 {
     partial class MonthViewControl
     {

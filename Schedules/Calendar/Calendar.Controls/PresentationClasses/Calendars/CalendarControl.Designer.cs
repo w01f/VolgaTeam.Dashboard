@@ -1,4 +1,4 @@
-﻿namespace CalendarBuilder.PresentationClasses.Calendars
+﻿namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 {
     partial class CalendarControl
     {

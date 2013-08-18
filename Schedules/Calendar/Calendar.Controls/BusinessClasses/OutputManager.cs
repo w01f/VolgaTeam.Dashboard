@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using CalendarBuilder.ConfigurationClasses;
+using System.Linq;
+using NewBizWiz.Core.Calendar;
+using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
-namespace CalendarBuilder.BusinessClasses
+namespace NewBizWiz.Calendar.Controls.BusinessClasses
 {
-	internal class OutputManager
+	public class OutputManager
 	{
 		private const string CalendarTemlatesFolderName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\{1}";
 		private const string CalendarFileLegendName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\FileLegend.xls";
@@ -15,19 +17,12 @@ namespace CalendarBuilder.BusinessClasses
 		public const string BackgroundFilePath = @"{0}\{1}";
 		public static string MasterWizardsRootFolderPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Dashboard", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 
-		private static readonly OutputManager _instance = new OutputManager();
-
-		private OutputManager()
+		public OutputManager()
 		{
 			CalendarTemplates = new List<CalendarTemplate>();
 		}
 
 		public List<CalendarTemplate> CalendarTemplates { get; set; }
-
-		public static OutputManager Instance
-		{
-			get { return _instance; }
-		}
 
 		public string CalendarTemlatesFolderPath
 		{
@@ -54,10 +49,7 @@ namespace CalendarBuilder.BusinessClasses
 				connection.Open();
 			}
 			catch
-			{
-				AppManager.ShowWarning("Couldn't open file legend file");
-				return;
-			}
+			{ }
 
 			if (connection.State == ConnectionState.Open)
 			{
@@ -149,9 +141,27 @@ namespace CalendarBuilder.BusinessClasses
 				connection.Close();
 			}
 		}
+
+		public string GetSlideName(CalendarOutputData outputData)
+		{
+			string result = string.Empty;
+			var template = CalendarTemplates.Where(x => x.IsLarge == outputData.ShowBigDate && x.HasLogo == outputData.ShowLogo && x.Color.ToLower().Equals(outputData.SlideColor) && x.Month.ToLower().Equals(outputData.Parent.Date.ToString("MMM-yy").ToLower())).FirstOrDefault();
+			if (template != null)
+				result = template.TemplateName;
+			return result;
+		}
+
+		public string GetSlideMasterName(CalendarOutputData outputData)
+		{
+			string result = string.Empty;
+			var template = CalendarTemplates.Where(x => x.IsLarge == outputData.ShowBigDate && x.HasLogo == outputData.ShowLogo && x.Color.ToLower().Equals(outputData.SlideColor) && x.Month.ToLower().Equals(outputData.Parent.Date.ToString("MMM-yy").ToLower())).FirstOrDefault();
+			if (template != null)
+				result = template.SlideMaster;
+			return result;
+		}
 	}
 
-	internal class CalendarTemplate
+	public class CalendarTemplate
 	{
 		public CalendarTemplate()
 		{

@@ -1,45 +1,34 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Globalization;
-using System.Threading;
 using System.Windows.Forms;
-using CalendarBuilder.BusinessClasses;
-using CalendarBuilder.ToolForms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors.Controls;
+using NewBizWiz.Calendar.Controls.BusinessClasses;
+using NewBizWiz.Calendar.Controls.ToolForms;
+using NewBizWiz.Core.Calendar;
+using NewBizWiz.Core.Common;
 
-namespace CalendarBuilder.PresentationClasses
+namespace NewBizWiz.Calendar.Controls.PresentationClasses
 {
 	[ToolboxItem(false)]
 	public partial class HomeControl : UserControl
 	{
-		private static HomeControl _instance;
 		private bool _allowToSave;
 		private Schedule _localCalendar;
 
-		private HomeControl()
+		public HomeControl()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			if ((base.CreateGraphics()).DpiX > 96) { }
-			ScheduleManager.Instance.SettingsSaved += (sender, e) =>
-														  {
-															  if (sender != this)
-																  LoadCalendar(e.QuickSave);
-														  };
+			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
+			{
+				if (sender != this)
+					LoadCalendar(e.QuickSave);
+			});
 		}
 
 		public bool SettingsNotSaved { get; set; }
-
-		public static HomeControl Instance
-		{
-			get
-			{
-				if (_instance == null)
-					_instance = new HomeControl();
-				return _instance;
-			}
-		}
 
 		public bool AllowToLeaveControl
 		{
@@ -57,104 +46,42 @@ namespace CalendarBuilder.PresentationClasses
 			}
 		}
 
-		#region Common Methods
-		public static void RemoveInstance()
-		{
-			try
-			{
-				_instance.Dispose();
-			}
-			catch { }
-			finally
-			{
-				_instance = null;
-			}
-		}
-		#endregion
-
-		private void UncheckSalesStrategyButtons()
-		{
-			FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked = false;
-			FormMain.Instance.buttonItemHomeSalesStrategyEmail.Checked = false;
-			FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked = false;
-		}
-
 		#region Calendar Methods
 		public void LoadCalendar(bool quickLoad)
 		{
-			_localCalendar = ScheduleManager.Instance.GetLocalSchedule();
+			_localCalendar = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 
 			if (!quickLoad)
 			{
 				_allowToSave = false;
 
-				FormMain.Instance.comboBoxEditBusinessName.Properties.Items.Clear();
-				FormMain.Instance.comboBoxEditBusinessName.Properties.Items.AddRange(ListManager.Instance.Advertisers.ToArray());
-				FormMain.Instance.comboBoxEditDecisionMaker.Properties.Items.Clear();
-				FormMain.Instance.comboBoxEditDecisionMaker.Properties.Items.AddRange(ListManager.Instance.DecisionMakers.ToArray());
-				FormMain.Instance.comboBoxEditClientType.Properties.Items.Clear();
-				FormMain.Instance.comboBoxEditClientType.Properties.Items.AddRange(ListManager.Instance.ClientTypes.ToArray());
+				Controller.Instance.HomeBusinessName.Properties.Items.Clear();
+				Controller.Instance.HomeBusinessName.Properties.Items.AddRange(ListManager.Instance.Advertisers.ToArray());
+				Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
+				Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(ListManager.Instance.DecisionMakers.ToArray());
+				Controller.Instance.HomeClientType.Properties.Items.Clear();
+				Controller.Instance.HomeClientType.Properties.Items.AddRange(Core.AdSchedule.ListManager.Instance.ClientTypes.ToArray());
 
-				FormMain.Instance.comboBoxEditBusinessName.EditValue = !string.IsNullOrEmpty(_localCalendar.BusinessName) ? _localCalendar.BusinessName : null;
-				FormMain.Instance.comboBoxEditDecisionMaker.EditValue = !string.IsNullOrEmpty(_localCalendar.DecisionMaker) ? _localCalendar.DecisionMaker : null;
+				Controller.Instance.HomeBusinessName.EditValue = !string.IsNullOrEmpty(_localCalendar.BusinessName) ? _localCalendar.BusinessName : null;
+				Controller.Instance.HomeDecisionMaker.EditValue = !string.IsNullOrEmpty(_localCalendar.DecisionMaker) ? _localCalendar.DecisionMaker : null;
 				if (!string.IsNullOrEmpty(_localCalendar.ClientType))
-					FormMain.Instance.comboBoxEditClientType.SelectedIndex = FormMain.Instance.comboBoxEditClientType.Properties.Items.IndexOf(_localCalendar.ClientType);
-				switch (_localCalendar.SalesStrategy)
-				{
-					case SalesStrategy.Email:
-						FormMain.Instance.buttonItemHomeSalesStrategyEmail.Checked = true;
-						FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked = false;
-						FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked = false;
-						break;
-					case SalesStrategy.Fax:
-						FormMain.Instance.buttonItemHomeSalesStrategyEmail.Checked = false;
-						FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked = true;
-						FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked = false;
-						break;
-					case SalesStrategy.InPerson:
-						FormMain.Instance.buttonItemHomeSalesStrategyEmail.Checked = false;
-						FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked = false;
-						FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked = true;
-						break;
-				}
+					Controller.Instance.HomeClientType.SelectedIndex = Controller.Instance.HomeClientType.Properties.Items.IndexOf(_localCalendar.ClientType);
 
-				if (_localCalendar.SundayBased)
-				{
-					FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked = true;
-					FormMain.Instance.buttonItemHomeCalendarTypeMonday.Checked = false;
-					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-					Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
-					Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-					Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-				}
-				else
-				{
-					FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked = false;
-					FormMain.Instance.buttonItemHomeCalendarTypeMonday.Checked = true;
-					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
-					Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
-					Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-					Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-				}
-
-				FormMain.Instance.buttonItemHomeProductsNewspaper.Checked = _localCalendar.ShowNewspaper;
-				FormMain.Instance.buttonItemHomeProductsDigital.Checked = _localCalendar.ShowDigital;
-				FormMain.Instance.buttonItemHomeProductsTV.Checked = _localCalendar.ShowTV;
-				FormMain.Instance.buttonItemHomeProductsRadio.Checked = _localCalendar.ShowRadio;
-
-				FormMain.Instance.dateEditPresentationDate.EditValue = _localCalendar.PresentationDate;
-				FormMain.Instance.dateEditFlightDatesStart.EditValue = _localCalendar.FlightDateStart;
-				FormMain.Instance.dateEditFlightDatesEnd.EditValue = _localCalendar.FlightDateEnd;
-				FormMain.Instance.ribbonPanelHome.PerformLayout();
+				Controller.Instance.HomeAccountNumberCheck.Checked = !string.IsNullOrEmpty(_localCalendar.AccountNumber);
+				Controller.Instance.HomeAccountNumberText.EditValue = _localCalendar.AccountNumber;
+				Controller.Instance.HomePresentationDate.EditValue = _localCalendar.PresentationDate;
+				Controller.Instance.HomeFlightDatesStart.EditValue = _localCalendar.FlightDateStart;
+				Controller.Instance.HomeFlightDatesEnd.EditValue = _localCalendar.FlightDateEnd;
+				Controller.Instance.HomePanel.PerformLayout();
 
 				_allowToSave = true;
 			}
-			FormMain.Instance.UpdateScheduleTabs(FormMain.Instance.comboBoxEditBusinessName.EditValue != null &
-												 FormMain.Instance.comboBoxEditDecisionMaker.EditValue != null &
-												 FormMain.Instance.comboBoxEditClientType.EditValue != null &
-												 FormMain.Instance.dateEditPresentationDate.EditValue != null &
-												 FormMain.Instance.dateEditFlightDatesStart.EditValue != null &
-												 FormMain.Instance.dateEditFlightDatesEnd.EditValue != null);
+			Controller.Instance.UpdateScheduleTabs(Controller.Instance.HomeBusinessName.EditValue != null &
+												   Controller.Instance.HomeDecisionMaker.EditValue != null &
+												   Controller.Instance.HomeClientType.EditValue != null &
+												   Controller.Instance.HomePresentationDate.EditValue != null &
+												   Controller.Instance.HomeFlightDatesStart.EditValue != null &
+												   Controller.Instance.HomeFlightDatesEnd.EditValue != null);
 			SettingsNotSaved = false;
 		}
 
@@ -164,65 +91,54 @@ namespace CalendarBuilder.PresentationClasses
 
 			if (!string.IsNullOrEmpty(scheduleName))
 				_localCalendar.Name = scheduleName;
-			if (FormMain.Instance.comboBoxEditBusinessName.EditValue != null)
-				_localCalendar.BusinessName = FormMain.Instance.comboBoxEditBusinessName.EditValue.ToString();
+			if (Controller.Instance.HomeBusinessName.EditValue != null)
+				_localCalendar.BusinessName = Controller.Instance.HomeBusinessName.EditValue.ToString();
 			else
 			{
-				AppManager.ShowWarning("Your calendar is missing important information!\nPlease make sure you have a Business Name before you proceed.");
+				Utilities.Instance.ShowWarning("Your calendar is missing important information!\nPlease make sure you have a Business Name before you proceed.");
 				return false;
 			}
-			if (FormMain.Instance.comboBoxEditDecisionMaker.EditValue != null)
-				_localCalendar.DecisionMaker = FormMain.Instance.comboBoxEditDecisionMaker.EditValue.ToString();
+			if (Controller.Instance.HomeDecisionMaker.EditValue != null)
+				_localCalendar.DecisionMaker = Controller.Instance.HomeDecisionMaker.EditValue.ToString();
 			else
 			{
-				AppManager.ShowWarning("Your calendar is missing important information!\nPlease make sure you have a Owner/Decision-maker before you proceed.");
-				return false;
-			}
-
-			if (FormMain.Instance.comboBoxEditClientType.EditValue != null)
-				_localCalendar.ClientType = FormMain.Instance.comboBoxEditClientType.EditValue.ToString();
-			else
-			{
-				AppManager.ShowWarning("You must set Client type before save");
+				Utilities.Instance.ShowWarning("Your calendar is missing important information!\nPlease make sure you have a Owner/Decision-maker before you proceed.");
 				return false;
 			}
 
-			if (FormMain.Instance.buttonItemHomeSalesStrategyEmail.Checked)
-				_localCalendar.SalesStrategy = SalesStrategy.Email;
-			else if (FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked)
-				_localCalendar.SalesStrategy = SalesStrategy.Fax;
-			else if (FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked)
-				_localCalendar.SalesStrategy = SalesStrategy.InPerson;
-
-			if (FormMain.Instance.dateEditPresentationDate.EditValue != null)
-				_localCalendar.PresentationDate = FormMain.Instance.dateEditPresentationDate.DateTime;
+			if (Controller.Instance.HomeClientType.EditValue != null)
+				_localCalendar.ClientType = Controller.Instance.HomeClientType.EditValue.ToString();
 			else
 			{
-				AppManager.ShowWarning("Your calendar is missing important information!\nPlease make sure you have a Presentation Date before you proceed.");
+				Utilities.Instance.ShowWarning("You must set Client type before save");
 				return false;
 			}
 
-			bool sundayBased = _localCalendar.SundayBased;
-			_localCalendar.SundayBased = FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked;
-			quickSave &= sundayBased == _localCalendar.SundayBased;
-
-			_localCalendar.ShowNewspaper = FormMain.Instance.buttonItemHomeProductsNewspaper.Checked;
-			_localCalendar.ShowDigital = FormMain.Instance.buttonItemHomeProductsDigital.Checked;
-			_localCalendar.ShowTV = FormMain.Instance.buttonItemHomeProductsTV.Checked;
-			_localCalendar.ShowRadio = FormMain.Instance.buttonItemHomeProductsRadio.Checked;
-
-			if (FormMain.Instance.dateEditFlightDatesStart.EditValue != null && FormMain.Instance.dateEditFlightDatesEnd.EditValue != null)
+			if (Controller.Instance.HomePresentationDate.EditValue != null)
+				_localCalendar.PresentationDate = Controller.Instance.HomePresentationDate.DateTime;
+			else
 			{
-				DateTime startDate = FormMain.Instance.dateEditFlightDatesStart.DateTime;
-				DateTime endDate = FormMain.Instance.dateEditFlightDatesEnd.DateTime;
-				if (startDate.DayOfWeek != (_localCalendar.SundayBased ? DayOfWeek.Sunday : DayOfWeek.Monday))
+				Utilities.Instance.ShowWarning("Your calendar is missing important information!\nPlease make sure you have a Presentation Date before you proceed.");
+				return false;
+			}
+
+			if (Controller.Instance.HomeAccountNumberCheck.Checked && Controller.Instance.HomeAccountNumberText.EditValue != null)
+				_localCalendar.AccountNumber = Controller.Instance.HomeAccountNumberText.EditValue.ToString();
+			else
+				_localCalendar.AccountNumber = string.Empty;
+
+			if (Controller.Instance.HomeFlightDatesStart.EditValue != null && Controller.Instance.HomeFlightDatesEnd.EditValue != null)
+			{
+				DateTime startDate = Controller.Instance.HomeFlightDatesStart.DateTime;
+				DateTime endDate = Controller.Instance.HomeFlightDatesEnd.DateTime;
+				if (startDate.DayOfWeek != DayOfWeek.Sunday)
 				{
-					AppManager.ShowWarning(string.Format("Campaign Start Date must be {0}\nCampaign End Date must be {1}\nCampaign Start Date must be less then Campaign End Date.", new[] { _localCalendar.SundayBased ? "Sunday" : "Monday", _localCalendar.SundayBased ? "Saturday" : "Sunday" }));
+					Utilities.Instance.ShowWarning(string.Format("Campaign Start Date must be {0}\nCampaign End Date must be {1}\nCampaign Start Date must be less then Campaign End Date.", new[] { "Sunday", "Saturday" }));
 					return false;
 				}
-				if (endDate.DayOfWeek != (_localCalendar.SundayBased ? DayOfWeek.Saturday : DayOfWeek.Sunday) || _localCalendar.FlightDateEnd < _localCalendar.FlightDateStart)
+				if (endDate.DayOfWeek != DayOfWeek.Saturday || _localCalendar.FlightDateEnd < _localCalendar.FlightDateStart)
 				{
-					AppManager.ShowWarning(string.Format("Campaign Start Date must be {0}\nCampaign End Date must be {1}\nCampaign Start Date must be less then Campaign End Date.", new[] { _localCalendar.SundayBased ? "Sunday" : "Monday", _localCalendar.SundayBased ? "Saturday" : "Sunday" }));
+					Utilities.Instance.ShowWarning(string.Format("Campaign Start Date must be {0}\nCampaign End Date must be {1}\nCampaign Start Date must be less then Campaign End Date.", new[] { "Sunday", "Saturday" }));
 					return false;
 				}
 
@@ -232,87 +148,23 @@ namespace CalendarBuilder.PresentationClasses
 			}
 			else
 			{
-				AppManager.ShowWarning("Your calendar is missing important information!\nPlease make sure you have a Campaign Dates before you proceed.");
+				Utilities.Instance.ShowWarning("Your calendar is missing important information!\nPlease make sure you have a Campaign Dates before you proceed.");
 				return false;
 			}
 
-			FormMain.Instance.comboBoxEditBusinessName.Properties.Items.Clear();
-			FormMain.Instance.comboBoxEditBusinessName.Properties.Items.AddRange(ListManager.Instance.Advertisers.ToArray());
-			FormMain.Instance.comboBoxEditDecisionMaker.Properties.Items.Clear();
-			FormMain.Instance.comboBoxEditDecisionMaker.Properties.Items.AddRange(ListManager.Instance.DecisionMakers.ToArray());
-			FormMain.Instance.UpdateScheduleTabs(FormMain.Instance.comboBoxEditBusinessName.EditValue != null &
-												 FormMain.Instance.comboBoxEditDecisionMaker.EditValue != null &
-												 FormMain.Instance.comboBoxEditClientType.EditValue != null &
-												 FormMain.Instance.dateEditPresentationDate.EditValue != null &
-												 FormMain.Instance.dateEditFlightDatesStart.EditValue != null &
-												 FormMain.Instance.dateEditFlightDatesEnd.EditValue != null);
-			ScheduleManager.Instance.SaveSchedule(_localCalendar, quickSave, this);
+			Controller.Instance.HomeBusinessName.Properties.Items.Clear();
+			Controller.Instance.HomeBusinessName.Properties.Items.AddRange(ListManager.Instance.Advertisers.ToArray());
+			Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
+			Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(ListManager.Instance.DecisionMakers.ToArray());
+			Controller.Instance.UpdateScheduleTabs(Controller.Instance.HomeBusinessName.EditValue != null &
+												   Controller.Instance.HomeDecisionMaker.EditValue != null &
+												   Controller.Instance.HomeClientType.EditValue != null &
+												   Controller.Instance.HomePresentationDate.EditValue != null &
+												   Controller.Instance.HomeFlightDatesStart.EditValue != null &
+												   Controller.Instance.HomeFlightDatesEnd.EditValue != null);
+			Controller.Instance.SaveSchedule(_localCalendar, quickSave, this);
 			LoadCalendar(true);
 			return true;
-		}
-		#endregion
-
-		#region Toggles Switch Events
-		public void buttonItemHomeSalesStrategyFaceCall_Click(object sender, EventArgs e)
-		{
-			UncheckSalesStrategyButtons();
-			FormMain.Instance.buttonItemHomeSalesStrategyFaceCall.Checked = true;
-		}
-
-		public void buttonItemHomeSalesStrategyEmail_Click(object sender, EventArgs e)
-		{
-			UncheckSalesStrategyButtons();
-			FormMain.Instance.buttonItemHomeSalesStrategyEmail.Checked = true;
-		}
-
-		public void buttonItemHomeSalesStrategyFax_Click(object sender, EventArgs e)
-		{
-			UncheckSalesStrategyButtons();
-			FormMain.Instance.buttonItemHomeSalesStrategyFax.Checked = true;
-		}
-
-		public void buttonItemHomeCalendarType_CheckedChanged(object sender, EventArgs e)
-		{
-			if (_allowToSave)
-			{
-				if (FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked)
-				{
-					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-					Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
-					Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-					Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-				}
-				else
-				{
-					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
-					Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
-					Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-					Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-				}
-				FormMain.Instance.dateEditFlightDatesStart.EditValue = null;
-				FormMain.Instance.dateEditFlightDatesEnd.EditValue = null;
-				SettingsNotSaved = true;
-			}
-		}
-
-		public void buttonItemHomeCalendarType_Click(object sender, EventArgs e)
-		{
-			var button = sender as ButtonItem;
-			if (button != null && !button.Checked)
-			{
-				if (AppManager.ShowWarningQuestion("Campaign Dates and Calendars will be reset after you change Calendar Type.\nDo you want to proceed?") == DialogResult.Yes)
-				{
-					FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked = false;
-					FormMain.Instance.buttonItemHomeCalendarTypeMonday.Checked = false;
-					button.Checked = true;
-				}
-			}
-		}
-
-		public void buttonItemHomeProducts_CheckedChanged(object sender, EventArgs e)
-		{
-			if (_allowToSave)
-				SettingsNotSaved = true;
 		}
 		#endregion
 
@@ -321,27 +173,33 @@ namespace CalendarBuilder.PresentationClasses
 		{
 			if (_allowToSave)
 			{
-				FormMain.Instance.UpdateScheduleTabs(FormMain.Instance.comboBoxEditBusinessName.EditValue != null &
-													 FormMain.Instance.comboBoxEditDecisionMaker.EditValue != null &
-													 FormMain.Instance.comboBoxEditClientType.EditValue != null &
-													 FormMain.Instance.dateEditPresentationDate.EditValue != null &
-													 FormMain.Instance.dateEditFlightDatesStart.EditValue != null &
-													 FormMain.Instance.dateEditFlightDatesEnd.EditValue != null);
+				Controller.Instance.UpdateScheduleTabs(Controller.Instance.HomeBusinessName.EditValue != null &
+													   Controller.Instance.HomeDecisionMaker.EditValue != null &
+													   Controller.Instance.HomeClientType.EditValue != null &
+													   Controller.Instance.HomePresentationDate.EditValue != null &
+													   Controller.Instance.HomeFlightDatesStart.EditValue != null &
+													   Controller.Instance.HomeFlightDatesEnd.EditValue != null);
 				SettingsNotSaved = true;
 			}
 		}
 
+		public void checkBoxItemAccountNumber_CheckedChanged(object sender, CheckBoxChangeEventArgs e)
+		{
+			Controller.Instance.HomeAccountNumberText.Enabled = Controller.Instance.HomeAccountNumberCheck.Checked;
+			SchedulePropertyEditValueChanged(null, null);
+		}
+
 		public void FlightDateStartEditValueChanged(object sender, EventArgs e)
 		{
-			if (FormMain.Instance.dateEditFlightDatesStart.EditValue != null && _allowToSave)
+			if (Controller.Instance.HomeFlightDatesStart.EditValue != null && _allowToSave)
 			{
-				DateTime dateStart = FormMain.Instance.dateEditFlightDatesStart.DateTime;
+				DateTime dateStart = Controller.Instance.HomeFlightDatesStart.DateTime;
 				SettingsNotSaved = true;
-				if (FormMain.Instance.dateEditFlightDatesEnd.EditValue == null)
+				if (Controller.Instance.HomeFlightDatesEnd.EditValue == null)
 				{
-					while (dateStart.DayOfWeek != (FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked ? DayOfWeek.Saturday : DayOfWeek.Sunday))
+					while (dateStart.DayOfWeek != DayOfWeek.Saturday)
 						dateStart = dateStart.AddDays(1);
-					FormMain.Instance.dateEditFlightDatesEnd.EditValue = dateStart;
+					Controller.Instance.HomeFlightDatesEnd.EditValue = dateStart;
 				}
 			}
 			SchedulePropertyEditValueChanged(null, null);
@@ -349,21 +207,21 @@ namespace CalendarBuilder.PresentationClasses
 
 		public void FlightDateEndEditValueChanged(object sender, EventArgs e)
 		{
-			if (FormMain.Instance.dateEditFlightDatesStart.EditValue != null && _allowToSave)
+			if (Controller.Instance.HomeFlightDatesStart.EditValue != null && _allowToSave)
 				SettingsNotSaved = true;
 			SchedulePropertyEditValueChanged(null, null);
 		}
 
 		public void CalcWeeksOnFlightDatesChange(object sender, EventArgs e)
 		{
-			FormMain.Instance.labelItemFlightDatesWeeks.Text = "";
-			FormMain.Instance.labelItemFlightDatesWeeks.Visible = false;
-			if (FormMain.Instance.dateEditFlightDatesStart.DateTime != null && FormMain.Instance.dateEditFlightDatesEnd.DateTime != null)
+			Controller.Instance.HomeWeeks.Text = "";
+			Controller.Instance.HomeWeeks.Visible = false;
+			if (Controller.Instance.HomeFlightDatesStart.DateTime != null && Controller.Instance.HomeFlightDatesEnd.DateTime != null)
 			{
-				TimeSpan datesRange = FormMain.Instance.dateEditFlightDatesEnd.DateTime - FormMain.Instance.dateEditFlightDatesStart.DateTime;
+				TimeSpan datesRange = Controller.Instance.HomeFlightDatesEnd.DateTime - Controller.Instance.HomeFlightDatesStart.DateTime;
 				int weeksCount = datesRange.Days / 7 + 1;
-				FormMain.Instance.labelItemFlightDatesWeeks.Text = weeksCount.ToString() + (weeksCount > 1 ? " Weeks" : " Week");
-				FormMain.Instance.labelItemFlightDatesWeeks.Visible = true;
+				Controller.Instance.HomeWeeks.Text = weeksCount.ToString() + (weeksCount > 1 ? " Weeks" : " Week");
+				Controller.Instance.HomeWeeks.Visible = true;
 			}
 		}
 
@@ -374,7 +232,7 @@ namespace CalendarBuilder.PresentationClasses
 				DateTime temp = DateTime.MinValue;
 				if (DateTime.TryParse(e.Value.ToString(), out temp))
 				{
-					while (temp.DayOfWeek != (FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked ? DayOfWeek.Sunday : DayOfWeek.Monday))
+					while (temp.DayOfWeek != DayOfWeek.Sunday)
 						temp = temp.AddDays(-1);
 					e.Value = temp;
 				}
@@ -388,7 +246,7 @@ namespace CalendarBuilder.PresentationClasses
 				DateTime temp = DateTime.MinValue;
 				if (DateTime.TryParse(e.Value.ToString(), out temp))
 				{
-					while (temp.DayOfWeek != (FormMain.Instance.buttonItemHomeCalendarTypeSunday.Checked ? DayOfWeek.Saturday : DayOfWeek.Sunday))
+					while (temp.DayOfWeek != DayOfWeek.Saturday)
 						temp = temp.AddDays(1);
 					e.Value = temp;
 				}
@@ -397,18 +255,18 @@ namespace CalendarBuilder.PresentationClasses
 		#endregion
 
 		#region Ribbon Operations Events
-		public void buttonItemHomeHelp_Click(object sender, EventArgs e)
+		public void HomeHelp_Click(object sender, EventArgs e)
 		{
-			HelpManager.Instance.OpenHelpLink("Home");
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink("Home");
 		}
 
-		public void buttonItemHomeSave_Click(object sender, EventArgs e)
+		public void HomeSave_Click(object sender, EventArgs e)
 		{
 			if (SaveCalendar())
-				AppManager.ShowInformation("Calendar Saved");
+				Utilities.Instance.ShowInformation("Calendar Saved");
 		}
 
-		public void buttonItemHomeSaveAs_Click(object sender, EventArgs e)
+		public void HomeSaveAs_Click(object sender, EventArgs e)
 		{
 			using (var from = new FormNewCalendar())
 			{
@@ -419,33 +277,14 @@ namespace CalendarBuilder.PresentationClasses
 					if (!string.IsNullOrEmpty(from.ScheduleName))
 					{
 						if (SaveCalendar(from.ScheduleName))
-							AppManager.ShowInformation("Calendar was saved");
+							Utilities.Instance.ShowInformation("Calendar was saved");
 					}
 					else
 					{
-						AppManager.ShowWarning("Calendar Name can't be empty");
+						Utilities.Instance.ShowWarning("Calendar Name can't be empty");
 					}
 				}
 			}
-		}
-		#endregion
-
-		#region Picture Box Clicks Habdlers
-		/// <summary>
-		/// Buttonize the PictureBox 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top += 1;
-		}
-
-		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top -= 1;
 		}
 		#endregion
 	}

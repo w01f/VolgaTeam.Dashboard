@@ -118,14 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="CloseDayProperties" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CloseDayProperties.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TVInvestment" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TVInvestment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FaceCall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FaceCall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CloseSlideInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CloseSlideInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GreenColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GreenColor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,11 +133,8 @@
   <data name="BlueColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BlueColor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BetaTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BetaTest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Grid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Grid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PDFEmail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PDFEmail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DownArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,17 +142,17 @@
   <data name="CloneSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CloneSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CalendarGraphic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CalendarGraphic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NewSchedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NewSchedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Fax" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Fax.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Floater" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Floater.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PowerPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PowerPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeleteData" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,50 +160,26 @@
   <data name="Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CalendarSimple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CalendarSimple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BusinessName" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BusinessName.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PowerPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PowerPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DeleteLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DeleteLine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="RegularEmail" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RegularEmail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CopySmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CopySmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EditData" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EditData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SlideInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SlideInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EmailMidle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EmailMidle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ApplySlideInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ApplySlideInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FloaterNote" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FloaterNote.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ApplyDayProperties" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ApplyDayProperties.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="HomePicture1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HomePicture1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NewspaperInvestment" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NewspaperInvestment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CustomComment" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CustomComment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Email" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Email.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SaveSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SaveSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="HelpSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HelpSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NewScheduleRibbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NewScheduleRibbon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -220,17 +187,17 @@
   <data name="OpenScheduleRibbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OpenScheduleRibbon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ModelsOfSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ModelsOfSuccess.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ArrowRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArrowRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OpenSchedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OpenSchedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DeleteSchedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeleteSchedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SaveAs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DigitalCPM" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DigitalCPM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ArrowLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArrowLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TealColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TealColor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -241,23 +208,8 @@
   <data name="LockedEmail" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LockedEmail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Color" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Color.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PreviewSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PreviewSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SlideTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SlideTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PowerPointSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PowerPointSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DecisionMaker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DecisionMaker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EmailBig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EmailBig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -265,37 +217,28 @@
   <data name="OrangeColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OrangeColor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HelpSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HelpSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="OutputLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OutputLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CalendarAdvanced" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CalendarAdvanced.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="EditData" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EditData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Clone" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Clone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Legend" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Legend.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Color" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Color.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PasteSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PasteSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PDFEmail" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PDFEmail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="OpenSchedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenSchedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CalendarMonth" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CalendarMonth.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HomePicture1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HomePicture1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SaveSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SaveSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DigitalInvestment" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DigitalInvestment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Floater" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Floater.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Output" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Output.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

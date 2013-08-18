@@ -1,14 +1,14 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace CalendarBuilder.PresentationClasses.Views.MonthView
+namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 {
-    [System.ComponentModel.ToolboxItem(false)]
-    public partial class WeekEmptySpaceControl : UserControl
-    {
-        public WeekEmptySpaceControl()
-        {
-            InitializeComponent();
-        }
-    }
+	[ToolboxItem(false)]
+	public partial class WeekEmptySpaceControl : UserControl
+	{
+		public WeekEmptySpaceControl()
+		{
+			InitializeComponent();
+		}
+	}
 }

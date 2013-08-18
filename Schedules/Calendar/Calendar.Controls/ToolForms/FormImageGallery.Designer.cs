@@ -1,4 +1,4 @@
-﻿namespace CalendarBuilder.ToolForms
+﻿namespace NewBizWiz.Calendar.Controls.ToolForms
 {
     partial class FormImageGallery
     {

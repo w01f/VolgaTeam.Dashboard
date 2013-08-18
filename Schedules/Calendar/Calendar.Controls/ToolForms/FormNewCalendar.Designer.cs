@@ -1,4 +1,4 @@
-﻿namespace CalendarBuilder.ToolForms
+﻿namespace NewBizWiz.Calendar.Controls.ToolForms
 {
     partial class FormNewCalendar
     {
@@ -39,7 +39,7 @@
             // 
             // pbLogo
             // 
-            this.pbLogo.Image = global::CalendarBuilder.Properties.Resources.NewSchedule;
+            this.pbLogo.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.NewSchedule;
             this.pbLogo.Location = new System.Drawing.Point(12, 12);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(72, 75);

@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Windows.Forms;
-using CalendarBuilder.BusinessClasses;
-using CalendarBuilder.PresentationClasses.Calendars;
-using CalendarBuilder.ToolForms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
+using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
+using NewBizWiz.Calendar.Controls.ToolForms;
+using NewBizWiz.Core.Common;
 
-namespace CalendarBuilder.PresentationClasses
+namespace NewBizWiz.Calendar.Controls.PresentationClasses
 {
 	public class CalendarVisualizer
 	{
-		private static CalendarVisualizer _instance;
-		private readonly AdvancedCalendarControl _advancedCalendar = new AdvancedCalendarControl();
-		private readonly GraphicCalendarControl _graphicCalendar = new GraphicCalendarControl();
-		private readonly SimpleCalendarControl _simpleCalendar = new SimpleCalendarControl();
+		private readonly CalendarControl _graphicCalendar = new CalendarControl();
 
 		#region Operation Buttons
 		public ImageListBoxControl MonthsListBoxControl { get; set; }
@@ -23,35 +20,21 @@ namespace CalendarBuilder.PresentationClasses
 		public ButtonItem CopyButtonItem { get; set; }
 		public ButtonItem PasteButtonItem { get; set; }
 		public ButtonItem CloneButtonItem { get; set; }
-		#endregion
+		public ButtonItem PreviewButtonItem { get; set; }
+		public ButtonItem EmailButtonItem { get; set; }
+		public ButtonItem PowerPointButtonItem { get; set; }
 
-		private CalendarVisualizer() { }
+		#endregion
 
 		public ICalendarControl SelectedCalendarControl { get; private set; }
 
-		public static CalendarVisualizer Instance
-		{
-			get
-			{
-				if (_instance == null)
-					_instance = new CalendarVisualizer();
-				return _instance;
-			}
-		}
-
-		public static void RemoveInstance()
+		public void RemoveInstance()
 		{
 			try
 			{
-				_instance._advancedCalendar.Dispose();
-				_instance._graphicCalendar.Dispose();
-				_instance._simpleCalendar.Dispose();
+				_graphicCalendar.Dispose();
 			}
 			catch { }
-			finally
-			{
-				_instance = null;
-			}
 		}
 
 		public static void AssignCloseActiveEditorsonOutSideClick(Control control)
@@ -66,78 +49,48 @@ namespace CalendarBuilder.PresentationClasses
 
 		private static void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
 		{
-			FormMain.Instance.ribbonControl.Focus();
+			Controller.Instance.Ribbon.Focus();
 		}
 
 		public void LoadData()
 		{
-			_advancedCalendar.LoadCalendar(false);
 			_graphicCalendar.LoadCalendar(false);
-			_simpleCalendar.LoadCalendar(false);
 		}
 
-		public ICalendarControl SelectCalendar(Control container, CalendarStyle calendarStyle)
+		public ICalendarControl SelectCalendar(Control container, bool gridView)
 		{
 			if (SelectedCalendarControl != null)
 				SelectedCalendarControl.LeaveCalendar();
-			switch (calendarStyle)
+			SelectedCalendarControl = _graphicCalendar;
+			if (gridView)
 			{
-				case CalendarStyle.Advanced:
-					SelectedCalendarControl = _advancedCalendar;
-					MonthsListBoxControl = FormMain.Instance.listBoxControlAdvancedCalendar;
-					MonthViewButtonItem = FormMain.Instance.buttonItemAdvancedCalendarMonth;
-					GridViewButtonItem = FormMain.Instance.buttonItemAdvancedCalendarGrid;
-					SlideInfoButtonItem = FormMain.Instance.buttonItemAdvancedCalendarSlideInfo;
-					CopyButtonItem = FormMain.Instance.buttonItemAdvancedCalendarCopy;
-					PasteButtonItem = FormMain.Instance.buttonItemAdvancedCalendarPaste;
-					CloneButtonItem = FormMain.Instance.buttonItemAdvancedCalendarClone;
-					break;
-				case CalendarStyle.Graphic:
-					SelectedCalendarControl = _graphicCalendar;
-					MonthsListBoxControl = FormMain.Instance.listBoxControlGraphicCalendar;
-					MonthViewButtonItem = FormMain.Instance.buttonItemGraphicCalendarMonth;
-					GridViewButtonItem = FormMain.Instance.buttonItemGraphicCalendarGrid;
-					SlideInfoButtonItem = FormMain.Instance.buttonItemGraphicCalendarSlideInfo;
-					CopyButtonItem = FormMain.Instance.buttonItemGraphicCalendarCopy;
-					PasteButtonItem = FormMain.Instance.buttonItemGraphicCalendarPaste;
-					CloneButtonItem = FormMain.Instance.buttonItemGraphicCalendarClone;
-					break;
-				case CalendarStyle.Simple:
-					SelectedCalendarControl = _simpleCalendar;
-					MonthsListBoxControl = FormMain.Instance.listBoxControlSimpleCalendar;
-					MonthViewButtonItem = FormMain.Instance.buttonItemSimpleCalendarMonth;
-					GridViewButtonItem = FormMain.Instance.buttonItemSimpleCalendarGrid;
-					SlideInfoButtonItem = FormMain.Instance.buttonItemSimpleCalendarSlideInfo;
-					CopyButtonItem = FormMain.Instance.buttonItemSimpleCalendarCopy;
-					PasteButtonItem = FormMain.Instance.buttonItemSimpleCalendarPaste;
-					CloneButtonItem = FormMain.Instance.buttonItemSimpleCalendarClone;
-					break;
-				default:
-					SelectedCalendarControl = _advancedCalendar;
-					break;
+				MonthsListBoxControl = Controller.Instance.GridMonthsList;
+				SlideInfoButtonItem = Controller.Instance.GridSlideInfo;
+				CopyButtonItem = Controller.Instance.GridCopy;
+				PasteButtonItem = Controller.Instance.GridPaste;
+				CloneButtonItem = Controller.Instance.GridClone;
+				PreviewButtonItem = Controller.Instance.GridPreview;
+				EmailButtonItem = Controller.Instance.GridEmail;
+				PowerPointButtonItem = Controller.Instance.GridPowerPoint;
 			}
-			SelectedCalendarControl.ShowCalendar();
+			else
+			{
+				MonthsListBoxControl = Controller.Instance.CalendarMonthsList;
+				SlideInfoButtonItem = Controller.Instance.CalendarSlideInfo;
+				CopyButtonItem = Controller.Instance.CalendarCopy;
+				PasteButtonItem = Controller.Instance.CalendarPaste;
+				CloneButtonItem = Controller.Instance.CalendarClone;
+				PreviewButtonItem = Controller.Instance.CalendarPreview;
+				EmailButtonItem = Controller.Instance.CalendarEmail;
+				PowerPointButtonItem = Controller.Instance.CalendarPowerPoint;
+			}
+			SelectedCalendarControl.ShowCalendar(gridView);
 			SelectedCalendarControl.Splash(true);
 			if (!container.Controls.Contains(SelectedCalendarControl as Control))
 				container.Controls.Add(SelectedCalendarControl as Control);
 			SelectedCalendarControl.Splash(false);
 			return SelectedCalendarControl;
 		}
-
-		#region View Event Handlers
-		public void buttonItemCalendarView_Click(object sender, EventArgs e)
-		{
-			Instance.GridViewButtonItem.Checked = false;
-			Instance.MonthViewButtonItem.Checked = false;
-			(sender as ButtonItem).Checked = true;
-		}
-
-		public void buttonItemCalendarView_CheckedChanged(object sender, EventArgs e)
-		{
-			if (SelectedCalendarControl.AllowToSave)
-				SelectedCalendarControl.SaveView();
-		}
-		#endregion
 
 		#region Copy-Paste Methods and Event Handlers
 		public void buttonItemCalendarCopy_Click(object sender, EventArgs e)
@@ -159,13 +112,13 @@ namespace CalendarBuilder.PresentationClasses
 		#region Ribbon Operations Events
 		public void imageListBoxEditCalendar_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (Instance.MonthsListBoxControl.SelectedIndex >= 0 && SelectedCalendarControl.AllowToSave)
+			if (MonthsListBoxControl.SelectedIndex >= 0 && SelectedCalendarControl.AllowToSave)
 			{
-				SelectedCalendarControl.DayProperties.Close();
-				SelectedCalendarControl.SlideInfo.LoadData(month: SelectedCalendarControl.CalendarData.Months[Instance.MonthsListBoxControl.SelectedIndex]);
+				SelectedCalendarControl.SlideInfo.LoadData(month: SelectedCalendarControl.CalendarData.Months[MonthsListBoxControl.SelectedIndex]);
 				SelectedCalendarControl.Splash(true);
-				SelectedCalendarControl.SelectedView.ChangeMonth(SelectedCalendarControl.CalendarData.Months[Instance.MonthsListBoxControl.SelectedIndex].Date);
+				SelectedCalendarControl.SelectedView.ChangeMonth(SelectedCalendarControl.CalendarData.Months[MonthsListBoxControl.SelectedIndex].Date);
 				SelectedCalendarControl.Splash(false);
+				SelectedCalendarControl.CalendarSettings.SelectedMonth = SelectedCalendarControl.CalendarData.Months[MonthsListBoxControl.SelectedIndex].Date;
 			}
 		}
 
@@ -173,7 +126,7 @@ namespace CalendarBuilder.PresentationClasses
 		{
 			if (SelectedCalendarControl.AllowToSave)
 			{
-				if (Instance.SlideInfoButtonItem.Checked)
+				if (SlideInfoButtonItem.Checked)
 				{
 					SelectedCalendarControl.Splash(true);
 					SelectedCalendarControl.SlideInfo.Show();
@@ -191,7 +144,7 @@ namespace CalendarBuilder.PresentationClasses
 		public void buttonItemCalendarSave_Click(object sender, EventArgs e)
 		{
 			if (SelectedCalendarControl.SaveCalendarData())
-				AppManager.ShowInformation("Calendar Saved");
+				Utilities.Instance.ShowInformation("Calendar Saved");
 		}
 
 		public void buttonItemCalendarSaveAs_Click(object sender, EventArgs e)
@@ -205,11 +158,11 @@ namespace CalendarBuilder.PresentationClasses
 					if (!string.IsNullOrEmpty(from.ScheduleName))
 					{
 						if (SelectedCalendarControl.SaveCalendarData(from.ScheduleName))
-							AppManager.ShowInformation("Calendar was saved");
+							Utilities.Instance.ShowInformation("Calendar was saved");
 					}
 					else
 					{
-						AppManager.ShowWarning("Calendar Name can't be empty");
+						Utilities.Instance.ShowWarning("Calendar Name can't be empty");
 					}
 				}
 			}

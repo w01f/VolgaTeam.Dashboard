@@ -3,25 +3,25 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using CalendarBuilder.BusinessClasses;
-using CalendarBuilder.ConfigurationClasses;
-using CalendarBuilder.InteropClasses;
-using CalendarBuilder.PresentationClasses.DayProperties;
-using CalendarBuilder.PresentationClasses.SlideInfo;
-using CalendarBuilder.PresentationClasses.Views;
-using CalendarBuilder.PresentationClasses.Views.GridView;
-using CalendarBuilder.PresentationClasses.Views.MonthView;
-using CalendarBuilder.Properties;
-using CalendarBuilder.ToolForms;
 using DevExpress.XtraBars.Docking;
 using DevExpress.XtraEditors.Controls;
+using NewBizWiz.Calendar.Controls.BusinessClasses;
+using NewBizWiz.Calendar.Controls.InteropClasses;
+using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
+using NewBizWiz.Calendar.Controls.PresentationClasses.Views;
+using NewBizWiz.Calendar.Controls.PresentationClasses.Views.GridView;
+using NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView;
+using NewBizWiz.Calendar.Controls.Properties;
+using NewBizWiz.Calendar.Controls.ToolForms;
+using NewBizWiz.Core.Calendar;
+using NewBizWiz.Core.Common;
+using SettingsManager = NewBizWiz.Core.Calendar.SettingsManager;
 
-namespace CalendarBuilder.PresentationClasses.Calendars
+namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 {
 	[ToolboxItem(false)]
 	public partial class CalendarControl : UserControl, ICalendarControl
 	{
-		protected CalendarStyle _calendarStyle;
 		protected Schedule _localSchedule = null;
 
 		public CalendarControl()
@@ -29,14 +29,11 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			if ((base.CreateGraphics()).DpiX > 96) { }
-			ScheduleManager.Instance.SettingsSaved += (sender, e) =>
-														  {
-															  if (sender != this)
-															  {
-																  LoadCalendar(e.QuickSave);
-															  }
-														  };
-
+			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
+			{
+				if (sender != this)
+					LoadCalendar(e.QuickSave);
+			});
 			Splash(true);
 
 			#region Month View Initialization
@@ -59,41 +56,34 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 			pnMain.Controls.Add(GridView);
 			#endregion
 
-			#region Day Properties Initialization
-			DayProperties = new DayPropertiesWrapper(this, dockPanelDayProperties);
-			CalendarVisualizer.AssignCloseActiveEditorsonOutSideClick(DayProperties.ContainedControl);
-			dockPanelDayProperties.Controls.Add(DayProperties.ContainedControl);
-			DayProperties.Shown += (sender, e) => { SlideInfo.Close(); };
-			DayProperties.Closed += (sender, e) => { };
-			DayProperties.DataSaved += (sender, e) =>
-										   {
-											   MonthView.RefreshData();
-											   GridView.RefreshData();
-											   SlideInfo.LoadData(reload: true);
-											   SettingsNotSaved = true;
-										   };
-			#endregion
-
 			#region Slide Info Initialization
 			SlideInfo = new SlideInfoWrapper(this, dockPanelSlideInfo);
 			CalendarVisualizer.AssignCloseActiveEditorsonOutSideClick(SlideInfo.ContainedControl);
 			dockPanelSlideInfo.Controls.Add(SlideInfo.ContainedControl);
 			SlideInfo.Shown += (sender, e) =>
-								   {
-									   DayProperties.Close();
-									   bool temp = AllowToSave;
-									   AllowToSave = false;
-									   CalendarVisualizer.Instance.SlideInfoButtonItem.Checked = true;
-									   AllowToSave = temp;
-								   };
+			{
+				bool temp = AllowToSave;
+				AllowToSave = false;
+				Controller.Instance.CalendarVisualizer.SlideInfoButtonItem.Checked = true;
+				AllowToSave = temp;
+			};
 			SlideInfo.Closed += (sender, e) =>
-									{
-										bool temp = AllowToSave;
-										AllowToSave = false;
-										CalendarVisualizer.Instance.SlideInfoButtonItem.Checked = false;
-										AllowToSave = temp;
-									};
-			SlideInfo.DateSaved += (sender, e) => { SettingsNotSaved = true; };
+			{
+				bool temp = AllowToSave;
+				AllowToSave = false;
+				Controller.Instance.CalendarVisualizer.SlideInfoButtonItem.Checked = false;
+				AllowToSave = temp;
+			};
+			SlideInfo.DateSaved += (sender, e) =>
+									   {
+										   MonthView.RefreshData();
+										   SettingsNotSaved = true;
+										   SlideInfo.LoadData(reload: true);
+									   };
+			SlideInfo.ThemeChanged += (sender, e) =>
+			{
+				MonthView.RefreshData();
+			};
 			#endregion
 		}
 
@@ -113,67 +103,20 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 		public void LeaveCalendar()
 		{
 			SlideInfo.Close(false);
-			if (SettingsNotSaved || (SelectedView != null && SelectedView.SettingsNotSaved) || DayProperties.SettingsNotSaved || SlideInfo.SettingsNotSaved)
+			if (SettingsNotSaved || (SelectedView != null && SelectedView.SettingsNotSaved) || SlideInfo.SettingsNotSaved)
 				SaveCalendarData();
 		}
 
-		public void ShowCalendar()
+		public void ShowCalendar(bool gridView)
 		{
 			AllowToSave = false;
-			CalendarVisualizer.Instance.MonthsListBoxControl.Items.Clear();
-			CalendarVisualizer.Instance.MonthsListBoxControl.Items.AddRange(CalendarData.Months.Select(x => new ImageListBoxItem(x.Date.ToString("MMM, yyyy"), 0)).ToArray());
-			if (CalendarVisualizer.Instance.MonthsListBoxControl.Items.Count > 0)
-				CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex = 0;
-			CalendarVisualizer.Instance.MonthViewButtonItem.Checked = !CalendarSettings.GridVisible;
-			CalendarVisualizer.Instance.GridViewButtonItem.Checked = CalendarSettings.GridVisible;
-			LoadView();
-			SlideInfo.LoadData(month: CalendarData.Months[CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex]);
-			SlideInfo.LoadVisibilitySettings();
-			AllowToSave = true;
-		}
+			Controller.Instance.CalendarVisualizer.MonthsListBoxControl.Items.Clear();
+			Controller.Instance.CalendarVisualizer.MonthsListBoxControl.Items.AddRange(CalendarData.Months.Select(x => new ImageListBoxItem(x.Date.ToString("MMM, yyyy"), 0)).ToArray());
+			var selectedIndex = CalendarData.Months.Select(m => m.Date).ToList().IndexOf(CalendarSettings.SelectedMonth);
+			selectedIndex = selectedIndex > 0 ? selectedIndex : 0;
+			if (Controller.Instance.CalendarVisualizer.MonthsListBoxControl.Items.Count > 0)
+				Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex = selectedIndex;
 
-		public bool SaveCalendarData(string scheduleName = "")
-		{
-			SelectedView.Save();
-			SlideInfo.SaveData(force: true);
-			if (_calendarStyle == CalendarStyle.Advanced)
-				DayProperties.SaveData(force: true);
-			if (!string.IsNullOrEmpty(scheduleName))
-				_localSchedule.Name = scheduleName;
-			ScheduleManager.Instance.SaveSchedule(_localSchedule, true, this);
-			LoadCalendar(true);
-			laCalendarName.Text = CalendarData.Schedule.Name;
-			SettingsNotSaved = false;
-			return true;
-		}
-
-		public void LoadCalendar(bool quickLoad)
-		{
-			_localSchedule = ScheduleManager.Instance.GetLocalSchedule();
-
-			laAdvertiser.Text = CalendarData.Schedule.BusinessName;
-			laCalendarWindow.Text = CalendarData.Schedule.FlightDateStart.HasValue && CalendarData.Schedule.FlightDateEnd.HasValue ? string.Format("{0} - {1}", new object[] { CalendarData.Schedule.FlightDateStart.Value.ToString("MM/dd/yy"), CalendarData.Schedule.FlightDateEnd.Value.ToString("MM/dd/yy") }) : string.Empty;
-			laCalendarName.Text = CalendarData.Schedule.Name;
-
-			MonthView.LoadData(quickLoad);
-			GridView.LoadData(quickLoad);
-
-			MonthView.Decorate(_calendarStyle);
-			GridView.Decorate(_calendarStyle);
-			DayProperties.Decorate(_calendarStyle);
-			SlideInfo.Decorate(_calendarStyle);
-
-			DayProperties.Close();
-
-			SettingsNotSaved = false;
-		}
-		#endregion
-
-		#region View Methods
-		public void LoadView()
-		{
-			bool temp = AllowToSave;
-			AllowToSave = false;
 			if (SelectedView != null)
 			{
 				if (SelectedView.SettingsNotSaved)
@@ -181,7 +124,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 				SelectedView.CopyPasteManager.ResetCopy();
 				SelectedView.CopyPasteManager.ResetPaste();
 			}
-			if (CalendarSettings.GridVisible)
+			if (gridView)
 			{
 				SelectedView = GridView;
 				GridView.BringToFront();
@@ -191,27 +134,61 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 				SelectedView = MonthView;
 				MonthView.BringToFront();
 			}
-			Splash(true);
-			SelectedView.ChangeMonth(CalendarData.Months[CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex].Date);
-			Splash(false);
-			AllowToSave = temp;
+
+			if (CalendarData.Months.Count > 0)
+			{
+				Splash(true);
+				SelectedView.ChangeMonth(CalendarData.Months[Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex].Date);
+				SlideInfo.LoadData(month: CalendarData.Months[Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex]);
+				SlideInfo.LoadVisibilitySettings();
+				UpdateOutputFunctions();
+				Splash(false);
+			}
+
+			AllowToSave = true;
 		}
 
-		public void SaveView()
+		public bool SaveCalendarData(string scheduleName = "")
 		{
 			SelectedView.Save();
-			CalendarSettings.GridVisible = CalendarVisualizer.Instance.GridViewButtonItem.Checked;
-			SettingsManager.Instance.ViewSettings.Save();
-			LoadView();
+			SlideInfo.SaveData(force: true);
+			if (!string.IsNullOrEmpty(scheduleName))
+				_localSchedule.Name = scheduleName;
+			Controller.Instance.SaveSchedule(_localSchedule, true, this);
+			laCalendarName.Text = CalendarData.Schedule.Name;
+			SettingsNotSaved = false;
+			return true;
+		}
+
+		public void LoadCalendar(bool quickLoad)
+		{
+			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			laAdvertiser.Text = CalendarData.Schedule.BusinessName;
+			laCalendarWindow.Text = CalendarData.Schedule.FlightDateStart.HasValue && CalendarData.Schedule.FlightDateEnd.HasValue ? string.Format("{0} - {1}", new object[] { CalendarData.Schedule.FlightDateStart.Value.ToString("MM/dd/yy"), CalendarData.Schedule.FlightDateEnd.Value.ToString("MM/dd/yy") }) : string.Empty;
+			laCalendarName.Text = CalendarData.Schedule.Name;
+
+			MonthView.LoadData(quickLoad);
+			GridView.LoadData(quickLoad);
+			SlideInfo.LoadData(reload: !quickLoad);
+
+			SettingsNotSaved = false;
 		}
 		#endregion
 
 		#region Output Staff
+		public void UpdateOutputFunctions()
+		{
+			var enable = CalendarData.Months.SelectMany(m => m.Days).Any(d => d.ContainsData);
+			Controller.Instance.CalendarVisualizer.PreviewButtonItem.Enabled = enable;
+			Controller.Instance.CalendarVisualizer.EmailButtonItem.Enabled = enable;
+			Controller.Instance.CalendarVisualizer.PowerPointButtonItem.Enabled = enable;
+		}
+
 		public void Print()
 		{
-			if (CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex >= 0)
+			if (Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex >= 0)
 			{
-				CalendarMonth selectedMonth = CalendarData.Months[CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex];
+				CalendarMonth selectedMonth = CalendarData.Months[Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex];
 				foreach (CalendarMonth month in CalendarData.Months)
 					month.OutputData.PrepareNotes();
 				using (var form = new FormSelectCalendar())
@@ -226,8 +203,8 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 					RegistryHelper.MainFormHandle = form.Handle;
 					RegistryHelper.MaximizeMainForm = false;
 					DialogResult result = form.ShowDialog();
-					RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
-					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 					if (result != DialogResult.Cancel)
 					{
 						using (var formProgress = new FormProgress())
@@ -237,11 +214,11 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 							{
 								formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
 								if (selectedMonth.Days.Where(x => x.ContainsData).Count() == 0 && selectedMonth.OutputData.Notes.Count == 0)
-									if (AppManager.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to send this slide to PowerPoint?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
+									if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to send this slide to PowerPoint?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
 										return;
 								formProgress.Show();
 								Enabled = false;
-								PowerPointHelper.Instance.AppendCalendar(selectedMonth.OutputData);
+								CalendarPowerPointHelper.Instance.AppendCalendar(selectedMonth.OutputData);
 							}
 							else if (result == DialogResult.No)
 							{
@@ -254,7 +231,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 									{
 										var month = item.Value as CalendarMonth;
 										if (month != null)
-											PowerPointHelper.Instance.AppendCalendar(month.OutputData);
+											CalendarPowerPointHelper.Instance.AppendCalendar(month.OutputData);
 									}
 								}
 							}
@@ -264,11 +241,11 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 						using (var formOutput = new FormSlideOutput())
 						{
 							if (formOutput.ShowDialog() != DialogResult.OK)
-								AppManager.ActivateForm(FormMain.Instance.Handle, FormMain.Instance.IsMaximized, false);
+								Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
 							else
 							{
-								AppManager.ActivatePowerPoint();
-								AppManager.ActivateMiniBar();
+								Utilities.Instance.ActivatePowerPoint(CalendarPowerPointHelper.Instance.PowerPointObject);
+								Utilities.Instance.ActivateMiniBar();
 							}
 						}
 					}
@@ -278,9 +255,9 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 
 		public void Email()
 		{
-			if (CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex >= 0)
+			if (Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex >= 0)
 			{
-				CalendarMonth selectedMonth = CalendarData.Months[CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex];
+				CalendarMonth selectedMonth = CalendarData.Months[Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex];
 				foreach (CalendarMonth month in CalendarData.Months)
 					month.OutputData.PrepareNotes();
 				using (var form = new FormSelectCalendar())
@@ -295,23 +272,23 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 					RegistryHelper.MainFormHandle = form.Handle;
 					RegistryHelper.MaximizeMainForm = false;
 					DialogResult result = form.ShowDialog();
-					RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
-					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 					if (result != DialogResult.Cancel)
 					{
 						using (var formProgress = new FormProgress())
 						{
 							formProgress.TopMost = true;
-							string tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+							string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 							if (result == DialogResult.Yes)
 							{
 								formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
 								if (selectedMonth.Days.Where(x => x.ContainsData).Count() == 0)
-									if (AppManager.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to Email this slide?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
+									if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to Email this slide?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
 										return;
 								formProgress.Show();
 								Enabled = false;
-								PowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, new[] { selectedMonth.OutputData });
+								CalendarPowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, new[] { selectedMonth.OutputData });
 							}
 							else if (result == DialogResult.No)
 							{
@@ -328,7 +305,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 											emailPages.Add(month.OutputData);
 									}
 								}
-								PowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, emailPages.ToArray());
+								CalendarPowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, emailPages.ToArray());
 							}
 							Enabled = true;
 							formProgress.Close();
@@ -340,8 +317,8 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 									RegistryHelper.MainFormHandle = formEmail.Handle;
 									RegistryHelper.MaximizeMainForm = false;
 									formEmail.ShowDialog();
-									RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
-									RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+									RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+									RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 								}
 						}
 					}
@@ -351,9 +328,9 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 
 		public void Preview()
 		{
-			if (CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex >= 0)
+			if (Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex >= 0)
 			{
-				CalendarMonth selectedMonth = CalendarData.Months[CalendarVisualizer.Instance.MonthsListBoxControl.SelectedIndex];
+				CalendarMonth selectedMonth = CalendarData.Months[Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex];
 				foreach (CalendarMonth month in CalendarData.Months)
 					month.OutputData.PrepareNotes();
 				using (var form = new FormSelectCalendar())
@@ -368,23 +345,23 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 					RegistryHelper.MainFormHandle = form.Handle;
 					RegistryHelper.MaximizeMainForm = false;
 					DialogResult result = form.ShowDialog();
-					RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
-					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 					if (result != DialogResult.Cancel)
 					{
 						using (var formProgress = new FormProgress())
 						{
 							formProgress.TopMost = true;
-							string tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+							string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 							if (result == DialogResult.Yes)
 							{
 								formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
 								if (selectedMonth.Days.Where(x => x.ContainsData).Count() == 0)
-									if (AppManager.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to Email this slide?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
+									if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to Email this slide?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
 										return;
 								formProgress.Show();
 								Enabled = false;
-								PowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, new[] { selectedMonth.OutputData });
+								CalendarPowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, new[] { selectedMonth.OutputData });
 							}
 							else if (result == DialogResult.No)
 							{
@@ -401,7 +378,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 											emailPages.Add(month.OutputData);
 									}
 								}
-								PowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, emailPages.ToArray());
+								CalendarPowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, emailPages.ToArray());
 							}
 							Enabled = true;
 							formProgress.Close();
@@ -413,14 +390,14 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 									RegistryHelper.MainFormHandle = formPreview.Handle;
 									RegistryHelper.MaximizeMainForm = false;
 									DialogResult previewResult = formPreview.ShowDialog();
-									RegistryHelper.MaximizeMainForm = FormMain.Instance.IsMaximized;
-									RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+									RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+									RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 									if (previewResult != DialogResult.OK)
-										AppManager.ActivateForm(FormMain.Instance.Handle, true, false);
+										Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 									else
 									{
-										AppManager.ActivatePowerPoint();
-										AppManager.ActivateMiniBar();
+										Utilities.Instance.ActivatePowerPoint(CalendarPowerPointHelper.Instance.PowerPointObject);
+										Utilities.Instance.ActivateMiniBar();
 									}
 								}
 						}
@@ -433,18 +410,7 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 		#region Other Ribbon Operations
 		public void OpenHelp()
 		{
-			switch (_calendarStyle)
-			{
-				case CalendarStyle.Advanced:
-					HelpManager.Instance.OpenHelpLink(SelectedView.GetType() == typeof(GridViewControl) ? "nerdgrid" : "nerdcal");
-					break;
-				case CalendarStyle.Graphic:
-					HelpManager.Instance.OpenHelpLink(SelectedView.GetType() == typeof(GridViewControl) ? "coolgrid" : "coolcal");
-					break;
-				case CalendarStyle.Simple:
-					HelpManager.Instance.OpenHelpLink(SelectedView.GetType() == typeof(GridViewControl) ? "easygrid" : "easycal");
-					break;
-			}
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink(SelectedView.GetType() == typeof(GridViewControl) ? "list" : "ninja");
 		}
 		#endregion
 
@@ -462,27 +428,16 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 		#region ICalendarControl Members
 		public IView SelectedView { get; private set; }
 
-		public DayPropertiesWrapper DayProperties { get; private set; }
 		public SlideInfoWrapper SlideInfo { get; private set; }
 
 		public bool AllowToSave { get; set; }
 		public bool SettingsNotSaved { get; set; }
 
-		public Calendar CalendarData
+		public Core.Calendar.Calendar CalendarData
 		{
 			get
 			{
-				switch (_calendarStyle)
-				{
-					case CalendarStyle.Advanced:
-						return _localSchedule.AdvancedCalendar;
-					case CalendarStyle.Graphic:
-						return _localSchedule.GraphicCalendar;
-					case CalendarStyle.Simple:
-						return _localSchedule.SimpleCalendar;
-					default:
-						return null;
-				}
+				return _localSchedule.GraphicCalendar;
 			}
 		}
 
@@ -490,17 +445,8 @@ namespace CalendarBuilder.PresentationClasses.Calendars
 		{
 			get
 			{
-				switch (_calendarStyle)
-				{
-					case CalendarStyle.Advanced:
-						return SettingsManager.Instance.ViewSettings.AdvancedCalendarSettings;
-					case CalendarStyle.Graphic:
-						return SettingsManager.Instance.ViewSettings.GraphicCalendarSettings;
-					case CalendarStyle.Simple:
-						return SettingsManager.Instance.ViewSettings.SimpleCalendarSettings;
-					default:
-						return null;
-				}
+				return SettingsManager.Instance.ViewSettings.GraphicCalendarSettings;
+
 			}
 		}
 		#endregion

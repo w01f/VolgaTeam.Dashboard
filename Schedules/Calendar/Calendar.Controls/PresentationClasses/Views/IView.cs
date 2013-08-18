@@ -1,30 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
+using NewBizWiz.Core.Calendar;
 
-namespace CalendarBuilder.PresentationClasses.Views
+namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views
 {
-    public interface IView
-    {
-        Calendars.ICalendarControl Calendar { get; }
-        CopyPasteManager CopyPasteManager { get; }
-        bool SettingsNotSaved { get; set; }
+	public interface IView
+	{
+		ICalendarControl Calendar { get; }
+		CopyPasteManager CopyPasteManager { get; }
+		bool SettingsNotSaved { get; set; }
 
-        event EventHandler<EventArgs> DataSaved;
+		event EventHandler<EventArgs> DataSaved;
 
-        void ChangeMonth(DateTime date);
-        void LoadData(bool reload);
-        void Save();
-        void RefreshData();
-        void SelectDay(BusinessClasses.CalendarDay day, bool selected);
-        void Decorate(BusinessClasses.CalendarStyle style);
+		void ChangeMonth(DateTime date);
+		void LoadData(bool reload);
+		void Save();
+		void RefreshData();
+		void SelectDay(CalendarDay day, bool selected);
 
-        #region Copy-Paste Methods
-        void CopyDay();
-        void PasteDay();
-        void CloneDay();
-        #endregion
-    }
+		#region Copy-Paste Methods
+		void CopyDay();
+		void PasteDay();
+		void CloneDay();
+		#endregion
+	}
 }

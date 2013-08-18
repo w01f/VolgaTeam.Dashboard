@@ -1,185 +1,187 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.Drawing;
+using DevExpress.XtraBars.Docking;
+using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
+using NewBizWiz.Core.Calendar;
 
-namespace CalendarBuilder.PresentationClasses.SlideInfo
+namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 {
-    public class SlideInfoWrapper
-    {
-        private Calendars.ICalendarControl _parentCalendar = null;
-        private DevExpress.XtraBars.Docking.DockPanel _container = null;
-        private bool _allowToSave = false;
+	public class SlideInfoWrapper
+	{
+		private readonly DockPanel _container;
+		private readonly ICalendarControl _parentCalendar;
+		private bool _allowToSave;
 
-        public SlideInfoControl ContainedControl { get; private set; }
+		public SlideInfoWrapper(ICalendarControl parentCalendar, DockPanel container)
+		{
+			_parentCalendar = parentCalendar;
 
-        public event EventHandler<EventArgs> Shown;
-        public event EventHandler<EventArgs> Closed;
-        public event EventHandler<EventArgs> DateSaved;
-
-        public bool SettingsNotSaved
-        {
-            get
-            {
-                return this.ContainedControl.SettingsNotSaved;
-            }
-        }
-
-        public SlideInfoWrapper(Calendars.ICalendarControl parentCalendar, DevExpress.XtraBars.Docking.DockPanel container)
-        {
-            _parentCalendar = parentCalendar;
-
-            _container = container;
-            _container.ClosingPanel += new DevExpress.XtraBars.Docking.DockPanelCancelEventHandler(ClosingPanel);
-            _container.ClosedPanel += new DevExpress.XtraBars.Docking.DockPanelEventHandler(ClosedPanel);
-            _container.DockChanged += new EventHandler(PanelDockChanged);
-            _container.DoubleClick += new EventHandler(PanelDoubleClick);
+			_container = container;
+			_container.ClosingPanel += ClosingPanel;
+			_container.ClosedPanel += ClosedPanel;
+			_container.DockChanged += PanelDockChanged;
+			_container.DoubleClick += PanelDoubleClick;
 
 
-            this.ContainedControl = new SlideInfoControl();
-            this.ContainedControl.PropertiesSaved += new EventHandler(PropertiesSaved);
-            this.ContainedControl.Closed += new EventHandler(PropertiesClosed);
-        }
+			ContainedControl = new SlideInfoControl();
+			ContainedControl.PropertiesSaved += PropertiesSaved;
+			ContainedControl.Closed += PropertiesClosed;
+			ContainedControl.ThemeChanged += OnThemeChanged;
+		}
 
-        #region Container Event Handlers
-        private void ClosedPanel(object sender, DevExpress.XtraBars.Docking.DockPanelEventArgs e)
-        {
-            if (_allowToSave)
-                SaveVisibilitySettings();
-            if (this.Closed != null)
-                this.Closed(this, new EventArgs());
-            _parentCalendar.Splash(false);
-        }
+		#region Container Event Handlers
+		private void ClosedPanel(object sender, DockPanelEventArgs e)
+		{
+			if (_allowToSave)
+				SaveVisibilitySettings();
+			if (Closed != null)
+				Closed(this, new EventArgs());
+			_parentCalendar.Splash(false);
+		}
 
-        private void ClosingPanel(object sender, DevExpress.XtraBars.Docking.DockPanelCancelEventArgs e)
-        {
-            _parentCalendar.Splash(true);
-            SaveData();
-            SaveLocationSettings();
-        }
+		private void ClosingPanel(object sender, DockPanelCancelEventArgs e)
+		{
+			_parentCalendar.Splash(true);
+			SaveData();
+			SaveLocationSettings();
+		}
 
-        void PanelDockChanged(object sender, EventArgs e)
-        {
-            if (_allowToSave)
-                SaveLocationSettings();
-        }
+		private void PanelDockChanged(object sender, EventArgs e)
+		{
+			if (_allowToSave)
+				SaveLocationSettings();
+		}
 
-        private void PanelDoubleClick(object sender, EventArgs e)
-        {
-            _allowToSave = false;
-            if (_container.Dock == DevExpress.XtraBars.Docking.DockingStyle.Float)
-            {
-                _container.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
-            }
-            else
-            {
-                _container.Dock = DevExpress.XtraBars.Docking.DockingStyle.Float;
-                if (_parentCalendar.CalendarSettings.SlideInfoFloatLeft != 0 && _parentCalendar.CalendarSettings.SlideInfoFloatTop != 0)
-                    _container.FloatLocation = new System.Drawing.Point(_parentCalendar.CalendarSettings.SlideInfoFloatLeft, _parentCalendar.CalendarSettings.SlideInfoFloatTop);
-                else
-                    _container.FloatLocation = new System.Drawing.Point(200, 200);
-            }
-            _allowToSave = true;
-            SaveLocationSettings();
-        }
-        #endregion
+		private void PanelDoubleClick(object sender, EventArgs e)
+		{
+			_allowToSave = false;
+			if (_container.Dock == DockingStyle.Float)
+			{
+				_container.Dock = DockingStyle.Left;
+			}
+			else
+			{
+				_container.Dock = DockingStyle.Float;
+				if (_parentCalendar.CalendarSettings.SlideInfoFloatLeft != 0 && _parentCalendar.CalendarSettings.SlideInfoFloatTop != 0)
+					_container.FloatLocation = new Point(_parentCalendar.CalendarSettings.SlideInfoFloatLeft, _parentCalendar.CalendarSettings.SlideInfoFloatTop);
+				else
+					_container.FloatLocation = new Point(200, 200);
+			}
+			_allowToSave = true;
+			SaveLocationSettings();
+		}
+		#endregion
 
-        #region Contained Control Event Handlers
-        private void PropertiesSaved(object sender, EventArgs e)
-        {
-            if (this.DateSaved != null)
-                this.DateSaved(this, new EventArgs());
-        }
+		#region Contained Control Event Handlers
+		private void PropertiesSaved(object sender, EventArgs e)
+		{
+			if (DateSaved != null)
+				DateSaved(this, new EventArgs());
+		}
 
-        private void PropertiesClosed(object sender, EventArgs e)
-        {
-            Close();
-        }
-        #endregion
+		private void PropertiesClosed(object sender, EventArgs e)
+		{
+			Close();
+		}
 
-        #region Common Methods
-        public void LoadVisibilitySettings()
-        {
-            if (_parentCalendar.CalendarSettings.SlideInfoVisible)
-            {
-                _parentCalendar.Splash(true);
-                Show();
-                _parentCalendar.Splash(false);
-            }
-            else
-            {
-                _parentCalendar.Splash(true);
-                Close();
-                _parentCalendar.Splash(false);
-            }
-            CalendarVisualizer.Instance.SlideInfoButtonItem.Checked = _parentCalendar.CalendarSettings.SlideInfoVisible;
-        }
+		private void OnThemeChanged(object sender, EventArgs e)
+		{
+			if (ThemeChanged != null)
+				ThemeChanged(this, EventArgs.Empty);
+		}
+		#endregion
 
-        private void LoadLocationSettings()
-        {
-            _container.Dock = _parentCalendar.CalendarSettings.SlideInfoDocked ? DevExpress.XtraBars.Docking.DockingStyle.Left : DevExpress.XtraBars.Docking.DockingStyle.Float;
-            if (_parentCalendar.CalendarSettings.SlideInfoFloatLeft != 0 && _parentCalendar.CalendarSettings.SlideInfoFloatTop != 0)
-                _container.FloatLocation = new System.Drawing.Point(_parentCalendar.CalendarSettings.SlideInfoFloatLeft, _parentCalendar.CalendarSettings.SlideInfoFloatTop);
-            else
-                _container.FloatLocation = new System.Drawing.Point(200, 200);
-        }
+		#region Common Methods
+		public void LoadVisibilitySettings()
+		{
+			if (_parentCalendar.CalendarSettings.SlideInfoVisible)
+			{
+				_parentCalendar.Splash(true);
+				Show();
+				_parentCalendar.Splash(false);
+			}
+			else
+			{
+				_parentCalendar.Splash(true);
+				Close();
+				_parentCalendar.Splash(false);
+			}
+			Controller.Instance.CalendarVisualizer.SlideInfoButtonItem.Checked = _parentCalendar.CalendarSettings.SlideInfoVisible;
+		}
 
-        private void SaveVisibilitySettings()
-        {
-            _parentCalendar.CalendarSettings.SlideInfoVisible = _container.Visibility == DevExpress.XtraBars.Docking.DockVisibility.Visible;
-            ConfigurationClasses.SettingsManager.Instance.ViewSettings.Save();
-        }
+		private void LoadLocationSettings()
+		{
+			_container.Dock = _parentCalendar.CalendarSettings.SlideInfoDocked ? DockingStyle.Left : DockingStyle.Float;
+			if (_parentCalendar.CalendarSettings.SlideInfoFloatLeft != 0 && _parentCalendar.CalendarSettings.SlideInfoFloatTop != 0)
+				_container.FloatLocation = new Point(_parentCalendar.CalendarSettings.SlideInfoFloatLeft, _parentCalendar.CalendarSettings.SlideInfoFloatTop);
+			else
+				_container.FloatLocation = new Point(200, 200);
+		}
 
-        private void SaveLocationSettings()
-        {
-            if (_container.Visibility == DevExpress.XtraBars.Docking.DockVisibility.Visible)
-                _parentCalendar.CalendarSettings.SlideInfoDocked = _container.Dock == DevExpress.XtraBars.Docking.DockingStyle.Left;
-            _parentCalendar.CalendarSettings.SlideInfoFloatLeft = _container.FloatLocation.X;
-            _parentCalendar.CalendarSettings.SlideInfoFloatTop = _container.FloatLocation.Y;
-            ConfigurationClasses.SettingsManager.Instance.ViewSettings.Save();
-        }
+		private void SaveVisibilitySettings()
+		{
+			_parentCalendar.CalendarSettings.SlideInfoVisible = _container.Visibility == DockVisibility.Visible;
+			SettingsManager.Instance.ViewSettings.Save();
+		}
 
-        public void LoadData(BusinessClasses.CalendarMonth month = null, bool reload = false)
-        {
-            SaveData(reload: reload);
-            if (month == null)
-                this.ContainedControl.LoadCurrentMonthData();
-            else
-                this.ContainedControl.LoadMonth(month);
-            _container.Text = this.ContainedControl.MonthTitle;
-        }
+		private void SaveLocationSettings()
+		{
+			if (_container.Visibility == DockVisibility.Visible)
+				_parentCalendar.CalendarSettings.SlideInfoDocked = _container.Dock == DockingStyle.Left;
+			_parentCalendar.CalendarSettings.SlideInfoFloatLeft = _container.FloatLocation.X;
+			_parentCalendar.CalendarSettings.SlideInfoFloatTop = _container.FloatLocation.Y;
+			SettingsManager.Instance.ViewSettings.Save();
+		}
 
-        public void SaveData(bool reload = false, bool force = false)
-        {
-            if (this.ContainedControl.SettingsNotSaved && !force)
-            {
-                string message = reload ? "Calendar data was updated.\nDo you want to reload slide info?" : "Slide Info has changed.\nDo you want to save it?";
-                //if (AppManager.ShowWarningQuestion(message) == DialogResult.Yes)
-                    this.ContainedControl.SaveData();
-            }
-            else if (force)
-                this.ContainedControl.SaveData(); ;
-        }
+		public void LoadData(CalendarMonth month = null, bool reload = false)
+		{
+			SaveData(reload: reload);
+			if (month == null)
+				ContainedControl.LoadCurrentMonthData();
+			else
+				ContainedControl.LoadMonth(month);
+			_container.Text = ContainedControl.MonthTitle;
+		}
 
-        public void Show()
-        {
-            _allowToSave = false;
-            _container.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Visible;
-            LoadLocationSettings();
-            _allowToSave = true;
-            SaveVisibilitySettings();
-            if (this.Shown != null)
-                this.Shown(this, new EventArgs());
-        }
+		public void SaveData(bool reload = false, bool force = false)
+		{
+			if (ContainedControl.SettingsNotSaved && !force)
+			{
+				string message = reload ? "Calendar data was updated.\nDo you want to reload slide info?" : "Slide Info has changed.\nDo you want to save it?";
+				ContainedControl.SaveData();
+			}
+			else if (force)
+				ContainedControl.SaveData();
+			;
+		}
 
-        public void Close(bool allowToSave = true)
-        {
-            _allowToSave = allowToSave;
-            _container.Close();
-        }
+		public void Show()
+		{
+			_allowToSave = false;
+			_container.Visibility = DockVisibility.Visible;
+			LoadLocationSettings();
+			_allowToSave = true;
+			SaveVisibilitySettings();
+			if (Shown != null)
+				Shown(this, new EventArgs());
+		}
 
-        public void Decorate(BusinessClasses.CalendarStyle style)
-        {
-            this.ContainedControl.Decorate(style);
-        }
-        #endregion
-    }
+		public void Close(bool allowToSave = true)
+		{
+			_allowToSave = allowToSave;
+			_container.Close();
+		}
+		#endregion
+
+		public SlideInfoControl ContainedControl { get; private set; }
+		public bool SettingsNotSaved
+		{
+			get { return ContainedControl.SettingsNotSaved; }
+		}
+
+		public event EventHandler<EventArgs> Shown;
+		public event EventHandler<EventArgs> Closed;
+		public event EventHandler<EventArgs> DateSaved;
+		public event EventHandler<EventArgs> ThemeChanged;
+	}
 }

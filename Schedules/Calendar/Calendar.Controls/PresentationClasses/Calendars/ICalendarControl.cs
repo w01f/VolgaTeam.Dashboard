@@ -1,27 +1,23 @@
-﻿using CalendarBuilder.BusinessClasses;
-using CalendarBuilder.ConfigurationClasses;
-using CalendarBuilder.PresentationClasses.DayProperties;
-using CalendarBuilder.PresentationClasses.SlideInfo;
-using CalendarBuilder.PresentationClasses.Views;
+﻿using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
+using NewBizWiz.Calendar.Controls.PresentationClasses.Views;
+using NewBizWiz.Core.Calendar;
 
-namespace CalendarBuilder.PresentationClasses.Calendars
+namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 {
 	public interface ICalendarControl
 	{
 		bool AllowToSave { get; }
 		bool SettingsNotSaved { get; set; }
 
-		Calendar CalendarData { get; }
+		Core.Calendar.Calendar CalendarData { get; }
 		CalendarSettings CalendarSettings { get; }
 		IView SelectedView { get; }
-		DayPropertiesWrapper DayProperties { get; }
 		SlideInfoWrapper SlideInfo { get; }
 
 		void LeaveCalendar();
-		void ShowCalendar();
+		void ShowCalendar(bool gridView);
 		bool SaveCalendarData(string scheduleName = "");
-		void LoadView();
-		void SaveView();
+		void UpdateOutputFunctions();
 		void Preview();
 		void Print();
 		void Email();

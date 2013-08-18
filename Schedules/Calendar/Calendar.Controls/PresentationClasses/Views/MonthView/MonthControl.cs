@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
-namespace CalendarBuilder.PresentationClasses.Views.MonthView
+namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 {
 	[ToolboxItem(false)]
 	public partial class MonthControl : UserControl
@@ -12,7 +13,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
 		private readonly List<WeekControl> _weekControls = new List<WeekControl>();
 		private readonly bool _weekSundayStarted = true;
 
-		public MonthControl(bool weekSundayStarted)
+		public MonthControl(bool weekSundayStarted = true)
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
@@ -47,10 +48,10 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
 				}
 		}
 
-		public void RefreshData()
+		public void RefreshData(Color colorLight, Color colorDark)
 		{
 			foreach (WeekControl week in _weekControls)
-				week.RefreshData();
+				week.RefreshData(colorLight, colorDark);
 		}
 
 		public void RefreshNotes()

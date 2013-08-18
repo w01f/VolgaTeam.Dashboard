@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace CalendarBuilder.ToolForms
+namespace NewBizWiz.Calendar.Controls.ToolForms
 {
     public partial class FormNoteColor : Form
     {

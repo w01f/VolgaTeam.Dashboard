@@ -1,4 +1,4 @@
-﻿namespace CalendarBuilder.PresentationClasses.Views.MonthView
+﻿namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 {
     partial class DayControl
     {
@@ -91,7 +91,7 @@
 			// 
 			this.toolStripMenuItemCopy.Enabled = false;
 			this.toolStripMenuItemCopy.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemCopy.Image = global::CalendarBuilder.Properties.Resources.CopySmall;
+			this.toolStripMenuItemCopy.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CopySmall;
 			this.toolStripMenuItemCopy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
 			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(170, 40);
@@ -102,7 +102,7 @@
 			// 
 			this.toolStripMenuItemPaste.Enabled = false;
 			this.toolStripMenuItemPaste.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemPaste.Image = global::CalendarBuilder.Properties.Resources.PasteSmall;
+			this.toolStripMenuItemPaste.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.PasteSmall;
 			this.toolStripMenuItemPaste.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemPaste.Name = "toolStripMenuItemPaste";
 			this.toolStripMenuItemPaste.Size = new System.Drawing.Size(170, 40);
@@ -113,7 +113,7 @@
 			// 
 			this.toolStripMenuItemClone.Enabled = false;
 			this.toolStripMenuItemClone.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemClone.Image = global::CalendarBuilder.Properties.Resources.CloneSmall;
+			this.toolStripMenuItemClone.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CloneSmall;
 			this.toolStripMenuItemClone.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemClone.Name = "toolStripMenuItemClone";
 			this.toolStripMenuItemClone.Size = new System.Drawing.Size(170, 40);
@@ -124,7 +124,7 @@
 			// 
 			this.toolStripMenuItemEdit.Enabled = false;
 			this.toolStripMenuItemEdit.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.toolStripMenuItemEdit.Image = global::CalendarBuilder.Properties.Resources.EditData;
+			this.toolStripMenuItemEdit.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.EditData;
 			this.toolStripMenuItemEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemEdit.Name = "toolStripMenuItemEdit";
 			this.toolStripMenuItemEdit.Size = new System.Drawing.Size(170, 40);
@@ -135,7 +135,7 @@
 			// 
 			this.toolStripMenuItemDelete.Enabled = false;
 			this.toolStripMenuItemDelete.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemDelete.Image = global::CalendarBuilder.Properties.Resources.DeleteData;
+			this.toolStripMenuItemDelete.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.DeleteData;
 			this.toolStripMenuItemDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
 			this.toolStripMenuItemDelete.Size = new System.Drawing.Size(170, 40);
@@ -151,7 +151,7 @@
 			// 
 			this.toolStripMenuItemAddNote.Enabled = false;
 			this.toolStripMenuItemAddNote.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemAddNote.Image = global::CalendarBuilder.Properties.Resources.FloaterNote;
+			this.toolStripMenuItemAddNote.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.FloaterNote;
 			this.toolStripMenuItemAddNote.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemAddNote.Name = "toolStripMenuItemAddNote";
 			this.toolStripMenuItemAddNote.Size = new System.Drawing.Size(170, 40);
@@ -162,7 +162,7 @@
 			// 
 			this.toolStripMenuItemPasteNote.Enabled = false;
 			this.toolStripMenuItemPasteNote.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.toolStripMenuItemPasteNote.Image = global::CalendarBuilder.Properties.Resources.PasteSmall;
+			this.toolStripMenuItemPasteNote.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.PasteSmall;
 			this.toolStripMenuItemPasteNote.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemPasteNote.Name = "toolStripMenuItemPasteNote";
 			this.toolStripMenuItemPasteNote.Size = new System.Drawing.Size(170, 40);

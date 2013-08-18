@@ -1,10 +1,11 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using CalendarBuilder.BusinessClasses;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Layout;
+using NewBizWiz.Core.Calendar;
+using NewBizWiz.Core.Common;
 
-namespace CalendarBuilder.ToolForms
+namespace NewBizWiz.Calendar.Controls.ToolForms
 {
 	public partial class FormDayProperties : Form
 	{
@@ -33,7 +34,7 @@ namespace CalendarBuilder.ToolForms
 		private void SaveData()
 		{
 			var selectedLogo = layoutViewLogoGallery.GetFocusedRow() as ImageSource;
-			_day.Logo = selectedLogo ?? new ImageSource(_day);
+			_day.Logo = selectedLogo ?? new ImageSource();
 			_day.Comment1 = checkEditComment.Checked && memoEditComment.EditValue != null && !string.IsNullOrEmpty(memoEditComment.EditValue.ToString()) ? memoEditComment.EditValue.ToString() : null;
 		}
 

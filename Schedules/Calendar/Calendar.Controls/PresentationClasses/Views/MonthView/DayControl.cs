@@ -3,10 +3,11 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using CalendarBuilder.BusinessClasses;
-using CalendarBuilder.ToolForms;
+using NewBizWiz.Calendar.Controls.ToolForms;
+using NewBizWiz.Core.Calendar;
+using NewBizWiz.Core.Common;
 
-namespace CalendarBuilder.PresentationClasses.Views.MonthView
+namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 {
 	[ToolboxItem(false)]
 	public partial class DayControl : UserControl
@@ -14,38 +15,49 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
 		private bool _allowToSave;
 		private bool _isCopySource;
 		private bool _isSelected;
-		private CalendarStyle _style;
+		private Color _colorLight = Color.White;
+		private Color _colorDark = Color.LightGray;
 
 		public DayControl(CalendarDay day)
 		{
 			InitializeComponent();
 			Day = day;
 			laSmallDayCaption.Text = Day.Date.Day.ToString();
-			RefreshData();
+			RefreshData(_colorLight, _colorDark);
 
-			memoEditSimpleComment.Enter += FormMain.Instance.Editor_Enter;
-			memoEditSimpleComment.MouseDown += FormMain.Instance.Editor_MouseDown;
-			memoEditSimpleComment.MouseUp += FormMain.Instance.Editor_MouseUp;
+			memoEditSimpleComment.Enter += Utilities.Instance.Editor_Enter;
+			memoEditSimpleComment.MouseDown += Utilities.Instance.Editor_MouseDown;
+			memoEditSimpleComment.MouseUp += Utilities.Instance.Editor_MouseUp;
 		}
 
 		#region Coomon Methods
-		public void RefreshData()
+		public void RefreshData(Color colorLight, Color colorDark)
 		{
 			_allowToSave = false;
+			_colorLight = colorLight;
+			_colorDark = colorDark;
 			labelControlData.Text = Day.Summary;
 			pbLogo.Image = Day.Logo.XtraTinyImage;
-			pbLogo.Visible = _style == CalendarStyle.Graphic && Day.Logo.XtraTinyImage != null;
+			pbLogo.Visible = Day.Logo.XtraTinyImage != null;
 			memoEditSimpleComment.EditValue = Day.Comment1;
-			toolStripMenuItemEdit.Visible= _style == CalendarStyle.Graphic;
-			toolStripMenuItemEdit.Enabled = _style == CalendarStyle.Graphic;
+			toolStripMenuItemEdit.Visible = true;
+			toolStripMenuItemEdit.Enabled = true;
 			toolStripMenuItemDelete.Enabled = Day.ContainsData;
+			pnCalendarNoteArea.Visible = Day.HasNotes;
+			RefreshColor();
+			_allowToSave = true;
+		}
+
+		public void RefreshColor()
+		{
 			BackColor = BackColor == Color.Blue || BackColor == Color.Green ? (Day.ContainsData ? Color.Green : Color.Blue) : Color.DarkGray;
 			if (!Day.BelongsToSchedules)
 			{
-				memoEditSimpleComment.BackColor = Color.LightGray;
-				pnCalendarNoteArea.BackColor = Color.LightGray;
-				xtraScrollableControl.BackColor = Color.LightGray;
-				laSmallDayCaption.BackColor = Color.Gray;
+				memoEditSimpleComment.BackColor = _colorLight;
+				pnCalendarNoteArea.BackColor = _colorLight;
+				xtraScrollableControl.BackColor = _colorLight;
+				laSmallDayCaption.BackColor = _colorDark;
+				laSmallDayCaption.ForeColor = Color.White;
 			}
 			else if (_isCopySource)
 			{
@@ -53,24 +65,16 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
 				pnCalendarNoteArea.BackColor = Color.FromArgb(192, 255, 192);
 				xtraScrollableControl.BackColor = Color.FromArgb(192, 255, 192);
 				laSmallDayCaption.BackColor = Color.DarkSeaGreen;
+				laSmallDayCaption.ForeColor = Color.Black;
 			}
 			else
 			{
-				memoEditSimpleComment.BackColor = Color.AliceBlue;
-				pnCalendarNoteArea.BackColor = Color.AliceBlue;
-				xtraScrollableControl.BackColor = Color.AliceBlue;
-				laSmallDayCaption.BackColor = Color.FromArgb(175, 210, 255);
+				memoEditSimpleComment.BackColor = Color.White;
+				pnCalendarNoteArea.BackColor = Color.White;
+				xtraScrollableControl.BackColor = Color.White;
+				laSmallDayCaption.BackColor = _colorLight;
+				laSmallDayCaption.ForeColor = Color.Black;
 			}
-			pnCalendarNoteArea.Visible = Day.HasNotes;
-			_allowToSave = true;
-		}
-
-		public void Decorate(CalendarStyle style)
-		{
-			_style = style;
-			pbLogo.Visible = _style == CalendarStyle.Graphic && pbLogo.Image != null;
-			toolStripMenuItemEdit.Visible = _style == CalendarStyle.Graphic;
-			toolStripMenuItemEdit.Enabled = _style == CalendarStyle.Graphic;
 		}
 		#endregion
 
@@ -142,39 +146,14 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
 		public void ChangeCopySource(bool isCopySource)
 		{
 			_isCopySource = isCopySource;
-			if (!Day.BelongsToSchedules)
-			{
-				memoEditSimpleComment.BackColor = Color.LightGray;
-				pnCalendarNoteArea.BackColor = Color.LightGray;
-				xtraScrollableControl.BackColor = Color.LightGray;
-				laSmallDayCaption.BackColor = Color.Gray;
-			}
-			else if (_isCopySource)
-			{
-				memoEditSimpleComment.BackColor = Color.FromArgb(192, 255, 192);
-				pnCalendarNoteArea.BackColor = Color.FromArgb(192, 255, 192);
-				xtraScrollableControl.BackColor = Color.FromArgb(192, 255, 192);
-				laSmallDayCaption.BackColor = Color.DarkSeaGreen;
-			}
-			else
-			{
-				memoEditSimpleComment.BackColor = Color.AliceBlue;
-				pnCalendarNoteArea.BackColor = Color.AliceBlue;
-				xtraScrollableControl.BackColor = Color.AliceBlue;
-				laSmallDayCaption.BackColor = Color.FromArgb(175, 210, 255);
-			}
+			RefreshColor();
 		}
 		#endregion
 
 		#region Common Event Handlers
 		private void Control_DoubleClick(object sender, EventArgs e)
 		{
-			if (Day.BelongsToSchedules && _style == CalendarStyle.Advanced)
-			{
-				if (PropertiesRequested != null)
-					PropertiesRequested(sender, new EventArgs());
-			}
-			else if (Day.BelongsToSchedules && (_style == CalendarStyle.Graphic || _style == CalendarStyle.Simple))
+			if (Day.BelongsToSchedules)
 			{
 				xtraScrollableControl.Padding = new Padding(0);
 				labelControlData.Visible = false;
@@ -218,7 +197,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
 			{
 				if (form.ShowDialog() == DialogResult.OK)
 				{
-					RefreshData();
+					RefreshData(_colorLight, _colorDark);
 					if (DataChanged != null)
 						DataChanged(sender, new EventArgs());
 				}
@@ -256,7 +235,7 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
 			if (_allowToSave)
 			{
 				Day.Comment1 = memoEditSimpleComment.EditValue != null ? memoEditSimpleComment.EditValue.ToString() : string.Empty;
-				RefreshData();
+				RefreshData(_colorLight, _colorDark);
 				if (DataChanged != null)
 					DataChanged(sender, new EventArgs());
 			}
@@ -276,7 +255,6 @@ namespace CalendarBuilder.PresentationClasses.Views.MonthView
 		public bool AllowToPasteNote { get; set; }
 		public bool MultiSelectEnabled { get; set; }
 		public event EventHandler<SelectDayEventArgs> DaySelected;
-		public event EventHandler<EventArgs> PropertiesRequested;
 		public event EventHandler<EventArgs> DayCopied;
 		public event EventHandler<EventArgs> DayPasted;
 		public event EventHandler<EventArgs> DayCloned;

@@ -1,4 +1,4 @@
-﻿namespace CalendarBuilder.ToolForms
+﻿namespace NewBizWiz.Calendar.Controls.ToolForms
 {
     partial class FormCloneDay
     {
@@ -140,7 +140,7 @@
             // 
             // pbLogo
             // 
-            this.pbLogo.Image = global::CalendarBuilder.Properties.Resources.Clone;
+            this.pbLogo.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.Clone;
             this.pbLogo.Location = new System.Drawing.Point(3, 5);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(87, 75);
@@ -410,7 +410,7 @@
             // pbHelp
             // 
             this.pbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbHelp.Image = global::CalendarBuilder.Properties.Resources.Help;
+            this.pbHelp.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.Help;
             this.pbHelp.Location = new System.Drawing.Point(524, 2);
             this.pbHelp.Name = "pbHelp";
             this.pbHelp.Size = new System.Drawing.Size(76, 81);

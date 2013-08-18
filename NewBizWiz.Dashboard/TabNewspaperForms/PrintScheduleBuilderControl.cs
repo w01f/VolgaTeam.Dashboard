@@ -50,7 +50,7 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 		{
 			gridViewSchedules.FocusedRowChanged -= gridViewSchedules_FocusedRowChanged;
 			OutsideClick();
-			_scheduleList = AdSchedule.Internal.AppManager.GetShortScheduleList();
+			_scheduleList = ScheduleManager.GetShortScheduleList();
 			if (!AdSchedule.Internal.AppManager.ProgramDataAvailable)
 			{
 				FormMain.Instance.buttonItemNewspaperNew.Enabled = false;
@@ -95,11 +95,11 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 9, 0, 0);
 			FormMain.Instance.Opacity = 0;
 			RegistryHelper.MaximizeMainForm = true;
-			CalendarBuilder.FormMain.Instance.Resize -= FormMain.Instance.FormCalendarResize;
-			CalendarBuilder.FormMain.Instance.Resize += FormMain.Instance.FormCalendarResize;
-			CalendarBuilder.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
-			CalendarBuilder.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
-			CalendarBuilder.AppManager.ImportSchedule(e.SourceSchedule, e.BuildAdvanced, e.BuildGraphic, e.BuildSimple);
+			Calendar.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormCalendarResize;
+			Calendar.Internal.FormMain.Instance.Resize += FormMain.Instance.FormCalendarResize;
+			Calendar.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
+			Calendar.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
+			Calendar.Internal.AppManager.ImportSchedule(e.SourceSchedule);
 			if (!FormMain.Instance.IsDead)
 			{
 				FormMain.Instance.Opacity = 1;
@@ -119,8 +119,6 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 			AdSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormAdScheduleResize;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
-			Controller.Instance.ScheduleExported -= ExportEventHandler;
-			Controller.Instance.ScheduleExported += ExportEventHandler;
 			AdSchedule.Internal.AppManager.NewSchedule();
 			if (!FormMain.Instance.IsDead)
 			{
@@ -142,8 +140,6 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 			AdSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormAdScheduleResize;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
-			Controller.Instance.ScheduleExported -= ExportEventHandler;
-			Controller.Instance.ScheduleExported += ExportEventHandler;
 			AdSchedule.Internal.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
 			if (!FormMain.Instance.IsDead)
 			{

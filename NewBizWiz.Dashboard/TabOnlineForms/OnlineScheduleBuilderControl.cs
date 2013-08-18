@@ -74,7 +74,7 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 				pnNoSlidesWarning.Visible = false;
 				pnNoDataWarning.Visible = false;
 				repositoryItemComboBoxStatus.Items.Clear();
-				repositoryItemComboBoxStatus.Items.AddRange(ListManager.Instance.Statuses);
+				repositoryItemComboBoxStatus.Items.AddRange(Core.AdSchedule.ListManager.Instance.Statuses);
 				gridControlSchedules.DataSource = new BindingList<ShortSchedule>(_scheduleList);
 			}
 			gridViewSchedules.FocusedRowChanged += gridViewSchedules_FocusedRowChanged;
@@ -87,8 +87,6 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 			gridViewSchedules.OptionsSelection.EnableAppearanceFocusedRow = false;
 			FormMain.Instance.buttonItemOnlineOpen.Enabled = false;
 			FormMain.Instance.buttonItemOnlineDelete.Enabled = false;
-			FormMain.Instance.buttonItemDigitalOpen.Enabled = false;
-			FormMain.Instance.buttonItemDigitalDelete.Enabled = false;
 		}
 
 		public void buttonXNewSchedule_Click(object sender, EventArgs e)
@@ -154,8 +152,6 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 			gridViewSchedules.OptionsSelection.EnableAppearanceFocusedRow = true;
 			FormMain.Instance.buttonItemOnlineOpen.Enabled = gridViewSchedules.SelectedRowsCount > 0;
 			FormMain.Instance.buttonItemOnlineDelete.Enabled = gridViewSchedules.SelectedRowsCount > 0;
-			FormMain.Instance.buttonItemDigitalOpen.Enabled = gridViewSchedules.SelectedRowsCount > 0;
-			FormMain.Instance.buttonItemDigitalDelete.Enabled = gridViewSchedules.SelectedRowsCount > 0;
 		}
 
 		private void gridViewSchedules_RowClick(object sender, RowClickEventArgs e)

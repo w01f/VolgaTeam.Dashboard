@@ -55,7 +55,6 @@
 			// 
 			// pbTitle
 			// 
-			this.pbTitle.Image = global::NewBizWiz.Dashboard.Properties.Resources.MobileScheduleTitle;
 			this.pbTitle.Location = new System.Drawing.Point(16, 13);
 			this.pbTitle.Name = "pbTitle";
 			this.pbTitle.Size = new System.Drawing.Size(644, 73);

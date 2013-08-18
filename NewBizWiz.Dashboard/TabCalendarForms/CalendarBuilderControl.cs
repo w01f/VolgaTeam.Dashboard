@@ -3,13 +3,12 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using CalendarBuilder.BusinessClasses;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
-using ListManager = CalendarBuilder.BusinessClasses.ListManager;
 
 namespace NewBizWiz.Dashboard.TabCalendarForms
 {
@@ -45,8 +44,8 @@ namespace NewBizWiz.Dashboard.TabCalendarForms
 		{
 			gridViewCalendars.FocusedRowChanged -= gridViewCalendars_FocusedRowChanged;
 			OutsideClick();
-			_calendarList = CalendarBuilder.AppManager.GetShortScheduleList();
-			if (!CalendarBuilder.AppManager.ProgramDataAvailable)
+			_calendarList = ScheduleManager.GetShortScheduleExtendedList();
+			if (!Calendar.Internal.AppManager.ProgramDataAvailable)
 			{
 				FormMain.Instance.buttonItemCalendarNew.Enabled = false;
 				gridControlCalendars.Visible = false;
@@ -59,7 +58,7 @@ namespace NewBizWiz.Dashboard.TabCalendarForms
 				gridControlCalendars.Visible = true;
 				pnNoDataWarning.Visible = false;
 				repositoryItemComboBoxStatus.Items.Clear();
-				repositoryItemComboBoxStatus.Items.AddRange(ListManager.Instance.Statuses);
+				repositoryItemComboBoxStatus.Items.AddRange(Core.AdSchedule.ListManager.Instance.Statuses);
 				gridControlCalendars.DataSource = new BindingList<ShortSchedule>(_calendarList);
 			}
 			gridViewCalendars.FocusedRowChanged += gridViewCalendars_FocusedRowChanged;
@@ -79,11 +78,11 @@ namespace NewBizWiz.Dashboard.TabCalendarForms
 			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 9, 0, 0);
 			FormMain.Instance.Opacity = 0;
 			RegistryHelper.MaximizeMainForm = true;
-			CalendarBuilder.FormMain.Instance.Resize -= FormMain.Instance.FormCalendarResize;
-			CalendarBuilder.FormMain.Instance.Resize += FormMain.Instance.FormCalendarResize;
-			CalendarBuilder.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
-			CalendarBuilder.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
-			CalendarBuilder.AppManager.NewSchedule();
+			Calendar.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormCalendarResize;
+			Calendar.Internal.FormMain.Instance.Resize += FormMain.Instance.FormCalendarResize;
+			Calendar.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
+			Calendar.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
+			Calendar.Internal.AppManager.NewSchedule();
 			if (!FormMain.Instance.IsDead)
 			{
 				FormMain.Instance.Opacity = 1;
@@ -103,14 +102,14 @@ namespace NewBizWiz.Dashboard.TabCalendarForms
 				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 9, 0, 0);
 				FormMain.Instance.Opacity = 0;
 				RegistryHelper.MaximizeMainForm = true;
-				CalendarBuilder.FormMain.Instance.Resize -= FormMain.Instance.FormCalendarResize;
-				CalendarBuilder.FormMain.Instance.Resize += FormMain.Instance.FormCalendarResize;
-				CalendarBuilder.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
-				CalendarBuilder.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
+				Calendar.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormCalendarResize;
+				Calendar.Internal.FormMain.Instance.Resize += FormMain.Instance.FormCalendarResize;
+				Calendar.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
+				Calendar.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 				if (selectedSchedule.NeedToImport)
-					CalendarBuilder.AppManager.ImportSchedule(selectedSchedule.FullFileName);
+					Calendar.Internal.AppManager.ImportSchedule(selectedSchedule.FullFileName);
 				else
-					CalendarBuilder.AppManager.OpenSchedule(selectedSchedule.FullFileName);
+					Calendar.Internal.AppManager.OpenSchedule(selectedSchedule.FullFileName);
 				if (!FormMain.Instance.IsDead)
 				{
 					FormMain.Instance.Opacity = 1;

@@ -60,6 +60,7 @@ namespace NewBizWiz.Dashboard
 					Application.DoEvents();
 				form.Close();
 			}
+			Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
 			FormMain.Instance.Init();
 			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 			Application.Run(FormMain.Instance);
@@ -100,7 +101,7 @@ namespace NewBizWiz.Dashboard
 			if (mainFormHandle.ToInt32() == 0)
 			{
 				Process[] processList = Process.GetProcesses();
-				foreach (Process process in processList.Where(x => x.ProcessName.Contains("adSALESapp")))
+				foreach (Process process in processList.Where(x => x.ProcessName.ToLower().Contains("adsalesapp")))
 				{
 					if (process.MainWindowHandle.ToInt32() != 0)
 					{

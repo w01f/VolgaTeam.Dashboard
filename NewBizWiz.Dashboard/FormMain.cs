@@ -6,15 +6,13 @@ using DevExpress.XtraEditors;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.Dashboard.InteropClasses;
-using NewBizWiz.Dashboard.TabCableForms;
+using NewBizWiz.Dashboard.Properties;
 using NewBizWiz.Dashboard.TabCalendarForms;
 using NewBizWiz.Dashboard.TabHomeForms;
-using NewBizWiz.Dashboard.TabMobileForms;
 using NewBizWiz.Dashboard.TabNewspaperForms;
 using NewBizWiz.Dashboard.TabOnlineForms;
 using NewBizWiz.Dashboard.TabRadioForms;
 using NewBizWiz.Dashboard.TabTVForms;
-using NewBizWiz.Dashboard.TabiPadForms;
 using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
 namespace NewBizWiz.Dashboard
@@ -59,15 +57,10 @@ namespace NewBizWiz.Dashboard
 			Image masterWizardLogo = MasterWizardManager.Instance.DefaultLogo;
 			buttonItemHomeOverview.Image = masterWizardLogo;
 			buttonItemOnlineLogo.Image = masterWizardLogo;
-			buttonItemMobileLogo.Image = masterWizardLogo;
 			buttonItemNewspaperLogo.Image = masterWizardLogo;
 			buttonItemTVLogo.Image = masterWizardLogo;
-			buttonItemCableLogo.Image = masterWizardLogo;
 			buttonItemRadioLogo.Image = masterWizardLogo;
-			buttonItemStarLogo.Image = masterWizardLogo;
-			buttonItemDigitalLogo.Image = masterWizardLogo;
 			buttonItemCalendarLogo.Image = masterWizardLogo;
-			buttonItemiPadLogo.Image = masterWizardLogo;
 			ribbonBarHomeOverview.RecalcLayout();
 			ribbonPanelHome.PerformLayout();
 		}
@@ -76,242 +69,42 @@ namespace NewBizWiz.Dashboard
 		{
 			switch (SettingsManager.Instance.DashboardCode)
 			{
-				case 1:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = true;
+				case "newspaper":
 					ribbonTabItemNewspaper.Visible = true;
 					ribbonTabItemOnline.Visible = true;
 					ribbonTabItemRadio.Visible = false;
 					ribbonTabItemTV.Visible = false;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = false;
-					ribbonTabItemCalendar.Visible = false;
+					ribbonTabItemCalendar.Visible = true;
+					ribbonTabItemCalendar.Enabled = true;
 					break;
-				case 2:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = true;
+				case "tv":
 					ribbonTabItemNewspaper.Visible = false;
 					ribbonTabItemOnline.Visible = true;
 					ribbonTabItemRadio.Visible = false;
 					ribbonTabItemTV.Visible = true;
 					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = false;
-					ribbonTabItemCalendar.Visible = false;
+					buttonItemTVScheduleBuilder.Image = Resources.TVLittle;
+					ribbonTabItemCalendar.Visible = true;
+					ribbonTabItemCalendar.Enabled = false;
 					break;
-				case 3:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = true;
+				case "radio":
 					ribbonTabItemNewspaper.Visible = false;
 					ribbonTabItemOnline.Visible = true;
 					ribbonTabItemRadio.Visible = true;
 					ribbonTabItemRadio.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
 					ribbonTabItemTV.Visible = false;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = false;
-					ribbonTabItemCalendar.Visible = false;
+					ribbonTabItemCalendar.Visible = true;
+					ribbonTabItemCalendar.Enabled = false;
 					break;
-				case 4:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = true;
-					ribbonTabItemNewspaper.Visible = true;
+				case "cable":
+					ribbonTabItemNewspaper.Visible = false;
 					ribbonTabItemOnline.Visible = true;
 					ribbonTabItemRadio.Visible = false;
 					ribbonTabItemTV.Visible = true;
 					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = false;
-					ribbonTabItemCalendar.Visible = false;
-					break;
-				case 5:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = true;
-					ribbonTabItemNewspaper.Visible = false;
-					ribbonTabItemOnline.Visible = true;
-					ribbonTabItemRadio.Visible = true;
-					ribbonTabItemRadio.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
-					ribbonTabItemTV.Visible = true;
-					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = false;
-					ribbonTabItemCalendar.Visible = false;
-					break;
-				case 6:
-					ribbonTabItemCable.Visible = true;
-					ribbonTabItemMobile.Visible = true;
-					ribbonTabItemNewspaper.Visible = false;
-					ribbonTabItemOnline.Visible = true;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = false;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = false;
-					ribbonTabItemCalendar.Visible = false;
-					break;
-				case 7:
-					ribbonTabItemCable.Visible = true;
-					ribbonTabItemMobile.Visible = true;
-					ribbonTabItemNewspaper.Visible = true;
-					ribbonTabItemOnline.Visible = true;
-					ribbonTabItemRadio.Visible = true;
-					ribbonTabItemRadio.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
-					ribbonTabItemTV.Visible = true;
-					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = false;
-					ribbonTabItemCalendar.Visible = false;
-					break;
-				case 8:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = true;
-					ribbonTabItemNewspaper.Visible = false;
-					ribbonTabItemOnline.Visible = true;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = false;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = false;
-					ribbonTabItemCalendar.Visible = false;
-					break;
-				case 9:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = false;
-					ribbonTabItemNewspaper.Visible = true;
-					ribbonTabItemOnline.Visible = false;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = false;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = true;
-					ribbonTabItemCalendar.Visible = false;
-					break;
-				case 10:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = false;
-					ribbonTabItemNewspaper.Visible = false;
-					ribbonTabItemOnline.Visible = false;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = true;
-					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = true;
-					ribbonTabItemCalendar.Visible = false;
-					break;
-				case 11:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = false;
-					ribbonTabItemNewspaper.Visible = false;
-					ribbonTabItemOnline.Visible = false;
-					ribbonTabItemRadio.Visible = true;
-					ribbonTabItemRadio.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
-					ribbonTabItemTV.Visible = false;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = true;
-					ribbonTabItemCalendar.Visible = false;
-					break;
-				case 12:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = false;
-					ribbonTabItemNewspaper.Visible = true;
-					ribbonTabItemOnline.Visible = false;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = false;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = true;
+					buttonItemTVScheduleBuilder.Image = Resources.CableLittle;
 					ribbonTabItemCalendar.Visible = true;
-					break;
-				case 13:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = false;
-					ribbonTabItemNewspaper.Visible = false;
-					ribbonTabItemOnline.Visible = false;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = true;
-					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = true;
-					ribbonTabItemCalendar.Visible = true;
-					break;
-				case 14:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = false;
-					ribbonTabItemNewspaper.Visible = false;
-					ribbonTabItemOnline.Visible = false;
-					ribbonTabItemRadio.Visible = true;
-					ribbonTabItemRadio.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
-					ribbonTabItemTV.Visible = false;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = true;
-					ribbonTabItemCalendar.Visible = true;
-					break;
-				case 15:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = false;
-					ribbonTabItemNewspaper.Visible = true;
-					ribbonTabItemOnline.Visible = false;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = true;
-					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = true;
-					ribbonTabItemCalendar.Visible = false;
-					break;
-				case 16:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = false;
-					ribbonTabItemNewspaper.Visible = true;
-					ribbonTabItemOnline.Visible = false;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = true;
-					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = true;
-					ribbonTabItemCalendar.Visible = true;
-					break;
-				case 17:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = true;
-					ribbonTabItemNewspaper.Visible = true;
-					ribbonTabItemOnline.Visible = true;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = true;
-					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = false;
-					ribbonTabItemCalendar.Visible = true;
-					break;
-				case 18:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = false;
-					ribbonTabItemNewspaper.Visible = false;
-					ribbonTabItemOnline.Visible = false;
-					ribbonTabItemRadio.Visible = true;
-					ribbonTabItemRadio.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
-					ribbonTabItemTV.Visible = true;
-					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = true;
-					ribbonTabItemCalendar.Visible = true;
-					break;
-				case 30:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = false;
-					ribbonTabItemNewspaper.Visible = false;
-					ribbonTabItemOnline.Visible = false;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = true;
-					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
-					ribbonTabItemStar.Visible = true;
-					ribbonTabItemDigital.Visible = true;
-					ribbonTabItemCalendar.Visible = false;
-					break;
-				case 31:
-					ribbonTabItemCable.Visible = false;
-					ribbonTabItemMobile.Visible = false;
-					ribbonTabItemNewspaper.Visible = false;
-					ribbonTabItemOnline.Visible = false;
-					ribbonTabItemRadio.Visible = false;
-					ribbonTabItemTV.Visible = false;
-					ribbonTabItemStar.Visible = false;
-					ribbonTabItemDigital.Visible = false;
-					ribbonTabItemCalendar.Visible = false;
+					ribbonTabItemCalendar.Enabled = false;
 					break;
 			}
 		}
@@ -341,12 +134,6 @@ namespace NewBizWiz.Dashboard
 			buttonItemOnlineNew.Click += OnlineScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
 			buttonItemOnlineOpen.Click += OnlineScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
 			buttonItemOnlineDelete.Click += OnlineScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
-			buttonItemDigitalNew.Click += OnlineScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
-			buttonItemDigitalOpen.Click += OnlineScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
-			buttonItemDigitalDelete.Click += OnlineScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
-			buttonItemMobileNew.Click += MobileScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
-			buttonItemMobileOpen.Click += MobileScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
-			buttonItemMobileDelete.Click += MobileScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
 			buttonItemTVNew.Click += TVScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
 			buttonItemTVOpen.Click += TVScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
 			buttonItemTVDelete.Click += TVScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
@@ -360,7 +147,8 @@ namespace NewBizWiz.Dashboard
 
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
-			Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
+			RegistryHelper.MainFormHandle = Handle;
+			Utilities.Instance.ActivateMiniBar();
 			AppManager.Instance.ActivateMainForm();
 			if (AppManager.Instance.ShowCover)
 			{
@@ -501,11 +289,6 @@ namespace NewBizWiz.Dashboard
 				TabOnlineMainPage.Instance.UpdatePageAccordingToggledButton();
 				panelExMainInternal.Controls.Add(TabOnlineMainPage.Instance);
 			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemMobile)
-			{
-				TabMobileMainPage.Instance.UpdatePageAccordingToggledButton();
-				panelExMainInternal.Controls.Add(TabMobileMainPage.Instance);
-			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemNewspaper)
 			{
 				TabNewspaperMainPage.Instance.UpdatePageAccordingToggledButton();
@@ -521,25 +304,10 @@ namespace NewBizWiz.Dashboard
 				TabRadioMainPage.Instance.UpdatePageAccordingToggledButton();
 				panelExMainInternal.Controls.Add(TabRadioMainPage.Instance);
 			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCable)
-			{
-				TabCableMainPage.Instance.UpdatePageAccordingToggledButton();
-				panelExMainInternal.Controls.Add(TabCableMainPage.Instance);
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDigital)
-			{
-				TabOnlineMainPage.Instance.UpdatePageAccordingToggledButton();
-				panelExMainInternal.Controls.Add(TabOnlineMainPage.Instance);
-			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar)
 			{
 				TabCalendarMainPage.Instance.UpdatePageAccordingToggledButton();
 				panelExMainInternal.Controls.Add(TabCalendarMainPage.Instance);
-			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemIPad)
-			{
-				TabiPadMainPage.Instance.UpdatePageAccordingToggledButton();
-				panelExMainInternal.Controls.Add(TabiPadMainPage.Instance);
 			}
 			panelExMainInternal.Parent = parent;
 		}
@@ -611,22 +379,14 @@ namespace NewBizWiz.Dashboard
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemOnline)
 				helpKey = "Online";
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemMobile)
-				helpKey = "Mobile";
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemNewspaper)
 				helpKey = "Newspaper";
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemTV)
 				helpKey = "TV";
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRadio)
 				helpKey = "Radio";
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCable)
-				helpKey = "Cable";
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDigital)
-				helpKey = "Digital";
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar)
 				helpKey = "Calendar";
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemIPad)
-				helpKey = "IPad";
 
 			AppManager.Instance.HelpManager.OpenHelpLink(helpKey);
 		}

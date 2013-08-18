@@ -39,8 +39,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				styleController.AppearanceFocused.Font = font;
 				styleController.AppearanceReadOnly.Font = font;
 				comboBoxEditSlideHeader.Font = font;
-				labelControlAdvertiser.Font = font;
-				labelControlPresentationDate.Font = font;
 			}
 		}
 
@@ -85,7 +83,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		protected void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
 		{
-			labelControlAdvertiser.Focus();
+			labelControlOutputStatus.Focus();
 		}
 
 		protected void LoadProduct()
@@ -126,30 +124,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				ImageIcons.Checked = product.ShowImages;
 				ScreenshotViewer.Checked = product.ShowScreenshot;
 				SignatureLine.Checked = product.ShowSignature;
-
-				labelControlPresentationDate.Visible = product.ShowPresentationDate;
-				if (product.ShowBusinessName && product.ShowDecisionMaker)
-				{
-					labelControlAdvertiser.Visible = true;
-					labelControlAdvertiser.Text = "Prepared For: " + product.Parent.BusinessName + "\n\n" + product.Parent.DecisionMaker;
-				}
-				else if (!product.ShowBusinessName && product.ShowDecisionMaker)
-				{
-					labelControlAdvertiser.Visible = true;
-					labelControlAdvertiser.Text = product.Parent.DecisionMaker;
-				}
-				else if (product.ShowBusinessName && !product.ShowDecisionMaker)
-				{
-					labelControlAdvertiser.Visible = true;
-					labelControlAdvertiser.Text = "Prepared For: " + product.Parent.BusinessName;
-				}
-				else
-				{
-					labelControlAdvertiser.Visible = false;
-				}
-
-
-
 				SettingsNotSaved = tempSettingsNotSaved;
 			}
 
@@ -157,6 +131,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				(xtraTabControlProducts.SelectedTabPage as DigitalProductControl).UpdateOutputStatus();
 			AllowApplyValues = temp;
 		}
+
+		protected abstract bool SaveSchedule(string scheduleName = "");
 
 		protected void ApplyProductValues(DigitalProductControl tabPage)
 		{
@@ -218,12 +194,27 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			SettingsNotSaved = true;
 		}
 
+		private void hyperLinkEditReset_OpenLink(object sender, OpenLinkEventArgs e)
+		{
+			var selectedProductControl = xtraTabControlProducts.SelectedTabPage as DigitalProductControl;
+			if (selectedProductControl != null)
+			{
+				selectedProductControl.Product.ApplyDefaultView();
+				LoadProduct();
+				selectedProductControl.ResetProductName(this, new OpenLinkEventArgs(String.Empty));
+				selectedProductControl.UpdateView();
+				SaveSchedule();
+			}
+			e.Handled = true;
+		}
+
 		public void PowerPoint_Click(object sender, EventArgs e)
 		{
+			SaveSchedule();
 			using (var form = new FormSelectPublication())
 			{
-				form.Text = "Online Schedule Slide Output";
-				form.pbLogo.Image = Resources.SchedulesTitle;
+				form.Text = "Digital Slide Output";
+				form.pbLogo.Image = Resources.PowerPoint;
 				form.laTitle.Text = "You have Several Online Schedule tabs available for output to PowerPoint…";
 				form.buttonXCurrentPublication.Text = "Send just the active Online Schedule Slide to PowerPoint";
 				form.buttonXSelectedPublications.Text = "Send ALL SELECTED Online Schedule Slides to PowerPoint";
@@ -270,16 +261,17 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				using (var formOutput = new FormSlideOutput())
 				{
 					if (formOutput.ShowDialog() != DialogResult.OK)
-						Utilities.Instance.ActivateForm(RegistryHelper.MainFormHandle, true, false);
+						Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				}
 			}
 		}
 
 		public void Email_Click(object sender, EventArgs e)
 		{
+			SaveSchedule();
 			using (var form = new FormSelectPublication())
 			{
-				form.Text = "Online Schedule Email Output";
+				form.Text = "Digital Email Output";
 				form.pbLogo.Image = Resources.Email;
 				form.laTitle.Text = "You have Several Online Schedules that you may choose to email…";
 				form.buttonXCurrentPublication.Text = "Attach just the active Online Schedule Slide to my Outlook Email Message";
@@ -333,6 +325,77 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 							formEmail.ShowDialog();
 							RegistryHelper.MaximizeMainForm = true;
 							RegistryHelper.MainFormHandle = _formContainer.Handle;
+						}
+				}
+			}
+		}
+
+		public void Preview_Click(object sender, EventArgs e)
+		{
+			SaveSchedule();
+			using (var form = new FormSelectPublication())
+			{
+				form.Text = "Digital Slide Preview";
+				form.pbLogo.Image = Resources.Preview;
+				form.laTitle.Text = "You have Several Digital Slides…";
+				form.buttonXCurrentPublication.Text = "Preview just the Current Digital Product";
+				form.buttonXSelectedPublications.Text = "Preview all Digital Products";
+				foreach (var tabPage in _tabPages)
+				{
+					tabPage.SaveValues();
+					form.checkedListBoxControlPublications.Items.Add(tabPage.Product.UniqueID, tabPage.Product.Name, CheckState.Checked, true);
+				}
+				var result = DialogResult.Yes;
+				if (form.checkedListBoxControlPublications.Items.Count > 1)
+				{
+					RegistryHelper.MainFormHandle = form.Handle;
+					RegistryHelper.MaximizeMainForm = false;
+					result = form.ShowDialog();
+					RegistryHelper.MaximizeMainForm = _formContainer.WindowState == FormWindowState.Maximized;
+					RegistryHelper.MainFormHandle = _formContainer.Handle;
+					if (result == DialogResult.Cancel)
+						return;
+				}
+				using (var formProgress = new FormProgress())
+				{
+					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
+					formProgress.TopMost = true;
+					formProgress.Show();
+					string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+					if (result == DialogResult.Yes)
+						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, new[] { (xtraTabControlProducts.SelectedTabPage as DigitalProductControl).Product });
+					else if (result == DialogResult.No)
+					{
+						var outputProducts = new List<DigitalProduct>();
+						foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
+						{
+							if (item.CheckState == CheckState.Checked)
+							{
+								var tabPage = _tabPages.Where(x => x.Product.UniqueID.Equals(item.Value)).FirstOrDefault();
+								if (tabPage != null)
+									outputProducts.Add(tabPage.Product);
+							}
+						}
+						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, outputProducts.ToArray());
+					}
+					formProgress.Close();
+					if (File.Exists(tempFileName))
+						using (var formPreview = new FormPreview())
+						{
+							formPreview.Text = "Preview Digital Product";
+							formPreview.PresentationFile = tempFileName;
+							RegistryHelper.MainFormHandle = formPreview.Handle;
+							RegistryHelper.MaximizeMainForm = false;
+							DialogResult previewResult = formPreview.ShowDialog();
+							RegistryHelper.MaximizeMainForm = _formContainer.WindowState == FormWindowState.Maximized;
+							RegistryHelper.MainFormHandle = _formContainer.Handle;
+							if (previewResult != DialogResult.OK)
+								Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
+							else
+							{
+								Utilities.Instance.ActivatePowerPoint(OnlineSchedulePowerPointHelper.Instance.PowerPointObject);
+								Utilities.Instance.ActivateMiniBar();
+							}
 						}
 				}
 			}

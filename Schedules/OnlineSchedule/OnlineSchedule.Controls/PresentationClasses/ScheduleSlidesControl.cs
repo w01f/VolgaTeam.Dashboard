@@ -18,7 +18,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public ScheduleSlidesControl(Form formContainer)
 			: base(formContainer)
 		{
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
+			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
@@ -33,11 +33,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		}
 		public override ButtonItem PowerPoint
 		{
-			get { return Controller.Instance.ScheduleSlidesPowerPoint; }
+			get { return Controller.Instance.DigitalSlidesPowerPoint; }
 		}
 		public override ButtonItem Email
 		{
-			get { return Controller.Instance.ScheduleSlidesEmail; }
+			get { return Controller.Instance.DigitalSlidesEmail; }
 		}
 
 		public bool AllowToLeaveControl
@@ -127,7 +127,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			SettingsNotSaved = false;
 		}
 
-		private bool SaveSchedule(string scheduleName = "")
+		protected override bool SaveSchedule(string scheduleName = "")
 		{
 			if (!string.IsNullOrEmpty(scheduleName))
 			{
@@ -143,7 +143,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void Options_Click(object sender, EventArgs e)
 		{
-			splitContainerControl.PanelVisibility = Controller.Instance.ScheduleSlidesOptions.Checked ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
+			splitContainerControl.PanelVisibility = Controller.Instance.DigitalSlidesOptions.Checked ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
 		}
 
 		public void Save_Click(object sender, EventArgs e)

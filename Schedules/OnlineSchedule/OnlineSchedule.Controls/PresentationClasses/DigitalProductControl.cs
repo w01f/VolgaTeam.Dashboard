@@ -52,7 +52,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				checkEditDuration.Font = font;
 				checkEditMonths.Font = font;
 				checkEditWeeks.Font = font;
-				labelControlOutputStatus.Font = new Font(labelControlOutputStatus.Font.FontFamily, labelControlOutputStatus.Font.Size - 3, labelControlOutputStatus.Font.Style);
+				labelControlBusinessName.Font = new Font(labelControlBusinessName.Font.FontFamily, labelControlBusinessName.Font.Size - 3, labelControlBusinessName.Font.Style);
+				labelControlPresentationDate.Font = new Font(labelControlPresentationDate.Font.FontFamily, labelControlPresentationDate.Font.Size - 3, labelControlPresentationDate.Font.Style);
 				labelControlFormula.Font = new Font(labelControlFormula.Font.FontFamily, labelControlFormula.Font.Size - 2, labelControlFormula.Font.Style);
 				checkEditFormulaCPM.Font = new Font(checkEditFormulaCPM.Font.FontFamily, checkEditFormulaCPM.Font.Size - 2, checkEditFormulaCPM.Font.Style);
 				checkEditFormulaImpressions.Font = new Font(checkEditFormulaImpressions.Font.FontFamily, checkEditFormulaImpressions.Font.Size - 2, checkEditFormulaImpressions.Font.Style);
@@ -100,6 +101,9 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			textEditCustomWebsite4.Enter += Utilities.Instance.Editor_Enter;
 			textEditCustomWebsite4.MouseDown += Utilities.Instance.Editor_MouseDown;
 			textEditCustomWebsite4.MouseUp += Utilities.Instance.Editor_MouseUp;
+			memoEditProductName.Enter += Utilities.Instance.Editor_Enter;
+			memoEditProductName.MouseDown += Utilities.Instance.Editor_MouseDown;
+			memoEditProductName.MouseUp += Utilities.Instance.Editor_MouseUp;
 			memoEditComments.Enter += Utilities.Instance.Editor_Enter;
 			memoEditComments.MouseDown += Utilities.Instance.Editor_MouseDown;
 			memoEditComments.MouseUp += Utilities.Instance.Editor_MouseUp;
@@ -193,7 +197,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				_container.comboBoxEditSlideHeader.EditValue = Product.SlideHeader;
 			else
 				_container.comboBoxEditSlideHeader.EditValue = null;
-			_container.labelControlPresentationDate.Text = "Presentation Date: " + Product.Parent.PresentationDate.ToString("MM/dd/yy");
+			labelControlPresentationDate.Text = "Presentation Date:\n" + Product.Parent.PresentationDate.ToString("MM/dd/yy");
 
 			switch (Product.Formula)
 			{
@@ -287,25 +291,25 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void UpdateView()
 		{
-			_container.labelControlPresentationDate.Visible = Product.ShowPresentationDate;
+			labelControlPresentationDate.Visible = Product.ShowPresentationDate;
 			if (Product.ShowBusinessName && Product.ShowDecisionMaker)
 			{
-				_container.labelControlAdvertiser.Visible = true;
-				_container.labelControlAdvertiser.Text = "Prepared For: " + Product.Parent.BusinessName + "\n\n" + Product.Parent.DecisionMaker;
+				labelControlBusinessName.Visible = true;
+				labelControlBusinessName.Text = "Prepared For: " + Product.Parent.BusinessName + "\n" + Product.Parent.DecisionMaker;
 			}
 			else if (!Product.ShowBusinessName && Product.ShowDecisionMaker)
 			{
-				_container.labelControlAdvertiser.Visible = true;
-				_container.labelControlAdvertiser.Text = Product.Parent.DecisionMaker;
+				labelControlBusinessName.Visible = true;
+				labelControlBusinessName.Text = Product.Parent.DecisionMaker;
 			}
 			else if (Product.ShowBusinessName && !Product.ShowDecisionMaker)
 			{
-				_container.labelControlAdvertiser.Visible = true;
-				_container.labelControlAdvertiser.Text = "Prepared For: " + Product.Parent.BusinessName;
+				labelControlBusinessName.Visible = true;
+				labelControlBusinessName.Text = "Prepared For: " + Product.Parent.BusinessName;
 			}
 			else
 			{
-				_container.labelControlAdvertiser.Visible = false;
+				labelControlBusinessName.Visible = false;
 			}
 
 			pbProductLogo.Enabled = Product.ShowProduct;
@@ -779,13 +783,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			_container.Email.Enabled = !string.IsNullOrEmpty(templateName);
 			if (!string.IsNullOrEmpty(templateName))
 			{
-				labelControlOutputStatus.ForeColor = Color.Green;
-				labelControlOutputStatus.Text = "Slide Output AVAILABLE";
+				_container.labelControlOutputStatus.ForeColor = Color.Green;
+				_container.labelControlOutputStatus.Text = "Slide Output AVAILABLE";
 			}
 			else
 			{
-				labelControlOutputStatus.ForeColor = Color.Red;
-				labelControlOutputStatus.Text = "Slide Output DISABLED";
+				_container.labelControlOutputStatus.ForeColor = Color.Red;
+				_container.labelControlOutputStatus.Text = "Slide Output DISABLED";
 			}
 		}
 

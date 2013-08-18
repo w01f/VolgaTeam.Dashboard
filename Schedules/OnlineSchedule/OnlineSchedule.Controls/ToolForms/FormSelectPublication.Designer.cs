@@ -79,7 +79,6 @@
             // 
             // pbLogo
             // 
-            this.pbLogo.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.SchedulesTitle;
             this.pbLogo.Location = new System.Drawing.Point(12, 12);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(78, 71);

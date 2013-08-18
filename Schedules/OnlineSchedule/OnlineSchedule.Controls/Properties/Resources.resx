@@ -121,8 +121,11 @@
   <data name="CalendarEditButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CalendarEditButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CommentsLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CommentsLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DimensionsDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DimensionsDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImpressionsLogoDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImpressionsLogoDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -133,11 +136,11 @@
   <data name="Dimensions" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Dimensions.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SummaryFormat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SummaryFormat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PDFEmail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PDFEmail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SaveAs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NewSchedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NewSchedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,20 +148,11 @@
   <data name="PowerPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PowerPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EmtyLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EmtyLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ProductSummaryLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ProductSummaryLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ProductLogoDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ProductLogoDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PackageBundle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PackageBundle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DeleteProduct" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DeleteProduct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AdCampaignLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AdCampaignLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,29 +163,29 @@
   <data name="ProductLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProductLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="InvestmentLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InvestmentLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="NudgeUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NudgeUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Inventory" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Inventory.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CommentsLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CommentsLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ImpressionsLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImpressionsLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SchedulesTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SchedulesTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FormulaLogoDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FormulaLogoDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Email" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Email.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Table" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Table.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AdCampaignLogoDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AdCampaignLogoDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FormulaLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FormulaLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ArrowRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ArrowRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SaveAs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NudgeDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NudgeDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,46 +193,46 @@
   <data name="LockedEmail" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LockedEmail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="InvestmentLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\InvestmentLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Websites" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Websites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Image" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PDFEmail" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PDFEmail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ArrowLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ArrowLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="AdCampaignLogoDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AdCampaignLogoDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CommentsLogoDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CommentsLogoDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DimensionsDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DimensionsDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ImpressionsLogoDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImpressionsLogoDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ImpressionsLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImpressionsLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="InvestmentLogoDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\InvestmentLogoDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ProductLogoDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ProductLogoDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="WebsitesDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WebsitesDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FormulaLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FormulaLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Websites" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Websites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FormulaLogoDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FormulaLogoDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CommentsLogoDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CommentsLogoDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Image" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeleteProduct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeleteProduct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArrowLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArrowLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AppLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NewScheduleRibbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NewScheduleRibbon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OpenSchedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenSchedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OpenScheduleRibbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenScheduleRibbon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

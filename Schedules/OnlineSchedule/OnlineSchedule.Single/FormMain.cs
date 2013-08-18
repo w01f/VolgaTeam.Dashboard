@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
+using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
+using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
-namespace NewBizWiz.OnlineSchedule.Internal
+namespace NewBizWiz.OnlineSchedule.Single
 {
 	public partial class FormMain : Form
 	{
@@ -113,12 +117,34 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			}
 		}
 
-		public event EventHandler<EventArgs> FloaterRequested;
-
 		public static void RemoveInstance()
 		{
 			_instance.Dispose();
 			_instance = null;
+		}
+
+		private void LoadData()
+		{
+			ribbonControl.Enabled = false;
+			using (var form = new FormProgress())
+			{
+				form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Online Schedule...";
+				form.TopMost = true;
+				form.Show();
+				var thread = new Thread(delegate() { Invoke((MethodInvoker)delegate { Controller.Instance.LoadData(); }); });
+				thread.Start();
+				while (thread.IsAlive)
+					Application.DoEvents();
+				form.Close();
+			}
+			ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
+			ribbonControl.SelectedRibbonTabItem = ribbonTabItemScheduleSettings;
+			ribbonControl_SelectedRibbonTabChanged(null, null);
+			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+			ribbonControl.Enabled = true;
+
+			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
+				Text = String.Format("SellerPoint WebSlides - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
 		}
 
 		private bool AllowToLeaveCurrentControl()
@@ -165,25 +191,29 @@ namespace NewBizWiz.OnlineSchedule.Internal
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("SellerPoint WebSlides - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
+				Text = String.Format("SellerPoint WebSlides - {0} - {1}", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size);
 
-			ribbonControl.Enabled = false;
-			using (var form = new FormProgress())
+			if (File.Exists(Core.OnlineSchedule.SettingsManager.Instance.IconPath))
+				Icon = new Icon(Core.OnlineSchedule.SettingsManager.Instance.IconPath);
+
+			Utilities.Instance.ActivatePowerPoint(OnlineSchedulePowerPointHelper.Instance.PowerPointObject);
+			Utilities.Instance.ActivateMiniBar();
+			AppManager.Instance.ActivateMainForm();
+
+			using (var formStart = new FormStart())
 			{
-				form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Online Schedule...";
-				form.TopMost = true;
-				form.Show();
-				var thread = new Thread(delegate() { Invoke((MethodInvoker)delegate { Controller.Instance.LoadData(); }); });
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
-				form.Close();
+				formStart.buttonXOpen.Enabled = ScheduleManager.GetShortScheduleList().Length > 0;
+				var result = formStart.ShowDialog();
+				if (result == DialogResult.Yes || result == DialogResult.No)
+				{
+					if (result == DialogResult.Yes)
+						buttonItemHomeNewSchedule_Click(null, null);
+					else
+						buttonItemHomeOpenSchedule_Click(null, null);
+				}
+				else
+					Application.Exit();
 			}
-			ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-			ribbonControl.SelectedRibbonTabItem = ribbonTabItemScheduleSettings;
-			ribbonControl_SelectedRibbonTabChanged(null, null);
-			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
-			ribbonControl.Enabled = true;
 		}
 
 		public void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
@@ -230,12 +260,44 @@ namespace NewBizWiz.OnlineSchedule.Internal
 				result = Controller.Instance.ScheduleSlides.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.DigitalPackage)
 				result = Controller.Instance.DigitalPackage.AllowToLeaveControl;
+			OnlineSchedulePowerPointHelper.Instance.Disconnect(false);
 		}
 
-		private void buttonItemFloater_Click(object sender, EventArgs e)
+		private void buttonItemHomeNewSchedule_Click(object sender, EventArgs e)
 		{
-			if (FloaterRequested != null)
-				FloaterRequested(this, e);
+			using (var from = new FormNewSchedule())
+			{
+				if (from.ShowDialog() == DialogResult.OK)
+				{
+					if (!string.IsNullOrEmpty(from.ScheduleName))
+					{
+						string fileName = from.ScheduleName.Trim();
+						BusinessWrapper.Instance.ScheduleManager.CreateSchedule(fileName);
+						LoadData();
+					}
+					else
+					{
+						Utilities.Instance.ShowWarning("Schedule Name can't be empty");
+					}
+				}
+				else if (!BusinessWrapper.Instance.ScheduleManager.ScheduleLoaded)
+					Close();
+			}
+		}
+
+		private void buttonItemHomeOpenSchedule_Click(object sender, EventArgs e)
+		{
+			using (var from = new FormOpenSchedule())
+			{
+				if (from.ShowDialog() == DialogResult.OK)
+				{
+					string fileName = BusinessWrapper.Instance.ScheduleManager.GetScheduleFileName(from.ScheduleName.Trim());
+					BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
+					LoadData();
+				}
+				else if (!BusinessWrapper.Instance.ScheduleManager.ScheduleLoaded)
+					Close();
+			}
 		}
 
 		private void buttonItemHomeExit_Click(object sender, EventArgs e)

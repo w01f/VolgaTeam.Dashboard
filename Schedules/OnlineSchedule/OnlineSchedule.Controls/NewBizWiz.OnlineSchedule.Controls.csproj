@@ -89,8 +89,7 @@
     <Compile Include="BusinessClasses\BusinessWrapper.cs" />
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="Controller.cs" />
-    <Compile Include="InteropClasses\ProductBundleHelper.cs" />
-    <Compile Include="InteropClasses\ProductSummaryHelper.cs" />
+    <Compile Include="InteropClasses\WebPackageHelper.cs" />
     <Compile Include="PresentationClasses\DigitalProductContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -106,28 +105,13 @@
     <Compile Include="InteropClasses\ExcelHelper.cs" />
     <Compile Include="InteropClasses\OneSheetHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
-    <Compile Include="PresentationClasses\ProductBundleControl.cs">
+    <Compile Include="PresentationClasses\OnlineWebPackageControl.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ProductBundleControl.Designer.cs">
-      <DependentUpon>ProductBundleControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ProductPackageControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ProductPackageControl.Designer.cs">
-      <DependentUpon>ProductPackageControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\ProductSummaryControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\ProductSummaryControl.Designer.cs">
-      <DependentUpon>ProductSummaryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleSettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleSettingsControl.Designer.cs">
+    <Compile Include="PresentationClasses\ScheduleSettingsControl.designer.cs">
       <DependentUpon>ScheduleSettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleSlidesControl.cs">
@@ -164,6 +148,12 @@
     <Compile Include="ToolForms\FormNewSchedule.Designer.cs">
       <DependentUpon>FormNewSchedule.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormPreview.designer.cs">
+      <DependentUpon>FormPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormProgress.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,15 +172,6 @@
     <Compile Include="ToolForms\FormSlideOutput.Designer.cs">
       <DependentUpon>FormSlideOutput.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="PresentationClasses\ProductBundleControl.resx">
-      <DependentUpon>ProductBundleControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ProductPackageControl.resx">
-      <DependentUpon>ProductPackageControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ProductSummaryControl.resx">
-      <DependentUpon>ProductSummaryControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleSettingsControl.resx">
       <DependentUpon>ScheduleSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormNewSchedule.resx">
       <DependentUpon>FormNewSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormPreview.resx">
+      <DependentUpon>FormPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
@@ -236,7 +220,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -325,25 +308,7 @@
     <None Include="Resources\DeleteProduct.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Description.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ActiveDays.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Total Ads.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\AdRate.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\AdGallery.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SummaryFormat.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\EmtyLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AdCampaignLogo.png" />
@@ -365,12 +330,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Help.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ProductSummaryLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PackageBundle.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Websites.png" />
@@ -413,25 +372,16 @@
     <None Include="Resources\RegularEmail.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Inventory.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Excel.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Image.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Table.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\NewBizWiz.Core\NewBizWiz.Core.csproj">
       <Project>{164AB808-DBD3-4D71-9431-5A5B44B70593}</Project>
       <Name>NewBizWiz.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SchedulesTitle.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Dimensions.png" />
@@ -468,6 +418,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FormulaLogoDisabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AppLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewScheduleRibbon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenScheduleRibbon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Preview.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

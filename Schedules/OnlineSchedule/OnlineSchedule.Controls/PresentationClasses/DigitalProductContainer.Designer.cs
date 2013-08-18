@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			this.pnHeader = new System.Windows.Forms.Panel();
-			this.labelControlAdvertiser = new DevExpress.XtraEditors.LabelControl();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.labelControlPresentationDate = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlOutputStatus = new DevExpress.XtraEditors.LabelControl();
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.xtraTabControlProducts = new DevExpress.XtraTab.XtraTabControl();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.buttonXScreenshotViewer = new DevComponents.DotNetBar.ButtonX();
@@ -60,6 +59,7 @@
 			this.pnHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
 			this.splitContainerControl.SuspendLayout();
@@ -67,26 +67,29 @@
 			// 
 			// pnHeader
 			// 
-			this.pnHeader.Controls.Add(this.labelControlAdvertiser);
-			this.pnHeader.Controls.Add(this.labelControlPresentationDate);
+			this.pnHeader.Controls.Add(this.labelControlOutputStatus);
 			this.pnHeader.Controls.Add(this.comboBoxEditSlideHeader);
+			this.pnHeader.Controls.Add(this.hyperLinkEditReset);
 			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnHeader.Name = "pnHeader";
-			this.pnHeader.Size = new System.Drawing.Size(761, 67);
+			this.pnHeader.Size = new System.Drawing.Size(761, 35);
 			this.pnHeader.TabIndex = 100;
 			// 
-			// labelControlAdvertiser
+			// labelControlOutputStatus
 			// 
-			this.labelControlAdvertiser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelControlAdvertiser.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.labelControlAdvertiser.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlAdvertiser.Location = new System.Drawing.Point(433, 5);
-			this.labelControlAdvertiser.Name = "labelControlAdvertiser";
-			this.labelControlAdvertiser.Size = new System.Drawing.Size(323, 55);
-			this.labelControlAdvertiser.StyleController = this.styleController;
-			this.labelControlAdvertiser.TabIndex = 6;
-			this.labelControlAdvertiser.Text = "Advertiser\r\n\r\nDecision Maker";
+			this.labelControlOutputStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlOutputStatus.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlOutputStatus.Appearance.ForeColor = System.Drawing.Color.Red;
+			this.labelControlOutputStatus.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.labelControlOutputStatus.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlOutputStatus.Location = new System.Drawing.Point(212, 6);
+			this.labelControlOutputStatus.Name = "labelControlOutputStatus";
+			this.labelControlOutputStatus.Size = new System.Drawing.Size(474, 23);
+			this.labelControlOutputStatus.StyleController = this.styleController;
+			this.labelControlOutputStatus.TabIndex = 101;
 			// 
 			// styleController
 			// 
@@ -103,19 +106,9 @@
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// labelControlPresentationDate
-			// 
-			this.labelControlPresentationDate.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlPresentationDate.Location = new System.Drawing.Point(5, 35);
-			this.labelControlPresentationDate.Name = "labelControlPresentationDate";
-			this.labelControlPresentationDate.Size = new System.Drawing.Size(201, 23);
-			this.labelControlPresentationDate.StyleController = this.styleController;
-			this.labelControlPresentationDate.TabIndex = 5;
-			this.labelControlPresentationDate.Text = "Presentation Date";
-			// 
 			// comboBoxEditSlideHeader
 			// 
-			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(3, 5);
+			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(3, 6);
 			this.comboBoxEditSlideHeader.Name = "comboBoxEditSlideHeader";
 			this.comboBoxEditSlideHeader.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -123,6 +116,25 @@
 			this.comboBoxEditSlideHeader.Size = new System.Drawing.Size(203, 22);
 			this.comboBoxEditSlideHeader.StyleController = this.styleController;
 			this.comboBoxEditSlideHeader.TabIndex = 99;
+			// 
+			// hyperLinkEditReset
+			// 
+			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.hyperLinkEditReset.EditValue = "Reset";
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(692, 6);
+			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
+			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
+			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
+			this.hyperLinkEditReset.TabIndex = 100;
+			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 
 			// defaultLookAndFeel
 			// 
@@ -137,9 +149,9 @@
 			this.xtraTabControlProducts.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlProducts.AppearancePage.HeaderActive.Options.UseFont = true;
 			this.xtraTabControlProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControlProducts.Location = new System.Drawing.Point(0, 67);
+			this.xtraTabControlProducts.Location = new System.Drawing.Point(0, 35);
 			this.xtraTabControlProducts.Name = "xtraTabControlProducts";
-			this.xtraTabControlProducts.Size = new System.Drawing.Size(761, 422);
+			this.xtraTabControlProducts.Size = new System.Drawing.Size(761, 454);
 			this.xtraTabControlProducts.TabIndex = 3;
 			// 
 			// splitContainerControl
@@ -479,6 +491,7 @@
 			this.pnHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlProducts)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
 			this.splitContainerControl.ResumeLayout(false);
@@ -491,9 +504,7 @@
         private System.Windows.Forms.Panel pnHeader;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		public DevExpress.XtraTab.XtraTabControl xtraTabControlProducts;
-        private DevExpress.XtraEditors.StyleController styleController;
-        public DevExpress.XtraEditors.LabelControl labelControlPresentationDate;
-        public DevExpress.XtraEditors.LabelControl labelControlAdvertiser;
+		private DevExpress.XtraEditors.StyleController styleController;
 		public DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSlideHeader;
 		private DevComponents.DotNetBar.ButtonX buttonXImageIcons;
 		private DevComponents.DotNetBar.ButtonX buttonXComments;
@@ -516,6 +527,8 @@
 		private DevComponents.DotNetBar.ButtonX buttonXScreenshotViewer;
 		private DevComponents.DotNetBar.ButtonX buttonXSignatureLine;
 		protected DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
+		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
+		public DevExpress.XtraEditors.LabelControl labelControlOutputStatus;
 
     }
 }

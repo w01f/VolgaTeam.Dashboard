@@ -74,6 +74,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap AppLogo {
+            get {
+                object obj = ResourceManager.GetObject("AppLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap ArrowLeft {
             get {
                 object obj = ResourceManager.GetObject("ArrowLeft", resourceCulture);
@@ -137,13 +144,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap EmtyLogo {
-            get {
-                object obj = ResourceManager.GetObject("EmtyLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap Excel {
             get {
                 object obj = ResourceManager.GetObject("Excel", resourceCulture);
@@ -200,13 +200,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap Inventory {
-            get {
-                object obj = ResourceManager.GetObject("Inventory", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap InvestmentLogo {
             get {
                 object obj = ResourceManager.GetObject("InvestmentLogo", resourceCulture);
@@ -235,6 +228,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap NewScheduleRibbon {
+            get {
+                object obj = ResourceManager.GetObject("NewScheduleRibbon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap NudgeDown {
             get {
                 object obj = ResourceManager.GetObject("NudgeDown", resourceCulture);
@@ -249,9 +249,16 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap PackageBundle {
+        public static System.Drawing.Bitmap OpenSchedule {
             get {
-                object obj = ResourceManager.GetObject("PackageBundle", resourceCulture);
+                object obj = ResourceManager.GetObject("OpenSchedule", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap OpenScheduleRibbon {
+            get {
+                object obj = ResourceManager.GetObject("OpenScheduleRibbon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -270,6 +277,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Preview {
+            get {
+                object obj = ResourceManager.GetObject("Preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap ProductLogo {
             get {
                 object obj = ResourceManager.GetObject("ProductLogo", resourceCulture);
@@ -280,13 +294,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
         public static System.Drawing.Bitmap ProductLogoDisabled {
             get {
                 object obj = ResourceManager.GetObject("ProductLogoDisabled", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap ProductSummaryLogo {
-            get {
-                object obj = ResourceManager.GetObject("ProductSummaryLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -308,27 +315,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
         public static System.Drawing.Bitmap SaveSmall {
             get {
                 object obj = ResourceManager.GetObject("SaveSmall", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap SchedulesTitle {
-            get {
-                object obj = ResourceManager.GetObject("SchedulesTitle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap SummaryFormat {
-            get {
-                object obj = ResourceManager.GetObject("SummaryFormat", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap Table {
-            get {
-                object obj = ResourceManager.GetObject("Table", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

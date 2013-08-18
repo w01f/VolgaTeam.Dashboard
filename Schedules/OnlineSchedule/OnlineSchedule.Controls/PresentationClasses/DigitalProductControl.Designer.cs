@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.pbDimensions = new System.Windows.Forms.PictureBox();
 			this.hyperLinkEditResetProductName = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.pbProductLogo = new System.Windows.Forms.PictureBox();
@@ -96,7 +95,8 @@
 			this.checkEditFormulaInvestment = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditFormulaCPM = new DevExpress.XtraEditors.CheckEdit();
 			this.pnHeader = new System.Windows.Forms.Panel();
-			this.labelControlOutputStatus = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlPresentationDate = new DevExpress.XtraEditors.LabelControl();
+			this.labelControlBusinessName = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDimensions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditResetProductName.Properties)).BeginInit();
@@ -224,7 +224,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.memoEditDescription.Location = new System.Drawing.Point(48, 133);
 			this.memoEditDescription.Name = "memoEditDescription";
-			this.memoEditDescription.Size = new System.Drawing.Size(498, 121);
+			this.memoEditDescription.Size = new System.Drawing.Size(498, 110);
 			this.memoEditDescription.StyleController = this.styleController;
 			this.memoEditDescription.TabIndex = 9;
 			// 
@@ -243,7 +243,7 @@
 			// 
 			this.textEditCustomWebsite2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.textEditCustomWebsite2.Enabled = false;
-			this.textEditCustomWebsite2.Location = new System.Drawing.Point(646, 359);
+			this.textEditCustomWebsite2.Location = new System.Drawing.Point(646, 348);
 			this.textEditCustomWebsite2.Name = "textEditCustomWebsite2";
 			this.textEditCustomWebsite2.Properties.NullText = "Type website here";
 			this.textEditCustomWebsite2.Size = new System.Drawing.Size(203, 22);
@@ -254,7 +254,7 @@
 			// 
 			this.textEditCustomWebsite1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.textEditCustomWebsite1.Enabled = false;
-			this.textEditCustomWebsite1.Location = new System.Drawing.Point(646, 331);
+			this.textEditCustomWebsite1.Location = new System.Drawing.Point(646, 320);
 			this.textEditCustomWebsite1.Name = "textEditCustomWebsite1";
 			this.textEditCustomWebsite1.Properties.NullText = "Type website here";
 			this.textEditCustomWebsite1.Size = new System.Drawing.Size(203, 22);
@@ -264,7 +264,7 @@
 			// checkEditCustomWebsite2
 			// 
 			this.checkEditCustomWebsite2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditCustomWebsite2.Location = new System.Drawing.Point(618, 359);
+			this.checkEditCustomWebsite2.Location = new System.Drawing.Point(618, 348);
 			this.checkEditCustomWebsite2.Name = "checkEditCustomWebsite2";
 			this.checkEditCustomWebsite2.Properties.Caption = "";
 			this.checkEditCustomWebsite2.Size = new System.Drawing.Size(22, 21);
@@ -275,7 +275,7 @@
 			// checkEditCustomWebsite1
 			// 
 			this.checkEditCustomWebsite1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditCustomWebsite1.Location = new System.Drawing.Point(618, 331);
+			this.checkEditCustomWebsite1.Location = new System.Drawing.Point(618, 320);
 			this.checkEditCustomWebsite1.Name = "checkEditCustomWebsite1";
 			this.checkEditCustomWebsite1.Properties.Caption = "";
 			this.checkEditCustomWebsite1.Size = new System.Drawing.Size(22, 21);
@@ -291,7 +291,7 @@
 			this.checkedListBoxControlWebsite.Location = new System.Drawing.Point(620, 51);
 			this.checkedListBoxControlWebsite.Name = "checkedListBoxControlWebsite";
 			this.checkedListBoxControlWebsite.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxControlWebsite.Size = new System.Drawing.Size(262, 203);
+			this.checkedListBoxControlWebsite.Size = new System.Drawing.Size(262, 192);
 			this.checkedListBoxControlWebsite.StyleController = this.styleController;
 			this.checkedListBoxControlWebsite.TabIndex = 13;
 			this.checkedListBoxControlWebsite.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControlWebsite_ItemCheck);
@@ -795,7 +795,7 @@
             0,
             0,
             0});
-			this.spinEditTotalAds.Location = new System.Drawing.Point(276, 391);
+			this.spinEditTotalAds.Location = new System.Drawing.Point(276, 380);
 			this.spinEditTotalAds.Name = "spinEditTotalAds";
 			this.spinEditTotalAds.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.spinEditTotalAds.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -817,7 +817,7 @@
 			this.labelControlTotalAds.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlTotalAds.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlTotalAds.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlTotalAds.Location = new System.Drawing.Point(205, 392);
+			this.labelControlTotalAds.Location = new System.Drawing.Point(205, 381);
 			this.labelControlTotalAds.Name = "labelControlTotalAds";
 			this.labelControlTotalAds.Size = new System.Drawing.Size(65, 21);
 			this.labelControlTotalAds.StyleController = this.styleController;
@@ -832,7 +832,7 @@
             0,
             0,
             0});
-			this.spinEditActiveDays.Location = new System.Drawing.Point(134, 391);
+			this.spinEditActiveDays.Location = new System.Drawing.Point(134, 380);
 			this.spinEditActiveDays.Name = "spinEditActiveDays";
 			this.spinEditActiveDays.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.spinEditActiveDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -854,7 +854,7 @@
 			this.labelControlActiveDays.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlActiveDays.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlActiveDays.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlActiveDays.Location = new System.Drawing.Point(48, 392);
+			this.labelControlActiveDays.Location = new System.Drawing.Point(48, 381);
 			this.labelControlActiveDays.Name = "labelControlActiveDays";
 			this.labelControlActiveDays.Size = new System.Drawing.Size(79, 21);
 			this.labelControlActiveDays.StyleController = this.styleController;
@@ -864,7 +864,7 @@
 			// checkEditWeeks
 			// 
 			this.checkEditWeeks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditWeeks.Location = new System.Drawing.Point(274, 342);
+			this.checkEditWeeks.Location = new System.Drawing.Point(274, 331);
 			this.checkEditWeeks.Name = "checkEditWeeks";
 			this.checkEditWeeks.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditWeeks.Properties.Appearance.Options.UseFont = true;
@@ -879,7 +879,7 @@
 			// 
 			this.checkEditMonths.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.checkEditMonths.EditValue = true;
-			this.checkEditMonths.Location = new System.Drawing.Point(195, 342);
+			this.checkEditMonths.Location = new System.Drawing.Point(195, 331);
 			this.checkEditMonths.Name = "checkEditMonths";
 			this.checkEditMonths.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditMonths.Properties.Appearance.Options.UseFont = true;
@@ -899,7 +899,7 @@
             0,
             0});
 			this.spinEditDuration.Enabled = false;
-			this.spinEditDuration.Location = new System.Drawing.Point(134, 341);
+			this.spinEditDuration.Location = new System.Drawing.Point(134, 330);
 			this.spinEditDuration.Name = "spinEditDuration";
 			this.spinEditDuration.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.spinEditDuration.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -918,7 +918,7 @@
 			// checkEditDuration
 			// 
 			this.checkEditDuration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditDuration.Location = new System.Drawing.Point(46, 342);
+			this.checkEditDuration.Location = new System.Drawing.Point(46, 331);
 			this.checkEditDuration.Name = "checkEditDuration";
 			this.checkEditDuration.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditDuration.Properties.Appearance.Options.UseFont = true;
@@ -934,7 +934,7 @@
 			this.labelControlFlightDates.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlFlightDates.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlFlightDates.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlFlightDates.Location = new System.Drawing.Point(187, 293);
+			this.labelControlFlightDates.Location = new System.Drawing.Point(187, 282);
 			this.labelControlFlightDates.Name = "labelControlFlightDates";
 			this.labelControlFlightDates.Size = new System.Drawing.Size(151, 32);
 			this.labelControlFlightDates.StyleController = this.styleController;
@@ -949,7 +949,7 @@
 			this.labelControlAdCampaign.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlAdCampaign.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.labelControlAdCampaign.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlAdCampaign.Location = new System.Drawing.Point(38, 293);
+			this.labelControlAdCampaign.Location = new System.Drawing.Point(38, 282);
 			this.labelControlAdCampaign.Name = "labelControlAdCampaign";
 			this.labelControlAdCampaign.Size = new System.Drawing.Size(149, 32);
 			this.labelControlAdCampaign.StyleController = this.styleController;
@@ -961,7 +961,7 @@
 			// 
 			this.pbAdCampaign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.pbAdCampaign.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.AdCampaignLogo;
-			this.pbAdCampaign.Location = new System.Drawing.Point(3, 293);
+			this.pbAdCampaign.Location = new System.Drawing.Point(3, 282);
 			this.pbAdCampaign.Name = "pbAdCampaign";
 			this.pbAdCampaign.Size = new System.Drawing.Size(35, 32);
 			this.pbAdCampaign.TabIndex = 17;
@@ -983,10 +983,10 @@
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraTabControl.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom;
-			this.xtraTabControl.Location = new System.Drawing.Point(0, 33);
+			this.xtraTabControl.Location = new System.Drawing.Point(0, 44);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageCampaign;
-			this.xtraTabControl.Size = new System.Drawing.Size(896, 478);
+			this.xtraTabControl.Size = new System.Drawing.Size(896, 467);
 			this.xtraTabControl.TabIndex = 2;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageCampaign,
@@ -1026,14 +1026,14 @@
 			this.xtraTabPageCampaign.Controls.Add(this.pbProductLogo);
 			this.xtraTabPageCampaign.Controls.Add(this.memoEditProductName);
 			this.xtraTabPageCampaign.Name = "xtraTabPageCampaign";
-			this.xtraTabPageCampaign.Size = new System.Drawing.Size(894, 452);
+			this.xtraTabPageCampaign.Size = new System.Drawing.Size(894, 441);
 			this.xtraTabPageCampaign.Text = "Campaign";
 			// 
 			// textEditCustomWebsite4
 			// 
 			this.textEditCustomWebsite4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.textEditCustomWebsite4.Enabled = false;
-			this.textEditCustomWebsite4.Location = new System.Drawing.Point(646, 415);
+			this.textEditCustomWebsite4.Location = new System.Drawing.Point(646, 404);
 			this.textEditCustomWebsite4.Name = "textEditCustomWebsite4";
 			this.textEditCustomWebsite4.Properties.NullText = "Type website here";
 			this.textEditCustomWebsite4.Size = new System.Drawing.Size(203, 22);
@@ -1043,7 +1043,7 @@
 			// checkEditCustomWebsite4
 			// 
 			this.checkEditCustomWebsite4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditCustomWebsite4.Location = new System.Drawing.Point(618, 415);
+			this.checkEditCustomWebsite4.Location = new System.Drawing.Point(618, 404);
 			this.checkEditCustomWebsite4.Name = "checkEditCustomWebsite4";
 			this.checkEditCustomWebsite4.Properties.Caption = "";
 			this.checkEditCustomWebsite4.Size = new System.Drawing.Size(22, 21);
@@ -1055,7 +1055,7 @@
 			// 
 			this.textEditCustomWebsite3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.textEditCustomWebsite3.Enabled = false;
-			this.textEditCustomWebsite3.Location = new System.Drawing.Point(646, 387);
+			this.textEditCustomWebsite3.Location = new System.Drawing.Point(646, 376);
 			this.textEditCustomWebsite3.Name = "textEditCustomWebsite3";
 			this.textEditCustomWebsite3.Properties.NullText = "Type website here";
 			this.textEditCustomWebsite3.Size = new System.Drawing.Size(203, 22);
@@ -1065,7 +1065,7 @@
 			// checkEditCustomWebsite3
 			// 
 			this.checkEditCustomWebsite3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditCustomWebsite3.Location = new System.Drawing.Point(618, 387);
+			this.checkEditCustomWebsite3.Location = new System.Drawing.Point(618, 376);
 			this.checkEditCustomWebsite3.Name = "checkEditCustomWebsite3";
 			this.checkEditCustomWebsite3.Properties.Caption = "";
 			this.checkEditCustomWebsite3.Size = new System.Drawing.Size(22, 21);
@@ -1079,7 +1079,7 @@
 			this.labelControlOtherWebsitesLogo.Appearance.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlOtherWebsitesLogo.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlOtherWebsitesLogo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlOtherWebsitesLogo.Location = new System.Drawing.Point(620, 292);
+			this.labelControlOtherWebsitesLogo.Location = new System.Drawing.Point(620, 281);
 			this.labelControlOtherWebsitesLogo.Name = "labelControlOtherWebsitesLogo";
 			this.labelControlOtherWebsitesLogo.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
 			this.labelControlOtherWebsitesLogo.Size = new System.Drawing.Size(262, 33);
@@ -1091,7 +1091,7 @@
 			// 
 			this.pbOtherWebsites.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbOtherWebsites.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.Websites;
-			this.pbOtherWebsites.Location = new System.Drawing.Point(575, 292);
+			this.pbOtherWebsites.Location = new System.Drawing.Point(575, 281);
 			this.pbOtherWebsites.Name = "pbOtherWebsites";
 			this.pbOtherWebsites.Size = new System.Drawing.Size(39, 33);
 			this.pbOtherWebsites.TabIndex = 23;
@@ -1131,7 +1131,7 @@
 			this.xtraTabPageDetails.Controls.Add(this.spinEditMonthlyImpressions);
 			this.xtraTabPageDetails.Controls.Add(this.labelControlMonthlyImpressions);
 			this.xtraTabPageDetails.Name = "xtraTabPageDetails";
-			this.xtraTabPageDetails.Size = new System.Drawing.Size(894, 452);
+			this.xtraTabPageDetails.Size = new System.Drawing.Size(894, 441);
 			this.xtraTabPageDetails.Text = "Details";
 			// 
 			// labelControlFormula
@@ -1160,30 +1160,32 @@
 			// 
 			// checkEditFormulaImpressions
 			// 
-			this.checkEditFormulaImpressions.Location = new System.Drawing.Point(223, 273);
+			this.checkEditFormulaImpressions.Location = new System.Drawing.Point(36, 344);
 			this.checkEditFormulaImpressions.Name = "checkEditFormulaImpressions";
-			this.checkEditFormulaImpressions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditFormulaImpressions.Properties.AllowHtmlString = true;
+			this.checkEditFormulaImpressions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFormulaImpressions.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFormulaImpressions.Properties.AutoWidth = true;
-			this.checkEditFormulaImpressions.Properties.Caption = "Impressions";
+			this.checkEditFormulaImpressions.Properties.Caption = "<b><u>Impressions</u></b> =  (CPM x Investment x 10)";
 			this.checkEditFormulaImpressions.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaImpressions.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(98, 21);
+			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(260, 20);
 			this.checkEditFormulaImpressions.TabIndex = 26;
 			this.checkEditFormulaImpressions.TabStop = false;
 			this.checkEditFormulaImpressions.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
 			// 
 			// checkEditFormulaInvestment
 			// 
-			this.checkEditFormulaInvestment.Location = new System.Drawing.Point(109, 273);
+			this.checkEditFormulaInvestment.Location = new System.Drawing.Point(36, 308);
 			this.checkEditFormulaInvestment.Name = "checkEditFormulaInvestment";
-			this.checkEditFormulaInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditFormulaInvestment.Properties.AllowHtmlString = true;
+			this.checkEditFormulaInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFormulaInvestment.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFormulaInvestment.Properties.AutoWidth = true;
-			this.checkEditFormulaInvestment.Properties.Caption = "Investment";
+			this.checkEditFormulaInvestment.Properties.Caption = "<b><u>Investment</u></b> =  (Impressions  x 10%) / CPM";
 			this.checkEditFormulaInvestment.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaInvestment.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(92, 21);
+			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(275, 20);
 			this.checkEditFormulaInvestment.TabIndex = 25;
 			this.checkEditFormulaInvestment.TabStop = false;
 			this.checkEditFormulaInvestment.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
@@ -1192,13 +1194,14 @@
 			// 
 			this.checkEditFormulaCPM.Location = new System.Drawing.Point(36, 273);
 			this.checkEditFormulaCPM.Name = "checkEditFormulaCPM";
-			this.checkEditFormulaCPM.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditFormulaCPM.Properties.AllowHtmlString = true;
+			this.checkEditFormulaCPM.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFormulaCPM.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFormulaCPM.Properties.AutoWidth = true;
-			this.checkEditFormulaCPM.Properties.Caption = "CPM";
+			this.checkEditFormulaCPM.Properties.Caption = "<b><u>CPM</u></b> = Investment / (Impressions / 10)";
 			this.checkEditFormulaCPM.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaCPM.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaCPM.Size = new System.Drawing.Size(52, 21);
+			this.checkEditFormulaCPM.Size = new System.Drawing.Size(245, 20);
 			this.checkEditFormulaCPM.TabIndex = 24;
 			this.checkEditFormulaCPM.TabStop = false;
 			this.checkEditFormulaCPM.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
@@ -1206,33 +1209,48 @@
 			// pnHeader
 			// 
 			this.pnHeader.BackColor = System.Drawing.Color.Transparent;
-			this.pnHeader.Controls.Add(this.labelControlOutputStatus);
+			this.pnHeader.Controls.Add(this.labelControlPresentationDate);
+			this.pnHeader.Controls.Add(this.labelControlBusinessName);
 			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnHeader.Name = "pnHeader";
-			this.pnHeader.Size = new System.Drawing.Size(896, 33);
+			this.pnHeader.Size = new System.Drawing.Size(896, 44);
 			this.pnHeader.TabIndex = 3;
 			// 
-			// labelControlOutputStatus
+			// labelControlPresentationDate
 			// 
-			this.labelControlOutputStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+			this.labelControlPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelControlOutputStatus.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelControlOutputStatus.Appearance.ForeColor = System.Drawing.Color.Red;
-			this.labelControlOutputStatus.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.labelControlOutputStatus.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlOutputStatus.Location = new System.Drawing.Point(4, 5);
-			this.labelControlOutputStatus.Name = "labelControlOutputStatus";
-			this.labelControlOutputStatus.Size = new System.Drawing.Size(889, 23);
-			this.labelControlOutputStatus.StyleController = this.styleController;
-			this.labelControlOutputStatus.TabIndex = 7;
+			this.labelControlPresentationDate.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlPresentationDate.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.labelControlPresentationDate.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlPresentationDate.Location = new System.Drawing.Point(429, 3);
+			this.labelControlPresentationDate.Name = "labelControlPresentationDate";
+			this.labelControlPresentationDate.Size = new System.Drawing.Size(464, 38);
+			this.labelControlPresentationDate.StyleController = this.styleController;
+			this.labelControlPresentationDate.TabIndex = 20;
+			this.labelControlPresentationDate.Text = "Presentation Date:\r\n01/01/01";
+			// 
+			// labelControlBusinessName
+			// 
+			this.labelControlBusinessName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.labelControlBusinessName.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlBusinessName.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.labelControlBusinessName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlBusinessName.Location = new System.Drawing.Point(3, 3);
+			this.labelControlBusinessName.Name = "labelControlBusinessName";
+			this.labelControlBusinessName.Size = new System.Drawing.Size(420, 38);
+			this.labelControlBusinessName.StyleController = this.styleController;
+			this.labelControlBusinessName.TabIndex = 19;
+			this.labelControlBusinessName.Text = "Prepared For:\r\nDecision Maker";
 			// 
 			// DigitalProductControl
 			// 
 			this.Controls.Add(this.xtraTabControl);
 			this.Controls.Add(this.pnHeader);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.Name = "DigitalProductControl";
 			this.Size = new System.Drawing.Size(896, 511);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDimensions)).EndInit();
@@ -1357,7 +1375,8 @@
 		public DevExpress.XtraEditors.CheckEdit checkEditFormulaInvestment;
 		public DevExpress.XtraEditors.CheckEdit checkEditFormulaCPM;
 		private System.Windows.Forms.Panel pnHeader;
-		public DevExpress.XtraEditors.LabelControl labelControlOutputStatus;
+		private DevExpress.XtraEditors.LabelControl labelControlPresentationDate;
+		private DevExpress.XtraEditors.LabelControl labelControlBusinessName;
 
     }
 }

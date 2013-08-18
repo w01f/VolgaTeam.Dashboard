@@ -1,4 +1,4 @@
-﻿using System;
+﻿	using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -52,7 +52,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (!string.IsNullOrEmpty(newName))
 					_selectedOutput.LocalSchedule.Name = newName;
 				_selectedOutput.SettingsNotSaved = false;
-				BusinessWrapper.Instance.ScheduleManager.SaveSchedule(_selectedOutput.LocalSchedule, true, _selectedOutput as Control);
+				Controller.Instance.SaveSchedule(_selectedOutput.LocalSchedule, true, _selectedOutput as Control);
 				_selectedOutput.UpdateOutput(true);
 			}
 		}
@@ -208,11 +208,19 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
+		public void MonthList_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (_selectedOutput != null && _selectedOutput.AllowToSave)
+			{
+				_selectedOutput.UpdateMonthView();
+			}
+		}
+
 		public void buttonItemCalendarsOptions_CheckedChanged(object sender, EventArgs e)
 		{
 			if (_selectedOutput != null && _selectedOutput.AllowToSave)
 			{
-				_selectedOutput.LocalSchedule.ViewSettings.CalendarViewSettings.ShowOptions =Controller.Instance.CalendarOptions.Checked;
+				_selectedOutput.LocalSchedule.ViewSettings.CalendarViewSettings.ShowOptions = Controller.Instance.CalendarOptions.Checked;
 				splitContainerControl.PanelVisibility = _selectedOutput.LocalSchedule.ViewSettings.CalendarViewSettings.ShowOptions ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
 				_selectedOutput.SettingsNotSaved = true;
 			}
@@ -220,31 +228,23 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void buttonItemCalendarsPreview_Click(object sender, EventArgs e)
 		{
+			SaveSchedule();
 			if (_selectedOutput != null)
 				_selectedOutput.Preview();
 		}
 
 		public void buttonItemCalendarsPowerPoint_Click(object sender, EventArgs e)
 		{
+			SaveSchedule();
 			if (_selectedOutput != null)
 				_selectedOutput.PrintOutput();
 		}
 
 		public void buttonItemCalendarsEmail_Click(object sender, EventArgs e)
 		{
+			SaveSchedule();
 			if (_selectedOutput != null)
 				_selectedOutput.Email();
-		}
-
-		public void buttonItemCalendarsExport_Click(object sender, EventArgs e)
-		{
-			if (_selectedOutput != null)
-			{
-				if (AllowToLeaveControl)
-				{
-					Controller.Instance.Export(_selectedOutput.LocalSchedule, false, true, false);
-				}
-			}
 		}
 
 		public void buttonItemCalendarSave_Click(object sender, EventArgs e)
@@ -275,12 +275,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				}
 		}
 
-		public void buttonItemCalendarsReset_Click(object sender, EventArgs e)
-		{
-			_selectedOutput.ResetToDefault();
-			SaveSchedule();
-		}
-
 		public void buttonItemCalendarsHelp_Click(object sender, EventArgs e)
 		{
 			if (_selectedOutput != null)
@@ -305,6 +299,21 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			pic.Top -= 1;
 		}
 		#endregion
+
+		private void pbSettingsDayHelp_Click(object sender, EventArgs e)
+		{
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink("calnavbar1");
+		}
+
+		private void pbSettingsMonthHelp_Click(object sender, EventArgs e)
+		{
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink("calnavbar2");
+		}
+
+		private void pbSettingsThemeHelp_Click(object sender, EventArgs e)
+		{
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink("calnavbar3");
+		}
 	}
 
 	public interface ICalendarControl
@@ -320,7 +329,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		void UpdateToggledOptions();
 		void ShowOutputOptions(ICalendarSettingsViewer settingsViewer);
 		void UpdateOutput(bool quickLoad);
-		void ResetToDefault();
 		void PrintOutput();
 		void Email();
 		void Preview();

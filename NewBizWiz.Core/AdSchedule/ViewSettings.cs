@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using NewBizWiz.Core.OnlineSchedule;
 
 namespace NewBizWiz.Core.AdSchedule
 {
@@ -17,6 +18,8 @@ namespace NewBizWiz.Core.AdSchedule
 			HomeViewSettings.ResetToDefault();
 
 			DigitalSchedulesViewSettings = new DigitalSchedulesViewSettings();
+
+			DigitalPackageSettings = new DigitalPackageSettings();
 
 			BasicOverviewViewSettings = new BasicOverviewViewSettings();
 			MultiSummaryViewSettings = new MultiSummaryViewSettings();
@@ -33,6 +36,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public HomeViewSettings HomeViewSettings { get; set; }
 		public DigitalSchedulesViewSettings DigitalSchedulesViewSettings { get; set; }
+		public DigitalPackageSettings DigitalPackageSettings { get; private set; }
 
 		public BasicOverviewViewSettings BasicOverviewViewSettings { get; set; }
 		public MultiSummaryViewSettings MultiSummaryViewSettings { get; set; }
@@ -50,6 +54,8 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<HomeViewSettings>" + HomeViewSettings.Serialize() + @"</HomeViewSettings>");
 
 			result.AppendLine(@"<DigitalSchedulesViewSettings>" + DigitalSchedulesViewSettings.Serialize() + @"</DigitalSchedulesViewSettings>");
+
+			result.AppendLine(@"<DigitalPackageSettings>" + DigitalPackageSettings.Serialize() + @"</DigitalPackageSettings>");
 
 			result.AppendLine(@"<BasicOverviewViewSettings>" + BasicOverviewViewSettings.Serialize() + @"</BasicOverviewViewSettings>");
 			result.AppendLine(@"<MultiSummaryViewSettings>" + MultiSummaryViewSettings.Serialize() + @"</MultiSummaryViewSettings>");
@@ -73,6 +79,9 @@ namespace NewBizWiz.Core.AdSchedule
 						break;
 					case "DigitalSchedulesViewSettings":
 						DigitalSchedulesViewSettings.Deserialize(childNode);
+						break;
+					case "DigitalPackageSettings":
+						DigitalPackageSettings.Deserialize(childNode);
 						break;
 					case "BasicOverviewViewSettings":
 						BasicOverviewViewSettings.Deserialize(childNode);
@@ -3894,7 +3903,7 @@ namespace NewBizWiz.Core.AdSchedule
 			Title = "Monthly Advertising Planner";
 			Comments = string.Empty;
 
-			string filePath = Path.Combine(ListManager.Instance.BigImageFolder.FullName, ListManager.DefaultBigLogoFileName);
+			string filePath = Path.Combine(Common.ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
 			if (File.Exists(filePath))
 				Logo = new Bitmap(filePath);
 		}

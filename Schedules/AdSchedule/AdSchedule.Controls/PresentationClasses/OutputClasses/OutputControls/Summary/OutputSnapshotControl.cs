@@ -47,9 +47,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			laScheduleWindow.Text = string.Format("{0} - {1}", new object[] { LocalSchedule.FlightDateStart.ToString("MM/dd/yy"), LocalSchedule.FlightDateEnd.ToString("MM/dd/yy") });
-			laScheduleName.Text = LocalSchedule.Name;
-			laAdvertiser.Text = LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
 			if (!quickLoad)
 			{
 				_allowToSave = false;
@@ -87,11 +84,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SettingsNotSaved = false;
 		}
 
-		public void ResetToDefault()
+		private void ResetToDefault()
 		{
 			LocalSchedule.ViewSettings.SnapshotViewSettings.ResetToDefault();
 			LoadView();
 			outputSnapshotContainer.UpdateColumns(LocalSchedule);
+			SettingsNotSaved = false;
+			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
 		}
 
 		public void OpenHelp()
@@ -249,6 +248,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void SetFocusToScrollbar()
 		{
 			xtraScrollableControl.Focus();
+		}
+
+		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		{
+			ResetToDefault();
+			e.Handled = true;
 		}
 
 		#region Options Panel Stuff

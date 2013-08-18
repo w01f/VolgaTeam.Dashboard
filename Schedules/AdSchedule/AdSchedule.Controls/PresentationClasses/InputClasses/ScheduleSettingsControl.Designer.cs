@@ -57,8 +57,6 @@
 			this.gridColumnPrintProductsChangeLogo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemButtonEditChangeLogoPrintProducts = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-			this.pnHeader = new System.Windows.Forms.Panel();
-			this.laScheduleName = new System.Windows.Forms.Label();
 			this.xtraTabControlProducts = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPagePrintProducts = new DevExpress.XtraTab.XtraTabPage();
 			this.pnPrintProductBottomBar = new System.Windows.Forms.Panel();
@@ -108,7 +106,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditPrintProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEditPrintProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditChangeLogoPrintProducts)).BeginInit();
-			this.pnHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlProducts)).BeginInit();
 			this.xtraTabControlProducts.SuspendLayout();
 			this.xtraTabPagePrintProducts.SuspendLayout();
@@ -141,7 +138,7 @@
             this.repositoryItemSpinEditPrintProducts,
             this.repositoryItemButtonEditChangeLogoPrintProducts,
             this.repositoryItemTextEditPrintProducts});
-			this.gridControlPrintProducts.Size = new System.Drawing.Size(826, 336);
+			this.gridControlPrintProducts.Size = new System.Drawing.Size(826, 366);
 			this.gridControlPrintProducts.TabIndex = 0;
 			this.gridControlPrintProducts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrintProducts});
@@ -450,24 +447,6 @@
 			// 
 			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
 			// 
-			// pnHeader
-			// 
-			this.pnHeader.Controls.Add(this.laScheduleName);
-			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnHeader.Location = new System.Drawing.Point(0, 0);
-			this.pnHeader.Name = "pnHeader";
-			this.pnHeader.Size = new System.Drawing.Size(828, 30);
-			this.pnHeader.TabIndex = 1;
-			// 
-			// laScheduleName
-			// 
-			this.laScheduleName.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.laScheduleName.Location = new System.Drawing.Point(0, 0);
-			this.laScheduleName.Name = "laScheduleName";
-			this.laScheduleName.Size = new System.Drawing.Size(828, 30);
-			this.laScheduleName.TabIndex = 0;
-			this.laScheduleName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
 			// xtraTabControlProducts
 			// 
 			this.xtraTabControlProducts.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -483,10 +462,10 @@
 			this.xtraTabControlProducts.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlProducts.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControlProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControlProducts.Location = new System.Drawing.Point(0, 30);
+			this.xtraTabControlProducts.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControlProducts.Name = "xtraTabControlProducts";
 			this.xtraTabControlProducts.SelectedTabPage = this.xtraTabPagePrintProducts;
-			this.xtraTabControlProducts.Size = new System.Drawing.Size(828, 400);
+			this.xtraTabControlProducts.Size = new System.Drawing.Size(828, 430);
 			this.xtraTabControlProducts.TabIndex = 2;
 			this.xtraTabControlProducts.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPagePrintProducts,
@@ -498,7 +477,7 @@
 			this.xtraTabPagePrintProducts.Controls.Add(this.gridControlPrintProducts);
 			this.xtraTabPagePrintProducts.Controls.Add(this.pnPrintProductBottomBar);
 			this.xtraTabPagePrintProducts.Name = "xtraTabPagePrintProducts";
-			this.xtraTabPagePrintProducts.Size = new System.Drawing.Size(826, 374);
+			this.xtraTabPagePrintProducts.Size = new System.Drawing.Size(826, 404);
 			this.xtraTabPagePrintProducts.Text = "Print Products";
 			// 
 			// pnPrintProductBottomBar
@@ -511,7 +490,7 @@
 			this.pnPrintProductBottomBar.Controls.Add(this.buttonXPrintProductReadership);
 			this.pnPrintProductBottomBar.Controls.Add(this.laPrintProductBottomBarTitle);
 			this.pnPrintProductBottomBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnPrintProductBottomBar.Location = new System.Drawing.Point(0, 336);
+			this.pnPrintProductBottomBar.Location = new System.Drawing.Point(0, 366);
 			this.pnPrintProductBottomBar.Name = "pnPrintProductBottomBar";
 			this.pnPrintProductBottomBar.Size = new System.Drawing.Size(826, 38);
 			this.pnPrintProductBottomBar.TabIndex = 1;
@@ -598,7 +577,7 @@
 			this.xtraTabPageDigitalProducts.Controls.Add(this.gridControlDigitalProducts);
 			this.xtraTabPageDigitalProducts.Controls.Add(this.pnDigitalProductBottomBar);
 			this.xtraTabPageDigitalProducts.Name = "xtraTabPageDigitalProducts";
-			this.xtraTabPageDigitalProducts.Size = new System.Drawing.Size(826, 374);
+			this.xtraTabPageDigitalProducts.Size = new System.Drawing.Size(826, 404);
 			this.xtraTabPageDigitalProducts.Text = "Digital Products";
 			// 
 			// gridControlDigitalProducts
@@ -615,7 +594,7 @@
             this.repositoryItemSpinEditDigitalProductsSize,
             this.repositoryItemButtonEditDigitalProductsDelete,
             this.repositoryItemSpinEditDigitalProductsRate});
-			this.gridControlDigitalProducts.Size = new System.Drawing.Size(826, 336);
+			this.gridControlDigitalProducts.Size = new System.Drawing.Size(826, 366);
 			this.gridControlDigitalProducts.TabIndex = 1;
 			this.gridControlDigitalProducts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridViewDigitalProducts});
@@ -1031,7 +1010,7 @@
 			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXDigitalProductDimensions);
 			this.pnDigitalProductBottomBar.Controls.Add(this.laDigitalProductBottomBarTitle);
 			this.pnDigitalProductBottomBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnDigitalProductBottomBar.Location = new System.Drawing.Point(0, 336);
+			this.pnDigitalProductBottomBar.Location = new System.Drawing.Point(0, 366);
 			this.pnDigitalProductBottomBar.Name = "pnDigitalProductBottomBar";
 			this.pnDigitalProductBottomBar.Size = new System.Drawing.Size(826, 38);
 			this.pnDigitalProductBottomBar.TabIndex = 2;
@@ -1092,7 +1071,6 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.Controls.Add(this.xtraTabControlProducts);
-			this.Controls.Add(this.pnHeader);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "ScheduleSettingsControl";
 			this.Size = new System.Drawing.Size(828, 430);
@@ -1105,7 +1083,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditPrintProducts)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEditPrintProducts)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditChangeLogoPrintProducts)).EndInit();
-			this.pnHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlProducts)).EndInit();
 			this.xtraTabControlProducts.ResumeLayout(false);
 			this.xtraTabPagePrintProducts.ResumeLayout(false);
@@ -1132,9 +1109,7 @@
         private DevExpress.XtraGrid.GridControl gridControlPrintProducts;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxPrintProducts;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditPrintProducts;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        private System.Windows.Forms.Panel pnHeader;
-		private System.Windows.Forms.Label laScheduleName;
+		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEditPrintProducts;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPrintProductsPosition;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPrintProductsName;

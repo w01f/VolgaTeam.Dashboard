@@ -114,7 +114,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			gridControlPrintProducts.DataSource = new BindingList<PrintProduct>(_localSchedule.PrintProducts);
 			gridControlDigitalProducts.DataSource = new BindingList<DigitalProduct>(_localSchedule.DigitalProducts);
-			laScheduleName.Text = _localSchedule.Name;
 			if (!quickLoad)
 			{
 				LoadView();
@@ -141,11 +140,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				Controller.Instance.HomePresentationDate.EditValue = _localSchedule.PresentationDateObject;
 				Controller.Instance.HomeFlightDatesStart.EditValue = _localSchedule.FlightDateStartObject;
 				Controller.Instance.HomeFlightDatesEnd.EditValue = _localSchedule.FlightDateEndObject;
-				Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Count > 0);
+				Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
 				#endregion
 
 				#region Digital Products
-				Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Count > 0);
+				Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
 				#endregion
 
 				UpdateProductsCount();
@@ -157,18 +156,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		private void LoadView()
 		{
-			Controller.Instance.HomeAccountNumberCheck.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnableAccountNumber;
-			buttonXPrintProductCode.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnablePrintCode;
-			buttonXPrintProductLogo.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnablePrintLogo;
-			buttonXPrintProductDelivery.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnablePrintDelivery;
-			buttonXPrintProductReadership.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnablePrintReadership;
-
 			Controller.Instance.HomeAccountNumberCheck.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowAccountNumber;
 			buttonXPrintProductCode.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowPrintCode;
 			buttonXPrintProductLogo.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowPrintLogo;
 			buttonXPrintProductDelivery.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowPrintDelivery;
 			buttonXPrintProductReadership.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowPrintReadership;
-			
+
 			buttonXDigitalProductDimensions.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowDigitalDimensions;
 			buttonXDigitalProductStrategy.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowDigitalStrategy;
 		}
@@ -179,7 +172,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			_localSchedule.ViewSettings.HomeViewSettings.ShowPrintLogo = buttonXPrintProductLogo.Checked;
 			_localSchedule.ViewSettings.HomeViewSettings.ShowPrintDelivery = buttonXPrintProductDelivery.Checked;
 			_localSchedule.ViewSettings.HomeViewSettings.ShowPrintReadership = buttonXPrintProductReadership.Checked;
-			
+
 			_localSchedule.ViewSettings.HomeViewSettings.ShowDigitalDimensions = buttonXDigitalProductDimensions.Checked;
 			_localSchedule.ViewSettings.HomeViewSettings.ShowDigitalStrategy = buttonXDigitalProductStrategy.Checked;
 		}
@@ -187,12 +180,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		private bool AllowToAddPublication()
 		{
 			gridViewPrintProducts.CloseEditor();
-			return Controller.Instance.HomeBusinessName.EditValue != null &&
-				   Controller.Instance.HomeDecisionMaker.EditValue != null &&
-				   Controller.Instance.HomeClientType.EditValue != null &&
-				   Controller.Instance.HomePresentationDate.EditValue != null &&
-				   Controller.Instance.HomeFlightDatesStart.EditValue != null &&
-				   Controller.Instance.HomeFlightDatesEnd.EditValue != null;
+			return Controller.Instance.HomeBusinessName.EditValue != null && !String.IsNullOrEmpty(Controller.Instance.HomeBusinessName.EditValue.ToString()) &&
+				   Controller.Instance.HomeDecisionMaker.EditValue != null && !String.IsNullOrEmpty(Controller.Instance.HomeDecisionMaker.EditValue.ToString()) &&
+				   Controller.Instance.HomeClientType.EditValue != null && !String.IsNullOrEmpty(Controller.Instance.HomeClientType.EditValue.ToString()) &&
+				   Controller.Instance.HomePresentationDate.DateTime != DateTime.MinValue &&
+				   Controller.Instance.HomeFlightDatesStart.DateTime != DateTime.MinValue &&
+				   Controller.Instance.HomeFlightDatesEnd.DateTime != DateTime.MinValue;
 		}
 
 		private bool SaveSchedule(string scheduleName = "")
@@ -288,8 +281,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
 			Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers.ToArray());
 
-			BusinessWrapper.Instance.ScheduleManager.SaveSchedule(_localSchedule, false, this);
-			laScheduleName.Text = _localSchedule.Name;
+			Controller.Instance.SaveSchedule(_localSchedule, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}
@@ -299,7 +291,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			((BindingList<DigitalProduct>)advBandedGridViewDigitalProducts.DataSource).ResetBindings();
 			advBandedGridViewDigitalProducts.FocusedRowHandle = advBandedGridViewDigitalProducts.RowCount - 1;
 			UpdateProductsCount();
-			Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Count > 0);
+			Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
 			SettingsNotSaved = true;
 		}
 		#endregion
@@ -328,7 +320,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			repositoryItemSpinEditDigitalProductsSize.MouseUp += Utilities.Instance.Editor_MouseUp;
 
 			AssignCloseActiveEditorsonOutSideClick(Controller.Instance.Ribbon);
-			AssignCloseActiveEditorsonOutSideClick(pnHeader);
 		}
 
 		private void xtraTabControlProducts_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
@@ -456,7 +447,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				((BindingList<PrintProduct>)gridControlPrintProducts.DataSource).ResetBindings();
 				gridViewPrintProducts.FocusedRowHandle = gridViewPrintProducts.RowCount - 1;
 				UpdateProductsCount();
-				Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Count > 0);
+				Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
 				Controller.Instance.UpdateOutputTabs(_localSchedule.PrintProducts.Select(x => x.Inserts.Count).Sum() > 0);
 				SettingsNotSaved = true;
 			}
@@ -476,7 +467,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				((BindingList<PrintProduct>)gridControlPrintProducts.DataSource).ResetBindings();
 				gridViewPrintProducts.FocusedRowHandle = newRowHandle;
 				UpdateProductsCount();
-				Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Count > 0);
+				Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
 				Controller.Instance.UpdateOutputTabs(_localSchedule.PrintProducts.Select(x => x.Inserts.Count).Sum() > 0);
 				if (_allowToSave)
 				{
@@ -492,7 +483,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				gridViewPrintProducts.DeleteSelectedRows();
 				_localSchedule.RebuildPublicationIndexes();
 				UpdateProductsCount();
-				Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Count > 0);
+				Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
 				Controller.Instance.UpdateOutputTabs(_localSchedule.PrintProducts.Select(x => x.Inserts.Count).Sum() > 0);
 				if (_allowToSave)
 				{
@@ -516,6 +507,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					}
 				}
 			}
+			Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
 			SchedulePropertyEditValueChanged(null, null);
 		}
 
@@ -668,6 +660,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				}
 			}
 			SchedulePropertyEditValueChanged(null, null);
+			Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
 		}
 
 		private void repositoryItemComboBoxDigitalProductName_Closed(object sender, ClosedEventArgs e)

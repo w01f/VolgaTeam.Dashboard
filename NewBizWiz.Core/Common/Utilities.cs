@@ -122,7 +122,6 @@ namespace NewBizWiz.Core.Common
 		public void Editor_Enter(object sender, EventArgs e)
 		{
 			enter = true;
-			ResetEnterFlag();
 		}
 
 		public void Editor_MouseUp(object sender, MouseEventArgs e)
@@ -131,6 +130,7 @@ namespace NewBizWiz.Core.Common
 			{
 				(sender as BaseEdit).SelectAll();
 			}
+			ResetEnterFlag();
 		}
 
 		public void Editor_MouseDown(object sender, MouseEventArgs e)

@@ -30,14 +30,14 @@
         {
 			this.laTitle = new System.Windows.Forms.Label();
 			this.laAdvertiserProfile = new System.Windows.Forms.Label();
+			this.laAdCampaign = new System.Windows.Forms.Label();
+			this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+			this.pbAdCampaign = new System.Windows.Forms.PictureBox();
 			this.pbAdvertiserProfile = new System.Windows.Forms.PictureBox();
 			this.pbWarning = new System.Windows.Forms.PictureBox();
-			this.laAdCampaign = new System.Windows.Forms.Label();
-			this.pbAdCampaign = new System.Windows.Forms.PictureBox();
-			this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+			((System.ComponentModel.ISupportInitialize)(this.pbAdCampaign)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbAdvertiserProfile)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbWarning)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbAdCampaign)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// laTitle
@@ -60,12 +60,46 @@
 			this.laAdvertiserProfile.Name = "laAdvertiserProfile";
 			this.laAdvertiserProfile.Size = new System.Drawing.Size(285, 40);
 			this.laAdvertiserProfile.TabIndex = 3;
-			this.laAdvertiserProfile.Text = "Advertiser Profile";
+			this.laAdvertiserProfile.Text = "Basic Info";
 			this.laAdvertiserProfile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// laAdCampaign
+			// 
+			this.laAdCampaign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.laAdCampaign.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laAdCampaign.Location = new System.Drawing.Point(57, 148);
+			this.laAdCampaign.Name = "laAdCampaign";
+			this.laAdCampaign.Size = new System.Drawing.Size(285, 40);
+			this.laAdCampaign.TabIndex = 7;
+			this.laAdCampaign.Text = "Campaign Dates";
+			this.laAdCampaign.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// buttonX1
+			// 
+			this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonX1.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.buttonX1.Location = new System.Drawing.Point(115, 202);
+			this.buttonX1.Name = "buttonX1";
+			this.buttonX1.Size = new System.Drawing.Size(126, 36);
+			this.buttonX1.TabIndex = 8;
+			this.buttonX1.Text = "OK";
+			this.buttonX1.TextColor = System.Drawing.Color.Black;
+			// 
+			// pbAdCampaign
+			// 
+			this.pbAdCampaign.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Calendar;
+			this.pbAdCampaign.Location = new System.Drawing.Point(10, 148);
+			this.pbAdCampaign.Name = "pbAdCampaign";
+			this.pbAdCampaign.Size = new System.Drawing.Size(40, 40);
+			this.pbAdCampaign.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pbAdCampaign.TabIndex = 6;
+			this.pbAdCampaign.TabStop = false;
 			// 
 			// pbAdvertiserProfile
 			// 
-			this.pbAdvertiserProfile.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Advertiser;
+			this.pbAdvertiserProfile.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.BasicInfo;
 			this.pbAdvertiserProfile.Location = new System.Drawing.Point(10, 86);
 			this.pbAdvertiserProfile.Name = "pbAdvertiserProfile";
 			this.pbAdvertiserProfile.Size = new System.Drawing.Size(40, 40);
@@ -82,40 +116,6 @@
 			this.pbWarning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pbWarning.TabIndex = 0;
 			this.pbWarning.TabStop = false;
-			// 
-			// laAdCampaign
-			// 
-			this.laAdCampaign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.laAdCampaign.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laAdCampaign.Location = new System.Drawing.Point(57, 148);
-			this.laAdCampaign.Name = "laAdCampaign";
-			this.laAdCampaign.Size = new System.Drawing.Size(285, 40);
-			this.laAdCampaign.TabIndex = 7;
-			this.laAdCampaign.Text = "Campaign Dates";
-			this.laAdCampaign.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// pbAdCampaign
-			// 
-			this.pbAdCampaign.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Calendar;
-			this.pbAdCampaign.Location = new System.Drawing.Point(10, 148);
-			this.pbAdCampaign.Name = "pbAdCampaign";
-			this.pbAdCampaign.Size = new System.Drawing.Size(40, 40);
-			this.pbAdCampaign.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbAdCampaign.TabIndex = 6;
-			this.pbAdCampaign.TabStop = false;
-			// 
-			// buttonX1
-			// 
-			this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonX1.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonX1.Location = new System.Drawing.Point(115, 202);
-			this.buttonX1.Name = "buttonX1";
-			this.buttonX1.Size = new System.Drawing.Size(126, 36);
-			this.buttonX1.TabIndex = 8;
-			this.buttonX1.Text = "OK";
-			this.buttonX1.TextColor = System.Drawing.Color.Black;
 			// 
 			// FormAddPublicationWarning
 			// 
@@ -137,9 +137,9 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Not So Fast…";
+			((System.ComponentModel.ISupportInitialize)(this.pbAdCampaign)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbAdvertiserProfile)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbWarning)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbAdCampaign)).EndInit();
 			this.ResumeLayout(false);
 
         }

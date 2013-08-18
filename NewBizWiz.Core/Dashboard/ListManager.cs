@@ -14,8 +14,6 @@ namespace NewBizWiz.Core.Dashboard
 			Init();
 		}
 
-		public string ListsFolder { get; set; }
-
 		public Users UsersList { get; set; }
 
 		public CoverLists CoverLists { get; set; }
@@ -34,17 +32,17 @@ namespace NewBizWiz.Core.Dashboard
 
 		private void Init()
 		{
-			ListsFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Data", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			var listsFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Data", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 
-			UsersList = new Users();
+			UsersList = new Users(listsFolder);
 
-			CoverLists = new CoverLists();
+			CoverLists = new CoverLists(listsFolder);
 
 			#region Home
-			ClientGoalsLists = new ClientGoalsLists();
-			LeadoffStatementLists = new LeadoffStatementLists();
-			TargetCustomersLists = new TargetCustomersLists();
-			SimpleSummaryLists = new SimpleSummaryLists();
+			ClientGoalsLists = new ClientGoalsLists(listsFolder);
+			LeadoffStatementLists = new LeadoffStatementLists(listsFolder);
+			TargetCustomersLists = new TargetCustomersLists(listsFolder);
+			SimpleSummaryLists = new SimpleSummaryLists(listsFolder);
 			#endregion
 		}
 	}
@@ -55,9 +53,9 @@ namespace NewBizWiz.Core.Dashboard
 		private readonly string _listsFileName;
 		private readonly List<User> _users = new List<User>();
 
-		public Users()
+		public Users(string folderPath)
 		{
-			_listsFileName = Path.Combine(ListManager.Instance.ListsFolder, "Users XML", "Users.xml");
+			_listsFileName = Path.Combine(folderPath, "Users XML", "Users.xml");
 			Load();
 		}
 
@@ -148,9 +146,9 @@ namespace NewBizWiz.Core.Dashboard
 	{
 		private readonly string _listsFileName;
 
-		public CoverLists()
+		public CoverLists(string folderPath)
 		{
-			_listsFileName = Path.Combine(ListManager.Instance.ListsFolder, "Basic Slides XML", "Add Cover.xml");
+			_listsFileName = Path.Combine(folderPath, "Basic Slides XML", "Add Cover.xml");
 			Headers = new List<string>();
 			Quotes = new List<Quote>();
 			Load();
@@ -260,9 +258,9 @@ namespace NewBizWiz.Core.Dashboard
 	{
 		private readonly string _listsFileName;
 
-		public ClientGoalsLists()
+		public ClientGoalsLists(string folderPath)
 		{
-			_listsFileName = Path.Combine(ListManager.Instance.ListsFolder, "Basic Slides XML", "Needs Analysis.xml");
+			_listsFileName = Path.Combine(folderPath, "Basic Slides XML", "Needs Analysis.xml");
 			Headers = new List<string>();
 			Goals = new List<string>();
 			Load();
@@ -323,9 +321,9 @@ namespace NewBizWiz.Core.Dashboard
 	{
 		private readonly string _listsFileName;
 
-		public LeadoffStatementLists()
+		public LeadoffStatementLists(string folderPath)
 		{
-			_listsFileName = Path.Combine(ListManager.Instance.ListsFolder, "Basic Slides XML", "Intro Slide.xml");
+			_listsFileName = Path.Combine(folderPath, "Basic Slides XML", "Intro Slide.xml");
 			Headers = new List<string>();
 			Statements = new List<string>();
 			Load();
@@ -386,9 +384,9 @@ namespace NewBizWiz.Core.Dashboard
 	{
 		private readonly string _listsFileName;
 
-		public TargetCustomersLists()
+		public TargetCustomersLists(string folderPath)
 		{
-			_listsFileName = Path.Combine(ListManager.Instance.ListsFolder, "Basic Slides XML", "Target Customer.xml");
+			_listsFileName = Path.Combine(folderPath, "Basic Slides XML", "Target Customer.xml");
 			Headers = new List<string>();
 			Demos = new List<string>();
 			HHIs = new List<string>();
@@ -477,9 +475,9 @@ namespace NewBizWiz.Core.Dashboard
 	{
 		private readonly string _listsFileName;
 
-		public SimpleSummaryLists()
+		public SimpleSummaryLists(string folderPath)
 		{
-			_listsFileName = Path.Combine(ListManager.Instance.ListsFolder, "Basic Slides XML", "Closing Summary.xml");
+			_listsFileName = Path.Combine(folderPath, "Basic Slides XML", "Closing Summary.xml");
 			Headers = new List<string>();
 			Details = new List<string>();
 			Load();

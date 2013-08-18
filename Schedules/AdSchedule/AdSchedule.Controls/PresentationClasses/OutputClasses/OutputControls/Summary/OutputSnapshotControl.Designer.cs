@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.components = new System.ComponentModel.Container();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.comboBoxEditSchedule = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.checkEditSchedule = new DevExpress.XtraEditors.CheckEdit();
@@ -38,9 +39,7 @@
 			this.checkEditBusinessName = new DevExpress.XtraEditors.CheckEdit();
 			this.pnLine = new System.Windows.Forms.Panel();
 			this.pnTopHeader = new System.Windows.Forms.Panel();
-			this.laScheduleWindow = new System.Windows.Forms.Label();
-			this.laAdvertiser = new System.Windows.Forms.Label();
-			this.laScheduleName = new System.Windows.Forms.Label();
+			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.outputSnapshotContainer = new NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.OutputSnapshotContainer();
 			this.pnMain = new System.Windows.Forms.Panel();
@@ -74,6 +73,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditBusinessName.Properties)).BeginInit();
 			this.pnTopHeader.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			this.xtraScrollableControl.SuspendLayout();
 			this.pnMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
@@ -217,41 +217,31 @@
 			// pnTopHeader
 			// 
 			this.pnTopHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnTopHeader.Controls.Add(this.laScheduleWindow);
-			this.pnTopHeader.Controls.Add(this.laAdvertiser);
-			this.pnTopHeader.Controls.Add(this.laScheduleName);
+			this.pnTopHeader.Controls.Add(this.hyperLinkEditReset);
 			this.pnTopHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTopHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnTopHeader.Name = "pnTopHeader";
 			this.pnTopHeader.Size = new System.Drawing.Size(536, 30);
 			this.pnTopHeader.TabIndex = 4;
 			// 
-			// laScheduleWindow
+			// hyperLinkEditReset
 			// 
-			this.laScheduleWindow.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.laScheduleWindow.Location = new System.Drawing.Point(300, 0);
-			this.laScheduleWindow.Name = "laScheduleWindow";
-			this.laScheduleWindow.Size = new System.Drawing.Size(0, 30);
-			this.laScheduleWindow.TabIndex = 1;
-			this.laScheduleWindow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// laAdvertiser
-			// 
-			this.laAdvertiser.Dock = System.Windows.Forms.DockStyle.Left;
-			this.laAdvertiser.Location = new System.Drawing.Point(0, 0);
-			this.laAdvertiser.Name = "laAdvertiser";
-			this.laAdvertiser.Size = new System.Drawing.Size(300, 30);
-			this.laAdvertiser.TabIndex = 2;
-			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// laScheduleName
-			// 
-			this.laScheduleName.Dock = System.Windows.Forms.DockStyle.Right;
-			this.laScheduleName.Location = new System.Drawing.Point(236, 0);
-			this.laScheduleName.Name = "laScheduleName";
-			this.laScheduleName.Size = new System.Drawing.Size(300, 30);
-			this.laScheduleName.TabIndex = 0;
-			this.laScheduleName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.hyperLinkEditReset.EditValue = "Reset";
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(472, 4);
+			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
+			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
+			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
+			this.hyperLinkEditReset.TabIndex = 103;
+			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 
 			// xtraScrollableControl
 			// 
@@ -623,6 +613,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditBusinessName.Properties)).EndInit();
 			this.pnTopHeader.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			this.xtraScrollableControl.ResumeLayout(false);
 			this.pnMain.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
@@ -647,10 +638,7 @@
         public DevExpress.XtraEditors.CheckEdit checkEditDecisionMaker;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSchedule;
         private DevExpress.XtraEditors.CheckEdit checkEditSchedule;
-        private System.Windows.Forms.Panel pnTopHeader;
-        private System.Windows.Forms.Label laScheduleWindow;
-        private System.Windows.Forms.Label laAdvertiser;
-        private System.Windows.Forms.Label laScheduleName;
+		private System.Windows.Forms.Panel pnTopHeader;
         private OutputSnapshotContainer outputSnapshotContainer;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl;
         private System.Windows.Forms.Panel pnMain;
@@ -676,6 +664,7 @@
         private System.Windows.Forms.PictureBox pbPrintHelp;
         private System.Windows.Forms.Label laTitle;
         private DevComponents.DotNetBar.SuperTooltip superTooltip;
+		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 
     }
 }

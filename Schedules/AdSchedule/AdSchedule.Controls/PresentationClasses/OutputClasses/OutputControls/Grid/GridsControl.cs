@@ -57,7 +57,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					_selectedOutput.LocalSchedule.Name = newName;
 				_selectedOutput.SettingsNotSaved = false;
 				_selectedOutput.LocalSchedule.ViewSettings.SaveDefaultViewSettings(SettingsManager.Instance.ViewSettingsPath);
-				BusinessWrapper.Instance.ScheduleManager.SaveSchedule(_selectedOutput.LocalSchedule, true, _selectedOutput as Control);
+				Controller.Instance.SaveSchedule(_selectedOutput.LocalSchedule, true, _selectedOutput as Control);
 				_selectedOutput.UpdateOutput(true);
 			}
 		}
@@ -159,6 +159,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void Preview_Click(object sender, EventArgs e)
 		{
+			SaveSchedule();
 			_selectedOutput.Preview();
 		}
 
@@ -169,11 +170,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void PowerPoint_Click(object sender, EventArgs e)
 		{
+			SaveSchedule();
 			_selectedOutput.PrintOutput();
 		}
 
 		public void Email_Click(object sender, EventArgs e)
 		{
+			SaveSchedule();
 			_selectedOutput.Email();
 		}
 
@@ -202,12 +205,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					}
 				}
 			}
-		}
-
-		public void Reset_Click(object sender, EventArgs e)
-		{
-			_selectedOutput.ResetToDefault();
-			SaveSchedule();
 		}
 
 		public void Help_Click(object sender, EventArgs e)
@@ -332,7 +329,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		void SetSlideHeader();
 		void SaveView();
 		void UpdateOutput(bool quickLoad);
-		void ResetToDefault();
 		void OpenHelp();
 		void EditDigitalLegend();
 		void PrintOutput();

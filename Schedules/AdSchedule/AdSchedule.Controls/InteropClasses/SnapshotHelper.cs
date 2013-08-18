@@ -3,7 +3,7 @@ using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.Core.AdSchedule;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
@@ -58,14 +58,14 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 												default:
 													for (int j = 0; j < 6; j++)
 													{
-														if (shape.Tags.Name(i).Equals(string.Format("PUBLOGO{0}", NewBizWiz.Core.Common.Utilities.Instance.GetLetterByDigit(j + 1))))
+														if (shape.Tags.Name(i).Equals(string.Format("PUBLOGO{0}", Utilities.Instance.GetLetterByDigit(j + 1))))
 														{
 															if ((k + j) < Controller.Instance.Summaries.Snapshot.LogoFiles.Length)
 																if (!string.IsNullOrEmpty(Controller.Instance.Summaries.Snapshot.LogoFiles[k + j]))
 																	slide.Shapes.AddPicture(FileName: Controller.Instance.Summaries.Snapshot.LogoFiles[k + j], LinkToFile: MsoTriState.msoFalse, SaveWithDocument: MsoTriState.msoCTrue, Left: shape.Left, Top: shape.Top, Width: shape.Width, Height: shape.Height);
 															shape.Visible = MsoTriState.msoFalse;
 														}
-														else if (shape.Tags.Name(i).Equals(string.Format("PUB{0}", NewBizWiz.Core.Common.Utilities.Instance.GetLetterByDigit(j + 1))))
+														else if (shape.Tags.Name(i).Equals(string.Format("PUB{0}", Utilities.Instance.GetLetterByDigit(j + 1))))
 														{
 															if ((k + j) < Controller.Instance.Summaries.Snapshot.PublicationNames.Length)
 															{
@@ -78,7 +78,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 														{
 															for (int l = 0; l < 6; l++)
 															{
-																if (shape.Tags.Name(i).Equals(string.Format("ADSPEC{0}{1}", new object[] { (l + 1), NewBizWiz.Core.Common.Utilities.Instance.GetLetterByDigit(j + 1) })))
+																if (shape.Tags.Name(i).Equals(string.Format("ADSPEC{0}{1}", new object[] { (l + 1), Utilities.Instance.GetLetterByDigit(j + 1) })))
 																{
 																	if ((k + j) < Controller.Instance.Summaries.Snapshot.AdSpecs.Length)
 																	{
@@ -107,7 +107,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 						while (thread.IsAlive)
 							Application.DoEvents();
 					}
-					catch { }
+					catch {}
 					finally
 					{
 						MessageFilter.Revoke();
@@ -122,9 +122,9 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 			{
 				Presentations presentations = _powerPointObject.Presentations;
 				Presentation presentation = presentations.Add(MsoTriState.msoFalse);
-				presentation.PageSetup.SlideWidth = (float)NewBizWiz.Core.Common.SettingsManager.Instance.SizeWidth * 72;
-				presentation.PageSetup.SlideHeight = (float)NewBizWiz.Core.Common.SettingsManager.Instance.SizeHeght * 72;
-				switch (NewBizWiz.Core.Common.SettingsManager.Instance.Orientation)
+				presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
+				presentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
+				switch (SettingsManager.Instance.Orientation)
 				{
 					case "Landscape":
 						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
@@ -133,26 +133,26 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
 						break;
 				}
-				NewBizWiz.Core.Common.Utilities.Instance.ReleaseComObject(presentations);
+				Utilities.Instance.ReleaseComObject(presentations);
 				AppendSnapshot(presentation);
 				MessageFilter.Register();
 				var thread = new Thread(delegate()
-											{
-												presentation.SaveAs(FileName: fileName);
-												string destinationFolder = fileName.Replace(Path.GetExtension(fileName), string.Empty);
-												if (!Directory.Exists(destinationFolder))
-													Directory.CreateDirectory(destinationFolder);
-												presentation.Export(Path: destinationFolder, FilterName: "PNG");
-												presentation.Close();
-											});
+				{
+					presentation.SaveAs(FileName: fileName);
+					string destinationFolder = fileName.Replace(Path.GetExtension(fileName), string.Empty);
+					if (!Directory.Exists(destinationFolder))
+						Directory.CreateDirectory(destinationFolder);
+					presentation.Export(Path: destinationFolder, FilterName: "PNG");
+					presentation.Close();
+				});
 				thread.Start();
 
 				while (thread.IsAlive)
 					Application.DoEvents();
 
-				NewBizWiz.Core.Common.Utilities.Instance.ReleaseComObject(presentation);
+				Utilities.Instance.ReleaseComObject(presentation);
 			}
-			catch { }
+			catch {}
 			finally
 			{
 				MessageFilter.Revoke();

@@ -47,9 +47,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			laScheduleWindow.Text = string.Format("{0} - {1}", new object[] { LocalSchedule.FlightDateStart.ToString("MM/dd/yy"), LocalSchedule.FlightDateEnd.ToString("MM/dd/yy") });
-			laScheduleName.Text = LocalSchedule.Name;
-			laAdvertiser.Text = LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
 			if (!quickLoad)
 			{
 				checkEditDate.Text = LocalSchedule.PresentationDateObject != null ? LocalSchedule.PresentationDate.ToString("MM/dd/yy") : string.Empty;
@@ -127,7 +124,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SettingsNotSaved = false;
 		}
 
-		public void ResetToDefault()
+		private void ResetToDefault()
 		{
 			foreach (PrintProduct publication in LocalSchedule.PrintProducts)
 			{
@@ -140,6 +137,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					Application.DoEvents();
 				}
 			}
+			SettingsNotSaved = false;
+			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
 		}
 
 
@@ -186,6 +185,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			var editorRect = new Rectangle(new Point(0, 0), cEdit.Size);
 			if (!r.Contains(e.Location) && editorRect.Contains(e.Location))
 				((DXMouseEventArgs)e).Handled = true;
+		}
+
+		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		{
+			ResetToDefault();
+			e.Handled = true;
 		}
 
 		#region Output Stuff

@@ -20,7 +20,7 @@ namespace NewBizWiz.Core.Dashboard
 			IconPath = string.Format(@"{0}\newlocaldirect.com\app\tab2icon.ico", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\DashboardHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			LastUsedLogoIndex = 0;
-			DashboardCode = 1;
+			DashboardCode = String.Empty;
 			DashboardSaveFolder = string.Empty;
 		}
 
@@ -28,7 +28,7 @@ namespace NewBizWiz.Core.Dashboard
 		public string DashboardSaveFolder { get; set; }
 		public int LastUsedLogoIndex { get; set; }
 
-		public int DashboardCode { get; set; }
+		public string DashboardCode { get; set; }
 		public string IconPath { get; set; }
 
 		public static SettingsManager Instance
@@ -102,9 +102,7 @@ namespace NewBizWiz.Core.Dashboard
 				XmlNode node = document.SelectSingleNode(@"/Settings/dashboard/DashboardCode");
 				if (node != null)
 				{
-					int temp = 1;
-					int.TryParse(node.InnerText, out temp);
-					DashboardCode = temp;
+					DashboardCode = node.InnerText.Trim().ToLower();
 				}
 			}
 		}

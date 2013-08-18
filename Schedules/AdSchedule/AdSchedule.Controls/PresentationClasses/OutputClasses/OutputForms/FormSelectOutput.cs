@@ -66,9 +66,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				buttonXExcel.Checked = false;
 				buttonXGrid.Checked = false;
 				buttonXImage.Checked = false;
-				buttonXExcel.Image = Resources.ExcelInactive;
-				buttonXGrid.Image = Resources.TableInactive;
-				buttonXImage.Image = Resources.ImageInactive;
 				button.Checked = true;
 			}
 		}

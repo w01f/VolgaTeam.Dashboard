@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.checkEditShowAdNotes = new DevExpress.XtraEditors.CheckEdit();
 			this.checkedListBoxAdNotes = new DevExpress.XtraEditors.CheckedListBoxControl();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pbHelp = new System.Windows.Forms.PictureBox();
 			this.buttonXDown = new DevComponents.DotNetBar.ButtonX();

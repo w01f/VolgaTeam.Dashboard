@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Windows.Forms;
 using System.Xml;
 
 namespace NewBizWiz.Core.Common
@@ -66,21 +65,19 @@ namespace NewBizWiz.Core.Common
 					case "Landscape":
 						if (SizeWidth == 10 && SizeHeght == 7.5)
 							return "4 x 3";
-						else if (SizeWidth == 10.75 && SizeHeght == 8.25)
+						if (SizeWidth == 10.75 && SizeHeght == 8.25)
 							return "5 x 4";
 						if (SizeWidth == 10 && SizeHeght == 5.63)
 							return "16 x 9";
-						else
-							return "4 x 3";
+						return "4 x 3";
 					case "Portrait":
 						if (SizeWidth == 10 && SizeHeght == 7.5)
 							return "3 x 4";
-						else if (SizeWidth == 10.75 && SizeHeght == 8.25)
+						if (SizeWidth == 10.75 && SizeHeght == 8.25)
 							return "4 x 5";
 						if (SizeWidth == 10 && SizeHeght == 5.63)
 							return "9 x 16";
-						else
-							return "4 x 3";
+						return "4 x 3";
 					default:
 						return "4 x 3";
 				}
@@ -96,21 +93,19 @@ namespace NewBizWiz.Core.Common
 					case "Landscape":
 						if (SizeWidth == 10 && SizeHeght == 7.5)
 							return "Landscape 4 x 3";
-						else if (SizeWidth == 10.75 && SizeHeght == 8.25)
+						if (SizeWidth == 10.75 && SizeHeght == 8.25)
 							return "Landscape 5 x 4";
 						if (SizeWidth == 10 && SizeHeght == 5.63)
 							return "Landscape 16 x 9";
-						else
-							return "Landscape 4 x 3";
+						return "Landscape 4 x 3";
 					case "Portrait":
 						if (SizeWidth == 10 && SizeHeght == 7.5)
 							return "Portrait 3 x 4";
-						else if (SizeWidth == 10.75 && SizeHeght == 8.25)
+						if (SizeWidth == 10.75 && SizeHeght == 8.25)
 							return "Portrait 4 x 5";
 						if (SizeWidth == 10 && SizeHeght == 5.63)
 							return "Portrait 9 x 16";
-						else
-							return "Landscape 4 x 3";
+						return "Landscape 4 x 3";
 					default:
 						return "Landscape 4 x 3";
 				}
@@ -126,21 +121,19 @@ namespace NewBizWiz.Core.Common
 					case "Landscape":
 						if (SizeWidth == 10 && SizeHeght == 7.5)
 							return "Slides43";
-						else if (SizeWidth == 10.75 && SizeHeght == 8.25)
+						if (SizeWidth == 10.75 && SizeHeght == 8.25)
 							return "Slides54";
 						if (SizeWidth == 10 && SizeHeght == 5.63)
 							return "Slides169";
-						else
-							return "Slides43";
+						return "Slides43";
 					case "Portrait":
 						if (SizeWidth == 10 && SizeHeght == 7.5)
 							return "Slides34";
-						else if (SizeWidth == 10.75 && SizeHeght == 8.25)
+						if (SizeWidth == 10.75 && SizeHeght == 8.25)
 							return "Slides45";
 						if (SizeWidth == 10 && SizeHeght == 5.63)
 							return "Slides916";
-						else
-							return "Slides43";
+						return "Slides43";
 					default:
 						return "Slides43";
 				}
@@ -152,6 +145,12 @@ namespace NewBizWiz.Core.Common
 			XmlNode node;
 			double tempDouble;
 			bool tempBool;
+
+			Orientation = "Landscape";
+			SizeWidth = 10;
+			SizeHeght = 7.5;
+			SelectedWizard = String.Empty;
+
 			if (File.Exists(_sharedSettingsFile))
 			{
 				var document = new XmlDocument();
@@ -213,11 +212,10 @@ namespace NewBizWiz.Core.Common
 		private void LoadAppID()
 		{
 			AppID = Guid.Empty;
-			string appIDPath = Path.Combine(Application.StartupPath, _appIDFile);
-			if (File.Exists(appIDPath))
+			if (File.Exists(_appIDFile))
 			{
 				var document = new XmlDocument();
-				document.Load(appIDPath);
+				document.Load(_appIDFile);
 
 				XmlNode node = document.SelectSingleNode(@"/AppID");
 				if (node != null)
@@ -238,8 +236,7 @@ namespace NewBizWiz.Core.Common
 
 			xml.AppendLine(@"<AppID>" + AppID.ToString() + @"</AppID>");
 
-			string appIDPath = Path.Combine(Application.StartupPath, _appIDFile);
-			using (var sw = new StreamWriter(appIDPath, false))
+			using (var sw = new StreamWriter(_appIDFile, false))
 			{
 				sw.Write(xml);
 				sw.Flush();
@@ -304,7 +301,7 @@ namespace NewBizWiz.Core.Common
 					if (slideFolder.GetDirectories().Length > 0)
 						firstRun = false;
 			}
-			catch {}
+			catch { }
 		}
 
 		private void CheckAppIdFolders()
@@ -326,7 +323,7 @@ namespace NewBizWiz.Core.Common
 				if (!Directory.Exists(Path.Combine(appIDFolder, "user_data")))
 					Directory.CreateDirectory(Path.Combine(appIDFolder, "user_data"));
 			}
-			catch {}
+			catch { }
 		}
 	}
 }

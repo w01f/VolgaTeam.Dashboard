@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.Core.Common;
 using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
@@ -14,6 +13,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 	{
 		private readonly IGridOutputControl _settingsContainer;
 		private bool _allowToSave;
+
+		public event EventHandler<EventArgs> OnHelp;
 
 		public ColumnsControl(IGridOutputControl settingsContainer)
 		{
@@ -127,7 +128,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void pbHelp_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("printnavbar");
+			if (OnHelp != null)
+				OnHelp(this, EventArgs.Empty);
 		}
 
 		#region Picture Box Clicks Habdlers

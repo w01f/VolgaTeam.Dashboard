@@ -38,15 +38,22 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			textEditHeader.Parent = gridControlPublication;
 
 			ColumnsColumns = new ColumnsControl(this);
+			ColumnsColumns.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("logonavbar1");
+
 			AdNotes = new AdNotesControl(this);
+			AdNotes.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("logonavbar2");
+
 			SlideBullets = new SlideBulletsControl(this);
+			SlideBullets.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("logonavbar4");
 			SlideBullets.checkEditColumnInches.Visible = false;
 			SlideBullets.checkEditDimensions.Visible = false;
 			SlideBullets.checkEditPageSize.Visible = false;
 			SlideBullets.checkEditPercentOfPage.Visible = false;
 			SlideBullets.checkEditDelivery.Visible = false;
 			SlideBullets.checkEditReadership.Visible = false;
+
 			SlideHeader = new SlideHeaderControl(this);
+			SlideHeader.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("logonavbar3");
 			SlideHeader.checkEditPublicationName.Visible = false;
 			SlideHeader.checkEditLogo1.Visible = false;
 			SlideHeader.checkEditLogo2.Visible = false;
@@ -102,9 +109,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			laScheduleWindow.Text = string.Format("{0} - {1}", new object[] { LocalSchedule.FlightDateStart.ToString("MM/dd/yy"), LocalSchedule.FlightDateEnd.ToString("MM/dd/yy") });
-			laScheduleName.Text = LocalSchedule.Name;
-			laAdvertiser.Text = LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
 			if (!quickLoad)
 			{
 				AllowToSave = false;
@@ -142,15 +146,16 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SettingsNotSaved = false;
 		}
 
-		public void ResetToDefault()
+		private void ResetToDefault()
 		{
 			LocalSchedule.ViewSettings.MultiGridViewSettings.ResetToDefault();
-
 			AllowToSave = false;
 			LoadView();
 			SetColumnsState();
 			UpdateSlideBullets();
 			AllowToSave = true;
+			SettingsNotSaved = false;
+			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
 		}
 
 		public void OpenHelp()
@@ -579,16 +584,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
-		private void checkEdit_MouseDown(object sender, MouseEventArgs e)
-		{
-			var cEdit = (CheckEdit)sender;
-			var cInfo = (CheckEditViewInfo)cEdit.GetViewInfo();
-			Rectangle r = cInfo.CheckInfo.GlyphRect;
-			var editorRect = new Rectangle(new Point(0, 0), cEdit.Size);
-			if (!r.Contains(e.Location) && editorRect.Contains(e.Location))
-				((DXMouseEventArgs)e).Handled = true;
-		}
-
 		private void textEditHeader_Leave(object sender, EventArgs e)
 		{
 			_activeCol.Caption = textEditHeader.Text;
@@ -633,6 +628,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			textEditHeader.Hide();
 
 			SaveView();
+		}
+
+		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		{
+			ResetToDefault();
+			e.Handled = true;
 		}
 		#endregion
 

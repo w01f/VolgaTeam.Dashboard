@@ -17,6 +17,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 	{
 		private readonly IGridOutputControl _settingsContainer;
 
+		public event EventHandler<EventArgs> OnHelp;
+
 		public AdNotesControl(IGridOutputControl settingsContainer)
 		{
 			InitializeComponent();
@@ -234,7 +236,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void pbHelp_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("adnotesnavbar");
+			if (OnHelp != null)
+				OnHelp(this, EventArgs.Empty);
 		}
 
 		#region Picture Box Clicks Habdlers

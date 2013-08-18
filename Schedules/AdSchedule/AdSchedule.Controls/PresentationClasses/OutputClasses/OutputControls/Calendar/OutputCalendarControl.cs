@@ -47,11 +47,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public virtual void UpdateMonthView()
 		{
-			if (AllowToSave && comboBoxEditMonthSelector.Properties.Items.Count > 0)
+			if (AllowToSave && Controller.Instance.CalendarMonthList.Items.Count > 0)
 			{
 				ShowEmpty();
 				pnCalendarView.Controls.Clear();
-				DateTime selectedMonth = LocalSchedule.ScheduleMonths[comboBoxEditMonthSelector.SelectedIndex];
+				DateTime selectedMonth = LocalSchedule.ScheduleMonths[Controller.Instance.CalendarMonthList.SelectedIndex];
 				_selectedMonth = _monthViews.Where(x => x.Settings.Month.Month.Equals(selectedMonth.Month) && x.Settings.Month.Year.Equals(selectedMonth.Year)).FirstOrDefault();
 				if (_selectedMonth == null)
 				{
@@ -244,10 +244,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			laScheduleWindow.Text = string.Format("{0} - {1}", new object[] { LocalSchedule.FlightDateStart.ToString("MM/dd/yy"), LocalSchedule.FlightDateEnd.ToString("MM/dd/yy") });
-			laScheduleName.Text = LocalSchedule.Name;
-			laAdvertiser.Text = LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
-
+			laAdvertiser.Text = String.Format("Advertiser: {0}{1}Campaign Dates: {2}",LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty),Environment.NewLine, LocalSchedule.FlightDates);
 			if (!quickLoad)
 			{
 				Inserts.Clear();
@@ -260,10 +257,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 				PrepareMonthViews();
 
-				comboBoxEditMonthSelector.Properties.Items.Clear();
-				comboBoxEditMonthSelector.Properties.Items.AddRange(LocalSchedule.ScheduleMonths.Select(x => new ImageListBoxItem(x.ToString("MMM, yyyy"), 0)).ToArray());
-				if (comboBoxEditMonthSelector.Properties.Items.Count > 0)
-					comboBoxEditMonthSelector.SelectedIndex = 0;
+				Controller.Instance.CalendarMonthList.Items.Clear();
+				Controller.Instance.CalendarMonthList.Items.AddRange(LocalSchedule.ScheduleMonths.Select(x => new ImageListBoxItem(x.ToString("MMM, yyyy"), 0)).ToArray());
+				if (Controller.Instance.CalendarMonthList.Items.Count > 0)
+					Controller.Instance.CalendarMonthList.SelectedIndex = 0;
 
 				UpdateMonthView();
 				AllowToSave = true;
@@ -274,7 +271,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SettingsNotSaved = false;
 		}
 
-		public void ResetToDefault()
+		private void ResetToDefault()
 		{
 			LocalSchedule.ViewSettings.CalendarViewSettings.ResetToDefault();
 			ApplySettings();
@@ -282,6 +279,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			UpdateMonthView();
 			_selectedMonth.RefreshData();
 			AllowToSave = true;
+			SettingsNotSaved = false;
+			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
 		}
 
 		public void OpenHelp()
@@ -350,9 +349,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			pnEmpty.SendToBack();
 		}
 
-		private void comboBoxEditMonthSelector_SelectedIndexChanged(object sender, EventArgs e)
+		private void hyperLinkEditReset_OpenLink(object sender, OpenLinkEventArgs e)
 		{
-			UpdateMonthView();
+			ResetToDefault();
+			e.Handled = true;
 		}
 
 		#region Output Staff

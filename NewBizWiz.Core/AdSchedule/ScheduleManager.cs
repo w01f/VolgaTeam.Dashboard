@@ -46,19 +46,23 @@ namespace NewBizWiz.Core.AdSchedule
 	{
 		private Schedule _currentSchedule;
 
+		public bool ScheduleLoaded { get; set; }
 		public event EventHandler<SavingingEventArgs> SettingsSaved;
 
 		public void OpenSchedule(string scheduleName, bool create)
 		{
 			string scheduleFilePath = GetScheduleFileName(scheduleName);
 			if (create && File.Exists(scheduleFilePath))
-				File.Delete(scheduleFilePath);
+				if (Utilities.Instance.ShowWarningQuestion(string.Format("An older Schedule is already saved with this same file name.\nDo you want to replace this file with a newer schedule?", scheduleName)) == DialogResult.Yes)
+					File.Delete(scheduleFilePath);
 			_currentSchedule = new Schedule(scheduleFilePath);
+			ScheduleLoaded = true;
 		}
 
 		public void OpenSchedule(string scheduleFilePath)
 		{
 			_currentSchedule = new Schedule(scheduleFilePath);
+			ScheduleLoaded = true;
 		}
 
 		public string GetScheduleFileName(string scheduleName)
@@ -71,6 +75,11 @@ namespace NewBizWiz.Core.AdSchedule
 			return new Schedule(_currentSchedule.ScheduleFile.FullName);
 		}
 
+		public ShortSchedule GetShortSchedule()
+		{
+			return new ShortSchedule(_currentSchedule.ScheduleFile);
+		}
+
 		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)
 		{
 			localSchedule.Save();
@@ -79,14 +88,21 @@ namespace NewBizWiz.Core.AdSchedule
 				SettingsSaved(sender, new SavingingEventArgs(quickSave));
 		}
 
-		public ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
+		public static ShortSchedule[] GetShortScheduleList()
+		{
+			var saveFolder = new DirectoryInfo(SettingsManager.Instance.SaveFolder);
+			if (saveFolder.Exists)
+				return GetShortScheduleList(saveFolder);
+			return null;
+		}
+
+		public static ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
 		{
 			var scheduleList = new List<ShortSchedule>();
 			foreach (FileInfo file in rootFolder.GetFiles("*.xml"))
 			{
 				var schedule = new ShortSchedule(file);
-				if (!string.IsNullOrEmpty(schedule.BusinessName))
-					scheduleList.Add(schedule);
+				scheduleList.Add(schedule);
 			}
 			return scheduleList.ToArray();
 		}
@@ -124,7 +140,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public string ShortFileName
 		{
-			get { return _scheduleFile.Name.Replace(_scheduleFile.Extension, ""); }
+			get { return String.IsNullOrEmpty(_scheduleFile.Extension) ? _scheduleFile.Name : _scheduleFile.Name.Replace(_scheduleFile.Extension, ""); }
 		}
 
 		public string FullFileName
@@ -192,6 +208,7 @@ namespace NewBizWiz.Core.AdSchedule
 			Status = ListManager.Instance.Statuses.FirstOrDefault();
 			PrintProducts = new List<PrintProduct>();
 			DigitalProducts = new List<DigitalProduct>();
+			Summary = new SummarySettings();
 			ViewSettings = new ScheduleBuilderViewSettings();
 
 			_scheduleFile = new FileInfo(fileName);
@@ -230,6 +247,8 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public ScheduleBuilderViewSettings ViewSettings { get; set; }
 
+		public SummarySettings Summary { get; set; }
+
 		public string Name
 		{
 			get { return _scheduleFile.Name.Replace(_scheduleFile.Extension, ""); }
@@ -249,8 +268,7 @@ namespace NewBizWiz.Core.AdSchedule
 				{
 					return null;
 				}
-				else
-					return PresentationDate;
+				return PresentationDate;
 			}
 		}
 
@@ -262,8 +280,7 @@ namespace NewBizWiz.Core.AdSchedule
 				{
 					return null;
 				}
-				else
-					return FlightDateStart;
+				return FlightDateStart;
 			}
 		}
 
@@ -275,8 +292,7 @@ namespace NewBizWiz.Core.AdSchedule
 				{
 					return null;
 				}
-				else
-					return FlightDateEnd;
+				return FlightDateEnd;
 			}
 		}
 
@@ -312,7 +328,6 @@ namespace NewBizWiz.Core.AdSchedule
 
 		private void Load()
 		{
-			int tempInt;
 			DateTime tempDateTime;
 
 			XmlNode node;
@@ -343,32 +358,35 @@ namespace NewBizWiz.Core.AdSchedule
 
 				node = document.SelectSingleNode(@"/Schedule/PresentationDate");
 				if (node != null)
-				{
-					tempDateTime = DateTime.MaxValue;
-					DateTime.TryParse(node.InnerText, out tempDateTime);
-					PresentationDate = tempDateTime;
-				}
+					if (DateTime.TryParse(node.InnerText, out tempDateTime))
+						PresentationDate = tempDateTime;
 
 				node = document.SelectSingleNode(@"/Schedule/FlightDateStart");
 				if (node != null)
-				{
-					tempDateTime = DateTime.MaxValue;
-					DateTime.TryParse(node.InnerText, out tempDateTime);
-					FlightDateStart = tempDateTime;
-				}
+					if (DateTime.TryParse(node.InnerText, out tempDateTime))
+						FlightDateStart = tempDateTime;
 
 				node = document.SelectSingleNode(@"/Schedule/FlightDateEnd");
 				if (node != null)
-				{
-					tempDateTime = DateTime.MaxValue;
-					DateTime.TryParse(node.InnerText, out tempDateTime);
-					FlightDateEnd = tempDateTime;
-				}
+					if (DateTime.TryParse(node.InnerText, out tempDateTime))
+						FlightDateEnd = tempDateTime;
+
 
 				node = document.SelectSingleNode(@"/Schedule/ViewSettings");
 				if (node != null)
 				{
 					ViewSettings.Deserialize(node);
+				}
+
+				node = document.SelectSingleNode(@"/Schedule/Summary");
+				if (node != null)
+				{
+					Summary.Deserialize(node);
+				}
+				if (Summary.Items.Count == 0)
+				{
+					Summary.Items.Add(new SummaryItem { Order = 0 });
+					Summary.Items.Add(new SummaryItem { Order = 1 });
 				}
 
 				node = document.SelectSingleNode(@"/Schedule/Publications");
@@ -427,6 +445,7 @@ namespace NewBizWiz.Core.AdSchedule
 			xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd.ToString() + @"</FlightDateEnd>");
 
 			xml.AppendLine(@"<ViewSettings>" + ViewSettings.Serialize() + @"</ViewSettings>");
+			xml.AppendLine(@"<Summary>" + Summary.Serialize() + @"</Summary>");
 
 			xml.AppendLine(@"<Publications>");
 			foreach (PrintProduct publication in PrintProducts)
@@ -1065,17 +1084,17 @@ namespace NewBizWiz.Core.AdSchedule
 			}
 			else
 			{
-				string filePath = Path.Combine(ListManager.Instance.BigImageFolder.FullName, ListManager.DefaultBigLogoFileName);
+				string filePath = Path.Combine(Common.ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
 				if (File.Exists(filePath))
 					BigLogo = new Bitmap(filePath);
 				else
 					BigLogo = null;
-				filePath = Path.Combine(ListManager.Instance.SmallImageFolder.FullName, ListManager.DefaultSmallLogoFileName);
+				filePath = Path.Combine(Common.ListManager.Instance.SmallImageFolder.FullName, Common.ListManager.DefaultSmallLogoFileName);
 				if (File.Exists(filePath))
 					SmallLogo = new Bitmap(filePath);
 				else
 					SmallLogo = null;
-				filePath = Path.Combine(ListManager.Instance.TinyImageFolder.FullName, ListManager.DefaultTinyLogoFileName);
+				filePath = Path.Combine(Common.ListManager.Instance.TinyImageFolder.FullName, Common.ListManager.DefaultTinyLogoFileName);
 				if (File.Exists(filePath))
 					TinyLogo = new Bitmap(filePath);
 				else
@@ -1830,5 +1849,267 @@ namespace NewBizWiz.Core.AdSchedule
 			return clone;
 		}
 		#endregion
+	}
+
+	public class SummarySettings
+	{
+		public SummarySettings()
+		{
+			ShowAdvertiser = true;
+			ShowDecisionMaker = true;
+			ShowPresentationDate = true;
+			ShowFlightDates = true;
+			ShowMonthly = true;
+			ShowTotal = true;
+			ShowSignature = true;
+			EnableTotalsEdit = false;
+
+			SlideHeader = string.Empty;
+			MonthlyValue = 0;
+			TotalValue = 0;
+
+			Items = new List<SummaryItem>();
+		}
+
+		public bool ShowAdvertiser { get; set; }
+		public bool ShowDecisionMaker { get; set; }
+		public bool ShowPresentationDate { get; set; }
+		public bool ShowFlightDates { get; set; }
+		public bool ShowMonthly { get; set; }
+		public bool ShowTotal { get; set; }
+		public bool ShowSignature { get; set; }
+		public bool EnableTotalsEdit { get; set; }
+
+		public string SlideHeader { get; set; }
+		public decimal MonthlyValue { get; set; }
+		public decimal TotalValue { get; set; }
+
+		public List<SummaryItem> Items { get; set; }
+
+		public decimal TotalMonthly
+		{
+			get
+			{
+				var items = Items.Where(it => !String.IsNullOrEmpty(it.Value) && it.ShowMonthly);
+				if (items.Any())
+					return items.Sum(it => it.Monthly);
+				return 0;
+			}
+		}
+
+		public decimal TotalTotal
+		{
+			get
+			{
+				var items = Items.Where(it => !String.IsNullOrEmpty(it.Value) && it.ShowTotal);
+				if (items.Any())
+					return items.Sum(it => it.Total);
+				return 0;
+			}
+		}
+
+		public string Serialize()
+		{
+			var result = new StringBuilder();
+
+			result.AppendLine(@"<ShowAdvertiser>" + ShowAdvertiser + @"</ShowAdvertiser>");
+			result.AppendLine(@"<ShowDecisionMaker>" + ShowDecisionMaker + @"</ShowDecisionMaker>");
+			result.AppendLine(@"<ShowPresentationDate>" + ShowPresentationDate + @"</ShowPresentationDate>");
+			result.AppendLine(@"<ShowFlightDates>" + ShowFlightDates + @"</ShowFlightDates>");
+			result.AppendLine(@"<ShowMonthly>" + ShowMonthly + @"</ShowMonthly>");
+			result.AppendLine(@"<ShowTotal>" + ShowTotal + @"</ShowTotal>");
+			result.AppendLine(@"<ShowSignature>" + ShowSignature + @"</ShowSignature>");
+			result.AppendLine(@"<EnableTotalsEdit>" + EnableTotalsEdit + @"</EnableTotalsEdit>");
+
+			result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
+			result.AppendLine(@"<MonthlyValue>" + MonthlyValue + @"</MonthlyValue>");
+			result.AppendLine(@"<TotalValue>" + TotalValue + @"</TotalValue>");
+
+			result.AppendLine(@"<Items>");
+			foreach (var item in Items.Where(it => it.Commited))
+				result.AppendLine(@"<Item>" + item.Serialize() + @"</Item>");
+			result.AppendLine(@"</Items>");
+
+			return result.ToString();
+		}
+
+		public void Deserialize(XmlNode node)
+		{
+			bool tempBool;
+			decimal tempDecimal;
+
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "ShowAdvertiser":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowAdvertiser = tempBool;
+						break;
+					case "ShowDecisionMaker":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowDecisionMaker = tempBool;
+						break;
+					case "ShowPresentationDate":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowPresentationDate = tempBool;
+						break;
+					case "ShowFlightDates":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowFlightDates = tempBool;
+						break;
+					case "ShowMonthly":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowMonthly = tempBool;
+						break;
+					case "ShowTotal":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTotal = tempBool;
+						break;
+					case "ShowSignature":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowSignature = tempBool;
+						break;
+					case "EnableTotalsEdit":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							EnableTotalsEdit = tempBool;
+						break;
+					case "SlideHeader":
+						SlideHeader = childNode.InnerText;
+						break;
+					case "MonthlyValue":
+						if (decimal.TryParse(childNode.InnerText, out tempDecimal))
+							MonthlyValue = tempDecimal;
+						break;
+					case "TotalValue":
+						if (decimal.TryParse(childNode.InnerText, out tempDecimal))
+							TotalValue = tempDecimal;
+						break;
+					case "Items":
+						Items.Clear();
+						foreach (XmlNode itemNode in childNode.ChildNodes)
+						{
+							var item = new SummaryItem();
+							item.Deserialize(itemNode);
+							Items.Add(item);
+						}
+						Items.Sort((x, y) => x.Order.CompareTo(y.Order));
+						break;
+				}
+			}
+		}
+
+		public void ReorderItems(int shifIndex = -1)
+		{
+			var i = 0;
+			foreach (var item in Items.OrderBy(it => it.Order))
+			{
+				if (i == shifIndex)
+					i++;
+				item.Order = i;
+				i++;
+			}
+		}
+	}
+
+	public class SummaryItem
+	{
+		public SummaryItem()
+		{
+			ShowValue = true;
+			ShowDescription = true;
+			ShowMonthly = true;
+			ShowTotal = true;
+
+			Identifier = Guid.NewGuid().ToString();
+			Order = 0;
+		}
+
+		public bool ShowValue { get; set; }
+		public bool ShowDescription { get; set; }
+		public bool ShowMonthly { get; set; }
+		public bool ShowTotal { get; set; }
+
+		public string Identifier { get; set; }
+		public int Order { get; set; }
+		public string Value { get; set; }
+		public string Description { get; set; }
+		public decimal Monthly { get; set; }
+		public decimal Total { get; set; }
+
+		public bool Commited { get; set; }
+
+		public string Serialize()
+		{
+			var result = new StringBuilder();
+
+			result.AppendLine(@"<ShowDescription>" + ShowDescription + @"</ShowDescription>");
+			result.AppendLine(@"<ShowMonthly>" + ShowMonthly + @"</ShowMonthly>");
+			result.AppendLine(@"<ShowTotal>" + ShowTotal + @"</ShowTotal>");
+			result.AppendLine(@"<ShowValue>" + ShowValue + @"</ShowValue>");
+
+			result.AppendLine(@"<Identifier>" + Identifier + @"</Identifier>");
+			result.AppendLine(@"<Order>" + Order + @"</Order>");
+			if (!String.IsNullOrEmpty(Value))
+				result.AppendLine(@"<Value>" + Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Value>");
+			if (!String.IsNullOrEmpty(Description))
+				result.AppendLine(@"<Description>" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Description>");
+			result.AppendLine(@"<Monthly>" + Monthly + @"</Monthly>");
+			result.AppendLine(@"<Total>" + Total + @"</Total>");
+
+			return result.ToString();
+		}
+
+		public void Deserialize(XmlNode node)
+		{
+			bool tempBool;
+			int tempInt;
+			decimal tempDecimal;
+
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "ShowDescription":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowDescription = tempBool;
+						break;
+					case "ShowMonthly":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowMonthly = tempBool;
+						break;
+					case "ShowTotal":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTotal = tempBool;
+						break;
+					case "ShowValue":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowValue = tempBool;
+						break;
+					case "Identifier":
+						Identifier = childNode.InnerText;
+						break;
+					case "Order":
+						if (int.TryParse(childNode.InnerText, out tempInt))
+							Order = tempInt;
+						break;
+					case "Monthly":
+						if (decimal.TryParse(childNode.InnerText, out tempDecimal))
+							Monthly = tempDecimal;
+						break;
+					case "Total":
+						if (decimal.TryParse(childNode.InnerText, out tempDecimal))
+							Total = tempDecimal;
+						break;
+					case "Value":
+						Value = childNode.InnerText;
+						break;
+					case "Description":
+						Description = childNode.InnerText;
+						break;
+				}
+			}
+			Commited = true;
+		}
 	}
 }

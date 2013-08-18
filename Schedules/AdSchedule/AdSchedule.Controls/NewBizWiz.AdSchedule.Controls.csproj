@@ -98,6 +98,7 @@
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="BusinessClasses\RateCardManager.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="InteropClasses\SummaryHelper.cs" />
     <Compile Include="PresentationClasses\InputClasses\AdNotesWeekdaysSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,6 +113,27 @@
     </Compile>
     <Compile Include="PresentationClasses\InputClasses\DigitalProductContainerControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\InputClasses\AdWebPackageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryOutputItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryOutputItemControl.Designer.cs">
+      <DependentUpon>SummaryOutputItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryInputItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryInputItemControl.Designer.cs">
+      <DependentUpon>SummaryInputItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\SummaryControl.Designer.cs">
+      <DependentUpon>SummaryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\RateCard\DefaultViewer.cs">
       <SubType>Component</SubType>
@@ -477,6 +499,15 @@
     <EmbeddedResource Include="PresentationClasses\InputClasses\AdNotesWeekdaysSelector.resx">
       <DependentUpon>AdNotesWeekdaysSelector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\SummaryOutputItemControl.resx">
+      <DependentUpon>SummaryOutputItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\SummaryInputItemControl.resx">
+      <DependentUpon>SummaryInputItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\Summary\SummaryControl.resx">
+      <DependentUpon>SummaryControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\RateCard\DefaultViewer.resx">
       <DependentUpon>DefaultViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -671,9 +702,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\NewSchedule.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\AdSize.png" />
   </ItemGroup>
   <ItemGroup>
@@ -687,9 +715,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\NudgeUp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Advertiser.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\NudgeDown.png" />
@@ -930,22 +955,7 @@
     <None Include="Resources\Preview.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ExcelInactive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImageInactive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TableInactive.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\OutputLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ExportCalendar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Reset.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Digital.png" />
@@ -982,6 +992,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HelpSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CalendarMonth.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewScheduleRibbon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenScheduleRibbon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BasicInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RedWarning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

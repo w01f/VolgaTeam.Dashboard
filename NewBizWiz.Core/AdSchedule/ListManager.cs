@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 using System.Xml;
 using NewBizWiz.Core.Common;
 
@@ -13,33 +11,10 @@ namespace NewBizWiz.Core.AdSchedule
 	{
 		private const string PrintStrategyFileName = @"Newspaper XML\Print Strategy.xml";
 
-		public const string DefaultBigLogoFileName = @"Default.png";
-		public const string DefaultSmallLogoFileName = @"Default2.png";
-		public const string DefaultTinyLogoFileName = @"Default3.png";
-
 		private static readonly ListManager _instance = new ListManager();
 
 		private ListManager()
 		{
-			string imageFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\PRINT\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			string folderPath = Path.Combine(imageFolderPath, "Big Logos");
-			if (Directory.Exists(folderPath))
-				BigImageFolder = new DirectoryInfo(folderPath);
-			else
-				BigImageFolder = new DirectoryInfo(Application.StartupPath);
-
-			folderPath = Path.Combine(imageFolderPath, "Small Logos");
-			if (Directory.Exists(folderPath))
-				SmallImageFolder = new DirectoryInfo(folderPath);
-			else
-				SmallImageFolder = new DirectoryInfo(Application.StartupPath);
-
-			folderPath = Path.Combine(imageFolderPath, "Tiny Logos");
-			if (Directory.Exists(folderPath))
-				TinyImageFolder = new DirectoryInfo(folderPath);
-			else
-				TinyImageFolder = new DirectoryInfo(Application.StartupPath);
-
 			PublicationSources = new List<PrintProductSource>();
 			Readerships = new List<PrintProductSource>();
 			PageSizes = new List<string>();
@@ -103,9 +78,6 @@ namespace NewBizWiz.Core.AdSchedule
 			get { return _instance; }
 		}
 
-		public DirectoryInfo BigImageFolder { get; set; }
-		public DirectoryInfo SmallImageFolder { get; set; }
-		public DirectoryInfo TinyImageFolder { get; set; }
 		public List<PrintProductSource> PublicationSources { get; set; }
 		public List<PrintProductSource> Readerships { get; set; }
 		public List<string> PageSizes { get; set; }
@@ -163,18 +135,18 @@ namespace NewBizWiz.Core.AdSchedule
 			Statuses.Clear();
 
 			var defaultPublication = new PrintProductSource();
-			filePath = Path.Combine(BigImageFolder.FullName, DefaultBigLogoFileName);
+			filePath = Path.Combine(Common.ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
 			defaultPublication.Name = "Default";
 			if (File.Exists(filePath))
 				defaultPublication.BigLogo = new Bitmap(filePath);
 			else
 				defaultPublication.BigLogo = null;
-			filePath = Path.Combine(SmallImageFolder.FullName, DefaultSmallLogoFileName);
+			filePath = Path.Combine(Common.ListManager.Instance.SmallImageFolder.FullName, Common.ListManager.DefaultSmallLogoFileName);
 			if (File.Exists(filePath))
 				defaultPublication.SmallLogo = new Bitmap(filePath);
 			else
 				defaultPublication.SmallLogo = null;
-			filePath = Path.Combine(TinyImageFolder.FullName, DefaultTinyLogoFileName);
+			filePath = Path.Combine(Common.ListManager.Instance.TinyImageFolder.FullName, Common.ListManager.DefaultTinyLogoFileName);
 			if (File.Exists(filePath))
 				defaultPublication.TinyLogo = new Bitmap(filePath);
 			else
@@ -214,9 +186,9 @@ namespace NewBizWiz.Core.AdSchedule
 										case "BigLogo":
 											dailySource.BigLogo = null;
 											dailySource.BigLogoFileName = attribute.Value;
-											filePath = Path.Combine(BigImageFolder.FullName, attribute.Value);
+											filePath = Path.Combine(Common.ListManager.Instance.BigImageFolder.FullName, attribute.Value);
 											if (!File.Exists(filePath))
-												filePath = Path.Combine(BigImageFolder.FullName, DefaultBigLogoFileName);
+												filePath = Path.Combine(Common.ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
 											if (File.Exists(filePath))
 												dailySource.BigLogo = new Bitmap(filePath);
 											sundaySource.BigLogo = dailySource.BigLogo;
@@ -225,9 +197,9 @@ namespace NewBizWiz.Core.AdSchedule
 										case "LittleLogo":
 											dailySource.SmallLogo = null;
 											dailySource.SmallLogoFileName = attribute.Value;
-											filePath = Path.Combine(SmallImageFolder.FullName, attribute.Value);
+											filePath = Path.Combine(Common.ListManager.Instance.SmallImageFolder.FullName, attribute.Value);
 											if (!File.Exists(filePath))
-												filePath = Path.Combine(SmallImageFolder.FullName, DefaultSmallLogoFileName);
+												filePath = Path.Combine(Common.ListManager.Instance.SmallImageFolder.FullName, Common.ListManager.DefaultSmallLogoFileName);
 											if (File.Exists(filePath))
 												dailySource.SmallLogo = new Bitmap(filePath);
 											sundaySource.SmallLogo = dailySource.SmallLogo;
@@ -236,9 +208,9 @@ namespace NewBizWiz.Core.AdSchedule
 										case "TinyLogo":
 											dailySource.TinyLogo = null;
 											dailySource.TinyLogoFileName = attribute.Value;
-											filePath = Path.Combine(TinyImageFolder.FullName, attribute.Value);
+											filePath = Path.Combine(Common.ListManager.Instance.TinyImageFolder.FullName, attribute.Value);
 											if (!File.Exists(filePath))
-												filePath = Path.Combine(TinyImageFolder.FullName, DefaultTinyLogoFileName);
+												filePath = Path.Combine(Common.ListManager.Instance.TinyImageFolder.FullName, Common.ListManager.DefaultTinyLogoFileName);
 											if (File.Exists(filePath))
 												dailySource.TinyLogo = new Bitmap(filePath);
 											sundaySource.TinyLogo = dailySource.TinyLogo;

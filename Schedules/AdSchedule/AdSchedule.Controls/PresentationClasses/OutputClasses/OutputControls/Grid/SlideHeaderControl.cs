@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
@@ -11,6 +10,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 	{
 		private readonly IGridOutputControl _settingsContainer;
 		private bool _allowToSave;
+
+		public event EventHandler<EventArgs> OnHelp;
 
 		public SlideHeaderControl(IGridOutputControl settingsContainer)
 		{
@@ -104,7 +105,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void pbHelp_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("headersnavbar");
+			if (OnHelp != null)
+				OnHelp(this, EventArgs.Empty);
 		}
 
 		#region Picture Box Clicks Habdlers

@@ -24,12 +24,14 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.Ribbon = ribbonControl;
 			Controller.Instance.TabPrintProduct = ribbonTabItemPrintSchedule;
 			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSchedule;
+			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
 			Controller.Instance.TabBasicOverview = ribbonTabItemOverview;
 			Controller.Instance.TabMultiSummary = ribbonTabItemMultiSummary;
 			Controller.Instance.TabSnapshot = ribbonTabItemSnapshot;
 			Controller.Instance.TabDetailedGrid = ribbonTabItemDetailedGrid;
 			Controller.Instance.TabMultiGrid = ribbonTabItemMultiGrid;
 			Controller.Instance.TabCalendar = ribbonTabItemCalendars;
+			Controller.Instance.TabSummary = ribbonTabItemSummary;
 
 			#region Command Controls
 
@@ -103,12 +105,21 @@ namespace NewBizWiz.AdSchedule.Internal
 			#region Digital Product
 			Controller.Instance.DigitalProductOptions = buttonItemDigitalScheduleOptions;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
-			Controller.Instance.DigitalProductReset = buttonItemDigitalScheduleReset;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalProductEmail = buttonItemDigitalScheduleEmail;
 			Controller.Instance.DigitalProductSave = buttonItemDigitalScheduleSave;
 			Controller.Instance.DigitalProductSaveAs = buttonItemDigitalScheduleSaveAs;
 			Controller.Instance.DigitalProductHelp = buttonItemDigitalScheduleHelp;
+			#endregion
+
+			#region Digital Package
+			Controller.Instance.DigitalPackageHelp = buttonItemDigitalPackageHelp;
+			Controller.Instance.DigitalPackageSave = buttonItemDigitalPackageSave;
+			Controller.Instance.DigitalPackageSaveAs = buttonItemDigitalPackageSaveAs;
+			Controller.Instance.DigitalPackagePreview = buttonItemDigitalPackagePreview;
+			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
+			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
+			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageOptions;
 			#endregion
 
 			#region Basic Overview
@@ -118,7 +129,6 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.BasicOverviewPreview = buttonItemOverviewPreview;
 			Controller.Instance.BasicOverviewEmail = buttonItemOverviewEmail;
 			Controller.Instance.BasicOverviewPowerPoint = buttonItemOverviewPowerPoint;
-			Controller.Instance.BasicOverviewReset = buttonItemOverviewReset;
 			Controller.Instance.BasicOverviewDigitalLegend = buttonItemOverviewDigital;
 			#endregion
 
@@ -129,7 +139,6 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.MultiSummaryPreview = buttonItemMultiSummaryPreview;
 			Controller.Instance.MultiSummaryEmail = buttonItemMultiSummaryEmail;
 			Controller.Instance.MultiSummaryPowerPoint = buttonItemMultiSummaryPowerPoint;
-			Controller.Instance.MultiSummaryReset = buttonItemMultiSummaryReset;
 			Controller.Instance.MultiSummaryDigitalLegend = buttonItemMultiSummaryDigital;
 			#endregion
 
@@ -141,7 +150,6 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.SnapshotPreview = buttonItemSnapshotPreview;
 			Controller.Instance.SnapshotEmail = buttonItemSnapshotEmail;
 			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
-			Controller.Instance.SnapshotReset = buttonItemSnapshotReset;
 			Controller.Instance.SnapshotDigitalLegend = buttonItemSnapshotDigital;
 			#endregion
 
@@ -153,7 +161,6 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.DetailedGridPreview = buttonItemDetailedGridPreview;
 			Controller.Instance.DetailedGridEmail = buttonItemDetailedGridEmail;
 			Controller.Instance.DetailedGridPowerPoint = buttonItemDetailedGridPowerPoint;
-			Controller.Instance.DetailedGridReset = buttonItemDetailedGridReset;
 			Controller.Instance.DetailedGridDigitalLegend = buttonItemDetailedGridDigital;
 			#endregion
 
@@ -165,7 +172,6 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.MultiGridPreview = buttonItemMultiGridPreview;
 			Controller.Instance.MultiGridEmail = buttonItemMultiGridEmail;
 			Controller.Instance.MultiGridPowerPoint = buttonItemMultiGridPowerPoint;
-			Controller.Instance.MultiGridReset = buttonItemMultiGridReset;
 			Controller.Instance.MultiGridDigitalLegend = buttonItemMultiGridDigital;
 			#endregion
 
@@ -177,8 +183,17 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.CalendarPreview = buttonItemCalendarsPreview;
 			Controller.Instance.CalendarEmail = buttonItemCalendarsEmail;
 			Controller.Instance.CalendarPowerPoint = buttonItemCalendarsPowerPoint;
-			Controller.Instance.CalendarReset = buttonItemCalendarsReset;
-			Controller.Instance.CalendarExport = buttonItemCalendarsExport;
+			Controller.Instance.CalendarMonthList = listBoxControlCalendar;
+			#endregion
+
+			#region Summary
+			Controller.Instance.SummaryAddItem = buttonItemSummaryAdd;
+			Controller.Instance.SummaryHelp = buttonItemSummaryHelp;
+			Controller.Instance.SummarySave = buttonItemSummarySave;
+			Controller.Instance.SummarySaveAs = buttonItemSummarySaveAs;
+			Controller.Instance.SummaryPreview = buttonItemSummaryPreview;
+			Controller.Instance.SummaryEmail = buttonItemSummaryEmail;
+			Controller.Instance.SummaryPowerPoint = buttonItemSummaryPowerPoint;
 			#endregion
 
 			#region Rate Card
@@ -284,6 +299,10 @@ namespace NewBizWiz.AdSchedule.Internal
 			{
 				result = Controller.Instance.DigitalProductContainer.AllowToLeaveControl;
 			}
+			else if ((_currentControl == Controller.Instance.DigitalPackage))
+			{
+				result = Controller.Instance.DigitalPackage.AllowToLeaveControl;
+			}
 			else if ((_currentControl == Controller.Instance.Summaries))
 			{
 				result = Controller.Instance.Summaries.AllowToLeaveControl;
@@ -295,6 +314,10 @@ namespace NewBizWiz.AdSchedule.Internal
 			else if ((_currentControl == Controller.Instance.Calendars))
 			{
 				result = Controller.Instance.Calendars.AllowToLeaveControl;
+			}
+			else if ((_currentControl == Controller.Instance.Summary))
+			{
+				result = Controller.Instance.Summary.AllowToLeaveControl;
 			}
 			else
 				result = true;
@@ -309,7 +332,7 @@ namespace NewBizWiz.AdSchedule.Internal
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = "SellerPoint Media Schedules - " + SettingsManager.Instance.SelectedWizard + " - " + SettingsManager.Instance.Size;
+				Text = String.Format("SellerPoint Media Schedules - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
 			ribbonControl.Enabled = false;
 			using (var form = new FormProgress())
 			{
@@ -322,10 +345,9 @@ namespace NewBizWiz.AdSchedule.Internal
 					Application.DoEvents();
 				form.Close();
 			}
-
 			ribbonTabItemRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Count > 0;
-			ribbonControl.SelectedRibbonTabItem = ribbonTabItemPrintScheduleettings;
 			ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
+			ribbonControl.SelectedRibbonTabItem = ribbonTabItemScheduleSettings;
 			ribbonControl_SelectedRibbonTabChanged(null, null);
 			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 			if (SettingsManager.Instance.SizeWidth == 10 && SettingsManager.Instance.SizeHeght == 5.63)
@@ -337,7 +359,7 @@ namespace NewBizWiz.AdSchedule.Internal
 
 		private void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
-			if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemPrintScheduleettings)
+			if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemScheduleSettings)
 			{
 				if (AllowToLeaveCurrentControl() || _currentControl == null)
 				{
@@ -393,6 +415,26 @@ namespace NewBizWiz.AdSchedule.Internal
 					}
 					Controller.Instance.DigitalProductContainer.BringToFront();
 					_currentControl = Controller.Instance.DigitalProductContainer;
+				}
+				else
+					_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDigitalPackage)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					if (!pnMain.Controls.Contains(Controller.Instance.DigitalPackage))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(Controller.Instance.DigitalPackage);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					Controller.Instance.DigitalPackage.BringToFront();
+					_currentControl = Controller.Instance.DigitalPackage;
 				}
 				else
 					_currentControl.BringToFront();
@@ -523,6 +565,26 @@ namespace NewBizWiz.AdSchedule.Internal
 				else
 					_currentControl.BringToFront();
 			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSummary)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					if (!pnMain.Controls.Contains(Controller.Instance.Summary))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(Controller.Instance.Summary);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					Controller.Instance.Summary.BringToFront();
+					_currentControl = Controller.Instance.Summary;
+				}
+				else
+					_currentControl.BringToFront();
+			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRateCard)
 			{
 				if (AllowToLeaveCurrentControl() || _currentControl == null)
@@ -555,12 +617,16 @@ namespace NewBizWiz.AdSchedule.Internal
 				result = Controller.Instance.PrintProductContainer.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.DigitalProductContainer)
 				result = Controller.Instance.DigitalProductContainer.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.DigitalPackage)
+				result = Controller.Instance.DigitalPackage.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.Summaries)
 				result = Controller.Instance.Summaries.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.Grids)
 				result = Controller.Instance.Grids.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.Calendars)
 				result = Controller.Instance.Calendars.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.Summary)
+				result = Controller.Instance.Summary.AllowToLeaveControl;
 		}
 
 		private void buttonItemFloater_Click(object sender, EventArgs e)

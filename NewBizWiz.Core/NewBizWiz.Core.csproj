@@ -50,6 +50,7 @@
     <Reference Include="DevExpress.Data.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -66,7 +67,11 @@
     <Compile Include="AdSchedule\SettingsManager.cs" />
     <Compile Include="AdSchedule\ViewSettings.cs" />
     <Compile Include="AdSchedule\ExportEventArgs.cs" />
+    <Compile Include="Calendar\CalendarManager.cs" />
+    <Compile Include="Calendar\SettingsManager.cs" />
+    <Compile Include="Calendar\ViewSettings.cs" />
     <Compile Include="Common\HelpManager.cs" />
+    <Compile Include="Common\ImageSource.cs" />
     <Compile Include="Common\ISchedule.cs" />
     <Compile Include="Common\ListManager.cs" />
     <Compile Include="Common\MasterWizardManager.cs" />
@@ -84,6 +89,7 @@
     <Compile Include="OnlineSchedule\ListManager.cs" />
     <Compile Include="OnlineSchedule\ScheduleManager.cs" />
     <Compile Include="OnlineSchedule\SettingsManager.cs" />
+    <Compile Include="OnlineSchedule\ViewSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

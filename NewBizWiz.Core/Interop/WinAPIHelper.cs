@@ -134,8 +134,7 @@ namespace NewBizWiz.Core.Interop
 		public static extern IntPtr FindWindow(string className, string windowName);
 
 		[DllImport("user32.dll")]
-		public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X,
-		                                       int Y, int cx, int cy, uint uFlags);
+		public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
 		[DllImport("user32.dll")]
 		public static extern int SetForegroundWindow(IntPtr wnd);
@@ -198,6 +197,9 @@ namespace NewBizWiz.Core.Interop
 
 		[DllImport("shlwapi.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
 		public static extern int StrCmpLogicalW(String x, String y);
+
+		[DllImport("user32.dll", CharSet = CharSet.Auto)]
+		public static extern int SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
 		#endregion
 
 		public static void MakeTopMost(IntPtr handle)
@@ -223,7 +225,7 @@ namespace NewBizWiz.Core.Interop
 		public static bool InternalCheckIsWow64()
 		{
 			if ((Environment.OSVersion.Version.Major == 5 && Environment.OSVersion.Version.Minor >= 1) ||
-			    Environment.OSVersion.Version.Major >= 6)
+				Environment.OSVersion.Version.Major >= 6)
 			{
 				using (Process p = Process.GetCurrentProcess())
 				{

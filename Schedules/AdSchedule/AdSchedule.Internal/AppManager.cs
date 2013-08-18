@@ -7,7 +7,6 @@ using NewBizWiz.AdSchedule.Controls;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
-using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using SettingsManager = NewBizWiz.Core.AdSchedule.SettingsManager;
@@ -93,15 +92,6 @@ namespace NewBizWiz.AdSchedule.Internal
 				RestoreCulture();
 				RemoveInstances();
 			}
-		}
-
-		public static ShortSchedule[] GetShortScheduleList()
-		{
-			var saveFolder = new DirectoryInfo(SettingsManager.Instance.SaveFolder);
-			if (saveFolder.Exists)
-				return BusinessWrapper.Instance.ScheduleManager.GetShortScheduleList(saveFolder);
-			else
-				return null;
 		}
 
 		private static void RemoveInstances()

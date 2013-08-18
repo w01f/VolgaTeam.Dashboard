@@ -28,9 +28,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			Dock = DockStyle.Fill;
 
 			ColumnsColumns = new ColumnsControl(this);
+			ColumnsColumns.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("detailednavbar1");
+
 			AdNotes = new AdNotesControl(this);
+			AdNotes.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("detailednavbar2");
+
 			SlideBullets = new SlideBulletsControl(this);
+			SlideBullets.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("detailednavbar4");
+
 			SlideHeader = new SlideHeaderControl(this);
+			SlideHeader.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("detailednavbar3");
+
 			SlideHeader.checkEditLogo1.Text = "Publication Logo";
 			SlideHeader.checkEditLogo2.Visible = false;
 			SlideHeader.checkEditLogo3.Visible = false;
@@ -277,9 +285,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			laScheduleWindow.Text = string.Format("{0} - {1}", new object[] { LocalSchedule.FlightDateStart.ToString("MM/dd/yy"), LocalSchedule.FlightDateEnd.ToString("MM/dd/yy") });
-			laScheduleName.Text = LocalSchedule.Name;
-			laAdvertiser.Text = LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
 			if (!quickLoad)
 			{
 				xtraTabControlPublications.SuspendLayout();
@@ -322,15 +327,16 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SettingsNotSaved = false;
 		}
 
-		public void ResetToDefault()
+		private void ResetToDefault()
 		{
 			LocalSchedule.ViewSettings.DetailedGridViewSettings.ResetToDefault();
-
 			LoadView();
 			AllowToSave = false;
 			SetColumnsState();
 			UpdateSlideBullets();
 			AllowToSave = true;
+			SettingsNotSaved = false;
+			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
 		}
 
 		public void OpenHelp()
@@ -899,6 +905,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			AllowToSave = false;
 			UpdateSlideBullets();
 			AllowToSave = true;
+		}
+
+		private void hyperLinkEditReset_OpenLink(object sender, OpenLinkEventArgs e)
+		{
+			ResetToDefault();
+			e.Handled = true;
 		}
 
 		#region Output Stuff

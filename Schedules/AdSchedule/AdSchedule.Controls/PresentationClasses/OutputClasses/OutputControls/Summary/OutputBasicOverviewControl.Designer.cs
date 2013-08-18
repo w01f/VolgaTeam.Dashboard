@@ -28,84 +28,75 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            this.xtraTabControlPublications = new DevExpress.XtraTab.XtraTabControl();
-            this.pnHeader = new System.Windows.Forms.Panel();
-            this.laScheduleWindow = new System.Windows.Forms.Label();
-            this.laAdvertiser = new System.Windows.Forms.Label();
-            this.laScheduleName = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPublications)).BeginInit();
-            this.pnHeader.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // defaultLookAndFeel
-            // 
-            this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-            // 
-            // xtraTabControlPublications
-            // 
-            this.xtraTabControlPublications.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.xtraTabControlPublications.Appearance.Options.UseFont = true;
-            this.xtraTabControlPublications.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.xtraTabControlPublications.AppearancePage.Header.Options.UseFont = true;
-            this.xtraTabControlPublications.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.xtraTabControlPublications.AppearancePage.HeaderActive.Options.UseFont = true;
-            this.xtraTabControlPublications.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControlPublications.Location = new System.Drawing.Point(0, 30);
-            this.xtraTabControlPublications.Name = "xtraTabControlPublications";
-            this.xtraTabControlPublications.Size = new System.Drawing.Size(737, 400);
-            this.xtraTabControlPublications.TabIndex = 3;
-            // 
-            // pnHeader
-            // 
-            this.pnHeader.Controls.Add(this.laScheduleWindow);
-            this.pnHeader.Controls.Add(this.laAdvertiser);
-            this.pnHeader.Controls.Add(this.laScheduleName);
-            this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnHeader.Name = "pnHeader";
-            this.pnHeader.Size = new System.Drawing.Size(737, 30);
-            this.pnHeader.TabIndex = 4;
-            // 
-            // laScheduleWindow
-            // 
-            this.laScheduleWindow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.laScheduleWindow.Location = new System.Drawing.Point(300, 0);
-            this.laScheduleWindow.Name = "laScheduleWindow";
-            this.laScheduleWindow.Size = new System.Drawing.Size(137, 30);
-            this.laScheduleWindow.TabIndex = 1;
-            this.laScheduleWindow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // laAdvertiser
-            // 
-            this.laAdvertiser.Dock = System.Windows.Forms.DockStyle.Left;
-            this.laAdvertiser.Location = new System.Drawing.Point(0, 0);
-            this.laAdvertiser.Name = "laAdvertiser";
-            this.laAdvertiser.Size = new System.Drawing.Size(300, 30);
-            this.laAdvertiser.TabIndex = 2;
-            this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // laScheduleName
-            // 
-            this.laScheduleName.Dock = System.Windows.Forms.DockStyle.Right;
-            this.laScheduleName.Location = new System.Drawing.Point(437, 0);
-            this.laScheduleName.Name = "laScheduleName";
-            this.laScheduleName.Size = new System.Drawing.Size(300, 30);
-            this.laScheduleName.TabIndex = 0;
-            this.laScheduleName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // OutputBasicOverviewControl
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.Controls.Add(this.xtraTabControlPublications);
-            this.Controls.Add(this.pnHeader);
-            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Name = "OutputBasicOverviewControl";
-            this.Size = new System.Drawing.Size(737, 430);
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPublications)).EndInit();
-            this.pnHeader.ResumeLayout(false);
-            this.ResumeLayout(false);
+			this.components = new System.ComponentModel.Container();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.xtraTabControlPublications = new DevExpress.XtraTab.XtraTabControl();
+			this.pnHeader = new System.Windows.Forms.Panel();
+			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPublications)).BeginInit();
+			this.pnHeader.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// defaultLookAndFeel
+			// 
+			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
+			// 
+			// xtraTabControlPublications
+			// 
+			this.xtraTabControlPublications.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlPublications.Appearance.Options.UseFont = true;
+			this.xtraTabControlPublications.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlPublications.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControlPublications.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlPublications.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControlPublications.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.xtraTabControlPublications.Location = new System.Drawing.Point(0, 30);
+			this.xtraTabControlPublications.Name = "xtraTabControlPublications";
+			this.xtraTabControlPublications.Size = new System.Drawing.Size(737, 400);
+			this.xtraTabControlPublications.TabIndex = 3;
+			// 
+			// pnHeader
+			// 
+			this.pnHeader.Controls.Add(this.hyperLinkEditReset);
+			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnHeader.Location = new System.Drawing.Point(0, 0);
+			this.pnHeader.Name = "pnHeader";
+			this.pnHeader.Size = new System.Drawing.Size(737, 30);
+			this.pnHeader.TabIndex = 4;
+			// 
+			// hyperLinkEditReset
+			// 
+			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.hyperLinkEditReset.EditValue = "Reset";
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(673, 4);
+			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
+			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
+			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
+			this.hyperLinkEditReset.TabIndex = 101;
+			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
+			// 
+			// OutputBasicOverviewControl
+			// 
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.Controls.Add(this.xtraTabControlPublications);
+			this.Controls.Add(this.pnHeader);
+			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.Name = "OutputBasicOverviewControl";
+			this.Size = new System.Drawing.Size(737, 430);
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPublications)).EndInit();
+			this.pnHeader.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
+			this.ResumeLayout(false);
 
         }
 
@@ -113,10 +104,8 @@
 
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlPublications;
-        private System.Windows.Forms.Panel pnHeader;
-        private System.Windows.Forms.Label laScheduleWindow;
-        private System.Windows.Forms.Label laAdvertiser;
-        private System.Windows.Forms.Label laScheduleName;
+		private System.Windows.Forms.Panel pnHeader;
+		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 
     }
 }

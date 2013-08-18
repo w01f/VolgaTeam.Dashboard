@@ -223,9 +223,9 @@ namespace NewBizWiz.Core.Interop
 			return result;
 		}
 
-		public void Disconnect()
+		public void Disconnect(bool closeIfFirstLaunch = true)
 		{
-			if (_isFirstLaunch)
+			if (_isFirstLaunch && closeIfFirstLaunch)
 			{
 				Close();
 				_isFirstLaunch = false;

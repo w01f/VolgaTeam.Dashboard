@@ -4,9 +4,11 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
+using NewBizWiz.AdSchedule.Controls.PresentationClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.RateCard;
+using NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
@@ -16,7 +18,7 @@ namespace NewBizWiz.AdSchedule.Controls
 	public class Controller
 	{
 		private static readonly Controller _instance = new Controller();
-		private Controller() {}
+		private Controller() { }
 		public static Controller Instance
 		{
 			get { return _instance; }
@@ -27,14 +29,14 @@ namespace NewBizWiz.AdSchedule.Controls
 		public RibbonControl Ribbon { get; set; }
 		public RibbonTabItem TabPrintProduct { get; set; }
 		public RibbonTabItem TabDigitalProduct { get; set; }
+		public RibbonTabItem TabDigitalPackage { get; set; }
 		public RibbonTabItem TabBasicOverview { get; set; }
 		public RibbonTabItem TabMultiSummary { get; set; }
 		public RibbonTabItem TabSnapshot { get; set; }
 		public RibbonTabItem TabDetailedGrid { get; set; }
 		public RibbonTabItem TabMultiGrid { get; set; }
 		public RibbonTabItem TabCalendar { get; set; }
-
-		public event EventHandler<ExportEventArgs> ScheduleExported;
+		public RibbonTabItem TabSummary { get; set; }
 
 		public void Init()
 		{
@@ -139,14 +141,23 @@ namespace NewBizWiz.AdSchedule.Controls
 			DigitalProductHelp.Click += DigitalProductContainer.Help_Click;
 			DigitalProductOptions.CheckedChanged += DigitalProductContainer.Options_CheckedChanged;
 			DigitalProductPreview.Click += DigitalProductContainer.Preview_Click;
-			DigitalProductReset.Click += DigitalProductContainer.Reset_Click;
+			#endregion
+
+			#region Web Package
+			DigitalPackage = new AdWebPackageControl(FormMain);
+			DigitalPackageSave.Click += DigitalPackage.Save_Click;
+			DigitalPackageSaveAs.Click += DigitalPackage.SaveAs_Click;
+			DigitalPackagePowerPoint.Click += DigitalPackage.PowerPoint_Click;
+			DigitalPackagePreview.Click += DigitalPackage.Preview_Click;
+			DigitalPackageEmail.Click += DigitalPackage.Email_Click;
+			DigitalPackageHelp.Click += DigitalPackage.Help_Click;
+			DigitalPackageOptions.CheckedChanged += DigitalPackage.TogledButton_CheckedChanged;
 			#endregion
 
 			#region Summaries
 			Summaries = new SummariesControl();
 
 			#region Basic Overview
-			BasicOverviewReset.Click += Summaries.Reset_Click;
 			BasicOverviewPreview.Click += Summaries.Preview_Click;
 			BasicOverviewEmail.Click += Summaries.Email_Click;
 			BasicOverviewHelp.Click += Summaries.Help_Click;
@@ -157,7 +168,6 @@ namespace NewBizWiz.AdSchedule.Controls
 			#endregion
 
 			#region Multi Summary
-			MultiSummaryReset.Click += Summaries.Reset_Click;
 			MultiSummaryPreview.Click += Summaries.Preview_Click;
 			MultiSummaryEmail.Click += Summaries.Email_Click;
 			MultiSummaryHelp.Click += Summaries.Help_Click;
@@ -169,7 +179,6 @@ namespace NewBizWiz.AdSchedule.Controls
 
 			#region Snapshot
 			SnapshotOptions.CheckedChanged += Summaries.Snapshot.buttonItemSnapshotOptions_CheckedChanged;
-			SnapshotReset.Click += Summaries.Reset_Click;
 			SnapshotPreview.Click += Summaries.Preview_Click;
 			SnapshotEmail.Click += Summaries.Email_Click;
 			SnapshotHelp.Click += Summaries.Help_Click;
@@ -185,7 +194,6 @@ namespace NewBizWiz.AdSchedule.Controls
 			Grids = new GridsControl();
 
 			#region Detailed Grid
-			DetailedGridReset.Click += Grids.Reset_Click;
 			DetailedGridHelp.Click += Grids.Help_Click;
 			DetailedGridSave.Click += Grids.Save_Click;
 			DetailedGridSaveAs.Click += Grids.SaveAs_Click;
@@ -197,7 +205,6 @@ namespace NewBizWiz.AdSchedule.Controls
 			#endregion
 
 			#region Multi Grid
-			MultiGridReset.Click += Grids.Reset_Click;
 			MultiGridHelp.Click += Grids.Help_Click;
 			MultiGridSave.Click += Grids.Save_Click;
 			MultiGridSaveAs.Click += Grids.SaveAs_Click;
@@ -213,14 +220,24 @@ namespace NewBizWiz.AdSchedule.Controls
 			#region Calendars
 			Calendars = new CalendarsControl();
 			CalendarOptions.CheckedChanged += Calendars.buttonItemCalendarsOptions_CheckedChanged;
-			CalendarReset.Click += Calendars.buttonItemCalendarsReset_Click;
 			CalendarHelp.Click += Calendars.buttonItemCalendarsHelp_Click;
 			CalendarSave.Click += Calendars.buttonItemCalendarSave_Click;
 			CalendarSaveAs.Click += Calendars.buttonItemCalendarSaveAs_Click;
 			CalendarPowerPoint.Click += Calendars.buttonItemCalendarsPowerPoint_Click;
 			CalendarEmail.Click += Calendars.buttonItemCalendarsEmail_Click;
 			CalendarPreview.Click += Calendars.buttonItemCalendarsPreview_Click;
-			CalendarExport.Click += Calendars.buttonItemCalendarsExport_Click;
+			CalendarMonthList.SelectedIndexChanged += Calendars.MonthList_SelectedIndexChanged;
+			#endregion
+
+			#region Summary
+			Summary = new SummaryControl();
+			SummaryAddItem.Click += Summary.AddItem;
+			SummarySave.Click += Summary.Save_Click;
+			SummarySaveAs.Click += Summary.SaveAs_Click;
+			SummaryHelp.Click += (o, e) => Summary.OpenHelp();
+			SummaryPowerPoint.Click += (o, e) => Summary.Output();
+			SummaryEmail.Click += (o, e) => Summary.Email();
+			SummaryPreview.Click += (o, e) => Summary.Preview();
 			#endregion
 
 			#region Rate Card Events
@@ -234,6 +251,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		{
 			ScheduleSettings.Dispose();
 			PrintProductContainer.Dispose();
+			DigitalProductContainer.Dispose();
+			DigitalPackage.Dispose();
 			Summaries.BasicOverview.Dispose();
 			Summaries.MultiSummary.Dispose();
 			Summaries.Snapshot.Dispose();
@@ -243,6 +262,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			Grids.Dispose();
 			Calendars.Calendar.Dispose();
 			Calendars.Dispose();
+			Summary.Dispose();
 			RateCard.Dispose();
 		}
 
@@ -251,20 +271,14 @@ namespace NewBizWiz.AdSchedule.Controls
 			ScheduleSettings.LoadSchedule(false);
 			PrintProductContainer.LoadSchedule(false);
 			DigitalProductContainer.LoadSchedule(false);
+			DigitalPackage.LoadSchedule(false);
 			Summaries.BasicOverview.UpdateOutput(false);
 			Calendars.Calendar.UpdateOutput(false);
 			Grids.DetailedGrid.UpdateOutput(false);
 			Grids.MultiGrid.UpdateOutput(false);
 			Summaries.MultiSummary.UpdateOutput(false);
 			Summaries.Snapshot.UpdateOutput(false);
-		}
-
-		public void Export(Schedule sourceSchedule, bool buildAdvanced, bool buildGraphic, bool buildSimple)
-		{
-			FormMain.Opacity = 0;
-			if (ScheduleExported != null)
-				ScheduleExported(this, new ExportEventArgs(sourceSchedule, buildAdvanced, buildGraphic, buildSimple));
-			FormMain.Close();
+			Summary.UpdateOutput(false);
 		}
 
 		public void UpdatePrintProductTab(bool enable)
@@ -275,6 +289,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public void UpdateDigitalProductTab(bool enable)
 		{
 			TabDigitalProduct.Enabled = enable;
+			TabDigitalPackage.Enabled = enable;
 		}
 
 		public void UpdateOutputTabs(bool enable)
@@ -285,6 +300,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			TabDetailedGrid.Enabled = enable;
 			TabMultiGrid.Enabled = enable;
 			TabCalendar.Enabled = enable;
+			TabSummary.Enabled = enable;
 		}
 
 		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)
@@ -379,7 +395,16 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem DigitalProductSave { get; set; }
 		public ButtonItem DigitalProductSaveAs { get; set; }
 		public ButtonItem DigitalProductHelp { get; set; }
-		public ButtonItem DigitalProductReset { get; set; }
+		#endregion
+
+		#region Digital Package
+		public ButtonItem DigitalPackageHelp { get; set; }
+		public ButtonItem DigitalPackageSave { get; set; }
+		public ButtonItem DigitalPackageSaveAs { get; set; }
+		public ButtonItem DigitalPackagePreview { get; set; }
+		public ButtonItem DigitalPackageEmail { get; set; }
+		public ButtonItem DigitalPackagePowerPoint { get; set; }
+		public ButtonItem DigitalPackageOptions { get; set; }
 		#endregion
 
 		#region Basic Overview
@@ -389,7 +414,6 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem BasicOverviewPreview { get; set; }
 		public ButtonItem BasicOverviewEmail { get; set; }
 		public ButtonItem BasicOverviewPowerPoint { get; set; }
-		public ButtonItem BasicOverviewReset { get; set; }
 		public ButtonItem BasicOverviewDigitalLegend { get; set; }
 		#endregion
 
@@ -400,7 +424,6 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem MultiSummaryPreview { get; set; }
 		public ButtonItem MultiSummaryEmail { get; set; }
 		public ButtonItem MultiSummaryPowerPoint { get; set; }
-		public ButtonItem MultiSummaryReset { get; set; }
 		public ButtonItem MultiSummaryDigitalLegend { get; set; }
 		#endregion
 
@@ -412,7 +435,6 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem SnapshotPreview { get; set; }
 		public ButtonItem SnapshotEmail { get; set; }
 		public ButtonItem SnapshotPowerPoint { get; set; }
-		public ButtonItem SnapshotReset { get; set; }
 		public ButtonItem SnapshotDigitalLegend { get; set; }
 		#endregion
 
@@ -424,7 +446,6 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem DetailedGridPreview { get; set; }
 		public ButtonItem DetailedGridEmail { get; set; }
 		public ButtonItem DetailedGridPowerPoint { get; set; }
-		public ButtonItem DetailedGridReset { get; set; }
 		public ButtonItem DetailedGridDigitalLegend { get; set; }
 		#endregion
 
@@ -436,7 +457,6 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem MultiGridPreview { get; set; }
 		public ButtonItem MultiGridEmail { get; set; }
 		public ButtonItem MultiGridPowerPoint { get; set; }
-		public ButtonItem MultiGridReset { get; set; }
 		public ButtonItem MultiGridDigitalLegend { get; set; }
 		#endregion
 
@@ -448,8 +468,17 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem CalendarPreview { get; set; }
 		public ButtonItem CalendarEmail { get; set; }
 		public ButtonItem CalendarPowerPoint { get; set; }
-		public ButtonItem CalendarReset { get; set; }
-		public ButtonItem CalendarExport { get; set; }
+		public ImageListBoxControl CalendarMonthList { get; set; }
+		#endregion
+
+		#region Summary
+		public ButtonItem SummaryAddItem { get; set; }
+		public ButtonItem SummaryHelp { get; set; }
+		public ButtonItem SummarySave { get; set; }
+		public ButtonItem SummarySaveAs { get; set; }
+		public ButtonItem SummaryPreview { get; set; }
+		public ButtonItem SummaryEmail { get; set; }
+		public ButtonItem SummaryPowerPoint { get; set; }
 		#endregion
 
 		#region Rate Card
@@ -463,9 +492,11 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ScheduleSettingsControl ScheduleSettings { get; private set; }
 		public PrintProductContainerControl PrintProductContainer { get; private set; }
 		public DigitalProductContainerControl DigitalProductContainer { get; private set; }
+		public AdWebPackageControl DigitalPackage { get; private set; }
 		public SummariesControl Summaries { get; private set; }
 		public GridsControl Grids { get; private set; }
 		public CalendarsControl Calendars { get; private set; }
+		public SummaryControl Summary { get; private set; }
 		public RateCardControl RateCard { get; private set; }
 		#endregion
 	}

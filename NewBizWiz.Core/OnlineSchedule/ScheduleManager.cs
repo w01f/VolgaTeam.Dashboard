@@ -5,7 +5,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using NewBizWiz.Core.Common;
@@ -28,7 +27,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 	public class ScheduleManager
 	{
 		private Schedule _currentSchedule;
-
+		public bool ScheduleLoaded { get; set; }
 		public event EventHandler<SavingingEventArgs> SettingsSaved;
 
 		public void OpenSchedule(string scheduleName, bool create)
@@ -38,11 +37,19 @@ namespace NewBizWiz.Core.OnlineSchedule
 				if (Utilities.Instance.ShowWarningQuestion(string.Format("An older Schedule is already saved with this same file name.\nDo you want to replace this file with a newer schedule?", scheduleName)) == DialogResult.Yes)
 					File.Delete(scheduleFilePath);
 			_currentSchedule = new Schedule(scheduleFilePath);
+			ScheduleLoaded = true;
 		}
 
 		public void OpenSchedule(string scheduleFilePath)
 		{
 			_currentSchedule = new Schedule(scheduleFilePath);
+			ScheduleLoaded = true;
+		}
+
+		public void CreateSchedule(string scheduleName)
+		{
+			string calendarFilePath = GetScheduleFileName(scheduleName);
+			OpenSchedule(calendarFilePath);
 		}
 
 		public string GetScheduleFileName(string scheduleName)
@@ -55,6 +62,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 			return new Schedule(_currentSchedule.ScheduleFile.FullName);
 		}
 
+		public ShortSchedule GetShortSchedule()
+		{
+			return new ShortSchedule(_currentSchedule.ScheduleFile);
+		}
+
 		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)
 		{
 			localSchedule.Save();
@@ -63,16 +75,23 @@ namespace NewBizWiz.Core.OnlineSchedule
 				SettingsSaved(sender, new SavingingEventArgs(quickSave));
 		}
 
-		public ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
+		public static ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
 		{
 			var scheduleList = new List<ShortSchedule>();
 			foreach (FileInfo file in rootFolder.GetFiles("*.xml"))
 			{
 				var schedule = new ShortSchedule(file);
-				if (!string.IsNullOrEmpty(schedule.BusinessName))
-					scheduleList.Add(schedule);
+				scheduleList.Add(schedule);
 			}
 			return scheduleList.ToArray();
+		}
+
+		public static ShortSchedule[] GetShortScheduleList()
+		{
+			var saveFolder = new DirectoryInfo(SettingsManager.Instance.SaveFolder);
+			if (saveFolder.Exists)
+				return GetShortScheduleList(saveFolder);
+			return null;
 		}
 
 		public void RemoveInstance()
@@ -169,11 +188,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 	{
 		public Schedule(string fileName)
 		{
+			ClientType = string.Empty;
+			AccountNumber = string.Empty;
 			Status = ListManager.Instance.Statuses.FirstOrDefault();
 			Products = new List<DigitalProduct>();
-			ProductPackage = new ProductPackage(this);
-			ProductSummarySettings = new ProductSummarySettings();
-			ProductBundleSettings = new ProductBundleSettings();
+			ViewSettings = new ScheduleBuilderViewSettings();
 
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
@@ -194,15 +213,13 @@ namespace NewBizWiz.Core.OnlineSchedule
 		}
 
 		private FileInfo _scheduleFile { get; set; }
-		public string BusinessName { get; set; }
-		public string DecisionMaker { get; set; }
 		public string Status { get; set; }
-		public DateTime PresentationDate { get; set; }
+		public string ClientType { get; set; }
+		public string AccountNumber { get; set; }
 		public bool ApplySettingsForeAllProducts { get; set; }
 		public List<DigitalProduct> Products { get; set; }
-		public ProductPackage ProductPackage { get; set; }
-		public ProductSummarySettings ProductSummarySettings { get; set; }
-		public ProductBundleSettings ProductBundleSettings { get; set; }
+
+		public ScheduleBuilderViewSettings ViewSettings { get; set; }
 
 		public string Name
 		{
@@ -254,17 +271,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 			}
 		}
 
-		public string FlightDates
-		{
-			get
-			{
-				if (FlightDateStart != DateTime.MinValue && FlightDateEnd != DateTime.MinValue)
-					return FlightDateStart.ToString("MM/dd/yy") + " - " + FlightDateEnd.ToString("MM/dd/yy");
-				else
-					return string.Empty;
-			}
-		}
-
 		public double MonthlyInvestment
 		{
 			get { return Products.Select(x => (x.MonthlyInvestment.HasValue ? x.MonthlyInvestment.Value : 0)).Sum(); }
@@ -308,6 +314,20 @@ namespace NewBizWiz.Core.OnlineSchedule
 		}
 
 		#region ISchedule Members
+		public string BusinessName { get; set; }
+		public string DecisionMaker { get; set; }
+		public DateTime PresentationDate { get; set; }
+		public string FlightDates
+		{
+			get
+			{
+				if (FlightDateStart != DateTime.MinValue && FlightDateEnd != DateTime.MinValue)
+					return FlightDateStart.ToString("MM/dd/yy") + " - " + FlightDateEnd.ToString("MM/dd/yy");
+				else
+					return string.Empty;
+			}
+		}
+
 		public DateTime FlightDateStart { get; set; }
 		public DateTime FlightDateEnd { get; set; }
 		#endregion
@@ -334,6 +354,14 @@ namespace NewBizWiz.Core.OnlineSchedule
 				node = document.SelectSingleNode(@"/Schedule/Status");
 				if (node != null)
 					Status = node.InnerText;
+
+				node = document.SelectSingleNode(@"/Schedule/ClientType");
+				if (node != null)
+					ClientType = node.InnerText;
+
+				node = document.SelectSingleNode(@"/Schedule/AccountNumber");
+				if (node != null)
+					AccountNumber = node.InnerText;
 
 				node = document.SelectSingleNode(@"/Schedule/PresentationDate");
 				if (node != null)
@@ -367,12 +395,18 @@ namespace NewBizWiz.Core.OnlineSchedule
 					ApplySettingsForeAllProducts = tempBool;
 				}
 
-				node = document.SelectSingleNode(@"/Schedule/ProductSummarySettings");
+				node = document.SelectSingleNode(@"/Schedule/ViewSettings");
 				if (node != null)
-					ProductSummarySettings.Deserialize(node);
-				node = document.SelectSingleNode(@"/Schedule/ProductBundleSettings");
+				{
+					ViewSettings.Deserialize(node);
+				}
+
+				node = document.SelectSingleNode(@"/Schedule/ViewSettings");
 				if (node != null)
-					ProductBundleSettings.Deserialize(node);
+				{
+					ViewSettings.Deserialize(node);
+				}
+
 				node = document.SelectSingleNode(@"/Schedule/Products");
 				if (node != null)
 				{
@@ -383,15 +417,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 						Products.Add(product);
 					}
 				}
-
-				node = document.SelectSingleNode(@"/Schedule/ProductPackage");
-				if (node != null)
-				{
-					ProductPackage.Deserialize(node);
-				}
 			}
-			if (string.IsNullOrEmpty(ProductPackage.Description))
-				ProductPackage.UpdateWebProducts();
 		}
 
 		public void Save()
@@ -414,13 +440,15 @@ namespace NewBizWiz.Core.OnlineSchedule
 				Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
 				Common.ListManager.Instance.SaveDecisionMakers();
 			}
+			xml.AppendLine(@"<ClientType>" + ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
+			xml.AppendLine(@"<AccountNumber>" + AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");
 			xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
 			xml.AppendLine(@"<PresentationDate>" + PresentationDate.ToString() + @"</PresentationDate>");
 			xml.AppendLine(@"<FlightDateStart>" + FlightDateStart.ToString() + @"</FlightDateStart>");
 			xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd.ToString() + @"</FlightDateEnd>");
 			xml.AppendLine(@"<ApplySettingsForeAllProducts>" + ApplySettingsForeAllProducts.ToString() + @"</ApplySettingsForeAllProducts>");
-			xml.AppendLine(@"<ProductSummarySettings>" + ProductSummarySettings.Serialize() + @"</ProductSummarySettings>");
-			xml.AppendLine(@"<ProductBundleSettings>" + ProductBundleSettings.Serialize() + @"</ProductBundleSettings>");
+
+			xml.AppendLine(@"<ViewSettings>" + ViewSettings.Serialize() + @"</ViewSettings>");
 
 			xml.AppendLine(@"<Products>");
 			foreach (DigitalProduct product in Products)
@@ -428,9 +456,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 				xml.AppendLine(product.Serialize());
 			}
 			xml.AppendLine(@"</Products>");
-			xml.AppendLine(ProductPackage.Serialize());
 			xml.AppendLine(@"</Schedule>");
-
 			using (var sw = new StreamWriter(_scheduleFile.FullName, false))
 			{
 				sw.Write(xml);
@@ -515,6 +541,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		#region Show Properties
 		private bool _defaultShowCPMButton = true;
+		private bool _showCPMButton = true;
 		public bool DefaultShowPresentationDate { get; set; }
 		public bool DefaultShowBusinessName { get; set; }
 		public bool DefaultShowDecisionMaker { get; set; }
@@ -543,8 +570,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public bool DefaultShowScreenshot { get; set; }
 		public bool DefaultShowSignature { get; set; }
 
-
-		private bool _showCPMButton = true;
 		public bool ShowPresentationDate { get; set; }
 		public bool ShowBusinessName { get; set; }
 		public bool ShowDecisionMaker { get; set; }
@@ -572,6 +597,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public bool ShowImages { get; set; }
 		public bool ShowScreenshot { get; set; }
 		public bool ShowSignature { get; set; }
+
+		public ProductPackageRecord PackageRecord { get; private set; }
 
 		public bool ShowCPMButton
 		{
@@ -610,10 +637,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		public string ExtendedName
 		{
-			get
-			{
-				return String.Format("{0}{1}", !String.IsNullOrEmpty(SubCategory) ? (SubCategory + " - ") : String.Empty, Name);
-			}
+			get { return String.Format("{0}{1}", !String.IsNullOrEmpty(SubCategory) ? (SubCategory + " - ") : String.Empty, Name); }
 		}
 
 		public string WebCategory
@@ -656,8 +680,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				if (Width.HasValue && Height.HasValue)
 					return Width.Value.ToString() + " x " + Height.Value.ToString();
-				else
-					return string.Empty;
+				return string.Empty;
 			}
 		}
 
@@ -667,8 +690,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				if (Formula == FormulaType.Investment)
 					return MonthlyImpressions.HasValue && MonthlyCPMCalculated.HasValue ? Math.Round(MonthlyCPMCalculated.Value * (MonthlyImpressions.Value / 1000.00), 2) : (double?)null;
-				else
-					return MonthlyInvestment;
+				return MonthlyInvestment;
 			}
 		}
 
@@ -678,8 +700,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				if (Formula == FormulaType.Investment)
 					return TotalImpressions.HasValue && TotalCPMCalculated.HasValue ? Math.Round((TotalCPMCalculated.Value * (TotalImpressions.Value / 1000.00)), 2) : (double?)null;
-				else
-					return TotalInvestment;
+				return TotalInvestment;
 			}
 		}
 
@@ -689,8 +710,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				if (Formula == FormulaType.Impressions)
 					return MonthlyCPMCalculated.HasValue && MonthlyInvestment.HasValue ? (MonthlyCPMCalculated.Value != 0 ? Math.Round(((MonthlyInvestment.Value * 1000) / MonthlyCPMCalculated.Value), 0) : (double?)null) : null;
-				else
-					return MonthlyImpressions;
+				return MonthlyImpressions;
 			}
 		}
 
@@ -700,8 +720,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				if (Formula == FormulaType.Impressions)
 					return TotalCPMCalculated.HasValue && TotalInvestment.HasValue ? (TotalCPMCalculated.Value != 0 ? Math.Round(((TotalInvestment.Value * 1000) / TotalCPMCalculated.Value), 0) : (double?)null) : null;
-				else
-					return TotalImpressions;
+				return TotalImpressions;
 			}
 		}
 
@@ -711,8 +730,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				if (Formula == FormulaType.CPM)
 					return MonthlyImpressions.HasValue && MonthlyInvestment.HasValue ? (MonthlyImpressions.Value != 0 ? Math.Round(MonthlyInvestment.Value / (MonthlyImpressions.Value / 1000.00), 2) : (double?)null) : null;
-				else
-					return !MonthlyCPM.HasValue && RateType == RateType.CPM ? DefaultRate : MonthlyCPM;
+				return !MonthlyCPM.HasValue && RateType == RateType.CPM ? DefaultRate : MonthlyCPM;
 			}
 		}
 
@@ -722,8 +740,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				if (Formula == FormulaType.CPM)
 					return TotalImpressions.HasValue && TotalInvestment.HasValue ? (TotalImpressions.Value != 0 ? Math.Round((TotalInvestment.Value / (TotalImpressions.Value / 1000.00)), 2) : (double?)null) : null;
-				else
-					return !TotalCPM.HasValue && RateType == RateType.CPM ? DefaultRate : TotalCPM;
+				return !TotalCPM.HasValue && RateType == RateType.CPM ? DefaultRate : TotalCPM;
 			}
 		}
 
@@ -830,6 +847,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 			DefaultShowScreenshot = false;
 			DefaultShowSignature = true;
 
+			PackageRecord = new ProductPackageRecord(this);
+
 			ApplyDefaultView();
 		}
 
@@ -909,6 +928,9 @@ namespace NewBizWiz.Core.OnlineSchedule
 			xml.AppendLine(@">");
 			foreach (string website in Websites)
 				xml.AppendLine(@"<Website>" + website.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Website>");
+
+			xml.AppendLine(@"<PackageRecord>" + PackageRecord.Serialize() + @"</PackageRecord>");
+
 			xml.AppendLine(@"</Product>");
 
 			return xml.ToString();
@@ -1178,11 +1200,15 @@ namespace NewBizWiz.Core.OnlineSchedule
 					#endregion
 				}
 			Websites.Clear();
-			foreach (XmlNode websiteNode in node.ChildNodes)
+			foreach (XmlNode childNode in node.ChildNodes)
 			{
-				if (websiteNode.Name.Equals("Website"))
-					Websites.Add(websiteNode.InnerText);
+				if (childNode.Name.Equals("Website"))
+					Websites.Add(childNode.InnerText);
+				else if (childNode.Name.Equals("PackageRecord"))
+					PackageRecord.Deserialize(childNode);
 			}
+			if (Websites.Count == 0 && ListManager.Instance.Websites.Any())
+				Websites.Add(ListManager.Instance.Websites.FirstOrDefault());
 			if (String.IsNullOrEmpty(UserDefinedName))
 				UserDefinedName = ExtendedName;
 		}
@@ -1237,583 +1263,242 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public string GetSlideSource(string outputTemplateFolderPath)
 		{
 			string templateName = string.Empty;
-			SlideSource slideSource = ListManager.Instance.SlideSources.Where(x => x.ShowActiveDays == ShowActiveDays &&
-																				   x.ShowAdRate == ShowAdRate &&
-																				   x.ShowBusinessName == ShowBusinessName &&
-																				   x.ShowComments == ShowComments &&
-																				   x.ShowDecisionMaker == ShowDecisionMaker &&
-																				   x.ShowDescription == ShowDescription &&
-																				   x.ShowDimensions == ShowDimensions &&
-																				   x.ShowDuration == (ShowDuration & ShowFlightDates) &&
-																				   x.ShowFlightDates == ShowFlightDates &&
-																				   x.ShowImages == ShowImages &&
-																				   x.ShowMonthlyCPM == ShowMonthlyCPM &&
-																				   x.ShowMonthlyImpressions == ShowMonthlyImpressions &&
-																				   x.ShowMonthlyInvestment == ShowMonthlyInvestment &&
-																				   x.ShowPresentationDate == ShowPresentationDate &&
-																				   x.ShowProduct == ShowProduct &&
-																				   x.ShowScreenshot == ShowScreenshot &&
-																				   x.ShowSignature == ShowSignature &&
-																				   x.ShowTotalAds == ShowTotalAds &&
-																				   x.ShowTotalCPM == ShowTotalCPM &&
-																				   x.ShowTotalImpressions == ShowTotalImpressions &&
-																				   x.ShowTotalInvestment == ShowTotalInvestment &&
-																				   x.ShowWebsite == ShowWebsite).FirstOrDefault();
+			SlideSource slideSource = ListManager.Instance.SlideSources.FirstOrDefault(x => x.ShowActiveDays == ShowActiveDays &&
+																							x.ShowAdRate == ShowAdRate &&
+																							x.ShowBusinessName == ShowBusinessName &&
+																							x.ShowComments == ShowComments &&
+																							x.ShowDecisionMaker == ShowDecisionMaker &&
+																							x.ShowDescription == ShowDescription &&
+																							x.ShowDimensions == ShowDimensions &&
+																							x.ShowDuration == (ShowDuration & ShowFlightDates) &&
+																							x.ShowFlightDates == ShowFlightDates &&
+																							x.ShowImages == ShowImages &&
+																							x.ShowMonthlyCPM == ShowMonthlyCPM &&
+																							x.ShowMonthlyImpressions == ShowMonthlyImpressions &&
+																							x.ShowMonthlyInvestment == ShowMonthlyInvestment &&
+																							x.ShowPresentationDate == ShowPresentationDate &&
+																							x.ShowProduct == ShowProduct &&
+																							x.ShowScreenshot == ShowScreenshot &&
+																							x.ShowSignature == ShowSignature &&
+																							x.ShowTotalAds == ShowTotalAds &&
+																							x.ShowTotalCPM == ShowTotalCPM &&
+																							x.ShowTotalImpressions == ShowTotalImpressions &&
+																							x.ShowTotalInvestment == ShowTotalInvestment &&
+																							x.ShowWebsite == ShowWebsite);
 			if (slideSource != null)
 				templateName = Path.Combine(outputTemplateFolderPath, slideSource.TemplateName);
 			return templateName;
 		}
 	}
 
-	public class ProductPackage
+	public class ProductPackageRecord
 	{
-		#region Basic Properties
-		public string Name { get; set; }
-		public Schedule Parent { get; set; }
-		public Guid UniqueID { get; set; }
-		#endregion
 
-		#region Additional Properties
-		public string SlideHeader { get; set; }
-		public List<string> Websites { get; set; }
-		public string CustomWebsite1 { get; set; }
-		public string CustomWebsite2 { get; set; }
-		public string Description { get; set; }
-		public int? ActiveDays { get; set; }
-		public int? TotalAds { get; set; }
-		public string DurationType { get; set; }
-		public int? DurationValue { get; set; }
-		public string Strength1 { get; set; }
-		public string Strength2 { get; set; }
-		public string Comment { get; set; }
-		public double? AdRate { get; set; }
-		public double? MonthlyInvestment { get; set; }
-		public double? MonthlyImpressions { get; set; }
-		public double? MonthlyCPM { get; set; }
-		public double? TotalInvestment { get; set; }
-		public double? TotalImpressions { get; set; }
-		public double? TotalCPM { get; set; }
-		public FormulaType Formula { get; set; }
-		#endregion
+		private string _category;
+		private string _subCategory;
+		private string _name;
+		private string _info;
+		private string _comments;
+		private decimal? _rate;
+		private decimal? _investment;
+		private decimal? _impressions;
+		private decimal? _cpm;
 
-		#region Show Properties
-		private bool _defaultShowCPMButton = true;
-		public bool DefaultShowPresentationDate { get; set; }
-		public bool DefaultShowBusinessName { get; set; }
-		public bool DefaultShowDecisionMaker { get; set; }
-		public bool DefaultShowWebsite { get; set; }
-		public bool DefaultShowCustomWebsite1 { get; set; }
-		public bool DefaultShowCustomWebsite2 { get; set; }
-		public bool DefaultShowProduct { get; set; }
-		public bool DefaultShowDescription { get; set; }
-		public bool DefaultShowDimensions { get; set; }
-		public bool DefaultShowFlightDates { get; set; }
-		public bool DefaultShowActiveDays { get; set; }
-		public bool DefaultShowTotalAds { get; set; }
-		public bool DefaultShowAdRate { get; set; }
-		public bool DefaultShowMonthlyInvestment { get; set; }
-		public bool DefaultShowTotalInvestment { get; set; }
-		public bool DefaultShowMonthlyImpressions { get; set; }
-		public bool DefaultShowTotalImpressions { get; set; }
-		public bool DefaultShowComments { get; set; }
-		public bool DefaultShowDuration { get; set; }
-		public bool DefaultShowCommentText { get; set; }
-		public bool DefaultShowStrength1 { get; set; }
-		public bool DefaultShowStrength2 { get; set; }
-		public bool DefaultShowImages { get; set; }
-		public bool DefaultShowScreenshot { get; set; }
-		public bool DefaultShowSignature { get; set; }
+		public DigitalProduct Parent { get; private set; }
 
-		private bool _showCPMButton = true;
-		public bool ShowPresentationDate { get; set; }
-		public bool ShowBusinessName { get; set; }
-		public bool ShowDecisionMaker { get; set; }
-		public bool ShowWebsite { get; set; }
-		public bool ShowCustomWebsite1 { get; set; }
-		public bool ShowCustomWebsite2 { get; set; }
-		public bool ShowFlightDates { get; set; }
-		public bool ShowActiveDays { get; set; }
-		public bool ShowTotalAds { get; set; }
-		public bool ShowAdRate { get; set; }
-		public bool ShowMonthlyInvestment { get; set; }
-		public bool ShowTotalInvestment { get; set; }
-		public bool ShowMonthlyImpressions { get; set; }
-		public bool ShowTotalImpressions { get; set; }
-		public bool ShowComments { get; set; }
-		public bool ShowDuration { get; set; }
-		public bool ShowCommentText { get; set; }
-		public bool ShowStrength1 { get; set; }
-		public bool ShowStrength2 { get; set; }
-		public bool ShowImages { get; set; }
-		public bool ShowScreenshot { get; set; }
-		public bool ShowSignature { get; set; }
-
-		public bool ShowCPMButton
-		{
-			get { return (ShowMonthlyImpressions | ShowTotalImpressions) & _showCPMButton; }
-			set { _showCPMButton = value; }
-		}
-
-		public bool EnableCPMButton
-		{
-			get { return ShowMonthlyImpressions | ShowTotalImpressions; }
-		}
-
-		public bool ShowMonthlyCPM
-		{
-			get { return ShowMonthlyInvestment & ShowMonthlyImpressions & _showCPMButton; }
-		}
-
-		public bool ShowTotalCPM
-		{
-			get { return ShowTotalInvestment & ShowTotalImpressions & _showCPMButton; }
-		}
-		#endregion
-
-		#region Calculated Properties
-		public double? MonthlyInvestmentCalculated
+		public string Category
 		{
 			get
 			{
-				if (Formula == FormulaType.Investment)
-					return MonthlyImpressions.HasValue && MonthlyCPM.HasValue ? (MonthlyCPM.Value * (MonthlyImpressions.Value / 1000.00)) : (double?)null;
-				else
-					return MonthlyInvestment;
+				if (String.IsNullOrEmpty(_category))
+					return Parent.Category;
+				return _category;
+			}
+			set
+			{
+				if (!value.Equals(Parent.Category))
+					_category = value;
 			}
 		}
-
-		public double? TotalInvestmentCalculated
+		public string SubCategory
 		{
 			get
 			{
-				if (Formula == FormulaType.Investment)
-					return TotalImpressions.HasValue && TotalCPM.HasValue ? (TotalCPM.Value * (TotalImpressions.Value / 1000.00)) : (double?)null;
-				else
-					return TotalInvestment;
+				if (String.IsNullOrEmpty(_subCategory))
+					return Parent.SubCategory;
+				return _subCategory;
+			}
+			set
+			{
+				if (!value.Equals(Parent.SubCategory))
+					_subCategory = value;
 			}
 		}
-
-		public double? MonthlyImpressionsCalculated
+		public string Name
 		{
 			get
 			{
-				if (Formula == FormulaType.Impressions)
-					return MonthlyCPM.HasValue && MonthlyInvestment.HasValue ? (MonthlyCPM.Value != 0 ? ((MonthlyInvestment.Value * 1000) / MonthlyCPM.Value) : (double?)null) : null;
-				else
-					return MonthlyImpressions;
+				if (String.IsNullOrEmpty(_name))
+					return Parent.Name;
+				return _name;
+			}
+			set
+			{
+				if (!value.Equals(Parent.Name))
+					_name = value;
 			}
 		}
-
-		public double? TotalImpressionsCalculated
+		public string Info
 		{
 			get
 			{
-				if (Formula == FormulaType.Impressions)
-					return TotalCPM.HasValue && TotalInvestment.HasValue ? (TotalCPM.Value != 0 ? ((TotalInvestment.Value * 1000) / TotalCPM.Value) : (double?)null) : null;
-				else
-					return TotalImpressions;
+				return _info;
+			}
+			set
+			{
+				_info = value;
 			}
 		}
-
-		public double? MonthlyCPMCalculated
+		public string Comments
 		{
 			get
 			{
-				if (Formula == FormulaType.CPM)
-					return MonthlyImpressions.HasValue && MonthlyInvestment.HasValue ? (MonthlyImpressions.Value != 0 ? (MonthlyInvestment.Value / (MonthlyImpressions.Value / 1000.00)) : (double?)null) : null;
-				else
-					return MonthlyCPM;
+				return _comments;
+			}
+			set
+			{
+				_comments = value;
 			}
 		}
-
-		public double? TotalCPMCalculated
+		public decimal? Rate
 		{
 			get
 			{
-				if (Formula == FormulaType.CPM)
-					return TotalImpressions.HasValue && TotalInvestment.HasValue ? (TotalImpressions.Value != 0 ? (TotalInvestment.Value / (TotalImpressions.Value / 1000.00)) : (double?)null) : null;
-				else
-					return TotalCPM;
+				return _rate;
+			}
+			set
+			{
+				_rate = value;
 			}
 		}
-
-		public int WeeksDuration
+		public decimal? Investment
 		{
 			get
 			{
-				int result = 0;
-				TimeSpan diff = Parent.FlightDateEnd.Subtract(Parent.FlightDateStart);
-				result = diff.Days / 7;
-				return result;
+				return _investment;
+			}
+			set
+			{
+				_investment = value;
 			}
 		}
-
-		public int MonthDuraton
-		{
-			get { return Math.Abs((Parent.FlightDateEnd.Month - Parent.FlightDateStart.Month) + 12 * (Parent.FlightDateEnd.Year - Parent.FlightDateStart.Year)); }
-		}
-
-		public string AllWebsites
+		public decimal? Impressions
 		{
 			get
 			{
-				var websites = new List<string>();
-				websites.AddRange(Websites);
-				if (ShowCustomWebsite1)
-					websites.Add(CustomWebsite1);
-				if (ShowCustomWebsite2)
-					websites.Add(CustomWebsite2);
-				return string.Join(", ", websites.ToArray());
+				return _impressions;
+			}
+			set
+			{
+				_impressions = value;
 			}
 		}
-		#endregion
+		public decimal? CPM
+		{
+			get
+			{
+				return _cpm;
+			}
+			set
+			{
+				_cpm = value;
+			}
+		}
 
-		public ProductPackage(Schedule parent)
+		public ProductPackageRecord(DigitalProduct parent)
 		{
 			Parent = parent;
-			UniqueID = Guid.NewGuid();
-			Name = "Web Products";
-			Websites = new List<string>();
-			CustomWebsite1 = string.Empty;
-			CustomWebsite2 = string.Empty;
-			Strength1 = string.Empty;
-			Strength2 = string.Empty;
-			Comment = string.Empty;
-			Description = string.Empty;
-			DurationType = string.Empty;
-			SlideHeader = string.Empty;
-
-			ApplyDefaultView();
+			ResetToDefault();
 		}
 
 		public string Serialize()
 		{
 			var xml = new StringBuilder();
 
-			xml.Append(@"<ProductPackage ");
-
-			#region Additional Properties
-			xml.Append("SlideHeader = \"" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("CustomWebsite1 = \"" + CustomWebsite1.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("CustomWebsite2 = \"" + CustomWebsite2.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("ActiveDays = \"" + (ActiveDays.HasValue ? ActiveDays.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("TotalAds = \"" + (TotalAds.HasValue ? TotalAds.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("Description = \"" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("DurationType = \"" + DurationType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("DurationValue = \"" + (DurationValue.HasValue ? DurationValue.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("Strength1 = \"" + Strength1.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("Strength2 = \"" + Strength2.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("Comment = \"" + Comment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("AdRate = \"" + (AdRate.HasValue ? AdRate.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("MonthlyInvestment = \"" + (MonthlyInvestment.HasValue ? MonthlyInvestment.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("MonthlyImpressions = \"" + (MonthlyImpressions.HasValue ? MonthlyImpressions.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("MonthlyCPM = \"" + (MonthlyCPM.HasValue ? MonthlyCPM.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("TotalInvestment = \"" + (TotalInvestment.HasValue ? TotalInvestment.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("TotalImpressions = \"" + (TotalImpressions.HasValue ? TotalImpressions.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("TotalCPM = \"" + (TotalCPM.HasValue ? TotalCPM.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("Formula = \"" + (int)Formula + "\" ");
-			#endregion
-
-			#region Show Properties
-			xml.Append("ShowActiveDays = \"" + ShowActiveDays.ToString() + "\" ");
-			xml.Append("ShowAdRate = \"" + ShowAdRate.ToString() + "\" ");
-			xml.Append("ShowBusinessName = \"" + ShowBusinessName.ToString() + "\" ");
-			xml.Append("ShowCommentText = \"" + ShowCommentText.ToString() + "\" ");
-			xml.Append("ShowComments = \"" + ShowComments.ToString() + "\" ");
-			xml.Append("ShowCPMButton = \"" + ShowCPMButton.ToString() + "\" ");
-			xml.Append("ShowDecisionMaker = \"" + ShowDecisionMaker.ToString() + "\" ");
-			xml.Append("ShowFlightDates = \"" + ShowFlightDates.ToString() + "\" ");
-			xml.Append("ShowMonthlyImpressions = \"" + ShowMonthlyImpressions.ToString() + "\" ");
-			xml.Append("ShowMonthlyInvestment = \"" + ShowMonthlyInvestment.ToString() + "\" ");
-			xml.Append("ShowPresentationDate = \"" + ShowPresentationDate.ToString() + "\" ");
-			xml.Append("ShowStrength1 = \"" + ShowStrength1.ToString() + "\" ");
-			xml.Append("ShowStrength2 = \"" + ShowStrength2.ToString() + "\" ");
-			xml.Append("ShowTotalAds = \"" + ShowTotalAds.ToString() + "\" ");
-			xml.Append("ShowTotalImpressions = \"" + ShowTotalImpressions.ToString() + "\" ");
-			xml.Append("ShowTotalInvestment = \"" + ShowTotalInvestment.ToString() + "\" ");
-			xml.Append("ShowDuration = \"" + ShowDuration.ToString() + "\" ");
-			xml.Append("ShowWebsite = \"" + ShowWebsite.ToString() + "\" ");
-			xml.Append("ShowCustomWebsite1 = \"" + ShowCustomWebsite1.ToString() + "\" ");
-			xml.Append("ShowCustomWebsite2 = \"" + ShowCustomWebsite2.ToString() + "\" ");
-			xml.Append("ShowImages = \"" + ShowImages.ToString() + "\" ");
-			xml.Append("ShowScreenshot = \"" + ShowScreenshot.ToString() + "\" ");
-			xml.Append("ShowSignature = \"" + ShowSignature.ToString() + "\" ");
-			#endregion
-
-			xml.AppendLine(@">");
-			foreach (string website in Websites)
-				xml.AppendLine(@"<Website>" + website.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Website>");
-			xml.AppendLine(@"</ProductPackage>");
+			if (!String.IsNullOrEmpty(_category))
+				xml.AppendLine(@"<Category>" + _category.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Category>");
+			if (!String.IsNullOrEmpty(_subCategory))
+				xml.AppendLine(@"<SubCategory>" + _subCategory.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SubCategory>");
+			if (!String.IsNullOrEmpty(_name))
+				xml.AppendLine(@"<Name>" + _name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Name>");
+			if (!String.IsNullOrEmpty(_info))
+				xml.AppendLine(@"<Info>" + _info.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Info>");
+			if (!String.IsNullOrEmpty(_comments))
+				xml.AppendLine(@"<Comments>" + _comments.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comments>");
+			if (_rate.HasValue)
+				xml.AppendLine(@"<Rate>" + _rate.Value + @"</Rate>");
+			if (_investment.HasValue)
+				xml.AppendLine(@"<Investment>" + _investment.Value + @"</Investment>");
+			if (_impressions.HasValue)
+				xml.AppendLine(@"<Impressions>" + _impressions.Value + @"</Impressions>");
+			if (_cpm.HasValue)
+				xml.AppendLine(@"<CPM>" + _cpm.Value + @"</CPM>");
 
 			return xml.ToString();
 		}
 
 		public void Deserialize(XmlNode node)
 		{
-			int tempInt;
-			bool tempBool;
-			double tempDouble;
+			decimal tempDecimal;
 
-			foreach (XmlAttribute productAttribute in node.Attributes)
-				switch (productAttribute.Name)
+			foreach (XmlNode childNode in node.ChildNodes)
+				switch (childNode.Name)
 				{
-					#region Additional Properties
-					case "SlideHeader":
-						SlideHeader = productAttribute.Value;
+					case "Category":
+						_category = childNode.InnerText;
 						break;
-					case "CustomWebsite1":
-						CustomWebsite1 = productAttribute.Value;
+					case "SubCategory":
+						_subCategory = childNode.InnerText;
 						break;
-					case "CustomWebsite2":
-						CustomWebsite2 = productAttribute.Value;
+					case "Name":
+						_name = childNode.InnerText;
 						break;
-					case "ActiveDays":
-						if (int.TryParse(productAttribute.Value, out tempInt))
-							ActiveDays = tempInt;
-						else
-							ActiveDays = null;
+					case "Info":
+						_info = childNode.InnerText;
 						break;
-					case "TotalAds":
-						if (int.TryParse(productAttribute.Value, out tempInt))
-							TotalAds = tempInt;
-						else
-							TotalAds = null;
+					case "Comments":
+						_comments = childNode.InnerText;
 						break;
-					case "DurationType":
-						DurationType = productAttribute.Value;
+					case "Rate":
+						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
+							_rate = tempDecimal;
 						break;
-					case "DurationValue":
-						if (int.TryParse(productAttribute.Value, out tempInt))
-							DurationValue = tempInt;
-						else
-							DurationValue = null;
+					case "Investment":
+						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
+							_investment = tempDecimal;
 						break;
-					case "Strength1":
-						Strength1 = productAttribute.Value;
+					case "Impressions":
+						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
+							_impressions = tempDecimal;
 						break;
-					case "Strength2":
-						Strength2 = productAttribute.Value;
+					case "CPM":
+						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
+							_cpm = tempDecimal;
 						break;
-					case "Comment":
-						Comment = productAttribute.Value;
-						break;
-					case "Description":
-						Description = productAttribute.Value;
-						break;
-					case "AdRate":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							AdRate = tempDouble;
-						else
-							AdRate = null;
-						break;
-					case "MonthlyInvestment":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							MonthlyInvestment = tempDouble;
-						else
-							MonthlyInvestment = null;
-						break;
-					case "MonthlyImpressions":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							MonthlyImpressions = tempDouble;
-						else
-							MonthlyImpressions = null;
-						break;
-					case "MonthlyCPM":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							MonthlyCPM = tempDouble;
-						else
-							MonthlyCPM = null;
-						break;
-					case "TotalInvestment":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							TotalInvestment = tempDouble;
-						else
-							TotalInvestment = null;
-						break;
-					case "TotalImpressions":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							TotalImpressions = tempDouble;
-						else
-							TotalImpressions = null;
-						break;
-					case "TotalCPM":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							TotalCPM = tempDouble;
-						else
-							TotalCPM = null;
-						break;
-					case "Formula":
-						if (int.TryParse(productAttribute.Value, out tempInt))
-							Formula = (FormulaType)tempInt;
-						break;
-					#endregion
-
-					#region Show Properties
-					case "ShowBusinessName":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowBusinessName = tempBool;
-						break;
-					case "ShowDecisionMaker":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowDecisionMaker = tempBool;
-						break;
-					case "ShowPresentationDate":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowPresentationDate = tempBool;
-						break;
-					case "ShowWebsite":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowWebsite = tempBool;
-						break;
-					case "ShowCustomWebsite1":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowCustomWebsite1 = tempBool;
-						break;
-					case "ShowCustomWebsite2":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowCustomWebsite2 = tempBool;
-						break;
-					case "ShowActiveDays":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowActiveDays = tempBool;
-						break;
-					case "ShowAdRate":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowAdRate = tempBool;
-						break;
-					case "ShowComments":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowComments = tempBool;
-						break;
-					case "ShowCommentText":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowCommentText = tempBool;
-						break;
-					case "ShowCPMButton":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowCPMButton = tempBool;
-						break;
-					case "ShowFlightDates":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowFlightDates = tempBool;
-						break;
-					case "ShowMonthlyImpressions":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowMonthlyImpressions = tempBool;
-						break;
-					case "ShowMonthlyInvestment":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowMonthlyInvestment = tempBool;
-						break;
-					case "ShowStrength1":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowStrength1 = tempBool;
-						break;
-					case "ShowStrength2":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowStrength2 = tempBool;
-						break;
-					case "ShowTotalAds":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowTotalAds = tempBool;
-						break;
-					case "ShowTotalImpressions":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowTotalImpressions = tempBool;
-						break;
-					case "ShowTotalInvestment":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowTotalInvestment = tempBool;
-						break;
-					case "ShowDuration":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowDuration = tempBool;
-						break;
-					case "ShowImages":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowImages = tempBool;
-						break;
-					case "ShowScreenshot":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowScreenshot = tempBool;
-						break;
-					case "ShowSignature":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowSignature = tempBool;
-						break;
-					#endregion
 				}
-			Websites.Clear();
-			foreach (XmlNode websiteNode in node.ChildNodes)
-			{
-				if (websiteNode.Name.Equals("Website"))
-					Websites.Add(websiteNode.InnerText);
-			}
 		}
 
-		public void UpdateWebProducts()
+		public void ResetToDefault()
 		{
-			var result = new List<string>();
-			if (Parent.Products.Count > 0)
-				result.AddRange(Parent.Products.Take(Parent.Products.Count > 6 ? 6 : Parent.Products.Count).Select(x => x.Name));
-			Description = result.Count > 0 ? ("Web Package: " + string.Join(", ", result.ToArray())) : string.Empty;
-		}
-
-		public void ApplyDefaultView()
-		{
-			_showCPMButton = _defaultShowCPMButton;
-			ShowPresentationDate = DefaultShowPresentationDate;
-			ShowBusinessName = DefaultShowBusinessName;
-			ShowDecisionMaker = DefaultShowDecisionMaker;
-			ShowWebsite = DefaultShowWebsite;
-			ShowCustomWebsite1 = DefaultShowCustomWebsite1;
-			ShowCustomWebsite2 = DefaultShowCustomWebsite2;
-			ShowFlightDates = DefaultShowFlightDates;
-			ShowActiveDays = DefaultShowActiveDays;
-			ShowTotalAds = DefaultShowTotalAds;
-			ShowAdRate = DefaultShowAdRate;
-			ShowMonthlyInvestment = DefaultShowMonthlyInvestment;
-			ShowTotalInvestment = DefaultShowTotalInvestment;
-			ShowMonthlyImpressions = DefaultShowMonthlyImpressions;
-			ShowTotalImpressions = DefaultShowTotalImpressions;
-			ShowComments = DefaultShowComments;
-			ShowDuration = DefaultShowDuration;
-			ShowCommentText = DefaultShowCommentText;
-			ShowStrength1 = DefaultShowStrength1;
-			ShowStrength2 = DefaultShowStrength2;
-			ShowImages = DefaultShowImages;
-			ShowScreenshot = DefaultShowScreenshot;
-			ShowSignature = DefaultShowSignature;
-
-			Formula = ListManager.Instance.DefaultFormula;
-		}
-
-		public string GetSlideSource(string outputTemplateFolderPath)
-		{
-			string templateName = string.Empty;
-			SlideSource slideSource = ListManager.Instance.SlideSources.Where(x => x.ShowActiveDays == ShowActiveDays &&
-																				   x.ShowAdRate == ShowAdRate &&
-																				   x.ShowBusinessName == ShowBusinessName &&
-																				   x.ShowComments == ShowComments &&
-																				   x.ShowDecisionMaker == ShowDecisionMaker &&
-																				   x.ShowDuration == (ShowDuration & ShowFlightDates) &&
-																				   x.ShowFlightDates == ShowFlightDates &&
-																				   x.ShowImages == ShowImages &&
-																				   x.ShowMonthlyCPM == ShowMonthlyCPM &&
-																				   x.ShowMonthlyImpressions == ShowMonthlyImpressions &&
-																				   x.ShowMonthlyInvestment == ShowMonthlyInvestment &&
-																				   x.ShowPresentationDate == ShowPresentationDate &&
-																				   x.ShowProduct &&
-																				   x.ShowScreenshot == ShowScreenshot &&
-																				   x.ShowSignature == ShowSignature &&
-																				   x.ShowTotalAds == ShowTotalAds &&
-																				   x.ShowTotalCPM == ShowTotalCPM &&
-																				   x.ShowTotalImpressions == ShowTotalImpressions &&
-																				   x.ShowTotalInvestment == ShowTotalInvestment &&
-																				   x.ShowWebsite == ShowWebsite).FirstOrDefault();
-			if (slideSource != null)
-				templateName = Path.Combine(outputTemplateFolderPath, slideSource.TemplateName);
-			return templateName;
+			_category = null;
+			_subCategory = null;
+			_name = null;
+			_info = null;
+			_comments = null;
+			_rate = null;
+			_investment = null;
+			_impressions = null;
+			_cpm = null;
 		}
 	}
 
@@ -1874,343 +1559,5 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public bool ShowImages { get; set; }
 		public bool ShowScreenshot { get; set; }
 		public bool ShowSignature { get; set; }
-	}
-
-	public class ProductSummarySettings
-	{
-		public ProductSummarySettings()
-		{
-			ShowWebsites = true;
-			ShowDimensions = true;
-			ShowImpressions = true;
-			ShowTotalAds = true;
-			ShowActiveDays = true;
-			ShowAdRate = true;
-			ShowInvestment = true;
-			ShowCPM = true;
-
-			ShowMonthlyImpressions = true;
-			ShowTotalImpressions = true;
-			ShowMonthlyInvestment = true;
-			ShowTotalInvestment = true;
-
-			ShowTotalsOnLastOnly = false;
-
-			SlideHeader = string.Empty;
-
-			#region Output Settings
-			TotalHeader1 = string.Empty;
-			TotalValue1 = string.Empty;
-			TotalHeader2 = string.Empty;
-			TotalValue2 = string.Empty;
-			TotalHeader3 = string.Empty;
-			TotalValue3 = string.Empty;
-			TotalHeader4 = string.Empty;
-			TotalValue4 = string.Empty;
-			#endregion
-		}
-
-		public bool ShowWebsites { get; set; }
-		public bool ShowDimensions { get; set; }
-		public bool ShowImpressions { get; set; }
-		public bool ShowTotalAds { get; set; }
-		public bool ShowActiveDays { get; set; }
-		public bool ShowAdRate { get; set; }
-		public bool ShowInvestment { get; set; }
-		public bool ShowCPM { get; set; }
-
-		public bool ShowMonthlyImpressions { get; set; }
-		public bool ShowTotalImpressions { get; set; }
-		public bool ShowMonthlyInvestment { get; set; }
-		public bool ShowTotalInvestment { get; set; }
-
-		public bool ShowTotalsOnLastOnly { get; set; }
-
-		public string SlideHeader { get; set; }
-
-		#region Output Settings
-		public string TotalHeader1 { get; set; }
-		public string TotalValue1 { get; set; }
-		public string TotalHeader2 { get; set; }
-		public string TotalValue2 { get; set; }
-		public string TotalHeader3 { get; set; }
-		public string TotalValue3 { get; set; }
-		public string TotalHeader4 { get; set; }
-		public string TotalValue4 { get; set; }
-		#endregion
-
-		public string Serialize()
-		{
-			var result = new StringBuilder();
-
-			result.AppendLine(@"<ShowActiveDays>" + ShowActiveDays.ToString() + @"</ShowActiveDays>");
-			result.AppendLine(@"<ShowAdRate>" + ShowAdRate.ToString() + @"</ShowAdRate>");
-			result.AppendLine(@"<ShowCPM>" + ShowCPM.ToString() + @"</ShowCPM>");
-			result.AppendLine(@"<ShowDimensions>" + ShowDimensions.ToString() + @"</ShowDimensions>");
-			result.AppendLine(@"<ShowImpressions>" + ShowImpressions.ToString() + @"</ShowImpressions>");
-			result.AppendLine(@"<ShowInvestment>" + ShowInvestment.ToString() + @"</ShowInvestment>");
-			result.AppendLine(@"<ShowMonthlyImpressions>" + ShowMonthlyImpressions.ToString() + @"</ShowMonthlyImpressions>");
-			result.AppendLine(@"<ShowMonthlyInvestment>" + ShowMonthlyInvestment.ToString() + @"</ShowMonthlyInvestment>");
-			result.AppendLine(@"<ShowTotalAds>" + ShowTotalAds.ToString() + @"</ShowTotalAds>");
-			result.AppendLine(@"<ShowTotalImpressions>" + ShowTotalImpressions.ToString() + @"</ShowTotalImpressions>");
-			result.AppendLine(@"<ShowTotalInvestment>" + ShowTotalInvestment.ToString() + @"</ShowTotalInvestment>");
-			result.AppendLine(@"<ShowWebsites>" + ShowWebsites.ToString() + @"</ShowWebsites>");
-			result.AppendLine(@"<ShowTotalsOnLastOnly>" + ShowTotalsOnLastOnly.ToString() + @"</ShowTotalsOnLastOnly>");
-			result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
-
-			return result.ToString();
-		}
-
-		public void Deserialize(XmlNode node)
-		{
-			bool tempBool = false;
-
-			foreach (XmlNode childNode in node.ChildNodes)
-			{
-				switch (childNode.Name)
-				{
-					case "ShowActiveDays":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowActiveDays = tempBool;
-						break;
-					case "ShowAdRate":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowAdRate = tempBool;
-						break;
-					case "ShowCPM":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowCPM = tempBool;
-						break;
-					case "ShowDimensions":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowDimensions = tempBool;
-						break;
-					case "ShowImpressions":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowImpressions = tempBool;
-						break;
-					case "ShowInvestment":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowInvestment = tempBool;
-						break;
-					case "ShowMonthlyImpressions":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowMonthlyImpressions = tempBool;
-						break;
-					case "ShowMonthlyInvestment":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowMonthlyInvestment = tempBool;
-						break;
-					case "ShowTotalAds":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTotalAds = tempBool;
-						break;
-					case "ShowTotalImpressions":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTotalImpressions = tempBool;
-						break;
-					case "ShowTotalInvestment":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTotalInvestment = tempBool;
-						break;
-					case "ShowWebsites":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowWebsites = tempBool;
-						break;
-					case "ShowTotalsOnLastOnly":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTotalsOnLastOnly = tempBool;
-						break;
-					case "SlideHeader":
-						SlideHeader = childNode.InnerText;
-						break;
-				}
-			}
-		}
-	}
-
-	public class ProductBundleSettings
-	{
-		public ProductBundleSettings()
-		{
-			ShowWebsites = true;
-			ShowDimensions = true;
-			ShowTotalAds = true;
-			ShowActiveDays = true;
-			ShowAdRate = true;
-
-			ShowMonthlyImpressions = true;
-			ShowTotalImpressions = true;
-			ShowMonthlyInvestment = true;
-			ShowTotalInvestment = true;
-
-			ShowTotalsOnLastOnly = false;
-
-			SlideHeader = string.Empty;
-
-			#region Output Settings
-			TotalHeader1 = string.Empty;
-			TotalValue1 = string.Empty;
-			TotalCPM1 = string.Empty;
-			TotalHeader2 = string.Empty;
-			TotalValue2 = string.Empty;
-			TotalCPM2 = string.Empty;
-			TotalHeader3 = string.Empty;
-			TotalValue3 = string.Empty;
-			TotalCPM3 = string.Empty;
-			TotalHeader4 = string.Empty;
-			TotalValue4 = string.Empty;
-			TotalCPM4 = string.Empty;
-			#endregion
-		}
-
-		public bool ShowWebsites { get; set; }
-		public bool ShowDimensions { get; set; }
-		public bool ShowTotalAds { get; set; }
-		public bool ShowActiveDays { get; set; }
-		public bool ShowAdRate { get; set; }
-
-		public bool ShowMonthlyImpressions { get; set; }
-		public bool ShowTotalImpressions { get; set; }
-		public bool ShowMonthlyInvestment { get; set; }
-		public bool ShowTotalInvestment { get; set; }
-		public bool ShowMonthlyCPM { get; set; }
-		public bool ShowTotalCPM { get; set; }
-
-		public bool ShowTotalsOnLastOnly { get; set; }
-
-		public string SlideHeader { get; set; }
-		public double? TotalMonthlyImpressions { get; set; }
-		public double? TotalMonthlyInvestments { get; set; }
-		public double? TotalImpressions { get; set; }
-		public double? TotalInvestments { get; set; }
-
-		#region Output Settings
-		public string TotalHeader1 { get; set; }
-		public string TotalValue1 { get; set; }
-		public string TotalCPM1 { get; set; }
-		public string TotalHeader2 { get; set; }
-		public string TotalValue2 { get; set; }
-		public string TotalCPM2 { get; set; }
-		public string TotalHeader3 { get; set; }
-		public string TotalValue3 { get; set; }
-		public string TotalCPM3 { get; set; }
-		public string TotalHeader4 { get; set; }
-		public string TotalValue4 { get; set; }
-		public string TotalCPM4 { get; set; }
-		#endregion
-
-		public string Serialize()
-		{
-			var result = new StringBuilder();
-
-			result.AppendLine(@"<ShowActiveDays>" + ShowActiveDays.ToString() + @"</ShowActiveDays>");
-			result.AppendLine(@"<ShowAdRate>" + ShowAdRate.ToString() + @"</ShowAdRate>");
-			result.AppendLine(@"<ShowDimensions>" + ShowDimensions.ToString() + @"</ShowDimensions>");
-			result.AppendLine(@"<ShowMonthlyImpressions>" + ShowMonthlyImpressions.ToString() + @"</ShowMonthlyImpressions>");
-			result.AppendLine(@"<ShowMonthlyInvestment>" + ShowMonthlyInvestment.ToString() + @"</ShowMonthlyInvestment>");
-			result.AppendLine(@"<ShowTotalAds>" + ShowTotalAds.ToString() + @"</ShowTotalAds>");
-			result.AppendLine(@"<ShowTotalImpressions>" + ShowTotalImpressions.ToString() + @"</ShowTotalImpressions>");
-			result.AppendLine(@"<ShowTotalInvestment>" + ShowTotalInvestment.ToString() + @"</ShowTotalInvestment>");
-			result.AppendLine(@"<ShowWebsites>" + ShowWebsites.ToString() + @"</ShowWebsites>");
-			result.AppendLine(@"<ShowMonthlyCPM>" + ShowMonthlyCPM.ToString() + @"</ShowMonthlyCPM>");
-			result.AppendLine(@"<ShowTotalCPM>" + ShowTotalCPM.ToString() + @"</ShowTotalCPM>");
-			result.AppendLine(@"<ShowTotalsOnLastOnly>" + ShowTotalsOnLastOnly.ToString() + @"</ShowTotalsOnLastOnly>");
-			result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
-			result.AppendLine(@"<TotalMonthlyImpressions>" + (TotalMonthlyImpressions.HasValue ? TotalMonthlyImpressions.Value.ToString() : string.Empty) + @"</TotalMonthlyImpressions>");
-			result.AppendLine(@"<TotalMonthlyInvestments>" + (TotalMonthlyInvestments.HasValue ? TotalMonthlyInvestments.Value.ToString() : string.Empty) + @"</TotalMonthlyInvestments>");
-			result.AppendLine(@"<TotalImpressions>" + (TotalImpressions.HasValue ? TotalImpressions.Value.ToString() : string.Empty) + @"</TotalImpressions>");
-			result.AppendLine(@"<TotalInvestments>" + (TotalInvestments.HasValue ? TotalInvestments.Value.ToString() : string.Empty) + @"</TotalInvestments>");
-
-			return result.ToString();
-		}
-
-		public void Deserialize(XmlNode node)
-		{
-			bool tempBool = false;
-			double tempDouble = 0;
-
-			foreach (XmlNode childNode in node.ChildNodes)
-			{
-				switch (childNode.Name)
-				{
-					case "ShowActiveDays":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowActiveDays = tempBool;
-						break;
-					case "ShowAdRate":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowAdRate = tempBool;
-						break;
-					case "ShowDimensions":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowDimensions = tempBool;
-						break;
-					case "ShowMonthlyImpressions":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowMonthlyImpressions = tempBool;
-						break;
-					case "ShowMonthlyInvestment":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowMonthlyInvestment = tempBool;
-						break;
-					case "ShowTotalAds":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTotalAds = tempBool;
-						break;
-					case "ShowTotalImpressions":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTotalImpressions = tempBool;
-						break;
-					case "ShowTotalInvestment":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTotalInvestment = tempBool;
-						break;
-					case "ShowWebsites":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowWebsites = tempBool;
-						break;
-					case "ShowMonthlyCPM":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowMonthlyCPM = tempBool;
-						break;
-					case "ShowTotalCPM":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTotalCPM = tempBool;
-						break;
-					case "ShowTotalsOnLastOnly":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTotalsOnLastOnly = tempBool;
-						break;
-					case "SlideHeader":
-						SlideHeader = childNode.InnerText;
-						break;
-					case "TotalMonthlyImpressions":
-						if (double.TryParse(childNode.InnerText, out tempDouble))
-							TotalMonthlyImpressions = tempDouble;
-						else
-							TotalMonthlyImpressions = null;
-						break;
-					case "TotalMonthlyInvestments":
-						if (double.TryParse(childNode.InnerText, out tempDouble))
-							TotalMonthlyInvestments = tempDouble;
-						else
-							TotalMonthlyInvestments = null;
-						break;
-					case "TotalImpressions":
-						if (double.TryParse(childNode.InnerText, out tempDouble))
-							TotalImpressions = tempDouble;
-						else
-							TotalImpressions = null;
-						break;
-					case "TotalInvestments":
-						if (double.TryParse(childNode.InnerText, out tempDouble))
-							TotalInvestments = tempDouble;
-						else
-							TotalInvestments = null;
-						break;
-				}
-			}
-		}
 	}
 }

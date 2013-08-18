@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.components = new System.ComponentModel.Container();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.checkEditAdvertiser = new DevExpress.XtraEditors.CheckEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.checkEditLogo4 = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditLogo3 = new DevExpress.XtraEditors.CheckEdit();

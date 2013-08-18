@@ -150,7 +150,7 @@
 			this.buttonXGrid.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXGrid.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXGrid.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXGrid.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.TableInactive;
+			this.buttonXGrid.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Table;
 			this.buttonXGrid.Location = new System.Drawing.Point(22, 21);
 			this.buttonXGrid.Name = "buttonXGrid";
 			this.buttonXGrid.Size = new System.Drawing.Size(271, 61);
@@ -166,7 +166,7 @@
 			this.buttonXExcel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXExcel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXExcel.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXExcel.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.ExcelInactive;
+			this.buttonXExcel.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Excel;
 			this.buttonXExcel.Location = new System.Drawing.Point(22, 191);
 			this.buttonXExcel.Name = "buttonXExcel";
 			this.buttonXExcel.Size = new System.Drawing.Size(271, 61);
@@ -182,7 +182,7 @@
 			this.buttonXImage.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXImage.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXImage.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXImage.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.ImageInactive;
+			this.buttonXImage.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Image;
 			this.buttonXImage.Location = new System.Drawing.Point(22, 107);
 			this.buttonXImage.Name = "buttonXImage";
 			this.buttonXImage.Size = new System.Drawing.Size(271, 61);

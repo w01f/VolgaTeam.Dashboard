@@ -303,6 +303,7 @@
 			this.pbSettingsDayHelp.Size = new System.Drawing.Size(30, 30);
 			this.pbSettingsDayHelp.TabIndex = 38;
 			this.pbSettingsDayHelp.TabStop = false;
+			this.pbSettingsDayHelp.Click += new System.EventHandler(this.pbSettingsDayHelp_Click);
 			this.pbSettingsDayHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
 			this.pbSettingsDayHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
@@ -502,6 +503,7 @@
 			this.pbSettingsMonthHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pbSettingsMonthHelp.TabIndex = 39;
 			this.pbSettingsMonthHelp.TabStop = false;
+			this.pbSettingsMonthHelp.Click += new System.EventHandler(this.pbSettingsMonthHelp_Click);
 			this.pbSettingsMonthHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
 			this.pbSettingsMonthHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
@@ -648,6 +650,7 @@
 			this.pbSettingsThemeHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pbSettingsThemeHelp.TabIndex = 39;
 			this.pbSettingsThemeHelp.TabStop = false;
+			this.pbSettingsThemeHelp.Click += new System.EventHandler(this.pbSettingsThemeHelp_Click);
 			this.pbSettingsThemeHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
 			this.pbSettingsThemeHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 

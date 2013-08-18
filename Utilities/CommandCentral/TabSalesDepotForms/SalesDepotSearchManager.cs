@@ -38,7 +38,7 @@ namespace CommandCentral.TabSalesDepotForms
 				foreach (DataRow row in dataTable.Rows)
 				{
 					var searchGroup = new SearchGroup();
-					searchGroup.Name = row["TABLE_NAME"].ToString().Replace("$", "").Replace('"'.ToString(), "'").Replace("'", "");
+					searchGroup.Name = row["TABLE_NAME"].ToString().Replace("$", "").Replace('"'.ToString(), "'").Replace("'", "").Replace("#", ".");
 
 					if (!searchGroup.Name.Trim().Equals("Categories") && !searchGroup.Name.Trim().Equals("Settings"))
 						_categories.Add(searchGroup);
@@ -118,10 +118,10 @@ namespace CommandCentral.TabSalesDepotForms
 				}
 
 				//Load Tags
-				foreach (SearchGroup group in searchGroups)
+				foreach (SearchGroup searchGroup in searchGroups)
 				{
-					group.Tags.Clear();
-					dataAdapter = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}$]", group.Name), connection);
+					searchGroup.Tags.Clear();
+					dataAdapter = new OleDbDataAdapter(string.Format("SELECT * FROM [{0}$]", searchGroup.Name.Replace(".", "#")), connection);
 					dataTable = new DataTable();
 					try
 					{
@@ -131,7 +131,7 @@ namespace CommandCentral.TabSalesDepotForms
 							{
 								string value = row[0].ToString().Trim();
 								if (!string.IsNullOrEmpty(value))
-									group.Tags.Add(value);
+									searchGroup.Tags.Add(value);
 							}
 					}
 					catch { }

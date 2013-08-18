@@ -31,22 +31,16 @@
 			this.components = new System.ComponentModel.Container();
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.pnHeader = new System.Windows.Forms.Panel();
-			this.laScheduleWindow = new System.Windows.Forms.Label();
+			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.laAdvertiser = new System.Windows.Forms.Label();
-			this.laScheduleName = new System.Windows.Forms.Label();
-			this.pnMonthSelector = new System.Windows.Forms.Panel();
-			this.comboBoxEditMonthSelector = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.pnCalendarView = new System.Windows.Forms.Panel();
 			this.pnEmpty = new System.Windows.Forms.Panel();
-			this.pbCalendarLogo = new System.Windows.Forms.PictureBox();
 			this.pnHeader.SuspendLayout();
-			this.pnMonthSelector.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditMonthSelector.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnMain.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbCalendarLogo)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// defaultLookAndFeel
@@ -56,64 +50,42 @@
 			// pnHeader
 			// 
 			this.pnHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnHeader.Controls.Add(this.laScheduleWindow);
+			this.pnHeader.Controls.Add(this.hyperLinkEditReset);
 			this.pnHeader.Controls.Add(this.laAdvertiser);
-			this.pnHeader.Controls.Add(this.laScheduleName);
-			this.pnHeader.Controls.Add(this.pnMonthSelector);
 			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnHeader.Name = "pnHeader";
-			this.pnHeader.Size = new System.Drawing.Size(737, 41);
+			this.pnHeader.Size = new System.Drawing.Size(737, 38);
 			this.pnHeader.TabIndex = 4;
 			// 
-			// laScheduleWindow
+			// hyperLinkEditReset
 			// 
-			this.laScheduleWindow.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.laScheduleWindow.Location = new System.Drawing.Point(418, 0);
-			this.laScheduleWindow.Name = "laScheduleWindow";
-			this.laScheduleWindow.Size = new System.Drawing.Size(150, 41);
-			this.laScheduleWindow.TabIndex = 1;
-			this.laScheduleWindow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.hyperLinkEditReset.EditValue = "Reset";
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(673, 8);
+			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
+			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
+			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
+			this.hyperLinkEditReset.TabIndex = 105;
+			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 
 			// laAdvertiser
 			// 
 			this.laAdvertiser.Dock = System.Windows.Forms.DockStyle.Left;
-			this.laAdvertiser.Location = new System.Drawing.Point(167, 0);
+			this.laAdvertiser.Location = new System.Drawing.Point(0, 0);
 			this.laAdvertiser.Name = "laAdvertiser";
-			this.laAdvertiser.Size = new System.Drawing.Size(251, 41);
+			this.laAdvertiser.Size = new System.Drawing.Size(655, 38);
 			this.laAdvertiser.TabIndex = 2;
+			this.laAdvertiser.Text = "Advertiser:\r\nCampaign Dates:";
 			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// laScheduleName
-			// 
-			this.laScheduleName.Dock = System.Windows.Forms.DockStyle.Right;
-			this.laScheduleName.Location = new System.Drawing.Point(568, 0);
-			this.laScheduleName.Name = "laScheduleName";
-			this.laScheduleName.Size = new System.Drawing.Size(169, 41);
-			this.laScheduleName.TabIndex = 0;
-			this.laScheduleName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// pnMonthSelector
-			// 
-			this.pnMonthSelector.Controls.Add(this.comboBoxEditMonthSelector);
-			this.pnMonthSelector.Controls.Add(this.pbCalendarLogo);
-			this.pnMonthSelector.Dock = System.Windows.Forms.DockStyle.Left;
-			this.pnMonthSelector.Location = new System.Drawing.Point(0, 0);
-			this.pnMonthSelector.Name = "pnMonthSelector";
-			this.pnMonthSelector.Size = new System.Drawing.Size(167, 41);
-			this.pnMonthSelector.TabIndex = 3;
-			// 
-			// comboBoxEditMonthSelector
-			// 
-			this.comboBoxEditMonthSelector.Location = new System.Drawing.Point(41, 9);
-			this.comboBoxEditMonthSelector.Name = "comboBoxEditMonthSelector";
-			this.comboBoxEditMonthSelector.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.comboBoxEditMonthSelector.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditMonthSelector.Size = new System.Drawing.Size(120, 22);
-			this.comboBoxEditMonthSelector.StyleController = this.styleController;
-			this.comboBoxEditMonthSelector.TabIndex = 3;
-			this.comboBoxEditMonthSelector.SelectedIndexChanged += new System.EventHandler(this.comboBoxEditMonthSelector_SelectedIndexChanged);
 			// 
 			// styleController
 			// 
@@ -135,9 +107,9 @@
 			this.pnMain.Controls.Add(this.pnCalendarView);
 			this.pnMain.Controls.Add(this.pnEmpty);
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnMain.Location = new System.Drawing.Point(0, 41);
+			this.pnMain.Location = new System.Drawing.Point(0, 38);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(737, 389);
+			this.pnMain.Size = new System.Drawing.Size(737, 392);
 			this.pnMain.TabIndex = 7;
 			// 
 			// pnCalendarView
@@ -146,7 +118,7 @@
 			this.pnCalendarView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnCalendarView.Location = new System.Drawing.Point(0, 0);
 			this.pnCalendarView.Name = "pnCalendarView";
-			this.pnCalendarView.Size = new System.Drawing.Size(737, 389);
+			this.pnCalendarView.Size = new System.Drawing.Size(737, 392);
 			this.pnCalendarView.TabIndex = 6;
 			// 
 			// pnEmpty
@@ -155,18 +127,8 @@
 			this.pnEmpty.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnEmpty.Location = new System.Drawing.Point(0, 0);
 			this.pnEmpty.Name = "pnEmpty";
-			this.pnEmpty.Size = new System.Drawing.Size(737, 389);
+			this.pnEmpty.Size = new System.Drawing.Size(737, 392);
 			this.pnEmpty.TabIndex = 7;
-			// 
-			// pbCalendarLogo
-			// 
-			this.pbCalendarLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.DateNotAssigned;
-			this.pbCalendarLogo.Location = new System.Drawing.Point(3, 4);
-			this.pbCalendarLogo.Name = "pbCalendarLogo";
-			this.pbCalendarLogo.Size = new System.Drawing.Size(32, 32);
-			this.pbCalendarLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbCalendarLogo.TabIndex = 4;
-			this.pbCalendarLogo.TabStop = false;
 			// 
 			// OutputCalendarControl
 			// 
@@ -178,11 +140,9 @@
 			this.Name = "OutputCalendarControl";
 			this.Size = new System.Drawing.Size(737, 430);
 			this.pnHeader.ResumeLayout(false);
-			this.pnMonthSelector.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditMonthSelector.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnMain.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pbCalendarLogo)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -190,17 +150,13 @@
         #endregion
 
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        private System.Windows.Forms.Panel pnHeader;
-        private System.Windows.Forms.Label laScheduleWindow;
-        private System.Windows.Forms.Label laAdvertiser;
-        private System.Windows.Forms.Label laScheduleName;
+		private System.Windows.Forms.Panel pnHeader;
+		private System.Windows.Forms.Label laAdvertiser;
         private System.Windows.Forms.Panel pnMain;
         private System.Windows.Forms.Panel pnEmpty;
-        private System.Windows.Forms.Panel pnCalendarView;
-        private System.Windows.Forms.Panel pnMonthSelector;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditMonthSelector;
-        private DevExpress.XtraEditors.StyleController styleController;
-        private System.Windows.Forms.PictureBox pbCalendarLogo;
+		private System.Windows.Forms.Panel pnCalendarView;
+		private DevExpress.XtraEditors.StyleController styleController;
+		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 
     }
 }

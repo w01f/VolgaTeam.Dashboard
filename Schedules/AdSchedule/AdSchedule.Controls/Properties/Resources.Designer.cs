@@ -102,13 +102,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap Advertiser {
-            get {
-                object obj = ResourceManager.GetObject("Advertiser", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap AppLogo {
             get {
                 object obj = ResourceManager.GetObject("AppLogo", resourceCulture);
@@ -126,6 +119,13 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         public static System.Drawing.Bitmap ArrowRight {
             get {
                 object obj = ResourceManager.GetObject("ArrowRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap BasicInfo {
+            get {
+                object obj = ResourceManager.GetObject("BasicInfo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -154,6 +154,13 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         public static System.Drawing.Bitmap CalendarEditButton {
             get {
                 object obj = ResourceManager.GetObject("CalendarEditButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap CalendarMonth {
+            get {
+                object obj = ResourceManager.GetObject("CalendarMonth", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -242,6 +249,13 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap DeleteSchedule {
+            get {
+                object obj = ResourceManager.GetObject("DeleteSchedule", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap Digital {
             get {
                 object obj = ResourceManager.GetObject("Digital", resourceCulture);
@@ -270,23 +284,9 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap ExcelInactive {
-            get {
-                object obj = ResourceManager.GetObject("ExcelInactive", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap Exit {
             get {
                 object obj = ResourceManager.GetObject("Exit", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap ExportCalendar {
-            get {
-                object obj = ResourceManager.GetObject("ExportCalendar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -354,13 +354,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap ImageInactive {
-            get {
-                object obj = ResourceManager.GetObject("ImageInactive", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap InvestmentDetails {
             get {
                 object obj = ResourceManager.GetObject("InvestmentDetails", resourceCulture);
@@ -389,6 +382,13 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap NewScheduleRibbon {
+            get {
+                object obj = ResourceManager.GetObject("NewScheduleRibbon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap Notes {
             get {
                 object obj = ResourceManager.GetObject("Notes", resourceCulture);
@@ -406,6 +406,20 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         public static System.Drawing.Bitmap NudgeUp {
             get {
                 object obj = ResourceManager.GetObject("NudgeUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap OpenSchedule {
+            get {
+                object obj = ResourceManager.GetObject("OpenSchedule", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap OpenScheduleRibbon {
+            get {
+                object obj = ResourceManager.GetObject("OpenScheduleRibbon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -452,16 +466,16 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap RegularEmail {
+        public static System.Drawing.Bitmap RedWarning {
             get {
-                object obj = ResourceManager.GetObject("RegularEmail", resourceCulture);
+                object obj = ResourceManager.GetObject("RedWarning", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        public static System.Drawing.Bitmap Reset {
+        public static System.Drawing.Bitmap RegularEmail {
             get {
-                object obj = ResourceManager.GetObject("Reset", resourceCulture);
+                object obj = ResourceManager.GetObject("RegularEmail", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -511,13 +525,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         public static System.Drawing.Bitmap Table {
             get {
                 object obj = ResourceManager.GetObject("Table", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap TableInactive {
-            get {
-                object obj = ResourceManager.GetObject("TableInactive", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

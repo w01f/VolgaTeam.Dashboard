@@ -298,12 +298,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public decimal? OutputMonthlyValue
 		{
-			get { return OutputItem.MonthlyChecked ? MonthlyValue : (decimal?)null; }
+			get { return ckMonthly.Checked && OutputItem.MonthlyChecked ? MonthlyValue : (decimal?)null; }
 		}
 
 		public decimal? OutputTotalValue
 		{
-			get { return OutputItem.TotalChecked ? TotalValue : (decimal?)null; }
+			get { return ckTotal.Checked &&  OutputItem.TotalChecked ? TotalValue : (decimal?)null; }
 		}
 
 		public bool Complited

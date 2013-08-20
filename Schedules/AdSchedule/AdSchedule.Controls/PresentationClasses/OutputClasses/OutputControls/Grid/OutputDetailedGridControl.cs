@@ -1071,6 +1071,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 								else
 									AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, emailPages.ToArray());
 							}
+							Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 							formProgress.Close();
 							if (File.Exists(tempFileName))
 								using (var formEmail = new FormEmail())
@@ -1158,6 +1159,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 								else
 									AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, emailPages.ToArray());
 							}
+							Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 							formProgress.Close();
 							if (File.Exists(tempFileName))
 								using (var formPreview = new FormPreview())

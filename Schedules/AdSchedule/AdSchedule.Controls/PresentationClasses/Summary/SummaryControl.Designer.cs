@@ -666,6 +666,7 @@
 			this.pnOutputColumnHeaderBorder.ResumeLayout(false);
 			this.pnOutputColumnHeader.ResumeLayout(false);
 			this.pnOutputSummary.ResumeLayout(false);
+			this.pnOutputSummary.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSignatureLine.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalInvestmentOutput.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotal.Properties)).EndInit();

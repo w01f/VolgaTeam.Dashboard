@@ -226,6 +226,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
+		public void buttonItemCalendarsExport_Click(object sender, EventArgs e)
+		{
+			SaveSchedule();
+			if (_selectedOutput != null)
+				_selectedOutput.Export();
+		}
+
 		public void buttonItemCalendarsPreview_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
@@ -329,6 +336,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		void UpdateToggledOptions();
 		void ShowOutputOptions(ICalendarSettingsViewer settingsViewer);
 		void UpdateOutput(bool quickLoad);
+		void Export();
 		void PrintOutput();
 		void Email();
 		void Preview();

@@ -23,6 +23,7 @@ namespace NewBizWiz.Core.Interop
 		protected Application _powerPointObject;
 		private int _powerPointProcessId;
 		private IntPtr _windowHandle = IntPtr.Zero;
+		private int previouseSlideIndex;
 
 		protected PowerPointHelper() { }
 
@@ -369,7 +370,7 @@ namespace NewBizWiz.Core.Interop
 			{
 				MessageFilter.Revoke();
 			}
-			return slideIndex + 1;
+			return slideIndex;
 		}
 
 		public void CreateLockedPresentation(string sourceFolderPathName, string destinationFileName)
@@ -466,7 +467,7 @@ namespace NewBizWiz.Core.Interop
 				GetActivePresentation();
 				destinationPresentation = _activePresentation;
 				if (indexToPaste == 0)
-					indexToPaste = GetActiveSlideIndex();
+					indexToPaste = GetActiveSlideIndex() + 1;
 			}
 			else
 				indexToPaste = destinationPresentation.Slides.Count + 1;
@@ -697,6 +698,16 @@ namespace NewBizWiz.Core.Interop
 			{
 				MessageFilter.Revoke();
 			}
+		}
+
+		protected void SavePrevSlideIndex()
+		{
+			previouseSlideIndex = GetActiveSlideIndex();
+		}
+
+		protected void RestorePrevSlideIndex()
+		{
+			_powerPointObject.ActivePresentation.Slides[previouseSlideIndex].Select();
 		}
 	}
 

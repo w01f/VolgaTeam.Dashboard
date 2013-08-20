@@ -10,12 +10,14 @@ using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTab;
+using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
+using Point = System.Drawing.Point;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
@@ -294,9 +296,125 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		#endregion
 
 		#region Output Staff
-		public string OutputFileIndex
+
+		public int RecordsPerSlide
 		{
-			get { return String.Format("{0}{1}", (buttonXLogo.Checked ? 1 : 2), (LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled ? "d" : String.Empty)); }
+			get
+			{
+				var totalRecords = PublicationNames.Length;
+				switch (totalRecords)
+				{
+					case 7:
+					case 8:
+						return 4;
+					case 9:
+					case 10:
+					case 13:
+					case 14:
+					case 15:
+						return 5;
+					case 11:
+					case 12:
+					case 16:
+						return 6;
+					default:
+						if (totalRecords <= 6)
+							return totalRecords;
+						if (totalRecords > 16)
+							return 6;
+						return 0;
+				}
+			}
+		}
+
+		public string GetOutputTemplatePath(int slideIndex)
+		{
+			var template = String.Empty;
+			if (buttonXLogo.Checked && LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled)
+				template = "snapshot-{0}logo_digital.ppt";
+			else if (buttonXLogo.Checked)
+				template = "snapshot-{0}logo.ppt";
+			else if (LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled)
+				template = "snapshot-{0}nologo_digital.ppt";
+			else
+				template = "snapshot-{0}nologo.ppt";
+			var templateIndex = 0;
+			var totalRecords = PublicationNames.Length;
+			if (slideIndex == 0)
+				switch (PublicationNames.Length)
+				{
+					case 7:
+					case 8:
+						templateIndex = 4;
+						break;
+					case 9:
+					case 10:
+					case 13:
+					case 14:
+					case 15:
+						templateIndex = 5;
+						break;
+					case 11:
+					case 12:
+					case 16:
+						templateIndex = 6;
+						break;
+					default:
+						if (totalRecords <= 6)
+							templateIndex = totalRecords;
+						else if (totalRecords > 16)
+							templateIndex = 6;
+						break;
+				}
+			else if (slideIndex == 1)
+				switch (PublicationNames.Length)
+				{
+					case 7:
+						templateIndex = 7;
+						break;
+					case 8:
+						templateIndex = 4;
+						break;
+					case 9:
+						templateIndex = 9;
+						break;
+					case 10:
+					case 13:
+					case 14:
+					case 15:
+						templateIndex = 5;
+						break;
+					case 11:
+						templateIndex = 11;
+						break;
+					case 12:
+					case 16:
+						templateIndex = 6;
+						break;
+					default:
+						templateIndex = 6;
+						break;
+				}
+			else if (slideIndex == 2)
+				switch (PublicationNames.Length)
+				{
+					case 13:
+						templateIndex = 13;
+						break;
+					case 14:
+						templateIndex = 14;
+						break;
+					case 15:
+						templateIndex = 5;
+						break;
+					case 16:
+						templateIndex = 16;
+						break;
+					default:
+						templateIndex = 6;
+						break;
+				}
+			return String.Format(template, templateIndex);
 		}
 
 		public string Header
@@ -482,6 +600,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				formProgress.Show();
 				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				AdSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(tempFileName);
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
 				if (File.Exists(tempFileName))
 					using (var formEmail = new FormEmail())
@@ -506,6 +625,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				formProgress.Show();
 				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				AdSchedulePowerPointHelper.Instance.PrepareSnapshotEmail(tempFileName);
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
 				if (File.Exists(tempFileName))
 					using (var formPreview = new FormPreview())

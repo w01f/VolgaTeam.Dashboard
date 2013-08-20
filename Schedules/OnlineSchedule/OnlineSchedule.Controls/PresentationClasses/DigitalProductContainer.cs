@@ -314,6 +314,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 						}
 						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, outputProducts.ToArray());
 					}
+					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 					formProgress.Close();
 					if (File.Exists(tempFileName))
 						using (var formEmail = new FormEmail())
@@ -378,6 +379,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 						}
 						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, outputProducts.ToArray());
 					}
+					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 					formProgress.Close();
 					if (File.Exists(tempFileName))
 						using (var formPreview = new FormPreview())

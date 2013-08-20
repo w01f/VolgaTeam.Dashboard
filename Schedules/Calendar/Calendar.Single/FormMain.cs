@@ -296,10 +296,7 @@ namespace NewBizWiz.Calendar.Single
 			{
 				if (from.ShowDialog() == DialogResult.OK)
 				{
-					if (from.NeedToImport)
-						BusinessWrapper.Instance.ScheduleManager.ImportSchedule(from.ScheduleFilePath);
-					else
-						BusinessWrapper.Instance.ScheduleManager.OpenSchedule(from.ScheduleFilePath);
+					BusinessWrapper.Instance.ScheduleManager.OpenSchedule(from.ScheduleFilePath);
 					LoadData();
 				}
 				else if (!BusinessWrapper.Instance.ScheduleManager.CalendarLoaded)

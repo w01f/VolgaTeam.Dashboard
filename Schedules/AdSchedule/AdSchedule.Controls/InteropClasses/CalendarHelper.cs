@@ -265,6 +265,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 		{
 			try
 			{
+				SavePrevSlideIndex();
 				Presentations presentations = _powerPointObject.Presentations;
 				Presentation presentation = presentations.Add(MsoTriState.msoFalse);
 				presentation.PageSetup.SlideWidth = (float)Core.Common.SettingsManager.Instance.SizeWidth * 72;
@@ -300,6 +301,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 					Application.DoEvents();
 
 				Core.Common.Utilities.Instance.ReleaseComObject(presentation);
+				RestorePrevSlideIndex();
 			}
 			catch { }
 			finally

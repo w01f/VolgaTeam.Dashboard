@@ -235,11 +235,12 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 		{
 			try
 			{
+				SavePrevSlideIndex();
 				Presentations presentations = _powerPointObject.Presentations;
 				Presentation presentation = presentations.Add(MsoTriState.msoFalse);
-				presentation.PageSetup.SlideWidth = (float)NewBizWiz.Core.Common.SettingsManager.Instance.SizeWidth * 72;
-				presentation.PageSetup.SlideHeight = (float)NewBizWiz.Core.Common.SettingsManager.Instance.SizeHeght * 72;
-				switch (NewBizWiz.Core.Common.SettingsManager.Instance.Orientation)
+				presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
+				presentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
+				switch (SettingsManager.Instance.Orientation)
 				{
 					case "Landscape":
 						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
@@ -248,7 +249,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
 						break;
 				}
-				NewBizWiz.Core.Common.Utilities.Instance.ReleaseComObject(presentations);
+				Utilities.Instance.ReleaseComObject(presentations);
 				foreach (PublicationDetailedGridControl outputControl in outputControls)
 					AppendDetailedGridExcelBased(outputControl, pasteAsImage, presentation);
 				MessageFilter.Register();
@@ -266,7 +267,8 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 				while (thread.IsAlive)
 					Application.DoEvents();
 
-				NewBizWiz.Core.Common.Utilities.Instance.ReleaseComObject(presentation);
+				Utilities.Instance.ReleaseComObject(presentation);
+				RestorePrevSlideIndex();
 			}
 			catch { }
 			finally
@@ -446,11 +448,12 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 		{
 			try
 			{
+				SavePrevSlideIndex();
 				Presentations presentations = _powerPointObject.Presentations;
 				Presentation presentation = presentations.Add(MsoTriState.msoFalse);
-				presentation.PageSetup.SlideWidth = (float)NewBizWiz.Core.Common.SettingsManager.Instance.SizeWidth * 72;
-				presentation.PageSetup.SlideHeight = (float)NewBizWiz.Core.Common.SettingsManager.Instance.SizeHeght * 72;
-				switch (NewBizWiz.Core.Common.SettingsManager.Instance.Orientation)
+				presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
+				presentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
+				switch (SettingsManager.Instance.Orientation)
 				{
 					case "Landscape":
 						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
@@ -459,7 +462,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
 						break;
 				}
-				NewBizWiz.Core.Common.Utilities.Instance.ReleaseComObject(presentations);
+				Utilities.Instance.ReleaseComObject(presentations);
 				foreach (PublicationDetailedGridControl outputControl in outputControls)
 					AppendDetailedGridGridBased(outputControl, presentation);
 				MessageFilter.Register();
@@ -477,7 +480,8 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 				while (thread.IsAlive)
 					Application.DoEvents();
 
-				NewBizWiz.Core.Common.Utilities.Instance.ReleaseComObject(presentation);
+				Utilities.Instance.ReleaseComObject(presentation);
+				RestorePrevSlideIndex();
 			}
 			catch { }
 			finally

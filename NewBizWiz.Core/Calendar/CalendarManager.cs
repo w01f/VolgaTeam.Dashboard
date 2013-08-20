@@ -34,19 +34,15 @@ namespace NewBizWiz.Core.Calendar
 			var saveFolder = new DirectoryInfo(SettingsManager.Instance.SaveFolder);
 			if (saveFolder.Exists)
 				schedules.AddRange(GetShortScheduleList(saveFolder));
-			saveFolder = new DirectoryInfo(AdSchedule.SettingsManager.Instance.SaveFolder);
-			if (saveFolder.Exists)
-				schedules.AddRange(GetShortScheduleList(saveFolder, false));
 			return schedules.ToArray();
 		}
 
-		public static ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder, bool originFormat = true)
+		public static ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
 		{
 			var calendarList = new List<ShortSchedule>();
 			foreach (FileInfo file in rootFolder.GetFiles("*.xml"))
 			{
 				var schedule = new ShortSchedule(file);
-				schedule.NeedToImport = !originFormat;
 				calendarList.Add(schedule);
 			}
 			return calendarList.ToArray();
@@ -58,14 +54,31 @@ namespace NewBizWiz.Core.Calendar
 			OpenSchedule(calendarFilePath);
 		}
 
-		public void ImportSchedule(string sourceSchedulePath)
+		public static void ImportSchedule(string sourceSchedulePath, string newName)
 		{
 			var sourceSchedule = new AdSchedule.Schedule(sourceSchedulePath);
-			string scheduleName = Path.GetFileNameWithoutExtension(sourceSchedule.ScheduleFile.FullName);
-			string calendarFilePath = GetScheduleFileName(scheduleName);
-			OpenSchedule(calendarFilePath);
-			_currentSchedule.ImportCalendars(sourceSchedule);
-			_currentSchedule.Save();
+
+			var newSchedule = new Schedule(GetScheduleFileName(newName));
+
+			newSchedule.BusinessName = sourceSchedule.BusinessName;
+			newSchedule.DecisionMaker = sourceSchedule.DecisionMaker;
+			newSchedule.ClientType = sourceSchedule.ClientType;
+			newSchedule.PresentationDate = sourceSchedule.PresentationDate;
+			newSchedule.FlightDateStart = sourceSchedule.FlightDateStart;
+			newSchedule.FlightDateEnd = sourceSchedule.FlightDateEnd;
+			newSchedule.Status = ListManager.Instance.Statuses.FirstOrDefault();
+			newSchedule.ShowNewspaper = true;
+			newSchedule.ShowDigital = true;
+			newSchedule.ShowTV = false;
+			newSchedule.ShowRadio = false;
+
+			newSchedule.GraphicCalendar = new CalendarSundayBased(newSchedule);
+			newSchedule.GraphicCalendar.UpdateDaysCollection();
+			newSchedule.GraphicCalendar.UpdateMonthCollection();
+			newSchedule.GraphicCalendar.UpdateNotesCollection();
+			newSchedule.GraphicCalendar.ImportDays(sourceSchedule);
+
+			newSchedule.Save();
 		}
 
 		public void OpenSchedule(string scheduleFilePath)
@@ -74,7 +87,7 @@ namespace NewBizWiz.Core.Calendar
 			CalendarLoaded = true;
 		}
 
-		public string GetScheduleFileName(string calendarName)
+		public static string GetScheduleFileName(string calendarName)
 		{
 			return Path.Combine(SettingsManager.Instance.SaveFolder, calendarName + ".xml");
 		}
@@ -127,7 +140,6 @@ namespace NewBizWiz.Core.Calendar
 
 		public string BusinessName { get; set; }
 		public string Status { get; set; }
-		public bool NeedToImport { get; set; }
 
 		public string ShortFileName
 		{
@@ -142,11 +154,6 @@ namespace NewBizWiz.Core.Calendar
 		public DateTime LastModifiedDate
 		{
 			get { return _calendarFile.LastWriteTime; }
-		}
-
-		public string Type
-		{
-			get { return NeedToImport ? "spn" : "cal"; }
 		}
 
 		private void Load()
@@ -236,7 +243,7 @@ namespace NewBizWiz.Core.Calendar
 		public DateTime? FlightDateStart { get; set; }
 		public DateTime? FlightDateEnd { get; set; }
 
-		public Calendar GraphicCalendar { get; private set; }
+		public Calendar GraphicCalendar { get; set; }
 
 		public bool ShowNewspaper { get; set; }
 		public bool ShowDigital { get; set; }
@@ -397,28 +404,6 @@ namespace NewBizWiz.Core.Calendar
 				sw.Write(xml);
 				sw.Flush();
 			}
-		}
-
-		public void ImportCalendars(AdSchedule.Schedule sourceSchedule)
-		{
-			BusinessName = sourceSchedule.BusinessName;
-			DecisionMaker = sourceSchedule.DecisionMaker;
-			ClientType = sourceSchedule.ClientType;
-			PresentationDate = sourceSchedule.PresentationDate;
-			FlightDateStart = sourceSchedule.FlightDateStart;
-			FlightDateEnd = sourceSchedule.FlightDateEnd;
-			Status = ListManager.Instance.Statuses.FirstOrDefault();
-			ShowNewspaper = true;
-			ShowDigital = true;
-			ShowTV = false;
-			ShowRadio = false;
-
-			GraphicCalendar = new CalendarSundayBased(this);
-
-			GraphicCalendar.UpdateDaysCollection();
-			GraphicCalendar.UpdateMonthCollection();
-			GraphicCalendar.UpdateNotesCollection();
-			GraphicCalendar.ImportDays(sourceSchedule);
 		}
 	}
 

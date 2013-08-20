@@ -24,7 +24,6 @@ namespace NewBizWiz.Calendar.Single
 		}
 
 		public string ScheduleFilePath { get; set; }
-		public bool NeedToImport { get; set; }
 
 		public void LoadSchedules()
 		{
@@ -50,7 +49,6 @@ namespace NewBizWiz.Calendar.Single
 			if (selectedSchedule != null)
 			{
 				ScheduleFilePath = selectedSchedule.FullFileName;
-				NeedToImport = selectedSchedule.NeedToImport;
 				DialogResult = DialogResult.OK;
 				Close();
 			}

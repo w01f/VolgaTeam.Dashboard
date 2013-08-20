@@ -375,6 +375,12 @@
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormDayView.Designer.cs">
       <DependentUpon>FormDayView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormExportSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormExportSchedule.Designer.cs">
+      <DependentUpon>FormExportSchedule.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormCloneInsert.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -618,6 +624,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormDayView.resx">
       <DependentUpon>FormDayView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormExportSchedule.resx">
+      <DependentUpon>FormExportSchedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormCloneInsert.resx">
       <DependentUpon>FormCloneInsert.cs</DependentUpon>
@@ -1016,6 +1025,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RedWarning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExportCalendar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

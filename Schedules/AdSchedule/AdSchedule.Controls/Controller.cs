@@ -226,6 +226,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			CalendarPowerPoint.Click += Calendars.buttonItemCalendarsPowerPoint_Click;
 			CalendarEmail.Click += Calendars.buttonItemCalendarsEmail_Click;
 			CalendarPreview.Click += Calendars.buttonItemCalendarsPreview_Click;
+			CalendarExport.Click += Calendars.buttonItemCalendarsExport_Click;
 			CalendarMonthList.SelectedIndexChanged += Calendars.MonthList_SelectedIndexChanged;
 			#endregion
 
@@ -462,6 +463,7 @@ namespace NewBizWiz.AdSchedule.Controls
 
 		#region Calendar
 		public ButtonItem CalendarOptions { get; set; }
+		public ButtonItem CalendarExport { get; set; }
 		public ButtonItem CalendarHelp { get; set; }
 		public ButtonItem CalendarSave { get; set; }
 		public ButtonItem CalendarSaveAs { get; set; }

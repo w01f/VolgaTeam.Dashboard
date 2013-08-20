@@ -106,10 +106,7 @@ namespace NewBizWiz.Dashboard.TabCalendarForms
 				Calendar.Internal.FormMain.Instance.Resize += FormMain.Instance.FormCalendarResize;
 				Calendar.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 				Calendar.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
-				if (selectedSchedule.NeedToImport)
-					Calendar.Internal.AppManager.ImportSchedule(selectedSchedule.FullFileName);
-				else
-					Calendar.Internal.AppManager.OpenSchedule(selectedSchedule.FullFileName);
+				Calendar.Internal.AppManager.OpenSchedule(selectedSchedule.FullFileName);
 				if (!FormMain.Instance.IsDead)
 				{
 					FormMain.Instance.Opacity = 1;

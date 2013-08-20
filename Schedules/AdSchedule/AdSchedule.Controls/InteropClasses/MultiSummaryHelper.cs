@@ -173,11 +173,12 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 		{
 			try
 			{
+				SavePrevSlideIndex();
 				Presentations presentations = _powerPointObject.Presentations;
 				Presentation presentation = presentations.Add(MsoTriState.msoFalse);
-				presentation.PageSetup.SlideWidth = (float)NewBizWiz.Core.Common.SettingsManager.Instance.SizeWidth * 72;
-				presentation.PageSetup.SlideHeight = (float)NewBizWiz.Core.Common.SettingsManager.Instance.SizeHeght * 72;
-				switch (NewBizWiz.Core.Common.SettingsManager.Instance.Orientation)
+				presentation.PageSetup.SlideWidth = (float)Core.Common.SettingsManager.Instance.SizeWidth * 72;
+				presentation.PageSetup.SlideHeight = (float)Core.Common.SettingsManager.Instance.SizeHeght * 72;
+				switch (Core.Common.SettingsManager.Instance.Orientation)
 				{
 					case "Landscape":
 						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
@@ -186,7 +187,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
 						break;
 				}
-				NewBizWiz.Core.Common.Utilities.Instance.ReleaseComObject(presentations);
+				Core.Common.Utilities.Instance.ReleaseComObject(presentations);
 				AppendMultiSummary(presentation);
 				MessageFilter.Register();
 				var thread = new Thread(delegate()
@@ -203,7 +204,8 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 				while (thread.IsAlive)
 					Application.DoEvents();
 
-				NewBizWiz.Core.Common.Utilities.Instance.ReleaseComObject(presentation);
+				Core.Common.Utilities.Instance.ReleaseComObject(presentation);
+				RestorePrevSlideIndex();
 			}
 			catch { }
 			finally

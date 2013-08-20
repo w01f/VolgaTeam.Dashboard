@@ -307,6 +307,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 								}
 								CalendarPowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, emailPages.ToArray());
 							}
+							Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 							Enabled = true;
 							formProgress.Close();
 							if (File.Exists(tempFileName))
@@ -330,7 +331,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		{
 			if (Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex >= 0)
 			{
-				CalendarMonth selectedMonth = CalendarData.Months[Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex];
+				var selectedMonth = CalendarData.Months[Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex];
 				foreach (CalendarMonth month in CalendarData.Months)
 					month.OutputData.PrepareNotes();
 				using (var form = new FormSelectCalendar())
@@ -380,6 +381,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 								}
 								CalendarPowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, emailPages.ToArray());
 							}
+							Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 							Enabled = true;
 							formProgress.Close();
 							if (File.Exists(tempFileName))

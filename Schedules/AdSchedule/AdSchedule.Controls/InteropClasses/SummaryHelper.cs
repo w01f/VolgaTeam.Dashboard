@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
@@ -79,10 +81,12 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 													shape.TextFrame.TextRange.Text = Controller.Instance.Summary.PresentationDate;
 													break;
 												case "MNTHLY1":
-													shape.Visible = Controller.Instance.Summary.ShowMonthlyHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
+													shape.Visible = Controller.Instance.Summary.ShowMonthlyHeader && Controller.Instance.Summary.ShowTotalHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
+													shape.TextFrame.TextRange.Text = Controller.Instance.Summary.ShowMonthlyHeader ? String.Format("Monthly{0}Investment", (char)13) : String.Format("Total{0}Investment", (char)13);
 													break;
 												case "TOTAL2":
-													shape.Visible = Controller.Instance.Summary.ShowTotalHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
+													shape.Visible = Controller.Instance.Summary.ShowMonthlyHeader || Controller.Instance.Summary.ShowTotalHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
+													shape.TextFrame.TextRange.Text = Controller.Instance.Summary.ShowMonthlyHeader && Controller.Instance.Summary.ShowTotalHeader ? String.Format("Total{0}Investment", (char)13) : String.Format("Monthly{0}Investment", (char)13);
 													break;
 												case "MWH":
 													if (!string.IsNullOrEmpty(Controller.Instance.Summary.TotalMonthlyValue))
@@ -136,22 +140,34 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 														else if (shape.Tags.Name(i).Equals(string.Format("TINVEST{0}", k)))
 														{
 															shape.Visible = MsoTriState.msoFalse;
-															if (Controller.Instance.Summary.MonthlyValues != null)
+															if (Controller.Instance.Summary.ShowMonthlyHeader && Controller.Instance.Summary.ShowTotalHeader && Controller.Instance.Summary.MonthlyValues.Any())
+															{
 																if ((j + k) < itemsCount)
 																{
 																	shape.TextFrame.TextRange.Text = Controller.Instance.Summary.MonthlyValues[j + k];
 																	shape.Visible = MsoTriState.msoTrue;
 																}
+															}
 														}
 														else if (shape.Tags.Name(i).Equals(string.Format("MWINVEST{0}", k)))
 														{
 															shape.Visible = MsoTriState.msoFalse;
-															if (Controller.Instance.Summary.TotalValues != null)
+															if (Controller.Instance.Summary.ShowMonthlyHeader && Controller.Instance.Summary.ShowTotalHeader && Controller.Instance.Summary.TotalValues.Any())
+															{
 																if ((j + k) < itemsCount)
 																{
 																	shape.TextFrame.TextRange.Text = Controller.Instance.Summary.TotalValues[j + k];
 																	shape.Visible = MsoTriState.msoTrue;
 																}
+															}
+															else if (Controller.Instance.Summary.ShowMonthlyHeader && Controller.Instance.Summary.MonthlyValues.Any())
+															{
+																if ((j + k) < itemsCount)
+																{
+																	shape.TextFrame.TextRange.Text = Controller.Instance.Summary.MonthlyValues[j + k];
+																	shape.Visible = MsoTriState.msoTrue;
+																}
+															}
 														}
 													}
 													break;
@@ -322,6 +338,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 		{
 			try
 			{
+				SavePrevSlideIndex();
 				Presentations presentations = _powerPointObject.Presentations;
 				Presentation presentation = presentations.Add(MsoTriState.msoFalse);
 				presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
@@ -352,6 +369,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 				while (thread.IsAlive)
 					System.Windows.Forms.Application.DoEvents();
 				Utilities.Instance.ReleaseComObject(presentation);
+				RestorePrevSlideIndex();
 			}
 			catch { }
 			finally

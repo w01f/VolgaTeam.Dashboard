@@ -92,36 +92,6 @@ namespace NewBizWiz.Calendar.Internal
 			}
 		}
 
-		public static void ImportSchedule(string fileName)
-		{
-			if (CalendarPowerPointHelper.Instance.Connect())
-			{
-				SetCulture();
-				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-				BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
-				BusinessWrapper.Instance.ScheduleManager.ImportSchedule(fileName);
-				FormMain.Instance.ShowDialog();
-				CalendarPowerPointHelper.Instance.Disconnect();
-				RestoreCulture();
-				RemoveInstances();
-			}
-		}
-
-		public static void ImportSchedule(Schedule sourceSchedule)
-		{
-			if (CalendarPowerPointHelper.Instance.Connect())
-			{
-				SetCulture();
-				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-				BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
-				BusinessWrapper.Instance.ScheduleManager.ImportSchedule(sourceSchedule.ScheduleFile.FullName);
-				FormMain.Instance.ShowDialog();
-				CalendarPowerPointHelper.Instance.Disconnect();
-				RestoreCulture();
-				RemoveInstances();
-			}
-		}
-
 		private static void RemoveInstances()
 		{
 			Controller.Instance.RemoveInstance();

@@ -440,6 +440,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				formProgress.Show();
 				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				AdSchedulePowerPointHelper.Instance.PrepareMultiSummaryEmail(tempFileName);
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
 				if (File.Exists(tempFileName))
 					using (var formEmail = new FormEmail())
@@ -464,6 +465,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				formProgress.Show();
 				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				AdSchedulePowerPointHelper.Instance.PrepareMultiSummaryEmail(tempFileName);
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
 				if (File.Exists(tempFileName))
 					using (var formPreview = new FormPreview())

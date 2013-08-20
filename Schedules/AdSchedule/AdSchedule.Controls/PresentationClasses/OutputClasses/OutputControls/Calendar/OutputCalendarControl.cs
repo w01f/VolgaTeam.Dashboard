@@ -244,7 +244,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			laAdvertiser.Text = String.Format("Advertiser: {0}{1}Campaign Dates: {2}",LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty),Environment.NewLine, LocalSchedule.FlightDates);
+			laAdvertiser.Text = String.Format("Advertiser: {0}{1}Campaign Dates: {2}", LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty), Environment.NewLine, LocalSchedule.FlightDates);
 			if (!quickLoad)
 			{
 				Inserts.Clear();
@@ -269,6 +269,19 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				UpdateMonthSettings();
 
 			SettingsNotSaved = false;
+		}
+
+		public void Export()
+		{
+			using (var form = new FormExportSchedule())
+			{
+				form.Text = LocalSchedule.Name;
+				form.ScheduleName = String.Format("Ninja-{0}", DateTime.Now.ToString("MMddyy-hhmmtt"));
+				if (form.ShowDialog() == DialogResult.OK)
+				{
+					Core.Calendar.ScheduleManager.ImportSchedule(LocalSchedule.ScheduleFile.FullName, form.ScheduleName);
+				}
+			}
 		}
 
 		private void ResetToDefault()
@@ -472,6 +485,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							}
 							AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, emailPages.ToArray());
 						}
+						Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 						Enabled = true;
 						formProgress.Close();
 						if (File.Exists(tempFileName))
@@ -539,6 +553,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							}
 							AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, emailPages.ToArray());
 						}
+						Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 						Enabled = true;
 						formProgress.Close();
 						if (File.Exists(tempFileName))

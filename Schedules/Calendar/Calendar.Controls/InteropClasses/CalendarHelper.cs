@@ -319,6 +319,7 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 		{
 			try
 			{
+				SavePrevSlideIndex();
 				Presentations presentations = _powerPointObject.Presentations;
 				Presentation presentation = presentations.Add(MsoTriState.msoFalse);
 				presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
@@ -353,6 +354,7 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 					Application.DoEvents();
 
 				Utilities.Instance.ReleaseComObject(presentation);
+				RestorePrevSlideIndex();
 			}
 			catch { }
 			finally

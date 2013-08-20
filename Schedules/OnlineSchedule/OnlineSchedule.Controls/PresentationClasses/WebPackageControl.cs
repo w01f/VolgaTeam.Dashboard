@@ -325,23 +325,23 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 						var investments = new List<string>();
 						if (Settings.ShowImpressions && packageRecord.Impressions.HasValue)
-							investments.Add(packageRecord.Impressions.Value.ToString("#,##0"));
+							investments.Add(String.Format("Impressions: {0}", packageRecord.Impressions.Value.ToString("#,##0")));
 						if (Settings.ShowCPM && packageRecord.CPM.HasValue)
-							investments.Add(packageRecord.CPM.Value.ToString("$#,###.00"));
+							investments.Add(String.Format("CPM: {0}", packageRecord.CPM.Value.ToString("$#,###.00")));
 						if (Settings.ShowRate && packageRecord.Rate.HasValue)
-							investments.Add(packageRecord.Rate.Value.ToString("$#,###.00"));
+							investments.Add(String.Format("Rate: {0}", packageRecord.Rate.Value.ToString("$#,###.00")));
 						if (Settings.ShowInvestment && packageRecord.Investment.HasValue)
-							investments.Add(packageRecord.Investment.Value.ToString("$#,###.00"));
+							investments.Add(String.Format("Investment: {0}", packageRecord.Investment.Value.ToString("$#,###.00")));
 						if (Settings.ShowImpressions || Settings.ShowCPM || Settings.ShowRate || Settings.ShowInvestment)
-							slideRows.Add(String.Format("Impressions{0}   |   CPM{0}   |   RATE{0}   |   Investment{0}", j + 1), String.Join("  |   ", investments.ToArray()));
+							slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0},   Investment{0}", j + 1), String.Join(",   ", investments.ToArray()));
 						else
-							slideRows.Add(String.Format("Impressions{0}   |   CPM{0}   |   RATE{0}   |   Investment{0}", j + 1), "DeleteColumn");
+							slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0},   Investment{0}", j + 1), "DeleteColumn");
 					}
 					else
 					{
 						slideRows.Add(String.Format("Category{0}  |  Group{0}  |  Product{0}", j + 1), "DeleteRow");
 						slideRows.Add(String.Format("ScheduleProductInfo{0}{1}{1}NotesandComments{0}", j + 1, (char)13), "DeleteRow");
-						slideRows.Add(String.Format("Impressions{0}   |   CPM{0}   |   RATE{0}   |   Investment{0}", j + 1), String.Empty);
+						slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0},   Investment{0}", j + 1), String.Empty);
 					}
 				}
 				OutputReplacementsLists.Add(slideRows);
@@ -431,6 +431,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				formProgress.Show();
 				var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				OnlineSchedulePowerPointHelper.Instance.PrepareWebPackageEmail(this, tempFileName);
+				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				formProgress.Close();
 				if (File.Exists(tempFileName))
 					using (var formEmail = new FormEmail())
@@ -457,6 +458,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				formProgress.Show();
 				var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				OnlineSchedulePowerPointHelper.Instance.PrepareWebPackageEmail(this, tempFileName);
+				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				formProgress.Close();
 				if (File.Exists(tempFileName))
 					using (var formPreview = new FormPreview())

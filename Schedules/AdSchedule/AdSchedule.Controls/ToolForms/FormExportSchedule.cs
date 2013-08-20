@@ -1,12 +1,16 @@
 ﻿using System.Windows.Forms;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.AdSchedule.Controls.ToolForms
 {
-	public partial class FormNewSchedule : Form
+	public partial class FormExportSchedule : Form
 	{
-		public FormNewSchedule()
+		public FormExportSchedule()
 		{
 			InitializeComponent();
+			textEditScheduleName.Enter += Utilities.Instance.Editor_Enter;
+			textEditScheduleName.MouseDown += Utilities.Instance.Editor_MouseDown;
+			textEditScheduleName.MouseUp += Utilities.Instance.Editor_MouseUp;
 		}
 
 		public string ScheduleName
@@ -16,6 +20,10 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 				if (textEditScheduleName.EditValue != null)
 					return textEditScheduleName.EditValue.ToString();
 				return null;
+			}
+			set
+			{
+				textEditScheduleName.EditValue = value;
 			}
 		}
 

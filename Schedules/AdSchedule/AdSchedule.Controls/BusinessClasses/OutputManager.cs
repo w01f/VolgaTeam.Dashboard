@@ -34,8 +34,7 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 		private const string MultiSummaryTemlatesFolderName = @"{0}\Newspaper Slides\multi summary";
 		public const string MultiSummarySlideTemplate = @"summary-{0}.ppt";
 
-		private const string SnapshotTemlatesFolderName = @"{0}\Newspaper Slides\snapshot";
-		public const string SnapshotSlideTemplate = @"snapshot-{0}.ppt";
+		private const string SnapshotTemlatesFolderName = @"{0}\Newspaper Slides\snapshotnew";
 
 		private const string DetailedGridExcelBasedTemlatesFolderName = @"{0}\Newspaper Slides\detailed grid";
 		private const string DetailedGridGridBasedTemlatesFolderName = @"{0}\Newspaper Slides\tables";

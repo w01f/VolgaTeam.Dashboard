@@ -16,17 +16,17 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 		{
 			if (Directory.Exists(BusinessWrapper.Instance.OutputManager.SnapshotTemlatesFolderPath))
 			{
-				string presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.SnapshotTemlatesFolderPath, string.Format(OutputManager.SnapshotSlideTemplate, Controller.Instance.Summaries.Snapshot.OutputFileIndex));
-				if (File.Exists(presentationTemplatePath))
+				try
 				{
-					try
+					var thread = new Thread(delegate()
 					{
-						var thread = new Thread(delegate()
+						MessageFilter.Register();
+						var recordsPeSlide = Controller.Instance.Summaries.Snapshot.RecordsPerSlide;
+						var publicationsCount = Controller.Instance.Summaries.Snapshot.PublicationNames.Length;
+						for (var k = 0; k < publicationsCount; k += recordsPeSlide)
 						{
-							MessageFilter.Register();
-
-							int publicationsCount = Controller.Instance.Summaries.Snapshot.PublicationNames.Length;
-							for (int k = 0; k < publicationsCount; k += 6)
+							string presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.SnapshotTemlatesFolderPath, Controller.Instance.Summaries.Snapshot.GetOutputTemplatePath(k));
+							if (File.Exists(presentationTemplatePath))
 							{
 								Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 								foreach (Slide slide in presentation.Slides)
@@ -101,17 +101,17 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 								AppendSlide(presentation, -1, destinationPresentation);
 								presentation.Close();
 							}
-						});
-						thread.Start();
+						}
+					});
+					thread.Start();
 
-						while (thread.IsAlive)
-							Application.DoEvents();
-					}
-					catch {}
-					finally
-					{
-						MessageFilter.Revoke();
-					}
+					while (thread.IsAlive)
+						Application.DoEvents();
+				}
+				catch { }
+				finally
+				{
+					MessageFilter.Revoke();
 				}
 			}
 		}
@@ -120,6 +120,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 		{
 			try
 			{
+				SavePrevSlideIndex();
 				Presentations presentations = _powerPointObject.Presentations;
 				Presentation presentation = presentations.Add(MsoTriState.msoFalse);
 				presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
@@ -151,8 +152,9 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 					Application.DoEvents();
 
 				Utilities.Instance.ReleaseComObject(presentation);
+				RestorePrevSlideIndex();
 			}
-			catch {}
+			catch { }
 			finally
 			{
 				MessageFilter.Revoke();

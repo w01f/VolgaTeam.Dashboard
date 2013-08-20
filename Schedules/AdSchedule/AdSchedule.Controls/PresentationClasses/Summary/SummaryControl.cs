@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
@@ -24,6 +25,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		public SummaryControl()
 		{
 			InitializeComponent();
+			SetClickEventHandler(this);
 			Dock = DockStyle.Fill;
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
 			{
@@ -46,6 +48,21 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 					result = true;
 				return result;
 			}
+		}
+
+		public void SetClickEventHandler(Control control)
+		{
+			foreach (Control childControl in control.Controls)
+				SetClickEventHandler(childControl);
+			if (control.GetType() != typeof(TextEdit) && control.GetType() != typeof(MemoEdit) && control.GetType() != typeof(ComboBoxEdit) && control.GetType() != typeof(LookUpEdit) && control.GetType() != typeof(DateEdit) && control.GetType() != typeof(CheckedListBoxControl) && control.GetType() != typeof(SpinEdit) && control.GetType() != typeof(CheckEdit))
+				control.Click += ControlClick;
+		}
+
+		private void ControlClick(object sender, EventArgs e)
+		{
+			((Control)sender).Select();
+			if (((Control)sender).Parent != null)
+				((Control)sender).Parent.Select();
 		}
 
 		public Schedule LocalSchedule { get; set; }
@@ -123,6 +140,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			item.ItemDown += (o, e) => DownItem(o as SummaryInputItemControl);
 			item.DataChanged += (o, e) => { SettingsNotSaved = true; };
 			item.InvestmentChanged += (o, e) => UpdateTotals();
+			SetClickEventHandler(item);
 			_inputControls.Add(item);
 			xtraScrollableControlInput.Controls.Add(item);
 			item.BringToFront();
@@ -263,7 +281,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		private void checkEditEnableTotalEdit_CheckedChanged(object sender, EventArgs e)
 		{
 			spinEditMonthly.Enabled = checkEditEnableTotalEdit.Checked;
+			spinEditMonthly.Properties.ReadOnly = !checkEditEnableTotalEdit.Checked;
 			spinEditTotal.Enabled = checkEditEnableTotalEdit.Checked;
+			spinEditTotal.Properties.ReadOnly = !checkEditEnableTotalEdit.Checked;
 			if (!checkEditEnableTotalEdit.Checked)
 			{
 				spinEditMonthly.EditValue = LocalSchedule.Summary.TotalMonthly;
@@ -401,12 +421,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public bool ShowMonthlyHeader
 		{
-			get { return _inputControls.Where(it => it.Complited).Any(it => it.ShowMonthly); }
+			get { return _inputControls.Where(it => it.Complited).Any(it => it.OutputMonthlyValue.HasValue); }
 		}
 
 		public bool ShowTotalHeader
 		{
-			get { return _inputControls.Where(it => it.Complited).Any(it => it.ShowTotal); }
+			get { return _inputControls.Where(it => it.Complited).Any(it => it.OutputTotalValue.HasValue); }
 		}
 
 		public void Output()
@@ -437,6 +457,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 				formProgress.Show();
 				string tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				AdSchedulePowerPointHelper.Instance.PrepareSummaryEmail(tempFileName);
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
 				if (File.Exists(tempFileName))
 					using (var formEmail = new FormEmail())
@@ -462,6 +483,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 				formProgress.Show();
 				string tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				AdSchedulePowerPointHelper.Instance.PrepareSummaryEmail(tempFileName);
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
 				if (File.Exists(tempFileName))
 					using (var formPreview = new FormPreview())

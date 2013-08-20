@@ -39,7 +39,6 @@
 			this.repositoryItemButtonEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
 			this.gridColumnStatus = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemComboBoxStatus = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-			this.gridColumnType = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.pnNoDataWarning = new System.Windows.Forms.Panel();
 			this.pbNoDataWarning = new System.Windows.Forms.PictureBox();
 			this.laNoDataWarning = new System.Windows.Forms.Label();
@@ -117,8 +116,7 @@
             this.gridColumnBusinessName,
             this.gridColumnCalendarFile,
             this.gridColumnLastModifiedDate,
-            this.gridColumnStatus,
-            this.gridColumnType});
+            this.gridColumnStatus});
 			this.gridViewCalendars.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
 			this.gridViewCalendars.GridControl = this.gridControlCalendars;
 			this.gridViewCalendars.Name = "gridViewCalendars";
@@ -180,7 +178,7 @@
 			this.gridColumnLastModifiedDate.OptionsColumn.AllowEdit = false;
 			this.gridColumnLastModifiedDate.OptionsColumn.ReadOnly = true;
 			this.gridColumnLastModifiedDate.Visible = true;
-			this.gridColumnLastModifiedDate.VisibleIndex = 3;
+			this.gridColumnLastModifiedDate.VisibleIndex = 2;
 			this.gridColumnLastModifiedDate.Width = 150;
 			// 
 			// repositoryItemButtonEdit
@@ -204,7 +202,7 @@
 			this.gridColumnStatus.FieldName = "Status";
 			this.gridColumnStatus.Name = "gridColumnStatus";
 			this.gridColumnStatus.Visible = true;
-			this.gridColumnStatus.VisibleIndex = 4;
+			this.gridColumnStatus.VisibleIndex = 3;
 			this.gridColumnStatus.Width = 124;
 			// 
 			// repositoryItemComboBoxStatus
@@ -225,18 +223,6 @@
 			this.repositoryItemComboBoxStatus.Name = "repositoryItemComboBoxStatus";
 			this.repositoryItemComboBoxStatus.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.repositoryItemComboBoxStatus.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemComboBoxStatus_Closed);
-			// 
-			// gridColumnType
-			// 
-			this.gridColumnType.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnType.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumnType.Caption = "Type";
-			this.gridColumnType.FieldName = "Type";
-			this.gridColumnType.Name = "gridColumnType";
-			this.gridColumnType.OptionsColumn.AllowEdit = false;
-			this.gridColumnType.OptionsColumn.ReadOnly = true;
-			this.gridColumnType.Visible = true;
-			this.gridColumnType.VisibleIndex = 2;
 			// 
 			// pnNoDataWarning
 			// 
@@ -312,7 +298,6 @@
         private System.Windows.Forms.Panel pnNoDataWarning;
         private System.Windows.Forms.PictureBox pbNoDataWarning;
 		private System.Windows.Forms.Label laNoDataWarning;
-		private DevExpress.XtraGrid.Columns.GridColumn gridColumnType;
 
     }
 }

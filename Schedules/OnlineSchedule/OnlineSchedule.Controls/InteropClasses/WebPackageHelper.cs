@@ -99,6 +99,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 		{
 			try
 			{
+				SavePrevSlideIndex();
 				var presentations = _powerPointObject.Presentations;
 				var presentation = presentations.Add(MsoTriState.msoFalse);
 				presentation.PageSetup.SlideWidth = (float)Core.Common.SettingsManager.Instance.SizeWidth * 72;
@@ -130,6 +131,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 					System.Windows.Forms.Application.DoEvents();
 
 				Core.Common.Utilities.Instance.ReleaseComObject(presentation);
+				RestorePrevSlideIndex();
 			}
 			catch { }
 			finally

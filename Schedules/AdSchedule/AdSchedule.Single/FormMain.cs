@@ -188,6 +188,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.CalendarPreview = buttonItemCalendarsPreview;
 			Controller.Instance.CalendarEmail = buttonItemCalendarsEmail;
 			Controller.Instance.CalendarPowerPoint = buttonItemCalendarsPowerPoint;
+			Controller.Instance.CalendarExport = buttonItemCalendarsExport;
 			Controller.Instance.CalendarMonthList = listBoxControlCalendar;
 			#endregion
 

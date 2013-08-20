@@ -90,26 +90,6 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 			FormMain.Instance.buttonItemNewspaperDelete.Enabled = false;
 		}
 
-		public void ExportEventHandler(object sender, ExportEventArgs e)
-		{
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 9, 0, 0);
-			FormMain.Instance.Opacity = 0;
-			RegistryHelper.MaximizeMainForm = true;
-			Calendar.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormCalendarResize;
-			Calendar.Internal.FormMain.Instance.Resize += FormMain.Instance.FormCalendarResize;
-			Calendar.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
-			Calendar.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
-			Calendar.Internal.AppManager.ImportSchedule(e.SourceSchedule);
-			if (!FormMain.Instance.IsDead)
-			{
-				FormMain.Instance.Opacity = 1;
-				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-			}
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 10, 0, 0);
-			Utilities.Instance.ActivateMiniBar();
-		}
-
 		public void buttonXNewSchedule_Click(object sender, EventArgs e)
 		{
 			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 1, 0, 0);

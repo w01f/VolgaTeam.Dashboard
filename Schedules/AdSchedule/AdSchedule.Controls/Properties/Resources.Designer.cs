@@ -291,6 +291,13 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap ExportCalendar {
+            get {
+                object obj = ResourceManager.GetObject("ExportCalendar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap FlatRate {
             get {
                 object obj = ResourceManager.GetObject("FlatRate", resourceCulture);

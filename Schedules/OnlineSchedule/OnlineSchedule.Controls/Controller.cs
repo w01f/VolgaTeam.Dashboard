@@ -108,6 +108,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		public void UpdateSimpleOutputTabPageState(bool enable)
 		{
 			TabScheduleSlides.Enabled = enable;
+			TabDigitalPackage.Enabled = enable;
 		}
 
 		#region Command Controls

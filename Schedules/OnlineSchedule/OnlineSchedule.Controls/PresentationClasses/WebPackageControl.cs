@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -73,8 +74,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				laAdvertiser.Text = Schedule.BusinessName + (!string.IsNullOrEmpty(Schedule.AccountNumber) ? (" - " + Schedule.AccountNumber) : string.Empty);
 				LoadSettings();
 				UpdateControls();
-				gridControl.DataSource = PackageRecords;
 			}
+			gridControl.DataSource = PackageRecords;
 			AllowApplyValues = true;
 			SettingsNotSaved = false;
 		}
@@ -317,25 +318,58 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 							slideRows.Add(String.Format("Category{0}  |  Group{0}  |  Product{0}", j + 1), category.Any() ? String.Join("  |  ", category.ToArray()) : "DeleteRow");
 							slideRows.Add(String.Format("ScheduleProductInfo{0}{1}{1}NotesandComments{0}", j + 1, (char)13), String.Join(String.Format("{0}{0}", (char)13), info.ToArray()));
 						}
-						else
+						else if (recordsCount > 1)
 						{
 							slideRows.Add(String.Format("Category{0}  |  Group{0}  |  Product{0}", j + 1), "DeleteRow");
 							slideRows.Add(String.Format("ScheduleProductInfo{0}{1}{1}NotesandComments{0}", j + 1, (char)13), category.Any() ? String.Join("  |  ", category.ToArray()) : "DeleteRow");
 						}
-
-						var investments = new List<string>();
-						if (Settings.ShowImpressions && packageRecord.Impressions.HasValue)
-							investments.Add(String.Format("Impressions: {0}", packageRecord.Impressions.Value.ToString("#,##0")));
-						if (Settings.ShowCPM && packageRecord.CPM.HasValue)
-							investments.Add(String.Format("CPM: {0}", packageRecord.CPM.Value.ToString("$#,###.00")));
-						if (Settings.ShowRate && packageRecord.Rate.HasValue)
-							investments.Add(String.Format("Rate: {0}", packageRecord.Rate.Value.ToString("$#,###.00")));
-						if (Settings.ShowInvestment && packageRecord.Investment.HasValue)
-							investments.Add(String.Format("Investment: {0}", packageRecord.Investment.Value.ToString("$#,###.00")));
-						if (Settings.ShowImpressions || Settings.ShowCPM || Settings.ShowRate || Settings.ShowInvestment)
-							slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0},   Investment{0}", j + 1), String.Join(",   ", investments.ToArray()));
 						else
-							slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0},   Investment{0}", j + 1), "DeleteColumn");
+						{
+							slideRows.Add(String.Format("Category{0}  |  Group{0}  |  Product{0}", j + 1), category.Any() ? String.Join("  |  ", category.ToArray()) : "DeleteRow");
+							slideRows.Add(String.Format("ScheduleProductInfo{0}{1}{1}NotesandComments{0}", j + 1, (char)13), "DeleteRow");
+						}
+
+						if (recordsCount > 1)
+						{
+							var investments = new List<string>();
+							if (Settings.ShowImpressions && packageRecord.Impressions.HasValue)
+								investments.Add(String.Format("Impressions: {0}", packageRecord.Impressions.Value.ToString("#,##0")));
+							if (Settings.ShowCPM && packageRecord.CPM.HasValue)
+								investments.Add(String.Format("CPM: {0}", packageRecord.CPM.Value.ToString("$#,###.00")));
+							if (Settings.ShowRate && packageRecord.Rate.HasValue)
+								investments.Add(String.Format("Rate: {0}", packageRecord.Rate.Value.ToString("$#,###.00")));
+							if (Settings.ShowInvestment && packageRecord.Investment.HasValue)
+								investments.Add(String.Format("Investment: {0}", packageRecord.Investment.Value.ToString("$#,###.00")));
+
+							slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0},   Investment{0}", j + 1), investments.Any()? String.Join(",   ", investments.ToArray()):"DeleteColumn");
+						}
+						else
+						{
+							var impressions = new List<string>();
+							if (Settings.ShowImpressions && packageRecord.Impressions.HasValue)
+								impressions.Add(String.Format("Impressions: {0}", packageRecord.Impressions.Value.ToString("#,##0")));
+							if (Settings.ShowCPM && packageRecord.CPM.HasValue)
+								impressions.Add(String.Format("CPM: {0}", packageRecord.CPM.Value.ToString("$#,###.00")));
+							if (Settings.ShowRate && packageRecord.Rate.HasValue)
+								impressions.Add(String.Format("Rate: {0}", packageRecord.Rate.Value.ToString("$#,###.00")));
+							if (Settings.ShowInvestment && packageRecord.Investment.HasValue)
+								impressions.Add(String.Format("Investment: {0}", packageRecord.Investment.Value.ToString("$#,###.00")));
+
+							var investments = new List<string>();
+							if (Settings.ShowInvestment && packageRecord.Investment.HasValue)
+								investments.Add(String.Format("Investment: {0}", packageRecord.Investment.Value.ToString("$#,###.00")));
+
+							if (investments.Any())
+							{
+								slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0}", j + 1), impressions.Any() ? String.Join(",   ", impressions.ToArray()) : "DeleteRow");
+								slideRows.Add(String.Format("Investment{0}", j + 1), String.Join(",   ", investments.ToArray()));
+							}
+							else
+							{
+								slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0}", j + 1), "DeleteRow");
+								slideRows.Add(String.Format("Investment{0}", j + 1), impressions.Any() ? String.Join(",   ", impressions.ToArray()) : "DeleteRow");
+							}
+						}
 					}
 					else
 					{

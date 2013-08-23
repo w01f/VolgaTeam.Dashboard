@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -52,7 +53,7 @@
 			this.buttonItemHomeDigitalProductDelete = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
 			this.dateEditFlightDatesStart = new DevExpress.XtraEditors.DateEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.dateEditFlightDatesEnd = new DevExpress.XtraEditors.DateEdit();
 			this.itemContainerHomeFlightDates = new DevComponents.DotNetBar.ItemContainer();
 			this.itemContainerHomeFlightDatesStartLogo = new DevComponents.DotNetBar.ItemContainer();
@@ -106,7 +107,7 @@
 			this.buttonItemCalendarsDetails = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarCalendarsCalendar = new DevComponents.DotNetBar.RibbonBar();
 			this.listBoxControlCalendar = new DevExpress.XtraEditors.ImageListBoxControl();
-			this.imageList = new System.Windows.Forms.ImageList();
+			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.itemContainerCalendarsCalendar = new DevComponents.DotNetBar.ItemContainer();
 			this.controlContainerItemCalendar = new DevComponents.DotNetBar.ControlContainerItem();
 			this.ribbonPanel1 = new DevComponents.DotNetBar.RibbonPanel();
@@ -349,7 +350,7 @@
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnEmpty = new System.Windows.Forms.Panel();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelScheduleSettings.SuspendLayout();
 			this.ribbonBarHomeFlightDates.SuspendLayout();
@@ -1573,7 +1574,7 @@
 			this.listBoxControlCalendar.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.listBoxControlCalendar.ImageList = this.imageList;
 			this.listBoxControlCalendar.ItemHeight = 25;
-			this.listBoxControlCalendar.Location = new System.Drawing.Point(6, 3);
+			this.listBoxControlCalendar.Location = new System.Drawing.Point(6, 4);
 			this.listBoxControlCalendar.Name = "listBoxControlCalendar";
 			this.listBoxControlCalendar.Size = new System.Drawing.Size(129, 115);
 			this.listBoxControlCalendar.TabIndex = 1;

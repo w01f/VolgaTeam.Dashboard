@@ -170,16 +170,19 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 
 		public void buttonItemCalendarPreview_Click(object sender, EventArgs e)
 		{
+			SelectedCalendarControl.SaveCalendarData();
 			SelectedCalendarControl.Preview();
 		}
 
 		public void buttonItemCalendarPowerPoint_Click(object sender, EventArgs e)
 		{
+			SelectedCalendarControl.SaveCalendarData();
 			SelectedCalendarControl.Print();
 		}
 
 		public void buttonItemCalendarEmail_Click(object sender, EventArgs e)
 		{
+			SelectedCalendarControl.SaveCalendarData();
 			SelectedCalendarControl.Email();
 		}
 

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
@@ -40,7 +42,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 												shape.TextFrame.TextRange.Text = source.SlideHeader;
 												break;
 											case "WEBSITEURL":
-												shape.TextFrame.TextRange.Text = source.AllWebsites;
+												shape.TextFrame.TextRange.Text = String.Join(", ", source.AllWebsites.ToArray());
 												break;
 											case "DATETAG":
 												shape.TextFrame.TextRange.Text = source.Parent.PresentationDate.ToString("MM/dd/yy");
@@ -120,7 +122,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 						while (thread.IsAlive)
 							Application.DoEvents();
 					}
-					catch {}
+					catch { }
 					finally
 					{
 						MessageFilter.Revoke();
@@ -168,7 +170,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 				Utilities.Instance.ReleaseComObject(presentation);
 				RestorePrevSlideIndex();
 			}
-			catch {}
+			catch { }
 			finally
 			{
 				MessageFilter.Revoke();

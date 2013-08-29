@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using NewBizWiz.Core.AdSchedule;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms
 {
 	public partial class FormDigital : Form
 	{
+		private bool _loading;
 		private readonly DigitalLegend _digitalLegend;
-		public event EventHandler<RequestDigitalInfoEventArgs> WebsiteRequestDefault;
-		public event EventHandler<RequestDigitalInfoEventArgs> SimpleDigitalInfoRequestDefault;
-		public event EventHandler<RequestDigitalInfoEventArgs> DetailedDigitalInfoRequestDefault;
+		public event EventHandler<RequestDigitalInfoEventArgs> RequestDefaultInfo;
 
 		public FormDigital(DigitalLegend digitalLegend)
 		{
@@ -18,58 +17,26 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			_digitalLegend = digitalLegend;
 		}
 
-		private void checkEditEnable_CheckedChanged(object sender, EventArgs e)
-		{
-			memoEditWebsite.Enabled = checkEditEnable.Checked;
-			memoEditProductInfo.Enabled = checkEditEnable.Checked;
-			if (checkEditEnable.Checked)
-			{
-				if (memoEditWebsite.EditValue == null && WebsiteRequestDefault != null)
-					WebsiteRequestDefault(this, new RequestDigitalInfoEventArgs(memoEditWebsite));
-			}
-			else
-				memoEditWebsite.EditValue = null;
-			if (checkEditEnable.Checked)
-			{
-				if (memoEditProductInfo.EditValue == null && SimpleDigitalInfoRequestDefault != null)
-					SimpleDigitalInfoRequestDefault(this, new RequestDigitalInfoEventArgs(memoEditProductInfo));
-			}
-			else
-				memoEditProductInfo.EditValue = null;
-		}
-
-		private void buttonXGetWebsites_Click(object sender, EventArgs e)
-		{
-			if (WebsiteRequestDefault != null)
-				WebsiteRequestDefault(this, new RequestDigitalInfoEventArgs(memoEditWebsite));
-		}
-
-		private void buttonXGetSimpleInfo_Click(object sender, EventArgs e)
-		{
-			if (SimpleDigitalInfoRequestDefault != null)
-				SimpleDigitalInfoRequestDefault(this, new RequestDigitalInfoEventArgs(memoEditProductInfo));
-		}
-
-		private void buttonXGetDetailedInfo_Click(object sender, EventArgs e)
-		{
-			if (DetailedDigitalInfoRequestDefault != null)
-				DetailedDigitalInfoRequestDefault(this, new RequestDigitalInfoEventArgs(memoEditProductInfo));
-		}
-
 		private void FormDigital_Load(object sender, EventArgs e)
 		{
-			if (!String.IsNullOrEmpty(_digitalLegend.Websites))
-				memoEditWebsite.EditValue = _digitalLegend.Websites;
-			if (!String.IsNullOrEmpty(_digitalLegend.Info))
-				memoEditProductInfo.EditValue = _digitalLegend.Info;
+			_loading = true;
 			checkEditEnable.Checked = _digitalLegend.Enabled;
-			if (checkEditEnable.Checked && memoEditWebsite.EditValue == null && memoEditProductInfo.EditValue == null)
+			checkEditAllowEdit.Checked = _digitalLegend.AllowEdit;
+			buttonXShowWebsites.Checked = _digitalLegend.ShowWebsites;
+			buttonXShowProduct.Checked = _digitalLegend.ShowProduct;
+			buttonXShowDimensions.Checked = _digitalLegend.ShowDimensions;
+			buttonXShowDates.Checked = _digitalLegend.ShowDates;
+			buttonXShowImpressions.Checked = _digitalLegend.ShowImpressions;
+			buttonXShowCPM.Checked = _digitalLegend.ShowCPM;
+			buttonXShowInvestment.Checked = _digitalLegend.ShowInvestment;
+			if (_digitalLegend.AllowEdit && !String.IsNullOrEmpty(_digitalLegend.Info))
+				memoEditInfo.EditValue = _digitalLegend.Info;
+			if (checkEditEnable.Checked && memoEditInfo.EditValue == null)
 			{
-				if (WebsiteRequestDefault != null)
-					WebsiteRequestDefault(this, new RequestDigitalInfoEventArgs(memoEditWebsite));
-				if (SimpleDigitalInfoRequestDefault != null)
-					SimpleDigitalInfoRequestDefault(this, new RequestDigitalInfoEventArgs(memoEditProductInfo));
+				if (RequestDefaultInfo != null)
+					RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
 			}
+			_loading = false;
 		}
 
 		private void FormDigital_FormClosing(object sender, FormClosingEventArgs e)
@@ -77,19 +44,68 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			if (DialogResult == DialogResult.OK)
 			{
 				_digitalLegend.Enabled = checkEditEnable.Checked;
-				_digitalLegend.Websites = memoEditWebsite.EditValue != null ? memoEditWebsite.EditValue.ToString() : String.Empty;
-				_digitalLegend.Info = memoEditProductInfo.EditValue != null ? memoEditProductInfo.EditValue.ToString() : String.Empty;
+				_digitalLegend.AllowEdit = checkEditAllowEdit.Checked;
+				_digitalLegend.ShowWebsites = buttonXShowWebsites.Checked;
+				_digitalLegend.ShowProduct = buttonXShowProduct.Checked;
+				_digitalLegend.ShowDimensions = buttonXShowDimensions.Checked;
+				_digitalLegend.ShowDates = buttonXShowDates.Checked;
+				_digitalLegend.ShowImpressions = buttonXShowImpressions.Checked;
+				_digitalLegend.ShowCPM = buttonXShowCPM.Checked;
+				_digitalLegend.ShowInvestment = buttonXShowInvestment.Checked;
+				_digitalLegend.Info = checkEditAllowEdit.Checked && memoEditInfo.EditValue != null ? memoEditInfo.EditValue.ToString() : String.Empty;
 			}
 		}
-	}
 
-	public class RequestDigitalInfoEventArgs : EventArgs
-	{
-		public BaseEdit Editor { get; private set; }
-
-		public RequestDigitalInfoEventArgs(BaseEdit editor)
+		private void checkEditEnable_CheckedChanged(object sender, EventArgs e)
 		{
-			Editor = editor;
+			pnControls.Enabled = checkEditEnable.Checked;
+			hyperLinkEditReset.Enabled = checkEditEnable.Checked;
+			if (!_loading)
+			{
+				if (checkEditEnable.Checked)
+				{
+					if ((checkEditAllowEdit.Checked || memoEditInfo.EditValue == null) && RequestDefaultInfo != null)
+						RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
+				}
+				else
+					memoEditInfo.EditValue = null;
+			}
+		}
+
+		private void checkEditAllowEdit_CheckedChanged(object sender, EventArgs e)
+		{
+			buttonXShowWebsites.Enabled = !checkEditAllowEdit.Checked;
+			buttonXShowProduct.Enabled = !checkEditAllowEdit.Checked;
+			buttonXShowDimensions.Enabled = !checkEditAllowEdit.Checked;
+			buttonXShowDates.Enabled = !checkEditAllowEdit.Checked;
+			buttonXShowImpressions.Enabled = !checkEditAllowEdit.Checked;
+			buttonXShowCPM.Enabled = !checkEditAllowEdit.Checked;
+			buttonXShowInvestment.Enabled = !checkEditAllowEdit.Checked;
+			memoEditInfo.Properties.ReadOnly = !checkEditAllowEdit.Checked;
+
+			if (!_loading && !checkEditAllowEdit.Checked)
+				if (RequestDefaultInfo != null)
+					RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
+		}
+
+		private void buttonXShow_CheckedChanged(object sender, EventArgs e)
+		{
+			if (!_loading)
+			{
+				if (RequestDefaultInfo != null)
+					RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
+			}
+		}
+
+		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		{
+			if (Utilities.Instance.ShowWarningQuestion("All Digital Product Info will be Refreshed") == DialogResult.Yes)
+			{
+				checkEditAllowEdit.Checked = false;
+				if (RequestDefaultInfo != null)
+					RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
+			}
+			e.Handled = true;
 		}
 	}
 }

@@ -10,6 +10,7 @@ using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
+using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
 
@@ -64,6 +65,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					result = true;
 				return result;
 			}
+		}
+
+		public bool SlidesAvailable
+		{
+			get { return Directory.Exists(BusinessWrapper.Instance.OutputManager.DigitalPackageTemplatesFolderPath); }
 		}
 
 		public virtual void LoadSchedule(bool quickLoad)
@@ -341,7 +347,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 							if (Settings.ShowInvestment && packageRecord.Investment.HasValue)
 								investments.Add(String.Format("Investment: {0}", packageRecord.Investment.Value.ToString("$#,###.00")));
 
-							slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0},   Investment{0}", j + 1), investments.Any()? String.Join(",   ", investments.ToArray()):"DeleteColumn");
+							slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0},   Investment{0}", j + 1), investments.Any() ? String.Join(",   ", investments.ToArray()) : "DeleteColumn");
 						}
 						else
 						{
@@ -352,8 +358,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 								impressions.Add(String.Format("CPM: {0}", packageRecord.CPM.Value.ToString("$#,###.00")));
 							if (Settings.ShowRate && packageRecord.Rate.HasValue)
 								impressions.Add(String.Format("Rate: {0}", packageRecord.Rate.Value.ToString("$#,###.00")));
-							if (Settings.ShowInvestment && packageRecord.Investment.HasValue)
-								impressions.Add(String.Format("Investment: {0}", packageRecord.Investment.Value.ToString("$#,###.00")));
 
 							var investments = new List<string>();
 							if (Settings.ShowInvestment && packageRecord.Investment.HasValue)

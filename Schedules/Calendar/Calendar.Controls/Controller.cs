@@ -19,6 +19,8 @@ namespace NewBizWiz.Calendar.Controls
 			get { return _instance; }
 		}
 
+		public event EventHandler<EventArgs> ScheduleChanged;
+
 		public Form FormMain { get; set; }
 		public SuperTooltip Supertip { get; set; }
 		public RibbonControl Ribbon { get; set; }
@@ -101,6 +103,8 @@ namespace NewBizWiz.Calendar.Controls
 					Application.DoEvents();
 				form.Close();
 			}
+			if (ScheduleChanged != null)
+				ScheduleChanged(this, EventArgs.Empty);
 		}
 
 		#region Command Controls

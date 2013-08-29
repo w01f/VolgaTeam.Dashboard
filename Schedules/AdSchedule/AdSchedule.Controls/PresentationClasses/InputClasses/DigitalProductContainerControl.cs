@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Controls;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
-using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
-using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
 using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
@@ -71,7 +65,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				xtraTabControlProducts.SelectedPageChanged -= xtraTabControlProducts_SelectedPageChanged;
 				xtraTabControlProducts.TabPages.Clear();
 				_tabPages.RemoveAll(x => !LocalSchedule.DigitalProducts.Select(y => y.UniqueID).Contains(x.Product.UniqueID));
-				foreach (DigitalProduct product in LocalSchedule.DigitalProducts)
+				foreach (var product in LocalSchedule.DigitalProducts)
 				{
 					if (!string.IsNullOrEmpty(product.Name))
 					{
@@ -100,11 +94,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			}
 			else
 			{
-				foreach (DigitalProduct product in LocalSchedule.DigitalProducts)
+				foreach (var product in LocalSchedule.DigitalProducts)
 				{
 					if (!string.IsNullOrEmpty(product.Name))
 					{
-						var productTab = _tabPages.Where(x => x.Product.UniqueID.Equals(product.UniqueID)).FirstOrDefault();
+						var productTab = _tabPages.FirstOrDefault(x => x.Product.UniqueID.Equals(product.UniqueID));
 						if (productTab != null)
 						{
 							productTab.Product = product;
@@ -126,7 +120,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			foreach (DigitalProductControl product in xtraTabControlProducts.TabPages.OfType<DigitalProductControl>())
 				product.SaveValues();
 
-			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}

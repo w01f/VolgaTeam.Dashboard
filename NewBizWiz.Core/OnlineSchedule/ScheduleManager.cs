@@ -760,7 +760,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			get { return Math.Abs((Parent.FlightDateEnd.Month - Parent.FlightDateStart.Month) + 12 * (Parent.FlightDateEnd.Year - Parent.FlightDateStart.Year)); }
 		}
 
-		public string AllWebsites
+		public IEnumerable<string> AllWebsites
 		{
 			get
 			{
@@ -774,7 +774,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 					websites.Add(CustomWebsite3);
 				if (ShowCustomWebsite4)
 					websites.Add(CustomWebsite4);
-				return string.Join(", ", websites.ToArray());
+				return websites;
 			}
 		}
 
@@ -860,6 +860,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 			#region Basic Properties
 			xml.Append("Name = \"" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			xml.Append("UniqueID = \"" + UniqueID.ToString() + "\" ");
 			xml.Append("Index = \"" + Index + "\" ");
 			xml.Append("Category = \"" + Category.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("SubCategory = \"" + SubCategory.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
@@ -941,6 +942,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			int tempInt;
 			bool tempBool;
 			double tempDouble;
+			Guid tempGuid;
 
 			foreach (XmlAttribute productAttribute in node.Attributes)
 				switch (productAttribute.Name)
@@ -948,6 +950,10 @@ namespace NewBizWiz.Core.OnlineSchedule
 					#region Basic Properties
 					case "Name":
 						Name = productAttribute.Value;
+						break;
+					case "UniqueID":
+						if (Guid.TryParse(productAttribute.Value, out tempGuid))
+							UniqueID = tempGuid;
 						break;
 					case "Index":
 						if (int.TryParse(productAttribute.Value, out tempInt))

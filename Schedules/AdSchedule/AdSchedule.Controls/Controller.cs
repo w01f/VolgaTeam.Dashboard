@@ -24,6 +24,8 @@ namespace NewBizWiz.AdSchedule.Controls
 			get { return _instance; }
 		}
 
+		public event EventHandler<EventArgs> ScheduleChanged;
+
 		public Form FormMain { get; set; }
 		public SuperTooltip Supertip { get; set; }
 		public RibbonControl Ribbon { get; set; }
@@ -290,7 +292,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public void UpdateDigitalProductTab(bool enable)
 		{
 			TabDigitalProduct.Enabled = enable;
-			TabDigitalPackage.Enabled = enable;
+			TabDigitalPackage.Enabled = enable && DigitalPackage.SlidesAvailable;
 		}
 
 		public void UpdateOutputTabs(bool enable)
@@ -317,6 +319,8 @@ namespace NewBizWiz.AdSchedule.Controls
 					Application.DoEvents();
 				form.Close();
 			}
+			if (ScheduleChanged != null)
+				ScheduleChanged(this, EventArgs.Empty);
 		}
 
 		#region Command Controls

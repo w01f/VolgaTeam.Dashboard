@@ -4,6 +4,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Layout;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
+using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
 namespace NewBizWiz.Calendar.Controls.ToolForms
 {

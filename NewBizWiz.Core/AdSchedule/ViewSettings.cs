@@ -3903,7 +3903,7 @@ namespace NewBizWiz.Core.AdSchedule
 			Title = "Monthly Advertising Planner";
 			Comments = string.Empty;
 
-			string filePath = Path.Combine(Common.ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
+			string filePath = Path.Combine(ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
 			if (File.Exists(filePath))
 				Logo = new Bitmap(filePath);
 		}
@@ -4093,35 +4093,47 @@ namespace NewBizWiz.Core.AdSchedule
 	{
 		public DigitalLegend()
 		{
-			Websites = string.Empty;
-			Info = string.Empty;
 			Enabled = false;
+			ShowWebsites = true;
+			ShowProduct = true;
+			ShowDimensions = false;
+			ShowDates = true;
+			ShowImpressions = false;
+			ShowCPM = false;
+			ShowInvestment = false;
+			Info = string.Empty;
 		}
 
-		public string Websites { get; set; }
-		public string Info { get; set; }
 		public bool Enabled { get; set; }
+		public bool AllowEdit { get; set; }
+		public bool ShowWebsites { get; set; }
+		public bool ShowProduct { get; set; }
+		public bool ShowDimensions { get; set; }
+		public bool ShowDates { get; set; }
+		public bool ShowImpressions { get; set; }
+		public bool ShowCPM { get; set; }
+		public bool ShowInvestment { get; set; }
+		public string Info { get; set; }
 
-		public string StringRepresentation
+		public RequestDigitalInfoEventArgs RequestOptions
 		{
-			get
-			{
-				var result = new StringBuilder();
-				if (!String.IsNullOrEmpty(Websites))
-					result.AppendLine(String.Format("Website: {0}", Websites));
-				if (!String.IsNullOrEmpty(Info))
-					result.AppendLine(String.Format("Digital Product Info: {0}", Info));
-				return result.ToString();
-			}
+			get { return new RequestDigitalInfoEventArgs(null, ShowWebsites, ShowProduct, ShowDimensions, ShowDates, ShowImpressions, ShowCPM, ShowInvestment); }
 		}
 
 		public string Serialize()
 		{
 			var result = new StringBuilder();
 
-			result.AppendLine(@"<Websites>" + Websites.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Websites>");
-			result.AppendLine(@"<Info>" + Info.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Info>");
 			result.AppendLine(@"<Enabled>" + Enabled + @"</Enabled>");
+			result.AppendLine(@"<AllowEdit>" + AllowEdit + @"</AllowEdit>");
+			result.AppendLine(@"<ShowWebsites>" + ShowWebsites + @"</ShowWebsites>");
+			result.AppendLine(@"<ShowProduct>" + ShowProduct + @"</ShowProduct>");
+			result.AppendLine(@"<ShowDimensions>" + ShowDimensions + @"</ShowDimensions>");
+			result.AppendLine(@"<ShowDates>" + ShowDates + @"</ShowDates>");
+			result.AppendLine(@"<ShowImpressions>" + ShowImpressions + @"</ShowImpressions>");
+			result.AppendLine(@"<ShowCPM>" + ShowCPM + @"</ShowCPM>");
+			result.AppendLine(@"<ShowInvestment>" + ShowInvestment + @"</ShowInvestment>");
+			result.AppendLine(@"<Info>" + Info.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Info>");
 			return result.ToString();
 		}
 
@@ -4133,15 +4145,44 @@ namespace NewBizWiz.Core.AdSchedule
 			{
 				switch (childNode.Name)
 				{
-					case "Websites":
-						Websites = childNode.InnerText;
-						break;
-					case "Info":
-						Info = childNode.InnerText;
-						break;
 					case "Enabled":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							Enabled = tempBool;
+						break;
+					case "AllowEdit":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							AllowEdit = tempBool;
+						break;
+					case "ShowWebsites":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowWebsites = tempBool;
+						break;
+					case "ShowProduct":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowProduct = tempBool;
+						break;
+					case "ShowDimensions":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowDimensions = tempBool;
+						break;
+					case "ShowDates":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowDates = tempBool;
+						break;
+					case "ShowImpressions":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowImpressions = tempBool;
+						break;
+					case "ShowCPM":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowCPM = tempBool;
+						break;
+					case "ShowInvestment":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowInvestment = tempBool;
+						break;
+					case "Info":
+						Info = childNode.InnerText;
 						break;
 				}
 			}
@@ -4150,9 +4191,16 @@ namespace NewBizWiz.Core.AdSchedule
 		public DigitalLegend Clone()
 		{
 			var result = new DigitalLegend();
-			result.Websites = Websites;
-			result.Info = Info;
 			result.Enabled = Enabled;
+			result.AllowEdit = AllowEdit;
+			result.ShowWebsites = ShowWebsites;
+			result.ShowProduct = ShowProduct;
+			result.ShowDimensions = ShowDimensions;
+			result.ShowDates = ShowDates;
+			result.ShowImpressions = ShowImpressions;
+			result.ShowCPM = ShowCPM;
+			result.ShowInvestment = ShowInvestment;
+			result.Info = Info;
 			return result;
 		}
 	}

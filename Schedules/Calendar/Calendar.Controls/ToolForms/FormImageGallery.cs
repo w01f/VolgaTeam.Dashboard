@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.Core.Common;
+using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
 namespace NewBizWiz.Calendar.Controls.ToolForms
 {

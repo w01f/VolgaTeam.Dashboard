@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdSchedule\ListManager.cs" />
+    <Compile Include="AdSchedule\RequestDigitalInfoEventArgs.cs" />
     <Compile Include="AdSchedule\ScheduleManager.cs" />
     <Compile Include="AdSchedule\SettingsManager.cs" />
     <Compile Include="AdSchedule\ViewSettings.cs" />

@@ -306,21 +306,6 @@ namespace NewBizWiz.Core.AdSchedule
 			}
 		}
 
-		public string DigitalWebsites
-		{
-			get { return String.Join(", ", DigitalProducts.Select(p => p.AllWebsites).Distinct().ToArray()); }
-		}
-
-		public string DigitalSimpleInfo
-		{
-			get { return String.Join(", ", DigitalProducts.Select(p => p.Name).ToArray()); }
-		}
-
-		public string DigitalDetailedInfo
-		{
-			get { return String.Join(", ", DigitalProducts.Select(p => String.Format("{0} ({1})", p.Name, p.ProductSummary)).Distinct().ToArray()); }
-		}
-
 		public DateTime[] ScheduleMonths
 		{
 			get { return _scheduleMonths.ToArray(); }
@@ -537,6 +522,54 @@ namespace NewBizWiz.Core.AdSchedule
 				_scheduleMonths.Add(new DateTime(startDate.Year, startDate.Month, 1));
 				startDate = startDate.AddMonths(1);
 			}
+		}
+
+		public string GetDigitalInfo(RequestDigitalInfoEventArgs args)
+		{
+			var result = new StringBuilder();
+			if (args.ShowWebsites)
+			{
+				var compiledWebsites = String.Join(", ", DigitalProducts.SelectMany(p => p.AllWebsites).Distinct());
+				if (!String.IsNullOrEmpty(compiledWebsites))
+					result.AppendLine(String.Format("{0}", compiledWebsites));
+			}
+			foreach (var product in DigitalProducts)
+			{
+				var temp = new List<string>();
+				if (args.ShowProduct && !String.IsNullOrEmpty(product.UserDefinedName))
+					temp.Add(product.UserDefinedName);
+				if (args.ShowDimensions && !String.IsNullOrEmpty(product.Dimensions))
+					temp.Add(product.Dimensions);
+				if (args.ShowDates && product.DurationValue.HasValue)
+					temp.Add(FlightDates);
+				if (product.MonthlyImpressionsCalculated.HasValue || product.MonthlyCPMCalculated.HasValue || product.MonthlyInvestmentCalculated.HasValue)
+				{
+					var monthly = new List<string>();
+					if (args.ShowImpressions && product.MonthlyImpressionsCalculated.HasValue)
+						monthly.Add(String.Format("Imp: {0}", product.MonthlyImpressionsCalculated.Value.ToString("#,##0")));
+					if (args.ShowInvestment && product.MonthlyInvestmentCalculated.HasValue)
+						monthly.Add(String.Format("Inv: {0}", product.MonthlyInvestmentCalculated.Value.ToString("#,##0")));
+					if (args.ShowCPM && product.MonthlyCPMCalculated.HasValue)
+						monthly.Add(String.Format("CPM: {0}", product.MonthlyCPMCalculated.Value.ToString("#,##0")));
+					if (monthly.Any())
+						temp.Add(String.Format("(Monthly) {0}", String.Join(" ", monthly)));
+				}
+				if (product.TotalImpressionsCalculated.HasValue || product.TotalCPMCalculated.HasValue || product.TotalInvestmentCalculated.HasValue)
+				{
+					var total = new List<string>();
+					if (args.ShowImpressions && product.TotalImpressionsCalculated.HasValue)
+						total.Add(String.Format("Imp: {0}", product.TotalImpressionsCalculated.Value.ToString("#,##0")));
+					if (args.ShowInvestment && product.TotalInvestmentCalculated.HasValue)
+						total.Add(String.Format("Inv: {0}", product.TotalInvestmentCalculated.Value.ToString("#,##0")));
+					if (args.ShowCPM && product.TotalCPMCalculated.HasValue)
+						total.Add(String.Format("CPM: {0}", product.TotalCPMCalculated.Value.ToString("#,##0")));
+					if (total.Any())
+						temp.Add(String.Format("(Total) {0}", String.Join(" ", total)));
+				}
+				if (temp.Any())
+					result.AppendLine(String.Join(", ", temp.ToArray()));
+			}
+			return result.ToString();
 		}
 	}
 
@@ -772,7 +805,6 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public void Deserialize(XmlNode node)
 		{
-			DateTime tempDateTime = DateTime.MinValue;
 			int tempInt = 0;
 			bool tempBool;
 			double tempDouble;
@@ -1084,17 +1116,17 @@ namespace NewBizWiz.Core.AdSchedule
 			}
 			else
 			{
-				string filePath = Path.Combine(Common.ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
+				string filePath = Path.Combine(ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
 				if (File.Exists(filePath))
 					BigLogo = new Bitmap(filePath);
 				else
 					BigLogo = null;
-				filePath = Path.Combine(Common.ListManager.Instance.SmallImageFolder.FullName, Common.ListManager.DefaultSmallLogoFileName);
+				filePath = Path.Combine(ListManager.Instance.SmallImageFolder.FullName, Common.ListManager.DefaultSmallLogoFileName);
 				if (File.Exists(filePath))
 					SmallLogo = new Bitmap(filePath);
 				else
 					SmallLogo = null;
-				filePath = Path.Combine(Common.ListManager.Instance.TinyImageFolder.FullName, Common.ListManager.DefaultTinyLogoFileName);
+				filePath = Path.Combine(ListManager.Instance.TinyImageFolder.FullName, Common.ListManager.DefaultTinyLogoFileName);
 				if (File.Exists(filePath))
 					TinyLogo = new Bitmap(filePath);
 				else

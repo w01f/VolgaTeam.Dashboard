@@ -121,17 +121,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			using (var form = new FormDigital(LocalSchedule.ViewSettings.BasicOverviewViewSettings.DigitalLegend))
 			{
-				form.WebsiteRequestDefault += (o, e) =>
+				form.RequestDefaultInfo += (o, e) =>
 				{
-					e.Editor.EditValue = LocalSchedule.DigitalWebsites;
-				};
-				form.SimpleDigitalInfoRequestDefault += (o, e) =>
-				{
-					e.Editor.EditValue = LocalSchedule.DigitalSimpleInfo;
-				};
-				form.DetailedDigitalInfoRequestDefault += (o, e) =>
-				{
-					e.Editor.EditValue = LocalSchedule.DigitalDetailedInfo;
+					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
 				};
 				if (form.ShowDialog() == DialogResult.OK)
 					SettingsNotSaved = true;

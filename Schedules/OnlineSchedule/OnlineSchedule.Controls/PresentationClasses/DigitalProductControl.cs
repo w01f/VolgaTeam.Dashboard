@@ -222,9 +222,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			foreach (CheckedListBoxItem item in checkedListBoxControlWebsite.Items)
 				if (Product.Websites.Contains(item.Value.ToString()))
 					item.CheckState = CheckState.Checked;
-			if (checkedListBoxControlWebsite.CheckedItems.Count == 0)
-				if (checkedListBoxControlWebsite.Items.Count > 0)
-					checkedListBoxControlWebsite.Items[0].CheckState = CheckState.Checked;
 			checkEditCustomWebsite1.Checked = Product.ShowCustomWebsite1;
 			textEditCustomWebsite1.EditValue = Product.CustomWebsite1;
 			checkEditCustomWebsite2.Checked = Product.ShowCustomWebsite2;
@@ -655,15 +652,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				checkedListBoxControlWebsite.UnCheckAll();
 				checkEditCustomWebsite1.Checked = _container.Websites.Checked;
 				checkEditCustomWebsite2.Checked = _container.Websites.Checked;
-				checkEditCustomWebsite1.Enabled = _container.Websites.Checked;
-				checkEditCustomWebsite2.Enabled = _container.Websites.Checked;
-			}
-			else
-			{
-				if (checkedListBoxControlWebsite.Items.Count > 0)
-					checkedListBoxControlWebsite.Items[0].CheckState = CheckState.Checked;
-				checkEditCustomWebsite1.Enabled = _container.Websites.Checked;
-				checkEditCustomWebsite2.Enabled = _container.Websites.Checked;
+				checkEditCustomWebsite3.Enabled = _container.Websites.Checked;
+				checkEditCustomWebsite4.Enabled = _container.Websites.Checked;
 			}
 			UpdateOutputStatus();
 		}

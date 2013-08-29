@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -53,7 +52,7 @@
 			this.buttonItemHomeDigitalProductDelete = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
 			this.dateEditFlightDatesStart = new DevExpress.XtraEditors.DateEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.dateEditFlightDatesEnd = new DevExpress.XtraEditors.DateEdit();
 			this.itemContainerHomeFlightDates = new DevComponents.DotNetBar.ItemContainer();
 			this.itemContainerHomeFlightDatesStartLogo = new DevComponents.DotNetBar.ItemContainer();
@@ -107,7 +106,7 @@
 			this.buttonItemCalendarsDetails = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarCalendarsCalendar = new DevComponents.DotNetBar.RibbonBar();
 			this.listBoxControlCalendar = new DevExpress.XtraEditors.ImageListBoxControl();
-			this.imageList = new System.Windows.Forms.ImageList(this.components);
+			this.imageList = new System.Windows.Forms.ImageList();
 			this.itemContainerCalendarsCalendar = new DevComponents.DotNetBar.ItemContainer();
 			this.controlContainerItemCalendar = new DevComponents.DotNetBar.ControlContainerItem();
 			this.ribbonPanel1 = new DevComponents.DotNetBar.RibbonPanel();
@@ -350,7 +349,9 @@
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnEmpty = new System.Windows.Forms.Panel();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.ribbonTabItem1 = new DevComponents.DotNetBar.RibbonTabItem();
+			this.ribbonPanel2 = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelScheduleSettings.SuspendLayout();
 			this.ribbonBarHomeFlightDates.SuspendLayout();
@@ -402,6 +403,7 @@
 			this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonControl.CanCustomize = false;
 			this.ribbonControl.Controls.Add(this.ribbonPanelScheduleSettings);
+			this.ribbonControl.Controls.Add(this.ribbonPanel2);
 			this.ribbonControl.Controls.Add(this.ribbonPanelCalendars);
 			this.ribbonControl.Controls.Add(this.ribbonPanel1);
 			this.ribbonControl.Controls.Add(this.ribbonPanelDigitalSchedule);
@@ -420,6 +422,7 @@
             this.ribbonTabItemPrintSchedule,
             this.ribbonTabItemDigitalSchedule,
             this.ribbonTabItemDigitalPackage,
+            this.ribbonTabItem1,
             this.ribbonTabItemOverview,
             this.ribbonTabItemMultiSummary,
             this.ribbonTabItemSnapshot,
@@ -5507,6 +5510,35 @@
 			// 
 			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
 			// 
+			// ribbonTabItem1
+			// 
+			this.ribbonTabItem1.Name = "ribbonTabItem1";
+			this.ribbonTabItem1.Panel = this.ribbonPanel2;
+			this.ribbonTabItem1.Text = "AdPlan";
+			// 
+			// ribbonPanel2
+			// 
+			this.ribbonPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ribbonPanel2.Location = new System.Drawing.Point(0, 26);
+			this.ribbonPanel2.Name = "ribbonPanel2";
+			this.ribbonPanel2.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+			this.ribbonPanel2.Size = new System.Drawing.Size(1312, 138);
+			// 
+			// 
+			// 
+			this.ribbonPanel2.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanel2.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanel2.TabIndex = 17;
+			this.ribbonPanel2.Visible = false;
+			// 
 			// FormMain
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -5891,6 +5923,8 @@
 		public DevComponents.DotNetBar.ButtonItem buttonItemDigitalPackageOptions;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarCalendarsExport;
 		private DevComponents.DotNetBar.ButtonItem buttonItemCalendarsExport;
+		private DevComponents.DotNetBar.RibbonPanel ribbonPanel2;
+		private DevComponents.DotNetBar.RibbonTabItem ribbonTabItem1;
     }
 }
 

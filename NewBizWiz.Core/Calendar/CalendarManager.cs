@@ -1259,7 +1259,7 @@ namespace NewBizWiz.Core.Calendar
 			ApplyForAllThemeColor = true;
 
 			ShowLogo = true;
-			string defaultLogoPath = Path.Combine(Common.ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
+			string defaultLogoPath = Path.Combine(ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
 			if (File.Exists(defaultLogoPath))
 				Logo = new Bitmap(defaultLogoPath);
 			ApplyForAllLogo = true;

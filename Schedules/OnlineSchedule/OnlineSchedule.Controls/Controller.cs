@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
@@ -18,6 +19,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		{
 			get { return _instance; }
 		}
+
+		public event EventHandler<EventArgs> ScheduleChanged;
 
 		public Form FormMain { get; set; }
 		public SuperTooltip Supertip { get; set; }
@@ -103,12 +106,14 @@ namespace NewBizWiz.OnlineSchedule.Controls
 					Application.DoEvents();
 				form.Close();
 			}
+			if (ScheduleChanged != null)
+				ScheduleChanged(this, EventArgs.Empty);
 		}
 
 		public void UpdateSimpleOutputTabPageState(bool enable)
 		{
 			TabScheduleSlides.Enabled = enable;
-			TabDigitalPackage.Enabled = enable;
+			TabDigitalPackage.Enabled = enable && DigitalPackage.SlidesAvailable;
 		}
 
 		#region Command Controls

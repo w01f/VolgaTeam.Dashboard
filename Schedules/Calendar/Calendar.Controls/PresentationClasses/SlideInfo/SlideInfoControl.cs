@@ -104,7 +104,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			#region Logo
 			buttonXLogo.CheckedChanged += propertiesControl_PropertiesChanged;
 			checkEditLogoApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
-			gridControlLogoGallery.DataSource = Core.Common.ListManager.Instance.Images;
+			gridControlLogoGallery.DataSource = ListManager.Instance.Images;
 			#endregion
 
 			#endregion
@@ -230,10 +230,10 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 				#region Logo
 				buttonXLogo.Checked = _month.OutputData.ShowLogo;
 				checkEditLogoApplyForAll.Checked = _month.OutputData.ApplyForAllLogo;
-				var selectedLogo = Core.Common.ListManager.Instance.Images.FirstOrDefault(l => l.EncodedBigImage.Equals(_month.OutputData.EncodedLogo));
+				var selectedLogo = ListManager.Instance.Images.FirstOrDefault(l => l.EncodedBigImage.Equals(_month.OutputData.EncodedLogo));
 				if (selectedLogo != null)
 				{
-					var index = Core.Common.ListManager.Instance.Images.IndexOf(selectedLogo);
+					var index = ListManager.Instance.Images.IndexOf(selectedLogo);
 					layoutViewLogoGallery.FocusedRowHandle = layoutViewLogoGallery.GetRowHandle(index);
 				}
 				else

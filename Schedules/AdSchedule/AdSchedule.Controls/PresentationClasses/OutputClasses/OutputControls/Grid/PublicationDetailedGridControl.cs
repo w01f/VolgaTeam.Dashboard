@@ -422,20 +422,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
-		public string DigitalLegendWebsites
-		{
-			get
-			{
-				if (!String.IsNullOrEmpty(Controller.Instance.Grids.DetailedGrid.DigitalLegend.Websites))
-					return String.Format("Website: {0}", Controller.Instance.Grids.DetailedGrid.DigitalLegend.Websites);
-				return String.Empty;
-			}
-		}
-
 		public string DigitalLegendInfo
 		{
 			get
 			{
+				if (!Controller.Instance.Grids.DetailedGrid.DigitalLegend.Enabled) return String.Empty;
+				if (!Controller.Instance.Grids.DetailedGrid.DigitalLegend.AllowEdit)
+					return String.Format("Digital Product Info: {0}", Controller.Instance.Grids.DetailedGrid.LocalSchedule.GetDigitalInfo(Controller.Instance.Grids.DetailedGrid.DigitalLegend.RequestOptions));
 				if (!String.IsNullOrEmpty(Controller.Instance.Grids.DetailedGrid.DigitalLegend.Info))
 					return String.Format("Digital Product Info: {0}", Controller.Instance.Grids.DetailedGrid.DigitalLegend.Info);
 				return String.Empty;
@@ -673,7 +666,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					}
 					else
 					{
-						key = string.Format("{0}{1}", (i + 1).ToString(), "a" );
+						key = string.Format("{0}{1}", (i + 1).ToString(), "a");
 						value = slideGrid[i][0];
 						if (!slideReplacementList.Keys.Contains(key))
 							slideReplacementList.Add(key, value);
@@ -713,8 +706,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			int rowCountPerSlide = Controller.Instance.Grids.DetailedGrid.ShowCommentsHeader ? (excelOutput ? OutputManager.DetailedGridExcelBasedRowsCountWithNotes : OutputManager.DetailedGridGridBasedRowsCountWithNotes) : (excelOutput ? OutputManager.DetailedGridExcelBasedRowsCountWithoutNotes : OutputManager.DetailedGridGridBasedRowsCountWithoutNotes);
 			int insertsCount = printProduct.Inserts.Count;
 			var totalRowCount = insertsCount;
-			if (ShowDigitalLegend && !String.IsNullOrEmpty(DigitalLegendWebsites))
-				totalRowCount++;
 			if (ShowDigitalLegend && !String.IsNullOrEmpty(DigitalLegendInfo))
 				totalRowCount++;
 			for (int i = 0; i < totalRowCount; i += rowCountPerSlide)
@@ -798,8 +789,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				}
 				if (i >= (totalRowCount - rowCountPerSlide))
 				{
-					if (ShowDigitalLegend && !String.IsNullOrEmpty(DigitalLegendWebsites))
-						slide.Add(new[] { DigitalLegendWebsites });
 					if (ShowDigitalLegend && !String.IsNullOrEmpty(DigitalLegendInfo))
 						slide.Add(new[] { DigitalLegendInfo });
 				}

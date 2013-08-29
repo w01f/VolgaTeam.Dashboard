@@ -76,6 +76,8 @@ namespace NewBizWiz.Calendar.Single
 
 			Controller.Instance.Init();
 
+			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
+
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 1, styleController.Appearance.Font.Style);
@@ -121,6 +123,12 @@ namespace NewBizWiz.Calendar.Single
 			_instance = null;
 		}
 
+		private void UpdateFormTitle()
+		{
+			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
+				Text = String.Format("Ninja Calendar BETA - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
+		}
+
 		private bool AllowToLeaveCurrentControl()
 		{
 			bool result = false;
@@ -148,6 +156,7 @@ namespace NewBizWiz.Calendar.Single
 
 		public void LoadData()
 		{
+			UpdateFormTitle();
 			ribbonControl.Enabled = false;
 			using (var form = new FormProgress())
 			{
@@ -177,9 +186,6 @@ namespace NewBizWiz.Calendar.Single
 			ribbonControl_SelectedRibbonTabChanged(null, null);
 			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 			ribbonControl.Enabled = true;
-
-			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("Ninja Calendar BETA - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
 		}
 
 		private void FormMain_ClientSizeChanged(object sender, EventArgs e)

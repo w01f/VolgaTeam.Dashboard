@@ -134,16 +134,12 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public DigitalPackageSettings()
 		{
 			ShowOptions = true;
-			ShowCategory = true;
 			ShowGroup = true;
 			ShowProduct = true;
 			ShowImpressions = true;
 			ShowCPM = true;
-			ShowRate = true;
 			ShowInvestment = true;
 			ShowInfo = true;
-			ShowComments = true;
-			ShowScreenshot = true;
 		}
 
 		public string Serialize()

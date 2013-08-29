@@ -67,6 +67,8 @@ namespace NewBizWiz.OnlineSchedule.Internal
 
 			Controller.Instance.Init();
 
+			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
+
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 1, styleController.Appearance.Font.Style);
@@ -121,6 +123,12 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			_instance = null;
 		}
 
+		private void UpdateFormTitle()
+		{
+			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
+				Text = String.Format("SellerPoint WebSlides - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
+		}
+
 		private bool AllowToLeaveCurrentControl()
 		{
 			bool result = false;
@@ -164,9 +172,7 @@ namespace NewBizWiz.OnlineSchedule.Internal
 
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
-			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("SellerPoint WebSlides - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
-
+			UpdateFormTitle();
 			ribbonControl.Enabled = false;
 			using (var form = new FormProgress())
 			{

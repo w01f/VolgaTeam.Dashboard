@@ -481,7 +481,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				return PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.StringRepresentation;
+				if (!PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Enabled) return String.Empty;
+				if (!PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.AllowEdit)
+					return String.Format("Digital Product Info: {0}", PrintProduct.Parent.GetDigitalInfo(PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.RequestOptions));
+				if (!String.IsNullOrEmpty(PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Info))
+					return String.Format("Digital Product Info: {0}", PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Info);
+				return String.Empty;
 			}
 		}
 

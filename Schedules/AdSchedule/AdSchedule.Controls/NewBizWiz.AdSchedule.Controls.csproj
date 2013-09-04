@@ -98,6 +98,7 @@
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="BusinessClasses\RateCardManager.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="InteropClasses\AdPlanHelper.cs" />
     <Compile Include="InteropClasses\SummaryHelper.cs" />
     <Compile Include="PresentationClasses\InputClasses\AdNotesWeekdaysSelector.cs">
       <SubType>UserControl</SubType>
@@ -116,6 +117,25 @@
     </Compile>
     <Compile Include="PresentationClasses\InputClasses\AdWebPackageControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\IAdPlanItem.cs" />
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanPrintProductControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanPrintProductControl.Designer.cs">
+      <DependentUpon>AdPlanPrintProductControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanDigitalProductControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanDigitalProductControl.Designer.cs">
+      <DependentUpon>AdPlanDigitalProductControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\OutputAdPlanControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\OutputAdPlanControl.Designer.cs">
+      <DependentUpon>OutputAdPlanControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Summary\SummaryOutputItemControl.cs">
       <SubType>UserControl</SubType>
@@ -504,6 +524,15 @@
     </Compile>
     <EmbeddedResource Include="PresentationClasses\InputClasses\AdNotesWeekdaysSelector.resx">
       <DependentUpon>AdNotesWeekdaysSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanPrintProductControl.resx">
+      <DependentUpon>AdPlanPrintProductControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanDigitalProductControl.resx">
+      <DependentUpon>AdPlanDigitalProductControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Summary\OutputAdPlanControl.resx">
+      <DependentUpon>OutputAdPlanControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Summary\SummaryOutputItemControl.resx">
       <DependentUpon>SummaryOutputItemControl.cs</DependentUpon>
@@ -1049,6 +1078,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DigitalInfoInvestment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AdPlanDigitalProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AdPlanPrintProduct.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

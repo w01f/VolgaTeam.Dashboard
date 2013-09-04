@@ -518,18 +518,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		private void repositoryItemButtonEditChangeLogo_ButtonClick(object sender, ButtonPressedEventArgs e)
 		{
-			using (var form = new FormImageGallery())
+			using (var form = new FormImageGallery(ListManager.Instance.Images))
 			{
-				if (form.ShowDialog() == DialogResult.OK)
-				{
-					if (form.SelectedSource != null)
-					{
-						_localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].BigLogo = new Bitmap(form.SelectedSource.BigLogo);
-						_localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].SmallLogo = new Bitmap(form.SelectedSource.SmallLogo);
-						_localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].TinyLogo = new Bitmap(form.SelectedSource.TinyLogo);
-						gridViewPrintProducts.RefreshData();
-					}
-				}
+				form.SelectedImage = _localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].BigLogo;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (form.SelectedImageSource == null) return;
+				_localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].BigLogo = new Bitmap(form.SelectedImageSource.BigImage);
+				_localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].SmallLogo = new Bitmap(form.SelectedImageSource.SmallImage);
+				_localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].TinyLogo = new Bitmap(form.SelectedImageSource.TinyImage);
+				gridViewPrintProducts.RefreshData();
 			}
 		}
 

@@ -74,11 +74,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void pictureEditLogo_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormImageGallery())
+			using (var form = new FormImageGallery(ListManager.Instance.Images))
 			{
-				if (form.ShowDialog() == DialogResult.OK && form.SelectedSource != null && form.SelectedSource.BigLogo != null)
+				form.SelectedImage = pictureEditLogo.Image;
+				if (form.ShowDialog() == DialogResult.OK && form.SelectedImageSource != null)
 				{
-					pictureEditLogo.Image = new Bitmap(form.SelectedSource.BigLogo);
+					pictureEditLogo.Image = new Bitmap(form.SelectedImage);
 				}
 			}
 		}

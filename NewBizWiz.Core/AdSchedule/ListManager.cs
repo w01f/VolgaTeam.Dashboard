@@ -156,6 +156,7 @@ namespace NewBizWiz.Core.AdSchedule
 				if (File.Exists(smallImageFilePath) && File.Exists(tinyImageFilePath) && File.Exists(xtraTinyImageFilePath))
 				{
 					var imageSource = new ImageSource();
+					imageSource.IsDefault = bigImageFile.Name.ToLower().Contains("default");
 					imageSource.BigImage = new Bitmap(bigImageFile.FullName);
 					imageSource.SmallImage = new Bitmap(smallImageFilePath);
 					imageSource.TinyImage = new Bitmap(tinyImageFilePath);

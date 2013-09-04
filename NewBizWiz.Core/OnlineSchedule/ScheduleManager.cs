@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Core.OnlineSchedule
@@ -599,6 +600,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public bool ShowSignature { get; set; }
 
 		public ProductPackageRecord PackageRecord { get; private set; }
+		public DigitalProductAdPlanSettings AdPlanSettings { get; set; }
 
 		public bool ShowCPMButton
 		{
@@ -848,6 +850,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			DefaultShowSignature = true;
 
 			PackageRecord = new ProductPackageRecord(this);
+			AdPlanSettings = new DigitalProductAdPlanSettings();
 
 			ApplyDefaultView();
 		}
@@ -931,6 +934,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 				xml.AppendLine(@"<Website>" + website.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Website>");
 
 			xml.AppendLine(@"<PackageRecord>" + PackageRecord.Serialize() + @"</PackageRecord>");
+			xml.AppendLine(@"<AdPlanSettings>" + AdPlanSettings.Serialize() + @"</AdPlanSettings>");
 
 			xml.AppendLine(@"</Product>");
 
@@ -1212,6 +1216,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 					Websites.Add(childNode.InnerText);
 				else if (childNode.Name.Equals("PackageRecord"))
 					PackageRecord.Deserialize(childNode);
+				else if (childNode.Name.Equals("AdPlanSettings"))
+					AdPlanSettings.Deserialize(childNode);
 			}
 			if (Websites.Count == 0 && ListManager.Instance.Websites.Any())
 				Websites.Add(ListManager.Instance.Websites.FirstOrDefault());

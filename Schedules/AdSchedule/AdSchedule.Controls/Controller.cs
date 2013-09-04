@@ -35,6 +35,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public RibbonTabItem TabBasicOverview { get; set; }
 		public RibbonTabItem TabMultiSummary { get; set; }
 		public RibbonTabItem TabSnapshot { get; set; }
+		public RibbonTabItem TabAdPlan { get; set; }
 		public RibbonTabItem TabDetailedGrid { get; set; }
 		public RibbonTabItem TabMultiGrid { get; set; }
 		public RibbonTabItem TabCalendar { get; set; }
@@ -190,6 +191,15 @@ namespace NewBizWiz.AdSchedule.Controls
 			SnapshotDigitalLegend.Click += Summaries.Digital_Click;
 			#endregion
 
+			#region AdPlan
+			AdPlanPreview.Click += Summaries.Preview_Click;
+			AdPlanEmail.Click += Summaries.Email_Click;
+			AdPlanHelp.Click += Summaries.Help_Click;
+			AdPlanSave.Click += Summaries.Save_Click;
+			AdPlanSaveAs.Click += Summaries.SaveAs_Click;
+			AdPlanPowerPoint.Click += Summaries.PowerPoint_Click;
+			#endregion
+
 			#endregion
 
 			#region Grids
@@ -259,6 +269,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			Summaries.BasicOverview.Dispose();
 			Summaries.MultiSummary.Dispose();
 			Summaries.Snapshot.Dispose();
+			Summaries.AdPlan.Dispose();
 			Summaries.Dispose();
 			Grids.DetailedGrid.Dispose();
 			Grids.MultiGrid.Dispose();
@@ -275,12 +286,13 @@ namespace NewBizWiz.AdSchedule.Controls
 			PrintProductContainer.LoadSchedule(false);
 			DigitalProductContainer.LoadSchedule(false);
 			DigitalPackage.LoadSchedule(false);
-			Summaries.BasicOverview.UpdateOutput(false);
 			Calendars.Calendar.UpdateOutput(false);
 			Grids.DetailedGrid.UpdateOutput(false);
 			Grids.MultiGrid.UpdateOutput(false);
+			Summaries.BasicOverview.UpdateOutput(false);
 			Summaries.MultiSummary.UpdateOutput(false);
 			Summaries.Snapshot.UpdateOutput(false);
+			Summaries.AdPlan.UpdateOutput(false);
 			Summary.UpdateOutput(false);
 		}
 
@@ -300,6 +312,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			TabBasicOverview.Enabled = enable;
 			TabMultiSummary.Enabled = enable;
 			TabSnapshot.Enabled = enable;
+			TabAdPlan.Enabled = enable;
 			TabDetailedGrid.Enabled = enable;
 			TabMultiGrid.Enabled = enable;
 			TabCalendar.Enabled = enable;
@@ -441,6 +454,15 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem SnapshotEmail { get; set; }
 		public ButtonItem SnapshotPowerPoint { get; set; }
 		public ButtonItem SnapshotDigitalLegend { get; set; }
+		#endregion
+
+		#region AdPlan
+		public ButtonItem AdPlanHelp { get; set; }
+		public ButtonItem AdPlanSave { get; set; }
+		public ButtonItem AdPlanSaveAs { get; set; }
+		public ButtonItem AdPlanPreview { get; set; }
+		public ButtonItem AdPlanEmail { get; set; }
+		public ButtonItem AdPlanPowerPoint { get; set; }
 		#endregion
 
 		#region Detailed Grid

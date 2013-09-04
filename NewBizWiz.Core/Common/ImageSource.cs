@@ -9,6 +9,7 @@ namespace NewBizWiz.Core.Common
 {
 	public class ImageSource
 	{
+		public bool IsDefault { get; set; }
 		public Image BigImage { get; set; }
 		public Image SmallImage { get; set; }
 		public Image TinyImage { get; set; }
@@ -37,6 +38,7 @@ namespace NewBizWiz.Core.Common
 		{
 			TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
 			var result = new StringBuilder();
+			result.Append("<IsDefault>" + IsDefault + "</IsDefault>");
 			result.Append("<BigImage>" + Convert.ToBase64String((byte[])converter.ConvertTo(BigImage, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</BigImage>");
 			result.Append("<SmallImage>" + Convert.ToBase64String((byte[])converter.ConvertTo(SmallImage, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</SmallImage>");
 			result.Append("<TinyImage>" + Convert.ToBase64String((byte[])converter.ConvertTo(TinyImage, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</TinyImage>");
@@ -46,10 +48,15 @@ namespace NewBizWiz.Core.Common
 
 		public void Deserialize(XmlNode node)
 		{
+			bool tempBool;
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
 				switch (childNode.Name)
 				{
+					case "IsDefault":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							IsDefault = tempBool;
+						break;
 					case "BigImage":
 						if (string.IsNullOrEmpty(childNode.InnerText))
 							BigImage = null;
@@ -84,6 +91,7 @@ namespace NewBizWiz.Core.Common
 		public ImageSource Clone()
 		{
 			var result = new ImageSource();
+			result.IsDefault = IsDefault;
 			result.BigImage = BigImage;
 			result.SmallImage = SmallImage;
 			result.TinyImage = TinyImage;

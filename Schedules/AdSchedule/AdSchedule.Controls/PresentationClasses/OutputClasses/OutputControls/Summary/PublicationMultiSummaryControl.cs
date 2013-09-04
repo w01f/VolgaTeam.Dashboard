@@ -101,13 +101,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					checkEditColor.Text = "Full Color";
 					break;
 			}
-			var dates = new List<string>();
-			foreach (Insert insert in PrintProduct.Inserts)
-			{
-				if (insert.DateObject != null)
-					dates.Add(insert.Date.ToString("MM/dd/yy"));
-			}
-			memoEditDates.EditValue = string.Join(", ", dates.ToArray());
+			memoEditDates.EditValue = PrintProduct.InsertDates;
 			laInvestment.Text = "Investment: " + PrintProduct.TotalFinalRate.ToString("$#,##0.00");
 
 			_allowToSave = false;

@@ -33,6 +33,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.TabBasicOverview = ribbonTabItemOverview;
 			Controller.Instance.TabMultiSummary = ribbonTabItemMultiSummary;
 			Controller.Instance.TabSnapshot = ribbonTabItemSnapshot;
+			Controller.Instance.TabAdPlan = ribbonTabItemAdPlan;
 			Controller.Instance.TabDetailedGrid = ribbonTabItemDetailedGrid;
 			Controller.Instance.TabMultiGrid = ribbonTabItemMultiGrid;
 			Controller.Instance.TabCalendar = ribbonTabItemCalendars;
@@ -156,6 +157,15 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.SnapshotEmail = buttonItemSnapshotEmail;
 			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
 			Controller.Instance.SnapshotDigitalLegend = buttonItemSnapshotDigital;
+			#endregion
+
+			#region AdPlan
+			Controller.Instance.AdPlanHelp = buttonItemAdPlanHelp;
+			Controller.Instance.AdPlanSave = buttonItemAdPlanSave;
+			Controller.Instance.AdPlanSaveAs = buttonItemAdPlanSaveAs;
+			Controller.Instance.AdPlanPreview = buttonItemAdPlanPreview;
+			Controller.Instance.AdPlanEmail = buttonItemAdPlanEmail;
+			Controller.Instance.AdPlanPowerPoint = buttonItemAdPlanPowerPoint;
 			#endregion
 
 			#region Detailed Grid
@@ -526,6 +536,27 @@ namespace NewBizWiz.AdSchedule.Single
 				if (AllowToLeaveCurrentControl() || _currentControl == null)
 				{
 					Controller.Instance.Summaries.SelectSummary(SummaryType.Snapshot);
+					if (!pnMain.Controls.Contains(Controller.Instance.Summaries))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(Controller.Instance.Summaries);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					Controller.Instance.Summaries.BringToFront();
+					_currentControl = Controller.Instance.Summaries;
+				}
+				else
+					_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemAdPlan)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					Controller.Instance.Summaries.SelectSummary(SummaryType.AdPlan);
 					if (!pnMain.Controls.Contains(Controller.Instance.Summaries))
 					{
 						Application.DoEvents();

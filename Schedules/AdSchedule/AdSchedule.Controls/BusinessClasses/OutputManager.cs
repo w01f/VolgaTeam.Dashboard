@@ -36,6 +36,8 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 
 		private const string SnapshotTemlatesFolderName = @"{0}\Newspaper Slides\snapshotnew";
 
+		private const string AdPlanTemlatesFolderName = @"{0}\Newspaper Slides\adplan";
+
 		private const string DetailedGridExcelBasedTemlatesFolderName = @"{0}\Newspaper Slides\detailed grid";
 		private const string DetailedGridGridBasedTemlatesFolderName = @"{0}\Newspaper Slides\tables";
 		public const string DetailedGridExcelBasedSlideTemplate = @"detailed-{0}.ppt";
@@ -83,6 +85,11 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 		public string SnapshotTemlatesFolderPath
 		{
 			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, string.Format(SnapshotTemlatesFolderName, SettingsManager.Instance.SlideFolder)); }
+		}
+
+		public string AdPlanTemlatesFolderPath
+		{
+			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, string.Format(AdPlanTemlatesFolderName, SettingsManager.Instance.SlideFolder)); }
 		}
 
 		public string DetailedGridExcelBasedTemlatesFolderPath
@@ -226,7 +233,7 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 							}
 						}
 				}
-				catch {}
+				catch { }
 				finally
 				{
 					dataAdapter.Dispose();

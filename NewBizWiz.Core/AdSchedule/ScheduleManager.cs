@@ -753,6 +753,26 @@ namespace NewBizWiz.Core.AdSchedule
 			}
 		}
 
+		public string InsertDates
+		{
+			get { return String.Join(", ", Inserts.Where(i => i.DateObject != null).Select(i => i.Date.ToString("MM/dd/yy"))); }
+		}
+
+		private string _encodedBigLogo;
+		public string EncodedBigLogo
+		{
+			get
+			{
+				if (String.IsNullOrEmpty(_encodedBigLogo))
+				{
+					TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+					_encodedBigLogo = Convert.ToBase64String((byte[])converter.ConvertTo(BigLogo, typeof(byte[])));
+				}
+				return _encodedBigLogo;
+			}
+			set { _encodedBigLogo = value; }
+		}
+
 		#region Available Weekdays
 		public bool AllowSundaySelect { get; set; }
 		public bool AllowMondaySelect { get; set; }

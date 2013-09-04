@@ -1,45 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.XtraGrid.Views.Grid;
-using NewBizWiz.Core.AdSchedule;
+using DevExpress.XtraGrid.Views.Layout;
+using NewBizWiz.Core.Common;
+using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
 namespace NewBizWiz.AdSchedule.Controls.ToolForms
 {
 	public partial class FormImageGallery : Form
 	{
-		private readonly List<PrintProductSource> _publicationSources = new List<PrintProductSource>();
-
-		public FormImageGallery()
+		public FormImageGallery(IEnumerable<ImageSource> imageSource)
 		{
 			InitializeComponent();
+			gridControlLogoGallery.DataSource = imageSource;
 		}
 
-		public PrintProductSource SelectedSource
+		public Image SelectedImage
 		{
-			get
+			get { return SelectedImageSource != null ? SelectedImageSource.BigImage : null; }
+			set
 			{
-				if (gridViewImageGallery.FocusedRowHandle >= 0)
-					return _publicationSources[gridViewImageGallery.GetFocusedDataSourceRowIndex()];
-				else
-					return null;
+				if (value != null)
+				{
+					var converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+					var encodedLogo = Convert.ToBase64String((byte[])converter.ConvertTo(value, typeof(byte[])));
+					var selectedLogo = ListManager.Instance.Images.FirstOrDefault(l => l.EncodedBigImage.Equals(encodedLogo));
+					if (selectedLogo != null)
+					{
+						var index = ListManager.Instance.Images.IndexOf(selectedLogo);
+						layoutViewLogoGallery.FocusedRowHandle = layoutViewLogoGallery.GetRowHandle(index);
+						return;
+					}
+				}
+				layoutViewLogoGallery.FocusedRowHandle = 0;
 			}
 		}
 
-		private void FormImageGallery_Load(object sender, EventArgs e)
+		public ImageSource SelectedImageSource
 		{
-			_publicationSources.AddRange(ListManager.Instance.PublicationSources.Where(x => x.BigLogo != null && x.SmallLogo != null /*&& x.TinyLogo != null*/).GroupBy(x => x.BigLogoFileName).Select(x => x.First()));
-			gridControlImageGallery.DataSource = _publicationSources;
+			get { return layoutViewLogoGallery.GetFocusedRow() as ImageSource; }
 		}
 
-		private void gridViewImageGallery_RowClick(object sender, RowClickEventArgs e)
+		private void layoutViewLogoGallery_CustomFieldValueStyle(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventArgs e)
 		{
-			if (e.Clicks > 1)
+			var view = sender as LayoutView;
+			if (view.FocusedRowHandle == e.RowHandle)
 			{
+				e.Appearance.BackColor = Color.Orange;
+				e.Appearance.BackColor2 = Color.Orange;
+			}
+		}
+
+		private void layoutViewLogoGallery_DoubleClick(object sender, EventArgs e)
+		{
+			var layoutView = sender as LayoutView;
+			var hitInfo = layoutView.CalcHitInfo(layoutView.GridControl.PointToClient(MousePosition));
+			if (hitInfo.InField)
 				DialogResult = DialogResult.OK;
-				Close();
-			}
 		}
 	}
 }

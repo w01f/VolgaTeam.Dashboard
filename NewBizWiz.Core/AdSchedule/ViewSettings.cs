@@ -27,6 +27,8 @@ namespace NewBizWiz.Core.AdSchedule
 			SnapshotViewSettings = new SnapshotViewSettings();
 			SnapshotViewSettings.ResetToDefault();
 
+			AdPlanViewSettings = new AdPlanViewSettings();
+
 			DetailedGridViewSettings = new DetailedGridViewSettings();
 			MultiGridViewSettings = new MultiGridViewSettings();
 
@@ -41,6 +43,7 @@ namespace NewBizWiz.Core.AdSchedule
 		public BasicOverviewViewSettings BasicOverviewViewSettings { get; set; }
 		public MultiSummaryViewSettings MultiSummaryViewSettings { get; set; }
 		public SnapshotViewSettings SnapshotViewSettings { get; set; }
+		public AdPlanViewSettings AdPlanViewSettings { get; set; }
 
 		public DetailedGridViewSettings DetailedGridViewSettings { get; set; }
 		public MultiGridViewSettings MultiGridViewSettings { get; set; }
@@ -60,6 +63,7 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<BasicOverviewViewSettings>" + BasicOverviewViewSettings.Serialize() + @"</BasicOverviewViewSettings>");
 			result.AppendLine(@"<MultiSummaryViewSettings>" + MultiSummaryViewSettings.Serialize() + @"</MultiSummaryViewSettings>");
 			result.AppendLine(@"<SnapshotViewSettings>" + SnapshotViewSettings.Serialize() + @"</SnapshotViewSettings>");
+			result.AppendLine(@"<AdPlanViewSettings>" + AdPlanViewSettings.Serialize() + @"</AdPlanViewSettings>");
 
 			result.AppendLine(@"<DetailedGridViewSettings>" + DetailedGridViewSettings.Serialize() + @"</DetailedGridViewSettings>");
 			result.AppendLine(@"<MultiGridViewSettings>" + MultiGridViewSettings.Serialize() + @"</MultiGridViewSettings>");
@@ -91,6 +95,9 @@ namespace NewBizWiz.Core.AdSchedule
 						break;
 					case "SnapshotViewSettings":
 						SnapshotViewSettings.Deserialize(childNode);
+						break;
+					case "AdPlanViewSettings":
+						AdPlanViewSettings.Deserialize(childNode);
 						break;
 					case "DetailedGridViewSettings":
 						DetailedGridViewSettings.Deserialize(childNode);
@@ -132,11 +139,13 @@ namespace NewBizWiz.Core.AdSchedule
 			MultiSummarySettings.ResetToDefault();
 
 			DetailedGridSettings = new PublicationDetailedGridSettings();
+			AdPlanSettings = new PrintProductAdPlanSettings();
 		}
 
 		public PublicationBasicOverviewSettings BasicOverviewSettings { get; set; }
 		public PublicationMultiSummarySettings MultiSummarySettings { get; set; }
 		public PublicationDetailedGridSettings DetailedGridSettings { get; set; }
+		public PrintProductAdPlanSettings AdPlanSettings { get; set; }
 
 		public string Serialize()
 		{
@@ -145,6 +154,7 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<BasicOverviewSettings>" + BasicOverviewSettings.Serialize() + @"</BasicOverviewSettings>");
 			result.AppendLine(@"<MultiSummarySettings>" + MultiSummarySettings.Serialize() + @"</MultiSummarySettings>");
 			result.AppendLine(@"<DetailedGridSettings>" + DetailedGridSettings.Serialize() + @"</DetailedGridSettings>");
+			result.AppendLine(@"<AdPlanSettings>" + AdPlanSettings.Serialize() + @"</AdPlanSettings>");
 
 			return result.ToString();
 		}
@@ -163,6 +173,9 @@ namespace NewBizWiz.Core.AdSchedule
 						break;
 					case "DetailedGridSettings":
 						DetailedGridSettings.Deserialize(childNode);
+						break;
+					case "AdPlanSettings":
+						AdPlanSettings.Deserialize(childNode);
 						break;
 				}
 			}
@@ -853,6 +866,405 @@ namespace NewBizWiz.Core.AdSchedule
 				{
 					case "SlideHeader":
 						SlideHeader = childNode.InnerText;
+						break;
+				}
+			}
+		}
+	}
+
+	public class PrintProductAdPlanSettings
+	{
+		public PrintProductAdPlanSettings()
+		{
+			ShowInvestment = true;
+			ShowFlightDates = true;
+			ShowDates = true;
+			ShowComments = false;
+
+			ResetItemsToDefault();
+		}
+
+		public bool EditName { get; set; }
+		public bool EditDates { get; set; }
+		public bool EditInvestment { get; set; }
+
+		public bool ShowInvestment { get; set; }
+		public bool ShowFlightDates { get; set; }
+		public bool ShowDates { get; set; }
+		public bool ShowComments { get; set; }
+
+		public bool ShowTotalInserts { get; set; }
+		public bool ShowDimensions { get; set; }
+		public bool ShowPageSize { get; set; }
+		public bool ShowPercentOfPage { get; set; }
+		public bool ShowTotalColor { get; set; }
+		public bool ShowAvgAdCost { get; set; }
+		public bool ShowAvgFinalCost { get; set; }
+		public bool ShowDiscounts { get; set; }
+		public bool ShowSection { get; set; }
+		public bool ShowAvgPCI { get; set; }
+		public bool ShowTotalSquare { get; set; }
+		public bool ShowSquare { get; set; }
+		public bool ShowMechanicals { get; set; }
+
+		public bool NotOutput { get; set; }
+
+		public string Name { get; set; }
+		public Image Logo { get; set; }
+		public decimal? Investment { get; set; }
+		public string Dates { get; set; }
+		public string Comments { get; set; }
+
+		public void ResetItemsToDefault()
+		{
+			ShowTotalInserts = true;
+			ShowDimensions = false;
+			ShowPageSize = true;
+			ShowPercentOfPage = false;
+			ShowTotalColor = false;
+			ShowAvgAdCost = false;
+			ShowAvgFinalCost = false;
+			ShowDiscounts = false;
+			ShowSection = false;
+			ShowAvgPCI = false;
+			ShowTotalSquare = false;
+			ShowSquare = false;
+			ShowMechanicals = false;
+		}
+
+		public string Serialize()
+		{
+			TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+			var result = new StringBuilder();
+
+			result.AppendLine(@"<EditName>" + EditName + @"</EditName>");
+			result.AppendLine(@"<EditDates>" + EditDates + @"</EditDates>");
+			result.AppendLine(@"<EditInvestment>" + EditInvestment + @"</EditInvestment>");
+
+			result.AppendLine(@"<ShowInvestment>" + ShowInvestment + @"</ShowInvestment>");
+			result.AppendLine(@"<ShowFlightDates>" + ShowFlightDates + @"</ShowFlightDates>");
+			result.AppendLine(@"<ShowDates>" + ShowDates + @"</ShowDates>");
+			result.AppendLine(@"<ShowComments>" + ShowComments + @"</ShowComments>");
+
+			result.AppendLine(@"<ShowTotalInserts>" + ShowTotalInserts + @"</ShowTotalInserts>");
+			result.AppendLine(@"<ShowDimensions>" + ShowDimensions + @"</ShowDimensions>");
+			result.AppendLine(@"<ShowPageSize>" + ShowPageSize + @"</ShowPageSize>");
+			result.AppendLine(@"<ShowPercentOfPage>" + ShowPercentOfPage + @"</ShowPercentOfPage>");
+			result.AppendLine(@"<ShowTotalColor>" + ShowTotalColor + @"</ShowTotalColor>");
+			result.AppendLine(@"<ShowAvgAdCost>" + ShowAvgAdCost + @"</ShowAvgAdCost>");
+			result.AppendLine(@"<ShowAvgFinalCost>" + ShowAvgFinalCost + @"</ShowAvgFinalCost>");
+			result.AppendLine(@"<ShowDiscounts>" + ShowDiscounts + @"</ShowDiscounts>");
+			result.AppendLine(@"<ShowSection>" + ShowSection + @"</ShowSection>");
+			result.AppendLine(@"<ShowAvgPCI>" + ShowAvgPCI + @"</ShowAvgPCI>");
+			result.AppendLine(@"<ShowTotalSquare>" + ShowTotalSquare + @"</ShowTotalSquare>");
+			result.AppendLine(@"<ShowSquare>" + ShowSquare + @"</ShowSquare>");
+			result.AppendLine(@"<ShowMechanicals>" + ShowMechanicals + @"</ShowMechanicals>");
+
+			result.AppendLine(@"<NotOutput>" + NotOutput + @"</NotOutput>");
+
+			if (!String.IsNullOrEmpty(Name))
+				result.AppendLine(@"<Name>" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Name>");
+			if (Logo != null)
+				result.AppendLine(@"<Logo>" + Convert.ToBase64String((byte[])converter.ConvertTo(Logo, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
+			if (!String.IsNullOrEmpty(Dates))
+				result.AppendLine(@"<Dates>" + Dates.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Dates>");
+			if (!String.IsNullOrEmpty(Comments))
+				result.AppendLine(@"<Comments>" + Comments.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comments>");
+			if (Investment.HasValue)
+				result.AppendLine(@"<Investment>" + Investment.Value + @"</Investment>");
+
+			return result.ToString();
+		}
+
+		public void Deserialize(XmlNode node)
+		{
+			bool tempBool;
+			decimal tempDecimal;
+			;
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "EditName":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							EditName = tempBool;
+						break;
+					case "EditDates":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							EditDates = tempBool;
+						break;
+					case "EditInvestment":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							EditInvestment = tempBool;
+						break;
+
+					case "ShowInvestment":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowInvestment = tempBool;
+						break;
+					case "ShowFlightDates":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowFlightDates = tempBool;
+						break;
+					case "ShowDates":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowDates = tempBool;
+						break;
+					case "ShowComments":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowComments = tempBool;
+						break;
+
+					case "ShowTotalInserts":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTotalInserts = tempBool;
+						break;
+					case "ShowDimensions":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowDimensions = tempBool;
+						break;
+					case "ShowPageSize":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowPageSize = tempBool;
+						break;
+					case "ShowPercentOfPage":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowPercentOfPage = tempBool;
+						break;
+					case "ShowTotalColor":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTotalColor = tempBool;
+						break;
+					case "ShowAvgAdCost":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowAvgAdCost = tempBool;
+						break;
+					case "ShowAvgFinalCost":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowAvgFinalCost = tempBool;
+						break;
+					case "ShowDiscounts":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowDiscounts = tempBool;
+						break;
+					case "ShowSection":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowSection = tempBool;
+						break;
+					case "ShowAvgPCI":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowAvgPCI = tempBool;
+						break;
+					case "ShowTotalSquare":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTotalSquare = tempBool;
+						break;
+					case "ShowSquare":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowSquare = tempBool;
+						break;
+					case "ShowMechanicals":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowMechanicals = tempBool;
+						break;
+
+					case "NotOutput":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							NotOutput = tempBool;
+						break;
+
+					case "Name":
+						Name = childNode.InnerText;
+						break;
+					case "Logo":
+						if (!String.IsNullOrEmpty(childNode.InnerText))
+							Logo = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
+						break;
+					case "Dates":
+						Dates = childNode.InnerText;
+						break;
+					case "Comments":
+						Comments = childNode.InnerText;
+						break;
+					case "Investment":
+						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
+							Investment = tempDecimal;
+						break;
+				}
+			}
+		}
+	}
+
+	public class DigitalProductAdPlanSettings
+	{
+		public DigitalProductAdPlanSettings()
+		{
+			ShowInvestment = true;
+			ShowFlightDates = true;
+			ShowComments = false;
+
+			ResetItemsToDefault();
+		}
+
+		public bool EditName { get; set; }
+		public bool EditInvestment { get; set; }
+
+		public bool ShowInvestment { get; set; }
+		public bool ShowFlightDates { get; set; }
+		public bool ShowComments { get; set; }
+
+		public bool ShowWebsites { get; set; }
+		public bool ShowDimensions { get; set; }
+		public bool ShowMonthlyImpressions { get; set; }
+		public bool ShowMonthlyCPM { get; set; }
+		public bool ShowTotalImpressions { get; set; }
+		public bool ShowTotalCPM { get; set; }
+		public bool ShowComment1 { get; set; }
+		public bool ShowComment2 { get; set; }
+		public bool ShowComment3 { get; set; }
+
+		public bool NotOutput { get; set; }
+
+		public string Name { get; set; }
+		public Image Logo { get; set; }
+		public decimal? Investment { get; set; }
+		public string Comments { get; set; }
+
+		public void ResetItemsToDefault()
+		{
+			ShowWebsites = true;
+			ShowDimensions = true;
+			ShowMonthlyImpressions = true;
+			ShowMonthlyCPM = true;
+			ShowTotalImpressions = true;
+			ShowTotalCPM = true;
+			ShowComment1 = false;
+			ShowComment2 = false;
+			ShowComment3 = false;
+		}
+
+		public string Serialize()
+		{
+			TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+			var result = new StringBuilder();
+
+			result.AppendLine(@"<EditName>" + EditName + @"</EditName>");
+			result.AppendLine(@"<EditInvestment>" + EditInvestment + @"</EditInvestment>");
+
+			result.AppendLine(@"<ShowInvestment>" + ShowInvestment + @"</ShowInvestment>");
+			result.AppendLine(@"<ShowFlightDates>" + ShowFlightDates + @"</ShowFlightDates>");
+			result.AppendLine(@"<ShowComments>" + ShowComments + @"</ShowComments>");
+
+			result.AppendLine(@"<ShowWebsites>" + ShowWebsites + @"</ShowWebsites>");
+			result.AppendLine(@"<ShowDimensions>" + ShowDimensions + @"</ShowDimensions>");
+			result.AppendLine(@"<ShowMonthlyImpressions>" + ShowMonthlyImpressions + @"</ShowMonthlyImpressions>");
+			result.AppendLine(@"<ShowMonthlyCPM>" + ShowMonthlyCPM + @"</ShowMonthlyCPM>");
+			result.AppendLine(@"<ShowTotalImpressions>" + ShowTotalImpressions + @"</ShowTotalImpressions>");
+			result.AppendLine(@"<ShowTotalCPM>" + ShowTotalCPM + @"</ShowTotalCPM>");
+			result.AppendLine(@"<ShowComment1>" + ShowComment1 + @"</ShowComment1>");
+			result.AppendLine(@"<ShowComment2>" + ShowComment2 + @"</ShowComment2>");
+			result.AppendLine(@"<ShowComment3>" + ShowComment3 + @"</ShowComment3>");
+
+			result.AppendLine(@"<NotOutput>" + NotOutput + @"</NotOutput>");
+
+			if (!String.IsNullOrEmpty(Name))
+				result.AppendLine(@"<Name>" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Name>");
+			if (Logo != null)
+				result.AppendLine(@"<Logo>" + Convert.ToBase64String((byte[])converter.ConvertTo(Logo, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
+			if (!String.IsNullOrEmpty(Comments))
+				result.AppendLine(@"<Comments>" + Comments.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comments>");
+			if (Investment.HasValue)
+				result.AppendLine(@"<Investment>" + Investment.Value + @"</Investment>");
+
+			return result.ToString();
+		}
+
+		public void Deserialize(XmlNode node)
+		{
+			bool tempBool;
+			decimal tempDecimal;
+			;
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "EditName":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							EditName = tempBool;
+						break;
+					case "EditInvestment":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							EditInvestment = tempBool;
+						break;
+
+					case "ShowInvestment":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowInvestment = tempBool;
+						break;
+					case "ShowFlightDates":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowFlightDates = tempBool;
+						break;
+					case "ShowComments":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowComments = tempBool;
+						break;
+
+					case "ShowWebsites":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowWebsites = tempBool;
+						break;
+					case "ShowDimensions":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowDimensions = tempBool;
+						break;
+					case "ShowMonthlyImpressions":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowMonthlyImpressions = tempBool;
+						break;
+					case "ShowMonthlyCPM":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowMonthlyCPM = tempBool;
+						break;
+					case "ShowTotalImpressions":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTotalImpressions = tempBool;
+						break;
+					case "ShowTotalCPM":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowTotalCPM = tempBool;
+						break;
+					case "ShowComment1":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowComment1 = tempBool;
+						break;
+					case "ShowComment2":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowComment2 = tempBool;
+						break;
+					case "ShowComment3":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowComment3 = tempBool;
+						break;
+
+					case "NotOutput":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							NotOutput = tempBool;
+						break;
+
+					case "Name":
+						Name = childNode.InnerText;
+						break;
+					case "Logo":
+						if (!String.IsNullOrEmpty(childNode.InnerText))
+							Logo = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
+						break;
+					case "Comments":
+						Comments = childNode.InnerText;
+						break;
+					case "Investment":
+						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
+							Investment = tempDecimal;
 						break;
 				}
 			}
@@ -1694,6 +2106,39 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowReadership &= EnableReadership;
 			ShowDelivery &= EnableDelivery;
 			ShowPercentOfPage &= EnablePercentOfPage;
+		}
+	}
+
+	public class AdPlanViewSettings
+	{
+		public AdPlanViewSettings()
+		{
+			MoreSlides = true;
+		}
+
+		public bool MoreSlides { get; set; }
+
+		public string Serialize()
+		{
+			var result = new StringBuilder();
+			result.AppendLine(@"<MoreSlides>" + MoreSlides + @"</MoreSlides>");
+			return result.ToString();
+		}
+
+		public void Deserialize(XmlNode node)
+		{
+			bool tempBool = false;
+
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "MoreSlides":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							MoreSlides = tempBool;
+						break;
+				}
+			}
 		}
 	}
 

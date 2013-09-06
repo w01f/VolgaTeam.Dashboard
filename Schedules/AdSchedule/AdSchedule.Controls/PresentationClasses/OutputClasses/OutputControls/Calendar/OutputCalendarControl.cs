@@ -97,6 +97,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				LocalSchedule.ViewSettings.CalendarViewSettings.ShowTotalAds = Controller.Instance.Calendars.buttonXMonthShowTotalAds.Checked;
 				LocalSchedule.ViewSettings.CalendarViewSettings.ShowActiveDays = Controller.Instance.Calendars.buttonXMonthShowActiveDays.Checked;
 				LocalSchedule.ViewSettings.CalendarViewSettings.ShowComments = Controller.Instance.Calendars.buttonXMonthShowComment.Checked;
+				LocalSchedule.ViewSettings.CalendarViewSettings.ShowDigital = Controller.Instance.Calendars.buttonXMonthShowDigital.Checked;
 
 				if (Controller.Instance.Calendars.buttonXColorBlack.Checked)
 				{
@@ -152,6 +153,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 								monthView.Settings.Title = monthSettings.Title;
 								monthView.Settings.Legend.Clear();
 								monthView.Settings.Legend.AddRange(monthSettings.Legend.ToArray());
+								monthView.Settings.DigitalLegend = monthSettings.DigitalLegend;
 							}
 						}
 						UpdateMonthView();
@@ -203,6 +205,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			Controller.Instance.Calendars.buttonXMonthShowComment.Checked = LocalSchedule.ViewSettings.CalendarViewSettings.ShowComments;
 			Controller.Instance.Calendars.buttonXMonthShowTotalAds.Checked = LocalSchedule.ViewSettings.CalendarViewSettings.ShowTotalAds;
 			Controller.Instance.Calendars.buttonXMonthShowActiveDays.Checked = LocalSchedule.ViewSettings.CalendarViewSettings.ShowActiveDays;
+			Controller.Instance.Calendars.buttonXMonthShowDigital.Checked = LocalSchedule.ViewSettings.CalendarViewSettings.ShowDigital;
 
 			Controller.Instance.Calendars.buttonXColorBlack.Enabled = LocalSchedule.ViewSettings.CalendarViewSettings.EnableBlack;
 			Controller.Instance.Calendars.buttonXColorBlue.Enabled = LocalSchedule.ViewSettings.CalendarViewSettings.EnableBlue;

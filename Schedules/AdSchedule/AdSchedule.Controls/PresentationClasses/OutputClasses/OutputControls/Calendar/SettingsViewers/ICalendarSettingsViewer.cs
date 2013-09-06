@@ -1,10 +1,12 @@
-﻿using NewBizWiz.Core.AdSchedule;
+﻿using System.Drawing;
+using NewBizWiz.Core.AdSchedule;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar.SettingsViewers
 {
 	public interface ICalendarSettingsViewer
 	{
 		string Title { get; }
+		Image Logo { get; }
 		string FormToggleChangeCaption { get; }
 		string EditButtonText { get; }
 		string ApplyForAllText { get; }

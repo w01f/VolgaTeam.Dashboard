@@ -1,4 +1,4 @@
-﻿	using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -80,6 +80,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				result = new TotalAdsViewerControl();
 			else if (toggledButton == buttonXMonthShowTotalCost)
 				result = new TotalCostViewerControl();
+			else if (toggledButton == buttonXMonthShowDigital)
+				result = new DigitalViewerControl();
 			return result;
 		}
 
@@ -124,29 +126,27 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void buttonItemCalendarsToggledAdditional_Click(object sender, EventArgs e)
 		{
 			var button = sender as ButtonX;
-			if (button != null && _selectedOutput != null)
+			if (button == null || _selectedOutput == null) return;
+			var settingsViewer = GetSettingsViwerAccordingToggledButton(button);
+			if (button.Checked)
 			{
-				ICalendarSettingsViewer settingsViewer = GetSettingsViwerAccordingToggledButton(button);
-				if (button.Checked)
+				using (var form = new FormCalendarToggleChange())
 				{
-					using (var form = new FormCalendarToggleChange())
+					form.Text = settingsViewer.FormToggleChangeCaption;
+					form.buttonXEdit.Text = settingsViewer.EditButtonText;
+					DialogResult formResult = form.ShowDialog();
+					if (formResult == DialogResult.Yes)
+						button.Checked = false;
+					else if (formResult == DialogResult.No)
 					{
-						form.Text = settingsViewer.FormToggleChangeCaption;
-						form.buttonXEdit.Text = settingsViewer.EditButtonText;
-						DialogResult formResult = form.ShowDialog();
-						if (formResult == DialogResult.Yes)
-							button.Checked = false;
-						else if (formResult == DialogResult.No)
-						{
-							_selectedOutput.ShowOutputOptions(settingsViewer);
-						}
+						_selectedOutput.ShowOutputOptions(settingsViewer);
 					}
 				}
-				else
-				{
-					button.Checked = true;
-					_selectedOutput.ShowOutputOptions(settingsViewer);
-				}
+			}
+			else
+			{
+				button.Checked = true;
+				_selectedOutput.ShowOutputOptions(settingsViewer);
 			}
 		}
 

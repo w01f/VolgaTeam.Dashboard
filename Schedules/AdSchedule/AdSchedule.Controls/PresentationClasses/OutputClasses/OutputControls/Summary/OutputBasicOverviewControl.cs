@@ -41,16 +41,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			Controller.Instance.BasicOverviewDigitalLegend.Image = Controller.Instance.BasicOverviewDigitalLegend.Enabled && !LocalSchedule.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
 			if (!quickLoad)
 			{
 				Application.DoEvents();
 				xtraTabControlPublications.TabPages.Clear();
 				_tabPages.RemoveAll(x => !LocalSchedule.PrintProducts.Select(y => y.UniqueID).Contains(x.PrintProduct.UniqueID));
-				foreach (PrintProduct publication in LocalSchedule.PrintProducts)
+				foreach (var publication in LocalSchedule.PrintProducts)
 				{
 					if (!string.IsNullOrEmpty(publication.Name))
 					{
-						PublicationBasicOverviewControl publicationTab = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID)).FirstOrDefault();
+						var publicationTab = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID)).FirstOrDefault();
 						if (publicationTab == null)
 						{
 							publicationTab = new PublicationBasicOverviewControl();
@@ -70,11 +71,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 			else
 			{
-				foreach (PrintProduct publication in LocalSchedule.PrintProducts)
+				foreach (var publication in LocalSchedule.PrintProducts)
 				{
 					if (!string.IsNullOrEmpty(publication.Name))
 					{
-						PublicationBasicOverviewControl publicationTab = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID)).FirstOrDefault();
+						var publicationTab = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID)).FirstOrDefault();
 						if (publicationTab != null)
 						{
 							publicationTab.PrintProduct = publication;
@@ -89,7 +90,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void ResetToDefault()
 		{
-			foreach (PrintProduct publication in LocalSchedule.PrintProducts)
+			foreach (var publication in LocalSchedule.PrintProducts)
 			{
 				publication.ViewSettings.BasicOverviewSettings.ResetToDefault();
 				if (!string.IsNullOrEmpty(publication.Name))
@@ -119,14 +120,21 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		#region Output Stuff
 		public void EditDigitalLegend()
 		{
-			using (var form = new FormDigital(LocalSchedule.ViewSettings.BasicOverviewViewSettings.DigitalLegend))
+			var digitalLegend = LocalSchedule.ViewSettings.BasicOverviewViewSettings.DigitalLegend;
+			using (var form = new FormDigital(digitalLegend))
 			{
+				form.ShowOutputOnce = LocalSchedule.PrintProducts.Count(p => p.Inserts.Any()) > 1;
+				form.OutputOnlyFirstSlide = true;
+				form.ShowLogo = false;
 				form.RequestDefaultInfo += (o, e) =>
 				{
 					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
 				};
-				if (form.ShowDialog() == DialogResult.OK)
-					SettingsNotSaved = true;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (digitalLegend.ApplyForAll)
+					LocalSchedule.ApplyDigitalLegendForAllViews(digitalLegend);
+				Controller.Instance.BasicOverviewDigitalLegend.Image = !digitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+				SettingsNotSaved = true;
 			}
 		}
 

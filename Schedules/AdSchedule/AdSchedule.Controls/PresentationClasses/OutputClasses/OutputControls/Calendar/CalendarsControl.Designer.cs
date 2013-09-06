@@ -46,9 +46,10 @@
 			this.pbSettingsDayHelp = new System.Windows.Forms.PictureBox();
 			this.xtraTabPageSettingsMonth = new DevExpress.XtraTab.XtraTabPage();
 			this.pnSettingsMonth = new System.Windows.Forms.Panel();
+			this.buttonXMonthShowDigital = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXMonthShowComment = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXMonthShowActiveDays = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXMonthShowDecisionMaker = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXMonthShowComment = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXMonthShowTotalAds = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXMonthShowAvgCost = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXMonthShowTotalCost = new DevComponents.DotNetBar.ButtonX();
@@ -317,9 +318,10 @@
 			// pnSettingsMonth
 			// 
 			this.pnSettingsMonth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnSettingsMonth.Controls.Add(this.buttonXMonthShowDigital);
+			this.pnSettingsMonth.Controls.Add(this.buttonXMonthShowComment);
 			this.pnSettingsMonth.Controls.Add(this.buttonXMonthShowActiveDays);
 			this.pnSettingsMonth.Controls.Add(this.buttonXMonthShowDecisionMaker);
-			this.pnSettingsMonth.Controls.Add(this.buttonXMonthShowComment);
 			this.pnSettingsMonth.Controls.Add(this.buttonXMonthShowTotalAds);
 			this.pnSettingsMonth.Controls.Add(this.buttonXMonthShowAvgCost);
 			this.pnSettingsMonth.Controls.Add(this.buttonXMonthShowTotalCost);
@@ -334,6 +336,35 @@
 			this.pnSettingsMonth.Name = "pnSettingsMonth";
 			this.pnSettingsMonth.Size = new System.Drawing.Size(223, 520);
 			this.pnSettingsMonth.TabIndex = 1;
+			// 
+			// buttonXMonthShowDigital
+			// 
+			this.buttonXMonthShowDigital.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMonthShowDigital.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMonthShowDigital.Location = new System.Drawing.Point(7, 351);
+			this.buttonXMonthShowDigital.Name = "buttonXMonthShowDigital";
+			this.buttonXMonthShowDigital.Size = new System.Drawing.Size(90, 27);
+			this.buttonXMonthShowDigital.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXMonthShowDigital.TabIndex = 64;
+			this.buttonXMonthShowDigital.Text = "Digital";
+			this.buttonXMonthShowDigital.TextColor = System.Drawing.Color.Black;
+			this.buttonXMonthShowDigital.CheckedChanged += new System.EventHandler(this.buttonItemCalendarsToggled_CheckedChanged);
+			this.buttonXMonthShowDigital.Click += new System.EventHandler(this.buttonItemCalendarsToggledAdditional_Click);
+			// 
+			// buttonXMonthShowComment
+			// 
+			this.buttonXMonthShowComment.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMonthShowComment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXMonthShowComment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMonthShowComment.Location = new System.Drawing.Point(124, 181);
+			this.buttonXMonthShowComment.Name = "buttonXMonthShowComment";
+			this.buttonXMonthShowComment.Size = new System.Drawing.Size(90, 27);
+			this.buttonXMonthShowComment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXMonthShowComment.TabIndex = 61;
+			this.buttonXMonthShowComment.Text = "Comment";
+			this.buttonXMonthShowComment.TextColor = System.Drawing.Color.Black;
+			this.buttonXMonthShowComment.CheckedChanged += new System.EventHandler(this.buttonItemCalendarsToggled_CheckedChanged);
+			this.buttonXMonthShowComment.Click += new System.EventHandler(this.buttonItemCalendarsToggledAdditional_Click);
 			// 
 			// buttonXMonthShowActiveDays
 			// 
@@ -363,21 +394,6 @@
 			this.buttonXMonthShowDecisionMaker.TextColor = System.Drawing.Color.Black;
 			this.buttonXMonthShowDecisionMaker.CheckedChanged += new System.EventHandler(this.buttonItemCalendarsToggled_CheckedChanged);
 			this.buttonXMonthShowDecisionMaker.Click += new System.EventHandler(this.buttonItemCalendarsToggledAdditional_Click);
-			// 
-			// buttonXMonthShowComment
-			// 
-			this.buttonXMonthShowComment.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXMonthShowComment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXMonthShowComment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXMonthShowComment.Location = new System.Drawing.Point(124, 181);
-			this.buttonXMonthShowComment.Name = "buttonXMonthShowComment";
-			this.buttonXMonthShowComment.Size = new System.Drawing.Size(90, 27);
-			this.buttonXMonthShowComment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXMonthShowComment.TabIndex = 61;
-			this.buttonXMonthShowComment.Text = "Comment";
-			this.buttonXMonthShowComment.TextColor = System.Drawing.Color.Black;
-			this.buttonXMonthShowComment.CheckedChanged += new System.EventHandler(this.buttonItemCalendarsToggled_CheckedChanged);
-			this.buttonXMonthShowComment.Click += new System.EventHandler(this.buttonItemCalendarsToggledAdditional_Click);
 			// 
 			// buttonXMonthShowTotalAds
 			// 
@@ -722,5 +738,6 @@
 		public DevComponents.DotNetBar.ButtonX buttonXColorTeal;
 		public DevComponents.DotNetBar.ButtonX buttonXColorGray;
 		public DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
+		public DevComponents.DotNetBar.ButtonX buttonXMonthShowDigital;
     }
 }

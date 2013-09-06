@@ -12,6 +12,7 @@ using DevExpress.XtraEditors.ViewInfo;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
+using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
@@ -47,6 +48,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			Controller.Instance.MultiSummaryDigitalLegend.Image = Controller.Instance.MultiSummaryDigitalLegend.Enabled && !LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
 			if (!quickLoad)
 			{
 				checkEditDate.Text = LocalSchedule.PresentationDateObject != null ? LocalSchedule.PresentationDate.ToString("MM/dd/yy") : string.Empty;
@@ -380,11 +382,19 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
+		public bool ShowDigitalLegendOnlyFirstSlide
+		{
+			get
+			{
+				return LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.OutputOnlyOnce;
+			}
+		}
+
 		public string DigitalLegend
 		{
 			get
 			{
-				if (!LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.Enabled) return String.Empty;
+				if (!ShowDigitalLegend) return String.Empty;
 				if (!LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.AllowEdit)
 					return String.Format("Digital Product Info: {0}", LocalSchedule.GetDigitalInfo(LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.RequestOptions));
 				if (!String.IsNullOrEmpty(LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.Info))
@@ -395,14 +405,21 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void EditDigitalLegend()
 		{
-			using (var form = new FormDigital(LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend))
+			var digitalLegend = LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend;
+			using (var form = new FormDigital(digitalLegend))
 			{
+				form.ShowOutputOnce = Controller.Instance.Summaries.MultiSummary.PublicationNames1.Length - OutputFileIndex > 0;
+				form.OutputOnlyFirstSlide = true;
+				form.ShowLogo = false;
 				form.RequestDefaultInfo += (o, e) =>
 				{
 					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
 				};
-				if (form.ShowDialog() == DialogResult.OK)
-					SettingsNotSaved = true;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (digitalLegend.ApplyForAll)
+					LocalSchedule.ApplyDigitalLegendForAllViews(digitalLegend);
+				Controller.Instance.MultiSummaryDigitalLegend.Image = !digitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+				SettingsNotSaved = true;
 			}
 		}
 

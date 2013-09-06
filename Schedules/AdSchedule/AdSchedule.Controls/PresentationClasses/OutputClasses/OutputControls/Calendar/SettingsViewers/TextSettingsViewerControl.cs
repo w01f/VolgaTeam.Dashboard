@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using NewBizWiz.Core.AdSchedule;
@@ -21,6 +22,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public virtual string Title
 		{
 			get { return string.Empty; }
+		}
+
+		public Image Logo
+		{
+			get { return Properties.Resources.GridDetails; }
 		}
 
 		public virtual string FormToggleChangeCaption

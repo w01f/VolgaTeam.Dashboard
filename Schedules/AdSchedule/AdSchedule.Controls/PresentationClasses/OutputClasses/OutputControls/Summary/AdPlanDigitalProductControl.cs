@@ -93,10 +93,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditTotalCPM.Text = DigitalProduct.TotalCPMCalculated.HasValue ? ("Overall CPM: " + DigitalProduct.TotalCPMCalculated.Value.ToString("$#,##0.00")) : String.Empty;
 			checkEditTotalCPM.Visible = DigitalProduct.TotalCPMCalculated.HasValue;
 			checkEditComment1.Text = DigitalProduct.Strength1;
-			checkEditComment1.Visible = !String.IsNullOrEmpty(DigitalProduct.Comment);
+			checkEditComment1.Visible = !String.IsNullOrEmpty(DigitalProduct.Strength1);
 			checkEditComment2.Text = DigitalProduct.Strength2;
-			checkEditComment2.Visible = !String.IsNullOrEmpty(DigitalProduct.Comment);
-			checkEditComment3.Text = DigitalProduct.Strength1;
+			checkEditComment2.Visible = !String.IsNullOrEmpty(DigitalProduct.Strength2);
+			checkEditComment3.Text = DigitalProduct.Comment;
 			checkEditComment3.Visible = !String.IsNullOrEmpty(DigitalProduct.Comment);
 			checkEditWebsites.Checked = DigitalProduct.AdPlanSettings.ShowWebsites & !DigitalProduct.AllWebsites.Any();
 			checkEditDimensions.Checked = DigitalProduct.AdPlanSettings.ShowDimensions & !String.IsNullOrEmpty(DigitalProduct.Dimensions);
@@ -293,8 +293,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					details.Add(checkEditTotalCPM.Text);
 				if (checkEditComment1.Checked && !String.IsNullOrEmpty(checkEditComment1.Text))
 					details.Add(checkEditComment1.Text);
-				if (checkEditComment1.Checked && !String.IsNullOrEmpty(checkEditComment2.Text))
-					details.Add(checkEditComment1.Text);
+				if (checkEditComment2.Checked && !String.IsNullOrEmpty(checkEditComment2.Text))
+					details.Add(checkEditComment2.Text);
 				if (checkEditComment3.Checked && !String.IsNullOrEmpty(checkEditComment3.Text))
 					details.Add(checkEditComment3.Text);
 				if (checkEditComments.Checked && memoEditComments.EditValue != null)

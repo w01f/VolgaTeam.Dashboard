@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 using NewBizWiz.Core.AdSchedule;
 
@@ -21,6 +22,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public string Title
 		{
 			get { return "Add a Custom Comment"; }
+		}
+
+		public Image Logo
+		{
+			get { return Properties.Resources.GridDetails; }
 		}
 
 		public string FormToggleChangeCaption

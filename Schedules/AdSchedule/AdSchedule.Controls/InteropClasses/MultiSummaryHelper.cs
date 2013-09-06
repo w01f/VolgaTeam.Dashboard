@@ -17,18 +17,19 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 			if (Directory.Exists(BusinessWrapper.Instance.OutputManager.MultiSummaryTemlatesFolderPath))
 			{
 				int fileIndex = Controller.Instance.Summaries.MultiSummary.OutputFileIndex;
-				string presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.MultiSummaryTemlatesFolderPath, string.Format(OutputManager.MultiSummarySlideTemplate, String.Format("{0}{1}", fileIndex, Controller.Instance.Summaries.MultiSummary.ShowDigitalLegend ? "d" : String.Empty)));
-				if (File.Exists(presentationTemplatePath))
+				try
 				{
-					try
+					var thread = new Thread(delegate()
 					{
-						var thread = new Thread(delegate()
-						{
-							MessageFilter.Register();
+						MessageFilter.Register();
 
-							int publicationsCount = Controller.Instance.Summaries.MultiSummary.PublicationNames1.Length;
-							for (int k = 0; k < publicationsCount; k += fileIndex)
+						int publicationsCount = Controller.Instance.Summaries.MultiSummary.PublicationNames1.Length;
+						for (int k = 0; k < publicationsCount; k += fileIndex)
+						{
+							var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.MultiSummaryTemlatesFolderPath, string.Format(OutputManager.MultiSummarySlideTemplate, String.Format("{0}{1}", fileIndex, Controller.Instance.Summaries.MultiSummary.ShowDigitalLegend && (k == 0 || !Controller.Instance.Summaries.MultiSummary.ShowDigitalLegendOnlyFirstSlide) ? "d" : String.Empty)));
+							if (File.Exists(presentationTemplatePath))
 							{
+
 								Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 								foreach (Slide slide in presentation.Slides)
 								{
@@ -66,7 +67,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 														shape.Visible = MsoTriState.msoFalse;
 													break;
 												case "DIGTAG":
-													shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.MultiSummary.DigitalLegend;
+													shape.TextFrame.TextRange.Text = k == 0 || !Controller.Instance.Summaries.MultiSummary.ShowDigitalLegendOnlyFirstSlide ? Controller.Instance.Summaries.MultiSummary.DigitalLegend : String.Empty;
 													break;
 												default:
 													for (int j = 0; j < fileIndex; j++)
@@ -154,17 +155,17 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 								AppendSlide(presentation, -1, destinationPresentation);
 								presentation.Close();
 							}
-						});
-						thread.Start();
+						}
+					});
+					thread.Start();
 
-						while (thread.IsAlive)
-							Application.DoEvents();
-					}
-					catch { }
-					finally
-					{
-						MessageFilter.Revoke();
-					}
+					while (thread.IsAlive)
+						Application.DoEvents();
+				}
+				catch { }
+				finally
+				{
+					MessageFilter.Revoke();
 				}
 			}
 		}

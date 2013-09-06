@@ -16,6 +16,7 @@ using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
+using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
@@ -87,20 +88,27 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		#region Common Methods
 		public void EditDigitalLegend()
 		{
-			using (var form = new FormDigital(LocalSchedule.ViewSettings.MultiGridViewSettings.DigitalLegend))
+			var digitalLegend = LocalSchedule.ViewSettings.MultiGridViewSettings.DigitalLegend;
+			using (var form = new FormDigital(digitalLegend))
 			{
+				form.ShowOutputOnce = false;
+				form.ShowLogo = true;
 				form.RequestDefaultInfo += (o, e) =>
 				{
 					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
 				};
-				if (form.ShowDialog() == DialogResult.OK)
-					SettingsNotSaved = true;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (digitalLegend.ApplyForAll)
+					LocalSchedule.ApplyDigitalLegendForAllViews(digitalLegend);
+				Controller.Instance.MultiGridDigitalLegend.Image = !digitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+				SettingsNotSaved = true;
 			}
 		}
 
 		public void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			Controller.Instance.MultiGridDigitalLegend.Image = Controller.Instance.MultiGridDigitalLegend.Enabled && !LocalSchedule.ViewSettings.MultiGridViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
 			if (!quickLoad)
 			{
 				AllowToSave = false;
@@ -871,6 +879,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
+		public Image DigitalLegendLogo
+		{
+			get
+			{
+				if (!DigitalLegend.Enabled) return null;
+				return DigitalLegend.Logo;
+			}
+		}
+
 		public string[] AdSpecs
 		{
 			get
@@ -1128,13 +1145,16 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			var logos = new List<string[]>();
 			var logosOnSlide = new List<string>();
 			int rowCountPerSlide = _showCommentsHeader ? (excelOutput ? OutputManager.MultiGridExcelBasedRowsCountWithNotes : OutputManager.MultiGridGridBasedRowsCountWithNotes) : (excelOutput ? OutputManager.MultiGridExcelBasedRowsCountWithoutNotes : OutputManager.MultiGridGridBasedRowsCountWithoutNotes);
-			int insertsCount = _inserts.Count;
-			for (int i = 0; i < insertsCount; i += rowCountPerSlide)
+			var insertsCount = _inserts.Count;
+			var totalRowCount = insertsCount;
+			if (ShowDigitalLegend && !String.IsNullOrEmpty(DigitalLegendInfo))
+				totalRowCount++;
+			for (int i = 0; i < totalRowCount; i += rowCountPerSlide)
 			{
 				logosOnSlide.Clear();
-				for (int j = 0; j < rowCountPerSlide; j++)
+				for (var j = 0; j < rowCountPerSlide; j++)
 				{
-					string fileName = string.Empty;
+					var fileName = string.Empty;
 					if ((i + j) < insertsCount)
 					{
 						int k = gridViewPublications.GetDataSourceRowIndex(i + j);
@@ -1143,6 +1163,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							fileName = Path.GetTempFileName();
 							_inserts[k].MultiGridLogo.Save(fileName);
 						}
+					}
+					else if ((i + j) < totalRowCount && DigitalLegendLogo != null)
+					{
+						fileName = Path.GetTempFileName();
+						DigitalLegendLogo.Save(fileName);
 					}
 					logosOnSlide.Add(fileName);
 				}
@@ -1163,85 +1188,83 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			var totalRowCount = insertsCount;
 			if (ShowDigitalLegend && !String.IsNullOrEmpty(DigitalLegendInfo))
 				totalRowCount++;
-			for (int i = 0; i < totalRowCount; i += rowCountPerSlide)
+			for (var i = 0; i < totalRowCount; i += rowCountPerSlide)
 			{
 				slide.Clear();
-				for (int j = 0; j < rowCountPerSlide; j++)
+				for (var j = 0; j < rowCountPerSlide; j++)
 				{
 					row.Clear();
-					if ((i + j) < insertsCount)
+					if ((i + j) >= insertsCount) continue;
+					int k = gridViewPublications.GetDataSourceRowIndex(i + j);
+					if (_showCommentsHeader)
 					{
-						int k = gridViewPublications.GetDataSourceRowIndex(i + j);
-						if (_showCommentsHeader)
-						{
-							adNotes.Clear();
-							int maxNumber = 12;
-							if (ShowCommentsInPreview && !string.IsNullOrEmpty(_inserts[k].FullComment))
-								adNotes.Add(PositionCommentsInPreview > 0 && !adNotes.Keys.Contains(PositionCommentsInPreview) ? PositionCommentsInPreview : ++maxNumber, _inserts[k].FullComment);
-							if (ShowSectionInPreview && !string.IsNullOrEmpty(_inserts[k].FullSection))
-								adNotes.Add(PositionSectionInPreview > 0 && !adNotes.Keys.Contains(PositionSectionInPreview) ? PositionSectionInPreview : ++maxNumber, "Section: " + _inserts[k].FullSection);
-							if (ShowMechanicalsInPreview && !string.IsNullOrEmpty(_inserts[k].Mechanicals))
-								adNotes.Add(PositionMechanicalsInPreview > 0 && !adNotes.Keys.Contains(PositionMechanicalsInPreview) ? PositionMechanicalsInPreview : ++maxNumber, "Mech: " + _inserts[k].MechanicalsOutput);
-							if (ShowDeliveryInPreview && !string.IsNullOrEmpty(_inserts[k].Delivery))
-								adNotes.Add(PositionDeliveryInPreview > 0 && !adNotes.Keys.Contains(PositionDeliveryInPreview) ? PositionDeliveryInPreview : ++maxNumber, "Delivery: " + _inserts[k].Delivery);
-							if (ShowPublicationInPreview && !string.IsNullOrEmpty(_inserts[k].Publication))
-								adNotes.Add(PositionPublicationInPreview > 0 && !adNotes.Keys.Contains(PositionPublicationInPreview) ? PositionPublicationInPreview : ++maxNumber, "Publication: " + _inserts[k].Publication);
-							if (ShowPageSizeInPreview && !string.IsNullOrEmpty(_inserts[k].PageSize))
-								adNotes.Add(PositionPageSizeInPreview > 0 && !adNotes.Keys.Contains(PositionPageSizeInPreview) ? PositionPageSizeInPreview : ++maxNumber, "Page Size: " + _inserts[k].PageSizeOutput);
-							if (ShowPercentOfPageInPreview && !string.IsNullOrEmpty(_inserts[k].PercentOfPage))
-								adNotes.Add(PositionPercentOfPageInPreview > 0 && !adNotes.Keys.Contains(PositionPercentOfPageInPreview) ? PositionPercentOfPageInPreview : ++maxNumber, "% of Page: " + _inserts[k].PercentOfPageOutput);
-							if (ShowDimensionsInPreview && !string.IsNullOrEmpty(_inserts[k].Dimensions))
-								adNotes.Add(PositionDimensionsInPreview > 0 && !adNotes.Keys.Contains(PositionDimensionsInPreview) ? PositionDimensionsInPreview : ++maxNumber, "Col. x Inches: " + _inserts[k].Dimensions);
-							if (ShowColumnInchesInPreview && !string.IsNullOrEmpty(_inserts[k].SquareStringFormatted))
-								adNotes.Add(PositionColumnInchesInPreview > 0 && !adNotes.Keys.Contains(PositionColumnInchesInPreview) ? PositionColumnInchesInPreview : ++maxNumber, "Total Col In: " + _inserts[k].SquareStringFormatted + " col. in.");
-							if (ShowReadershipInPreview && !string.IsNullOrEmpty(_inserts[k].Readership))
-								adNotes.Add(PositionReadershipInPreview > 0 && !adNotes.Keys.Contains(PositionReadershipInPreview) ? PositionReadershipInPreview : ++maxNumber, "Readership: " + _inserts[k].Readership);
-							if (ShowDeadlineInPreview && !string.IsNullOrEmpty(_inserts[k].Deadline))
-								adNotes.Add(PositionDeadlineInPreview > 0 && !adNotes.Keys.Contains(PositionDeadlineInPreview) ? PositionDeadlineInPreview : ++maxNumber, "Deadline: " + _inserts[k].DeadlineForOutput);
-							if (adNotes.Count > 0)
-								row.Add(-1, string.Join(",   ", adNotes.Values.ToArray()));
-							else
-								row.Add(-1, "            ");
-						}
-						if (PositionID != -1)
-							row.Add(PositionID, _inserts[k].ID);
-						if (PositionDate != -1)
-							row.Add(PositionDate, _inserts[k].Date.ToString("MM/dd/yy"));
-						if (PositionPCI != -1)
-							row.Add(PositionPCI, _inserts[k].PCIRate.HasValue ? (_inserts[k].PCIRate.Value.ToString("$#,###.00")) : "N/A");
-						if (PositionCost != -1)
-							row.Add(PositionCost, _inserts[k].ADRate.ToString("$#,###.00"));
-						if (PositionDiscount != -1)
-							row.Add(PositionDiscount, _inserts[k].DiscountRate.ToString("$#,###.00"));
-						if (PositionColor != -1)
-							row.Add(PositionColor, _inserts[k].ColorPricingCalculated > 0 ? _inserts[k].ColorPricingCalculated.ToString("$#,###.00") : _inserts[k].ColorPricingObject.ToString());
-						if (PositionFinalCost != -1)
-							row.Add(PositionFinalCost, _inserts[k].FinalRate.ToString("$#,###.00"));
-						if (PositionIndex != -1)
-							row.Add(PositionIndex, _inserts[k].Index.ToString("#,##0"));
-						if (PositionSquare != -1)
-							row.Add(PositionSquare, "'" + _inserts[k].SquareStringFormatted);
-						if (PositionPageSize != -1)
-							row.Add(PositionPageSize, _inserts[k].PageSizeOutput);
-						if (PositionPercentOfPage != -1)
-							row.Add(PositionPercentOfPage, _inserts[k].PercentOfPageOutput);
-						if (PositionMechanicals != -1)
-							row.Add(PositionMechanicals, _inserts[k].MechanicalsOutput);
-						if (PositionPublication != -1)
-							row.Add(PositionPublication, _inserts[k].Publication);
-						if (PositionDimensions != -1)
-							row.Add(PositionDimensions, _inserts[k].DimensionsOutput);
-						if (PositionSection != -1)
-							row.Add(PositionSection, _inserts[k].FullSection);
-						if (PositionReadership != -1)
-							row.Add(PositionReadership, _inserts[k].Readership);
-						if (PositionDelivery != -1)
-							row.Add(PositionDelivery, _inserts[k].Delivery);
-						if (PositionDeadline != -1)
-							row.Add(PositionDeadline, _inserts[k].DeadlineForOutput);
-						if (row.Values.Count > 0)
-							slide.Add(row.Values.ToArray());
+						adNotes.Clear();
+						int maxNumber = 12;
+						if (ShowCommentsInPreview && !string.IsNullOrEmpty(_inserts[k].FullComment))
+							adNotes.Add(PositionCommentsInPreview > 0 && !adNotes.Keys.Contains(PositionCommentsInPreview) ? PositionCommentsInPreview : ++maxNumber, _inserts[k].FullComment);
+						if (ShowSectionInPreview && !string.IsNullOrEmpty(_inserts[k].FullSection))
+							adNotes.Add(PositionSectionInPreview > 0 && !adNotes.Keys.Contains(PositionSectionInPreview) ? PositionSectionInPreview : ++maxNumber, "Section: " + _inserts[k].FullSection);
+						if (ShowMechanicalsInPreview && !string.IsNullOrEmpty(_inserts[k].Mechanicals))
+							adNotes.Add(PositionMechanicalsInPreview > 0 && !adNotes.Keys.Contains(PositionMechanicalsInPreview) ? PositionMechanicalsInPreview : ++maxNumber, "Mech: " + _inserts[k].MechanicalsOutput);
+						if (ShowDeliveryInPreview && !string.IsNullOrEmpty(_inserts[k].Delivery))
+							adNotes.Add(PositionDeliveryInPreview > 0 && !adNotes.Keys.Contains(PositionDeliveryInPreview) ? PositionDeliveryInPreview : ++maxNumber, "Delivery: " + _inserts[k].Delivery);
+						if (ShowPublicationInPreview && !string.IsNullOrEmpty(_inserts[k].Publication))
+							adNotes.Add(PositionPublicationInPreview > 0 && !adNotes.Keys.Contains(PositionPublicationInPreview) ? PositionPublicationInPreview : ++maxNumber, "Publication: " + _inserts[k].Publication);
+						if (ShowPageSizeInPreview && !string.IsNullOrEmpty(_inserts[k].PageSize))
+							adNotes.Add(PositionPageSizeInPreview > 0 && !adNotes.Keys.Contains(PositionPageSizeInPreview) ? PositionPageSizeInPreview : ++maxNumber, "Page Size: " + _inserts[k].PageSizeOutput);
+						if (ShowPercentOfPageInPreview && !string.IsNullOrEmpty(_inserts[k].PercentOfPage))
+							adNotes.Add(PositionPercentOfPageInPreview > 0 && !adNotes.Keys.Contains(PositionPercentOfPageInPreview) ? PositionPercentOfPageInPreview : ++maxNumber, "% of Page: " + _inserts[k].PercentOfPageOutput);
+						if (ShowDimensionsInPreview && !string.IsNullOrEmpty(_inserts[k].Dimensions))
+							adNotes.Add(PositionDimensionsInPreview > 0 && !adNotes.Keys.Contains(PositionDimensionsInPreview) ? PositionDimensionsInPreview : ++maxNumber, "Col. x Inches: " + _inserts[k].Dimensions);
+						if (ShowColumnInchesInPreview && !string.IsNullOrEmpty(_inserts[k].SquareStringFormatted))
+							adNotes.Add(PositionColumnInchesInPreview > 0 && !adNotes.Keys.Contains(PositionColumnInchesInPreview) ? PositionColumnInchesInPreview : ++maxNumber, "Total Col In: " + _inserts[k].SquareStringFormatted + " col. in.");
+						if (ShowReadershipInPreview && !string.IsNullOrEmpty(_inserts[k].Readership))
+							adNotes.Add(PositionReadershipInPreview > 0 && !adNotes.Keys.Contains(PositionReadershipInPreview) ? PositionReadershipInPreview : ++maxNumber, "Readership: " + _inserts[k].Readership);
+						if (ShowDeadlineInPreview && !string.IsNullOrEmpty(_inserts[k].Deadline))
+							adNotes.Add(PositionDeadlineInPreview > 0 && !adNotes.Keys.Contains(PositionDeadlineInPreview) ? PositionDeadlineInPreview : ++maxNumber, "Deadline: " + _inserts[k].DeadlineForOutput);
+						if (adNotes.Count > 0)
+							row.Add(-1, string.Join(",   ", adNotes.Values.ToArray()));
+						else
+							row.Add(-1, "            ");
 					}
+					if (PositionID != -1)
+						row.Add(PositionID, _inserts[k].ID);
+					if (PositionDate != -1)
+						row.Add(PositionDate, _inserts[k].Date.ToString("MM/dd/yy"));
+					if (PositionPCI != -1)
+						row.Add(PositionPCI, _inserts[k].PCIRate.HasValue ? (_inserts[k].PCIRate.Value.ToString("$#,###.00")) : "N/A");
+					if (PositionCost != -1)
+						row.Add(PositionCost, _inserts[k].ADRate.ToString("$#,###.00"));
+					if (PositionDiscount != -1)
+						row.Add(PositionDiscount, _inserts[k].DiscountRate.ToString("$#,###.00"));
+					if (PositionColor != -1)
+						row.Add(PositionColor, _inserts[k].ColorPricingCalculated > 0 ? _inserts[k].ColorPricingCalculated.ToString("$#,###.00") : _inserts[k].ColorPricingObject.ToString());
+					if (PositionFinalCost != -1)
+						row.Add(PositionFinalCost, _inserts[k].FinalRate.ToString("$#,###.00"));
+					if (PositionIndex != -1)
+						row.Add(PositionIndex, _inserts[k].Index.ToString("#,##0"));
+					if (PositionSquare != -1)
+						row.Add(PositionSquare, "'" + _inserts[k].SquareStringFormatted);
+					if (PositionPageSize != -1)
+						row.Add(PositionPageSize, _inserts[k].PageSizeOutput);
+					if (PositionPercentOfPage != -1)
+						row.Add(PositionPercentOfPage, _inserts[k].PercentOfPageOutput);
+					if (PositionMechanicals != -1)
+						row.Add(PositionMechanicals, _inserts[k].MechanicalsOutput);
+					if (PositionPublication != -1)
+						row.Add(PositionPublication, _inserts[k].Publication);
+					if (PositionDimensions != -1)
+						row.Add(PositionDimensions, _inserts[k].DimensionsOutput);
+					if (PositionSection != -1)
+						row.Add(PositionSection, _inserts[k].FullSection);
+					if (PositionReadership != -1)
+						row.Add(PositionReadership, _inserts[k].Readership);
+					if (PositionDelivery != -1)
+						row.Add(PositionDelivery, _inserts[k].Delivery);
+					if (PositionDeadline != -1)
+						row.Add(PositionDeadline, _inserts[k].DeadlineForOutput);
+					if (row.Values.Count > 0)
+						slide.Add(row.Values.ToArray());
 				}
 				if (i >= (totalRowCount - rowCountPerSlide))
 				{

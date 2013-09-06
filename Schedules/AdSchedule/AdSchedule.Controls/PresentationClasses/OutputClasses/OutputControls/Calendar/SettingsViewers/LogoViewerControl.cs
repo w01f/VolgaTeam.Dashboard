@@ -24,6 +24,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get { return "Show Logo on the slide"; }
 		}
+		
+		public Image Logo
+		{
+			get { return Properties.Resources.GridDetails; }
+		}
 
 		public string FormToggleChangeCaption
 		{

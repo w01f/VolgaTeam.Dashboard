@@ -285,6 +285,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			Controller.Instance.DetailedGridDigitalLegend.Image = Controller.Instance.DetailedGridDigitalLegend.Enabled && !LocalSchedule.ViewSettings.DetailedGridViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
 			if (!quickLoad)
 			{
 				xtraTabControlPublications.SuspendLayout();
@@ -916,14 +917,21 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		#region Output Stuff
 		public void EditDigitalLegend()
 		{
-			using (var form = new FormDigital(LocalSchedule.ViewSettings.DetailedGridViewSettings.DigitalLegend))
+			var digitalLegend = LocalSchedule.ViewSettings.DetailedGridViewSettings.DigitalLegend;
+			using (var form = new FormDigital(digitalLegend))
 			{
+				form.ShowOutputOnce = LocalSchedule.PrintProducts.Count(p => p.Inserts.Any()) > 1;
+				form.OutputOnlyFirstSlide = false;
+				form.ShowLogo = false;
 				form.RequestDefaultInfo += (o, e) =>
 				{
 					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
 				};
-				if (form.ShowDialog() == DialogResult.OK)
-					SettingsNotSaved = true;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (digitalLegend.ApplyForAll)
+					LocalSchedule.ApplyDigitalLegendForAllViews(digitalLegend);
+				Controller.Instance.DetailedGridDigitalLegend.Image = !digitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+				SettingsNotSaved = true;
 			}
 		}
 

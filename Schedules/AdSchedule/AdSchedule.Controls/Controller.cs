@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -10,8 +11,8 @@ using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputCont
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.RateCard;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
-using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
+using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
 
 namespace NewBizWiz.AdSchedule.Controls
 {
@@ -305,6 +306,12 @@ namespace NewBizWiz.AdSchedule.Controls
 		{
 			TabDigitalProduct.Enabled = enable;
 			TabDigitalPackage.Enabled = enable && DigitalPackage.SlidesAvailable;
+			BasicOverviewDigitalLegend.Enabled = enable;
+			MultiSummaryDigitalLegend.Enabled = enable;
+			SnapshotDigitalLegend.Enabled = enable;
+			DetailedGridDigitalLegend.Enabled = enable;
+			MultiGridDigitalLegend.Enabled = enable;
+			Calendars.buttonXMonthShowDigital.Enabled = enable;
 		}
 
 		public void UpdateOutputTabs(bool enable)
@@ -312,7 +319,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			TabBasicOverview.Enabled = enable;
 			TabMultiSummary.Enabled = enable;
 			TabSnapshot.Enabled = enable;
-			TabAdPlan.Enabled = enable;
+			TabAdPlan.Enabled = enable && Directory.Exists(BusinessWrapper.Instance.OutputManager.AdPlanTemlatesFolderPath);
 			TabDetailedGrid.Enabled = enable;
 			TabMultiGrid.Enabled = enable;
 			TabCalendar.Enabled = enable;

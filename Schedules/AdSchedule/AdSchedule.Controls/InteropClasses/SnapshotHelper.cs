@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
@@ -53,7 +54,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 													shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.FlightDates;
 													break;
 												case "DIGTAG":
-													shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.DigitalLegend;
+													shape.TextFrame.TextRange.Text = k == 0 || !Controller.Instance.Summaries.Snapshot.ShowDigitalLegendOnlyFirstSlide ? Controller.Instance.Summaries.Snapshot.DigitalLegend : String.Empty;
 													break;
 												default:
 													for (int j = 0; j < 6; j++)

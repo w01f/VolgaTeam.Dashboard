@@ -277,6 +277,13 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap DigitalDisabled {
+            get {
+                object obj = ResourceManager.GetObject("DigitalDisabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap DigitalInfoCPM {
             get {
                 object obj = ResourceManager.GetObject("DigitalInfoCPM", resourceCulture);

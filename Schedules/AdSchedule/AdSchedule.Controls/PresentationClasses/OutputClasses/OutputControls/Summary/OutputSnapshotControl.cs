@@ -10,10 +10,10 @@ using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTab;
-using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
+using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
@@ -49,6 +49,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			Controller.Instance.SnapshotDigitalLegend.Image = Controller.Instance.SnapshotDigitalLegend.Enabled && !LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
 			if (!quickLoad)
 			{
 				_allowToSave = false;
@@ -330,15 +331,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public string GetOutputTemplatePath(int slideIndex)
 		{
 			var template = String.Empty;
-			if (buttonXLogo.Checked && LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled)
+			if (buttonXLogo.Checked && LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled && (slideIndex == 0 || !LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.OutputOnlyOnce))
 				template = "snapshot-{0}logo_digital.ppt";
 			else if (buttonXLogo.Checked)
 				template = "snapshot-{0}logo.ppt";
-			else if (LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled)
+			else if (LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled && (slideIndex == 0 || !LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.OutputOnlyOnce))
 				template = "snapshot-{0}nologo_digital.ppt";
 			else
 				template = "snapshot-{0}nologo.ppt";
-			var templateIndex = 0;
+			var templateIndex = 6;
 			var totalRecords = PublicationNames.Length;
 			if (slideIndex == 0)
 				switch (PublicationNames.Length)
@@ -540,6 +541,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
+		public bool ShowDigitalLegendOnlyFirstSlide
+		{
+			get
+			{
+				return LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.OutputOnlyOnce;
+			}
+		}
+
 		public string DigitalLegend
 		{
 			get
@@ -555,14 +564,21 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void EditDigitalLegend()
 		{
-			using (var form = new FormDigital(LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend))
+			var digitalLegend = LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend;
+			using (var form = new FormDigital(digitalLegend))
 			{
+				form.ShowOutputOnce = LocalSchedule.PrintProducts.Count(x => x.Inserts.Any()) - RecordsPerSlide > 0;
+				form.OutputOnlyFirstSlide = true;
+				form.ShowLogo = false;
 				form.RequestDefaultInfo += (o, e) =>
 				{
 					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
 				};
-				if (form.ShowDialog() == DialogResult.OK)
-					SettingsNotSaved = true;
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (digitalLegend.ApplyForAll)
+					LocalSchedule.ApplyDigitalLegendForAllViews(digitalLegend);
+				Controller.Instance.SnapshotDigitalLegend.Image = !digitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+				SettingsNotSaved = true;
 			}
 		}
 

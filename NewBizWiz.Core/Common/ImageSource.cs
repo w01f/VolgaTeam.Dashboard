@@ -25,11 +25,9 @@ namespace NewBizWiz.Core.Common
 		{
 			get
 			{
-				if (String.IsNullOrEmpty(_encodedBigImage))
-				{
-					TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
-					_encodedBigImage = Convert.ToBase64String((byte[])converter.ConvertTo(BigImage, typeof(byte[])));
-				}
+				if (!String.IsNullOrEmpty(_encodedBigImage)) return _encodedBigImage;
+				var converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+				_encodedBigImage = Convert.ToBase64String((byte[])converter.ConvertTo(BigImage, typeof(byte[]))).Trim();
 				return _encodedBigImage;
 			}
 		}

@@ -3949,6 +3949,7 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool ShowComments { get; set; }
 		public bool ShowTotalAds { get; set; }
 		public bool ShowActiveDays { get; set; }
+		public bool ShowDigital { get; set; }
 
 		public bool EnableGray { get; set; }
 		public bool EnableBlack { get; set; }
@@ -4052,6 +4053,7 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<EnableComments>" + EnableComments + @"</EnableComments>");
 			result.AppendLine(@"<EnableTotalAds>" + EnableTotalAds + @"</EnableTotalAds>");
 			result.AppendLine(@"<EnableActiveDays>" + EnableActiveDays + @"</EnableActiveDays>");
+			result.AppendLine(@"<ShowDigital>" + ShowDigital + @"</ShowDigital>");
 
 			result.AppendLine(@"<ShowTitle>" + ShowTitle + @"</ShowTitle>");
 			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
@@ -4251,6 +4253,10 @@ namespace NewBizWiz.Core.AdSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowActiveDays = tempBool;
 						break;
+					case "ShowDigital":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowDigital = tempBool;
+						break;
 
 					case "EnableGray":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -4344,6 +4350,7 @@ namespace NewBizWiz.Core.AdSchedule
 			Parent = parent;
 			Comments = string.Empty;
 			Legend = new List<CalendarLegend>();
+			DigitalLegend = new DigitalLegend();
 
 			Title = "Monthly Advertising Planner";
 			Comments = string.Empty;
@@ -4360,6 +4367,7 @@ namespace NewBizWiz.Core.AdSchedule
 		public string Comments { get; set; }
 
 		public List<CalendarLegend> Legend { get; private set; }
+		public DigitalLegend DigitalLegend { get; set; }
 
 		public string Serialize()
 		{
@@ -4374,6 +4382,7 @@ namespace NewBizWiz.Core.AdSchedule
 			foreach (CalendarLegend legend in Legend)
 				result.AppendLine(@"<Legend>" + legend.Serialize() + @"</Legend>");
 			result.AppendLine(@"</Legends>");
+			result.AppendLine(@"<DigitalLegend>" + DigitalLegend.Serialize() + @"</DigitalLegend>");
 			return result.ToString();
 		}
 
@@ -4410,6 +4419,9 @@ namespace NewBizWiz.Core.AdSchedule
 							Legend.Add(legend);
 						}
 						break;
+					case "DigitalLegend":
+						DigitalLegend.Deserialize(childNode);
+						break;
 				}
 			}
 		}
@@ -4423,6 +4435,7 @@ namespace NewBizWiz.Core.AdSchedule
 			result.Title = Title;
 			foreach (CalendarLegend legend in Legend)
 				result.Legend.Add(legend.Clone());
+			result.DigitalLegend = DigitalLegend.Clone();
 			return result;
 		}
 
@@ -4551,6 +4564,9 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public bool Enabled { get; set; }
 		public bool AllowEdit { get; set; }
+		public bool ApplyForAll { get; set; }
+		public bool OutputOnlyOnce { get; set; }
+
 		public bool ShowWebsites { get; set; }
 		public bool ShowProduct { get; set; }
 		public bool ShowDimensions { get; set; }
@@ -4559,10 +4575,24 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool ShowCPM { get; set; }
 		public bool ShowInvestment { get; set; }
 		public string Info { get; set; }
+		public Image Logo { get; set; }
 
 		public RequestDigitalInfoEventArgs RequestOptions
 		{
 			get { return new RequestDigitalInfoEventArgs(null, ShowWebsites, ShowProduct, ShowDimensions, ShowDates, ShowImpressions, ShowCPM, ShowInvestment); }
+		}
+
+		private string _encodedLogo;
+		public string EncodedLogo
+		{
+			get
+			{
+				if (!String.IsNullOrEmpty(_encodedLogo)) return _encodedLogo;
+				var converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+				_encodedLogo = Convert.ToBase64String((byte[])converter.ConvertTo(Logo, typeof(byte[]))).Trim();
+				return _encodedLogo;
+			}
+			set { _encodedLogo = value; }
 		}
 
 		public string Serialize()
@@ -4571,6 +4601,9 @@ namespace NewBizWiz.Core.AdSchedule
 
 			result.AppendLine(@"<Enabled>" + Enabled + @"</Enabled>");
 			result.AppendLine(@"<AllowEdit>" + AllowEdit + @"</AllowEdit>");
+			result.AppendLine(@"<ApplyForAll>" + ApplyForAll + @"</ApplyForAll>");
+			result.AppendLine(@"<OutputOnlyOnce>" + OutputOnlyOnce + @"</OutputOnlyOnce>");
+
 			result.AppendLine(@"<ShowWebsites>" + ShowWebsites + @"</ShowWebsites>");
 			result.AppendLine(@"<ShowProduct>" + ShowProduct + @"</ShowProduct>");
 			result.AppendLine(@"<ShowDimensions>" + ShowDimensions + @"</ShowDimensions>");
@@ -4579,13 +4612,14 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<ShowCPM>" + ShowCPM + @"</ShowCPM>");
 			result.AppendLine(@"<ShowInvestment>" + ShowInvestment + @"</ShowInvestment>");
 			result.AppendLine(@"<Info>" + Info.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Info>");
+			if (Logo != null)
+				result.AppendLine(@"<Logo>" + EncodedLogo.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
 			return result.ToString();
 		}
 
 		public void Deserialize(XmlNode node)
 		{
-			bool tempBool = false;
-
+			bool tempBool;
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
 				switch (childNode.Name)
@@ -4598,6 +4632,15 @@ namespace NewBizWiz.Core.AdSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							AllowEdit = tempBool;
 						break;
+					case "ApplyForAll":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ApplyForAll = tempBool;
+						break;
+					case "OutputOnlyOnce":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							OutputOnlyOnce = tempBool;
+						break;
+
 					case "ShowWebsites":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowWebsites = tempBool;
@@ -4629,6 +4672,13 @@ namespace NewBizWiz.Core.AdSchedule
 					case "Info":
 						Info = childNode.InnerText;
 						break;
+					case "Logo":
+						if (!String.IsNullOrEmpty(childNode.InnerText))
+						{
+							Logo = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
+							EncodedLogo = childNode.InnerText;
+						}
+						break;
 				}
 			}
 		}
@@ -4638,6 +4688,9 @@ namespace NewBizWiz.Core.AdSchedule
 			var result = new DigitalLegend();
 			result.Enabled = Enabled;
 			result.AllowEdit = AllowEdit;
+			result.ApplyForAll = ApplyForAll;
+			result.OutputOnlyOnce = OutputOnlyOnce;
+
 			result.ShowWebsites = ShowWebsites;
 			result.ShowProduct = ShowProduct;
 			result.ShowDimensions = ShowDimensions;
@@ -4646,6 +4699,8 @@ namespace NewBizWiz.Core.AdSchedule
 			result.ShowCPM = ShowCPM;
 			result.ShowInvestment = ShowInvestment;
 			result.Info = Info;
+
+			result.Logo = Logo;
 			return result;
 		}
 	}

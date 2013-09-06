@@ -482,6 +482,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get
 			{
 				if (!PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Enabled) return String.Empty;
+				if (!(PrintProduct.Index ==  1 || !PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.OutputOnlyOnce)) return String.Empty;
 				if (!PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.AllowEdit)
 					return String.Format("Digital Product Info: {0}", PrintProduct.Parent.GetDigitalInfo(PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.RequestOptions));
 				if (!String.IsNullOrEmpty(PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Info))
@@ -572,7 +573,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 						 checkEditDatesPicture.Checked)
 					index = 15;
 
-				return String.Format("{0}{1}", index.ToString(), PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Enabled ? "d" : String.Empty);
+				return String.Format("{0}{1}", index, PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Enabled && (PrintProduct.Index == 1 || !PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.OutputOnlyOnce) ? "d" : String.Empty);
 			}
 		}
 

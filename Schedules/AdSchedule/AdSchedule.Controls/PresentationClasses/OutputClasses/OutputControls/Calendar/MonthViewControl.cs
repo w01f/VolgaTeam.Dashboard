@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
@@ -285,10 +286,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				string result = string.Empty;
+				var result = new StringBuilder();
 				if (_settings.Parent.ShowComments)
-					result = _settings.Comments;
-				return result;
+					result.AppendLine(_settings.Comments);
+				if (_settings.Parent.ShowDigital && _settings.DigitalLegend.Enabled) // && )
+				{
+					if (!String.IsNullOrEmpty(_settings.DigitalLegend.Info) && _settings.DigitalLegend.AllowEdit)
+						result.AppendLine(_settings.DigitalLegend.Info);
+					else if (!_settings.DigitalLegend.AllowEdit)
+						result.AppendLine(ParentCalendar.LocalSchedule.GetDigitalInfo(_settings.DigitalLegend.RequestOptions));
+				}
+				return result.ToString();
 			}
 		}
 

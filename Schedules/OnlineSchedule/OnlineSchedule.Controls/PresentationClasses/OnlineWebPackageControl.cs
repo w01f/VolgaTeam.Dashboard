@@ -53,7 +53,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override void Help_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("pkg");
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink("dgpkg");
 		}
 	}
 }

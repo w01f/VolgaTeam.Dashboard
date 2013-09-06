@@ -567,9 +567,18 @@ namespace NewBizWiz.Core.AdSchedule
 						temp.Add(String.Format("(Total) {0}", String.Join(" ", total)));
 				}
 				if (temp.Any())
-					result.AppendLine(String.Join(", ", temp.ToArray()));
+					result.AppendLine(String.Format("[{0}]", String.Join(", ", temp.ToArray())));
 			}
 			return result.ToString();
+		}
+
+		public void ApplyDigitalLegendForAllViews(DigitalLegend digitalLegend)
+		{
+			ViewSettings.BasicOverviewViewSettings.DigitalLegend = digitalLegend.Clone();
+			ViewSettings.MultiSummaryViewSettings.DigitalLegend = digitalLegend.Clone();
+			ViewSettings.SnapshotViewSettings.DigitalLegend = digitalLegend.Clone();
+			ViewSettings.DetailedGridViewSettings.DigitalLegend = digitalLegend.Clone();
+			ViewSettings.MultiGridViewSettings.DigitalLegend = digitalLegend.Clone();
 		}
 	}
 

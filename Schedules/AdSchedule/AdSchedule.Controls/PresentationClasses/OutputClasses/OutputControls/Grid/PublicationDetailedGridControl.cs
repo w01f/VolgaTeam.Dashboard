@@ -418,7 +418,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				return Controller.Instance.Grids.DetailedGrid.DigitalLegend.Enabled;
+				var lastProductIndex = PrintProduct.Parent.PrintProducts.Max(p => p.Index);
+				return Controller.Instance.Grids.DetailedGrid.DigitalLegend.Enabled && (PrintProduct.Index == lastProductIndex || !Controller.Instance.Grids.DetailedGrid.DigitalLegend.OutputOnlyOnce);
 			}
 		}
 
@@ -702,7 +703,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			var slide = new List<string[]>();
 			var row = new SortedDictionary<int, string>();
 			var adNotes = new SortedDictionary<int, string>();
-			PrintProduct printProduct = PrintProduct;
+			var printProduct = PrintProduct;
 			int rowCountPerSlide = Controller.Instance.Grids.DetailedGrid.ShowCommentsHeader ? (excelOutput ? OutputManager.DetailedGridExcelBasedRowsCountWithNotes : OutputManager.DetailedGridGridBasedRowsCountWithNotes) : (excelOutput ? OutputManager.DetailedGridExcelBasedRowsCountWithoutNotes : OutputManager.DetailedGridGridBasedRowsCountWithoutNotes);
 			int insertsCount = printProduct.Inserts.Count;
 			var totalRowCount = insertsCount;

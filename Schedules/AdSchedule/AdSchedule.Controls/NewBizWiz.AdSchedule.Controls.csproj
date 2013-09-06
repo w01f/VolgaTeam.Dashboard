@@ -119,6 +119,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\IAdPlanItem.cs" />
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\DigitalViewerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\DigitalViewerControl.Designer.cs">
+      <DependentUpon>DigitalViewerControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanPrintProductControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -524,6 +530,9 @@
     </Compile>
     <EmbeddedResource Include="PresentationClasses\InputClasses\AdNotesWeekdaysSelector.resx">
       <DependentUpon>AdNotesWeekdaysSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\DigitalViewerControl.resx">
+      <DependentUpon>DigitalViewerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanPrintProductControl.resx">
       <DependentUpon>AdPlanPrintProductControl.cs</DependentUpon>
@@ -1084,6 +1093,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AdPlanPrintProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalDisabled.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

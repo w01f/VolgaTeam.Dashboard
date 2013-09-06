@@ -65,6 +65,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					pnSettingsViewer.Controls.Add(SettingsViewer as Control);
 				(SettingsViewer as Control).BringToFront();
 				laTitle.Text = SettingsViewer.Title;
+				pbLogo.Image = SettingsViewer.Logo;
 				pnApplyForAll.Visible = SettingsViewer.ShowApplyForAll;
 				checkEditApplyForAll.Text = SettingsViewer.ApplyForAllText;
 			}

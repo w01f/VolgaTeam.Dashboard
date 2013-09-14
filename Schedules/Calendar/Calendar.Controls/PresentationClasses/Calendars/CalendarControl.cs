@@ -178,7 +178,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		#region Output Staff
 		public void UpdateOutputFunctions()
 		{
-			var enable = CalendarData.Months.SelectMany(m => m.Days).Any(d => d.ContainsData);
+			var enable = CalendarData.Months.SelectMany(m => m.Days).Any(d => d.ContainsData || d.HasNotes);
 			Controller.Instance.CalendarVisualizer.PreviewButtonItem.Enabled = enable;
 			Controller.Instance.CalendarVisualizer.EmailButtonItem.Enabled = enable;
 			Controller.Instance.CalendarVisualizer.PowerPointButtonItem.Enabled = enable;
@@ -198,7 +198,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 					form.laTitle.Text = "You have several Calendars available for your presentation…";
 					form.buttonXCurrentPublication.Text = string.Format("Send ONLY {0} Calendar Slide to PowerPoint", selectedMonth.Date.ToString("MMMM, yyyy"));
 					form.buttonXSelectedPublications.Text = "Send all of the Selected Calendars to PowerPoint";
-					foreach (CalendarMonth month in CalendarData.Months.Where(y => y.Days.Where(z => z.ContainsData).Count() > 0 || y.OutputData.Notes.Count > 0))
+					foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
 						form.checkedListBoxControlMonths.Items.Add(month, month.Date.ToString("MMMM, yyyy"), CheckState.Checked, true);
 					RegistryHelper.MainFormHandle = form.Handle;
 					RegistryHelper.MaximizeMainForm = false;
@@ -210,43 +210,36 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 						using (var formProgress = new FormProgress())
 						{
 							formProgress.TopMost = true;
-							if (result == DialogResult.Yes)
+							Controller.Instance.ShowFloater(() =>
 							{
-								formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
-								if (selectedMonth.Days.Where(x => x.ContainsData).Count() == 0 && selectedMonth.OutputData.Notes.Count == 0)
-									if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to send this slide to PowerPoint?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
-										return;
-								formProgress.Show();
-								Enabled = false;
-								CalendarPowerPointHelper.Instance.AppendCalendar(selectedMonth.OutputData);
-							}
-							else if (result == DialogResult.No)
-							{
-								formProgress.laProgress.Text = form.checkedListBoxControlMonths.CheckedItems.Count == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Several Calendar slides…\nThis will take a few minutes…";
-								formProgress.Show();
-								Enabled = false;
-								foreach (CheckedListBoxItem item in form.checkedListBoxControlMonths.Items)
+								if (result == DialogResult.Yes)
 								{
-									if (item.CheckState == CheckState.Checked)
+									formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
+									if (!selectedMonth.Days.Any(x => x.ContainsData || x.HasNotes) && !selectedMonth.OutputData.Notes.Any())
+										if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to send this slide to PowerPoint?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
+											return;
+									formProgress.Show();
+									Enabled = false;
+									CalendarPowerPointHelper.Instance.AppendCalendar(selectedMonth.OutputData);
+								}
+								else if (result == DialogResult.No)
+								{
+									formProgress.laProgress.Text = form.checkedListBoxControlMonths.CheckedItems.Count == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Several Calendar slides…\nThis will take a few minutes…";
+									formProgress.Show();
+									Enabled = false;
+									foreach (CheckedListBoxItem item in form.checkedListBoxControlMonths.Items)
 									{
-										var month = item.Value as CalendarMonth;
-										if (month != null)
-											CalendarPowerPointHelper.Instance.AppendCalendar(month.OutputData);
+										if (item.CheckState == CheckState.Checked)
+										{
+											var month = item.Value as CalendarMonth;
+											if (month != null)
+												CalendarPowerPointHelper.Instance.AppendCalendar(month.OutputData);
+										}
 									}
 								}
-							}
-							Enabled = true;
-							formProgress.Close();
-						}
-						using (var formOutput = new FormSlideOutput())
-						{
-							if (formOutput.ShowDialog() != DialogResult.OK)
-								Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-							else
-							{
-								Utilities.Instance.ActivatePowerPoint(CalendarPowerPointHelper.Instance.PowerPointObject);
-								Utilities.Instance.ActivateMiniBar();
-							}
+								Enabled = true;
+								formProgress.Close();
+							});
 						}
 					}
 				}
@@ -267,7 +260,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 					form.laTitle.Text = "You have several Calendars that can be ATTACHED to an email…";
 					form.buttonXCurrentPublication.Text = string.Format("Attach just the {0} Calendar Slide to my email message", selectedMonth.Date.ToString("MMMM, yyyy"));
 					form.buttonXSelectedPublications.Text = "Attach ALL Selected Calendars to my email message";
-					foreach (CalendarMonth month in CalendarData.Months.Where(y => y.Days.Where(z => z.ContainsData).Count() > 0 || y.OutputData.Notes.Count > 0))
+					foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
 						form.checkedListBoxControlMonths.Items.Add(month, month.Date.ToString("MMMM, yyyy"), CheckState.Checked, true);
 					RegistryHelper.MainFormHandle = form.Handle;
 					RegistryHelper.MaximizeMainForm = false;
@@ -283,7 +276,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 							if (result == DialogResult.Yes)
 							{
 								formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
-								if (selectedMonth.Days.Where(x => x.ContainsData).Count() == 0)
+								if (!selectedMonth.Days.Any(x => x.ContainsData || x.HasNotes) && !selectedMonth.OutputData.Notes.Any())
 									if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to Email this slide?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
 										return;
 								formProgress.Show();
@@ -341,7 +334,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 					form.laTitle.Text = "You have several Calendars available for preview…";
 					form.buttonXCurrentPublication.Text = string.Format("Preview just the {0} Calendar Slide", selectedMonth.Date.ToString("MMMM, yyyy"));
 					form.buttonXSelectedPublications.Text = "Preview ALL Selected Calendars";
-					foreach (CalendarMonth month in CalendarData.Months.Where(y => y.Days.Where(z => z.ContainsData).Count() > 0 || y.OutputData.Notes.Count > 0))
+					foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
 						form.checkedListBoxControlMonths.Items.Add(month, month.Date.ToString("MMMM, yyyy"), CheckState.Checked, true);
 					RegistryHelper.MainFormHandle = form.Handle;
 					RegistryHelper.MaximizeMainForm = false;
@@ -357,7 +350,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 							if (result == DialogResult.Yes)
 							{
 								formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
-								if (selectedMonth.Days.Where(x => x.ContainsData).Count() == 0)
+								if (!selectedMonth.Days.Any(x => x.ContainsData || x.HasNotes) && !selectedMonth.OutputData.Notes.Any())
 									if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to Email this slide?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
 										return;
 								formProgress.Show();
@@ -397,10 +390,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 									if (previewResult != DialogResult.OK)
 										Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 									else
-									{
-										Utilities.Instance.ActivatePowerPoint(CalendarPowerPointHelper.Instance.PowerPointObject);
 										Utilities.Instance.ActivateMiniBar();
-									}
 								}
 						}
 					}

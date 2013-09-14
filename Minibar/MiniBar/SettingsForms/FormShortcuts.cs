@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using NewBizWiz.Core.Common;
 using NewBizWiz.MiniBar.BusinessClasses;
 using vbAccelerator.Components.Shell;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;

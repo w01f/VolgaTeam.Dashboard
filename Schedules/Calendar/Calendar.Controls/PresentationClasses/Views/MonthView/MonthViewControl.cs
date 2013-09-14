@@ -86,6 +86,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			{
 				var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.Date.Equals(month.Key));
 				month.Value.RefreshData(calendarMonth.OutputData.SlideColorLight, calendarMonth.OutputData.SlideColorDark);
+				Calendar.UpdateOutputFunctions();
 			}
 		}
 

@@ -32,6 +32,12 @@
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
+			this.pnFormula = new System.Windows.Forms.Panel();
+			this.pbFormula = new System.Windows.Forms.PictureBox();
+			this.labelControlFormula = new DevExpress.XtraEditors.LabelControl();
+			this.checkEditFormulaCPM = new DevExpress.XtraEditors.CheckEdit();
+			this.checkEditFormulaInvestment = new DevExpress.XtraEditors.CheckEdit();
+			this.checkEditFormulaImpressions = new DevExpress.XtraEditors.CheckEdit();
 			this.buttonXInfo = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCPM = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXScreenshot = new DevComponents.DotNetBar.ButtonX();
@@ -42,6 +48,7 @@
 			this.buttonXProduct = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXGroup = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCategory = new DevComponents.DotNetBar.ButtonX();
+			this.pnData = new System.Windows.Forms.Panel();
 			this.gridControl = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
 			this.gridBandId = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -52,6 +59,7 @@
 			this.bandedGridColumnProduct = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.gridBandInfo = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnInfo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.repositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
 			this.gridBandComments = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnComments = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.gridBandRate = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -62,20 +70,31 @@
 			this.bandedGridColumnRate = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.gridBandInvestment = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnInvestment = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.gridBandFormula = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.bandedGridColumnFormula = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.repositoryItemCheckEditFormula = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+			this.pbDisabledOutput = new System.Windows.Forms.PictureBox();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.laAdvertiser = new System.Windows.Forms.Label();
-			this.repositoryItemMemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
 			this.splitContainerControl.SuspendLayout();
+			this.pnFormula.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbFormula)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaCPM.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaInvestment.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaImpressions.Properties)).BeginInit();
+			this.pnData.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridView)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditImpressions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditInvestment)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditFormula)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbDisabledOutput)).BeginInit();
 			this.pnHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -102,6 +121,7 @@
 			this.splitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.splitContainerControl.Location = new System.Drawing.Point(0, 0);
 			this.splitContainerControl.Name = "splitContainerControl";
+			this.splitContainerControl.Panel1.Controls.Add(this.pnFormula);
 			this.splitContainerControl.Panel1.Controls.Add(this.buttonXInfo);
 			this.splitContainerControl.Panel1.Controls.Add(this.buttonXCPM);
 			this.splitContainerControl.Panel1.Controls.Add(this.buttonXScreenshot);
@@ -114,13 +134,137 @@
 			this.splitContainerControl.Panel1.Controls.Add(this.buttonXCategory);
 			this.splitContainerControl.Panel1.MinSize = 230;
 			this.splitContainerControl.Panel1.Text = "Panel1";
-			this.splitContainerControl.Panel2.Controls.Add(this.gridControl);
+			this.splitContainerControl.Panel2.Controls.Add(this.pnData);
 			this.splitContainerControl.Panel2.Controls.Add(this.pnHeader);
 			this.splitContainerControl.Panel2.Text = "Panel2";
 			this.splitContainerControl.Size = new System.Drawing.Size(1000, 513);
 			this.splitContainerControl.SplitterPosition = 230;
 			this.splitContainerControl.TabIndex = 101;
 			this.splitContainerControl.Text = "splitContainerControl1";
+			// 
+			// pnFormula
+			// 
+			this.pnFormula.Controls.Add(this.pbFormula);
+			this.pnFormula.Controls.Add(this.labelControlFormula);
+			this.pnFormula.Controls.Add(this.checkEditFormulaCPM);
+			this.pnFormula.Controls.Add(this.checkEditFormulaInvestment);
+			this.pnFormula.Controls.Add(this.checkEditFormulaImpressions);
+			this.pnFormula.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnFormula.Location = new System.Drawing.Point(0, 291);
+			this.pnFormula.Name = "pnFormula";
+			this.pnFormula.Size = new System.Drawing.Size(230, 222);
+			this.pnFormula.TabIndex = 54;
+			// 
+			// pbFormula
+			// 
+			this.pbFormula.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.FormulaLogo;
+			this.pbFormula.Location = new System.Drawing.Point(12, 3);
+			this.pbFormula.Name = "pbFormula";
+			this.pbFormula.Size = new System.Drawing.Size(34, 34);
+			this.pbFormula.TabIndex = 52;
+			this.pbFormula.TabStop = false;
+			// 
+			// labelControlFormula
+			// 
+			this.labelControlFormula.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlFormula.Location = new System.Drawing.Point(52, 12);
+			this.labelControlFormula.Name = "labelControlFormula";
+			this.labelControlFormula.Size = new System.Drawing.Size(109, 16);
+			this.labelControlFormula.TabIndex = 53;
+			this.labelControlFormula.Text = "Delivery Formula";
+			// 
+			// checkEditFormulaCPM
+			// 
+			this.checkEditFormulaCPM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditFormulaCPM.Location = new System.Drawing.Point(12, 48);
+			this.checkEditFormulaCPM.Name = "checkEditFormulaCPM";
+			this.checkEditFormulaCPM.Properties.AllowHtmlString = true;
+			this.checkEditFormulaCPM.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditFormulaCPM.Properties.Appearance.Options.UseFont = true;
+			this.checkEditFormulaCPM.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditFormulaCPM.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditFormulaCPM.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.checkEditFormulaCPM.Properties.AppearanceDisabled.Options.UseFont = true;
+			this.checkEditFormulaCPM.Properties.AppearanceDisabled.Options.UseTextOptions = true;
+			this.checkEditFormulaCPM.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditFormulaCPM.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.checkEditFormulaCPM.Properties.AppearanceFocused.Options.UseFont = true;
+			this.checkEditFormulaCPM.Properties.AppearanceFocused.Options.UseTextOptions = true;
+			this.checkEditFormulaCPM.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditFormulaCPM.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.checkEditFormulaCPM.Properties.AppearanceReadOnly.Options.UseFont = true;
+			this.checkEditFormulaCPM.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.checkEditFormulaCPM.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditFormulaCPM.Properties.Caption = "<b>CPM</b><br>Investment / (Impressions / 10)";
+			this.checkEditFormulaCPM.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
+			this.checkEditFormulaCPM.Properties.RadioGroupIndex = 1;
+			this.checkEditFormulaCPM.Size = new System.Drawing.Size(209, 36);
+			this.checkEditFormulaCPM.TabIndex = 49;
+			this.checkEditFormulaCPM.TabStop = false;
+			this.checkEditFormulaCPM.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
+			// 
+			// checkEditFormulaInvestment
+			// 
+			this.checkEditFormulaInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditFormulaInvestment.Location = new System.Drawing.Point(10, 98);
+			this.checkEditFormulaInvestment.Name = "checkEditFormulaInvestment";
+			this.checkEditFormulaInvestment.Properties.AllowHtmlString = true;
+			this.checkEditFormulaInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditFormulaInvestment.Properties.Appearance.Options.UseFont = true;
+			this.checkEditFormulaInvestment.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditFormulaInvestment.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditFormulaInvestment.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.checkEditFormulaInvestment.Properties.AppearanceDisabled.Options.UseFont = true;
+			this.checkEditFormulaInvestment.Properties.AppearanceDisabled.Options.UseTextOptions = true;
+			this.checkEditFormulaInvestment.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditFormulaInvestment.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.checkEditFormulaInvestment.Properties.AppearanceFocused.Options.UseFont = true;
+			this.checkEditFormulaInvestment.Properties.AppearanceFocused.Options.UseTextOptions = true;
+			this.checkEditFormulaInvestment.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditFormulaInvestment.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.checkEditFormulaInvestment.Properties.AppearanceReadOnly.Options.UseFont = true;
+			this.checkEditFormulaInvestment.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.checkEditFormulaInvestment.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditFormulaInvestment.Properties.Caption = "<b>Investment</b><br>(Impressions  x 10%) / CPM";
+			this.checkEditFormulaInvestment.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
+			this.checkEditFormulaInvestment.Properties.RadioGroupIndex = 1;
+			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(209, 36);
+			this.checkEditFormulaInvestment.TabIndex = 50;
+			this.checkEditFormulaInvestment.TabStop = false;
+			this.checkEditFormulaInvestment.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
+			// 
+			// checkEditFormulaImpressions
+			// 
+			this.checkEditFormulaImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditFormulaImpressions.Location = new System.Drawing.Point(10, 148);
+			this.checkEditFormulaImpressions.Name = "checkEditFormulaImpressions";
+			this.checkEditFormulaImpressions.Properties.AllowHtmlString = true;
+			this.checkEditFormulaImpressions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditFormulaImpressions.Properties.Appearance.Options.UseFont = true;
+			this.checkEditFormulaImpressions.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditFormulaImpressions.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditFormulaImpressions.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.checkEditFormulaImpressions.Properties.AppearanceDisabled.Options.UseFont = true;
+			this.checkEditFormulaImpressions.Properties.AppearanceDisabled.Options.UseTextOptions = true;
+			this.checkEditFormulaImpressions.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditFormulaImpressions.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.checkEditFormulaImpressions.Properties.AppearanceFocused.Options.UseFont = true;
+			this.checkEditFormulaImpressions.Properties.AppearanceFocused.Options.UseTextOptions = true;
+			this.checkEditFormulaImpressions.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditFormulaImpressions.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.checkEditFormulaImpressions.Properties.AppearanceReadOnly.Options.UseFont = true;
+			this.checkEditFormulaImpressions.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.checkEditFormulaImpressions.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditFormulaImpressions.Properties.Caption = "<b>Impressions</b><br>(CPM x Investment x 10)";
+			this.checkEditFormulaImpressions.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
+			this.checkEditFormulaImpressions.Properties.RadioGroupIndex = 1;
+			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(209, 36);
+			this.checkEditFormulaImpressions.TabIndex = 51;
+			this.checkEditFormulaImpressions.TabStop = false;
+			this.checkEditFormulaImpressions.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
 			// 
 			// buttonXInfo
 			// 
@@ -267,16 +411,28 @@
 			this.buttonXCategory.TextColor = System.Drawing.Color.Black;
 			this.buttonXCategory.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
 			// 
+			// pnData
+			// 
+			this.pnData.BackColor = System.Drawing.Color.White;
+			this.pnData.Controls.Add(this.gridControl);
+			this.pnData.Controls.Add(this.pbDisabledOutput);
+			this.pnData.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnData.Location = new System.Drawing.Point(0, 30);
+			this.pnData.Name = "pnData";
+			this.pnData.Size = new System.Drawing.Size(764, 483);
+			this.pnData.TabIndex = 5;
+			// 
 			// gridControl
 			// 
 			this.gridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControl.Location = new System.Drawing.Point(0, 30);
+			this.gridControl.Location = new System.Drawing.Point(0, 0);
 			this.gridControl.MainView = this.advBandedGridView;
 			this.gridControl.Name = "gridControl";
 			this.gridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemSpinEditImpressions,
             this.repositoryItemSpinEditInvestment,
-            this.repositoryItemMemoEdit});
+            this.repositoryItemMemoEdit,
+            this.repositoryItemCheckEditFormula});
 			this.gridControl.Size = new System.Drawing.Size(764, 483);
 			this.gridControl.TabIndex = 4;
 			this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -308,7 +464,8 @@
             this.gridBandInfo,
             this.gridBandComments,
             this.gridBandRate,
-            this.gridBandInvestment});
+            this.gridBandInvestment,
+            this.gridBandFormula});
 			this.advBandedGridView.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
             this.bandedGridColumnId,
             this.bandedGridColumnCategory,
@@ -319,7 +476,8 @@
             this.bandedGridColumnImpressions,
             this.bandedGridColumnCPM,
             this.bandedGridColumnRate,
-            this.bandedGridColumnInvestment});
+            this.bandedGridColumnInvestment,
+            this.bandedGridColumnFormula});
 			this.advBandedGridView.GridControl = this.gridControl;
 			this.advBandedGridView.Name = "advBandedGridView";
 			this.advBandedGridView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -349,6 +507,7 @@
 			this.advBandedGridView.OptionsView.ShowGroupPanel = false;
 			this.advBandedGridView.OptionsView.ShowIndicator = false;
 			this.advBandedGridView.RowSeparatorHeight = 10;
+			this.advBandedGridView.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.advBandedGridView_ShowingEditor);
 			this.advBandedGridView.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.advBandedGridView_CellValueChanged);
 			// 
 			// gridBandId
@@ -379,7 +538,7 @@
 			this.gridBandProduct.Columns.Add(this.bandedGridColumnGroup);
 			this.gridBandProduct.Columns.Add(this.bandedGridColumnProduct);
 			this.gridBandProduct.Name = "gridBandProduct";
-			this.gridBandProduct.Width = 591;
+			this.gridBandProduct.Width = 171;
 			// 
 			// bandedGridColumnCategory
 			// 
@@ -387,7 +546,7 @@
 			this.bandedGridColumnCategory.FieldName = "Category";
 			this.bandedGridColumnCategory.Name = "bandedGridColumnCategory";
 			this.bandedGridColumnCategory.Visible = true;
-			this.bandedGridColumnCategory.Width = 591;
+			this.bandedGridColumnCategory.Width = 171;
 			// 
 			// bandedGridColumnGroup
 			// 
@@ -396,7 +555,7 @@
 			this.bandedGridColumnGroup.Name = "bandedGridColumnGroup";
 			this.bandedGridColumnGroup.RowIndex = 1;
 			this.bandedGridColumnGroup.Visible = true;
-			this.bandedGridColumnGroup.Width = 591;
+			this.bandedGridColumnGroup.Width = 171;
 			// 
 			// bandedGridColumnProduct
 			// 
@@ -405,14 +564,14 @@
 			this.bandedGridColumnProduct.Name = "bandedGridColumnProduct";
 			this.bandedGridColumnProduct.RowIndex = 2;
 			this.bandedGridColumnProduct.Visible = true;
-			this.bandedGridColumnProduct.Width = 591;
+			this.bandedGridColumnProduct.Width = 171;
 			// 
 			// gridBandInfo
 			// 
 			this.gridBandInfo.Caption = "Info";
 			this.gridBandInfo.Columns.Add(this.bandedGridColumnInfo);
 			this.gridBandInfo.Name = "gridBandInfo";
-			this.gridBandInfo.Width = 435;
+			this.gridBandInfo.Width = 128;
 			// 
 			// bandedGridColumnInfo
 			// 
@@ -422,14 +581,22 @@
 			this.bandedGridColumnInfo.Name = "bandedGridColumnInfo";
 			this.bandedGridColumnInfo.RowCount = 3;
 			this.bandedGridColumnInfo.Visible = true;
-			this.bandedGridColumnInfo.Width = 435;
+			this.bandedGridColumnInfo.Width = 128;
+			// 
+			// repositoryItemMemoEdit
+			// 
+			this.repositoryItemMemoEdit.Appearance.Options.UseTextOptions = true;
+			this.repositoryItemMemoEdit.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.repositoryItemMemoEdit.AppearanceFocused.Options.UseTextOptions = true;
+			this.repositoryItemMemoEdit.AppearanceFocused.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.repositoryItemMemoEdit.Name = "repositoryItemMemoEdit";
 			// 
 			// gridBandComments
 			// 
 			this.gridBandComments.Caption = "Comments";
 			this.gridBandComments.Columns.Add(this.bandedGridColumnComments);
 			this.gridBandComments.Name = "gridBandComments";
-			this.gridBandComments.Width = 427;
+			this.gridBandComments.Width = 123;
 			// 
 			// bandedGridColumnComments
 			// 
@@ -439,7 +606,7 @@
 			this.bandedGridColumnComments.Name = "bandedGridColumnComments";
 			this.bandedGridColumnComments.RowCount = 3;
 			this.bandedGridColumnComments.Visible = true;
-			this.bandedGridColumnComments.Width = 427;
+			this.bandedGridColumnComments.Width = 123;
 			// 
 			// gridBandRate
 			// 
@@ -455,7 +622,7 @@
 			// 
 			this.bandedGridColumnImpressions.Caption = "Impressions";
 			this.bandedGridColumnImpressions.ColumnEdit = this.repositoryItemSpinEditImpressions;
-			this.bandedGridColumnImpressions.FieldName = "Impressions";
+			this.bandedGridColumnImpressions.FieldName = "ImpressionsCalculated";
 			this.bandedGridColumnImpressions.Name = "bandedGridColumnImpressions";
 			this.bandedGridColumnImpressions.Visible = true;
 			this.bandedGridColumnImpressions.Width = 131;
@@ -487,7 +654,7 @@
 			// 
 			this.bandedGridColumnCPM.Caption = "CPM";
 			this.bandedGridColumnCPM.ColumnEdit = this.repositoryItemSpinEditInvestment;
-			this.bandedGridColumnCPM.FieldName = "CPM";
+			this.bandedGridColumnCPM.FieldName = "CPMCalculated";
 			this.bandedGridColumnCPM.Name = "bandedGridColumnCPM";
 			this.bandedGridColumnCPM.RowIndex = 1;
 			this.bandedGridColumnCPM.Visible = true;
@@ -531,11 +698,58 @@
 			// 
 			this.bandedGridColumnInvestment.Caption = "Investment";
 			this.bandedGridColumnInvestment.ColumnEdit = this.repositoryItemSpinEditInvestment;
-			this.bandedGridColumnInvestment.FieldName = "Investment";
+			this.bandedGridColumnInvestment.FieldName = "InvestmentCalculated";
 			this.bandedGridColumnInvestment.Name = "bandedGridColumnInvestment";
 			this.bandedGridColumnInvestment.RowCount = 3;
 			this.bandedGridColumnInvestment.Visible = true;
 			this.bandedGridColumnInvestment.Width = 109;
+			// 
+			// gridBandFormula
+			// 
+			this.gridBandFormula.Caption = "Formula";
+			this.gridBandFormula.Columns.Add(this.bandedGridColumnFormula);
+			this.gridBandFormula.Name = "gridBandFormula";
+			this.gridBandFormula.OptionsBand.FixedWidth = true;
+			this.gridBandFormula.Width = 65;
+			// 
+			// bandedGridColumnFormula
+			// 
+			this.bandedGridColumnFormula.AppearanceHeader.Options.UseTextOptions = true;
+			this.bandedGridColumnFormula.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.bandedGridColumnFormula.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.bandedGridColumnFormula.Caption = "Use Formula";
+			this.bandedGridColumnFormula.ColumnEdit = this.repositoryItemCheckEditFormula;
+			this.bandedGridColumnFormula.FieldName = "UseFormula";
+			this.bandedGridColumnFormula.Name = "bandedGridColumnFormula";
+			this.bandedGridColumnFormula.RowCount = 3;
+			this.bandedGridColumnFormula.Visible = true;
+			this.bandedGridColumnFormula.Width = 65;
+			// 
+			// repositoryItemCheckEditFormula
+			// 
+			this.repositoryItemCheckEditFormula.AutoHeight = false;
+			this.repositoryItemCheckEditFormula.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined;
+			this.repositoryItemCheckEditFormula.Name = "repositoryItemCheckEditFormula";
+			this.repositoryItemCheckEditFormula.PictureChecked = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.FormulaLogo;
+			this.repositoryItemCheckEditFormula.PictureUnchecked = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.FormulaLogoDisabled;
+			this.repositoryItemCheckEditFormula.CheckedChanged += new System.EventHandler(this.repositoryItemCheckEditFormula_CheckedChanged);
+			// 
+			// pbDisabledOutput
+			// 
+			this.pbDisabledOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.pbDisabledOutput.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pbDisabledOutput.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.DigitalPackageDisabled;
+			this.pbDisabledOutput.Location = new System.Drawing.Point(144, 187);
+			this.pbDisabledOutput.Name = "pbDisabledOutput";
+			this.pbDisabledOutput.Size = new System.Drawing.Size(476, 108);
+			this.pbDisabledOutput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+			this.pbDisabledOutput.TabIndex = 5;
+			this.pbDisabledOutput.TabStop = false;
+			this.pbDisabledOutput.Click += new System.EventHandler(this.pbDisabledOutput_Click);
+			this.pbDisabledOutput.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+			this.pbDisabledOutput.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
 			// pnHeader
 			// 
@@ -576,14 +790,6 @@
 			this.laAdvertiser.TabIndex = 2;
 			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// repositoryItemMemoEdit
-			// 
-			this.repositoryItemMemoEdit.Appearance.Options.UseTextOptions = true;
-			this.repositoryItemMemoEdit.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.repositoryItemMemoEdit.AppearanceFocused.Options.UseTextOptions = true;
-			this.repositoryItemMemoEdit.AppearanceFocused.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.repositoryItemMemoEdit.Name = "repositoryItemMemoEdit";
-			// 
 			// WebPackageControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -595,13 +801,22 @@
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
 			this.splitContainerControl.ResumeLayout(false);
+			this.pnFormula.ResumeLayout(false);
+			this.pnFormula.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbFormula)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaCPM.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaInvestment.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaImpressions.Properties)).EndInit();
+			this.pnData.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridView)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditImpressions)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditInvestment)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditFormula)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbDisabledOutput)).EndInit();
 			this.pnHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -626,25 +841,36 @@
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 		private DevExpress.XtraGrid.GridControl gridControl;
 		private DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView advBandedGridView;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandId;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnId;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandProduct;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnCategory;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnGroup;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnProduct;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandInfo;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnInfo;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandComments;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnComments;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandRate;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnImpressions;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnCPM;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnRate;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandInvestment;
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnInvestment;
 		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditImpressions;
 		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditInvestment;
 		private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit;
+		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnFormula;
+		private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEditFormula;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandId;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandProduct;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandInfo;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandComments;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandRate;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandInvestment;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandFormula;
+		private System.Windows.Forms.Panel pnFormula;
+		private System.Windows.Forms.PictureBox pbFormula;
+		private DevExpress.XtraEditors.LabelControl labelControlFormula;
+		public DevExpress.XtraEditors.CheckEdit checkEditFormulaCPM;
+		public DevExpress.XtraEditors.CheckEdit checkEditFormulaInvestment;
+		public DevExpress.XtraEditors.CheckEdit checkEditFormulaImpressions;
+		private System.Windows.Forms.Panel pnData;
+		private System.Windows.Forms.PictureBox pbDisabledOutput;
 
     }
 }

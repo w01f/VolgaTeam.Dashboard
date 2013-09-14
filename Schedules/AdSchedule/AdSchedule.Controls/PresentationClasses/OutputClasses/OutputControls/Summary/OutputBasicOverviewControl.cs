@@ -165,32 +165,25 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				{
 					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
 					formProgress.TopMost = true;
-					formProgress.Show();
-					if (result == DialogResult.Yes)
-						(xtraTabControlPublications.TabPages[xtraTabControlPublications.SelectedTabPageIndex] as PublicationBasicOverviewControl).PrintOutput();
-					else if (result == DialogResult.No)
+					Controller.Instance.ShowFloater(() =>
 					{
-						foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
+						formProgress.Show();
+						if (result == DialogResult.Yes)
+							(xtraTabControlPublications.TabPages[xtraTabControlPublications.SelectedTabPageIndex] as PublicationBasicOverviewControl).PrintOutput();
+						else if (result == DialogResult.No)
 						{
-							if (item.CheckState == CheckState.Checked)
+							foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
 							{
-								PublicationBasicOverviewControl tabPage = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(item.Value)).FirstOrDefault();
-								if (tabPage != null)
-									tabPage.PrintOutput();
+								if (item.CheckState == CheckState.Checked)
+								{
+									PublicationBasicOverviewControl tabPage = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(item.Value)).FirstOrDefault();
+									if (tabPage != null)
+										tabPage.PrintOutput();
+								}
 							}
 						}
-					}
-					formProgress.Close();
-				}
-				using (var formOutput = new FormSlideOutput())
-				{
-					if (formOutput.ShowDialog() != DialogResult.OK)
-						Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-					else
-					{
-						Utilities.Instance.ActivatePowerPoint(AdSchedulePowerPointHelper.Instance.PowerPointObject);
-						Utilities.Instance.ActivateMiniBar();
-					}
+						formProgress.Close();
+					});
 				}
 			}
 		}
@@ -318,7 +311,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 								Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 							else
 							{
-								Utilities.Instance.ActivatePowerPoint(AdSchedulePowerPointHelper.Instance.PowerPointObject);
 								Utilities.Instance.ActivateMiniBar();
 							}
 						}

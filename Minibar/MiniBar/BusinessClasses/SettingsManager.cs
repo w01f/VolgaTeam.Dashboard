@@ -12,7 +12,6 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 		public const string RegularSyncName = @"adSync4.exe";
 		public const string SilentSyncName = @"adSync5.exe";
 		public const string SyncSettingsFileName = @"syncfile.xml";
-		public const string NBWApplicationManifestFileName = "Manifest.xml";
 		#endregion
 
 		private static readonly SettingsManager _instance = new SettingsManager();

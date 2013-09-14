@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using NewBizWiz.Core.OnlineSchedule;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Core.AdSchedule
 {
-	public class ScheduleBuilderViewSettings
+	public class ScheduleBuilderViewSettings : IScheduleViewSettings
 	{
 		public ScheduleBuilderViewSettings()
 		{

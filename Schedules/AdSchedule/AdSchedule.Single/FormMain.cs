@@ -27,6 +27,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;
 			Controller.Instance.Ribbon = ribbonControl;
+			Controller.Instance.TabHome = ribbonTabItemScheduleSettings;
 			Controller.Instance.TabPrintProduct = ribbonTabItemPrintSchedule;
 			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSchedule;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
@@ -38,10 +39,12 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.TabMultiGrid = ribbonTabItemMultiGrid;
 			Controller.Instance.TabCalendar = ribbonTabItemCalendars;
 			Controller.Instance.TabSummary = ribbonTabItemSummary;
+			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
 
 			#region Command Controls
 
 			#region Home
+
 			Controller.Instance.HomePanel = ribbonPanelScheduleSettings;
 			Controller.Instance.HomeHelp = buttonItemHomeHelp;
 			Controller.Instance.HomeSave = buttonItemHomeSave;
@@ -64,9 +67,11 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.HomeFlightDatesStart = dateEditFlightDatesStart;
 			Controller.Instance.HomeFlightDatesEnd = dateEditFlightDatesEnd;
 			Controller.Instance.HomeWeeks = labelItemHomeFlightDatesWeeks;
+
 			#endregion
 
 			#region Print Product
+
 			Controller.Instance.PrintProductHelp = buttonItemPrintScheduleHelp;
 			Controller.Instance.PrintProductSave = buttonItemPrintScheduleSave;
 			Controller.Instance.PrintProductSaveAs = buttonItemPrintScheduleSaveAs;
@@ -106,9 +111,11 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.PrintProductCostPerInch = spinEditCostPerInch;
 			Controller.Instance.PrintProductAdSizeRibbonBar = ribbonBarPrintScheduleAdSize;
 			Controller.Instance.PrintProductPanel = ribbonPanelPrintSchedule;
+
 			#endregion
 
 			#region Digital Product
+
 			Controller.Instance.DigitalProductOptions = buttonItemDigitalScheduleOptions;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
@@ -116,9 +123,11 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.DigitalProductSave = buttonItemDigitalScheduleSave;
 			Controller.Instance.DigitalProductSaveAs = buttonItemDigitalScheduleSaveAs;
 			Controller.Instance.DigitalProductHelp = buttonItemDigitalScheduleHelp;
+
 			#endregion
 
 			#region Digital Package
+
 			Controller.Instance.DigitalPackageHelp = buttonItemDigitalPackageHelp;
 			Controller.Instance.DigitalPackageSave = buttonItemDigitalPackageSave;
 			Controller.Instance.DigitalPackageSaveAs = buttonItemDigitalPackageSaveAs;
@@ -126,9 +135,11 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
 			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageOptions;
+
 			#endregion
 
 			#region Basic Overview
+
 			Controller.Instance.BasicOverviewHelp = buttonItemOverviewHelp;
 			Controller.Instance.BasicOverviewSave = buttonItemOverviewSave;
 			Controller.Instance.BasicOverviewSaveAs = buttonItemOverviewSaveAs;
@@ -136,9 +147,11 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.BasicOverviewEmail = buttonItemOverviewEmail;
 			Controller.Instance.BasicOverviewPowerPoint = buttonItemOverviewPowerPoint;
 			Controller.Instance.BasicOverviewDigitalLegend = buttonItemOverviewDigital;
+
 			#endregion
 
 			#region Multi Summary
+
 			Controller.Instance.MultiSummaryHelp = buttonItemMultiSummaryHelp;
 			Controller.Instance.MultiSummarySave = buttonItemMultiSummarySave;
 			Controller.Instance.MultiSummarySaveAs = buttonItemMultiSummarySaveAs;
@@ -146,9 +159,11 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.MultiSummaryEmail = buttonItemMultiSummaryEmail;
 			Controller.Instance.MultiSummaryPowerPoint = buttonItemMultiSummaryPowerPoint;
 			Controller.Instance.MultiSummaryDigitalLegend = buttonItemMultiSummaryDigital;
+
 			#endregion
 
 			#region Snapshot
+
 			Controller.Instance.SnapshotOptions = buttonItemSnapshotOptions;
 			Controller.Instance.SnapshotHelp = buttonItemSnapshotHelp;
 			Controller.Instance.SnapshotSave = buttonItemSnapshotSave;
@@ -157,18 +172,22 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.SnapshotEmail = buttonItemSnapshotEmail;
 			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
 			Controller.Instance.SnapshotDigitalLegend = buttonItemSnapshotDigital;
+
 			#endregion
 
 			#region AdPlan
+
 			Controller.Instance.AdPlanHelp = buttonItemAdPlanHelp;
 			Controller.Instance.AdPlanSave = buttonItemAdPlanSave;
 			Controller.Instance.AdPlanSaveAs = buttonItemAdPlanSaveAs;
 			Controller.Instance.AdPlanPreview = buttonItemAdPlanPreview;
 			Controller.Instance.AdPlanEmail = buttonItemAdPlanEmail;
 			Controller.Instance.AdPlanPowerPoint = buttonItemAdPlanPowerPoint;
+
 			#endregion
 
 			#region Detailed Grid
+
 			Controller.Instance.DetailedGridOptions = buttonItemDetailedGridDetails;
 			Controller.Instance.DetailedGridHelp = buttonItemDetailedGridHelp;
 			Controller.Instance.DetailedGridSave = buttonItemDetailedGridSave;
@@ -177,9 +196,11 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.DetailedGridEmail = buttonItemDetailedGridEmail;
 			Controller.Instance.DetailedGridPowerPoint = buttonItemDetailedGridPowerPoint;
 			Controller.Instance.DetailedGridDigitalLegend = buttonItemDetailedGridDigital;
+
 			#endregion
 
 			#region Multi Grid
+
 			Controller.Instance.MultiGridOptions = buttonItemMultiGridDetails;
 			Controller.Instance.MultiGridHelp = buttonItemMultiGridHelp;
 			Controller.Instance.MultiGridSave = buttonItemMultiGridSave;
@@ -188,9 +209,11 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.MultiGridEmail = buttonItemMultiGridEmail;
 			Controller.Instance.MultiGridPowerPoint = buttonItemMultiGridPowerPoint;
 			Controller.Instance.MultiGridDigitalLegend = buttonItemMultiGridDigital;
+
 			#endregion
 
 			#region Calendar
+
 			Controller.Instance.CalendarOptions = buttonItemCalendarsDetails;
 			Controller.Instance.CalendarHelp = buttonItemCalendarsHelp;
 			Controller.Instance.CalendarSave = buttonItemCalendarsSave;
@@ -200,9 +223,11 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.CalendarPowerPoint = buttonItemCalendarsPowerPoint;
 			Controller.Instance.CalendarExport = buttonItemCalendarsExport;
 			Controller.Instance.CalendarMonthList = listBoxControlCalendar;
+
 			#endregion
 
 			#region Summary
+
 			Controller.Instance.SummaryAddItem = buttonItemSummaryAdd;
 			Controller.Instance.SummaryHelp = buttonItemSummaryHelp;
 			Controller.Instance.SummarySave = buttonItemSummarySave;
@@ -210,11 +235,14 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.SummaryPreview = buttonItemSummaryPreview;
 			Controller.Instance.SummaryEmail = buttonItemSummaryEmail;
 			Controller.Instance.SummaryPowerPoint = buttonItemSummaryPowerPoint;
+
 			#endregion
 
 			#region Rate Card
+
 			Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
 			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
+
 			#endregion
 
 			#endregion
@@ -222,6 +250,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.Init();
 
 			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
+			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e.AfterShow);
 
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
@@ -355,7 +384,7 @@ namespace NewBizWiz.AdSchedule.Single
 				form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Ad Schedule...";
 				form.TopMost = true;
 				form.Show();
-				var thread = new Thread(delegate() { Invoke((MethodInvoker)delegate() { Controller.Instance.LoadData(); }); });
+				var thread = new Thread(delegate() { Invoke((MethodInvoker)delegate { Controller.Instance.LoadData(); }); });
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
@@ -394,7 +423,7 @@ namespace NewBizWiz.AdSchedule.Single
 			using (var formStart = new FormStart())
 			{
 				formStart.buttonXOpen.Enabled = ScheduleManager.GetShortScheduleList().Length > 0;
-				var result = formStart.ShowDialog();
+				DialogResult result = formStart.ShowDialog();
 				if (result == DialogResult.Yes || result == DialogResult.No)
 				{
 					if (result == DialogResult.Yes)
@@ -405,6 +434,13 @@ namespace NewBizWiz.AdSchedule.Single
 				else
 					Application.Exit();
 			}
+		}
+
+		private void FormMain_Resize(object sender, EventArgs e)
+		{
+			var f = sender as Form;
+			if (f.WindowState != FormWindowState.Minimized)
+				Opacity = 1;
 		}
 
 		private void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
@@ -749,6 +785,12 @@ namespace NewBizWiz.AdSchedule.Single
 		private void buttonItemExit_Click(object sender, EventArgs e)
 		{
 			Close();
+		}
+
+		private void buttonItemFloater_Click(object sender, EventArgs e)
+		{
+			var formSender = sender as Form;
+			AppManager.Instance.ShowFloater(formSender ?? this, null);
 		}
 	}
 }

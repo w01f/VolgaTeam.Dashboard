@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -6,6 +7,7 @@ using DevExpress.XtraEditors;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.PresentationClasses;
 using NewBizWiz.Calendar.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Calendar;
 
 namespace NewBizWiz.Calendar.Controls
@@ -20,10 +22,12 @@ namespace NewBizWiz.Calendar.Controls
 		}
 
 		public event EventHandler<EventArgs> ScheduleChanged;
+		public event EventHandler<FloaterRequestedEventArgs> FloaterRequested;
 
 		public Form FormMain { get; set; }
 		public SuperTooltip Supertip { get; set; }
 		public RibbonControl Ribbon { get; set; }
+		public RibbonTabItem TabHome { get; set; }
 		public RibbonTabItem TabCalendar { get; set; }
 		public RibbonTabItem TabGrid { get; set; }
 
@@ -70,6 +74,8 @@ namespace NewBizWiz.Calendar.Controls
 			GridPowerPoint.Click += CalendarVisualizer.buttonItemCalendarPowerPoint_Click;
 			GridEmail.Click += CalendarVisualizer.buttonItemCalendarEmail_Click;
 			GridHelp.Click += CalendarVisualizer.buttonItemCalendarHelp_Click;
+
+			ConfigureTabPages();
 		}
 
 		public void RemoveInstance()
@@ -90,6 +96,31 @@ namespace NewBizWiz.Calendar.Controls
 			TabGrid.Enabled = enable;
 		}
 
+		private void ConfigureTabPages()
+		{
+			Ribbon.Items.Clear();
+			var tabPages = new List<BaseItem>();
+			foreach (var tabPageConfig in BusinessWrapper.Instance.TabPageManager.TabPageSettings)
+			{
+				switch (tabPageConfig.Id)
+				{
+					case "Home":
+						TabHome.Text = tabPageConfig.Name;
+						tabPages.Add(TabHome);
+						break;
+					case "Ninja Calendar":
+						TabCalendar.Text = tabPageConfig.Name;
+						tabPages.Add(TabCalendar);
+						break;
+					case "List View":
+						TabGrid.Text = tabPageConfig.Name;
+						tabPages.Add(TabGrid);
+						break;
+				}
+			}
+			Ribbon.Items.AddRange(tabPages.ToArray());
+		}
+
 		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)
 		{
 			using (var form = new FormProgress())
@@ -105,6 +136,13 @@ namespace NewBizWiz.Calendar.Controls
 			}
 			if (ScheduleChanged != null)
 				ScheduleChanged(this, EventArgs.Empty);
+		}
+
+		public void ShowFloater(Action afterShow)
+		{
+			var args = new FloaterRequestedEventArgs { AfterShow = afterShow };
+			if (FloaterRequested != null)
+				FloaterRequested(null, args);
 		}
 
 		#region Command Controls

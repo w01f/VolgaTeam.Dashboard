@@ -4,8 +4,11 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
+using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
+using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
+using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
 
@@ -39,6 +42,21 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses
 			get { return Controller.Instance.DigitalPackageOptions; }
 		}
 
+		public override ButtonItem Preview
+		{
+			get { return Controller.Instance.DigitalPackagePreview; }
+		}
+
+		public override ButtonItem PowerPoint
+		{
+			get { return Controller.Instance.DigitalPackagePowerPoint; }
+		}
+
+		public override ButtonItem Email
+		{
+			get { return Controller.Instance.DigitalPackageEmail; }
+		}
+
 		public override void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
@@ -56,6 +74,39 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses
 		public override void Help_Click(object sender, EventArgs e)
 		{
 			BusinessWrapper.Instance.HelpManager.OpenHelpLink("dgpkg");
+		}
+
+		public override void OutputSlides()
+		{
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.Show();
+					OnlineSchedulePowerPointHelper.Instance.AppendWebPackage(this);
+					formProgress.Close();
+				});
+			}
+		}
+
+		public override void ShowPreview(string tempFileName)
+		{
+			using (var formPreview = new FormPreview())
+			{
+				formPreview.Text = "Preview Digital Package";
+				formPreview.PresentationFile = tempFileName;
+				RegistryHelper.MainFormHandle = formPreview.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				var previewResult = formPreview.ShowDialog();
+				RegistryHelper.MaximizeMainForm = _formContainer.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = _formContainer.Handle;
+				if (previewResult != DialogResult.OK)
+					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
+				else
+					Utilities.Instance.ActivateMiniBar();
+			}
 		}
 	}
 }

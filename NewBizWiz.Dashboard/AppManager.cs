@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
 using NewBizWiz.Dashboard.ToolForms;
@@ -23,6 +24,7 @@ namespace NewBizWiz.Dashboard
 
 		private static readonly AppManager _instance = new AppManager();
 		public HelpManager HelpManager { get; private set; }
+		private FloaterManager _floater = new FloaterManager();
 
 		private AppManager()
 		{
@@ -97,7 +99,7 @@ namespace NewBizWiz.Dashboard
 
 		public void ActivateMainForm()
 		{
-			IntPtr mainFormHandle = RegistryHelper.MainFormHandle;
+			var mainFormHandle = RegistryHelper.MainFormHandle;
 			if (mainFormHandle.ToInt32() == 0)
 			{
 				Process[] processList = Process.GetProcesses();
@@ -111,6 +113,24 @@ namespace NewBizWiz.Dashboard
 				}
 			}
 			Utilities.Instance.ActivateForm(mainFormHandle, RegistryHelper.MaximizeMainForm, false);
+		}
+
+		public void MinimizeMainForm()
+		{
+			var mainFormHandle = RegistryHelper.MainFormHandle;
+			if (mainFormHandle.ToInt32() == 0)
+			{
+				Process[] processList = Process.GetProcesses();
+				foreach (Process process in processList.Where(x => x.ProcessName.ToLower().Contains("adsalesapp")))
+				{
+					if (process.MainWindowHandle.ToInt32() != 0)
+					{
+						mainFormHandle = process.MainWindowHandle;
+						break;
+					}
+				}
+			}
+			Utilities.Instance.MinimizeForm(mainFormHandle);
 		}
 
 		public static void SetAutoScrollPosition(ScrollableControl sender, Point p)
@@ -137,38 +157,12 @@ namespace NewBizWiz.Dashboard
 				((Control)sender).Parent.Select();
 		}
 
-		public Bitmap MakeGrayscale(Bitmap original)
+		public void ShowFloater(Form sender, Action afterShow)
 		{
-			var newBitmap = new Bitmap(original.Width, original.Height);
-
-			//get a graphics object from the new image
-			Graphics g = Graphics.FromImage(newBitmap);
-
-			//create the grayscale ColorMatrix
-			var colorMatrix = new ColorMatrix(
-				new[]
-				{
-					new[] { .3f, .3f, .3f, 0, 0 },
-					new[] { .59f, .59f, .59f, 0, 0 },
-					new[] { .11f, .11f, .11f, 0, 0 },
-					new float[] { 0, 0, 0, 1, 0 },
-					new float[] { 0, 0, 0, 0, 1 }
-				});
-
-			//create some image attributes
-			var attributes = new ImageAttributes();
-
-			//set the color matrix attribute
-			attributes.SetColorMatrix(colorMatrix);
-
-			//draw the original image on the new image
-			//using the grayscale color matrix
-			g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
-						0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
-
-			//dispose the Graphics object
-			g.Dispose();
-			return newBitmap;
+			const string defaultText = "Sell RIGHT! Sell FAST! Sell MORE!";
+			var afterBack = new Action(ActivateMainForm);
+			var afterHide = new Action(Utilities.Instance.ActivateMiniBar);
+			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, MasterWizardManager.Instance.DefaultLogo, afterShow, afterHide, afterBack);
 		}
 	}
 }

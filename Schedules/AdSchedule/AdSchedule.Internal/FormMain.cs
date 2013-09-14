@@ -6,6 +6,7 @@ using NewBizWiz.AdSchedule.Controls;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.AdSchedule.Internal
@@ -14,6 +15,7 @@ namespace NewBizWiz.AdSchedule.Internal
 	{
 		private static FormMain _instance;
 		private Control _currentControl;
+		public event EventHandler<FloaterRequestedEventArgs> FloaterRequested;
 
 		private FormMain()
 		{
@@ -22,6 +24,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;
 			Controller.Instance.Ribbon = ribbonControl;
+			Controller.Instance.TabHome = ribbonTabItemScheduleSettings;
 			Controller.Instance.TabPrintProduct = ribbonTabItemPrintSchedule;
 			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSchedule;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
@@ -33,6 +36,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.TabMultiGrid = ribbonTabItemMultiGrid;
 			Controller.Instance.TabCalendar = ribbonTabItemCalendars;
 			Controller.Instance.TabSummary = ribbonTabItemSummary;
+			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
 
 			#region Command Controls
 
@@ -217,6 +221,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.Init();
 
 			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
+			Controller.Instance.FloaterRequested += (o, e) => ShowFloater(e);
 
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
@@ -301,8 +306,6 @@ namespace NewBizWiz.AdSchedule.Internal
 				Text = String.Format("SellerPoint Media Schedules - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
 		}
 
-		public event EventHandler<EventArgs> FloaterRequested;
-
 		private bool AllowToLeaveCurrentControl()
 		{
 			bool result = false;
@@ -341,6 +344,12 @@ namespace NewBizWiz.AdSchedule.Internal
 			else
 				result = true;
 			return result;
+		}
+
+		public void ShowFloater(FloaterRequestedEventArgs args)
+		{
+			if (FloaterRequested != null)
+				FloaterRequested(this, args);
 		}
 
 		private void FormMain_ClientSizeChanged(object sender, EventArgs e)
@@ -670,8 +679,7 @@ namespace NewBizWiz.AdSchedule.Internal
 
 		private void buttonItemFloater_Click(object sender, EventArgs e)
 		{
-			if (FloaterRequested != null)
-				FloaterRequested(this, e);
+			ShowFloater(new FloaterRequestedEventArgs());
 		}
 
 		private void buttonItemExit_Click(object sender, EventArgs e)

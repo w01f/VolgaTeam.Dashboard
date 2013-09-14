@@ -72,11 +72,6 @@ namespace NewBizWiz.Dashboard.InteropClasses
 								Application.DoEvents();
 							form.Close();
 						}
-						using (var form = new FormSlideOutput())
-						{
-							if (form.ShowDialog() != DialogResult.OK)
-								AppManager.Instance.ActivateMainForm();
-						}
 					}
 					catch { }
 					finally

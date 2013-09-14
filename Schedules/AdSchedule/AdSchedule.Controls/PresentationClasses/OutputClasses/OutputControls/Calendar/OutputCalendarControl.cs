@@ -395,43 +395,36 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 						using (var formProgress = new FormProgress())
 						{
 							formProgress.TopMost = true;
-							if (result == DialogResult.Yes)
+							Controller.Instance.ShowFloater(() =>
 							{
-								formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
-								if (Inserts.Where(y => y.Date.Year.Equals(_selectedMonth.Month.Year) && y.Date.Month.Equals(_selectedMonth.Month.Month)).Count() == 0)
-									if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no Ads scheduled for {0}.\nDo you still want to send this slide to PowerPoint?", _selectedMonth.Month.ToString("MMMM, yyyy"))) == DialogResult.No)
-										return;
-								formProgress.Show();
-								Enabled = false;
-								_selectedMonth.PrintOutput();
-							}
-							else if (result == DialogResult.No)
-							{
-								formProgress.laProgress.Text = form.checkedListBoxControlPublications.CheckedItems.Count == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Several Calendar slides…\nThis will take a few minutes…";
-								formProgress.Show();
-								Enabled = false;
-								foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
+								if (result == DialogResult.Yes)
 								{
-									if (item.CheckState == CheckState.Checked)
+									formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
+									if (Inserts.Where(y => y.Date.Year.Equals(_selectedMonth.Month.Year) && y.Date.Month.Equals(_selectedMonth.Month.Month)).Count() == 0)
+										if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no Ads scheduled for {0}.\nDo you still want to send this slide to PowerPoint?", _selectedMonth.Month.ToString("MMMM, yyyy"))) == DialogResult.No)
+											return;
+									formProgress.Show();
+									Enabled = false;
+									_selectedMonth.PrintOutput();
+								}
+								else if (result == DialogResult.No)
+								{
+									formProgress.laProgress.Text = form.checkedListBoxControlPublications.CheckedItems.Count == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Several Calendar slides…\nThis will take a few minutes…";
+									formProgress.Show();
+									Enabled = false;
+									foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
 									{
-										var monthView = item.Value as MonthViewControl;
-										if (monthView != null)
-											monthView.PrintOutput();
+										if (item.CheckState == CheckState.Checked)
+										{
+											var monthView = item.Value as MonthViewControl;
+											if (monthView != null)
+												monthView.PrintOutput();
+										}
 									}
 								}
-							}
-							Enabled = true;
-							formProgress.Close();
-						}
-						using (var formOutput = new FormSlideOutput())
-						{
-							if (formOutput.ShowDialog() != DialogResult.OK)
-								Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, Controller.Instance.FormMain.WindowState == FormWindowState.Maximized, false);
-							else
-							{
-								Utilities.Instance.ActivatePowerPoint(AdSchedulePowerPointHelper.Instance.PowerPointObject);
-								Utilities.Instance.ActivateMiniBar();
-							}
+								Enabled = true;
+								formProgress.Close();
+							});
 						}
 					}
 				}
@@ -573,7 +566,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 									Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 								else
 								{
-									Utilities.Instance.ActivatePowerPoint(AdSchedulePowerPointHelper.Instance.PowerPointObject);
 									Utilities.Instance.ActivateMiniBar();
 								}
 							}

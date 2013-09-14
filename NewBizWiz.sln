@@ -69,6 +69,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBizWiz.AdSchedule.Single
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBizWiz.OnlineSchedule.Single", "Schedules\OnlineSchedule\OnlineSchedule.Single\NewBizWiz.OnlineSchedule.Single.csproj", "{BD297B69-7611-4310-82DA-2B772248CD10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBizWiz.CommonGUI", "NewBizWiz.CommonGUI\NewBizWiz.CommonGUI.csproj", "{A97255F0-74B3-4C03-B623-EC0E37E80A3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -329,6 +331,16 @@ Global
 		{BD297B69-7611-4310-82DA-2B772248CD10}.Release|Mixed Platforms.Build.0 = Release|x86
 		{BD297B69-7611-4310-82DA-2B772248CD10}.Release|x86.ActiveCfg = Release|x86
 		{BD297B69-7611-4310-82DA-2B772248CD10}.Release|x86.Build.0 = Release|x86
+		{A97255F0-74B3-4C03-B623-EC0E37E80A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A97255F0-74B3-4C03-B623-EC0E37E80A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A97255F0-74B3-4C03-B623-EC0E37E80A3C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A97255F0-74B3-4C03-B623-EC0E37E80A3C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A97255F0-74B3-4C03-B623-EC0E37E80A3C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A97255F0-74B3-4C03-B623-EC0E37E80A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A97255F0-74B3-4C03-B623-EC0E37E80A3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A97255F0-74B3-4C03-B623-EC0E37E80A3C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A97255F0-74B3-4C03-B623-EC0E37E80A3C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A97255F0-74B3-4C03-B623-EC0E37E80A3C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

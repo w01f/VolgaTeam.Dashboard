@@ -337,11 +337,6 @@ namespace NewBizWiz.Dashboard.InteropClasses
 						}
 					}
 				}
-				using (var form = new FormSlideOutput())
-				{
-					if (form.ShowDialog() != DialogResult.OK)
-						AppManager.Instance.ActivateMainForm();
-				}
 			}
 		}
 	}

@@ -25,6 +25,7 @@ namespace NewBizWiz.Calendar.Single
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;
 			Controller.Instance.Ribbon = ribbonControl;
+			Controller.Instance.TabHome = ribbonTabItemHome;
 			Controller.Instance.TabCalendar = ribbonTabItemCalendar;
 			Controller.Instance.TabGrid = ribbonTabItemGrid;
 
@@ -77,6 +78,7 @@ namespace NewBizWiz.Calendar.Single
 			Controller.Instance.Init();
 
 			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
+			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e.AfterShow);
 
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
@@ -186,6 +188,13 @@ namespace NewBizWiz.Calendar.Single
 			ribbonControl_SelectedRibbonTabChanged(null, null);
 			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 			ribbonControl.Enabled = true;
+		}
+
+		private void FormMain_Resize(object sender, EventArgs e)
+		{
+			var f = sender as Form;
+			if (f.WindowState != FormWindowState.Minimized)
+				Opacity = 1;
 		}
 
 		private void FormMain_ClientSizeChanged(object sender, EventArgs e)
@@ -313,6 +322,12 @@ namespace NewBizWiz.Calendar.Single
 		private void buttonItemExit_Click(object sender, EventArgs e)
 		{
 			Close();
+		}
+
+		private void buttonItemFloater_Click(object sender, EventArgs e)
+		{
+			var formSender = sender as Form;
+			AppManager.Instance.ShowFloater(formSender ?? this, null);
 		}
 
 		private void pnMain_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
-﻿using NewBizWiz.Core.Common;
+﻿using System.IO;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 
 namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
@@ -12,6 +13,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 			ScheduleManager = new ScheduleManager();
 			HelpManager = new HelpManager(Core.OnlineSchedule.SettingsManager.Instance.HelpLinksPath);
 			OutputManager = new OutputManager();
+			TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "digital_tab_names.xml"));
 		}
 
 		public static BusinessWrapper Instance
@@ -22,5 +24,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 		public ScheduleManager ScheduleManager { get; private set; }
 		public HelpManager HelpManager { get; private set; }
 		public OutputManager OutputManager { get; private set; }
+		public TabPageManager TabPageManager { get; private set; }
 	}
 }

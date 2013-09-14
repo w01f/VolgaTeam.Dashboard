@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using NewBizWiz.Calendar.Controls;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Calendar.Internal
@@ -13,6 +14,7 @@ namespace NewBizWiz.Calendar.Internal
 	{
 		private static FormMain _instance;
 		private Control _currentControl;
+		public event EventHandler<FloaterRequestedEventArgs> FloaterRequested;
 
 		private FormMain()
 		{
@@ -21,6 +23,7 @@ namespace NewBizWiz.Calendar.Internal
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;
 			Controller.Instance.Ribbon = ribbonControl;
+			Controller.Instance.TabHome = ribbonTabItemHome;
 			Controller.Instance.TabCalendar = ribbonTabItemCalendar;
 			Controller.Instance.TabGrid = ribbonTabItemGrid;
 
@@ -73,6 +76,7 @@ namespace NewBizWiz.Calendar.Internal
 			Controller.Instance.Init();
 
 			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
+			Controller.Instance.FloaterRequested += (o, e) => ShowFloater(e);
 
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
@@ -112,7 +116,6 @@ namespace NewBizWiz.Calendar.Internal
 				return _instance;
 			}
 		}
-		public event EventHandler<EventArgs> FloaterRequested;
 
 		public static void RemoveInstance()
 		{
@@ -185,6 +188,12 @@ namespace NewBizWiz.Calendar.Internal
 			ribbonControl.Enabled = true;
 		}
 
+		public void ShowFloater(FloaterRequestedEventArgs args)
+		{
+			if (FloaterRequested != null)
+				FloaterRequested(this, args);
+		}
+
 		private void FormMain_ClientSizeChanged(object sender, EventArgs e)
 		{
 			RegistryHelper.MaximizeMainForm = WindowState == FormWindowState.Maximized;
@@ -246,8 +255,7 @@ namespace NewBizWiz.Calendar.Internal
 
 		private void buttonItemFloater_Click(object sender, EventArgs e)
 		{
-			if (FloaterRequested != null)
-				FloaterRequested(this, e);
+			ShowFloater(new FloaterRequestedEventArgs());
 		}
 
 		private void buttonItemExit_Click(object sender, EventArgs e)

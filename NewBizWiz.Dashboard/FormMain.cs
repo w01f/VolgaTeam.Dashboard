@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.Dashboard.InteropClasses;
@@ -20,10 +21,6 @@ namespace NewBizWiz.Dashboard
 	public partial class FormMain : Form
 	{
 		private static FormMain _instance;
-
-		private int _floaterPositionX = int.MinValue;
-		private int _floaterPositionY = int.MinValue;
-
 		private FormMain()
 		{
 			_instance = this;
@@ -53,7 +50,7 @@ namespace NewBizWiz.Dashboard
 		#region Configuration Methods
 		private void ApplyMasterWizard()
 		{
-			Instance.Text = AppManager.FormCaption;
+			Text = AppManager.FormCaption;
 			Image masterWizardLogo = MasterWizardManager.Instance.DefaultLogo;
 			buttonItemHomeOverview.Image = masterWizardLogo;
 			buttonItemOnlineLogo.Image = masterWizardLogo;
@@ -120,7 +117,7 @@ namespace NewBizWiz.Dashboard
 
 		public void FormMain_Activated(object sender, EventArgs e)
 		{
-			if (RegistryHelper.MainFormHandle != Instance.Handle)
+			if (RegistryHelper.MainFormHandle != Handle)
 				AppManager.Instance.ActivateMainForm();
 		}
 
@@ -162,6 +159,13 @@ namespace NewBizWiz.Dashboard
 			Application.Exit();
 		}
 
+		private void FormMain_Resize(object sender, EventArgs e)
+		{
+			var f = sender as Form;
+			if (f.WindowState != FormWindowState.Minimized)
+				Opacity = 1;
+		}
+
 		public void FormAdScheduleResize(object sender, EventArgs e)
 		{
 			var f = sender as Form;
@@ -175,22 +179,6 @@ namespace NewBizWiz.Dashboard
 			{
 				f.Opacity = 1;
 				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 1, 0, 0);
-			}
-		}
-
-		public void FormMobileScheduleResize(object sender, EventArgs e)
-		{
-			var f = sender as Form;
-			if (f.WindowState == FormWindowState.Minimized)
-			{
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 4, 0, 0);
-				f.Opacity = 0;
-				Utilities.Instance.ActivateMiniBar();
-			}
-			else
-			{
-				f.Opacity = 1;
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 3, 0, 0);
 			}
 		}
 
@@ -326,26 +314,16 @@ namespace NewBizWiz.Dashboard
 		#endregion
 
 		#region Ribbon Buttons's Clicks Event Handlers
+		public void buttonItemFloater_Click(object sender, FloaterRequestedEventArgs e)
+		{
+			var formSender = sender as Form;
+			AppManager.Instance.ShowFloater(formSender, e.AfterShow);
+		}
+
 		public void buttonItemFloater_Click(object sender, EventArgs e)
 		{
 			var formSender = sender as Form;
-			if (formSender == null)
-				formSender = Instance;
-
-			formSender.Opacity = 0;
-			using (var form = new FormFloater(Left + Width, Top, _floaterPositionX, _floaterPositionY, buttonItemHomeOverview.Image, ribbonBarHomeOverview.Text))
-			{
-				if (form.ShowDialog() != DialogResult.No)
-				{
-					_floaterPositionY = form.Top;
-					_floaterPositionX = form.Left;
-
-					formSender.Opacity = 1;
-					AppManager.Instance.ActivateMainForm();
-				}
-				else
-					Application.Exit();
-			}
+			AppManager.Instance.ShowFloater(formSender, null);
 		}
 
 		public void buttonItemExit_Click(object sender, EventArgs e)
@@ -412,7 +390,7 @@ namespace NewBizWiz.Dashboard
 
 		private void buttonItemHomeCleanslate_Click(object sender, EventArgs e)
 		{
-			DashboardPowerPointHelper.Instance.AppendCleanslate();
+			AppManager.Instance.ShowFloater(null, DashboardPowerPointHelper.Instance.AppendCleanslate);
 		}
 
 		public void buttonItemHomeCover_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
@@ -7,6 +8,7 @@ using DevExpress.XtraEditors;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
+using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
 using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
 
@@ -174,6 +176,40 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public void Help_Click(object sender, EventArgs e)
 		{
 			BusinessWrapper.Instance.HelpManager.OpenHelpLink("Slides");
+		}
+
+		public override void OutputSlides(IEnumerable<DigitalProductControl> tabsForOutput)
+		{
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.Show();
+					foreach (var tabPage in tabsForOutput)
+						tabPage.Output();
+					formProgress.Close();
+				});
+			}
+		}
+
+		public override void ShowPreview(string tempFileName)
+		{
+			using (var formPreview = new FormPreview())
+			{
+				formPreview.Text = "Preview Digital Product";
+				formPreview.PresentationFile = tempFileName;
+				RegistryHelper.MainFormHandle = formPreview.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				DialogResult previewResult = formPreview.ShowDialog();
+				RegistryHelper.MaximizeMainForm = _formContainer.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = _formContainer.Handle;
+				if (previewResult != DialogResult.OK)
+					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
+				else
+					Utilities.Instance.ActivatePowerPoint(OnlineSchedulePowerPointHelper.Instance.PowerPointObject);
+			}
 		}
 	}
 }

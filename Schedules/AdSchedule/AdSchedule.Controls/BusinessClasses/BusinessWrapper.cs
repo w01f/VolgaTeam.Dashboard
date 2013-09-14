@@ -1,8 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
-using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 {
@@ -16,6 +14,7 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 			HelpManager = new HelpManager(Core.AdSchedule.SettingsManager.Instance.HelpLinksPath);
 			OutputManager = new OutputManager();
 			RateCardManager = new RateCardManager(Core.AdSchedule.SettingsManager.Instance.RateCardPath);
+			TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "adsched_tab_names.xml"));
 		}
 
 		public static BusinessWrapper Instance
@@ -27,5 +26,6 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 		public HelpManager HelpManager { get; private set; }
 		public OutputManager OutputManager { get; private set; }
 		public RateCardManager RateCardManager { get; private set; }
+		public TabPageManager TabPageManager { get; private set; }
 	}
 }

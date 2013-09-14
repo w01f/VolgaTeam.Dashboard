@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
+using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
@@ -14,17 +16,19 @@ namespace NewBizWiz.OnlineSchedule.Controls
 	public class Controller
 	{
 		private static readonly Controller _instance = new Controller();
-		private Controller() {}
+		private Controller() { }
 		public static Controller Instance
 		{
 			get { return _instance; }
 		}
 
 		public event EventHandler<EventArgs> ScheduleChanged;
+		public event EventHandler<FloaterRequestedEventArgs> FloaterRequested;
 
 		public Form FormMain { get; set; }
 		public SuperTooltip Supertip { get; set; }
 		public RibbonControl Ribbon { get; set; }
+		public RibbonTabItem TabHome { get; set; }
 		public RibbonTabItem TabScheduleSlides { get; set; }
 		public RibbonTabItem TabDigitalPackage { get; set; }
 
@@ -64,7 +68,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			DigitalSlidesPreview.Click += ScheduleSlides.Preview_Click;
 			DigitalSlidesEmail.Click += ScheduleSlides.Email_Click;
 			DigitalSlidesHelp.Click += ScheduleSlides.Help_Click;
-			DigitalSlidesOptions.CheckedChanged += ScheduleSlides.Options_Click; 
+			DigitalSlidesOptions.CheckedChanged += ScheduleSlides.Options_Click;
 			#endregion
 
 			#region Web Package
@@ -75,8 +79,10 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			DigitalPackagePreview.Click += DigitalPackage.Preview_Click;
 			DigitalPackageEmail.Click += DigitalPackage.Email_Click;
 			DigitalPackageHelp.Click += DigitalPackage.Help_Click;
-			DigitalPackageOptions.CheckedChanged += DigitalPackage.TogledButton_CheckedChanged; 
+			DigitalPackageOptions.CheckedChanged += DigitalPackage.TogledButton_CheckedChanged;
 			#endregion
+
+			ConfigureTabPages();
 		}
 
 		public void RemoveInstance()
@@ -91,6 +97,31 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			ScheduleSettings.LoadSchedule(false);
 			ScheduleSlides.LoadSchedule(false);
 			DigitalPackage.LoadSchedule(false);
+		}
+
+		private void ConfigureTabPages()
+		{
+			Ribbon.Items.Clear();
+			var tabPages = new List<BaseItem>();
+			foreach (var tabPageConfig in BusinessWrapper.Instance.TabPageManager.TabPageSettings)
+			{
+				switch (tabPageConfig.Id)
+				{
+					case "Home":
+						TabHome.Text = tabPageConfig.Name;
+						tabPages.Add(TabHome);
+						break;
+					case "Digital Slides":
+						TabScheduleSlides.Text = tabPageConfig.Name;
+						tabPages.Add(TabScheduleSlides);
+						break;
+					case "Digital PKG":
+						TabDigitalPackage.Text = tabPageConfig.Name;
+						tabPages.Add(TabDigitalPackage);
+						break;
+				}
+			}
+			Ribbon.Items.AddRange(tabPages.ToArray());
 		}
 
 		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)
@@ -114,6 +145,13 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		{
 			TabScheduleSlides.Enabled = enable;
 			TabDigitalPackage.Enabled = enable && DigitalPackage.SlidesAvailable;
+		}
+
+		public void ShowFloater(Action afterShow)
+		{
+			var args = new FloaterRequestedEventArgs { AfterShow = afterShow };
+			if (FloaterRequested != null)
+				FloaterRequested(null, args);
 		}
 
 		#region Command Controls

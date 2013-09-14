@@ -106,14 +106,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="InteropClasses\FileIcon.cs" />
     <Compile Include="InteropClasses\CleanslateHelper.cs" />
     <Compile Include="InteropClasses\ContentsHelper.cs" />
     <Compile Include="InteropClasses\CoverHelper.cs" />
     <Compile Include="InteropClasses\SlideHeadersHelper.cs" />
     <Compile Include="InteropClasses\PageNumbersHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
-    <Compile Include="InteropClasses\ShellLink.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BusinessClasses\SettingsManager.cs" />

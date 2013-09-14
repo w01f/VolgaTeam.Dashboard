@@ -222,6 +222,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		public ScheduleBuilderViewSettings ViewSettings { get; set; }
 
+		public IScheduleViewSettings CommonViewSettings
+		{
+			get { return ViewSettings; }
+		}
+
 		public string Name
 		{
 			get { return _scheduleFile.Name.Replace(_scheduleFile.Extension, ""); }
@@ -1317,6 +1322,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		private decimal? _cpm;
 
 		public DigitalProduct Parent { get; private set; }
+		public bool UseFormula { get; set; }
 
 		public string Category
 		{
@@ -1404,6 +1410,19 @@ namespace NewBizWiz.Core.OnlineSchedule
 				_investment = value;
 			}
 		}
+		public decimal? InvestmentCalculated
+		{
+			get
+			{
+				if (UseFormula && (Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowInvestment && Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowImpressions && Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowCPM) && Parent.Parent.CommonViewSettings.DigitalPackageSettings.Formula == FormulaType.Investment)
+					Investment = CPMCalculated.HasValue && ImpressionsCalculated.HasValue ? Math.Round(CPMCalculated.Value * (ImpressionsCalculated.Value / 1000), 2) : (decimal?)null;
+				return Investment;
+			}
+			set
+			{
+				Investment = value;
+			}
+		}
 		public decimal? Impressions
 		{
 			get
@@ -1415,6 +1434,19 @@ namespace NewBizWiz.Core.OnlineSchedule
 				_impressions = value;
 			}
 		}
+		public decimal? ImpressionsCalculated
+		{
+			get
+			{
+				if (UseFormula && (Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowInvestment && Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowImpressions && Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowCPM) && Parent.Parent.CommonViewSettings.DigitalPackageSettings.Formula == FormulaType.Impressions)
+					Impressions = InvestmentCalculated.HasValue && CPMCalculated.HasValue && CPMCalculated.Value != 0 ? Math.Round(((InvestmentCalculated.Value * 1000) / CPMCalculated.Value), 0) : (decimal?)null;
+				return Impressions;
+			}
+			set
+			{
+				Impressions = value;
+			}
+		}
 		public decimal? CPM
 		{
 			get
@@ -1424,6 +1456,19 @@ namespace NewBizWiz.Core.OnlineSchedule
 			set
 			{
 				_cpm = value;
+			}
+		}
+		public decimal? CPMCalculated
+		{
+			get
+			{
+				if (UseFormula && (Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowInvestment && Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowImpressions && Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowCPM) && Parent.Parent.CommonViewSettings.DigitalPackageSettings.Formula == FormulaType.CPM)
+					CPM = InvestmentCalculated.HasValue && ImpressionsCalculated.HasValue && ImpressionsCalculated.Value != 0 ? Math.Round((InvestmentCalculated.Value / (ImpressionsCalculated.Value / 1000)), 2) : (decimal?)null;
+				return CPM;
+			}
+			set
+			{
+				CPM = value;
 			}
 		}
 
@@ -1449,12 +1494,13 @@ namespace NewBizWiz.Core.OnlineSchedule
 				xml.AppendLine(@"<Comments>" + _comments.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comments>");
 			if (_rate.HasValue)
 				xml.AppendLine(@"<Rate>" + _rate.Value + @"</Rate>");
-			if (_investment.HasValue)
-				xml.AppendLine(@"<Investment>" + _investment.Value + @"</Investment>");
-			if (_impressions.HasValue)
-				xml.AppendLine(@"<Impressions>" + _impressions.Value + @"</Impressions>");
-			if (_cpm.HasValue)
-				xml.AppendLine(@"<CPM>" + _cpm.Value + @"</CPM>");
+			if (Investment.HasValue)
+				xml.AppendLine(@"<Investment>" + Investment.Value + @"</Investment>");
+			if (Impressions.HasValue)
+				xml.AppendLine(@"<Impressions>" + Impressions.Value + @"</Impressions>");
+			if (CPM.HasValue)
+				xml.AppendLine(@"<CPM>" + CPM.Value + @"</CPM>");
+			xml.AppendLine(@"<UseFormula>" + UseFormula + @"</UseFormula>");
 
 			return xml.ToString();
 		}
@@ -1462,6 +1508,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public void Deserialize(XmlNode node)
 		{
 			decimal tempDecimal;
+			bool tempBool;
 
 			foreach (XmlNode childNode in node.ChildNodes)
 				switch (childNode.Name)
@@ -1497,6 +1544,10 @@ namespace NewBizWiz.Core.OnlineSchedule
 						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
 							_cpm = tempDecimal;
 						break;
+					case "UseFormula":
+						if (Boolean.TryParse(childNode.InnerText, out tempBool))
+							UseFormula = tempBool;
+						break;
 				}
 		}
 
@@ -1511,6 +1562,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			_investment = null;
 			_impressions = null;
 			_cpm = null;
+			UseFormula = true;
 		}
 	}
 

@@ -47,9 +47,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.DotNetBar2, Version=10.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.Utils.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -62,6 +69,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\NBWApplication.cs" />
+    <Compile Include="Interop\FileIcon.cs" />
+    <Compile Include="Interop\ShellLink.cs" />
+    <Compile Include="Common\TabPageManager.cs" />
     <Compile Include="AdSchedule\ListManager.cs" />
     <Compile Include="AdSchedule\RequestDigitalInfoEventArgs.cs" />
     <Compile Include="AdSchedule\ScheduleManager.cs" />
@@ -74,6 +85,7 @@
     <Compile Include="Common\HelpManager.cs" />
     <Compile Include="Common\ImageSource.cs" />
     <Compile Include="Common\ISchedule.cs" />
+    <Compile Include="Common\IScheduleViewSettings.cs" />
     <Compile Include="Common\ListManager.cs" />
     <Compile Include="Common\MasterWizardManager.cs" />
     <Compile Include="Common\RegistryHelper.cs" />

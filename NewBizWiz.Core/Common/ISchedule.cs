@@ -11,5 +11,6 @@ namespace NewBizWiz.Core.Common
 		DateTime PresentationDate { get; set; }
 		DateTime FlightDateStart { get; set; }
 		DateTime FlightDateEnd { get; set; }
+		IScheduleViewSettings CommonViewSettings { get; }
 	}
 }

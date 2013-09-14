@@ -246,6 +246,10 @@ namespace NewBizWiz.Core.AdSchedule
 		public List<DigitalProduct> DigitalProducts { get; set; }
 
 		public ScheduleBuilderViewSettings ViewSettings { get; set; }
+		public IScheduleViewSettings CommonViewSettings
+		{
+			get { return ViewSettings; }
+		}
 
 		public SummarySettings Summary { get; set; }
 

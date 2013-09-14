@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -11,6 +12,7 @@ using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputCont
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.RateCard;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
 
@@ -25,11 +27,13 @@ namespace NewBizWiz.AdSchedule.Controls
 			get { return _instance; }
 		}
 
+		public event EventHandler<FloaterRequestedEventArgs> FloaterRequested;
 		public event EventHandler<EventArgs> ScheduleChanged;
 
 		public Form FormMain { get; set; }
 		public SuperTooltip Supertip { get; set; }
 		public RibbonControl Ribbon { get; set; }
+		public RibbonTabItem TabHome { get; set; }
 		public RibbonTabItem TabPrintProduct { get; set; }
 		public RibbonTabItem TabDigitalProduct { get; set; }
 		public RibbonTabItem TabDigitalPackage { get; set; }
@@ -41,6 +45,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public RibbonTabItem TabMultiGrid { get; set; }
 		public RibbonTabItem TabCalendar { get; set; }
 		public RibbonTabItem TabSummary { get; set; }
+		public RibbonTabItem TabRateCard { get; set; }
 
 		public void Init()
 		{
@@ -259,6 +264,8 @@ namespace NewBizWiz.AdSchedule.Controls
 			RateCardHelp.Click += RateCard.buttonItemRateCardHelp_Click;
 			RateCardCombo.EditValueChanged += RateCard.comboBoxEditRateCards_EditValueChanged;
 			#endregion
+
+			ConfigureTabPages();
 		}
 
 		public void RemoveInstance()
@@ -326,6 +333,71 @@ namespace NewBizWiz.AdSchedule.Controls
 			TabSummary.Enabled = enable;
 		}
 
+		private void ConfigureTabPages()
+		{
+			Ribbon.Items.Clear();
+			var tabPages = new List<BaseItem>();
+			foreach (var tabPageConfig in BusinessWrapper.Instance.TabPageManager.TabPageSettings)
+			{
+				switch (tabPageConfig.Id)
+				{
+					case "Home":
+						TabHome.Text = tabPageConfig.Name;
+						tabPages.Add(TabHome);
+						break;
+					case "Ad Schedule":
+						TabPrintProduct.Text = tabPageConfig.Name;
+						tabPages.Add(TabPrintProduct);
+						break;
+					case "Digital Slides":
+						TabDigitalProduct.Text = tabPageConfig.Name;
+						tabPages.Add(TabDigitalProduct);
+						break;
+					case "Digital PKG":
+						TabDigitalPackage.Text = tabPageConfig.Name;
+						tabPages.Add(TabDigitalPackage);
+						break;
+					case "1. AdPlan":
+						TabAdPlan.Text = tabPageConfig.Name;
+						tabPages.Add(TabAdPlan);
+						break;
+					case "2. Overview":
+						TabBasicOverview.Text = tabPageConfig.Name;
+						tabPages.Add(TabBasicOverview);
+						break;
+					case "3. Analysis":
+						TabMultiSummary.Text = tabPageConfig.Name;
+						tabPages.Add(TabMultiSummary);
+						break;
+					case "4. Snapshot":
+						TabSnapshot.Text = tabPageConfig.Name;
+						tabPages.Add(TabSnapshot);
+						break;
+					case "5. Detailed Grid":
+						TabDetailedGrid.Text = tabPageConfig.Name;
+						tabPages.Add(TabDetailedGrid);
+						break;
+					case "6. Logo Grid":
+						TabMultiGrid.Text = tabPageConfig.Name;
+						tabPages.Add(TabMultiGrid);
+						break;
+					case "7. Calendar":
+						TabCalendar.Text = tabPageConfig.Name;
+						tabPages.Add(TabCalendar);
+						break;
+					case "8. Summary":
+						TabSummary.Text = tabPageConfig.Name;
+						tabPages.Add(TabSummary);
+						break;
+					case "Rate Card":
+						TabRateCard.Text = tabPageConfig.Name;
+						tabPages.Add(TabRateCard);
+						break;
+				}
+			}
+			Ribbon.Items.AddRange(tabPages.ToArray());
+		}
+
 		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)
 		{
 			using (var form = new FormProgress())
@@ -341,6 +413,13 @@ namespace NewBizWiz.AdSchedule.Controls
 			}
 			if (ScheduleChanged != null)
 				ScheduleChanged(this, EventArgs.Empty);
+		}
+
+		public void ShowFloater(Action afterShow)
+		{
+			var args = new FloaterRequestedEventArgs {AfterShow = afterShow};
+			if (FloaterRequested != null)
+				FloaterRequested(null, args);
 		}
 
 		#region Command Controls

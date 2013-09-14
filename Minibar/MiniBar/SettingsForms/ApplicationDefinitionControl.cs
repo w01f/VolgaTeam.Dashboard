@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using NewBizWiz.MiniBar.BusinessClasses;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.MiniBar.SettingsForms
 {

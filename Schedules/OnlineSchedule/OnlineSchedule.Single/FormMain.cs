@@ -25,6 +25,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;
 			Controller.Instance.Ribbon = ribbonControl;
+			Controller.Instance.TabHome = ribbonTabItemScheduleSettings;
 			Controller.Instance.TabScheduleSlides = ribbonTabItemDigitalSlides;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
 
@@ -72,8 +73,9 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.Init();
 
 			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
+			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e.AfterShow);
 
-			if ((base.CreateGraphics()).DpiX > 96)
+			if ((CreateGraphics()).DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 1, styleController.Appearance.Font.Style);
 				ribbonControl.Font = font;
@@ -221,6 +223,13 @@ namespace NewBizWiz.OnlineSchedule.Single
 			}
 		}
 
+		private void FormMain_Resize(object sender, EventArgs e)
+		{
+			var f = sender as Form;
+			if (f.WindowState != FormWindowState.Minimized)
+				Opacity = 1;
+		}
+
 		public void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
 			if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemScheduleSettings)
@@ -308,6 +317,12 @@ namespace NewBizWiz.OnlineSchedule.Single
 		private void buttonItemHomeExit_Click(object sender, EventArgs e)
 		{
 			Close();
+		}
+
+		private void buttonItemFloater_Click(object sender, EventArgs e)
+		{
+			var formSender = sender as Form;
+			AppManager.Instance.ShowFloater(formSender ?? this, null);
 		}
 
 		private void pnMain_Click(object sender, EventArgs e)

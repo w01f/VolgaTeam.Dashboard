@@ -217,7 +217,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				ViewSettingsManager.Instance.ClientGoalsState.Save();
 				UpdateSavedFilesState();
 			}
-			DashboardPowerPointHelper.Instance.AppendClientGoals();
+			AppManager.Instance.ShowFloater(null, DashboardPowerPointHelper.Instance.AppendClientGoals);
 		}
 
 		public void UpdateOutputState()

@@ -123,6 +123,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap DigitalPackageDisabled {
+            get {
+                object obj = ResourceManager.GetObject("DigitalPackageDisabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap Dimensions {
             get {
                 object obj = ResourceManager.GetObject("Dimensions", resourceCulture);
@@ -175,6 +182,20 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
         public static System.Drawing.Bitmap Help {
             get {
                 object obj = ResourceManager.GetObject("Help", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap HelpSmallGreen {
+            get {
+                object obj = ResourceManager.GetObject("HelpSmallGreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap HelpSmallRed {
+            get {
+                object obj = ResourceManager.GetObject("HelpSmallRed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

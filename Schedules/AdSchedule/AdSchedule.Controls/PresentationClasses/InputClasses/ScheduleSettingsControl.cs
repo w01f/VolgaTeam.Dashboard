@@ -518,7 +518,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		private void repositoryItemButtonEditChangeLogo_ButtonClick(object sender, ButtonPressedEventArgs e)
 		{
-			using (var form = new FormImageGallery(ListManager.Instance.Images))
+			using (var form = new FormImageGallery(Core.AdSchedule.ListManager.Instance.Images))
 			{
 				form.SelectedImage = _localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].BigLogo;
 				if (form.ShowDialog() != DialogResult.OK) return;

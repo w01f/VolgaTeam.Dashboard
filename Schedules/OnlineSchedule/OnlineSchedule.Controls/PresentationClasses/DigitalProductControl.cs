@@ -774,12 +774,16 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			if (!string.IsNullOrEmpty(templateName))
 			{
 				_container.labelControlOutputStatus.ForeColor = Color.Green;
-				_container.labelControlOutputStatus.Text = "Slide Output AVAILABLE";
+				_container.labelControlOutputStatus.Text = "Output enabled";
+				_container.pbOutputHelp.Image = Resources.HelpSmallGreen;
+				_container.pbOutputHelp.Text = "enabled";
 			}
 			else
 			{
-				_container.labelControlOutputStatus.ForeColor = Color.Red;
-				_container.labelControlOutputStatus.Text = "Slide Output DISABLED";
+				_container.labelControlOutputStatus.ForeColor = Color.DarkRed;
+				_container.labelControlOutputStatus.Text = "Output  disabled";
+				_container.pbOutputHelp.Image = Resources.HelpSmallRed;
+				_container.pbOutputHelp.Text = "disabled";
 			}
 		}
 

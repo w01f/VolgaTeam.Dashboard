@@ -109,12 +109,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager.cs" />
-    <Compile Include="FormFloater.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormFloater.designer.cs">
-      <DependentUpon>FormFloater.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,9 +125,6 @@
     <Compile Include="InteropClasses\LeadoffStatementsHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormFloater.resx">
-      <DependentUpon>FormFloater.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,9 +220,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormSlideOutput.resx">
-      <DependentUpon>FormSlideOutput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\WhiteBorderControlPage.resx">
       <DependentUpon>WhiteBorderControlPage.cs</DependentUpon>
@@ -425,12 +413,6 @@
     <Compile Include="ToolForms\FormProgress.designer.cs">
       <DependentUpon>FormProgress.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormSlideOutput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormSlideOutput.designer.cs">
-      <DependentUpon>FormSlideOutput.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\WhiteBorderControlPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -542,6 +524,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NewBizWiz.CommonGUI\NewBizWiz.CommonGUI.csproj">
+      <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
+      <Name>NewBizWiz.CommonGUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NewBizWiz.Core\NewBizWiz.Core.csproj">
       <Project>{164AB808-DBD3-4D71-9431-5A5B44B70593}</Project>
       <Name>NewBizWiz.Core</Name>

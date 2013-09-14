@@ -43,7 +43,7 @@ namespace NewBizWiz.AdSchedule.Internal
 						}
 						else
 						{
-							ShowWarning("Schedule Name can't be empty");
+							Utilities.Instance.ShowWarning("Schedule Name can't be empty");
 						}
 					}
 				}
@@ -115,21 +115,6 @@ namespace NewBizWiz.AdSchedule.Internal
 			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
 			Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
 			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-		}
-
-		public static void ShowWarning(string text)
-		{
-			Utilities.Instance.ShowWarning(text);
-		}
-
-		public static DialogResult ShowWarningQuestion(string text)
-		{
-			return Utilities.Instance.ShowWarningQuestion(text);
-		}
-
-		public static void ShowInformation(string text)
-		{
-			Utilities.Instance.ShowInformation(text);
 		}
 	}
 }

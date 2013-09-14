@@ -1,9 +1,11 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Xml;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Core.OnlineSchedule
 {
-	public class ScheduleBuilderViewSettings
+	public class ScheduleBuilderViewSettings : IScheduleViewSettings
 	{
 		public ScheduleBuilderViewSettings()
 		{
@@ -130,16 +132,27 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public bool ShowInfo { get; set; }
 		public bool ShowComments { get; set; }
 		public bool ShowScreenshot { get; set; }
+		public FormulaType Formula { get; set; }
 
 		public DigitalPackageSettings()
 		{
 			ShowOptions = true;
+			ResetToDefault();
+		}
+
+		public void ResetToDefault()
+		{
+			ShowCategory = false;
 			ShowGroup = true;
 			ShowProduct = true;
+			ShowInfo = true;
+			ShowComments = false;
 			ShowImpressions = true;
 			ShowCPM = true;
 			ShowInvestment = true;
-			ShowInfo = true;
+			ShowRate = false;
+			ShowScreenshot = false;
+			Formula = FormulaType.CPM;
 		}
 
 		public string Serialize()
@@ -156,12 +169,14 @@ namespace NewBizWiz.Core.OnlineSchedule
 			xml.AppendLine(@"<ShowInfo>" + ShowInfo + @"</ShowInfo>");
 			xml.AppendLine(@"<ShowComments>" + ShowComments + @"</ShowComments>");
 			xml.AppendLine(@"<ShowScreenshot>" + ShowScreenshot + @"</ShowScreenshot>");
+			xml.AppendLine(@"<Formula>" + (int)Formula + @"</Formula>");
 			return xml.ToString();
 		}
 
 		public void Deserialize(XmlNode node)
 		{
 			bool tempBool;
+			int tempInt;
 			foreach (XmlNode childNode in node.ChildNodes)
 				switch (childNode.Name)
 				{
@@ -208,6 +223,10 @@ namespace NewBizWiz.Core.OnlineSchedule
 					case "ShowScreenshot":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowScreenshot = tempBool;
+						break;
+					case "Formula":
+						if (Int32.TryParse(childNode.InnerText, out tempInt))
+							Formula = (FormulaType)tempInt;
 						break;
 				}
 		}

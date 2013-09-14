@@ -3,8 +3,10 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Dashboard;
 using NewBizWiz.Dashboard.InteropClasses;
+using ListManager = NewBizWiz.Core.Dashboard.ListManager;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
@@ -243,13 +245,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			comboBoxEditDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers);
 
 			FormMain.Instance.FormClosed += (sender1, e1) =>
-				                                {
-					                                if (SettingsNotSaved)
-					                                {
-						                                SaveState();
-						                                ViewSettingsManager.Instance.SimpleSummaryState.Save();
-					                                }
-				                                };
+												{
+													if (SettingsNotSaved)
+													{
+														SaveState();
+														ViewSettingsManager.Instance.SimpleSummaryState.Save();
+													}
+												};
 
 			LoadSavedState();
 		}
@@ -462,7 +464,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			{
 				if (ckFlightDates.Checked && ckCampaign.Checked)
 					return (dateEditFligtDatesStart.EditValue != null ? !dateEditFligtDatesStart.DateTime.Equals(DateTime.MinValue) ? dateEditFligtDatesStart.DateTime.ToString("M/d/yyyy") : string.Empty : string.Empty) +
-					       (dateEditFligtDatesEnd.EditValue != null ? !dateEditFligtDatesEnd.DateTime.Equals(DateTime.MinValue) ? " - " + dateEditFligtDatesEnd.DateTime.ToString("M/d/yyyy") : string.Empty : string.Empty);
+						   (dateEditFligtDatesEnd.EditValue != null ? !dateEditFligtDatesEnd.DateTime.Equals(DateTime.MinValue) ? " - " + dateEditFligtDatesEnd.DateTime.ToString("M/d/yyyy") : string.Empty : string.Empty);
 				else
 					return string.Empty;
 			}
@@ -528,8 +530,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				ViewSettingsManager.Instance.SimpleSummaryState.Save();
 				UpdateSavedFilesState();
 			}
-
-			DashboardPowerPointHelper.Instance.AppendSimpleSummary();
+			AppManager.Instance.ShowFloater(null, DashboardPowerPointHelper.Instance.AppendSimpleSummary);
 		}
 		#endregion
 	}

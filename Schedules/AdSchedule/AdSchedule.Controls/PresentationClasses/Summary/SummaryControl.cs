@@ -436,14 +436,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
 				formProgress.TopMost = true;
-				formProgress.Show();
-				AdSchedulePowerPointHelper.Instance.AppendSummary();
-				formProgress.Close();
-			}
-			using (var formOutput = new FormSlideOutput())
-			{
-				if (formOutput.ShowDialog() != DialogResult.OK)
-					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.Show();
+					AdSchedulePowerPointHelper.Instance.AppendSummary();
+					formProgress.Close();
+				});
 			}
 		}
 
@@ -499,7 +497,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 							Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 						else
 						{
-							Utilities.Instance.ActivatePowerPoint(AdSchedulePowerPointHelper.Instance.PowerPointObject);
 							Utilities.Instance.ActivateMiniBar();
 						}
 					}

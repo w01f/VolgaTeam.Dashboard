@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
@@ -13,6 +14,7 @@ namespace NewBizWiz.OnlineSchedule.Internal
 	{
 		private static FormMain _instance;
 		private Control _currentControl;
+		public event EventHandler<FloaterRequestedEventArgs> FloaterRequested;
 
 		private FormMain()
 		{
@@ -21,6 +23,7 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;
 			Controller.Instance.Ribbon = ribbonControl;
+			Controller.Instance.TabHome = ribbonTabItemScheduleSettings;
 			Controller.Instance.TabScheduleSlides = ribbonTabItemDigitalSlides;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
 
@@ -68,6 +71,7 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			Controller.Instance.Init();
 
 			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
+			Controller.Instance.FloaterRequested += (o, e) => ShowFloater(e);
 
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
@@ -114,8 +118,6 @@ namespace NewBizWiz.OnlineSchedule.Internal
 				return _instance;
 			}
 		}
-
-		public event EventHandler<EventArgs> FloaterRequested;
 
 		public static void RemoveInstance()
 		{
@@ -168,6 +170,12 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			else
 				result = true;
 			return result;
+		}
+
+		public void ShowFloater(FloaterRequestedEventArgs args)
+		{
+			if (FloaterRequested != null)
+				FloaterRequested(this, args);
 		}
 
 		private void FormMain_Shown(object sender, EventArgs e)
@@ -240,8 +248,7 @@ namespace NewBizWiz.OnlineSchedule.Internal
 
 		private void buttonItemFloater_Click(object sender, EventArgs e)
 		{
-			if (FloaterRequested != null)
-				FloaterRequested(this, e);
+			ShowFloater(new FloaterRequestedEventArgs());
 		}
 
 		private void buttonItemHomeExit_Click(object sender, EventArgs e)

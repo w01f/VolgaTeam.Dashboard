@@ -9,7 +9,6 @@ using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.Core.OnlineSchedule;
-using ListManager = NewBizWiz.Core.Common.ListManager;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.Dashboard.TabOnlineForms
@@ -96,6 +95,8 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 			RegistryHelper.MaximizeMainForm = true;
 			OnlineSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormOnlineScheduleResize;
 			OnlineSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormOnlineScheduleResize;
+			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
+			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.AppManager.NewSchedule();
 			if (!FormMain.Instance.IsDead)
 			{
@@ -116,6 +117,8 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 			RegistryHelper.MaximizeMainForm = true;
 			OnlineSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormOnlineScheduleResize;
 			OnlineSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormOnlineScheduleResize;
+			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
+			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
 			if (!FormMain.Instance.IsDead)
 			{

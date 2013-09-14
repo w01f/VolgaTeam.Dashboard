@@ -1348,7 +1348,7 @@ namespace NewBizWiz.Core.Calendar
 
 		public int CalculatedActiveDays
 		{
-			get { return Parent.Days.Where(x => x.ContainsData).Count(); }
+			get { return Parent.Days.Where(x => x.ContainsData || x.HasNotes).Count(); }
 		}
 
 		public int ActiveDays

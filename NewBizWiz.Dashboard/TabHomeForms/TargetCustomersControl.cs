@@ -126,13 +126,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			checkedListBoxControlGeographicResidence.Items.AddRange(ListManager.Instance.TargetCustomersLists.Geographies.ToArray());
 
 			FormMain.Instance.FormClosed += (sender1, e1) =>
-				                                {
-					                                if (SettingsNotSaved)
-					                                {
-						                                SaveState();
-						                                ViewSettingsManager.Instance.TargetCustomersState.Save();
-					                                }
-				                                };
+												{
+													if (SettingsNotSaved)
+													{
+														SaveState();
+														ViewSettingsManager.Instance.TargetCustomersState.Save();
+													}
+												};
 
 			LoadSavedState();
 		}
@@ -217,7 +217,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				ViewSettingsManager.Instance.TargetCustomersState.Save();
 				UpdateSavedFilesState();
 			}
-			DashboardPowerPointHelper.Instance.AppendTargetCustomers();
+			AppManager.Instance.ShowFloater(null, DashboardPowerPointHelper.Instance.AppendTargetCustomers);
 		}
 		#endregion
 	}

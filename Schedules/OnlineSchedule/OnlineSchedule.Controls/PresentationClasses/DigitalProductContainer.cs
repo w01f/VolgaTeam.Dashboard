@@ -10,6 +10,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
+using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
 using NewBizWiz.OnlineSchedule.Controls.Properties;
@@ -208,6 +209,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			e.Handled = true;
 		}
 
+		private void pbOutputHelp_Click(object sender, EventArgs e)
+		{
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink(pbOutputHelp.Text);
+		}
+
 		public void PowerPoint_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
@@ -234,37 +240,27 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					if (result == DialogResult.Cancel)
 						return;
 				}
-				using (var formProgress = new FormProgress())
+				var tabsForOutput = new List<DigitalProductControl>();
+				if (result == DialogResult.Yes)
 				{
-					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-					formProgress.TopMost = true;
-					formProgress.Show();
-					if (result == DialogResult.Yes)
-					{
-						if (xtraTabControlProducts.SelectedTabPage != null)
-							(xtraTabControlProducts.SelectedTabPage as DigitalProductControl).Output();
-					}
-					else if (result == DialogResult.No)
-					{
-						foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
-						{
-							if (item.CheckState == CheckState.Checked)
-							{
-								DigitalProductControl tabPage = _tabPages.Where(x => x.Product.UniqueID.Equals(item.Value)).FirstOrDefault();
-								if (tabPage != null)
-									tabPage.Output();
-							}
-						}
-					}
-					formProgress.Close();
+					if (xtraTabControlProducts.SelectedTabPage != null)
+						tabsForOutput.Add(xtraTabControlProducts.SelectedTabPage as DigitalProductControl);
 				}
-				using (var formOutput = new FormSlideOutput())
+				else if (result == DialogResult.No)
 				{
-					if (formOutput.ShowDialog() != DialogResult.OK)
-						Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
+					foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
+					{
+						if (item.CheckState != CheckState.Checked) continue;
+						var tabPage = _tabPages.FirstOrDefault(x => x.Product.UniqueID.Equals(item.Value));
+						if (tabPage != null)
+							tabsForOutput.Add(tabPage);
+					}
 				}
+				OutputSlides(tabsForOutput);
 			}
 		}
+
+		public abstract void OutputSlides(IEnumerable<DigitalProductControl> tabsForOutput);
 
 		public void Email_Click(object sender, EventArgs e)
 		{
@@ -362,7 +358,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
 					formProgress.TopMost = true;
 					formProgress.Show();
-					string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+					string tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 					if (result == DialogResult.Yes)
 						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, new[] { (xtraTabControlProducts.SelectedTabPage as DigitalProductControl).Product });
 					else if (result == DialogResult.No)
@@ -382,25 +378,30 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 					formProgress.Close();
 					if (File.Exists(tempFileName))
-						using (var formPreview = new FormPreview())
-						{
-							formPreview.Text = "Preview Digital Product";
-							formPreview.PresentationFile = tempFileName;
-							RegistryHelper.MainFormHandle = formPreview.Handle;
-							RegistryHelper.MaximizeMainForm = false;
-							DialogResult previewResult = formPreview.ShowDialog();
-							RegistryHelper.MaximizeMainForm = _formContainer.WindowState == FormWindowState.Maximized;
-							RegistryHelper.MainFormHandle = _formContainer.Handle;
-							if (previewResult != DialogResult.OK)
-								Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
-							else
-							{
-								Utilities.Instance.ActivatePowerPoint(OnlineSchedulePowerPointHelper.Instance.PowerPointObject);
-								Utilities.Instance.ActivateMiniBar();
-							}
-						}
+						ShowPreview(tempFileName);
 				}
 			}
 		}
+
+		public abstract void ShowPreview(string tempFileName);
+
+		#region Picture Box Clicks Habdlers
+		/// <summary>
+		/// Buttonize the PictureBox 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
+		{
+			var pic = (PictureBox)(sender);
+			pic.Top += 1;
+		}
+
+		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
+		{
+			var pic = (PictureBox)(sender);
+			pic.Top -= 1;
+		}
+		#endregion
 	}
 }

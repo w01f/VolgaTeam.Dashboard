@@ -200,13 +200,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			lookUpEditSalesRep.Properties.DataSource = _users;
 
 			FormMain.Instance.FormClosed += (sender1, e1) =>
-				                                {
-					                                if (SettingsNotSaved)
-					                                {
-						                                SaveState();
-						                                ViewSettingsManager.Instance.CoverState.Save();
-					                                }
-				                                };
+												{
+													if (SettingsNotSaved)
+													{
+														SaveState();
+														ViewSettingsManager.Instance.CoverState.Save();
+													}
+												};
 
 			LoadSavedState();
 		}
@@ -363,7 +363,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get
 			{
 				return (memoEditSalesQuote.EditValue == null ? string.Empty : memoEditSalesQuote.EditValue.ToString())
-				       + (char)13 + (textEditSalesQuoteAuthor.EditValue == null ? string.Empty : textEditSalesQuoteAuthor.EditValue.ToString());
+					   + (char)13 + (textEditSalesQuoteAuthor.EditValue == null ? string.Empty : textEditSalesQuoteAuthor.EditValue.ToString());
 			}
 		}
 
@@ -407,9 +407,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 
 			if (checkEditUseEmptyCover.Checked)
-				DashboardPowerPointHelper.Instance.AppendGenericCover(checkEditFirstSlide.Checked);
+				AppManager.Instance.ShowFloater(null, () => DashboardPowerPointHelper.Instance.AppendGenericCover(checkEditFirstSlide.Checked));
 			else
-				DashboardPowerPointHelper.Instance.AppendCover(checkEditFirstSlide.Checked);
+				AppManager.Instance.ShowFloater(null, () => DashboardPowerPointHelper.Instance.AppendCover(checkEditFirstSlide.Checked));
 		}
 		#endregion
 	}

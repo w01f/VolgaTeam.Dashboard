@@ -54,7 +54,12 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms
 		#region Button Clicks
 		private void barButtonItemOutput_ItemClick(object sender, ItemClickEventArgs e)
 		{
-			var result = DialogResult.Cancel;
+			FormBorderStyle = FormBorderStyle.None;
+			Size = new Size(0, 0);
+
+			RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+			RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+
 			if (!string.IsNullOrEmpty(PresentationFile))
 			{
 				using (var formProgress = new FormProgress())
@@ -62,15 +67,14 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms
 					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
 					formProgress.TopMost = true;
 					formProgress.Show();
-					OnlineSchedulePowerPointHelper.Instance.AppendSlidesFromFile(PresentationFile);
-					formProgress.Close();
-					using (var formOutput = new FormSlideOutput())
+					Controller.Instance.ShowFloater(() =>
 					{
-						result = formOutput.ShowDialog();
-					}
+						OnlineSchedulePowerPointHelper.Instance.AppendSlidesFromFile(PresentationFile);
+						formProgress.Close();
+					});
 				}
 			}
-			DialogResult = result;
+			DialogResult = DialogResult.OK;
 		}
 
 		private void barLargeButtonItemHelp_ItemClick(object sender, ItemClickEventArgs e)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -47,6 +46,9 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public abstract DigitalPackageSettings Settings { get; }
 		public abstract IEnumerable<ProductPackageRecord> PackageRecords { get; }
 		public abstract ButtonItem OptionsButtons { get; }
+		public abstract ButtonItem Preview { get; }
+		public abstract ButtonItem PowerPoint { get; }
+		public abstract ButtonItem Email { get; }
 
 		public bool AllowToLeaveControl
 		{
@@ -107,6 +109,24 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			buttonXInfo.Checked = Settings.ShowInfo;
 			buttonXComments.Checked = Settings.ShowComments;
 			buttonXScreenshot.Checked = Settings.ShowScreenshot;
+			switch (Settings.Formula)
+			{
+				case FormulaType.CPM:
+					checkEditFormulaCPM.Checked = true;
+					checkEditFormulaInvestment.Checked = false;
+					checkEditFormulaImpressions.Checked = false;
+					break;
+				case FormulaType.Investment:
+					checkEditFormulaCPM.Checked = false;
+					checkEditFormulaInvestment.Checked = true;
+					checkEditFormulaImpressions.Checked = false;
+					break;
+				case FormulaType.Impressions:
+					checkEditFormulaCPM.Checked = false;
+					checkEditFormulaInvestment.Checked = false;
+					checkEditFormulaImpressions.Checked = true;
+					break;
+			}
 		}
 
 		private void SaveSettings()
@@ -122,11 +142,26 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			Settings.ShowInfo = buttonXInfo.Checked;
 			Settings.ShowComments = buttonXComments.Checked;
 			Settings.ShowScreenshot = buttonXScreenshot.Checked;
+			if (checkEditFormulaCPM.Checked)
+				Settings.Formula = FormulaType.CPM;
+			else if (checkEditFormulaInvestment.Checked)
+				Settings.Formula = FormulaType.Investment;
+			else if (checkEditFormulaImpressions.Checked)
+				Settings.Formula = FormulaType.Impressions;
 		}
 
 		private void UpdateControls()
 		{
+			advBandedGridView.PostEditor();
 			splitContainerControl.PanelVisibility = Settings.ShowOptions ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
+			pnFormula.Enabled = Settings.ShowInvestment && Settings.ShowImpressions && Settings.ShowCPM;
+			UpdateGridColumns();
+			UpdateOutputState();
+			advBandedGridView.RefreshData();
+		}
+
+		private void UpdateGridColumns()
+		{
 			if (Settings.ShowCategory || Settings.ShowGroup || Settings.ShowProduct)
 			{
 				if (Settings.ShowCategory && Settings.ShowGroup && Settings.ShowProduct)
@@ -274,6 +309,16 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			else
 				gridBandRate.Visible = false;
 			gridBandInvestment.Visible = Settings.ShowInvestment;
+			gridBandFormula.Visible = Settings.ShowInvestment && Settings.ShowImpressions && Settings.ShowCPM;
+		}
+
+		private void UpdateOutputState()
+		{
+			var enableOutput = Settings.ShowCategory || Settings.ShowGroup || Settings.ShowProduct || Settings.ShowComments || Settings.ShowInfo || Settings.ShowInvestment || Settings.ShowImpressions || Settings.ShowCPM || Settings.ShowRate;
+			PowerPoint.Enabled = enableOutput;
+			Email.Enabled = enableOutput;
+			Preview.Enabled = enableOutput;
+			gridControl.Visible = enableOutput;
 		}
 
 		public int RowsPerSlide
@@ -338,30 +383,30 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 						if (recordsCount > 1)
 						{
 							var investments = new List<string>();
-							if (Settings.ShowImpressions && packageRecord.Impressions.HasValue)
-								investments.Add(String.Format("Impressions: {0}", packageRecord.Impressions.Value.ToString("#,##0")));
-							if (Settings.ShowCPM && packageRecord.CPM.HasValue)
-								investments.Add(String.Format("CPM: {0}", packageRecord.CPM.Value.ToString("$#,###.00")));
+							if (Settings.ShowImpressions && packageRecord.ImpressionsCalculated.HasValue)
+								investments.Add(String.Format("Impressions: {0}", packageRecord.ImpressionsCalculated.Value.ToString("#,##0")));
+							if (Settings.ShowCPM && packageRecord.CPMCalculated.HasValue)
+								investments.Add(String.Format("CPM: {0}", packageRecord.CPMCalculated.Value.ToString("$#,###.00")));
 							if (Settings.ShowRate && packageRecord.Rate.HasValue)
 								investments.Add(String.Format("Rate: {0}", packageRecord.Rate.Value.ToString("$#,###.00")));
-							if (Settings.ShowInvestment && packageRecord.Investment.HasValue)
-								investments.Add(String.Format("Investment: {0}", packageRecord.Investment.Value.ToString("$#,###.00")));
+							if (Settings.ShowInvestment && packageRecord.InvestmentCalculated.HasValue)
+								investments.Add(String.Format("Investment: {0}", packageRecord.InvestmentCalculated.Value.ToString("$#,###.00")));
 
 							slideRows.Add(String.Format("Impressions{0},   CPM{0},   RATE{0},   Investment{0}", j + 1), investments.Any() ? String.Join(",   ", investments.ToArray()) : "DeleteColumn");
 						}
 						else
 						{
 							var impressions = new List<string>();
-							if (Settings.ShowImpressions && packageRecord.Impressions.HasValue)
-								impressions.Add(String.Format("Impressions: {0}", packageRecord.Impressions.Value.ToString("#,##0")));
-							if (Settings.ShowCPM && packageRecord.CPM.HasValue)
-								impressions.Add(String.Format("CPM: {0}", packageRecord.CPM.Value.ToString("$#,###.00")));
+							if (Settings.ShowImpressions && packageRecord.ImpressionsCalculated.HasValue)
+								impressions.Add(String.Format("Impressions: {0}", packageRecord.ImpressionsCalculated.Value.ToString("#,##0")));
+							if (Settings.ShowCPM && packageRecord.CPMCalculated.HasValue)
+								impressions.Add(String.Format("CPM: {0}", packageRecord.CPMCalculated.Value.ToString("$#,###.00")));
 							if (Settings.ShowRate && packageRecord.Rate.HasValue)
 								impressions.Add(String.Format("Rate: {0}", packageRecord.Rate.Value.ToString("$#,###.00")));
 
 							var investments = new List<string>();
-							if (Settings.ShowInvestment && packageRecord.Investment.HasValue)
-								investments.Add(String.Format("Investment: {0}", packageRecord.Investment.Value.ToString("$#,###.00")));
+							if (Settings.ShowInvestment && packageRecord.InvestmentCalculated.HasValue)
+								investments.Add(String.Format("Investment: {0}", packageRecord.InvestmentCalculated.Value.ToString("$#,###.00")));
 
 							if (investments.Any())
 							{
@@ -404,10 +449,39 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
 		{
+			advBandedGridView.PostEditor();
 			if (Utilities.Instance.ShowWarningQuestion("Do you want to reset your Categories and Products to the original selections on the HOME Tab") == DialogResult.Yes)
+			{
+				AllowApplyValues = false;
+
+				Settings.ResetToDefault();
+				LoadSettings();
+				UpdateControls();
+
 				foreach (var packageRecord in PackageRecords)
 					packageRecord.ResetToDefault();
+				advBandedGridView.RefreshData();
+
+				SettingsNotSaved = true;
+
+				AllowApplyValues = true;
+			}
 			e.Handled = true;
+		}
+
+		private void advBandedGridView_ShowingEditor(object sender, CancelEventArgs e)
+		{
+			var focussedRecord = advBandedGridView.GetFocusedRow() as ProductPackageRecord;
+			e.Cancel = focussedRecord != null && focussedRecord.UseFormula && (Settings.ShowInvestment && Settings.ShowImpressions && Settings.ShowCPM) &&
+					   ((advBandedGridView.FocusedColumn == bandedGridColumnInvestment && Settings.Formula == FormulaType.Investment) ||
+					   (advBandedGridView.FocusedColumn == bandedGridColumnImpressions && Settings.Formula == FormulaType.Impressions) ||
+					   (advBandedGridView.FocusedColumn == bandedGridColumnCPM && Settings.Formula == FormulaType.CPM));
+		}
+
+		private void repositoryItemCheckEditFormula_CheckedChanged(object sender, EventArgs e)
+		{
+			advBandedGridView.PostEditor();
+			advBandedGridView.RefreshData();
 		}
 
 		public void Save_Click(object sender, EventArgs e)
@@ -439,24 +513,19 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public abstract void Help_Click(object sender, EventArgs e);
 
+		private void pbDisabledOutput_Click(object sender, EventArgs e)
+		{
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink("pkgdisabled");
+		}
+
 		public void PowerPoint_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
 			PopulateReplacementsList();
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				formProgress.Show();
-				OnlineSchedulePowerPointHelper.Instance.AppendWebPackage(this);
-				formProgress.Close();
-			}
-			using (var formOutput = new FormSlideOutput())
-			{
-				if (formOutput.ShowDialog() != DialogResult.OK)
-					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
-			}
+			OutputSlides();
 		}
+
+		public abstract void OutputSlides();
 
 		public void Email_Click(object sender, EventArgs e)
 		{
@@ -499,24 +568,29 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				formProgress.Close();
 				if (File.Exists(tempFileName))
-					using (var formPreview = new FormPreview())
-					{
-						formPreview.Text = "Preview Digital Package";
-						formPreview.PresentationFile = tempFileName;
-						RegistryHelper.MainFormHandle = formPreview.Handle;
-						RegistryHelper.MaximizeMainForm = false;
-						DialogResult previewResult = formPreview.ShowDialog();
-						RegistryHelper.MaximizeMainForm = _formContainer.WindowState == FormWindowState.Maximized;
-						RegistryHelper.MainFormHandle = _formContainer.Handle;
-						if (previewResult != DialogResult.OK)
-							Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
-						else
-						{
-							Utilities.Instance.ActivatePowerPoint(OnlineSchedulePowerPointHelper.Instance.PowerPointObject);
-							Utilities.Instance.ActivateMiniBar();
-						}
-					}
+					ShowPreview(tempFileName);
 			}
 		}
+
+		public abstract void ShowPreview(string tempFileName);
+
+		#region Picture Box Clicks Habdlers
+		/// <summary>
+		/// Buttonize the PictureBox 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
+		{
+			var pic = (PictureBox)(sender);
+			pic.Top += 1;
+		}
+
+		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
+		{
+			var pic = (PictureBox)(sender);
+			pic.Top -= 1;
+		}
+		#endregion
 	}
 }

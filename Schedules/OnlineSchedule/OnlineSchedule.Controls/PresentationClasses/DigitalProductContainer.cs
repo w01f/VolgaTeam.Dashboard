@@ -67,10 +67,12 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public abstract ButtonItem Preview { get; }
 		public abstract ButtonItem PowerPoint { get; }
 		public abstract ButtonItem Email { get; }
+		public abstract ButtonItem Theme { get; }
 		#endregion
 
 		public bool SettingsNotSaved { get; set; }
 		public bool AllowApplyValues { get; set; }
+		public abstract Theme SelectedTheme { get; }
 
 		protected void AssignCloseActiveEditorsonOutSideClick(Control control)
 		{
@@ -295,7 +297,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					formProgress.Show();
 					string tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 					if (result == DialogResult.Yes)
-						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, new[] { (xtraTabControlProducts.SelectedTabPage as DigitalProductControl).Product });
+						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, new[] { (xtraTabControlProducts.SelectedTabPage as DigitalProductControl).Product }, SelectedTheme);
 					else if (result == DialogResult.No)
 					{
 						var outputProducts = new List<DigitalProduct>();
@@ -308,7 +310,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 									outputProducts.Add(tabPage.Product);
 							}
 						}
-						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, outputProducts.ToArray());
+						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, outputProducts.ToArray(), SelectedTheme);
 					}
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 					formProgress.Close();
@@ -360,7 +362,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					formProgress.Show();
 					string tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 					if (result == DialogResult.Yes)
-						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, new[] { (xtraTabControlProducts.SelectedTabPage as DigitalProductControl).Product });
+						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, new[] { (xtraTabControlProducts.SelectedTabPage as DigitalProductControl).Product }, SelectedTheme);
 					else if (result == DialogResult.No)
 					{
 						var outputProducts = new List<DigitalProduct>();
@@ -373,7 +375,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 									outputProducts.Add(tabPage.Product);
 							}
 						}
-						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, outputProducts.ToArray());
+						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, outputProducts.ToArray(), SelectedTheme);
 					}
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 					formProgress.Close();

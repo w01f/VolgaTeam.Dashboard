@@ -292,6 +292,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
+		public Theme SelectedTheme
+		{
+			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(PrintProduct.Parent.ThemeName) || String.IsNullOrEmpty(PrintProduct.Parent.ThemeName)); }
+		}
+
 		public string Header
 		{
 			get

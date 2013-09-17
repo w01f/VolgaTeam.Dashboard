@@ -78,6 +78,9 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 									}
 								}
 							}
+							var selectedTheme = digitalPackage.SelectedTheme;
+							if (selectedTheme != null)
+								presentation.ApplyTheme(selectedTheme.ThemeFilePath);
 							AppendSlide(presentation, -1, destinationPresentation);
 							presentation.Close();
 						}

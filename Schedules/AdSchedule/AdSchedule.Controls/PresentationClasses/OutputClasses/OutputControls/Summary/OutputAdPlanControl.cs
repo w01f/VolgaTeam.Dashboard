@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
 using DevComponents.DotNetBar;
+using DevExpress.XtraBars.Ribbon.Accessible;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
@@ -50,6 +51,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			_allowToSave = false;
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			laAdvertiser.Text = LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
+			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.AdPlanTheme, LocalSchedule.ThemeName, (t =>
+			{
+				LocalSchedule.ThemeName = t.Name;
+				SettingsNotSaved = true;
+			}));
 			if (!quickLoad)
 			{
 				checkEditLessSlides.Checked = !LocalSchedule.ViewSettings.AdPlanViewSettings.MoreSlides;
@@ -206,6 +212,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 						return "adplan5.ppt";
 				}
 			}
+		}
+
+		public Theme SelectedTheme
+		{
+			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
 		}
 
 		public string Date

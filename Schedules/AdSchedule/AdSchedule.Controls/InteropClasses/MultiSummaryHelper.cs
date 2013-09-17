@@ -152,6 +152,9 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 										}
 									}
 								}
+								var selectedTheme = Controller.Instance.Summaries.MultiSummary.SelectedTheme;
+								if (selectedTheme != null)
+									presentation.ApplyTheme(selectedTheme.ThemeFilePath);
 								AppendSlide(presentation, -1, destinationPresentation);
 								presentation.Close();
 							}

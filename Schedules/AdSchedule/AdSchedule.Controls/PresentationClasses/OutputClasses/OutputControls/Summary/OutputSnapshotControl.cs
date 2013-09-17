@@ -50,6 +50,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.SnapshotDigitalLegend.Image = Controller.Instance.SnapshotDigitalLegend.Enabled && !LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.SnapshotTheme, LocalSchedule.ThemeName, (t =>
+			{
+				LocalSchedule.ThemeName = t.Name;
+				SettingsNotSaved = true;
+			}));
 			if (!quickLoad)
 			{
 				_allowToSave = false;
@@ -416,6 +421,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 						break;
 				}
 			return String.Format(template, templateIndex);
+		}
+
+		public Theme SelectedTheme
+		{
+			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
 		}
 
 		public string Header

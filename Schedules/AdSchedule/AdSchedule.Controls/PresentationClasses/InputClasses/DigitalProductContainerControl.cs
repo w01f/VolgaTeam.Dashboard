@@ -8,7 +8,6 @@ using DevExpress.XtraEditors;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.Core.Common;
-using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 using FormNewSchedule = NewBizWiz.AdSchedule.Controls.ToolForms.FormNewSchedule;
 using FormPreview = NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms.FormPreview;
@@ -47,7 +46,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-
+			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.DigitalProductTheme, LocalSchedule.ThemeName, (t =>
+			{
+				LocalSchedule.ThemeName = t.Name;
+				SettingsNotSaved = true;
+			}));
 			if (!quickLoad)
 			{
 				comboBoxEditSlideHeader.Properties.Items.Clear();
@@ -92,7 +95,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				LoadProduct();
 				Application.DoEvents();
 				xtraTabControlProducts.SelectedPageChanged += xtraTabControlProducts_SelectedPageChanged;
-				;
+
 				AllowApplyValues = true;
 			}
 			else
@@ -111,6 +114,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				}
 			}
 			SettingsNotSaved = false;
+		}
+
+		public override Theme SelectedTheme
+		{
+			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
 		}
 
 		protected override bool SaveSchedule(string scheduleName = "")
@@ -212,6 +220,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public override ButtonItem Email
 		{
 			get { return Controller.Instance.DigitalProductEmail; }
+		}
+		public override ButtonItem Theme
+		{
+			get { return Controller.Instance.DigitalProductTheme; }
 		}
 	}
 }

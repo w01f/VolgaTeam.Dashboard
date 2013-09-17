@@ -42,6 +42,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			get { return Controller.Instance.DigitalSlidesEmail; }
 		}
 
+		public override ButtonItem Theme
+		{
+			get { return Controller.Instance.DigitalSlidesTheme; }
+		}
+
 		public bool AllowToLeaveControl
 		{
 			get
@@ -64,7 +69,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-
+			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.DigitalSlidesTheme, LocalSchedule.ThemeName, (t =>
+			{
+				LocalSchedule.ThemeName = t.Name;
+				SettingsNotSaved = true;
+			}));
 			if (!quickLoad)
 			{
 				comboBoxEditSlideHeader.Properties.Items.Clear();
@@ -127,6 +136,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 
 			SettingsNotSaved = false;
+		}
+
+		public override Theme SelectedTheme
+		{
+			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
 		}
 
 		protected override bool SaveSchedule(string scheduleName = "")

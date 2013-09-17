@@ -26,7 +26,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 						int slidesCount = Controller.Instance.Summaries.AdPlan.OutputReplacementsLists.Count;
 						var recordsPeSlide = Controller.Instance.Summaries.AdPlan.RecordsPerSlide;
 						var productsCount = pagesForOutput.Count;
-						for (var k = 0; k < slidesCount; k ++)
+						for (var k = 0; k < slidesCount; k++)
 						{
 							var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.AdPlanTemlatesFolderPath, Controller.Instance.Summaries.AdPlan.TemplateFileName);
 							if (!File.Exists(presentationTemplatePath)) continue;
@@ -80,6 +80,9 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 									}
 								}
 							}
+							var selectedTheme = Controller.Instance.Summaries.AdPlan.SelectedTheme;
+							if (selectedTheme != null)
+								presentation.ApplyTheme(selectedTheme.ThemeFilePath);
 							AppendSlide(presentation, -1, destinationPresentation);
 							presentation.Close();
 						}

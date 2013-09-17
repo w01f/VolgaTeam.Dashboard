@@ -14,6 +14,12 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 	public class OnlineWebPackageControl : WebPackageControl
 	{
 		public Schedule LocalSchedule { get; set; }
+
+		public override Theme SelectedTheme
+		{
+			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
+		}
+
 		public override ISchedule Schedule { get { return LocalSchedule; } }
 
 		public override DigitalPackageSettings Settings
@@ -44,6 +50,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			get { return Controller.Instance.DigitalPackageEmail; }
 		}
 
+		public override ButtonItem Theme
+		{
+			get { return Controller.Instance.DigitalPackageTheme; }
+		}
+
 		public OnlineWebPackageControl(Form form)
 			: base(form)
 		{
@@ -57,6 +68,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public override void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.DigitalPackageTheme, LocalSchedule.ThemeName, (t =>
+			{
+				LocalSchedule.ThemeName = t.Name;
+				SettingsNotSaved = true;
+			}));
 			base.LoadSchedule(quickLoad);
 		}
 

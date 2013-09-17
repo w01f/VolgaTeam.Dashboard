@@ -212,9 +212,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				ViewSettingsManager.Instance.LeadoffStatementState.Save();
 				UpdateSavedFilesState();
 			}
-			AppManager.Instance.MinimizeMainForm();
-			DashboardPowerPointHelper.Instance.AppendLeadoffStatements();
-			AppManager.Instance.MinimizeMainForm();
+			AppManager.Instance.ShowFloater(null, DashboardPowerPointHelper.Instance.AppendLeadoffStatements);
 		}
 		#endregion
 	}

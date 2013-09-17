@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTab;
+using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.Core.AdSchedule;
+using NewBizWiz.Core.Common;
+using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
@@ -482,7 +486,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get
 			{
 				if (!PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Enabled) return String.Empty;
-				if (!(PrintProduct.Index ==  1 || !PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.OutputOnlyOnce)) return String.Empty;
+				if (!(PrintProduct.Index == 1 || !PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.OutputOnlyOnce)) return String.Empty;
 				if (!PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.AllowEdit)
 					return String.Format("Digital Product Info: {0}", PrintProduct.Parent.GetDigitalInfo(PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.RequestOptions));
 				if (!String.IsNullOrEmpty(PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Info))
@@ -575,6 +579,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 				return String.Format("{0}{1}", index, PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Enabled && (PrintProduct.Index == 1 || !PrintProduct.Parent.ViewSettings.BasicOverviewViewSettings.DigitalLegend.OutputOnlyOnce) ? "d" : String.Empty);
 			}
+		}
+
+		public Theme SelectedTheme
+		{
+			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(PrintProduct.Parent.ThemeName) || String.IsNullOrEmpty(PrintProduct.Parent.ThemeName)); }
 		}
 
 		public void PrintOutput()

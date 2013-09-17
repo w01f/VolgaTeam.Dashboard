@@ -56,6 +56,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.DigitalSlidesPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalSlidesEmail = buttonItemDigitalScheduleEmail;
 			Controller.Instance.DigitalSlidesPowerPoint = buttonItemDigitalSchedulePowerPoint;
+			Controller.Instance.DigitalSlidesTheme = buttonItemDigitalScheduleTheme;
 			Controller.Instance.DigitalSlidesOptions = buttonItemDigitalScheduleOptions;
 			#endregion
 
@@ -66,6 +67,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.DigitalPackagePreview = buttonItemDigitalPackagePreview;
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
+			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
 			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageOptions;
 			#endregion
 			#endregion

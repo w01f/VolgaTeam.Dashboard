@@ -76,6 +76,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			checkEditPresentationDate.Text = string.Format("Presentation Date: {0}", LocalSchedule.PresentationDate.ToString("MM/dd/yyyy"));
 			checkEditFlightDates.Text = string.Format("Campaign Dates: {0}", LocalSchedule.FlightDates);
 			laSignatureLineTag.Text = LocalSchedule.DecisionMaker;
+			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.SummaryTheme, LocalSchedule.ThemeName, (t =>
+			{
+				LocalSchedule.ThemeName = t.Name;
+				SettingsNotSaved = true;
+			}));
 			if (!quickLoad)
 			{
 				_allowToSave = false;
@@ -327,6 +332,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 				Controller.Instance.SummaryPreview.Enabled = false;
 				Controller.Instance.SummaryEmail.Enabled = false;
 				Controller.Instance.SummaryPowerPoint.Enabled = false;
+				Controller.Instance.SummaryTheme.Enabled = false;
 			}
 			else if (e.Page == xtraTabPageOutput)
 			{
@@ -334,6 +340,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 				Controller.Instance.SummaryPreview.Enabled = true;
 				Controller.Instance.SummaryEmail.Enabled = true;
 				Controller.Instance.SummaryPowerPoint.Enabled = true;
+				Controller.Instance.SummaryTheme.Enabled = true;
 				UpdateOutputItems();
 			}
 		}
@@ -342,6 +349,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		public int ItemsCount
 		{
 			get { return _inputControls.Count(it => it.Complited); }
+		}
+
+		public Theme SelectedTheme
+		{
+			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
 		}
 
 		public string Title

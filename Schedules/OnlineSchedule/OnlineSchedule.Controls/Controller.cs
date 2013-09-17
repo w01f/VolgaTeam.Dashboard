@@ -182,6 +182,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		public ButtonItem DigitalSlidesPreview { get; set; }
 		public ButtonItem DigitalSlidesEmail { get; set; }
 		public ButtonItem DigitalSlidesPowerPoint { get; set; }
+		public ButtonItem DigitalSlidesTheme { get; set; }
 		#endregion
 
 		#region Web Package
@@ -191,6 +192,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		public ButtonItem DigitalPackagePreview { get; set; }
 		public ButtonItem DigitalPackageEmail { get; set; }
 		public ButtonItem DigitalPackagePowerPoint { get; set; }
+		public ButtonItem DigitalPackageTheme { get; set; }
 		public ButtonItem DigitalPackageOptions { get; set; }
 		#endregion
 		#endregion

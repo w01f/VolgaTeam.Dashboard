@@ -49,6 +49,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.MultiSummaryDigitalLegend.Image = Controller.Instance.MultiSummaryDigitalLegend.Enabled && !LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.MultiSummaryTheme, LocalSchedule.ThemeName, (t =>
+			{
+				LocalSchedule.ThemeName = t.Name;
+				SettingsNotSaved = true;
+			}));
 			if (!quickLoad)
 			{
 				checkEditDate.Text = LocalSchedule.PresentationDateObject != null ? LocalSchedule.PresentationDate.ToString("MM/dd/yy") : string.Empty;
@@ -199,6 +204,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public int OutputFileIndex
 		{
 			get { return rbOnePerSlide.Checked ? 1 : 2; }
+		}
+
+		public Theme SelectedTheme
+		{
+			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
 		}
 
 		public string Header

@@ -771,6 +771,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				_container.Preview.Enabled = !string.IsNullOrEmpty(templateName);
 			_container.PowerPoint.Enabled = !string.IsNullOrEmpty(templateName);
 			_container.Email.Enabled = !string.IsNullOrEmpty(templateName);
+			_container.Theme.Enabled = !string.IsNullOrEmpty(templateName);
 			if (!string.IsNullOrEmpty(templateName))
 			{
 				_container.labelControlOutputStatus.ForeColor = Color.Green;
@@ -790,7 +791,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public void Output()
 		{
 			SaveValues();
-			OnlineSchedulePowerPointHelper.Instance.AppendOneSheet(Product);
+			OnlineSchedulePowerPointHelper.Instance.AppendOneSheet(Product, _container.SelectedTheme);
 		}
 		#endregion
 	}

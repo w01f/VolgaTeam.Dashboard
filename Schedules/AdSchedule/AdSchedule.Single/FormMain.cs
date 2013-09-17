@@ -42,9 +42,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
 
 			#region Command Controls
-
 			#region Home
-
 			Controller.Instance.HomePanel = ribbonPanelScheduleSettings;
 			Controller.Instance.HomeHelp = buttonItemHomeHelp;
 			Controller.Instance.HomeSave = buttonItemHomeSave;
@@ -67,11 +65,9 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.HomeFlightDatesStart = dateEditFlightDatesStart;
 			Controller.Instance.HomeFlightDatesEnd = dateEditFlightDatesEnd;
 			Controller.Instance.HomeWeeks = labelItemHomeFlightDatesWeeks;
-
 			#endregion
 
 			#region Print Product
-
 			Controller.Instance.PrintProductHelp = buttonItemPrintScheduleHelp;
 			Controller.Instance.PrintProductSave = buttonItemPrintScheduleSave;
 			Controller.Instance.PrintProductSaveAs = buttonItemPrintScheduleSaveAs;
@@ -111,59 +107,53 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.PrintProductCostPerInch = spinEditCostPerInch;
 			Controller.Instance.PrintProductAdSizeRibbonBar = ribbonBarPrintScheduleAdSize;
 			Controller.Instance.PrintProductPanel = ribbonPanelPrintSchedule;
-
 			#endregion
 
 			#region Digital Product
-
 			Controller.Instance.DigitalProductOptions = buttonItemDigitalScheduleOptions;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalProductEmail = buttonItemDigitalScheduleEmail;
+			Controller.Instance.DigitalProductTheme = buttonItemDigitalScheduleTheme;
 			Controller.Instance.DigitalProductSave = buttonItemDigitalScheduleSave;
 			Controller.Instance.DigitalProductSaveAs = buttonItemDigitalScheduleSaveAs;
 			Controller.Instance.DigitalProductHelp = buttonItemDigitalScheduleHelp;
-
 			#endregion
 
 			#region Digital Package
-
 			Controller.Instance.DigitalPackageHelp = buttonItemDigitalPackageHelp;
 			Controller.Instance.DigitalPackageSave = buttonItemDigitalPackageSave;
 			Controller.Instance.DigitalPackageSaveAs = buttonItemDigitalPackageSaveAs;
 			Controller.Instance.DigitalPackagePreview = buttonItemDigitalPackagePreview;
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
+			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
 			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageOptions;
-
 			#endregion
 
 			#region Basic Overview
-
 			Controller.Instance.BasicOverviewHelp = buttonItemOverviewHelp;
 			Controller.Instance.BasicOverviewSave = buttonItemOverviewSave;
 			Controller.Instance.BasicOverviewSaveAs = buttonItemOverviewSaveAs;
 			Controller.Instance.BasicOverviewPreview = buttonItemOverviewPreview;
 			Controller.Instance.BasicOverviewEmail = buttonItemOverviewEmail;
 			Controller.Instance.BasicOverviewPowerPoint = buttonItemOverviewPowerPoint;
+			Controller.Instance.BasicOverviewTheme = buttonItemOverviewTheme;
 			Controller.Instance.BasicOverviewDigitalLegend = buttonItemOverviewDigital;
-
 			#endregion
 
 			#region Multi Summary
-
 			Controller.Instance.MultiSummaryHelp = buttonItemMultiSummaryHelp;
 			Controller.Instance.MultiSummarySave = buttonItemMultiSummarySave;
 			Controller.Instance.MultiSummarySaveAs = buttonItemMultiSummarySaveAs;
 			Controller.Instance.MultiSummaryPreview = buttonItemMultiSummaryPreview;
 			Controller.Instance.MultiSummaryEmail = buttonItemMultiSummaryEmail;
 			Controller.Instance.MultiSummaryPowerPoint = buttonItemMultiSummaryPowerPoint;
+			Controller.Instance.MultiSummaryTheme = buttonItemMultiSummaryTheme;
 			Controller.Instance.MultiSummaryDigitalLegend = buttonItemMultiSummaryDigital;
-
 			#endregion
 
 			#region Snapshot
-
 			Controller.Instance.SnapshotOptions = buttonItemSnapshotOptions;
 			Controller.Instance.SnapshotHelp = buttonItemSnapshotHelp;
 			Controller.Instance.SnapshotSave = buttonItemSnapshotSave;
@@ -171,23 +161,21 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.SnapshotPreview = buttonItemSnapshotPreview;
 			Controller.Instance.SnapshotEmail = buttonItemSnapshotEmail;
 			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
+			Controller.Instance.SnapshotTheme = buttonItemSnapshotTheme;
 			Controller.Instance.SnapshotDigitalLegend = buttonItemSnapshotDigital;
-
 			#endregion
 
 			#region AdPlan
-
 			Controller.Instance.AdPlanHelp = buttonItemAdPlanHelp;
 			Controller.Instance.AdPlanSave = buttonItemAdPlanSave;
 			Controller.Instance.AdPlanSaveAs = buttonItemAdPlanSaveAs;
 			Controller.Instance.AdPlanPreview = buttonItemAdPlanPreview;
 			Controller.Instance.AdPlanEmail = buttonItemAdPlanEmail;
 			Controller.Instance.AdPlanPowerPoint = buttonItemAdPlanPowerPoint;
-
+			Controller.Instance.AdPlanTheme = buttonItemAdPlanTheme;
 			#endregion
 
 			#region Detailed Grid
-
 			Controller.Instance.DetailedGridOptions = buttonItemDetailedGridDetails;
 			Controller.Instance.DetailedGridHelp = buttonItemDetailedGridHelp;
 			Controller.Instance.DetailedGridSave = buttonItemDetailedGridSave;
@@ -195,12 +183,11 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.DetailedGridPreview = buttonItemDetailedGridPreview;
 			Controller.Instance.DetailedGridEmail = buttonItemDetailedGridEmail;
 			Controller.Instance.DetailedGridPowerPoint = buttonItemDetailedGridPowerPoint;
+			Controller.Instance.DetailedGridTheme = buttonItemDetailedGridTheme;
 			Controller.Instance.DetailedGridDigitalLegend = buttonItemDetailedGridDigital;
-
 			#endregion
 
 			#region Multi Grid
-
 			Controller.Instance.MultiGridOptions = buttonItemMultiGridDetails;
 			Controller.Instance.MultiGridHelp = buttonItemMultiGridHelp;
 			Controller.Instance.MultiGridSave = buttonItemMultiGridSave;
@@ -208,8 +195,8 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.MultiGridPreview = buttonItemMultiGridPreview;
 			Controller.Instance.MultiGridEmail = buttonItemMultiGridEmail;
 			Controller.Instance.MultiGridPowerPoint = buttonItemMultiGridPowerPoint;
+			Controller.Instance.MultiGridTheme = buttonItemMultiGridTheme;
 			Controller.Instance.MultiGridDigitalLegend = buttonItemMultiGridDigital;
-
 			#endregion
 
 			#region Calendar
@@ -227,7 +214,6 @@ namespace NewBizWiz.AdSchedule.Single
 			#endregion
 
 			#region Summary
-
 			Controller.Instance.SummaryAddItem = buttonItemSummaryAdd;
 			Controller.Instance.SummaryHelp = buttonItemSummaryHelp;
 			Controller.Instance.SummarySave = buttonItemSummarySave;
@@ -235,16 +221,13 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.SummaryPreview = buttonItemSummaryPreview;
 			Controller.Instance.SummaryEmail = buttonItemSummaryEmail;
 			Controller.Instance.SummaryPowerPoint = buttonItemSummaryPowerPoint;
-
+			Controller.Instance.SummaryTheme = buttonItemSummaryTheme;
 			#endregion
 
 			#region Rate Card
-
 			Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
 			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
-
 			#endregion
-
 			#endregion
 
 			Controller.Instance.Init();
@@ -332,7 +315,7 @@ namespace NewBizWiz.AdSchedule.Single
 		private void UpdateFormTitle()
 		{
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("SellerPoint Media Schedules - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
+				Text = String.Format("SellerPoint Media Schedules - {0} ({1})", SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
 		}
 
 		private bool AllowToLeaveCurrentControl()
@@ -405,7 +388,7 @@ namespace NewBizWiz.AdSchedule.Single
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("SellerPoint Media Schedules - {0} - {1}", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size);
+				Text = String.Format("SellerPoint Media Schedules - {0}", SettingsManager.Instance.Size);
 
 			if (File.Exists(Core.AdSchedule.SettingsManager.Instance.IconPath))
 				Icon = new Icon(Core.AdSchedule.SettingsManager.Instance.IconPath);

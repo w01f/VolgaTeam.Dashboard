@@ -11,6 +11,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		{
 			HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\OnlineHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			IconPath = Path.Combine(Path.GetDirectoryName(typeof(SettingsManager).Assembly.Location), "icon.ico");
+			ThemeCollectionPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides\SellerPointThemes", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			SaveFolder = Path.Combine(string.Format(@"{0}\newlocaldirect.com\sync\Outgoing", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)), "AppID-" + Common.SettingsManager.Instance.AppID.ToString(), @"Saved_Schedules\Online Schedule Builder");
 			if (!Directory.Exists(SaveFolder))
 				Directory.CreateDirectory(SaveFolder);
@@ -19,6 +20,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public string SaveFolder { get; set; }
 		public string HelpLinksPath { get; set; }
 		public string IconPath { get; set; }
+		public string ThemeCollectionPath { get; set; }
 
 		public static SettingsManager Instance
 		{

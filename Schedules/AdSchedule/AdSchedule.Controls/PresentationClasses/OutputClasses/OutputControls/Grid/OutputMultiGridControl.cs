@@ -109,6 +109,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.MultiGridDigitalLegend.Image = Controller.Instance.MultiGridDigitalLegend.Enabled && !LocalSchedule.ViewSettings.MultiGridViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.MultiGridTheme, LocalSchedule.ThemeName, (t =>
+			{
+				LocalSchedule.ThemeName = t.Name;
+				SettingsNotSaved = true;
+			}));
 			if (!quickLoad)
 			{
 				AllowToSave = false;
@@ -784,6 +789,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
+		public Theme SelectedTheme
+		{
+			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
+		}
+
 		public string Header
 		{
 			get
@@ -806,7 +816,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				return result;
 			}
 		}
-
 
 		public string BusinessName
 		{

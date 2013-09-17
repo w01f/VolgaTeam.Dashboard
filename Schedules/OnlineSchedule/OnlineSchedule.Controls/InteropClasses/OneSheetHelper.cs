@@ -17,7 +17,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 {
 	public partial class OnlineSchedulePowerPointHelper
 	{
-		public void AppendOneSheet(DigitalProduct source, Presentation destinationPresentation = null)
+		public void AppendOneSheet(DigitalProduct source, Theme theme, Presentation destinationPresentation = null)
 		{
 			if (Directory.Exists(BusinessWrapper.Instance.OutputManager.OneSheetsTemplatesFolderPath))
 			{
@@ -29,7 +29,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 						var thread = new Thread(delegate()
 						{
 							MessageFilter.Register();
-							Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+							var presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 							foreach (Slide slide in presentation.Slides)
 							{
 								foreach (Shape shape in slide.Shapes)
@@ -114,6 +114,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 									}
 								}
 							}
+							if (theme != null)
+								presentation.ApplyTheme(theme.ThemeFilePath);
 							AppendSlide(presentation, -1, destinationPresentation);
 							presentation.Close();
 						});
@@ -131,7 +133,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 			}
 		}
 
-		public void PrepareScheduleEmail(string fileName, DigitalProduct[] products)
+		public void PrepareScheduleEmail(string fileName, DigitalProduct[] products, Theme theme)
 		{
 			try
 			{
@@ -151,7 +153,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 				}
 				Utilities.Instance.ReleaseComObject(presentations);
 				foreach (DigitalProduct product in products)
-					AppendOneSheet(product, presentation);
+					AppendOneSheet(product, theme, presentation);
 				MessageFilter.Register();
 				var thread = new Thread(delegate()
 				{

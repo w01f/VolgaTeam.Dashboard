@@ -239,6 +239,7 @@ namespace NewBizWiz.Core.AdSchedule
 		public string ClientType { get; set; }
 		public string AccountNumber { get; set; }
 		public string Status { get; set; }
+		public string ThemeName { get; set; }
 		public DateTime PresentationDate { get; set; }
 		public DateTime FlightDateStart { get; set; }
 		public DateTime FlightDateEnd { get; set; }
@@ -345,6 +346,10 @@ namespace NewBizWiz.Core.AdSchedule
 				if (node != null)
 					Status = node.InnerText;
 
+				node = document.SelectSingleNode(@"/Schedule/ThemeName");
+				if (node != null)
+					ThemeName = node.InnerText;
+
 				node = document.SelectSingleNode(@"/Schedule/PresentationDate");
 				if (node != null)
 					if (DateTime.TryParse(node.InnerText, out tempDateTime))
@@ -428,7 +433,8 @@ namespace NewBizWiz.Core.AdSchedule
 
 			xml.AppendLine(@"<ClientType>" + ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
 			xml.AppendLine(@"<AccountNumber>" + AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");
-			xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
+			xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : String.Empty) + @"</Status>");
+			xml.AppendLine(@"<ThemeName>" + (ThemeName != null ? ThemeName.Replace(@"&", "&#38;").Replace("\"", "&quot;") : String.Empty) + @"</ThemeName>");
 			xml.AppendLine(@"<PresentationDate>" + PresentationDate.ToString() + @"</PresentationDate>");
 			xml.AppendLine(@"<FlightDateStart>" + FlightDateStart.ToString() + @"</FlightDateStart>");
 			xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd.ToString() + @"</FlightDateEnd>");

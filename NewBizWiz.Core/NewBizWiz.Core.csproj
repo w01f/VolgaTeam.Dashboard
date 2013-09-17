@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\NBWApplication.cs" />
+    <Compile Include="Common\ThemeManager.cs" />
     <Compile Include="Interop\FileIcon.cs" />
     <Compile Include="Interop\ShellLink.cs" />
     <Compile Include="Common\TabPageManager.cs" />

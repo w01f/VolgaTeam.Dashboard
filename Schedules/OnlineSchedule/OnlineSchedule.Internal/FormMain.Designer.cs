@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelScheduleSettings = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
@@ -122,6 +122,8 @@
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnMain = new System.Windows.Forms.Panel();
+			this.buttonItemDigitalScheduleTheme = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemDigitalPackageTheme = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelScheduleSettings.SuspendLayout();
 			this.ribbonBarHomeFlightDates.SuspendLayout();
@@ -497,7 +499,7 @@
 			this.dateEditFlightDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditFlightDatesStart.Properties.Appearance.Options.UseFont = true;
 			this.dateEditFlightDatesStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
 			this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatString = "MM/dd/yy";
 			this.dateEditFlightDatesStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.dateEditFlightDatesStart.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -523,7 +525,7 @@
 			this.dateEditFlightDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditFlightDatesEnd.Properties.Appearance.Options.UseFont = true;
 			this.dateEditFlightDatesEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFlightDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatString = "MM/dd/yy";
 			this.dateEditFlightDatesEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.dateEditFlightDatesEnd.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -716,7 +718,7 @@
 			this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
 			this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yy";
 			this.dateEditPresentationDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.dateEditPresentationDate.Properties.EditFormat.FormatString = "MM/dd/yy";
@@ -897,7 +899,7 @@
 			this.ribbonBarDigitalPackageExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemDigitalPackageExit});
 			this.ribbonBarDigitalPackageExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarDigitalPackageExit.Location = new System.Drawing.Point(607, 0);
+			this.ribbonBarDigitalPackageExit.Location = new System.Drawing.Point(656, 0);
 			this.ribbonBarDigitalPackageExit.Name = "ribbonBarDigitalPackageExit";
 			this.ribbonBarDigitalPackageExit.Size = new System.Drawing.Size(84, 134);
 			this.ribbonBarDigitalPackageExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -936,7 +938,7 @@
 			this.ribbonBarDigitalPackageFloater.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemDigitalPackageFloater});
 			this.ribbonBarDigitalPackageFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarDigitalPackageFloater.Location = new System.Drawing.Point(519, 0);
+			this.ribbonBarDigitalPackageFloater.Location = new System.Drawing.Point(568, 0);
 			this.ribbonBarDigitalPackageFloater.Name = "ribbonBarDigitalPackageFloater";
 			this.ribbonBarDigitalPackageFloater.Size = new System.Drawing.Size(88, 134);
 			this.ribbonBarDigitalPackageFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -976,7 +978,7 @@
 			this.ribbonBarDigitalPackageHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemDigitalPackageHelp});
 			this.ribbonBarDigitalPackageHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarDigitalPackageHelp.Location = new System.Drawing.Point(435, 0);
+			this.ribbonBarDigitalPackageHelp.Location = new System.Drawing.Point(484, 0);
 			this.ribbonBarDigitalPackageHelp.Name = "ribbonBarDigitalPackageHelp";
 			this.ribbonBarDigitalPackageHelp.Size = new System.Drawing.Size(84, 134);
 			this.ribbonBarDigitalPackageHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -1016,7 +1018,7 @@
             this.buttonItemDigitalPackageSaveAs});
 			this.ribbonBarDigitalPackageSave.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
 			this.ribbonBarDigitalPackageSave.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarDigitalPackageSave.Location = new System.Drawing.Point(360, 0);
+			this.ribbonBarDigitalPackageSave.Location = new System.Drawing.Point(409, 0);
 			this.ribbonBarDigitalPackageSave.Name = "ribbonBarDigitalPackageSave";
 			this.ribbonBarDigitalPackageSave.Size = new System.Drawing.Size(75, 134);
 			this.ribbonBarDigitalPackageSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -1061,11 +1063,12 @@
 			this.ribbonBarDigitalPackagePowerPoint.ContainerControlProcessDialogKey = true;
 			this.ribbonBarDigitalPackagePowerPoint.Dock = System.Windows.Forms.DockStyle.Left;
 			this.ribbonBarDigitalPackagePowerPoint.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemDigitalPackagePowerPoint});
+            this.buttonItemDigitalPackagePowerPoint,
+            this.buttonItemDigitalPackageTheme});
 			this.ribbonBarDigitalPackagePowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarDigitalPackagePowerPoint.Location = new System.Drawing.Point(275, 0);
 			this.ribbonBarDigitalPackagePowerPoint.Name = "ribbonBarDigitalPackagePowerPoint";
-			this.ribbonBarDigitalPackagePowerPoint.Size = new System.Drawing.Size(85, 134);
+			this.ribbonBarDigitalPackagePowerPoint.Size = new System.Drawing.Size(134, 134);
 			this.ribbonBarDigitalPackagePowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
 			this.ribbonBarDigitalPackagePowerPoint.TabIndex = 53;
 			this.ribbonBarDigitalPackagePowerPoint.Text = "PowerPoint";
@@ -1249,7 +1252,7 @@
 			this.ribbonBarDigitalScheduleExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemDigitalScheduleExit});
 			this.ribbonBarDigitalScheduleExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarDigitalScheduleExit.Location = new System.Drawing.Point(607, 0);
+			this.ribbonBarDigitalScheduleExit.Location = new System.Drawing.Point(656, 0);
 			this.ribbonBarDigitalScheduleExit.Name = "ribbonBarDigitalScheduleExit";
 			this.ribbonBarDigitalScheduleExit.Size = new System.Drawing.Size(84, 134);
 			this.ribbonBarDigitalScheduleExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -1288,7 +1291,7 @@
 			this.ribbonBarDigitalScheduleFloater.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemDigitalScheduleFloater});
 			this.ribbonBarDigitalScheduleFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarDigitalScheduleFloater.Location = new System.Drawing.Point(519, 0);
+			this.ribbonBarDigitalScheduleFloater.Location = new System.Drawing.Point(568, 0);
 			this.ribbonBarDigitalScheduleFloater.Name = "ribbonBarDigitalScheduleFloater";
 			this.ribbonBarDigitalScheduleFloater.Size = new System.Drawing.Size(88, 134);
 			this.ribbonBarDigitalScheduleFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -1328,7 +1331,7 @@
 			this.ribbonBarDigitalScheduleHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemDigitalScheduleHelp});
 			this.ribbonBarDigitalScheduleHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarDigitalScheduleHelp.Location = new System.Drawing.Point(435, 0);
+			this.ribbonBarDigitalScheduleHelp.Location = new System.Drawing.Point(484, 0);
 			this.ribbonBarDigitalScheduleHelp.Name = "ribbonBarDigitalScheduleHelp";
 			this.ribbonBarDigitalScheduleHelp.Size = new System.Drawing.Size(84, 134);
 			this.ribbonBarDigitalScheduleHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -1368,7 +1371,7 @@
             this.buttonItemDigitalScheduleSaveAs});
 			this.ribbonBarDigitalScheduleSave.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
 			this.ribbonBarDigitalScheduleSave.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarDigitalScheduleSave.Location = new System.Drawing.Point(360, 0);
+			this.ribbonBarDigitalScheduleSave.Location = new System.Drawing.Point(409, 0);
 			this.ribbonBarDigitalScheduleSave.Name = "ribbonBarDigitalScheduleSave";
 			this.ribbonBarDigitalScheduleSave.Size = new System.Drawing.Size(75, 134);
 			this.ribbonBarDigitalScheduleSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -1413,11 +1416,12 @@
 			this.ribbonBarDigitalSchedulePowerPoint.ContainerControlProcessDialogKey = true;
 			this.ribbonBarDigitalSchedulePowerPoint.Dock = System.Windows.Forms.DockStyle.Left;
 			this.ribbonBarDigitalSchedulePowerPoint.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemDigitalSchedulePowerPoint});
+            this.buttonItemDigitalSchedulePowerPoint,
+            this.buttonItemDigitalScheduleTheme});
 			this.ribbonBarDigitalSchedulePowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarDigitalSchedulePowerPoint.Location = new System.Drawing.Point(275, 0);
 			this.ribbonBarDigitalSchedulePowerPoint.Name = "ribbonBarDigitalSchedulePowerPoint";
-			this.ribbonBarDigitalSchedulePowerPoint.Size = new System.Drawing.Size(85, 134);
+			this.ribbonBarDigitalSchedulePowerPoint.Size = new System.Drawing.Size(134, 134);
 			this.ribbonBarDigitalSchedulePowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
 			this.ribbonBarDigitalSchedulePowerPoint.TabIndex = 53;
 			this.ribbonBarDigitalSchedulePowerPoint.Text = "PowerPoint";
@@ -1591,6 +1595,20 @@
 			this.pnMain.TabIndex = 1;
 			this.pnMain.Click += new System.EventHandler(this.pnMain_Click);
 			// 
+			// buttonItemDigitalScheduleTheme
+			// 
+			this.buttonItemDigitalScheduleTheme.AutoExpandOnClick = true;
+			this.buttonItemDigitalScheduleTheme.Name = "buttonItemDigitalScheduleTheme";
+			this.buttonItemDigitalScheduleTheme.SubItemsExpandWidth = 14;
+			this.buttonItemDigitalScheduleTheme.Text = "Theme:\r\nDefault";
+			// 
+			// buttonItemDigitalPackageTheme
+			// 
+			this.buttonItemDigitalPackageTheme.AutoExpandOnClick = true;
+			this.buttonItemDigitalPackageTheme.Name = "buttonItemDigitalPackageTheme";
+			this.buttonItemDigitalPackageTheme.SubItemsExpandWidth = 14;
+			this.buttonItemDigitalPackageTheme.Text = "Theme:\r\nDefault";
+			// 
 			// FormMain
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1721,6 +1739,8 @@
 		private DevComponents.DotNetBar.ButtonItem buttonItemHomeDigitalProductAdd;
 		public DevComponents.DotNetBar.ButtonItem buttonItemHomeDigitalProductClone;
 		private DevComponents.DotNetBar.ButtonItem buttonItemHomeDigitalProductDelete;
+		private DevComponents.DotNetBar.ButtonItem buttonItemDigitalScheduleTheme;
+		private DevComponents.DotNetBar.ButtonItem buttonItemDigitalPackageTheme;
     }
 }
 

@@ -40,6 +40,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public bool SettingsNotSaved { get; set; }
 		public bool AllowApplyValues { get; set; }
+		public abstract Theme SelectedTheme { get; }
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; set; }
 
 		public abstract ISchedule Schedule { get; }
@@ -49,6 +50,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public abstract ButtonItem Preview { get; }
 		public abstract ButtonItem PowerPoint { get; }
 		public abstract ButtonItem Email { get; }
+		public abstract ButtonItem Theme { get; }
 
 		public bool AllowToLeaveControl
 		{
@@ -318,6 +320,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			PowerPoint.Enabled = enableOutput;
 			Email.Enabled = enableOutput;
 			Preview.Enabled = enableOutput;
+			Theme.Enabled = enableOutput;
 			gridControl.Visible = enableOutput;
 		}
 

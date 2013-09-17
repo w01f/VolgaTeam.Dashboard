@@ -112,6 +112,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalProductEmail = buttonItemDigitalScheduleEmail;
+			Controller.Instance.DigitalProductTheme = buttonItemDigitalScheduleTheme;
 			Controller.Instance.DigitalProductSave = buttonItemDigitalScheduleSave;
 			Controller.Instance.DigitalProductSaveAs = buttonItemDigitalScheduleSaveAs;
 			Controller.Instance.DigitalProductHelp = buttonItemDigitalScheduleHelp;
@@ -124,6 +125,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.DigitalPackagePreview = buttonItemDigitalPackagePreview;
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
+			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
 			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageOptions;
 			#endregion
 
@@ -134,6 +136,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.BasicOverviewPreview = buttonItemOverviewPreview;
 			Controller.Instance.BasicOverviewEmail = buttonItemOverviewEmail;
 			Controller.Instance.BasicOverviewPowerPoint = buttonItemOverviewPowerPoint;
+			Controller.Instance.BasicOverviewTheme = buttonItemOverviewTheme;
 			Controller.Instance.BasicOverviewDigitalLegend = buttonItemOverviewDigital;
 			#endregion
 
@@ -144,6 +147,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.MultiSummaryPreview = buttonItemMultiSummaryPreview;
 			Controller.Instance.MultiSummaryEmail = buttonItemMultiSummaryEmail;
 			Controller.Instance.MultiSummaryPowerPoint = buttonItemMultiSummaryPowerPoint;
+			Controller.Instance.MultiSummaryTheme = buttonItemMultiSummaryTheme;
 			Controller.Instance.MultiSummaryDigitalLegend = buttonItemMultiSummaryDigital;
 			#endregion
 
@@ -155,6 +159,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.SnapshotPreview = buttonItemSnapshotPreview;
 			Controller.Instance.SnapshotEmail = buttonItemSnapshotEmail;
 			Controller.Instance.SnapshotPowerPoint = buttonItemSnapshotPowerPoint;
+			Controller.Instance.SnapshotTheme = buttonItemSnapshotTheme;
 			Controller.Instance.SnapshotDigitalLegend = buttonItemSnapshotDigital;
 			#endregion
 
@@ -165,6 +170,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.AdPlanPreview = buttonItemAdPlanPreview;
 			Controller.Instance.AdPlanEmail = buttonItemAdPlanEmail;
 			Controller.Instance.AdPlanPowerPoint = buttonItemAdPlanPowerPoint;
+			Controller.Instance.AdPlanTheme = buttonItemAdPlanTheme;
 			#endregion
 
 			#region Detailed Grid
@@ -175,6 +181,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.DetailedGridPreview = buttonItemDetailedGridPreview;
 			Controller.Instance.DetailedGridEmail = buttonItemDetailedGridEmail;
 			Controller.Instance.DetailedGridPowerPoint = buttonItemDetailedGridPowerPoint;
+			Controller.Instance.DetailedGridTheme = buttonItemDetailedGridTheme;
 			Controller.Instance.DetailedGridDigitalLegend = buttonItemDetailedGridDigital;
 			#endregion
 
@@ -186,6 +193,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.MultiGridPreview = buttonItemMultiGridPreview;
 			Controller.Instance.MultiGridEmail = buttonItemMultiGridEmail;
 			Controller.Instance.MultiGridPowerPoint = buttonItemMultiGridPowerPoint;
+			Controller.Instance.MultiGridTheme = buttonItemMultiGridTheme;
 			Controller.Instance.MultiGridDigitalLegend = buttonItemMultiGridDigital;
 			#endregion
 
@@ -209,6 +217,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.SummaryPreview = buttonItemSummaryPreview;
 			Controller.Instance.SummaryEmail = buttonItemSummaryEmail;
 			Controller.Instance.SummaryPowerPoint = buttonItemSummaryPowerPoint;
+			Controller.Instance.SummaryTheme = buttonItemSummaryTheme;
 			#endregion
 
 			#region Rate Card
@@ -303,7 +312,7 @@ namespace NewBizWiz.AdSchedule.Internal
 		private void UpdateFormTitle()
 		{
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("SellerPoint Media Schedules - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
+				Text = String.Format("SellerPoint Media Schedules - {0} ({1})", SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
 		}
 
 		private bool AllowToLeaveCurrentControl()

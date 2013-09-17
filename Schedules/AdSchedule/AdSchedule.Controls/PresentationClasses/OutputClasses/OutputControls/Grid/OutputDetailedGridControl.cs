@@ -286,6 +286,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.DetailedGridDigitalLegend.Image = Controller.Instance.DetailedGridDigitalLegend.Enabled && !LocalSchedule.ViewSettings.DetailedGridViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.DetailedGridTheme, LocalSchedule.ThemeName, (t =>
+			{
+				LocalSchedule.ThemeName = t.Name;
+				SettingsNotSaved = true;
+			}));
 			if (!quickLoad)
 			{
 				xtraTabControlPublications.SuspendLayout();

@@ -417,7 +417,7 @@ namespace NewBizWiz.AdSchedule.Controls
 
 		public void ShowFloater(Action afterShow)
 		{
-			var args = new FloaterRequestedEventArgs {AfterShow = afterShow};
+			var args = new FloaterRequestedEventArgs { AfterShow = afterShow };
 			if (FloaterRequested != null)
 				FloaterRequested(null, args);
 		}
@@ -496,6 +496,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem DigitalProductPreview { get; set; }
 		public ButtonItem DigitalProductPowerPoint { get; set; }
 		public ButtonItem DigitalProductEmail { get; set; }
+		public ButtonItem DigitalProductTheme { get; set; }
 		public ButtonItem DigitalProductSave { get; set; }
 		public ButtonItem DigitalProductSaveAs { get; set; }
 		public ButtonItem DigitalProductHelp { get; set; }
@@ -508,6 +509,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem DigitalPackagePreview { get; set; }
 		public ButtonItem DigitalPackageEmail { get; set; }
 		public ButtonItem DigitalPackagePowerPoint { get; set; }
+		public ButtonItem DigitalPackageTheme { get; set; }
 		public ButtonItem DigitalPackageOptions { get; set; }
 		#endregion
 
@@ -518,6 +520,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem BasicOverviewPreview { get; set; }
 		public ButtonItem BasicOverviewEmail { get; set; }
 		public ButtonItem BasicOverviewPowerPoint { get; set; }
+		public ButtonItem BasicOverviewTheme { get; set; }
 		public ButtonItem BasicOverviewDigitalLegend { get; set; }
 		#endregion
 
@@ -528,6 +531,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem MultiSummaryPreview { get; set; }
 		public ButtonItem MultiSummaryEmail { get; set; }
 		public ButtonItem MultiSummaryPowerPoint { get; set; }
+		public ButtonItem MultiSummaryTheme { get; set; }
 		public ButtonItem MultiSummaryDigitalLegend { get; set; }
 		#endregion
 
@@ -539,6 +543,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem SnapshotPreview { get; set; }
 		public ButtonItem SnapshotEmail { get; set; }
 		public ButtonItem SnapshotPowerPoint { get; set; }
+		public ButtonItem SnapshotTheme { get; set; }
 		public ButtonItem SnapshotDigitalLegend { get; set; }
 		#endregion
 
@@ -549,6 +554,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem AdPlanPreview { get; set; }
 		public ButtonItem AdPlanEmail { get; set; }
 		public ButtonItem AdPlanPowerPoint { get; set; }
+		public ButtonItem AdPlanTheme { get; set; }
 		#endregion
 
 		#region Detailed Grid
@@ -559,6 +565,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem DetailedGridPreview { get; set; }
 		public ButtonItem DetailedGridEmail { get; set; }
 		public ButtonItem DetailedGridPowerPoint { get; set; }
+		public ButtonItem DetailedGridTheme { get; set; }
 		public ButtonItem DetailedGridDigitalLegend { get; set; }
 		#endregion
 
@@ -570,6 +577,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem MultiGridPreview { get; set; }
 		public ButtonItem MultiGridEmail { get; set; }
 		public ButtonItem MultiGridPowerPoint { get; set; }
+		public ButtonItem MultiGridTheme { get; set; }
 		public ButtonItem MultiGridDigitalLegend { get; set; }
 		#endregion
 
@@ -593,6 +601,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem SummaryPreview { get; set; }
 		public ButtonItem SummaryEmail { get; set; }
 		public ButtonItem SummaryPowerPoint { get; set; }
+		public ButtonItem SummaryTheme { get; set; }
 		#endregion
 
 		#region Rate Card

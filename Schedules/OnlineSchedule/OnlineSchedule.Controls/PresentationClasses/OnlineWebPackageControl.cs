@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
@@ -28,7 +29,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		}
 		public override IEnumerable<ProductPackageRecord> PackageRecords
 		{
-			get { return LocalSchedule.Products.Select(p => p.PackageRecord).ToList(); }
+			get { return LocalSchedule.DigitalProducts.Select(p => p.PackageRecord).ToList(); }
 		}
 		public override ButtonItem OptionsButtons
 		{
@@ -68,7 +69,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public override void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.DigitalPackageTheme, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.DigitalPackageTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
 			{
 				LocalSchedule.ThemeName = t.Name;
 				SettingsNotSaved = true;

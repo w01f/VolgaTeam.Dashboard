@@ -160,6 +160,7 @@
 			this.xtraTabControlProducts.Name = "xtraTabControlProducts";
 			this.xtraTabControlProducts.Size = new System.Drawing.Size(761, 527);
 			this.xtraTabControlProducts.TabIndex = 3;
+			this.xtraTabControlProducts.MouseDown += new System.Windows.Forms.MouseEventHandler(this.xtraTabControlProducts_MouseDown);
 			// 
 			// splitContainerControl
 			// 

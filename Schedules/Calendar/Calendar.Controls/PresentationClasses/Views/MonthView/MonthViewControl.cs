@@ -40,7 +40,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 
 			CopyPasteManager.DayPasted += (sender, e) =>
 			{
-				Calendar.SlideInfo.LoadData(reload: true);
+				Calendar.SlideInfo.LoadData();
 				RefreshData();
 				SettingsNotSaved = true;
 			};
@@ -144,7 +144,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 																				}
 																				Calendar.SettingsNotSaved = true;
 																				Calendar.SelectedView.RefreshData();
-																				Calendar.SlideInfo.LoadData(reload: true);
+																				Calendar.SlideInfo.LoadData();
 																				Calendar.UpdateOutputFunctions();
 																			};
 											dayControl.DataChanged += (sender, e) =>

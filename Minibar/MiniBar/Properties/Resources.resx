@@ -127,11 +127,8 @@
   <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MinibarSettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MinibarSettings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PowerPointLaunch2010" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PowerPointLaunch2010.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PageNumber" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PageNumber.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,20 +142,20 @@
   <data name="SavePDF" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SavePDF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="PowerPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PowerPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Output" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Output.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CoverMiddle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CoverMiddle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AppCode" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AppCode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PowerPointLaunch2007" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PowerPointLaunch2007.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Output" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Output.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BrowserInternetExplorer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BrowserInternetExplorer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SalesRep" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SalesRep.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -178,26 +175,14 @@
   <data name="ClientLogos" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ClientLogos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PowerPointLaunch2003" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PowerPointLaunch2003.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SendPPT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SendPPT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SalesDepot" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SalesDepot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PageNumber" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PageNumber.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CleanslateMiddle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CleanslateMiddle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SlideHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SlideHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Screen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Screen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SlideHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SlideHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WebArt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WebArt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,7 +202,7 @@
   <data name="SlideContent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SlideContent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BrowserInternetExplorer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BrowserInternetExplorer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PDF" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PDF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

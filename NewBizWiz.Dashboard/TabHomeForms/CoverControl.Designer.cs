@@ -31,6 +31,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoverControl));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.panelExMain = new DevComponents.DotNetBar.PanelEx();
+			this.pbSalesQuotes = new System.Windows.Forms.PictureBox();
 			this.laSalesRepEmail = new System.Windows.Forms.Label();
 			this.laSalesRepPhone = new System.Windows.Forms.Label();
 			this.checkEditPresentationDate = new DevExpress.XtraEditors.CheckEdit();
@@ -42,23 +43,22 @@
 			this.memoEditSalesQuote = new DevExpress.XtraEditors.MemoEdit();
 			this.textEditSalesQuoteAuthor = new DevExpress.XtraEditors.TextEdit();
 			this.laAdvertiser = new System.Windows.Forms.Label();
+			this.pbSalesRep = new System.Windows.Forms.PictureBox();
 			this.dateEditPresentationDate = new DevExpress.XtraEditors.DateEdit();
 			this.laDecisionMaker = new System.Windows.Forms.Label();
+			this.pbPresentationDate = new System.Windows.Forms.PictureBox();
+			this.pbDecisionMaker = new System.Windows.Forms.PictureBox();
+			this.pbAdvertiser = new System.Windows.Forms.PictureBox();
 			this.laSlideHeader = new System.Windows.Forms.Label();
 			this.laTitle = new System.Windows.Forms.Label();
 			this.checkEditSalesRep = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditNewSolution = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditFirstSlide = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditUseEmptyCover = new DevExpress.XtraEditors.CheckEdit();
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.panelExBottom = new DevComponents.DotNetBar.PanelEx();
 			this.buttonXSavedFiles = new DevComponents.DotNetBar.ButtonX();
-			this.pbSalesQuotes = new System.Windows.Forms.PictureBox();
-			this.pbSalesRep = new System.Windows.Forms.PictureBox();
-			this.pbPresentationDate = new System.Windows.Forms.PictureBox();
-			this.pbDecisionMaker = new System.Windows.Forms.PictureBox();
-			this.pbAdvertiser = new System.Windows.Forms.PictureBox();
 			this.panelExMain.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbSalesQuotes)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.lookUpEditSalesRep.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
@@ -66,18 +66,16 @@
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditAdvertiser.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditSalesQuote.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditSalesQuoteAuthor.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbSalesRep)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties.VistaTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSalesRep.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditNewSolution.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditFirstSlide.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditUseEmptyCover.Properties)).BeginInit();
-			this.panelExBottom.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbSalesQuotes)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbSalesRep)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbPresentationDate)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDecisionMaker)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbAdvertiser)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSalesRep.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFirstSlide.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditUseEmptyCover.Properties)).BeginInit();
+			this.panelExBottom.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelExMain
@@ -117,6 +115,19 @@
 			this.panelExMain.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
 			this.panelExMain.Style.GradientAngle = 90;
 			this.panelExMain.TabIndex = 2;
+			// 
+			// pbSalesQuotes
+			// 
+			this.pbSalesQuotes.Image = global::NewBizWiz.Dashboard.Properties.Resources.SalesQuotes;
+			this.pbSalesQuotes.Location = new System.Drawing.Point(15, 289);
+			this.pbSalesQuotes.Name = "pbSalesQuotes";
+			this.pbSalesQuotes.Size = new System.Drawing.Size(72, 72);
+			this.pbSalesQuotes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pbSalesQuotes.TabIndex = 98;
+			this.pbSalesQuotes.TabStop = false;
+			this.pbSalesQuotes.Click += new System.EventHandler(this.buttonXSalesQuotes_Click);
+			this.pbSalesQuotes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+			this.pbSalesQuotes.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
 			// laSalesRepEmail
 			// 
@@ -335,6 +346,18 @@
 			this.laAdvertiser.TabIndex = 83;
 			this.laAdvertiser.Text = "Advertiser:";
 			// 
+			// pbSalesRep
+			// 
+			this.pbSalesRep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pbSalesRep.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pbSalesRep.Image = global::NewBizWiz.Dashboard.Properties.Resources.SalesRep;
+			this.pbSalesRep.Location = new System.Drawing.Point(437, 91);
+			this.pbSalesRep.Name = "pbSalesRep";
+			this.pbSalesRep.Size = new System.Drawing.Size(50, 51);
+			this.pbSalesRep.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pbSalesRep.TabIndex = 81;
+			this.pbSalesRep.TabStop = false;
+			// 
 			// dateEditPresentationDate
 			// 
 			this.dateEditPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -372,6 +395,37 @@
 			this.laDecisionMaker.TabIndex = 74;
 			this.laDecisionMaker.Text = "Decision-maker:";
 			// 
+			// pbPresentationDate
+			// 
+			this.pbPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pbPresentationDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pbPresentationDate.Image = global::NewBizWiz.Dashboard.Properties.Resources.Date;
+			this.pbPresentationDate.Location = new System.Drawing.Point(437, 198);
+			this.pbPresentationDate.Name = "pbPresentationDate";
+			this.pbPresentationDate.Size = new System.Drawing.Size(50, 51);
+			this.pbPresentationDate.TabIndex = 77;
+			this.pbPresentationDate.TabStop = false;
+			// 
+			// pbDecisionMaker
+			// 
+			this.pbDecisionMaker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pbDecisionMaker.Image = global::NewBizWiz.Dashboard.Properties.Resources.DecisionMaker;
+			this.pbDecisionMaker.Location = new System.Drawing.Point(15, 199);
+			this.pbDecisionMaker.Name = "pbDecisionMaker";
+			this.pbDecisionMaker.Size = new System.Drawing.Size(50, 51);
+			this.pbDecisionMaker.TabIndex = 75;
+			this.pbDecisionMaker.TabStop = false;
+			// 
+			// pbAdvertiser
+			// 
+			this.pbAdvertiser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pbAdvertiser.Image = global::NewBizWiz.Dashboard.Properties.Resources.Advertiser;
+			this.pbAdvertiser.Location = new System.Drawing.Point(15, 91);
+			this.pbAdvertiser.Name = "pbAdvertiser";
+			this.pbAdvertiser.Size = new System.Drawing.Size(50, 51);
+			this.pbAdvertiser.TabIndex = 72;
+			this.pbAdvertiser.TabStop = false;
+			// 
 			// laSlideHeader
 			// 
 			this.laSlideHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -404,42 +458,6 @@
 			this.checkEditSalesRep.Size = new System.Drawing.Size(227, 23);
 			this.checkEditSalesRep.TabIndex = 95;
 			this.checkEditSalesRep.CheckedChanged += new System.EventHandler(this.checkEditSalesRep_CheckedChanged);
-			// 
-			// checkEditNewSolution
-			// 
-			this.checkEditNewSolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditNewSolution.EditValue = true;
-			this.checkEditNewSolution.Location = new System.Drawing.Point(186, 9);
-			this.checkEditNewSolution.Name = "checkEditNewSolution";
-			this.checkEditNewSolution.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditNewSolution.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
-			this.checkEditNewSolution.Properties.Appearance.Options.UseFont = true;
-			this.checkEditNewSolution.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditNewSolution.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditNewSolution.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditNewSolution.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditNewSolution.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-			this.checkEditNewSolution.Properties.AppearanceDisabled.Options.UseFont = true;
-			this.checkEditNewSolution.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.checkEditNewSolution.Properties.AppearanceDisabled.Options.UseTextOptions = true;
-			this.checkEditNewSolution.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditNewSolution.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditNewSolution.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Black;
-			this.checkEditNewSolution.Properties.AppearanceFocused.Options.UseFont = true;
-			this.checkEditNewSolution.Properties.AppearanceFocused.Options.UseForeColor = true;
-			this.checkEditNewSolution.Properties.AppearanceFocused.Options.UseTextOptions = true;
-			this.checkEditNewSolution.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditNewSolution.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditNewSolution.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
-			this.checkEditNewSolution.Properties.AppearanceReadOnly.Options.UseFont = true;
-			this.checkEditNewSolution.Properties.AppearanceReadOnly.Options.UseForeColor = true;
-			this.checkEditNewSolution.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-			this.checkEditNewSolution.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditNewSolution.Properties.AutoHeight = false;
-			this.checkEditNewSolution.Properties.Caption = "Count this Presentation as New Business";
-			this.checkEditNewSolution.Size = new System.Drawing.Size(222, 48);
-			this.checkEditNewSolution.TabIndex = 98;
-			this.checkEditNewSolution.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
 			// checkEditFirstSlide
 			// 
@@ -520,7 +538,6 @@
 			// 
 			this.panelExBottom.CanvasColor = System.Drawing.SystemColors.Control;
 			this.panelExBottom.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-			this.panelExBottom.Controls.Add(this.checkEditNewSolution);
 			this.panelExBottom.Controls.Add(this.buttonXSavedFiles);
 			this.panelExBottom.Controls.Add(this.checkEditFirstSlide);
 			this.panelExBottom.Controls.Add(this.checkEditUseEmptyCover);
@@ -552,62 +569,6 @@
 			this.buttonXSavedFiles.TextColor = System.Drawing.Color.Black;
 			this.buttonXSavedFiles.Click += new System.EventHandler(this.buttonXSavedFiles_Click);
 			// 
-			// pbSalesQuotes
-			// 
-			this.pbSalesQuotes.Image = global::NewBizWiz.Dashboard.Properties.Resources.SalesQuotes;
-			this.pbSalesQuotes.Location = new System.Drawing.Point(15, 289);
-			this.pbSalesQuotes.Name = "pbSalesQuotes";
-			this.pbSalesQuotes.Size = new System.Drawing.Size(72, 72);
-			this.pbSalesQuotes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbSalesQuotes.TabIndex = 98;
-			this.pbSalesQuotes.TabStop = false;
-			this.pbSalesQuotes.Click += new System.EventHandler(this.buttonXSalesQuotes_Click);
-			this.pbSalesQuotes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbSalesQuotes.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
-			// pbSalesRep
-			// 
-			this.pbSalesRep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbSalesRep.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pbSalesRep.Image = global::NewBizWiz.Dashboard.Properties.Resources.SalesRep;
-			this.pbSalesRep.Location = new System.Drawing.Point(437, 91);
-			this.pbSalesRep.Name = "pbSalesRep";
-			this.pbSalesRep.Size = new System.Drawing.Size(50, 51);
-			this.pbSalesRep.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbSalesRep.TabIndex = 81;
-			this.pbSalesRep.TabStop = false;
-			// 
-			// pbPresentationDate
-			// 
-			this.pbPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbPresentationDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pbPresentationDate.Image = global::NewBizWiz.Dashboard.Properties.Resources.Date;
-			this.pbPresentationDate.Location = new System.Drawing.Point(437, 198);
-			this.pbPresentationDate.Name = "pbPresentationDate";
-			this.pbPresentationDate.Size = new System.Drawing.Size(50, 51);
-			this.pbPresentationDate.TabIndex = 77;
-			this.pbPresentationDate.TabStop = false;
-			// 
-			// pbDecisionMaker
-			// 
-			this.pbDecisionMaker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pbDecisionMaker.Image = global::NewBizWiz.Dashboard.Properties.Resources.DecisionMaker;
-			this.pbDecisionMaker.Location = new System.Drawing.Point(15, 199);
-			this.pbDecisionMaker.Name = "pbDecisionMaker";
-			this.pbDecisionMaker.Size = new System.Drawing.Size(50, 51);
-			this.pbDecisionMaker.TabIndex = 75;
-			this.pbDecisionMaker.TabStop = false;
-			// 
-			// pbAdvertiser
-			// 
-			this.pbAdvertiser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pbAdvertiser.Image = global::NewBizWiz.Dashboard.Properties.Resources.Advertiser;
-			this.pbAdvertiser.Location = new System.Drawing.Point(15, 91);
-			this.pbAdvertiser.Name = "pbAdvertiser";
-			this.pbAdvertiser.Size = new System.Drawing.Size(50, 51);
-			this.pbAdvertiser.TabIndex = 72;
-			this.pbAdvertiser.TabStop = false;
-			// 
 			// CoverControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -619,6 +580,7 @@
 			this.Size = new System.Drawing.Size(854, 521);
 			this.Load += new System.EventHandler(this.CoverControl_Load);
 			this.panelExMain.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbSalesQuotes)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.lookUpEditSalesRep.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
@@ -626,18 +588,16 @@
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditAdvertiser.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditSalesQuote.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditSalesQuoteAuthor.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbSalesRep)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties.VistaTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSalesRep.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditNewSolution.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditFirstSlide.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditUseEmptyCover.Properties)).EndInit();
-			this.panelExBottom.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pbSalesQuotes)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbSalesRep)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbPresentationDate)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDecisionMaker)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbAdvertiser)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSalesRep.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFirstSlide.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditUseEmptyCover.Properties)).EndInit();
+			this.panelExBottom.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -668,8 +628,7 @@
         private DevExpress.XtraEditors.CheckEdit checkEditPresentationDate;
         private DevExpress.XtraEditors.CheckEdit checkEditSalesRep;
         private System.Windows.Forms.Label laSalesRepEmail;
-        private System.Windows.Forms.Label laSalesRepPhone;
-        private DevExpress.XtraEditors.CheckEdit checkEditNewSolution;
+		private System.Windows.Forms.Label laSalesRepPhone;
         private DevComponents.DotNetBar.ButtonX buttonXSavedFiles;
         private System.Windows.Forms.PictureBox pbSalesQuotes;
 

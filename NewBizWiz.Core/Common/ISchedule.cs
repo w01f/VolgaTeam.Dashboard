@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using NewBizWiz.Core.OnlineSchedule;
 
 namespace NewBizWiz.Core.Common
 {
@@ -12,5 +14,8 @@ namespace NewBizWiz.Core.Common
 		DateTime FlightDateStart { get; set; }
 		DateTime FlightDateEnd { get; set; }
 		IScheduleViewSettings CommonViewSettings { get; }
+		List<DigitalProduct> DigitalProducts { get; }
+
+		void RebuildDigitalProductIndexes();
 	}
 }

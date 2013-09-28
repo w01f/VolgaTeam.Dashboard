@@ -259,33 +259,28 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		{
 			var c = sender as XtraTabControl;
 
-			XtraTabHitInfo hi = c.CalcHitInfo(new Point(e.X, e.Y));
-			if (hi.HitTest == XtraTabHitTest.PageHeader && e.Button == MouseButtons.Right)
+			var hi = c.CalcHitInfo(new Point(e.X, e.Y));
+			if (hi.HitTest != XtraTabHitTest.PageHeader || e.Button != MouseButtons.Right) return;
+			var publicationControl = hi.Page as PrintProductControl;
+			using (var form = new FormCloneProduct())
 			{
-				var publicationControl = hi.Page as PrintProductControl;
-				using (var form = new FormCloneSchedule())
-				{
-					if (form.ShowDialog() == DialogResult.Yes && publicationControl != null)
-					{
-						var selectedPage = xtraTabControlPublications.SelectedTabPage as PrintProductControl;
-						PrintProduct newPrintProduct = publicationControl.PrintProduct.Clone();
-						xtraTabControlPublications.SelectedPageChanged -= xtraTabControlPublications_SelectedPageChanged;
-						;
-						xtraTabControlPublications.TabPages.Clear();
-						var newPublicationTab = new PrintProductControl();
-						newPublicationTab.PrintProduct = newPrintProduct;
-						newPublicationTab.Text = newPrintProduct.Name.Replace("&", "&&");
-						newPrintProduct.RefreshAvailableDays();
-						newPublicationTab.LoadInserts();
-						_tabPages.Add(newPublicationTab);
-						_tabPages.Sort((x, y) => x.PrintProduct.Index.CompareTo(y.PrintProduct.Index));
-						xtraTabControlPublications.TabPages.AddRange(_tabPages.ToArray());
-						xtraTabControlPublications.SelectedPageChanged += xtraTabControlPublications_SelectedPageChanged;
-						;
-						xtraTabControlPublications.SelectedTabPage = selectedPage;
-						SettingsNotSaved = true;
-					}
-				}
+				if (form.ShowDialog() != DialogResult.Yes || publicationControl == null) return;
+				var selectedPage = xtraTabControlPublications.SelectedTabPage as PrintProductControl;
+				var newPrintProduct = publicationControl.PrintProduct.Clone();
+				xtraTabControlPublications.SelectedPageChanged -= xtraTabControlPublications_SelectedPageChanged;
+				xtraTabControlPublications.TabPages.Clear();
+				var newPublicationTab = new PrintProductControl();
+				newPublicationTab.PrintProduct = newPrintProduct;
+				newPublicationTab.Text = newPrintProduct.Name.Replace("&", "&&");
+				newPrintProduct.RefreshAvailableDays();
+				newPublicationTab.LoadInserts();
+				_tabPages.Add(newPublicationTab);
+				_tabPages.Sort((x, y) => x.PrintProduct.Index.CompareTo(y.PrintProduct.Index));
+				xtraTabControlPublications.TabPages.AddRange(_tabPages.ToArray());
+				xtraTabControlPublications.SelectedPageChanged += xtraTabControlPublications_SelectedPageChanged;
+				;
+				xtraTabControlPublications.SelectedTabPage = selectedPage;
+				SettingsNotSaved = true;
 			}
 		}
 		#endregion

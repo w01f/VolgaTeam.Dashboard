@@ -8,11 +8,11 @@ using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using Microsoft.Office.Interop.PowerPoint;
+using NewBizWiz.CommonGUI.Slides;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.MiniBar.BusinessClasses;
 using NewBizWiz.MiniBar.InteropClasses;
-using NewBizWiz.MiniBar.Properties;
 using NewBizWiz.MiniBar.SettingsForms;
 using NewBizWiz.MiniBar.ToolForms;
 using Application = System.Windows.Forms.Application;
@@ -25,9 +25,9 @@ namespace NewBizWiz.MiniBar
 {
 	public partial class FormMainExpanded : Form
 	{
-		private static object _locker = new object();
 		private static FormMainExpanded _instance;
 		private readonly Timer _formMouseLeaveTimer;
+		private int _mouseLeaveAdditionalTime;
 		private readonly Timer _hideTimer;
 		private bool _allowToSave;
 		private bool _comboOpened;
@@ -47,8 +47,6 @@ namespace NewBizWiz.MiniBar
 			_hideTimer.Interval = 30;
 			_hideTimer.Tick += _hideTimer_Tick;
 			_hideTimer.Start();
-
-			ApplyPowerPointLogo();
 
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
@@ -72,27 +70,19 @@ namespace NewBizWiz.MiniBar
 				ribbonBarDashboard.RecalcLayout();
 				ribbonBarDashboardExit.RecalcLayout();
 				ribbonBarDashboardHelp.RecalcLayout();
-				ribbonBarDashboardStarterSlides.RecalcLayout();
 				ribbonBarToolsExit.RecalcLayout();
 				ribbonBarToolsHelp.RecalcLayout();
 				ribbonBarToolsSave.RecalcLayout();
-				ribbonBarPdfEmailPdf.RecalcLayout();
-				ribbonBarPdfEmailPpt.RecalcLayout();
-				ribbonBarPdfExit.RecalcLayout();
-				ribbonBarPdfHelp.RecalcLayout();
-				ribbonBarPdfSavePdf.RecalcLayout();
 				ribbonBarPowerPointExit.RecalcLayout();
 				ribbonBarPowerPointHelp.RecalcLayout();
 				ribbonBarPowerPointLaunch.RecalcLayout();
 				ribbonBarPowerPointPresentationSettings.RecalcLayout();
-				ribbonBarPowerPointSlideTemplate.RecalcLayout();
 				ribbonBarSalesDepot.RecalcLayout();
 				ribbonBarSalesDepotRemote.RecalcLayout();
 				ribbonBarSalesDepotHelp.RecalcLayout();
 				ribbonBarSetingsHelp.RecalcLayout();
 				ribbonBarSettingsExit.RecalcLayout();
 				ribbonBarSettingsMinibar.RecalcLayout();
-				ribbonBarSettingsStartup.RecalcLayout();
 				ribbonBarSalesDepotExit.RecalcLayout();
 				ribbonBarSyncExit.RecalcLayout();
 				ribbonBarSyncHelp.RecalcLayout();
@@ -114,19 +104,14 @@ namespace NewBizWiz.MiniBar
 			}
 
 			#region Init Activity Recording Events
+
 			buttonItemAppsHelp.Click += ribbonTabItem_Click;
 			buttonItemClipartClientLogos.Click += ribbonTabItem_Click;
 			buttonItemClipartHelp.Click += ribbonTabItem_Click;
 			buttonItemClipartSalesGallery.Click += ribbonTabItem_Click;
 			buttonItemClipartWebArt.Click += ribbonTabItem_Click;
 			buttonItemDashboard.Click += ribbonTabItem_Click;
-			buttonItemDashboardCleanslate.Click += ribbonTabItem_Click;
-			buttonItemDashboardCover.Click += ribbonTabItem_Click;
 			buttonItemDashboardHelp.Click += ribbonTabItem_Click;
-			buttonItemPdfEmailPdf.Click += ribbonTabItem_Click;
-			buttonItemPdfEmailPpt.Click += ribbonTabItem_Click;
-			buttonItemPdfHelp.Click += ribbonTabItem_Click;
-			buttonItemPdfSavePdf.Click += ribbonTabItem_Click;
 			buttonItemPowerPointHelp.Click += ribbonTabItem_Click;
 			buttonItemPowerPointLaunch.Click += ribbonTabItem_Click;
 			buttonItemPowerPointSize1.Click += ribbonTabItem_Click;
@@ -134,8 +119,6 @@ namespace NewBizWiz.MiniBar
 			buttonItemPowerPointSize3.Click += ribbonTabItem_Click;
 			buttonItemPowerPointSize4.Click += ribbonTabItem_Click;
 			buttonItemPowerPointSize5.Click += ribbonTabItem_Click;
-			buttonItemPowerPointTemplateDisabled.Click += ribbonTabItem_Click;
-			buttonItemPowerPointTemplateEnabled.Click += ribbonTabItem_Click;
 			buttonItemSalesDepotHelp.Click += ribbonTabItem_Click;
 			buttonItemSettingsDesktop.Click += ribbonTabItem_Click;
 			buttonItemSettingsHelp.Click += ribbonTabItem_Click;
@@ -155,10 +138,12 @@ namespace NewBizWiz.MiniBar
 			buttonItemToolsSave.Click += ribbonTabItem_Click;
 			buttonItemToolsSlideHeader.Click += ribbonTabItem_Click;
 			buttonItemTrainingHelp.Click += ribbonTabItem_Click;
+
 			#endregion
 		}
 
 		#region Form Event Handlers
+
 		private void FormMain_Deactivate(object sender, EventArgs e)
 		{
 			ActivateRetractedForm();
@@ -176,12 +161,21 @@ namespace NewBizWiz.MiniBar
 		#endregion
 
 		#region Timer Ticks
+
 		private void FormMouseLeaveTimer_Tick(object sender, EventArgs e)
 		{
-			Point pos = MousePosition;
+			var pos = MousePosition;
 			bool inForm = pos.X >= Left && pos.Y >= Top && pos.X < Right && pos.Y < Bottom;
+
 			if (!inForm && _expanded && !_comboOpened)
+			{
+				if (_mouseLeaveAdditionalTime > 0)
+				{
+					_mouseLeaveAdditionalTime--;
+					return;
+				}
 				ActivateRetractedForm();
+			}
 		}
 
 		private void FadeInTimer_Tick(object sender, EventArgs e)
@@ -242,9 +236,11 @@ namespace NewBizWiz.MiniBar
 				}
 			}
 		}
+
 		#endregion
 
 		#region Buttons Clicks
+
 		private void ribbonTabItem_Click(object sender, EventArgs e)
 		{
 			ServiceDataManager.Instance.WriteActivity();
@@ -274,43 +270,10 @@ namespace NewBizWiz.MiniBar
 		{
 			AppManager.Instance.HelpManager.OpenHelpLink(ribbonControl.Items.IndexOf(ribbonControl.SelectedRibbonTabItem) + 1);
 		}
+
 		#endregion
 
 		#region PowerPoint Methods
-		private void ApplyPowerPointLogo()
-		{
-			buttonItemPowerPointLaunch.Image = Resources.PowerPointLaunch2010;
-			string pptExecutableLocation = string.Format(@"{0}\Microsoft Office\OFFICE14\POWERPNT.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			if (File.Exists(pptExecutableLocation))
-				buttonItemPowerPointLaunch.Image = Resources.PowerPointLaunch2010;
-			else
-			{
-				pptExecutableLocation = string.Format(@"c:\Program Files\Microsoft Office\OFFICE14\POWERPNT.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-				if (File.Exists(pptExecutableLocation))
-					buttonItemPowerPointLaunch.Image = Resources.PowerPointLaunch2010;
-				else
-				{
-					pptExecutableLocation = string.Format(@"{0}\Microsoft Office\OFFICE12\POWERPNT.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-					if (File.Exists(pptExecutableLocation))
-						buttonItemPowerPointLaunch.Image = Resources.PowerPointLaunch2007;
-					else
-					{
-						pptExecutableLocation = string.Format(@"c:\Program Files\Microsoft Office\OFFICE12\POWERPNT.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-						if (File.Exists(pptExecutableLocation))
-							buttonItemPowerPointLaunch.Image = Resources.PowerPointLaunch2007;
-						else
-						{
-							pptExecutableLocation = string.Format(@"{0}\Microsoft Office\OFFICE11\POWERPNT.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-							if (File.Exists(pptExecutableLocation))
-								buttonItemPowerPointLaunch.Image = Resources.PowerPointLaunch2003;
-						}
-					}
-				}
-			}
-			ribbonBarPowerPointLaunch.RecalcLayout();
-			ribbonPanelPowerPoint.PerformLayout();
-		}
-
 
 		private void RunPowerPoint()
 		{
@@ -372,18 +335,16 @@ namespace NewBizWiz.MiniBar
 			MasterWizard masterWizard = null;
 			MasterWizardManager.Instance.MasterWizards.TryGetValue(name, out masterWizard);
 			MasterWizardManager.Instance.SelectedWizard = masterWizard;
-			if (MasterWizardManager.Instance.SelectedWizard != null)
-			{
-				Core.Common.SettingsManager.Instance.SelectedWizard = masterWizard.Name;
+			if (MasterWizardManager.Instance.SelectedWizard == null) return;
+			Core.Common.SettingsManager.Instance.SelectedWizard = masterWizard.Name;
 
-				UpdateSlideSize();
+			UpdateSlideSize();
 
-				UpdateSlideTemplateStatus();
+			UpdateSlideMasters();
 
-				UpdateApplicationsStatus();
+			UpdateApplicationsStatus();
 
-				Core.Common.SettingsManager.Instance.SaveSharedSettings();
-			}
+			Core.Common.SettingsManager.Instance.SaveSharedSettings();
 		}
 
 		private void UpdateSlideSize()
@@ -419,103 +380,48 @@ namespace NewBizWiz.MiniBar
 			}
 		}
 
-		private void UpdateSlideTemplateStatus()
+		private void UpdateSlideMasters()
 		{
-			if (buttonItemPowerPointSize1.Checked)
+			var availableSlide = AppManager.Instance.SlideManager.Slides.Where(s => s.SizeWidth == Core.Common.SettingsManager.Instance.SizeWidth && s.SizeHeght == Core.Common.SettingsManager.Instance.SizeHeght);
+			if (availableSlide.Any())
 			{
-				if (!MasterWizardManager.Instance.SelectedWizard.HasSlideTemplate43)
+				var selectedSlide = availableSlide.FirstOrDefault(s => s.Group.Equals(SettingsManager.Instance.SelectedSlideGroup) && s.Name.Equals(SettingsManager.Instance.SelectedSlideMaster));
+				if (selectedSlide == null)
 				{
-					_allowToSave = false;
-					buttonItemPowerPointTemplateDisabled.Checked = true;
-					_allowToSave = true;
-					ribbonBarPowerPointSlideTemplate.Enabled = false;
-					ribbonBarPowerPointSlideTemplate.Enabled = false;
+					selectedSlide = availableSlide.FirstOrDefault();
+					SettingsManager.Instance.SelectedSlideGroup = selectedSlide.Group;
+					SettingsManager.Instance.SelectedSlideMaster = selectedSlide.Name;
+					SettingsManager.Instance.SaveMinibarSettings();
 				}
-				else
-				{
-					_allowToSave = false;
-					buttonItemPowerPointTemplateDisabled.Checked = !Core.Common.SettingsManager.Instance.SlideTemplateEnabled;
-					_allowToSave = true;
-					buttonItemPowerPointTemplateEnabled.Checked = Core.Common.SettingsManager.Instance.SlideTemplateEnabled;
-					ribbonBarPowerPointSlideTemplate.Enabled = true;
-				}
+				buttonItemPowerPointOutput.Enabled = true;
+				buttonItemPowerPointSlideMaster.Visible = true;
+				buttonItemPowerPointSlideMaster.Image = selectedSlide.RibbonLogo;
+				ribbonBarPowerPointSlideMaster.Text = String.Format("{0}: {1}", selectedSlide.Group, selectedSlide.Name);
+				buttonItemPowerPointSlideMaster.Tag = selectedSlide;
 			}
-			else if (buttonItemPowerPointSize2.Checked)
+			else
 			{
-				if (!MasterWizardManager.Instance.SelectedWizard.HasSlideTemplate54)
-				{
-					_allowToSave = false;
-					buttonItemPowerPointTemplateDisabled.Checked = true;
-					_allowToSave = true;
-					ribbonBarPowerPointSlideTemplate.Enabled = false;
-					ribbonBarPowerPointSlideTemplate.Enabled = false;
-				}
-				else
-				{
-					_allowToSave = false;
-					buttonItemPowerPointTemplateDisabled.Checked = !Core.Common.SettingsManager.Instance.SlideTemplateEnabled;
-					_allowToSave = true;
-					buttonItemPowerPointTemplateEnabled.Checked = Core.Common.SettingsManager.Instance.SlideTemplateEnabled;
-					ribbonBarPowerPointSlideTemplate.Enabled = true;
-				}
+				buttonItemPowerPointOutput.Enabled = false;
+				buttonItemPowerPointSlideMaster.Visible = false;
+				ribbonBarPowerPointSlideMaster.Text = "No Slides";
 			}
-			else if (buttonItemPowerPointSize3.Checked)
+			ribbonBarPowerPointSlideMaster.RecalcLayout();
+			ribbonPanelPowerPoint.PerformLayout();
+		}
+
+		private void AppendSlideMaster(SlideMaster slideMaster)
+		{
+			if (slideMaster == null) return;
+			if (!MinibarPowerPointHelper.Instance.PowerPointDetected())
 			{
-				if (!MasterWizardManager.Instance.SelectedWizard.HasSlideTemplate169)
-				{
-					_allowToSave = false;
-					buttonItemPowerPointTemplateDisabled.Checked = true;
-					_allowToSave = true;
-					ribbonBarPowerPointSlideTemplate.Enabled = false;
-					ribbonBarPowerPointSlideTemplate.Enabled = false;
-				}
+				if (AppManager.Instance.ShowWarningQuestion("You need to first open PowerPoint\nDo you want to do that now?") == DialogResult.Yes)
+					RunPowerPoint();
 				else
-				{
-					_allowToSave = false;
-					buttonItemPowerPointTemplateDisabled.Checked = !Core.Common.SettingsManager.Instance.SlideTemplateEnabled;
-					_allowToSave = true;
-					buttonItemPowerPointTemplateEnabled.Checked = Core.Common.SettingsManager.Instance.SlideTemplateEnabled;
-					ribbonBarPowerPointSlideTemplate.Enabled = true;
-				}
+					return;
 			}
-			else if (buttonItemPowerPointSize4.Checked)
-			{
-				if (!MasterWizardManager.Instance.SelectedWizard.HasSlideTemplate34)
-				{
-					_allowToSave = false;
-					buttonItemPowerPointTemplateDisabled.Checked = true;
-					_allowToSave = true;
-					ribbonBarPowerPointSlideTemplate.Enabled = false;
-					ribbonBarPowerPointSlideTemplate.Enabled = false;
-				}
-				else
-				{
-					_allowToSave = false;
-					buttonItemPowerPointTemplateDisabled.Checked = !Core.Common.SettingsManager.Instance.SlideTemplateEnabled;
-					_allowToSave = true;
-					buttonItemPowerPointTemplateEnabled.Checked = Core.Common.SettingsManager.Instance.SlideTemplateEnabled;
-					ribbonBarPowerPointSlideTemplate.Enabled = true;
-				}
-			}
-			else if (buttonItemPowerPointSize5.Checked)
-			{
-				if (!MasterWizardManager.Instance.SelectedWizard.HasSlideTemplate45)
-				{
-					_allowToSave = false;
-					buttonItemPowerPointTemplateDisabled.Checked = true;
-					_allowToSave = true;
-					ribbonBarPowerPointSlideTemplate.Enabled = false;
-					ribbonBarPowerPointSlideTemplate.Enabled = false;
-				}
-				else
-				{
-					_allowToSave = false;
-					buttonItemPowerPointTemplateDisabled.Checked = !Core.Common.SettingsManager.Instance.SlideTemplateEnabled;
-					_allowToSave = true;
-					buttonItemPowerPointTemplateEnabled.Checked = Core.Common.SettingsManager.Instance.SlideTemplateEnabled;
-					ribbonBarPowerPointSlideTemplate.Enabled = true;
-				}
-			}
+			MinibarPowerPointHelper.Instance.Connect(false);
+			MinibarPowerPointHelper.Instance.AppendSlideMaster(slideMaster.MasterPath);
+			Utilities.Instance.ActivateForm(Handle, false, true);
 		}
 
 		private void buttonItemSize_Click(object sender, EventArgs e)
@@ -556,7 +462,7 @@ namespace NewBizWiz.MiniBar
 			buttonItemPowerPointSize4.Checked = false;
 			buttonItemPowerPointSize5.Checked = false;
 			(sender as ButtonItem).Checked = true;
-			UpdateSlideTemplateStatus();
+			UpdateSlideMasters();
 			Core.Common.SettingsManager.Instance.SaveSharedSettings();
 			MinibarPowerPointHelper.Instance.Connect(false);
 			MinibarPowerPointHelper.Instance.SetPresentationSettings();
@@ -580,20 +486,20 @@ namespace NewBizWiz.MiniBar
 				}
 				else if (buttonItemPowerPointSize3.Checked)
 				{
-					Core.Common.SettingsManager.Instance.SizeWidth = 10;
-					Core.Common.SettingsManager.Instance.SizeHeght = 5.63;
+					Core.Common.SettingsManager.Instance.SizeWidth = 13;
+					Core.Common.SettingsManager.Instance.SizeHeght = 7.32;
 					Core.Common.SettingsManager.Instance.Orientation = "Landscape";
 				}
 				else if (buttonItemPowerPointSize4.Checked)
 				{
-					Core.Common.SettingsManager.Instance.SizeWidth = 10;
-					Core.Common.SettingsManager.Instance.SizeHeght = 7.5;
+					Core.Common.SettingsManager.Instance.SizeWidth = 7.5;
+					Core.Common.SettingsManager.Instance.SizeHeght = 10;
 					Core.Common.SettingsManager.Instance.Orientation = "Portrait";
 				}
 				else if (buttonItemPowerPointSize5.Checked)
 				{
-					Core.Common.SettingsManager.Instance.SizeWidth = 10.75;
-					Core.Common.SettingsManager.Instance.SizeHeght = 8.25;
+					Core.Common.SettingsManager.Instance.SizeWidth = 8.25;
+					Core.Common.SettingsManager.Instance.SizeHeght = 10.75;
 					Core.Common.SettingsManager.Instance.Orientation = "Portrait";
 				}
 				UpdateApplicationsStatus();
@@ -640,35 +546,40 @@ namespace NewBizWiz.MiniBar
 			}
 		}
 
-		private void buttonItemPowerPointTemplate_CheckedChanged(object sender, EventArgs e)
+		private void buttonItemPowerPointOutput_Click(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				Core.Common.SettingsManager.Instance.SlideTemplateEnabled = buttonItemPowerPointTemplateEnabled.Checked;
-				Core.Common.SettingsManager.Instance.SaveSharedSettings();
-			}
+			var selectedSlideMaster = buttonItemPowerPointSlideMaster.Tag as SlideMaster;
+			AppendSlideMaster(selectedSlideMaster);
 		}
 
-		private void buttonItemPowerPointTemplate_Click(object sender, EventArgs e)
+		private void buttonItemPowerPointSlideMaster_Click(object sender, EventArgs e)
 		{
-			if (AppManager.Instance.AplicationDetected())
+			using (var form = new FormSlideSelector())
 			{
-				if (AppManager.Instance.ShowWarningQuestion("All active applications will be closed before you change PowerPoint settings.\nDo you want to continue?") == DialogResult.Yes)
-					AppManager.Instance.CloseActiveApplications();
-				else
-					return;
-			}
-			_allowToSave = false;
-			_allowToSave = true;
-			buttonItemPowerPointTemplateDisabled.Checked = false;
-			buttonItemPowerPointTemplateEnabled.Checked = false;
-			(sender as ButtonItem).Checked = true;
-		}
+				form.LoadSlides(AppManager.Instance.SlideManager);
+				form.Shown += (o, args) =>
+				{
+					form.SetSelectedSlide(SettingsManager.Instance.SelectedSlideGroup, SettingsManager.Instance.SelectedSlideMaster);
+				};
 
-		private void buttonItemPowerPointLaunch_Click(object sender, EventArgs e)
-		{
-			RunPowerPoint();
-			Utilities.Instance.ActivateForm(Handle, false, true);
+				form.AddSlide += (o, args) => AppendSlideMaster(args.SelectedSlide);
+				if (form.ShowDialog() == DialogResult.OK)
+				{
+					var selectedSlide = form.SelectedSlide;
+					if (selectedSlide == null) return;
+					buttonItemPowerPointSlideMaster.Image = selectedSlide.RibbonLogo;
+					ribbonBarPowerPointSlideMaster.Text = String.Format("{0}: {1}", selectedSlide.Group, selectedSlide.Name);
+					buttonItemPowerPointSlideMaster.Tag = selectedSlide;
+					ribbonBarPowerPointSlideMaster.RecalcLayout();
+					ribbonPanelPowerPoint.PerformLayout();
+
+					SettingsManager.Instance.SelectedSlideGroup = selectedSlide.Group;
+					SettingsManager.Instance.SelectedSlideMaster = selectedSlide.Name;
+					SettingsManager.Instance.SaveMinibarSettings();
+				}
+				_mouseLeaveAdditionalTime = 2;
+				FormMain.Instance.ActivateExpandedForm();
+			}
 		}
 		#endregion
 
@@ -678,40 +589,9 @@ namespace NewBizWiz.MiniBar
 			AppManager.Instance.RunDashboard();
 		}
 
-		private void buttonItemDashboardCover_Click(object sender, EventArgs e)
+		private void buttonItemPowerPointLaunch_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormAddCover())
-			{
-				DialogResult result = form.ShowDialog();
-				if (result == DialogResult.Yes)
-					AppManager.Instance.RunDashboard("showcover");
-				else if (result == DialogResult.No)
-				{
-					if (!MinibarPowerPointHelper.Instance.PowerPointDetected())
-					{
-						if (AppManager.Instance.ShowWarningQuestion("You need to first open PowerPoint\nDo you want to do that now?") == DialogResult.Yes)
-							RunPowerPoint();
-						else
-							return;
-					}
-					MinibarPowerPointHelper.Instance.Connect(false);
-					MinibarPowerPointHelper.Instance.AppendGenericCover(true);
-					Utilities.Instance.ActivateForm(Handle, false, true);
-				}
-			}
-		}
-
-		private void buttonItemDashboardCleanslate_Click(object sender, EventArgs e)
-		{
-			if (!MinibarPowerPointHelper.Instance.PowerPointDetected())
-			{
-				if (AppManager.Instance.ShowWarningQuestion("You need to first open PowerPoint\nDo you want to do that now?") == DialogResult.Yes)
-					RunPowerPoint();
-				else
-					return;
-			}
-			MinibarPowerPointHelper.Instance.Connect(false);
-			MinibarPowerPointHelper.Instance.AppendCleanslate();
+			RunPowerPoint();
 			Utilities.Instance.ActivateForm(Handle, false, true);
 		}
 		#endregion
@@ -738,18 +618,18 @@ namespace NewBizWiz.MiniBar
 				label.Text = SettingsManager.Instance.SalesDepotSettings.LocalAppName;
 				label.Visible = false;
 				label.Click += (sender, args) =>
-					               {
-						               AppManager.Instance.RunLocalSalesDepot();
-						               ServiceDataManager.Instance.WriteActivity();
-					               };
+								   {
+									   AppManager.Instance.RunLocalSalesDepot();
+									   ServiceDataManager.Instance.WriteActivity();
+								   };
 				var button = new ButtonItem();
 				if (File.Exists(SettingsManager.Instance.SalesDepotSettings.LocalLogoPath) && File.Exists(SettingsManager.Instance.SalesDepotSettings.LocalIconPath))
 					button.Image = new Bitmap(SettingsManager.Instance.SalesDepotSettings.LocalLogoPath);
 				button.Click += (sender, args) =>
-					                {
-						                AppManager.Instance.RunLocalSalesDepot();
-						                ServiceDataManager.Instance.WriteActivity();
-					                };
+									{
+										AppManager.Instance.RunLocalSalesDepot();
+										ServiceDataManager.Instance.WriteActivity();
+									};
 				superTooltip.SetSuperTooltip(button, new SuperTooltipInfo(SettingsManager.Instance.SalesDepotSettings.LocalAppName, string.Empty, "Access PowerPoint slides to create a Client Solution", null, null, eTooltipColor.Default, true, false, new Size(0, 0)));
 				var itemContainer = new ItemContainer();
 				itemContainer.SubItems.AddRange(new BaseItem[]
@@ -765,18 +645,18 @@ namespace NewBizWiz.MiniBar
 				label.Text = SettingsManager.Instance.SalesDepotSettings.WebAppName;
 				label.Visible = false;
 				label.Click += (sender, args) =>
-					               {
-						               AppManager.Instance.RunWebSalesDepot();
-						               ServiceDataManager.Instance.WriteActivity();
-					               };
+								   {
+									   AppManager.Instance.RunWebSalesDepot();
+									   ServiceDataManager.Instance.WriteActivity();
+								   };
 				button = new ButtonItem();
 				if (File.Exists(SettingsManager.Instance.SalesDepotSettings.WebLogoPath) && File.Exists(SettingsManager.Instance.SalesDepotSettings.WebIconPath))
 					button.Image = new Bitmap(SettingsManager.Instance.SalesDepotSettings.WebLogoPath);
 				button.Click += (sender, args) =>
-					                {
-						                AppManager.Instance.RunWebSalesDepot();
-						                ServiceDataManager.Instance.WriteActivity();
-					                };
+									{
+										AppManager.Instance.RunWebSalesDepot();
+										ServiceDataManager.Instance.WriteActivity();
+									};
 				superTooltip.SetSuperTooltip(button, new SuperTooltipInfo(SettingsManager.Instance.SalesDepotSettings.WebAppName, string.Empty, "Access corporate web site to create a Client Solution", null, null, eTooltipColor.Default, true, false, new Size(0, 0)));
 				itemContainer = new ItemContainer();
 				itemContainer.SubItems.AddRange(new BaseItem[]
@@ -943,65 +823,6 @@ namespace NewBizWiz.MiniBar
 			galleryContainerApps.SubItems.AddRange(new BaseItem[] { itemContainerApp });
 			superTooltip.SetSuperTooltip(nbwApplication.DisabledButton, new SuperTooltipInfo("This app is DISABLED", string.Empty, "Check your PowerPoint slide size on the first Tab of this minibar", null, null, eTooltipColor.Default, true, false, new Size(0, 0)));
 		}
-
-		private void buttonItemAppsTeamViewer_Click(object sender, EventArgs e)
-		{
-			if (File.Exists(SettingsManager.Instance.TeamViewerQSPath))
-			{
-				Process.Start(SettingsManager.Instance.TeamViewerQSPath);
-				return;
-			}
-			AppManager.Instance.ShowWarning("TeamViewer was not found");
-		}
-
-		private void buttonItemAppsWebcast_Click(object sender, EventArgs e)
-		{
-			if (File.Exists(SettingsManager.Instance.TeamViewerQJPath))
-			{
-				Process.Start(SettingsManager.Instance.TeamViewerQJPath);
-				return;
-			}
-			AppManager.Instance.ShowWarning("TeamViewer was not found");
-		}
-
-		private void buttonItemAppsJoinMe_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				Process.Start("http://saleswebcast.com/");
-			}
-			catch {}
-		}
-
-		private void buttonItemAppsWizSite_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				Process.Start("http://wiz10.com/");
-			}
-			catch {}
-		}
-
-		private void buttonItemAppsLiveMeeting_Click(object sender, EventArgs e)
-		{
-			if (File.Exists(@"C:\Program Files\Microsoft Office\Live Meeting 8\Console\PWConsole.exe"))
-			{
-				Process.Start(@"C:\Program Files\Microsoft Office\Live Meeting 8\Console\PWConsole.exe");
-				return;
-			}
-			if (File.Exists(@"C:\Program Files (x86)\Microsoft Office\Live Meeting 8\Console\PWConsole.exe"))
-			{
-				Process.Start(@"C:\Program Files (x86)\Microsoft Office\Live Meeting 8\Console\PWConsole.exe");
-				return;
-			}
-			AppManager.Instance.ShowWarning("LiveMeeting was not found");
-		}
-
-		private void buttonItemAppsLiveMeetingLocation_Click(object sender, EventArgs e)
-		{
-			Clipboard.SetText(SettingsManager.Instance.Location);
-			AppManager.Instance.ShowInformation("Location was copied to clipboard successfully");
-		}
 		#endregion
 
 		#region Clipart Methods
@@ -1022,6 +843,17 @@ namespace NewBizWiz.MiniBar
 		#endregion
 
 		#region PDF Methods
+		private void buttonItemPDF_PopupOpen(object sender, PopupOpenEventArgs e)
+		{
+			_comboOpened = true;
+			_mouseLeaveAdditionalTime = 2;
+		}
+
+		private void buttonItemPDF_PopupFinalized(object sender, EventArgs e)
+		{
+			_comboOpened = false;
+		}
+
 		private void buttonItemPdfSavePdf_Click(object sender, EventArgs e)
 		{
 			bool toContinue = false;
@@ -1103,39 +935,6 @@ namespace NewBizWiz.MiniBar
 			else
 				AppManager.Instance.ShowWarning("There is no active PowerPoint Presentation.\nOpen your presentation and try again.");
 		}
-
-		private void buttonItemPdfEmailPpt_Click(object sender, EventArgs e)
-		{
-			bool toContinue = false;
-			string presentationName = string.Empty;
-			if (MinibarPowerPointHelper.Instance.PowerPointDetected())
-			{
-				MinibarPowerPointHelper.Instance.Connect(false);
-				if (MinibarPowerPointHelper.Instance.IsActive && MinibarPowerPointHelper.Instance.PowerPointObject.WindowState != PpWindowState.ppWindowMinimized)
-				{
-					presentationName = MinibarPowerPointHelper.Instance.ActiveFileName;
-					if (!string.IsNullOrEmpty(presentationName))
-						toContinue = true;
-				}
-			}
-
-			if (toContinue)
-			{
-				if (AppManager.Instance.ShowWarningQuestion("Do you want to Email " + presentationName + "?") == DialogResult.Yes)
-				{
-					string fileName = Path.Combine(Path.GetTempPath(), presentationName.Replace(".pptx", "").Replace(".ppt", "") + ".pdf");
-					if (OutlookHelper.Instance.Open())
-					{
-						OutlookHelper.Instance.CreateMessage(MinibarPowerPointHelper.Instance.ActiveFilePath);
-						OutlookHelper.Instance.Close();
-					}
-					else
-						AppManager.Instance.ShowWarning("Couldn't open Outlook");
-				}
-			}
-			else
-				AppManager.Instance.ShowWarning("There is no active PowerPoint Presentation.\nOpen your presentation and try again.");
-		}
 		#endregion
 
 		#region Tools Methods
@@ -1203,6 +1002,35 @@ namespace NewBizWiz.MiniBar
 		#endregion
 
 		#region Settings Methods
+		private void buttonItemSettingsTeamViewer_Click(object sender, EventArgs e)
+		{
+			if (File.Exists(SettingsManager.Instance.TeamViewerQSPath))
+			{
+				Process.Start(SettingsManager.Instance.TeamViewerQSPath);
+				return;
+			}
+			AppManager.Instance.ShowWarning("TeamViewer was not found");
+		}
+
+		private void buttonItemSettingsWebcast_Click(object sender, EventArgs e)
+		{
+			if (File.Exists(SettingsManager.Instance.TeamViewerQJPath))
+			{
+				Process.Start(SettingsManager.Instance.TeamViewerQJPath);
+				return;
+			}
+			AppManager.Instance.ShowWarning("TeamViewer was not found");
+		}
+
+		private void buttonItemSettingsJoinMe_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				Process.Start("http://saleswebcast.com/");
+			}
+			catch { }
+		}
+
 		private void buttonItemSettingsPowerPoint_Click(object sender, EventArgs e)
 		{
 			if (AppManager.Instance.ShowWarningQuestion("ARE YOU SURE YOU WANT TO STOP ALL POWERPOINT PROCESSES?\nSave any Active PowerPoint Presentations that may be running...") == DialogResult.Yes)
@@ -1341,9 +1169,7 @@ namespace NewBizWiz.MiniBar
 
 			if (ribbonControl.SelectedRibbonTabItem != null)
 				ribbonControl.SelectedRibbonTabItem.Checked = false;
-			labelItemDashboard.Text = Core.Common.SettingsManager.Instance.DashboardName;
-			if (File.Exists(SettingsManager.Instance.DashboardLogoPath) && File.Exists(SettingsManager.Instance.DashboardIconPath))
-				buttonItemDashboard.Image = new Bitmap(SettingsManager.Instance.DashboardLogoPath);
+			ribbonBarDashboard.Text = Core.Common.SettingsManager.Instance.DashboardName;
 			ribbonBarDashboard.RecalcLayout();
 			ribbonPanelDashboard.PerformLayout();
 

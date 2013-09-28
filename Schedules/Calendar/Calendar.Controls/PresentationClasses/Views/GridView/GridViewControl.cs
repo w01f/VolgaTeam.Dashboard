@@ -57,7 +57,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.GridView
 			};
 			CopyPasteManager.DayPasted += (sender, e) =>
 			{
-				Calendar.SlideInfo.LoadData(reload: true);
+				Calendar.SlideInfo.LoadData();
 				RefreshData();
 				SettingsNotSaved = true;
 			};

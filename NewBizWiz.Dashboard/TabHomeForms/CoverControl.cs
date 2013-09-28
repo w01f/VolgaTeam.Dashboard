@@ -33,7 +33,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				laSalesRepPhone.Font = new Font(laSalesRepPhone.Font.FontFamily, laSalesRepPhone.Font.Size - 2, laSalesRepPhone.Font.Style);
 				laSlideHeader.Font = new Font(laSlideHeader.Font.FontFamily, laSlideHeader.Font.Size - 2, laSlideHeader.Font.Style);
 				checkEditFirstSlide.Font = new Font(checkEditFirstSlide.Font.FontFamily, checkEditFirstSlide.Font.Size - 2, checkEditFirstSlide.Font.Style);
-				checkEditNewSolution.Font = new Font(checkEditNewSolution.Font.FontFamily, checkEditNewSolution.Font.Size - 2, checkEditNewSolution.Font.Style);
 				checkEditPresentationDate.Font = new Font(checkEditPresentationDate.Font.FontFamily, checkEditPresentationDate.Font.Size - 2, checkEditPresentationDate.Font.Style);
 				checkEditSalesRep.Font = new Font(checkEditSalesRep.Font.FontFamily, checkEditSalesRep.Font.Size - 2, checkEditSalesRep.Font.Style);
 				checkEditUseEmptyCover.Font = new Font(checkEditUseEmptyCover.Font.FontFamily, checkEditUseEmptyCover.Font.Size - 2, checkEditUseEmptyCover.Font.Style);
@@ -88,7 +87,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					comboBoxEditSlideHeader.SelectedIndex = 0;
 			}
 
-			checkEditNewSolution.Checked = ViewSettingsManager.Instance.CoverState.IsNewSolution;
 			checkEditFirstSlide.Checked = ViewSettingsManager.Instance.CoverState.AddAsPageOne;
 			checkEditPresentationDate.Checked = ViewSettingsManager.Instance.CoverState.ShowPresentationDate;
 			dateEditPresentationDate.Enabled = checkEditPresentationDate.Checked;
@@ -134,7 +132,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void SaveState()
 		{
 			ViewSettingsManager.Instance.CoverState.SlideHeader = comboBoxEditSlideHeader.EditValue != null ? comboBoxEditSlideHeader.EditValue.ToString() : string.Empty;
-			ViewSettingsManager.Instance.CoverState.IsNewSolution = checkEditNewSolution.Checked;
 			ViewSettingsManager.Instance.CoverState.AddAsPageOne = checkEditFirstSlide.Checked;
 			ViewSettingsManager.Instance.CoverState.ShowPresentationDate = checkEditPresentationDate.Checked;
 			ViewSettingsManager.Instance.CoverState.PresentationDate = dateEditPresentationDate.DateTime;
@@ -285,7 +282,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				pbSalesQuotes.Enabled = !checkEditUseEmptyCover.Checked;
 				dateEditPresentationDate.Enabled = !checkEditUseEmptyCover.Checked && checkEditPresentationDate.Checked;
 				checkEditPresentationDate.Enabled = !checkEditUseEmptyCover.Checked;
-				checkEditNewSolution.Enabled = !checkEditUseEmptyCover.Checked;
 				UpdateOutputState();
 				SettingsNotSaved = true;
 			}

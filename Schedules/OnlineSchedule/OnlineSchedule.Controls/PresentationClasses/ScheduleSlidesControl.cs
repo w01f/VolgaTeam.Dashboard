@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
+using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
@@ -69,7 +70,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.DigitalSlidesTheme, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.DigitalSlidesTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
 			{
 				LocalSchedule.ThemeName = t.Name;
 				SettingsNotSaved = true;
@@ -91,8 +92,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				xtraTabControlProducts.SelectedPageChanged -= xtraTabControlProducts_SelectedPageChanged;
 				;
 				xtraTabControlProducts.TabPages.Clear();
-				_tabPages.RemoveAll(x => !LocalSchedule.Products.Select(y => y.UniqueID).Contains(x.Product.UniqueID));
-				foreach (DigitalProduct product in LocalSchedule.Products)
+				_tabPages.RemoveAll(x => !LocalSchedule.DigitalProducts.Select(y => y.UniqueID).Contains(x.Product.UniqueID));
+				foreach (DigitalProduct product in LocalSchedule.DigitalProducts)
 				{
 					if (!string.IsNullOrEmpty(product.Name))
 					{
@@ -121,7 +122,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 			else
 			{
-				foreach (DigitalProduct product in LocalSchedule.Products)
+				foreach (DigitalProduct product in LocalSchedule.DigitalProducts)
 				{
 					if (!string.IsNullOrEmpty(product.Name))
 					{

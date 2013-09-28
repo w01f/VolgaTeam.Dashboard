@@ -24,6 +24,8 @@ namespace NewBizWiz.Core.Common
 			MinibarApplicationPath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\MiniBar.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			OneDomainApplicationPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\applications\APP_One_Domain\OneDomain.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			SalesDepotApplicationPath = string.Format(@"{0}\newlocaldirect.com\Sales Depot\SalesDepot.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			ThemeCollectionPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides\SellerPointThemes", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			SlideMastersPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides\SlidesTab", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			SelectedWizard = string.Empty;
 			DashboardName = "Schedule APP";
 			SelectedWizard = String.Empty;
@@ -46,6 +48,8 @@ namespace NewBizWiz.Core.Common
 		public string OneDomainApplicationPath { get; set; }
 		public string SalesDepotApplicationPath { get; set; }
 		public string SharedListFolder { get; set; }
+		public string ThemeCollectionPath { get; set; }
+		public string SlideMastersPath { get; set; }
 
 		public Guid AppID { get; set; }
 
@@ -53,7 +57,6 @@ namespace NewBizWiz.Core.Common
 		public double SizeHeght { get; set; }
 		public double SizeWidth { get; set; }
 		public string Orientation { get; set; }
-		public bool SlideTemplateEnabled { get; set; }
 		public string DashboardName { get; set; }
 
 		public string Size
@@ -67,15 +70,15 @@ namespace NewBizWiz.Core.Common
 							return "4 x 3";
 						if (SizeWidth == 10.75 && SizeHeght == 8.25)
 							return "5 x 4";
-						if (SizeWidth == 10 && SizeHeght == 5.63)
+						if (SizeWidth == 13 && SizeHeght == 7.32)
 							return "16 x 9";
 						return "4 x 3";
 					case "Portrait":
-						if (SizeWidth == 10 && SizeHeght == 7.5)
+						if (SizeWidth == 7.5 && SizeHeght == 10)
 							return "3 x 4";
-						if (SizeWidth == 10.75 && SizeHeght == 8.25)
+						if (SizeWidth == 8.25 && SizeHeght == 10.75)
 							return "4 x 5";
-						if (SizeWidth == 10 && SizeHeght == 5.63)
+						if (SizeWidth == 7.32 && SizeHeght == 13)
 							return "9 x 16";
 						return "4 x 3";
 					default:
@@ -95,15 +98,15 @@ namespace NewBizWiz.Core.Common
 							return "Landscape 4 x 3";
 						if (SizeWidth == 10.75 && SizeHeght == 8.25)
 							return "Landscape 5 x 4";
-						if (SizeWidth == 10 && SizeHeght == 5.63)
+						if (SizeWidth == 13 && SizeHeght == 7.32)
 							return "Landscape 16 x 9";
 						return "Landscape 4 x 3";
 					case "Portrait":
-						if (SizeWidth == 10 && SizeHeght == 7.5)
+						if (SizeWidth == 7.5 && SizeHeght == 10)
 							return "Portrait 3 x 4";
-						if (SizeWidth == 10.75 && SizeHeght == 8.25)
+						if (SizeWidth == 8.25 && SizeHeght == 10.75)
 							return "Portrait 4 x 5";
-						if (SizeWidth == 10 && SizeHeght == 5.63)
+						if (SizeWidth == 7.32 && SizeHeght == 13)
 							return "Portrait 9 x 16";
 						return "Landscape 4 x 3";
 					default:
@@ -123,21 +126,26 @@ namespace NewBizWiz.Core.Common
 							return "Slides43";
 						if (SizeWidth == 10.75 && SizeHeght == 8.25)
 							return "Slides54";
-						if (SizeWidth == 10 && SizeHeght == 5.63)
+						if (SizeWidth == 13 && SizeHeght == 7.32)
 							return "Slides169";
 						return "Slides43";
 					case "Portrait":
-						if (SizeWidth == 10 && SizeHeght == 7.5)
+						if (SizeWidth == 7.5 && SizeHeght == 10)
 							return "Slides34";
-						if (SizeWidth == 10.75 && SizeHeght == 8.25)
+						if (SizeWidth == 8.25 && SizeHeght == 10.75)
 							return "Slides45";
-						if (SizeWidth == 10 && SizeHeght == 5.63)
+						if (SizeWidth == 7.32 && SizeHeght == 13)
 							return "Slides916";
 						return "Slides43";
 					default:
 						return "Slides43";
 				}
 			}
+		}
+
+		public string SlideMasterFolder
+		{
+			get { return Size.Replace(" ", ""); }
 		}
 
 		private void LoadSharedSettings()
@@ -178,13 +186,6 @@ namespace NewBizWiz.Core.Common
 				node = document.SelectSingleNode(@"/SharedSettings/Orientation");
 				if (node != null)
 					Orientation = node.InnerText;
-				node = document.SelectSingleNode(@"/SharedSettings/SlideTemplateEnabled");
-				if (node != null)
-				{
-					tempBool = false;
-					bool.TryParse(node.InnerText, out tempBool);
-					SlideTemplateEnabled = tempBool;
-				}
 			}
 			LoadAppID();
 			LoadDashboardName();
@@ -196,10 +197,9 @@ namespace NewBizWiz.Core.Common
 
 			xml.AppendLine(@"<SharedSettings>");
 			xml.AppendLine(@"<SelectedWizard>" + SelectedWizard.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedWizard>");
-			xml.AppendLine(@"<SizeHeght>" + SizeHeght.ToString() + @"</SizeHeght>");
-			xml.AppendLine(@"<SizeWidth>" + SizeWidth.ToString() + @"</SizeWidth>");
+			xml.AppendLine(@"<SizeHeght>" + SizeHeght + @"</SizeHeght>");
+			xml.AppendLine(@"<SizeWidth>" + SizeWidth + @"</SizeWidth>");
 			xml.AppendLine(@"<Orientation>" + Orientation.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Orientation>");
-			xml.AppendLine(@"<SlideTemplateEnabled>" + SlideTemplateEnabled.ToString() + @"</SlideTemplateEnabled>");
 			xml.AppendLine(@"</SharedSettings>");
 
 			using (var sw = new StreamWriter(_sharedSettingsFile, false))

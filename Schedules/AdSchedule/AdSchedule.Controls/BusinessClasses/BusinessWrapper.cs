@@ -15,7 +15,7 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 			OutputManager = new OutputManager();
 			RateCardManager = new RateCardManager(Core.AdSchedule.SettingsManager.Instance.RateCardPath);
 			TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "adsched_tab_names.xml"));
-			ThemeManager = new ThemeManager(Core.AdSchedule.SettingsManager.Instance.ThemeCollectionPath);
+			ThemeManager = new ThemeManager(Path.Combine(Core.Common.SettingsManager.Instance.ThemeCollectionPath, Core.Common.SettingsManager.Instance.SlideMasterFolder));
 		}
 
 		public static BusinessWrapper Instance

@@ -4,14 +4,13 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml;
 using DevComponents.DotNetBar;
-using DevExpress.XtraBars.Ribbon.Accessible;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 
@@ -51,7 +50,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			_allowToSave = false;
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			laAdvertiser.Text = LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
-			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.AdPlanTheme, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.AdPlanTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
 			{
 				LocalSchedule.ThemeName = t.Name;
 				SettingsNotSaved = true;

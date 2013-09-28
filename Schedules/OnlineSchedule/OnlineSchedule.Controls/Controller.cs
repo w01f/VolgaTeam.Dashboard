@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -51,6 +52,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			HomeFlightDatesEnd.EditValueChanged += ScheduleSettings.CalcWeeksOnFlightDatesChange;
 			HomeFlightDatesStart.CloseUp += ScheduleSettings.dateEditFlightDatesStart_CloseUp;
 			HomeFlightDatesEnd.CloseUp += ScheduleSettings.dateEditFlightDatesEnd_CloseUp;
+			HomeProductClone.Click += ScheduleSettings.DigitalProductClone;
 			HomeProductDelete.Click += ScheduleSettings.DigitalProductDelete;
 			HomeBusinessName.Enter += Utilities.Instance.Editor_Enter;
 			HomeBusinessName.MouseDown += Utilities.Instance.Editor_MouseDown;
@@ -83,6 +85,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			#endregion
 
 			ConfigureTabPages();
+
+			UpdateOutputButtonsAccordingThemeStatus();
 		}
 
 		public void RemoveInstance()
@@ -145,6 +149,35 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		{
 			TabScheduleSlides.Enabled = enable;
 			TabDigitalPackage.Enabled = enable && DigitalPackage.SlidesAvailable;
+		}
+
+		public void UpdateOutputButtonsAccordingThemeStatus()
+		{
+			if (!BusinessWrapper.Instance.ThemeManager.Themes.Any())
+			{
+				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
+				var themesDisabledHandler = new Action(() => BusinessWrapper.Instance.HelpManager.OpenHelpLink("NoTheme"));
+
+				DigitalSlidesPowerPoint.Visible = false;
+				(DigitalSlidesPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(DigitalSlidesEmail.ContainerControl as RibbonBar).Visible = false;
+				(DigitalSlidesPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(DigitalSlidesTheme, selectorToolTip);
+				DigitalSlidesTheme.Click += (o, e) => themesDisabledHandler();
+
+				DigitalPackagePowerPoint.Visible = false;
+				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(DigitalPackageEmail.ContainerControl as RibbonBar).Visible = false;
+				(DigitalPackagePreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
+				DigitalPackageTheme.Click += (o, e) => themesDisabledHandler();
+			}
+			else
+			{
+				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
+				Supertip.SetSuperTooltip(DigitalSlidesTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
+			}
 		}
 
 		public void ShowFloater(Action afterShow)

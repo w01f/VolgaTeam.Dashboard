@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.toolTip = new System.Windows.Forms.ToolTip();
+			this.components = new System.ComponentModel.Container();
+			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.pbWatermark = new System.Windows.Forms.PictureBox();
 			this.pnBottom = new System.Windows.Forms.Panel();
@@ -76,7 +77,7 @@
 			// 
 			// pbVersion
 			// 
-			this.pbVersion.Location = new System.Drawing.Point(3, 2);
+			this.pbVersion.Location = new System.Drawing.Point(3, 4);
 			this.pbVersion.Name = "pbVersion";
 			this.pbVersion.Size = new System.Drawing.Size(526, 45);
 			this.pbVersion.TabIndex = 1;

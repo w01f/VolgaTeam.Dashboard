@@ -124,6 +124,12 @@
       <DependentUpon>WebPackageControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolForms\FormCloneProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormCloneProduct.Designer.cs">
+      <DependentUpon>FormCloneProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormEmail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\WebPackageControl.resx">
       <DependentUpon>WebPackageControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormCloneProduct.resx">
+      <DependentUpon>FormCloneProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormEmail.resx">
       <DependentUpon>FormEmail.cs</DependentUpon>
@@ -434,6 +443,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DigitalPackageDisabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloneProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloneProductBig.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

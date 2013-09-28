@@ -15,8 +15,7 @@ namespace NewBizWiz.MiniBar.SettingsForms
 		{
 			InitializeComponent();
 			laDashboard.Text = SettingsManager.Instance.DashboardName;
-			if (File.Exists(BusinessClasses.SettingsManager.Instance.DashboardLogoPath) && File.Exists(BusinessClasses.SettingsManager.Instance.DashboardIconPath))
-				pbDashboard.Image = new Bitmap(BusinessClasses.SettingsManager.Instance.DashboardLogoPath);
+			pbDashboard.Image = new Bitmap(Properties.Resources.Dashboard);
 			if (BusinessClasses.SettingsManager.Instance.SalesDepotSettings.ShowLocalButton || !BusinessClasses.SettingsManager.Instance.SalesDepotSettings.ShowLocalButton && !BusinessClasses.SettingsManager.Instance.SalesDepotSettings.ShowWebButton)
 			{
 				pnLocalSalesDepot.Visible = true;
@@ -72,7 +71,7 @@ namespace NewBizWiz.MiniBar.SettingsForms
 				shortcut.WorkingDirectory = Path.GetDirectoryName(BusinessClasses.SettingsManager.Instance.DashboardPath);
 				shortcut.Description = SettingsManager.Instance.DashboardName;
 				shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-				if (File.Exists(BusinessClasses.SettingsManager.Instance.DashboardLogoPath) && File.Exists(BusinessClasses.SettingsManager.Instance.DashboardIconPath))
+				if (File.Exists(BusinessClasses.SettingsManager.Instance.DashboardIconPath))
 					shortcut.IconPath = BusinessClasses.SettingsManager.Instance.DashboardIconPath;
 				shortcut.IconIndex = 0;
 				shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), SettingsManager.Instance.DashboardName + ".lnk"));

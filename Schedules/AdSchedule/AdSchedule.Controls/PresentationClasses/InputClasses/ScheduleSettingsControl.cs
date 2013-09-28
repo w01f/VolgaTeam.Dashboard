@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
@@ -460,7 +461,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void PrintProductClone(object sender, EventArgs e)
 		{
-			if (gridViewPrintProducts.FocusedRowHandle >= 0)
+			if (gridViewPrintProducts.FocusedRowHandle != GridControl.InvalidRowHandle)
 			{
 				int newRowHandle = gridViewPrintProducts.FocusedRowHandle + 1;
 				((BindingList<PrintProduct>)gridControlPrintProducts.DataSource)[gridViewPrintProducts.GetDataSourceRowIndex(gridViewPrintProducts.FocusedRowHandle)].Clone();
@@ -499,7 +500,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				if (e.Value != null)
 				{
 					string value = e.Value.ToString();
-					PrintProductSource printProductSource = Core.AdSchedule.ListManager.Instance.PublicationSources.Where(x => x.Name.Equals(value)).FirstOrDefault();
+					var printProductSource = Core.AdSchedule.ListManager.Instance.PublicationSources.FirstOrDefault(x => x.Name.Equals(value));
 					if (printProductSource != null)
 					{
 						_localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].ApplyDefaultValues();
@@ -611,7 +612,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			if (Utilities.Instance.ShowWarningQuestion("Are you sure you want to delete this line?") == DialogResult.Yes)
 			{
 				advBandedGridViewDigitalProducts.DeleteSelectedRows();
-				_localSchedule.RebuildDigitalIndexes();
+				_localSchedule.RebuildDigitalProductIndexes();
 				UpdateProductsCount();
 				RefreshDigitalAfterAddProduct();
 				SettingsNotSaved = true;
@@ -641,14 +642,29 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			DigitalProductDelete(sender, EventArgs.Empty);
 		}
 
+		public void DigitalProductClone(object sender, EventArgs e)
+		{
+			if (advBandedGridViewDigitalProducts.FocusedRowHandle != GridControl.InvalidRowHandle)
+			{
+				var newRowHandle = advBandedGridViewDigitalProducts.FocusedRowHandle + 1;
+				((BindingList<DigitalProduct>)advBandedGridViewDigitalProducts.DataSource)[advBandedGridViewDigitalProducts.GetDataSourceRowIndex(advBandedGridViewDigitalProducts.FocusedRowHandle)].Clone();
+				((BindingList<DigitalProduct>)advBandedGridViewDigitalProducts.DataSource).ResetBindings();
+				advBandedGridViewDigitalProducts.FocusedRowHandle = newRowHandle;
+				UpdateProductsCount();
+				Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
+				if (_allowToSave)
+					SettingsNotSaved = true;
+			}
+		}
+
 		private void gridViewDigitalProducts_CellValueChanged(object sender, CellValueChangedEventArgs e)
 		{
 			if (e.Column == gridColumnDigitalProductsName)
 			{
 				if (e.Value != null)
 				{
-					string value = e.Value.ToString();
-					ProductSource productSource = ListManager.Instance.ProductSources.Where(x => x.Name.Equals(value)).FirstOrDefault();
+					var value = e.Value.ToString();
+					var productSource = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(value));
 					if (productSource != null)
 					{
 						_localSchedule.DigitalProducts[advBandedGridViewDigitalProducts.GetFocusedDataSourceRowIndex()].ApplyDefaultValues();

@@ -30,7 +30,7 @@ namespace NewBizWiz.Dashboard.ToolForms
 
 		public void EnableOutputButton(bool enable)
 		{
-			FormMain.Instance.ribbonBarPowerPoint.Enabled = enable;
+			FormMain.Instance.buttonItemPowerPoint.Enabled = enable;
 			buttonXOutput.Enabled = enable;
 		}
 

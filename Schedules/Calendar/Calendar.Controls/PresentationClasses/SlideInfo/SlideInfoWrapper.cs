@@ -22,9 +22,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			_container.DockChanged += PanelDockChanged;
 			_container.DoubleClick += PanelDoubleClick;
 
-
 			ContainedControl = new SlideInfoControl();
-			ContainedControl.PropertiesSaved += PropertiesSaved;
 			ContainedControl.Closed += PropertiesClosed;
 			ContainedControl.ThemeChanged += OnThemeChanged;
 		}
@@ -73,12 +71,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 		#endregion
 
 		#region Contained Control Event Handlers
-		private void PropertiesSaved(object sender, EventArgs e)
-		{
-			if (DateSaved != null)
-				DateSaved(this, new EventArgs());
-		}
-
 		private void PropertiesClosed(object sender, EventArgs e)
 		{
 			Close();
@@ -133,9 +125,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			SettingsManager.Instance.ViewSettings.Save();
 		}
 
-		public void LoadData(CalendarMonth month = null, bool reload = false)
+		public void LoadData(CalendarMonth month = null)
 		{
-			SaveData(reload: reload);
+			SaveData();
 			if (month == null)
 				ContainedControl.LoadCurrentMonthData();
 			else
@@ -143,16 +135,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			_container.Text = ContainedControl.MonthTitle;
 		}
 
-		public void SaveData(bool reload = false, bool force = false)
+		public void SaveData()
 		{
-			if (ContainedControl.SettingsNotSaved && !force)
-			{
-				string message = reload ? "Calendar data was updated.\nDo you want to reload slide info?" : "Slide Info has changed.\nDo you want to save it?";
-				ContainedControl.SaveData();
-			}
-			else if (force)
-				ContainedControl.SaveData();
-			;
+			ContainedControl.SaveData();
 		}
 
 		public void Show()

@@ -32,8 +32,6 @@
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageBasic = new DevExpress.XtraTab.XtraTabPage();
 			this.pnBasicTop = new System.Windows.Forms.Panel();
@@ -94,7 +92,6 @@
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.barManager = new DevExpress.XtraBars.BarManager();
 			this.barToolbar = new DevExpress.XtraBars.Bar();
-			this.barLargeButtonItemApply = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemHelp = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemClose = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -1047,7 +1044,6 @@
 			this.barManager.DockControls.Add(this.barDockControlRight);
 			this.barManager.Form = this;
 			this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barLargeButtonItemApply,
             this.barLargeButtonItemClose,
             this.barLargeButtonItemHelp});
 			this.barManager.MaxItemId = 11;
@@ -1060,7 +1056,6 @@
 			this.barToolbar.DockRow = 0;
 			this.barToolbar.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
 			this.barToolbar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemApply),
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemHelp),
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemClose)});
 			this.barToolbar.OptionsBar.AllowQuickCustomization = false;
@@ -1068,27 +1063,16 @@
 			this.barToolbar.OptionsBar.UseWholeRow = true;
 			this.barToolbar.Text = "Toolbar";
 			// 
-			// barLargeButtonItemApply
-			// 
-			this.barLargeButtonItemApply.Caption = "Apply";
-			this.barLargeButtonItemApply.Glyph = global::NewBizWiz.Calendar.Controls.Properties.Resources.ApplySlideInfo;
-			this.barLargeButtonItemApply.Id = 8;
-			this.barLargeButtonItemApply.Name = "barLargeButtonItemApply";
-			toolTipItem1.Text = "Save";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.barLargeButtonItemApply.SuperTip = superToolTip1;
-			this.barLargeButtonItemApply.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemApply_ItemClick);
-			// 
 			// barLargeButtonItemHelp
 			// 
-			this.barLargeButtonItemHelp.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+			this.barLargeButtonItemHelp.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
 			this.barLargeButtonItemHelp.Caption = "Help";
 			this.barLargeButtonItemHelp.Glyph = global::NewBizWiz.Calendar.Controls.Properties.Resources.HelpSmall;
 			this.barLargeButtonItemHelp.Id = 10;
 			this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
-			toolTipItem2.Text = "Help";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.barLargeButtonItemHelp.SuperTip = superToolTip2;
+			toolTipItem1.Text = "Help";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.barLargeButtonItemHelp.SuperTip = superToolTip1;
 			this.barLargeButtonItemHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemHelp_ItemClick);
 			// 
 			// barLargeButtonItemClose
@@ -1098,9 +1082,9 @@
 			this.barLargeButtonItemClose.Glyph = global::NewBizWiz.Calendar.Controls.Properties.Resources.CloseSlideInfo;
 			this.barLargeButtonItemClose.Id = 9;
 			this.barLargeButtonItemClose.Name = "barLargeButtonItemClose";
-			toolTipItem3.Text = "Exit";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.barLargeButtonItemClose.SuperTip = superToolTip3;
+			toolTipItem2.Text = "Exit";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.barLargeButtonItemClose.SuperTip = superToolTip2;
 			this.barLargeButtonItemClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemClose_ItemClick);
 			// 
 			// barDockControlTop
@@ -1243,8 +1227,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraBars.Bar barToolbar;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemApply;
+		private DevExpress.XtraBars.Bar barToolbar;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemClose;
         private System.Windows.Forms.Label laThemeColor;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemHelp;

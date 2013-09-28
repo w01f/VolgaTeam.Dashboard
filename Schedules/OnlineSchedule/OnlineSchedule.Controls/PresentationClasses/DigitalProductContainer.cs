@@ -8,12 +8,15 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraTab;
+using DevExpress.XtraTab.ViewInfo;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
 using NewBizWiz.OnlineSchedule.Controls.Properties;
+using NewBizWiz.OnlineSchedule.Controls.ToolForms;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
@@ -175,6 +178,32 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		protected void xtraTabControlProducts_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
 		{
 			LoadProduct();
+		}
+
+		private void xtraTabControlProducts_MouseDown(object sender, MouseEventArgs e)
+		{
+			var c = sender as XtraTabControl;
+			var hi = c.CalcHitInfo(new Point(e.X, e.Y));
+			if (hi.HitTest != XtraTabHitTest.PageHeader || e.Button != MouseButtons.Right) return;
+			var productControl = hi.Page as DigitalProductControl;
+			using (var form = new FormCloneProduct())
+			{
+				if (form.ShowDialog() != DialogResult.Yes || productControl == null) return;
+				var selectedPage = xtraTabControlProducts.SelectedTabPage as DigitalProductControl;
+				var newPrintProduct = productControl.Product.Clone();
+				xtraTabControlProducts.SelectedPageChanged -= xtraTabControlProducts_SelectedPageChanged;
+				xtraTabControlProducts.TabPages.Clear();
+				var newPublicationTab = new DigitalProductControl(this);
+				newPublicationTab.Product = newPrintProduct;
+				newPublicationTab.Text = newPrintProduct.Name.Replace("&", "&&");
+				newPublicationTab.LoadValues();
+				_tabPages.Add(newPublicationTab);
+				_tabPages.Sort((x, y) => x.Product.Index.CompareTo(y.Product.Index));
+				xtraTabControlProducts.TabPages.AddRange(_tabPages.ToArray());
+				xtraTabControlProducts.SelectedPageChanged += xtraTabControlProducts_SelectedPageChanged;
+				xtraTabControlProducts.SelectedTabPage = selectedPage;
+				SettingsNotSaved = true;
+			}
 		}
 
 		public virtual void TogledButton_CheckedChanged(object sender, EventArgs e)

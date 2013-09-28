@@ -66,5 +66,12 @@ namespace NewBizWiz.CommonGUI.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap OutputDisabled {
+            get {
+                object obj = ResourceManager.GetObject("OutputDisabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

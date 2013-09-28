@@ -102,6 +102,20 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap CloneProduct {
+            get {
+                object obj = ResourceManager.GetObject("CloneProduct", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap CloneProductBig {
+            get {
+                object obj = ResourceManager.GetObject("CloneProductBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap CommentsLogo {
             get {
                 object obj = ResourceManager.GetObject("CommentsLogo", resourceCulture);

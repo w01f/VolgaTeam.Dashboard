@@ -192,7 +192,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			ClientType = string.Empty;
 			AccountNumber = string.Empty;
 			Status = ListManager.Instance.Statuses.FirstOrDefault();
-			Products = new List<DigitalProduct>();
+			DigitalProducts = new List<DigitalProduct>();
 			ViewSettings = new ScheduleBuilderViewSettings();
 
 			_scheduleFile = new FileInfo(fileName);
@@ -219,7 +219,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public string ClientType { get; set; }
 		public string AccountNumber { get; set; }
 		public bool ApplySettingsForeAllProducts { get; set; }
-		public List<DigitalProduct> Products { get; set; }
+		public List<DigitalProduct> DigitalProducts { get; set; }
 
 		public ScheduleBuilderViewSettings ViewSettings { get; set; }
 
@@ -244,11 +244,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 			get
 			{
 				if (PresentationDate.Equals(DateTime.MaxValue) || PresentationDate.Equals(DateTime.MinValue))
-				{
 					return null;
-				}
-				else
-					return PresentationDate;
+				return PresentationDate;
 			}
 		}
 
@@ -257,11 +254,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 			get
 			{
 				if (FlightDateStart.Equals(DateTime.MaxValue) || FlightDateStart.Equals(DateTime.MinValue))
-				{
 					return null;
-				}
-				else
-					return FlightDateStart;
+				return FlightDateStart;
 			}
 		}
 
@@ -270,22 +264,19 @@ namespace NewBizWiz.Core.OnlineSchedule
 			get
 			{
 				if (FlightDateEnd.Equals(DateTime.MaxValue) || FlightDateEnd.Equals(DateTime.MinValue))
-				{
 					return null;
-				}
-				else
-					return FlightDateEnd;
+				return FlightDateEnd;
 			}
 		}
 
 		public double MonthlyInvestment
 		{
-			get { return Products.Select(x => (x.MonthlyInvestment.HasValue ? x.MonthlyInvestment.Value : 0)).Sum(); }
+			get { return DigitalProducts.Select(x => (x.MonthlyInvestment.HasValue ? x.MonthlyInvestment.Value : 0)).Sum(); }
 		}
 
 		public double MonthlyImpressions
 		{
-			get { return Products.Select(x => (x.MonthlyImpressions.HasValue ? x.MonthlyImpressions.Value : 0)).Sum(); }
+			get { return DigitalProducts.Select(x => (x.MonthlyImpressions.HasValue ? x.MonthlyImpressions.Value : 0)).Sum(); }
 		}
 
 		public bool EnableMonthlyOnSummary
@@ -293,7 +284,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			get
 			{
 				bool result = false;
-				foreach (DigitalProduct product in Products)
+				foreach (DigitalProduct product in DigitalProducts)
 					result = result | (product.MonthlyImpressions.HasValue || product.MonthlyInvestment.HasValue);
 				return result;
 			}
@@ -301,12 +292,12 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		public double TotalInvestment
 		{
-			get { return Products.Select(x => (x.TotalInvestment.HasValue ? x.TotalInvestment.Value : 0)).Sum(); }
+			get { return DigitalProducts.Select(x => (x.TotalInvestment.HasValue ? x.TotalInvestment.Value : 0)).Sum(); }
 		}
 
 		public double TotalImpressions
 		{
-			get { return Products.Select(x => (x.TotalImpressions.HasValue ? x.TotalImpressions.Value : 0)).Sum(); }
+			get { return DigitalProducts.Select(x => (x.TotalImpressions.HasValue ? x.TotalImpressions.Value : 0)).Sum(); }
 		}
 
 		public bool EnableTotalOnSummary
@@ -314,7 +305,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			get
 			{
 				bool result = false;
-				foreach (DigitalProduct product in Products)
+				foreach (DigitalProduct product in DigitalProducts)
 					result = result | (product.TotalImpressions.HasValue || product.TotalInvestment.HasValue);
 				return result;
 			}
@@ -425,7 +416,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 					{
 						var product = new DigitalProduct(this);
 						product.Deserialize(productNode);
-						Products.Add(product);
+						DigitalProducts.Add(product);
 					}
 				}
 			}
@@ -433,7 +424,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		public void Save()
 		{
-			TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
 			var xml = new StringBuilder();
 
 			xml.AppendLine(@"<Schedule>");
@@ -455,15 +445,15 @@ namespace NewBizWiz.Core.OnlineSchedule
 			xml.AppendLine(@"<AccountNumber>" + AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");
 			xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
 			xml.AppendLine(@"<ThemeName>" + (ThemeName != null ? ThemeName.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</ThemeName>");
-			xml.AppendLine(@"<PresentationDate>" + PresentationDate.ToString() + @"</PresentationDate>");
-			xml.AppendLine(@"<FlightDateStart>" + FlightDateStart.ToString() + @"</FlightDateStart>");
-			xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd.ToString() + @"</FlightDateEnd>");
+			xml.AppendLine(@"<PresentationDate>" + PresentationDate + @"</PresentationDate>");
+			xml.AppendLine(@"<FlightDateStart>" + FlightDateStart + @"</FlightDateStart>");
+			xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd + @"</FlightDateEnd>");
 			xml.AppendLine(@"<ApplySettingsForeAllProducts>" + ApplySettingsForeAllProducts.ToString() + @"</ApplySettingsForeAllProducts>");
 
 			xml.AppendLine(@"<ViewSettings>" + ViewSettings.Serialize() + @"</ViewSettings>");
 
 			xml.AppendLine(@"<Products>");
-			foreach (DigitalProduct product in Products)
+			foreach (DigitalProduct product in DigitalProducts)
 			{
 				xml.AppendLine(product.Serialize());
 			}
@@ -478,34 +468,34 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		public void AddProduct(string categoryName)
 		{
-			var product = new DigitalProduct(this) { Index = Products.Count + 1, Category = categoryName };
-			Products.Add(product);
+			var product = new DigitalProduct(this) { Index = DigitalProducts.Count + 1, Category = categoryName };
+			DigitalProducts.Add(product);
 		}
 
 		public void UpProduct(int position)
 		{
 			if (position > 0)
 			{
-				Products[position].Index--;
-				Products[position - 1].Index++;
-				Products.Sort((x, y) => x.Index.CompareTo(y.Index));
+				DigitalProducts[position].Index--;
+				DigitalProducts[position - 1].Index++;
+				DigitalProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
 			}
 		}
 
 		public void DownProduct(int position)
 		{
-			if (position < Products.Count - 1)
+			if (position < DigitalProducts.Count - 1)
 			{
-				Products[position].Index++;
-				Products[position + 1].Index--;
-				Products.Sort((x, y) => x.Index.CompareTo(y.Index));
+				DigitalProducts[position].Index++;
+				DigitalProducts[position + 1].Index--;
+				DigitalProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
 			}
 		}
 
-		public void RebuildProductIndexes()
+		public void RebuildDigitalProductIndexes()
 		{
-			for (int i = 0; i < Products.Count; i++)
-				Products[i].Index = i + 1;
+			for (int i = 0; i < DigitalProducts.Count; i++)
+				DigitalProducts[i].Index = i + 1;
 		}
 	}
 
@@ -516,7 +506,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		#region Basic Properties
 		public ISchedule Parent { get; set; }
 		public Guid UniqueID { get; set; }
-		public int Index { get; set; }
+		public double Index { get; set; }
 		public string Category { get; set; }
 		public string SubCategory { get; set; }
 		public RateType RateType { get; set; }
@@ -1311,6 +1301,20 @@ namespace NewBizWiz.Core.OnlineSchedule
 			if (slideSource != null)
 				templateName = Path.Combine(outputTemplateFolderPath, slideSource.TemplateName);
 			return templateName;
+		}
+
+		public DigitalProduct Clone()
+		{
+			var result = new DigitalProduct(Parent);
+			var document = new XmlDocument();
+			document.LoadXml(Serialize());
+			result.Deserialize(document.FirstChild);
+			result.UniqueID = Guid.NewGuid();
+			result.Index = Index + 0.5;
+			Parent.DigitalProducts.Add(result);
+			Parent.DigitalProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
+			Parent.RebuildDigitalProductIndexes();
+			return result;
 		}
 	}
 

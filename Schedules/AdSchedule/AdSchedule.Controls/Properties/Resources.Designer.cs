@@ -186,9 +186,9 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap CloneSchedule {
+        public static System.Drawing.Bitmap CloneProductBig {
             get {
-                object obj = ResourceManager.GetObject("CloneSchedule", resourceCulture);
+                object obj = ResourceManager.GetObject("CloneProductBig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

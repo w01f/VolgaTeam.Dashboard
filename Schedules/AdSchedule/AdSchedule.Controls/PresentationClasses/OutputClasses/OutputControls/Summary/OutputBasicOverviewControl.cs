@@ -10,6 +10,7 @@ using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
 using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 
@@ -42,7 +43,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.BasicOverviewDigitalLegend.Image = Controller.Instance.BasicOverviewDigitalLegend.Enabled && !LocalSchedule.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
-			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.BasicOverviewTheme, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.BasicOverviewTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
 			{
 				LocalSchedule.ThemeName = t.Name;
 				SettingsNotSaved = true;

@@ -114,7 +114,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 		{
 			if (MonthsListBoxControl.SelectedIndex >= 0 && SelectedCalendarControl.AllowToSave)
 			{
-				SelectedCalendarControl.SlideInfo.LoadData(month: SelectedCalendarControl.CalendarData.Months[MonthsListBoxControl.SelectedIndex]);
+				SelectedCalendarControl.SlideInfo.LoadData(SelectedCalendarControl.CalendarData.Months[MonthsListBoxControl.SelectedIndex]);
 				SelectedCalendarControl.Splash(true);
 				SelectedCalendarControl.SelectedView.ChangeMonth(SelectedCalendarControl.CalendarData.Months[MonthsListBoxControl.SelectedIndex].Date);
 				SelectedCalendarControl.Splash(false);

@@ -15,6 +15,7 @@ using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
 using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 using Point = System.Drawing.Point;
@@ -50,7 +51,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.SnapshotDigitalLegend.Image = Controller.Instance.SnapshotDigitalLegend.Enabled && !LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
-			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.SnapshotTheme, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.SnapshotTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
 			{
 				LocalSchedule.ThemeName = t.Name;
 				SettingsNotSaved = true;

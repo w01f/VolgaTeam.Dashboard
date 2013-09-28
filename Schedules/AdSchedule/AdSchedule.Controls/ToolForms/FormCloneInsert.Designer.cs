@@ -249,7 +249,7 @@
 			// 
 			// pbLogo
 			// 
-			this.pbLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.CloneSchedule;
+			this.pbLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.CloneProductBig;
 			this.pbLogo.Location = new System.Drawing.Point(3, 3);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(87, 79);

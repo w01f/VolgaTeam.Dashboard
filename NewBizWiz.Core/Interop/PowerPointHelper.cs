@@ -312,22 +312,9 @@ namespace NewBizWiz.Core.Interop
 						Presentations presentations = _powerPointObject.Presentations;
 						_activePresentation = presentations.Add(MsoTriState.msoCTrue);
 						Utilities.Instance.ReleaseComObject(presentations);
-						if (_is2003 && SettingsManager.Instance.SlideTemplateEnabled && File.Exists(MasterWizardManager.Instance.SelectedWizard.CleanslateFile))
-						{
-							AppendCleanslateSilent();
-						}
-						else
-						{
-							Slides slides = _activePresentation.Slides;
-							slides.Add(1, PpSlideLayout.ppLayoutTitle);
-							if (SettingsManager.Instance.SlideTemplateEnabled && !_is2003)
-							{
-								string[] templates = Directory.GetFiles(Path.Combine(MasterWizardManager.Instance.SelectedWizard.Folder.FullName, SettingsManager.Instance.SlideFolder), "*.pot*");
-								if (templates.Length == 1)
-									_activePresentation.ApplyTemplate(templates[0]);
-							}
-							Utilities.Instance.ReleaseComObject(slides);
-						}
+						Slides slides = _activePresentation.Slides;
+						slides.Add(1, PpSlideLayout.ppLayoutTitle);
+						Utilities.Instance.ReleaseComObject(slides);
 					}
 					else
 					{
@@ -608,23 +595,25 @@ namespace NewBizWiz.Core.Interop
 			return activeSlide;
 		}
 
-		public void AppendCleanslateSilent()
+		public void AppendSlideMaster(string presentationTemplatePath)
 		{
-			if (File.Exists(MasterWizardManager.Instance.SelectedWizard.CleanslateFile))
+			try
 			{
-				string presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.CleanslateFile;
-				try
+				var thread = new Thread(delegate()
 				{
 					MessageFilter.Register();
 					Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					AppendSlide(presentation, -1);
 					presentation.Close();
-				}
-				catch { }
-				finally
-				{
-					MessageFilter.Revoke();
-				}
+				});
+				thread.Start();
+				while (thread.IsAlive)
+					System.Windows.Forms.Application.DoEvents();
+			}
+			catch { }
+			finally
+			{
+				MessageFilter.Revoke();
 			}
 		}
 

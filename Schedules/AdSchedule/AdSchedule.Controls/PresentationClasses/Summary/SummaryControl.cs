@@ -10,6 +10,7 @@ using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
@@ -76,7 +77,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			checkEditPresentationDate.Text = string.Format("Presentation Date: {0}", LocalSchedule.PresentationDate.ToString("MM/dd/yyyy"));
 			checkEditFlightDates.Text = string.Format("Campaign Dates: {0}", LocalSchedule.FlightDates);
 			laSignatureLineTag.Text = LocalSchedule.DecisionMaker;
-			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.SummaryTheme, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.SummaryTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
 			{
 				LocalSchedule.ThemeName = t.Name;
 				SettingsNotSaved = true;

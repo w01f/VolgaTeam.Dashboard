@@ -516,7 +516,7 @@ namespace NewBizWiz.Core.AdSchedule
 			}
 		}
 
-		public void RebuildDigitalIndexes()
+		public void RebuildDigitalProductIndexes()
 		{
 			for (int i = 0; i < DigitalProducts.Count; i++)
 				DigitalProducts[i].Index = i + 1;

@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\NBWApplication.cs" />
+    <Compile Include="Common\SlideManager.cs" />
     <Compile Include="Common\ThemeManager.cs" />
     <Compile Include="Interop\FileIcon.cs" />
     <Compile Include="Interop\ShellLink.cs" />
@@ -207,7 +208,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -413,11 +413,11 @@
     <Compile Include="ToolForms\FormCloneInsert.Designer.cs">
       <DependentUpon>FormCloneInsert.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormCloneSchedule.cs">
+    <Compile Include="ToolForms\FormCloneProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ToolForms\FormCloneSchedule.Designer.cs">
-      <DependentUpon>FormCloneSchedule.cs</DependentUpon>
+    <Compile Include="ToolForms\FormCloneProduct.Designer.cs">
+      <DependentUpon>FormCloneProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormChangeAdStrategyWarning.cs">
       <SubType>Form</SubType>
@@ -663,8 +663,8 @@
     <EmbeddedResource Include="ToolForms\FormCloneInsert.resx">
       <DependentUpon>FormCloneInsert.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormCloneSchedule.resx">
-      <DependentUpon>FormCloneSchedule.cs</DependentUpon>
+    <EmbeddedResource Include="ToolForms\FormCloneProduct.resx">
+      <DependentUpon>FormCloneProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormChangeAdStrategyWarning.resx">
       <DependentUpon>FormChangeAdStrategyWarning.cs</DependentUpon>
@@ -970,9 +970,6 @@
     <None Include="Resources\GridDetails.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CloneSchedule.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\NewBizWiz.CommonGUI\NewBizWiz.CommonGUI.csproj">
       <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
       <Name>NewBizWiz.CommonGUI</Name>
@@ -1091,6 +1088,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DigitalDisabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloneProductBig.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

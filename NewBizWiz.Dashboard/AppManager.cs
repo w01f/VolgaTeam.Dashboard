@@ -28,11 +28,8 @@ namespace NewBizWiz.Dashboard
 
 		private AppManager()
 		{
-			ShowCover = false;
 			HelpManager = new HelpManager(Core.Dashboard.SettingsManager.Instance.HelpLinksPath);
 		}
-
-		public bool ShowCover { get; set; }
 
 		public static AppManager Instance
 		{
@@ -41,7 +38,7 @@ namespace NewBizWiz.Dashboard
 
 		public static string FormCaption
 		{
-			get { return SettingsManager.Instance.DashboardName + " - " + SettingsManager.Instance.SelectedWizard + " - " + SettingsManager.Instance.Size; }
+			get { return SettingsManager.Instance.DashboardName + " - " + SettingsManager.Instance.Size; }
 		}
 
 		public void RunForm()
@@ -159,7 +156,7 @@ namespace NewBizWiz.Dashboard
 
 		public void ShowFloater(Form sender, Action afterShow)
 		{
-			const string defaultText = "Sell RIGHT! Sell FAST! Sell MORE!";
+			const string defaultText = "GO GET YOUR BIZ!";
 			var afterBack = new Action(ActivateMainForm);
 			var afterHide = new Action(Utilities.Instance.ActivateMiniBar);
 			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, MasterWizardManager.Instance.DefaultLogo, afterShow, afterHide, afterBack);

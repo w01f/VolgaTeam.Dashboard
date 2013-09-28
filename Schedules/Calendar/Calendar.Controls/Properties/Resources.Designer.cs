@@ -60,13 +60,6 @@ namespace NewBizWiz.Calendar.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap ApplySlideInfo {
-            get {
-                object obj = ResourceManager.GetObject("ApplySlideInfo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap ArrowLeft {
             get {
                 object obj = ResourceManager.GetObject("ArrowLeft", resourceCulture);

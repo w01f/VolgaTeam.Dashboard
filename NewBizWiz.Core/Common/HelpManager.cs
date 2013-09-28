@@ -30,8 +30,8 @@ namespace NewBizWiz.Core.Common
 				{
 					foreach (XmlNode childNode in node.ChildNodes)
 					{
-						if (!_helpLinks.Keys.Contains(childNode.Name))
-							_helpLinks.Add(childNode.Name, childNode.InnerText);
+						if (!_helpLinks.Keys.Contains(childNode.Name.ToLower()))
+							_helpLinks.Add(childNode.Name.ToLower(), childNode.InnerText);
 					}
 				}
 			}
@@ -39,6 +39,7 @@ namespace NewBizWiz.Core.Common
 
 		public void OpenHelpLink(string helpKey)
 		{
+			helpKey = helpKey.ToLower();
 			if (_helpLinks.Keys.Contains(helpKey))
 			{
 				try

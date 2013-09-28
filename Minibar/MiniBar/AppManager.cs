@@ -32,6 +32,7 @@ namespace NewBizWiz.MiniBar
 		{
 			SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
 			HelpManager = new HelpManager(SettingsManager.Instance.HelpLinksPath);
+			SlideManager = new SlideManager(Core.Common.SettingsManager.Instance.SlideMastersPath);
 		}
 
 		public static object Locker { get; set; }
@@ -39,6 +40,7 @@ namespace NewBizWiz.MiniBar
 		public bool ShowHidden { get; set; }
 		public bool ShowFloat { get; set; }
 		public HelpManager HelpManager { get; private set; }
+		public SlideManager SlideManager { get; private set; }
 
 		public static AppManager Instance
 		{

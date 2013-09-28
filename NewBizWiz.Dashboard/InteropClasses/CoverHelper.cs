@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Threading;
-using System.Windows.Forms;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Core.Common;
@@ -59,6 +58,9 @@ namespace NewBizWiz.Dashboard.InteropClasses
 									}
 								}
 							}
+							var selectedTheme = Core.Dashboard.SettingsManager.Instance.SelectedTheme;
+							if (selectedTheme != null)
+								presentation.ApplyTheme(selectedTheme.ThemeFilePath);
 							AppendSlide(presentation, -1, null, firstSlide);
 							presentation.Close();
 						});
@@ -94,6 +96,9 @@ namespace NewBizWiz.Dashboard.InteropClasses
 						{
 							MessageFilter.Register();
 							Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+							var selectedTheme = Core.Dashboard.SettingsManager.Instance.SelectedTheme;
+							if (selectedTheme != null)
+								presentation.ApplyTheme(selectedTheme.ThemeFilePath);
 							AppendSlide(presentation, -1, null, firstSlide);
 							presentation.Close();
 						});

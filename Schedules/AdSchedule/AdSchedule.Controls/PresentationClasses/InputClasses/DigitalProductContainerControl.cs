@@ -7,6 +7,7 @@ using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 using FormNewSchedule = NewBizWiz.AdSchedule.Controls.ToolForms.FormNewSchedule;
@@ -46,7 +47,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			BusinessWrapper.Instance.ThemeManager.InitThemeControl(Controller.Instance.DigitalProductTheme, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.DigitalProductTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
 			{
 				LocalSchedule.ThemeName = t.Name;
 				SettingsNotSaved = true;

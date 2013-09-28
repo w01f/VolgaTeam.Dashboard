@@ -99,13 +99,18 @@
     <Reference Include="DevExpress.XtraGrid.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraLayout.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager.cs" />
@@ -202,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TabHomeForms\TabHomeOverviewControl.resx">
       <DependentUpon>TabHomeOverviewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabSlides\TabSlidesMainPage.resx">
+      <DependentUpon>TabSlidesMainPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TabRadioForms\TabRadioMainPage.resx">
       <DependentUpon>TabRadioMainPage.cs</DependentUpon>
@@ -376,6 +384,12 @@
     </Compile>
     <Compile Include="TabHomeForms\TabHomeOverviewControl.Designer.cs">
       <DependentUpon>TabHomeOverviewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabSlides\TabSlidesMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabSlides\TabSlidesMainPage.Designer.cs">
+      <DependentUpon>TabSlidesMainPage.cs</DependentUpon>
     </Compile>
     <Compile Include="TabRadioForms\TabRadioMainPage.cs">
       <SubType>UserControl</SubType>

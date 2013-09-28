@@ -473,9 +473,6 @@
     <None Include="Resources\HelpSmall.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ApplySlideInfo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\CloseSlideInfo.png" />
   </ItemGroup>
   <ItemGroup>

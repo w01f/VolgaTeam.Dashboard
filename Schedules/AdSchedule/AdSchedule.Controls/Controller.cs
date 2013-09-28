@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -55,6 +56,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			HomeAdProductAdd.Click += ScheduleSettings.PrintProductAdd;
 			HomeAdProductClone.Click += ScheduleSettings.PrintProductClone;
 			HomeAdProductDelete.Click += ScheduleSettings.PrintProductDelete;
+			HomeDigitalProductClone.Click += ScheduleSettings.DigitalProductClone;
 			HomeDigitalProductDelete.Click += ScheduleSettings.DigitalProductDelete;
 			HomeSave.Click += ScheduleSettings.buttonItemPrintScheduleettingsSave_Click;
 			HomeSaveAs.Click += ScheduleSettings.buttonItemPrintScheduleettingsSaveAs_Click;
@@ -266,6 +268,8 @@ namespace NewBizWiz.AdSchedule.Controls
 			#endregion
 
 			ConfigureTabPages();
+
+			UpdateOutputButtonsAccordingThemeStatus();
 		}
 
 		public void RemoveInstance()
@@ -331,6 +335,92 @@ namespace NewBizWiz.AdSchedule.Controls
 			TabMultiGrid.Enabled = enable;
 			TabCalendar.Enabled = enable;
 			TabSummary.Enabled = enable;
+		}
+
+		public void UpdateOutputButtonsAccordingThemeStatus()
+		{
+			var themesExisted = BusinessWrapper.Instance.ThemeManager.Themes.Any();
+			if (!themesExisted)
+			{
+				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
+				var themesDisabledHandler = new Action(() => BusinessWrapper.Instance.HelpManager.OpenHelpLink("NoTheme"));
+
+				DigitalProductPowerPoint.Visible = false;
+				(DigitalProductPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(DigitalProductEmail.ContainerControl as RibbonBar).Visible = false;
+				(DigitalProductPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
+				DigitalProductTheme.Click += (o, e) => themesDisabledHandler();
+
+				DigitalPackagePowerPoint.Visible = false;
+				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(DigitalPackageEmail.ContainerControl as RibbonBar).Visible = false;
+				(DigitalPackagePreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
+				DigitalPackageTheme.Click += (o, e) => themesDisabledHandler();
+
+				BasicOverviewPowerPoint.Visible = false;
+				(BasicOverviewPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(BasicOverviewEmail.ContainerControl as RibbonBar).Visible = false;
+				(BasicOverviewPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(BasicOverviewTheme, selectorToolTip);
+				BasicOverviewTheme.Click += (o, e) => themesDisabledHandler();
+
+				MultiSummaryPowerPoint.Visible = false;
+				(MultiSummaryPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(MultiSummaryEmail.ContainerControl as RibbonBar).Visible = false;
+				(MultiSummaryPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(MultiSummaryTheme, selectorToolTip);
+				MultiSummaryTheme.Click += (o, e) => themesDisabledHandler();
+
+				SnapshotPowerPoint.Visible = false;
+				(SnapshotPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(SnapshotEmail.ContainerControl as RibbonBar).Visible = false;
+				(SnapshotPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
+				SnapshotTheme.Click += (o, e) => themesDisabledHandler();
+
+				AdPlanPowerPoint.Visible = false;
+				(AdPlanPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(AdPlanEmail.ContainerControl as RibbonBar).Visible = false;
+				(AdPlanPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(AdPlanTheme, selectorToolTip);
+				AdPlanTheme.Click += (o, e) => themesDisabledHandler();
+
+				DetailedGridPowerPoint.Visible = false;
+				(DetailedGridPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(DetailedGridEmail.ContainerControl as RibbonBar).Visible = false;
+				(DetailedGridPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(DetailedGridTheme, selectorToolTip);
+				DetailedGridTheme.Click += (o, e) => themesDisabledHandler();
+
+				MultiGridPowerPoint.Visible = false;
+				(MultiGridPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(MultiGridEmail.ContainerControl as RibbonBar).Visible = false;
+				(MultiGridPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(MultiGridTheme, selectorToolTip);
+				MultiGridTheme.Click += (o, e) => themesDisabledHandler();
+
+				SummaryPowerPoint.Visible = false;
+				(SummaryPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(SummaryEmail.ContainerControl as RibbonBar).Visible = false;
+				(SummaryPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(SummaryTheme, selectorToolTip);
+				SummaryTheme.Click += (o, e) => themesDisabledHandler();
+			}
+			else
+			{
+				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
+				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(BasicOverviewTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(MultiSummaryTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(SnapshotTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(AdPlanTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(DetailedGridTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(MultiGridTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(SummaryTheme, selectorToolTip);
+			}
 		}
 
 		private void ConfigureTabPages()

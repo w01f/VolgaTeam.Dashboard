@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.MiniBar.BusinessClasses
 {
@@ -25,7 +26,6 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 		public string SyncFilesSourcePath { get; set; }
 		public string NBWApplicationsRootPath { get; set; }
 		public string DashboardPath { get; set; }
-		public string DashboardLogoPath { get; set; }
 		public string DashboardIconPath { get; set; }
 		public SalesDepotSettings SalesDepotSettings { get; private set; }
 		public string ClientLogosPath { get; set; }
@@ -51,7 +51,6 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 			SyncFilesSourcePath = string.Format(@"{0}\newlocaldirect.com\app\adsync_patch", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			NBWApplicationsRootPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\applications", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			DashboardPath = string.Format(@"{0}\newlocaldirect.com\app\adSALESapp.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			DashboardLogoPath = string.Format(@"{0}\newlocaldirect.com\app\tab2btn.png", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			DashboardIconPath = string.Format(@"{0}\newlocaldirect.com\app\tab2icon.ico", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			ClientLogosPath = string.Format(@"{0}\newlocaldirect.com\app\Client Logos\ClientLogos.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			SalesGalleryPath = string.Format(@"{0}\newlocaldirect.com\app\Sales Gallery\SalesGallery.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
@@ -129,6 +128,8 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 		public bool SalesDepotBrowserFirefox { get; set; }
 		public bool SalesDepotBrowserOpera { get; set; }
 		public bool SalesDepotBrowserIE { get; set; }
+		public string SelectedSlideGroup { get; set; }
+		public string SelectedSlideMaster { get; set; }
 		#endregion
 
 		#region WebcastSettings
@@ -285,6 +286,12 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 					if (node != null)
 						if (bool.TryParse(node.InnerText, out tempBool))
 							SalesDepotBrowserIE = tempBool;
+					node = document.SelectSingleNode(@"/MinibarSettings/SelectedSlideGroup");
+					if (node != null)
+						SelectedSlideGroup = node.InnerText;
+					node = document.SelectSingleNode(@"/MinibarSettings/SelectedSlideMaster");
+					if (node != null)
+						SelectedSlideMaster = node.InnerText;
 				}
 
 				if (!SalesDepotBrowserIE)
@@ -419,6 +426,10 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 			xml.AppendLine(@"<SalesDepotBrowserFirefox>" + SalesDepotBrowserFirefox + @"</SalesDepotBrowserFirefox>");
 			xml.AppendLine(@"<SalesDepotBrowserOpera>" + SalesDepotBrowserOpera + @"</SalesDepotBrowserOpera>");
 			xml.AppendLine(@"<SalesDepotBrowserIE>" + SalesDepotBrowserIE + @"</SalesDepotBrowserIE>");
+			if (!String.IsNullOrEmpty(SelectedSlideGroup))
+				xml.AppendLine(@"<SelectedSlideGroup>" + SelectedSlideGroup.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedSlideGroup>");
+			if (!String.IsNullOrEmpty(SelectedSlideMaster))
+				xml.AppendLine(@"<SelectedSlideMaster>" + SelectedSlideMaster.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedSlideMaster>");
 			xml.AppendLine(@"</MinibarSettings>");
 
 			using (var sw = new StreamWriter(_minibarSettingsFile, false))

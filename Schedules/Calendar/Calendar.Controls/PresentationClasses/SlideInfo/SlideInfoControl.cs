@@ -104,6 +104,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			#region Logo
 			buttonXLogo.CheckedChanged += propertiesControl_PropertiesChanged;
 			checkEditLogoApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
+			layoutViewLogoGallery.FocusedRowChanged += propertiesControl_PropertiesChanged;
 			gridControlLogoGallery.DataSource = ListManager.Instance.Images;
 			#endregion
 
@@ -112,10 +113,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 
 		public string MonthTitle { get; set; }
 		public bool SettingsNotSaved { get; set; }
-
-		[Browsable(true)]
-		[Category("Action")]
-		public event EventHandler PropertiesSaved;
 
 		[Browsable(true)]
 		[Category("Action")]
@@ -398,13 +395,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 
 				SettingsNotSaved = false;
 			}
-		}
-
-		private void barLargeButtonItemApply_ItemClick(object sender, ItemClickEventArgs e)
-		{
-			SaveData();
-			if (PropertiesSaved != null)
-				PropertiesSaved(sender, e);
 		}
 
 		private void barLargeButtonItemHelp_ItemClick(object sender, ItemClickEventArgs e)

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Floater;
+using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.Dashboard.InteropClasses;
@@ -13,6 +16,7 @@ using NewBizWiz.Dashboard.TabHomeForms;
 using NewBizWiz.Dashboard.TabNewspaperForms;
 using NewBizWiz.Dashboard.TabOnlineForms;
 using NewBizWiz.Dashboard.TabRadioForms;
+using NewBizWiz.Dashboard.TabSlides;
 using NewBizWiz.Dashboard.TabTVForms;
 using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
@@ -113,6 +117,23 @@ namespace NewBizWiz.Dashboard
 			timer.Start();
 			ApplyMasterWizard();
 			SetDashboardCode();
+			FormThemeSelector.Link(buttonItemHomeTheme,SettingsManager.Instance.ThemeManager,SettingsManager.Instance.ThemeName, (t =>
+			{
+				SettingsManager.Instance.ThemeName = t.Name;
+				SettingsManager.Instance.SaveDashboardSettings();
+			}));
+			if (!SettingsManager.Instance.ThemeManager.Themes.Any())
+			{
+				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
+				buttonItemPowerPoint.Visible = false;
+				ribbonBarPowerPoint.Text = "Important Info";
+				superTooltip.SetSuperTooltip(buttonItemHomeTheme, selectorToolTip);
+			}
+			else
+			{
+				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
+				superTooltip.SetSuperTooltip(buttonItemHomeTheme, selectorToolTip);
+			}
 		}
 
 		public void FormMain_Activated(object sender, EventArgs e)
@@ -140,6 +161,7 @@ namespace NewBizWiz.Dashboard
 			buttonItemRadioNew.Click += RadioScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
 			buttonItemRadioOpen.Click += RadioScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
 			buttonItemRadioDelete.Click += RadioScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
+			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
 		}
 
 		private void FormMain_Shown(object sender, EventArgs e)
@@ -147,11 +169,6 @@ namespace NewBizWiz.Dashboard
 			RegistryHelper.MainFormHandle = Handle;
 			Utilities.Instance.ActivateMiniBar();
 			AppManager.Instance.ActivateMainForm();
-			if (AppManager.Instance.ShowCover)
-			{
-				buttonItemHomeCover_Click(null, null);
-				AppManager.Instance.ShowCover = false;
-			}
 		}
 
 		private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -297,6 +314,10 @@ namespace NewBizWiz.Dashboard
 				TabCalendarMainPage.Instance.UpdatePageAccordingToggledButton();
 				panelExMainInternal.Controls.Add(TabCalendarMainPage.Instance);
 			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSlides)
+			{
+				panelExMainInternal.Controls.Add(TabSlidesMainPage.Instance);
+			}
 			panelExMainInternal.Parent = parent;
 		}
 
@@ -337,6 +358,12 @@ namespace NewBizWiz.Dashboard
 				OutputClick();
 		}
 
+		private void buttonItemHomeTheme_Click(object sender, EventArgs e)
+		{
+			if (!SettingsManager.Instance.ThemeManager.Themes.Any())
+				AppManager.Instance.HelpManager.OpenHelpLink("NoTheme");
+		}
+
 		private void buttonItemHelp_Click(object sender, EventArgs e)
 		{
 			string helpKey = string.Empty;
@@ -365,6 +392,8 @@ namespace NewBizWiz.Dashboard
 				helpKey = "Radio";
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar)
 				helpKey = "Calendar";
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSlides)
+				helpKey = "Slides";
 
 			AppManager.Instance.HelpManager.OpenHelpLink(helpKey);
 		}
@@ -378,7 +407,7 @@ namespace NewBizWiz.Dashboard
 			buttonItemClientGoals.Checked = false;
 			buttonItemTargetCustomers.Checked = false;
 			buttonItemSimpleSummary.Checked = false;
-			ribbonBarPowerPoint.Enabled = false;
+			buttonItemPowerPoint.Enabled = false;
 		}
 
 		private void buttonItemHomeOverview_Click(object sender, EventArgs e)
@@ -386,11 +415,6 @@ namespace NewBizWiz.Dashboard
 			UncheckHomeButtons();
 			buttonItemHomeOverview.Checked = true;
 			TabHomeMainPage.Instance.UpdatePageAccordingToggledButton();
-		}
-
-		private void buttonItemHomeCleanslate_Click(object sender, EventArgs e)
-		{
-			AppManager.Instance.ShowFloater(null, DashboardPowerPointHelper.Instance.AppendCleanslate);
 		}
 
 		public void buttonItemHomeCover_Click(object sender, EventArgs e)
@@ -432,9 +456,6 @@ namespace NewBizWiz.Dashboard
 			buttonItemSimpleSummary.Checked = true;
 			TabHomeMainPage.Instance.UpdatePageAccordingToggledButton();
 		}
-		#endregion
-
-		#region iPad Tab
 		#endregion
 
 		#endregion

@@ -309,7 +309,7 @@ namespace NewBizWiz.MiniBar
 			ribbonTabItemSync.Enabled = tabPage != null && tabPage.Enabled;
 		}
 
-		private void ActivateExpandedForm()
+		public void ActivateExpandedForm()
 		{
 			FadeOut();
 			FormMainExpanded.Instance.FadeIn();

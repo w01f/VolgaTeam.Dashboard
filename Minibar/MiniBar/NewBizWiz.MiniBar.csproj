@@ -106,9 +106,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="InteropClasses\CleanslateHelper.cs" />
     <Compile Include="InteropClasses\ContentsHelper.cs" />
-    <Compile Include="InteropClasses\CoverHelper.cs" />
     <Compile Include="InteropClasses\SlideHeadersHelper.cs" />
     <Compile Include="InteropClasses\PageNumbersHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
@@ -175,12 +173,6 @@
     <Compile Include="ToolForms\FormSlideContentTools.Designer.cs">
       <DependentUpon>FormSlideContentTools.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormAddCover.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormAddCover.Designer.cs">
-      <DependentUpon>FormAddCover.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="FormMainExpanded.resx">
       <DependentUpon>FormMainExpanded.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -233,9 +225,6 @@
     <EmbeddedResource Include="ToolForms\FormSlideContentTools.resx">
       <DependentUpon>FormSlideContentTools.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormAddCover.resx">
-      <DependentUpon>FormAddCover.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -258,6 +247,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mini.ico" />
+    <None Include="Resources\PDF.png" />
+    <None Include="Resources\PowerPoint.png" />
     <None Include="Resources\BrowserInternetExplorer.png" />
     <None Include="Resources\BrowserOpera.png" />
     <None Include="Resources\BrowserFirefox.png" />
@@ -270,11 +261,6 @@
     <None Include="Resources\SlideContent.png" />
     <None Include="Resources\Save.png" />
     <None Include="Resources\Screen.png" />
-    <None Include="Resources\MinibarSettings.png" />
-    <None Include="Resources\PowerPointLaunch2007.png" />
-    <None Include="Resources\PowerPointLaunch2003.png" />
-    <None Include="Resources\PowerPointLaunch2010.png" />
-    <None Include="Resources\SendPPT.png" />
     <None Include="Resources\SendPDF.png" />
     <None Include="Resources\SavePDF.png" />
     <None Include="Resources\Output.png" />
@@ -283,14 +269,16 @@
     <None Include="Resources\On.png" />
     <None Include="Resources\Warning.png" />
     <None Include="Resources\Help.png" />
-    <None Include="Resources\CoverMiddle.png" />
-    <None Include="Resources\CleanslateMiddle.png" />
     <None Include="Resources\Sync.png" />
     <None Include="Resources\WebArt.png" />
     <None Include="Resources\ClientLogos.png" />
     <None Include="Resources\SalesGallery.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\NewBizWiz.CommonGUI\NewBizWiz.CommonGUI.csproj">
+      <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
+      <Name>NewBizWiz.CommonGUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\NewBizWiz.Core\NewBizWiz.Core.csproj">
       <Project>{164AB808-DBD3-4D71-9431-5A5B44B70593}</Project>
       <Name>NewBizWiz.Core</Name>

@@ -38,8 +38,6 @@ namespace NewBizWiz.Dashboard
 				Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
 				Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
 				Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-				if (args != null && args.Length > 0)
-					AppManager.Instance.ShowCover = args[0].ToLower().Equals("showcover");
 
 				if (AppManager.Instance.RunPowerPoint())
 					AppManager.Instance.RunForm();

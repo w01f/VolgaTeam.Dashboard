@@ -18,7 +18,6 @@ namespace NewBizWiz.Core.AdSchedule
 			RateCardPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\RateCard", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\AdScheduleHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			IconPath = Path.Combine(Path.GetDirectoryName(typeof(SettingsManager).Assembly.Location), "icon.ico");
-			ThemeCollectionPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides\SellerPointThemes", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 		}
 
 		public static SettingsManager Instance
@@ -36,6 +35,5 @@ namespace NewBizWiz.Core.AdSchedule
 		public string HelpLinksPath { get; set; }
 		public string RateCardPath { get; set; }
 		public string IconPath { get; set; }
-		public string ThemeCollectionPath { get; set; }
 	}
 }

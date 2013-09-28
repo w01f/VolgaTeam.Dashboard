@@ -80,8 +80,8 @@
 			this.ribbonControl.BackgroundStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
 			this.ribbonControl.BackgroundStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
 			this.ribbonControl.Controls.Add(this.ribbonPanelPowerPoint);
-			this.ribbonControl.Controls.Add(this.ribbonPanelIPad);
 			this.ribbonControl.Controls.Add(this.ribbonPanelDashboard);
+			this.ribbonControl.Controls.Add(this.ribbonPanelIPad);
 			this.ribbonControl.Controls.Add(this.ribbonPanelPDF);
 			this.ribbonControl.Controls.Add(this.ribbonPanelTools);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSettings);
@@ -93,8 +93,8 @@
 			this.ribbonControl.EnableQatPlacement = false;
 			this.ribbonControl.FadeEffect = false;
 			this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.ribbonTabItemPowerPoint,
             this.ribbonTabItemDashboard,
+            this.ribbonTabItemPowerPoint,
             this.ribbonTabItemSalesDepot,
             this.ribbonTabItemApps,
             this.ribbonTabItemClipart,

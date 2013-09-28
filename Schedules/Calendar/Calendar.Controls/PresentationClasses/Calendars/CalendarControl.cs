@@ -74,12 +74,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 				Controller.Instance.CalendarVisualizer.SlideInfoButtonItem.Checked = false;
 				AllowToSave = temp;
 			};
-			SlideInfo.DateSaved += (sender, e) =>
-									   {
-										   MonthView.RefreshData();
-										   SettingsNotSaved = true;
-										   SlideInfo.LoadData(reload: true);
-									   };
 			SlideInfo.ThemeChanged += (sender, e) =>
 			{
 				MonthView.RefreshData();
@@ -102,9 +96,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 
 		public void LeaveCalendar()
 		{
-			SlideInfo.Close(false);
 			if (SettingsNotSaved || (SelectedView != null && SelectedView.SettingsNotSaved) || SlideInfo.SettingsNotSaved)
 				SaveCalendarData();
+			SlideInfo.Close(false);
 		}
 
 		public void ShowCalendar(bool gridView)
@@ -139,7 +133,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			{
 				Splash(true);
 				SelectedView.ChangeMonth(CalendarData.Months[Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex].Date);
-				SlideInfo.LoadData(month: CalendarData.Months[Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex]);
+				SlideInfo.LoadData(CalendarData.Months[Controller.Instance.CalendarVisualizer.MonthsListBoxControl.SelectedIndex]);
 				SlideInfo.LoadVisibilitySettings();
 				UpdateOutputFunctions();
 				Splash(false);
@@ -151,7 +145,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		public bool SaveCalendarData(string scheduleName = "")
 		{
 			SelectedView.Save();
-			SlideInfo.SaveData(force: true);
+			SlideInfo.SaveData();
 			if (!string.IsNullOrEmpty(scheduleName))
 				_localSchedule.Name = scheduleName;
 			Controller.Instance.SaveSchedule(_localSchedule, true, this);
@@ -169,7 +163,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 
 			MonthView.LoadData(quickLoad);
 			GridView.LoadData(quickLoad);
-			SlideInfo.LoadData(reload: !quickLoad);
+			SlideInfo.LoadData();
 
 			SettingsNotSaved = false;
 		}

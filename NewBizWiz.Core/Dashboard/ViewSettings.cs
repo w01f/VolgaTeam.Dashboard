@@ -36,7 +36,6 @@ namespace NewBizWiz.Core.Dashboard
 	{
 		public CoverState()
 		{
-			IsNewSolution = true;
 			ShowSalesRep = false;
 			ShowPresentationDate = false;
 			AddAsPageOne = true;
@@ -50,7 +49,6 @@ namespace NewBizWiz.Core.Dashboard
 			Quote = new Quote();
 		}
 
-		public bool IsNewSolution { get; set; }
 		public bool AddAsPageOne { get; set; }
 		public bool UseGenericCover { get; set; }
 		public bool ShowSalesRep { get; set; }
@@ -68,7 +66,6 @@ namespace NewBizWiz.Core.Dashboard
 		{
 			var result = new StringBuilder();
 
-			result.AppendLine(@"<IsNewSolution>" + IsNewSolution + @"</IsNewSolution>");
 			result.AppendLine(@"<AddAsPageOne>" + AddAsPageOne + @"</AddAsPageOne>");
 			result.AppendLine(@"<UseGenericCover>" + UseGenericCover + @"</UseGenericCover>");
 			result.AppendLine(@"<ShowSalesRep>" + ShowSalesRep + @"</ShowSalesRep>");
@@ -94,10 +91,6 @@ namespace NewBizWiz.Core.Dashboard
 			{
 				switch (childNode.Name)
 				{
-					case "IsNewSolution":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							IsNewSolution = tempBool;
-						break;
 					case "AddAsPageOne":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							AddAsPageOne = tempBool;

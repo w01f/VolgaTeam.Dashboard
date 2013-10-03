@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace NewBizWiz.CommonGUI.Themes
 	public partial class ThemeContainerControl : UserControl
 	{
 		private readonly List<Theme> _themes = new List<Theme>();
-		public Theme SelectedSlide
+		public event EventHandler<ThemeEventArgs> ThemeChanged;
+		public Theme SelectedTheme
 		{
 			get { return layoutViewThemes.GetFocusedRow() as Theme; }
 		}
@@ -61,6 +63,12 @@ namespace NewBizWiz.CommonGUI.Themes
 				e.Appearance.BackColor = Color.NavajoWhite;
 				e.Appearance.BackColor2 = Color.NavajoWhite;
 			}
+		}
+
+		private void layoutViewThemes_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+		{
+			if (ThemeChanged != null)
+				ThemeChanged(this, new ThemeEventArgs { SelectedTheme = SelectedTheme });
 		}
 	}
 }

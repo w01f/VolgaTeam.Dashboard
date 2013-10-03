@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Dashboard.InteropClasses;
 using NewBizWiz.Dashboard.TabHomeForms.Dashboard;
 using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
@@ -11,6 +12,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 	public partial class TabHomeOverviewControl : UserControl
 	{
 		private static TabHomeOverviewControl _instance;
+
+		public AppManager.SingleParameterDelegate EnableOutput { get; set; }
 
 		private TabHomeOverviewControl()
 		{
@@ -51,6 +54,18 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					_instance = new TabHomeOverviewControl();
 				return _instance;
 			}
+		}
+
+		public void UpdateOutputState()
+		{
+			bool result = true;
+			if (EnableOutput != null)
+				EnableOutput(result);
+		}
+
+		public void Output()
+		{
+			AppManager.Instance.ShowFloater(null, () => DashboardPowerPointHelper.Instance.AppendCleanslate());
 		}
 	}
 }

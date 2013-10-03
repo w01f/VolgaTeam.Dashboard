@@ -25,31 +25,42 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 			var document = new XmlDocument();
 			document.Load(_settingsPath);
 
-			XmlNode node = document.SelectSingleNode(@"/Root");
-			if (node != null)
-				foreach (XmlNode tabNode in node.ChildNodes)
+			var rootNode = document.SelectSingleNode(@"/Root");
+			if (rootNode == null) return;
+			foreach (XmlNode tabNode in rootNode.ChildNodes)
+			{
+				var tabPage = new TabPage();
+				var node = tabNode.SelectSingleNode("Id");
+				if (node != null)
 				{
-					var tabPage = new TabPage();
-					XmlNode nodeId = tabNode.SelectSingleNode("Id");
-					if (nodeId != null)
-					{
-						TabNamesEnum temp;
-						if (Enum.TryParse(nodeId.InnerText, true, out temp))
-							tabPage.Id = temp;
-					}
-					XmlNode nodeName = tabNode.SelectSingleNode("Name");
-					if (nodeName != null)
-						tabPage.Name = nodeName.InnerText;
-					XmlNode nodeEnabled = tabNode.SelectSingleNode("Enabled");
-					if (nodeEnabled != null)
-					{
-						bool temp;
-						if (bool.TryParse(nodeEnabled.InnerText, out temp))
-							tabPage.Enabled = temp;
-					}
-					if (tabPage.Id != TabNamesEnum.None)
-						TabPages.Add(tabPage);
+					TabNamesEnum temp;
+					if (Enum.TryParse(node.InnerText, true, out temp))
+						tabPage.Id = temp;
 				}
+				node = tabNode.SelectSingleNode("Name");
+				if (node != null)
+					tabPage.Name = node.InnerText;
+				node = tabNode.SelectSingleNode("Order");
+				if (node != null)
+				{
+					int temp;
+					if (Int32.TryParse(node.InnerText, out temp))
+						tabPage.Order = temp;
+				}
+				node = tabNode.SelectSingleNode("Enabled");
+				if (node != null)
+				{
+					bool temp;
+					if (Boolean.TryParse(node.InnerText, out temp))
+						tabPage.Enabled = temp;
+				}
+				node = tabNode.SelectSingleNode("rg1");
+				if (node != null)
+					tabPage.RibbonGroup1Name = node.InnerText;
+				if (tabPage.Id != TabNamesEnum.None)
+					TabPages.Add(tabPage);
+			}
+			TabPages.Sort((x, y) => x.Order.CompareTo(y.Order));
 		}
 	}
 
@@ -57,7 +68,9 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 	{
 		public TabNamesEnum Id { get; set; }
 		public string Name { get; set; }
+		public int Order { get; set; }
 		public bool Enabled { get; set; }
+		public string RibbonGroup1Name { get; set; }
 	}
 
 	public enum TabNamesEnum
@@ -66,12 +79,12 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 		PowerPoint,
 		Dashboard,
 		SalesDepot,
-		Apps,
-		Clipart,
-		PDF,
-		Tools,
+		Apps1,
+		Apps2,
+		Apps3,
+		Apps4,
+		Apps5,
 		Settings,
-		iPad,
 		Sync
 	}
 }

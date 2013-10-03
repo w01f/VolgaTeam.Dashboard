@@ -34,7 +34,7 @@ namespace NewBizWiz.MiniBar.SettingsForms
 			}
 			else
 				pnWebSalesDepot.Visible = false;
-			foreach (NBWApplication application in NBWApplicationsManager.Instance.NBWApplications)
+			foreach (var application in NBWApplicationsManager.Instance.NBWApplications)
 			{
 				var definition = new ApplicationDefinitionControl();
 				definition.Application = application;

@@ -421,6 +421,19 @@ namespace NewBizWiz.AdSchedule.Controls
 				Supertip.SetSuperTooltip(MultiGridTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(SummaryTheme, selectorToolTip);
 			}
+
+			Ribbon.SelectedRibbonTabChanged += (o, e) =>
+			{
+				(DigitalProductPowerPoint.ContainerControl as RibbonBar).Text = (DigitalProductTheme.Tag as Theme).Name;
+				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = (DigitalPackageTheme.Tag as Theme).Name;
+				(BasicOverviewPowerPoint.ContainerControl as RibbonBar).Text = (BasicOverviewTheme.Tag as Theme).Name;
+				(MultiSummaryPowerPoint.ContainerControl as RibbonBar).Text = (MultiSummaryTheme.Tag as Theme).Name;
+				(SnapshotPowerPoint.ContainerControl as RibbonBar).Text = (SnapshotTheme.Tag as Theme).Name;
+				(AdPlanPowerPoint.ContainerControl as RibbonBar).Text = (AdPlanTheme.Tag as Theme).Name;
+				(DetailedGridPowerPoint.ContainerControl as RibbonBar).Text = (DetailedGridTheme.Tag as Theme).Name;
+				(MultiGridPowerPoint.ContainerControl as RibbonBar).Text = (MultiGridTheme.Tag as Theme).Name;
+				(SummaryPowerPoint.ContainerControl as RibbonBar).Text = (SummaryTheme.Tag as Theme).Name;
+			};
 		}
 
 		private void ConfigureTabPages()

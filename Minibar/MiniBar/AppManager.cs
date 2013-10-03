@@ -308,16 +308,6 @@ namespace NewBizWiz.MiniBar
 				ShowWarning("Couldn't find PowerPointLoader app");
 		}
 
-		public void RunClientLogos()
-		{
-			if (File.Exists(SettingsManager.Instance.ClientLogosPath))
-			{
-				Process.Start(SettingsManager.Instance.ClientLogosPath);
-			}
-			else
-				ShowWarning("Couldn't find Client Logos app");
-		}
-
 		public void RunSalesGallery()
 		{
 			if (File.Exists(SettingsManager.Instance.SalesGalleryPath))
@@ -326,16 +316,6 @@ namespace NewBizWiz.MiniBar
 			}
 			else
 				ShowWarning("Couldn't find Sales Gallery app");
-		}
-
-		public void RunWebArt()
-		{
-			if (File.Exists(SettingsManager.Instance.WebArtPath))
-			{
-				Process.Start(SettingsManager.Instance.WebArtPath);
-			}
-			else
-				ShowWarning("Couldn't find Web Art app");
 		}
 
 		public void KillPowerPoint()

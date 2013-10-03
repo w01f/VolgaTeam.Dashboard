@@ -44,6 +44,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			{
 				FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, _overviewHelpToolTip);
 				Controls.Add(TabHomeOverviewControl.Instance);
+				TabHomeOverviewControl.Instance.EnableOutput = borderedControl.EnableOutputButton;
+				TabHomeOverviewControl.Instance.UpdateOutputState();
+				FormMain.Instance.OutputClick = TabHomeOverviewControl.Instance.Output;
 			}
 			else if (FormMain.Instance.buttonItemHomeCover != null && FormMain.Instance.buttonItemHomeCover.Checked)
 			{

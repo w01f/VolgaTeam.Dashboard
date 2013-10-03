@@ -451,7 +451,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeSlides.Size = new System.Drawing.Size(127, 129);
 			this.ribbonBarHomeSlides.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarHomeSlides.TabIndex = 16;
-			this.ribbonBarHomeSlides.Text = "Basic Presentation Slides";
+			this.ribbonBarHomeSlides.Text = "Solution Slides";
 			// 
 			// 
 			// 

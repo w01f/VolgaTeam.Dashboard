@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
@@ -36,16 +38,16 @@ namespace NewBizWiz.MiniBar
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
 				ribbonControl.Font = new Font(ribbonControl.Font.FontFamily, ribbonControl.Font.Size - 1, ribbonControl.Font.Style);
-				ribbonPanelApps.PerformLayout();
-				ribbonPanelClipart.PerformLayout();
+				ribbonPanelApps1.PerformLayout();
+				ribbonPanelApps2.PerformLayout();
 				ribbonPanelDashboard.PerformLayout();
-				ribbonPanelTools.PerformLayout();
-				ribbonPanelPDF.PerformLayout();
+				ribbonPanelApps4.PerformLayout();
+				ribbonPanelApps3.PerformLayout();
 				ribbonPanelPowerPoint.PerformLayout();
 				ribbonPanelSalesDepot.PerformLayout();
 				ribbonPanelSettings.PerformLayout();
 				ribbonPanelSync.PerformLayout();
-				ribbonPanelIPad.PerformLayout();
+				ribbonPanelApps5.PerformLayout();
 			}
 		}
 
@@ -62,14 +64,14 @@ namespace NewBizWiz.MiniBar
 			ActivateExpandedForm();
 			if (ribbonControl.SelectedRibbonTabItem != null)
 			{
-				if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemApps)
-					FormMainExpanded.Instance.ribbonTabItemApps.Select();
-				else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemClipart)
-					FormMainExpanded.Instance.ribbonTabItemClipart.Select();
+				if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemApps1)
+					FormMainExpanded.Instance.ribbonTabItemApps1.Select();
+				else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemApps2)
+					FormMainExpanded.Instance.ribbonTabItemApps2.Select();
 				else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDashboard)
 					FormMainExpanded.Instance.ribbonTabItemDashboard.Select();
-				else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemPDF)
-					FormMainExpanded.Instance.ribbonTabItemPDF.Select();
+				else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemApps3)
+					FormMainExpanded.Instance.ribbonTabItemApps3.Select();
 				else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemPowerPoint)
 					FormMainExpanded.Instance.ribbonTabItemPowerPoint.Select();
 				else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSalesDepot)
@@ -78,10 +80,10 @@ namespace NewBizWiz.MiniBar
 					FormMainExpanded.Instance.ribbonTabItemSettings.Select();
 				else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSync)
 					FormMainExpanded.Instance.ribbonTabItemSync.Select();
-				else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemTools)
-					FormMainExpanded.Instance.ribbonTabItemTools.Select();
-				else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemIPad)
-					FormMainExpanded.Instance.ribbonTabItemIPad.Select();
+				else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemApps4)
+					FormMainExpanded.Instance.ribbonTabItemApps4.Select();
+				else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemApps5)
+					FormMainExpanded.Instance.ribbonTabItemApps5.Select();
 				ribbonControl.SelectedRibbonTabItem.Checked = false;
 				ServiceDataManager.Instance.WriteActivity();
 			}
@@ -268,45 +270,65 @@ namespace NewBizWiz.MiniBar
 
 		private void InitTabPages()
 		{
-			TabPage tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.PowerPoint);
-			ribbonTabItemPowerPoint.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemPowerPoint.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Dashboard);
-			ribbonTabItemDashboard.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemDashboard.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.SalesDepot);
-			ribbonTabItemSalesDepot.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemSalesDepot.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Apps);
-			ribbonTabItemApps.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemApps.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Clipart);
-			ribbonTabItemClipart.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemClipart.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.PDF);
-			ribbonTabItemPDF.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemPDF.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Tools);
-			ribbonTabItemTools.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemTools.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Settings);
-			ribbonTabItemSettings.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemSettings.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.iPad);
-			ribbonTabItemIPad.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemIPad.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Sync);
-			ribbonTabItemSync.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemSync.Enabled = tabPage != null && tabPage.Enabled;
+			ribbonControl.Items.Clear();
+			var tabPages = new List<BaseItem>();
+			foreach (var tabPageConfig in SettingsManager.Instance.TabPageSettings.TabPages)
+			{
+				switch (tabPageConfig.Id)
+				{
+					case TabNamesEnum.PowerPoint:
+						ribbonTabItemPowerPoint.Text = tabPageConfig.Name;
+						ribbonTabItemPowerPoint.Enabled = tabPageConfig.Enabled;
+						tabPages.Add(ribbonTabItemPowerPoint);
+						break;
+					case TabNamesEnum.Dashboard:
+						ribbonTabItemDashboard.Text = tabPageConfig.Name;
+						ribbonTabItemDashboard.Enabled = tabPageConfig.Enabled;
+						tabPages.Add(ribbonTabItemDashboard);
+						break;
+					case TabNamesEnum.SalesDepot:
+						ribbonTabItemSalesDepot.Text = tabPageConfig.Name;
+						ribbonTabItemSalesDepot.Enabled = tabPageConfig.Enabled;
+						tabPages.Add(ribbonTabItemSalesDepot);
+						break;
+					case TabNamesEnum.Apps1:
+						ribbonTabItemApps1.Text = tabPageConfig.Name;
+						ribbonTabItemApps1.Enabled = tabPageConfig.Enabled;
+						tabPages.Add(ribbonTabItemApps1);
+						break;
+					case TabNamesEnum.Apps2:
+						ribbonTabItemApps2.Text = tabPageConfig.Name;
+						ribbonTabItemApps2.Enabled = tabPageConfig.Enabled;
+						tabPages.Add(ribbonTabItemApps2);
+						break;
+					case TabNamesEnum.Apps3:
+						ribbonTabItemApps3.Text = tabPageConfig.Name;
+						ribbonTabItemApps3.Enabled = tabPageConfig.Enabled;
+						tabPages.Add(ribbonTabItemApps3);
+						break;
+					case TabNamesEnum.Apps4:
+						ribbonTabItemApps4.Text = tabPageConfig.Name;
+						ribbonTabItemApps4.Enabled = tabPageConfig.Enabled;
+						tabPages.Add(ribbonTabItemApps4);
+						break;
+					case TabNamesEnum.Apps5:
+						ribbonTabItemApps5.Text = tabPageConfig.Name;
+						ribbonTabItemApps5.Enabled = tabPageConfig.Enabled;
+						tabPages.Add(ribbonTabItemApps5);
+						break;
+					case TabNamesEnum.Settings:
+						ribbonTabItemSettings.Text = tabPageConfig.Name;
+						ribbonTabItemSettings.Enabled = tabPageConfig.Enabled;
+						tabPages.Add(ribbonTabItemSettings);
+						break;
+					case TabNamesEnum.Sync:
+						ribbonTabItemSync.Text = tabPageConfig.Name;
+						ribbonTabItemSync.Enabled = tabPageConfig.Enabled;
+						tabPages.Add(ribbonTabItemSync);
+						break;
+				}
+			}
+			ribbonControl.Items.AddRange(tabPages.ToArray());
 		}
 
 		public void ActivateExpandedForm()

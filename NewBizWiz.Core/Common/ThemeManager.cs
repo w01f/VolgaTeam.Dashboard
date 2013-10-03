@@ -50,4 +50,9 @@ namespace NewBizWiz.Core.Common
 			ThemeFilePath = Directory.GetFiles(rootPath, "*.thmx").FirstOrDefault();
 		}
 	}
+
+	public class ThemeEventArgs : EventArgs
+	{
+		public Theme SelectedTheme { get; set; }
+	}
 }

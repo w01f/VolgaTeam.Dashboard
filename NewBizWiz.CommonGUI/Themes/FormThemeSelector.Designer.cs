@@ -28,32 +28,23 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.laSlideSize = new System.Windows.Forms.Label();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.pnButtons = new System.Windows.Forms.Panel();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
+			this.pnHeader = new System.Windows.Forms.Panel();
+			this.laThemeName = new System.Windows.Forms.Label();
+			this.laSlideSize = new System.Windows.Forms.Label();
 			this.pnButtons.SuspendLayout();
+			this.pnHeader.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// laSlideSize
-			// 
-			this.laSlideSize.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laSlideSize.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laSlideSize.ForeColor = System.Drawing.Color.White;
-			this.laSlideSize.Location = new System.Drawing.Point(0, 0);
-			this.laSlideSize.Name = "laSlideSize";
-			this.laSlideSize.Size = new System.Drawing.Size(894, 41);
-			this.laSlideSize.TabIndex = 2;
-			this.laSlideSize.Text = "Slide Size: {0}";
-			this.laSlideSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// pnMain
 			// 
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnMain.Location = new System.Drawing.Point(0, 41);
+			this.pnMain.Location = new System.Drawing.Point(0, 40);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(894, 407);
+			this.pnMain.Size = new System.Drawing.Size(894, 408);
 			this.pnMain.TabIndex = 3;
 			// 
 			// pnButtons
@@ -92,14 +83,48 @@
 			this.buttonXCancel.Text = "Cancel";
 			this.buttonXCancel.TextColor = System.Drawing.Color.Black;
 			// 
+			// pnHeader
+			// 
+			this.pnHeader.Controls.Add(this.laThemeName);
+			this.pnHeader.Controls.Add(this.laSlideSize);
+			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnHeader.Location = new System.Drawing.Point(0, 0);
+			this.pnHeader.Name = "pnHeader";
+			this.pnHeader.Size = new System.Drawing.Size(894, 40);
+			this.pnHeader.TabIndex = 6;
+			// 
+			// laThemeName
+			// 
+			this.laThemeName.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.laThemeName.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laThemeName.ForeColor = System.Drawing.Color.White;
+			this.laThemeName.Location = new System.Drawing.Point(333, 0);
+			this.laThemeName.Name = "laThemeName";
+			this.laThemeName.Size = new System.Drawing.Size(561, 40);
+			this.laThemeName.TabIndex = 3;
+			this.laThemeName.Text = "Slide Name";
+			this.laThemeName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// laSlideSize
+			// 
+			this.laSlideSize.Dock = System.Windows.Forms.DockStyle.Left;
+			this.laSlideSize.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laSlideSize.ForeColor = System.Drawing.Color.White;
+			this.laSlideSize.Location = new System.Drawing.Point(0, 0);
+			this.laSlideSize.Name = "laSlideSize";
+			this.laSlideSize.Size = new System.Drawing.Size(333, 40);
+			this.laSlideSize.TabIndex = 2;
+			this.laSlideSize.Text = "Slide Size: {0}";
+			this.laSlideSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
 			// FormThemeSelector
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.ClientSize = new System.Drawing.Size(894, 494);
 			this.Controls.Add(this.pnMain);
+			this.Controls.Add(this.pnHeader);
 			this.Controls.Add(this.pnButtons);
-			this.Controls.Add(this.laSlideSize);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
@@ -110,16 +135,19 @@
 			this.Text = "Select Theme";
 			this.TopMost = true;
 			this.pnButtons.ResumeLayout(false);
+			this.pnHeader.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.Label laSlideSize;
 		private System.Windows.Forms.Panel pnMain;
 		private System.Windows.Forms.Panel pnButtons;
 		private DevComponents.DotNetBar.ButtonX buttonXOK;
 		private DevComponents.DotNetBar.ButtonX buttonXCancel;
+		private System.Windows.Forms.Panel pnHeader;
+		private System.Windows.Forms.Label laThemeName;
+		private System.Windows.Forms.Label laSlideSize;
 	}
 }

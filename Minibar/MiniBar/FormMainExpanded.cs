@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -59,20 +60,12 @@ namespace NewBizWiz.MiniBar
 				styleController.AppearanceReadOnly.Font = font;
 				comboBoxEditPowerPointStyle.Font = font;
 				ribbonControl.Font = new Font(ribbonControl.Font.FontFamily, ribbonControl.Font.Size - 1, ribbonControl.Font.Style);
-				ribbonBarApps.RecalcLayout();
-				ribbonBarAppsExit.RecalcLayout();
-				ribbonBarAppsHelp.RecalcLayout();
-				ribbonBarClipartClientLogos.RecalcLayout();
-				ribbonBarClipartExit.RecalcLayout();
-				ribbonBarClipartHelp.RecalcLayout();
-				ribbonBarClipartSalesGallery.RecalcLayout();
-				ribbonBarClipartWebArt.RecalcLayout();
+				ribbonBarApps1.RecalcLayout();
+				ribbonBarApps1Exit.RecalcLayout();
+				ribbonBarApps1Help.RecalcLayout();
 				ribbonBarDashboard.RecalcLayout();
 				ribbonBarDashboardExit.RecalcLayout();
 				ribbonBarDashboardHelp.RecalcLayout();
-				ribbonBarToolsExit.RecalcLayout();
-				ribbonBarToolsHelp.RecalcLayout();
-				ribbonBarToolsSave.RecalcLayout();
 				ribbonBarPowerPointExit.RecalcLayout();
 				ribbonBarPowerPointHelp.RecalcLayout();
 				ribbonBarPowerPointLaunch.RecalcLayout();
@@ -89,27 +82,22 @@ namespace NewBizWiz.MiniBar
 				ribbonBarSyncHourly.RecalcLayout();
 				ribbonBarSyncStart.RecalcLayout();
 				ribbonBarSyncStatus.RecalcLayout();
-				ribbonBarTrainingExit.RecalcLayout();
-				ribbonBarTrainingHelp.RecalcLayout();
-				ribbonPanelApps.PerformLayout();
-				ribbonPanelClipart.PerformLayout();
+				ribbonPanelApps1.PerformLayout();
+				ribbonPanelApps2.PerformLayout();
 				ribbonPanelDashboard.PerformLayout();
-				ribbonPanelTools.PerformLayout();
-				ribbonPanelPDF.PerformLayout();
+				ribbonPanelApps4.PerformLayout();
+				ribbonPanelApps3.PerformLayout();
 				ribbonPanelPowerPoint.PerformLayout();
 				ribbonPanelSalesDepot.PerformLayout();
 				ribbonPanelSettings.PerformLayout();
 				ribbonPanelSync.PerformLayout();
-				ribbonPanelIPad.PerformLayout();
+				ribbonPanelApps5.PerformLayout();
 			}
 
 			#region Init Activity Recording Events
 
-			buttonItemAppsHelp.Click += ribbonTabItem_Click;
-			buttonItemClipartClientLogos.Click += ribbonTabItem_Click;
-			buttonItemClipartHelp.Click += ribbonTabItem_Click;
-			buttonItemClipartSalesGallery.Click += ribbonTabItem_Click;
-			buttonItemClipartWebArt.Click += ribbonTabItem_Click;
+			buttonItemApps1Help.Click += ribbonTabItem_Click;
+			buttonItemApps1Clipart.Click += ribbonTabItem_Click;
 			buttonItemDashboard.Click += ribbonTabItem_Click;
 			buttonItemDashboardHelp.Click += ribbonTabItem_Click;
 			buttonItemPowerPointHelp.Click += ribbonTabItem_Click;
@@ -128,16 +116,11 @@ namespace NewBizWiz.MiniBar
 			buttonItemSettingsMonitor1.Click += ribbonTabItem_Click;
 			buttonItemSettingsMonitor2.Click += ribbonTabItem_Click;
 			buttonItemSettingsReset.Click += ribbonTabItem_Click;
+			buttonItemSettingsPresentationOrganizer.Click += ribbonTabItem_Click;
 			buttonItemSyncHelp.Click += ribbonTabItem_Click;
 			buttonItemSyncHourlyOff.Click += ribbonTabItem_Click;
 			buttonItemSyncHourlyOn.Click += ribbonTabItem_Click;
 			buttonItemSyncStart.Click += ribbonTabItem_Click;
-			buttonItemToolsContent.Click += ribbonTabItem_Click;
-			buttonItemToolsHelp.Click += ribbonTabItem_Click;
-			buttonItemToolsPageNumbers.Click += ribbonTabItem_Click;
-			buttonItemToolsSave.Click += ribbonTabItem_Click;
-			buttonItemToolsSlideHeader.Click += ribbonTabItem_Click;
-			buttonItemTrainingHelp.Click += ribbonTabItem_Click;
 
 			#endregion
 		}
@@ -268,7 +251,7 @@ namespace NewBizWiz.MiniBar
 
 		private void buttonItemHelp_Click(object sender, EventArgs e)
 		{
-			AppManager.Instance.HelpManager.OpenHelpLink(ribbonControl.Items.IndexOf(ribbonControl.SelectedRibbonTabItem) + 1);
+			AppManager.Instance.HelpManager.OpenHelpLink(ribbonControl.SelectedRibbonTabItem.Tag.ToString());
 		}
 
 		#endregion
@@ -396,7 +379,7 @@ namespace NewBizWiz.MiniBar
 				buttonItemPowerPointOutput.Enabled = true;
 				buttonItemPowerPointSlideMaster.Visible = true;
 				buttonItemPowerPointSlideMaster.Image = selectedSlide.RibbonLogo;
-				ribbonBarPowerPointSlideMaster.Text = String.Format("{0}: {1}", selectedSlide.Group, selectedSlide.Name);
+				ribbonBarPowerPointSlideMaster.Text = String.Format("{0}", selectedSlide.Name);
 				buttonItemPowerPointSlideMaster.Tag = selectedSlide;
 			}
 			else
@@ -568,7 +551,7 @@ namespace NewBizWiz.MiniBar
 					var selectedSlide = form.SelectedSlide;
 					if (selectedSlide == null) return;
 					buttonItemPowerPointSlideMaster.Image = selectedSlide.RibbonLogo;
-					ribbonBarPowerPointSlideMaster.Text = String.Format("{0}: {1}", selectedSlide.Group, selectedSlide.Name);
+					ribbonBarPowerPointSlideMaster.Text = String.Format("{0}", selectedSlide.Name);
 					buttonItemPowerPointSlideMaster.Tag = selectedSlide;
 					ribbonBarPowerPointSlideMaster.RecalcLayout();
 					ribbonPanelPowerPoint.PerformLayout();
@@ -597,11 +580,6 @@ namespace NewBizWiz.MiniBar
 		#endregion
 
 		#region SalesDepot
-		private void buttonItemSalesDepot_Click(object sender, EventArgs e)
-		{
-			AppManager.Instance.RunLocalSalesDepot();
-		}
-
 		private void buttonItemSalesDepotRemote_Click(object sender, EventArgs e)
 		{
 			AppManager.Instance.RunSalesDepotRemote();
@@ -775,20 +753,55 @@ namespace NewBizWiz.MiniBar
 		#region Apps Methods
 		private void LoadNBWApplication()
 		{
-			if (NBWApplicationsManager.Instance.NBWApplications.Count > 0)
+			var tab1Applications = NBWApplicationsManager.Instance.NBWApplications.Where(a => a.TabOrder == 1);
+			if (tab1Applications.Any())
 			{
-				foreach (NBWApplication nbwApplication in NBWApplicationsManager.Instance.NBWApplications)
-				{
-					AddAppDefinition(nbwApplication);
-				}
-				ribbonBarApps.RecalcLayout();
-				ribbonPanelApps.PerformLayout();
+				foreach (var nbwApplication in tab1Applications)
+					AddAppDefinition(galleryContainerApps1, nbwApplication);
+				ribbonBarApps1.RecalcLayout();
+				ribbonPanelApps1.PerformLayout();
+			}
+
+			var tab2Applications = NBWApplicationsManager.Instance.NBWApplications.Where(a => a.TabOrder == 2);
+			if (tab2Applications.Any())
+			{
+				foreach (var nbwApplication in tab2Applications)
+					AddAppDefinition(galleryContainerApps2, nbwApplication);
+				ribbonBarApps2.RecalcLayout();
+				ribbonPanelApps2.PerformLayout();
+			}
+
+			var tab3Applications = NBWApplicationsManager.Instance.NBWApplications.Where(a => a.TabOrder == 3);
+			if (tab3Applications.Any())
+			{
+				foreach (var nbwApplication in tab3Applications)
+					AddAppDefinition(galleryContainerApps3, nbwApplication);
+				ribbonBarApps3.RecalcLayout();
+				ribbonPanelApps3.PerformLayout();
+			}
+
+			var tab4Applications = NBWApplicationsManager.Instance.NBWApplications.Where(a => a.TabOrder == 4);
+			if (tab4Applications.Any())
+			{
+				foreach (var nbwApplication in tab4Applications)
+					AddAppDefinition(galleryContainerApps4, nbwApplication);
+				ribbonBarApps4.RecalcLayout();
+				ribbonPanelApps4.PerformLayout();
+			}
+
+			var tab5Applications = NBWApplicationsManager.Instance.NBWApplications.Where(a => a.TabOrder == 5);
+			if (tab5Applications.Any())
+			{
+				foreach (var nbwApplication in tab5Applications)
+					AddAppDefinition(galleryContainerApps5, nbwApplication);
+				ribbonBarApps5.RecalcLayout();
+				ribbonPanelApps5.PerformLayout();
 			}
 		}
 
 		private void UpdateApplicationsStatus()
 		{
-			foreach (NBWApplication nbwApplication in NBWApplicationsManager.Instance.NBWApplications)
+			foreach (var nbwApplication in NBWApplicationsManager.Instance.NBWApplications)
 			{
 				if (nbwApplication.UseSlideTemplates && MasterWizardManager.Instance.SelectedWizard != null)
 				{
@@ -811,197 +824,74 @@ namespace NewBizWiz.MiniBar
 			}
 		}
 
-		private void AddAppDefinition(NBWApplication nbwApplication)
+		private void AddAppDefinition(GalleryContainer container, NBWApplication nbwApplication)
 		{
 			var itemContainerApp = new ItemContainer();
 			itemContainerApp.SubItems.AddRange(new BaseItem[]
-			                                   {
-				                                   nbwApplication.AppButton,
-				                                   nbwApplication.DisabledButton,
-				                                   nbwApplication.AppLabel
-			                                   });
-			galleryContainerApps.SubItems.AddRange(new BaseItem[] { itemContainerApp });
+			{
+				nbwApplication.AppButton,
+				nbwApplication.DisabledButton,
+				nbwApplication.AppLabel
+			});
+			container.SubItems.AddRange(new BaseItem[] { itemContainerApp });
 			superTooltip.SetSuperTooltip(nbwApplication.DisabledButton, new SuperTooltipInfo("This app is DISABLED", string.Empty, "Check your PowerPoint slide size on the first Tab of this minibar", null, null, eTooltipColor.Default, true, false, new Size(0, 0)));
 		}
-		#endregion
 
-		#region Clipart Methods
-		private void buttonItemClipartClientLogos_Click(object sender, EventArgs e)
+		private void SetClipartSettings()
 		{
-			AppManager.Instance.RunClientLogos();
+			switch (SettingsManager.Instance.ClipartSettings.TabPage)
+			{
+				case TabNamesEnum.Apps1:
+					ribbonBarApps1Clipart.Visible = true;
+					ribbonBarApps1Clipart.Text = SettingsManager.Instance.ClipartSettings.Name;
+					ribbonBarApps1Clipart.Enabled = SettingsManager.Instance.ClipartSettings.Enabled;
+					break;
+				case TabNamesEnum.Apps2:
+					ribbonBarApps2Clipart.Visible = true;
+					ribbonBarApps2Clipart.Text = SettingsManager.Instance.ClipartSettings.Name;
+					ribbonBarApps2Clipart.Enabled = SettingsManager.Instance.ClipartSettings.Enabled;
+					break;
+				case TabNamesEnum.Apps3:
+					ribbonBarApps3Clipart.Visible = true;
+					ribbonBarApps3Clipart.Text = SettingsManager.Instance.ClipartSettings.Name;
+					ribbonBarApps3Clipart.Enabled = SettingsManager.Instance.ClipartSettings.Enabled;
+					break;
+				case TabNamesEnum.Apps4:
+					ribbonBarApps4Clipart.Visible = true;
+					ribbonBarApps4Clipart.Text = SettingsManager.Instance.ClipartSettings.Name;
+					ribbonBarApps4Clipart.Enabled = SettingsManager.Instance.ClipartSettings.Enabled;
+					break;
+				case TabNamesEnum.Apps5:
+					ribbonBarApps5Clipart.Visible = true;
+					ribbonBarApps5Clipart.Text = SettingsManager.Instance.ClipartSettings.Name;
+					ribbonBarApps5Clipart.Enabled = SettingsManager.Instance.ClipartSettings.Enabled;
+					break;
+			}
 		}
 
-		private void buttonItemClipartSalesGallery_Click(object sender, EventArgs e)
+		private void buttonItemAppClipart_Click(object sender, EventArgs e)
 		{
 			AppManager.Instance.RunSalesGallery();
-		}
-
-		private void buttonItemClipartWebArt_Click(object sender, EventArgs e)
-		{
-			AppManager.Instance.RunWebArt();
-		}
-		#endregion
-
-		#region PDF Methods
-		private void buttonItemPDF_PopupOpen(object sender, PopupOpenEventArgs e)
-		{
-			_comboOpened = true;
-			_mouseLeaveAdditionalTime = 2;
-		}
-
-		private void buttonItemPDF_PopupFinalized(object sender, EventArgs e)
-		{
-			_comboOpened = false;
-		}
-
-		private void buttonItemPdfSavePdf_Click(object sender, EventArgs e)
-		{
-			bool toContinue = false;
-			string presentationName = string.Empty;
-			if (MinibarPowerPointHelper.Instance.PowerPointDetected())
-			{
-				MinibarPowerPointHelper.Instance.Connect(false);
-				if (MinibarPowerPointHelper.Instance.Is2003)
-				{
-					AppManager.Instance.ShowWarning("Your Version of PowerPoint will not Convert to PDF.\nPDF Converting  Only works with Office 2007 and 2010.");
-					return;
-				}
-				if (MinibarPowerPointHelper.Instance.IsActive && MinibarPowerPointHelper.Instance.PowerPointObject.WindowState != PpWindowState.ppWindowMinimized)
-				{
-					presentationName = MinibarPowerPointHelper.Instance.ActiveFileName;
-					if (!string.IsNullOrEmpty(presentationName))
-						toContinue = true;
-				}
-			}
-
-			if (toContinue)
-			{
-				if (AppManager.Instance.ShowWarningQuestion("Do you want to save " + presentationName + " as a PDF?") == DialogResult.Yes)
-				{
-					using (var dialog = new SaveFileDialog())
-					{
-						dialog.FileName = presentationName.Replace(".pptx", "").Replace(".ppt", "") + ".pdf";
-						dialog.Title = "Save Presentation As PDF";
-						dialog.Filter = "Adobe PDF Files|*.pdf";
-						dialog.DefaultExt = "*.pdf";
-						if (dialog.ShowDialog() == DialogResult.OK)
-						{
-							MinibarPowerPointHelper.Instance.SavePDF(dialog.FileName);
-							if (File.Exists(dialog.FileName))
-								Process.Start(dialog.FileName);
-						}
-					}
-				}
-			}
-			else
-				AppManager.Instance.ShowWarning("There is no active PowerPoint Presentation.\nOpen your presentation and try again.");
-		}
-
-		private void buttonItemPdfEmailPdf_Click(object sender, EventArgs e)
-		{
-			bool toContinue = false;
-			string presentationName = string.Empty;
-			if (MinibarPowerPointHelper.Instance.PowerPointDetected())
-			{
-				MinibarPowerPointHelper.Instance.Connect(false);
-				if (MinibarPowerPointHelper.Instance.Is2003)
-				{
-					AppManager.Instance.ShowWarning("Your Version of PowerPoint will not Convert to PDF.\nPDF Converting  Only works with Office 2007 and 2010.");
-					return;
-				}
-				if (MinibarPowerPointHelper.Instance.IsActive && MinibarPowerPointHelper.Instance.PowerPointObject.WindowState != PpWindowState.ppWindowMinimized)
-				{
-					presentationName = MinibarPowerPointHelper.Instance.ActiveFileName;
-					if (!string.IsNullOrEmpty(presentationName))
-						toContinue = true;
-				}
-			}
-
-			if (toContinue)
-			{
-				if (AppManager.Instance.ShowWarningQuestion("Do you want to Email a PDF Version of " + presentationName + "?") == DialogResult.Yes)
-				{
-					string fileName = Path.Combine(Path.GetTempPath(), presentationName.Replace(".pptx", "").Replace(".ppt", "") + ".pdf");
-					MinibarPowerPointHelper.Instance.SavePDF(fileName);
-					if (OutlookHelper.Instance.Open())
-					{
-						OutlookHelper.Instance.CreateMessage(fileName);
-						OutlookHelper.Instance.Close();
-					}
-					else
-						AppManager.Instance.ShowWarning("Couldn't open Outlook");
-				}
-			}
-			else
-				AppManager.Instance.ShowWarning("There is no active PowerPoint Presentation.\nOpen your presentation and try again.");
-		}
-		#endregion
-
-		#region Tools Methods
-		private void buttonItemToolsContent_Click(object sender, EventArgs e)
-		{
-			if (!MinibarPowerPointHelper.Instance.PowerPointDetected())
-			{
-				AppManager.Instance.ShowWarning("You have no Active PowerPoint Presentation.");
-				return;
-			}
-			MinibarPowerPointHelper.Instance.Connect(false);
-			Utilities.Instance.ActivateForm(Handle, false, true);
-			using (var form = new FormSlideContentTools())
-			{
-				form.ShowDialog();
-			}
-			Utilities.Instance.ActivateForm(Handle, false, true);
-		}
-
-		private void buttonItemToolsPageNumbers_Click(object sender, EventArgs e)
-		{
-			if (!MinibarPowerPointHelper.Instance.PowerPointDetected())
-			{
-				AppManager.Instance.ShowWarning("You have no Active PowerPoint Presentation.");
-				return;
-			}
-			MinibarPowerPointHelper.Instance.Connect(false);
-			Utilities.Instance.ActivateForm(Handle, false, true);
-			using (var form = new FormPageNumbersTools())
-			{
-				form.ShowDialog();
-			}
-			Utilities.Instance.ActivateForm(Handle, false, true);
-		}
-
-		private void buttonItemToolsSlideHeader_Click(object sender, EventArgs e)
-		{
-			if (!MinibarPowerPointHelper.Instance.PowerPointDetected())
-			{
-				AppManager.Instance.ShowWarning("You have no Active PowerPoint Presentation.");
-				return;
-			}
-			MinibarPowerPointHelper.Instance.Connect(false);
-			Utilities.Instance.ActivateForm(Handle, false, true);
-			using (var form = new FormSlideHeadersTools())
-			{
-				form.ShowDialog();
-			}
-			Utilities.Instance.ActivateForm(Handle, false, true);
-		}
-
-		private void buttonItemToolsSave_Click(object sender, EventArgs e)
-		{
-			if (!MinibarPowerPointHelper.Instance.PowerPointDetected())
-			{
-				AppManager.Instance.ShowWarning("You have no Active PowerPoint Presentation.");
-				return;
-			}
-			MinibarPowerPointHelper.Instance.Connect(false);
-			Utilities.Instance.ActivateForm(Handle, false, true);
-			MinibarPowerPointHelper.Instance.AddContents(true);
-			MinibarPowerPointHelper.Instance.AddPageNumbers();
-			Utilities.Instance.ActivateForm(Handle, false, true);
 		}
 		#endregion
 
 		#region Settings Methods
+		private void buttonItemSettingsPresentationOrganizer_Click(object sender, EventArgs e)
+		{
+			if (!MinibarPowerPointHelper.Instance.PowerPointDetected())
+			{
+				AppManager.Instance.ShowWarning("You have no Active PowerPoint Presentation.");
+				return;
+			}
+			MinibarPowerPointHelper.Instance.Connect(false);
+			Utilities.Instance.ActivateForm(Handle, false, true);
+			using (var form = new FormPresentationOrganizer())
+			{
+				form.ShowDialog();
+			}
+			Utilities.Instance.ActivateForm(Handle, false, true);
+		}
+
 		private void buttonItemSettingsTeamViewer_Click(object sender, EventArgs e)
 		{
 			if (File.Exists(SettingsManager.Instance.TeamViewerQSPath))
@@ -1105,9 +995,6 @@ namespace NewBizWiz.MiniBar
 		}
 		#endregion
 
-		#region iPad Methods
-		#endregion
-
 		#region Sync Methods
 		private void buttonItemSyncStart_Click(object sender, EventArgs e)
 		{
@@ -1198,6 +1085,8 @@ namespace NewBizWiz.MiniBar
 
 			LoadNBWApplication();
 
+			SetClipartSettings();
+
 			ribbonBarSettingsMonitors.Visible = Screen.AllScreens.Length > 1;
 
 			if (SettingsManager.Instance.AutoRunFloat)
@@ -1206,45 +1095,95 @@ namespace NewBizWiz.MiniBar
 
 		private void InitTabPages()
 		{
-			TabPage tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.PowerPoint);
-			ribbonTabItemPowerPoint.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemPowerPoint.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Dashboard);
-			ribbonTabItemDashboard.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemDashboard.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.SalesDepot);
-			ribbonTabItemSalesDepot.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemSalesDepot.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Apps);
-			ribbonTabItemApps.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemApps.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Clipart);
-			ribbonTabItemClipart.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemClipart.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.PDF);
-			ribbonTabItemPDF.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemPDF.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Tools);
-			ribbonTabItemTools.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemTools.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Settings);
-			ribbonTabItemSettings.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemSettings.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.iPad);
-			ribbonTabItemIPad.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemIPad.Enabled = tabPage != null && tabPage.Enabled;
-
-			tabPage = SettingsManager.Instance.TabPageSettings.TabPages.FirstOrDefault(x => x.Id == TabNamesEnum.Sync);
-			ribbonTabItemSync.Text = tabPage != null ? tabPage.Name : TabPageSettings.UndefinedName;
-			ribbonTabItemSync.Enabled = tabPage != null && tabPage.Enabled;
+			ribbonControl.Items.Clear();
+			var tabPages = new List<BaseItem>();
+			foreach (var tabPageConfig in SettingsManager.Instance.TabPageSettings.TabPages)
+			{
+				switch (tabPageConfig.Id)
+				{
+					case TabNamesEnum.PowerPoint:
+						ribbonTabItemPowerPoint.Text = tabPageConfig.Name;
+						ribbonTabItemPowerPoint.Enabled = tabPageConfig.Enabled;
+						ribbonTabItemPowerPoint.Tag = tabPageConfig.Id.ToString();
+						tabPages.Add(ribbonTabItemPowerPoint);
+						if (!String.IsNullOrEmpty(tabPageConfig.RibbonGroup1Name))
+							ribbonBarPowerPointPresentationSettings.Text = tabPageConfig.RibbonGroup1Name;
+						break;
+					case TabNamesEnum.Dashboard:
+						ribbonTabItemDashboard.Text = tabPageConfig.Name;
+						ribbonTabItemDashboard.Enabled = tabPageConfig.Enabled;
+						ribbonTabItemDashboard.Tag = tabPageConfig.Id.ToString();
+						tabPages.Add(ribbonTabItemDashboard);
+						if (!String.IsNullOrEmpty(tabPageConfig.RibbonGroup1Name))
+							ribbonBarDashboard.Text = tabPageConfig.RibbonGroup1Name;
+						break;
+					case TabNamesEnum.SalesDepot:
+						ribbonTabItemSalesDepot.Text = tabPageConfig.Name;
+						ribbonTabItemSalesDepot.Enabled = tabPageConfig.Enabled;
+						ribbonTabItemSalesDepot.Tag = tabPageConfig.Id.ToString();
+						tabPages.Add(ribbonTabItemSalesDepot);
+						if (!String.IsNullOrEmpty(tabPageConfig.RibbonGroup1Name))
+							ribbonBarSalesDepot.Text = tabPageConfig.RibbonGroup1Name;
+						break;
+					case TabNamesEnum.Apps1:
+						ribbonTabItemApps1.Text = tabPageConfig.Name;
+						ribbonTabItemApps1.Enabled = tabPageConfig.Enabled;
+						ribbonTabItemApps1.Tag = tabPageConfig.Id.ToString();
+						tabPages.Add(ribbonTabItemApps1);
+						if (!String.IsNullOrEmpty(tabPageConfig.RibbonGroup1Name))
+							ribbonBarApps1.Text = tabPageConfig.RibbonGroup1Name;
+						break;
+					case TabNamesEnum.Apps2:
+						ribbonTabItemApps2.Text = tabPageConfig.Name;
+						ribbonTabItemApps2.Enabled = tabPageConfig.Enabled;
+						ribbonTabItemApps2.Tag = tabPageConfig.Id.ToString();
+						tabPages.Add(ribbonTabItemApps2);
+						if (!String.IsNullOrEmpty(tabPageConfig.RibbonGroup1Name))
+							ribbonBarApps2.Text = tabPageConfig.RibbonGroup1Name;
+						break;
+					case TabNamesEnum.Apps3:
+						ribbonTabItemApps3.Text = tabPageConfig.Name;
+						ribbonTabItemApps3.Enabled = tabPageConfig.Enabled;
+						ribbonTabItemApps3.Tag = tabPageConfig.Id.ToString();
+						tabPages.Add(ribbonTabItemApps3);
+						if (!String.IsNullOrEmpty(tabPageConfig.RibbonGroup1Name))
+							ribbonBarApps3.Text = tabPageConfig.RibbonGroup1Name;
+						break;
+					case TabNamesEnum.Apps4:
+						ribbonTabItemApps4.Text = tabPageConfig.Name;
+						ribbonTabItemApps4.Enabled = tabPageConfig.Enabled;
+						ribbonTabItemApps4.Tag = tabPageConfig.Id.ToString();
+						tabPages.Add(ribbonTabItemApps4);
+						if (!String.IsNullOrEmpty(tabPageConfig.RibbonGroup1Name))
+							ribbonBarApps4.Text = tabPageConfig.RibbonGroup1Name;
+						break;
+					case TabNamesEnum.Apps5:
+						ribbonTabItemApps5.Text = tabPageConfig.Name;
+						ribbonTabItemApps5.Enabled = tabPageConfig.Enabled;
+						ribbonTabItemApps5.Tag = tabPageConfig.Id.ToString();
+						tabPages.Add(ribbonTabItemApps5);
+						if (!String.IsNullOrEmpty(tabPageConfig.RibbonGroup1Name))
+							ribbonBarApps5.Text = tabPageConfig.RibbonGroup1Name;
+						break;
+					case TabNamesEnum.Settings:
+						ribbonTabItemSettings.Text = tabPageConfig.Name;
+						ribbonTabItemSettings.Enabled = tabPageConfig.Enabled;
+						ribbonTabItemSettings.Tag = tabPageConfig.Id.ToString();
+						tabPages.Add(ribbonTabItemSettings);
+						if (!String.IsNullOrEmpty(tabPageConfig.RibbonGroup1Name))
+							ribbonBarSettingsWebcast.Text = tabPageConfig.RibbonGroup1Name;
+						break;
+					case TabNamesEnum.Sync:
+						ribbonTabItemSync.Text = tabPageConfig.Name;
+						ribbonTabItemSync.Enabled = tabPageConfig.Enabled;
+						ribbonTabItemSync.Tag = tabPageConfig.Id.ToString();
+						tabPages.Add(ribbonTabItemSync);
+						if (!String.IsNullOrEmpty(tabPageConfig.RibbonGroup1Name))
+							ribbonBarSyncStatus.Text = tabPageConfig.RibbonGroup1Name;
+						break;
+				}
+			}
+			ribbonControl.Items.AddRange(tabPages.ToArray());
 		}
 
 		private void ShowFloater()

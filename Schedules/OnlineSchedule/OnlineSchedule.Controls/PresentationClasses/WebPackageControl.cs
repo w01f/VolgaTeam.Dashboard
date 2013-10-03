@@ -12,6 +12,7 @@ using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
+using NewBizWiz.OnlineSchedule.Controls.Properties;
 
 namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 {
@@ -157,6 +158,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			advBandedGridView.PostEditor();
 			splitContainerControl.PanelVisibility = Settings.ShowOptions ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
 			pnFormula.Enabled = Settings.ShowInvestment && Settings.ShowImpressions && Settings.ShowCPM;
+			pbFormula.Image = pnFormula.Enabled ? Resources.FormulaLogo : Resources.FormulaLogoDisabled;
 			UpdateGridColumns();
 			UpdateOutputState();
 			advBandedGridView.RefreshData();

@@ -16,6 +16,7 @@ namespace NewBizWiz.Core.Common
 			Title = string.Empty;
 			Executable = string.Empty;
 			Order = 9999;
+			TabOrder = 1;
 			RootFolder = rootFolder;
 			SlideTemplatesPath = string.Empty;
 
@@ -55,6 +56,7 @@ namespace NewBizWiz.Core.Common
 		public Image Image { get; set; }
 		public Image DisabledImage { get; set; }
 		public string Icon { get; set; }
+		public int TabOrder { get; set; }
 		public int Order { get; set; }
 		public bool UseWizard { get; set; }
 		public bool UseSlideTemplates { get; set; }
@@ -91,6 +93,7 @@ namespace NewBizWiz.Core.Common
 		{
 			XmlNode node;
 			bool tempBool;
+			int tempInt;
 			if (File.Exists(Path.Combine(RootFolder.FullName, NBWApplicationManifestFileName)))
 			{
 				var document = new XmlDocument();
@@ -121,16 +124,15 @@ namespace NewBizWiz.Core.Common
 				node = document.SelectSingleNode(@"/Manifest/UseWizard");
 				if (node != null)
 				{
-					if (bool.TryParse(node.InnerText, out tempBool))
+					if (Boolean.TryParse(node.InnerText, out tempBool))
 						UseWizard = tempBool;
 				}
 				node = document.SelectSingleNode(@"/Manifest/Order");
 				if (node != null)
-				{
-					int tempInt = 9999;
-					int.TryParse(node.InnerText, out tempInt);
-					Order = tempInt;
-				}
+					Order = Int32.TryParse(node.InnerText, out tempInt) ? tempInt : 9999;
+				node = document.SelectSingleNode(@"/Manifest/AppsTab");
+				if (node != null)
+					TabOrder = Int32.TryParse(node.InnerText.ToLower().Replace("apps", ""), out tempInt) ? tempInt : 1;
 				node = document.SelectSingleNode(@"/Manifest/password");
 				if (node != null)
 					AccessCode = node.InnerText;

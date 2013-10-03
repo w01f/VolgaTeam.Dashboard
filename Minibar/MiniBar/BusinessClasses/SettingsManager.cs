@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
-using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.MiniBar.BusinessClasses
 {
@@ -28,11 +27,9 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 		public string DashboardPath { get; set; }
 		public string DashboardIconPath { get; set; }
 		public SalesDepotSettings SalesDepotSettings { get; private set; }
-		public string ClientLogosPath { get; set; }
 		public string SalesGalleryPath { get; set; }
-		public string WebArtPath { get; set; }
+		public ClipartSettings ClipartSettings { get; private set; }
 		public string LibraryPath { get; set; }
-		public string ClipartPath { get; set; }
 		public string ResetPath { get; set; }
 		public string SyncSettingsFolderPath { get; set; }
 		public string HelpLinksPath { get; set; }
@@ -52,11 +49,8 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 			NBWApplicationsRootPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\applications", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			DashboardPath = string.Format(@"{0}\newlocaldirect.com\app\adSALESapp.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			DashboardIconPath = string.Format(@"{0}\newlocaldirect.com\app\tab2icon.ico", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			ClientLogosPath = string.Format(@"{0}\newlocaldirect.com\app\Client Logos\ClientLogos.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			SalesGalleryPath = string.Format(@"{0}\newlocaldirect.com\app\Sales Gallery\SalesGallery.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			WebArtPath = string.Format(@"{0}\newlocaldirect.com\app\Web Art\WebArt.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			LibraryPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\libraries", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			ClipartPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\gallery", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			ResetPath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\Reset.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			SyncSettingsFolderPath = string.Format(@"{0}\newlocaldirect.com\!Update_Settings", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\MinibarHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
@@ -67,6 +61,7 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 
 			TabPageSettings = new TabPageSettings();
 			SalesDepotSettings = new SalesDepotSettings();
+			ClipartSettings = new ClipartSettings(string.Format(@"{0}\newlocaldirect.com\app\Sales Gallery\minibar.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)));
 		}
 
 

@@ -77,12 +77,14 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager.cs" />
+    <Compile Include="BusinessClasses\ClipartSettings.cs" />
     <Compile Include="BusinessClasses\ServiceDataManager.cs" />
     <Compile Include="BusinessClasses\ApplicationsManager.cs" />
     <Compile Include="BusinessClasses\SyncManager.cs" />
@@ -137,18 +139,6 @@
     <Compile Include="ToolForms\FormSlideOutput.Designer.cs">
       <DependentUpon>FormSlideOutput.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormSlideHeadersTools.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormSlideHeadersTools.Designer.cs">
-      <DependentUpon>FormSlideHeadersTools.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ToolForms\FormPageNumbersTools.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormPageNumbersTools.Designer.cs">
-      <DependentUpon>FormPageNumbersTools.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\FormFormatChangeNotification.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,11 +157,11 @@
     <Compile Include="SettingsForms\FormShortcuts.Designer.cs">
       <DependentUpon>FormShortcuts.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormSlideContentTools.cs">
+    <Compile Include="ToolForms\FormPresentationOrganizer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ToolForms\FormSlideContentTools.Designer.cs">
-      <DependentUpon>FormSlideContentTools.cs</DependentUpon>
+    <Compile Include="ToolForms\FormPresentationOrganizer.Designer.cs">
+      <DependentUpon>FormPresentationOrganizer.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FormMainExpanded.resx">
       <DependentUpon>FormMainExpanded.cs</DependentUpon>
@@ -207,12 +197,6 @@
     <EmbeddedResource Include="ToolForms\FormSlideOutput.resx">
       <DependentUpon>FormSlideOutput.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormSlideHeadersTools.resx">
-      <DependentUpon>FormSlideHeadersTools.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormPageNumbersTools.resx">
-      <DependentUpon>FormPageNumbersTools.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormFormatChangeNotification.resx">
       <DependentUpon>FormFormatChangeNotification.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,8 +206,8 @@
     <EmbeddedResource Include="SettingsForms\FormShortcuts.resx">
       <DependentUpon>FormShortcuts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormSlideContentTools.resx">
-      <DependentUpon>FormSlideContentTools.cs</DependentUpon>
+    <EmbeddedResource Include="ToolForms\FormPresentationOrganizer.resx">
+      <DependentUpon>FormPresentationOrganizer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
@@ -247,32 +231,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mini.ico" />
+    <None Include="Resources\Clipart.png" />
     <None Include="Resources\PDF.png" />
     <None Include="Resources\PowerPoint.png" />
     <None Include="Resources\BrowserInternetExplorer.png" />
     <None Include="Resources\BrowserOpera.png" />
     <None Include="Resources\BrowserFirefox.png" />
     <None Include="Resources\BrowserGoogleChrome.png" />
-    <None Include="Resources\IPadLogo.png" />
     <None Include="Resources\AppCode.png" />
     <None Include="Resources\RemoteSalesDepot.png" />
-    <None Include="Resources\SlideHeader.png" />
-    <None Include="Resources\PageNumber.png" />
-    <None Include="Resources\SlideContent.png" />
-    <None Include="Resources\Save.png" />
     <None Include="Resources\Screen.png" />
     <None Include="Resources\SendPDF.png" />
     <None Include="Resources\SavePDF.png" />
     <None Include="Resources\Output.png" />
-    <None Include="Resources\SalesRep.png" />
     <None Include="Resources\Off.png" />
     <None Include="Resources\On.png" />
     <None Include="Resources\Warning.png" />
     <None Include="Resources\Help.png" />
     <None Include="Resources\Sync.png" />
-    <None Include="Resources\WebArt.png" />
-    <None Include="Resources\ClientLogos.png" />
-    <None Include="Resources\SalesGallery.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\NewBizWiz.CommonGUI\NewBizWiz.CommonGUI.csproj">

@@ -94,11 +94,11 @@
     <Compile Include="Slides\SlidesContainerControl.Designer.cs">
       <DependentUpon>SlidesContainerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Themes\FormSlideSelector.cs">
+    <Compile Include="Themes\FormThemeSelector.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Themes\FormSlideSelector.Designer.cs">
-      <DependentUpon>FormSlideSelector.cs</DependentUpon>
+    <Compile Include="Themes\FormThemeSelector.Designer.cs">
+      <DependentUpon>FormThemeSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="Themes\FormThemePreview.cs">
       <SubType>Form</SubType>
@@ -134,8 +134,8 @@
     <EmbeddedResource Include="Slides\SlidesContainerControl.resx">
       <DependentUpon>SlidesContainerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Themes\FormSlideSelector.resx">
-      <DependentUpon>FormSlideSelector.cs</DependentUpon>
+    <EmbeddedResource Include="Themes\FormThemeSelector.resx">
+      <DependentUpon>FormThemeSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Themes\FormThemePreview.resx">
       <DependentUpon>FormThemePreview.cs</DependentUpon>

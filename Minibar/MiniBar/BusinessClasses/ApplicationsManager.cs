@@ -93,7 +93,7 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 					};
 					NBWApplications.Add(nbwApplication);
 				}
-				NBWApplications.Sort((x, y) => x.Order.CompareTo(y.Order));
+				NBWApplications.Sort((x, y) => x.TabOrder == y.TabOrder ? x.Order.CompareTo(y.Order) : x.TabOrder.CompareTo(y.TabOrder));
 			}
 		}
 

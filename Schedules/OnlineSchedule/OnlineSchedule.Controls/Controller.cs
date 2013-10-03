@@ -178,6 +178,12 @@ namespace NewBizWiz.OnlineSchedule.Controls
 				Supertip.SetSuperTooltip(DigitalSlidesTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
 			}
+
+			Ribbon.SelectedRibbonTabChanged += (o, e) =>
+			{
+				(DigitalSlidesPowerPoint.ContainerControl as RibbonBar).Text = (DigitalSlidesTheme.Tag as Theme).Name;
+				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = (DigitalPackageTheme.Tag as Theme).Name;
+			};
 		}
 
 		public void ShowFloater(Action afterShow)

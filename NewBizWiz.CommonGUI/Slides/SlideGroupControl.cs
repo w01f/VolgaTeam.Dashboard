@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace NewBizWiz.CommonGUI.Slides
 	{
 		private readonly List<SlideMaster> _slides = new List<SlideMaster>();
 		public string GroupName { get; private set; }
+		public event EventHandler<SlideMasterEventArgs> SlideChanged;
 		public SlideMaster SelectedSlide
 		{
 			get { return layoutViewSlides.GetFocusedRow() as SlideMaster; }
@@ -41,7 +43,7 @@ namespace NewBizWiz.CommonGUI.Slides
 			layoutViewSlides.VisibleRecordIndex = layoutViewSlides.FocusedRowHandle;
 		}
 
-		private void layoutViewSlides_DoubleClick(object sender, System.EventArgs e)
+		private void layoutViewSlides_DoubleClick(object sender, EventArgs e)
 		{
 			var layoutView = sender as LayoutView;
 			var hitInfo = layoutView.CalcHitInfo(layoutView.GridControl.PointToClient(MousePosition));
@@ -64,6 +66,12 @@ namespace NewBizWiz.CommonGUI.Slides
 				e.Appearance.BackColor = Color.NavajoWhite;
 				e.Appearance.BackColor2 = Color.NavajoWhite;
 			}
+		}
+
+		private void layoutViewSlides_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+		{
+			if (SlideChanged != null)
+				SlideChanged(this, new SlideMasterEventArgs { SelectedSlide = SelectedSlide });
 		}
 	}
 }

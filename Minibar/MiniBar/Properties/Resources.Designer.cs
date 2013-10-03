@@ -95,9 +95,9 @@ namespace NewBizWiz.MiniBar.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap ClientLogos {
+        internal static System.Drawing.Bitmap Clipart {
             get {
-                object obj = ResourceManager.GetObject("ClientLogos", resourceCulture);
+                object obj = ResourceManager.GetObject("Clipart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,13 +123,6 @@ namespace NewBizWiz.MiniBar.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap IPadLogo {
-            get {
-                object obj = ResourceManager.GetObject("IPadLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap Off {
             get {
                 object obj = ResourceManager.GetObject("Off", resourceCulture);
@@ -147,13 +140,6 @@ namespace NewBizWiz.MiniBar.Properties {
         internal static System.Drawing.Bitmap Output {
             get {
                 object obj = ResourceManager.GetObject("Output", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap PageNumber {
-            get {
-                object obj = ResourceManager.GetObject("PageNumber", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,27 +172,6 @@ namespace NewBizWiz.MiniBar.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap SalesGallery {
-            get {
-                object obj = ResourceManager.GetObject("SalesGallery", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap SalesRep {
-            get {
-                object obj = ResourceManager.GetObject("SalesRep", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Save {
-            get {
-                object obj = ResourceManager.GetObject("Save", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap SavePDF {
             get {
                 object obj = ResourceManager.GetObject("SavePDF", resourceCulture);
@@ -228,20 +193,6 @@ namespace NewBizWiz.MiniBar.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap SlideContent {
-            get {
-                object obj = ResourceManager.GetObject("SlideContent", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap SlideHeader {
-            get {
-                object obj = ResourceManager.GetObject("SlideHeader", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap Sync {
             get {
                 object obj = ResourceManager.GetObject("Sync", resourceCulture);
@@ -252,13 +203,6 @@ namespace NewBizWiz.MiniBar.Properties {
         internal static System.Drawing.Bitmap Warning {
             get {
                 object obj = ResourceManager.GetObject("Warning", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap WebArt {
-            get {
-                object obj = ResourceManager.GetObject("WebArt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

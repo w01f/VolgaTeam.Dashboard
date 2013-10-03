@@ -100,6 +100,7 @@
 			this.layoutViewThemes.OptionsView.ViewMode = DevExpress.XtraGrid.Views.Layout.LayoutViewMode.MultiRow;
 			this.layoutViewThemes.TemplateCard = this.layoutViewCard1;
 			this.layoutViewThemes.CustomFieldValueStyle += new DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventHandler(this.layoutViewThemes_CustomFieldValueStyle);
+			this.layoutViewThemes.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.layoutViewThemes_FocusedRowChanged);
 			this.layoutViewThemes.DoubleClick += new System.EventHandler(this.layoutViewThemes_DoubleClick);
 			// 
 			// layoutViewColumnLogo

@@ -14,7 +14,7 @@ namespace NewBizWiz.CommonGUI.Themes
 
 		public Theme SelectedTheme
 		{
-			get { return _themeContainer.SelectedSlide; }
+			get { return _themeContainer.SelectedTheme; }
 		}
 
 		public FormThemeSelector()
@@ -26,6 +26,10 @@ namespace NewBizWiz.CommonGUI.Themes
 		public void LoadThemes(ThemeManager themeManager)
 		{
 			_themeContainer = new ThemeContainerControl();
+			_themeContainer.ThemeChanged += (o, e) =>
+			{
+				laThemeName.Text = e.SelectedTheme != null ? e.SelectedTheme.Name : String.Empty;
+			};
 			_themeContainer.LoadThemes(themeManager.Themes);
 			pnMain.Controls.Add(_themeContainer);
 			_themeContainer.BringToFront();
@@ -34,20 +38,23 @@ namespace NewBizWiz.CommonGUI.Themes
 		public void SetSelectedTheme(string selectedTheme)
 		{
 			_themeContainer.SelectTheme(selectedTheme);
+			laThemeName.Text = selectedTheme;
 		}
 
 		public static void Link(ButtonItem selectorButton, ThemeManager themeManager, string selectedThemeName, Action<Theme> themeSelected)
 		{
 			var themesExisted = themeManager.Themes.Any();
 			selectorButton.ForeColor = Color.Black;
-			selectorButton.ImagePosition = themesExisted ? eImagePosition.Top : eImagePosition.Left;
+			selectorButton.ImagePosition = eImagePosition.Left;
 			selectorButton.BeginGroup = themesExisted;
+			selectorButton.Text = String.Empty;
+			selectorButton.AutoExpandOnClick = false;
 			if (themesExisted)
 			{
 				var currentTheme = themeManager.Themes.FirstOrDefault(t => t.Name.Equals(selectedThemeName) || String.IsNullOrEmpty(selectedThemeName)) ?? themeManager.Themes.FirstOrDefault();
 				if (currentTheme == null) return;
 				selectorButton.Image = currentTheme.RibbonLogo;
-				selectorButton.Text = String.Format("{0}", currentTheme.Name);
+				(selectorButton.ContainerControl as RibbonBar).Text = String.Format("{0}", currentTheme.Name);
 				if (selectorButton.Tag == null || String.IsNullOrEmpty(selectorButton.Tag.ToString()))
 					selectorButton.Click += (obj, e) =>
 					{
@@ -56,19 +63,20 @@ namespace NewBizWiz.CommonGUI.Themes
 							form.LoadThemes(themeManager);
 							form.Shown += (o, args) =>
 							{
-								form.SetSelectedTheme(selectedThemeName);
+								form.SetSelectedTheme((selectorButton.Tag as Theme).Name);
 							};
 							if (form.ShowDialog() == DialogResult.OK)
 							{
 								var selectedTheme = form.SelectedTheme;
 								if (selectedTheme == null) return;
 								selectorButton.Image = selectedTheme.RibbonLogo;
-								selectorButton.Text = String.Format("{0}", selectedTheme.Name);
+								(selectorButton.ContainerControl as RibbonBar).Text = String.Format("{0}", selectedTheme.Name);
+								selectorButton.Tag = selectedTheme;
 								themeSelected(selectedTheme);
 							}
 						}
 					};
-				selectorButton.Tag = themeManager;
+				selectorButton.Tag = currentTheme;
 			}
 			else
 				selectorButton.Image = Resources.OutputDisabled;

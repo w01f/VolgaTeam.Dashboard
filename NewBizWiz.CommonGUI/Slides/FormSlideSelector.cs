@@ -24,6 +24,10 @@ namespace NewBizWiz.CommonGUI.Slides
 		public void LoadSlides(SlideManager slideManager)
 		{
 			_slideContainer = new SlidesContainerControl();
+			_slideContainer.SlideChanged += (o, e) =>
+			{
+				laSlideName.Text = e.SelectedSlide != null ? e.SelectedSlide.Name : String.Empty;
+			};
 			_slideContainer.InitSlides(slideManager);
 			pnMain.Controls.Add(_slideContainer);
 			_slideContainer.BringToFront();
@@ -32,6 +36,7 @@ namespace NewBizWiz.CommonGUI.Slides
 		public void SetSelectedSlide(string selectedGroup, string selectedSlide)
 		{
 			_slideContainer.SetSelectedSlide(selectedGroup, selectedSlide);
+			laSlideName.Text = selectedSlide;
 		}
 
 		private void buttonXAddSlide_Click(object sender, EventArgs e)

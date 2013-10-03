@@ -223,7 +223,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				if (previewResult != DialogResult.OK)
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				else
-					Utilities.Instance.ActivatePowerPoint(OnlineSchedulePowerPointHelper.Instance.PowerPointObject);
+					Utilities.Instance.ActivateMiniBar();
 			}
 		}
 	}

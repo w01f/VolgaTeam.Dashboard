@@ -30,25 +30,25 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
+			this.ribbonPanelApps2 = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonPanelPowerPoint = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonPanelIPad = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonPanelDashboard = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonPanelPDF = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonPanelTools = new DevComponents.DotNetBar.RibbonPanel();
+			this.ribbonPanelApps5 = new DevComponents.DotNetBar.RibbonPanel();
+			this.ribbonPanelApps3 = new DevComponents.DotNetBar.RibbonPanel();
+			this.ribbonPanelApps4 = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonPanelSettings = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonPanelSync = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonPanelClipart = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonPanelSalesDepot = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonPanelApps = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonTabItemPowerPoint = new DevComponents.DotNetBar.RibbonTabItem();
+			this.ribbonPanelApps1 = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonTabItemDashboard = new DevComponents.DotNetBar.RibbonTabItem();
+			this.ribbonTabItemPowerPoint = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemSalesDepot = new DevComponents.DotNetBar.RibbonTabItem();
-			this.ribbonTabItemApps = new DevComponents.DotNetBar.RibbonTabItem();
-			this.ribbonTabItemClipart = new DevComponents.DotNetBar.RibbonTabItem();
-			this.ribbonTabItemPDF = new DevComponents.DotNetBar.RibbonTabItem();
-			this.ribbonTabItemTools = new DevComponents.DotNetBar.RibbonTabItem();
+			this.ribbonTabItemApps1 = new DevComponents.DotNetBar.RibbonTabItem();
+			this.ribbonTabItemApps2 = new DevComponents.DotNetBar.RibbonTabItem();
+			this.ribbonTabItemApps3 = new DevComponents.DotNetBar.RibbonTabItem();
+			this.ribbonTabItemApps4 = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemSettings = new DevComponents.DotNetBar.RibbonTabItem();
-			this.ribbonTabItemIPad = new DevComponents.DotNetBar.RibbonTabItem();
+			this.ribbonTabItemApps5 = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemSync = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonControl.SuspendLayout();
 			this.SuspendLayout();
@@ -79,16 +79,16 @@
 			this.ribbonControl.BackgroundStyle.CornerTypeBottomRight = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonControl.BackgroundStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
 			this.ribbonControl.BackgroundStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
-			this.ribbonControl.Controls.Add(this.ribbonPanelPowerPoint);
 			this.ribbonControl.Controls.Add(this.ribbonPanelDashboard);
-			this.ribbonControl.Controls.Add(this.ribbonPanelIPad);
-			this.ribbonControl.Controls.Add(this.ribbonPanelPDF);
-			this.ribbonControl.Controls.Add(this.ribbonPanelTools);
+			this.ribbonControl.Controls.Add(this.ribbonPanelApps5);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSettings);
+			this.ribbonControl.Controls.Add(this.ribbonPanelApps4);
+			this.ribbonControl.Controls.Add(this.ribbonPanelApps3);
+			this.ribbonControl.Controls.Add(this.ribbonPanelApps1);
+			this.ribbonControl.Controls.Add(this.ribbonPanelApps2);
+			this.ribbonControl.Controls.Add(this.ribbonPanelPowerPoint);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSync);
-			this.ribbonControl.Controls.Add(this.ribbonPanelClipart);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSalesDepot);
-			this.ribbonControl.Controls.Add(this.ribbonPanelApps);
 			this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.ribbonControl.EnableQatPlacement = false;
 			this.ribbonControl.FadeEffect = false;
@@ -96,12 +96,12 @@
             this.ribbonTabItemDashboard,
             this.ribbonTabItemPowerPoint,
             this.ribbonTabItemSalesDepot,
-            this.ribbonTabItemApps,
-            this.ribbonTabItemClipart,
-            this.ribbonTabItemPDF,
-            this.ribbonTabItemTools,
+            this.ribbonTabItemApps1,
+            this.ribbonTabItemApps2,
+            this.ribbonTabItemApps3,
+            this.ribbonTabItemApps4,
+            this.ribbonTabItemApps5,
             this.ribbonTabItemSettings,
-            this.ribbonTabItemIPad,
             this.ribbonTabItemSync});
 			this.ribbonControl.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
 			this.ribbonControl.Location = new System.Drawing.Point(0, 0);
@@ -129,6 +129,29 @@
 			this.ribbonControl.TabIndex = 6;
 			this.ribbonControl.Visible = false;
 			// 
+			// ribbonPanelApps2
+			// 
+			this.ribbonPanelApps2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonPanelApps2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ribbonPanelApps2.Location = new System.Drawing.Point(0, 28);
+			this.ribbonPanelApps2.Name = "ribbonPanelApps2";
+			this.ribbonPanelApps2.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+			this.ribbonPanelApps2.Size = new System.Drawing.Size(548, 0);
+			// 
+			// 
+			// 
+			this.ribbonPanelApps2.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanelApps2.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanelApps2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelApps2.TabIndex = 6;
+			this.ribbonPanelApps2.Visible = false;
+			// 
 			// ribbonPanelPowerPoint
 			// 
 			this.ribbonPanelPowerPoint.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -150,29 +173,7 @@
 			// 
 			this.ribbonPanelPowerPoint.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonPanelPowerPoint.TabIndex = 12;
-			// 
-			// ribbonPanelIPad
-			// 
-			this.ribbonPanelIPad.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-			this.ribbonPanelIPad.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelIPad.Location = new System.Drawing.Point(0, 28);
-			this.ribbonPanelIPad.Name = "ribbonPanelIPad";
-			this.ribbonPanelIPad.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelIPad.Size = new System.Drawing.Size(548, 0);
-			// 
-			// 
-			// 
-			this.ribbonPanelIPad.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelIPad.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelIPad.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelIPad.TabIndex = 10;
-			this.ribbonPanelIPad.Visible = false;
+			this.ribbonPanelPowerPoint.Visible = false;
 			// 
 			// ribbonPanelDashboard
 			// 
@@ -195,59 +196,81 @@
 			// 
 			this.ribbonPanelDashboard.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonPanelDashboard.TabIndex = 4;
-			this.ribbonPanelDashboard.Visible = false;
 			// 
-			// ribbonPanelPDF
+			// ribbonPanelApps5
 			// 
-			this.ribbonPanelPDF.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-			this.ribbonPanelPDF.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelPDF.Location = new System.Drawing.Point(0, 27);
-			this.ribbonPanelPDF.Name = "ribbonPanelPDF";
-			this.ribbonPanelPDF.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelPDF.Size = new System.Drawing.Size(548, 0);
-			// 
-			// 
-			// 
-			this.ribbonPanelPDF.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelApps5.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonPanelApps5.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ribbonPanelApps5.Location = new System.Drawing.Point(0, 28);
+			this.ribbonPanelApps5.Name = "ribbonPanelApps5";
+			this.ribbonPanelApps5.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+			this.ribbonPanelApps5.Size = new System.Drawing.Size(548, 0);
 			// 
 			// 
 			// 
-			this.ribbonPanelPDF.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelApps5.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
-			this.ribbonPanelPDF.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelPDF.TabIndex = 14;
-			this.ribbonPanelPDF.Visible = false;
-			// 
-			// ribbonPanelTools
-			// 
-			this.ribbonPanelTools.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-			this.ribbonPanelTools.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelTools.Location = new System.Drawing.Point(0, 27);
-			this.ribbonPanelTools.Name = "ribbonPanelTools";
-			this.ribbonPanelTools.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelTools.Size = new System.Drawing.Size(548, 0);
+			this.ribbonPanelApps5.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
-			this.ribbonPanelTools.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelApps5.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelApps5.TabIndex = 10;
+			this.ribbonPanelApps5.Visible = false;
+			// 
+			// ribbonPanelApps3
+			// 
+			this.ribbonPanelApps3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonPanelApps3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ribbonPanelApps3.Location = new System.Drawing.Point(0, 28);
+			this.ribbonPanelApps3.Name = "ribbonPanelApps3";
+			this.ribbonPanelApps3.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+			this.ribbonPanelApps3.Size = new System.Drawing.Size(548, 0);
 			// 
 			// 
 			// 
-			this.ribbonPanelTools.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelApps3.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
-			this.ribbonPanelTools.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelTools.TabIndex = 13;
-			this.ribbonPanelTools.Visible = false;
+			this.ribbonPanelApps3.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanelApps3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelApps3.TabIndex = 14;
+			this.ribbonPanelApps3.Visible = false;
+			// 
+			// ribbonPanelApps4
+			// 
+			this.ribbonPanelApps4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonPanelApps4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ribbonPanelApps4.Location = new System.Drawing.Point(0, 28);
+			this.ribbonPanelApps4.Name = "ribbonPanelApps4";
+			this.ribbonPanelApps4.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+			this.ribbonPanelApps4.Size = new System.Drawing.Size(548, 0);
+			// 
+			// 
+			// 
+			this.ribbonPanelApps4.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanelApps4.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanelApps4.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelApps4.TabIndex = 13;
+			this.ribbonPanelApps4.Visible = false;
 			// 
 			// ribbonPanelSettings
 			// 
 			this.ribbonPanelSettings.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
 			this.ribbonPanelSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelSettings.Location = new System.Drawing.Point(0, 27);
+			this.ribbonPanelSettings.Location = new System.Drawing.Point(0, 28);
 			this.ribbonPanelSettings.Name = "ribbonPanelSettings";
 			this.ribbonPanelSettings.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
 			this.ribbonPanelSettings.Size = new System.Drawing.Size(548, 0);
@@ -289,29 +312,6 @@
 			this.ribbonPanelSync.TabIndex = 8;
 			this.ribbonPanelSync.Visible = false;
 			// 
-			// ribbonPanelClipart
-			// 
-			this.ribbonPanelClipart.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-			this.ribbonPanelClipart.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelClipart.Location = new System.Drawing.Point(0, 27);
-			this.ribbonPanelClipart.Name = "ribbonPanelClipart";
-			this.ribbonPanelClipart.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelClipart.Size = new System.Drawing.Size(548, 0);
-			// 
-			// 
-			// 
-			this.ribbonPanelClipart.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelClipart.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelClipart.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelClipart.TabIndex = 6;
-			this.ribbonPanelClipart.Visible = false;
-			// 
 			// ribbonPanelSalesDepot
 			// 
 			this.ribbonPanelSalesDepot.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -335,45 +335,45 @@
 			this.ribbonPanelSalesDepot.TabIndex = 9;
 			this.ribbonPanelSalesDepot.Visible = false;
 			// 
-			// ribbonPanelApps
+			// ribbonPanelApps1
 			// 
-			this.ribbonPanelApps.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-			this.ribbonPanelApps.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelApps.Location = new System.Drawing.Point(0, 27);
-			this.ribbonPanelApps.Name = "ribbonPanelApps";
-			this.ribbonPanelApps.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelApps.Size = new System.Drawing.Size(548, 0);
-			// 
-			// 
-			// 
-			this.ribbonPanelApps.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelApps1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonPanelApps1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ribbonPanelApps1.Location = new System.Drawing.Point(0, 28);
+			this.ribbonPanelApps1.Name = "ribbonPanelApps1";
+			this.ribbonPanelApps1.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+			this.ribbonPanelApps1.Size = new System.Drawing.Size(548, 0);
 			// 
 			// 
 			// 
-			this.ribbonPanelApps.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelApps1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// 
 			// 
-			this.ribbonPanelApps.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelApps.TabIndex = 5;
-			this.ribbonPanelApps.Visible = false;
+			this.ribbonPanelApps1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
-			// ribbonTabItemPowerPoint
 			// 
-			this.ribbonTabItemPowerPoint.Checked = true;
-			this.ribbonTabItemPowerPoint.Name = "ribbonTabItemPowerPoint";
-			this.ribbonTabItemPowerPoint.Panel = this.ribbonPanelPowerPoint;
-			this.ribbonTabItemPowerPoint.Text = "PowerPoint";
-			this.ribbonTabItemPowerPoint.Click += new System.EventHandler(this.ribbonTabItem_Click);
+			// 
+			this.ribbonPanelApps1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelApps1.TabIndex = 5;
+			this.ribbonPanelApps1.Visible = false;
 			// 
 			// ribbonTabItemDashboard
 			// 
+			this.ribbonTabItemDashboard.Checked = true;
 			this.ribbonTabItemDashboard.EnableMarkup = false;
 			this.ribbonTabItemDashboard.Name = "ribbonTabItemDashboard";
 			this.ribbonTabItemDashboard.Panel = this.ribbonPanelDashboard;
 			this.ribbonTabItemDashboard.RibbonWordWrap = false;
 			this.ribbonTabItemDashboard.Text = "Dashboard";
 			this.ribbonTabItemDashboard.Click += new System.EventHandler(this.ribbonTabItem_Click);
+			// 
+			// ribbonTabItemPowerPoint
+			// 
+			this.ribbonTabItemPowerPoint.Name = "ribbonTabItemPowerPoint";
+			this.ribbonTabItemPowerPoint.Panel = this.ribbonPanelPowerPoint;
+			this.ribbonTabItemPowerPoint.Text = "PowerPoint";
+			this.ribbonTabItemPowerPoint.Click += new System.EventHandler(this.ribbonTabItem_Click);
 			// 
 			// ribbonTabItemSalesDepot
 			// 
@@ -382,34 +382,34 @@
 			this.ribbonTabItemSalesDepot.Text = "Sales Depot";
 			this.ribbonTabItemSalesDepot.Click += new System.EventHandler(this.ribbonTabItem_Click);
 			// 
-			// ribbonTabItemApps
+			// ribbonTabItemApps1
 			// 
-			this.ribbonTabItemApps.Name = "ribbonTabItemApps";
-			this.ribbonTabItemApps.Panel = this.ribbonPanelApps;
-			this.ribbonTabItemApps.RibbonWordWrap = false;
-			this.ribbonTabItemApps.Text = "Apps";
-			this.ribbonTabItemApps.Click += new System.EventHandler(this.ribbonTabItem_Click);
+			this.ribbonTabItemApps1.Name = "ribbonTabItemApps1";
+			this.ribbonTabItemApps1.Panel = this.ribbonPanelApps1;
+			this.ribbonTabItemApps1.RibbonWordWrap = false;
+			this.ribbonTabItemApps1.Text = "Apps1";
+			this.ribbonTabItemApps1.Click += new System.EventHandler(this.ribbonTabItem_Click);
 			// 
-			// ribbonTabItemClipart
+			// ribbonTabItemApps2
 			// 
-			this.ribbonTabItemClipart.Name = "ribbonTabItemClipart";
-			this.ribbonTabItemClipart.Panel = this.ribbonPanelClipart;
-			this.ribbonTabItemClipart.Text = "Clipart";
-			this.ribbonTabItemClipart.Click += new System.EventHandler(this.ribbonTabItem_Click);
+			this.ribbonTabItemApps2.Name = "ribbonTabItemApps2";
+			this.ribbonTabItemApps2.Panel = this.ribbonPanelApps2;
+			this.ribbonTabItemApps2.Text = "Apps2";
+			this.ribbonTabItemApps2.Click += new System.EventHandler(this.ribbonTabItem_Click);
 			// 
-			// ribbonTabItemPDF
+			// ribbonTabItemApps3
 			// 
-			this.ribbonTabItemPDF.Name = "ribbonTabItemPDF";
-			this.ribbonTabItemPDF.Panel = this.ribbonPanelPDF;
-			this.ribbonTabItemPDF.Text = "PDF";
-			this.ribbonTabItemPDF.Click += new System.EventHandler(this.ribbonTabItem_Click);
+			this.ribbonTabItemApps3.Name = "ribbonTabItemApps3";
+			this.ribbonTabItemApps3.Panel = this.ribbonPanelApps3;
+			this.ribbonTabItemApps3.Text = "Apps3";
+			this.ribbonTabItemApps3.Click += new System.EventHandler(this.ribbonTabItem_Click);
 			// 
-			// ribbonTabItemTools
+			// ribbonTabItemApps4
 			// 
-			this.ribbonTabItemTools.Name = "ribbonTabItemTools";
-			this.ribbonTabItemTools.Panel = this.ribbonPanelTools;
-			this.ribbonTabItemTools.Text = "Tools";
-			this.ribbonTabItemTools.Click += new System.EventHandler(this.ribbonTabItem_Click);
+			this.ribbonTabItemApps4.Name = "ribbonTabItemApps4";
+			this.ribbonTabItemApps4.Panel = this.ribbonPanelApps4;
+			this.ribbonTabItemApps4.Text = "Apps4";
+			this.ribbonTabItemApps4.Click += new System.EventHandler(this.ribbonTabItem_Click);
 			// 
 			// ribbonTabItemSettings
 			// 
@@ -418,12 +418,12 @@
 			this.ribbonTabItemSettings.Text = "Settings";
 			this.ribbonTabItemSettings.Click += new System.EventHandler(this.ribbonTabItem_Click);
 			// 
-			// ribbonTabItemIPad
+			// ribbonTabItemApps5
 			// 
-			this.ribbonTabItemIPad.Name = "ribbonTabItemIPad";
-			this.ribbonTabItemIPad.Panel = this.ribbonPanelIPad;
-			this.ribbonTabItemIPad.Text = "iPad";
-			this.ribbonTabItemIPad.Click += new System.EventHandler(this.ribbonTabItem_Click);
+			this.ribbonTabItemApps5.Name = "ribbonTabItemApps5";
+			this.ribbonTabItemApps5.Panel = this.ribbonPanelApps5;
+			this.ribbonTabItemApps5.Text = "Apps5";
+			this.ribbonTabItemApps5.Click += new System.EventHandler(this.ribbonTabItem_Click);
 			// 
 			// ribbonTabItemSync
 			// 
@@ -458,24 +458,24 @@
         private DevComponents.DotNetBar.RibbonControl ribbonControl;
         private DevComponents.DotNetBar.RibbonPanel ribbonPanelDashboard;
         private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemDashboard;
-        private DevComponents.DotNetBar.RibbonPanel ribbonPanelApps;
-        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemApps;
+        private DevComponents.DotNetBar.RibbonPanel ribbonPanelApps1;
+        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemApps1;
         private DevComponents.DotNetBar.RibbonPanel ribbonPanelSync;
         private DevComponents.DotNetBar.RibbonPanel ribbonPanelSettings;
-        private DevComponents.DotNetBar.RibbonPanel ribbonPanelClipart;
-        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemClipart;
+        private DevComponents.DotNetBar.RibbonPanel ribbonPanelApps2;
+        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemApps2;
         private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemSettings;
         private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemSync;
         private DevComponents.DotNetBar.RibbonPanel ribbonPanelSalesDepot;
         private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemSalesDepot;
-        private DevComponents.DotNetBar.RibbonPanel ribbonPanelIPad;
-        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemIPad;
+        private DevComponents.DotNetBar.RibbonPanel ribbonPanelApps5;
+        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemApps5;
         private DevComponents.DotNetBar.RibbonPanel ribbonPanelPowerPoint;
         private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemPowerPoint;
-        private DevComponents.DotNetBar.RibbonPanel ribbonPanelTools;
-        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemTools;
-        private DevComponents.DotNetBar.RibbonPanel ribbonPanelPDF;
-        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemPDF;
+        private DevComponents.DotNetBar.RibbonPanel ribbonPanelApps4;
+        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemApps4;
+        private DevComponents.DotNetBar.RibbonPanel ribbonPanelApps3;
+        private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemApps3;
     }
 }
 

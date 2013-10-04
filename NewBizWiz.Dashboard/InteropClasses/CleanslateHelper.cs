@@ -25,7 +25,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 						var thread = new Thread(delegate()
 						{
 							MessageFilter.Register();
-							Presentation presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+							var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 							var selectedTheme = Core.Dashboard.SettingsManager.Instance.SelectedTheme;
 							if (selectedTheme != null)
 								presentation.ApplyTheme(selectedTheme.ThemeFilePath);

@@ -27,84 +27,82 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 						for (var k = 0; k < publicationsCount; k += recordsPeSlide)
 						{
 							string presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.SnapshotTemlatesFolderPath, Controller.Instance.Summaries.Snapshot.GetOutputTemplatePath(k));
-							if (File.Exists(presentationTemplatePath))
+							if (!File.Exists(presentationTemplatePath)) continue;
+							var presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+							foreach (Slide slide in presentation.Slides)
 							{
-								Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
-								foreach (Slide slide in presentation.Slides)
+								foreach (Shape shape in slide.Shapes)
 								{
-									foreach (Shape shape in slide.Shapes)
+									for (int i = 1; i <= shape.Tags.Count; i++)
 									{
-										for (int i = 1; i <= shape.Tags.Count; i++)
+										switch (shape.Tags.Name(i))
 										{
-											switch (shape.Tags.Name(i))
-											{
-												case "ADVERTISER":
-													shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.BusinessName;
-													break;
-												case "DATETAG":
-													shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.Date;
-													break;
-												case "DECISIONMAKER":
-													shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.DecisionMaker;
-													break;
-												case "HEADER":
-													shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.Header;
-													break;
-												case "FLTDT1":
-													shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.FlightDates;
-													break;
-												case "DIGTAG":
-													shape.TextFrame.TextRange.Text = k == 0 || !Controller.Instance.Summaries.Snapshot.ShowDigitalLegendOnlyFirstSlide ? Controller.Instance.Summaries.Snapshot.DigitalLegend : String.Empty;
-													break;
-												default:
-													for (int j = 0; j < 6; j++)
+											case "ADVERTISER":
+												shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.BusinessName;
+												break;
+											case "DATETAG":
+												shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.Date;
+												break;
+											case "DECISIONMAKER":
+												shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.DecisionMaker;
+												break;
+											case "HEADER":
+												shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.Header;
+												break;
+											case "FLTDT1":
+												shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.FlightDates;
+												break;
+											case "DIGTAG":
+												shape.TextFrame.TextRange.Text = k == 0 || !Controller.Instance.Summaries.Snapshot.ShowDigitalLegendOnlyFirstSlide ? Controller.Instance.Summaries.Snapshot.DigitalLegend : String.Empty;
+												break;
+											default:
+												for (int j = 0; j < 6; j++)
+												{
+													if (shape.Tags.Name(i).Equals(string.Format("PUBLOGO{0}", Utilities.Instance.GetLetterByDigit(j + 1))))
 													{
-														if (shape.Tags.Name(i).Equals(string.Format("PUBLOGO{0}", Utilities.Instance.GetLetterByDigit(j + 1))))
+														if ((k + j) < Controller.Instance.Summaries.Snapshot.LogoFiles.Length)
+															if (!string.IsNullOrEmpty(Controller.Instance.Summaries.Snapshot.LogoFiles[k + j]))
+																slide.Shapes.AddPicture(FileName: Controller.Instance.Summaries.Snapshot.LogoFiles[k + j], LinkToFile: MsoTriState.msoFalse, SaveWithDocument: MsoTriState.msoCTrue, Left: shape.Left, Top: shape.Top, Width: shape.Width, Height: shape.Height);
+														shape.Visible = MsoTriState.msoFalse;
+													}
+													else if (shape.Tags.Name(i).Equals(string.Format("PUB{0}", Utilities.Instance.GetLetterByDigit(j + 1))))
+													{
+														if ((k + j) < Controller.Instance.Summaries.Snapshot.PublicationNames.Length)
 														{
-															if ((k + j) < Controller.Instance.Summaries.Snapshot.LogoFiles.Length)
-																if (!string.IsNullOrEmpty(Controller.Instance.Summaries.Snapshot.LogoFiles[k + j]))
-																	slide.Shapes.AddPicture(FileName: Controller.Instance.Summaries.Snapshot.LogoFiles[k + j], LinkToFile: MsoTriState.msoFalse, SaveWithDocument: MsoTriState.msoCTrue, Left: shape.Left, Top: shape.Top, Width: shape.Width, Height: shape.Height);
-															shape.Visible = MsoTriState.msoFalse;
-														}
-														else if (shape.Tags.Name(i).Equals(string.Format("PUB{0}", Utilities.Instance.GetLetterByDigit(j + 1))))
-														{
-															if ((k + j) < Controller.Instance.Summaries.Snapshot.PublicationNames.Length)
-															{
-																shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.PublicationNames[k + j];
-															}
-															else
-																shape.Visible = MsoTriState.msoFalse;
+															shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.PublicationNames[k + j];
 														}
 														else
+															shape.Visible = MsoTriState.msoFalse;
+													}
+													else
+													{
+														for (int l = 0; l < 6; l++)
 														{
-															for (int l = 0; l < 6; l++)
+															if (shape.Tags.Name(i).Equals(string.Format("ADSPEC{0}{1}", new object[] { (l + 1), Utilities.Instance.GetLetterByDigit(j + 1) })))
 															{
-																if (shape.Tags.Name(i).Equals(string.Format("ADSPEC{0}{1}", new object[] { (l + 1), Utilities.Instance.GetLetterByDigit(j + 1) })))
+																if ((k + j) < Controller.Instance.Summaries.Snapshot.AdSpecs.Length)
 																{
-																	if ((k + j) < Controller.Instance.Summaries.Snapshot.AdSpecs.Length)
-																	{
-																		if (l < Controller.Instance.Summaries.Snapshot.AdSpecs[k + j].Length)
-																			shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.AdSpecs[k + j][l];
-																		else
-																			shape.Visible = MsoTriState.msoFalse;
-																	}
+																	if (l < Controller.Instance.Summaries.Snapshot.AdSpecs[k + j].Length)
+																		shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.Snapshot.AdSpecs[k + j][l];
 																	else
 																		shape.Visible = MsoTriState.msoFalse;
 																}
+																else
+																	shape.Visible = MsoTriState.msoFalse;
 															}
 														}
 													}
-													break;
-											}
+												}
+												break;
 										}
 									}
 								}
-								var selectedTheme = Controller.Instance.Summaries.Snapshot.SelectedTheme;
-								if (selectedTheme != null)
-									presentation.ApplyTheme(selectedTheme.ThemeFilePath);
-								AppendSlide(presentation, -1, destinationPresentation);
-								presentation.Close();
 							}
+							var selectedTheme = Controller.Instance.Summaries.Snapshot.SelectedTheme;
+							if (selectedTheme != null)
+								presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+							AppendSlide(presentation, -1, destinationPresentation);
+							presentation.Close();
 						}
 					});
 					thread.Start();
@@ -125,8 +123,8 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 			try
 			{
 				SavePrevSlideIndex();
-				Presentations presentations = _powerPointObject.Presentations;
-				Presentation presentation = presentations.Add(MsoTriState.msoFalse);
+				var presentations = _powerPointObject.Presentations;
+				var presentation = presentations.Add(MsoTriState.msoFalse);
 				presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
 				presentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
 				switch (SettingsManager.Instance.Orientation)

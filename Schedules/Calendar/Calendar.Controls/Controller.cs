@@ -82,6 +82,7 @@ namespace NewBizWiz.Calendar.Controls
 		{
 			HomeControl.Dispose();
 			CalendarVisualizer.RemoveInstance();
+			FloaterRequested = null;
 		}
 
 		public void LoadData()

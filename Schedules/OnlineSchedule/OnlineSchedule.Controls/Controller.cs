@@ -94,6 +94,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			ScheduleSettings.Dispose();
 			ScheduleSlides.Dispose();
 			DigitalPackage.Dispose();
+			FloaterRequested = null;
 		}
 
 		public void LoadData()

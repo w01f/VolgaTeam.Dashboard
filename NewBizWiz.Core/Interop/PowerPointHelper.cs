@@ -209,7 +209,7 @@ namespace NewBizWiz.Core.Interop
 				_powerPointObject.DisplayAlerts = PpAlertLevel.ppAlertsNone;
 				GetActivePresentation();
 				SearchPageNumbers();
-				_powerPointObject.PresentationClose += _powerPointObject_PresentationClose;
+				//_powerPointObject.PresentationClose += _powerPointObject_PresentationClose;
 				result = true;
 			}
 			catch
@@ -445,7 +445,6 @@ namespace NewBizWiz.Core.Interop
 			Slide slide;
 			SlideRange pastedRange;
 			Design design;
-			int currentSlideIndex = 0;
 			MsoTriState masterShape;
 
 			MessageFilter.Register();
@@ -462,14 +461,14 @@ namespace NewBizWiz.Core.Interop
 			if (firstSlide || indexToPaste == 0)
 				indexToPaste = 1;
 
-			Slides slides = sourcePresentation.Slides;
+			var slides = sourcePresentation.Slides;
 			for (int i = 1; i <= slides.Count; i++)
 			{
 				if ((i == slideIndex) || (slideIndex == -1))
 				{
 					slide = slides[i];
 					slide.Copy();
-					Slides activeSlides = destinationPresentation.Slides;
+					var activeSlides = destinationPresentation.Slides;
 					pastedRange = activeSlides.Paste(indexToPaste);
 					indexToPaste++;
 					design = GetDesignFromSlide(slide, destinationPresentation);
@@ -479,11 +478,11 @@ namespace NewBizWiz.Core.Interop
 					}
 					else
 					{
-						Design slideDesign = sourcePresentation.SlideMaster.Design;
+						var slideDesign = sourcePresentation.SlideMaster.Design;
 						pastedRange.Design = slideDesign;
 						Utilities.Instance.ReleaseComObject(slideDesign);
 					}
-					ColorScheme colorScheme = slide.ColorScheme;
+					var colorScheme = slide.ColorScheme;
 					pastedRange.ColorScheme = colorScheme;
 					Utilities.Instance.ReleaseComObject(colorScheme);
 
@@ -543,7 +542,6 @@ namespace NewBizWiz.Core.Interop
 					}
 					MakeDesignUnique(slide, pastedRange.Design);
 					activeSlides[indexToPaste - 1].Select();
-					currentSlideIndex = indexToPaste - 1;
 					Utilities.Instance.ReleaseComObject(pastedRange);
 					Utilities.Instance.ReleaseComObject(design);
 					Utilities.Instance.ReleaseComObject(slide);

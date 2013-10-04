@@ -290,6 +290,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			Calendars.Dispose();
 			Summary.Dispose();
 			RateCard.Dispose();
+			FloaterRequested = null;
 		}
 
 		public void LoadData()

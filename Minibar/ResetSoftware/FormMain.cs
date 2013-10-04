@@ -136,8 +136,9 @@ namespace NewBizWiz.Reset
 				try
 				{
 					string localSettingsFolder = string.Format(@"{0}\newlocaldirect.com\xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-					foreach (DirectoryInfo xmlFolder in (new DirectoryInfo(localSettingsFolder)).GetDirectories())
-						result = result & DeleteFolder(xmlFolder, ref ex);
+					if (Directory.Exists(localSettingsFolder))
+						foreach (DirectoryInfo xmlFolder in (new DirectoryInfo(localSettingsFolder)).GetDirectories())
+							result = result & DeleteFolder(xmlFolder, ref ex);
 					flag = result ? Resources.FlagGreen : Resources.FlagRed;
 					result = result & true;
 				}
@@ -161,8 +162,9 @@ namespace NewBizWiz.Reset
 				try
 				{
 					string syncFolder = string.Format(@"{0}\newlocaldirect.com\sync", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-					foreach (DirectoryInfo syncSubFolder in (new DirectoryInfo(syncFolder)).GetDirectories())
-						result = result & DeleteFolder(syncSubFolder, ref ex);
+					if (Directory.Exists(syncFolder))
+						foreach (DirectoryInfo syncSubFolder in (new DirectoryInfo(syncFolder)).GetDirectories())
+							result = result & DeleteFolder(syncSubFolder, ref ex);
 					flag = result ? Resources.FlagGreen : Resources.FlagRed;
 					result = result & true;
 				}
@@ -257,6 +259,7 @@ namespace NewBizWiz.Reset
 
 		private void CopyDirectory(string source, string destination)
 		{
+			if (!Directory.Exists(source)) return;
 			var dir = new DirectoryInfo(source);
 			if (!Directory.Exists(destination))
 				Directory.CreateDirectory(destination);
@@ -307,8 +310,12 @@ namespace NewBizWiz.Reset
 
 		private void buttonItemHomeConfig_Click(object sender, EventArgs e)
 		{
-			string minibarFile = string.Format(@"{0}\newlocaldirect.com\app\Minibar\Minibar.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			Process.Start(minibarFile);
+			string minibarFile = string.Format(@"{0}\newlocaldirect.com\app\Minibar\MiniBarLoader.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			try
+			{
+				Process.Start(minibarFile);
+			}
+			catch { }
 			Application.Exit();
 		}
 

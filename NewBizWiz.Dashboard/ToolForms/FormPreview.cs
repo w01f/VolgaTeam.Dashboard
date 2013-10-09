@@ -5,13 +5,11 @@ using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
+using NewBizWiz.Dashboard.InteropClasses;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms
+namespace NewBizWiz.Dashboard.ToolForms
 {
 	public partial class FormPreview : Form
 	{
@@ -25,7 +23,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		#region Form GUI Event Habdlers
 		private void FormQuickView_Shown(object sender, EventArgs e)
 		{
-			barOperations.ItemLinks[2].Visible = !AdSchedulePowerPointHelper.Instance.Is2003;
 			if (!string.IsNullOrEmpty(PresentationFile))
 			{
 				laSlideSize.Text = string.Format("{0} {1} x {2}", new object[] { SettingsManager.Instance.Orientation, SettingsManager.Instance.SizeWidth.ToString("#.##"), SettingsManager.Instance.SizeHeght.ToString("#.##") });
@@ -58,8 +55,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			FormBorderStyle = FormBorderStyle.None;
 			Size = new Size(0, 0);
 
-			RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-			RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+			RegistryHelper.MaximizeMainForm = false;
+			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 
 			if (!string.IsNullOrEmpty(PresentationFile))
 			{
@@ -68,9 +65,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
 					formProgress.TopMost = true;
 					formProgress.Show();
-					Controller.Instance.ShowFloater(() =>
+					AppManager.Instance.ShowFloater(null, () =>
 					{
-						AdSchedulePowerPointHelper.Instance.AppendSlidesFromFile(PresentationFile);
+						DashboardPowerPointHelper.Instance.AppendSlidesFromFile(PresentationFile);
 						formProgress.Close();
 					});
 				}
@@ -80,7 +77,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void barLargeButtonItemHelp_ItemClick(object sender, ItemClickEventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("preview");
+			AppManager.Instance.HelpManager.OpenHelpLink("preview");
 		}
 
 		private void barLargeButtonItemExit_ItemClick(object sender, ItemClickEventArgs e)

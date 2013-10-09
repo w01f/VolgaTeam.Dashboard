@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,12 +12,6 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 	public class ServiceDataManager
 	{
 		private static ServiceDataManager _instance;
-		private bool _chromeDefinded;
-		private bool _chromeInstalled;
-		private bool _firefoxDefinded;
-		private bool _firefoxInstalled;
-		private bool _operaDefinded;
-		private bool _operaInstalled;
 
 		private ServiceDataManager()
 		{
@@ -26,99 +19,6 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 		}
 
 		public List<UserActivity> UserActivities { get; private set; }
-
-		public bool ChromeInstalled
-		{
-			get
-			{
-				if (!_chromeDefinded)
-				{
-					try
-					{
-						var process = new Process
-						              {
-							              StartInfo =
-							              {
-								              FileName = "chrome.exe",
-								              CreateNoWindow = true,
-								              WindowStyle = ProcessWindowStyle.Hidden
-							              }
-						              };
-						process.Start();
-						process.Kill();
-						_chromeInstalled = true;
-					}
-					catch
-					{
-						_chromeInstalled = false;
-					}
-					_chromeDefinded = true;
-				}
-				return _chromeInstalled;
-			}
-		}
-
-		public bool FirefoxInstalled
-		{
-			get
-			{
-				if (!_firefoxDefinded)
-				{
-					try
-					{
-						var process = new Process
-						              {
-							              StartInfo =
-							              {
-								              FileName = "firefox.exe",
-								              CreateNoWindow = true,
-								              WindowStyle = ProcessWindowStyle.Hidden
-							              }
-						              };
-						process.Start();
-						process.Kill();
-						_firefoxInstalled = true;
-					}
-					catch
-					{
-						_firefoxInstalled = false;
-					}
-					_firefoxDefinded = true;
-				}
-				return _firefoxInstalled;
-			}
-		}
-
-		public bool OperaInstalled
-		{
-			get
-			{
-				if (!_operaDefinded)
-				{
-					try
-					{
-						var process = new Process
-						              {
-							              StartInfo =
-							              {
-								              FileName = "opera.exe",
-								              CreateNoWindow = true,
-								              WindowStyle = ProcessWindowStyle.Hidden
-							              }
-						              };
-						process.Start();
-						process.Kill();
-						_operaInstalled = true;
-					}
-					catch
-					{
-						_operaInstalled = false;
-					}
-					_operaDefinded = true;
-				}
-				return _operaInstalled;
-			}
-		}
 
 		private string _currentUser
 		{
@@ -189,25 +89,23 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 		public void LoadData()
 		{
 			UserActivities.Clear();
-			if (File.Exists(SettingsManager.Instance.ServiceDataFilePath))
+			if (!File.Exists(SettingsManager.Instance.ServiceDataFilePath)) return;
+			var document = new XmlDocument();
+			try
 			{
-				var document = new XmlDocument();
-				try
-				{
-					document.Load(SettingsManager.Instance.ServiceDataFilePath);
-				}
-				catch {}
-
-				XmlNode node = document.SelectSingleNode(@"/ServiceData/UserActivities");
-				if (node != null)
-					foreach (XmlNode childNode in node.ChildNodes)
-					{
-						var userActivity = new UserActivity();
-						userActivity.Deserialize(childNode);
-						if (!string.IsNullOrEmpty(userActivity.UserName))
-							UserActivities.Add(userActivity);
-					}
+				document.Load(SettingsManager.Instance.ServiceDataFilePath);
 			}
+			catch {}
+
+			XmlNode node = document.SelectSingleNode(@"/ServiceData/UserActivities");
+			if (node != null)
+				foreach (XmlNode childNode in node.ChildNodes)
+				{
+					var userActivity = new UserActivity();
+					userActivity.Deserialize(childNode);
+					if (!string.IsNullOrEmpty(userActivity.UserName))
+						UserActivities.Add(userActivity);
+				}
 		}
 
 		public void SaveData()

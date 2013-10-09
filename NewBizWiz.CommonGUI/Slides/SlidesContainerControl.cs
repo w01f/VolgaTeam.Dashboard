@@ -12,6 +12,7 @@ namespace NewBizWiz.CommonGUI.Slides
 		private SlideManager _slideManager;
 
 		public event EventHandler<SlideMasterEventArgs> SlideChanged;
+		public event EventHandler<SlideMasterEventArgs> SlideSelected;
 
 		public SlideMaster SelectedSlide
 		{
@@ -43,6 +44,13 @@ namespace NewBizWiz.CommonGUI.Slides
 					if (selectedGroup != xtraTabControlSlides.SelectedTabPage) return;
 					if (SlideChanged != null)
 						SlideChanged(o, e);
+				};
+				groupPage.SlideSelected += (o, e) =>
+				{
+					var selectedGroup = o as SlideGroupControl;
+					if (selectedGroup != xtraTabControlSlides.SelectedTabPage) return;
+					if (SlideSelected != null)
+						SlideSelected(o, e);
 				};
 				xtraTabControlSlides.TabPages.Add(groupPage);
 			}

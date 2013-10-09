@@ -70,12 +70,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Slides\FormSlidePreview.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Slides\FormSlidePreview.Designer.cs">
-      <DependentUpon>FormSlidePreview.cs</DependentUpon>
-    </Compile>
     <Compile Include="Slides\FormSlideSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,12 +94,6 @@
     <Compile Include="Themes\FormThemeSelector.Designer.cs">
       <DependentUpon>FormThemeSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="Themes\FormThemePreview.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Themes\FormThemePreview.Designer.cs">
-      <DependentUpon>FormThemePreview.cs</DependentUpon>
-    </Compile>
     <Compile Include="Themes\ThemeContainerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -122,9 +110,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Slides\FormSlidePreview.resx">
-      <DependentUpon>FormSlidePreview.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Slides\FormSlideSelector.resx">
       <DependentUpon>FormSlideSelector.cs</DependentUpon>
     </EmbeddedResource>
@@ -136,9 +121,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Themes\FormThemeSelector.resx">
       <DependentUpon>FormThemeSelector.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Themes\FormThemePreview.resx">
-      <DependentUpon>FormThemePreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Themes\ThemeContainerControl.resx">
       <DependentUpon>ThemeContainerControl.cs</DependentUpon>
@@ -156,6 +138,7 @@
   <ItemGroup>
     <None Include="Resources\OutputDisabled.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

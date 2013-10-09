@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Dashboard;
 using NewBizWiz.Dashboard.InteropClasses;
+using NewBizWiz.Dashboard.ToolForms;
+using ListManager = NewBizWiz.Core.Dashboard.ListManager;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
@@ -125,13 +129,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.LeadoffStatementLists.Headers);
 
 			FormMain.Instance.FormClosed += (sender1, e1) =>
-				                                {
-					                                if (SettingsNotSaved)
-					                                {
-						                                SaveState();
-						                                ViewSettingsManager.Instance.LeadoffStatementState.Save();
-					                                }
-				                                };
+												{
+													if (SettingsNotSaved)
+													{
+														SaveState();
+														ViewSettingsManager.Instance.LeadoffStatementState.Save();
+													}
+												};
 
 			LoadSavedState();
 		}
@@ -204,7 +208,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				EnableSavedFiles(ViewSettingsManager.Instance.LeadoffStatementState.AllowToLoad());
 		}
 
-		public void Output()
+		private void SaveChanges()
 		{
 			if (SettingsNotSaved)
 			{
@@ -212,7 +216,52 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				ViewSettingsManager.Instance.LeadoffStatementState.Save();
 				UpdateSavedFilesState();
 			}
-			AppManager.Instance.ShowFloater(null, DashboardPowerPointHelper.Instance.AppendLeadoffStatements);
+		}
+
+		public void Output()
+		{
+			SaveChanges();
+			using (var form = new FormProgress())
+			{
+				form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				form.TopMost = true;
+				form.Show();
+				AppManager.Instance.ShowFloater(null, () =>
+				{
+					DashboardPowerPointHelper.Instance.AppendLeadoffStatements();
+					form.Close();
+				});
+			}
+		}
+
+		public void Preview()
+		{
+			SaveChanges();
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
+				formProgress.TopMost = true;
+				formProgress.Show();
+				var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				DashboardPowerPointHelper.Instance.PrepareLeadoffStatements(tempFileName);
+				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
+				formProgress.Close();
+				if (!File.Exists(tempFileName)) return;
+				using (var formPreview = new FormPreview())
+				{
+					formPreview.Text = "Preview Slides";
+					formPreview.PresentationFile = tempFileName;
+					RegistryHelper.MainFormHandle = formPreview.Handle;
+					RegistryHelper.MaximizeMainForm = false;
+					var previewResult = formPreview.ShowDialog();
+					RegistryHelper.MaximizeMainForm = false;
+					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+					if (previewResult != DialogResult.OK)
+						Utilities.Instance.ActivateForm(FormMain.Instance.Handle, true, false);
+					else
+						Utilities.Instance.ActivateMiniBar();
+				}
+			}
 		}
 		#endregion
 	}

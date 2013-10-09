@@ -38,6 +38,7 @@ namespace NewBizWiz.Dashboard
 		}
 
 		public AppManager.EmptyParametersDelegate OutputClick { get; set; }
+		public AppManager.EmptyParametersDelegate PreviewClick { get; set; }
 		public AppManager.EmptyParametersDelegate OutsideClick { get; set; }
 		public bool IsDead { get; set; }
 
@@ -162,6 +163,7 @@ namespace NewBizWiz.Dashboard
 			buttonItemRadioOpen.Click += RadioScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
 			buttonItemRadioDelete.Click += RadioScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
 			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
+			buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
 		}
 
 		private void FormMain_Shown(object sender, EventArgs e)
@@ -363,6 +365,12 @@ namespace NewBizWiz.Dashboard
 		{
 			if (OutputClick != null)
 				OutputClick();
+		}
+
+		private void buttonItemPreview_Click(object sender, EventArgs e)
+		{
+			if (PreviewClick != null)
+				PreviewClick();
 		}
 
 		private void buttonItemHomeTheme_Click(object sender, EventArgs e)

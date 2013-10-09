@@ -33,9 +33,6 @@
 			this.checkEditAdvertiser = new DevExpress.XtraEditors.CheckEdit();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnMain = new System.Windows.Forms.Panel();
-			this.checkEditLogo4 = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditLogo3 = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditLogo2 = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditLogo1 = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditPublicationName = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
@@ -48,9 +45,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAdvertiser.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			this.pnMain.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo4.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo3.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo2.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPublicationName.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).BeginInit();
@@ -107,9 +101,6 @@
 			this.pnMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.pnMain.Controls.Add(this.checkEditLogo4);
-			this.pnMain.Controls.Add(this.checkEditLogo3);
-			this.pnMain.Controls.Add(this.checkEditLogo2);
 			this.pnMain.Controls.Add(this.checkEditLogo1);
 			this.pnMain.Controls.Add(this.checkEditPublicationName);
 			this.pnMain.Controls.Add(this.checkEditFlightDates);
@@ -121,60 +112,6 @@
 			this.pnMain.Name = "pnMain";
 			this.pnMain.Size = new System.Drawing.Size(261, 502);
 			this.pnMain.TabIndex = 24;
-			// 
-			// checkEditLogo4
-			// 
-			this.checkEditLogo4.AutoSizeInLayoutControl = true;
-			this.checkEditLogo4.Dock = System.Windows.Forms.DockStyle.Top;
-			this.checkEditLogo4.EditValue = true;
-			this.checkEditLogo4.Location = new System.Drawing.Point(0, 387);
-			this.checkEditLogo4.Name = "checkEditLogo4";
-			this.checkEditLogo4.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditLogo4.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.checkEditLogo4.Properties.Appearance.Options.UseFont = true;
-			this.checkEditLogo4.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditLogo4.Properties.AutoHeight = false;
-			this.checkEditLogo4.Properties.Caption = "Logo 4";
-			this.checkEditLogo4.Size = new System.Drawing.Size(261, 43);
-			this.checkEditLogo4.StyleController = this.styleController;
-			this.checkEditLogo4.TabIndex = 32;
-			this.checkEditLogo4.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-			// 
-			// checkEditLogo3
-			// 
-			this.checkEditLogo3.AutoSizeInLayoutControl = true;
-			this.checkEditLogo3.Dock = System.Windows.Forms.DockStyle.Top;
-			this.checkEditLogo3.EditValue = true;
-			this.checkEditLogo3.Location = new System.Drawing.Point(0, 344);
-			this.checkEditLogo3.Name = "checkEditLogo3";
-			this.checkEditLogo3.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditLogo3.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.checkEditLogo3.Properties.Appearance.Options.UseFont = true;
-			this.checkEditLogo3.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditLogo3.Properties.AutoHeight = false;
-			this.checkEditLogo3.Properties.Caption = "Logo 3";
-			this.checkEditLogo3.Size = new System.Drawing.Size(261, 43);
-			this.checkEditLogo3.StyleController = this.styleController;
-			this.checkEditLogo3.TabIndex = 31;
-			this.checkEditLogo3.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-			// 
-			// checkEditLogo2
-			// 
-			this.checkEditLogo2.AutoSizeInLayoutControl = true;
-			this.checkEditLogo2.Dock = System.Windows.Forms.DockStyle.Top;
-			this.checkEditLogo2.EditValue = true;
-			this.checkEditLogo2.Location = new System.Drawing.Point(0, 301);
-			this.checkEditLogo2.Name = "checkEditLogo2";
-			this.checkEditLogo2.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditLogo2.Properties.Appearance.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.checkEditLogo2.Properties.Appearance.Options.UseFont = true;
-			this.checkEditLogo2.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditLogo2.Properties.AutoHeight = false;
-			this.checkEditLogo2.Properties.Caption = "Logo 2";
-			this.checkEditLogo2.Size = new System.Drawing.Size(261, 43);
-			this.checkEditLogo2.StyleController = this.styleController;
-			this.checkEditLogo2.TabIndex = 30;
-			this.checkEditLogo2.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
 			// checkEditLogo1
 			// 
@@ -328,9 +265,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAdvertiser.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			this.pnMain.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo4.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo3.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo2.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPublicationName.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).EndInit();
@@ -348,10 +282,7 @@
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         public DevExpress.XtraEditors.CheckEdit checkEditAdvertiser;
         private System.Windows.Forms.Panel pnMain;
-        private DevExpress.XtraEditors.StyleController styleController;
-        public DevExpress.XtraEditors.CheckEdit checkEditLogo4;
-        public DevExpress.XtraEditors.CheckEdit checkEditLogo3;
-        public DevExpress.XtraEditors.CheckEdit checkEditLogo2;
+		private DevExpress.XtraEditors.StyleController styleController;
         public DevExpress.XtraEditors.CheckEdit checkEditLogo1;
         public DevExpress.XtraEditors.CheckEdit checkEditPublicationName;
         public DevExpress.XtraEditors.CheckEdit checkEditFlightDates;

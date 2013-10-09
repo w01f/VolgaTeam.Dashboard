@@ -15,51 +15,45 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 
 		private NBWApplicationsManager()
 		{
-			NBWApplications = new List<NBWApplication>();
+			Links = new List<NBWLink>();
 			var nbwApplicationsRoot = new DirectoryInfo(SettingsManager.Instance.NBWApplicationsRootPath);
 			if (nbwApplicationsRoot.Exists)
 			{
 				foreach (var nbwApplicationRoot in nbwApplicationsRoot.GetDirectories())
 				{
-					var nbwApplication = new NBWApplication(nbwApplicationRoot);
-					if (!nbwApplication.IsConfigured) continue;
-					nbwApplication.OnRun += (o, e) =>
+					var nbwLink = NBWLink.CreateLink(nbwApplicationRoot);
+					if (nbwLink == null || !nbwLink.IsConfigured) continue;
+					nbwLink.OnRun += (o, e) =>
 					{
-						var executablePath = nbwApplication.Executable;
-						if (File.Exists(executablePath))
+						var allowAccess = true;
+						if (!string.IsNullOrEmpty(nbwLink.AccessCode))
 						{
-							var allowAccess = true;
-							if (!string.IsNullOrEmpty(nbwApplication.AccessCode))
+							allowAccess = false;
+							using (var form = new FormAppCode())
 							{
-								allowAccess = false;
-								using (var form = new FormAppCode())
+								var result = DialogResult.OK;
+								while (result == DialogResult.OK)
 								{
-									var result = DialogResult.OK;
-									while (result == DialogResult.OK)
-									{
-										result = form.ShowDialog();
+									result = form.ShowDialog();
 
-										if (result != DialogResult.OK) continue;
-										if (form.Code.Equals(nbwApplication.AccessCode))
-										{
-											allowAccess = true;
-											break;
-										}
-										AppManager.Instance.ShowWarning("Incorrect Access Code.\nTry again");
+									if (result != DialogResult.OK) continue;
+									if (form.Code.Equals(nbwLink.AccessCode))
+									{
+										allowAccess = true;
+										break;
 									}
+									AppManager.Instance.ShowWarning("Incorrect Access Code.\nTry again");
 								}
 							}
-							if (allowAccess)
-								Process.Start(executablePath);
 						}
+						if (allowAccess)
+							nbwLink.Run();
 						ServiceDataManager.Instance.WriteActivity();
 					};
-					nbwApplication.OnCreateShorcut += (o, e) =>
+					nbwLink.OnCreateShorcut += (o, e) =>
 					{
-						var executablePath = nbwApplication.Executable;
-						if (!File.Exists(executablePath)) return;
 						var allowAccess = true;
-						if (!string.IsNullOrEmpty(nbwApplication.AccessCode))
+						if (!string.IsNullOrEmpty(nbwLink.AccessCode))
 						{
 							allowAccess = false;
 							using (var form = new FormAppCode())
@@ -69,7 +63,7 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 								{
 									result = form.ShowDialog();
 									if (result != DialogResult.OK) continue;
-									if (form.Code.Equals(nbwApplication.AccessCode))
+									if (form.Code.Equals(nbwLink.AccessCode))
 									{
 										allowAccess = true;
 										break;
@@ -79,25 +73,15 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 							}
 						}
 						if (!allowAccess) return;
-						using (var shortcut = new ShellLink())
-						{
-							shortcut.Target = nbwApplication.Executable;
-							shortcut.WorkingDirectory = Path.GetDirectoryName(executablePath);
-							shortcut.Description = nbwApplication.Title.Replace("\n", " ").Replace("\r", string.Empty);
-							shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-							if (File.Exists(nbwApplication.Icon))
-								shortcut.IconPath = nbwApplication.Icon;
-							shortcut.IconIndex = 0;
-							shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), nbwApplication.Title.Replace("\n", " ").Replace("\r", string.Empty) + ".lnk"));
-						}
+						nbwLink.CreateShorcut();
 					};
-					NBWApplications.Add(nbwApplication);
+					Links.Add(nbwLink);
 				}
-				NBWApplications.Sort((x, y) => x.TabOrder == y.TabOrder ? x.Order.CompareTo(y.Order) : x.TabOrder.CompareTo(y.TabOrder));
+				Links.Sort((x, y) => x.TabOrder == y.TabOrder ? x.Order.CompareTo(y.Order) : x.TabOrder.CompareTo(y.TabOrder));
 			}
 		}
 
-		public List<NBWApplication> NBWApplications { get; set; }
+		public List<NBWLink> Links { get; set; }
 
 		public static NBWApplicationsManager Instance
 		{

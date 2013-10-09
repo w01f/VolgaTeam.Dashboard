@@ -1,6 +1,6 @@
 ﻿namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
-    partial class ColumnsControl
+	sealed partial class ColumnsControl
     {
         /// <summary> 
         /// Required designer variable.

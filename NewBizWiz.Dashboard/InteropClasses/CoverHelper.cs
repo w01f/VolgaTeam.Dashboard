@@ -5,7 +5,6 @@ using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.Dashboard.TabHomeForms;
-using NewBizWiz.Dashboard.ToolForms;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
@@ -13,112 +12,98 @@ namespace NewBizWiz.Dashboard.InteropClasses
 {
 	public partial class DashboardPowerPointHelper
 	{
-		public void AppendCover(bool firstSlide)
+		public void AppendCover(bool firstSlide, Presentation destinationPresentation = null)
 		{
-			if (MasterWizardManager.Instance.SelectedWizard.CoverFile != null)
+			if (MasterWizardManager.Instance.SelectedWizard.CoverFile == null) return;
+			var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.CoverFile;
+			try
 			{
-				string presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.CoverFile;
-				try
+				var thread = new Thread(delegate()
 				{
-					using (var form = new FormProgress())
+					MessageFilter.Register();
+					var presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					foreach (Slide slide in presentation.Slides)
 					{
-						form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-						form.TopMost = true;
-						var thread = new Thread(delegate()
+						foreach (Shape shape in slide.Shapes)
 						{
-							MessageFilter.Register();
-							Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
-							foreach (Slide slide in presentation.Slides)
+							for (int i = 1; i <= shape.Tags.Count; i++)
 							{
-								foreach (Shape shape in slide.Shapes)
+								switch (shape.Tags.Name(i))
 								{
-									for (int i = 1; i <= shape.Tags.Count; i++)
-									{
-										switch (shape.Tags.Name(i))
-										{
-											case "DATE_DATA0":
-												shape.TextFrame.TextRange.Text = CoverControl.Instance.PresentationDate;
-												break;
-											case "TITLE":
-												shape.TextFrame.TextRange.Text = CoverControl.Instance.Title;
-												break;
-											case "BUSINESS_NAME":
-												shape.TextFrame.TextRange.Text = CoverControl.Instance.DecisionMaker;
-												break;
-											case "DECISION_MAKER":
-												shape.TextFrame.TextRange.Text = CoverControl.Instance.Advertiser;
-												break;
-											case "QUOTE":
-												shape.TextFrame.TextRange.Text = CoverControl.Instance.Quote;
-												break;
-											case "SALESPERSON_NAME":
-												shape.TextFrame.TextRange.Text = CoverControl.Instance.SalesRep;
-												break;
-										}
-									}
+									case "DATE_DATA0":
+										shape.TextFrame.TextRange.Text = CoverControl.Instance.PresentationDate;
+										break;
+									case "TITLE":
+										shape.TextFrame.TextRange.Text = CoverControl.Instance.Title;
+										break;
+									case "BUSINESS_NAME":
+										shape.TextFrame.TextRange.Text = CoverControl.Instance.DecisionMaker;
+										break;
+									case "DECISION_MAKER":
+										shape.TextFrame.TextRange.Text = CoverControl.Instance.Advertiser;
+										break;
+									case "QUOTE":
+										shape.TextFrame.TextRange.Text = CoverControl.Instance.Quote;
+										break;
+									case "SALESPERSON_NAME":
+										shape.TextFrame.TextRange.Text = CoverControl.Instance.SalesRep;
+										break;
 								}
 							}
-							var selectedTheme = Core.Dashboard.SettingsManager.Instance.SelectedTheme;
-							if (selectedTheme != null)
-								presentation.ApplyTheme(selectedTheme.ThemeFilePath);
-							AppendSlide(presentation, -1, null, firstSlide);
-							presentation.Close();
-						});
-						thread.Start();
-
-						form.Show();
-
-						while (thread.IsAlive)
-							Application.DoEvents();
-						form.Close();
+						}
 					}
-				}
-				catch {}
-				finally
-				{
-					MessageFilter.Revoke();
-				}
+					var selectedTheme = Core.Dashboard.SettingsManager.Instance.SelectedTheme;
+					if (selectedTheme != null)
+						presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+					AppendSlide(presentation, -1, destinationPresentation, firstSlide);
+					presentation.Close();
+				});
+				thread.Start();
+				while (thread.IsAlive)
+					Application.DoEvents();
+			}
+			catch { }
+			finally
+			{
+				MessageFilter.Revoke();
 			}
 		}
 
-		public void AppendGenericCover(bool firstSlide)
+		public void PrepareCover(string fileName, bool firstSlide)
 		{
-			if (File.Exists(MasterWizardManager.Instance.SelectedWizard.GenericCoverFile))
+			PreparePresentation(fileName, presentation => AppendCover(firstSlide, presentation));
+		}
+
+		public void AppendGenericCover(bool firstSlide, Presentation destinationPresentation = null)
+		{
+			if (!File.Exists(MasterWizardManager.Instance.SelectedWizard.GenericCoverFile)) return;
+			var presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GenericCoverFile;
+			try
 			{
-				string presentationTemplatePath = MasterWizardManager.Instance.SelectedWizard.GenericCoverFile;
-				try
+				var thread = new Thread(delegate()
 				{
-					using (var form = new FormProgress())
-					{
-						form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-						form.TopMost = true;
-						var thread = new Thread(delegate()
-						{
-							MessageFilter.Register();
-							Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
-							var selectedTheme = Core.Dashboard.SettingsManager.Instance.SelectedTheme;
-							if (selectedTheme != null)
-								presentation.ApplyTheme(selectedTheme.ThemeFilePath);
-							AppendSlide(presentation, -1, null, firstSlide);
-							presentation.Close();
-						});
-						thread.Start();
-
-						form.Show();
-
-						while (thread.IsAlive)
-							Application.DoEvents();
-						form.Close();
-					}
-				}
-				catch {}
-				finally
-				{
-					MessageFilter.Revoke();
-				}
+					MessageFilter.Register();
+					var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var selectedTheme = Core.Dashboard.SettingsManager.Instance.SelectedTheme;
+					if (selectedTheme != null)
+						presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+					AppendSlide(presentation, -1, destinationPresentation, firstSlide);
+					presentation.Close();
+				});
+				thread.Start();
+				while (thread.IsAlive)
+					Application.DoEvents();
 			}
-			else
-				Utilities.Instance.ShowWarning("No Cover Available");
+			catch { }
+			finally
+			{
+				MessageFilter.Revoke();
+			}
+		}
+
+		public void PrepareGenericCover(string fileName, bool firstSlide)
+		{
+			PreparePresentation(fileName, presentation => AppendGenericCover(firstSlide, presentation));
 		}
 	}
 }

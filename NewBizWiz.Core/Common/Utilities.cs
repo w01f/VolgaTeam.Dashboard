@@ -205,5 +205,107 @@ namespace NewBizWiz.Core.Common
 			pic.Top -= 1;
 		}
 		#endregion
+
+		#region Internet Browser Support
+		private bool _chromeDefinded;
+		private bool _firefoxDefinded;
+		private bool _operaDefinded;
+		private bool _chromeInstalled;
+		private bool _firefoxInstalled;
+		private bool _operaInstalled;
+
+		public bool ChromeInstalled
+		{
+			get
+			{
+				if (!_chromeDefinded)
+				{
+					try
+					{
+						var process = new Process
+						{
+							StartInfo =
+							{
+								FileName = "chrome.exe",
+								CreateNoWindow = true,
+								WindowStyle = ProcessWindowStyle.Hidden
+							}
+						};
+						process.Start();
+						process.Kill();
+						_chromeInstalled = true;
+					}
+					catch
+					{
+						_chromeInstalled = false;
+					}
+					_chromeDefinded = true;
+				}
+				return _chromeInstalled;
+			}
+		}
+
+		public bool FirefoxInstalled
+		{
+			get
+			{
+				if (!_firefoxDefinded)
+				{
+					try
+					{
+						var process = new Process
+						{
+							StartInfo =
+							{
+								FileName = "firefox.exe",
+								CreateNoWindow = true,
+								WindowStyle = ProcessWindowStyle.Hidden
+							}
+						};
+						process.Start();
+						process.Kill();
+						_firefoxInstalled = true;
+					}
+					catch
+					{
+						_firefoxInstalled = false;
+					}
+					_firefoxDefinded = true;
+				}
+				return _firefoxInstalled;
+			}
+		}
+
+		public bool OperaInstalled
+		{
+			get
+			{
+				if (!_operaDefinded)
+				{
+					try
+					{
+						var process = new Process
+						{
+							StartInfo =
+							{
+								FileName = "opera.exe",
+								CreateNoWindow = true,
+								WindowStyle = ProcessWindowStyle.Hidden
+							}
+						};
+						process.Start();
+						process.Kill();
+						_operaInstalled = true;
+					}
+					catch
+					{
+						_operaInstalled = false;
+					}
+					_operaDefinded = true;
+				}
+				return _operaInstalled;
+			}
+		}
+		#endregion
 	}
 }

@@ -14,19 +14,11 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 
 		public const int Columns = 12;
 
-		public const string DetailedGridTemplateSheetNameWithNotes = @"Detailed Grid-With AdNotes";
-		public const int DetailedGridExcelBasedRowsCountWithNotes = 10;
-		public const string DetailedGridTemplateSheetNameWithoutNotes = @"Detailed Grid-No AdNotes";
-		public const int DetailedGridExcelBasedRowsCountWithoutNotes = 14;
 		public const int DetailedGridGridBasedRowsCountWithNotes = 8;
-		public const int DetailedGridGridBasedRowsCountWithoutNotes = 9;
+		public const int DetailedGridGridBasedRowsCountWithoutNotes = 10;
 
-		public const string MultiGridTemplateSheetNameWithNotes = @"Multi Grid-With AdNotes";
-		public const int MultiGridExcelBasedRowsCountWithNotes = 8;
-		public const string MultiGridTemplateSheetNameWithoutNotes = @"Multi Grid-No AdNotes";
-		public const int MultiGridExcelBasedRowsCountWithoutNotes = 8;
 		public const int MultiGridGridBasedRowsCountWithNotes = 8;
-		public const int MultiGridGridBasedRowsCountWithoutNotes = 9;
+		public const int MultiGridGridBasedRowsCountWithoutNotes = 10;
 
 		private const string BasicOverviewTemlatesFolderName = @"{0}\Newspaper Slides\basic overview";
 		public const string BasicOverviewSlideTemplate = @"basic-{0}.ppt";
@@ -38,20 +30,11 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 
 		private const string AdPlanTemlatesFolderName = @"{0}\Newspaper Slides\adplan";
 
-		private const string DetailedGridExcelBasedTemlatesFolderName = @"{0}\Newspaper Slides\detailed grid";
 		private const string DetailedGridGridBasedTemlatesFolderName = @"{0}\Newspaper Slides\tables";
-		public const string DetailedGridExcelBasedSlideTemplate = @"detailed-{0}.ppt";
 		public const string DetailedGridGridBasedSlideTemplate = @"{0} columns_detailed\tables_{1}\table{2}_{1}.ppt";
 
-		private const string MultiGridExcelBasedTemlatesFolderName = @"{0}\Newspaper Slides\multi grid";
 		private const string MultiGridGridBasedTemlatesFolderName = @"{0}\Newspaper Slides\tables";
-		public const string MultiGridExcelBasedSlideTemplate = @"multi-{0}-{1}.ppt";
 		public const string MultiGridGridBasedSlideTemplate = @"{0} columns_multi\tables_{1}_logos\table{2}_{1}.ppt";
-
-		private const string ChronoGridExcelBasedTemlatesFolderName = @"{0}\Newspaper Slides\chrono grid";
-		private const string ChronoGridGridBasedTemlatesFolderName = @"{0}\Newspaper Slides\tables";
-		public const string ChronoGridExcelbasedSlideTemplate = @"chrono-{0}.ppt";
-		public const string ChronoGridGridBasedSlideTemplate = @"{0} columns_chrono\tables_{1}\table{2}_{1}.ppt";
 
 		private const string CalendarTemlatesFolderName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\{1}";
 		private const string CalendarFileLegendName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\FileLegend.xls";
@@ -92,34 +75,14 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, string.Format(AdPlanTemlatesFolderName, SettingsManager.Instance.SlideFolder)); }
 		}
 
-		public string DetailedGridExcelBasedTemlatesFolderPath
-		{
-			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, string.Format(DetailedGridExcelBasedTemlatesFolderName, SettingsManager.Instance.SlideFolder)); }
-		}
-
 		public string DetailedGridGridBasedTemlatesFolderPath
 		{
 			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, string.Format(DetailedGridGridBasedTemlatesFolderName, SettingsManager.Instance.SlideFolder)); }
 		}
 
-		public string MultiGridExcelBasedTemlatesFolderPath
-		{
-			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, string.Format(MultiGridExcelBasedTemlatesFolderName, SettingsManager.Instance.SlideFolder)); }
-		}
-
 		public string MultiGridGridBasedTemlatesFolderPath
 		{
 			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, string.Format(MultiGridGridBasedTemlatesFolderName, SettingsManager.Instance.SlideFolder)); }
-		}
-
-		public string ChronoGridExcelBasedTemlatesFolderPath
-		{
-			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, string.Format(ChronoGridExcelBasedTemlatesFolderName, SettingsManager.Instance.SlideFolder)); }
-		}
-
-		public string ChronoGridGridBasedTemlatesFolderPath
-		{
-			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, string.Format(ChronoGridGridBasedTemlatesFolderName, SettingsManager.Instance.SlideFolder)); }
 		}
 
 		public string CalendarTemlatesFolderPath

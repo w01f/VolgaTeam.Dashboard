@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
+using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.Core.Common;

@@ -2,10 +2,9 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using NewBizWiz.Core.Common;
 using NewBizWiz.MiniBar.BusinessClasses;
 using vbAccelerator.Components.Shell;
-using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
+using SettingsManager = NewBizWiz.MiniBar.BusinessClasses.SettingsManager;
 
 namespace NewBizWiz.MiniBar.SettingsForms
 {
@@ -14,27 +13,23 @@ namespace NewBizWiz.MiniBar.SettingsForms
 		public FormShortcuts()
 		{
 			InitializeComponent();
-			laDashboard.Text = SettingsManager.Instance.DashboardName;
-			pbDashboard.Image = new Bitmap(Properties.Resources.Dashboard);
-			if (BusinessClasses.SettingsManager.Instance.SalesDepotSettings.ShowLocalButton || !BusinessClasses.SettingsManager.Instance.SalesDepotSettings.ShowLocalButton && !BusinessClasses.SettingsManager.Instance.SalesDepotSettings.ShowWebButton)
+			if (SettingsManager.Instance.SalesDepotSettings.ShowLocalButton || !SettingsManager.Instance.SalesDepotSettings.ShowLocalButton && !SettingsManager.Instance.SalesDepotSettings.ShowWebButton)
 			{
 				pnLocalSalesDepot.Visible = true;
-				laLocalSalesDepot.Text = BusinessClasses.SettingsManager.Instance.SalesDepotSettings.LocalAppName;
-				if (File.Exists(BusinessClasses.SettingsManager.Instance.SalesDepotSettings.LocalLogoPath) && File.Exists(BusinessClasses.SettingsManager.Instance.SalesDepotSettings.LocalIconPath))
-					pbLocalSalesDepot.Image = new Bitmap(BusinessClasses.SettingsManager.Instance.SalesDepotSettings.LocalLogoPath);
+				if (File.Exists(SettingsManager.Instance.SalesDepotSettings.LocalLogoPath) && File.Exists(SettingsManager.Instance.SalesDepotSettings.LocalIconPath))
+					pbLocalSalesDepot.Image = new Bitmap(SettingsManager.Instance.SalesDepotSettings.LocalLogoPath);
 			}
 			else
 				pnLocalSalesDepot.Visible = false;
-			if (BusinessClasses.SettingsManager.Instance.SalesDepotSettings.ShowWebButton)
+			if (SettingsManager.Instance.SalesDepotSettings.ShowWebButton)
 			{
 				pnWebSalesDepot.Visible = true;
-				laWebSalesDepot.Text = BusinessClasses.SettingsManager.Instance.SalesDepotSettings.WebAppName;
-				if (File.Exists(BusinessClasses.SettingsManager.Instance.SalesDepotSettings.WebLogoPath) && File.Exists(BusinessClasses.SettingsManager.Instance.SalesDepotSettings.WebIconPath))
-					pbWebSalesDepot.Image = new Bitmap(BusinessClasses.SettingsManager.Instance.SalesDepotSettings.WebLogoPath);
+				if (File.Exists(SettingsManager.Instance.SalesDepotSettings.WebLogoPath) && File.Exists(SettingsManager.Instance.SalesDepotSettings.WebIconPath))
+					pbWebSalesDepot.Image = new Bitmap(SettingsManager.Instance.SalesDepotSettings.WebLogoPath);
 			}
 			else
 				pnWebSalesDepot.Visible = false;
-			foreach (var application in NBWApplicationsManager.Instance.NBWApplications)
+			foreach (var application in NBWApplicationsManager.Instance.Links)
 			{
 				var definition = new ApplicationDefinitionControl();
 				definition.Application = application;
@@ -45,51 +40,38 @@ namespace NewBizWiz.MiniBar.SettingsForms
 		}
 
 		#region Picture Box Clicks Habdlers
+
 		/// <summary>
-		/// Buttonize the PictureBox 
+		///     Buttonize the PictureBox
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
 		{
-			var pic = (PictureBox)(sender);
+			var pic = (PictureBox) (sender);
 			pic.Top += 1;
 		}
 
 		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
 		{
-			var pic = (PictureBox)(sender);
+			var pic = (PictureBox) (sender);
 			pic.Top -= 1;
 		}
-		#endregion
 
-		private void pbDashboard_Click(object sender, EventArgs e)
-		{
-			using (var shortcut = new ShellLink())
-			{
-				shortcut.Target = BusinessClasses.SettingsManager.Instance.DashboardPath;
-				shortcut.WorkingDirectory = Path.GetDirectoryName(BusinessClasses.SettingsManager.Instance.DashboardPath);
-				shortcut.Description = SettingsManager.Instance.DashboardName;
-				shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-				if (File.Exists(BusinessClasses.SettingsManager.Instance.DashboardIconPath))
-					shortcut.IconPath = BusinessClasses.SettingsManager.Instance.DashboardIconPath;
-				shortcut.IconIndex = 0;
-				shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), SettingsManager.Instance.DashboardName + ".lnk"));
-			}
-		}
+		#endregion
 
 		private void pbLocalSalesDepot_Click(object sender, EventArgs e)
 		{
 			using (var shortcut = new ShellLink())
 			{
-				shortcut.Target = BusinessClasses.SettingsManager.Instance.SalesDepotSettings.ExecutablePath;
-				shortcut.WorkingDirectory = Path.GetDirectoryName(BusinessClasses.SettingsManager.Instance.SalesDepotSettings.ExecutablePath);
-				shortcut.Description = BusinessClasses.SettingsManager.Instance.SalesDepotSettings.LocalAppName;
+				shortcut.Target = SettingsManager.Instance.SalesDepotSettings.ExecutablePath;
+				shortcut.WorkingDirectory = Path.GetDirectoryName(SettingsManager.Instance.SalesDepotSettings.ExecutablePath);
+				shortcut.Description = SettingsManager.Instance.SalesDepotSettings.LocalAppName;
 				shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-				if (File.Exists(BusinessClasses.SettingsManager.Instance.SalesDepotSettings.LocalLogoPath) && File.Exists(BusinessClasses.SettingsManager.Instance.SalesDepotSettings.LocalIconPath))
-					shortcut.IconPath = BusinessClasses.SettingsManager.Instance.SalesDepotSettings.LocalIconPath;
+				if (File.Exists(SettingsManager.Instance.SalesDepotSettings.LocalLogoPath) && File.Exists(SettingsManager.Instance.SalesDepotSettings.LocalIconPath))
+					shortcut.IconPath = SettingsManager.Instance.SalesDepotSettings.LocalIconPath;
 				shortcut.IconIndex = 0;
-				shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), BusinessClasses.SettingsManager.Instance.SalesDepotSettings.LocalAppName + ".lnk"));
+				shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), SettingsManager.Instance.SalesDepotSettings.LocalAppName + ".lnk"));
 			}
 		}
 
@@ -97,14 +79,14 @@ namespace NewBizWiz.MiniBar.SettingsForms
 		{
 			using (var shortcut = new ShellLink())
 			{
-				shortcut.WorkingDirectory = Path.GetDirectoryName(BusinessClasses.SettingsManager.Instance.SalesDepotSettings.ExecutablePath);
-				shortcut.Target = BusinessClasses.SettingsManager.Instance.SalesDepotSettings.Url;
-				shortcut.Description = BusinessClasses.SettingsManager.Instance.SalesDepotSettings.WebAppName;
+				shortcut.WorkingDirectory = Path.GetDirectoryName(SettingsManager.Instance.SalesDepotSettings.ExecutablePath);
+				shortcut.Target = SettingsManager.Instance.SalesDepotSettings.Url;
+				shortcut.Description = SettingsManager.Instance.SalesDepotSettings.WebAppName;
 				shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-				if (File.Exists(BusinessClasses.SettingsManager.Instance.SalesDepotSettings.WebLogoPath) && File.Exists(BusinessClasses.SettingsManager.Instance.SalesDepotSettings.WebIconPath))
-					shortcut.IconPath = BusinessClasses.SettingsManager.Instance.SalesDepotSettings.WebIconPath;
+				if (File.Exists(SettingsManager.Instance.SalesDepotSettings.WebLogoPath) && File.Exists(SettingsManager.Instance.SalesDepotSettings.WebIconPath))
+					shortcut.IconPath = SettingsManager.Instance.SalesDepotSettings.WebIconPath;
 				shortcut.IconIndex = 0;
-				shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), BusinessClasses.SettingsManager.Instance.SalesDepotSettings.WebAppName + ".lnk"));
+				shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), SettingsManager.Instance.SalesDepotSettings.WebAppName + ".lnk"));
 			}
 		}
 	}

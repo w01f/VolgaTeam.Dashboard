@@ -41,9 +41,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SlideHeader.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("detailednavbar3");
 
 			SlideHeader.checkEditLogo1.Text = "Publication Logo";
-			SlideHeader.checkEditLogo2.Visible = false;
-			SlideHeader.checkEditLogo3.Visible = false;
-			SlideHeader.checkEditLogo4.Visible = false;
 
 			HelpToolTip = new SuperTooltipInfo("HELP", "", "Help me understand how to use the Detailed Grid", null, null, eTooltipColor.Gray);
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
@@ -964,39 +961,29 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					if (result == DialogResult.Cancel)
 						return;
 				}
-				using (var formGridType = new FormSelectOutput(OutputType.PowerPoint))
+				using (var formProgress = new FormProgress())
 				{
-					formGridType.buttonXGrid.Enabled = SelectedColumnsCount >= 4 && SelectedColumnsCount <= 6 && Directory.Exists(BusinessWrapper.Instance.OutputManager.DetailedGridGridBasedTemlatesFolderPath);
-					DialogResult gridTypeResult = formGridType.ShowDialog();
-					if (gridTypeResult != DialogResult.Cancel)
+					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+					formProgress.TopMost = true;
+					Controller.Instance.ShowFloater(() =>
 					{
-						bool pasteAsImage = gridTypeResult == DialogResult.Ignore;
-						bool excelOutput = gridTypeResult == DialogResult.No || gridTypeResult == DialogResult.Ignore;
-						using (var formProgress = new FormProgress())
+						formProgress.Show();
+						if (result == DialogResult.Yes)
+							(xtraTabControlPublications.TabPages[xtraTabControlPublications.SelectedTabPageIndex] as PublicationDetailedGridControl).PrintOutput();
+						else if (result == DialogResult.No)
 						{
-							formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-							formProgress.TopMost = true;
-							Controller.Instance.ShowFloater(() =>
+							foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
 							{
-								formProgress.Show();
-								if (result == DialogResult.Yes)
-									(xtraTabControlPublications.TabPages[xtraTabControlPublications.SelectedTabPageIndex] as PublicationDetailedGridControl).PrintOutput(excelOutput, pasteAsImage);
-								else if (result == DialogResult.No)
+								if (item.CheckState == CheckState.Checked)
 								{
-									foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
-									{
-										if (item.CheckState == CheckState.Checked)
-										{
-											PublicationDetailedGridControl tabPage = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(item.Value)).FirstOrDefault();
-											if (tabPage != null)
-												tabPage.PrintOutput(excelOutput, pasteAsImage);
-										}
-									}
+									PublicationDetailedGridControl tabPage = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(item.Value)).FirstOrDefault();
+									if (tabPage != null)
+										tabPage.PrintOutput();
 								}
-								formProgress.Close();
-							});
+							}
 						}
-					}
+						formProgress.Close();
+					});
 				}
 			}
 		}
@@ -1024,67 +1011,51 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					if (result == DialogResult.Cancel)
 						return;
 				}
-				using (var formGridType = new FormSelectOutput(OutputType.Email))
+				using (var formProgress = new FormProgress())
 				{
-					formGridType.buttonXGrid.Enabled = SelectedColumnsCount >= 4 && SelectedColumnsCount <= 6 && Directory.Exists(BusinessWrapper.Instance.OutputManager.DetailedGridGridBasedTemlatesFolderPath);
-					DialogResult gridTypeResult = formGridType.ShowDialog();
-					if (gridTypeResult != DialogResult.Cancel)
+					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
+					formProgress.TopMost = true;
+					formProgress.Show();
+					string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+					if (result == DialogResult.Yes)
 					{
-						bool pasteAsImage = gridTypeResult == DialogResult.Ignore;
-						bool excelOutput = gridTypeResult == DialogResult.No || gridTypeResult == DialogResult.Ignore;
-						using (var formProgress = new FormProgress())
+						var outputControl = xtraTabControlPublications.TabPages[xtraTabControlPublications.SelectedTabPageIndex] as PublicationDetailedGridControl;
+						if (outputControl != null)
 						{
-							formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
-							formProgress.TopMost = true;
-							formProgress.Show();
-							string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
-							if (result == DialogResult.Yes)
-							{
-								var outputControl = xtraTabControlPublications.TabPages[xtraTabControlPublications.SelectedTabPageIndex] as PublicationDetailedGridControl;
-								if (outputControl != null)
-								{
-									outputControl.PrepareOutput(excelOutput);
-									if (excelOutput)
-										AdSchedulePowerPointHelper.Instance.PrepareDetailedGridExcelBasedEmail(tempFileName, new[] { outputControl }, pasteAsImage);
-									else
-										AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, new[] { outputControl });
-								}
-							}
-							else if (result == DialogResult.No)
-							{
-								var emailPages = new List<PublicationDetailedGridControl>();
-								foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
-								{
-									if (item.CheckState == CheckState.Checked)
-									{
-										PublicationDetailedGridControl tabPage = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(item.Value)).FirstOrDefault();
-										if (tabPage != null)
-										{
-											tabPage.PrepareOutput(excelOutput);
-											emailPages.Add(tabPage);
-										}
-									}
-								}
-								if (excelOutput)
-									AdSchedulePowerPointHelper.Instance.PrepareDetailedGridExcelBasedEmail(tempFileName, emailPages.ToArray(), pasteAsImage);
-								else
-									AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, emailPages.ToArray());
-							}
-							Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-							formProgress.Close();
-							if (File.Exists(tempFileName))
-								using (var formEmail = new FormEmail())
-								{
-									formEmail.Text = "Email this Detailed Advertising Grid";
-									formEmail.PresentationFile = tempFileName;
-									RegistryHelper.MainFormHandle = formEmail.Handle;
-									RegistryHelper.MaximizeMainForm = false;
-									formEmail.ShowDialog();
-									RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-									RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-								}
+							outputControl.PrepareOutput();
+							AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, new[] { outputControl });
 						}
 					}
+					else if (result == DialogResult.No)
+					{
+						var emailPages = new List<PublicationDetailedGridControl>();
+						foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
+						{
+							if (item.CheckState == CheckState.Checked)
+							{
+								PublicationDetailedGridControl tabPage = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(item.Value)).FirstOrDefault();
+								if (tabPage != null)
+								{
+									tabPage.PrepareOutput();
+									emailPages.Add(tabPage);
+								}
+							}
+						}
+						AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, emailPages.ToArray());
+					}
+					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+					formProgress.Close();
+					if (File.Exists(tempFileName))
+						using (var formEmail = new FormEmail())
+						{
+							formEmail.Text = "Email this Detailed Advertising Grid";
+							formEmail.PresentationFile = tempFileName;
+							RegistryHelper.MainFormHandle = formEmail.Handle;
+							RegistryHelper.MaximizeMainForm = false;
+							formEmail.ShowDialog();
+							RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+							RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+						}
 				}
 			}
 		}
@@ -1112,73 +1083,57 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					if (result == DialogResult.Cancel)
 						return;
 				}
-				using (var formGridType = new FormSelectOutput(OutputType.Preview))
+				using (var formProgress = new FormProgress())
 				{
-					formGridType.buttonXGrid.Enabled = SelectedColumnsCount >= 4 && SelectedColumnsCount <= 6 && Directory.Exists(BusinessWrapper.Instance.OutputManager.DetailedGridGridBasedTemlatesFolderPath);
-					DialogResult gridTypeResult = formGridType.ShowDialog();
-					if (gridTypeResult != DialogResult.Cancel)
+					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
+					formProgress.TopMost = true;
+					formProgress.Show();
+					string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+					if (result == DialogResult.Yes)
 					{
-						bool pasteAsImage = gridTypeResult == DialogResult.Ignore;
-						bool excelOutput = gridTypeResult == DialogResult.No || gridTypeResult == DialogResult.Ignore;
-						using (var formProgress = new FormProgress())
+						var outputControl = xtraTabControlPublications.TabPages[xtraTabControlPublications.SelectedTabPageIndex] as PublicationDetailedGridControl;
+						if (outputControl != null)
 						{
-							formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-							formProgress.TopMost = true;
-							formProgress.Show();
-							string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
-							if (result == DialogResult.Yes)
-							{
-								var outputControl = xtraTabControlPublications.TabPages[xtraTabControlPublications.SelectedTabPageIndex] as PublicationDetailedGridControl;
-								if (outputControl != null)
-								{
-									outputControl.PrepareOutput(excelOutput);
-									if (excelOutput)
-										AdSchedulePowerPointHelper.Instance.PrepareDetailedGridExcelBasedEmail(tempFileName, new[] { outputControl }, pasteAsImage);
-									else
-										AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, new[] { outputControl });
-								}
-							}
-							else if (result == DialogResult.No)
-							{
-								var emailPages = new List<PublicationDetailedGridControl>();
-								foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
-								{
-									if (item.CheckState == CheckState.Checked)
-									{
-										PublicationDetailedGridControl tabPage = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(item.Value)).FirstOrDefault();
-										if (tabPage != null)
-										{
-											tabPage.PrepareOutput(excelOutput);
-											emailPages.Add(tabPage);
-										}
-									}
-								}
-								if (excelOutput)
-									AdSchedulePowerPointHelper.Instance.PrepareDetailedGridExcelBasedEmail(tempFileName, emailPages.ToArray(), pasteAsImage);
-								else
-									AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, emailPages.ToArray());
-							}
-							Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-							formProgress.Close();
-							if (File.Exists(tempFileName))
-								using (var formPreview = new FormPreview())
-								{
-									formPreview.Text = "Preview Detailed Advertising Grid";
-									formPreview.PresentationFile = tempFileName;
-									RegistryHelper.MainFormHandle = formPreview.Handle;
-									RegistryHelper.MaximizeMainForm = false;
-									DialogResult previewResult = formPreview.ShowDialog();
-									RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-									RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-									if (previewResult != DialogResult.OK)
-										Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-									else
-									{
-										Utilities.Instance.ActivateMiniBar();
-									}
-								}
+							outputControl.PrepareOutput();
+							AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, new[] { outputControl });
 						}
 					}
+					else if (result == DialogResult.No)
+					{
+						var emailPages = new List<PublicationDetailedGridControl>();
+						foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
+						{
+							if (item.CheckState == CheckState.Checked)
+							{
+								PublicationDetailedGridControl tabPage = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(item.Value)).FirstOrDefault();
+								if (tabPage != null)
+								{
+									tabPage.PrepareOutput();
+									emailPages.Add(tabPage);
+								}
+							}
+						}
+						AdSchedulePowerPointHelper.Instance.PrepareDetailedGridGridBasedEmail(tempFileName, emailPages.ToArray());
+					}
+					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+					formProgress.Close();
+					if (File.Exists(tempFileName))
+						using (var formPreview = new FormPreview())
+						{
+							formPreview.Text = "Preview Detailed Advertising Grid";
+							formPreview.PresentationFile = tempFileName;
+							RegistryHelper.MainFormHandle = formPreview.Handle;
+							RegistryHelper.MaximizeMainForm = false;
+							DialogResult previewResult = formPreview.ShowDialog();
+							RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+							RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+							if (previewResult != DialogResult.OK)
+								Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+							else
+							{
+								Utilities.Instance.ActivateMiniBar();
+							}
+						}
 				}
 			}
 		}

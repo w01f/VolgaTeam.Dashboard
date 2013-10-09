@@ -101,6 +101,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		private void LoadSettings()
 		{
+			Settings.ShowGroup &= PackageRecords.Any(r => !String.IsNullOrEmpty(r.SubCategory));
+
 			OptionsButtons.Checked = Settings.ShowOptions;
 			buttonXCategory.Checked = Settings.ShowCategory;
 			buttonXGroup.Checked = Settings.ShowGroup;

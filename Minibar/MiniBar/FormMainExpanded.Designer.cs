@@ -221,11 +221,11 @@
 			this.ribbonControl.BackgroundStyle.CornerTypeBottomRight = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonControl.BackgroundStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
 			this.ribbonControl.BackgroundStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
+			this.ribbonControl.Controls.Add(this.ribbonPanelSalesDepot);
+			this.ribbonControl.Controls.Add(this.ribbonPanelPowerPoint);
 			this.ribbonControl.Controls.Add(this.ribbonPanelDashboard);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSync);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSettings);
-			this.ribbonControl.Controls.Add(this.ribbonPanelSalesDepot);
-			this.ribbonControl.Controls.Add(this.ribbonPanelPowerPoint);
 			this.ribbonControl.Controls.Add(this.ribbonPanelApps3);
 			this.ribbonControl.Controls.Add(this.ribbonPanelApps4);
 			this.ribbonControl.Controls.Add(this.ribbonPanelApps5);
@@ -296,6 +296,7 @@
 			// 
 			this.ribbonPanelDashboard.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonPanelDashboard.TabIndex = 4;
+			this.ribbonPanelDashboard.Visible = false;
 			// 
 			// ribbonBarDashboardExit
 			// 
@@ -1175,7 +1176,6 @@
 			// 
 			this.ribbonPanelSalesDepot.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonPanelSalesDepot.TabIndex = 9;
-			this.ribbonPanelSalesDepot.Visible = false;
 			// 
 			// ribbonBarSalesDepotExit
 			// 
@@ -1598,7 +1598,7 @@
 			// 
 			// comboBoxEditPowerPointStyle
 			// 
-			this.comboBoxEditPowerPointStyle.Location = new System.Drawing.Point(6, 4);
+			this.comboBoxEditPowerPointStyle.Location = new System.Drawing.Point(6, 3);
 			this.comboBoxEditPowerPointStyle.Name = "comboBoxEditPowerPointStyle";
 			this.comboBoxEditPowerPointStyle.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -2664,7 +2664,6 @@
 			// 
 			// ribbonTabItemDashboard
 			// 
-			this.ribbonTabItemDashboard.Checked = true;
 			this.ribbonTabItemDashboard.EnableMarkup = false;
 			this.ribbonTabItemDashboard.Name = "ribbonTabItemDashboard";
 			this.ribbonTabItemDashboard.Panel = this.ribbonPanelDashboard;
@@ -2680,6 +2679,7 @@
 			// 
 			// ribbonTabItemSalesDepot
 			// 
+			this.ribbonTabItemSalesDepot.Checked = true;
 			this.ribbonTabItemSalesDepot.Name = "ribbonTabItemSalesDepot";
 			this.ribbonTabItemSalesDepot.Panel = this.ribbonPanelSalesDepot;
 			this.ribbonTabItemSalesDepot.Text = "Sales Depot";

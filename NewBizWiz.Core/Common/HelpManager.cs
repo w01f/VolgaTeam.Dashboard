@@ -21,18 +21,16 @@ namespace NewBizWiz.Core.Common
 		{
 			_helpLinks.Clear();
 			XmlNode node;
-			if (File.Exists(_contentPath))
+			if (!File.Exists(_contentPath)) return;
+			var document = new XmlDocument();
+			document.Load(_contentPath);
+			node = document.SelectSingleNode(@"/Help");
+			if (node != null)
 			{
-				var document = new XmlDocument();
-				document.Load(_contentPath);
-				node = document.SelectSingleNode(@"/Help");
-				if (node != null)
+				foreach (XmlNode childNode in node.ChildNodes)
 				{
-					foreach (XmlNode childNode in node.ChildNodes)
-					{
-						if (!_helpLinks.Keys.Contains(childNode.Name.ToLower()))
-							_helpLinks.Add(childNode.Name.ToLower(), childNode.InnerText);
-					}
+					if (!_helpLinks.Keys.Contains(childNode.Name.ToLower()))
+						_helpLinks.Add(childNode.Name.ToLower(), childNode.InnerText);
 				}
 			}
 		}

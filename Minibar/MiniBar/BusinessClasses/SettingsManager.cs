@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.MiniBar.BusinessClasses
 {
@@ -119,10 +120,7 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 		public int FloaterTop { get; set; }
 		public List<string> PrimaryApplications { get; set; }
 		public bool QuickRetraction { get; set; }
-		public bool SalesDepotBrowserChrome { get; set; }
-		public bool SalesDepotBrowserFirefox { get; set; }
-		public bool SalesDepotBrowserOpera { get; set; }
-		public bool SalesDepotBrowserIE { get; set; }
+		public BrowserType SalesDepotBrowser { get; set; }
 		public string SelectedSlideGroup { get; set; }
 		public string SelectedSlideMaster { get; set; }
 		#endregion
@@ -163,9 +161,7 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 		{
 			try
 			{
-				string localSettingsFolder = string.Format(@"{0}\newlocaldirect.com\xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-				if (!Directory.Exists(localSettingsFolder))
-					Directory.CreateDirectory(localSettingsFolder);
+				var localSettingsFolder = string.Format(@"{0}\newlocaldirect.com\xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 				if (!Directory.Exists(Path.Combine(localSettingsFolder, "app")))
 					Directory.CreateDirectory(Path.Combine(localSettingsFolder, "app"));
 				if (!Directory.Exists(Path.Combine(localSettingsFolder, "app_one_domain")))
@@ -176,39 +172,22 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 					Directory.CreateDirectory(Path.Combine(localSettingsFolder, "app_pro_slides"));
 				if (!Directory.Exists(Path.Combine(localSettingsFolder, "app_media_library")))
 					Directory.CreateDirectory(Path.Combine(localSettingsFolder, "app_media_library"));
-				if (!Directory.Exists(Path.Combine(localSettingsFolder, "sales depot")))
-					Directory.CreateDirectory(Path.Combine(localSettingsFolder, "sales depot"));
 				if (!Directory.Exists(Path.Combine(localSettingsFolder, "sales depot", "Settings")))
 					Directory.CreateDirectory(Path.Combine(localSettingsFolder, "sales depot", "Settings"));
 
-				string syncFolder = string.Format(@"{0}\newlocaldirect.com\sync", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-				if (!Directory.Exists(syncFolder))
-					Directory.CreateDirectory(syncFolder);
-				if (!Directory.Exists(Path.Combine(syncFolder, "Incoming")))
-					Directory.CreateDirectory(Path.Combine(syncFolder, "Incoming"));
-				if (!Directory.Exists(Path.Combine(syncFolder, "Incoming", "applications")))
-					Directory.CreateDirectory(Path.Combine(syncFolder, "Incoming", "applications"));
-				if (!Directory.Exists(Path.Combine(syncFolder, "Incoming", "gallery")))
-					Directory.CreateDirectory(Path.Combine(syncFolder, "Incoming", "gallery"));
-				if (!Directory.Exists(Path.Combine(syncFolder, "Incoming", "libraries")))
-					Directory.CreateDirectory(Path.Combine(syncFolder, "Incoming", "libraries"));
-				if (!Directory.Exists(Path.Combine(syncFolder, "Incoming", "slides")))
-					Directory.CreateDirectory(Path.Combine(syncFolder, "Incoming", "slides"));
-				if (!Directory.Exists(Path.Combine(syncFolder, "Incoming", "update")))
-					Directory.CreateDirectory(Path.Combine(syncFolder, "Incoming", "update"));
+				var syncFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+				if (!Directory.Exists(Path.Combine(syncFolder, "applications")))
+					Directory.CreateDirectory(Path.Combine(syncFolder, "applications"));
+				if (!Directory.Exists(Path.Combine(syncFolder, "gallery")))
+					Directory.CreateDirectory(Path.Combine(syncFolder, "gallery"));
+				if (!Directory.Exists(Path.Combine(syncFolder, "libraries")))
+					Directory.CreateDirectory(Path.Combine(syncFolder, "libraries"));
+				if (!Directory.Exists(Path.Combine(syncFolder, "slides")))
+					Directory.CreateDirectory(Path.Combine(syncFolder, "slides"));
+				if (!Directory.Exists(Path.Combine(syncFolder, "update")))
+					Directory.CreateDirectory(Path.Combine(syncFolder, "update"));
 			}
 			catch { }
-		}
-
-		public void DeleteStaticFolders()
-		{
-			string localSettingsFolder = string.Format(@"{0}\newlocaldirect.com\xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			foreach (DirectoryInfo xmlFolder in (new DirectoryInfo(localSettingsFolder)).GetDirectories())
-				xmlFolder.Delete(true);
-
-			string incomingFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			foreach (DirectoryInfo incomingSubFolder in (new DirectoryInfo(incomingFolder)).GetDirectories())
-				incomingSubFolder.Delete(true);
 		}
 
 		public void LoadMinibarSettings()
@@ -223,10 +202,14 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 				FloaterLeft = 0;
 				FloaterTop = 0;
 
-				SalesDepotBrowserChrome = ServiceDataManager.Instance.ChromeInstalled;
-				SalesDepotBrowserFirefox = !SalesDepotBrowserChrome && ServiceDataManager.Instance.FirefoxInstalled;
-				SalesDepotBrowserOpera = !SalesDepotBrowserChrome && !SalesDepotBrowserFirefox && ServiceDataManager.Instance.OperaInstalled;
-				SalesDepotBrowserIE = !SalesDepotBrowserChrome && !SalesDepotBrowserFirefox && !SalesDepotBrowserOpera;
+				if (Utilities.Instance.ChromeInstalled)
+					SalesDepotBrowser = BrowserType.Chrome;
+				else if (Utilities.Instance.FirefoxInstalled)
+					SalesDepotBrowser = BrowserType.Firefox;
+				if (Utilities.Instance.OperaInstalled)
+					SalesDepotBrowser = BrowserType.Opera;
+				else
+					SalesDepotBrowser = BrowserType.IE;
 
 				XmlNode node;
 				DateTime tempDateTime;
@@ -265,22 +248,10 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 					if (node != null)
 						if (int.TryParse(node.InnerText, out tempInt))
 							FloaterTop = tempInt;
-					node = document.SelectSingleNode(@"/MinibarSettings/SalesDepotBrowserChrome");
+					node = document.SelectSingleNode(@"/MinibarSettings/SalesDepotBrowser");
 					if (node != null)
-						if (bool.TryParse(node.InnerText, out tempBool))
-							SalesDepotBrowserChrome = tempBool && ServiceDataManager.Instance.ChromeInstalled;
-					node = document.SelectSingleNode(@"/MinibarSettings/SalesDepotBrowserFirefox");
-					if (node != null)
-						if (bool.TryParse(node.InnerText, out tempBool))
-							SalesDepotBrowserFirefox = tempBool && ServiceDataManager.Instance.FirefoxInstalled;
-					node = document.SelectSingleNode(@"/MinibarSettings/SalesDepotBrowserOpera");
-					if (node != null)
-						if (bool.TryParse(node.InnerText, out tempBool))
-							SalesDepotBrowserOpera = tempBool && ServiceDataManager.Instance.OperaInstalled;
-					node = document.SelectSingleNode(@"/MinibarSettings/SalesDepotBrowserIE");
-					if (node != null)
-						if (bool.TryParse(node.InnerText, out tempBool))
-							SalesDepotBrowserIE = tempBool;
+						if (Int32.TryParse(node.InnerText, out tempInt))
+							SalesDepotBrowser = (BrowserType)tempInt;
 					node = document.SelectSingleNode(@"/MinibarSettings/SelectedSlideGroup");
 					if (node != null)
 						SelectedSlideGroup = node.InnerText;
@@ -289,8 +260,8 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 						SelectedSlideMaster = node.InnerText;
 				}
 
-				if (!SalesDepotBrowserIE)
-					SalesDepotBrowserIE = !SalesDepotBrowserChrome && !SalesDepotBrowserFirefox && !SalesDepotBrowserOpera;
+				if (SalesDepotBrowser != BrowserType.IE && SalesDepotBrowser != BrowserType.Chrome && SalesDepotBrowser != BrowserType.Firefox && SalesDepotBrowser != BrowserType.Opera)
+					SalesDepotBrowser = BrowserType.IE;
 
 				if (File.Exists(Path.Combine(SyncSettingsFolderPath, SyncSettingsFileName)))
 				{
@@ -310,8 +281,6 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 
 		public void LoadMinibarApplicationSettings()
 		{
-			if (AppManager.Locker == null)
-				AppManager.Locker = new object();
 			lock (AppManager.Locker)
 			{
 				AutoRunNormal = true;
@@ -417,10 +386,7 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 			xml.AppendLine(@"<FloaterTop>" + FloaterTop + @"</FloaterTop>");
 			xml.AppendLine(@"<FloaterLeft>" + FloaterLeft + @"</FloaterLeft>");
 			xml.AppendLine(@"<QuickRetraction>" + QuickRetraction + @"</QuickRetraction>");
-			xml.AppendLine(@"<SalesDepotBrowserChrome>" + SalesDepotBrowserChrome + @"</SalesDepotBrowserChrome>");
-			xml.AppendLine(@"<SalesDepotBrowserFirefox>" + SalesDepotBrowserFirefox + @"</SalesDepotBrowserFirefox>");
-			xml.AppendLine(@"<SalesDepotBrowserOpera>" + SalesDepotBrowserOpera + @"</SalesDepotBrowserOpera>");
-			xml.AppendLine(@"<SalesDepotBrowserIE>" + SalesDepotBrowserIE + @"</SalesDepotBrowserIE>");
+			xml.AppendLine(@"<SalesDepotBrowser>" + (int)SalesDepotBrowser + @"</SalesDepotBrowser>");
 			if (!String.IsNullOrEmpty(SelectedSlideGroup))
 				xml.AppendLine(@"<SelectedSlideGroup>" + SelectedSlideGroup.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedSlideGroup>");
 			if (!String.IsNullOrEmpty(SelectedSlideMaster))
@@ -472,28 +438,26 @@ namespace NewBizWiz.MiniBar.BusinessClasses
 			MeetingIDs = new List<string>();
 
 			XmlNode node;
-			if (File.Exists(_webcastSettingsFile))
+			if (!File.Exists(_webcastSettingsFile)) return;
+			var document = new XmlDocument();
+			try
 			{
-				var document = new XmlDocument();
-				try
-				{
-					document.Load(_webcastSettingsFile);
-				}
-				catch { }
-				node = document.SelectSingleNode(@"/Webcast");
-				if (node != null)
-				{
-					foreach (XmlNode childNode in node.ChildNodes)
-						switch (childNode.Name)
-						{
-							case "Location":
-								Location = childNode.InnerText;
-								break;
-							case "MeetingID":
-								MeetingIDs.Add(childNode.InnerText);
-								break;
-						}
-				}
+				document.Load(_webcastSettingsFile);
+			}
+			catch { }
+			node = document.SelectSingleNode(@"/Webcast");
+			if (node != null)
+			{
+				foreach (XmlNode childNode in node.ChildNodes)
+					switch (childNode.Name)
+					{
+						case "Location":
+							Location = childNode.InnerText;
+							break;
+						case "MeetingID":
+							MeetingIDs.Add(childNode.InnerText);
+							break;
+					}
 			}
 		}
 	}

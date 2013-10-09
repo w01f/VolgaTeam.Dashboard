@@ -100,47 +100,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 
 		public void PrepareWebPackageEmail(WebPackageControl digitalPackage, string fileName)
 		{
-			try
-			{
-				SavePrevSlideIndex();
-				var presentations = _powerPointObject.Presentations;
-				var presentation = presentations.Add(MsoTriState.msoFalse);
-				presentation.PageSetup.SlideWidth = (float)Core.Common.SettingsManager.Instance.SizeWidth * 72;
-				presentation.PageSetup.SlideHeight = (float)Core.Common.SettingsManager.Instance.SizeHeght * 72;
-				switch (Core.Common.SettingsManager.Instance.Orientation)
-				{
-					case "Landscape":
-						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
-						break;
-					case "Portrait":
-						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
-						break;
-				}
-				Core.Common.Utilities.Instance.ReleaseComObject(presentations);
-				AppendWebPackage(digitalPackage, presentation);
-				MessageFilter.Register();
-				var thread = new Thread(delegate()
-				{
-					presentation.SaveAs(FileName: fileName);
-					string destinationFolder = fileName.Replace(Path.GetExtension(fileName), string.Empty);
-					if (!Directory.Exists(destinationFolder))
-						Directory.CreateDirectory(destinationFolder);
-					presentation.Export(Path: destinationFolder, FilterName: "PNG");
-					presentation.Close();
-				});
-				thread.Start();
-
-				while (thread.IsAlive)
-					System.Windows.Forms.Application.DoEvents();
-
-				Core.Common.Utilities.Instance.ReleaseComObject(presentation);
-				RestorePrevSlideIndex();
-			}
-			catch { }
-			finally
-			{
-				MessageFilter.Revoke();
-			}
+			PreparePresentation(fileName, presentation => AppendWebPackage(digitalPackage, presentation));
 		}
 	}
 }

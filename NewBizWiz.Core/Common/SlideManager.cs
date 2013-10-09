@@ -13,7 +13,7 @@ namespace NewBizWiz.Core.Common
 		public SlideManager(string rootPath)
 		{
 			Slides = new List<SlideMaster>();
-
+			if (!Directory.Exists(rootPath)) return;
 			foreach (var sizeFolder in Directory.GetDirectories(rootPath))
 			{
 				double width = 0;
@@ -70,6 +70,7 @@ namespace NewBizWiz.Core.Common
 			if (Int32.TryParse(Path.GetFileName(rootPath), out tempInt))
 				Order = tempInt;
 			var logoPath = Directory.GetFiles(rootPath, "*.png").FirstOrDefault(f => !f.Contains("_rbn"));
+			if (logoPath != null)
 			{
 				Logo = new Bitmap(logoPath);
 				BrowseLogo = Logo.GetThumbnailImage((Logo.Width * 144) / Logo.Height, 144, null, IntPtr.Zero);

@@ -31,6 +31,7 @@ namespace NewBizWiz.Dashboard.ToolForms
 		public void EnableOutputButton(bool enable)
 		{
 			FormMain.Instance.buttonItemPowerPoint.Enabled = enable;
+			FormMain.Instance.buttonItemPreview.Enabled = enable;
 			buttonXOutput.Enabled = enable;
 		}
 

@@ -326,6 +326,13 @@ namespace NewBizWiz.Dashboard.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Preview {
+            get {
+                object obj = ResourceManager.GetObject("Preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap RadioLittle {
             get {
                 object obj = ResourceManager.GetObject("RadioLittle", resourceCulture);

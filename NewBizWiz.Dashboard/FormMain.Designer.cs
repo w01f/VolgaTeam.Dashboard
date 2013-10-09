@@ -44,6 +44,8 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarPowerPoint = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemPowerPoint = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemHomeTheme = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarPreview = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemPreview = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeSlides = new DevComponents.DotNetBar.RibbonBar();
 			this.itemContainerHomeSlides1 = new DevComponents.DotNetBar.ItemContainer();
 			this.buttonItemHomeCover = new DevComponents.DotNetBar.ButtonItem();
@@ -63,6 +65,8 @@ namespace NewBizWiz.Dashboard
 			this.buttonItemSlidesHelp = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesPowerPoint = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemSlidesPowerPoint = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarSlidesPreview = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemSlidesPreview = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesLogo = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemSlidesLogo = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonPanelCalendar = new DevComponents.DotNetBar.RibbonPanel();
@@ -82,23 +86,6 @@ namespace NewBizWiz.Dashboard
 			this.buttonItemCalendarBuilder = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarCalendarLogo = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemCalendarLogo = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonPanelRadio = new DevComponents.DotNetBar.RibbonPanel();
-			this.ribbonBarRadioExit = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemRadioExit = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarRadioFloater = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemRadioFloater = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarRadioHelp = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemRadioHelp = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarRadioDelete = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemRadioDelete = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarRadioOpen = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemRadioOpen = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarRadioNew = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemRadioNew = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarRadioScheduleBuilder = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemRadioScheduleBuilder = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarRadioLogo = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemRadioLogo = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonPanelOnline = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarOnlineExit = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemOnlineExit = new DevComponents.DotNetBar.ButtonItem();
@@ -116,6 +103,23 @@ namespace NewBizWiz.Dashboard
 			this.buttonItemOnlineScheduleBuilder = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarOnlineLogo = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemOnlineLogo = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonPanelRadio = new DevComponents.DotNetBar.RibbonPanel();
+			this.ribbonBarRadioExit = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioExit = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarRadioFloater = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioFloater = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarRadioHelp = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioHelp = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarRadioDelete = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioDelete = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarRadioOpen = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioOpen = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarRadioNew = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioNew = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarRadioScheduleBuilder = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioScheduleBuilder = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarRadioLogo = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioLogo = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonPanelTV = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarTVExit = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemTVExit = new DevComponents.DotNetBar.ButtonItem();
@@ -165,8 +169,8 @@ namespace NewBizWiz.Dashboard
 			this.ribbonPanelHome.SuspendLayout();
 			this.ribbonPanelSlides.SuspendLayout();
 			this.ribbonPanelCalendar.SuspendLayout();
-			this.ribbonPanelRadio.SuspendLayout();
 			this.ribbonPanelOnline.SuspendLayout();
+			this.ribbonPanelRadio.SuspendLayout();
 			this.ribbonPanelTV.SuspendLayout();
 			this.ribbonPanelNewspaper.SuspendLayout();
 			this.panelExMain.SuspendLayout();
@@ -192,8 +196,8 @@ namespace NewBizWiz.Dashboard
 			this.ribbonControl.Controls.Add(this.ribbonPanelHome);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSlides);
 			this.ribbonControl.Controls.Add(this.ribbonPanelCalendar);
-			this.ribbonControl.Controls.Add(this.ribbonPanelRadio);
 			this.ribbonControl.Controls.Add(this.ribbonPanelOnline);
+			this.ribbonControl.Controls.Add(this.ribbonPanelRadio);
 			this.ribbonControl.Controls.Add(this.ribbonPanelTV);
 			this.ribbonControl.Controls.Add(this.ribbonPanelNewspaper);
 			this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
@@ -239,6 +243,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeFloater);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeHelp);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarPowerPoint);
+			this.ribbonPanelHome.Controls.Add(this.ribbonBarPreview);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeSlides);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeOverview);
 			this.ribbonPanelHome.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -278,7 +283,7 @@ namespace NewBizWiz.Dashboard
             this.buttonItemHomeExit});
 			this.ribbonBarHomeExit.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
 			this.ribbonBarHomeExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeExit.Location = new System.Drawing.Point(630, 0);
+			this.ribbonBarHomeExit.Location = new System.Drawing.Point(717, 0);
 			this.ribbonBarHomeExit.Name = "ribbonBarHomeExit";
 			this.ribbonBarHomeExit.Size = new System.Drawing.Size(85, 129);
 			this.ribbonBarHomeExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -319,7 +324,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeFloater.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeFloater});
 			this.ribbonBarHomeFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeFloater.Location = new System.Drawing.Point(542, 0);
+			this.ribbonBarHomeFloater.Location = new System.Drawing.Point(629, 0);
 			this.ribbonBarHomeFloater.Name = "ribbonBarHomeFloater";
 			this.ribbonBarHomeFloater.Size = new System.Drawing.Size(88, 129);
 			this.ribbonBarHomeFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -358,7 +363,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeHelp});
 			this.ribbonBarHomeHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeHelp.Location = new System.Drawing.Point(466, 0);
+			this.ribbonBarHomeHelp.Location = new System.Drawing.Point(553, 0);
 			this.ribbonBarHomeHelp.Name = "ribbonBarHomeHelp";
 			this.ribbonBarHomeHelp.Size = new System.Drawing.Size(76, 129);
 			this.ribbonBarHomeHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -399,7 +404,7 @@ namespace NewBizWiz.Dashboard
             this.buttonItemPowerPoint,
             this.buttonItemHomeTheme});
 			this.ribbonBarPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarPowerPoint.Location = new System.Drawing.Point(331, 0);
+			this.ribbonBarPowerPoint.Location = new System.Drawing.Point(418, 0);
 			this.ribbonBarPowerPoint.Name = "ribbonBarPowerPoint";
 			this.ribbonBarPowerPoint.Size = new System.Drawing.Size(135, 129);
 			this.ribbonBarPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -428,6 +433,45 @@ namespace NewBizWiz.Dashboard
 			this.buttonItemHomeTheme.SubItemsExpandWidth = 14;
 			this.buttonItemHomeTheme.Text = "Theme:\r\nDefault";
 			this.buttonItemHomeTheme.Click += new System.EventHandler(this.buttonItemHomeTheme_Click);
+			// 
+			// ribbonBarPreview
+			// 
+			this.ribbonBarPreview.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarPreview.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarPreview.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarPreview.ContainerControlProcessDialogKey = true;
+			this.ribbonBarPreview.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarPreview.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemPreview});
+			this.ribbonBarPreview.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarPreview.Location = new System.Drawing.Point(331, 0);
+			this.ribbonBarPreview.Name = "ribbonBarPreview";
+			this.ribbonBarPreview.Size = new System.Drawing.Size(87, 129);
+			this.ribbonBarPreview.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarPreview.TabIndex = 23;
+			this.ribbonBarPreview.Text = "Preview";
+			// 
+			// 
+			// 
+			this.ribbonBarPreview.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarPreview.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemPreview
+			// 
+			this.buttonItemPreview.Image = global::NewBizWiz.Dashboard.Properties.Resources.Preview;
+			this.buttonItemPreview.Name = "buttonItemPreview";
+			this.buttonItemPreview.SubItemsExpandWidth = 14;
+			this.buttonItemPreview.Text = "buttonItem1";
+			this.buttonItemPreview.Click += new System.EventHandler(this.buttonItemPreview_Click);
 			// 
 			// ribbonBarHomeSlides
 			// 
@@ -583,6 +627,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesFloater);
 			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesHelp);
 			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesPowerPoint);
+			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesPreview);
 			this.ribbonPanelSlides.Controls.Add(this.ribbonBarSlidesLogo);
 			this.ribbonPanelSlides.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.ribbonPanelSlides.Location = new System.Drawing.Point(0, 26);
@@ -622,7 +667,7 @@ namespace NewBizWiz.Dashboard
             this.buttonItemSlidesExit});
 			this.ribbonBarSlidesExit.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
 			this.ribbonBarSlidesExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesExit.Location = new System.Drawing.Point(464, 0);
+			this.ribbonBarSlidesExit.Location = new System.Drawing.Point(558, 0);
 			this.ribbonBarSlidesExit.Name = "ribbonBarSlidesExit";
 			this.ribbonBarSlidesExit.Size = new System.Drawing.Size(85, 129);
 			this.ribbonBarSlidesExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -663,7 +708,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarSlidesFloater.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemSlidesFloater});
 			this.ribbonBarSlidesFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesFloater.Location = new System.Drawing.Point(376, 0);
+			this.ribbonBarSlidesFloater.Location = new System.Drawing.Point(470, 0);
 			this.ribbonBarSlidesFloater.Name = "ribbonBarSlidesFloater";
 			this.ribbonBarSlidesFloater.Size = new System.Drawing.Size(88, 129);
 			this.ribbonBarSlidesFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -702,7 +747,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarSlidesHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemSlidesHelp});
 			this.ribbonBarSlidesHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesHelp.Location = new System.Drawing.Point(292, 0);
+			this.ribbonBarSlidesHelp.Location = new System.Drawing.Point(386, 0);
 			this.ribbonBarSlidesHelp.Name = "ribbonBarSlidesHelp";
 			this.ribbonBarSlidesHelp.Size = new System.Drawing.Size(84, 129);
 			this.ribbonBarSlidesHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -742,7 +787,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarSlidesPowerPoint.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemSlidesPowerPoint});
 			this.ribbonBarSlidesPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarSlidesPowerPoint.Location = new System.Drawing.Point(204, 0);
+			this.ribbonBarSlidesPowerPoint.Location = new System.Drawing.Point(298, 0);
 			this.ribbonBarSlidesPowerPoint.Name = "ribbonBarSlidesPowerPoint";
 			this.ribbonBarSlidesPowerPoint.Size = new System.Drawing.Size(88, 129);
 			this.ribbonBarSlidesPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -763,6 +808,44 @@ namespace NewBizWiz.Dashboard
 			this.buttonItemSlidesPowerPoint.Name = "buttonItemSlidesPowerPoint";
 			this.buttonItemSlidesPowerPoint.SubItemsExpandWidth = 14;
 			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to PowerPoiint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			// 
+			// ribbonBarSlidesPreview
+			// 
+			this.ribbonBarSlidesPreview.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesPreview.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesPreview.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarSlidesPreview.ContainerControlProcessDialogKey = true;
+			this.ribbonBarSlidesPreview.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarSlidesPreview.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemSlidesPreview});
+			this.ribbonBarSlidesPreview.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarSlidesPreview.Location = new System.Drawing.Point(204, 0);
+			this.ribbonBarSlidesPreview.Name = "ribbonBarSlidesPreview";
+			this.ribbonBarSlidesPreview.Size = new System.Drawing.Size(94, 129);
+			this.ribbonBarSlidesPreview.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarSlidesPreview.TabIndex = 28;
+			this.ribbonBarSlidesPreview.Text = "Preview";
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesPreview.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarSlidesPreview.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemSlidesPreview
+			// 
+			this.buttonItemSlidesPreview.Image = global::NewBizWiz.Dashboard.Properties.Resources.Preview;
+			this.buttonItemSlidesPreview.Name = "buttonItemSlidesPreview";
+			this.buttonItemSlidesPreview.SubItemsExpandWidth = 14;
+			this.buttonItemSlidesPreview.Text = "buttonItem1";
 			// 
 			// ribbonBarSlidesLogo
 			// 
@@ -1157,359 +1240,6 @@ namespace NewBizWiz.Dashboard
 			this.buttonItemCalendarLogo.SubItemsExpandWidth = 14;
 			this.buttonItemCalendarLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
 			// 
-			// ribbonPanelRadio
-			// 
-			this.ribbonPanelRadio.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioExit);
-			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioFloater);
-			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioHelp);
-			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioDelete);
-			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioOpen);
-			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioNew);
-			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioScheduleBuilder);
-			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioLogo);
-			this.ribbonPanelRadio.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelRadio.Location = new System.Drawing.Point(0, 26);
-			this.ribbonPanelRadio.Name = "ribbonPanelRadio";
-			this.ribbonPanelRadio.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelRadio.Size = new System.Drawing.Size(919, 132);
-			// 
-			// 
-			// 
-			this.ribbonPanelRadio.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelRadio.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonPanelRadio.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonPanelRadio.TabIndex = 18;
-			this.ribbonPanelRadio.Visible = false;
-			// 
-			// ribbonBarRadioExit
-			// 
-			this.ribbonBarRadioExit.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioExit.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioExit.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarRadioExit.ContainerControlProcessDialogKey = true;
-			this.ribbonBarRadioExit.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarRadioExit.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
-			this.ribbonBarRadioExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemRadioExit});
-			this.ribbonBarRadioExit.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-			this.ribbonBarRadioExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarRadioExit.Location = new System.Drawing.Point(738, 0);
-			this.ribbonBarRadioExit.Name = "ribbonBarRadioExit";
-			this.ribbonBarRadioExit.Size = new System.Drawing.Size(94, 129);
-			this.ribbonBarRadioExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarRadioExit.TabIndex = 18;
-			this.ribbonBarRadioExit.Text = "EXIT";
-			// 
-			// 
-			// 
-			this.ribbonBarRadioExit.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioExit.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarRadioExit.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-			this.ribbonBarRadioExit.Click += new System.EventHandler(this.Outside_Click);
-			// 
-			// buttonItemRadioExit
-			// 
-			this.buttonItemRadioExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
-			this.buttonItemRadioExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemRadioExit.Name = "buttonItemRadioExit";
-			this.buttonItemRadioExit.SubItemsExpandWidth = 14;
-			this.buttonItemRadioExit.Click += new System.EventHandler(this.buttonItemExit_Click);
-			// 
-			// ribbonBarRadioFloater
-			// 
-			this.ribbonBarRadioFloater.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioFloater.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioFloater.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarRadioFloater.ContainerControlProcessDialogKey = true;
-			this.ribbonBarRadioFloater.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarRadioFloater.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemRadioFloater});
-			this.ribbonBarRadioFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarRadioFloater.Location = new System.Drawing.Point(650, 0);
-			this.ribbonBarRadioFloater.Name = "ribbonBarRadioFloater";
-			this.ribbonBarRadioFloater.Size = new System.Drawing.Size(88, 129);
-			this.ribbonBarRadioFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarRadioFloater.TabIndex = 30;
-			this.ribbonBarRadioFloater.Text = "Floater";
-			// 
-			// 
-			// 
-			this.ribbonBarRadioFloater.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioFloater.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemRadioFloater
-			// 
-			this.buttonItemRadioFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
-			this.buttonItemRadioFloater.Name = "buttonItemRadioFloater";
-			this.buttonItemRadioFloater.SubItemsExpandWidth = 14;
-			this.buttonItemRadioFloater.Text = "Floater";
-			this.buttonItemRadioFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
-			// 
-			// ribbonBarRadioHelp
-			// 
-			this.ribbonBarRadioHelp.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioHelp.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioHelp.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarRadioHelp.ContainerControlProcessDialogKey = true;
-			this.ribbonBarRadioHelp.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarRadioHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemRadioHelp});
-			this.ribbonBarRadioHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarRadioHelp.Location = new System.Drawing.Point(566, 0);
-			this.ribbonBarRadioHelp.Name = "ribbonBarRadioHelp";
-			this.ribbonBarRadioHelp.Size = new System.Drawing.Size(84, 129);
-			this.ribbonBarRadioHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarRadioHelp.TabIndex = 24;
-			this.ribbonBarRadioHelp.Text = "HELP";
-			// 
-			// 
-			// 
-			this.ribbonBarRadioHelp.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioHelp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemRadioHelp
-			// 
-			this.buttonItemRadioHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
-			this.buttonItemRadioHelp.Name = "buttonItemRadioHelp";
-			this.buttonItemRadioHelp.SubItemsExpandWidth = 14;
-			this.buttonItemRadioHelp.Text = "buttonItem1";
-			this.buttonItemRadioHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
-			// 
-			// ribbonBarRadioDelete
-			// 
-			this.ribbonBarRadioDelete.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioDelete.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioDelete.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarRadioDelete.ContainerControlProcessDialogKey = true;
-			this.ribbonBarRadioDelete.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarRadioDelete.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemRadioDelete});
-			this.ribbonBarRadioDelete.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarRadioDelete.Location = new System.Drawing.Point(482, 0);
-			this.ribbonBarRadioDelete.Name = "ribbonBarRadioDelete";
-			this.ribbonBarRadioDelete.Size = new System.Drawing.Size(84, 129);
-			this.ribbonBarRadioDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarRadioDelete.TabIndex = 29;
-			this.ribbonBarRadioDelete.Text = "Delete";
-			// 
-			// 
-			// 
-			this.ribbonBarRadioDelete.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioDelete.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemRadioDelete
-			// 
-			this.buttonItemRadioDelete.Enabled = false;
-			this.buttonItemRadioDelete.Image = global::NewBizWiz.Dashboard.Properties.Resources.DeleteSchedule;
-			this.buttonItemRadioDelete.Name = "buttonItemRadioDelete";
-			this.buttonItemRadioDelete.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemRadioDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete TV Schedule", "", "Delete the selected TV Schedule Below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// ribbonBarRadioOpen
-			// 
-			this.ribbonBarRadioOpen.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioOpen.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioOpen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarRadioOpen.ContainerControlProcessDialogKey = true;
-			this.ribbonBarRadioOpen.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarRadioOpen.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemRadioOpen});
-			this.ribbonBarRadioOpen.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarRadioOpen.Location = new System.Drawing.Point(398, 0);
-			this.ribbonBarRadioOpen.Name = "ribbonBarRadioOpen";
-			this.ribbonBarRadioOpen.Size = new System.Drawing.Size(84, 129);
-			this.ribbonBarRadioOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarRadioOpen.TabIndex = 28;
-			this.ribbonBarRadioOpen.Text = "Open";
-			// 
-			// 
-			// 
-			this.ribbonBarRadioOpen.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioOpen.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemRadioOpen
-			// 
-			this.buttonItemRadioOpen.Enabled = false;
-			this.buttonItemRadioOpen.Image = global::NewBizWiz.Dashboard.Properties.Resources.OpenSchedule;
-			this.buttonItemRadioOpen.Name = "buttonItemRadioOpen";
-			this.buttonItemRadioOpen.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemRadioOpen, new DevComponents.DotNetBar.SuperTooltipInfo("Open TV Schedule", "", "Open a TV Schedule you already built", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// ribbonBarRadioNew
-			// 
-			this.ribbonBarRadioNew.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioNew.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioNew.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarRadioNew.ContainerControlProcessDialogKey = true;
-			this.ribbonBarRadioNew.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarRadioNew.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemRadioNew});
-			this.ribbonBarRadioNew.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarRadioNew.Location = new System.Drawing.Point(314, 0);
-			this.ribbonBarRadioNew.Name = "ribbonBarRadioNew";
-			this.ribbonBarRadioNew.Size = new System.Drawing.Size(84, 129);
-			this.ribbonBarRadioNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarRadioNew.TabIndex = 27;
-			this.ribbonBarRadioNew.Text = "New";
-			// 
-			// 
-			// 
-			this.ribbonBarRadioNew.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioNew.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemRadioNew
-			// 
-			this.buttonItemRadioNew.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewSchedule;
-			this.buttonItemRadioNew.Name = "buttonItemRadioNew";
-			this.buttonItemRadioNew.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemRadioNew, new DevComponents.DotNetBar.SuperTooltipInfo("New TV Schedule", "", "Build a Quick TV Schedule for your client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
-			// 
-			// ribbonBarRadioScheduleBuilder
-			// 
-			this.ribbonBarRadioScheduleBuilder.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioScheduleBuilder.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioScheduleBuilder.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarRadioScheduleBuilder.ContainerControlProcessDialogKey = true;
-			this.ribbonBarRadioScheduleBuilder.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarRadioScheduleBuilder.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
-			this.ribbonBarRadioScheduleBuilder.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemRadioScheduleBuilder});
-			this.ribbonBarRadioScheduleBuilder.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarRadioScheduleBuilder.Location = new System.Drawing.Point(204, 0);
-			this.ribbonBarRadioScheduleBuilder.Name = "ribbonBarRadioScheduleBuilder";
-			this.ribbonBarRadioScheduleBuilder.Size = new System.Drawing.Size(110, 129);
-			this.ribbonBarRadioScheduleBuilder.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarRadioScheduleBuilder.TabIndex = 17;
-			this.ribbonBarRadioScheduleBuilder.Text = "Schedule Builder";
-			// 
-			// 
-			// 
-			this.ribbonBarRadioScheduleBuilder.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioScheduleBuilder.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarRadioScheduleBuilder.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-			this.ribbonBarRadioScheduleBuilder.Click += new System.EventHandler(this.Outside_Click);
-			// 
-			// buttonItemRadioScheduleBuilder
-			// 
-			this.buttonItemRadioScheduleBuilder.Checked = true;
-			this.buttonItemRadioScheduleBuilder.FixedSize = new System.Drawing.Size(100, 64);
-			this.buttonItemRadioScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.RadioLittle;
-			this.buttonItemRadioScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemRadioScheduleBuilder.Name = "buttonItemRadioScheduleBuilder";
-			this.buttonItemRadioScheduleBuilder.SubItemsExpandWidth = 14;
-			// 
-			// ribbonBarRadioLogo
-			// 
-			this.ribbonBarRadioLogo.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioLogo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioLogo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarRadioLogo.ContainerControlProcessDialogKey = true;
-			this.ribbonBarRadioLogo.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarRadioLogo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemRadioLogo});
-			this.ribbonBarRadioLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarRadioLogo.Location = new System.Drawing.Point(3, 0);
-			this.ribbonBarRadioLogo.Name = "ribbonBarRadioLogo";
-			this.ribbonBarRadioLogo.Size = new System.Drawing.Size(201, 129);
-			this.ribbonBarRadioLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.ribbonBarRadioLogo.TabIndex = 16;
-			this.ribbonBarRadioLogo.Text = "GO GET YOUR BIZ!";
-			// 
-			// 
-			// 
-			this.ribbonBarRadioLogo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarRadioLogo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarRadioLogo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-			this.ribbonBarRadioLogo.Click += new System.EventHandler(this.Outside_Click);
-			// 
-			// buttonItemRadioLogo
-			// 
-			this.buttonItemRadioLogo.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
-			this.buttonItemRadioLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
-			this.buttonItemRadioLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemRadioLogo.Name = "buttonItemRadioLogo";
-			this.buttonItemRadioLogo.SubItemsExpandWidth = 14;
-			this.buttonItemRadioLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
-			// 
 			// ribbonPanelOnline
 			// 
 			this.ribbonPanelOnline.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1866,6 +1596,359 @@ namespace NewBizWiz.Dashboard
 			this.buttonItemOnlineLogo.Name = "buttonItemOnlineLogo";
 			this.buttonItemOnlineLogo.SubItemsExpandWidth = 14;
 			this.buttonItemOnlineLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
+			// 
+			// ribbonPanelRadio
+			// 
+			this.ribbonPanelRadio.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioExit);
+			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioFloater);
+			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioHelp);
+			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioDelete);
+			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioOpen);
+			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioNew);
+			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioScheduleBuilder);
+			this.ribbonPanelRadio.Controls.Add(this.ribbonBarRadioLogo);
+			this.ribbonPanelRadio.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ribbonPanelRadio.Location = new System.Drawing.Point(0, 26);
+			this.ribbonPanelRadio.Name = "ribbonPanelRadio";
+			this.ribbonPanelRadio.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+			this.ribbonPanelRadio.Size = new System.Drawing.Size(919, 132);
+			// 
+			// 
+			// 
+			this.ribbonPanelRadio.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanelRadio.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonPanelRadio.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonPanelRadio.TabIndex = 18;
+			this.ribbonPanelRadio.Visible = false;
+			// 
+			// ribbonBarRadioExit
+			// 
+			this.ribbonBarRadioExit.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioExit.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioExit.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarRadioExit.ContainerControlProcessDialogKey = true;
+			this.ribbonBarRadioExit.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarRadioExit.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
+			this.ribbonBarRadioExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemRadioExit});
+			this.ribbonBarRadioExit.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+			this.ribbonBarRadioExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarRadioExit.Location = new System.Drawing.Point(738, 0);
+			this.ribbonBarRadioExit.Name = "ribbonBarRadioExit";
+			this.ribbonBarRadioExit.Size = new System.Drawing.Size(94, 129);
+			this.ribbonBarRadioExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarRadioExit.TabIndex = 18;
+			this.ribbonBarRadioExit.Text = "EXIT";
+			// 
+			// 
+			// 
+			this.ribbonBarRadioExit.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioExit.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarRadioExit.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+			this.ribbonBarRadioExit.Click += new System.EventHandler(this.Outside_Click);
+			// 
+			// buttonItemRadioExit
+			// 
+			this.buttonItemRadioExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
+			this.buttonItemRadioExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemRadioExit.Name = "buttonItemRadioExit";
+			this.buttonItemRadioExit.SubItemsExpandWidth = 14;
+			this.buttonItemRadioExit.Click += new System.EventHandler(this.buttonItemExit_Click);
+			// 
+			// ribbonBarRadioFloater
+			// 
+			this.ribbonBarRadioFloater.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioFloater.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioFloater.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarRadioFloater.ContainerControlProcessDialogKey = true;
+			this.ribbonBarRadioFloater.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarRadioFloater.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemRadioFloater});
+			this.ribbonBarRadioFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarRadioFloater.Location = new System.Drawing.Point(650, 0);
+			this.ribbonBarRadioFloater.Name = "ribbonBarRadioFloater";
+			this.ribbonBarRadioFloater.Size = new System.Drawing.Size(88, 129);
+			this.ribbonBarRadioFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarRadioFloater.TabIndex = 30;
+			this.ribbonBarRadioFloater.Text = "Floater";
+			// 
+			// 
+			// 
+			this.ribbonBarRadioFloater.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioFloater.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemRadioFloater
+			// 
+			this.buttonItemRadioFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
+			this.buttonItemRadioFloater.Name = "buttonItemRadioFloater";
+			this.buttonItemRadioFloater.SubItemsExpandWidth = 14;
+			this.buttonItemRadioFloater.Text = "Floater";
+			this.buttonItemRadioFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
+			// 
+			// ribbonBarRadioHelp
+			// 
+			this.ribbonBarRadioHelp.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioHelp.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioHelp.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarRadioHelp.ContainerControlProcessDialogKey = true;
+			this.ribbonBarRadioHelp.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarRadioHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemRadioHelp});
+			this.ribbonBarRadioHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarRadioHelp.Location = new System.Drawing.Point(566, 0);
+			this.ribbonBarRadioHelp.Name = "ribbonBarRadioHelp";
+			this.ribbonBarRadioHelp.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarRadioHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarRadioHelp.TabIndex = 24;
+			this.ribbonBarRadioHelp.Text = "HELP";
+			// 
+			// 
+			// 
+			this.ribbonBarRadioHelp.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioHelp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemRadioHelp
+			// 
+			this.buttonItemRadioHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
+			this.buttonItemRadioHelp.Name = "buttonItemRadioHelp";
+			this.buttonItemRadioHelp.SubItemsExpandWidth = 14;
+			this.buttonItemRadioHelp.Text = "buttonItem1";
+			this.buttonItemRadioHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
+			// 
+			// ribbonBarRadioDelete
+			// 
+			this.ribbonBarRadioDelete.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioDelete.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioDelete.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarRadioDelete.ContainerControlProcessDialogKey = true;
+			this.ribbonBarRadioDelete.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarRadioDelete.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemRadioDelete});
+			this.ribbonBarRadioDelete.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarRadioDelete.Location = new System.Drawing.Point(482, 0);
+			this.ribbonBarRadioDelete.Name = "ribbonBarRadioDelete";
+			this.ribbonBarRadioDelete.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarRadioDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarRadioDelete.TabIndex = 29;
+			this.ribbonBarRadioDelete.Text = "Delete";
+			// 
+			// 
+			// 
+			this.ribbonBarRadioDelete.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioDelete.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemRadioDelete
+			// 
+			this.buttonItemRadioDelete.Enabled = false;
+			this.buttonItemRadioDelete.Image = global::NewBizWiz.Dashboard.Properties.Resources.DeleteSchedule;
+			this.buttonItemRadioDelete.Name = "buttonItemRadioDelete";
+			this.buttonItemRadioDelete.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemRadioDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete TV Schedule", "", "Delete the selected TV Schedule Below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			// 
+			// ribbonBarRadioOpen
+			// 
+			this.ribbonBarRadioOpen.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioOpen.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioOpen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarRadioOpen.ContainerControlProcessDialogKey = true;
+			this.ribbonBarRadioOpen.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarRadioOpen.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemRadioOpen});
+			this.ribbonBarRadioOpen.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarRadioOpen.Location = new System.Drawing.Point(398, 0);
+			this.ribbonBarRadioOpen.Name = "ribbonBarRadioOpen";
+			this.ribbonBarRadioOpen.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarRadioOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarRadioOpen.TabIndex = 28;
+			this.ribbonBarRadioOpen.Text = "Open";
+			// 
+			// 
+			// 
+			this.ribbonBarRadioOpen.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioOpen.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemRadioOpen
+			// 
+			this.buttonItemRadioOpen.Enabled = false;
+			this.buttonItemRadioOpen.Image = global::NewBizWiz.Dashboard.Properties.Resources.OpenSchedule;
+			this.buttonItemRadioOpen.Name = "buttonItemRadioOpen";
+			this.buttonItemRadioOpen.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemRadioOpen, new DevComponents.DotNetBar.SuperTooltipInfo("Open TV Schedule", "", "Open a TV Schedule you already built", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			// 
+			// ribbonBarRadioNew
+			// 
+			this.ribbonBarRadioNew.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioNew.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioNew.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarRadioNew.ContainerControlProcessDialogKey = true;
+			this.ribbonBarRadioNew.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarRadioNew.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemRadioNew});
+			this.ribbonBarRadioNew.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarRadioNew.Location = new System.Drawing.Point(314, 0);
+			this.ribbonBarRadioNew.Name = "ribbonBarRadioNew";
+			this.ribbonBarRadioNew.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarRadioNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarRadioNew.TabIndex = 27;
+			this.ribbonBarRadioNew.Text = "New";
+			// 
+			// 
+			// 
+			this.ribbonBarRadioNew.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioNew.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemRadioNew
+			// 
+			this.buttonItemRadioNew.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewSchedule;
+			this.buttonItemRadioNew.Name = "buttonItemRadioNew";
+			this.buttonItemRadioNew.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemRadioNew, new DevComponents.DotNetBar.SuperTooltipInfo("New TV Schedule", "", "Build a Quick TV Schedule for your client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
+			// 
+			// ribbonBarRadioScheduleBuilder
+			// 
+			this.ribbonBarRadioScheduleBuilder.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioScheduleBuilder.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioScheduleBuilder.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarRadioScheduleBuilder.ContainerControlProcessDialogKey = true;
+			this.ribbonBarRadioScheduleBuilder.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarRadioScheduleBuilder.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Center;
+			this.ribbonBarRadioScheduleBuilder.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemRadioScheduleBuilder});
+			this.ribbonBarRadioScheduleBuilder.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarRadioScheduleBuilder.Location = new System.Drawing.Point(204, 0);
+			this.ribbonBarRadioScheduleBuilder.Name = "ribbonBarRadioScheduleBuilder";
+			this.ribbonBarRadioScheduleBuilder.Size = new System.Drawing.Size(110, 129);
+			this.ribbonBarRadioScheduleBuilder.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarRadioScheduleBuilder.TabIndex = 17;
+			this.ribbonBarRadioScheduleBuilder.Text = "Schedule Builder";
+			// 
+			// 
+			// 
+			this.ribbonBarRadioScheduleBuilder.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioScheduleBuilder.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarRadioScheduleBuilder.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+			this.ribbonBarRadioScheduleBuilder.Click += new System.EventHandler(this.Outside_Click);
+			// 
+			// buttonItemRadioScheduleBuilder
+			// 
+			this.buttonItemRadioScheduleBuilder.Checked = true;
+			this.buttonItemRadioScheduleBuilder.FixedSize = new System.Drawing.Size(100, 64);
+			this.buttonItemRadioScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.RadioLittle;
+			this.buttonItemRadioScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemRadioScheduleBuilder.Name = "buttonItemRadioScheduleBuilder";
+			this.buttonItemRadioScheduleBuilder.SubItemsExpandWidth = 14;
+			// 
+			// ribbonBarRadioLogo
+			// 
+			this.ribbonBarRadioLogo.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioLogo.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioLogo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarRadioLogo.ContainerControlProcessDialogKey = true;
+			this.ribbonBarRadioLogo.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarRadioLogo.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemRadioLogo});
+			this.ribbonBarRadioLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarRadioLogo.Location = new System.Drawing.Point(3, 0);
+			this.ribbonBarRadioLogo.Name = "ribbonBarRadioLogo";
+			this.ribbonBarRadioLogo.Size = new System.Drawing.Size(201, 129);
+			this.ribbonBarRadioLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarRadioLogo.TabIndex = 16;
+			this.ribbonBarRadioLogo.Text = "GO GET YOUR BIZ!";
+			// 
+			// 
+			// 
+			this.ribbonBarRadioLogo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarRadioLogo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarRadioLogo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+			this.ribbonBarRadioLogo.Click += new System.EventHandler(this.Outside_Click);
+			// 
+			// buttonItemRadioLogo
+			// 
+			this.buttonItemRadioLogo.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
+			this.buttonItemRadioLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
+			this.buttonItemRadioLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemRadioLogo.Name = "buttonItemRadioLogo";
+			this.buttonItemRadioLogo.SubItemsExpandWidth = 14;
+			this.buttonItemRadioLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
 			// 
 			// ribbonPanelTV
 			// 
@@ -2697,8 +2780,8 @@ namespace NewBizWiz.Dashboard
 			this.ribbonPanelHome.ResumeLayout(false);
 			this.ribbonPanelSlides.ResumeLayout(false);
 			this.ribbonPanelCalendar.ResumeLayout(false);
-			this.ribbonPanelRadio.ResumeLayout(false);
 			this.ribbonPanelOnline.ResumeLayout(false);
+			this.ribbonPanelRadio.ResumeLayout(false);
 			this.ribbonPanelTV.ResumeLayout(false);
 			this.ribbonPanelNewspaper.ResumeLayout(false);
 			this.panelExMain.ResumeLayout(false);
@@ -2838,6 +2921,10 @@ namespace NewBizWiz.Dashboard
 		private DevComponents.DotNetBar.RibbonBar ribbonBarSlidesLogo;
 		public DevComponents.DotNetBar.ButtonItem buttonItemSlidesLogo;
 		public DevComponents.DotNetBar.RibbonTabItem ribbonTabItemSlides;
+		private DevComponents.DotNetBar.RibbonBar ribbonBarPreview;
+		private DevComponents.DotNetBar.RibbonBar ribbonBarSlidesPreview;
+		private DevComponents.DotNetBar.ButtonItem buttonItemSlidesPreview;
+		public DevComponents.DotNetBar.ButtonItem buttonItemPreview;
     }
 }
 

@@ -347,13 +347,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap Excel {
-            get {
-                object obj = ResourceManager.GetObject("Excel", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap Exit {
             get {
                 object obj = ResourceManager.GetObject("Exit", resourceCulture);
@@ -420,13 +413,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         public static System.Drawing.Bitmap HelpSmall {
             get {
                 object obj = ResourceManager.GetObject("HelpSmall", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap Image {
-            get {
-                object obj = ResourceManager.GetObject("Image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -504,13 +490,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         public static System.Drawing.Bitmap OrangeColor {
             get {
                 object obj = ResourceManager.GetObject("OrangeColor", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap OutputLogo {
-            get {
-                object obj = ResourceManager.GetObject("OutputLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -595,13 +574,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         public static System.Drawing.Bitmap SharePageBig {
             get {
                 object obj = ResourceManager.GetObject("SharePageBig", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap Table {
-            get {
-                object obj = ResourceManager.GetObject("Table", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

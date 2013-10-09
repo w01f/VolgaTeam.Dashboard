@@ -342,46 +342,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 
 		public void PrepareSummaryEmail(string fileName)
 		{
-			try
-			{
-				SavePrevSlideIndex();
-				Presentations presentations = _powerPointObject.Presentations;
-				Presentation presentation = presentations.Add(MsoTriState.msoFalse);
-				presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
-				presentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
-				switch (SettingsManager.Instance.Orientation)
-				{
-					case "Landscape":
-						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
-						break;
-					case "Portrait":
-						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
-						break;
-				}
-				Utilities.Instance.ReleaseComObject(presentations);
-				AppendSummary(presentation);
-				MessageFilter.Register();
-				var thread = new Thread(delegate()
-				{
-					presentation.SaveAs(FileName: fileName);
-					string destinationFolder = fileName.Replace(Path.GetExtension(fileName), string.Empty);
-					if (!Directory.Exists(destinationFolder))
-						Directory.CreateDirectory(destinationFolder);
-					presentation.Export(Path: destinationFolder, FilterName: "PNG");
-					presentation.Close();
-				});
-				thread.Start();
-
-				while (thread.IsAlive)
-					System.Windows.Forms.Application.DoEvents();
-				Utilities.Instance.ReleaseComObject(presentation);
-				RestorePrevSlideIndex();
-			}
-			catch { }
-			finally
-			{
-				MessageFilter.Revoke();
-			}
+			PreparePresentation(fileName, AppendSummary);
 		}
 	}
 }

@@ -47,6 +47,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				TabHomeOverviewControl.Instance.EnableOutput = borderedControl.EnableOutputButton;
 				TabHomeOverviewControl.Instance.UpdateOutputState();
 				FormMain.Instance.OutputClick = TabHomeOverviewControl.Instance.Output;
+				FormMain.Instance.PreviewClick = TabHomeOverviewControl.Instance.Preview;
 			}
 			else if (FormMain.Instance.buttonItemHomeCover != null && FormMain.Instance.buttonItemHomeCover.Checked)
 			{
@@ -57,6 +58,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				CoverControl.Instance.UpdateOutputState();
 				CoverControl.Instance.UpdateSavedFilesState();
 				FormMain.Instance.OutputClick = CoverControl.Instance.Output;
+				FormMain.Instance.PreviewClick = CoverControl.Instance.Preview;
 			}
 			else if (FormMain.Instance.buttonItemSimpleSummary != null && FormMain.Instance.buttonItemSimpleSummary.Checked)
 			{
@@ -67,6 +69,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				SimpleSummaryControl.Instance.tabControl_SelectedTabChanged(null, null);
 				SimpleSummaryControl.Instance.UpdateSavedFilesState();
 				FormMain.Instance.OutputClick = SimpleSummaryControl.Instance.Output;
+				FormMain.Instance.PreviewClick = SimpleSummaryControl.Instance.Preview;
 			}
 			else
 			{
@@ -87,6 +90,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					borderedControl.OutputClick = LeadoffStatementControl.Instance.Output;
 					borderedControl.SavedFilesClick = LeadoffStatementControl.Instance.LoadFromFile;
 					FormMain.Instance.OutputClick = LeadoffStatementControl.Instance.Output;
+					FormMain.Instance.PreviewClick = LeadoffStatementControl.Instance.Preview;
 				}
 				else if (FormMain.Instance.buttonItemClientGoals != null && FormMain.Instance.buttonItemClientGoals.Checked)
 				{
@@ -99,6 +103,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					borderedControl.OutputClick = ClientGoalsControl.Instance.Output;
 					borderedControl.SavedFilesClick = ClientGoalsControl.Instance.LoadFromFile;
 					FormMain.Instance.OutputClick = ClientGoalsControl.Instance.Output;
+					FormMain.Instance.PreviewClick = ClientGoalsControl.Instance.Preview;
 				}
 				else if (FormMain.Instance.buttonItemTargetCustomers != null && FormMain.Instance.buttonItemTargetCustomers.Checked)
 				{
@@ -111,6 +116,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					borderedControl.OutputClick = TargetCustomersControl.Instance.Output;
 					borderedControl.SavedFilesClick = TargetCustomersControl.Instance.LoadFromFile;
 					FormMain.Instance.OutputClick = TargetCustomersControl.Instance.Output;
+					FormMain.Instance.PreviewClick = TargetCustomersControl.Instance.Preview;
 				}
 				borderedControl.panelExTop.Parent = parentSecond;
 

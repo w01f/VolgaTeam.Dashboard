@@ -24,7 +24,6 @@ namespace NewBizWiz.MiniBar
 				}
 				catch {}
 			}
-			AppManager.Locker = new object();
 			if (args != null && args.Length > 0)
 				AppManager.Instance.ShowHidden = args[0].ToLower().Equals("-h");
 

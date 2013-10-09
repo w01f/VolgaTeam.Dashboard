@@ -377,8 +377,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void PrintOutput()
 		{
 			Enabled = false;
-			PrepareOutput();
-			AdSchedulePowerPointHelper.Instance.AppendCalendar(this);
+			AdSchedulePowerPointHelper.Instance.AppendCalendar(new[] { this });
 			Enabled = true;
 		}
 		#endregion

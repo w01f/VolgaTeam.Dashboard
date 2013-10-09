@@ -416,27 +416,25 @@ namespace NewBizWiz.Core.Interop
 
 		public void AppendSlidesFromFile(string filePath)
 		{
-			if (File.Exists(filePath))
+			if (!File.Exists(filePath)) return;
+			try
 			{
-				try
+				var thread = new Thread(delegate()
 				{
-					var thread = new Thread(delegate()
-												{
-													MessageFilter.Register();
-													Presentation presentation = _powerPointObject.Presentations.Open(FileName: filePath, WithWindow: MsoTriState.msoFalse);
-													AppendSlide(presentation, -1);
-													presentation.Close();
-												});
-					thread.Start();
+					MessageFilter.Register();
+					var presentation = _powerPointObject.Presentations.Open(filePath, WithWindow: MsoTriState.msoFalse);
+					AppendSlide(presentation, -1);
+					presentation.Close();
+				});
+				thread.Start();
 
-					while (thread.IsAlive)
-						System.Windows.Forms.Application.DoEvents();
-				}
-				catch { }
-				finally
-				{
-					MessageFilter.Revoke();
-				}
+				while (thread.IsAlive)
+					System.Windows.Forms.Application.DoEvents();
+			}
+			catch { }
+			finally
+			{
+				MessageFilter.Revoke();
 			}
 		}
 
@@ -462,91 +460,87 @@ namespace NewBizWiz.Core.Interop
 				indexToPaste = 1;
 
 			var slides = sourcePresentation.Slides;
-			for (int i = 1; i <= slides.Count; i++)
+			for (var i = 1; i <= slides.Count; i++)
 			{
-				if ((i == slideIndex) || (slideIndex == -1))
+				if ((i != slideIndex) && (slideIndex != -1)) continue;
+				slide = slides[i];
+				slide.Copy();
+				var activeSlides = destinationPresentation.Slides;
+				pastedRange = activeSlides.Paste(indexToPaste);
+				indexToPaste++;
+				design = GetDesignFromSlide(slide, sourcePresentation);
+				if (design != null)
+					pastedRange.Design = design;
+				else
 				{
-					slide = slides[i];
-					slide.Copy();
-					var activeSlides = destinationPresentation.Slides;
-					pastedRange = activeSlides.Paste(indexToPaste);
-					indexToPaste++;
-					design = GetDesignFromSlide(slide, destinationPresentation);
-					if (design != null)
-					{
-						pastedRange.Design = design;
-					}
-					else
-					{
-						var slideDesign = sourcePresentation.SlideMaster.Design;
-						pastedRange.Design = slideDesign;
-						Utilities.Instance.ReleaseComObject(slideDesign);
-					}
-					var colorScheme = slide.ColorScheme;
-					pastedRange.ColorScheme = colorScheme;
-					Utilities.Instance.ReleaseComObject(colorScheme);
-
-					if (slide.FollowMasterBackground == MsoTriState.msoFalse)
-					{
-						pastedRange.FollowMasterBackground = MsoTriState.msoFalse;
-						pastedRange.Background.Fill.Visible = slide.Background.Fill.Visible;
-						pastedRange.Background.Fill.ForeColor = slide.Background.Fill.ForeColor;
-						pastedRange.Background.Fill.BackColor = slide.Background.Fill.BackColor;
-
-						switch (slide.Background.Fill.Type)
-						{
-							case MsoFillType.msoFillTextured:
-								switch (slide.Background.Fill.TextureType)
-								{
-									case MsoTextureType.msoTexturePreset:
-										pastedRange.Background.Fill.PresetTextured(slide.Background.Fill.PresetTexture);
-										break;
-								}
-								break;
-							case MsoFillType.msoFillSolid:
-								pastedRange.Background.Fill.Transparency = 0;
-								pastedRange.Background.Fill.Solid();
-								break;
-							case MsoFillType.msoFillPicture:
-								if (slide.Shapes.Count > 0)
-									(slide.Shapes.Range(1)).Visible = MsoTriState.msoFalse;
-								masterShape = slide.DisplayMasterShapes;
-								slide.DisplayMasterShapes = MsoTriState.msoFalse;
-								slide.Export(Path.Combine(Path.GetTempPath(), slide.SlideID + ".png"), "PNG", -1, -1);
-								pastedRange.Background.Fill.UserPicture(Path.Combine(Path.GetTempPath(), slide.SlideID + ".png"));
-								var file = new FileInfo(Path.Combine(Path.GetTempPath(), slide.SlideID + ".png"));
-								if (file.Exists)
-									file.Delete();
-								slide.DisplayMasterShapes = masterShape;
-								if (slide.Shapes.Count > 0)
-									(slide.Shapes.Range(1)).Visible = MsoTriState.msoFalse;
-								break;
-							case MsoFillType.msoFillPatterned:
-								pastedRange.Background.Fill.Patterned(slide.Background.Fill.Pattern);
-								break;
-							case MsoFillType.msoFillGradient:
-								switch (slide.Background.Fill.GradientColorType)
-								{
-									case MsoGradientColorType.msoGradientTwoColors:
-										pastedRange.Background.Fill.TwoColorGradient(slide.Background.Fill.GradientStyle, slide.Background.Fill.GradientVariant);
-										break;
-									case MsoGradientColorType.msoGradientPresetColors:
-										pastedRange.Background.Fill.PresetGradient(slide.Background.Fill.GradientStyle, slide.Background.Fill.GradientVariant, slide.Background.Fill.PresetGradientType);
-										break;
-									case MsoGradientColorType.msoGradientOneColor:
-										pastedRange.Background.Fill.OneColorGradient(slide.Background.Fill.GradientStyle, slide.Background.Fill.GradientVariant, slide.Background.Fill.GradientDegree);
-										break;
-								}
-								break;
-						}
-					}
-					MakeDesignUnique(slide, pastedRange.Design);
-					activeSlides[indexToPaste - 1].Select();
-					Utilities.Instance.ReleaseComObject(pastedRange);
-					Utilities.Instance.ReleaseComObject(design);
-					Utilities.Instance.ReleaseComObject(slide);
-					Utilities.Instance.ReleaseComObject(activeSlides);
+					var slideDesign = sourcePresentation.SlideMaster.Design;
+					pastedRange.Design = slideDesign;
+					Utilities.Instance.ReleaseComObject(slideDesign);
 				}
+				var colorScheme = slide.ColorScheme;
+				pastedRange.ColorScheme = colorScheme;
+				Utilities.Instance.ReleaseComObject(colorScheme);
+
+				if (slide.FollowMasterBackground == MsoTriState.msoFalse)
+				{
+					pastedRange.FollowMasterBackground = MsoTriState.msoFalse;
+					pastedRange.Background.Fill.Visible = slide.Background.Fill.Visible;
+					pastedRange.Background.Fill.ForeColor = slide.Background.Fill.ForeColor;
+					pastedRange.Background.Fill.BackColor = slide.Background.Fill.BackColor;
+
+					switch (slide.Background.Fill.Type)
+					{
+						case MsoFillType.msoFillTextured:
+							switch (slide.Background.Fill.TextureType)
+							{
+								case MsoTextureType.msoTexturePreset:
+									pastedRange.Background.Fill.PresetTextured(slide.Background.Fill.PresetTexture);
+									break;
+							}
+							break;
+						case MsoFillType.msoFillSolid:
+							pastedRange.Background.Fill.Transparency = 0;
+							pastedRange.Background.Fill.Solid();
+							break;
+						case MsoFillType.msoFillPicture:
+							if (slide.Shapes.Count > 0)
+								(slide.Shapes.Range(1)).Visible = MsoTriState.msoFalse;
+							masterShape = slide.DisplayMasterShapes;
+							slide.DisplayMasterShapes = MsoTriState.msoFalse;
+							slide.Export(Path.Combine(Path.GetTempPath(), slide.SlideID + ".png"), "PNG", -1, -1);
+							pastedRange.Background.Fill.UserPicture(Path.Combine(Path.GetTempPath(), slide.SlideID + ".png"));
+							var file = new FileInfo(Path.Combine(Path.GetTempPath(), slide.SlideID + ".png"));
+							if (file.Exists)
+								file.Delete();
+							slide.DisplayMasterShapes = masterShape;
+							if (slide.Shapes.Count > 0)
+								(slide.Shapes.Range(1)).Visible = MsoTriState.msoFalse;
+							break;
+						case MsoFillType.msoFillPatterned:
+							pastedRange.Background.Fill.Patterned(slide.Background.Fill.Pattern);
+							break;
+						case MsoFillType.msoFillGradient:
+							switch (slide.Background.Fill.GradientColorType)
+							{
+								case MsoGradientColorType.msoGradientTwoColors:
+									pastedRange.Background.Fill.TwoColorGradient(slide.Background.Fill.GradientStyle, slide.Background.Fill.GradientVariant);
+									break;
+								case MsoGradientColorType.msoGradientPresetColors:
+									pastedRange.Background.Fill.PresetGradient(slide.Background.Fill.GradientStyle, slide.Background.Fill.GradientVariant, slide.Background.Fill.PresetGradientType);
+									break;
+								case MsoGradientColorType.msoGradientOneColor:
+									pastedRange.Background.Fill.OneColorGradient(slide.Background.Fill.GradientStyle, slide.Background.Fill.GradientVariant, slide.Background.Fill.GradientDegree);
+									break;
+							}
+							break;
+					}
+				}
+				MakeDesignUnique(slide, pastedRange.Design);
+				activeSlides[indexToPaste - 1].Select();
+				Utilities.Instance.ReleaseComObject(pastedRange);
+				Utilities.Instance.ReleaseComObject(design);
+				Utilities.Instance.ReleaseComObject(slide);
+				Utilities.Instance.ReleaseComObject(activeSlides);
 			}
 			Utilities.Instance.ReleaseComObject(slides);
 			MessageFilter.Revoke();
@@ -554,12 +548,7 @@ namespace NewBizWiz.Core.Interop
 
 		private Design GetDesignFromSlide(Slide slide, Presentation presentation)
 		{
-			foreach (Design design in presentation.Designs)
-			{
-				if (design.Name == slide.Design.Name)
-					return design;
-			}
-			return null;
+			return presentation.Designs.Cast<Design>().FirstOrDefault(design => design.Name == slide.Design.Name);
 		}
 
 		private void MakeDesignUnique(Slide slide, Design design)
@@ -589,11 +578,10 @@ namespace NewBizWiz.Core.Interop
 				}
 			}
 			catch { }
-			finally { }
 			return activeSlide;
 		}
 
-		public void AppendSlideMaster(string presentationTemplatePath)
+		public void AppendSlideMaster(string presentationTemplatePath, Presentation destinationPresentation = null)
 		{
 			try
 			{
@@ -601,7 +589,7 @@ namespace NewBizWiz.Core.Interop
 				{
 					MessageFilter.Register();
 					Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
-					AppendSlide(presentation, -1);
+					AppendSlide(presentation, -1, destinationPresentation);
 					presentation.Close();
 				});
 				thread.Start();
@@ -695,6 +683,51 @@ namespace NewBizWiz.Core.Interop
 		protected void RestorePrevSlideIndex()
 		{
 			_powerPointObject.ActivePresentation.Slides[previouseSlideIndex].Select();
+		}
+
+		public void PreparePresentation(string fileName, Action<Presentation> buildPresentation)
+		{
+			try
+			{
+				SavePrevSlideIndex();
+				var presentations = _powerPointObject.Presentations;
+				var presentation = presentations.Add(MsoTriState.msoFalse);
+				presentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
+				presentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
+				switch (SettingsManager.Instance.Orientation)
+				{
+					case "Landscape":
+						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
+						break;
+					case "Portrait":
+						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
+						break;
+				}
+				Utilities.Instance.ReleaseComObject(presentations);
+				buildPresentation(presentation);
+				MessageFilter.Register();
+				var thread = new Thread(delegate()
+				{
+					presentation.SaveAs(fileName);
+					var destinationFolder = fileName.Replace(Path.GetExtension(fileName), string.Empty);
+					if (!Directory.Exists(destinationFolder))
+						Directory.CreateDirectory(destinationFolder);
+					presentation.Export(destinationFolder, "PNG");
+					presentation.Close();
+				});
+				thread.Start();
+
+				while (thread.IsAlive)
+					System.Windows.Forms.Application.DoEvents();
+
+				Utilities.Instance.ReleaseComObject(presentation);
+				RestorePrevSlideIndex();
+			}
+			catch { }
+			finally
+			{
+				MessageFilter.Revoke();
+			}
 		}
 	}
 

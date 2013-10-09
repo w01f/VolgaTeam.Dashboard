@@ -588,7 +588,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void PrintOutput()
 		{
-			AdSchedulePowerPointHelper.Instance.AppendBasicOverview(this);
+			AdSchedulePowerPointHelper.Instance.AppendBasicOverview(new[] { this });
 		}
 		#endregion
 	}

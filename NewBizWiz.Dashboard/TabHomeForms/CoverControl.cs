@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Dashboard;
 using NewBizWiz.Dashboard.InteropClasses;
+using NewBizWiz.Dashboard.ToolForms;
 using ListManager = NewBizWiz.Core.Dashboard.ListManager;
 using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
@@ -197,13 +199,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			lookUpEditSalesRep.Properties.DataSource = _users;
 
 			FormMain.Instance.FormClosed += (sender1, e1) =>
-												{
-													if (SettingsNotSaved)
-													{
-														SaveState();
-														ViewSettingsManager.Instance.CoverState.Save();
-													}
-												};
+			{
+				if (SettingsNotSaved)
+				{
+					SaveState();
+					ViewSettingsManager.Instance.CoverState.Save();
+				}
+			};
 
 			LoadSavedState();
 		}
@@ -306,6 +308,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		}
 
 		#region Picture Box Clicks Habdlers
+
 		/// <summary>
 		/// Buttonize the PictureBox 
 		/// </summary>
@@ -322,9 +325,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			var pic = (PictureBox)(sender);
 			pic.Top -= 1;
 		}
+
 		#endregion
 
 		#region Output Staff
+
 		public string Title
 		{
 			get { return comboBoxEditSlideHeader.EditValue == null ? string.Empty : comboBoxEditSlideHeader.EditValue.ToString(); }
@@ -381,7 +386,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			buttonXSavedFiles.Enabled = ViewSettingsManager.Instance.CoverState.AllowToLoad();
 		}
 
-		public void Output()
+		private void SaveChanges()
 		{
 			if (!Core.Common.ListManager.Instance.Advertisers.Contains(Advertiser) && !string.IsNullOrEmpty(Advertiser))
 			{
@@ -401,11 +406,63 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				ViewSettingsManager.Instance.CoverState.Save();
 				UpdateSavedFilesState();
 			}
+		}
 
-			if (checkEditUseEmptyCover.Checked)
-				AppManager.Instance.ShowFloater(null, () => DashboardPowerPointHelper.Instance.AppendGenericCover(checkEditFirstSlide.Checked));
-			else
-				AppManager.Instance.ShowFloater(null, () => DashboardPowerPointHelper.Instance.AppendCover(checkEditFirstSlide.Checked));
+		public void Output()
+		{
+			SaveChanges();
+			using (var form = new FormProgress())
+			{
+				form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				form.TopMost = true;
+				form.Show();
+				if (checkEditUseEmptyCover.Checked)
+					AppManager.Instance.ShowFloater(null, () =>
+					{
+						DashboardPowerPointHelper.Instance.AppendGenericCover(checkEditFirstSlide.Checked);
+						form.Close();
+					});
+
+				else
+					AppManager.Instance.ShowFloater(null, () =>
+					{
+						DashboardPowerPointHelper.Instance.AppendCover(checkEditFirstSlide.Checked);
+						form.Close();
+					});
+			}
+		}
+
+		public void Preview()
+		{
+			SaveChanges();
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
+				formProgress.TopMost = true;
+				formProgress.Show();
+				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				if (checkEditUseEmptyCover.Checked)
+					DashboardPowerPointHelper.Instance.PrepareGenericCover(tempFileName, checkEditFirstSlide.Checked);
+				else
+					DashboardPowerPointHelper.Instance.PrepareCover(tempFileName, checkEditFirstSlide.Checked);
+				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
+				formProgress.Close();
+				if (!File.Exists(tempFileName)) return;
+				using (var formPreview = new FormPreview())
+				{
+					formPreview.Text = "Preview Slides";
+					formPreview.PresentationFile = tempFileName;
+					RegistryHelper.MainFormHandle = formPreview.Handle;
+					RegistryHelper.MaximizeMainForm = false;
+					var previewResult = formPreview.ShowDialog();
+					RegistryHelper.MaximizeMainForm = false;
+					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+					if (previewResult != DialogResult.OK)
+						Utilities.Instance.ActivateForm(FormMain.Instance.Handle, true, false);
+					else
+						Utilities.Instance.ActivateMiniBar();
+				}
+			}
 		}
 		#endregion
 	}

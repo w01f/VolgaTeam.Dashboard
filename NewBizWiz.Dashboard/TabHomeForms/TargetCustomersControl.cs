@@ -1,11 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Dashboard;
 using NewBizWiz.Dashboard.InteropClasses;
+using NewBizWiz.Dashboard.ToolForms;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
+using ListManager = NewBizWiz.Core.Dashboard.ListManager;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
@@ -209,7 +213,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				EnableSavedFiles(ViewSettingsManager.Instance.TargetCustomersState.AllowToLoad());
 		}
 
-		public void Output()
+		private void SaveChanges()
 		{
 			if (SettingsNotSaved)
 			{
@@ -217,7 +221,52 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				ViewSettingsManager.Instance.TargetCustomersState.Save();
 				UpdateSavedFilesState();
 			}
-			AppManager.Instance.ShowFloater(null, DashboardPowerPointHelper.Instance.AppendTargetCustomers);
+		}
+
+		public void Output()
+		{
+			SaveChanges();
+			using (var form = new FormProgress())
+			{
+				form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				form.TopMost = true;
+				form.Show();
+				AppManager.Instance.ShowFloater(null, () =>
+				{
+					DashboardPowerPointHelper.Instance.AppendTargetCustomers();
+					form.Close();
+				});
+			}
+		}
+
+		public void Preview()
+		{
+			SaveChanges();
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
+				formProgress.TopMost = true;
+				formProgress.Show();
+				var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				DashboardPowerPointHelper.Instance.PrepareTargetCustomers(tempFileName);
+				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
+				formProgress.Close();
+				if (!File.Exists(tempFileName)) return;
+				using (var formPreview = new FormPreview())
+				{
+					formPreview.Text = "Preview Slides";
+					formPreview.PresentationFile = tempFileName;
+					RegistryHelper.MainFormHandle = formPreview.Handle;
+					RegistryHelper.MaximizeMainForm = false;
+					var previewResult = formPreview.ShowDialog();
+					RegistryHelper.MaximizeMainForm = false;
+					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+					if (previewResult != DialogResult.OK)
+						Utilities.Instance.ActivateForm(FormMain.Instance.Handle, true, false);
+					else
+						Utilities.Instance.ActivateMiniBar();
+				}
+			}
 		}
 		#endregion
 	}

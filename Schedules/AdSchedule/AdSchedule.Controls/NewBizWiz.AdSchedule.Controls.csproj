@@ -204,7 +204,6 @@
       <DependentUpon>RateCardControl.cs</DependentUpon>
     </Compile>
     <Compile Include="InteropClasses\CalendarHelper.cs" />
-    <Compile Include="InteropClasses\ExcelHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
     <Compile Include="PresentationClasses\OutputClasses\CalendarHelper.cs" />
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\CommentViewerControl.cs">
@@ -376,12 +375,6 @@
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormPreview.designer.cs">
       <DependentUpon>FormPreview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormSelectOutput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormSelectOutput.Designer.cs">
-      <DependentUpon>FormSelectOutput.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormSelectPublication.cs">
       <SubType>Form</SubType>
@@ -645,9 +638,6 @@
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormPreview.resx">
       <DependentUpon>FormPreview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormSelectOutput.resx">
-      <DependentUpon>FormSelectOutput.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormSelectPublication.resx">
       <DependentUpon>FormSelectPublication.cs</DependentUpon>
     </EmbeddedResource>
@@ -839,16 +829,8 @@
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Interop.Excel">
-      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>7</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
     </COMReference>
     <COMReference Include="Microsoft.Office.Interop.PowerPoint">
       <Guid>{91493440-5A91-11CF-8700-00AA0060263B}</Guid>
@@ -857,7 +839,8 @@
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
     </COMReference>
     <COMReference Include="stdole">
       <Guid>{00020430-0000-0000-C000-000000000046}</Guid>

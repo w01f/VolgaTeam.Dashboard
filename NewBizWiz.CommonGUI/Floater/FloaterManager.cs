@@ -13,7 +13,7 @@ namespace NewBizWiz.CommonGUI.Floater
 		public void ShowFloater(Form sender, string ribbonText, Image logo, Action afterShow, Action afterHide, Action afterBack)
 		{
 			var x = _floaterPositionX == Int32.MinValue ? sender.Left + sender.Width - 40 : _floaterPositionX;
-			var y = _floaterPositionY == Int32.MinValue ? sender.Top + 40 : _floaterPositionY;
+			var y = _floaterPositionY == Int32.MinValue ? (sender.Top + (sender.Height - 65) / 2) : _floaterPositionY;
 
 			using (var form = new FormFloater(x, y, logo, ribbonText))
 			{

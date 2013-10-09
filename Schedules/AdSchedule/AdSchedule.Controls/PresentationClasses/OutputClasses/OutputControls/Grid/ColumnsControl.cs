@@ -9,7 +9,7 @@ using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
 	[ToolboxItem(false)]
-	public partial class ColumnsControl : UserControl
+	public sealed partial class ColumnsControl : UserControl
 	{
 		private readonly IGridOutputControl _settingsContainer;
 		private bool _allowToSave;
@@ -35,11 +35,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private bool AllowCheckColumnsButton(bool checkState)
 		{
-			int count = _settingsContainer.SelectedColumnsCount;
+			var count = _settingsContainer.SelectedColumnsCount;
 			if (checkState)
-				return count > 4;
-			else
-				return count < 12;
+				return count > 3;
+			return count < 10;
 		}
 
 		public void LoadColumnsState()
@@ -123,7 +122,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			if (button != null && AllowCheckColumnsButton(button.Checked))
 				button.Checked = !button.Checked;
 			else
-				Utilities.Instance.ShowWarning("You may select between 4 and 12 Columns");
+				Utilities.Instance.ShowWarning("You may select between 3 and 10 Columns");
 		}
 
 		private void pbHelp_Click(object sender, EventArgs e)

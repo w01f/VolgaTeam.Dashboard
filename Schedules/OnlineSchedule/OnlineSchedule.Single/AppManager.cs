@@ -14,7 +14,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 		private static readonly AppManager _instance = new AppManager();
 		private FloaterManager _floater = new FloaterManager();
 
-		public NBWApplication AppConfig { get; private set; }
+		public NBWLink AppConfig { get; private set; }
 
 		private AppManager() { }
 
@@ -26,7 +26,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 		public void RunForm()
 		{
 			OnlineSchedulePowerPointHelper.Instance.SetPresentationSettings();
-			AppConfig = new NBWApplication(new DirectoryInfo(Application.StartupPath));
+			AppConfig = NBWLink.CreateLink(new DirectoryInfo(Application.StartupPath));
 			Application.Run(FormMain.Instance);
 		}
 

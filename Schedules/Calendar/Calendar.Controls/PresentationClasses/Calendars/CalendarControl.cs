@@ -214,7 +214,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 											return;
 									formProgress.Show();
 									Enabled = false;
-									CalendarPowerPointHelper.Instance.AppendCalendar(selectedMonth.OutputData);
+									CalendarPowerPointHelper.Instance.AppendCalendar(new[] { selectedMonth.OutputData });
 								}
 								else if (result == DialogResult.No)
 								{
@@ -227,7 +227,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 										{
 											var month = item.Value as CalendarMonth;
 											if (month != null)
-												CalendarPowerPointHelper.Instance.AppendCalendar(month.OutputData);
+												CalendarPowerPointHelper.Instance.AppendCalendar(new[] { month.OutputData });
 										}
 									}
 								}

@@ -33,9 +33,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				checkEditFlightDates.Font = font;
 				checkEditPresentationDate.Font = font;
 				checkEditLogo1.Font = font;
-				checkEditLogo2.Font = font;
-				checkEditLogo3.Font = font;
-				checkEditLogo4.Font = font;
 				checkEditPublicationName.Font = font;
 				checkEditSlideTitle.Font = font;
 			}
@@ -51,9 +48,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditFlightDates.Enabled = _settingsContainer.SlideHeaderState.EnableFlightDates;
 			checkEditPresentationDate.Enabled = _settingsContainer.SlideHeaderState.EnablePresentationDate;
 			checkEditLogo1.Enabled = _settingsContainer.SlideHeaderState.EnableLogo1;
-			checkEditLogo2.Enabled = _settingsContainer.SlideHeaderState.EnableLogo2;
-			checkEditLogo3.Enabled = _settingsContainer.SlideHeaderState.EnableLogo3;
-			checkEditLogo4.Enabled = _settingsContainer.SlideHeaderState.EnableLogo4;
 			checkEditPublicationName.Enabled = _settingsContainer.SlideHeaderState.EnableName;
 			checkEditSlideTitle.Enabled = _settingsContainer.SlideHeaderState.EnableSlideHeader;
 
@@ -63,9 +57,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditFlightDates.Checked = _settingsContainer.SlideHeaderState.ShowFlightDates;
 			checkEditPresentationDate.Checked = _settingsContainer.SlideHeaderState.ShowPresentationDate;
 			checkEditLogo1.Checked = _settingsContainer.SlideHeaderState.ShowLogo1;
-			checkEditLogo2.Checked = _settingsContainer.SlideHeaderState.ShowLogo2;
-			checkEditLogo3.Checked = _settingsContainer.SlideHeaderState.ShowLogo3;
-			checkEditLogo4.Checked = _settingsContainer.SlideHeaderState.ShowLogo4;
 			checkEditPublicationName.Checked = _settingsContainer.SlideHeaderState.ShowName;
 			checkEditSlideTitle.Checked = _settingsContainer.SlideHeaderState.ShowSlideHeader;
 			_settingsContainer.SetSlideHeader();
@@ -82,9 +73,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				_settingsContainer.SlideHeaderState.ShowFlightDates = checkEditFlightDates.Checked & checkEditEnableSlideHeader.Checked;
 				_settingsContainer.SlideHeaderState.ShowPresentationDate = checkEditPresentationDate.Checked & checkEditEnableSlideHeader.Checked;
 				_settingsContainer.SlideHeaderState.ShowLogo1 = checkEditLogo1.Checked & checkEditEnableSlideHeader.Checked;
-				_settingsContainer.SlideHeaderState.ShowLogo2 = checkEditLogo2.Checked & checkEditEnableSlideHeader.Checked;
-				_settingsContainer.SlideHeaderState.ShowLogo3 = checkEditLogo3.Checked & checkEditEnableSlideHeader.Checked;
-				_settingsContainer.SlideHeaderState.ShowLogo4 = checkEditLogo4.Checked & checkEditEnableSlideHeader.Checked;
 				_settingsContainer.SlideHeaderState.ShowName = checkEditPublicationName.Checked & checkEditEnableSlideHeader.Checked;
 				_settingsContainer.SlideHeaderState.ShowSlideHeader = checkEditSlideTitle.Checked & checkEditEnableSlideHeader.Checked;
 				_settingsContainer.SetSlideHeader();

@@ -175,47 +175,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 
 		public void PrepareMultiSummaryEmail(string fileName)
 		{
-			try
-			{
-				SavePrevSlideIndex();
-				Presentations presentations = _powerPointObject.Presentations;
-				Presentation presentation = presentations.Add(MsoTriState.msoFalse);
-				presentation.PageSetup.SlideWidth = (float)Core.Common.SettingsManager.Instance.SizeWidth * 72;
-				presentation.PageSetup.SlideHeight = (float)Core.Common.SettingsManager.Instance.SizeHeght * 72;
-				switch (Core.Common.SettingsManager.Instance.Orientation)
-				{
-					case "Landscape":
-						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
-						break;
-					case "Portrait":
-						presentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
-						break;
-				}
-				Core.Common.Utilities.Instance.ReleaseComObject(presentations);
-				AppendMultiSummary(presentation);
-				MessageFilter.Register();
-				var thread = new Thread(delegate()
-											{
-												presentation.SaveAs(FileName: fileName);
-												string destinationFolder = fileName.Replace(Path.GetExtension(fileName), string.Empty);
-												if (!Directory.Exists(destinationFolder))
-													Directory.CreateDirectory(destinationFolder);
-												presentation.Export(Path: destinationFolder, FilterName: "PNG");
-												presentation.Close();
-											});
-				thread.Start();
-
-				while (thread.IsAlive)
-					Application.DoEvents();
-
-				Core.Common.Utilities.Instance.ReleaseComObject(presentation);
-				RestorePrevSlideIndex();
-			}
-			catch { }
-			finally
-			{
-				MessageFilter.Revoke();
-			}
+			PreparePresentation(fileName, AppendMultiSummary);
 		}
 	}
 }

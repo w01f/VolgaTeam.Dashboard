@@ -59,7 +59,7 @@
 			this.ribbonBarBack.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarBack.Location = new System.Drawing.Point(0, 0);
 			this.ribbonBarBack.Name = "ribbonBarBack";
-			this.ribbonBarBack.Size = new System.Drawing.Size(223, 107);
+			this.ribbonBarBack.Size = new System.Drawing.Size(223, 106);
 			this.ribbonBarBack.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarBack.TabIndex = 1;
 			this.ribbonBarBack.Text = "FloaterText";
@@ -99,7 +99,7 @@
 			this.ribbonBarHide.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarHide.Location = new System.Drawing.Point(222, 0);
 			this.ribbonBarHide.Name = "ribbonBarHide";
-			this.ribbonBarHide.Size = new System.Drawing.Size(102, 107);
+			this.ribbonBarHide.Size = new System.Drawing.Size(102, 106);
 			this.ribbonBarHide.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarHide.TabIndex = 2;
 			this.ribbonBarHide.Text = "Hide";
@@ -124,7 +124,7 @@
 			// FormFloater
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(324, 107);
+			this.ClientSize = new System.Drawing.Size(324, 106);
 			this.Controls.Add(this.ribbonBarHide);
 			this.Controls.Add(this.ribbonBarBack);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

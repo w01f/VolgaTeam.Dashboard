@@ -14,6 +14,7 @@ namespace NewBizWiz.CommonGUI.Themes
 	{
 		private readonly List<Theme> _themes = new List<Theme>();
 		public event EventHandler<ThemeEventArgs> ThemeChanged;
+		public event EventHandler<ThemeEventArgs> ThemeSelected;
 		public Theme SelectedTheme
 		{
 			get { return layoutViewThemes.GetFocusedRow() as Theme; }
@@ -40,19 +41,15 @@ namespace NewBizWiz.CommonGUI.Themes
 			layoutViewThemes.VisibleRecordIndex = layoutViewThemes.FocusedRowHandle;
 		}
 
-		private void layoutViewThemes_DoubleClick(object sender, System.EventArgs e)
+		private void layoutViewThemes_DoubleClick(object sender, EventArgs e)
 		{
 			var layoutView = sender as LayoutView;
 			var hitInfo = layoutView.CalcHitInfo(layoutView.GridControl.PointToClient(MousePosition));
 			if (!hitInfo.InCard) return;
 			var theme = layoutView.GetRow(hitInfo.RowHandle) as Theme;
 			if (theme == null) return;
-			using (var form = new FormThemePreview())
-			{
-				form.Text = theme.Name;
-				form.pictureBox.Image = theme.Logo;
-				form.ShowDialog();
-			}
+			if (ThemeSelected != null)
+				ThemeSelected(this, new ThemeEventArgs { SelectedTheme = theme });
 		}
 
 		private void layoutViewThemes_CustomFieldValueStyle(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventArgs e)

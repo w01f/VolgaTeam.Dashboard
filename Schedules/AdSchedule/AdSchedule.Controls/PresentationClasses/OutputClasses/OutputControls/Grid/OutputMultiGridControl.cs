@@ -7,8 +7,6 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.Utils;
-using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
@@ -58,9 +56,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SlideHeader.OnHelp += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("logonavbar3");
 			SlideHeader.checkEditPublicationName.Visible = false;
 			SlideHeader.checkEditLogo1.Visible = false;
-			SlideHeader.checkEditLogo2.Visible = false;
-			SlideHeader.checkEditLogo3.Visible = false;
-			SlideHeader.checkEditLogo4.Visible = false;
 
 			HelpToolTip = new SuperTooltipInfo("HELP", "", "Learn more about the Logo Grid", null, null, eTooltipColor.Gray);
 
@@ -1031,122 +1026,83 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void PrintOutput()
 		{
-			using (var formGridType = new FormSelectOutput(OutputType.PowerPoint))
+			using (var formProgress = new FormProgress())
 			{
-				formGridType.buttonXGrid.Enabled = SelectedColumnsCount >= 4 && SelectedColumnsCount <= 5 && Directory.Exists(BusinessWrapper.Instance.OutputManager.MultiGridGridBasedTemlatesFolderPath);
-				DialogResult gridTypeResult = formGridType.ShowDialog();
-				if (gridTypeResult != DialogResult.Cancel)
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				Controller.Instance.ShowFloater(() =>
 				{
-					bool pasteAsImage = gridTypeResult == DialogResult.Ignore;
-					bool excelOutput = gridTypeResult == DialogResult.No || gridTypeResult == DialogResult.Ignore;
-					using (var formProgress = new FormProgress())
-					{
-						formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-						formProgress.TopMost = true;
-						Controller.Instance.ShowFloater(() =>
-						{
-							formProgress.Show();
-							PrepareOutput(excelOutput);
-							if (excelOutput)
-								AdSchedulePowerPointHelper.Instance.AppendMultiGridExcelBased(pasteAsImage);
-							else
-								AdSchedulePowerPointHelper.Instance.AppendMultiGridGridBased();
-							formProgress.Close();
-						});
-					}
-				}
+					formProgress.Show();
+					PrepareOutput();
+					AdSchedulePowerPointHelper.Instance.AppendMultiGridGridBased();
+					formProgress.Close();
+				});
 			}
 		}
 
 		public void Email()
 		{
-			using (var formGridType = new FormSelectOutput(OutputType.Email))
+			using (var formProgress = new FormProgress())
 			{
-				formGridType.buttonXGrid.Enabled = SelectedColumnsCount >= 4 && SelectedColumnsCount <= 5 && Directory.Exists(BusinessWrapper.Instance.OutputManager.MultiGridGridBasedTemlatesFolderPath);
-				DialogResult gridTypeResult = formGridType.ShowDialog();
-				if (gridTypeResult != DialogResult.Cancel)
-				{
-					bool pasteAsImage = gridTypeResult == DialogResult.Ignore;
-					bool excelOutput = gridTypeResult == DialogResult.No || gridTypeResult == DialogResult.Ignore;
-					using (var formProgress = new FormProgress())
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
+				formProgress.TopMost = true;
+				formProgress.Show();
+				PrepareOutput();
+				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				AdSchedulePowerPointHelper.Instance.PrepareMultiGridGridBasedEmail(tempFileName);
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				formProgress.Close();
+				if (File.Exists(tempFileName))
+					using (var formEmail = new FormEmail())
 					{
-						formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
-						formProgress.TopMost = true;
-						formProgress.Show();
-						PrepareOutput(excelOutput);
-						string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
-						if (excelOutput)
-							AdSchedulePowerPointHelper.Instance.PrepareMultiGridExcelBasedEmail(tempFileName, pasteAsImage);
-						else
-							AdSchedulePowerPointHelper.Instance.PrepareMultiGridGridBasedEmail(tempFileName);
-						Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-						formProgress.Close();
-						if (File.Exists(tempFileName))
-							using (var formEmail = new FormEmail())
-							{
-								formEmail.Text = "Email this Logo Grid";
-								formEmail.PresentationFile = tempFileName;
-								RegistryHelper.MainFormHandle = formEmail.Handle;
-								RegistryHelper.MaximizeMainForm = false;
-								formEmail.ShowDialog();
-								RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-								RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-							}
+						formEmail.Text = "Email this Logo Grid";
+						formEmail.PresentationFile = tempFileName;
+						RegistryHelper.MainFormHandle = formEmail.Handle;
+						RegistryHelper.MaximizeMainForm = false;
+						formEmail.ShowDialog();
+						RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+						RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 					}
-				}
 			}
 		}
 
 		public void Preview()
 		{
-			using (var formGridType = new FormSelectOutput(OutputType.Preview))
+			using (var formProgress = new FormProgress())
 			{
-				formGridType.buttonXGrid.Enabled = SelectedColumnsCount >= 4 && SelectedColumnsCount <= 5 && Directory.Exists(BusinessWrapper.Instance.OutputManager.MultiGridGridBasedTemlatesFolderPath);
-				DialogResult gridTypeResult = formGridType.ShowDialog();
-				if (gridTypeResult != DialogResult.Cancel)
-				{
-					bool pasteAsImage = gridTypeResult == DialogResult.Ignore;
-					bool excelOutput = gridTypeResult == DialogResult.No || gridTypeResult == DialogResult.Ignore;
-					using (var formProgress = new FormProgress())
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
+				formProgress.TopMost = true;
+				formProgress.Show();
+				PrepareOutput();
+				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				AdSchedulePowerPointHelper.Instance.PrepareMultiGridGridBasedEmail(tempFileName);
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				formProgress.Close();
+				if (File.Exists(tempFileName))
+					using (var formPreview = new FormPreview())
 					{
-						formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-						formProgress.TopMost = true;
-						formProgress.Show();
-						PrepareOutput(excelOutput);
-						string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
-						if (excelOutput)
-							AdSchedulePowerPointHelper.Instance.PrepareMultiGridExcelBasedEmail(tempFileName, pasteAsImage);
+						formPreview.Text = "Preview Logo Grid";
+						formPreview.PresentationFile = tempFileName;
+						RegistryHelper.MainFormHandle = formPreview.Handle;
+						RegistryHelper.MaximizeMainForm = false;
+						DialogResult previewResult = formPreview.ShowDialog();
+						RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+						RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+						if (previewResult != DialogResult.OK)
+							Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 						else
-							AdSchedulePowerPointHelper.Instance.PrepareMultiGridGridBasedEmail(tempFileName);
-						Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-						formProgress.Close();
-						if (File.Exists(tempFileName))
-							using (var formPreview = new FormPreview())
-							{
-								formPreview.Text = "Preview Logo Grid";
-								formPreview.PresentationFile = tempFileName;
-								RegistryHelper.MainFormHandle = formPreview.Handle;
-								RegistryHelper.MaximizeMainForm = false;
-								DialogResult previewResult = formPreview.ShowDialog();
-								RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-								RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-								if (previewResult != DialogResult.OK)
-									Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-								else
-								{
-									Utilities.Instance.ActivateMiniBar();
-								}
-							}
+						{
+							Utilities.Instance.ActivateMiniBar();
+						}
 					}
-				}
 			}
 		}
 
-		private string[][] GetPublicationLogos(bool excelOutput)
+		private string[][] GetPublicationLogos()
 		{
 			var logos = new List<string[]>();
 			var logosOnSlide = new List<string>();
-			int rowCountPerSlide = _showCommentsHeader ? (excelOutput ? OutputManager.MultiGridExcelBasedRowsCountWithNotes : OutputManager.MultiGridGridBasedRowsCountWithNotes) : (excelOutput ? OutputManager.MultiGridExcelBasedRowsCountWithoutNotes : OutputManager.MultiGridGridBasedRowsCountWithoutNotes);
+			int rowCountPerSlide = _showCommentsHeader ? OutputManager.MultiGridGridBasedRowsCountWithNotes : OutputManager.MultiGridGridBasedRowsCountWithoutNotes;
 			var insertsCount = _inserts.Count;
 			var totalRowCount = insertsCount;
 			if (ShowDigitalLegend && !String.IsNullOrEmpty(DigitalLegendInfo))
@@ -1178,14 +1134,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			return logos.ToArray();
 		}
 
-		private string[][][] GetGrid(bool excelOutput)
+		private string[][][] GetGrid()
 		{
 			var result = new List<string[][]>();
 			var slide = new List<string[]>();
 			var row = new SortedDictionary<int, string>();
 			var adNotes = new SortedDictionary<int, string>();
 
-			var rowCountPerSlide = _showCommentsHeader ? (excelOutput ? OutputManager.MultiGridExcelBasedRowsCountWithNotes : OutputManager.MultiGridGridBasedRowsCountWithNotes) : (excelOutput ? OutputManager.MultiGridExcelBasedRowsCountWithoutNotes : OutputManager.MultiGridGridBasedRowsCountWithoutNotes);
+			var rowCountPerSlide = _showCommentsHeader ? OutputManager.MultiGridGridBasedRowsCountWithNotes : OutputManager.MultiGridGridBasedRowsCountWithoutNotes;
 			var insertsCount = _inserts.Count;
 			var totalRowCount = insertsCount;
 			if (ShowDigitalLegend && !String.IsNullOrEmpty(DigitalLegendInfo))
@@ -1280,18 +1236,36 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void PopulateReplacementsList()
 		{
-			string key = string.Empty;
-			string value = string.Empty;
-			var temp = new List<string>();
+			var key = string.Empty;
+			var value = string.Empty;
 			OutputReplacementsLists = new List<Dictionary<string, string>>();
+			var slideNumber = 0;
+			var slidesCount = Grid.Length;
 			foreach (var slideGrid in Grid)
 			{
 				var slideReplacementList = new Dictionary<string, string>();
 
+				var hideAdSpecsOnSlide = ((slideNumber + 1) < slidesCount && ShowAdSpecsOnlyOnLastSlide) || DoNotShowAdSpecs;
+
+				slideReplacementList.Add("BusinessName", BusinessName);
+				slideReplacementList.Add("DecisionMaker", DecisionMaker);
+				slideReplacementList.Add("Decisionmaker", DecisionMaker);
+				slideReplacementList.Add("FlightDates", FlightDates);
+				slideReplacementList.Add("DateTag", PresentationDate);
+				slideReplacementList.Add("Date", PresentationDate);
+
+				for (var j = 0; j < 6; j++)
+				{
+					if (j < AdSpecs.Length && !hideAdSpecsOnSlide)
+						slideReplacementList.Add(string.Format("ADSPEC{0}", j + 1), AdSpecs[j]);
+					else
+						slideReplacementList.Add(string.Format("ADSPEC{0}", j + 1), String.Empty);
+				}
+
 				string[] gridHeaders = GridHeaders;
 				for (int i = 0; i < gridHeaders.Length; i++)
 				{
-					key = string.Format("Header{0}", (i + 1).ToString());
+					key = string.Format("Header{0}", (i + 1));
 					value = gridHeaders[i];
 					if (!slideReplacementList.Keys.Contains(key))
 						slideReplacementList.Add(key, value);
@@ -1310,7 +1284,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 								switch (j)
 								{
 									case 0:
-										columnPrefix = "g";
+										columnPrefix = "k";
 										break;
 									case 1:
 										columnPrefix = "a";
@@ -1329,6 +1303,18 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 										break;
 									case 6:
 										columnPrefix = "f";
+										break;
+									case 7:
+										columnPrefix = "g";
+										break;
+									case 8:
+										columnPrefix = "h";
+										break;
+									case 9:
+										columnPrefix = "i";
+										break;
+									case 10:
+										columnPrefix = "j";
 										break;
 								}
 							}
@@ -1353,6 +1339,18 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 										break;
 									case 5:
 										columnPrefix = "f";
+										break;
+									case 6:
+										columnPrefix = "g";
+										break;
+									case 7:
+										columnPrefix = "h";
+										break;
+									case 8:
+										columnPrefix = "i";
+										break;
+									case 9:
+										columnPrefix = "j";
 										break;
 								}
 							}
@@ -1384,22 +1382,34 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 						key = string.Format("{0}{1}", (i + 1).ToString(), "f");
 						if (!slideReplacementList.Keys.Contains(key))
 							slideReplacementList.Add(key, value);
-						value = "MergeComment";
 						key = string.Format("{0}{1}", (i + 1).ToString(), "g");
+						if (!slideReplacementList.Keys.Contains(key))
+							slideReplacementList.Add(key, value);
+						key = string.Format("{0}{1}", (i + 1).ToString(), "h");
+						if (!slideReplacementList.Keys.Contains(key))
+							slideReplacementList.Add(key, value);
+						key = string.Format("{0}{1}", (i + 1).ToString(), "i");
+						if (!slideReplacementList.Keys.Contains(key))
+							slideReplacementList.Add(key, value);
+						key = string.Format("{0}{1}", (i + 1).ToString(), "j");
+						if (!slideReplacementList.Keys.Contains(key))
+							slideReplacementList.Add(key, value);
+						value = "MergeComment";
+						key = string.Format("{0}{1}", (i + 1).ToString(), "k");
 						if (!slideReplacementList.Keys.Contains(key))
 							slideReplacementList.Add(key, value);
 					}
 				}
 				OutputReplacementsLists.Add(slideReplacementList);
+				slideNumber++;
 			}
 		}
 
-		public void PrepareOutput(bool excelOutput)
+		public void PrepareOutput()
 		{
-			Grid = GetGrid(excelOutput);
-			PublicationLogos = GetPublicationLogos(excelOutput);
-			if (!excelOutput)
-				PopulateReplacementsList();
+			Grid = GetGrid();
+			PublicationLogos = GetPublicationLogos();
+			PopulateReplacementsList();
 		}
 		#endregion
 

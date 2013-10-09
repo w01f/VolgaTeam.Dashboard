@@ -235,7 +235,8 @@ namespace NewBizWiz.Core.Common
 			var xml = new StringBuilder();
 
 			xml.AppendLine(@"<AppID>" + AppID.ToString() + @"</AppID>");
-
+			if (!Directory.Exists(Path.GetDirectoryName(_appIDFile)))
+				Directory.CreateDirectory(Path.GetDirectoryName(_appIDFile));
 			using (var sw = new StreamWriter(_appIDFile, false))
 			{
 				sw.Write(xml);

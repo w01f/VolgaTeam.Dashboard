@@ -14,12 +14,11 @@ namespace NewBizWiz.MiniBar.SettingsForms
 			Dock = DockStyle.Top;
 		}
 
-		public NBWApplication Application { get; set; }
+		public NBWLink Application { get; set; }
 
 		public void UpdateView()
 		{
 			pbLogo.Image = Application.Image;
-			laTitle.Text = Application.Title;
 		}
 
 		private void pbLogo_Click(object sender, EventArgs e)

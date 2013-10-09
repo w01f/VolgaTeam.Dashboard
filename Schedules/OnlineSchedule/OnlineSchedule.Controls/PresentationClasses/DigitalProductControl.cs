@@ -791,7 +791,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public void Output()
 		{
 			SaveValues();
-			OnlineSchedulePowerPointHelper.Instance.AppendOneSheet(Product, _container.SelectedTheme);
+			OnlineSchedulePowerPointHelper.Instance.AppendOneSheet(new[] { Product }, _container.SelectedTheme);
 		}
 		#endregion
 	}

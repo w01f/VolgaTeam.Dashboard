@@ -35,7 +35,16 @@ namespace NewBizWiz.MiniBar
 			SlideManager = new SlideManager(Core.Common.SettingsManager.Instance.SlideMastersPath);
 		}
 
-		public static object Locker { get; set; }
+		private static object _locker;
+		public static object Locker
+		{
+			get
+			{
+				if (_locker == null)
+					_locker = new object();
+				return _locker;
+			}
+		}
 
 		public bool ShowHidden { get; set; }
 		public bool ShowFloat { get; set; }
@@ -87,29 +96,27 @@ namespace NewBizWiz.MiniBar
 				try
 				{
 					var source = new DirectoryInfo(SettingsManager.Instance.SyncFilesSourcePath);
-					if (source.Exists)
+					if (!source.Exists) return;
+					foreach (var sourceFile in source.GetFiles())
 					{
-						foreach (FileInfo sourceFile in source.GetFiles())
+						var destinationFilePath = Path.Combine(SettingsManager.Instance.SyncSettingsFolderPath, sourceFile.Name);
+						if (File.Exists(destinationFilePath))
 						{
-							string destinationFilePath = Path.Combine(SettingsManager.Instance.SyncSettingsFolderPath, sourceFile.Name);
-							if (File.Exists(destinationFilePath))
-							{
-								while (Process.GetProcesses().Where(x => x.ProcessName.ToLower().Contains(Path.GetFileNameWithoutExtension(destinationFilePath).ToLower())).Count() > 0)
-									Thread.Sleep(1000);
-								if (File.GetLastWriteTime(destinationFilePath) >= sourceFile.LastWriteTime)
-									continue;
-								try
-								{
-									File.SetAttributes(destinationFilePath, FileAttributes.Normal);
-								}
-								catch { }
-							}
+							while (Process.GetProcesses().Any(x => x.ProcessName.ToLower().Contains(Path.GetFileNameWithoutExtension(destinationFilePath).ToLower())))
+								Thread.Sleep(1000);
+							if (File.GetLastWriteTime(destinationFilePath) >= sourceFile.LastWriteTime)
+								continue;
 							try
 							{
-								sourceFile.CopyTo(destinationFilePath, true);
+								File.SetAttributes(destinationFilePath, FileAttributes.Normal);
 							}
 							catch { }
 						}
+						try
+						{
+							sourceFile.CopyTo(destinationFilePath, true);
+						}
+						catch { }
 					}
 				}
 				catch { }
@@ -134,7 +141,7 @@ namespace NewBizWiz.MiniBar
 
 		public bool AplicationDetected()
 		{
-			return Process.GetProcesses().Where(x => x.ProcessName.Contains("adSALESapp") || x.ProcessName.Contains("ProSlides") || x.ProcessName.Contains("OneDomain")).Count() > 0;
+			return Process.GetProcesses().Any(x => x.ProcessName.Contains("adSALESapp") || x.ProcessName.Contains("ProSlides") || x.ProcessName.Contains("OneDomain"));
 		}
 
 		public void CloseActiveApplications()
@@ -234,14 +241,21 @@ namespace NewBizWiz.MiniBar
 		public void RunWebSalesDepot()
 		{
 			string browser = string.Empty;
-			if (SettingsManager.Instance.SalesDepotBrowserChrome)
-				browser = "chrome.exe";
-			else if (SettingsManager.Instance.SalesDepotBrowserFirefox)
-				browser = "firefox.exe";
-			else if (SettingsManager.Instance.SalesDepotBrowserFirefox)
-				browser = "opera.exe";
-			else
-				browser = "iexplore.exe";
+			switch (SettingsManager.Instance.SalesDepotBrowser)
+			{
+				case BrowserType.Chrome:
+					browser = "chrome.exe";
+					break;
+				case BrowserType.Firefox:
+					browser = "firefox";
+					break;
+				case BrowserType.Opera:
+					browser = "opera.exe";
+					break;
+				default:
+					browser = "iexplore.exe";
+					break;
+			}
 			try
 			{
 				var process = new Process

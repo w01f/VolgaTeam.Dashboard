@@ -13,6 +13,7 @@ namespace NewBizWiz.Core.Common
 		public ThemeManager(string rootPath)
 		{
 			Themes = new List<Theme>();
+			if (!Directory.Exists(rootPath)) return;
 			foreach (var themeFolder in Directory.GetDirectories(rootPath))
 				Themes.Add(new Theme(themeFolder));
 			Themes.Sort((x, y) => x.Order.CompareTo(y.Order));

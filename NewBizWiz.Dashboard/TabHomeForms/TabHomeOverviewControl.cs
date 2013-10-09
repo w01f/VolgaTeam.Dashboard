@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows.Forms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
 using NewBizWiz.Dashboard.TabHomeForms.Dashboard;
+using NewBizWiz.Dashboard.ToolForms;
 using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
@@ -65,7 +67,46 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public void Output()
 		{
-			AppManager.Instance.ShowFloater(null, () => DashboardPowerPointHelper.Instance.AppendCleanslate());
+			using (var form = new FormProgress())
+			{
+				form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				form.TopMost = true;
+				form.Show();
+				AppManager.Instance.ShowFloater(null, () =>
+				{
+					DashboardPowerPointHelper.Instance.AppendCleanslate();
+					form.Close();
+				});
+			}
+		}
+
+		public void Preview()
+		{
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
+				formProgress.TopMost = true;
+				formProgress.Show();
+				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				DashboardPowerPointHelper.Instance.PrepareCleanslateEmail(tempFileName);
+				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
+				formProgress.Close();
+				if (!File.Exists(tempFileName)) return;
+				using (var formPreview = new FormPreview())
+				{
+					formPreview.Text = "Preview Slides";
+					formPreview.PresentationFile = tempFileName;
+					RegistryHelper.MainFormHandle = formPreview.Handle;
+					RegistryHelper.MaximizeMainForm = false;
+					var previewResult = formPreview.ShowDialog();
+					RegistryHelper.MaximizeMainForm = false;
+					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+					if (previewResult != DialogResult.OK)
+						Utilities.Instance.ActivateForm(FormMain.Instance.Handle, true, false);
+					else
+						Utilities.Instance.ActivateMiniBar();
+				}
+			}
 		}
 	}
 }

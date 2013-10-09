@@ -48,7 +48,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void LoadPublication()
 		{
 			Text = PrintProduct.Name.Replace("&", "&&");
-			pbLogo.Image = PrintProduct.SmallLogo != null ? new Bitmap(PrintProduct.SmallLogo) : null;
+			pbLogo.Image = PrintProduct.SmallLogo;
 			laPublicationName.Text = PrintProduct.Name.Replace("&", "&&");
 			laDate.Text = PrintProduct.Parent.PresentationDateObject != null ? PrintProduct.Parent.PresentationDate.ToString("MM/dd/yy") : string.Empty;
 			laBusinessName.Text = PrintProduct.Parent.BusinessName + (!string.IsNullOrEmpty(PrintProduct.Parent.AccountNumber) ? (" - " + PrintProduct.Parent.AccountNumber) : string.Empty);
@@ -83,6 +83,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			laDecisionMaker.Enabled = Controller.Instance.Grids.DetailedGrid.SlideHeaderState.ShowDecisionMaker;
 			laFlightDates.Enabled = Controller.Instance.Grids.DetailedGrid.SlideHeaderState.ShowFlightDates;
 			laPublicationName.Enabled = Controller.Instance.Grids.DetailedGrid.SlideHeaderState.ShowName;
+			pbLogo.Visible = Controller.Instance.Grids.DetailedGrid.SlideHeaderState.ShowLogo1;
 		}
 
 		#region Editor's Events
@@ -313,11 +314,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get
 			{
 				string result = string.Empty;
-				if (Controller.Instance.Grids.DetailedGrid.SlideHeaderState.ShowLogo1)
-				{
-					result = Path.GetTempFileName();
-					pbLogo.Image.Save(result);
-				}
+				if (!Controller.Instance.Grids.DetailedGrid.SlideHeaderState.ShowLogo1 || PrintProduct.TinyLogo == null) return result;
+				result = Path.GetTempFileName();
+				PrintProduct.TinyLogo.Save(result);
 				return result;
 			}
 		}
@@ -570,36 +569,49 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public string[][][] Grid { get; private set; }
 
-		public void PrepareOutput(bool excelOutput)
+		public void PrepareOutput()
 		{
-			Grid = GetGrid(excelOutput);
-			if (!excelOutput)
-				PopulateReplacementsList();
+			Grid = GetGrid();
+			PopulateReplacementsList();
 		}
 
-		public void PrintOutput(bool excelOutput, bool pasteAsImage)
+		public void PrintOutput()
 		{
-			PrepareOutput(excelOutput);
-			if (excelOutput)
-				AdSchedulePowerPointHelper.Instance.AppendDetailedGridExcelBased(this, pasteAsImage);
-			else
-				AdSchedulePowerPointHelper.Instance.AppendDetailedGridGridBased(this);
+			PrepareOutput();
+			AdSchedulePowerPointHelper.Instance.AppendDetailedGridGridBased(new[] { this });
 		}
 
 		public void PopulateReplacementsList()
 		{
-			string key = string.Empty;
-			string value = string.Empty;
-			var temp = new List<string>();
+			var key = string.Empty;
+			var value = string.Empty;
 			OutputReplacementsLists = new List<Dictionary<string, string>>();
+			var slideNumber = 0;
+			var slidesCount = Grid.Length;
 			foreach (var slideGrid in Grid)
 			{
 				var slideReplacementList = new Dictionary<string, string>();
 
+				var hideAdSpecsOnSlide = ((slideNumber + 1) < slidesCount && ShowAdSpecsOnlyOnLastSlide) || DoNotShowAdSpecs;
+
+				slideReplacementList.Add("BusinessName", BusinessName);
+				slideReplacementList.Add("DecisionMaker", DecisionMaker);
+				slideReplacementList.Add("Decisionmaker", DecisionMaker);
+				slideReplacementList.Add("FlightDates", FlightDates);
+				slideReplacementList.Add("DateTag", PresentationDate1);
+				slideReplacementList.Add("Date", PresentationDate1);
+
+				for (var j = 0; j < 6; j++)
+				{
+					if (j < AdSpecs.Length && !hideAdSpecsOnSlide)
+						slideReplacementList.Add(string.Format("ADSPEC{0}", j + 1), AdSpecs[j]);
+					else
+						slideReplacementList.Add(string.Format("ADSPEC{0}", j + 1), String.Empty);
+				}
 				string[] gridHeaders = GridHeaders;
 				for (int i = 0; i < gridHeaders.Length; i++)
 				{
-					key = string.Format("Header{0}", (i + 1).ToString());
+					key = string.Format("Header{0}", (i + 1));
 					value = gridHeaders[i];
 					if (!slideReplacementList.Keys.Contains(key))
 						slideReplacementList.Add(key, value);
@@ -618,7 +630,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 								switch (j)
 								{
 									case 0:
-										columnPrefix = "g";
+										columnPrefix = "k";
 										break;
 									case 1:
 										columnPrefix = "a";
@@ -637,6 +649,18 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 										break;
 									case 6:
 										columnPrefix = "f";
+										break;
+									case 7:
+										columnPrefix = "g";
+										break;
+									case 8:
+										columnPrefix = "h";
+										break;
+									case 9:
+										columnPrefix = "i";
+										break;
+									case 10:
+										columnPrefix = "j";
 										break;
 								}
 							}
@@ -661,6 +685,18 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 										break;
 									case 5:
 										columnPrefix = "f";
+										break;
+									case 6:
+										columnPrefix = "g";
+										break;
+									case 7:
+										columnPrefix = "h";
+										break;
+									case 8:
+										columnPrefix = "i";
+										break;
+									case 9:
+										columnPrefix = "j";
 										break;
 								}
 							}
@@ -692,24 +728,37 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 						key = string.Format("{0}{1}", (i + 1).ToString(), "f");
 						if (!slideReplacementList.Keys.Contains(key))
 							slideReplacementList.Add(key, value);
-						value = "MergeComment";
 						key = string.Format("{0}{1}", (i + 1).ToString(), "g");
+						if (!slideReplacementList.Keys.Contains(key))
+							slideReplacementList.Add(key, value);
+						key = string.Format("{0}{1}", (i + 1).ToString(), "h");
+						if (!slideReplacementList.Keys.Contains(key))
+							slideReplacementList.Add(key, value);
+						key = string.Format("{0}{1}", (i + 1).ToString(), "i");
+						if (!slideReplacementList.Keys.Contains(key))
+							slideReplacementList.Add(key, value);
+						key = string.Format("{0}{1}", (i + 1).ToString(), "j");
+						if (!slideReplacementList.Keys.Contains(key))
+							slideReplacementList.Add(key, value);
+						value = "MergeComment";
+						key = string.Format("{0}{1}", (i + 1).ToString(), "k");
 						if (!slideReplacementList.Keys.Contains(key))
 							slideReplacementList.Add(key, value);
 					}
 				}
 				OutputReplacementsLists.Add(slideReplacementList);
+				slideNumber++;
 			}
 		}
 
-		private string[][][] GetGrid(bool excelOutput)
+		private string[][][] GetGrid()
 		{
 			var result = new List<string[][]>();
 			var slide = new List<string[]>();
 			var row = new SortedDictionary<int, string>();
 			var adNotes = new SortedDictionary<int, string>();
 			var printProduct = PrintProduct;
-			int rowCountPerSlide = Controller.Instance.Grids.DetailedGrid.ShowCommentsHeader ? (excelOutput ? OutputManager.DetailedGridExcelBasedRowsCountWithNotes : OutputManager.DetailedGridGridBasedRowsCountWithNotes) : (excelOutput ? OutputManager.DetailedGridExcelBasedRowsCountWithoutNotes : OutputManager.DetailedGridGridBasedRowsCountWithoutNotes);
+			int rowCountPerSlide = Controller.Instance.Grids.DetailedGrid.ShowCommentsHeader ? OutputManager.DetailedGridGridBasedRowsCountWithNotes : OutputManager.DetailedGridGridBasedRowsCountWithoutNotes;
 			int insertsCount = printProduct.Inserts.Count;
 			var totalRowCount = insertsCount;
 			if (ShowDigitalLegend && !String.IsNullOrEmpty(DigitalLegendInfo))

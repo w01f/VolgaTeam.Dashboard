@@ -35,14 +35,14 @@ namespace NewBizWiz.SyncPC
 
 		private string GetXML()
 		{
-			string url = "http://isyncpc.com/generateXML.php?userid=" + userid + "&pass=" + serverpass;
-			string result = string.Empty;
+			var url = "http://isyncpc.com/generateXML.php?userid=" + userid + "&pass=" + serverpass;
+			var result = string.Empty;
 			try
 			{
 				using (var client = new WebClient())
 				{
 					result = client.DownloadString(url);
-					string thisdate = "";
+					var thisdate = "";
 					thisdate += DateTime.Now.ToShortTimeString();
 					result = result.Replace("\"EXETIMEHERE\"", thisdate);
 				}

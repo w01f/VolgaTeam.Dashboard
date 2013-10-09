@@ -28,6 +28,11 @@ namespace NewBizWiz.CommonGUI.Slides
 			{
 				laSlideName.Text = e.SelectedSlide != null ? e.SelectedSlide.Name : String.Empty;
 			};
+			_slideContainer.SlideSelected += (o, e) =>
+			{
+				DialogResult = DialogResult.OK;
+				Close();
+			};
 			_slideContainer.InitSlides(slideManager);
 			pnMain.Controls.Add(_slideContainer);
 			_slideContainer.BringToFront();

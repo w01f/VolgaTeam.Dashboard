@@ -16,6 +16,7 @@ namespace NewBizWiz.CommonGUI.Slides
 		private readonly List<SlideMaster> _slides = new List<SlideMaster>();
 		public string GroupName { get; private set; }
 		public event EventHandler<SlideMasterEventArgs> SlideChanged;
+		public event EventHandler<SlideMasterEventArgs> SlideSelected;
 		public SlideMaster SelectedSlide
 		{
 			get { return layoutViewSlides.GetFocusedRow() as SlideMaster; }
@@ -50,12 +51,8 @@ namespace NewBizWiz.CommonGUI.Slides
 			if (!hitInfo.InCard) return;
 			var slideMaster = layoutView.GetRow(hitInfo.RowHandle) as SlideMaster;
 			if (slideMaster == null) return;
-			using (var form = new FormSlidePreview())
-			{
-				form.Text = slideMaster.Name;
-				form.pictureBox.Image = slideMaster.Logo;
-				form.ShowDialog();
-			}
+			if (SlideSelected != null)
+				SlideSelected(this, new SlideMasterEventArgs { SelectedSlide = slideMaster });
 		}
 
 		private void layoutViewSlides_CustomFieldValueStyle(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventArgs e)

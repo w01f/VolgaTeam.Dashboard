@@ -692,31 +692,31 @@ namespace NewBizWiz.MiniBar
 			ribbonBarSalesDepotRemote.Visible = Directory.Exists(SettingsManager.Instance.SalesDepotSettings.RemoteRootPath) & SettingsManager.Instance.SalesDepotSettings.UseRemoteSalesDepot;
 			ribbonBarSalesDepotBrowser.Visible = SettingsManager.Instance.SalesDepotSettings.ShowWebButton;
 
-			buttonItemSalesDepotBrowserChrome.Enabled = SettingsManager.Instance.SalesDepotSettings.ShowWebButton && ServiceDataManager.Instance.ChromeInstalled;
-			buttonItemSalesDepotBrowserChrome.Checked = SettingsManager.Instance.SalesDepotBrowserChrome;
+			buttonItemSalesDepotBrowserChrome.Enabled = SettingsManager.Instance.SalesDepotSettings.ShowWebButton && Utilities.Instance.ChromeInstalled;
+			buttonItemSalesDepotBrowserChrome.Checked = SettingsManager.Instance.SalesDepotBrowser == BrowserType.Chrome;
 			if (buttonItemSalesDepotBrowserChrome.Enabled)
 			{
 				buttonItemSalesDepotBrowserChrome.Click += buttonItemSalesDepotBrowser_Click;
 				buttonItemSalesDepotBrowserChrome.CheckedChanged += buttonItemSalesDepotBrowser_CheckedChanged;
 			}
 
-			buttonItemSalesDepotBrowserFirefox.Enabled = SettingsManager.Instance.SalesDepotSettings.ShowWebButton && ServiceDataManager.Instance.FirefoxInstalled;
-			buttonItemSalesDepotBrowserFirefox.Checked = SettingsManager.Instance.SalesDepotBrowserFirefox;
+			buttonItemSalesDepotBrowserFirefox.Enabled = SettingsManager.Instance.SalesDepotSettings.ShowWebButton && Utilities.Instance.FirefoxInstalled;
+			buttonItemSalesDepotBrowserFirefox.Checked = SettingsManager.Instance.SalesDepotBrowser == BrowserType.Firefox;
 			if (buttonItemSalesDepotBrowserFirefox.Enabled)
 			{
 				buttonItemSalesDepotBrowserFirefox.Click += buttonItemSalesDepotBrowser_Click;
 				buttonItemSalesDepotBrowserFirefox.CheckedChanged += buttonItemSalesDepotBrowser_CheckedChanged;
 			}
 
-			buttonItemSalesDepotBrowserOpera.Enabled = SettingsManager.Instance.SalesDepotSettings.ShowWebButton && ServiceDataManager.Instance.OperaInstalled;
-			buttonItemSalesDepotBrowserOpera.Checked = SettingsManager.Instance.SalesDepotBrowserOpera;
+			buttonItemSalesDepotBrowserOpera.Enabled = SettingsManager.Instance.SalesDepotSettings.ShowWebButton && Utilities.Instance.OperaInstalled;
+			buttonItemSalesDepotBrowserOpera.Checked = SettingsManager.Instance.SalesDepotBrowser == BrowserType.Opera;
 			if (buttonItemSalesDepotBrowserOpera.Enabled)
 			{
 				buttonItemSalesDepotBrowserOpera.Click += buttonItemSalesDepotBrowser_Click;
 				buttonItemSalesDepotBrowserOpera.CheckedChanged += buttonItemSalesDepotBrowser_CheckedChanged;
 			}
 
-			buttonItemSalesDepotBrowserIE.Checked = SettingsManager.Instance.SalesDepotBrowserIE;
+			buttonItemSalesDepotBrowserIE.Checked = SettingsManager.Instance.SalesDepotBrowser == BrowserType.IE;
 			buttonItemSalesDepotBrowserIE.Click += buttonItemSalesDepotBrowser_Click;
 			buttonItemSalesDepotBrowserIE.CheckedChanged += buttonItemSalesDepotBrowser_CheckedChanged;
 
@@ -741,10 +741,14 @@ namespace NewBizWiz.MiniBar
 			var button = sender as ButtonItem;
 			if (button != null && button.Checked)
 			{
-				SettingsManager.Instance.SalesDepotBrowserChrome = buttonItemSalesDepotBrowserChrome.Checked;
-				SettingsManager.Instance.SalesDepotBrowserFirefox = buttonItemSalesDepotBrowserFirefox.Checked;
-				SettingsManager.Instance.SalesDepotBrowserOpera = buttonItemSalesDepotBrowserOpera.Checked;
-				SettingsManager.Instance.SalesDepotBrowserIE = buttonItemSalesDepotBrowserIE.Checked;
+				if (buttonItemSalesDepotBrowserChrome.Checked)
+					SettingsManager.Instance.SalesDepotBrowser = BrowserType.Chrome;
+				else if (buttonItemSalesDepotBrowserFirefox.Checked)
+					SettingsManager.Instance.SalesDepotBrowser = BrowserType.Firefox;
+				else if (buttonItemSalesDepotBrowserOpera.Checked)
+					SettingsManager.Instance.SalesDepotBrowser = BrowserType.Opera;
+				else if (buttonItemSalesDepotBrowserIE.Checked)
+					SettingsManager.Instance.SalesDepotBrowser = BrowserType.IE;
 				SettingsManager.Instance.SaveMinibarSettings();
 			}
 		}
@@ -753,7 +757,7 @@ namespace NewBizWiz.MiniBar
 		#region Apps Methods
 		private void LoadNBWApplication()
 		{
-			var tab1Applications = NBWApplicationsManager.Instance.NBWApplications.Where(a => a.TabOrder == 1);
+			var tab1Applications = NBWApplicationsManager.Instance.Links.Where(a => a.TabOrder == 1);
 			if (tab1Applications.Any())
 			{
 				foreach (var nbwApplication in tab1Applications)
@@ -762,7 +766,7 @@ namespace NewBizWiz.MiniBar
 				ribbonPanelApps1.PerformLayout();
 			}
 
-			var tab2Applications = NBWApplicationsManager.Instance.NBWApplications.Where(a => a.TabOrder == 2);
+			var tab2Applications = NBWApplicationsManager.Instance.Links.Where(a => a.TabOrder == 2);
 			if (tab2Applications.Any())
 			{
 				foreach (var nbwApplication in tab2Applications)
@@ -771,7 +775,7 @@ namespace NewBizWiz.MiniBar
 				ribbonPanelApps2.PerformLayout();
 			}
 
-			var tab3Applications = NBWApplicationsManager.Instance.NBWApplications.Where(a => a.TabOrder == 3);
+			var tab3Applications = NBWApplicationsManager.Instance.Links.Where(a => a.TabOrder == 3);
 			if (tab3Applications.Any())
 			{
 				foreach (var nbwApplication in tab3Applications)
@@ -780,7 +784,7 @@ namespace NewBizWiz.MiniBar
 				ribbonPanelApps3.PerformLayout();
 			}
 
-			var tab4Applications = NBWApplicationsManager.Instance.NBWApplications.Where(a => a.TabOrder == 4);
+			var tab4Applications = NBWApplicationsManager.Instance.Links.Where(a => a.TabOrder == 4);
 			if (tab4Applications.Any())
 			{
 				foreach (var nbwApplication in tab4Applications)
@@ -789,7 +793,7 @@ namespace NewBizWiz.MiniBar
 				ribbonPanelApps4.PerformLayout();
 			}
 
-			var tab5Applications = NBWApplicationsManager.Instance.NBWApplications.Where(a => a.TabOrder == 5);
+			var tab5Applications = NBWApplicationsManager.Instance.Links.Where(a => a.TabOrder == 5);
 			if (tab5Applications.Any())
 			{
 				foreach (var nbwApplication in tab5Applications)
@@ -801,40 +805,23 @@ namespace NewBizWiz.MiniBar
 
 		private void UpdateApplicationsStatus()
 		{
-			foreach (var nbwApplication in NBWApplicationsManager.Instance.NBWApplications)
+			foreach (var nbwApplication in NBWApplicationsManager.Instance.Links.OfType<NBWApplication>())
 			{
-				if (nbwApplication.UseSlideTemplates && MasterWizardManager.Instance.SelectedWizard != null)
-				{
-					string slideTemplatesFolderPath = string.Empty;
-					if (nbwApplication.UseWizard)
-						slideTemplatesFolderPath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.Folder.FullName, Core.Common.SettingsManager.Instance.SlideFolder, nbwApplication.SlideTemplatesPath);
-					else
-						slideTemplatesFolderPath = Path.Combine(MasterWizardManager.ScheduleBuildersFolder, Core.Common.SettingsManager.Instance.SlideFolder, nbwApplication.SlideTemplatesPath);
-					if (Directory.Exists(slideTemplatesFolderPath))
-					{
-						nbwApplication.AppLabel.Enabled = true;
-						nbwApplication.AppButton.Enabled = true;
-					}
-					else
-					{
-						nbwApplication.AppLabel.Enabled = false;
-						nbwApplication.AppButton.Enabled = false;
-					}
-				}
+				if (!nbwApplication.UseSlideTemplates || MasterWizardManager.Instance.SelectedWizard == null) continue;
+				string slideTemplatesFolderPath;
+				if (nbwApplication.UseWizard)
+					slideTemplatesFolderPath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.Folder.FullName, Core.Common.SettingsManager.Instance.SlideFolder, nbwApplication.SlideTemplatesPath);
+				else
+					slideTemplatesFolderPath = Path.Combine(MasterWizardManager.ScheduleBuildersFolder, Core.Common.SettingsManager.Instance.SlideFolder, nbwApplication.SlideTemplatesPath);
+				nbwApplication.AppButton.Enabled = Directory.Exists(slideTemplatesFolderPath);
 			}
 		}
 
-		private void AddAppDefinition(GalleryContainer container, NBWApplication nbwApplication)
+		private void AddAppDefinition(GalleryContainer container, NBWLink nbwLink)
 		{
 			var itemContainerApp = new ItemContainer();
-			itemContainerApp.SubItems.AddRange(new BaseItem[]
-			{
-				nbwApplication.AppButton,
-				nbwApplication.DisabledButton,
-				nbwApplication.AppLabel
-			});
+			itemContainerApp.SubItems.AddRange(nbwLink.Controls.ToArray());
 			container.SubItems.AddRange(new BaseItem[] { itemContainerApp });
-			superTooltip.SetSuperTooltip(nbwApplication.DisabledButton, new SuperTooltipInfo("This app is DISABLED", string.Empty, "Check your PowerPoint slide size on the first Tab of this minibar", null, null, eTooltipColor.Default, true, false, new Size(0, 0)));
 		}
 
 		private void SetClipartSettings()

@@ -3678,9 +3678,6 @@ namespace NewBizWiz.Core.AdSchedule
 			EnableFlightDates = true;
 			EnableName = true;
 			EnableLogo1 = true;
-			EnableLogo2 = false;
-			EnableLogo3 = false;
-			EnableLogo4 = false;
 
 			ShowSlideInfo = true;
 			ShowSlideHeader = true;
@@ -3690,9 +3687,6 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowFlightDates = false;
 			ShowName = true;
 			ShowLogo1 = true;
-			ShowLogo2 = false;
-			ShowLogo3 = false;
-			ShowLogo4 = false;
 		}
 
 		public bool EnableSlideInfo { get; set; }
@@ -3703,9 +3697,6 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool EnableFlightDates { get; set; }
 		public bool EnableName { get; set; }
 		public bool EnableLogo1 { get; set; }
-		public bool EnableLogo2 { get; set; }
-		public bool EnableLogo3 { get; set; }
-		public bool EnableLogo4 { get; set; }
 
 		public bool ShowSlideInfo { get; set; }
 		public bool ShowSlideHeader { get; set; }
@@ -3715,9 +3706,6 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool ShowFlightDates { get; set; }
 		public bool ShowName { get; set; }
 		public bool ShowLogo1 { get; set; }
-		public bool ShowLogo2 { get; set; }
-		public bool ShowLogo3 { get; set; }
-		public bool ShowLogo4 { get; set; }
 
 		public string Serialize()
 		{
@@ -3730,9 +3718,6 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<EnableFlightDates>" + EnableFlightDates + @"</EnableFlightDates>");
 			result.AppendLine(@"<EnableName>" + EnableName + @"</EnableName>");
 			result.AppendLine(@"<EnableLogo1>" + EnableLogo1 + @"</EnableLogo1>");
-			result.AppendLine(@"<EnableLogo2>" + EnableLogo2 + @"</EnableLogo2>");
-			result.AppendLine(@"<EnableLogo3>" + EnableLogo3 + @"</EnableLogo3>");
-			result.AppendLine(@"<EnableLogo4>" + EnableLogo4 + @"</EnableLogo4>");
 
 			result.AppendLine(@"<ShowSlideInfo>" + ShowSlideInfo + @"</ShowSlideInfo>");
 			result.AppendLine(@"<ShowSlideHeader>" + ShowSlideHeader + @"</ShowSlideHeader>");
@@ -3742,9 +3727,6 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<ShowFlightDates>" + ShowFlightDates + @"</ShowFlightDates>");
 			result.AppendLine(@"<ShowName>" + ShowName + @"</ShowName>");
 			result.AppendLine(@"<ShowLogo1>" + ShowLogo1 + @"</ShowLogo1>");
-			result.AppendLine(@"<ShowLogo2>" + ShowLogo2 + @"</ShowLogo2>");
-			result.AppendLine(@"<ShowLogo3>" + ShowLogo3 + @"</ShowLogo3>");
-			result.AppendLine(@"<ShowLogo4>" + ShowLogo4 + @"</ShowLogo4>");
 
 			return result.ToString();
 		}
@@ -3788,18 +3770,6 @@ namespace NewBizWiz.Core.AdSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							EnableLogo1 = tempBool;
 						break;
-					case "EnableLogo2":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableLogo2 = tempBool;
-						break;
-					case "EnableLogo3":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableLogo3 = tempBool;
-						break;
-					case "EnableLogo4":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableLogo4 = tempBool;
-						break;
 
 					case "ShowSlideInfo":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -3832,18 +3802,6 @@ namespace NewBizWiz.Core.AdSchedule
 					case "ShowLogo1":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowLogo1 = tempBool;
-						break;
-					case "ShowLogo2":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowLogo2 = tempBool;
-						break;
-					case "ShowLogo3":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowLogo3 = tempBool;
-						break;
-					case "ShowLogo4":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowLogo4 = tempBool;
 						break;
 				}
 			}

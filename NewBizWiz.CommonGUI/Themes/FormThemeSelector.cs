@@ -30,6 +30,11 @@ namespace NewBizWiz.CommonGUI.Themes
 			{
 				laThemeName.Text = e.SelectedTheme != null ? e.SelectedTheme.Name : String.Empty;
 			};
+			_themeContainer.ThemeSelected += (o, e) =>
+			{
+				DialogResult = DialogResult.OK;
+				Close();
+			};
 			_themeContainer.LoadThemes(themeManager.Themes);
 			pnMain.Controls.Add(_themeContainer);
 			_themeContainer.BringToFront();

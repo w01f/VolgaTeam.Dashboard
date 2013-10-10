@@ -14,6 +14,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 		private const string DigitalPackageTemplatesFolderName = @"{0}\Online Slides\table";
 		public const string DigitalPackageTemplateFileName = "digitaltable_{0}{1}.pptx";
 
+		private const string AdPlanTemlatesFolderName = @"{0}\Online Slides\adplan";
+
 		public string OneSheetsTemplatesFolderPath
 		{
 			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, String.Format(OneSheetsTemplatesFolderName, SettingsManager.Instance.SlideFolder)); }
@@ -27,6 +29,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 		public string DigitalPackageTemplatesFolderPath
 		{
 			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, String.Format(DigitalPackageTemplatesFolderName, SettingsManager.Instance.SlideFolder)); }
+		}
+
+		public string AdPlanTemlatesFolderPath
+		{
+			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, string.Format(AdPlanTemlatesFolderName, SettingsManager.Instance.SlideFolder)); }
 		}
 	}
 }

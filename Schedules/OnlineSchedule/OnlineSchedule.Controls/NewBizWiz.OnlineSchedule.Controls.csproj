@@ -89,7 +89,20 @@
     <Compile Include="BusinessClasses\BusinessWrapper.cs" />
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="InteropClasses\AdPlanHelper.cs" />
     <Compile Include="InteropClasses\WebPackageHelper.cs" />
+    <Compile Include="PresentationClasses\AdPlanControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\AdPlanControl.Designer.cs">
+      <DependentUpon>AdPlanControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\AdPlanDigitalProductControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\AdPlanDigitalProductControl.Designer.cs">
+      <DependentUpon>AdPlanDigitalProductControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\DigitalProductContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -104,7 +117,11 @@
     </Compile>
     <Compile Include="InteropClasses\OneSheetHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
+    <Compile Include="PresentationClasses\IAdPlanItem.cs" />
     <Compile Include="PresentationClasses\OnlineWebPackageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\DigitalAdPlanControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\ScheduleSettingsControl.cs">
@@ -159,18 +176,18 @@
     <Compile Include="ToolForms\FormPreview.designer.cs">
       <DependentUpon>FormPreview.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormProgress.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormProgress.Designer.cs">
-      <DependentUpon>FormProgress.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\FormSelectPublication.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ToolForms\FormSelectPublication.Designer.cs">
       <DependentUpon>FormSelectPublication.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="PresentationClasses\AdPlanControl.resx">
+      <DependentUpon>AdPlanControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\AdPlanDigitalProductControl.resx">
+      <DependentUpon>AdPlanDigitalProductControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleSettingsControl.resx">
       <DependentUpon>ScheduleSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -194,9 +211,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormPreview.resx">
       <DependentUpon>FormPreview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormProgress.resx">
-      <DependentUpon>FormProgress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormSelectPublication.resx">
       <DependentUpon>FormSelectPublication.cs</DependentUpon>
@@ -432,6 +446,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CloneProductBig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AdPlanDigitalProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\InvestmentDetails.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Notes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

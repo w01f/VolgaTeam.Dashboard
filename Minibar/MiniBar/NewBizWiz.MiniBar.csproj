@@ -133,23 +133,11 @@
     <Compile Include="ToolForms\FormAppCode.Designer.cs">
       <DependentUpon>FormAppCode.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormSlideOutput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormSlideOutput.Designer.cs">
-      <DependentUpon>FormSlideOutput.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\FormFormatChangeNotification.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ToolForms\FormFormatChangeNotification.Designer.cs">
       <DependentUpon>FormFormatChangeNotification.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ToolForms\FormProgress.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormProgress.designer.cs">
-      <DependentUpon>FormProgress.cs</DependentUpon>
     </Compile>
     <Compile Include="SettingsForms\FormShortcuts.cs">
       <SubType>Form</SubType>
@@ -194,14 +182,8 @@
     <EmbeddedResource Include="ToolForms\FormAppCode.resx">
       <DependentUpon>FormAppCode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormSlideOutput.resx">
-      <DependentUpon>FormSlideOutput.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormFormatChangeNotification.resx">
       <DependentUpon>FormFormatChangeNotification.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormProgress.resx">
-      <DependentUpon>FormProgress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForms\FormShortcuts.resx">
       <DependentUpon>FormShortcuts.cs</DependentUpon>

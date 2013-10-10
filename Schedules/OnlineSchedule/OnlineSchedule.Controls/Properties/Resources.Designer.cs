@@ -74,6 +74,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap AdPlanDigitalProduct {
+            get {
+                object obj = ResourceManager.GetObject("AdPlanDigitalProduct", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap AppLogo {
             get {
                 object obj = ResourceManager.GetObject("AppLogo", resourceCulture);
@@ -91,6 +98,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
         public static System.Drawing.Bitmap ArrowRight {
             get {
                 object obj = ResourceManager.GetObject("ArrowRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Calendar {
+            get {
+                object obj = ResourceManager.GetObject("Calendar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -235,6 +249,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap InvestmentDetails {
+            get {
+                object obj = ResourceManager.GetObject("InvestmentDetails", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap InvestmentLogo {
             get {
                 object obj = ResourceManager.GetObject("InvestmentLogo", resourceCulture);
@@ -266,6 +287,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
         public static System.Drawing.Bitmap NewScheduleRibbon {
             get {
                 object obj = ResourceManager.GetObject("NewScheduleRibbon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Notes {
+            get {
+                object obj = ResourceManager.GetObject("Notes", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

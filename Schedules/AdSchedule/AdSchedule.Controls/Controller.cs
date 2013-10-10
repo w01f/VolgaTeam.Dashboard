@@ -10,10 +10,11 @@ using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
+using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.AdPlan;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.RateCard;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary;
-using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.CommonGUI.Floater;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
 
@@ -198,16 +199,6 @@ namespace NewBizWiz.AdSchedule.Controls
 			SnapshotPowerPoint.Click += Summaries.PowerPoint_Click;
 			SnapshotDigitalLegend.Click += Summaries.Digital_Click;
 			#endregion
-
-			#region AdPlan
-			AdPlanPreview.Click += Summaries.Preview_Click;
-			AdPlanEmail.Click += Summaries.Email_Click;
-			AdPlanHelp.Click += Summaries.Help_Click;
-			AdPlanSave.Click += Summaries.Save_Click;
-			AdPlanSaveAs.Click += Summaries.SaveAs_Click;
-			AdPlanPowerPoint.Click += Summaries.PowerPoint_Click;
-			#endregion
-
 			#endregion
 
 			#region Grids
@@ -250,6 +241,17 @@ namespace NewBizWiz.AdSchedule.Controls
 			CalendarMonthList.SelectedIndexChanged += Calendars.MonthList_SelectedIndexChanged;
 			#endregion
 
+			#region AdPlan
+			AdPlan = new PrintAdPlanControl(FormMain);
+			AdPlanPreview.Click += AdPlan.Preview_Click;
+			AdPlanEmail.Click += AdPlan.Email_Click;
+			AdPlanHelp.Click += AdPlan.Help_Click;
+			AdPlanSave.Click += AdPlan.Save_Click;
+			AdPlanSaveAs.Click += AdPlan.SaveAs_Click;
+			AdPlanPowerPoint.Click += AdPlan.PowerPoint_Click;
+			#endregion
+
+
 			#region Summary
 			Summary = new SummaryControl();
 			SummaryAddItem.Click += Summary.AddItem;
@@ -281,13 +283,13 @@ namespace NewBizWiz.AdSchedule.Controls
 			Summaries.BasicOverview.Dispose();
 			Summaries.MultiSummary.Dispose();
 			Summaries.Snapshot.Dispose();
-			Summaries.AdPlan.Dispose();
 			Summaries.Dispose();
 			Grids.DetailedGrid.Dispose();
 			Grids.MultiGrid.Dispose();
 			Grids.Dispose();
 			Calendars.Calendar.Dispose();
 			Calendars.Dispose();
+			AdPlan.Dispose();
 			Summary.Dispose();
 			RateCard.Dispose();
 			FloaterRequested = null;
@@ -305,7 +307,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			Summaries.BasicOverview.UpdateOutput(false);
 			Summaries.MultiSummary.UpdateOutput(false);
 			Summaries.Snapshot.UpdateOutput(false);
-			Summaries.AdPlan.UpdateOutput(false);
+			AdPlan.LoadSchedule(false);
 			Summary.UpdateOutput(false);
 		}
 
@@ -724,6 +726,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public GridsControl Grids { get; private set; }
 		public CalendarsControl Calendars { get; private set; }
 		public SummaryControl Summary { get; private set; }
+		public PrintAdPlanControl AdPlan { get; private set; }
 		public RateCardControl RateCard { get; private set; }
 		#endregion
 	}

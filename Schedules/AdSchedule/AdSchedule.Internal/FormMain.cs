@@ -5,8 +5,8 @@ using System.Windows.Forms;
 using NewBizWiz.AdSchedule.Controls;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
-using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.CommonGUI.Floater;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.AdSchedule.Internal
@@ -346,6 +346,10 @@ namespace NewBizWiz.AdSchedule.Internal
 			{
 				result = Controller.Instance.Calendars.AllowToLeaveControl;
 			}
+			else if ((_currentControl == Controller.Instance.AdPlan))
+			{
+				result = Controller.Instance.AdPlan.AllowToLeaveControl;
+			}
 			else if ((_currentControl == Controller.Instance.Summary))
 			{
 				result = Controller.Instance.Summary.AllowToLeaveControl;
@@ -542,19 +546,18 @@ namespace NewBizWiz.AdSchedule.Internal
 			{
 				if (AllowToLeaveCurrentControl() || _currentControl == null)
 				{
-					Controller.Instance.Summaries.SelectSummary(SummaryType.AdPlan);
-					if (!pnMain.Controls.Contains(Controller.Instance.Summaries))
+					if (!pnMain.Controls.Contains(Controller.Instance.AdPlan))
 					{
 						Application.DoEvents();
 						pnEmpty.BringToFront();
 						Application.DoEvents();
-						pnMain.Controls.Add(Controller.Instance.Summaries);
+						pnMain.Controls.Add(Controller.Instance.AdPlan);
 						Application.DoEvents();
 						pnMain.BringToFront();
 						Application.DoEvents();
 					}
-					Controller.Instance.Summaries.BringToFront();
-					_currentControl = Controller.Instance.Summaries;
+					Controller.Instance.AdPlan.BringToFront();
+					_currentControl = Controller.Instance.AdPlan;
 				}
 				else
 					_currentControl.BringToFront();
@@ -682,6 +685,8 @@ namespace NewBizWiz.AdSchedule.Internal
 				result = Controller.Instance.Grids.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.Calendars)
 				result = Controller.Instance.Calendars.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.AdPlan)
+				result = Controller.Instance.AdPlan.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.Summary)
 				result = Controller.Instance.Summary.AllowToLeaveControl;
 		}

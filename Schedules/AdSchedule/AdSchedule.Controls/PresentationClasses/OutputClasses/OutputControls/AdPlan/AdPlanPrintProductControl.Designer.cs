@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+﻿namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.AdPlan
 {
 	partial class AdPlanPrintProductControl
     {
@@ -763,6 +763,7 @@
 			// 
 			this.Controls.Add(this.pnMain);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.Name = "AdPlanPrintProductControl";
 			this.Size = new System.Drawing.Size(949, 463);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).EndInit();
 			this.pnItems.ResumeLayout(false);

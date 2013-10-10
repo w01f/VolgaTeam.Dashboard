@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.ToolForms
+﻿namespace NewBizWiz.CommonGUI.ToolForms
 {
     partial class FormImageGallery
     {

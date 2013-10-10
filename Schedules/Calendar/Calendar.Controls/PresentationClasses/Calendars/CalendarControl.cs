@@ -13,6 +13,7 @@ using NewBizWiz.Calendar.Controls.PresentationClasses.Views.GridView;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView;
 using NewBizWiz.Calendar.Controls.Properties;
 using NewBizWiz.Calendar.Controls.ToolForms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
 using SettingsManager = NewBizWiz.Core.Calendar.SettingsManager;

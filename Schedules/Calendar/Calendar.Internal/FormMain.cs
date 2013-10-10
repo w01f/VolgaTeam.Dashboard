@@ -4,8 +4,8 @@ using System.Threading;
 using System.Windows.Forms;
 using NewBizWiz.Calendar.Controls;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
-using NewBizWiz.Calendar.Controls.ToolForms;
 using NewBizWiz.CommonGUI.Floater;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Calendar.Internal

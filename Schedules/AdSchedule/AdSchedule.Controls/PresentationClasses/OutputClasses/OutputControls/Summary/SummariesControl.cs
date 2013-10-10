@@ -17,7 +17,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public OutputBasicOverviewControl BasicOverview { get; private set; }
 		public OutputMultiSummaryControl MultiSummary { get; private set; }
 		public OutputSnapshotControl Snapshot { get; private set; }
-		public OutputAdPlanControl AdPlan { get; private set; }
 
 		public ButtonItem HelpButtonItem { get; set; }
 
@@ -29,7 +28,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			BasicOverview = new OutputBasicOverviewControl();
 			MultiSummary = new OutputMultiSummaryControl();
 			Snapshot = new OutputSnapshotControl();
-			AdPlan = new OutputAdPlanControl();
 		}
 
 		public bool AllowToLeaveControl
@@ -76,10 +74,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				case SummaryType.Snapshot:
 					_selectedOutput = Snapshot;
 					HelpButtonItem = Controller.Instance.SnapshotHelp;
-					break;
-				case SummaryType.AdPlan:
-					_selectedOutput = AdPlan;
-					HelpButtonItem = Controller.Instance.AdPlanHelp;
 					break;
 				default:
 					_selectedOutput = null;
@@ -169,7 +163,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		Overview,
 		MultiSummary,
 		Snapshot,
-		AdPlan
 	}
 
 	public interface ISummaryOutputControl

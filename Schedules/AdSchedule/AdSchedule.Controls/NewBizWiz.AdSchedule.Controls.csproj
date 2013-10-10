@@ -98,7 +98,6 @@
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="BusinessClasses\RateCardManager.cs" />
     <Compile Include="Controller.cs" />
-    <Compile Include="InteropClasses\AdPlanHelper.cs" />
     <Compile Include="InteropClasses\SummaryHelper.cs" />
     <Compile Include="PresentationClasses\InputClasses\AdNotesWeekdaysSelector.cs">
       <SubType>UserControl</SubType>
@@ -118,30 +117,20 @@
     <Compile Include="PresentationClasses\InputClasses\AdWebPackageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\IAdPlanItem.cs" />
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\AdPlan\PrintAdPlanControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\DigitalViewerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\DigitalViewerControl.Designer.cs">
       <DependentUpon>DigitalViewerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanPrintProductControl.cs">
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\AdPlan\AdPlanPrintProductControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanPrintProductControl.Designer.cs">
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\AdPlan\AdPlanPrintProductControl.Designer.cs">
       <DependentUpon>AdPlanPrintProductControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanDigitalProductControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanDigitalProductControl.Designer.cs">
-      <DependentUpon>AdPlanDigitalProductControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\OutputAdPlanControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\OutputAdPlanControl.Designer.cs">
-      <DependentUpon>OutputAdPlanControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Summary\SummaryOutputItemControl.cs">
       <SubType>UserControl</SubType>
@@ -424,23 +413,11 @@
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormDigital.Designer.cs">
       <DependentUpon>FormDigital.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormProgress.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormProgress.Designer.cs">
-      <DependentUpon>FormProgress.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormEmail.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormEmail.designer.cs">
       <DependentUpon>FormEmail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ToolForms\FormImageGallery.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormImageGallery.Designer.cs">
-      <DependentUpon>FormImageGallery.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormAddPublicationWarning.cs">
       <SubType>Form</SubType>
@@ -521,14 +498,8 @@
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\DigitalViewerControl.resx">
       <DependentUpon>DigitalViewerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanPrintProductControl.resx">
+    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\AdPlan\AdPlanPrintProductControl.resx">
       <DependentUpon>AdPlanPrintProductControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Summary\AdPlanDigitalProductControl.resx">
-      <DependentUpon>AdPlanDigitalProductControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Summary\OutputAdPlanControl.resx">
-      <DependentUpon>OutputAdPlanControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Summary\SummaryOutputItemControl.resx">
       <DependentUpon>SummaryOutputItemControl.cs</DependentUpon>
@@ -662,14 +633,8 @@
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormDigital.resx">
       <DependentUpon>FormDigital.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormProgress.resx">
-      <DependentUpon>FormProgress.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormEmail.resx">
       <DependentUpon>FormEmail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormImageGallery.resx">
-      <DependentUpon>FormImageGallery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormAddPublicationWarning.resx">
       <DependentUpon>FormAddPublicationWarning.cs</DependentUpon>
@@ -1064,9 +1029,6 @@
     <None Include="Resources\DigitalInfoInvestment.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AdPlanDigitalProduct.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\AdPlanPrintProduct.png" />
   </ItemGroup>
   <ItemGroup>
@@ -1075,6 +1037,7 @@
   <ItemGroup>
     <None Include="Resources\CloneProductBig.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rem "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe" sign /f d:\temp\NewBizWiz\NLDCertificate.pfx /t http://timestamp.verisign.com/scripts/timstamp.dll  /p bubbadude AdScheduleBuilder.dll</PostBuildEvent>

@@ -6,11 +6,11 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Floater;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
-using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
 
 namespace NewBizWiz.OnlineSchedule.Controls
 {
@@ -32,6 +32,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		public RibbonTabItem TabHome { get; set; }
 		public RibbonTabItem TabScheduleSlides { get; set; }
 		public RibbonTabItem TabDigitalPackage { get; set; }
+		public RibbonTabItem TabAdPlan { get; set; }
 
 		public void Init()
 		{
@@ -84,6 +85,16 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			DigitalPackageOptions.CheckedChanged += DigitalPackage.TogledButton_CheckedChanged;
 			#endregion
 
+			#region AdPlan
+			AdPlan = new DigitalAdPlanControl(FormMain);
+			AdPlanPreview.Click += AdPlan.Preview_Click;
+			AdPlanEmail.Click += AdPlan.Email_Click;
+			AdPlanHelp.Click += AdPlan.Help_Click;
+			AdPlanSave.Click += AdPlan.Save_Click;
+			AdPlanSaveAs.Click += AdPlan.SaveAs_Click;
+			AdPlanPowerPoint.Click += AdPlan.PowerPoint_Click;
+			#endregion
+
 			ConfigureTabPages();
 
 			UpdateOutputButtonsAccordingThemeStatus();
@@ -94,6 +105,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			ScheduleSettings.Dispose();
 			ScheduleSlides.Dispose();
 			DigitalPackage.Dispose();
+			AdPlan.Dispose();
 			FloaterRequested = null;
 		}
 
@@ -102,6 +114,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			ScheduleSettings.LoadSchedule(false);
 			ScheduleSlides.LoadSchedule(false);
 			DigitalPackage.LoadSchedule(false);
+			AdPlan.LoadSchedule(false);
 		}
 
 		private void ConfigureTabPages()
@@ -123,6 +136,10 @@ namespace NewBizWiz.OnlineSchedule.Controls
 					case "Digital PKG":
 						TabDigitalPackage.Text = tabPageConfig.Name;
 						tabPages.Add(TabDigitalPackage);
+						break;
+					case "AdPlan":
+						TabAdPlan.Text = tabPageConfig.Name;
+						tabPages.Add(TabAdPlan);
 						break;
 				}
 			}
@@ -150,6 +167,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		{
 			TabScheduleSlides.Enabled = enable;
 			TabDigitalPackage.Enabled = enable && DigitalPackage.SlidesAvailable;
+			TabAdPlan.Enabled = enable;
 		}
 
 		public void UpdateOutputButtonsAccordingThemeStatus()
@@ -172,18 +190,27 @@ namespace NewBizWiz.OnlineSchedule.Controls
 				(DigitalPackagePreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
 				DigitalPackageTheme.Click += (o, e) => themesDisabledHandler();
+
+				AdPlanPowerPoint.Visible = false;
+				(AdPlanPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(AdPlanEmail.ContainerControl as RibbonBar).Visible = false;
+				(AdPlanPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(AdPlanTheme, selectorToolTip);
+				AdPlanTheme.Click += (o, e) => themesDisabledHandler();
 			}
 			else
 			{
 				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
 				Supertip.SetSuperTooltip(DigitalSlidesTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(AdPlanTheme, selectorToolTip);
 			}
 
 			Ribbon.SelectedRibbonTabChanged += (o, e) =>
 			{
 				(DigitalSlidesPowerPoint.ContainerControl as RibbonBar).Text = (DigitalSlidesTheme.Tag as Theme).Name;
 				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = (DigitalPackageTheme.Tag as Theme).Name;
+				(AdPlanPowerPoint.ContainerControl as RibbonBar).Text = (AdPlanTheme.Tag as Theme).Name;
 			};
 		}
 
@@ -235,12 +262,23 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		public ButtonItem DigitalPackageTheme { get; set; }
 		public ButtonItem DigitalPackageOptions { get; set; }
 		#endregion
+
+		#region AdPlan
+		public ButtonItem AdPlanHelp { get; set; }
+		public ButtonItem AdPlanSave { get; set; }
+		public ButtonItem AdPlanSaveAs { get; set; }
+		public ButtonItem AdPlanPreview { get; set; }
+		public ButtonItem AdPlanEmail { get; set; }
+		public ButtonItem AdPlanPowerPoint { get; set; }
+		public ButtonItem AdPlanTheme { get; set; }
+		#endregion
 		#endregion
 
 		#region Forms
 		public ScheduleSettingsControl ScheduleSettings { get; private set; }
 		public ScheduleSlidesControl ScheduleSlides { get; private set; }
 		public OnlineWebPackageControl DigitalPackage { get; private set; }
+		public DigitalAdPlanControl AdPlan { get; private set; }
 		#endregion
 	}
 }

@@ -215,12 +215,6 @@
     <Compile Include="ToolForms\FormPreview.designer.cs">
       <DependentUpon>FormPreview.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormProgress.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormProgress.designer.cs">
-      <DependentUpon>FormProgress.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\FormSelectCalendar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -294,9 +288,6 @@
     </Compile>
     <EmbeddedResource Include="ToolForms\FormPreview.resx">
       <DependentUpon>FormPreview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormProgress.resx">
-      <DependentUpon>FormProgress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormSelectCalendar.resx">
       <DependentUpon>FormSelectCalendar.cs</DependentUpon>

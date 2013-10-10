@@ -8,6 +8,7 @@ using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
@@ -349,6 +350,10 @@ namespace NewBizWiz.AdSchedule.Single
 			{
 				result = Controller.Instance.Calendars.AllowToLeaveControl;
 			}
+			else if ((_currentControl == Controller.Instance.AdPlan))
+			{
+				result = Controller.Instance.AdPlan.AllowToLeaveControl;
+			}
 			else if ((_currentControl == Controller.Instance.Summary))
 			{
 				result = Controller.Instance.Summary.AllowToLeaveControl;
@@ -575,19 +580,18 @@ namespace NewBizWiz.AdSchedule.Single
 			{
 				if (AllowToLeaveCurrentControl() || _currentControl == null)
 				{
-					Controller.Instance.Summaries.SelectSummary(SummaryType.AdPlan);
-					if (!pnMain.Controls.Contains(Controller.Instance.Summaries))
+					if (!pnMain.Controls.Contains(Controller.Instance.AdPlan))
 					{
 						Application.DoEvents();
 						pnEmpty.BringToFront();
 						Application.DoEvents();
-						pnMain.Controls.Add(Controller.Instance.Summaries);
+						pnMain.Controls.Add(Controller.Instance.AdPlan);
 						Application.DoEvents();
 						pnMain.BringToFront();
 						Application.DoEvents();
 					}
-					Controller.Instance.Summaries.BringToFront();
-					_currentControl = Controller.Instance.Summaries;
+					Controller.Instance.AdPlan.BringToFront();
+					_currentControl = Controller.Instance.AdPlan;
 				}
 				else
 					_currentControl.BringToFront();
@@ -715,6 +719,8 @@ namespace NewBizWiz.AdSchedule.Single
 				result = Controller.Instance.Grids.AllowToLeaveControl;
 			else if (_currentControl != null && _currentControl == Controller.Instance.Calendars)
 				result = Controller.Instance.Calendars.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.AdPlan)
+				result = Controller.Instance.AdPlan.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.Summary)
 				result = Controller.Instance.Summary.AllowToLeaveControl;
 			AdSchedulePowerPointHelper.Instance.Disconnect(false);

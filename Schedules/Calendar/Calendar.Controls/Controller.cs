@@ -8,6 +8,7 @@ using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.PresentationClasses;
 using NewBizWiz.Calendar.Controls.ToolForms;
 using NewBizWiz.CommonGUI.Floater;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
 
 namespace NewBizWiz.Calendar.Controls

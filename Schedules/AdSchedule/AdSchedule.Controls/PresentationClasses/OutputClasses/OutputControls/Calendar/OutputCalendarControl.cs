@@ -12,6 +12,7 @@ using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputCont
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
 using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 using ListManager = NewBizWiz.Core.AdSchedule.ListManager;

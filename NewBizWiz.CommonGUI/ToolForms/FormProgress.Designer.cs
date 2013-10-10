@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.Calendar.Controls.ToolForms
+﻿namespace NewBizWiz.CommonGUI.ToolForms
 {
     partial class FormProgress
     {

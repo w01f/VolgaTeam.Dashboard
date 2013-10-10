@@ -88,13 +88,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap AdPlanDigitalProduct {
-            get {
-                object obj = ResourceManager.GetObject("AdPlanDigitalProduct", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap AdPlanPrintProduct {
             get {
                 object obj = ResourceManager.GetObject("AdPlanPrintProduct", resourceCulture);

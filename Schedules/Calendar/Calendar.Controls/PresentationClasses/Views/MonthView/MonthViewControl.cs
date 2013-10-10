@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows.Forms;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
 using NewBizWiz.Calendar.Controls.ToolForms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
 
 namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView

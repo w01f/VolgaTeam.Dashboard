@@ -7,6 +7,7 @@ using NewBizWiz.Calendar.Controls;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.InteropClasses;
 using NewBizWiz.Calendar.Controls.ToolForms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;

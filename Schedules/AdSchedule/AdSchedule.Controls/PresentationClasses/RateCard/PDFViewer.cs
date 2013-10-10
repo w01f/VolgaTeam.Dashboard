@@ -4,7 +4,7 @@ using System.Threading;
 using System.Windows.Forms;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Interop;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.RateCard

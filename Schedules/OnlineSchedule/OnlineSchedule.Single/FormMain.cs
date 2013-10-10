@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls;
@@ -28,6 +29,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.TabHome = ribbonTabItemScheduleSettings;
 			Controller.Instance.TabScheduleSlides = ribbonTabItemDigitalSlides;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
+			Controller.Instance.TabAdPlan = ribbonTabItemAdPlan;
 
 			#region Command Controls
 
@@ -70,6 +72,16 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
 			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageOptions;
 			#endregion
+
+			#region AdPlan
+			Controller.Instance.AdPlanHelp = buttonItemAdPlanHelp;
+			Controller.Instance.AdPlanSave = buttonItemAdPlanSave;
+			Controller.Instance.AdPlanSaveAs = buttonItemAdPlanSaveAs;
+			Controller.Instance.AdPlanPreview = buttonItemAdPlanPreview;
+			Controller.Instance.AdPlanEmail = buttonItemAdPlanEmail;
+			Controller.Instance.AdPlanPowerPoint = buttonItemAdPlanPowerPoint;
+			Controller.Instance.AdPlanTheme = buttonItemAdPlanTheme;
+			#endregion
 			#endregion
 
 			Controller.Instance.Init();
@@ -107,9 +119,15 @@ namespace NewBizWiz.OnlineSchedule.Single
 				ribbonBarDigitalPackageOptions.RecalcLayout();
 				ribbonBarDigitalPackagePowerPoint.RecalcLayout();
 				ribbonBarDigitalPackageSave.RecalcLayout();
+				ribbonBarAdPlanEmail.RecalcLayout();
+				ribbonBarAdPlanExit.RecalcLayout();
+				ribbonBarAdPlanHelp.RecalcLayout();
+				ribbonBarAdPlanPowerPoint.RecalcLayout();
+				ribbonBarAdPlanSave.RecalcLayout();
 				ribbonPanelDigitalSlides.PerformLayout();
 				ribbonPanelScheduleSettings.PerformLayout();
 				ribbonPanelDigitalPackage.PerformLayout();
+				ribbonPanelAdPlan.PerformLayout();
 			}
 		}
 
@@ -193,6 +211,17 @@ namespace NewBizWiz.OnlineSchedule.Single
 					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 				}
 			}
+			else if ((_currentControl == Controller.Instance.AdPlan))
+			{
+				if (Controller.Instance.AdPlan.AllowToLeaveControl)
+					result = true;
+				else
+				{
+					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
+					ribbonControl.SelectedRibbonTabItem = ribbonTabItemAdPlan;
+					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+				}
+			}
 			else
 				result = true;
 			return result;
@@ -264,6 +293,16 @@ namespace NewBizWiz.OnlineSchedule.Single
 				}
 				_currentControl.BringToFront();
 			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemAdPlan)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.AdPlan;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(Controller.Instance.AdPlan);
+				}
+				_currentControl.BringToFront();
+			}
 			pnMain.BringToFront();
 		}
 
@@ -276,6 +315,8 @@ namespace NewBizWiz.OnlineSchedule.Single
 				result = Controller.Instance.ScheduleSlides.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.DigitalPackage)
 				result = Controller.Instance.DigitalPackage.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.AdPlan)
+				result = Controller.Instance.AdPlan.AllowToLeaveControl;
 			OnlineSchedulePowerPointHelper.Instance.Disconnect(false);
 		}
 

@@ -10,11 +10,12 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTab;
-using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
+using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.AdPlan
 {
 	[ToolboxItem(false)]
 	public partial class AdPlanPrintProductControl : XtraTabPage, IAdPlanItem
@@ -27,12 +28,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			InitializeComponent();
 		}
 
+		public AdPlanControl Container { get; set; }
 		public PrintProduct PrintProduct { get; set; }
 
 		public bool SettingsNotSaved
 		{
-			get { return Controller.Instance.Summaries.AdPlan.SettingsNotSaved; }
-			set { Controller.Instance.Summaries.AdPlan.SettingsNotSaved = value; }
+			get { return Container.SettingsNotSaved; }
+			set { Container.SettingsNotSaved = value; }
 		}
 
 		private bool AllowToCheck()
@@ -306,7 +308,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		private void buttonXNotOutput_CheckedChanged(object sender, EventArgs e)
 		{
 			if (_allowToSave)
-				Controller.Instance.Summaries.AdPlan.UpdateSlidesNumberSelector();
+				Container.UpdateSlidesNumberSelector();
 			checkEdit_CheckedChanged(null, null);
 		}
 

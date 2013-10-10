@@ -1,9 +1,8 @@
-﻿using System.Drawing;
-
-namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses
+﻿namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 {
 	public interface IAdPlanItem
 	{
+		AdPlanControl Container { get; set; }
 		string LogoFile { get; }
 		string Product { get; }
 		string Details { get; }

@@ -230,9 +230,6 @@
     <EmbeddedResource Include="ToolForms\FormPreview.resx">
       <DependentUpon>FormPreview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormProgress.resx">
-      <DependentUpon>FormProgress.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\WhiteBorderControlPage.resx">
       <DependentUpon>WhiteBorderControlPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -430,12 +427,6 @@
     </Compile>
     <Compile Include="ToolForms\FormPreview.designer.cs">
       <DependentUpon>FormPreview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ToolForms\FormProgress.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormProgress.designer.cs">
-      <DependentUpon>FormProgress.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\WhiteBorderControlPage.cs">
       <SubType>UserControl</SubType>

@@ -1,6 +1,6 @@
-﻿namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
+﻿namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 {
-    partial class OutputAdPlanControl
+	abstract partial class AdPlanControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -153,7 +153,7 @@
 
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		private System.Windows.Forms.Panel pnTopHeader;
-		private DevExpress.XtraTab.XtraTabControl xtraTabControlProducts;
+		protected DevExpress.XtraTab.XtraTabControl xtraTabControlProducts;
 		private System.Windows.Forms.Label laAdvertiser;
 		private System.Windows.Forms.Panel pnOutputOptions;
 		private DevExpress.XtraEditors.CheckEdit checkEditLessSlides;

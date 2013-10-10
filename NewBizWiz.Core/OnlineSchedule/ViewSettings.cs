@@ -11,16 +11,19 @@ namespace NewBizWiz.Core.OnlineSchedule
 		{
 			HomeViewSettings = new HomeViewSettings();
 			DigitalPackageSettings = new DigitalPackageSettings();
+			AdPlanViewSettings = new AdPlanViewSettings();
 		}
 
 		public HomeViewSettings HomeViewSettings { get; set; }
 		public DigitalPackageSettings DigitalPackageSettings { get; private set; }
+		public AdPlanViewSettings AdPlanViewSettings { get; private set; }
 
 		public string Serialize()
 		{
 			var result = new StringBuilder();
 			result.AppendLine(@"<HomeViewSettings>" + HomeViewSettings.Serialize() + @"</HomeViewSettings>");
 			result.AppendLine(@"<DigitalPackageSettings>" + DigitalPackageSettings.Serialize() + @"</DigitalPackageSettings>");
+			result.AppendLine(@"<AdPlanViewSettings>" + AdPlanViewSettings.Serialize() + @"</AdPlanViewSettings>");
 			return result.ToString();
 		}
 
@@ -35,6 +38,9 @@ namespace NewBizWiz.Core.OnlineSchedule
 						break;
 					case "DigitalPackageSettings":
 						DigitalPackageSettings.Deserialize(childNode);
+						break;
+					case "AdPlanViewSettings":
+						AdPlanViewSettings.Deserialize(childNode);
 						break;
 				}
 			}
@@ -229,6 +235,39 @@ namespace NewBizWiz.Core.OnlineSchedule
 							Formula = (FormulaType)tempInt;
 						break;
 				}
+		}
+	}
+
+	public class AdPlanViewSettings
+	{
+		public AdPlanViewSettings()
+		{
+			MoreSlides = true;
+		}
+
+		public bool MoreSlides { get; set; }
+
+		public string Serialize()
+		{
+			var result = new StringBuilder();
+			result.AppendLine(@"<MoreSlides>" + MoreSlides + @"</MoreSlides>");
+			return result.ToString();
+		}
+
+		public void Deserialize(XmlNode node)
+		{
+			bool tempBool = false;
+
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "MoreSlides":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							MoreSlides = tempBool;
+						break;
+				}
+			}
 		}
 	}
 }

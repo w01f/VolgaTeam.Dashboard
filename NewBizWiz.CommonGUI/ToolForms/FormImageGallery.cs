@@ -6,16 +6,18 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Layout;
 using NewBizWiz.Core.Common;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
-namespace NewBizWiz.AdSchedule.Controls.ToolForms
+namespace NewBizWiz.CommonGUI.ToolForms
 {
 	public partial class FormImageGallery : Form
 	{
+		private readonly List<ImageSource> _images = new List<ImageSource>();
+
 		public FormImageGallery(IEnumerable<ImageSource> imageSource)
 		{
 			InitializeComponent();
-			gridControlLogoGallery.DataSource = imageSource;
+			_images.AddRange(imageSource);
+			gridControlLogoGallery.DataSource = _images;
 		}
 
 		public Image SelectedImage
@@ -27,10 +29,10 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 				{
 					var converter = TypeDescriptor.GetConverter(typeof(Bitmap));
 					var encodedLogo = Convert.ToBase64String((byte[])converter.ConvertTo(value, typeof(byte[])));
-					var selectedLogo = ListManager.Instance.Images.FirstOrDefault(l => l.EncodedBigImage.Equals(encodedLogo));
+					var selectedLogo = _images.FirstOrDefault(l => l.EncodedBigImage.Equals(encodedLogo));
 					if (selectedLogo != null)
 					{
-						var index = ListManager.Instance.Images.IndexOf(selectedLogo);
+						var index = _images.IndexOf(selectedLogo);
 						layoutViewLogoGallery.FocusedRowHandle = layoutViewLogoGallery.GetRowHandle(index);
 						return;
 					}

@@ -67,6 +67,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 						if (printProductPage == null)
 						{
 							printProductPage = new AdPlanPrintProductControl();
+							printProductPage.Container = this;
 							ProductPages.Add(printProductPage);
 							Application.DoEvents();
 						}
@@ -86,6 +87,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 						if (digitalProductPage == null)
 						{
 							digitalProductPage = new AdPlanDigitalProductControl();
+							digitalProductPage.Container = this;
 							ProductPages.Add(digitalProductPage);
 							Application.DoEvents();
 						}

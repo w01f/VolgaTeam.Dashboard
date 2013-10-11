@@ -66,6 +66,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 						if (digitalProductPage == null)
 						{
 							digitalProductPage = new AdPlanDigitalProductControl();
+							digitalProductPage.Container = this;
 							ProductPages.Add(digitalProductPage);
 							Application.DoEvents();
 						}

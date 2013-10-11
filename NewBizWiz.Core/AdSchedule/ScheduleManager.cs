@@ -311,6 +311,22 @@ namespace NewBizWiz.Core.AdSchedule
 			}
 		}
 
+		public IEnumerable<DateTime> ScheduleDates
+		{
+			get
+			{
+				var result = new List<DateTime>();
+				var startDate = FlightDateStart;
+				while (startDate <= FlightDateEnd)
+				{
+					result.Add(startDate);
+					startDate = startDate.AddDays(1);
+				}
+				return result;
+			}
+		}
+
+
 		public DateTime[] ScheduleMonths
 		{
 			get { return _scheduleMonths.ToArray(); }

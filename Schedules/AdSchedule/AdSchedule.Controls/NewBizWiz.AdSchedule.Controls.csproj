@@ -99,11 +99,11 @@
     <Compile Include="BusinessClasses\RateCardManager.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="InteropClasses\SummaryHelper.cs" />
-    <Compile Include="PresentationClasses\InputClasses\AdNotesWeekdaysSelector.cs">
+    <Compile Include="PresentationClasses\InputClasses\AdNotesDaysSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\InputClasses\AdNotesWeekdaysSelector.Designer.cs">
-      <DependentUpon>AdNotesWeekdaysSelector.cs</DependentUpon>
+    <Compile Include="PresentationClasses\InputClasses\AdNotesDaysSelector.Designer.cs">
+      <DependentUpon>AdNotesDaysSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\InputClasses\CustomDateEditCalendar.cs">
       <SubType>Component</SubType>
@@ -383,6 +383,12 @@
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormDayView.Designer.cs">
       <DependentUpon>FormDayView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormDateSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormDateSelector.Designer.cs">
+      <DependentUpon>FormDateSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormExportSchedule.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -492,8 +498,8 @@
     <Compile Include="PresentationClasses\InputClasses\MechanicalControl.Designer.cs">
       <DependentUpon>MechanicalControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="PresentationClasses\InputClasses\AdNotesWeekdaysSelector.resx">
-      <DependentUpon>AdNotesWeekdaysSelector.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\InputClasses\AdNotesDaysSelector.resx">
+      <DependentUpon>AdNotesDaysSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\DigitalViewerControl.resx">
       <DependentUpon>DigitalViewerControl.cs</DependentUpon>
@@ -617,6 +623,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormDayView.resx">
       <DependentUpon>FormDayView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormDateSelector.resx">
+      <DependentUpon>FormDateSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormExportSchedule.resx">
       <DependentUpon>FormExportSchedule.cs</DependentUpon>
@@ -1037,7 +1046,9 @@
   <ItemGroup>
     <None Include="Resources\CloneProductBig.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\AdNotesOtherDays.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rem "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe" sign /f d:\temp\NewBizWiz\NLDCertificate.pfx /t http://timestamp.verisign.com/scripts/timstamp.dll  /p bubbadude AdScheduleBuilder.dll</PostBuildEvent>

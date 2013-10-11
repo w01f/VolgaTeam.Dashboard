@@ -30,6 +30,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.ckComment = new DevExpress.XtraEditors.CheckEdit();
 			this.textEditComment = new DevExpress.XtraEditors.TextEdit();
 			this.checkedListBoxControlComments = new DevExpress.XtraEditors.CheckedListBoxControl();
@@ -38,32 +39,32 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			this.buttonXClearSection = new DevComponents.DotNetBar.ButtonX();
 			this.tabControlAdNotes = new DevComponents.DotNetBar.TabControl();
 			this.tabControlPanelComments = new DevComponents.DotNetBar.TabControlPanel();
-			this.adNotesWeekdaysSelectorComments = new NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesWeekdaysSelector();
+			this.adNotesDaysSelectorComments = new NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesDaysSelector();
 			this.buttonXClearComment = new DevComponents.DotNetBar.ButtonX();
 			this.ckCommentAll = new DevExpress.XtraEditors.CheckEdit();
-			this.tabItemComments = new DevComponents.DotNetBar.TabItem();
+			this.tabItemComments = new DevComponents.DotNetBar.TabItem(this.components);
 			this.tabControlPanelSections = new DevComponents.DotNetBar.TabControlPanel();
-			this.adNotesWeekdaysSelectorSections = new NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesWeekdaysSelector();
+			this.adNotesDaysSelectorSections = new NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesDaysSelector();
 			this.textEditSection = new DevExpress.XtraEditors.TextEdit();
 			this.ckSection = new DevExpress.XtraEditors.CheckEdit();
 			this.checkedListBoxControlSections = new DevExpress.XtraEditors.CheckedListBoxControl();
-			this.tabItemSections = new DevComponents.DotNetBar.TabItem();
+			this.tabItemSections = new DevComponents.DotNetBar.TabItem(this.components);
 			this.tabControlPanelDeadlines = new DevComponents.DotNetBar.TabControlPanel();
-			this.adNotesWeekdaysSelectorDeadlines = new NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesWeekdaysSelector();
+			this.adNotesDaysSelectorDeadlines = new NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesDaysSelector();
 			this.textEditDeadline = new DevExpress.XtraEditors.TextEdit();
 			this.ckDeadline = new DevExpress.XtraEditors.CheckEdit();
 			this.checkedListBoxControlDeadline = new DevExpress.XtraEditors.CheckedListBoxControl();
 			this.laDeadline = new System.Windows.Forms.Label();
 			this.buttonXClearDeadline = new DevComponents.DotNetBar.ButtonX();
-			this.tabItemDeadlines = new DevComponents.DotNetBar.TabItem();
+			this.tabItemDeadlines = new DevComponents.DotNetBar.TabItem(this.components);
 			this.tabControlPanelMechanicals = new DevComponents.DotNetBar.TabControlPanel();
-			this.adNotesWeekdaysSelectorMechanicals = new NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesWeekdaysSelector();
+			this.adNotesDaysSelectorMechanicals = new NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses.AdNotesDaysSelector();
 			this.buttonXClearMechanicals = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabControlMechanicals = new DevExpress.XtraTab.XtraTabControl();
 			this.textEditMechanicals = new DevExpress.XtraEditors.TextEdit();
 			this.ckMechanicals = new DevExpress.XtraEditors.CheckEdit();
-			this.tabItemMechanicals = new DevComponents.DotNetBar.TabItem();
-			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository();
+			this.tabItemMechanicals = new DevComponents.DotNetBar.TabItem(this.components);
+			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository(this.components);
 			this.repositoryItemCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.repositoryItemSpinEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.pnMain = new System.Windows.Forms.Panel();
@@ -212,9 +213,9 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			this.tabControlAdNotes.ColorScheme.TabPanelBackground2 = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.tabControlAdNotes.ColorScheme.TabPanelBorder = System.Drawing.Color.White;
 			this.tabControlAdNotes.Controls.Add(this.tabControlPanelComments);
-			this.tabControlAdNotes.Controls.Add(this.tabControlPanelSections);
-			this.tabControlAdNotes.Controls.Add(this.tabControlPanelDeadlines);
 			this.tabControlAdNotes.Controls.Add(this.tabControlPanelMechanicals);
+			this.tabControlAdNotes.Controls.Add(this.tabControlPanelDeadlines);
+			this.tabControlAdNotes.Controls.Add(this.tabControlPanelSections);
 			this.tabControlAdNotes.Cursor = System.Windows.Forms.Cursors.Default;
 			this.tabControlAdNotes.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControlAdNotes.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -238,7 +239,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			// tabControlPanelComments
 			// 
 			this.tabControlPanelComments.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-			this.tabControlPanelComments.Controls.Add(this.adNotesWeekdaysSelectorComments);
+			this.tabControlPanelComments.Controls.Add(this.adNotesDaysSelectorComments);
 			this.tabControlPanelComments.Controls.Add(this.buttonXClearComment);
 			this.tabControlPanelComments.Controls.Add(this.ckCommentAll);
 			this.tabControlPanelComments.Controls.Add(this.textEditComment);
@@ -260,16 +261,15 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			this.tabControlPanelComments.TabIndex = 1;
 			this.tabControlPanelComments.TabItem = this.tabItemComments;
 			// 
-			// adNotesWeekdaysSelectorComments
+			// adNotesDaysSelectorComments
 			// 
-			this.adNotesWeekdaysSelectorComments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.adNotesWeekdaysSelectorComments.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.adNotesWeekdaysSelectorComments.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.adNotesWeekdaysSelectorComments.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.adNotesWeekdaysSelectorComments.Location = new System.Drawing.Point(163, 257);
-			this.adNotesWeekdaysSelectorComments.Name = "adNotesWeekdaysSelectorComments";
-			this.adNotesWeekdaysSelectorComments.Size = new System.Drawing.Size(440, 59);
-			this.adNotesWeekdaysSelectorComments.TabIndex = 9;
+			this.adNotesDaysSelectorComments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.adNotesDaysSelectorComments.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.adNotesDaysSelectorComments.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.adNotesDaysSelectorComments.Location = new System.Drawing.Point(163, 257);
+			this.adNotesDaysSelectorComments.Name = "adNotesDaysSelectorComments";
+			this.adNotesDaysSelectorComments.Size = new System.Drawing.Size(440, 59);
+			this.adNotesDaysSelectorComments.TabIndex = 9;
 			// 
 			// buttonXClearComment
 			// 
@@ -313,7 +313,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			// 
 			// tabControlPanelSections
 			// 
-			this.tabControlPanelSections.Controls.Add(this.adNotesWeekdaysSelectorSections);
+			this.tabControlPanelSections.Controls.Add(this.adNotesDaysSelectorSections);
 			this.tabControlPanelSections.Controls.Add(this.textEditSection);
 			this.tabControlPanelSections.Controls.Add(this.ckSection);
 			this.tabControlPanelSections.Controls.Add(this.buttonXClearSection);
@@ -334,16 +334,15 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			this.tabControlPanelSections.TabIndex = 2;
 			this.tabControlPanelSections.TabItem = this.tabItemSections;
 			// 
-			// adNotesWeekdaysSelectorSections
+			// adNotesDaysSelectorSections
 			// 
-			this.adNotesWeekdaysSelectorSections.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.adNotesWeekdaysSelectorSections.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.adNotesWeekdaysSelectorSections.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.adNotesWeekdaysSelectorSections.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.adNotesWeekdaysSelectorSections.Location = new System.Drawing.Point(163, 257);
-			this.adNotesWeekdaysSelectorSections.Name = "adNotesWeekdaysSelectorSections";
-			this.adNotesWeekdaysSelectorSections.Size = new System.Drawing.Size(440, 59);
-			this.adNotesWeekdaysSelectorSections.TabIndex = 10;
+			this.adNotesDaysSelectorSections.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.adNotesDaysSelectorSections.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.adNotesDaysSelectorSections.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.adNotesDaysSelectorSections.Location = new System.Drawing.Point(163, 257);
+			this.adNotesDaysSelectorSections.Name = "adNotesDaysSelectorSections";
+			this.adNotesDaysSelectorSections.Size = new System.Drawing.Size(440, 59);
+			this.adNotesDaysSelectorSections.TabIndex = 10;
 			// 
 			// textEditSection
 			// 
@@ -398,7 +397,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			// 
 			// tabControlPanelDeadlines
 			// 
-			this.tabControlPanelDeadlines.Controls.Add(this.adNotesWeekdaysSelectorDeadlines);
+			this.tabControlPanelDeadlines.Controls.Add(this.adNotesDaysSelectorDeadlines);
 			this.tabControlPanelDeadlines.Controls.Add(this.textEditDeadline);
 			this.tabControlPanelDeadlines.Controls.Add(this.ckDeadline);
 			this.tabControlPanelDeadlines.Controls.Add(this.checkedListBoxControlDeadline);
@@ -420,16 +419,15 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			this.tabControlPanelDeadlines.TabIndex = 3;
 			this.tabControlPanelDeadlines.TabItem = this.tabItemDeadlines;
 			// 
-			// adNotesWeekdaysSelectorDeadlines
+			// adNotesDaysSelectorDeadlines
 			// 
-			this.adNotesWeekdaysSelectorDeadlines.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.adNotesWeekdaysSelectorDeadlines.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.adNotesWeekdaysSelectorDeadlines.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.adNotesWeekdaysSelectorDeadlines.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.adNotesWeekdaysSelectorDeadlines.Location = new System.Drawing.Point(163, 257);
-			this.adNotesWeekdaysSelectorDeadlines.Name = "adNotesWeekdaysSelectorDeadlines";
-			this.adNotesWeekdaysSelectorDeadlines.Size = new System.Drawing.Size(440, 59);
-			this.adNotesWeekdaysSelectorDeadlines.TabIndex = 23;
+			this.adNotesDaysSelectorDeadlines.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.adNotesDaysSelectorDeadlines.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.adNotesDaysSelectorDeadlines.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.adNotesDaysSelectorDeadlines.Location = new System.Drawing.Point(163, 257);
+			this.adNotesDaysSelectorDeadlines.Name = "adNotesDaysSelectorDeadlines";
+			this.adNotesDaysSelectorDeadlines.Size = new System.Drawing.Size(440, 59);
+			this.adNotesDaysSelectorDeadlines.TabIndex = 23;
 			// 
 			// textEditDeadline
 			// 
@@ -512,7 +510,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			// 
 			// tabControlPanelMechanicals
 			// 
-			this.tabControlPanelMechanicals.Controls.Add(this.adNotesWeekdaysSelectorMechanicals);
+			this.tabControlPanelMechanicals.Controls.Add(this.adNotesDaysSelectorMechanicals);
 			this.tabControlPanelMechanicals.Controls.Add(this.buttonXClearMechanicals);
 			this.tabControlPanelMechanicals.Controls.Add(this.xtraTabControlMechanicals);
 			this.tabControlPanelMechanicals.Controls.Add(this.textEditMechanicals);
@@ -532,16 +530,15 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			this.tabControlPanelMechanicals.TabIndex = 4;
 			this.tabControlPanelMechanicals.TabItem = this.tabItemMechanicals;
 			// 
-			// adNotesWeekdaysSelectorMechanicals
+			// adNotesDaysSelectorMechanicals
 			// 
-			this.adNotesWeekdaysSelectorMechanicals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.adNotesWeekdaysSelectorMechanicals.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.adNotesWeekdaysSelectorMechanicals.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.adNotesWeekdaysSelectorMechanicals.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.adNotesWeekdaysSelectorMechanicals.Location = new System.Drawing.Point(163, 257);
-			this.adNotesWeekdaysSelectorMechanicals.Name = "adNotesWeekdaysSelectorMechanicals";
-			this.adNotesWeekdaysSelectorMechanicals.Size = new System.Drawing.Size(440, 59);
-			this.adNotesWeekdaysSelectorMechanicals.TabIndex = 24;
+			this.adNotesDaysSelectorMechanicals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.adNotesDaysSelectorMechanicals.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.adNotesDaysSelectorMechanicals.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.adNotesDaysSelectorMechanicals.Location = new System.Drawing.Point(163, 257);
+			this.adNotesDaysSelectorMechanicals.Name = "adNotesDaysSelectorMechanicals";
+			this.adNotesDaysSelectorMechanicals.Size = new System.Drawing.Size(440, 59);
+			this.adNotesDaysSelectorMechanicals.TabIndex = 24;
 			// 
 			// buttonXClearMechanicals
 			// 
@@ -821,10 +818,10 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
         private DevExpress.XtraEditors.CheckEdit ckMechanicals;
         private DevComponents.DotNetBar.ButtonX buttonXClearMechanicals;
         public DevExpress.XtraTab.XtraTabControl xtraTabControlMechanicals;
-        public PresentationClasses.InputClasses.AdNotesWeekdaysSelector adNotesWeekdaysSelectorComments;
-        public PresentationClasses.InputClasses.AdNotesWeekdaysSelector adNotesWeekdaysSelectorSections;
-        public PresentationClasses.InputClasses.AdNotesWeekdaysSelector adNotesWeekdaysSelectorDeadlines;
-        public PresentationClasses.InputClasses.AdNotesWeekdaysSelector adNotesWeekdaysSelectorMechanicals;
+        public PresentationClasses.InputClasses.AdNotesDaysSelector adNotesDaysSelectorComments;
+        public PresentationClasses.InputClasses.AdNotesDaysSelector adNotesDaysSelectorSections;
+        public PresentationClasses.InputClasses.AdNotesDaysSelector adNotesDaysSelectorDeadlines;
+        public PresentationClasses.InputClasses.AdNotesDaysSelector adNotesDaysSelectorMechanicals;
         private System.Windows.Forms.PictureBox pbHelp;
         public DevComponents.DotNetBar.SuperTooltip superTooltip;
     }

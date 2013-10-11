@@ -123,7 +123,7 @@ namespace NewBizWiz.MiniBar
 		{
 			lock (AppManager.Locker)
 			{
-				Screen screen = Screen.PrimaryScreen;
+				var screen = Screen.PrimaryScreen;
 				int screensCount = Screen.AllScreens.Length;
 				bool primaryOnLeftSide = true;
 				if (screensCount > 1)
@@ -156,7 +156,7 @@ namespace NewBizWiz.MiniBar
 				{
 					try
 					{
-						Process activeProcess = AppManager.Instance.GetActiveProcess();
+						var activeProcess = AppManager.Instance.GetActiveProcess();
 						visible = !activeProcess.MainWindowTitle.ToUpper().Contains(@"\\REMOTE") && !activeProcess.MainWindowTitle.ToUpper().Contains("POWERPOINT SLIDE SHOW");
 						if (visible)
 						{
@@ -176,7 +176,7 @@ namespace NewBizWiz.MiniBar
 				{
 					try
 					{
-						Process activeProcess = AppManager.Instance.GetActiveProcess();
+						var activeProcess = AppManager.Instance.GetActiveProcess();
 						if (activeProcess.ProcessName.ToLower().Contains("powerpnt"))
 							if (!activeProcess.MainWindowTitle.ToUpper().Contains("POWERPOINT SLIDE SHOW"))
 								visible = SettingsManager.Instance.VisiblePowerPointMaximaized ? AppManager.Instance.IsProcessWindowMaximized(activeProcess) || activeProcess.ProcessName.ToLower().Contains("minibar") : SettingsManager.Instance.VisiblePowerPoint;

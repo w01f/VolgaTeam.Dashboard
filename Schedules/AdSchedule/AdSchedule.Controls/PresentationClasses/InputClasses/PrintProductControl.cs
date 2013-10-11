@@ -117,25 +117,23 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void CloneInsert()
 		{
-			if (PrintProduct.Inserts.Count > 0 && advBandedGridViewPublication.FocusedRowHandle >= 0)
+			if (PrintProduct.Inserts.Count <= 0 || advBandedGridViewPublication.FocusedRowHandle < 0) return;
+			Insert originalInsert = PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(advBandedGridViewPublication.FocusedRowHandle)];
+			if (originalInsert.DateObject != null)
 			{
-				Insert originalInsert = PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(advBandedGridViewPublication.FocusedRowHandle)];
-				if (originalInsert.DateObject != null)
+				using (var form = new FormCloneInsert(originalInsert))
 				{
-					using (var form = new FormCloneInsert(originalInsert))
+					form.checkEditPCIRate.Text = PrintProduct.AdPricingStrategy == AdPricingStrategies.StandartPCI ? gridBandPCIRate.Caption : gridBandADRate.Caption;
+					if (form.ShowDialog() == DialogResult.OK)
 					{
-						form.checkEditPCIRate.Text = PrintProduct.AdPricingStrategy == AdPricingStrategies.StandartPCI ? gridBandPCIRate.Caption : gridBandADRate.Caption;
-						if (form.ShowDialog() == DialogResult.OK)
-						{
-							PrintProduct.CloneInsert(originalInsert, form.SelectedDates, form.checkEditPCIRate.Checked, form.checkEditDiscount.Checked, PrintProduct.ColorOption == ColorOptions.BlackWhite ? false : form.checkEditColorRate.Checked, form.checkEditComment.Checked, form.checkEditSections.Checked, form.checkEditDeadline.Checked, form.checkEditMechanicals.Checked);
-							LoadInserts();
-							Controller.Instance.ScheduleSettings.SettingsNotSaved = true;
-						}
+						PrintProduct.CloneInsert(originalInsert, form.SelectedDates, form.checkEditPCIRate.Checked, form.checkEditDiscount.Checked, PrintProduct.ColorOption == ColorOptions.BlackWhite ? false : form.checkEditColorRate.Checked, form.checkEditComment.Checked, form.checkEditSections.Checked, form.checkEditDeadline.Checked, form.checkEditMechanicals.Checked);
+						LoadInserts();
+						Controller.Instance.ScheduleSettings.SettingsNotSaved = true;
 					}
 				}
-				else
-					Utilities.Instance.ShowWarning("You need to select Date first.");
 			}
+			else
+				Utilities.Instance.ShowWarning("You need to select Date first.");
 		}
 
 		public void SortInserts()
@@ -209,7 +207,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					Color backColor = Color.White;
 					e.Graphics.FillRectangle(new SolidBrush(backColor), rect);
 					e.Graphics.DrawString(e.Date.Day.ToString(), e.Style.Font,
-					                      new SolidBrush(e.Style.ForeColor), rect, e.Style.GetStringFormat());
+										  new SolidBrush(e.Style.ForeColor), rect, e.Style.GetStringFormat());
 					e.Handled = true;
 				}
 			}
@@ -285,7 +283,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				ControlPaint.DrawBorder3D(e.Graphics, e.Bounds);
 				Brush brush =
 					e.Cache.GetGradientBrush(rect, e.Band.AppearanceHeader.BackColor,
-					                         e.Band.AppearanceHeader.BackColor2, e.Band.AppearanceHeader.GradientMode);
+											 e.Band.AppearanceHeader.BackColor2, e.Band.AppearanceHeader.GradientMode);
 				rect.Inflate(-1, -1);
 				e.Graphics.FillRectangle(brush, rect);
 				e.Appearance.DrawString(e.Cache, e.Info.Caption, e.Info.CaptionRect);
@@ -379,9 +377,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				if (e.RowHandle >= 0)
 				{
 					if (string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullComment) &&
-					    string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullSection) &&
-					    string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Mechanicals) &&
-					    string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Deadline))
+						string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullSection) &&
+						string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Mechanicals) &&
+						string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Deadline))
 					{
 						if (e.RowHandle == 0 && (PrintProduct.AdPricingStrategy == AdPricingStrategies.FlatModular || PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage))
 							e.RepositoryItem = repositoryItemSpinEditADRateDisplayNullFirstRow;
@@ -446,9 +444,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			if (e.Column == gridColumnADRate && (PrintProduct.AdPricingStrategy == AdPricingStrategies.FlatModular || PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage))
 			{
 				if (string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullComment) &&
-				    string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullSection) &&
-				    string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Mechanicals) &&
-				    string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Deadline))
+					string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullSection) &&
+					string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Mechanicals) &&
+					string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Deadline))
 				{
 					if (e.RowHandle == 0)
 						e.RepositoryItem = repositoryItemSpinEditADRateEditNullFirstRow;
@@ -535,79 +533,111 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			else if (e.Button.Index == 2)
 			{
 				advBandedGridViewPublication.CloseEditor();
+				var selectedInsert = advBandedGridViewPublication.GetFocusedRow() as Insert;
+				if (selectedInsert == null) return;
 				using (var form = new FormAdNotes())
 				{
-					if (advBandedGridViewPublication.GetFocusedDataSourceRowIndex() >= 0)
+					form.laID.Text = selectedInsert.ID;
+					form.laDate.Text = selectedInsert.Date.ToString("ddd, MM/dd/yy");
+					form.Date = selectedInsert.Date;
+					form.laFinalRate.Text = selectedInsert.FinalRate.ToString("$#,###.00");
+					form.CustomComment = selectedInsert.CustomComment;
+					form.Comments = selectedInsert.Comments.ToArray();
+					form.CustomSection = selectedInsert.CustomSection;
+					form.Sections = selectedInsert.Sections.ToArray();
+					form.Deadline = selectedInsert.Deadline;
+					form.Mechanicals = selectedInsert.Mechanicals;
+
+					if (PrintProduct.Inserts.Count > 1)
 					{
-						form.laID.Text = PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].ID;
-						form.laDate.Text = PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Date.ToString("ddd, MM/dd/yy");
-						form.Date = PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Date;
-						form.laFinalRate.Text = PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].FinalRate.ToString("$#,###.00");
-						form.CustomComment = PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].CustomComment;
-						form.Comments = PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Comments.ToArray();
-						form.CustomSection = PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].CustomSection;
-						form.Sections = PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Sections.ToArray();
-						form.Deadline = PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Deadline;
-						form.Mechanicals = PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Mechanicals;
-						if (form.ShowDialog() == DialogResult.OK)
+						var selectDays = new Action<AdNotesDaysSelector, string, string>((daysSelectorContainer, formCaption, header) =>
 						{
-							if (form.adNotesWeekdaysSelectorComments.SelectedDays.Length > 0)
+							using (var dateSelector = new FormDateSelector())
 							{
-								DayOfWeek[] selectedDays = form.adNotesWeekdaysSelectorComments.SelectedDays;
-								foreach (Insert insert in PrintProduct.Inserts.Where(x => selectedDays.Contains(x.Date.DayOfWeek)))
-								{
-									insert.CustomComment = form.CustomComment;
-									insert.Comments.Clear();
-									insert.Comments.AddRange(form.Comments);
-								}
+								dateSelector.Text = formCaption;
+								dateSelector.laTitle.Text = header;
+								foreach (var insert in PrintProduct.Inserts.Where(i => i != selectedInsert))
+									dateSelector.checkedListBoxControlDates.Items.Add(insert.Date, String.Format("{0}   {1}", insert.Date.ToString("ddd, MM/dd/yy"), insert.FinalRate.ToString("$#,###.00")), form.adNotesDaysSelectorComments.SelectedDays.Contains(insert.Date) ? CheckState.Checked : CheckState.Unchecked, true);
+								if (dateSelector.ShowDialog() != DialogResult.OK) return;
+								daysSelectorContainer.SelectedDays.Clear();
+								foreach (var item in dateSelector.checkedListBoxControlDates.Items.Cast<CheckedListBoxItem>().Where(item => item.CheckState == CheckState.Checked))
+									daysSelectorContainer.SelectedDays.Add((DateTime) item.Value);
 							}
-							else
-							{
-								PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].CustomComment = form.CustomComment;
-								PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Comments.Clear();
-								PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Comments.AddRange(form.Comments);
-							}
+						});
+						form.adNotesDaysSelectorComments.buttonXApplyOtherDays.Click += (obj, args) => selectDays(form.adNotesDaysSelectorComments,
+							"Comments & Publications",
+							"Do you want to add these comments to other days in your schedule?"
+							);
+						form.adNotesDaysSelectorSections.buttonXApplyOtherDays.Click += (obj, args) => selectDays(form.adNotesDaysSelectorSections,
+							"Sections",
+							"Do you want to add these sections to other days in your schedule?"
+							);
+						form.adNotesDaysSelectorDeadlines.buttonXApplyOtherDays.Click += (obj, args) => selectDays(form.adNotesDaysSelectorDeadlines,
+							"Deadlines",
+							"Do you want to add these deadlines to other days in your schedule?"
+							);
+						form.adNotesDaysSelectorMechanicals.buttonXApplyOtherDays.Click += (obj, args) => selectDays(form.adNotesDaysSelectorMechanicals,
+							"Mechanicals",
+							"Do you want to add these mechanicals to other days in your schedule?"
+							);
+					}
+					else
+					{
+						form.adNotesDaysSelectorComments.Visible = false;
+						form.adNotesDaysSelectorSections.Visible = false;
+						form.adNotesDaysSelectorDeadlines.Visible = false;
+						form.adNotesDaysSelectorMechanicals.Visible = false;
+					}
 
-							if (form.adNotesWeekdaysSelectorSections.SelectedDays.Length > 0)
-							{
-								DayOfWeek[] selectedDays = form.adNotesWeekdaysSelectorSections.SelectedDays;
-								foreach (Insert insert in PrintProduct.Inserts.Where(x => selectedDays.Contains(x.Date.DayOfWeek)))
-								{
-									insert.CustomSection = form.CustomSection;
-									insert.Sections.Clear();
-									insert.Sections.AddRange(form.Sections);
-								}
-							}
-							else
-							{
-								PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].CustomSection = form.CustomSection;
-								PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Sections.Clear();
-								PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Sections.AddRange(form.Sections);
-							}
+					if (form.ShowDialog() != DialogResult.OK) return;
 
-							if (form.adNotesWeekdaysSelectorDeadlines.SelectedDays.Length > 0)
-							{
-								DayOfWeek[] selectedDays = form.adNotesWeekdaysSelectorDeadlines.SelectedDays;
-								foreach (Insert insert in PrintProduct.Inserts.Where(x => selectedDays.Contains(x.Date.DayOfWeek)))
-									insert.Deadline = form.Deadline;
-							}
-							else
-								PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Deadline = form.Deadline;
-
-							if (form.adNotesWeekdaysSelectorMechanicals.SelectedDays.Length > 0)
-							{
-								DayOfWeek[] selectedDays = form.adNotesWeekdaysSelectorMechanicals.SelectedDays;
-								foreach (Insert insert in PrintProduct.Inserts.Where(x => selectedDays.Contains(x.Date.DayOfWeek)))
-									insert.Mechanicals = form.Mechanicals;
-							}
-							else
-								PrintProduct.Inserts[advBandedGridViewPublication.GetFocusedDataSourceRowIndex()].Mechanicals = form.Mechanicals;
-
-							LoadInserts();
-
-							Controller.Instance.ScheduleSettings.SettingsNotSaved = true;
+					selectedInsert.CustomComment = form.CustomComment;
+					selectedInsert.Comments.Clear();
+					selectedInsert.Comments.AddRange(form.Comments);
+					if (form.adNotesDaysSelectorComments.SelectedDays.Any())
+					{
+						var selectedDays = form.adNotesDaysSelectorComments.SelectedDays;
+						foreach (var insert in PrintProduct.Inserts.Where(x => selectedDays.Contains(x.Date)))
+						{
+							insert.CustomComment = form.CustomComment;
+							insert.Comments.Clear();
+							insert.Comments.AddRange(form.Comments);
 						}
 					}
+
+					selectedInsert.CustomSection = form.CustomSection;
+					selectedInsert.Sections.Clear();
+					selectedInsert.Sections.AddRange(form.Sections);
+					if (form.adNotesDaysSelectorSections.SelectedDays.Any())
+					{
+						var selectedDays = form.adNotesDaysSelectorSections.SelectedDays;
+						foreach (var insert in PrintProduct.Inserts.Where(x => selectedDays.Contains(x.Date)))
+						{
+							insert.CustomSection = form.CustomSection;
+							insert.Sections.Clear();
+							insert.Sections.AddRange(form.Sections);
+						}
+					}
+
+					selectedInsert.Deadline = form.Deadline;
+					if (form.adNotesDaysSelectorDeadlines.SelectedDays.Any())
+					{
+						var selectedDays = form.adNotesDaysSelectorDeadlines.SelectedDays;
+						foreach (var insert in PrintProduct.Inserts.Where(x => selectedDays.Contains(x.Date)))
+							insert.Deadline = form.Deadline;
+					}
+
+					selectedInsert.Mechanicals = form.Mechanicals;
+					if (form.adNotesDaysSelectorMechanicals.SelectedDays.Any())
+					{
+						var selectedDays = form.adNotesDaysSelectorMechanicals.SelectedDays;
+						foreach (var insert in PrintProduct.Inserts.Where(x => selectedDays.Contains(x.Date)))
+							insert.Mechanicals = form.Mechanicals;
+					}
+
+					LoadInserts();
+
+					Controller.Instance.ScheduleSettings.SettingsNotSaved = true;
 				}
 			}
 		}
@@ -646,13 +676,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		private void advBandedGridViewPublication_MouseMove(object sender, MouseEventArgs e)
 		{
 			if (advBandedGridViewPublication.ActiveEditor == null &&
-			    !Controller.Instance.PrintProductStandartHeight.EditorContainsFocus &&
-			    !Controller.Instance.PrintProductStandartWidth.EditorContainsFocus &&
-			    !Controller.Instance.PrintProductPercentOfPage.EditorContainsFocus &&
-			    !Controller.Instance.PrintProductRateCard.EditorContainsFocus &&
-			    !Controller.Instance.PrintProductSharePagePageSizeCombo.EditorContainsFocus &&
-			    !Controller.Instance.PrintProductStandartPageSizeCombo.EditorContainsFocus &&
-			    !Controller.Instance.PrintProductCostPerInch.EditorContainsFocus)
+				!Controller.Instance.PrintProductStandartHeight.EditorContainsFocus &&
+				!Controller.Instance.PrintProductStandartWidth.EditorContainsFocus &&
+				!Controller.Instance.PrintProductPercentOfPage.EditorContainsFocus &&
+				!Controller.Instance.PrintProductRateCard.EditorContainsFocus &&
+				!Controller.Instance.PrintProductSharePagePageSizeCombo.EditorContainsFocus &&
+				!Controller.Instance.PrintProductStandartPageSizeCombo.EditorContainsFocus &&
+				!Controller.Instance.PrintProductCostPerInch.EditorContainsFocus)
 				advBandedGridViewPublication.Focus();
 		}
 		#endregion

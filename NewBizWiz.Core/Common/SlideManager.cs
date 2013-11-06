@@ -59,6 +59,7 @@ namespace NewBizWiz.Core.Common
 		public Image Logo { get; private set; }
 		public Image BrowseLogo { get; private set; }
 		public Image RibbonLogo { get; private set; }
+		public Image AdBarLogo { get; private set; }
 		public string MasterPath { get; private set; }
 
 		public SlideMaster(string rootPath)
@@ -75,6 +76,7 @@ namespace NewBizWiz.Core.Common
 				Logo = new Bitmap(logoPath);
 				BrowseLogo = Logo.GetThumbnailImage((Logo.Width * 144) / Logo.Height, 144, null, IntPtr.Zero);
 				RibbonLogo = Logo.GetThumbnailImage((Logo.Width * 72) / Logo.Height, 72, null, IntPtr.Zero);
+				AdBarLogo = Logo.GetThumbnailImage((Logo.Width * 86) / Logo.Height, 86, null, IntPtr.Zero);
 			}
 			MasterPath = Directory.GetFiles(rootPath, "*.ppt").FirstOrDefault();
 		}

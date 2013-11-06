@@ -188,7 +188,7 @@ namespace NewBizWiz.Dashboard
 		public void FormAdScheduleResize(object sender, EventArgs e)
 		{
 			var f = sender as Form;
-			if (f.IsDisposed) return;
+			if (f == null || f.IsDisposed) return;
 			if (f.WindowState == FormWindowState.Minimized)
 			{
 				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 2, 0, 0);
@@ -205,7 +205,7 @@ namespace NewBizWiz.Dashboard
 		public void FormOnlineScheduleResize(object sender, EventArgs e)
 		{
 			var f = sender as Form;
-			if (f.IsDisposed) return;
+			if (f == null || f.IsDisposed) return;
 			if (f.WindowState == FormWindowState.Minimized)
 			{
 				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 6, 0, 0);
@@ -222,7 +222,7 @@ namespace NewBizWiz.Dashboard
 		public void FormTVScheduleResize(object sender, EventArgs e)
 		{
 			var f = sender as Form;
-			if (f.IsDisposed) return;
+			if (f == null || f.IsDisposed) return;
 			if (f.WindowState == FormWindowState.Minimized)
 			{
 				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 8, 0, 0);
@@ -239,7 +239,7 @@ namespace NewBizWiz.Dashboard
 		public void FormCalendarResize(object sender, EventArgs e)
 		{
 			var f = sender as Form;
-			if (f.IsDisposed) return;
+			if (f == null || f.IsDisposed) return;
 			if (f.WindowState == FormWindowState.Minimized)
 			{
 				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 10, 0, 0);
@@ -256,7 +256,7 @@ namespace NewBizWiz.Dashboard
 		public void FormRadioScheduleResize(object sender, EventArgs e)
 		{
 			var f = sender as Form;
-			if (f.IsDisposed) return;
+			if (f == null || f.IsDisposed) return;
 			if (f.WindowState == FormWindowState.Minimized)
 			{
 				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 12, 0, 0);
@@ -352,7 +352,7 @@ namespace NewBizWiz.Dashboard
 		public void buttonItemFloater_Click(object sender, EventArgs e)
 		{
 			var formSender = sender as Form;
-			if (formSender.IsDisposed) return;
+			if (formSender != null && formSender.IsDisposed) return;
 			AppManager.Instance.ShowFloater(formSender, null);
 		}
 

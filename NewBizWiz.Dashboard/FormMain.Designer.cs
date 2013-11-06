@@ -194,9 +194,9 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonControl.Controls.Add(this.ribbonPanelHome);
-			this.ribbonControl.Controls.Add(this.ribbonPanelSlides);
-			this.ribbonControl.Controls.Add(this.ribbonPanelCalendar);
 			this.ribbonControl.Controls.Add(this.ribbonPanelOnline);
+			this.ribbonControl.Controls.Add(this.ribbonPanelCalendar);
+			this.ribbonControl.Controls.Add(this.ribbonPanelSlides);
 			this.ribbonControl.Controls.Add(this.ribbonPanelRadio);
 			this.ribbonControl.Controls.Add(this.ribbonPanelTV);
 			this.ribbonControl.Controls.Add(this.ribbonPanelNewspaper);
@@ -214,7 +214,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonControl.Location = new System.Drawing.Point(0, 0);
 			this.ribbonControl.MdiSystemItemVisible = false;
 			this.ribbonControl.Name = "ribbonControl";
-			this.ribbonControl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+			this.ribbonControl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
 			this.ribbonControl.Size = new System.Drawing.Size(919, 160);
 			this.ribbonControl.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonControl.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
@@ -250,7 +250,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonPanelHome.Location = new System.Drawing.Point(0, 26);
 			this.ribbonPanelHome.Name = "ribbonPanelHome";
 			this.ribbonPanelHome.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelHome.Size = new System.Drawing.Size(919, 132);
+			this.ribbonPanelHome.Size = new System.Drawing.Size(919, 131);
 			// 
 			// 
 			// 
@@ -285,7 +285,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarHomeExit.Location = new System.Drawing.Point(717, 0);
 			this.ribbonBarHomeExit.Name = "ribbonBarHomeExit";
-			this.ribbonBarHomeExit.Size = new System.Drawing.Size(85, 129);
+			this.ribbonBarHomeExit.Size = new System.Drawing.Size(85, 128);
 			this.ribbonBarHomeExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarHomeExit.TabIndex = 12;
 			this.ribbonBarHomeExit.Text = "EXIT";
@@ -326,7 +326,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarHomeFloater.Location = new System.Drawing.Point(629, 0);
 			this.ribbonBarHomeFloater.Name = "ribbonBarHomeFloater";
-			this.ribbonBarHomeFloater.Size = new System.Drawing.Size(88, 129);
+			this.ribbonBarHomeFloater.Size = new System.Drawing.Size(88, 128);
 			this.ribbonBarHomeFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarHomeFloater.TabIndex = 22;
 			this.ribbonBarHomeFloater.Text = "Floater";
@@ -365,7 +365,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarHomeHelp.Location = new System.Drawing.Point(553, 0);
 			this.ribbonBarHomeHelp.Name = "ribbonBarHomeHelp";
-			this.ribbonBarHomeHelp.Size = new System.Drawing.Size(76, 129);
+			this.ribbonBarHomeHelp.Size = new System.Drawing.Size(76, 128);
 			this.ribbonBarHomeHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarHomeHelp.TabIndex = 21;
 			this.ribbonBarHomeHelp.Text = "HELP";
@@ -406,7 +406,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarPowerPoint.Location = new System.Drawing.Point(418, 0);
 			this.ribbonBarPowerPoint.Name = "ribbonBarPowerPoint";
-			this.ribbonBarPowerPoint.Size = new System.Drawing.Size(135, 129);
+			this.ribbonBarPowerPoint.Size = new System.Drawing.Size(135, 128);
 			this.ribbonBarPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarPowerPoint.TabIndex = 20;
 			this.ribbonBarPowerPoint.Text = "PowerPoint";
@@ -452,7 +452,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarPreview.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarPreview.Location = new System.Drawing.Point(331, 0);
 			this.ribbonBarPreview.Name = "ribbonBarPreview";
-			this.ribbonBarPreview.Size = new System.Drawing.Size(87, 129);
+			this.ribbonBarPreview.Size = new System.Drawing.Size(87, 128);
 			this.ribbonBarPreview.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarPreview.TabIndex = 23;
 			this.ribbonBarPreview.Text = "Preview";
@@ -492,7 +492,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeSlides.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarHomeSlides.Location = new System.Drawing.Point(204, 0);
 			this.ribbonBarHomeSlides.Name = "ribbonBarHomeSlides";
-			this.ribbonBarHomeSlides.Size = new System.Drawing.Size(127, 129);
+			this.ribbonBarHomeSlides.Size = new System.Drawing.Size(127, 128);
 			this.ribbonBarHomeSlides.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarHomeSlides.TabIndex = 16;
 			this.ribbonBarHomeSlides.Text = "Solution Slides";
@@ -519,6 +519,10 @@ namespace NewBizWiz.Dashboard
             this.buttonItemHomeCover,
             this.buttonItemLeadoffStatement,
             this.buttonItemClientGoals});
+			// 
+			// 
+			// 
+			this.itemContainerHomeSlides1.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// buttonItemHomeCover
 			// 
@@ -560,6 +564,10 @@ namespace NewBizWiz.Dashboard
             this.buttonItemTargetCustomers,
             this.buttonItemSimpleSummary});
 			// 
+			// 
+			// 
+			this.itemContainerHomeSlides2.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
 			// buttonItemTargetCustomers
 			// 
 			this.buttonItemTargetCustomers.ForeColor = System.Drawing.Color.Black;
@@ -597,7 +605,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeOverview.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarHomeOverview.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarHomeOverview.Name = "ribbonBarHomeOverview";
-			this.ribbonBarHomeOverview.Size = new System.Drawing.Size(201, 129);
+			this.ribbonBarHomeOverview.Size = new System.Drawing.Size(201, 128);
 			this.ribbonBarHomeOverview.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarHomeOverview.TabIndex = 5;
 			this.ribbonBarHomeOverview.Text = "GO GET YOUR BIZ!";
@@ -633,7 +641,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonPanelSlides.Location = new System.Drawing.Point(0, 26);
 			this.ribbonPanelSlides.Name = "ribbonPanelSlides";
 			this.ribbonPanelSlides.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelSlides.Size = new System.Drawing.Size(919, 132);
+			this.ribbonPanelSlides.Size = new System.Drawing.Size(919, 131);
 			// 
 			// 
 			// 
@@ -669,7 +677,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarSlidesExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSlidesExit.Location = new System.Drawing.Point(558, 0);
 			this.ribbonBarSlidesExit.Name = "ribbonBarSlidesExit";
-			this.ribbonBarSlidesExit.Size = new System.Drawing.Size(85, 129);
+			this.ribbonBarSlidesExit.Size = new System.Drawing.Size(85, 128);
 			this.ribbonBarSlidesExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSlidesExit.TabIndex = 24;
 			this.ribbonBarSlidesExit.Text = "EXIT";
@@ -710,7 +718,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarSlidesFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSlidesFloater.Location = new System.Drawing.Point(470, 0);
 			this.ribbonBarSlidesFloater.Name = "ribbonBarSlidesFloater";
-			this.ribbonBarSlidesFloater.Size = new System.Drawing.Size(88, 129);
+			this.ribbonBarSlidesFloater.Size = new System.Drawing.Size(88, 128);
 			this.ribbonBarSlidesFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSlidesFloater.TabIndex = 27;
 			this.ribbonBarSlidesFloater.Text = "Floater";
@@ -749,7 +757,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarSlidesHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSlidesHelp.Location = new System.Drawing.Point(386, 0);
 			this.ribbonBarSlidesHelp.Name = "ribbonBarSlidesHelp";
-			this.ribbonBarSlidesHelp.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarSlidesHelp.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarSlidesHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSlidesHelp.TabIndex = 26;
 			this.ribbonBarSlidesHelp.Text = "HELP";
@@ -789,7 +797,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarSlidesPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSlidesPowerPoint.Location = new System.Drawing.Point(298, 0);
 			this.ribbonBarSlidesPowerPoint.Name = "ribbonBarSlidesPowerPoint";
-			this.ribbonBarSlidesPowerPoint.Size = new System.Drawing.Size(88, 129);
+			this.ribbonBarSlidesPowerPoint.Size = new System.Drawing.Size(88, 128);
 			this.ribbonBarSlidesPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSlidesPowerPoint.TabIndex = 25;
 			this.ribbonBarSlidesPowerPoint.Text = "PowerPoint";
@@ -827,7 +835,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarSlidesPreview.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSlidesPreview.Location = new System.Drawing.Point(204, 0);
 			this.ribbonBarSlidesPreview.Name = "ribbonBarSlidesPreview";
-			this.ribbonBarSlidesPreview.Size = new System.Drawing.Size(94, 129);
+			this.ribbonBarSlidesPreview.Size = new System.Drawing.Size(94, 128);
 			this.ribbonBarSlidesPreview.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSlidesPreview.TabIndex = 28;
 			this.ribbonBarSlidesPreview.Text = "Preview";
@@ -866,7 +874,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarSlidesLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSlidesLogo.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarSlidesLogo.Name = "ribbonBarSlidesLogo";
-			this.ribbonBarSlidesLogo.Size = new System.Drawing.Size(201, 129);
+			this.ribbonBarSlidesLogo.Size = new System.Drawing.Size(201, 128);
 			this.ribbonBarSlidesLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSlidesLogo.TabIndex = 23;
 			this.ribbonBarSlidesLogo.Text = "GO GET YOUR BIZ!";
@@ -903,7 +911,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonPanelCalendar.Location = new System.Drawing.Point(0, 26);
 			this.ribbonPanelCalendar.Name = "ribbonPanelCalendar";
 			this.ribbonPanelCalendar.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelCalendar.Size = new System.Drawing.Size(919, 132);
+			this.ribbonPanelCalendar.Size = new System.Drawing.Size(919, 131);
 			// 
 			// 
 			// 
@@ -939,7 +947,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarCalendarExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarCalendarExit.Location = new System.Drawing.Point(722, 0);
 			this.ribbonBarCalendarExit.Name = "ribbonBarCalendarExit";
-			this.ribbonBarCalendarExit.Size = new System.Drawing.Size(94, 129);
+			this.ribbonBarCalendarExit.Size = new System.Drawing.Size(94, 128);
 			this.ribbonBarCalendarExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarCalendarExit.TabIndex = 34;
 			this.ribbonBarCalendarExit.Text = "EXIT";
@@ -980,7 +988,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarCalendarFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarCalendarFloater.Location = new System.Drawing.Point(634, 0);
 			this.ribbonBarCalendarFloater.Name = "ribbonBarCalendarFloater";
-			this.ribbonBarCalendarFloater.Size = new System.Drawing.Size(88, 129);
+			this.ribbonBarCalendarFloater.Size = new System.Drawing.Size(88, 128);
 			this.ribbonBarCalendarFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarCalendarFloater.TabIndex = 39;
 			this.ribbonBarCalendarFloater.Text = "Floater";
@@ -1019,7 +1027,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarCalendarHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarCalendarHelp.Location = new System.Drawing.Point(550, 0);
 			this.ribbonBarCalendarHelp.Name = "ribbonBarCalendarHelp";
-			this.ribbonBarCalendarHelp.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarCalendarHelp.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarCalendarHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarCalendarHelp.TabIndex = 35;
 			this.ribbonBarCalendarHelp.Text = "HELP";
@@ -1059,7 +1067,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarCalendarDelete.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarCalendarDelete.Location = new System.Drawing.Point(466, 0);
 			this.ribbonBarCalendarDelete.Name = "ribbonBarCalendarDelete";
-			this.ribbonBarCalendarDelete.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarCalendarDelete.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarCalendarDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarCalendarDelete.TabIndex = 38;
 			this.ribbonBarCalendarDelete.Text = "Delete";
@@ -1098,7 +1106,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarCalendarOpen.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarCalendarOpen.Location = new System.Drawing.Point(382, 0);
 			this.ribbonBarCalendarOpen.Name = "ribbonBarCalendarOpen";
-			this.ribbonBarCalendarOpen.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarCalendarOpen.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarCalendarOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarCalendarOpen.TabIndex = 37;
 			this.ribbonBarCalendarOpen.Text = "Open";
@@ -1137,7 +1145,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarCalendarNew.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarCalendarNew.Location = new System.Drawing.Point(298, 0);
 			this.ribbonBarCalendarNew.Name = "ribbonBarCalendarNew";
-			this.ribbonBarCalendarNew.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarCalendarNew.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarCalendarNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarCalendarNew.TabIndex = 36;
 			this.ribbonBarCalendarNew.Text = "New";
@@ -1176,7 +1184,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarCalendarBuilder.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarCalendarBuilder.Location = new System.Drawing.Point(198, 0);
 			this.ribbonBarCalendarBuilder.Name = "ribbonBarCalendarBuilder";
-			this.ribbonBarCalendarBuilder.Size = new System.Drawing.Size(100, 129);
+			this.ribbonBarCalendarBuilder.Size = new System.Drawing.Size(100, 128);
 			this.ribbonBarCalendarBuilder.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarCalendarBuilder.TabIndex = 33;
 			this.ribbonBarCalendarBuilder.Text = "Calendar";
@@ -1193,7 +1201,7 @@ namespace NewBizWiz.Dashboard
 			// buttonItemCalendarBuilder
 			// 
 			this.buttonItemCalendarBuilder.Checked = true;
-			this.buttonItemCalendarBuilder.FixedSize = new System.Drawing.Size(100, 64);
+			this.buttonItemCalendarBuilder.FixedSize = new System.Drawing.Size(100, 110);
 			this.buttonItemCalendarBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.CalendarLittle;
 			this.buttonItemCalendarBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
 			this.buttonItemCalendarBuilder.Name = "buttonItemCalendarBuilder";
@@ -1217,7 +1225,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarCalendarLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarCalendarLogo.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarCalendarLogo.Name = "ribbonBarCalendarLogo";
-			this.ribbonBarCalendarLogo.Size = new System.Drawing.Size(195, 129);
+			this.ribbonBarCalendarLogo.Size = new System.Drawing.Size(195, 128);
 			this.ribbonBarCalendarLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarCalendarLogo.TabIndex = 32;
 			this.ribbonBarCalendarLogo.Text = "GO GET YOUR BIZ!";
@@ -1255,7 +1263,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonPanelOnline.Location = new System.Drawing.Point(0, 26);
 			this.ribbonPanelOnline.Name = "ribbonPanelOnline";
 			this.ribbonPanelOnline.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelOnline.Size = new System.Drawing.Size(919, 132);
+			this.ribbonPanelOnline.Size = new System.Drawing.Size(919, 131);
 			// 
 			// 
 			// 
@@ -1292,7 +1300,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarOnlineExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarOnlineExit.Location = new System.Drawing.Point(742, 0);
 			this.ribbonBarOnlineExit.Name = "ribbonBarOnlineExit";
-			this.ribbonBarOnlineExit.Size = new System.Drawing.Size(85, 129);
+			this.ribbonBarOnlineExit.Size = new System.Drawing.Size(85, 128);
 			this.ribbonBarOnlineExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarOnlineExit.TabIndex = 19;
 			this.ribbonBarOnlineExit.Text = "EXIT";
@@ -1334,7 +1342,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarOnlineFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarOnlineFloater.Location = new System.Drawing.Point(654, 0);
 			this.ribbonBarOnlineFloater.Name = "ribbonBarOnlineFloater";
-			this.ribbonBarOnlineFloater.Size = new System.Drawing.Size(88, 129);
+			this.ribbonBarOnlineFloater.Size = new System.Drawing.Size(88, 128);
 			this.ribbonBarOnlineFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarOnlineFloater.TabIndex = 32;
 			this.ribbonBarOnlineFloater.Text = "Floater";
@@ -1373,7 +1381,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarOnlineHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarOnlineHelp.Location = new System.Drawing.Point(570, 0);
 			this.ribbonBarOnlineHelp.Name = "ribbonBarOnlineHelp";
-			this.ribbonBarOnlineHelp.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarOnlineHelp.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarOnlineHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarOnlineHelp.TabIndex = 24;
 			this.ribbonBarOnlineHelp.Text = "HELP";
@@ -1413,7 +1421,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarOnlineDelete.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarOnlineDelete.Location = new System.Drawing.Point(486, 0);
 			this.ribbonBarOnlineDelete.Name = "ribbonBarOnlineDelete";
-			this.ribbonBarOnlineDelete.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarOnlineDelete.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarOnlineDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarOnlineDelete.TabIndex = 18;
 			this.ribbonBarOnlineDelete.Text = "Delete";
@@ -1452,7 +1460,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarOnlineOpen.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarOnlineOpen.Location = new System.Drawing.Point(402, 0);
 			this.ribbonBarOnlineOpen.Name = "ribbonBarOnlineOpen";
-			this.ribbonBarOnlineOpen.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarOnlineOpen.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarOnlineOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarOnlineOpen.TabIndex = 17;
 			this.ribbonBarOnlineOpen.Text = "Open";
@@ -1491,7 +1499,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarOnlineNew.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarOnlineNew.Location = new System.Drawing.Point(318, 0);
 			this.ribbonBarOnlineNew.Name = "ribbonBarOnlineNew";
-			this.ribbonBarOnlineNew.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarOnlineNew.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarOnlineNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarOnlineNew.TabIndex = 16;
 			this.ribbonBarOnlineNew.Text = "New";
@@ -1531,7 +1539,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarOnlineScheduleBuilder.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarOnlineScheduleBuilder.Location = new System.Drawing.Point(204, 0);
 			this.ribbonBarOnlineScheduleBuilder.Name = "ribbonBarOnlineScheduleBuilder";
-			this.ribbonBarOnlineScheduleBuilder.Size = new System.Drawing.Size(114, 129);
+			this.ribbonBarOnlineScheduleBuilder.Size = new System.Drawing.Size(114, 128);
 			this.ribbonBarOnlineScheduleBuilder.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarOnlineScheduleBuilder.TabIndex = 14;
 			this.ribbonBarOnlineScheduleBuilder.Text = "Schedule Builder";
@@ -1549,7 +1557,7 @@ namespace NewBizWiz.Dashboard
 			// buttonItemOnlineScheduleBuilder
 			// 
 			this.buttonItemOnlineScheduleBuilder.Checked = true;
-			this.buttonItemOnlineScheduleBuilder.FixedSize = new System.Drawing.Size(100, 64);
+			this.buttonItemOnlineScheduleBuilder.FixedSize = new System.Drawing.Size(100, 110);
 			this.buttonItemOnlineScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.WebLittle;
 			this.buttonItemOnlineScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
 			this.buttonItemOnlineScheduleBuilder.Name = "buttonItemOnlineScheduleBuilder";
@@ -1573,7 +1581,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarOnlineLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarOnlineLogo.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarOnlineLogo.Name = "ribbonBarOnlineLogo";
-			this.ribbonBarOnlineLogo.Size = new System.Drawing.Size(201, 129);
+			this.ribbonBarOnlineLogo.Size = new System.Drawing.Size(201, 128);
 			this.ribbonBarOnlineLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarOnlineLogo.TabIndex = 4;
 			this.ribbonBarOnlineLogo.Text = "GO GET YOUR BIZ!";
@@ -1612,7 +1620,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonPanelRadio.Location = new System.Drawing.Point(0, 26);
 			this.ribbonPanelRadio.Name = "ribbonPanelRadio";
 			this.ribbonPanelRadio.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelRadio.Size = new System.Drawing.Size(919, 132);
+			this.ribbonPanelRadio.Size = new System.Drawing.Size(919, 131);
 			// 
 			// 
 			// 
@@ -1648,7 +1656,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarRadioExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarRadioExit.Location = new System.Drawing.Point(738, 0);
 			this.ribbonBarRadioExit.Name = "ribbonBarRadioExit";
-			this.ribbonBarRadioExit.Size = new System.Drawing.Size(94, 129);
+			this.ribbonBarRadioExit.Size = new System.Drawing.Size(94, 128);
 			this.ribbonBarRadioExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarRadioExit.TabIndex = 18;
 			this.ribbonBarRadioExit.Text = "EXIT";
@@ -1689,7 +1697,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarRadioFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarRadioFloater.Location = new System.Drawing.Point(650, 0);
 			this.ribbonBarRadioFloater.Name = "ribbonBarRadioFloater";
-			this.ribbonBarRadioFloater.Size = new System.Drawing.Size(88, 129);
+			this.ribbonBarRadioFloater.Size = new System.Drawing.Size(88, 128);
 			this.ribbonBarRadioFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarRadioFloater.TabIndex = 30;
 			this.ribbonBarRadioFloater.Text = "Floater";
@@ -1728,7 +1736,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarRadioHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarRadioHelp.Location = new System.Drawing.Point(566, 0);
 			this.ribbonBarRadioHelp.Name = "ribbonBarRadioHelp";
-			this.ribbonBarRadioHelp.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarRadioHelp.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarRadioHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarRadioHelp.TabIndex = 24;
 			this.ribbonBarRadioHelp.Text = "HELP";
@@ -1767,7 +1775,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarRadioDelete.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarRadioDelete.Location = new System.Drawing.Point(482, 0);
 			this.ribbonBarRadioDelete.Name = "ribbonBarRadioDelete";
-			this.ribbonBarRadioDelete.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarRadioDelete.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarRadioDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarRadioDelete.TabIndex = 29;
 			this.ribbonBarRadioDelete.Text = "Delete";
@@ -1806,7 +1814,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarRadioOpen.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarRadioOpen.Location = new System.Drawing.Point(398, 0);
 			this.ribbonBarRadioOpen.Name = "ribbonBarRadioOpen";
-			this.ribbonBarRadioOpen.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarRadioOpen.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarRadioOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarRadioOpen.TabIndex = 28;
 			this.ribbonBarRadioOpen.Text = "Open";
@@ -1845,7 +1853,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarRadioNew.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarRadioNew.Location = new System.Drawing.Point(314, 0);
 			this.ribbonBarRadioNew.Name = "ribbonBarRadioNew";
-			this.ribbonBarRadioNew.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarRadioNew.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarRadioNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarRadioNew.TabIndex = 27;
 			this.ribbonBarRadioNew.Text = "New";
@@ -1884,7 +1892,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarRadioScheduleBuilder.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarRadioScheduleBuilder.Location = new System.Drawing.Point(204, 0);
 			this.ribbonBarRadioScheduleBuilder.Name = "ribbonBarRadioScheduleBuilder";
-			this.ribbonBarRadioScheduleBuilder.Size = new System.Drawing.Size(110, 129);
+			this.ribbonBarRadioScheduleBuilder.Size = new System.Drawing.Size(110, 128);
 			this.ribbonBarRadioScheduleBuilder.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarRadioScheduleBuilder.TabIndex = 17;
 			this.ribbonBarRadioScheduleBuilder.Text = "Schedule Builder";
@@ -1902,7 +1910,7 @@ namespace NewBizWiz.Dashboard
 			// buttonItemRadioScheduleBuilder
 			// 
 			this.buttonItemRadioScheduleBuilder.Checked = true;
-			this.buttonItemRadioScheduleBuilder.FixedSize = new System.Drawing.Size(100, 64);
+			this.buttonItemRadioScheduleBuilder.FixedSize = new System.Drawing.Size(100, 110);
 			this.buttonItemRadioScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.RadioLittle;
 			this.buttonItemRadioScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
 			this.buttonItemRadioScheduleBuilder.Name = "buttonItemRadioScheduleBuilder";
@@ -1926,7 +1934,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarRadioLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarRadioLogo.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarRadioLogo.Name = "ribbonBarRadioLogo";
-			this.ribbonBarRadioLogo.Size = new System.Drawing.Size(201, 129);
+			this.ribbonBarRadioLogo.Size = new System.Drawing.Size(201, 128);
 			this.ribbonBarRadioLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarRadioLogo.TabIndex = 16;
 			this.ribbonBarRadioLogo.Text = "GO GET YOUR BIZ!";
@@ -1965,7 +1973,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonPanelTV.Location = new System.Drawing.Point(0, 26);
 			this.ribbonPanelTV.Name = "ribbonPanelTV";
 			this.ribbonPanelTV.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelTV.Size = new System.Drawing.Size(919, 132);
+			this.ribbonPanelTV.Size = new System.Drawing.Size(919, 131);
 			// 
 			// 
 			// 
@@ -2001,7 +2009,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarTVExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarTVExit.Location = new System.Drawing.Point(738, 0);
 			this.ribbonBarTVExit.Name = "ribbonBarTVExit";
-			this.ribbonBarTVExit.Size = new System.Drawing.Size(94, 129);
+			this.ribbonBarTVExit.Size = new System.Drawing.Size(94, 128);
 			this.ribbonBarTVExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarTVExit.TabIndex = 15;
 			this.ribbonBarTVExit.Text = "EXIT";
@@ -2043,7 +2051,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarTVFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarTVFloater.Location = new System.Drawing.Point(650, 0);
 			this.ribbonBarTVFloater.Name = "ribbonBarTVFloater";
-			this.ribbonBarTVFloater.Size = new System.Drawing.Size(88, 129);
+			this.ribbonBarTVFloater.Size = new System.Drawing.Size(88, 128);
 			this.ribbonBarTVFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarTVFloater.TabIndex = 29;
 			this.ribbonBarTVFloater.Text = "Floater";
@@ -2082,7 +2090,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarTVHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarTVHelp.Location = new System.Drawing.Point(566, 0);
 			this.ribbonBarTVHelp.Name = "ribbonBarTVHelp";
-			this.ribbonBarTVHelp.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarTVHelp.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarTVHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarTVHelp.TabIndex = 23;
 			this.ribbonBarTVHelp.Text = "HELP";
@@ -2122,7 +2130,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarTVDelete.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarTVDelete.Location = new System.Drawing.Point(482, 0);
 			this.ribbonBarTVDelete.Name = "ribbonBarTVDelete";
-			this.ribbonBarTVDelete.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarTVDelete.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarTVDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarTVDelete.TabIndex = 26;
 			this.ribbonBarTVDelete.Text = "Delete";
@@ -2161,7 +2169,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarTVOpen.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarTVOpen.Location = new System.Drawing.Point(398, 0);
 			this.ribbonBarTVOpen.Name = "ribbonBarTVOpen";
-			this.ribbonBarTVOpen.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarTVOpen.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarTVOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarTVOpen.TabIndex = 25;
 			this.ribbonBarTVOpen.Text = "Open";
@@ -2200,7 +2208,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarTVNew.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarTVNew.Location = new System.Drawing.Point(314, 0);
 			this.ribbonBarTVNew.Name = "ribbonBarTVNew";
-			this.ribbonBarTVNew.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarTVNew.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarTVNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarTVNew.TabIndex = 24;
 			this.ribbonBarTVNew.Text = "New";
@@ -2239,7 +2247,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarTVScheduleBuilder.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarTVScheduleBuilder.Location = new System.Drawing.Point(204, 0);
 			this.ribbonBarTVScheduleBuilder.Name = "ribbonBarTVScheduleBuilder";
-			this.ribbonBarTVScheduleBuilder.Size = new System.Drawing.Size(110, 129);
+			this.ribbonBarTVScheduleBuilder.Size = new System.Drawing.Size(110, 128);
 			this.ribbonBarTVScheduleBuilder.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarTVScheduleBuilder.TabIndex = 8;
 			this.ribbonBarTVScheduleBuilder.Text = "Schedule Builder";
@@ -2257,7 +2265,7 @@ namespace NewBizWiz.Dashboard
 			// buttonItemTVScheduleBuilder
 			// 
 			this.buttonItemTVScheduleBuilder.Checked = true;
-			this.buttonItemTVScheduleBuilder.FixedSize = new System.Drawing.Size(100, 64);
+			this.buttonItemTVScheduleBuilder.FixedSize = new System.Drawing.Size(100, 110);
 			this.buttonItemTVScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.TVLittle;
 			this.buttonItemTVScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
 			this.buttonItemTVScheduleBuilder.Name = "buttonItemTVScheduleBuilder";
@@ -2281,7 +2289,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarTVLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarTVLogo.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarTVLogo.Name = "ribbonBarTVLogo";
-			this.ribbonBarTVLogo.Size = new System.Drawing.Size(201, 129);
+			this.ribbonBarTVLogo.Size = new System.Drawing.Size(201, 128);
 			this.ribbonBarTVLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarTVLogo.TabIndex = 7;
 			this.ribbonBarTVLogo.Text = "GO GET YOUR BIZ!";
@@ -2320,7 +2328,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonPanelNewspaper.Location = new System.Drawing.Point(0, 26);
 			this.ribbonPanelNewspaper.Name = "ribbonPanelNewspaper";
 			this.ribbonPanelNewspaper.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelNewspaper.Size = new System.Drawing.Size(919, 132);
+			this.ribbonPanelNewspaper.Size = new System.Drawing.Size(919, 131);
 			// 
 			// 
 			// 
@@ -2355,9 +2363,9 @@ namespace NewBizWiz.Dashboard
             this.buttonItemNewspaperExit});
 			this.ribbonBarNewspaperExit.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
 			this.ribbonBarNewspaperExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarNewspaperExit.Location = new System.Drawing.Point(730, 0);
+			this.ribbonBarNewspaperExit.Location = new System.Drawing.Point(724, 0);
 			this.ribbonBarNewspaperExit.Name = "ribbonBarNewspaperExit";
-			this.ribbonBarNewspaperExit.Size = new System.Drawing.Size(94, 129);
+			this.ribbonBarNewspaperExit.Size = new System.Drawing.Size(94, 128);
 			this.ribbonBarNewspaperExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarNewspaperExit.TabIndex = 14;
 			this.ribbonBarNewspaperExit.Text = "EXIT";
@@ -2397,9 +2405,9 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarNewspaperFloater.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemNewspaperFloater});
 			this.ribbonBarNewspaperFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarNewspaperFloater.Location = new System.Drawing.Point(642, 0);
+			this.ribbonBarNewspaperFloater.Location = new System.Drawing.Point(636, 0);
 			this.ribbonBarNewspaperFloater.Name = "ribbonBarNewspaperFloater";
-			this.ribbonBarNewspaperFloater.Size = new System.Drawing.Size(88, 129);
+			this.ribbonBarNewspaperFloater.Size = new System.Drawing.Size(88, 128);
 			this.ribbonBarNewspaperFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarNewspaperFloater.TabIndex = 23;
 			this.ribbonBarNewspaperFloater.Text = "Floater";
@@ -2436,9 +2444,9 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarNewspaperHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemNewspaperHelp});
 			this.ribbonBarNewspaperHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarNewspaperHelp.Location = new System.Drawing.Point(566, 0);
+			this.ribbonBarNewspaperHelp.Location = new System.Drawing.Point(560, 0);
 			this.ribbonBarNewspaperHelp.Name = "ribbonBarNewspaperHelp";
-			this.ribbonBarNewspaperHelp.Size = new System.Drawing.Size(76, 129);
+			this.ribbonBarNewspaperHelp.Size = new System.Drawing.Size(76, 128);
 			this.ribbonBarNewspaperHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarNewspaperHelp.TabIndex = 22;
 			this.ribbonBarNewspaperHelp.Text = "HELP";
@@ -2476,9 +2484,9 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarNewspaperDelete.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemNewspaperDelete});
 			this.ribbonBarNewspaperDelete.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarNewspaperDelete.Location = new System.Drawing.Point(482, 0);
+			this.ribbonBarNewspaperDelete.Location = new System.Drawing.Point(476, 0);
 			this.ribbonBarNewspaperDelete.Name = "ribbonBarNewspaperDelete";
-			this.ribbonBarNewspaperDelete.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarNewspaperDelete.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarNewspaperDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarNewspaperDelete.TabIndex = 20;
 			this.ribbonBarNewspaperDelete.Text = "Delete";
@@ -2515,9 +2523,9 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarNewspaperOpen.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemNewspaperOpen});
 			this.ribbonBarNewspaperOpen.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarNewspaperOpen.Location = new System.Drawing.Point(398, 0);
+			this.ribbonBarNewspaperOpen.Location = new System.Drawing.Point(392, 0);
 			this.ribbonBarNewspaperOpen.Name = "ribbonBarNewspaperOpen";
-			this.ribbonBarNewspaperOpen.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarNewspaperOpen.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarNewspaperOpen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarNewspaperOpen.TabIndex = 19;
 			this.ribbonBarNewspaperOpen.Text = "Open";
@@ -2554,9 +2562,9 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarNewspaperNew.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemNewspaperNew});
 			this.ribbonBarNewspaperNew.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarNewspaperNew.Location = new System.Drawing.Point(314, 0);
+			this.ribbonBarNewspaperNew.Location = new System.Drawing.Point(308, 0);
 			this.ribbonBarNewspaperNew.Name = "ribbonBarNewspaperNew";
-			this.ribbonBarNewspaperNew.Size = new System.Drawing.Size(84, 129);
+			this.ribbonBarNewspaperNew.Size = new System.Drawing.Size(84, 128);
 			this.ribbonBarNewspaperNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarNewspaperNew.TabIndex = 15;
 			this.ribbonBarNewspaperNew.Text = "New";
@@ -2596,7 +2604,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarNewspaperScheduleBuilder.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarNewspaperScheduleBuilder.Location = new System.Drawing.Point(204, 0);
 			this.ribbonBarNewspaperScheduleBuilder.Name = "ribbonBarNewspaperScheduleBuilder";
-			this.ribbonBarNewspaperScheduleBuilder.Size = new System.Drawing.Size(110, 129);
+			this.ribbonBarNewspaperScheduleBuilder.Size = new System.Drawing.Size(104, 128);
 			this.ribbonBarNewspaperScheduleBuilder.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarNewspaperScheduleBuilder.TabIndex = 6;
 			this.ribbonBarNewspaperScheduleBuilder.Text = "Schedule Builder";
@@ -2614,7 +2622,7 @@ namespace NewBizWiz.Dashboard
 			// buttonItemNewspaperScheduleBuilder
 			// 
 			this.buttonItemNewspaperScheduleBuilder.Checked = true;
-			this.buttonItemNewspaperScheduleBuilder.FixedSize = new System.Drawing.Size(100, 64);
+			this.buttonItemNewspaperScheduleBuilder.FixedSize = new System.Drawing.Size(100, 110);
 			this.buttonItemNewspaperScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewspaperLittle;
 			this.buttonItemNewspaperScheduleBuilder.ImageFixedSize = new System.Drawing.Size(64, 64);
 			this.buttonItemNewspaperScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
@@ -2639,7 +2647,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarNewspaperLogo.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarNewspaperLogo.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarNewspaperLogo.Name = "ribbonBarNewspaperLogo";
-			this.ribbonBarNewspaperLogo.Size = new System.Drawing.Size(201, 129);
+			this.ribbonBarNewspaperLogo.Size = new System.Drawing.Size(201, 128);
 			this.ribbonBarNewspaperLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarNewspaperLogo.TabIndex = 4;
 			this.ribbonBarNewspaperLogo.Text = "GO GET YOUR BIZ!";

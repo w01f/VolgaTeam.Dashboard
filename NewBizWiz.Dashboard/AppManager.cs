@@ -48,7 +48,7 @@ namespace NewBizWiz.Dashboard
 				form.TopMost = true;
 				var thread = new Thread(delegate()
 				{
-					RunMinibar();
+					//RunMinibar();
 					DashboardPowerPointHelper.Instance.SetPresentationSettings();
 				});
 				thread.Start();
@@ -117,14 +117,12 @@ namespace NewBizWiz.Dashboard
 			var mainFormHandle = RegistryHelper.MainFormHandle;
 			if (mainFormHandle.ToInt32() == 0)
 			{
-				Process[] processList = Process.GetProcesses();
-				foreach (Process process in processList.Where(x => x.ProcessName.ToLower().Contains("adsalesapp")))
+				var processList = Process.GetProcesses();
+				foreach (var process in processList.Where(x => x.ProcessName.ToLower().Contains("adsalesapp")))
 				{
-					if (process.MainWindowHandle.ToInt32() != 0)
-					{
-						mainFormHandle = process.MainWindowHandle;
-						break;
-					}
+					if (process.MainWindowHandle.ToInt32() == 0) continue;
+					mainFormHandle = process.MainWindowHandle;
+					break;
 				}
 			}
 			Utilities.Instance.MinimizeForm(mainFormHandle);

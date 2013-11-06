@@ -46,6 +46,7 @@ namespace NewBizWiz.Dashboard.TabSlides
 			FormMain.Instance.ribbonTabItemSlides.Enabled = Core.Dashboard.SettingsManager.Instance.SlideManager.Slides.Any(s => s.SizeWidth == SettingsManager.Instance.SizeWidth && s.SizeHeght == SettingsManager.Instance.SizeHeght);
 
 			_slideContainer = new SlidesContainerControl();
+			_slideContainer.BackColor = BackColor;
 			_slideContainer.InitSlides(Core.Dashboard.SettingsManager.Instance.SlideManager);
 			pnMain.Controls.Add(_slideContainer);
 			_slideContainer.BringToFront();
@@ -92,7 +93,7 @@ namespace NewBizWiz.Dashboard.TabSlides
 					RegistryHelper.MaximizeMainForm = false;
 					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 					if (previewResult != DialogResult.OK)
-						Utilities.Instance.ActivateForm(FormMain.Instance.Handle, true, false);
+						AppManager.Instance.ActivateMainForm();
 					else
 						Utilities.Instance.ActivateMiniBar();
 				}

@@ -272,6 +272,8 @@ namespace NewBizWiz.Core.Interop
 					Utilities.Instance.ReleaseComObject(powerPoint);
 				}
 			}
+			if (!result)
+				_powerPointObject = null;
 			return result;
 		}
 

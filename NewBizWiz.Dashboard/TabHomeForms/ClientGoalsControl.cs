@@ -263,7 +263,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					RegistryHelper.MaximizeMainForm = false;
 					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 					if (previewResult != DialogResult.OK)
-						Utilities.Instance.ActivateForm(FormMain.Instance.Handle, true, false);
+						AppManager.Instance.ActivateMainForm();
 					else
 						Utilities.Instance.ActivateMiniBar();
 				}

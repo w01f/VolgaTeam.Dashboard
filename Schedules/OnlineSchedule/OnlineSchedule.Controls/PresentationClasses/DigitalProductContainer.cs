@@ -72,6 +72,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public abstract ButtonItem PowerPoint { get; }
 		public abstract ButtonItem Email { get; }
 		public abstract ButtonItem Theme { get; }
+		public abstract HelpManager HelpManager { get; }
 		#endregion
 
 		public bool SettingsNotSaved { get; set; }
@@ -243,7 +244,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		private void pbOutputHelp_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink(pbOutputHelp.Text);
+			HelpManager.OpenHelpLink(pbOutputHelp.Text);
 		}
 
 		public void PowerPoint_Click(object sender, EventArgs e)
@@ -345,7 +346,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 					formProgress.Close();
 					if (File.Exists(tempFileName))
-						using (var formEmail = new FormEmail())
+						using (var formEmail = new FormEmail(_formContainer, OnlineSchedulePowerPointHelper.Instance, HelpManager))
 						{
 							formEmail.Text = "Email this Online Schedule";
 							formEmail.PresentationFile = tempFileName;

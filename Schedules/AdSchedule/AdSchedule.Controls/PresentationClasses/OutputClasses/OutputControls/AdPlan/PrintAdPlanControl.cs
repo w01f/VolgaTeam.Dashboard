@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
-using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
+using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
@@ -36,6 +36,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public override ThemeManager ThemeManager
 		{
 			get { return BusinessWrapper.Instance.ThemeManager; }
+		}
+
+		public override HelpManager HelpManager
+		{
+			get { return BusinessWrapper.Instance.HelpManager; }
 		}
 
 		public override ButtonItem Theme
@@ -143,11 +148,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			Controller.Instance.SaveSchedule(LocalSchedule, false, this);
 		}
 
-		public override void Help_Click(object sender, EventArgs e)
-		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("adplan");
-		}
-
 		protected override void OutputSlides()
 		{
 			using (var formProgress = new FormProgress())
@@ -165,7 +165,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		protected override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview())
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview AdPlan";
 				formPreview.PresentationFile = tempFileName;

@@ -299,7 +299,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 							Enabled = true;
 							formProgress.Close();
 							if (File.Exists(tempFileName))
-								using (var formEmail = new FormEmail())
+								using (var formEmail = new FormEmail(Controller.Instance.FormMain, CalendarPowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
 								{
 									formEmail.Text = "Email this Calendar";
 									formEmail.PresentationFile = tempFileName;
@@ -373,7 +373,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 							Enabled = true;
 							formProgress.Close();
 							if (File.Exists(tempFileName))
-								using (var formPreview = new FormPreview())
+								using (var formPreview = new FormPreview(Controller.Instance.FormMain, CalendarPowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 								{
 									formPreview.Text = "Preview this Calendar";
 									formPreview.PresentationFile = tempFileName;

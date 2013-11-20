@@ -6,12 +6,12 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
+using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 using FormNewSchedule = NewBizWiz.AdSchedule.Controls.ToolForms.FormNewSchedule;
-using FormPreview = NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms.FormPreview;
 using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
 using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
 
@@ -194,7 +194,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview())
+			using (var formPreview = new CommonGUI.ToolForms.FormPreview(Controller.Instance.FormMain,AdSchedulePowerPointHelper.Instance,BusinessWrapper.Instance.HelpManager,Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Digital Product";
 				formPreview.PresentationFile = tempFileName;
@@ -225,6 +225,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public override ButtonItem Theme
 		{
 			get { return Controller.Instance.DigitalProductTheme; }
+		}
+
+		public override HelpManager HelpManager
+		{
+			get { return BusinessWrapper.Instance.HelpManager; }
 		}
 	}
 }

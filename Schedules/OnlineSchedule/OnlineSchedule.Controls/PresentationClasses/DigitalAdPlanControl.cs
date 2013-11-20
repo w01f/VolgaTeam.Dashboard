@@ -37,6 +37,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			get { return BusinessWrapper.Instance.ThemeManager; }
 		}
 
+		public override HelpManager HelpManager
+		{
+			get { return BusinessWrapper.Instance.HelpManager; }
+		}
+
 		public override ButtonItem Theme
 		{
 			get { return Controller.Instance.AdPlanTheme; }
@@ -109,11 +114,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			Controller.Instance.SaveSchedule(LocalSchedule, false, this);
 		}
 
-		public override void Help_Click(object sender, EventArgs e)
-		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("adplan");
-		}
-
 		protected override void OutputSlides()
 		{
 			using (var formProgress = new FormProgress())
@@ -131,7 +131,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		protected override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview())
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview AdPlan";
 				formPreview.PresentationFile = tempFileName;

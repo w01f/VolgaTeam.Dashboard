@@ -312,6 +312,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 		}
 
 		#region ISchedule Members
+
+		public bool IsNameNotAssigned { get; set; }
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
 		public DateTime PresentationDate { get; set; }
@@ -863,15 +865,19 @@ namespace NewBizWiz.Core.OnlineSchedule
 			xml.Append(@"<Product ");
 
 			#region Basic Properties
-			xml.Append("Name = \"" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			if (!String.IsNullOrEmpty(Name))
+				xml.Append("Name = \"" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("UniqueID = \"" + UniqueID.ToString() + "\" ");
 			xml.Append("Index = \"" + Index + "\" ");
-			xml.Append("Category = \"" + Category.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("SubCategory = \"" + SubCategory.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			if (!String.IsNullOrEmpty(Category))
+				xml.Append("Category = \"" + Category.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			if (!String.IsNullOrEmpty(SubCategory))
+				xml.Append("SubCategory = \"" + SubCategory.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("RateType = \"" + (int)RateType + "\" ");
 			xml.Append("Width = \"" + (Width.HasValue ? Width.Value.ToString() : string.Empty) + "\" ");
 			xml.Append("Height = \"" + (Height.HasValue ? Height.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("Description = \"" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			if (!String.IsNullOrEmpty(Description))
+				xml.Append("Description = \"" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			#endregion
 
 			#region Additional Properties
@@ -1338,13 +1344,13 @@ namespace NewBizWiz.Core.OnlineSchedule
 		{
 			get
 			{
-				if (String.IsNullOrEmpty(_category))
+				if (_category == null)
 					return Parent.Category;
 				return _category;
 			}
 			set
 			{
-				if (!value.Equals(Parent.Category))
+				if (String.IsNullOrEmpty(Parent.Category) || !Parent.Category.Equals(value))
 					_category = value;
 			}
 		}
@@ -1352,13 +1358,13 @@ namespace NewBizWiz.Core.OnlineSchedule
 		{
 			get
 			{
-				if (String.IsNullOrEmpty(_subCategory))
+				if (_subCategory == null)
 					return Parent.SubCategory;
 				return _subCategory;
 			}
 			set
 			{
-				if (!value.Equals(Parent.SubCategory))
+				if (String.IsNullOrEmpty(Parent.SubCategory) || !Parent.SubCategory.Equals(value))
 					_subCategory = value;
 			}
 		}
@@ -1366,13 +1372,13 @@ namespace NewBizWiz.Core.OnlineSchedule
 		{
 			get
 			{
-				if (String.IsNullOrEmpty(_name))
+				if (_name == null)
 					return Parent.Name;
 				return _name;
 			}
 			set
 			{
-				if (!value.Equals(Parent.Name))
+				if (String.IsNullOrEmpty(Parent.Name) || !Parent.Name.Equals(value))
 					_name = value;
 			}
 		}
@@ -1492,11 +1498,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 		{
 			var xml = new StringBuilder();
 
-			if (!String.IsNullOrEmpty(_category))
+			if (_category != null)
 				xml.AppendLine(@"<Category>" + _category.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Category>");
-			if (!String.IsNullOrEmpty(_subCategory))
+			if (_subCategory != null)
 				xml.AppendLine(@"<SubCategory>" + _subCategory.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SubCategory>");
-			if (!String.IsNullOrEmpty(_name))
+			if (_name != null)
 				xml.AppendLine(@"<Name>" + _name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Name>");
 			if (!String.IsNullOrEmpty(_info))
 				xml.AppendLine(@"<Info>" + _info.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Info>");

@@ -84,7 +84,9 @@
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar2, Version=11.5.0.2, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.DotNetBar2, Version=11.5.0.2, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.Data.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -224,9 +226,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormLoadSplash.resx">
       <DependentUpon>FormLoadSplash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormPreview.resx">
-      <DependentUpon>FormPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\WhiteBorderControlPage.resx">
       <DependentUpon>WhiteBorderControlPage.cs</DependentUpon>
@@ -419,12 +418,6 @@
     </Compile>
     <Compile Include="ToolForms\FormLoadSplash.designer.cs">
       <DependentUpon>FormLoadSplash.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ToolForms\FormPreview.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormPreview.designer.cs">
-      <DependentUpon>FormPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\WhiteBorderControlPage.cs">
       <SubType>UserControl</SubType>

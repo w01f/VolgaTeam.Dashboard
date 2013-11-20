@@ -22,6 +22,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
 		}
 
+		public override HelpManager HelpManager
+		{
+			get { return BusinessWrapper.Instance.HelpManager; }
+		}
+
 		public override ISchedule Schedule { get { return LocalSchedule; } }
 
 		public override DigitalPackageSettings Settings
@@ -86,11 +91,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			return base.SaveSchedule(scheduleName);
 		}
 
-		public override void Help_Click(object sender, EventArgs e)
-		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("dgpkg");
-		}
-
 		public override void OutputSlides()
 		{
 			using (var formProgress = new FormProgress())
@@ -108,7 +108,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview())
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Digital Package";
 				formPreview.PresentationFile = tempFileName;
@@ -122,6 +122,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				else
 					Utilities.Instance.ActivateMiniBar();
 			}
+		}
+
+		public override void Help_Click(object sender, EventArgs e)
+		{
+			HelpManager.OpenHelpLink("pkg");
 		}
 	}
 }

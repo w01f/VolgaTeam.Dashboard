@@ -31,11 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar2, Version=11.5.0.2, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.DotNetBar2, Version=11.5.0.2, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.Data.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Utils.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
@@ -102,11 +107,29 @@
     <Compile Include="Themes\ThemeContainerControl.Designer.cs">
       <DependentUpon>ThemeContainerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormEmail.designer.cs">
+      <DependentUpon>FormEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormEmailFileName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormEmailFileName.Designer.cs">
+      <DependentUpon>FormEmailFileName.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormImageGallery.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ToolForms\FormImageGallery.Designer.cs">
       <DependentUpon>FormImageGallery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormPreview.designer.cs">
+      <DependentUpon>FormPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormProgress.cs">
       <SubType>Form</SubType>
@@ -140,8 +163,17 @@
     <EmbeddedResource Include="Themes\ThemeContainerControl.resx">
       <DependentUpon>ThemeContainerControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormEmail.resx">
+      <DependentUpon>FormEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormEmailFileName.resx">
+      <DependentUpon>FormEmailFileName.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormImageGallery.resx">
       <DependentUpon>FormImageGallery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormPreview.resx">
+      <DependentUpon>FormPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
@@ -159,7 +191,27 @@
   <ItemGroup>
     <None Include="Resources\OutputDisabled.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LockedEmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDFEmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RegularEmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PowerPoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Email.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

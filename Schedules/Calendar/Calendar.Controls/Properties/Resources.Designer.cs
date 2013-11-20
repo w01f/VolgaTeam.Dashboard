@@ -228,13 +228,6 @@ namespace NewBizWiz.Calendar.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap LockedEmail {
-            get {
-                object obj = ResourceManager.GetObject("LockedEmail", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap NewSchedule {
             get {
                 object obj = ResourceManager.GetObject("NewSchedule", resourceCulture);
@@ -284,13 +277,6 @@ namespace NewBizWiz.Calendar.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap PDFEmail {
-            get {
-                object obj = ResourceManager.GetObject("PDFEmail", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap PowerPoint {
             get {
                 object obj = ResourceManager.GetObject("PowerPoint", resourceCulture);
@@ -301,13 +287,6 @@ namespace NewBizWiz.Calendar.Controls.Properties {
         public static System.Drawing.Bitmap Preview {
             get {
                 object obj = ResourceManager.GetObject("Preview", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap RegularEmail {
-            get {
-                object obj = ResourceManager.GetObject("RegularEmail", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
+using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
@@ -32,6 +33,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses
 		public override Theme SelectedTheme
 		{
 			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
+		}
+
+		public override HelpManager HelpManager
+		{
+			get { return BusinessWrapper.Instance.HelpManager; }
 		}
 
 		public override ISchedule Schedule { get { return LocalSchedule; } }
@@ -88,11 +94,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses
 			return base.SaveSchedule(scheduleName);
 		}
 
-		public override void Help_Click(object sender, EventArgs e)
-		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("dgpkg");
-		}
-
 		public override void OutputSlides()
 		{
 			using (var formProgress = new FormProgress())
@@ -110,7 +111,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses
 
 		public override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview())
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Digital Package";
 				formPreview.PresentationFile = tempFileName;

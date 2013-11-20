@@ -273,7 +273,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			e.Graphics.DrawLine(Pens.LightBlue, p1, p2);
 		}
 
-
 		private void advBandedGridViewPublication_CustomDrawBandHeader(object sender, BandHeaderCustomDrawEventArgs e)
 		{
 			if (e.Band == null) return;
@@ -305,7 +304,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				e.Handled = true;
 			}
 		}
-
 
 		private void toolTipController_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
 		{

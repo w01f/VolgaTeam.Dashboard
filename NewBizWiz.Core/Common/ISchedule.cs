@@ -6,6 +6,7 @@ namespace NewBizWiz.Core.Common
 {
 	public interface ISchedule
 	{
+		bool IsNameNotAssigned { get; set; }
 		string BusinessName { get; set; }
 		string DecisionMaker { get; set; }
 		string AccountNumber { get; set; }

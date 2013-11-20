@@ -12,7 +12,32 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace NewBizWiz.Core.Interop
 {
-	public class PowerPointHelper<T> where T : new()
+	public interface IPowerPointHelper
+	{
+		Application PowerPointObject { get; }
+		bool Foreground { get; }
+		bool IsMinimized { get; }
+		bool IsActive { get; }
+		bool Is2003 { get; }
+		string ActiveFileName { get; }
+		string ActiveFilePath { get; }
+		bool Connect(bool run = true);
+		void Disconnect(bool closeIfFirstLaunch = true);
+		void Close();
+		bool PowerPointDetected();
+		void GetActivePresentation();
+		int GetActiveSlideIndex();
+		void CreateLockedPresentation(string sourceFolderPathName, string destinationFileName);
+		void ConvertToPDF(string originalFileName, string pdfFileName);
+		void AppendSlidesFromFile(string filePath);
+		void AppendSlide(Presentation sourcePresentation, int slideIndex, Presentation destinationPresentation = null, bool firstSlide = false, int indexToPaste = 0);
+		void AppendSlideMaster(string presentationTemplatePath, Presentation destinationPresentation = null);
+		void SetPresentationSettings();
+		void SavePDF(string fileName);
+		void PreparePresentation(string fileName, Action<Presentation> buildPresentation);
+	}
+
+	public class PowerPointHelper<T> : IPowerPointHelper where T : class,new()
 	{
 		protected static T _instance;
 

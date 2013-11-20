@@ -60,6 +60,20 @@ namespace NewBizWiz.CommonGUI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Email {
+            get {
+                object obj = ResourceManager.GetObject("Email", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Exit {
+            get {
+                object obj = ResourceManager.GetObject("Exit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap FloaterHide {
             get {
                 object obj = ResourceManager.GetObject("FloaterHide", resourceCulture);
@@ -67,9 +81,44 @@ namespace NewBizWiz.CommonGUI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Help {
+            get {
+                object obj = ResourceManager.GetObject("Help", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap LockedEmail {
+            get {
+                object obj = ResourceManager.GetObject("LockedEmail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap OutputDisabled {
             get {
                 object obj = ResourceManager.GetObject("OutputDisabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PDFEmail {
+            get {
+                object obj = ResourceManager.GetObject("PDFEmail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PowerPoint {
+            get {
+                object obj = ResourceManager.GetObject("PowerPoint", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap RegularEmail {
+            get {
+                object obj = ResourceManager.GetObject("RegularEmail", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

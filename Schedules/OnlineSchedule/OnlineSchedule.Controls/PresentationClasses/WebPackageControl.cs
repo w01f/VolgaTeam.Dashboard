@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
@@ -18,15 +22,44 @@ using NewBizWiz.OnlineSchedule.Controls.Properties;
 namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 {
 	[ToolboxItem(false)]
-	public abstract partial class WebPackageControl : UserControl
+	[Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
+	public partial class WebPackageControl : UserControl
 	{
 		protected Form _formContainer;
-		protected WebPackageControl(Form formContainer)
+
+		protected WebPackageControl()
+		{
+			InitializeComponent();
+		}
+
+		protected WebPackageControl(Form formContainer, bool placeFormulaBottom = false)
 		{
 			InitializeComponent();
 			_formContainer = formContainer;
 			Dock = DockStyle.Fill;
 			AllowApplyValues = false;
+
+			if (placeFormulaBottom)
+			{
+				checkEditFormulaCPM.Left = labelControlFormula.Right + 50;
+				checkEditFormulaCPM.Top = pbFormula.Top;
+				checkEditFormulaCPM.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+				checkEditFormulaInvestment.Left = checkEditFormulaCPM.Right + 50;
+				checkEditFormulaInvestment.Top = pbFormula.Top;
+				checkEditFormulaInvestment.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+				checkEditFormulaImpressions.Left = checkEditFormulaInvestment.Right + 50;
+				checkEditFormulaImpressions.Top = pbFormula.Top;
+				checkEditFormulaImpressions.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+				pnFormula.Parent = null;
+				Controls.Add(pnFormula);
+				pnFormula.BorderStyle = BorderStyle.Fixed3D;
+				pnFormula.Dock = DockStyle.Bottom;
+				pnFormula.Height = pbFormula.Height + 20;
+				splitContainerControl.BorderStyle = BorderStyles.Style3D;
+				splitContainerControl.BringToFront();
+				pnFormula.SendToBack();
+			}
+
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
 				var font = new Font(styleController.Appearance.Font.FontFamily, styleController.Appearance.Font.Size - 2, styleController.Appearance.Font.Style);
@@ -37,22 +70,57 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				styleController.AppearanceFocused.Font = font;
 				styleController.AppearanceReadOnly.Font = font;
 				laAdvertiser.Font = font;
+				checkEditFormulaCPM.Font = font;
+				checkEditFormulaImpressions.Font = font;
+				checkEditFormulaInvestment.Font = font;
+				labelControlFormula.Font = new Font(labelControlFormula.Font.FontFamily, labelControlFormula.Font.Size - 2, labelControlFormula.Font.Style);
+				advBandedGridView.Appearance.BandPanel.Font = font;
+				advBandedGridView.Appearance.EvenRow.Font = font;
+				advBandedGridView.Appearance.FocusedCell.Font = font;
+				advBandedGridView.Appearance.FocusedRow.Font = font;
+				advBandedGridView.Appearance.HeaderPanel.Font = new Font(font.FontFamily, font.Size, FontStyle.Bold);
+				advBandedGridView.Appearance.OddRow.Font = font;
+				advBandedGridView.Appearance.Row.Font = font;
+				advBandedGridView.Appearance.SelectedRow.Font = font;
+
+				var buttonFont = new Font(buttonXCPM.Font.FontFamily, buttonXCPM.Font.Size - 2, buttonXCPM.Font.Style);
+				buttonXCategory.Font = buttonFont;
+				buttonXComments.Font = buttonFont;
+				buttonXGroup.Font = buttonFont;
+				buttonXImpressions.Font = buttonFont;
+				buttonXInfo.Font = buttonFont;
+				buttonXInvestment.Font = buttonFont;
+				buttonXProduct.Font = buttonFont;
+				buttonXRate.Font = buttonFont;
+				buttonXScreenshot.Font = buttonFont;
 			}
 		}
 
 		public bool SettingsNotSaved { get; set; }
 		public bool AllowApplyValues { get; set; }
-		public abstract Theme SelectedTheme { get; }
+		public virtual Theme SelectedTheme { get; private set; }
+		public virtual HelpManager HelpManager { get; private set; }
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; set; }
 
-		public abstract ISchedule Schedule { get; }
-		public abstract DigitalPackageSettings Settings { get; }
-		public abstract IEnumerable<ProductPackageRecord> PackageRecords { get; }
-		public abstract ButtonItem OptionsButtons { get; }
-		public abstract ButtonItem Preview { get; }
-		public abstract ButtonItem PowerPoint { get; }
-		public abstract ButtonItem Email { get; }
-		public abstract ButtonItem Theme { get; }
+		public virtual ISchedule Schedule { get; private set; }
+		public virtual DigitalPackageSettings Settings { get; private set; }
+		public virtual IEnumerable<ProductPackageRecord> PackageRecords { get; private set; }
+		public virtual ButtonItem OptionsButtons { get; private set; }
+		public virtual ButtonItem Preview { get; private set; }
+		public virtual ButtonItem PowerPoint { get; private set; }
+		public virtual ButtonItem Email { get; private set; }
+		public virtual ButtonItem Theme { get; private set; }
+
+
+		public GridControl GridControl
+		{
+			get { return gridControl; }
+		}
+
+		public GridView GridView
+		{
+			get { return advBandedGridView; }
+		}
 
 		public bool AllowToLeaveControl
 		{
@@ -83,6 +151,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			AllowApplyValues = false;
 			if (!quickLoad)
 			{
+				repositoryItemComboBoxCategory.Items.Clear();
+				repositoryItemComboBoxCategory.Items.AddRange(Core.OnlineSchedule.ListManager.Instance.ProductSources.Select(ps => ps.Category.Name).Distinct().ToArray());
 				laAdvertiser.Text = Schedule.BusinessName + (!string.IsNullOrEmpty(Schedule.AccountNumber) ? (" - " + Schedule.AccountNumber) : string.Empty);
 				LoadSettings();
 				UpdateControls();
@@ -452,10 +522,29 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		private void advBandedGridView_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
 		{
 			if (AllowApplyValues)
+			{
 				SettingsNotSaved = true;
+				if (e.Column == bandedGridColumnCategory)
+				{
+					advBandedGridView.PostEditor();
+					advBandedGridView.CloseEditor();
+					AllowApplyValues = false;
+					advBandedGridView.SetRowCellValue(e.RowHandle, bandedGridColumnGroup, String.Empty);
+					advBandedGridView.SetRowCellValue(e.RowHandle, bandedGridColumnProduct, String.Empty);
+					AllowApplyValues = true;
+				}
+				else if (e.Column == bandedGridColumnGroup)
+				{
+					advBandedGridView.PostEditor();
+					advBandedGridView.CloseEditor();
+					AllowApplyValues = false;
+					advBandedGridView.SetRowCellValue(e.RowHandle, bandedGridColumnProduct, String.Empty);
+					AllowApplyValues = true;
+				}
+			}
 		}
 
-		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		private void hyperLinkEditReset_OpenLink(object sender, OpenLinkEventArgs e)
 		{
 			advBandedGridView.PostEditor();
 			if (Utilities.Instance.ShowWarningQuestion("Do you want to reset your Categories and Products to the original selections on the HOME Tab") == DialogResult.Yes)
@@ -484,6 +573,36 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					   ((advBandedGridView.FocusedColumn == bandedGridColumnInvestment && Settings.Formula == FormulaType.Investment) ||
 					   (advBandedGridView.FocusedColumn == bandedGridColumnImpressions && Settings.Formula == FormulaType.Impressions) ||
 					   (advBandedGridView.FocusedColumn == bandedGridColumnCPM && Settings.Formula == FormulaType.CPM));
+			if (e.Cancel || focussedRecord == null) return;
+			if (advBandedGridView.FocusedColumn == bandedGridColumnProduct)
+			{
+				var category = Settings.ShowCategory ? focussedRecord.Category : null;
+				var subCategory = Settings.ShowGroup ? focussedRecord.SubCategory : null;
+				repositoryItemComboBoxProduct.Items.Clear();
+				repositoryItemComboBoxProduct.Items.AddRange(Core.OnlineSchedule.ListManager.Instance.ProductSources.Where(x => (x.Category.Name.Equals(category) || String.IsNullOrEmpty(category)) && (x.SubCategory.Equals(subCategory) || String.IsNullOrEmpty(subCategory))).Select(x => x.Name).Distinct().ToArray());
+			}
+			else if (advBandedGridView.FocusedColumn == bandedGridColumnGroup)
+			{
+				var category = Settings.ShowCategory ? focussedRecord.Category : null;
+				var subCategories = Core.OnlineSchedule.ListManager.Instance.ProductSources.Where(x => (x.Category.Name.Equals(category) || String.IsNullOrEmpty(category)) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray();
+				repositoryItemComboBoxGroup.Items.Clear();
+				repositoryItemComboBoxGroup.Items.AddRange(subCategories);
+			}
+		}
+
+		private void repositoryItem_ButtonClick(object sender, ButtonPressedEventArgs e)
+		{
+			if (e.Button.Kind == ButtonPredefines.Delete)
+			{
+				advBandedGridView.PostEditor();
+				advBandedGridView.CloseEditor();
+				advBandedGridView.SetRowCellValue(advBandedGridView.FocusedRowHandle, advBandedGridView.FocusedColumn, String.Empty);
+			}
+		}
+
+		private void repositoryItemComboBox_Closed(object sender, ClosedEventArgs e)
+		{
+			advBandedGridView.CloseEditor();
 		}
 
 		private void repositoryItemCheckEditFormula_CheckedChanged(object sender, EventArgs e)
@@ -494,6 +613,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void Save_Click(object sender, EventArgs e)
 		{
+			if (Schedule.IsNameNotAssigned)
+			{
+				SaveAs_Click(sender, e);
+				return;
+			}
 			SaveSchedule();
 			Utilities.Instance.ShowInformation("Schedule Saved");
 		}
@@ -508,8 +632,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				{
 					if (!string.IsNullOrEmpty(from.ScheduleName))
 					{
-						if (SaveSchedule(from.ScheduleName))
-							Utilities.Instance.ShowInformation("Schedule was saved");
+						Schedule.IsNameNotAssigned = false;
+						SaveSchedule(from.ScheduleName);
 					}
 					else
 					{
@@ -519,7 +643,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 		}
 
-		public abstract void Help_Click(object sender, EventArgs e);
+		public virtual void Help_Click(object sender, EventArgs e)
+		{
+			HelpManager.OpenHelpLink("dgpkg");
+		}
 
 		private void pbDisabledOutput_Click(object sender, EventArgs e)
 		{
@@ -533,7 +660,9 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			OutputSlides();
 		}
 
-		public abstract void OutputSlides();
+		public virtual void OutputSlides()
+		{
+		}
 
 		public void Email_Click(object sender, EventArgs e)
 		{
@@ -549,7 +678,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				formProgress.Close();
 				if (File.Exists(tempFileName))
-					using (var formEmail = new FormEmail())
+					using (var formEmail = new FormEmail(_formContainer, OnlineSchedulePowerPointHelper.Instance, HelpManager))
 					{
 						formEmail.Text = "Email this Online Schedule";
 						formEmail.PresentationFile = tempFileName;
@@ -580,7 +709,9 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 		}
 
-		public abstract void ShowPreview(string tempFileName);
+		public virtual void ShowPreview(string tempFileName)
+		{
+		}
 
 		#region Picture Box Clicks Habdlers
 		/// <summary>

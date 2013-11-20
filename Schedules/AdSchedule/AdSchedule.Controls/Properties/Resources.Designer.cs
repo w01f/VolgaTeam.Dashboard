@@ -333,13 +333,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap Email {
-            get {
-                object obj = ResourceManager.GetObject("Email", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap EmailBig {
             get {
                 object obj = ResourceManager.GetObject("EmailBig", resourceCulture);
@@ -424,13 +417,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap LockedEmail {
-            get {
-                object obj = ResourceManager.GetObject("LockedEmail", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap Minus {
             get {
                 object obj = ResourceManager.GetObject("Minus", resourceCulture);
@@ -494,13 +480,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap PDFEmail {
-            get {
-                object obj = ResourceManager.GetObject("PDFEmail", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap Plus {
             get {
                 object obj = ResourceManager.GetObject("Plus", resourceCulture);
@@ -525,13 +504,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         public static System.Drawing.Bitmap RedWarning {
             get {
                 object obj = ResourceManager.GetObject("RedWarning", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap RegularEmail {
-            get {
-                object obj = ResourceManager.GetObject("RegularEmail", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

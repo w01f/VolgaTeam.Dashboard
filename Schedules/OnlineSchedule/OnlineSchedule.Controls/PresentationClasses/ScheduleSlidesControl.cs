@@ -10,6 +10,7 @@ using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
+using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
 using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
 
@@ -46,6 +47,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public override ButtonItem Theme
 		{
 			get { return Controller.Instance.DigitalSlidesTheme; }
+		}
+
+		public override HelpManager HelpManager
+		{
+			get { return BusinessWrapper.Instance.HelpManager; }
 		}
 
 		public bool AllowToLeaveControl
@@ -122,11 +128,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 			else
 			{
-				foreach (DigitalProduct product in LocalSchedule.DigitalProducts)
+				foreach (var product in LocalSchedule.DigitalProducts)
 				{
 					if (!string.IsNullOrEmpty(product.Name))
 					{
-						DigitalProductControl productTab = _tabPages.FirstOrDefault(x => x.Product.UniqueID.Equals(product.UniqueID));
+						var productTab = _tabPages.FirstOrDefault(x => x.Product.UniqueID.Equals(product.UniqueID));
 						if (productTab != null)
 						{
 							productTab.Product = product;
@@ -211,7 +217,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview())
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Digital Product";
 				formPreview.PresentationFile = tempFileName;

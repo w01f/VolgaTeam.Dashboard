@@ -234,6 +234,7 @@ namespace NewBizWiz.Core.AdSchedule
 		}
 
 		private FileInfo _scheduleFile { get; set; }
+		public bool IsNameNotAssigned { get; set; }
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
 		public string ClientType { get; set; }

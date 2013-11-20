@@ -144,18 +144,6 @@
     <Compile Include="ToolForms\FormCloneProduct.Designer.cs">
       <DependentUpon>FormCloneProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormEmail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormEmail.designer.cs">
-      <DependentUpon>FormEmail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ToolForms\FormEmailFileName.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormEmailFileName.Designer.cs">
-      <DependentUpon>FormEmailFileName.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\FormGridType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,12 +155,6 @@
     </Compile>
     <Compile Include="ToolForms\FormNewSchedule.Designer.cs">
       <DependentUpon>FormNewSchedule.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ToolForms\FormPreview.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormPreview.designer.cs">
-      <DependentUpon>FormPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormSelectPublication.cs">
       <SubType>Form</SubType>
@@ -195,20 +177,11 @@
     <EmbeddedResource Include="ToolForms\FormCloneProduct.resx">
       <DependentUpon>FormCloneProduct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormEmail.resx">
-      <DependentUpon>FormEmail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormEmailFileName.resx">
-      <DependentUpon>FormEmailFileName.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormGridType.resx">
       <DependentUpon>FormGridType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormNewSchedule.resx">
       <DependentUpon>FormNewSchedule.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormPreview.resx">
-      <DependentUpon>FormPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormSelectPublication.resx">
       <DependentUpon>FormSelectPublication.cs</DependentUpon>
@@ -352,18 +325,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Email.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LockedEmail.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PDFEmail.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RegularEmail.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Excel.png" />
   </ItemGroup>
   <ItemGroup>
@@ -456,6 +417,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Notes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Email.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

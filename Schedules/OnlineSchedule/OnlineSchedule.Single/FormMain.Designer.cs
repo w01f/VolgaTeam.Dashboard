@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -50,7 +51,7 @@
 			this.buttonItemHomeDigitalProductDelete = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
 			this.dateEditFlightDatesStart = new DevExpress.XtraEditors.DateEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.dateEditFlightDatesEnd = new DevExpress.XtraEditors.DateEdit();
 			this.itemContainerHomeFlightDates = new DevComponents.DotNetBar.ItemContainer();
 			this.itemContainerHomeFlightDatesStartLogo = new DevComponents.DotNetBar.ItemContainer();
@@ -143,7 +144,7 @@
 			this.ribbonTabItemDigitalSlides = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemDigitalPackage = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemAdPlan = new DevComponents.DotNetBar.RibbonTabItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.ribbonControl.SuspendLayout();
@@ -454,6 +455,10 @@
             this.buttonItemHomeDigitalProductClone,
             this.buttonItemHomeDigitalProductDelete});
 			// 
+			// 
+			// 
+			this.itemContainerHomeDigitalProduct.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
 			// buttonItemHomeDigitalProductAdd
 			// 
 			this.buttonItemHomeDigitalProductAdd.AutoExpandOnClick = true;
@@ -584,6 +589,10 @@
             this.itemContainerFlightDatesEndValue,
             this.labelItemHomeFlightDatesWeeks});
 			// 
+			// 
+			// 
+			this.itemContainerHomeFlightDates.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
 			// itemContainerHomeFlightDatesStartLogo
 			// 
 			// 
@@ -593,6 +602,10 @@
 			this.itemContainerHomeFlightDatesStartLogo.Name = "itemContainerHomeFlightDatesStartLogo";
 			this.itemContainerHomeFlightDatesStartLogo.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.labelItemHomeFlightDatesStart});
+			// 
+			// 
+			// 
+			this.itemContainerHomeFlightDatesStartLogo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// labelItemHomeFlightDatesStart
 			// 
@@ -609,6 +622,10 @@
 			this.itemContainerFlightDatesStartValue.Name = "itemContainerFlightDatesStartValue";
 			this.itemContainerFlightDatesStartValue.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.controlContainerItemFlightDateStart});
+			// 
+			// 
+			// 
+			this.itemContainerFlightDatesStartValue.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// controlContainerItemFlightDateStart
 			// 
@@ -627,6 +644,10 @@
 			this.itemContainerHomeFlightDatesEndLogo.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.labelItemFlightDatesEnd});
 			// 
+			// 
+			// 
+			this.itemContainerHomeFlightDatesEndLogo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
 			// labelItemFlightDatesEnd
 			// 
 			this.labelItemFlightDatesEnd.ForeColor = System.Drawing.Color.Black;
@@ -642,6 +663,10 @@
 			this.itemContainerFlightDatesEndValue.Name = "itemContainerFlightDatesEndValue";
 			this.itemContainerFlightDatesEndValue.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.controlContainerItemFlightDatesEnd});
+			// 
+			// 
+			// 
+			this.itemContainerFlightDatesEndValue.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// controlContainerItemFlightDatesEnd
 			// 
@@ -784,6 +809,10 @@
             this.controlContainerItem4,
             this.controlContainerItem5});
 			// 
+			// 
+			// 
+			this.itemContainerHomeAdvertiser.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
 			// labelItemHomeAdvertiserTitle
 			// 
 			this.labelItemHomeAdvertiserTitle.ForeColor = System.Drawing.Color.Black;
@@ -825,6 +854,10 @@
             this.itemContainerHomePresentationDate,
             this.itemContainerHomeAccountNumber});
 			// 
+			// 
+			// 
+			this.itemContainerHomeSalesStrategy.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
 			// itemContainerHomePresentationDate
 			// 
 			// 
@@ -837,6 +870,10 @@
 			this.itemContainerHomePresentationDate.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.labelItemHomePresentationDate,
             this.controlContainerItem2});
+			// 
+			// 
+			// 
+			this.itemContainerHomePresentationDate.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// labelItemHomePresentationDate
 			// 
@@ -863,6 +900,10 @@
 			this.itemContainerHomeAccountNumber.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.checkBoxItemHomeAccountNumber,
             this.controlContainerItem1});
+			// 
+			// 
+			// 
+			this.itemContainerHomeAccountNumber.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// checkBoxItemHomeAccountNumber
 			// 
@@ -919,6 +960,10 @@
 			this.itemContainerHomeSchedule.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeNewSchedule,
             this.buttonItemHomeOpenSchedule});
+			// 
+			// 
+			// 
+			this.itemContainerHomeSchedule.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// buttonItemHomeNewSchedule
 			// 

@@ -30,6 +30,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public abstract ISchedule Schedule { get; }
 		public abstract string TemplatesFolderPath { get; }
 		public abstract ThemeManager ThemeManager { get; }
+		public abstract HelpManager HelpManager { get; }
 		public abstract ButtonItem Theme { get; }
 
 		public List<IAdPlanItem> ProductPages { get; private set; }
@@ -76,7 +77,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		protected abstract void FillProducts(bool quickLoad);
 		protected abstract void SaveSchedule(string scheduleName = "");
-
 
 		private void checkEditMoreSlides_CheckedChanged(object sender, EventArgs e)
 		{
@@ -130,7 +130,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 		}
 
-		public abstract void Help_Click(object sender, EventArgs e);
+		public void Help_Click(object sender, EventArgs e)
+		{
+			HelpManager.OpenHelpLink("adplan");
+		}
 
 		#region Output Stuff
 		public int RecordsPerSlide
@@ -286,7 +289,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
-				using (var formEmail = new FormEmail())
+				using (var formEmail = new FormEmail(_formContainer, OnlineSchedulePowerPointHelper.Instance, HelpManager))
 				{
 					formEmail.Text = "Email this AdPlan";
 					formEmail.PresentationFile = tempFileName;

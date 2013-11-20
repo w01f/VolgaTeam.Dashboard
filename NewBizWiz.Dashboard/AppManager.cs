@@ -152,6 +152,11 @@ namespace NewBizWiz.Dashboard
 				((Control)sender).Parent.Select();
 		}
 
+		public void ShowFloater(Action afterShow)
+		{
+			ShowFloater(null, afterShow);
+		}
+
 		public void ShowFloater(Form sender, Action afterShow)
 		{
 			const string defaultText = "GO GET YOUR BIZ!";

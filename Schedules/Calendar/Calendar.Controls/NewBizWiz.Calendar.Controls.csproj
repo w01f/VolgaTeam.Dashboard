@@ -182,18 +182,6 @@
     <Compile Include="ToolForms\FormCloneDay.Designer.cs">
       <DependentUpon>FormCloneDay.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormEmail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormEmail.designer.cs">
-      <DependentUpon>FormEmail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ToolForms\FormEmailFileName.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormEmailFileName.designer.cs">
-      <DependentUpon>FormEmailFileName.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\FormImageGallery.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,12 +195,6 @@
       <DependentUpon>FormNewCalendar.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToolForms\FormPreview.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormPreview.designer.cs">
-      <DependentUpon>FormPreview.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\FormSelectCalendar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,12 +243,6 @@
     <EmbeddedResource Include="ToolForms\FormCloneDay.resx">
       <DependentUpon>FormCloneDay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormEmail.resx">
-      <DependentUpon>FormEmail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormEmailFileName.resx">
-      <DependentUpon>FormEmailFileName.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormImageGallery.resx">
       <DependentUpon>FormImageGallery.cs</DependentUpon>
     </EmbeddedResource>
@@ -284,9 +260,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ToolForms\FormPreview.resx">
-      <DependentUpon>FormPreview.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormSelectCalendar.resx">
       <DependentUpon>FormSelectCalendar.cs</DependentUpon>
     </EmbeddedResource>
@@ -385,15 +358,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LockedEmail.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PDFEmail.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RegularEmail.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\GrayColor.png" />

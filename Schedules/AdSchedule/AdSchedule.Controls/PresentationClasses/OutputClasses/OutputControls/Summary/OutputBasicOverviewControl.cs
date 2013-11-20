@@ -242,7 +242,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 					formProgress.Close();
 					if (File.Exists(tempFileName))
-						using (var formEmail = new FormEmail())
+						using (var formEmail = new FormEmail(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
 						{
 							formEmail.Text = "Email this Basic Overview";
 							formEmail.PresentationFile = tempFileName;
@@ -304,7 +304,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 					formProgress.Close();
 					if (File.Exists(tempFileName))
-						using (var formPreview = new FormPreview())
+						using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 						{
 							formPreview.Text = "Preview Basic Overview";
 							formPreview.PresentationFile = tempFileName;

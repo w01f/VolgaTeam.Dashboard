@@ -357,23 +357,11 @@
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormCalendarOutputOptions.designer.cs">
       <DependentUpon>FormCalendarOutputOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormPreview.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormPreview.designer.cs">
-      <DependentUpon>FormPreview.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormSelectPublication.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormSelectPublication.Designer.cs">
       <DependentUpon>FormSelectPublication.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormEmailFileName.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormEmailFileName.Designer.cs">
-      <DependentUpon>FormEmailFileName.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormDayView.cs">
       <SubType>Form</SubType>
@@ -416,12 +404,6 @@
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormDigital.Designer.cs">
       <DependentUpon>FormDigital.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormEmail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormEmail.designer.cs">
-      <DependentUpon>FormEmail.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormAddPublicationWarning.cs">
       <SubType>Form</SubType>
@@ -610,14 +592,8 @@
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormCalendarOutputOptions.resx">
       <DependentUpon>FormCalendarOutputOptions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormPreview.resx">
-      <DependentUpon>FormPreview.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormSelectPublication.resx">
       <DependentUpon>FormSelectPublication.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormEmailFileName.resx">
-      <DependentUpon>FormEmailFileName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormDayView.resx">
       <DependentUpon>FormDayView.cs</DependentUpon>
@@ -639,9 +615,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormDigital.resx">
       <DependentUpon>FormDigital.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormEmail.resx">
-      <DependentUpon>FormEmail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormAddPublicationWarning.resx">
       <DependentUpon>FormAddPublicationWarning.cs</DependentUpon>
@@ -886,15 +859,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\LockedEmail.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RegularEmail.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PDFEmail.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Excel.png" />
   </ItemGroup>
   <ItemGroup>
@@ -953,9 +917,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Digital.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Email.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AddProduct.png" />

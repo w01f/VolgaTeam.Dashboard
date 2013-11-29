@@ -1,0 +1,255 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Xml;
+
+namespace NewBizWiz.Core.MediaSchedule
+{
+	public abstract class MediaListManager
+	{
+		protected abstract string StrategyFileName { get; }
+		protected abstract string XmlRootPrefix { get; }
+
+		protected MediaListManager()
+		{
+			SlideHeaders = new List<string>();
+			ClientTypes = new List<string>();
+			Lengths = new List<string>();
+			Stations = new List<Station>();
+			CustomDemos = new List<string>();
+			Dayparts = new List<Daypart>();
+			Times = new List<string>();
+			Days = new List<string>();
+			SourcePrograms = new List<SourceProgram>();
+			Statuses = new List<string>();
+			LoadLists();
+		}
+
+		public List<string> SlideHeaders { get; set; }
+		public List<string> ClientTypes { get; set; }
+		public List<string> Lengths { get; set; }
+		public List<string> CustomDemos { get; set; }
+		public List<string> Times { get; set; }
+		public List<string> Days { get; set; }
+		public List<Daypart> Dayparts { get; set; }
+		public List<Station> Stations { get; set; }
+		public List<SourceProgram> SourcePrograms { get; set; }
+		public List<string> Statuses { get; set; }
+
+		private void LoadTVStrategy()
+		{
+			SlideHeaders.Clear();
+			ClientTypes.Clear();
+			SourcePrograms.Clear();
+			Lengths.Clear();
+			Stations.Clear();
+			CustomDemos.Clear();
+			Dayparts.Clear();
+			Times.Clear();
+			var listPath = Path.Combine(Common.SettingsManager.Instance.SharedListFolder, StrategyFileName);
+			if (File.Exists(listPath))
+			{
+				var document = new XmlDocument();
+				document.Load(listPath);
+
+				XmlNode node = document.SelectSingleNode(String.Format(@"/{0}Strategy", XmlRootPrefix));
+				if (node != null)
+				{
+					foreach (XmlNode childeNode in node.ChildNodes)
+					{
+						switch (childeNode.Name)
+						{
+							case "SlideHeader":
+								foreach (XmlAttribute attribute in childeNode.Attributes)
+								{
+									switch (attribute.Name)
+									{
+										case "Value":
+											if (!string.IsNullOrEmpty(attribute.Value) && !SlideHeaders.Contains(attribute.Value))
+												SlideHeaders.Add(attribute.Value);
+											break;
+									}
+								}
+								break;
+							case "ClientType":
+								foreach (XmlAttribute attribute in childeNode.Attributes)
+									switch (attribute.Name)
+									{
+										case "Value":
+											if (!ClientTypes.Contains(attribute.Value))
+												ClientTypes.Add(attribute.Value);
+											break;
+									}
+								break;
+							case "Daypart":
+								var daypart = new Daypart();
+								foreach (XmlAttribute attribute in childeNode.Attributes)
+								{
+									switch (attribute.Name)
+									{
+										case "Name":
+											daypart.Name = attribute.Value;
+											break;
+										case "Code":
+											daypart.Code = attribute.Value;
+											break;
+									}
+								}
+								if (!string.IsNullOrEmpty(daypart.Name))
+									Dayparts.Add(daypart);
+								break;
+							case "CustomDemo":
+								foreach (XmlAttribute attribute in childeNode.Attributes)
+									switch (attribute.Name)
+									{
+										case "Value":
+											if (!CustomDemos.Contains(attribute.Value))
+												CustomDemos.Add(attribute.Value);
+											break;
+									}
+								break;
+							case "Lenght":
+								foreach (XmlAttribute attribute in childeNode.Attributes)
+								{
+									switch (attribute.Name)
+									{
+										case "Value":
+											if (!string.IsNullOrEmpty(attribute.Value) && !SlideHeaders.Contains(attribute.Value))
+												Lengths.Add(attribute.Value);
+											break;
+									}
+								}
+								break;
+							case "Station":
+								var station = new Station();
+								foreach (XmlAttribute attribute in childeNode.Attributes)
+								{
+									switch (attribute.Name)
+									{
+										case "Name":
+											station.Name = attribute.Value;
+											break;
+										case "Logo":
+											if (!string.IsNullOrEmpty(attribute.Value))
+												station.Logo = new Bitmap(new MemoryStream(Convert.FromBase64String(attribute.Value)));
+											break;
+									}
+								}
+								if (!string.IsNullOrEmpty(station.Name))
+									Stations.Add(station);
+								break;
+							case "Program":
+								var sourceProgram = new SourceProgram();
+								GetProgramProperties(childeNode, ref sourceProgram);
+								if (!string.IsNullOrEmpty(sourceProgram.Name))
+									SourcePrograms.Add(sourceProgram);
+								break;
+							case "Status":
+								foreach (XmlAttribute attribute in childeNode.Attributes)
+									switch (attribute.Name)
+									{
+										case "Value":
+											if (!Statuses.Contains(attribute.Value))
+												Statuses.Add(attribute.Value);
+											break;
+									}
+								break;
+						}
+					}
+				}
+			}
+			if (SourcePrograms.Count > 0)
+			{
+				Times.AddRange(SourcePrograms.Select(x => x.Time).Distinct().ToArray());
+				Days.AddRange(SourcePrograms.Select(x => x.Day).Distinct().ToArray());
+			}
+		}
+
+		private void GetProgramProperties(XmlNode node, ref SourceProgram sourceProgram)
+		{
+			foreach (XmlAttribute attribute in node.Attributes)
+			{
+				switch (attribute.Name)
+				{
+					case "Name":
+						sourceProgram.Name = attribute.Value;
+						break;
+					case "Station":
+						sourceProgram.Station = attribute.Value;
+						break;
+					case "Daypart":
+						sourceProgram.Daypart = attribute.Value;
+						break;
+					case "Day":
+						sourceProgram.Day = attribute.Value;
+						break;
+					case "Time":
+						sourceProgram.Time = attribute.Value;
+						break;
+				}
+			}
+			foreach (XmlNode childNode in node.ChildNodes)
+				switch (childNode.Name)
+				{
+					case "Demo":
+						var demo = new Demo();
+						foreach (XmlAttribute attribute in childNode.Attributes)
+						{
+							switch (attribute.Name)
+							{
+								case "Source":
+									demo.Source = attribute.Value;
+									break;
+								case "DemoType":
+									int tempInt;
+									if (Int32.TryParse(attribute.Value, out tempInt))
+										demo.DemoType = (DemoType)tempInt;
+									break;
+								case "Name":
+									demo.Name = attribute.Value;
+									break;
+								case "Value":
+									demo.Value = attribute.Value;
+									break;
+							}
+						}
+						if (!String.IsNullOrEmpty(demo.Name) && !String.IsNullOrEmpty(demo.Source) && !String.IsNullOrEmpty(demo.Value))
+							sourceProgram.Demos.Add(demo);
+						break;
+				}
+		}
+
+		private void LoadLists()
+		{
+			LoadTVStrategy();
+		}
+	}
+
+	public class TVListManager : MediaListManager
+	{
+		protected override string StrategyFileName
+		{
+			get { return @"TV XML\TV Strategy.xml"; }
+		}
+
+		protected override string XmlRootPrefix
+		{
+			get { return "TV"; }
+		}
+	}
+
+	public class RadioListManager : MediaListManager
+	{
+		protected override string StrategyFileName
+		{
+			get { return @"Radio XML\Radio Strategy.xml"; }
+		}
+
+		protected override string XmlRootPrefix
+		{
+			get { return "Radio"; }
+		}
+	}
+}

@@ -122,8 +122,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses
 				RegistryHelper.MainFormHandle = _formContainer.Handle;
 				if (previewResult != DialogResult.OK)
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
-				else
-					Utilities.Instance.ActivateMiniBar();
 			}
 		}
 	}

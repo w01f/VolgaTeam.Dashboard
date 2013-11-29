@@ -375,6 +375,12 @@
     <Compile Include="ToolForms\FormDateSelector.Designer.cs">
       <DependentUpon>FormDateSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormDigital.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormDigital.Designer.cs">
+      <DependentUpon>FormDigital.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolForms\FormExportSchedule.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,12 +404,6 @@
     </Compile>
     <Compile Include="ToolForms\FormChangeAdStrategyWarning.Designer.cs">
       <DependentUpon>FormChangeAdStrategyWarning.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormDigital.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormDigital.Designer.cs">
-      <DependentUpon>FormDigital.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormAddPublicationWarning.cs">
       <SubType>Form</SubType>
@@ -601,6 +601,9 @@
     <EmbeddedResource Include="ToolForms\FormDateSelector.resx">
       <DependentUpon>FormDateSelector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormDigital.resx">
+      <DependentUpon>FormDigital.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormExportSchedule.resx">
       <DependentUpon>FormExportSchedule.cs</DependentUpon>
     </EmbeddedResource>
@@ -612,9 +615,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormChangeAdStrategyWarning.resx">
       <DependentUpon>FormChangeAdStrategyWarning.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormDigital.resx">
-      <DependentUpon>FormDigital.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormAddPublicationWarning.resx">
       <DependentUpon>FormAddPublicationWarning.cs</DependentUpon>
@@ -974,27 +974,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ExportCalendar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoWebsites.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoProduct.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoDimensions.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoDates.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoImpressions.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoCPM.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoInvestment.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AdPlanPrintProduct.png" />

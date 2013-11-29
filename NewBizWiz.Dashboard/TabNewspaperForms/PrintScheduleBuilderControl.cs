@@ -92,11 +92,10 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 
 		public void buttonXNewSchedule_Click(object sender, EventArgs e)
 		{
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 1, 0, 0);
 			FormMain.Instance.Opacity = 0;
 			RegistryHelper.MaximizeMainForm = true;
-			AdSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormAdScheduleResize;
-			AdSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormAdScheduleResize;
+			AdSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
+			AdSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.AppManager.NewSchedule();
@@ -107,17 +106,14 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 				RegistryHelper.MaximizeMainForm = false;
 				LoadSchedules();
 			}
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 2, 0, 0);
-			Utilities.Instance.ActivateMiniBar();
 		}
 
 		public void buttonXOpenSchedule_Click(object sender, EventArgs e)
 		{
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 1, 0, 0);
 			FormMain.Instance.Opacity = 0;
 			RegistryHelper.MaximizeMainForm = true;
-			AdSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormAdScheduleResize;
-			AdSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormAdScheduleResize;
+			AdSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
+			AdSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
@@ -128,8 +124,6 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 				RegistryHelper.MaximizeMainForm = false;
 				LoadSchedules();
 			}
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 2, 0, 0);
-			Utilities.Instance.ActivateMiniBar();
 		}
 
 		public void buttonXDeleteSchedule_Click(object sender, EventArgs e)

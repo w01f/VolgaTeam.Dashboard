@@ -36,7 +36,6 @@ namespace NewBizWiz.Calendar.Single
 				if (AppManager.Instance.RunPowerPoint())
 				{
 					Utilities.Instance.ActivatePowerPoint(CalendarPowerPointHelper.Instance.PowerPointObject);
-					Utilities.Instance.ActivateMiniBar();
 					AppManager.ActivateMainForm();
 				}
 			}

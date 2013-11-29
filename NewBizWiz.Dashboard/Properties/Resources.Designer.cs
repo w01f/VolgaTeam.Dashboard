@@ -60,13 +60,6 @@ namespace NewBizWiz.Dashboard.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap AdConnectionsLogo {
-            get {
-                object obj = ResourceManager.GetObject("AdConnectionsLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap Advertiser {
             get {
                 object obj = ResourceManager.GetObject("Advertiser", resourceCulture);
@@ -109,27 +102,6 @@ namespace NewBizWiz.Dashboard.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap CleanslateMiddle {
-            get {
-                object obj = ResourceManager.GetObject("CleanslateMiddle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap ClientGoals {
-            get {
-                object obj = ResourceManager.GetObject("ClientGoals", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap CoverMiddle {
-            get {
-                object obj = ResourceManager.GetObject("CoverMiddle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap Date {
             get {
                 object obj = ResourceManager.GetObject("Date", resourceCulture);
@@ -165,20 +137,6 @@ namespace NewBizWiz.Dashboard.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap DropboxLogo {
-            get {
-                object obj = ResourceManager.GetObject("DropboxLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap EmailiPadLogo {
-            get {
-                object obj = ResourceManager.GetObject("EmailiPadLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap Exit {
             get {
                 object obj = ResourceManager.GetObject("Exit", resourceCulture);
@@ -189,13 +147,6 @@ namespace NewBizWiz.Dashboard.Properties {
         internal static System.Drawing.Bitmap Floater {
             get {
                 object obj = ResourceManager.GetObject("Floater", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap GoogleDocsLogo {
-            get {
-                object obj = ResourceManager.GetObject("GoogleDocsLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -256,20 +207,6 @@ namespace NewBizWiz.Dashboard.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap LeadoffStatement {
-            get {
-                object obj = ResourceManager.GetObject("LeadoffStatement", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap MarketronLogo {
-            get {
-                object obj = ResourceManager.GetObject("MarketronLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap MasterWizardLogo {
             get {
                 object obj = ResourceManager.GetObject("MasterWizardLogo", resourceCulture);
@@ -294,13 +231,6 @@ namespace NewBizWiz.Dashboard.Properties {
         internal static System.Drawing.Bitmap NewspaperLogo {
             get {
                 object obj = ResourceManager.GetObject("NewspaperLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap OneDomainLogo {
-            get {
-                object obj = ResourceManager.GetObject("OneDomainLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -368,41 +298,6 @@ namespace NewBizWiz.Dashboard.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap SimpleSummary {
-            get {
-                object obj = ResourceManager.GetObject("SimpleSummary", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap SlideRocketLogo {
-            get {
-                object obj = ResourceManager.GetObject("SlideRocketLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap SlideSharkLogo {
-            get {
-                object obj = ResourceManager.GetObject("SlideSharkLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap StrataLogo {
-            get {
-                object obj = ResourceManager.GetObject("StrataLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap TargetCustomer {
-            get {
-                object obj = ResourceManager.GetObject("TargetCustomer", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap TVLittle {
             get {
                 object obj = ResourceManager.GetObject("TVLittle", resourceCulture);
@@ -420,13 +315,6 @@ namespace NewBizWiz.Dashboard.Properties {
         internal static System.Drawing.Bitmap WebLittle {
             get {
                 object obj = ResourceManager.GetObject("WebLittle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap WideOrbitLogo {
-            get {
-                object obj = ResourceManager.GetObject("WideOrbitLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

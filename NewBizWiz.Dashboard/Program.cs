@@ -47,7 +47,6 @@ namespace NewBizWiz.Dashboard
 				if (AppManager.Instance.RunPowerPoint())
 				{
 					Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
-					Utilities.Instance.ActivateMiniBar();
 					AppManager.Instance.ActivateMainForm();
 				}
 			}

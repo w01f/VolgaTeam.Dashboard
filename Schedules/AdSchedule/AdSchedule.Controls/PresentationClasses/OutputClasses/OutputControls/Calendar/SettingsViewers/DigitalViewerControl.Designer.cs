@@ -169,7 +169,7 @@
 			this.buttonXShowImpressions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXShowImpressions.AutoCheckOnClick = true;
 			this.buttonXShowImpressions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXShowImpressions.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.DigitalInfoImpressions;
+			this.buttonXShowImpressions.Image = global::NewBizWiz.CommonGUI.Properties.Resources.DigitalInfoImpressions;
 			this.buttonXShowImpressions.Location = new System.Drawing.Point(275, 50);
 			this.buttonXShowImpressions.Name = "buttonXShowImpressions";
 			this.buttonXShowImpressions.Size = new System.Drawing.Size(54, 54);
@@ -183,7 +183,7 @@
 			this.buttonXShowWebsites.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXShowWebsites.AutoCheckOnClick = true;
 			this.buttonXShowWebsites.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXShowWebsites.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.DigitalInfoWebsites;
+			this.buttonXShowWebsites.Image = global::NewBizWiz.CommonGUI.Properties.Resources.DigitalInfoWebsites;
 			this.buttonXShowWebsites.Location = new System.Drawing.Point(3, 50);
 			this.buttonXShowWebsites.Name = "buttonXShowWebsites";
 			this.buttonXShowWebsites.Size = new System.Drawing.Size(54, 54);
@@ -197,7 +197,7 @@
 			this.buttonXShowDates.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXShowDates.AutoCheckOnClick = true;
 			this.buttonXShowDates.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXShowDates.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.DigitalInfoDates;
+			this.buttonXShowDates.Image = global::NewBizWiz.CommonGUI.Properties.Resources.DigitalInfoDates;
 			this.buttonXShowDates.Location = new System.Drawing.Point(207, 50);
 			this.buttonXShowDates.Name = "buttonXShowDates";
 			this.buttonXShowDates.Size = new System.Drawing.Size(54, 54);
@@ -211,7 +211,7 @@
 			this.buttonXShowCPM.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXShowCPM.AutoCheckOnClick = true;
 			this.buttonXShowCPM.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXShowCPM.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.DigitalInfoCPM;
+			this.buttonXShowCPM.Image = global::NewBizWiz.CommonGUI.Properties.Resources.DigitalInfoCPM;
 			this.buttonXShowCPM.Location = new System.Drawing.Point(343, 50);
 			this.buttonXShowCPM.Name = "buttonXShowCPM";
 			this.buttonXShowCPM.Size = new System.Drawing.Size(54, 54);
@@ -225,7 +225,7 @@
 			this.buttonXShowProduct.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXShowProduct.AutoCheckOnClick = true;
 			this.buttonXShowProduct.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXShowProduct.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.DigitalInfoProduct;
+			this.buttonXShowProduct.Image = global::NewBizWiz.CommonGUI.Properties.Resources.DigitalInfoProduct;
 			this.buttonXShowProduct.Location = new System.Drawing.Point(71, 50);
 			this.buttonXShowProduct.Name = "buttonXShowProduct";
 			this.buttonXShowProduct.Size = new System.Drawing.Size(54, 54);
@@ -239,7 +239,7 @@
 			this.buttonXShowDimensions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXShowDimensions.AutoCheckOnClick = true;
 			this.buttonXShowDimensions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXShowDimensions.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.DigitalInfoDimensions;
+			this.buttonXShowDimensions.Image = global::NewBizWiz.CommonGUI.Properties.Resources.DigitalInfoDimensions;
 			this.buttonXShowDimensions.Location = new System.Drawing.Point(139, 50);
 			this.buttonXShowDimensions.Name = "buttonXShowDimensions";
 			this.buttonXShowDimensions.Size = new System.Drawing.Size(54, 54);
@@ -253,7 +253,7 @@
 			this.buttonXShowInvestment.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXShowInvestment.AutoCheckOnClick = true;
 			this.buttonXShowInvestment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXShowInvestment.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.DigitalInfoInvestment;
+			this.buttonXShowInvestment.Image = global::NewBizWiz.CommonGUI.Properties.Resources.DigitalInfoInvestment;
 			this.buttonXShowInvestment.Location = new System.Drawing.Point(412, 50);
 			this.buttonXShowInvestment.Name = "buttonXShowInvestment";
 			this.buttonXShowInvestment.Size = new System.Drawing.Size(54, 54);

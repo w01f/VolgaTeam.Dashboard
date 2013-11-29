@@ -9,6 +9,7 @@ using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
 using NewBizWiz.AdSchedule.Controls.Properties;
+using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
@@ -153,7 +154,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				form.laTitle.Text = "You have Several Publications in this Basic Overview Summary…";
 				form.buttonXCurrentPublication.Text = "Send just the Current Publication Overview to my PowerPoint presentation";
 				form.buttonXSelectedPublications.Text = "Send all Selected Publications to my PowerPoint presentation";
-				foreach (PublicationBasicOverviewControl tabPage in _tabPages)
+				foreach (var tabPage in _tabPages)
 					if (tabPage.PageEnabled)
 						form.checkedListBoxControlPublications.Items.Add(tabPage.PrintProduct.UniqueID, tabPage.PrintProduct.Name, CheckState.Checked, true);
 				var result = DialogResult.Yes;
@@ -180,12 +181,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 						{
 							foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
 							{
-								if (item.CheckState == CheckState.Checked)
-								{
-									PublicationBasicOverviewControl tabPage = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(item.Value)).FirstOrDefault();
-									if (tabPage != null)
-										tabPage.PrintOutput();
-								}
+								if (item.CheckState != CheckState.Checked) continue;
+								var tabPage = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(item.Value));
+								if (tabPage != null)
+									tabPage.PrintOutput();
 							}
 						}
 						formProgress.Close();
@@ -315,10 +314,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 							if (previewResult != DialogResult.OK)
 								Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-							else
-							{
-								Utilities.Instance.ActivateMiniBar();
-							}
 						}
 				}
 			}

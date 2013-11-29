@@ -26,7 +26,7 @@ namespace NewBizWiz.Core.Calendar
 		private Schedule _currentSchedule;
 
 		public bool CalendarLoaded { get; set; }
-		public event EventHandler<SavingingEventArgs> SettingsSaved;
+		public event EventHandler<ScheduleSaveEventArgs> SettingsSaved;
 
 		public static ShortSchedule[] GetShortScheduleExtendedList()
 		{
@@ -107,23 +107,13 @@ namespace NewBizWiz.Core.Calendar
 			localCalendar.Save();
 			_currentSchedule = localCalendar;
 			if (SettingsSaved != null)
-				SettingsSaved(sender, new SavingingEventArgs(quickSave));
+				SettingsSaved(sender, new ScheduleSaveEventArgs(quickSave));
 		}
 
 		public void RemoveInstance()
 		{
 			SettingsSaved = null;
 		}
-	}
-
-	public class SavingingEventArgs : EventArgs
-	{
-		public SavingingEventArgs(bool quickSave)
-		{
-			QuickSave = quickSave;
-		}
-
-		public bool QuickSave { get; set; }
 	}
 
 	public class ShortSchedule

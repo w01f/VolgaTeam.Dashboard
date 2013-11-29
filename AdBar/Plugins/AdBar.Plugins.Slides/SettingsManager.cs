@@ -10,6 +10,8 @@ namespace AdBar.Plugins.Slides
 		private static SettingsManager _instance;
 		private readonly string _settingsFileName = String.Format(@"{0}\newlocaldirect.com\xml\app\AdBar-Plugins-Slides.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 
+		public string RootPath { get; private set; }
+
 		public string SelectedSlideGroup { get; set; }
 		public string SelectedSlideMaster { get; set; }
 
@@ -20,6 +22,7 @@ namespace AdBar.Plugins.Slides
 
 		private SettingsManager()
 		{
+			RootPath = Path.GetDirectoryName(typeof(SettingsManager).Assembly.Location);
 			LoadSettings();
 		}
 

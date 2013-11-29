@@ -405,7 +405,6 @@ namespace NewBizWiz.AdSchedule.Single
 				buttonItemCalendarsPowerPoint.Enabled = true;
 
 			Utilities.Instance.ActivatePowerPoint(AdSchedulePowerPointHelper.Instance.PowerPointObject);
-			Utilities.Instance.ActivateMiniBar();
 			AppManager.Instance.ActivateMainForm();
 
 			using (var formStart = new FormStart())

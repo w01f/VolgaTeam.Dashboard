@@ -46,15 +46,9 @@ namespace NewBizWiz.Dashboard
 			using (var form = new FormLoadSplash())
 			{
 				form.TopMost = true;
-				var thread = new Thread(delegate()
-				{
-					//RunMinibar();
-					DashboardPowerPointHelper.Instance.SetPresentationSettings();
-				});
-				thread.Start();
-
+				var thread = new Thread(() => DashboardPowerPointHelper.Instance.SetPresentationSettings());
 				form.Show();
-
+				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
 				form.Close();
@@ -161,8 +155,7 @@ namespace NewBizWiz.Dashboard
 		{
 			const string defaultText = "GO GET YOUR BIZ!";
 			var afterBack = new Action(ActivateMainForm);
-			var afterHide = new Action(Utilities.Instance.ActivateMiniBar);
-			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, MasterWizardManager.Instance.DefaultLogo, afterShow, afterHide, afterBack);
+			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, MasterWizardManager.Instance.DefaultLogo, afterShow, null, afterBack);
 		}
 	}
 }

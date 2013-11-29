@@ -144,7 +144,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Slides\FormSlideSelector.resx">
@@ -211,6 +211,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalInfoCPM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalInfoDates.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalInfoDimensions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalInfoImpressions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalInfoInvestment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalInfoProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalInfoWebsites.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -29,7 +29,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 	{
 		private Schedule _currentSchedule;
 		public bool ScheduleLoaded { get; set; }
-		public event EventHandler<SavingingEventArgs> SettingsSaved;
+		public event EventHandler<ScheduleSaveEventArgs> SettingsSaved;
 
 		public void OpenSchedule(string scheduleName, bool create)
 		{
@@ -73,7 +73,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			localSchedule.Save();
 			_currentSchedule = localSchedule;
 			if (SettingsSaved != null)
-				SettingsSaved(sender, new SavingingEventArgs(quickSave));
+				SettingsSaved(sender, new ScheduleSaveEventArgs(quickSave));
 		}
 
 		public static ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
@@ -99,16 +99,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 		{
 			SettingsSaved = null;
 		}
-	}
-
-	public class SavingingEventArgs : EventArgs
-	{
-		public SavingingEventArgs(bool quickSave)
-		{
-			QuickSave = quickSave;
-		}
-
-		public bool QuickSave { get; set; }
 	}
 
 	public class ShortSchedule

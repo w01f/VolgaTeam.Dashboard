@@ -36,7 +36,6 @@ namespace NewBizWiz.AdSchedule.Single
 				if (AppManager.Instance.RunPowerPoint())
 				{
 					Utilities.Instance.ActivatePowerPoint(AdSchedulePowerPointHelper.Instance.PowerPointObject);
-					Utilities.Instance.ActivateMiniBar();
 					AppManager.Instance.ActivateMainForm();
 				}
 			}

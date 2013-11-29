@@ -28,70 +28,71 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ribbonBar = new DevComponents.DotNetBar.RibbonBar();
-            this.buttonItemOutput = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItemSlideMaster = new DevComponents.DotNetBar.ButtonItem();
-            this.SuspendLayout();
-            // 
-            // ribbonBar
-            // 
-            this.ribbonBar.AutoOverflowEnabled = true;
-            // 
-            // 
-            // 
-            this.ribbonBar.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar.ContainerControlProcessDialogKey = true;
-            this.ribbonBar.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+			this.ribbonBar = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemOutput = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemSlideMaster = new DevComponents.DotNetBar.ButtonItem();
+			this.SuspendLayout();
+			// 
+			// ribbonBar
+			// 
+			this.ribbonBar.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBar.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBar.ContainerControlProcessDialogKey = true;
+			this.ribbonBar.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemOutput,
             this.buttonItemSlideMaster});
-            this.ribbonBar.ItemSpacing = 15;
-            this.ribbonBar.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.ribbonBar.Location = new System.Drawing.Point(0, 0);
-            this.ribbonBar.Name = "ribbonBar";
-            this.ribbonBar.ResizeItemsToFit = false;
-            this.ribbonBar.Size = new System.Drawing.Size(192, 150);
-            this.ribbonBar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ribbonBar.TabIndex = 0;
-            this.ribbonBar.Text = "Slides";
-            // 
-            // 
-            // 
-            this.ribbonBar.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.ribbonBar.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ribbonBar.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
-            // 
-            // buttonItemOutput
-            // 
-            this.buttonItemOutput.Image = global::AdBar.Plugins.Slides.Properties.Resources.Output;
-            this.buttonItemOutput.Name = "buttonItemOutput";
-            this.buttonItemOutput.SubItemsExpandWidth = 14;
-            this.buttonItemOutput.Text = "buttonItem1";
-            this.buttonItemOutput.Tooltip = "Add this slide";
-            this.buttonItemOutput.Click += new System.EventHandler(this.buttonItemOutput_Click);
-            // 
-            // buttonItemSlideMaster
-            // 
-            this.buttonItemSlideMaster.Name = "buttonItemSlideMaster";
-            this.buttonItemSlideMaster.SubItemsExpandWidth = 14;
-            this.buttonItemSlideMaster.Text = "buttonItem2";
-            this.buttonItemSlideMaster.Tooltip = "View Slide Gallery";
-            this.buttonItemSlideMaster.Click += new System.EventHandler(this.buttonItemSlideMaster_Click);
-            // 
-            // ContainerControl
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.ribbonBar);
-            this.Name = "ContainerControl";
-            this.Size = new System.Drawing.Size(199, 150);
-            this.ResumeLayout(false);
+			this.ribbonBar.ItemSpacing = 15;
+			this.ribbonBar.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBar.Location = new System.Drawing.Point(0, 0);
+			this.ribbonBar.Name = "ribbonBar";
+			this.ribbonBar.ResizeItemsToFit = false;
+			this.ribbonBar.Size = new System.Drawing.Size(192, 150);
+			this.ribbonBar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBar.TabIndex = 0;
+			this.ribbonBar.Text = "Slides";
+			// 
+			// 
+			// 
+			this.ribbonBar.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBar.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBar.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+			this.ribbonBar.ParentChanged += new System.EventHandler(this.ribbonBar_ParentChanged);
+			// 
+			// buttonItemOutput
+			// 
+			this.buttonItemOutput.Image = global::AdBar.Plugins.Slides.Properties.Resources.Output;
+			this.buttonItemOutput.Name = "buttonItemOutput";
+			this.buttonItemOutput.SubItemsExpandWidth = 14;
+			this.buttonItemOutput.Text = "buttonItem1";
+			this.buttonItemOutput.Tooltip = "Add this slide";
+			this.buttonItemOutput.Click += new System.EventHandler(this.buttonItemOutput_Click);
+			// 
+			// buttonItemSlideMaster
+			// 
+			this.buttonItemSlideMaster.Name = "buttonItemSlideMaster";
+			this.buttonItemSlideMaster.SubItemsExpandWidth = 14;
+			this.buttonItemSlideMaster.Text = "buttonItem2";
+			this.buttonItemSlideMaster.Tooltip = "View Slide Gallery";
+			this.buttonItemSlideMaster.Click += new System.EventHandler(this.buttonItemSlideMaster_Click);
+			// 
+			// ContainerControl
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.ribbonBar);
+			this.Name = "ContainerControl";
+			this.Size = new System.Drawing.Size(199, 150);
+			this.ResumeLayout(false);
 
         }
 

@@ -79,7 +79,7 @@ namespace NewBizWiz.Core.Dashboard
 				xml.AppendLine(@"<ThemeName>" + ThemeName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ThemeName>");
 			xml.AppendLine(@"<SalesRepState>" + ViewSettingsManager.Instance.CoverState.SerializeSalesRep() + @"</SalesRepState>");
 			xml.AppendLine(@"</DashboardSettings>");
-			string userConfigurationPath = Path.Combine(Application.StartupPath, _dashboardSettingsFile);
+			string userConfigurationPath = Path.Combine(_dashboardSettingsFile);
 			using (var sw = new StreamWriter(userConfigurationPath, false))
 			{
 				sw.Write(xml);

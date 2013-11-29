@@ -169,7 +169,6 @@ namespace NewBizWiz.Dashboard
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
 			RegistryHelper.MainFormHandle = Handle;
-			Utilities.Instance.ActivateMiniBar();
 			AppManager.Instance.ActivateMainForm();
 		}
 
@@ -185,104 +184,17 @@ namespace NewBizWiz.Dashboard
 				Opacity = 1;
 		}
 
-		public void FormAdScheduleResize(object sender, EventArgs e)
+		public void FormScheduleResize(object sender, EventArgs e)
 		{
 			var f = sender as Form;
 			if (f == null || f.IsDisposed) return;
-			if (f.WindowState == FormWindowState.Minimized)
-			{
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 2, 0, 0);
-				f.Opacity = 0;
-				Utilities.Instance.ActivateMiniBar();
-			}
-			else
-			{
-				f.Opacity = 1;
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 1, 0, 0);
-			}
-		}
-
-		public void FormOnlineScheduleResize(object sender, EventArgs e)
-		{
-			var f = sender as Form;
-			if (f == null || f.IsDisposed) return;
-			if (f.WindowState == FormWindowState.Minimized)
-			{
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 6, 0, 0);
-				f.Opacity = 0;
-				Utilities.Instance.ActivateMiniBar();
-			}
-			else
-			{
-				f.Opacity = 1;
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 5, 0, 0);
-			}
-		}
-
-		public void FormTVScheduleResize(object sender, EventArgs e)
-		{
-			var f = sender as Form;
-			if (f == null || f.IsDisposed) return;
-			if (f.WindowState == FormWindowState.Minimized)
-			{
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 8, 0, 0);
-				f.Opacity = 0;
-				Utilities.Instance.ActivateMiniBar();
-			}
-			else
-			{
-				f.Opacity = 1;
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 7, 0, 0);
-			}
-		}
-
-		public void FormCalendarResize(object sender, EventArgs e)
-		{
-			var f = sender as Form;
-			if (f == null || f.IsDisposed) return;
-			if (f.WindowState == FormWindowState.Minimized)
-			{
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 10, 0, 0);
-				f.Opacity = 0;
-				Utilities.Instance.ActivateMiniBar();
-			}
-			else
-			{
-				f.Opacity = 1;
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 9, 0, 0);
-			}
-		}
-
-		public void FormRadioScheduleResize(object sender, EventArgs e)
-		{
-			var f = sender as Form;
-			if (f == null || f.IsDisposed) return;
-			if (f.WindowState == FormWindowState.Minimized)
-			{
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 12, 0, 0);
-				f.Opacity = 0;
-				Utilities.Instance.ActivateMiniBar();
-			}
-			else
-			{
-				f.Opacity = 1;
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 11, 0, 0);
-			}
+			f.Opacity = f.WindowState == FormWindowState.Minimized ? 0 : 1;
 		}
 
 		private void timer_Tick(object sender, EventArgs e)
 		{
 			if (!DashboardPowerPointHelper.Instance.IsActive)
-			{
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 2, 0, 0);
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 4, 0, 0);
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 6, 0, 0);
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 8, 0, 0);
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 10, 0, 0);
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 12, 0, 0);
-				Utilities.Instance.ActivateMiniBar();
 				Environment.Exit(-1);
-			}
 		}
 
 		private void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)

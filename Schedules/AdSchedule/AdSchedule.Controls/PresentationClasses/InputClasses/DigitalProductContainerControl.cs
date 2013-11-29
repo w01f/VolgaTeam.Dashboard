@@ -194,7 +194,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new CommonGUI.ToolForms.FormPreview(Controller.Instance.FormMain,AdSchedulePowerPointHelper.Instance,BusinessWrapper.Instance.HelpManager,Controller.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain,AdSchedulePowerPointHelper.Instance,BusinessWrapper.Instance.HelpManager,Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Digital Product";
 				formPreview.PresentationFile = tempFileName;
@@ -205,8 +205,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				RegistryHelper.MainFormHandle = _formContainer.Handle;
 				if (previewResult != DialogResult.OK)
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
-				else
-					Utilities.Instance.ActivateMiniBar();
 			}
 		}
 

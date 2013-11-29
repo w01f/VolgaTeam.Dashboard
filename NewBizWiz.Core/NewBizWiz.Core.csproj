@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\NBWLink.cs" />
+    <Compile Include="Common\ScheduleSaveEventArgs.cs" />
     <Compile Include="Common\SlideManager.cs" />
     <Compile Include="Common\ThemeManager.cs" />
     <Compile Include="Interop\FileIcon.cs" />
@@ -102,6 +103,10 @@
     <Compile Include="Interop\PowerPointHelper.cs" />
     <Compile Include="Interop\WinAPIHelper.cs" />
     <Compile Include="Interop\WordHelper.cs" />
+    <Compile Include="MediaSchedule\ListManager.cs" />
+    <Compile Include="MediaSchedule\MediaMetaData.cs" />
+    <Compile Include="MediaSchedule\ScheduleManager.cs" />
+    <Compile Include="MediaSchedule\SettingsManager.cs" />
     <Compile Include="OnlineSchedule\ListManager.cs" />
     <Compile Include="OnlineSchedule\ScheduleManager.cs" />
     <Compile Include="OnlineSchedule\SettingsManager.cs" />
@@ -211,6 +216,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

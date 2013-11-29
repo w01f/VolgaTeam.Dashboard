@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
 			this.laTitle = new System.Windows.Forms.Label();
-			this.laSubtitle = new System.Windows.Forms.Label();
-			this.pbOneDomain = new System.Windows.Forms.PictureBox();
-			this.pbMarketron = new System.Windows.Forms.PictureBox();
-			this.pbStrata = new System.Windows.Forms.PictureBox();
-			this.pbWideOrbit = new System.Windows.Forms.PictureBox();
-			this.pbAdConnections = new System.Windows.Forms.PictureBox();
 			this.pnNoSlidesWarning = new System.Windows.Forms.Panel();
 			this.laNoSlidesWarningText3 = new System.Windows.Forms.Label();
 			this.laNoSlidesWarningText2 = new System.Windows.Forms.Label();
@@ -51,11 +45,6 @@
 			this.pnNoDataWarning = new System.Windows.Forms.Panel();
 			this.pbNoDataWarning = new System.Windows.Forms.PictureBox();
 			this.laNoDataWarning = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize)(this.pbOneDomain)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbMarketron)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbStrata)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbWideOrbit)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbAdConnections)).BeginInit();
 			this.pnNoSlidesWarning.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSlidesWarning)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedules)).BeginInit();
@@ -72,87 +61,11 @@
 			this.laTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(73)))), ((int)(((byte)(125)))));
 			this.laTitle.Location = new System.Drawing.Point(16, 13);
 			this.laTitle.Name = "laTitle";
-			this.laTitle.Size = new System.Drawing.Size(645, 73);
+			this.laTitle.Size = new System.Drawing.Size(646, 73);
 			this.laTitle.TabIndex = 23;
 			this.laTitle.Text = "Build a simple TV Spot Package for your\r\nClient Presentation…";
 			this.laTitle.UseMnemonic = false;
 			this.laTitle.Click += new System.EventHandler(this.gridControlSchedules_Click);
-			// 
-			// laSubtitle
-			// 
-			this.laSubtitle.Font = new System.Drawing.Font("Tahoma", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laSubtitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(73)))), ((int)(((byte)(125)))));
-			this.laSubtitle.Location = new System.Drawing.Point(683, 13);
-			this.laSubtitle.Name = "laSubtitle";
-			this.laSubtitle.Size = new System.Drawing.Size(201, 73);
-			this.laSubtitle.TabIndex = 24;
-			this.laSubtitle.Text = "You can also import your schedule from one of these systems…";
-			this.laSubtitle.UseMnemonic = false;
-			// 
-			// pbOneDomain
-			// 
-			this.pbOneDomain.Image = global::NewBizWiz.Dashboard.Properties.Resources.OneDomainLogo;
-			this.pbOneDomain.Location = new System.Drawing.Point(687, 92);
-			this.pbOneDomain.Name = "pbOneDomain";
-			this.pbOneDomain.Size = new System.Drawing.Size(208, 73);
-			this.pbOneDomain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbOneDomain.TabIndex = 25;
-			this.pbOneDomain.TabStop = false;
-			this.pbOneDomain.Click += new System.EventHandler(this.pbOneDomain_Click);
-			this.pbOneDomain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbOneDomain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
-			// pbMarketron
-			// 
-			this.pbMarketron.Image = global::NewBizWiz.Dashboard.Properties.Resources.MarketronLogo;
-			this.pbMarketron.Location = new System.Drawing.Point(687, 176);
-			this.pbMarketron.Name = "pbMarketron";
-			this.pbMarketron.Size = new System.Drawing.Size(208, 73);
-			this.pbMarketron.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbMarketron.TabIndex = 26;
-			this.pbMarketron.TabStop = false;
-			this.pbMarketron.Click += new System.EventHandler(this.pbOtherSources_Click);
-			this.pbMarketron.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbMarketron.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
-			// pbStrata
-			// 
-			this.pbStrata.Image = global::NewBizWiz.Dashboard.Properties.Resources.StrataLogo;
-			this.pbStrata.Location = new System.Drawing.Point(687, 260);
-			this.pbStrata.Name = "pbStrata";
-			this.pbStrata.Size = new System.Drawing.Size(208, 73);
-			this.pbStrata.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbStrata.TabIndex = 27;
-			this.pbStrata.TabStop = false;
-			this.pbStrata.Click += new System.EventHandler(this.pbOtherSources_Click);
-			this.pbStrata.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbStrata.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
-			// pbWideOrbit
-			// 
-			this.pbWideOrbit.Image = global::NewBizWiz.Dashboard.Properties.Resources.WideOrbitLogo;
-			this.pbWideOrbit.Location = new System.Drawing.Point(687, 344);
-			this.pbWideOrbit.Name = "pbWideOrbit";
-			this.pbWideOrbit.Size = new System.Drawing.Size(208, 73);
-			this.pbWideOrbit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbWideOrbit.TabIndex = 28;
-			this.pbWideOrbit.TabStop = false;
-			this.pbWideOrbit.Click += new System.EventHandler(this.pbOtherSources_Click);
-			this.pbWideOrbit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbWideOrbit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
-			// pbAdConnections
-			// 
-			this.pbAdConnections.Image = global::NewBizWiz.Dashboard.Properties.Resources.AdConnectionsLogo;
-			this.pbAdConnections.Location = new System.Drawing.Point(687, 429);
-			this.pbAdConnections.Name = "pbAdConnections";
-			this.pbAdConnections.Size = new System.Drawing.Size(208, 73);
-			this.pbAdConnections.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbAdConnections.TabIndex = 29;
-			this.pbAdConnections.TabStop = false;
-			this.pbAdConnections.Click += new System.EventHandler(this.pbOtherSources_Click);
-			this.pbAdConnections.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbAdConnections.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
 			// pnNoSlidesWarning
 			// 
@@ -165,7 +78,7 @@
 			this.pnNoSlidesWarning.Controls.Add(this.laNoSlidesWarningText1);
 			this.pnNoSlidesWarning.Location = new System.Drawing.Point(16, 92);
 			this.pnNoSlidesWarning.Name = "pnNoSlidesWarning";
-			this.pnNoSlidesWarning.Size = new System.Drawing.Size(645, 410);
+			this.pnNoSlidesWarning.Size = new System.Drawing.Size(649, 410);
 			this.pnNoSlidesWarning.TabIndex = 31;
 			// 
 			// laNoSlidesWarningText3
@@ -174,7 +87,7 @@
 			this.laNoSlidesWarningText3.ForeColor = System.Drawing.Color.Red;
 			this.laNoSlidesWarningText3.Location = new System.Drawing.Point(123, 237);
 			this.laNoSlidesWarningText3.Name = "laNoSlidesWarningText3";
-			this.laNoSlidesWarningText3.Size = new System.Drawing.Size(519, 173);
+			this.laNoSlidesWarningText3.Size = new System.Drawing.Size(523, 173);
 			this.laNoSlidesWarningText3.TabIndex = 27;
 			this.laNoSlidesWarningText3.Text = "Go to the PowerPoint tab on the Minibar and change to another slide background th" +
     "at will work with the TV Schedule Builder…";
@@ -186,7 +99,7 @@
 			this.laNoSlidesWarningText2.ForeColor = System.Drawing.Color.Red;
 			this.laNoSlidesWarningText2.Location = new System.Drawing.Point(123, 135);
 			this.laNoSlidesWarningText2.Name = "laNoSlidesWarningText2";
-			this.laNoSlidesWarningText2.Size = new System.Drawing.Size(519, 58);
+			this.laNoSlidesWarningText2.Size = new System.Drawing.Size(526, 58);
 			this.laNoSlidesWarningText2.TabIndex = 26;
 			this.laNoSlidesWarningText2.Text = "Master Wizard";
 			this.laNoSlidesWarningText2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -208,7 +121,7 @@
 			this.laNoSlidesWarningText1.ForeColor = System.Drawing.Color.Red;
 			this.laNoSlidesWarningText1.Location = new System.Drawing.Point(123, 47);
 			this.laNoSlidesWarningText1.Name = "laNoSlidesWarningText1";
-			this.laNoSlidesWarningText1.Size = new System.Drawing.Size(519, 88);
+			this.laNoSlidesWarningText1.Size = new System.Drawing.Size(523, 88);
 			this.laNoSlidesWarningText1.TabIndex = 24;
 			this.laNoSlidesWarningText1.Text = "The TV Schedule Builder is not available for your current PowerPoint Slide Backgr" +
     "ound:";
@@ -224,7 +137,7 @@
 			this.gridControlSchedules.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit,
             this.repositoryItemComboBoxStatus});
-			this.gridControlSchedules.Size = new System.Drawing.Size(645, 410);
+			this.gridControlSchedules.Size = new System.Drawing.Size(649, 410);
 			this.gridControlSchedules.TabIndex = 32;
 			this.gridControlSchedules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSchedules});
@@ -361,7 +274,7 @@
 			this.pnNoDataWarning.Controls.Add(this.laNoDataWarning);
 			this.pnNoDataWarning.Location = new System.Drawing.Point(16, 92);
 			this.pnNoDataWarning.Name = "pnNoDataWarning";
-			this.pnNoDataWarning.Size = new System.Drawing.Size(645, 410);
+			this.pnNoDataWarning.Size = new System.Drawing.Size(649, 410);
 			this.pnNoDataWarning.TabIndex = 33;
 			// 
 			// pbNoDataWarning
@@ -380,7 +293,7 @@
 			this.laNoDataWarning.ForeColor = System.Drawing.Color.Red;
 			this.laNoDataWarning.Location = new System.Drawing.Point(123, 47);
 			this.laNoDataWarning.Name = "laNoDataWarning";
-			this.laNoDataWarning.Size = new System.Drawing.Size(519, 363);
+			this.laNoDataWarning.Size = new System.Drawing.Size(523, 363);
 			this.laNoDataWarning.TabIndex = 24;
 			this.laNoDataWarning.Text = "Your Programming Data is not yet available for your station…\r\n\r\nCheck back in a f" +
     "ew days…\r\n\r\nIt will be ready soon…";
@@ -390,12 +303,6 @@
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.Controls.Add(this.pbAdConnections);
-			this.Controls.Add(this.pbWideOrbit);
-			this.Controls.Add(this.pbStrata);
-			this.Controls.Add(this.pbMarketron);
-			this.Controls.Add(this.pbOneDomain);
-			this.Controls.Add(this.laSubtitle);
 			this.Controls.Add(this.laTitle);
 			this.Controls.Add(this.gridControlSchedules);
 			this.Controls.Add(this.pnNoSlidesWarning);
@@ -403,11 +310,6 @@
 			this.Name = "TVScheduleBuilderControl";
 			this.Size = new System.Drawing.Size(909, 515);
 			this.Click += new System.EventHandler(this.gridControlSchedules_Click);
-			((System.ComponentModel.ISupportInitialize)(this.pbOneDomain)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbMarketron)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbStrata)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbWideOrbit)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbAdConnections)).EndInit();
 			this.pnNoSlidesWarning.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSlidesWarning)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedules)).EndInit();
@@ -423,12 +325,6 @@
         #endregion
 
 		private System.Windows.Forms.Label laTitle;
-        private System.Windows.Forms.Label laSubtitle;
-        private System.Windows.Forms.PictureBox pbOneDomain;
-        private System.Windows.Forms.PictureBox pbMarketron;
-        private System.Windows.Forms.PictureBox pbStrata;
-        private System.Windows.Forms.PictureBox pbWideOrbit;
-        private System.Windows.Forms.PictureBox pbAdConnections;
         private System.Windows.Forms.Panel pnNoSlidesWarning;
         private System.Windows.Forms.Label laNoSlidesWarningText3;
         private System.Windows.Forms.Label laNoSlidesWarningText2;
@@ -444,7 +340,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxStatus;
         private System.Windows.Forms.Panel pnNoDataWarning;
         private System.Windows.Forms.PictureBox pbNoDataWarning;
-        private System.Windows.Forms.Label laNoDataWarning;
+		private System.Windows.Forms.Label laNoDataWarning;
 
     }
 }

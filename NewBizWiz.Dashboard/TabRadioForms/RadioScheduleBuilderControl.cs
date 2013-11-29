@@ -7,9 +7,7 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
-using RadioScheduleBuilder.BusinessClasses;
-using ListManager = RadioScheduleBuilder.BusinessClasses.ListManager;
+using NewBizWiz.Core.MediaSchedule;
 
 namespace NewBizWiz.Dashboard.TabRadioForms
 {
@@ -24,14 +22,12 @@ namespace NewBizWiz.Dashboard.TabRadioForms
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			AppManager.Instance.SetClickEventHandler(this);
-			if ((base.CreateGraphics()).DpiX > 96)
-			{
-				laTitle.Font = new Font(laTitle.Font.Name, laTitle.Font.Size - 5, laTitle.Font.Style);
-				laNoDataWarning.Font = new Font(laNoDataWarning.Font.Name, laNoDataWarning.Font.Size - 5, laNoDataWarning.Font.Style);
-				laNoSlidesWarningText1.Font = new Font(laNoSlidesWarningText1.Font.Name, laNoSlidesWarningText1.Font.Size - 3, laNoSlidesWarningText1.Font.Style);
-				laNoSlidesWarningText2.Font = new Font(laNoSlidesWarningText2.Font.Name, laNoSlidesWarningText2.Font.Size - 3, laNoSlidesWarningText2.Font.Style);
-				laNoSlidesWarningText3.Font = new Font(laNoSlidesWarningText3.Font.Name, laNoSlidesWarningText3.Font.Size - 3, laNoSlidesWarningText3.Font.Style);
-			}
+			if (!((base.CreateGraphics()).DpiX > 96)) return;
+			laTitle.Font = new Font(laTitle.Font.Name, laTitle.Font.Size - 5, laTitle.Font.Style);
+			laNoDataWarning.Font = new Font(laNoDataWarning.Font.Name, laNoDataWarning.Font.Size - 5, laNoDataWarning.Font.Style);
+			laNoSlidesWarningText1.Font = new Font(laNoSlidesWarningText1.Font.Name, laNoSlidesWarningText1.Font.Size - 3, laNoSlidesWarningText1.Font.Style);
+			laNoSlidesWarningText2.Font = new Font(laNoSlidesWarningText2.Font.Name, laNoSlidesWarningText2.Font.Size - 3, laNoSlidesWarningText2.Font.Style);
+			laNoSlidesWarningText3.Font = new Font(laNoSlidesWarningText3.Font.Name, laNoSlidesWarningText3.Font.Size - 3, laNoSlidesWarningText3.Font.Style);
 		}
 
 		public static RadioScheduleBuilderControl Instance
@@ -46,10 +42,11 @@ namespace NewBizWiz.Dashboard.TabRadioForms
 
 		public void LoadSchedules()
 		{
+			MediaMetaData.Instance.Init<RadioSettingsManager, RadioListManager>(MediaDataType.Radio);
 			gridViewSchedules.FocusedRowChanged -= gridViewSchedules_FocusedRowChanged;
 			OutsideClick();
-			_scheduleList = RadioScheduleBuilder.AppManager.GetShortScheduleList();
-			if (!RadioScheduleBuilder.AppManager.ProgramDataAvailable)
+			_scheduleList = MediaSchedule.Internal.AppManager.GetShortScheduleList();
+			if (!MediaSchedule.Internal.AppManager.ProgramDataAvailable)
 			{
 				FormMain.Instance.buttonItemRadioNew.Enabled = false;
 				gridControlSchedules.Visible = false;
@@ -73,7 +70,7 @@ namespace NewBizWiz.Dashboard.TabRadioForms
 				pnNoSlidesWarning.Visible = false;
 				pnNoDataWarning.Visible = false;
 				repositoryItemComboBoxStatus.Items.Clear();
-				repositoryItemComboBoxStatus.Items.AddRange(ListManager.Instance.Statuses);
+				repositoryItemComboBoxStatus.Items.AddRange(MediaMetaData.Instance.ListManager.Statuses);
 				gridControlSchedules.DataSource = new BindingList<ShortSchedule>(_scheduleList);
 			}
 			gridViewSchedules.FocusedRowChanged += gridViewSchedules_FocusedRowChanged;
@@ -90,58 +87,50 @@ namespace NewBizWiz.Dashboard.TabRadioForms
 
 		public void buttonXNewSchedule_Click(object sender, EventArgs e)
 		{
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 11, 0, 0);
 			FormMain.Instance.Opacity = 0;
 			RegistryHelper.MaximizeMainForm = true;
-			RadioScheduleBuilder.FormMain.Instance.Resize -= FormMain.Instance.FormRadioScheduleResize;
-			RadioScheduleBuilder.FormMain.Instance.Resize += FormMain.Instance.FormRadioScheduleResize;
-			RadioScheduleBuilder.AppManager.NewSchedule();
-			if (!FormMain.Instance.IsDead)
-			{
-				FormMain.Instance.Opacity = 1;
-				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				LoadSchedules();
-			}
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 12, 0, 0);
-			Utilities.Instance.ActivateMiniBar();
+			MediaSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
+			MediaSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
+			MediaSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
+			MediaSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
+			MediaSchedule.Internal.AppManager.NewSchedule();
+			if (FormMain.Instance.IsDead) return;
+			FormMain.Instance.Opacity = 1;
+			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+			RegistryHelper.MaximizeMainForm = false;
+			LoadSchedules();
 		}
 
 		public void buttonXOpenSchedule_Click(object sender, EventArgs e)
 		{
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 11, 0, 0);
 			FormMain.Instance.Opacity = 0;
 			RegistryHelper.MaximizeMainForm = true;
-			RadioScheduleBuilder.FormMain.Instance.Resize -= FormMain.Instance.FormRadioScheduleResize;
-			RadioScheduleBuilder.FormMain.Instance.Resize += FormMain.Instance.FormRadioScheduleResize;
-			RadioScheduleBuilder.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
-			if (!FormMain.Instance.IsDead)
-			{
-				FormMain.Instance.Opacity = 1;
-				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				LoadSchedules();
-			}
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 12, 0, 0);
-			Utilities.Instance.ActivateMiniBar();
+			MediaSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
+			MediaSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
+			MediaSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
+			MediaSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
+			MediaSchedule.Internal.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
+			if (FormMain.Instance.IsDead) return;
+			FormMain.Instance.Opacity = 1;
+			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+			RegistryHelper.MaximizeMainForm = false;
+			LoadSchedules();
 		}
 
 		public void buttonXDeleteSchedule_Click(object sender, EventArgs e)
 		{
-			if (Utilities.Instance.ShowWarningQuestion("Delete this Ad Schedule?") == DialogResult.Yes)
+			if (Utilities.Instance.ShowWarningQuestion("Delete this Radio Schedule?") != DialogResult.Yes) return;
+			var fileName = _scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName;
+			try
 			{
-				string fileName = _scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName;
-				try
-				{
-					if (File.Exists(fileName))
-						File.Delete(fileName);
-				}
-				catch
-				{
-					Utilities.Instance.ShowWarning("Couldn't delete selected schedule.");
-				}
-				LoadSchedules();
+				if (File.Exists(fileName))
+					File.Delete(fileName);
 			}
+			catch
+			{
+				Utilities.Instance.ShowWarning("Couldn't delete selected schedule.");
+			}
+			LoadSchedules();
 		}
 
 		private void gridViewSchedules_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
@@ -167,7 +156,7 @@ namespace NewBizWiz.Dashboard.TabRadioForms
 
 		private void gridViewSchedules_CellValueChanged(object sender, CellValueChangedEventArgs e)
 		{
-			ShortSchedule schedule = _scheduleList[gridViewSchedules.GetDataSourceRowIndex(e.RowHandle)];
+			var schedule = _scheduleList[gridViewSchedules.GetDataSourceRowIndex(e.RowHandle)];
 			schedule.Save();
 		}
 

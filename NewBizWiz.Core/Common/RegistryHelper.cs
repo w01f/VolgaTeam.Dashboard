@@ -53,28 +53,6 @@ namespace NewBizWiz.Core.Common
 			}
 		}
 
-		public static IntPtr MinibarHandle
-		{
-			get
-			{
-				int result = 0;
-				RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\NewBizWiz", RegistryKeyPermissionCheck.ReadSubTree);
-				if (key != null)
-				{
-					object value = key.GetValue("MinibarHandle", false);
-					if (value != null)
-						int.TryParse(value.ToString(), out result);
-				}
-				return new IntPtr(result);
-			}
-			set
-			{
-				RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software", RegistryKeyPermissionCheck.ReadWriteSubTree).CreateSubKey("NewBizWiz", RegistryKeyPermissionCheck.ReadWriteSubTree);
-				if (key != null)
-					key.SetValue("MinibarHandle", value.ToInt32(), RegistryValueKind.DWord);
-			}
-		}
-
 		public static bool ShowHidden
 		{
 			get

@@ -10,7 +10,7 @@ namespace AdBar.Plugins.Common.BusinessClasses
 {
 	public class PluginController
 	{
-		private readonly string _powerPointLoaderPath= String.Format(@"{0}\newlocaldirect.com\app\Minibar\PowerPointLoader.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+		private readonly string _powerPointLoaderPath= String.Format(@"{0}\newlocaldirect.com\app\PowerPointLoader.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 	
 		public void RunPowerPoint()
 		{

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using AdBar.Plugins.Common.BusinessClasses;
@@ -54,14 +55,19 @@ namespace AdBar.Plugins.Slides
 		private void AppendSlideMaster(SlideMaster slideMaster)
 		{
 			if (slideMaster == null) return;
+			AdBarPowerPointHelper.Instance.Disconnect();
 			if (!AdBarPowerPointHelper.Instance.PowerPointDetected())
 			{
-				if (Utilities.Instance.ShowWarningQuestion("You need to first open PowerPoint\nDo you want to do that now?") == DialogResult.Yes)
-					_controller.RunPowerPoint();
-				else
-					return;
+				_controller.RunPowerPoint();
+				AdBarPowerPointHelper.Instance.Connect(false);
+				AdBarPowerPointHelper.Instance.SetPresentationSettings();
+				var potFile = Directory.GetFiles(SettingsManager.Instance.RootPath, "*.pot").FirstOrDefault();
+				var activePresentation = AdBarPowerPointHelper.Instance.GetActivePresentation();
+				if (!String.IsNullOrEmpty(potFile) && activePresentation != null)
+					activePresentation.ApplyTheme(potFile);
 			}
-			AdBarPowerPointHelper.Instance.Connect(false);
+			else
+				AdBarPowerPointHelper.Instance.Connect(false);
 			AdBarPowerPointHelper.Instance.AppendSlideMaster(slideMaster.MasterPath);
 		}
 
@@ -98,6 +104,11 @@ namespace AdBar.Plugins.Slides
 			}
 		}
 
+		private void ribbonBar_ParentChanged(object sender, EventArgs e)
+		{
+			ribbonBar.Text = SettingsManager.Instance.SelectedSlideMaster;
+		}
+
 		#region IAdBarControl Memebers
 
 		public string ControlName
@@ -107,7 +118,7 @@ namespace AdBar.Plugins.Slides
 
 		public IEnumerable<RibbonBar> RibbonBars
 		{
-			get { return new[] {ribbonBar}; }
+			get { return new[] { ribbonBar }; }
 		}
 
 		public event EventHandler<AdBarControlStateEventArgs> StateChanged;

@@ -36,7 +36,6 @@ namespace NewBizWiz.OnlineSchedule.Single
 				if (AppManager.Instance.RunPowerPoint())
 				{
 					Utilities.Instance.ActivatePowerPoint(OnlineSchedulePowerPointHelper.Instance.PowerPointObject);
-					Utilities.Instance.ActivateMiniBar();
 					AppManager.Instance.ActivateMainForm();
 				}
 			}

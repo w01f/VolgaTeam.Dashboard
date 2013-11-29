@@ -235,7 +235,6 @@ namespace NewBizWiz.OnlineSchedule.Single
 				Icon = new Icon(Core.OnlineSchedule.SettingsManager.Instance.IconPath);
 
 			Utilities.Instance.ActivatePowerPoint(OnlineSchedulePowerPointHelper.Instance.PowerPointObject);
-			Utilities.Instance.ActivateMiniBar();
 			AppManager.Instance.ActivateMainForm();
 
 			using (var formStart = new FormStart())

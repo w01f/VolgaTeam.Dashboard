@@ -284,55 +284,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap DigitalInfoCPM {
-            get {
-                object obj = ResourceManager.GetObject("DigitalInfoCPM", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap DigitalInfoDates {
-            get {
-                object obj = ResourceManager.GetObject("DigitalInfoDates", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap DigitalInfoDimensions {
-            get {
-                object obj = ResourceManager.GetObject("DigitalInfoDimensions", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap DigitalInfoImpressions {
-            get {
-                object obj = ResourceManager.GetObject("DigitalInfoImpressions", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap DigitalInfoInvestment {
-            get {
-                object obj = ResourceManager.GetObject("DigitalInfoInvestment", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap DigitalInfoProduct {
-            get {
-                object obj = ResourceManager.GetObject("DigitalInfoProduct", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap DigitalInfoWebsites {
-            get {
-                object obj = ResourceManager.GetObject("DigitalInfoWebsites", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap EmailBig {
             get {
                 object obj = ResourceManager.GetObject("EmailBig", resourceCulture);

@@ -227,7 +227,6 @@ namespace NewBizWiz.Calendar.Single
 				Icon = new Icon(Core.Calendar.SettingsManager.Instance.IconPath);
 
 			Utilities.Instance.ActivatePowerPoint(CalendarPowerPointHelper.Instance.PowerPointObject);
-			Utilities.Instance.ActivateMiniBar();
 			AppManager.ActivateMainForm();
 
 			using (var formStart = new FormStart())

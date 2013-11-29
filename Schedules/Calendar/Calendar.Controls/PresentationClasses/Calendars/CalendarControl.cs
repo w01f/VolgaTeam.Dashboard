@@ -384,8 +384,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 									RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 									if (previewResult != DialogResult.OK)
 										Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-									else
-										Utilities.Instance.ActivateMiniBar();
 								}
 						}
 					}

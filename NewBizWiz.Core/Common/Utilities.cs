@@ -61,43 +61,28 @@ namespace NewBizWiz.Core.Common
 			{
 				var powerPointHandle = new IntPtr(powerPoint.HWND);
 				WinAPIHelper.ShowWindow(powerPointHandle, WindowShowStyle.ShowMaximized);
-				uint lpdwProcessId = 0;
+				uint lpdwProcessId;
 				WinAPIHelper.AttachThreadInput(WinAPIHelper.GetCurrentThreadId(), WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), true);
 				WinAPIHelper.SetForegroundWindow(powerPointHandle);
 				WinAPIHelper.AttachThreadInput(WinAPIHelper.GetCurrentThreadId(), WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), false);
 			}
 		}
 
-		public void ActivateMiniBar()
+		public void ActivateTaskbar()
 		{
-			IntPtr minibarHandle = RegistryHelper.MinibarHandle;
-			if (minibarHandle.ToInt32() == 0)
-			{
-				Process[] processList = Process.GetProcesses();
-				foreach (Process process in processList.Where(x => x.ProcessName.Contains("MiniBar")))
-				{
-					if (process.MainWindowHandle.ToInt32() != 0)
-					{
-						minibarHandle = process.MainWindowHandle;
-						break;
-					}
-				}
-			}
-			if (minibarHandle.ToInt32() != 0)
-			{
-				uint lpdwProcessId = 0;
-				WinAPIHelper.MakeTopMost(minibarHandle);
-				WinAPIHelper.AttachThreadInput(WinAPIHelper.GetCurrentThreadId(), WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), true);
-				WinAPIHelper.SetForegroundWindow(minibarHandle);
-				WinAPIHelper.AttachThreadInput(WinAPIHelper.GetCurrentThreadId(), WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), false);
-			}
+			var taskBarHandle = WinAPIHelper.FindWindow("Shell_traywnd", "");
+			WinAPIHelper.ShowWindow(taskBarHandle, WindowShowStyle.Show);
+			uint lpdwProcessId;
+			WinAPIHelper.AttachThreadInput(WinAPIHelper.GetCurrentThreadId(), WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), true);
+			WinAPIHelper.SetForegroundWindow(taskBarHandle);
+			WinAPIHelper.AttachThreadInput(WinAPIHelper.GetCurrentThreadId(), WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), false);
 		}
 
 		public void ReleaseComObject(object o)
 		{
 			try
 			{
-				Marshal.ReleaseComObject(o);
+				Marshal.FinalReleaseComObject(o);
 				o = null;
 			}
 			catch { }
@@ -156,6 +141,14 @@ namespace NewBizWiz.Core.Common
 			//dispose the Graphics object
 			g.Dispose();
 			return newBitmap;
+		}
+
+		public bool IsSmallScreen
+		{
+			get
+			{
+				return Screen.PrimaryScreen.Bounds.Width <= 1024;
+			}
 		}
 
 		#region Select All in Editor Handlers

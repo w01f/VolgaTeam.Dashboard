@@ -47,11 +47,11 @@ namespace NewBizWiz.Core.AdSchedule
 		private Schedule _currentSchedule;
 
 		public bool ScheduleLoaded { get; set; }
-		public event EventHandler<SavingingEventArgs> SettingsSaved;
+		public event EventHandler<ScheduleSaveEventArgs> SettingsSaved;
 
 		public void OpenSchedule(string scheduleName, bool create)
 		{
-			string scheduleFilePath = GetScheduleFileName(scheduleName);
+			var scheduleFilePath = GetScheduleFileName(scheduleName);
 			if (create && File.Exists(scheduleFilePath))
 				if (Utilities.Instance.ShowWarningQuestion(string.Format("An older Schedule is already saved with this same file name.\nDo you want to replace this file with a newer schedule?", scheduleName)) == DialogResult.Yes)
 					File.Delete(scheduleFilePath);
@@ -85,7 +85,7 @@ namespace NewBizWiz.Core.AdSchedule
 			localSchedule.Save();
 			_currentSchedule = localSchedule;
 			if (SettingsSaved != null)
-				SettingsSaved(sender, new SavingingEventArgs(quickSave));
+				SettingsSaved(sender, new ScheduleSaveEventArgs(quickSave));
 		}
 
 		public static ShortSchedule[] GetShortScheduleList()
@@ -111,16 +111,6 @@ namespace NewBizWiz.Core.AdSchedule
 		{
 			SettingsSaved = null;
 		}
-	}
-
-	public class SavingingEventArgs : EventArgs
-	{
-		public SavingingEventArgs(bool quickSave)
-		{
-			QuickSave = quickSave;
-		}
-
-		public bool QuickSave { get; set; }
 	}
 
 	public class ShortSchedule

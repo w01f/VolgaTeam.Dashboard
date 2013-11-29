@@ -12,7 +12,6 @@ namespace NewBizWiz.PowerPointLoader
 			MasterWizardManager.Instance.SetMasterWizard();
 			LoaderPowerPointHelper.Instance.Connect();
 			Utilities.Instance.ActivatePowerPoint(LoaderPowerPointHelper.Instance.PowerPointObject);
-			Utilities.Instance.ActivateMiniBar();
 		}
 	}
 }

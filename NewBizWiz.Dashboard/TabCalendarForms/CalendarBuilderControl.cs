@@ -75,11 +75,10 @@ namespace NewBizWiz.Dashboard.TabCalendarForms
 
 		public void buttonXNewCalendar_Click(object sender, EventArgs e)
 		{
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 9, 0, 0);
 			FormMain.Instance.Opacity = 0;
 			RegistryHelper.MaximizeMainForm = true;
-			Calendar.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormCalendarResize;
-			Calendar.Internal.FormMain.Instance.Resize += FormMain.Instance.FormCalendarResize;
+			Calendar.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
+			Calendar.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
 			Calendar.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			Calendar.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			Calendar.Internal.AppManager.NewSchedule();
@@ -90,8 +89,6 @@ namespace NewBizWiz.Dashboard.TabCalendarForms
 				RegistryHelper.MaximizeMainForm = false;
 				LoadCalendars();
 			}
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 10, 0, 0);
-			Utilities.Instance.ActivateMiniBar();
 		}
 
 		public void buttonXOpenCalendar_Click(object sender, EventArgs e)
@@ -99,11 +96,10 @@ namespace NewBizWiz.Dashboard.TabCalendarForms
 			var selectedSchedule = gridViewCalendars.GetFocusedRow() as ShortSchedule;
 			if (selectedSchedule != null)
 			{
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 9, 0, 0);
 				FormMain.Instance.Opacity = 0;
 				RegistryHelper.MaximizeMainForm = true;
-				Calendar.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormCalendarResize;
-				Calendar.Internal.FormMain.Instance.Resize += FormMain.Instance.FormCalendarResize;
+				Calendar.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
+				Calendar.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
 				Calendar.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 				Calendar.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 				Calendar.Internal.AppManager.OpenSchedule(selectedSchedule.FullFileName);
@@ -114,8 +110,6 @@ namespace NewBizWiz.Dashboard.TabCalendarForms
 					RegistryHelper.MaximizeMainForm = false;
 					LoadCalendars();
 				}
-				WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 10, 0, 0);
-				Utilities.Instance.ActivateMiniBar();
 			}
 		}
 

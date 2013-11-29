@@ -90,11 +90,10 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 
 		public void buttonXNewSchedule_Click(object sender, EventArgs e)
 		{
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 5, 0, 0);
 			FormMain.Instance.Opacity = 0;
 			RegistryHelper.MaximizeMainForm = true;
-			OnlineSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormOnlineScheduleResize;
-			OnlineSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormOnlineScheduleResize;
+			OnlineSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
+			OnlineSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.AppManager.NewSchedule();
@@ -105,18 +104,15 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 				RegistryHelper.MaximizeMainForm = false;
 				LoadSchedules();
 			}
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 6, 0, 0);
-			Utilities.Instance.ActivateMiniBar();
 		}
 
 		public void buttonXOpenSchedule_Click(object sender, EventArgs e)
 		{
 			FormMain.Instance.Opacity = 0;
 			FormMain.Instance.SuspendLayout();
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 5, 0, 0);
 			RegistryHelper.MaximizeMainForm = true;
-			OnlineSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormOnlineScheduleResize;
-			OnlineSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormOnlineScheduleResize;
+			OnlineSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
+			OnlineSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
@@ -127,8 +123,6 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 				RegistryHelper.MaximizeMainForm = false;
 				LoadSchedules();
 			}
-			WinAPIHelper.PostMessage(RegistryHelper.MinibarHandle, WinAPIHelper.WM_APP + 6, 0, 0);
-			Utilities.Instance.ActivateMiniBar();
 			FormMain.Instance.ResumeLayout();
 		}
 

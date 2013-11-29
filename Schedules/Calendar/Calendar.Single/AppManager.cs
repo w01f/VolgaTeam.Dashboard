@@ -53,8 +53,7 @@ namespace NewBizWiz.Calendar.Single
 		{
 			var defaultText = !String.IsNullOrEmpty(AppConfig.Title) ? AppConfig.Title : "Ninja Calendar";
 			var afterBack = new Action(ActivateMainForm);
-			var afterHide = new Action(Utilities.Instance.ActivateMiniBar);
-			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, AppConfig.Image, afterShow, afterHide, afterBack);
+			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, AppConfig.Image, afterShow, null, afterBack);
 		}
 	}
 }

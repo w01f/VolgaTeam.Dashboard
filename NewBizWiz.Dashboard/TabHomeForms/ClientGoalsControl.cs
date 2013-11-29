@@ -264,8 +264,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 					if (previewResult != DialogResult.OK)
 						AppManager.Instance.ActivateMainForm();
-					else
-						Utilities.Instance.ActivateMiniBar();
 				}
 			}
 		}

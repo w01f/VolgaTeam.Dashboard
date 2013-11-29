@@ -25,7 +25,7 @@ namespace NewBizWiz.Core.Interop
 		void Disconnect(bool closeIfFirstLaunch = true);
 		void Close();
 		bool PowerPointDetected();
-		void GetActivePresentation();
+		Presentation GetActivePresentation();
 		int GetActiveSlideIndex();
 		void CreateLockedPresentation(string sourceFolderPathName, string destinationFileName);
 		void ConvertToPDF(string originalFileName, string pdfFileName);
@@ -234,7 +234,6 @@ namespace NewBizWiz.Core.Interop
 				_powerPointObject.DisplayAlerts = PpAlertLevel.ppAlertsNone;
 				GetActivePresentation();
 				SearchPageNumbers();
-				//_powerPointObject.PresentationClose += _powerPointObject_PresentationClose;
 				result = true;
 			}
 			catch
@@ -273,7 +272,7 @@ namespace NewBizWiz.Core.Interop
 		public bool PowerPointDetected()
 		{
 			bool result = false;
-			while (Process.GetProcesses().Where(x => x.ProcessName.Equals("POWERPNT")).Count() > 0)
+			while (Process.GetProcesses().Any(x => x.ProcessName.Equals("POWERPNT")))
 			{
 				Application powerPoint = null;
 				try
@@ -302,28 +301,7 @@ namespace NewBizWiz.Core.Interop
 			return result;
 		}
 
-		private void _powerPointObject_PresentationClose(Presentation Pres)
-		{
-			try
-			{
-				MessageFilter.Register();
-				_powerPointObject.Quit();
-			}
-			catch
-			{
-				_activePresentation = null;
-			}
-			finally
-			{
-				MessageFilter.Revoke();
-				Utilities.Instance.ReleaseComObject(_activePresentation);
-				Utilities.Instance.ReleaseComObject(_powerPointObject);
-				_powerPointObject = null;
-				Thread.Sleep(500);
-			}
-		}
-
-		public void GetActivePresentation()
+		public Presentation GetActivePresentation()
 		{
 			try
 			{
@@ -336,7 +314,7 @@ namespace NewBizWiz.Core.Interop
 					MessageFilter.Register();
 					if (_powerPointObject.Presentations.Count == 0)
 					{
-						Presentations presentations = _powerPointObject.Presentations;
+						var presentations = _powerPointObject.Presentations;
 						_activePresentation = presentations.Add(MsoTriState.msoCTrue);
 						Utilities.Instance.ReleaseComObject(presentations);
 						Slides slides = _activePresentation.Slides;
@@ -345,7 +323,7 @@ namespace NewBizWiz.Core.Interop
 					}
 					else
 					{
-						Presentations presentations = _powerPointObject.Presentations;
+						var presentations = _powerPointObject.Presentations;
 						_activePresentation = presentations[1];
 						Utilities.Instance.ReleaseComObject(presentations);
 					}
@@ -359,19 +337,20 @@ namespace NewBizWiz.Core.Interop
 					MessageFilter.Revoke();
 				}
 			}
+			return _activePresentation;
 		}
 
 		public int GetActiveSlideIndex()
 		{
-			int slideIndex = -1;
+			var slideIndex = -1;
 			try
 			{
 				MessageFilter.Register();
 				_powerPointObject.Activate();
-				DocumentWindow activeWindow = _powerPointObject.ActiveWindow;
+				var activeWindow = _powerPointObject.ActiveWindow;
 				if (activeWindow != null)
 				{
-					View view = activeWindow.View;
+					var view = activeWindow.View;
 					var slide = (Slide)view.Slide;
 					slideIndex = slide.SlideIndex;
 					Utilities.Instance.ReleaseComObject(slide);
@@ -392,27 +371,25 @@ namespace NewBizWiz.Core.Interop
 			try
 			{
 				MessageFilter.Register();
-				if (Directory.Exists(sourceFolderPathName))
+				if (!Directory.Exists(sourceFolderPathName)) return;
+				var presentations = _powerPointObject.Presentations;
+				var presentation = presentations.Add(MsoTriState.msoFalse);
+				Utilities.Instance.ReleaseComObject(presentations);
+				var slides = presentation.Slides;
+
+				string[] previewImages = Directory.GetFiles(sourceFolderPathName, "*.png");
+				Array.Sort(previewImages, WinAPIHelper.StrCmpLogicalW);
+
+				for (int i = 0; i < previewImages.Length; i++)
 				{
-					Presentations presentations = _powerPointObject.Presentations;
-					Presentation presentation = presentations.Add(MsoTriState.msoFalse);
-					Utilities.Instance.ReleaseComObject(presentations);
-					Slides slides = presentation.Slides;
-
-					string[] previewImages = Directory.GetFiles(sourceFolderPathName, "*.png");
-					Array.Sort(previewImages, (x, y) => WinAPIHelper.StrCmpLogicalW(x, y));
-
-					for (int i = 0; i < previewImages.Length; i++)
-					{
-						Slide slide = slides.Add(i + 1, PpSlideLayout.ppLayoutBlank);
-						slide.Shapes.AddPicture(previewImages[i], MsoTriState.msoFalse, MsoTriState.msoCTrue, 0, 0, presentation.SlideMaster.Width, presentation.SlideMaster.Height);
-						Utilities.Instance.ReleaseComObject(slide);
-					}
-					Utilities.Instance.ReleaseComObject(slides);
-					presentation.SaveAs(destinationFileName);
-					presentation.Close();
-					Utilities.Instance.ReleaseComObject(presentation);
+					Slide slide = slides.Add(i + 1, PpSlideLayout.ppLayoutBlank);
+					slide.Shapes.AddPicture(previewImages[i], MsoTriState.msoFalse, MsoTriState.msoCTrue, 0, 0, presentation.SlideMaster.Width, presentation.SlideMaster.Height);
+					Utilities.Instance.ReleaseComObject(slide);
 				}
+				Utilities.Instance.ReleaseComObject(slides);
+				presentation.SaveAs(destinationFileName);
+				presentation.Close();
+				Utilities.Instance.ReleaseComObject(presentation);
 			}
 			catch { }
 			finally
@@ -426,13 +403,11 @@ namespace NewBizWiz.Core.Interop
 			try
 			{
 				MessageFilter.Register();
-				if (_powerPointObject != null)
-				{
-					Presentation presentationObject = _powerPointObject.Presentations.Open(originalFileName, MsoTriState.msoFalse, MsoTriState.msoFalse, MsoTriState.msoFalse);
-					presentationObject.SaveAs(pdfFileName, PpSaveAsFileType.ppSaveAsPDF, MsoTriState.msoCTrue);
-					presentationObject.Close();
-					Utilities.Instance.ReleaseComObject(presentationObject);
-				}
+				if (_powerPointObject == null) return;
+				Presentation presentationObject = _powerPointObject.Presentations.Open(originalFileName, MsoTriState.msoFalse, MsoTriState.msoFalse, MsoTriState.msoFalse);
+				presentationObject.SaveAs(pdfFileName, PpSaveAsFileType.ppSaveAsPDF, MsoTriState.msoCTrue);
+				presentationObject.Close();
+				Utilities.Instance.ReleaseComObject(presentationObject);
 			}
 			catch { }
 			finally
@@ -467,11 +442,6 @@ namespace NewBizWiz.Core.Interop
 
 		public void AppendSlide(Presentation sourcePresentation, int slideIndex, Presentation destinationPresentation = null, bool firstSlide = false, int indexToPaste = 0)
 		{
-			Slide slide;
-			SlideRange pastedRange;
-			Design design;
-			MsoTriState masterShape;
-
 			MessageFilter.Register();
 			if (destinationPresentation == null)
 			{
@@ -490,12 +460,12 @@ namespace NewBizWiz.Core.Interop
 			for (var i = 1; i <= slides.Count; i++)
 			{
 				if ((i != slideIndex) && (slideIndex != -1)) continue;
-				slide = slides[i];
+				var slide = slides[i];
 				slide.Copy();
 				var activeSlides = destinationPresentation.Slides;
-				pastedRange = activeSlides.Paste(indexToPaste);
+				var pastedRange = activeSlides.Paste(indexToPaste);
 				indexToPaste++;
-				design = GetDesignFromSlide(slide, sourcePresentation);
+				var design = GetDesignFromSlide(slide, destinationPresentation);
 				if (design != null)
 					pastedRange.Design = design;
 				else
@@ -532,7 +502,7 @@ namespace NewBizWiz.Core.Interop
 						case MsoFillType.msoFillPicture:
 							if (slide.Shapes.Count > 0)
 								(slide.Shapes.Range(1)).Visible = MsoTriState.msoFalse;
-							masterShape = slide.DisplayMasterShapes;
+							var masterShape = slide.DisplayMasterShapes;
 							slide.DisplayMasterShapes = MsoTriState.msoFalse;
 							slide.Export(Path.Combine(Path.GetTempPath(), slide.SlideID + ".png"), "PNG", -1, -1);
 							pastedRange.Background.Fill.UserPicture(Path.Combine(Path.GetTempPath(), slide.SlideID + ".png"));
@@ -615,7 +585,7 @@ namespace NewBizWiz.Core.Interop
 				var thread = new Thread(delegate()
 				{
 					MessageFilter.Register();
-					Presentation presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					AppendSlide(presentation, -1, destinationPresentation);
 					presentation.Close();
 				});
@@ -635,22 +605,20 @@ namespace NewBizWiz.Core.Interop
 			try
 			{
 				MessageFilter.Register();
-				if (_powerPointObject != null)
+				if (_powerPointObject == null) return;
+				if (_powerPointObject.ActivePresentation != null)
 				{
-					if (_powerPointObject.ActivePresentation != null)
-					{
-						_powerPointObject.ActivePresentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
-						_powerPointObject.ActivePresentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
+					_powerPointObject.ActivePresentation.PageSetup.SlideWidth = (float)SettingsManager.Instance.SizeWidth * 72;
+					_powerPointObject.ActivePresentation.PageSetup.SlideHeight = (float)SettingsManager.Instance.SizeHeght * 72;
 
-						switch (SettingsManager.Instance.Orientation)
-						{
-							case "Landscape":
-								_powerPointObject.ActivePresentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
-								break;
-							case "Portrait":
-								_powerPointObject.ActivePresentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
-								break;
-						}
+					switch (SettingsManager.Instance.Orientation)
+					{
+						case "Landscape":
+							_powerPointObject.ActivePresentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationHorizontal;
+							break;
+						case "Portrait":
+							_powerPointObject.ActivePresentation.PageSetup.SlideOrientation = MsoOrientation.msoOrientationVertical;
+							break;
 					}
 				}
 			}

@@ -31,7 +31,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			SettingsNotSaved = false;
-			LoadCategories();
+			LoadDigitalCategories();
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
 			{
 				if (sender != this)
@@ -57,9 +57,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		}
 
 		#region Methods
-		public void LoadCategories()
+		private void LoadDigitalCategories()
 		{
-			foreach (Category category in ListManager.Instance.Categories)
+			foreach (var category in ListManager.Instance.Categories)
 			{
 				var categoryButton = new ButtonItem();
 				categoryButton.Image = category.Logo;
@@ -261,18 +261,16 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				return false;
 			}
 
-			foreach (PrintProduct publication in _localSchedule.PrintProducts)
-				if (string.IsNullOrEmpty(publication.Name))
-				{
-					Utilities.Instance.ShowWarning("You must Select Name for all Publications before save");
-					return false;
-				}
-			foreach (DigitalProduct publication in _localSchedule.DigitalProducts)
-				if (string.IsNullOrEmpty(publication.Name))
-				{
-					Utilities.Instance.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Web Product in each line before you proceed.");
-					return false;
-				}
+			if (_localSchedule.PrintProducts.Any(publication => String.IsNullOrEmpty(publication.Name)))
+			{
+				Utilities.Instance.ShowWarning("You must Select Name for all Publications before save");
+				return false;
+			}
+			if (_localSchedule.DigitalProducts.Any(publication => String.IsNullOrEmpty(publication.Name)))
+			{
+				Utilities.Instance.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Web Product in each line before you proceed.");
+				return false;
+			}
 
 			SaveView();
 

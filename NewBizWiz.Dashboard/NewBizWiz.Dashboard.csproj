@@ -464,16 +464,6 @@
     <None Include="Resources\CalendarLogo.png" />
     <None Include="Resources\CalendarLittle.png" />
     <None Include="Resources\HomeCalendar.png" />
-    <None Include="Resources\SlideSharkLogo.png" />
-    <None Include="Resources\SlideRocketLogo.png" />
-    <None Include="Resources\DropboxLogo.png" />
-    <None Include="Resources\GoogleDocsLogo.png" />
-    <None Include="Resources\EmailiPadLogo.png" />
-    <None Include="Resources\AdConnectionsLogo.png" />
-    <None Include="Resources\WideOrbitLogo.png" />
-    <None Include="Resources\StrataLogo.png" />
-    <None Include="Resources\MarketronLogo.png" />
-    <None Include="Resources\OneDomainLogo.png" />
     <None Include="Resources\OnlineLogo.png" />
     <None Include="Resources\NewspaperLogo.png" />
     <None Include="Resources\RedWarning.png" />
@@ -490,22 +480,16 @@
     <None Include="Resources\DeleteSchedule.png" />
     <None Include="Resources\HomeOnline.png" />
     <None Include="Resources\HomeNewspaper.png" />
-    <None Include="Resources\CoverMiddle.png" />
-    <None Include="Resources\CleanslateMiddle.png" />
     <None Include="Resources\SalesQuotes.png" />
     <None Include="Resources\SalesRep.png" />
     <None Include="Resources\OpenSchedule.png" />
     <None Include="Resources\NewSchedule.png" />
     <None Include="Resources\Date.png" />
     <None Include="Resources\DecisionMaker.png" />
-    <None Include="Resources\SimpleSummary.png" />
     <None Include="Resources\MasterWizardLogo.png" />
     <None Include="Resources\Calendar.png" />
     <None Include="Resources\NewspaperLittle.png" />
     <None Include="Resources\WebLittle.png" />
-    <None Include="Resources\TargetCustomer.png" />
-    <None Include="Resources\ClientGoals.png" />
-    <None Include="Resources\LeadoffStatement.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\" />
@@ -557,6 +541,14 @@
       <Project>{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC}</Project>
       <Name>NewBizWiz.Calendar.Internal</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Schedules\MediaSchedule\MediaSchedule.Controls\NewBizWiz.MediaSchedule.Controls.csproj">
+      <Project>{F3572A95-E99D-485F-B4F3-EF26F49C094B}</Project>
+      <Name>NewBizWiz.MediaSchedule.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Schedules\MediaSchedule\MediaSchedule.Internal\NewBizWiz.MediaSchedule.Internal.csproj">
+      <Project>{5E0317D7-2267-4E06-9B5F-9DC258533B93}</Project>
+      <Name>NewBizWiz.MediaSchedule.Internal</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Schedules\OnlineSchedule\OnlineSchedule.Controls\NewBizWiz.OnlineSchedule.Controls.csproj">
       <Project>{1C9B33CD-0FE1-431C-BBC4-88463568F891}</Project>
       <Name>NewBizWiz.OnlineSchedule.Controls</Name>
@@ -564,14 +556,6 @@
     <ProjectReference Include="..\Schedules\OnlineSchedule\OnlineSchedule.Internal\NewBizWiz.OnlineSchedule.Internal.csproj">
       <Project>{14338B89-EEC4-45CC-A87F-2507FE32A32E}</Project>
       <Name>NewBizWiz.OnlineSchedule.Internal</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Schedules\RadioSchedule\RadioSchedule.Controls\RadioScheduleBuilder.csproj">
-      <Project>{D127B824-535C-48B9-A574-7EB167B85775}</Project>
-      <Name>RadioScheduleBuilder</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Schedules\TVSchedule\TVSchedule.Controls\TVScheduleBuilder.csproj">
-      <Project>{56864914-D91D-4157-A441-E0FE1F95F25E}</Project>
-      <Name>TVScheduleBuilder</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -22,7 +22,7 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NewBizWiz.MediaSchedule.Controls.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -60,189 +60,217 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap AddProduct {
+        public static System.Drawing.Bitmap AddProduct {
             get {
                 object obj = ResourceManager.GetObject("AddProduct", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap AddProgram {
+        public static System.Drawing.Bitmap AddProgram {
             get {
                 object obj = ResourceManager.GetObject("AddProgram", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap CloneProduct {
+        public static System.Drawing.Bitmap CloneProduct {
             get {
                 object obj = ResourceManager.GetObject("CloneProduct", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap DeleteButton {
+        public static System.Drawing.Bitmap DeleteButton {
             get {
                 object obj = ResourceManager.GetObject("DeleteButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap DeleteProduct {
+        public static System.Drawing.Bitmap DeleteProduct {
             get {
                 object obj = ResourceManager.GetObject("DeleteProduct", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap DeleteProgram {
+        public static System.Drawing.Bitmap DeleteProgram {
             get {
                 object obj = ResourceManager.GetObject("DeleteProgram", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap EmailBig {
+        public static System.Drawing.Bitmap DeleteSchedule {
+            get {
+                object obj = ResourceManager.GetObject("DeleteSchedule", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap EmailBig {
             get {
                 object obj = ResourceManager.GetObject("EmailBig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Exit {
+        public static System.Drawing.Bitmap Exit {
             get {
                 object obj = ResourceManager.GetObject("Exit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Floater {
+        public static System.Drawing.Bitmap Floater {
             get {
                 object obj = ResourceManager.GetObject("Floater", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap GridDetails {
+        public static System.Drawing.Bitmap GridDetails {
             get {
                 object obj = ResourceManager.GetObject("GridDetails", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Help {
+        public static System.Drawing.Bitmap Help {
             get {
                 object obj = ResourceManager.GetObject("Help", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap HelpSmall {
+        public static System.Drawing.Bitmap HelpSmall {
             get {
                 object obj = ResourceManager.GetObject("HelpSmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap NewSchedule {
+        public static System.Drawing.Bitmap NewSchedule {
             get {
                 object obj = ResourceManager.GetObject("NewSchedule", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap NudgeDown {
+        public static System.Drawing.Bitmap NewScheduleRibbon {
+            get {
+                object obj = ResourceManager.GetObject("NewScheduleRibbon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap NudgeDown {
             get {
                 object obj = ResourceManager.GetObject("NudgeDown", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap NudgeUp {
+        public static System.Drawing.Bitmap NudgeUp {
             get {
                 object obj = ResourceManager.GetObject("NudgeUp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap PowerPoint {
+        public static System.Drawing.Bitmap OpenSchedule {
+            get {
+                object obj = ResourceManager.GetObject("OpenSchedule", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap OpenScheduleRibbon {
+            get {
+                object obj = ResourceManager.GetObject("OpenScheduleRibbon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap PowerPoint {
             get {
                 object obj = ResourceManager.GetObject("PowerPoint", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Preview {
+        public static System.Drawing.Bitmap Preview {
             get {
                 object obj = ResourceManager.GetObject("Preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap RadioMonthlyScheduleButton {
+        public static System.Drawing.Bitmap RadioMonthlyScheduleButton {
             get {
                 object obj = ResourceManager.GetObject("RadioMonthlyScheduleButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap RadioMonthlyScheduleButtonGray {
+        public static System.Drawing.Bitmap RadioMonthlyScheduleButtonGray {
             get {
                 object obj = ResourceManager.GetObject("RadioMonthlyScheduleButtonGray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap RadioWeeklyScheduleButton {
+        public static System.Drawing.Bitmap RadioWeeklyScheduleButton {
             get {
                 object obj = ResourceManager.GetObject("RadioWeeklyScheduleButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap RadioWeeklyScheduleButtonGray {
+        public static System.Drawing.Bitmap RadioWeeklyScheduleButtonGray {
             get {
                 object obj = ResourceManager.GetObject("RadioWeeklyScheduleButtonGray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap SaveAs {
+        public static System.Drawing.Bitmap SaveAs {
             get {
                 object obj = ResourceManager.GetObject("SaveAs", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap SaveSmall {
+        public static System.Drawing.Bitmap SaveSmall {
             get {
                 object obj = ResourceManager.GetObject("SaveSmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap TVMonthlyScheduleButton {
+        public static System.Drawing.Bitmap TVMonthlyScheduleButton {
             get {
                 object obj = ResourceManager.GetObject("TVMonthlyScheduleButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap TVMonthlyScheduleButtonGray {
+        public static System.Drawing.Bitmap TVMonthlyScheduleButtonGray {
             get {
                 object obj = ResourceManager.GetObject("TVMonthlyScheduleButtonGray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap TVWeeklyScheduleButton {
+        public static System.Drawing.Bitmap TVWeeklyScheduleButton {
             get {
                 object obj = ResourceManager.GetObject("TVWeeklyScheduleButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap TVWeeklyScheduleButtonGray {
+        public static System.Drawing.Bitmap TVWeeklyScheduleButtonGray {
             get {
                 object obj = ResourceManager.GetObject("TVWeeklyScheduleButtonGray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

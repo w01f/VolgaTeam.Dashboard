@@ -1,4 +1,5 @@
-﻿using DevComponents.DotNetBar;
+﻿using System;
+using DevComponents.DotNetBar;
 using NewBizWiz.Core.MediaSchedule;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
@@ -9,6 +10,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			: base()
 		{
 			laTotalPeriodsTitle.Text = "Total Weeks:";
+			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, "Weeks");
 		}
 		public override ScheduleSection ScheduleSection
 		{

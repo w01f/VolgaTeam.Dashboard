@@ -4502,6 +4502,8 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool ShowInvestment { get; set; }
 		public string Info { get; set; }
 		public Image Logo { get; set; }
+		public decimal? Total { get; set; }
+		public decimal? Monthly { get; set; }
 
 		public RequestDigitalInfoEventArgs RequestOptions
 		{
@@ -4540,6 +4542,10 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<Info>" + Info.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Info>");
 			if (Logo != null)
 				result.AppendLine(@"<Logo>" + EncodedLogo.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
+			if (Total.HasValue)
+				result.AppendLine(@"<Total>" + Total + @"</Total>");
+			if (Monthly.HasValue)
+				result.AppendLine(@"<Monthly>" + Total + @"</Monthly>");
 			return result.ToString();
 		}
 
@@ -4605,6 +4611,16 @@ namespace NewBizWiz.Core.AdSchedule
 							EncodedLogo = childNode.InnerText;
 						}
 						break;
+					case "Total":
+						decimal total;
+						if (Decimal.TryParse(childNode.InnerText, out total))
+							Total = total;
+						break;
+					case "Monthly":
+						decimal monthly;
+						if (Decimal.TryParse(childNode.InnerText, out monthly))
+							Monthly = monthly;
+						break;
 				}
 			}
 		}
@@ -4625,9 +4641,22 @@ namespace NewBizWiz.Core.AdSchedule
 			result.ShowCPM = ShowCPM;
 			result.ShowInvestment = ShowInvestment;
 			result.Info = Info;
+			result.Total = Total;
+			result.Monthly = Monthly;
 
 			result.Logo = Logo;
 			return result;
+		}
+
+		public string GetAdditionalData(string separator = "")
+		{
+			separator = String.IsNullOrEmpty(separator) ? Environment.NewLine : separator;
+			var result = new List<string>();
+			if (Total.HasValue)
+				result.Add(String.Format("[Total Digital Investment: {0}]", Total.Value.ToString("$#,##0")));
+			if (Monthly.HasValue)
+				result.Add(String.Format("[Monthly Digital Investment: {0}]", Monthly.Value.ToString("$#,##0")));
+			return String.Join(separator, result);
 		}
 	}
 }

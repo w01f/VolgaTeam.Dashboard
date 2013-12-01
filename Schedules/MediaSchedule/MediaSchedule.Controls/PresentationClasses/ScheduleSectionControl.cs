@@ -71,6 +71,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			repositoryItemPopupContainerEditProgram.Enter += Utilities.Instance.Editor_Enter;
 			repositoryItemPopupContainerEditProgram.MouseDown += Utilities.Instance.Editor_MouseDown;
 			repositoryItemPopupContainerEditProgram.MouseUp += Utilities.Instance.Editor_MouseUp;
+			repositoryItemTextEditProgram.Enter += Utilities.Instance.Editor_Enter;
+			repositoryItemTextEditProgram.MouseDown += Utilities.Instance.Editor_MouseDown;
+			repositoryItemTextEditProgram.MouseUp += Utilities.Instance.Editor_MouseUp;
 			repositoryItemComboBoxStations.Enter += Utilities.Instance.Editor_Enter;
 			repositoryItemComboBoxStations.MouseDown += Utilities.Instance.Editor_MouseDown;
 			repositoryItemComboBoxStations.MouseUp += Utilities.Instance.Editor_MouseUp;
@@ -247,19 +250,35 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		private void UpdateTotalsValues()
 		{
-			laTotalPeriodsValue.Text = ScheduleSection.TotalPeriods.ToString("#,##0");
-			laTotalSpotsValue.Text = ScheduleSection.TotalSpots.ToString("#,##0");
-			laTotalGRPValue.Text = ScheduleSection.TotalGRP.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0");
-			laTotalCPPValue.Text = ScheduleSection.TotalCPP.ToString("$#,###.00");
-			laAvgRateValue.Text = ScheduleSection.AvgRate.ToString("$#,###.00");
-			laTotalCostValue.Text = ScheduleSection.TotalCost.ToString("$#,##0");
-			laNetRateValue.Text = ScheduleSection.NetRate.ToString("$#,###.00");
-			laAgencyDiscountValue.Text = ScheduleSection.Discount.ToString("$#,###.00");
+			if (ScheduleSection.Programs.Any())
+			{
+				pnBottom.Enabled = true;
+				laTotalPeriodsValue.Text = ScheduleSection.TotalPeriods.ToString("#,##0");
+				laTotalSpotsValue.Text = ScheduleSection.TotalSpots.ToString("#,##0");
+				laTotalGRPValue.Text = ScheduleSection.TotalGRP.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0");
+				laTotalCPPValue.Text = ScheduleSection.TotalCPP.ToString("$#,###.00");
+				laAvgRateValue.Text = ScheduleSection.AvgRate.ToString("$#,###.00");
+				laTotalCostValue.Text = ScheduleSection.TotalCost.ToString("$#,##0");
+				laNetRateValue.Text = ScheduleSection.NetRate.ToString("$#,###.00");
+				laAgencyDiscountValue.Text = ScheduleSection.Discount.ToString("$#,###.00");
+			}
+			else
+			{
+				pnBottom.Enabled = false;
+				laTotalPeriodsValue.Text =
+				laTotalSpotsValue.Text =
+				laTotalGRPValue.Text =
+				laTotalCPPValue.Text =
+				laAvgRateValue.Text =
+				laTotalCostValue.Text =
+				laNetRateValue.Text =
+				laAgencyDiscountValue.Text = String.Empty;
+			}
 		}
 
 		private void BuildSpotColumns()
 		{
-			foreach (BandedGridColumn column in _spotColumns)
+			foreach (var column in _spotColumns)
 			{
 				gridBandSpots.Columns.Remove(column);
 				advBandedGridViewSchedule.Columns.Remove(column);
@@ -341,8 +360,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			buttonXStation.Checked = ScheduleSection.ShowStation;
 			buttonXTime.Checked = ScheduleSection.ShowTime;
 			buttonXSpots.Checked = ScheduleSection.ShowSpots;
-			buttonXEmptySpots.Enabled = ScheduleSection.ShowSpots;
-			buttonXEmptySpots.Checked = ScheduleSection.ShowEmptySpots;
+			checkEditEmptySports.Enabled = ScheduleSection.ShowSpots;
+			checkEditEmptySports.Checked = !ScheduleSection.ShowEmptySpots;
 
 			buttonXTotalPeriods.Checked = ScheduleSection.ShowTotalPeriods;
 			buttonXTotalSpots.Checked = ScheduleSection.ShowTotalSpots;
@@ -405,7 +424,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 			xtraTabPageOptionsDigital.PageEnabled = _localSchedule.DigitalProducts.Any();
 			digitalInfoControl.InitData(ScheduleSection.DigitalLegend);
-			digitalInfoControl.ShowOutputOnce = false;
 
 			xtraScrollableControlColors.Controls.Clear();
 			var selectedColor = BusinessWrapper.Instance.OutputManager.AvailableColors.FirstOrDefault(c => c.Name.Equals(MediaMetaData.Instance.SettingsManager.SelectedColor)) ?? BusinessWrapper.Instance.OutputManager.AvailableColors.FirstOrDefault();
@@ -413,7 +431,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			foreach (var color in BusinessWrapper.Instance.OutputManager.AvailableColors)
 			{
 				var button = new ButtonX();
-				button.Height = 60;
+				button.Height = 50;
 				button.Width = pnColors.Width - 40;
 				button.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
 				button.TextAlignment = eButtonTextAlignment.Center;
@@ -440,8 +458,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				_localSchedule.Name = scheduleName;
 			advBandedGridViewSchedule.CloseEditor();
 			digitalInfoControl.SaveData();
-			if (digitalInfoControl.ApplyForAll)
-				_localSchedule.ApplyDigitalLegendForAllViews(ScheduleSection.DigitalLegend);
 
 			var checkedColorItem = xtraScrollableControlColors.Controls.OfType<ButtonX>().FirstOrDefault(b => b.Checked);
 			MediaMetaData.Instance.SettingsManager.SelectedColor = checkedColorItem != null ? ((ColorFolder)checkedColorItem.Tag).Name : String.Empty;
@@ -561,14 +577,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 
 			ScheduleSection.ShowSpots = buttonXSpots.Checked;
-			if (!ScheduleSection.ShowSpots)
-			{
-				_allowTosave = false;
-				buttonXEmptySpots.Checked = false;
-				_allowTosave = true;
-			}
-			buttonXEmptySpots.Enabled = ScheduleSection.ShowSpots;
-			ScheduleSection.ShowEmptySpots = buttonXEmptySpots.Checked;
+			checkEditEmptySports.Enabled = ScheduleSection.ShowSpots;
+			ScheduleSection.ShowEmptySpots = !checkEditEmptySports.Checked;
 
 			ScheduleSection.ShowTotalPeriods = buttonXTotalPeriods.Checked;
 			ScheduleSection.ShowTotalSpots = buttonXTotalSpots.Checked;
@@ -615,7 +625,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			SettingsNotSaved = true;
 		}
 
-		private void buttonXUseSlideMaster_Click(object sender, EventArgs e)
+		private void buttonXUseSlideMaster_CheckedChanged(object sender, EventArgs e)
 		{
 			if (!_allowTosave) return;
 			SettingsNotSaved = true;
@@ -761,14 +771,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			get
 			{
 				if (!ScheduleSection.DigitalLegend.Enabled) return String.Empty;
+				var requestOptions = ScheduleSection.DigitalLegend.RequestOptions;
 				if (!ScheduleSection.DigitalLegend.AllowEdit)
 				{
-					var requestOptions = ScheduleSection.DigitalLegend.RequestOptions;
-					requestOptions.Separator = "; ";
-					return String.Format("Digital Product Info: {0}", _localSchedule.GetDigitalInfo(requestOptions));
+					requestOptions.Separator = " ";
+					return String.Format("Digital Product Info: {0}{1}{2}", _localSchedule.GetDigitalInfo(requestOptions), requestOptions.Separator, ScheduleSection.DigitalLegend.GetAdditionalData(" "));
 				}
 				if (!String.IsNullOrEmpty(ScheduleSection.DigitalLegend.Info))
-					return String.Format("Digital Product Info: {0}", ScheduleSection.DigitalLegend.Info);
+					return String.Format("Digital Product Info: {0}{1}{2}", ScheduleSection.DigitalLegend.Info, requestOptions.Separator, ScheduleSection.DigitalLegend.GetAdditionalData(" "));
 				return String.Empty;
 			}
 		}

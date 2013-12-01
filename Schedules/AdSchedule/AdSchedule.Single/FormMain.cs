@@ -372,7 +372,7 @@ namespace NewBizWiz.AdSchedule.Single
 				form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Ad Schedule...";
 				form.TopMost = true;
 				form.Show();
-				var thread = new Thread(delegate() { Invoke((MethodInvoker)delegate { Controller.Instance.LoadData(); }); });
+				var thread = new Thread(() => Invoke((MethodInvoker) (() => Controller.Instance.LoadData())));
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();

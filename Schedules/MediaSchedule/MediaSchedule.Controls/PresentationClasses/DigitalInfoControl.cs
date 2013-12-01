@@ -12,19 +12,18 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public event EventHandler<RequestDigitalInfoEventArgs> RequestDefaultInfo;
 		public event EventHandler<EventArgs> SettingsChanged;
 
-		public bool ShowOutputOnce
-		{
-			set { checkEditOutputOnlyOnce.Visible = value; }
-		}
-
-		public bool ApplyForAll
-		{
-			get { return checkEditApplyAll.Checked; }
-		}
-
 		public DigitalInfoControl()
 		{
 			InitializeComponent();
+			memoEditInfo.Enter += Utilities.Instance.Editor_Enter;
+			memoEditInfo.MouseDown += Utilities.Instance.Editor_MouseDown;
+			memoEditInfo.MouseUp += Utilities.Instance.Editor_MouseUp;
+			spinEditMonthly.Enter += Utilities.Instance.Editor_Enter;
+			spinEditMonthly.MouseDown += Utilities.Instance.Editor_MouseDown;
+			spinEditMonthly.MouseUp += Utilities.Instance.Editor_MouseUp;
+			spinEditTotal.Enter += Utilities.Instance.Editor_Enter;
+			spinEditTotal.MouseDown += Utilities.Instance.Editor_MouseDown;
+			spinEditTotal.MouseUp += Utilities.Instance.Editor_MouseUp;
 		}
 
 		private void UpdateWarning()
@@ -57,8 +56,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			_loading = true;
 			checkEditEnable.Checked = _digitalLegend.Enabled;
 			checkEditAllowEdit.Checked = _digitalLegend.AllowEdit;
-			checkEditApplyAll.Checked = _digitalLegend.ApplyForAll;
-			checkEditOutputOnlyOnce.Checked = _digitalLegend.OutputOnlyOnce;
 
 			buttonXShowWebsites.Checked = _digitalLegend.ShowWebsites;
 			buttonXShowProduct.Checked = _digitalLegend.ShowProduct;
@@ -69,6 +66,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			buttonXShowInvestment.Checked = _digitalLegend.ShowInvestment;
 			if (_digitalLegend.AllowEdit && !String.IsNullOrEmpty(_digitalLegend.Info))
 				memoEditInfo.EditValue = _digitalLegend.Info;
+			checkEditTotal.Checked = _digitalLegend.Total.HasValue;
+			spinEditTotal.EditValue = _digitalLegend.Total;
+			checkEditMonthly.Checked = _digitalLegend.Monthly.HasValue;
+			spinEditMonthly.EditValue = _digitalLegend.Monthly;
 			if (checkEditEnable.Checked && memoEditInfo.EditValue == null)
 			{
 				if (RequestDefaultInfo != null)
@@ -81,8 +82,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			_digitalLegend.Enabled = checkEditEnable.Checked;
 			_digitalLegend.AllowEdit = checkEditAllowEdit.Checked;
-			_digitalLegend.ApplyForAll = checkEditApplyAll.Checked;
-			_digitalLegend.OutputOnlyOnce = checkEditOutputOnlyOnce.Checked;
 
 			_digitalLegend.ShowWebsites = buttonXShowWebsites.Checked;
 			_digitalLegend.ShowProduct = buttonXShowProduct.Checked;
@@ -92,12 +91,16 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			_digitalLegend.ShowCPM = buttonXShowCPM.Checked;
 			_digitalLegend.ShowInvestment = buttonXShowInvestment.Checked;
 			_digitalLegend.Info = checkEditAllowEdit.Checked && memoEditInfo.EditValue != null ? memoEditInfo.EditValue.ToString() : String.Empty;
+			_digitalLegend.Total = spinEditTotal.EditValue != null ? spinEditTotal.Value : (decimal?)null;
+			_digitalLegend.Monthly = spinEditMonthly.EditValue != null ? spinEditMonthly.Value : (decimal?)null;
 		}
 
 		private void checkEditEnable_CheckedChanged(object sender, EventArgs e)
 		{
 			pnControls.Enabled = checkEditEnable.Checked;
 			hyperLinkEditReset.Enabled = checkEditEnable.Checked;
+			checkEditMonthly.Enabled = checkEditEnable.Checked;
+			checkEditTotal.Enabled = checkEditEnable.Checked;
 			if (_loading) return;
 			if (checkEditEnable.Checked)
 			{
@@ -105,7 +108,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 					RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
 			}
 			else
+			{
 				memoEditInfo.EditValue = null;
+				checkEditMonthly.Checked = false;
+				checkEditTotal.Checked = false;
+			}
 			if (SettingsChanged != null)
 				SettingsChanged(this, EventArgs.Empty);
 		}
@@ -158,18 +165,47 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				SettingsChanged(this, EventArgs.Empty);
 		}
 
-		private void checkEditApplyAll_CheckedChanged(object sender, EventArgs e)
+		private void checkEditMonthly_CheckedChanged(object sender, EventArgs e)
 		{
+			spinEditMonthly.Enabled = checkEditMonthly.Checked;
+			labelControlMonthly.Enabled = checkEditMonthly.Checked;
 			if (_loading) return;
+			if (!checkEditMonthly.Checked)
+				spinEditMonthly.EditValue = null;
 			if (SettingsChanged != null)
 				SettingsChanged(this, EventArgs.Empty);
 		}
 
-		private void checkEditOutputOnlyOnce_CheckedChanged(object sender, EventArgs e)
+		private void checkEditTotal_CheckedChanged(object sender, EventArgs e)
 		{
+			spinEditTotal.Enabled = checkEditTotal.Checked;
+			labelControlTotal.Enabled = checkEditTotal.Checked;
 			if (_loading) return;
+			if (!checkEditTotal.Checked)
+				spinEditTotal.EditValue = null;
 			if (SettingsChanged != null)
 				SettingsChanged(this, EventArgs.Empty);
 		}
+
+		#region Picture Box Clicks Habdlers
+
+		/// <summary>
+		///     Buttonize the PictureBox
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
+		{
+			var pic = (PictureBox)(sender);
+			pic.Top += 1;
+		}
+
+		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
+		{
+			var pic = (PictureBox)(sender);
+			pic.Top -= 1;
+		}
+
+		#endregion
 	}
 }

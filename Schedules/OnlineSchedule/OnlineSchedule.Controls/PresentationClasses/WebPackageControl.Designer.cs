@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
+			this.pnButtons = new System.Windows.Forms.Panel();
+			this.buttonXCategory = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXInfo = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXGroup = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXCPM = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXProduct = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXScreenshot = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXImpressions = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXComments = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXInvestment = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXRate = new DevComponents.DotNetBar.ButtonX();
 			this.pnFormula = new System.Windows.Forms.Panel();
 			this.pbFormula = new System.Windows.Forms.PictureBox();
 			this.labelControlFormula = new DevExpress.XtraEditors.LabelControl();
 			this.checkEditFormulaCPM = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditFormulaInvestment = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditFormulaImpressions = new DevExpress.XtraEditors.CheckEdit();
-			this.buttonXInfo = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXCPM = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXScreenshot = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXComments = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXRate = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXInvestment = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXImpressions = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXProduct = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXGroup = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXCategory = new DevComponents.DotNetBar.ButtonX();
 			this.pnData = new System.Windows.Forms.Panel();
 			this.gridControl = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
@@ -82,10 +82,10 @@
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.laAdvertiser = new System.Windows.Forms.Label();
-			this.pnButtons = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
 			this.splitContainerControl.SuspendLayout();
+			this.pnButtons.SuspendLayout();
 			this.pnFormula.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbFormula)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaCPM.Properties)).BeginInit();
@@ -104,7 +104,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbDisabledOutput)).BeginInit();
 			this.pnHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
-			this.pnButtons.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -128,6 +127,8 @@
 			// 
 			// splitContainerControl
 			// 
+			this.splitContainerControl.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.splitContainerControl.Appearance.Options.UseBackColor = true;
 			this.splitContainerControl.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
 			this.splitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.splitContainerControl.Location = new System.Drawing.Point(0, 0);
@@ -143,6 +144,169 @@
 			this.splitContainerControl.SplitterPosition = 230;
 			this.splitContainerControl.TabIndex = 101;
 			this.splitContainerControl.Text = "splitContainerControl1";
+			// 
+			// pnButtons
+			// 
+			this.pnButtons.Controls.Add(this.buttonXCategory);
+			this.pnButtons.Controls.Add(this.buttonXInfo);
+			this.pnButtons.Controls.Add(this.buttonXGroup);
+			this.pnButtons.Controls.Add(this.buttonXCPM);
+			this.pnButtons.Controls.Add(this.buttonXProduct);
+			this.pnButtons.Controls.Add(this.buttonXScreenshot);
+			this.pnButtons.Controls.Add(this.buttonXImpressions);
+			this.pnButtons.Controls.Add(this.buttonXComments);
+			this.pnButtons.Controls.Add(this.buttonXInvestment);
+			this.pnButtons.Controls.Add(this.buttonXRate);
+			this.pnButtons.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnButtons.Location = new System.Drawing.Point(0, 0);
+			this.pnButtons.Name = "pnButtons";
+			this.pnButtons.Size = new System.Drawing.Size(230, 250);
+			this.pnButtons.TabIndex = 55;
+			// 
+			// buttonXCategory
+			// 
+			this.buttonXCategory.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXCategory.AutoCheckOnClick = true;
+			this.buttonXCategory.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXCategory.Location = new System.Drawing.Point(12, 8);
+			this.buttonXCategory.Name = "buttonXCategory";
+			this.buttonXCategory.Size = new System.Drawing.Size(95, 27);
+			this.buttonXCategory.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXCategory.TabIndex = 38;
+			this.buttonXCategory.Text = "Category";
+			this.buttonXCategory.TextColor = System.Drawing.Color.Black;
+			this.buttonXCategory.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
+			// 
+			// buttonXInfo
+			// 
+			this.buttonXInfo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXInfo.AutoCheckOnClick = true;
+			this.buttonXInfo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXInfo.Location = new System.Drawing.Point(126, 155);
+			this.buttonXInfo.Name = "buttonXInfo";
+			this.buttonXInfo.Size = new System.Drawing.Size(95, 27);
+			this.buttonXInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXInfo.TabIndex = 48;
+			this.buttonXInfo.Text = "Schedule Info";
+			this.buttonXInfo.TextColor = System.Drawing.Color.Black;
+			this.buttonXInfo.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
+			// 
+			// buttonXGroup
+			// 
+			this.buttonXGroup.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXGroup.AutoCheckOnClick = true;
+			this.buttonXGroup.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXGroup.Location = new System.Drawing.Point(126, 8);
+			this.buttonXGroup.Name = "buttonXGroup";
+			this.buttonXGroup.Size = new System.Drawing.Size(95, 27);
+			this.buttonXGroup.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXGroup.TabIndex = 39;
+			this.buttonXGroup.Text = "Group";
+			this.buttonXGroup.TextColor = System.Drawing.Color.Black;
+			this.buttonXGroup.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
+			// 
+			// buttonXCPM
+			// 
+			this.buttonXCPM.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXCPM.AutoCheckOnClick = true;
+			this.buttonXCPM.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXCPM.Location = new System.Drawing.Point(12, 106);
+			this.buttonXCPM.Name = "buttonXCPM";
+			this.buttonXCPM.Size = new System.Drawing.Size(95, 27);
+			this.buttonXCPM.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXCPM.TabIndex = 47;
+			this.buttonXCPM.Text = "CPM";
+			this.buttonXCPM.TextColor = System.Drawing.Color.Black;
+			this.buttonXCPM.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
+			// 
+			// buttonXProduct
+			// 
+			this.buttonXProduct.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXProduct.AutoCheckOnClick = true;
+			this.buttonXProduct.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXProduct.Location = new System.Drawing.Point(12, 57);
+			this.buttonXProduct.Name = "buttonXProduct";
+			this.buttonXProduct.Size = new System.Drawing.Size(95, 27);
+			this.buttonXProduct.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXProduct.TabIndex = 40;
+			this.buttonXProduct.Text = "Product";
+			this.buttonXProduct.TextColor = System.Drawing.Color.Black;
+			this.buttonXProduct.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
+			// 
+			// buttonXScreenshot
+			// 
+			this.buttonXScreenshot.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXScreenshot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXScreenshot.AutoCheckOnClick = true;
+			this.buttonXScreenshot.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXScreenshot.Location = new System.Drawing.Point(126, 204);
+			this.buttonXScreenshot.Name = "buttonXScreenshot";
+			this.buttonXScreenshot.Size = new System.Drawing.Size(95, 27);
+			this.buttonXScreenshot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXScreenshot.TabIndex = 46;
+			this.buttonXScreenshot.Text = "Screenshot";
+			this.buttonXScreenshot.TextColor = System.Drawing.Color.Black;
+			this.buttonXScreenshot.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
+			// 
+			// buttonXImpressions
+			// 
+			this.buttonXImpressions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXImpressions.AutoCheckOnClick = true;
+			this.buttonXImpressions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXImpressions.Location = new System.Drawing.Point(126, 57);
+			this.buttonXImpressions.Name = "buttonXImpressions";
+			this.buttonXImpressions.Size = new System.Drawing.Size(95, 27);
+			this.buttonXImpressions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXImpressions.TabIndex = 41;
+			this.buttonXImpressions.Text = "Impressions";
+			this.buttonXImpressions.TextColor = System.Drawing.Color.Black;
+			this.buttonXImpressions.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
+			// 
+			// buttonXComments
+			// 
+			this.buttonXComments.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXComments.AutoCheckOnClick = true;
+			this.buttonXComments.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXComments.Location = new System.Drawing.Point(12, 204);
+			this.buttonXComments.Name = "buttonXComments";
+			this.buttonXComments.Size = new System.Drawing.Size(95, 27);
+			this.buttonXComments.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXComments.TabIndex = 45;
+			this.buttonXComments.Text = "Comments";
+			this.buttonXComments.TextColor = System.Drawing.Color.Black;
+			this.buttonXComments.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
+			// 
+			// buttonXInvestment
+			// 
+			this.buttonXInvestment.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXInvestment.AutoCheckOnClick = true;
+			this.buttonXInvestment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXInvestment.Location = new System.Drawing.Point(12, 155);
+			this.buttonXInvestment.Name = "buttonXInvestment";
+			this.buttonXInvestment.Size = new System.Drawing.Size(95, 27);
+			this.buttonXInvestment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXInvestment.TabIndex = 42;
+			this.buttonXInvestment.Text = "Investment";
+			this.buttonXInvestment.TextColor = System.Drawing.Color.Black;
+			this.buttonXInvestment.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
+			// 
+			// buttonXRate
+			// 
+			this.buttonXRate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXRate.AutoCheckOnClick = true;
+			this.buttonXRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXRate.Location = new System.Drawing.Point(126, 106);
+			this.buttonXRate.Name = "buttonXRate";
+			this.buttonXRate.Size = new System.Drawing.Size(95, 27);
+			this.buttonXRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXRate.TabIndex = 43;
+			this.buttonXRate.Text = "Rate";
+			this.buttonXRate.TextColor = System.Drawing.Color.Black;
+			this.buttonXRate.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
 			// 
 			// pnFormula
 			// 
@@ -267,151 +431,6 @@
 			this.checkEditFormulaImpressions.TabIndex = 51;
 			this.checkEditFormulaImpressions.TabStop = false;
 			this.checkEditFormulaImpressions.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
-			// 
-			// buttonXInfo
-			// 
-			this.buttonXInfo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXInfo.AutoCheckOnClick = true;
-			this.buttonXInfo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXInfo.Location = new System.Drawing.Point(126, 155);
-			this.buttonXInfo.Name = "buttonXInfo";
-			this.buttonXInfo.Size = new System.Drawing.Size(95, 27);
-			this.buttonXInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXInfo.TabIndex = 48;
-			this.buttonXInfo.Text = "Schedule Info";
-			this.buttonXInfo.TextColor = System.Drawing.Color.Black;
-			this.buttonXInfo.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
-			// 
-			// buttonXCPM
-			// 
-			this.buttonXCPM.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXCPM.AutoCheckOnClick = true;
-			this.buttonXCPM.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXCPM.Location = new System.Drawing.Point(12, 106);
-			this.buttonXCPM.Name = "buttonXCPM";
-			this.buttonXCPM.Size = new System.Drawing.Size(95, 27);
-			this.buttonXCPM.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXCPM.TabIndex = 47;
-			this.buttonXCPM.Text = "CPM";
-			this.buttonXCPM.TextColor = System.Drawing.Color.Black;
-			this.buttonXCPM.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
-			// 
-			// buttonXScreenshot
-			// 
-			this.buttonXScreenshot.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXScreenshot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXScreenshot.AutoCheckOnClick = true;
-			this.buttonXScreenshot.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXScreenshot.Location = new System.Drawing.Point(126, 204);
-			this.buttonXScreenshot.Name = "buttonXScreenshot";
-			this.buttonXScreenshot.Size = new System.Drawing.Size(95, 27);
-			this.buttonXScreenshot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXScreenshot.TabIndex = 46;
-			this.buttonXScreenshot.Text = "Screenshot";
-			this.buttonXScreenshot.TextColor = System.Drawing.Color.Black;
-			this.buttonXScreenshot.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
-			// 
-			// buttonXComments
-			// 
-			this.buttonXComments.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXComments.AutoCheckOnClick = true;
-			this.buttonXComments.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXComments.Location = new System.Drawing.Point(12, 204);
-			this.buttonXComments.Name = "buttonXComments";
-			this.buttonXComments.Size = new System.Drawing.Size(95, 27);
-			this.buttonXComments.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXComments.TabIndex = 45;
-			this.buttonXComments.Text = "Comments";
-			this.buttonXComments.TextColor = System.Drawing.Color.Black;
-			this.buttonXComments.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
-			// 
-			// buttonXRate
-			// 
-			this.buttonXRate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXRate.AutoCheckOnClick = true;
-			this.buttonXRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXRate.Location = new System.Drawing.Point(126, 106);
-			this.buttonXRate.Name = "buttonXRate";
-			this.buttonXRate.Size = new System.Drawing.Size(95, 27);
-			this.buttonXRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXRate.TabIndex = 43;
-			this.buttonXRate.Text = "Rate";
-			this.buttonXRate.TextColor = System.Drawing.Color.Black;
-			this.buttonXRate.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
-			// 
-			// buttonXInvestment
-			// 
-			this.buttonXInvestment.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXInvestment.AutoCheckOnClick = true;
-			this.buttonXInvestment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXInvestment.Location = new System.Drawing.Point(12, 155);
-			this.buttonXInvestment.Name = "buttonXInvestment";
-			this.buttonXInvestment.Size = new System.Drawing.Size(95, 27);
-			this.buttonXInvestment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXInvestment.TabIndex = 42;
-			this.buttonXInvestment.Text = "Investment";
-			this.buttonXInvestment.TextColor = System.Drawing.Color.Black;
-			this.buttonXInvestment.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
-			// 
-			// buttonXImpressions
-			// 
-			this.buttonXImpressions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXImpressions.AutoCheckOnClick = true;
-			this.buttonXImpressions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXImpressions.Location = new System.Drawing.Point(126, 57);
-			this.buttonXImpressions.Name = "buttonXImpressions";
-			this.buttonXImpressions.Size = new System.Drawing.Size(95, 27);
-			this.buttonXImpressions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXImpressions.TabIndex = 41;
-			this.buttonXImpressions.Text = "Impressions";
-			this.buttonXImpressions.TextColor = System.Drawing.Color.Black;
-			this.buttonXImpressions.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
-			// 
-			// buttonXProduct
-			// 
-			this.buttonXProduct.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXProduct.AutoCheckOnClick = true;
-			this.buttonXProduct.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXProduct.Location = new System.Drawing.Point(12, 57);
-			this.buttonXProduct.Name = "buttonXProduct";
-			this.buttonXProduct.Size = new System.Drawing.Size(95, 27);
-			this.buttonXProduct.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXProduct.TabIndex = 40;
-			this.buttonXProduct.Text = "Product";
-			this.buttonXProduct.TextColor = System.Drawing.Color.Black;
-			this.buttonXProduct.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
-			// 
-			// buttonXGroup
-			// 
-			this.buttonXGroup.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXGroup.AutoCheckOnClick = true;
-			this.buttonXGroup.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXGroup.Location = new System.Drawing.Point(126, 8);
-			this.buttonXGroup.Name = "buttonXGroup";
-			this.buttonXGroup.Size = new System.Drawing.Size(95, 27);
-			this.buttonXGroup.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXGroup.TabIndex = 39;
-			this.buttonXGroup.Text = "Group";
-			this.buttonXGroup.TextColor = System.Drawing.Color.Black;
-			this.buttonXGroup.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
-			// 
-			// buttonXCategory
-			// 
-			this.buttonXCategory.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXCategory.AutoCheckOnClick = true;
-			this.buttonXCategory.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXCategory.Location = new System.Drawing.Point(12, 8);
-			this.buttonXCategory.Name = "buttonXCategory";
-			this.buttonXCategory.Size = new System.Drawing.Size(95, 27);
-			this.buttonXCategory.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXCategory.TabIndex = 38;
-			this.buttonXCategory.Text = "Category";
-			this.buttonXCategory.TextColor = System.Drawing.Color.Black;
-			this.buttonXCategory.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
 			// 
 			// pnData
 			// 
@@ -598,7 +617,7 @@
 			this.repositoryItemComboBoxGroup.AutoHeight = false;
 			this.repositoryItemComboBoxGroup.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "Clear Value", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "Clear Value", null, null, true)});
 			this.repositoryItemComboBoxGroup.Name = "repositoryItemComboBoxGroup";
 			this.repositoryItemComboBoxGroup.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemComboBox_Closed);
 			this.repositoryItemComboBoxGroup.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItem_ButtonClick);
@@ -628,7 +647,7 @@
 			this.repositoryItemComboBoxProduct.AutoHeight = false;
 			this.repositoryItemComboBoxProduct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "Clear Value", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "Clear Value", null, null, true)});
 			this.repositoryItemComboBoxProduct.Name = "repositoryItemComboBoxProduct";
 			this.repositoryItemComboBoxProduct.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItem_ButtonClick);
 			// 
@@ -856,24 +875,6 @@
 			this.laAdvertiser.TabIndex = 2;
 			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// pnButtons
-			// 
-			this.pnButtons.Controls.Add(this.buttonXCategory);
-			this.pnButtons.Controls.Add(this.buttonXInfo);
-			this.pnButtons.Controls.Add(this.buttonXGroup);
-			this.pnButtons.Controls.Add(this.buttonXCPM);
-			this.pnButtons.Controls.Add(this.buttonXProduct);
-			this.pnButtons.Controls.Add(this.buttonXScreenshot);
-			this.pnButtons.Controls.Add(this.buttonXImpressions);
-			this.pnButtons.Controls.Add(this.buttonXComments);
-			this.pnButtons.Controls.Add(this.buttonXInvestment);
-			this.pnButtons.Controls.Add(this.buttonXRate);
-			this.pnButtons.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnButtons.Location = new System.Drawing.Point(0, 0);
-			this.pnButtons.Name = "pnButtons";
-			this.pnButtons.Size = new System.Drawing.Size(230, 250);
-			this.pnButtons.TabIndex = 55;
-			// 
 			// WebPackageControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -885,6 +886,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
 			this.splitContainerControl.ResumeLayout(false);
+			this.pnButtons.ResumeLayout(false);
 			this.pnFormula.ResumeLayout(false);
 			this.pnFormula.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbFormula)).EndInit();
@@ -904,7 +906,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbDisabledOutput)).EndInit();
 			this.pnHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
-			this.pnButtons.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }

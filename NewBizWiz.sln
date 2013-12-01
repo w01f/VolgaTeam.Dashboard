@@ -76,6 +76,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBizWiz.MediaSchedule.Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBizWiz.MediaSchedule.Internal", "Schedules\MediaSchedule\MediaSchedule.Internal\NewBizWiz.MediaSchedule.Internal.csproj", "{5E0317D7-2267-4E06-9B5F-9DC258533B93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBizWiz.MediaSchedule.Single", "Schedules\MediaSchedule\MediaSchedule.Single\NewBizWiz.MediaSchedule.Single.csproj", "{B8FA28E9-7142-42D1-9C69-780B71D3940D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBizWiz.MediaSchedule.Single.TV", "Schedules\MediaSchedule\MediaSchedule.Single.TV\NewBizWiz.MediaSchedule.Single.TV.csproj", "{BA45BB8E-FC67-459D-94DF-67DC686C6CA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBizWiz.MediaSchedule.Single.Radio", "Schedules\MediaSchedule\MediaSchedule.Single.Radio\NewBizWiz.MediaSchedule.Single.Radio.csproj", "{CECD26CB-214E-4D4A-99EA-9E304D9AE439}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -346,6 +352,36 @@ Global
 		{5E0317D7-2267-4E06-9B5F-9DC258533B93}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5E0317D7-2267-4E06-9B5F-9DC258533B93}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5E0317D7-2267-4E06-9B5F-9DC258533B93}.Release|x86.ActiveCfg = Release|Any CPU
+		{B8FA28E9-7142-42D1-9C69-780B71D3940D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8FA28E9-7142-42D1-9C69-780B71D3940D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8FA28E9-7142-42D1-9C69-780B71D3940D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B8FA28E9-7142-42D1-9C69-780B71D3940D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B8FA28E9-7142-42D1-9C69-780B71D3940D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B8FA28E9-7142-42D1-9C69-780B71D3940D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8FA28E9-7142-42D1-9C69-780B71D3940D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8FA28E9-7142-42D1-9C69-780B71D3940D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B8FA28E9-7142-42D1-9C69-780B71D3940D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B8FA28E9-7142-42D1-9C69-780B71D3940D}.Release|x86.ActiveCfg = Release|Any CPU
+		{BA45BB8E-FC67-459D-94DF-67DC686C6CA0}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BA45BB8E-FC67-459D-94DF-67DC686C6CA0}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{BA45BB8E-FC67-459D-94DF-67DC686C6CA0}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{BA45BB8E-FC67-459D-94DF-67DC686C6CA0}.Debug|x86.ActiveCfg = Debug|x86
+		{BA45BB8E-FC67-459D-94DF-67DC686C6CA0}.Debug|x86.Build.0 = Debug|x86
+		{BA45BB8E-FC67-459D-94DF-67DC686C6CA0}.Release|Any CPU.ActiveCfg = Release|x86
+		{BA45BB8E-FC67-459D-94DF-67DC686C6CA0}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{BA45BB8E-FC67-459D-94DF-67DC686C6CA0}.Release|Mixed Platforms.Build.0 = Release|x86
+		{BA45BB8E-FC67-459D-94DF-67DC686C6CA0}.Release|x86.ActiveCfg = Release|x86
+		{BA45BB8E-FC67-459D-94DF-67DC686C6CA0}.Release|x86.Build.0 = Release|x86
+		{CECD26CB-214E-4D4A-99EA-9E304D9AE439}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{CECD26CB-214E-4D4A-99EA-9E304D9AE439}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{CECD26CB-214E-4D4A-99EA-9E304D9AE439}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{CECD26CB-214E-4D4A-99EA-9E304D9AE439}.Debug|x86.ActiveCfg = Debug|x86
+		{CECD26CB-214E-4D4A-99EA-9E304D9AE439}.Debug|x86.Build.0 = Debug|x86
+		{CECD26CB-214E-4D4A-99EA-9E304D9AE439}.Release|Any CPU.ActiveCfg = Release|x86
+		{CECD26CB-214E-4D4A-99EA-9E304D9AE439}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{CECD26CB-214E-4D4A-99EA-9E304D9AE439}.Release|Mixed Platforms.Build.0 = Release|x86
+		{CECD26CB-214E-4D4A-99EA-9E304D9AE439}.Release|x86.ActiveCfg = Release|x86
+		{CECD26CB-214E-4D4A-99EA-9E304D9AE439}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -380,5 +416,8 @@ Global
 		{35C8F2A0-BD3F-476F-A622-51531EAB91C2} = {7329E939-ADF0-4051-A9BC-788FD2508B01}
 		{F3572A95-E99D-485F-B4F3-EF26F49C094B} = {750C8519-982B-4662-BF54-2AC063E18575}
 		{5E0317D7-2267-4E06-9B5F-9DC258533B93} = {750C8519-982B-4662-BF54-2AC063E18575}
+		{B8FA28E9-7142-42D1-9C69-780B71D3940D} = {750C8519-982B-4662-BF54-2AC063E18575}
+		{BA45BB8E-FC67-459D-94DF-67DC686C6CA0} = {750C8519-982B-4662-BF54-2AC063E18575}
+		{CECD26CB-214E-4D4A-99EA-9E304D9AE439} = {750C8519-982B-4662-BF54-2AC063E18575}
 	EndGlobalSection
 EndGlobal

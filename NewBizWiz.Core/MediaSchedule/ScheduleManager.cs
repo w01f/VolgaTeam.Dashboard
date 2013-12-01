@@ -63,7 +63,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public ShortSchedule GetShortSchedule()
 		{
-			return new ShortSchedule(_currentSchedule.ScheduleFile);
+			return _currentSchedule != null ? new ShortSchedule(_currentSchedule.ScheduleFile) : null;
 		}
 
 		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)
@@ -601,7 +601,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			ShowCPP = false;
 			ShowGRP = false;
 			ShowSpots = true;
-			ShowEmptySpots = true;
+			ShowEmptySpots = false;
 			ShowCost = true;
 
 			ShowTotalPeriods = true;

@@ -25,5 +25,17 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			get { return Controller.Instance.MonthlyScheduleTheme; }
 		}
+		public override ButtonItem PowerPointButton
+		{
+			get { return Controller.Instance.MonthlySchedulePowerPoint; }
+		}
+		public override ButtonItem EmailButton
+		{
+			get { return Controller.Instance.MonthlyScheduleEmail; }
+		}
+		public override ButtonItem PreviewButton
+		{
+			get { return Controller.Instance.MonthlySchedulePreview; }
+		}
 	}
 }

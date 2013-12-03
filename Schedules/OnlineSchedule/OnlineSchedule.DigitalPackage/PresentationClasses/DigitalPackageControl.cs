@@ -101,16 +101,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 			AllowApplyValues = true;
 
 			scheduleListControl.LoadSavedSchedules(LocalSchedule);
-			UpdateOutputStatus(PackageRecords.Any());
 			base.LoadSchedule(quickLoad);
-		}
-
-		private void UpdateOutputStatus(bool enabled)
-		{
-			Preview.Enabled = enabled;
-			Email.Enabled = enabled;
-			PowerPoint.Enabled = enabled;
-			Theme.Enabled = enabled;
 		}
 
 		private void UpdateLastModifiedDate(BusinessClasses.Schedule schedule)
@@ -170,7 +161,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 			GridControl.DataSource = PackageRecords;
 			GridView.RefreshData();
 			SettingsNotSaved = true;
-			UpdateOutputStatus(PackageRecords.Any());
+			UpdateOutputState();
 		}
 
 		public void Delete_Click(object sender, EventArgs e)
@@ -182,7 +173,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 			GridView.DeleteSelectedRows();
 			LocalSchedule.RebuildDigitalProductIndexes();
 			SettingsNotSaved = true;
-			UpdateOutputStatus(PackageRecords.Any());
+			UpdateOutputState();
 		}
 
 		private void comboBoxEditAdvertiser_EditValueChanged(object sender, EventArgs e)

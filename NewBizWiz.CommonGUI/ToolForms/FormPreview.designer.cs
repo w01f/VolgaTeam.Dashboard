@@ -78,7 +78,7 @@
             this.barLargeButtonItemOutput,
             this.barLargeButtonItemHelp,
             this.barLargeButtonItemExit});
-			this.barManager.MaxItemId = 15;
+			this.barManager.MaxItemId = 16;
 			// 
 			// barOperations
 			// 
@@ -90,7 +90,7 @@
 			this.barOperations.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barLargeButtonItemOutput, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barLargeButtonItemHelp, DevExpress.XtraBars.BarItemPaintStyle.Standard),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barLargeButtonItemExit, DevExpress.XtraBars.BarItemPaintStyle.Standard)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemExit)});
 			this.barOperations.OptionsBar.AllowQuickCustomization = false;
 			this.barOperations.OptionsBar.DisableClose = true;
 			this.barOperations.OptionsBar.DisableCustomization = true;
@@ -134,13 +134,13 @@
 			// barLargeButtonItemExit
 			// 
 			this.barLargeButtonItemExit.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-			this.barLargeButtonItemExit.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
+			this.barLargeButtonItemExit.Caption = "Exit";
 			this.barLargeButtonItemExit.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.Exit;
-			this.barLargeButtonItemExit.Id = 7;
+			this.barLargeButtonItemExit.Id = 15;
 			this.barLargeButtonItemExit.Name = "barLargeButtonItemExit";
 			toolTipTitleItem3.Text = "EXIT";
 			toolTipItem3.LeftIndent = 6;
-			toolTipItem3.Text = "Close this window and return to your AdSchedule";
+			toolTipItem3.Text = "Close this Window ";
 			superToolTip3.Items.Add(toolTipTitleItem3);
 			superToolTip3.Items.Add(toolTipItem3);
 			this.barLargeButtonItemExit.SuperTip = superToolTip3;
@@ -278,13 +278,13 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemOutput;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemHelp;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemExit;
+		private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemHelp;
         private System.Windows.Forms.Panel pnNavigationArea;
         private System.Windows.Forms.Label laSlideSize;
         private System.Windows.Forms.Label laSlideNumber;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSlides;
         private System.Windows.Forms.PictureBox pictureBoxPreview;
+		private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemExit;
 
     }
 }

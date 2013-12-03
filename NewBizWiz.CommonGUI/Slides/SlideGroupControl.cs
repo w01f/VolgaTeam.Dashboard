@@ -70,5 +70,10 @@ namespace NewBizWiz.CommonGUI.Slides
 			if (SlideChanged != null)
 				SlideChanged(this, new SlideMasterEventArgs { SelectedSlide = SelectedSlide });
 		}
+
+		private void gridControlSlides_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+		{
+			gridControlSlides.MainView.Focus();
+		}
 	}
 }

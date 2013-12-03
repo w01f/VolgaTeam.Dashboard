@@ -114,7 +114,7 @@ namespace NewBizWiz.Core.Common
 			var newBitmap = new Bitmap(original.Width, original.Height);
 
 			//get a graphics object from the new image
-			Graphics g = Graphics.FromImage(newBitmap);
+			var g = Graphics.FromImage(newBitmap);
 
 			//create the grayscale ColorMatrix
 			var colorMatrix = new ColorMatrix(

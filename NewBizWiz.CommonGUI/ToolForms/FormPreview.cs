@@ -30,7 +30,6 @@ namespace NewBizWiz.CommonGUI.ToolForms
 		#region Form GUI Event Habdlers
 		private void FormQuickView_Shown(object sender, EventArgs e)
 		{
-			barOperations.ItemLinks[2].Visible = _powerPointHelper.Is2003;
 			if (!string.IsNullOrEmpty(PresentationFile))
 			{
 				laSlideSize.Text = string.Format("{0} {1} x {2}", new object[] { SettingsManager.Instance.Orientation, SettingsManager.Instance.SizeWidth.ToString("#.##"), SettingsManager.Instance.SizeHeght.ToString("#.##") });

@@ -154,7 +154,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>rem "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe" sign /f d:\temp\NewBizWiz\NLDCertificate.pfx /t http://timestamp.verisign.com/scripts/timstamp.dll  /p bubbadude PowerPointLoader.exe</PostBuildEvent>
+    <PostBuildEvent>copy “$(ProjectDir)bin\Release\*.dll” “d:\WorkingFiles\NewBizWiz\NewBizWiz.exe” /Y
+copy “$(ProjectDir)bin\Release\PowerPointLoader.exe” “d:\WorkingFiles\NewBizWiz\NewBizWiz.exe” /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

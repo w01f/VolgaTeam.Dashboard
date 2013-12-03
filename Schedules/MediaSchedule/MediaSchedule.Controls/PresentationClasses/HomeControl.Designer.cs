@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.stationsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.StationsControl();
 			this.pbMonthlySchedule = new System.Windows.Forms.PictureBox();
 			this.pbWeeklySchedule = new System.Windows.Forms.PictureBox();
@@ -39,6 +39,7 @@
 			this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageTV = new DevExpress.XtraTab.XtraTabPage();
 			this.pnTV = new System.Windows.Forms.Panel();
+			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
 			this.gridControlDigitalProducts = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridViewDigitalProducts = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
@@ -79,13 +80,21 @@
 			this.xtraTabPageDayparts = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageDemos = new DevExpress.XtraTab.XtraTabPage();
 			this.pnDemos = new System.Windows.Forms.Panel();
-			this.buttonXDemosImps = new DevComponents.DotNetBar.ButtonX();
+			this.pnDemosInfo = new System.Windows.Forms.Panel();
+			this.laDemosInfo = new System.Windows.Forms.Label();
+			this.pnSelectDemo = new System.Windows.Forms.Panel();
 			this.comboBoxEditDemos = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.buttonXDemosRtg = new DevComponents.DotNetBar.ButtonX();
+			this.pnSelectSource = new System.Windows.Forms.Panel();
 			this.comboBoxEditSource = new DevExpress.XtraEditors.ComboBoxEdit();
+			this.pnDemosType = new System.Windows.Forms.Panel();
+			this.buttonXDemosRtg = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXDemosImps = new DevComponents.DotNetBar.ButtonX();
+			this.pnDemosImport = new System.Windows.Forms.Panel();
 			this.buttonXDemosImport = new DevComponents.DotNetBar.ButtonX();
+			this.pnDemosCustom = new System.Windows.Forms.Panel();
 			this.buttonXDemosCustom = new DevComponents.DotNetBar.ButtonX();
+			this.pnUseDemos = new System.Windows.Forms.Panel();
 			this.buttonXUseDemos = new DevComponents.DotNetBar.ButtonX();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.pnTop = new System.Windows.Forms.Panel();
@@ -96,6 +105,7 @@
 			this.xtraTabControlMain.SuspendLayout();
 			this.xtraTabPageTV.SuspendLayout();
 			this.pnTV.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
 			this.xtraTabPageDigital.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlDigitalProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewDigitalProducts)).BeginInit();
@@ -115,9 +125,16 @@
 			this.xtraTabPageDayparts.SuspendLayout();
 			this.xtraTabPageDemos.SuspendLayout();
 			this.pnDemos.SuspendLayout();
+			this.pnDemosInfo.SuspendLayout();
+			this.pnSelectDemo.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDemos.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
+			this.pnSelectSource.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSource.Properties)).BeginInit();
+			this.pnDemosType.SuspendLayout();
+			this.pnDemosImport.SuspendLayout();
+			this.pnDemosCustom.SuspendLayout();
+			this.pnUseDemos.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
 			this.splitContainerControl.SuspendLayout();
 			this.pnTop.SuspendLayout();
@@ -132,15 +149,15 @@
 			this.stationsControl.Location = new System.Drawing.Point(0, 0);
 			this.stationsControl.Name = "stationsControl";
 			this.stationsControl.Padding = new System.Windows.Forms.Padding(3);
-			this.stationsControl.Size = new System.Drawing.Size(344, 594);
+			this.stationsControl.Size = new System.Drawing.Size(344, 491);
 			this.stationsControl.TabIndex = 0;
 			// 
 			// pbMonthlySchedule
 			// 
-			this.pbMonthlySchedule.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.TVMonthlyScheduleButton;
-			this.pbMonthlySchedule.Location = new System.Drawing.Point(27, 310);
+			this.pbMonthlySchedule.Image = ((System.Drawing.Image)(resources.GetObject("pbMonthlySchedule.Image")));
+			this.pbMonthlySchedule.Location = new System.Drawing.Point(27, 316);
 			this.pbMonthlySchedule.Name = "pbMonthlySchedule";
-			this.pbMonthlySchedule.Size = new System.Drawing.Size(595, 156);
+			this.pbMonthlySchedule.Size = new System.Drawing.Size(595, 96);
 			this.pbMonthlySchedule.TabIndex = 16;
 			this.pbMonthlySchedule.TabStop = false;
 			this.pbMonthlySchedule.Click += new System.EventHandler(this.pbMonthlySchedule_Click);
@@ -149,10 +166,10 @@
 			// 
 			// pbWeeklySchedule
 			// 
-			this.pbWeeklySchedule.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.TVWeeklyScheduleButton;
-			this.pbWeeklySchedule.Location = new System.Drawing.Point(27, 56);
+			this.pbWeeklySchedule.Image = ((System.Drawing.Image)(resources.GetObject("pbWeeklySchedule.Image")));
+			this.pbWeeklySchedule.Location = new System.Drawing.Point(27, 150);
 			this.pbWeeklySchedule.Name = "pbWeeklySchedule";
-			this.pbWeeklySchedule.Size = new System.Drawing.Size(595, 156);
+			this.pbWeeklySchedule.Size = new System.Drawing.Size(595, 96);
 			this.pbWeeklySchedule.TabIndex = 15;
 			this.pbWeeklySchedule.TabStop = false;
 			this.pbWeeklySchedule.Click += new System.EventHandler(this.pbWeeklySchedule_Click);
@@ -182,7 +199,7 @@
 			this.xtraTabControlMain.Location = new System.Drawing.Point(0, 42);
 			this.xtraTabControlMain.Name = "xtraTabControlMain";
 			this.xtraTabControlMain.SelectedTabPage = this.xtraTabPageTV;
-			this.xtraTabControlMain.Size = new System.Drawing.Size(664, 624);
+			this.xtraTabControlMain.Size = new System.Drawing.Size(664, 521);
 			this.xtraTabControlMain.TabIndex = 18;
 			this.xtraTabControlMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageTV,
@@ -195,26 +212,36 @@
 			this.xtraTabPageTV.Appearance.PageClient.Options.UseBackColor = true;
 			this.xtraTabPageTV.Controls.Add(this.pnTV);
 			this.xtraTabPageTV.Name = "xtraTabPageTV";
-			this.xtraTabPageTV.Size = new System.Drawing.Size(658, 594);
+			this.xtraTabPageTV.Size = new System.Drawing.Size(658, 491);
 			this.xtraTabPageTV.Text = "Television Strategy";
 			// 
 			// pnTV
 			// 
 			this.pnTV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnTV.Controls.Add(this.pbLogo);
 			this.pnTV.Controls.Add(this.pbMonthlySchedule);
 			this.pnTV.Controls.Add(this.pbWeeklySchedule);
 			this.pnTV.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnTV.Location = new System.Drawing.Point(0, 0);
 			this.pnTV.Name = "pnTV";
-			this.pnTV.Size = new System.Drawing.Size(658, 594);
+			this.pnTV.Size = new System.Drawing.Size(658, 491);
 			this.pnTV.TabIndex = 0;
+			// 
+			// pbLogo
+			// 
+			this.pbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbLogo.Image")));
+			this.pbLogo.Location = new System.Drawing.Point(27, 44);
+			this.pbLogo.Name = "pbLogo";
+			this.pbLogo.Size = new System.Drawing.Size(595, 46);
+			this.pbLogo.TabIndex = 17;
+			this.pbLogo.TabStop = false;
 			// 
 			// xtraTabPageDigital
 			// 
 			this.xtraTabPageDigital.Controls.Add(this.gridControlDigitalProducts);
 			this.xtraTabPageDigital.Controls.Add(this.pnDigitalProductBottomBar);
 			this.xtraTabPageDigital.Name = "xtraTabPageDigital";
-			this.xtraTabPageDigital.Size = new System.Drawing.Size(658, 594);
+			this.xtraTabPageDigital.Size = new System.Drawing.Size(658, 491);
 			this.xtraTabPageDigital.Text = "Digital Strategy";
 			// 
 			// gridControlDigitalProducts
@@ -231,7 +258,7 @@
             this.repositoryItemSpinEditDigitalProductsSize,
             this.repositoryItemButtonEditDigitalProductsDelete,
             this.repositoryItemSpinEditDigitalProductsRate});
-			this.gridControlDigitalProducts.Size = new System.Drawing.Size(658, 556);
+			this.gridControlDigitalProducts.Size = new System.Drawing.Size(658, 453);
 			this.gridControlDigitalProducts.TabIndex = 3;
 			this.gridControlDigitalProducts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridViewDigitalProducts});
@@ -342,8 +369,8 @@
 			this.repositoryItemButtonEditDigitalProducts.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemButtonEditDigitalProducts.AutoHeight = false;
 			this.repositoryItemButtonEditDigitalProducts.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProducts.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "Nudge Up", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProducts.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "Nudge Down", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProducts.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "Nudge Up", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProducts.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "Nudge Down", null, null, true)});
 			this.repositoryItemButtonEditDigitalProducts.Name = "repositoryItemButtonEditDigitalProducts";
 			this.repositoryItemButtonEditDigitalProducts.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.repositoryItemButtonEditDigitalProducts.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditDigitalProducts_ButtonClick);
@@ -634,7 +661,7 @@
 			// 
 			this.repositoryItemButtonEditDigitalProductsDelete.AutoHeight = false;
 			this.repositoryItemButtonEditDigitalProductsDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProductsDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "Delete this line", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProductsDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "Delete this line", null, null, true)});
 			this.repositoryItemButtonEditDigitalProductsDelete.Name = "repositoryItemButtonEditDigitalProductsDelete";
 			this.repositoryItemButtonEditDigitalProductsDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
 			this.repositoryItemButtonEditDigitalProductsDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditDigitalProductsDelete_ButtonClick);
@@ -646,7 +673,7 @@
 			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXDigitalProductDimensions);
 			this.pnDigitalProductBottomBar.Controls.Add(this.laDigitalProductBottomBarTitle);
 			this.pnDigitalProductBottomBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnDigitalProductBottomBar.Location = new System.Drawing.Point(0, 556);
+			this.pnDigitalProductBottomBar.Location = new System.Drawing.Point(0, 453);
 			this.pnDigitalProductBottomBar.Name = "pnDigitalProductBottomBar";
 			this.pnDigitalProductBottomBar.Size = new System.Drawing.Size(658, 38);
 			this.pnDigitalProductBottomBar.TabIndex = 4;
@@ -701,7 +728,7 @@
 			this.daypartsControl.Location = new System.Drawing.Point(0, 0);
 			this.daypartsControl.Name = "daypartsControl";
 			this.daypartsControl.Padding = new System.Windows.Forms.Padding(3);
-			this.daypartsControl.Size = new System.Drawing.Size(344, 594);
+			this.daypartsControl.Size = new System.Drawing.Size(344, 491);
 			this.daypartsControl.TabIndex = 17;
 			// 
 			// pnRightTop
@@ -729,7 +756,7 @@
 			// pbOptionsHelp
 			// 
 			this.pbOptionsHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbOptionsHelp.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.HelpSmall;
+			this.pbOptionsHelp.Image = ((System.Drawing.Image)(resources.GetObject("pbOptionsHelp.Image")));
 			this.pbOptionsHelp.Location = new System.Drawing.Point(311, 3);
 			this.pbOptionsHelp.Name = "pbOptionsHelp";
 			this.pbOptionsHelp.Size = new System.Drawing.Size(32, 32);
@@ -759,7 +786,7 @@
 			this.xtraTabControlOptions.Location = new System.Drawing.Point(0, 42);
 			this.xtraTabControlOptions.Name = "xtraTabControlOptions";
 			this.xtraTabControlOptions.SelectedTabPage = this.xtraTabPageStations;
-			this.xtraTabControlOptions.Size = new System.Drawing.Size(350, 624);
+			this.xtraTabControlOptions.Size = new System.Drawing.Size(350, 521);
 			this.xtraTabControlOptions.TabIndex = 1;
 			this.xtraTabControlOptions.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageStations,
@@ -770,61 +797,76 @@
 			// 
 			this.xtraTabPageStations.Controls.Add(this.stationsControl);
 			this.xtraTabPageStations.Name = "xtraTabPageStations";
-			this.xtraTabPageStations.Size = new System.Drawing.Size(344, 594);
+			this.xtraTabPageStations.Size = new System.Drawing.Size(344, 491);
 			this.xtraTabPageStations.Text = "Stations";
 			// 
 			// xtraTabPageDayparts
 			// 
 			this.xtraTabPageDayparts.Controls.Add(this.daypartsControl);
 			this.xtraTabPageDayparts.Name = "xtraTabPageDayparts";
-			this.xtraTabPageDayparts.Size = new System.Drawing.Size(344, 594);
+			this.xtraTabPageDayparts.Size = new System.Drawing.Size(344, 491);
 			this.xtraTabPageDayparts.Text = "Dayparts";
 			// 
 			// xtraTabPageDemos
 			// 
 			this.xtraTabPageDemos.Controls.Add(this.pnDemos);
 			this.xtraTabPageDemos.Name = "xtraTabPageDemos";
-			this.xtraTabPageDemos.Size = new System.Drawing.Size(344, 594);
+			this.xtraTabPageDemos.Size = new System.Drawing.Size(344, 491);
 			this.xtraTabPageDemos.Text = "Demos";
 			// 
 			// pnDemos
 			// 
 			this.pnDemos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnDemos.Controls.Add(this.buttonXDemosImps);
-			this.pnDemos.Controls.Add(this.comboBoxEditDemos);
-			this.pnDemos.Controls.Add(this.buttonXDemosRtg);
-			this.pnDemos.Controls.Add(this.comboBoxEditSource);
-			this.pnDemos.Controls.Add(this.buttonXDemosImport);
-			this.pnDemos.Controls.Add(this.buttonXDemosCustom);
-			this.pnDemos.Controls.Add(this.buttonXUseDemos);
+			this.pnDemos.Controls.Add(this.pnDemosInfo);
+			this.pnDemos.Controls.Add(this.pnSelectDemo);
+			this.pnDemos.Controls.Add(this.pnSelectSource);
+			this.pnDemos.Controls.Add(this.pnDemosType);
+			this.pnDemos.Controls.Add(this.pnDemosImport);
+			this.pnDemos.Controls.Add(this.pnDemosCustom);
+			this.pnDemos.Controls.Add(this.pnUseDemos);
 			this.pnDemos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnDemos.Location = new System.Drawing.Point(0, 0);
 			this.pnDemos.Name = "pnDemos";
-			this.pnDemos.Size = new System.Drawing.Size(344, 594);
+			this.pnDemos.Size = new System.Drawing.Size(344, 491);
 			this.pnDemos.TabIndex = 0;
 			// 
-			// buttonXDemosImps
+			// pnDemosInfo
 			// 
-			this.buttonXDemosImps.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXDemosImps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXDemosImps.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDemosImps.Enabled = false;
-			this.buttonXDemosImps.Location = new System.Drawing.Point(189, 215);
-			this.buttonXDemosImps.Name = "buttonXDemosImps";
-			this.buttonXDemosImps.Size = new System.Drawing.Size(143, 45);
-			this.buttonXDemosImps.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXDemosImps.TabIndex = 2;
-			this.buttonXDemosImps.Text = "000s";
-			this.buttonXDemosImps.TextColor = System.Drawing.Color.Black;
-			this.buttonXDemosImps.CheckedChanged += new System.EventHandler(this.buttonXDemosType_CheckedChanged);
-			this.buttonXDemosImps.Click += new System.EventHandler(this.buttonXDemosType_Click);
+			this.pnDemosInfo.Controls.Add(this.laDemosInfo);
+			this.pnDemosInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnDemosInfo.Location = new System.Drawing.Point(0, 365);
+			this.pnDemosInfo.Name = "pnDemosInfo";
+			this.pnDemosInfo.Size = new System.Drawing.Size(344, 126);
+			this.pnDemosInfo.TabIndex = 12;
+			this.pnDemosInfo.Visible = false;
+			// 
+			// laDemosInfo
+			// 
+			this.laDemosInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.laDemosInfo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laDemosInfo.Location = new System.Drawing.Point(10, 12);
+			this.laDemosInfo.Name = "laDemosInfo";
+			this.laDemosInfo.Size = new System.Drawing.Size(322, 102);
+			this.laDemosInfo.TabIndex = 0;
+			this.laDemosInfo.Text = resources.GetString("laDemosInfo.Text");
+			// 
+			// pnSelectDemo
+			// 
+			this.pnSelectDemo.Controls.Add(this.comboBoxEditDemos);
+			this.pnSelectDemo.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnSelectDemo.Location = new System.Drawing.Point(0, 330);
+			this.pnSelectDemo.Name = "pnSelectDemo";
+			this.pnSelectDemo.Size = new System.Drawing.Size(344, 35);
+			this.pnSelectDemo.TabIndex = 11;
 			// 
 			// comboBoxEditDemos
 			// 
 			this.comboBoxEditDemos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.comboBoxEditDemos.Enabled = false;
-			this.comboBoxEditDemos.Location = new System.Drawing.Point(13, 344);
+			this.comboBoxEditDemos.Location = new System.Drawing.Point(13, 6);
 			this.comboBoxEditDemos.Name = "comboBoxEditDemos";
 			this.comboBoxEditDemos.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -850,27 +892,21 @@
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// buttonXDemosRtg
+			// pnSelectSource
 			// 
-			this.buttonXDemosRtg.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXDemosRtg.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDemosRtg.Enabled = false;
-			this.buttonXDemosRtg.Location = new System.Drawing.Point(13, 215);
-			this.buttonXDemosRtg.Name = "buttonXDemosRtg";
-			this.buttonXDemosRtg.Size = new System.Drawing.Size(143, 45);
-			this.buttonXDemosRtg.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXDemosRtg.TabIndex = 1;
-			this.buttonXDemosRtg.Text = "Ratings";
-			this.buttonXDemosRtg.TextColor = System.Drawing.Color.Black;
-			this.buttonXDemosRtg.CheckedChanged += new System.EventHandler(this.buttonXDemosType_CheckedChanged);
-			this.buttonXDemosRtg.Click += new System.EventHandler(this.buttonXDemosType_Click);
+			this.pnSelectSource.Controls.Add(this.comboBoxEditSource);
+			this.pnSelectSource.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnSelectSource.Location = new System.Drawing.Point(0, 295);
+			this.pnSelectSource.Name = "pnSelectSource";
+			this.pnSelectSource.Size = new System.Drawing.Size(344, 35);
+			this.pnSelectSource.TabIndex = 10;
 			// 
 			// comboBoxEditSource
 			// 
 			this.comboBoxEditSource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.comboBoxEditSource.Enabled = false;
-			this.comboBoxEditSource.Location = new System.Drawing.Point(13, 307);
+			this.comboBoxEditSource.Location = new System.Drawing.Point(13, 6);
 			this.comboBoxEditSource.Name = "comboBoxEditSource";
 			this.comboBoxEditSource.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -881,6 +917,56 @@
 			this.comboBoxEditSource.TabIndex = 5;
 			this.comboBoxEditSource.EditValueChanged += new System.EventHandler(this.comboBoxEditSource_EditValueChanged);
 			// 
+			// pnDemosType
+			// 
+			this.pnDemosType.Controls.Add(this.buttonXDemosRtg);
+			this.pnDemosType.Controls.Add(this.buttonXDemosImps);
+			this.pnDemosType.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnDemosType.Location = new System.Drawing.Point(0, 210);
+			this.pnDemosType.Name = "pnDemosType";
+			this.pnDemosType.Size = new System.Drawing.Size(344, 85);
+			this.pnDemosType.TabIndex = 9;
+			// 
+			// buttonXDemosRtg
+			// 
+			this.buttonXDemosRtg.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXDemosRtg.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXDemosRtg.Enabled = false;
+			this.buttonXDemosRtg.Location = new System.Drawing.Point(13, 13);
+			this.buttonXDemosRtg.Name = "buttonXDemosRtg";
+			this.buttonXDemosRtg.Size = new System.Drawing.Size(143, 45);
+			this.buttonXDemosRtg.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXDemosRtg.TabIndex = 1;
+			this.buttonXDemosRtg.Text = "Ratings";
+			this.buttonXDemosRtg.TextColor = System.Drawing.Color.Black;
+			this.buttonXDemosRtg.CheckedChanged += new System.EventHandler(this.buttonXDemosType_CheckedChanged);
+			this.buttonXDemosRtg.Click += new System.EventHandler(this.buttonXDemosType_Click);
+			// 
+			// buttonXDemosImps
+			// 
+			this.buttonXDemosImps.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXDemosImps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXDemosImps.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXDemosImps.Enabled = false;
+			this.buttonXDemosImps.Location = new System.Drawing.Point(189, 13);
+			this.buttonXDemosImps.Name = "buttonXDemosImps";
+			this.buttonXDemosImps.Size = new System.Drawing.Size(143, 45);
+			this.buttonXDemosImps.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXDemosImps.TabIndex = 2;
+			this.buttonXDemosImps.Text = "000s";
+			this.buttonXDemosImps.TextColor = System.Drawing.Color.Black;
+			this.buttonXDemosImps.CheckedChanged += new System.EventHandler(this.buttonXDemosType_CheckedChanged);
+			this.buttonXDemosImps.Click += new System.EventHandler(this.buttonXDemosType_Click);
+			// 
+			// pnDemosImport
+			// 
+			this.pnDemosImport.Controls.Add(this.buttonXDemosImport);
+			this.pnDemosImport.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnDemosImport.Location = new System.Drawing.Point(0, 140);
+			this.pnDemosImport.Name = "pnDemosImport";
+			this.pnDemosImport.Size = new System.Drawing.Size(344, 70);
+			this.pnDemosImport.TabIndex = 8;
+			// 
 			// buttonXDemosImport
 			// 
 			this.buttonXDemosImport.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -888,7 +974,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDemosImport.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDemosImport.Enabled = false;
-			this.buttonXDemosImport.Location = new System.Drawing.Point(13, 147);
+			this.buttonXDemosImport.Location = new System.Drawing.Point(13, 13);
 			this.buttonXDemosImport.Name = "buttonXDemosImport";
 			this.buttonXDemosImport.Size = new System.Drawing.Size(319, 45);
 			this.buttonXDemosImport.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -898,6 +984,15 @@
 			this.buttonXDemosImport.CheckedChanged += new System.EventHandler(this.buttonXDemos_CheckedChanged);
 			this.buttonXDemosImport.Click += new System.EventHandler(this.buttonXDemos_Click);
 			// 
+			// pnDemosCustom
+			// 
+			this.pnDemosCustom.Controls.Add(this.buttonXDemosCustom);
+			this.pnDemosCustom.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnDemosCustom.Location = new System.Drawing.Point(0, 70);
+			this.pnDemosCustom.Name = "pnDemosCustom";
+			this.pnDemosCustom.Size = new System.Drawing.Size(344, 70);
+			this.pnDemosCustom.TabIndex = 7;
+			// 
 			// buttonXDemosCustom
 			// 
 			this.buttonXDemosCustom.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -905,7 +1000,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDemosCustom.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDemosCustom.Enabled = false;
-			this.buttonXDemosCustom.Location = new System.Drawing.Point(13, 79);
+			this.buttonXDemosCustom.Location = new System.Drawing.Point(13, 13);
 			this.buttonXDemosCustom.Name = "buttonXDemosCustom";
 			this.buttonXDemosCustom.Size = new System.Drawing.Size(319, 45);
 			this.buttonXDemosCustom.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -915,6 +1010,15 @@
 			this.buttonXDemosCustom.CheckedChanged += new System.EventHandler(this.buttonXDemos_CheckedChanged);
 			this.buttonXDemosCustom.Click += new System.EventHandler(this.buttonXDemos_Click);
 			// 
+			// pnUseDemos
+			// 
+			this.pnUseDemos.Controls.Add(this.buttonXUseDemos);
+			this.pnUseDemos.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnUseDemos.Location = new System.Drawing.Point(0, 0);
+			this.pnUseDemos.Name = "pnUseDemos";
+			this.pnUseDemos.Size = new System.Drawing.Size(344, 70);
+			this.pnUseDemos.TabIndex = 6;
+			// 
 			// buttonXUseDemos
 			// 
 			this.buttonXUseDemos.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -922,7 +1026,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXUseDemos.AutoCheckOnClick = true;
 			this.buttonXUseDemos.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXUseDemos.Location = new System.Drawing.Point(13, 12);
+			this.buttonXUseDemos.Location = new System.Drawing.Point(13, 13);
 			this.buttonXUseDemos.Name = "buttonXUseDemos";
 			this.buttonXUseDemos.Size = new System.Drawing.Size(319, 45);
 			this.buttonXUseDemos.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -944,7 +1048,7 @@
 			this.splitContainerControl.Panel2.Controls.Add(this.pnRightTop);
 			this.splitContainerControl.Panel2.MinSize = 350;
 			this.splitContainerControl.Panel2.Text = "Panel2";
-			this.splitContainerControl.Size = new System.Drawing.Size(1020, 666);
+			this.splitContainerControl.Size = new System.Drawing.Size(1020, 563);
 			this.splitContainerControl.SplitterPosition = 350;
 			this.splitContainerControl.TabIndex = 19;
 			this.splitContainerControl.Text = "splitContainerControl1";
@@ -978,13 +1082,14 @@
 			this.Controls.Add(this.splitContainerControl);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "HomeControl";
-			this.Size = new System.Drawing.Size(1020, 666);
+			this.Size = new System.Drawing.Size(1020, 563);
 			((System.ComponentModel.ISupportInitialize)(this.pbMonthlySchedule)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbWeeklySchedule)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).EndInit();
 			this.xtraTabControlMain.ResumeLayout(false);
 			this.xtraTabPageTV.ResumeLayout(false);
 			this.pnTV.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			this.xtraTabPageDigital.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlDigitalProducts)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewDigitalProducts)).EndInit();
@@ -1005,9 +1110,16 @@
 			this.xtraTabPageDayparts.ResumeLayout(false);
 			this.xtraTabPageDemos.ResumeLayout(false);
 			this.pnDemos.ResumeLayout(false);
+			this.pnDemosInfo.ResumeLayout(false);
+			this.pnSelectDemo.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDemos.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
+			this.pnSelectSource.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSource.Properties)).EndInit();
+			this.pnDemosType.ResumeLayout(false);
+			this.pnDemosImport.ResumeLayout(false);
+			this.pnDemosCustom.ResumeLayout(false);
+			this.pnUseDemos.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
 			this.splitContainerControl.ResumeLayout(false);
 			this.pnTop.ResumeLayout(false);
@@ -1076,6 +1188,15 @@
 		private DevComponents.DotNetBar.ButtonX buttonXDigitalProductStrategy;
 		private DevComponents.DotNetBar.ButtonX buttonXDigitalProductDimensions;
 		private System.Windows.Forms.Label laDigitalProductBottomBarTitle;
+		private System.Windows.Forms.PictureBox pbLogo;
+		private System.Windows.Forms.Panel pnDemosImport;
+		private System.Windows.Forms.Panel pnDemosCustom;
+		private System.Windows.Forms.Panel pnUseDemos;
+		private System.Windows.Forms.Panel pnDemosType;
+		private System.Windows.Forms.Panel pnSelectDemo;
+		private System.Windows.Forms.Panel pnSelectSource;
+		private System.Windows.Forms.Panel pnDemosInfo;
+		private System.Windows.Forms.Label laDemosInfo;
 
     }
 }

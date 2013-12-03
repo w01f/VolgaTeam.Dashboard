@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessClasses\BusinessWrapper.cs" />
+    <Compile Include="BusinessClasses\OutputGridModel.cs" />
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="InteropClasses\OneSheetHelper.cs" />
@@ -170,30 +171,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\RadioWeeklyScheduleButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RadioMonthlyScheduleButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RadioMonthlyScheduleButtonGray.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TVMonthlyScheduleButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TVMonthlyScheduleButtonGray.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RadioWeeklyScheduleButtonGray.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TVWeeklyScheduleButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TVWeeklyScheduleButtonGray.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\NewSchedule.png" />
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +269,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\OpenScheduleRibbon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WeeklySchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MonthlySchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

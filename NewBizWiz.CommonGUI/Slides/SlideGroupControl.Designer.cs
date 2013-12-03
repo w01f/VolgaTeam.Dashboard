@@ -56,6 +56,7 @@
 			this.gridControlSlides.TabIndex = 0;
 			this.gridControlSlides.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.layoutViewSlides});
+			this.gridControlSlides.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gridControlSlides_MouseMove);
 			// 
 			// layoutViewSlides
 			// 

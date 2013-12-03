@@ -12,7 +12,6 @@ using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.Properties;
 using NewBizWiz.MediaSchedule.Controls.ToolForms;
 using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
 using Schedule = NewBizWiz.Core.MediaSchedule.Schedule;
@@ -60,17 +59,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 								   Controller.Instance.HomeFlightDatesStart.EditValue != null &
 								   Controller.Instance.HomeFlightDatesEnd.EditValue != null;
 			Controller.Instance.UpdateScheduleTabs(enableSchedules);
-			switch (MediaMetaData.Instance.DataType)
-			{
-				case MediaDataType.TV:
-					pbWeeklySchedule.Image = enableSchedules ? Resources.TVWeeklyScheduleButton : Resources.TVWeeklyScheduleButtonGray;
-					pbMonthlySchedule.Image = enableSchedules ? Resources.TVMonthlyScheduleButton : Resources.TVMonthlyScheduleButtonGray;
-					break;
-				case MediaDataType.Radio:
-					pbWeeklySchedule.Image = enableSchedules ? Resources.RadioWeeklyScheduleButton : Resources.RadioWeeklyScheduleButtonGray;
-					pbMonthlySchedule.Image = enableSchedules ? Resources.RadioMonthlyScheduleButton : Resources.RadioMonthlyScheduleButtonGray;
-					break;
-			}
 			pbWeeklySchedule.Enabled = enableSchedules;
 			pbMonthlySchedule.Enabled = enableSchedules;
 		}
@@ -125,8 +113,19 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				Controller.Instance.HomeFlightDatesStart.EditValue = _localSchedule.FlightDateStart;
 				Controller.Instance.HomeFlightDatesEnd.EditValue = _localSchedule.FlightDateEnd;
 
+				var importedDemos = MediaMetaData.Instance.ListManager.SourcePrograms.SelectMany(sp => sp.Demos);
+				if (!importedDemos.Any())
+				{
+					buttonXUseDemos.Text = "Show Demo Estimates";
+					pnDemosCustom.Visible = false;
+					pnDemosImport.Visible = false;
+					pnSelectSource.Visible = false;
+					pnDemosInfo.Visible = true;
+				}
+
 				comboBoxEditSource.Properties.Items.Clear();
 				comboBoxEditSource.Properties.Items.AddRange(MediaMetaData.Instance.ListManager.SourcePrograms.SelectMany(sp => sp.Demos).Select(d => d.Source).Distinct().ToArray());
+
 				if (_localSchedule.UseDemo)
 				{
 					buttonXUseDemos.Checked = true;

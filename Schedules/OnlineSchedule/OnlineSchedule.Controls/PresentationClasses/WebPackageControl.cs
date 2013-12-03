@@ -7,10 +7,13 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
@@ -389,9 +392,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			gridBandFormula.Visible = Settings.ShowInvestment && Settings.ShowImpressions && Settings.ShowCPM;
 		}
 
-		private void UpdateOutputState()
+		protected void UpdateOutputState()
 		{
-			var enableOutput = Settings.ShowCategory || Settings.ShowGroup || Settings.ShowProduct || Settings.ShowComments || Settings.ShowInfo || Settings.ShowInvestment || Settings.ShowImpressions || Settings.ShowCPM || Settings.ShowRate;
+			var enableOutput = PackageRecords.Any() &&
+				(Settings.ShowCategory || Settings.ShowGroup || Settings.ShowProduct || Settings.ShowComments || Settings.ShowInfo || Settings.ShowInvestment || Settings.ShowImpressions || Settings.ShowCPM || Settings.ShowRate);
 			PowerPoint.Enabled = enableOutput;
 			Email.Enabled = enableOutput;
 			Preview.Enabled = enableOutput;
@@ -609,6 +613,21 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			advBandedGridView.PostEditor();
 			advBandedGridView.RefreshData();
+		}
+
+		private void toolTipController_GetActiveObjectInfo(object sender, DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventArgs e)
+		{
+			if (e.SelectedControl != gridControl) return;
+			var view = gridControl.GetViewAt(e.ControlMousePosition) as GridView;
+			if (view == null) return;
+			var hi = view.CalcHitInfo(e.ControlMousePosition);
+			if (!hi.InRowCell) return;
+			if (hi.Column != bandedGridColumnFormula) return;
+			var record = view.GetRow(hi.RowHandle) as ProductPackageRecord;
+			if (record == null) return;
+			e.Info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), record.UseFormula ? "Disable Delivery Formula" : "Enable Delivery Formula");
+			e.Info.ImmediateToolTip = true;
+			e.Info.Interval = 0;
 		}
 
 		public void Save_Click(object sender, EventArgs e)

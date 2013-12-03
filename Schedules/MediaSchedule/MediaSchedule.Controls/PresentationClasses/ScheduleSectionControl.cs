@@ -116,6 +116,18 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			get { return null; }
 		}
+		public virtual ButtonItem PowerPointButton
+		{
+			get { return null; }
+		}
+		public virtual ButtonItem EmailButton
+		{
+			get { return null; }
+		}
+		public virtual ButtonItem PreviewButton
+		{
+			get { return null; }
+		}
 
 		public bool AllowToLeaveControl
 		{
@@ -276,6 +288,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			}
 		}
 
+		private void UpdateOutputStatus(bool enabled)
+		{
+			PowerPointButton.Enabled = enabled;
+			ThemeButton.Enabled = enabled;
+			EmailButton.Enabled = enabled;
+			PreviewButton.Enabled = enabled;
+		}
+
 		private void BuildSpotColumns()
 		{
 			foreach (var column in _spotColumns)
@@ -421,6 +441,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 			UpdateGrid(quickLoad);
 			UpdateTotalsValues();
+			UpdateOutputStatus(ScheduleSection.Programs.Any());
 
 			xtraTabPageOptionsDigital.PageEnabled = _localSchedule.DigitalProducts.Any();
 			digitalInfoControl.InitData(ScheduleSection.DigitalLegend);
@@ -540,6 +561,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			ScheduleSection.AddProgram();
 			UpdateGrid(false);
 			UpdateTotalsValues();
+			UpdateOutputStatus(ScheduleSection.Programs.Any());
 			if (advBandedGridViewSchedule.RowCount > 0)
 				advBandedGridViewSchedule.FocusedRowHandle = advBandedGridViewSchedule.RowCount - 1;
 			SettingsNotSaved = true;
@@ -547,9 +569,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public void DeleteProgram_Click(object sender, EventArgs e)
 		{
+			var selectedProgramRow = advBandedGridViewSchedule.GetFocusedDataRow();
+			if (selectedProgramRow == null) return;
+			var selectedProgramIndex = selectedProgramRow[0].ToString();
+			if (Utilities.Instance.ShowWarningQuestion(String.Format("Delete Line ID {0}?", selectedProgramIndex)) != DialogResult.Yes) return;
 			ScheduleSection.DeleteProgram(advBandedGridViewSchedule.GetDataSourceRowIndex(advBandedGridViewSchedule.FocusedRowHandle));
 			UpdateGrid(false);
 			UpdateTotalsValues();
+			UpdateOutputStatus(ScheduleSection.Programs.Any());
 			SettingsNotSaved = true;
 		}
 
@@ -619,7 +646,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 			UpdateTotalsVisibility();
 			UpdateTotalsValues();
-
+			
 			UpdateColumnsAccordingScreenSize();
 
 			SettingsNotSaved = true;

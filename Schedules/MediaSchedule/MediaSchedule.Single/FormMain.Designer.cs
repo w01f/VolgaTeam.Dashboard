@@ -141,9 +141,6 @@
 			this.buttonItemMonthlyScheduleEmail = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarMonthlySchedulePreview = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemMonthlySchedulePreview = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarMonthlyScheduleProgram = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemMonthlyScheduleProgramAdd = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemMonthlyScheduleProgramDelete = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarMonthlyScheduleOptions = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemMonthlyScheduleOptions = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonPanelWeeklySchedule = new DevComponents.DotNetBar.RibbonPanel();
@@ -163,9 +160,6 @@
 			this.buttonItemWeeklyScheduleEmail = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarWeeklySchedulePreview = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemWeeklySchedulePreview = new DevComponents.DotNetBar.ButtonItem();
-			this.ribbonBarWeeklyScheduleProgram = new DevComponents.DotNetBar.RibbonBar();
-			this.buttonItemWeeklyScheduleProgramAdd = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemWeeklyScheduleProgramDelete = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarWeeklyScheduleOptions = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemWeeklyScheduleOptions = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonTabItemHome = new DevComponents.DotNetBar.RibbonTabItem();
@@ -176,6 +170,12 @@
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnMain = new System.Windows.Forms.Panel();
+			this.ribbonBarWeeklyScheduleProgram = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemWeeklyScheduleProgramAdd = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemWeeklyScheduleProgramDelete = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarMonthlyScheduleProgram = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemMonthlyScheduleProgramAdd = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemMonthlyScheduleProgramDelete = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelHome.SuspendLayout();
 			this.ribbonBarHomeFlightDates.SuspendLayout();
@@ -206,10 +206,10 @@
 			this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonControl.CanCustomize = false;
 			this.ribbonControl.Controls.Add(this.ribbonPanelHome);
-			this.ribbonControl.Controls.Add(this.ribbonPanelDigitalPackage);
-			this.ribbonControl.Controls.Add(this.ribbonPanelDigitalSlides);
 			this.ribbonControl.Controls.Add(this.ribbonPanelMonthlySchedule);
 			this.ribbonControl.Controls.Add(this.ribbonPanelWeeklySchedule);
+			this.ribbonControl.Controls.Add(this.ribbonPanelDigitalPackage);
+			this.ribbonControl.Controls.Add(this.ribbonPanelDigitalSlides);
 			this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
 			this.ribbonControl.EnableQatPlacement = false;
 			this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -462,7 +462,7 @@
 			this.ribbonBarHomeProduct.Name = "ribbonBarHomeProduct";
 			this.ribbonBarHomeProduct.Size = new System.Drawing.Size(84, 134);
 			this.ribbonBarHomeProduct.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-			this.ribbonBarHomeProduct.TabIndex = 29;
+			this.ribbonBarHomeProduct.TabIndex = 61;
 			this.ribbonBarHomeProduct.Text = "Digital";
 			// 
 			// 
@@ -497,7 +497,7 @@
 			this.buttonItemHomeDigitalProductAdd.ForeColor = System.Drawing.Color.Black;
 			this.buttonItemHomeDigitalProductAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemHomeDigitalProductAdd.Image")));
 			this.buttonItemHomeDigitalProductAdd.Name = "buttonItemHomeDigitalProductAdd";
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeDigitalProductAdd, new DevComponents.DotNetBar.SuperTooltipInfo("Add Digital Product", "", "Add a digital product to your Newspaper Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeDigitalProductAdd, new DevComponents.DotNetBar.SuperTooltipInfo("Add Digital Product", "", "Add a digital product to your Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemHomeDigitalProductAdd.Text = "Add";
 			// 
 			// buttonItemHomeDigitalProductClone
@@ -506,7 +506,7 @@
 			this.buttonItemHomeDigitalProductClone.ForeColor = System.Drawing.Color.Black;
 			this.buttonItemHomeDigitalProductClone.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemHomeDigitalProductClone.Image")));
 			this.buttonItemHomeDigitalProductClone.Name = "buttonItemHomeDigitalProductClone";
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeDigitalProductClone, new DevComponents.DotNetBar.SuperTooltipInfo("Clone Publication", "", "Clone the selected Publication", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeDigitalProductClone, new DevComponents.DotNetBar.SuperTooltipInfo("Clone Line", "", "Clone this digital product in your Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemHomeDigitalProductClone.Text = "Clone";
 			// 
 			// buttonItemHomeDigitalProductDelete
@@ -515,7 +515,7 @@
 			this.buttonItemHomeDigitalProductDelete.ForeColor = System.Drawing.Color.Black;
 			this.buttonItemHomeDigitalProductDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemHomeDigitalProductDelete.Image")));
 			this.buttonItemHomeDigitalProductDelete.Name = "buttonItemHomeDigitalProductDelete";
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeDigitalProductDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Remove Digital Product", "", "Delete the selected Digital Product from your Ad Schedule Below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeDigitalProductDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete Line", "", "Remove this digital product from your schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemHomeDigitalProductDelete.Text = "Delete";
 			// 
 			// ribbonBarHomeOptions
@@ -2093,53 +2093,6 @@
 			this.buttonItemMonthlySchedulePreview.SubItemsExpandWidth = 14;
 			this.superTooltip.SetSuperTooltip(this.buttonItemMonthlySchedulePreview, new DevComponents.DotNetBar.SuperTooltipInfo("Preview Slide", "", "Proof the Schedule Snapshot BEFORE you send it to PowerPoint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
-			// ribbonBarMonthlyScheduleProgram
-			// 
-			this.ribbonBarMonthlyScheduleProgram.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarMonthlyScheduleProgram.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarMonthlyScheduleProgram.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarMonthlyScheduleProgram.ContainerControlProcessDialogKey = true;
-			this.ribbonBarMonthlyScheduleProgram.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarMonthlyScheduleProgram.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemMonthlyScheduleProgramAdd,
-            this.buttonItemMonthlyScheduleProgramDelete});
-			this.ribbonBarMonthlyScheduleProgram.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-			this.ribbonBarMonthlyScheduleProgram.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarMonthlyScheduleProgram.Location = new System.Drawing.Point(91, 0);
-			this.ribbonBarMonthlyScheduleProgram.Name = "ribbonBarMonthlyScheduleProgram";
-			this.ribbonBarMonthlyScheduleProgram.Size = new System.Drawing.Size(65, 134);
-			this.ribbonBarMonthlyScheduleProgram.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-			this.ribbonBarMonthlyScheduleProgram.TabIndex = 61;
-			this.ribbonBarMonthlyScheduleProgram.Text = "Program";
-			// 
-			// 
-			// 
-			this.ribbonBarMonthlyScheduleProgram.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarMonthlyScheduleProgram.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemMonthlyScheduleProgramAdd
-			// 
-			this.buttonItemMonthlyScheduleProgramAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemMonthlyScheduleProgramAdd.Image")));
-			this.buttonItemMonthlyScheduleProgramAdd.Name = "buttonItemMonthlyScheduleProgramAdd";
-			this.buttonItemMonthlyScheduleProgramAdd.SubItemsExpandWidth = 14;
-			this.buttonItemMonthlyScheduleProgramAdd.Text = "buttonItem1";
-			// 
-			// buttonItemMonthlyScheduleProgramDelete
-			// 
-			this.buttonItemMonthlyScheduleProgramDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemMonthlyScheduleProgramDelete.Image")));
-			this.buttonItemMonthlyScheduleProgramDelete.Name = "buttonItemMonthlyScheduleProgramDelete";
-			this.buttonItemMonthlyScheduleProgramDelete.SubItemsExpandWidth = 14;
-			this.buttonItemMonthlyScheduleProgramDelete.Text = "buttonItem1";
-			// 
 			// ribbonBarMonthlyScheduleOptions
 			// 
 			this.ribbonBarMonthlyScheduleOptions.AutoOverflowEnabled = true;
@@ -2499,53 +2452,6 @@
 			this.buttonItemWeeklySchedulePreview.SubItemsExpandWidth = 14;
 			this.superTooltip.SetSuperTooltip(this.buttonItemWeeklySchedulePreview, new DevComponents.DotNetBar.SuperTooltipInfo("Preview Slide", "", "Proof the Schedule Snapshot BEFORE you send it to PowerPoint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
-			// ribbonBarWeeklyScheduleProgram
-			// 
-			this.ribbonBarWeeklyScheduleProgram.AutoOverflowEnabled = true;
-			// 
-			// 
-			// 
-			this.ribbonBarWeeklyScheduleProgram.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarWeeklyScheduleProgram.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.ribbonBarWeeklyScheduleProgram.ContainerControlProcessDialogKey = true;
-			this.ribbonBarWeeklyScheduleProgram.Dock = System.Windows.Forms.DockStyle.Left;
-			this.ribbonBarWeeklyScheduleProgram.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItemWeeklyScheduleProgramAdd,
-            this.buttonItemWeeklyScheduleProgramDelete});
-			this.ribbonBarWeeklyScheduleProgram.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-			this.ribbonBarWeeklyScheduleProgram.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarWeeklyScheduleProgram.Location = new System.Drawing.Point(91, 0);
-			this.ribbonBarWeeklyScheduleProgram.Name = "ribbonBarWeeklyScheduleProgram";
-			this.ribbonBarWeeklyScheduleProgram.Size = new System.Drawing.Size(65, 134);
-			this.ribbonBarWeeklyScheduleProgram.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-			this.ribbonBarWeeklyScheduleProgram.TabIndex = 60;
-			this.ribbonBarWeeklyScheduleProgram.Text = "Program";
-			// 
-			// 
-			// 
-			this.ribbonBarWeeklyScheduleProgram.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// 
-			// 
-			this.ribbonBarWeeklyScheduleProgram.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			// 
-			// buttonItemWeeklyScheduleProgramAdd
-			// 
-			this.buttonItemWeeklyScheduleProgramAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemWeeklyScheduleProgramAdd.Image")));
-			this.buttonItemWeeklyScheduleProgramAdd.Name = "buttonItemWeeklyScheduleProgramAdd";
-			this.buttonItemWeeklyScheduleProgramAdd.SubItemsExpandWidth = 14;
-			this.buttonItemWeeklyScheduleProgramAdd.Text = "buttonItem1";
-			// 
-			// buttonItemWeeklyScheduleProgramDelete
-			// 
-			this.buttonItemWeeklyScheduleProgramDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemWeeklyScheduleProgramDelete.Image")));
-			this.buttonItemWeeklyScheduleProgramDelete.Name = "buttonItemWeeklyScheduleProgramDelete";
-			this.buttonItemWeeklyScheduleProgramDelete.SubItemsExpandWidth = 14;
-			this.buttonItemWeeklyScheduleProgramDelete.Text = "buttonItem1";
-			// 
 			// ribbonBarWeeklyScheduleOptions
 			// 
 			this.ribbonBarWeeklyScheduleOptions.AutoOverflowEnabled = true;
@@ -2633,6 +2539,104 @@
 			this.pnMain.Size = new System.Drawing.Size(984, 547);
 			this.pnMain.TabIndex = 1;
 			// 
+			// ribbonBarWeeklyScheduleProgram
+			// 
+			this.ribbonBarWeeklyScheduleProgram.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarWeeklyScheduleProgram.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarWeeklyScheduleProgram.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarWeeklyScheduleProgram.ContainerControlProcessDialogKey = true;
+			this.ribbonBarWeeklyScheduleProgram.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarWeeklyScheduleProgram.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemWeeklyScheduleProgramAdd,
+            this.buttonItemWeeklyScheduleProgramDelete});
+			this.ribbonBarWeeklyScheduleProgram.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+			this.ribbonBarWeeklyScheduleProgram.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarWeeklyScheduleProgram.Location = new System.Drawing.Point(91, 0);
+			this.ribbonBarWeeklyScheduleProgram.Name = "ribbonBarWeeklyScheduleProgram";
+			this.ribbonBarWeeklyScheduleProgram.Size = new System.Drawing.Size(65, 134);
+			this.ribbonBarWeeklyScheduleProgram.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarWeeklyScheduleProgram.TabIndex = 61;
+			this.ribbonBarWeeklyScheduleProgram.Text = "Program";
+			// 
+			// 
+			// 
+			this.ribbonBarWeeklyScheduleProgram.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarWeeklyScheduleProgram.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemWeeklyScheduleProgramAdd
+			// 
+			this.buttonItemWeeklyScheduleProgramAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemWeeklyScheduleProgramAdd.Image")));
+			this.buttonItemWeeklyScheduleProgramAdd.Name = "buttonItemWeeklyScheduleProgramAdd";
+			this.buttonItemWeeklyScheduleProgramAdd.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemWeeklyScheduleProgramAdd, new DevComponents.DotNetBar.SuperTooltipInfo("Add Program", "", "Add a Program line to your schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemWeeklyScheduleProgramAdd.Text = "buttonItem1";
+			// 
+			// buttonItemWeeklyScheduleProgramDelete
+			// 
+			this.buttonItemWeeklyScheduleProgramDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemWeeklyScheduleProgramDelete.Image")));
+			this.buttonItemWeeklyScheduleProgramDelete.Name = "buttonItemWeeklyScheduleProgramDelete";
+			this.buttonItemWeeklyScheduleProgramDelete.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemWeeklyScheduleProgramDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete Program", "", "Delete the selected Program from your schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemWeeklyScheduleProgramDelete.Text = "buttonItem1";
+			// 
+			// ribbonBarMonthlyScheduleProgram
+			// 
+			this.ribbonBarMonthlyScheduleProgram.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarMonthlyScheduleProgram.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarMonthlyScheduleProgram.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarMonthlyScheduleProgram.ContainerControlProcessDialogKey = true;
+			this.ribbonBarMonthlyScheduleProgram.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarMonthlyScheduleProgram.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemMonthlyScheduleProgramAdd,
+            this.buttonItemMonthlyScheduleProgramDelete});
+			this.ribbonBarMonthlyScheduleProgram.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+			this.ribbonBarMonthlyScheduleProgram.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarMonthlyScheduleProgram.Location = new System.Drawing.Point(91, 0);
+			this.ribbonBarMonthlyScheduleProgram.Name = "ribbonBarMonthlyScheduleProgram";
+			this.ribbonBarMonthlyScheduleProgram.Size = new System.Drawing.Size(65, 134);
+			this.ribbonBarMonthlyScheduleProgram.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarMonthlyScheduleProgram.TabIndex = 62;
+			this.ribbonBarMonthlyScheduleProgram.Text = "Program";
+			// 
+			// 
+			// 
+			this.ribbonBarMonthlyScheduleProgram.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarMonthlyScheduleProgram.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemMonthlyScheduleProgramAdd
+			// 
+			this.buttonItemMonthlyScheduleProgramAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemMonthlyScheduleProgramAdd.Image")));
+			this.buttonItemMonthlyScheduleProgramAdd.Name = "buttonItemMonthlyScheduleProgramAdd";
+			this.buttonItemMonthlyScheduleProgramAdd.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemMonthlyScheduleProgramAdd, new DevComponents.DotNetBar.SuperTooltipInfo("Add Program", "", "Add a Program line to your schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemMonthlyScheduleProgramAdd.Text = "buttonItem1";
+			// 
+			// buttonItemMonthlyScheduleProgramDelete
+			// 
+			this.buttonItemMonthlyScheduleProgramDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemMonthlyScheduleProgramDelete.Image")));
+			this.buttonItemMonthlyScheduleProgramDelete.Name = "buttonItemMonthlyScheduleProgramDelete";
+			this.buttonItemMonthlyScheduleProgramDelete.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemMonthlyScheduleProgramDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete Program", "", "Delete the selected Program from your schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemMonthlyScheduleProgramDelete.Text = "buttonItem1";
+			// 
 			// FormMain
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2694,8 +2698,6 @@
 		private DevComponents.DotNetBar.RibbonBar ribbonBarHomeSave;
 		private DevComponents.DotNetBar.ButtonItem buttonItemHomeSave;
 		private DevComponents.DotNetBar.ButtonItem buttonItemHomeSaveAs;
-		private DevComponents.DotNetBar.RibbonBar ribbonBarHomeProduct;
-		private DevComponents.DotNetBar.ItemContainer itemContainerHomeDigitalProduct;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarHomeFlightDates;
 		public DevExpress.XtraEditors.DateEdit dateEditFlightDatesStart;
 		public DevExpress.XtraEditors.DateEdit dateEditFlightDatesEnd;
@@ -2762,9 +2764,6 @@
 		private DevComponents.DotNetBar.RibbonBar ribbonBarDigitalScheduleOptions;
 		public DevComponents.DotNetBar.ButtonItem buttonItemDigitalScheduleOptions;
 		private System.Windows.Forms.Panel pnMain;
-		private DevComponents.DotNetBar.ButtonItem buttonItemHomeDigitalProductAdd;
-		public DevComponents.DotNetBar.ButtonItem buttonItemHomeDigitalProductClone;
-		private DevComponents.DotNetBar.ButtonItem buttonItemHomeDigitalProductDelete;
 		private DevComponents.DotNetBar.ButtonItem buttonItemDigitalScheduleTheme;
 		private DevComponents.DotNetBar.ButtonItem buttonItemDigitalPackageTheme;
 		private DevComponents.DotNetBar.RibbonPanel ribbonPanelWeeklySchedule;
@@ -2787,9 +2786,6 @@
 		public DevComponents.DotNetBar.ButtonItem buttonItemWeeklySchedulePreview;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarWeeklyScheduleOptions;
 		public DevComponents.DotNetBar.ButtonItem buttonItemWeeklyScheduleOptions;
-		private DevComponents.DotNetBar.RibbonBar ribbonBarWeeklyScheduleProgram;
-		private DevComponents.DotNetBar.ButtonItem buttonItemWeeklyScheduleProgramAdd;
-		private DevComponents.DotNetBar.ButtonItem buttonItemWeeklyScheduleProgramDelete;
 		private DevComponents.DotNetBar.RibbonPanel ribbonPanelMonthlySchedule;
 		private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemMonthlySchedule;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarMonthlyScheduleExit;
@@ -2810,15 +2806,23 @@
 		public DevComponents.DotNetBar.ButtonItem buttonItemMonthlySchedulePreview;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarMonthlyScheduleOptions;
 		public DevComponents.DotNetBar.ButtonItem buttonItemMonthlyScheduleOptions;
-		private DevComponents.DotNetBar.RibbonBar ribbonBarMonthlyScheduleProgram;
-		private DevComponents.DotNetBar.ButtonItem buttonItemMonthlyScheduleProgramAdd;
-		private DevComponents.DotNetBar.ButtonItem buttonItemMonthlyScheduleProgramDelete;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarHomeOptions;
 		public DevComponents.DotNetBar.ButtonItem buttonItemHomeOptions;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarHomeNewSchedule;
 		private DevComponents.DotNetBar.ItemContainer itemContainerHomeSchedule;
 		private DevComponents.DotNetBar.ButtonItem buttonItemHomeNewSchedule;
 		private DevComponents.DotNetBar.ButtonItem buttonItemHomeOpenSchedule;
+		private DevComponents.DotNetBar.RibbonBar ribbonBarHomeProduct;
+		private DevComponents.DotNetBar.ItemContainer itemContainerHomeDigitalProduct;
+		private DevComponents.DotNetBar.ButtonItem buttonItemHomeDigitalProductAdd;
+		public DevComponents.DotNetBar.ButtonItem buttonItemHomeDigitalProductClone;
+		private DevComponents.DotNetBar.ButtonItem buttonItemHomeDigitalProductDelete;
+		private DevComponents.DotNetBar.RibbonBar ribbonBarWeeklyScheduleProgram;
+		private DevComponents.DotNetBar.ButtonItem buttonItemWeeklyScheduleProgramAdd;
+		private DevComponents.DotNetBar.ButtonItem buttonItemWeeklyScheduleProgramDelete;
+		private DevComponents.DotNetBar.RibbonBar ribbonBarMonthlyScheduleProgram;
+		private DevComponents.DotNetBar.ButtonItem buttonItemMonthlyScheduleProgramAdd;
+		private DevComponents.DotNetBar.ButtonItem buttonItemMonthlyScheduleProgramDelete;
     }
 }
 

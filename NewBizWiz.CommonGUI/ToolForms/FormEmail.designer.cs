@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
@@ -47,7 +46,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEmail));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+			this.barManager = new DevExpress.XtraBars.BarManager();
 			this.barOperations = new DevExpress.XtraBars.Bar();
 			this.barLargeButtonItemRegularEmail = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemLockedEmail = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -183,7 +182,7 @@
 			this.barLargeButtonItemExit.Name = "barLargeButtonItemExit";
 			toolTipTitleItem5.Text = "EXIT";
 			toolTipItem5.LeftIndent = 6;
-			toolTipItem5.Text = "Close this Window and return to Online Schedule";
+			toolTipItem5.Text = "Close this Window ";
 			superToolTip5.Items.Add(toolTipTitleItem5);
 			superToolTip5.Items.Add(toolTipItem5);
 			this.barLargeButtonItemExit.SuperTip = superToolTip5;

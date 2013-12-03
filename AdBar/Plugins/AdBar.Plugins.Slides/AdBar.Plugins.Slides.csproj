@@ -123,7 +123,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy “$(ProjectDir)bin\Release\*.dll” “$(SolutionDir)AdBar\App\bin\Release\plugins\AdBar.Plugins.Slides” /Y</PostBuildEvent>
+    <PostBuildEvent>copy “$(ProjectDir)bin\Release\*.dll” “$(SolutionDir)AdBar\App\bin\Release\plugins\AdBar.Plugins.Slides” /Y
+copy “$(ProjectDir)bin\Release\*.dll” “d:\WorkingFiles\NewBizWiz\AdBar.Plugins.dll\AdBar.Plugins.Slides” /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

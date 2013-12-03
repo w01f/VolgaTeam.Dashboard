@@ -380,7 +380,7 @@
 			this.buttonItemDigitalPackageEmail.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemDigitalPackageEmail.Image")));
 			this.buttonItemDigitalPackageEmail.Name = "buttonItemDigitalPackageEmail";
 			this.buttonItemDigitalPackageEmail.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemDigitalPackageEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Advertising Schedule in an email", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemDigitalPackageEmail, new DevComponents.DotNetBar.SuperTooltipInfo("Email", "", "Send this Digital Schedule In an email", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarDigitalPackagePreview
 			// 
@@ -418,7 +418,7 @@
 			this.buttonItemDigitalPackagePreview.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemDigitalPackagePreview.Image")));
 			this.buttonItemDigitalPackagePreview.Name = "buttonItemDigitalPackagePreview";
 			this.buttonItemDigitalPackagePreview.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemDigitalPackagePreview, new DevComponents.DotNetBar.SuperTooltipInfo("Preview Slide", "", "Proof the Schedule Analysis BEFORE you send it to PowerPoint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemDigitalPackagePreview, new DevComponents.DotNetBar.SuperTooltipInfo("Preview Slide", "", "Proof this Digital Schedule BEFORE you send it to PowerPoint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarDigitalPackageProducts
 			// 
@@ -472,6 +472,7 @@
 			this.buttonItemDigitalPackageProductsAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemDigitalPackageProductsAdd.Image")));
 			this.buttonItemDigitalPackageProductsAdd.ImageFixedSize = new System.Drawing.Size(48, 48);
 			this.buttonItemDigitalPackageProductsAdd.Name = "buttonItemDigitalPackageProductsAdd";
+			this.superTooltip.SetSuperTooltip(this.buttonItemDigitalPackageProductsAdd, new DevComponents.DotNetBar.SuperTooltipInfo("Add", "", "Add Digital Product", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemDigitalPackageProductsAdd.Text = "buttonItem1";
 			// 
 			// buttonItemDigitalPackageProductsDelete
@@ -479,6 +480,7 @@
 			this.buttonItemDigitalPackageProductsDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemDigitalPackageProductsDelete.Image")));
 			this.buttonItemDigitalPackageProductsDelete.ImageFixedSize = new System.Drawing.Size(48, 48);
 			this.buttonItemDigitalPackageProductsDelete.Name = "buttonItemDigitalPackageProductsDelete";
+			this.superTooltip.SetSuperTooltip(this.buttonItemDigitalPackageProductsDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete", "", "Delete Digital Product", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemDigitalPackageProductsDelete.Text = "buttonItem1";
 			// 
 			// ribbonBarDigitalPackageOptions

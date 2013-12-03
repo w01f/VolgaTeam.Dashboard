@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleSectionControl));
 			this.gridControlSchedule = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridViewSchedule = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
@@ -79,7 +78,7 @@
 			this.laDemoName = new System.Windows.Forms.Label();
 			this.laAdvertiser = new System.Windows.Forms.Label();
 			this.laScheduleName = new System.Windows.Forms.Label();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.pnBottom = new System.Windows.Forms.Panel();
 			this.pnAgencyDiscount = new System.Windows.Forms.Panel();
 			this.laAgencyDiscountValue = new System.Windows.Forms.Label();
@@ -105,12 +104,13 @@
 			this.pnTotalPeriods = new System.Windows.Forms.Panel();
 			this.laTotalPeriodsValue = new System.Windows.Forms.Label();
 			this.laTotalPeriodsTitle = new System.Windows.Forms.Label();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.pnPageTV = new System.Windows.Forms.Panel();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageOptionsLine = new DevExpress.XtraTab.XtraTabPage();
 			this.pnOptionsLine = new System.Windows.Forms.Panel();
+			this.checkEditEmptySports = new DevExpress.XtraEditors.CheckEdit();
 			this.buttonXTime = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSpots = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCost = new DevComponents.DotNetBar.ButtonX();
@@ -150,7 +150,6 @@
 			this.pbOptionsSecurityHelp = new System.Windows.Forms.PictureBox();
 			this.laOptionsSecurityTitle = new System.Windows.Forms.Label();
 			this.buttonXUseSlideMaster = new DevComponents.DotNetBar.ButtonX();
-			this.checkEditEmptySports = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedule)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewSchedule)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStations)).BeginInit();
@@ -186,6 +185,7 @@
 			this.xtraTabControlOptions.SuspendLayout();
 			this.xtraTabPageOptionsLine.SuspendLayout();
 			this.pnOptionsLine.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsLineHelp)).BeginInit();
 			this.xtraTabPageOptionsDigital.SuspendLayout();
 			this.xtraTabPageOptionsTotals.SuspendLayout();
@@ -198,7 +198,6 @@
 			this.xtraTabPageOptionsSEcurity.SuspendLayout();
 			this.pnSecurity.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsSecurityHelp)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gridControlSchedule
@@ -237,11 +236,11 @@
 			this.advBandedGridViewSchedule.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.advBandedGridViewSchedule.Appearance.FocusedCell.Options.UseFont = true;
 			this.advBandedGridViewSchedule.Appearance.FocusedCell.Options.UseTextOptions = true;
-			this.advBandedGridViewSchedule.Appearance.FocusedCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.advBandedGridViewSchedule.Appearance.FocusedCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.advBandedGridViewSchedule.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.advBandedGridViewSchedule.Appearance.FocusedRow.Options.UseFont = true;
 			this.advBandedGridViewSchedule.Appearance.FocusedRow.Options.UseTextOptions = true;
-			this.advBandedGridViewSchedule.Appearance.FocusedRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.advBandedGridViewSchedule.Appearance.FocusedRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.advBandedGridViewSchedule.Appearance.FooterPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.advBandedGridViewSchedule.Appearance.FooterPanel.ForeColor = System.Drawing.Color.Black;
 			this.advBandedGridViewSchedule.Appearance.FooterPanel.Options.UseFont = true;
@@ -332,7 +331,6 @@
 			this.advBandedGridViewSchedule.OptionsMenu.ShowDateTimeGroupIntervalItems = false;
 			this.advBandedGridViewSchedule.OptionsMenu.ShowGroupSortSummaryItems = false;
 			this.advBandedGridViewSchedule.OptionsSelection.EnableAppearanceFocusedCell = false;
-			this.advBandedGridViewSchedule.OptionsSelection.EnableAppearanceFocusedRow = false;
 			this.advBandedGridViewSchedule.OptionsSelection.EnableAppearanceHideSelection = false;
 			this.advBandedGridViewSchedule.OptionsView.EnableAppearanceEvenRow = true;
 			this.advBandedGridViewSchedule.OptionsView.EnableAppearanceOddRow = true;
@@ -807,10 +805,14 @@
 			// 
 			this.repositoryItemSpinEditRate.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.repositoryItemSpinEditRate.Appearance.Options.UseFont = true;
+			this.repositoryItemSpinEditRate.Appearance.Options.UseTextOptions = true;
+			this.repositoryItemSpinEditRate.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemSpinEditRate.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.repositoryItemSpinEditRate.AppearanceDisabled.Options.UseFont = true;
 			this.repositoryItemSpinEditRate.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.repositoryItemSpinEditRate.AppearanceFocused.Options.UseFont = true;
+			this.repositoryItemSpinEditRate.AppearanceFocused.Options.UseTextOptions = true;
+			this.repositoryItemSpinEditRate.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemSpinEditRate.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.repositoryItemSpinEditRate.AppearanceReadOnly.Options.UseFont = true;
 			this.repositoryItemSpinEditRate.AutoHeight = false;
@@ -849,10 +851,14 @@
 			// 
 			this.repositoryItemSpinEditRating.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.repositoryItemSpinEditRating.Appearance.Options.UseFont = true;
+			this.repositoryItemSpinEditRating.Appearance.Options.UseTextOptions = true;
+			this.repositoryItemSpinEditRating.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemSpinEditRating.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.repositoryItemSpinEditRating.AppearanceDisabled.Options.UseFont = true;
 			this.repositoryItemSpinEditRating.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.repositoryItemSpinEditRating.AppearanceFocused.Options.UseFont = true;
+			this.repositoryItemSpinEditRating.AppearanceFocused.Options.UseTextOptions = true;
+			this.repositoryItemSpinEditRating.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemSpinEditRating.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.repositoryItemSpinEditRating.AppearanceReadOnly.Options.UseFont = true;
 			this.repositoryItemSpinEditRating.AutoHeight = false;
@@ -1020,10 +1026,14 @@
 			// 
 			this.repositoryItemSpinEdit000s.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.repositoryItemSpinEdit000s.Appearance.Options.UseFont = true;
+			this.repositoryItemSpinEdit000s.Appearance.Options.UseTextOptions = true;
+			this.repositoryItemSpinEdit000s.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemSpinEdit000s.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.repositoryItemSpinEdit000s.AppearanceDisabled.Options.UseFont = true;
 			this.repositoryItemSpinEdit000s.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.repositoryItemSpinEdit000s.AppearanceFocused.Options.UseFont = true;
+			this.repositoryItemSpinEdit000s.AppearanceFocused.Options.UseTextOptions = true;
+			this.repositoryItemSpinEdit000s.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemSpinEdit000s.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.repositoryItemSpinEdit000s.AppearanceReadOnly.Options.UseFont = true;
 			this.repositoryItemSpinEdit000s.AutoHeight = false;
@@ -1484,6 +1494,24 @@
 			this.pnOptionsLine.Name = "pnOptionsLine";
 			this.pnOptionsLine.Size = new System.Drawing.Size(268, 479);
 			this.pnOptionsLine.TabIndex = 0;
+			// 
+			// checkEditEmptySports
+			// 
+			this.checkEditEmptySports.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditEmptySports.Location = new System.Drawing.Point(5, 338);
+			this.checkEditEmptySports.Name = "checkEditEmptySports";
+			this.checkEditEmptySports.Properties.AllowHtmlString = true;
+			this.checkEditEmptySports.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditEmptySports.Properties.Appearance.Options.UseFont = true;
+			this.checkEditEmptySports.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditEmptySports.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.checkEditEmptySports.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.checkEditEmptySports.Properties.AutoHeight = false;
+			this.checkEditEmptySports.Properties.Caption = "<b>DO NOT SHOW</b> Hiatus {0}";
+			this.checkEditEmptySports.Size = new System.Drawing.Size(258, 19);
+			this.checkEditEmptySports.TabIndex = 110;
+			this.checkEditEmptySports.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
 			// 
 			// buttonXTime
 			// 
@@ -1999,24 +2027,6 @@
 			this.buttonXUseSlideMaster.TextColor = System.Drawing.Color.Black;
 			this.buttonXUseSlideMaster.CheckedChanged += new System.EventHandler(this.buttonXUseSlideMaster_CheckedChanged);
 			// 
-			// checkEditEmptySports
-			// 
-			this.checkEditEmptySports.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditEmptySports.Location = new System.Drawing.Point(5, 338);
-			this.checkEditEmptySports.Name = "checkEditEmptySports";
-			this.checkEditEmptySports.Properties.AllowHtmlString = true;
-			this.checkEditEmptySports.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditEmptySports.Properties.Appearance.Options.UseFont = true;
-			this.checkEditEmptySports.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditEmptySports.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.checkEditEmptySports.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditEmptySports.Properties.AutoHeight = false;
-			this.checkEditEmptySports.Properties.Caption = "<b>DO NOT SHOW</b> Hiatus {0}";
-			this.checkEditEmptySports.Size = new System.Drawing.Size(258, 19);
-			this.checkEditEmptySports.TabIndex = 110;
-			this.checkEditEmptySports.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
-			// 
 			// ScheduleSectionControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2063,6 +2073,7 @@
 			this.xtraTabControlOptions.ResumeLayout(false);
 			this.xtraTabPageOptionsLine.ResumeLayout(false);
 			this.pnOptionsLine.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsLineHelp)).EndInit();
 			this.xtraTabPageOptionsDigital.ResumeLayout(false);
 			this.xtraTabPageOptionsTotals.ResumeLayout(false);
@@ -2075,7 +2086,6 @@
 			this.xtraTabPageOptionsSEcurity.ResumeLayout(false);
 			this.pnSecurity.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsSecurityHelp)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }

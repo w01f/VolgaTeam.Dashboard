@@ -151,6 +151,20 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap HomeLogo {
+            get {
+                object obj = ResourceManager.GetObject("HomeLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap MonthlySchedule {
+            get {
+                object obj = ResourceManager.GetObject("MonthlySchedule", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap NewSchedule {
             get {
                 object obj = ResourceManager.GetObject("NewSchedule", resourceCulture);
@@ -207,34 +221,6 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap RadioMonthlyScheduleButton {
-            get {
-                object obj = ResourceManager.GetObject("RadioMonthlyScheduleButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap RadioMonthlyScheduleButtonGray {
-            get {
-                object obj = ResourceManager.GetObject("RadioMonthlyScheduleButtonGray", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap RadioWeeklyScheduleButton {
-            get {
-                object obj = ResourceManager.GetObject("RadioWeeklyScheduleButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap RadioWeeklyScheduleButtonGray {
-            get {
-                object obj = ResourceManager.GetObject("RadioWeeklyScheduleButtonGray", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         public static System.Drawing.Bitmap SaveAs {
             get {
                 object obj = ResourceManager.GetObject("SaveAs", resourceCulture);
@@ -249,30 +235,9 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap TVMonthlyScheduleButton {
+        public static System.Drawing.Bitmap WeeklySchedule {
             get {
-                object obj = ResourceManager.GetObject("TVMonthlyScheduleButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap TVMonthlyScheduleButtonGray {
-            get {
-                object obj = ResourceManager.GetObject("TVMonthlyScheduleButtonGray", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap TVWeeklyScheduleButton {
-            get {
-                object obj = ResourceManager.GetObject("TVWeeklyScheduleButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        public static System.Drawing.Bitmap TVWeeklyScheduleButtonGray {
-            get {
-                object obj = ResourceManager.GetObject("TVWeeklyScheduleButtonGray", resourceCulture);
+                object obj = ResourceManager.GetObject("WeeklySchedule", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -14,7 +14,7 @@ using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
 namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 {
-	public partial class SlideInfoControl : UserControl
+	public partial class SlideInfoControl : UserControl, ISlideInfoControl
 	{
 		private bool _allowToSave;
 		private string _helpKey = "info";

@@ -69,9 +69,9 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			buttonXEditName.Checked = DigitalProduct.AdPlanSettings.EditName;
 
 			var defaultImage = Core.OnlineSchedule.ListManager.Instance.Images.FirstOrDefault(i => i.IsDefault);
-			pbLogo.Image = DigitalProduct.AdPlanSettings.Logo != null ? DigitalProduct.AdPlanSettings.Logo : (defaultImage != null ? defaultImage.BigImage : null);
+			pbLogo.Image = DigitalProduct.AdPlanSettings.Logo ?? (defaultImage != null ? defaultImage.BigImage : null);
 
-			checkEditFlightDates.Text = DigitalProduct.Parent.FlightDateStart.ToString("MM/dd/yy") + " - " + DigitalProduct.Parent.FlightDateEnd.ToString("MM/dd/yy");
+			checkEditFlightDates.Text = DigitalProduct.Parent.FlightDates;
 			checkEditFlightDates.Checked = DigitalProduct.AdPlanSettings.ShowFlightDates;
 
 			checkEditComments.Checked = DigitalProduct.AdPlanSettings.ShowComments;

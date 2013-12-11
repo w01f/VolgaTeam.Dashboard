@@ -11,6 +11,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			laTotalPeriodsTitle.Text = "Total Months:";
 			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, "Months");
+			laScheduleName.Text = "Monthly Schedule";
 		}
 
 		public override ScheduleSection ScheduleSection

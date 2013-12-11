@@ -47,26 +47,24 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		public void AddNotes(CalendarNoteControl[] notes)
 		{
-			foreach (CalendarNoteControl note in _notes)
+			foreach (var note in _notes)
 				Controls.Remove(note);
 			_notes.Clear();
-			if (notes.Length > 0)
-			{
-				_notes.AddRange(notes);
-				Controls.AddRange(notes);
-				FitNotes();
-			}
+			if (notes.Length <= 0) return;
+			_notes.AddRange(notes);
+			Controls.AddRange(notes);
+			FitNotes();
 		}
 
 		public void RefreshData(Color colorLight, Color colorDark)
 		{
-			foreach (DayControl day in _dayControls)
+			foreach (var day in _dayControls)
 				day.RefreshData(colorLight, colorDark);
 		}
 
 		public void RaiseEvents(bool enable)
 		{
-			foreach (DayControl day in _dayControls)
+			foreach (var day in _dayControls)
 				day.RaiseEvents = enable;
 		}
 
@@ -97,7 +95,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 				_footer.Width = Width - ((int)width * _maxWeekDayIndex);
 			}
 
-			foreach (DayControl dayControl in _dayControls)
+			foreach (var dayControl in _dayControls)
 			{
 				dayControl.Top = 0;
 				dayControl.Height = (int)height;
@@ -108,17 +106,15 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		private void FitNotes()
 		{
-			foreach (CalendarNoteControl note in _notes)
+			foreach (var note in _notes)
 			{
-				DayControl startDay = _dayControls.Where(x => x.Day.Date.Equals(note.CalendarNote.StartDay)).FirstOrDefault();
-				DayControl finishDay = _dayControls.Where(x => x.Day.Date.Equals(note.CalendarNote.FinishDay)).FirstOrDefault();
-				if (startDay != null && finishDay != null)
-				{
-					note.Left = startDay.Left + 5;
-					note.Top = startDay.Top + 25;
-					note.Width = (finishDay.Right - startDay.Left) - 10;
-					note.BringToFront();
-				}
+				var startDay = _dayControls.FirstOrDefault(x => x.Day.Date.Equals(note.CalendarNote.StartDay));
+				var finishDay = _dayControls.FirstOrDefault(x => x.Day.Date.Equals(note.CalendarNote.FinishDay));
+				if (startDay == null || finishDay == null) continue;
+				note.Left = startDay.Left + 5;
+				note.Top = startDay.Top + 25;
+				note.Width = (finishDay.Right - startDay.Left) - 10;
+				note.BringToFront();
 			}
 		}
 

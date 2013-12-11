@@ -89,11 +89,14 @@
   <ItemGroup>
     <Compile Include="BusinessClasses\BusinessWrapper.cs" />
     <Compile Include="Controller.cs" />
-    <Compile Include="PresentationClasses\Calendars\CalendarControl.cs">
+    <Compile Include="PresentationClasses\Calendars\BaseCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\Calendars\CalendarControl.Designer.cs">
-      <DependentUpon>CalendarControl.cs</DependentUpon>
+    <Compile Include="PresentationClasses\Calendars\BaseCalendarControl.Designer.cs">
+      <DependentUpon>BaseCalendarControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\Calendars\CommonCalendarControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\CalendarVisualizer.cs" />
     <Compile Include="PresentationClasses\CopyPasterManager.cs" />
@@ -201,8 +204,8 @@
     <Compile Include="ToolForms\FormSelectCalendar.Designer.cs">
       <DependentUpon>FormSelectCalendar.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="PresentationClasses\Calendars\CalendarControl.resx">
-      <DependentUpon>CalendarControl.cs</DependentUpon>
+    <EmbeddedResource Include="PresentationClasses\Calendars\BaseCalendarControl.resx">
+      <DependentUpon>BaseCalendarControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Views\MonthView\CalendarNoteControl.resx">
       <DependentUpon>CalendarNoteControl.cs</DependentUpon>

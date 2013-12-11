@@ -104,19 +104,19 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					break;
 			}
 
-			checkEditDate.Text = PrintProduct.Parent.PresentationDateObject != null ? PrintProduct.Parent.PresentationDate.ToString("MM/dd/yy") : string.Empty;
+			checkEditDate.Text = PrintProduct.Parent.PresentationDate.HasValue ? PrintProduct.Parent.PresentationDate.Value.ToString("MM/dd/yy") : string.Empty;
 
 			var dates = new List<string>();
-			foreach (Insert insert in PrintProduct.Inserts)
+			foreach (var insert in PrintProduct.Inserts)
 			{
-				if (insert.DateObject != null)
-					dates.Add(insert.Date.ToString("MM/dd/yy"));
+				if (insert.Date.HasValue)
+					dates.Add(insert.Date.Value.ToString("MM/dd/yy"));
 			}
 			memoEditDates.EditValue = string.Join(", ", dates.ToArray());
 
 			checkEditDecisionMaker.Text = PrintProduct.Parent.DecisionMaker;
-			checkEditFlightDates.Text = "   " + PrintProduct.Parent.FlightDateStart.ToString("MM/dd/yy") + " - " + PrintProduct.Parent.FlightDateEnd.ToString("MM/dd/yy");
-			checkEditFlightDates2.Text = PrintProduct.Parent.FlightDateStart.ToString("MM/dd/yy") + " - " + PrintProduct.Parent.FlightDateEnd.ToString("MM/dd/yy");
+			checkEditFlightDates.Text = "   " + PrintProduct.Parent.FlightDates;
+			checkEditFlightDates2.Text = PrintProduct.Parent.FlightDates;
 			checkEditTotalAds.Text = "Total Ads: " + PrintProduct.TotalInserts.ToString("#,##0");
 			checkEditTotalCost.Text = "Total Cost: " + PrintProduct.TotalFinalRate.ToString("$#,##0.00");
 			checkEditTotalDiscounts.Text = "Total Discounts: " + PrintProduct.TotalDiscountRate.ToString("$#,##0.00");

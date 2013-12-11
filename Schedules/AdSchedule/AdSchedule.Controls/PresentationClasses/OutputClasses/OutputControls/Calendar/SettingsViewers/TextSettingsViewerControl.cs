@@ -117,7 +117,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public override void LoadValue()
 		{
-			laValue.Text = "Monthly Investment: " + _calendarControl.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).Select(x => x.FinalRate).Sum().ToString("$#,###.00");
+			laValue.Text = "Monthly Investment: " + _calendarControl.Inserts.Where(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year).Select(x => x.FinalRate).Sum().ToString("$#,###.00");
 		}
 	}
 
@@ -136,7 +136,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public override void LoadValue()
 		{
-			laValue.Text = "Average Ad Rate: " + (_calendarControl.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).Count() > 0 ? _calendarControl.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).Select(x => x.FinalRate).Average().ToString("$#,###.00") : "$.00");
+			laValue.Text = "Average Ad Rate: " + (_calendarControl.Inserts.Any(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year) ? _calendarControl.Inserts.Where(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year).Select(x => x.FinalRate).Average().ToString("$#,###.00") : "$.00");
 		}
 	}
 
@@ -155,7 +155,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public override void LoadValue()
 		{
-			laValue.Text = "Total Ads: " + _calendarControl.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).Count().ToString();
+			laValue.Text = "Total Ads: " + _calendarControl.Inserts.Count(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year);
 		}
 	}
 
@@ -174,7 +174,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public override void LoadValue()
 		{
-			laValue.Text = "Active Days: " + _calendarControl.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).GroupBy(x => x.Date).Count().ToString();
+			laValue.Text = "Active Days: " + _calendarControl.Inserts.Where(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year).GroupBy(x => x.Date).Count();
 		}
 	}
 }

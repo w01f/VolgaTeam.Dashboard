@@ -93,6 +93,10 @@
       <Project>{164AB808-DBD3-4D71-9431-5A5B44B70593}</Project>
       <Name>NewBizWiz.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Calendar\Calendar.Controls\NewBizWiz.Calendar.Controls.csproj">
+      <Project>{167BC40B-C87E-4972-B8A2-903F6F160B6B}</Project>
+      <Name>NewBizWiz.Calendar.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\OnlineSchedule\OnlineSchedule.Controls\NewBizWiz.OnlineSchedule.Controls.csproj">
       <Project>{1C9B33CD-0FE1-431C-BBC4-88463568F891}</Project>
       <Name>NewBizWiz.OnlineSchedule.Controls</Name>

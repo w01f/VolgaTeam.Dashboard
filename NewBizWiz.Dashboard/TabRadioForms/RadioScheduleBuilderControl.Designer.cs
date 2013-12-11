@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.laTitle = new System.Windows.Forms.Label();
 			this.pnNoSlidesWarning = new System.Windows.Forms.Panel();
 			this.laNoSlidesWarningText3 = new System.Windows.Forms.Label();
 			this.laNoSlidesWarningText2 = new System.Windows.Forms.Label();
@@ -45,6 +44,8 @@
 			this.pnNoDataWarning = new System.Windows.Forms.Panel();
 			this.pbNoDataWarning = new System.Windows.Forms.PictureBox();
 			this.laNoDataWarning = new System.Windows.Forms.Label();
+			this.pbWaterMark = new System.Windows.Forms.PictureBox();
+			this.pbTitle = new System.Windows.Forms.PictureBox();
 			this.pnNoSlidesWarning.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSlidesWarning)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedules)).BeginInit();
@@ -53,19 +54,9 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStatus)).BeginInit();
 			this.pnNoDataWarning.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoDataWarning)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbWaterMark)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbTitle)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// laTitle
-			// 
-			this.laTitle.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(73)))), ((int)(((byte)(125)))));
-			this.laTitle.Location = new System.Drawing.Point(16, 13);
-			this.laTitle.Name = "laTitle";
-			this.laTitle.Size = new System.Drawing.Size(642, 73);
-			this.laTitle.TabIndex = 23;
-			this.laTitle.Text = "Build a simple Radio Spot Package for your\r\nClient Presentation…";
-			this.laTitle.UseMnemonic = false;
-			this.laTitle.Click += new System.EventHandler(this.gridControlSchedules_Click);
 			// 
 			// pnNoSlidesWarning
 			// 
@@ -78,7 +69,7 @@
 			this.pnNoSlidesWarning.Controls.Add(this.laNoSlidesWarningText1);
 			this.pnNoSlidesWarning.Location = new System.Drawing.Point(16, 92);
 			this.pnNoSlidesWarning.Name = "pnNoSlidesWarning";
-			this.pnNoSlidesWarning.Size = new System.Drawing.Size(645, 410);
+			this.pnNoSlidesWarning.Size = new System.Drawing.Size(630, 410);
 			this.pnNoSlidesWarning.TabIndex = 31;
 			// 
 			// laNoSlidesWarningText3
@@ -129,15 +120,16 @@
 			// 
 			// gridControlSchedules
 			// 
-			this.gridControlSchedules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+			this.gridControlSchedules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.gridControlSchedules.Location = new System.Drawing.Point(16, 92);
 			this.gridControlSchedules.MainView = this.gridViewSchedules;
 			this.gridControlSchedules.Name = "gridControlSchedules";
 			this.gridControlSchedules.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit,
             this.repositoryItemComboBoxStatus});
-			this.gridControlSchedules.Size = new System.Drawing.Size(645, 410);
+			this.gridControlSchedules.Size = new System.Drawing.Size(630, 410);
 			this.gridControlSchedules.TabIndex = 32;
 			this.gridControlSchedules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSchedules});
@@ -274,7 +266,7 @@
 			this.pnNoDataWarning.Controls.Add(this.laNoDataWarning);
 			this.pnNoDataWarning.Location = new System.Drawing.Point(16, 92);
 			this.pnNoDataWarning.Name = "pnNoDataWarning";
-			this.pnNoDataWarning.Size = new System.Drawing.Size(645, 410);
+			this.pnNoDataWarning.Size = new System.Drawing.Size(630, 410);
 			this.pnNoDataWarning.TabIndex = 33;
 			// 
 			// pbNoDataWarning
@@ -299,11 +291,31 @@
     "ew days…\r\n\r\nIt will be ready soon…";
 			this.laNoDataWarning.UseMnemonic = false;
 			// 
+			// pbWaterMark
+			// 
+			this.pbWaterMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pbWaterMark.Image = global::NewBizWiz.Dashboard.Properties.Resources.LableRadio;
+			this.pbWaterMark.Location = new System.Drawing.Point(652, 438);
+			this.pbWaterMark.Name = "pbWaterMark";
+			this.pbWaterMark.Size = new System.Drawing.Size(254, 64);
+			this.pbWaterMark.TabIndex = 37;
+			this.pbWaterMark.TabStop = false;
+			// 
+			// pbTitle
+			// 
+			this.pbTitle.Image = global::NewBizWiz.Dashboard.Properties.Resources.TitleRadio;
+			this.pbTitle.Location = new System.Drawing.Point(16, 36);
+			this.pbTitle.Name = "pbTitle";
+			this.pbTitle.Size = new System.Drawing.Size(630, 47);
+			this.pbTitle.TabIndex = 36;
+			this.pbTitle.TabStop = false;
+			// 
 			// RadioScheduleBuilderControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.Controls.Add(this.laTitle);
+			this.Controls.Add(this.pbWaterMark);
+			this.Controls.Add(this.pbTitle);
 			this.Controls.Add(this.gridControlSchedules);
 			this.Controls.Add(this.pnNoSlidesWarning);
 			this.Controls.Add(this.pnNoDataWarning);
@@ -318,14 +330,15 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStatus)).EndInit();
 			this.pnNoDataWarning.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbNoDataWarning)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbWaterMark)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbTitle)).EndInit();
 			this.ResumeLayout(false);
 
         }
 
         #endregion
 
-		private System.Windows.Forms.Label laTitle;
-        private System.Windows.Forms.Panel pnNoSlidesWarning;
+		private System.Windows.Forms.Panel pnNoSlidesWarning;
         private System.Windows.Forms.Label laNoSlidesWarningText3;
         private System.Windows.Forms.Label laNoSlidesWarningText2;
         private System.Windows.Forms.PictureBox pbNoSlidesWarning;
@@ -341,6 +354,8 @@
         private System.Windows.Forms.Panel pnNoDataWarning;
         private System.Windows.Forms.PictureBox pbNoDataWarning;
         private System.Windows.Forms.Label laNoDataWarning;
+		private System.Windows.Forms.PictureBox pbWaterMark;
+		private System.Windows.Forms.PictureBox pbTitle;
 
     }
 }

@@ -88,20 +88,20 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			legend.Description = "full color";
 			_legendsFromPublication.Add(legend);
 
-			foreach (string publication in ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).GroupBy(x => x.Publication).Select(x => x.Key).Distinct())
+			foreach (string publication in ParentCalendar.Inserts.Where(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year).GroupBy(x => x.Publication).Select(x => x.Key).Distinct())
 			{
 				legend = new CalendarLegend();
 				legend.Description = publication;
-				PrintProductSource printProductSource = ListManager.Instance.PublicationSources.Where(x => x.Name.Equals(publication)).FirstOrDefault();
+				var printProductSource = ListManager.Instance.PublicationSources.FirstOrDefault(x => x.Name.Equals(publication));
 				if (printProductSource != null)
 					legend.Code = printProductSource.Abbreviation;
 				else
 					legend.Code = (publication.Length > 3 ? publication.Substring(0, 3) : publication).ToUpper();
 				_legendsFromPublication.Add(legend);
 			}
-			foreach (Insert insert in ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year))
+			foreach (var insert in ParentCalendar.Inserts.Where(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year))
 			{
-				foreach (NameCodePair section in insert.Sections)
+				foreach (var section in insert.Sections)
 				{
 					legend = new CalendarLegend();
 					legend.Description = section.Name;
@@ -306,13 +306,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				string result = string.Empty;
 				if (_settings.Parent.ShowTotalCost)
-					result = "Monthly Investment: " + ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).Select(x => x.FinalRate).Sum().ToString("$#,###.00");
+					result = "Monthly Investment: " + ParentCalendar.Inserts.Where(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year).Select(x => x.FinalRate).Sum().ToString("$#,###.00");
 				else if (_settings.Parent.ShowAvgCost)
-					result = "Average Ad Cost: " + (ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).Count() > 0 ? ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).Select(x => x.FinalRate).Average().ToString("$#,###.00") : "$.00");
+					result = "Average Ad Cost: " + (ParentCalendar.Inserts.Any(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year) ? ParentCalendar.Inserts.Where(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year).Select(x => x.FinalRate).Average().ToString("$#,###.00") : "$.00");
 				else if (_settings.Parent.ShowTotalAds)
-					result = "Total Ads: " + ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).Count().ToString();
+					result = "Total Ads: " + ParentCalendar.Inserts.Count(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year);
 				else if (_settings.Parent.ShowActiveDays)
-					result = "Total Active Days: " + ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).GroupBy(x => x.Date).Count().ToString();
+					result = "Total Active Days: " + ParentCalendar.Inserts.Where(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year).GroupBy(x => x.Date).Count();
 				return result;
 			}
 		}
@@ -323,11 +323,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				string result = string.Empty;
 				if (_settings.Parent.ShowAvgCost && _settings.Parent.ShowTotalCost)
-					result = "Average Ad Cost: " + (ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).Count() > 0 ? ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).Select(x => x.FinalRate).Average().ToString("$#,###.00") : "$.00");
+					result = "Average Ad Cost: " + (ParentCalendar.Inserts.Any(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year) ? ParentCalendar.Inserts.Where(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year).Select(x => x.FinalRate).Average().ToString("$#,###.00") : "$.00");
 				else if (_settings.Parent.ShowTotalAds)
-					result = "Total Ads: " + ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).Count().ToString();
+					result = "Total Ads: " + ParentCalendar.Inserts.Count(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year);
 				else if (_settings.Parent.ShowActiveDays)
-					result = "Total Active Days: " + ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).GroupBy(x => x.Date).Count().ToString();
+					result = "Total Active Days: " + ParentCalendar.Inserts.Where(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year).GroupBy(x => x.Date).Count();
 				return result;
 			}
 		}
@@ -338,9 +338,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				string result = string.Empty;
 				if (_settings.Parent.ShowAvgCost && _settings.Parent.ShowTotalCost && _settings.Parent.ShowTotalAds)
-					result = "Total Ads: " + ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).Count().ToString();
+					result = "Total Ads: " + ParentCalendar.Inserts.Count(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year);
 				else if (_settings.Parent.ShowActiveDays)
-					result = "Total Active Days: " + ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).GroupBy(x => x.Date).Count().ToString();
+					result = "Total Active Days: " + ParentCalendar.Inserts.Where(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year).GroupBy(x => x.Date).Count();
 				return result;
 			}
 		}
@@ -351,7 +351,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				string result = string.Empty;
 				if (_settings.Parent.ShowAvgCost && _settings.Parent.ShowTotalCost && _settings.Parent.ShowTotalAds && _settings.Parent.ShowActiveDays)
-					result = "Total Active Days: " + ParentCalendar.Inserts.Where(x => x.Date.Month == _settings.Month.Month && x.Date.Year == _settings.Month.Year).GroupBy(x => x.Date).Count().ToString();
+					result = "Total Active Days: " + ParentCalendar.Inserts.Where(x => x.Date.HasValue && x.Date.Value.Month == _settings.Month.Month && x.Date.Value.Year == _settings.Month.Year).GroupBy(x => x.Date).Count();
 				return result;
 			}
 		}

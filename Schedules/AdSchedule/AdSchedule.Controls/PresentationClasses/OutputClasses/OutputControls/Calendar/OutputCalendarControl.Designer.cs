@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.laAdvertiser = new System.Windows.Forms.Label();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.pnCalendarView = new System.Windows.Forms.Panel();
 			this.pnEmpty = new System.Windows.Forms.Panel();
@@ -74,6 +75,9 @@
 			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
+			toolTipItem1.Text = "Reset original default data";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditReset.SuperTip = superToolTip1;
 			this.hyperLinkEditReset.TabIndex = 105;
 			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 

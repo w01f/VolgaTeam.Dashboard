@@ -53,6 +53,7 @@
     <Reference Include="DevExpress.XtraLayout.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="NewBizWiz.MediaSchedule.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -69,8 +70,12 @@
     <Compile Include="BusinessClasses\OutputGridModel.cs" />
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="InteropClasses\CalendarHelper.cs" />
     <Compile Include="InteropClasses\OneSheetHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
+    <Compile Include="PresentationClasses\BroadcastCalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\DigitalInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -97,6 +102,12 @@
     </Compile>
     <Compile Include="PresentationClasses\HomeControl.Designer.cs">
       <DependentUpon>HomeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\CalendarSlideInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\CalendarSlideInfoControl.Designer.cs">
+      <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\StationsControl.cs">
       <SubType>UserControl</SubType>
@@ -139,6 +150,10 @@
       <Project>{B096C96B-E96F-4223-AE01-B32D3730DC82}</Project>
       <Name>NewBizWiz.AdSchedule.Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Calendar\Calendar.Controls\NewBizWiz.Calendar.Controls.csproj">
+      <Project>{167BC40B-C87E-4972-B8A2-903F6F160B6B}</Project>
+      <Name>NewBizWiz.Calendar.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\OnlineSchedule\OnlineSchedule.Controls\NewBizWiz.OnlineSchedule.Controls.csproj">
       <Project>{1C9B33CD-0FE1-431C-BBC4-88463568F891}</Project>
       <Name>NewBizWiz.OnlineSchedule.Controls</Name>
@@ -153,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\HomeControl.resx">
       <DependentUpon>HomeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\CalendarSlideInfoControl.resx">
+      <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\StationsControl.resx">
       <DependentUpon>StationsControl.cs</DependentUpon>
@@ -278,6 +296,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HomeLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CalendarDisabled.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

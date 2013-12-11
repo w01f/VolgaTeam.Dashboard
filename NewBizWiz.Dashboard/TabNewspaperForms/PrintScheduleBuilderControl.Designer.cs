@@ -36,8 +36,6 @@
 			this.repositoryItemButtonEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
 			this.gridColumnStatus = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemComboBoxStatus = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-			this.pbLogo = new System.Windows.Forms.PictureBox();
-			this.laTitle = new System.Windows.Forms.Label();
 			this.pnNoSlidesWarning = new System.Windows.Forms.Panel();
 			this.laNoSlidesWarningText3 = new System.Windows.Forms.Label();
 			this.laNoSlidesWarningText2 = new System.Windows.Forms.Label();
@@ -46,28 +44,32 @@
 			this.pnNoDataWarning = new System.Windows.Forms.Panel();
 			this.pbNoDataWarning = new System.Windows.Forms.PictureBox();
 			this.laNoDataWarning = new System.Windows.Forms.Label();
+			this.pbWaterMark = new System.Windows.Forms.PictureBox();
+			this.pbTitle = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedules)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewSchedules)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStatus)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
 			this.pnNoSlidesWarning.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSlidesWarning)).BeginInit();
 			this.pnNoDataWarning.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoDataWarning)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbWaterMark)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbTitle)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gridControlSchedules
 			// 
-			this.gridControlSchedules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+			this.gridControlSchedules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.gridControlSchedules.Location = new System.Drawing.Point(16, 92);
 			this.gridControlSchedules.MainView = this.gridViewSchedules;
 			this.gridControlSchedules.Name = "gridControlSchedules";
 			this.gridControlSchedules.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit,
             this.repositoryItemComboBoxStatus});
-			this.gridControlSchedules.Size = new System.Drawing.Size(645, 382);
+			this.gridControlSchedules.Size = new System.Drawing.Size(630, 410);
 			this.gridControlSchedules.TabIndex = 17;
 			this.gridControlSchedules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSchedules});
@@ -195,41 +197,18 @@
 			this.repositoryItemComboBoxStatus.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.repositoryItemComboBoxStatus.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemComboBoxStatus_Closed);
 			// 
-			// pbLogo
-			// 
-			this.pbLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewspaperLogo;
-			this.pbLogo.Location = new System.Drawing.Point(667, 151);
-			this.pbLogo.Name = "pbLogo";
-			this.pbLogo.Size = new System.Drawing.Size(224, 323);
-			this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbLogo.TabIndex = 20;
-			this.pbLogo.TabStop = false;
-			// 
-			// laTitle
-			// 
-			this.laTitle.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(73)))), ((int)(((byte)(125)))));
-			this.laTitle.Location = new System.Drawing.Point(16, 13);
-			this.laTitle.Name = "laTitle";
-			this.laTitle.Size = new System.Drawing.Size(642, 73);
-			this.laTitle.TabIndex = 21;
-			this.laTitle.Text = "Build Schedules, Campaigns and\r\nAdvertising Calendars for your Client…";
-			this.laTitle.UseMnemonic = false;
-			this.laTitle.Click += new System.EventHandler(this.gridControlSchedules_Click);
-			// 
 			// pnNoSlidesWarning
 			// 
-			this.pnNoSlidesWarning.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+			this.pnNoSlidesWarning.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.pnNoSlidesWarning.Controls.Add(this.laNoSlidesWarningText3);
 			this.pnNoSlidesWarning.Controls.Add(this.laNoSlidesWarningText2);
 			this.pnNoSlidesWarning.Controls.Add(this.pbNoSlidesWarning);
 			this.pnNoSlidesWarning.Controls.Add(this.laNoSlidesWarningText1);
 			this.pnNoSlidesWarning.Location = new System.Drawing.Point(16, 92);
 			this.pnNoSlidesWarning.Name = "pnNoSlidesWarning";
-			this.pnNoSlidesWarning.Size = new System.Drawing.Size(645, 382);
+			this.pnNoSlidesWarning.Size = new System.Drawing.Size(630, 410);
 			this.pnNoSlidesWarning.TabIndex = 32;
 			// 
 			// laNoSlidesWarningText3
@@ -280,13 +259,14 @@
 			// 
 			// pnNoDataWarning
 			// 
-			this.pnNoDataWarning.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+			this.pnNoDataWarning.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.pnNoDataWarning.Controls.Add(this.pbNoDataWarning);
 			this.pnNoDataWarning.Controls.Add(this.laNoDataWarning);
 			this.pnNoDataWarning.Location = new System.Drawing.Point(16, 92);
 			this.pnNoDataWarning.Name = "pnNoDataWarning";
-			this.pnNoDataWarning.Size = new System.Drawing.Size(645, 382);
+			this.pnNoDataWarning.Size = new System.Drawing.Size(630, 410);
 			this.pnNoDataWarning.TabIndex = 33;
 			// 
 			// pbNoDataWarning
@@ -311,27 +291,47 @@
     "w days…\r\n\r\nIt will be ready soon…";
 			this.laNoDataWarning.UseMnemonic = false;
 			// 
+			// pbWaterMark
+			// 
+			this.pbWaterMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pbWaterMark.Image = global::NewBizWiz.Dashboard.Properties.Resources.LabelNewspaper;
+			this.pbWaterMark.Location = new System.Drawing.Point(651, 438);
+			this.pbWaterMark.Name = "pbWaterMark";
+			this.pbWaterMark.Size = new System.Drawing.Size(255, 64);
+			this.pbWaterMark.TabIndex = 37;
+			this.pbWaterMark.TabStop = false;
+			// 
+			// pbTitle
+			// 
+			this.pbTitle.Image = global::NewBizWiz.Dashboard.Properties.Resources.TitleNewspaper;
+			this.pbTitle.Location = new System.Drawing.Point(16, 36);
+			this.pbTitle.Name = "pbTitle";
+			this.pbTitle.Size = new System.Drawing.Size(630, 47);
+			this.pbTitle.TabIndex = 36;
+			this.pbTitle.TabStop = false;
+			// 
 			// PrintScheduleBuilderControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.Controls.Add(this.laTitle);
-			this.Controls.Add(this.pbLogo);
+			this.Controls.Add(this.pbWaterMark);
+			this.Controls.Add(this.pbTitle);
 			this.Controls.Add(this.gridControlSchedules);
-			this.Controls.Add(this.pnNoSlidesWarning);
 			this.Controls.Add(this.pnNoDataWarning);
+			this.Controls.Add(this.pnNoSlidesWarning);
 			this.Name = "PrintScheduleBuilderControl";
-			this.Size = new System.Drawing.Size(894, 487);
+			this.Size = new System.Drawing.Size(909, 515);
 			this.Click += new System.EventHandler(this.gridControlSchedules_Click);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedules)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewSchedules)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStatus)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			this.pnNoSlidesWarning.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbNoSlidesWarning)).EndInit();
 			this.pnNoDataWarning.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbNoDataWarning)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbWaterMark)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbTitle)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -344,8 +344,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnScheduleFile;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnLastModifiedDate;
 		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit;
-        private System.Windows.Forms.PictureBox pbLogo;
-        private System.Windows.Forms.Label laTitle;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnStatus;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxStatus;
         private System.Windows.Forms.Panel pnNoSlidesWarning;
@@ -356,6 +354,8 @@
         private System.Windows.Forms.Panel pnNoDataWarning;
         private System.Windows.Forms.PictureBox pbNoDataWarning;
         private System.Windows.Forms.Label laNoDataWarning;
+		private System.Windows.Forms.PictureBox pbWaterMark;
+		private System.Windows.Forms.PictureBox pbTitle;
 
     }
 }

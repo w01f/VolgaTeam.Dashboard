@@ -97,6 +97,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (digitalLegend.ApplyForAll)
 					LocalSchedule.ApplyDigitalLegendForAllViews(digitalLegend);
 				Controller.Instance.MultiGridDigitalLegend.Image = !digitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+				Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.MultiGridDigitalLegend, new SuperTooltipInfo("Digital Products", "",
+					digitalLegend.Enabled ?
+					"Digital Products are Enabled for this slide" :
+					"Digital Products are Disabled for this slide"
+					, null, null, eTooltipColor.Gray));
 				SettingsNotSaved = true;
 			}
 		}
@@ -105,6 +110,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.MultiGridDigitalLegend.Image = Controller.Instance.MultiGridDigitalLegend.Enabled && !LocalSchedule.ViewSettings.MultiGridViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+			Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.MultiGridDigitalLegend, new SuperTooltipInfo("Digital Products", "",
+							Controller.Instance.MultiGridDigitalLegend.Enabled && LocalSchedule.ViewSettings.MultiGridViewSettings.DigitalLegend.Enabled ?
+							"Digital Products are Enabled for this slide" :
+							"Digital Products are Disabled for this slide"
+							, null, null, eTooltipColor.Gray));
 			FormThemeSelector.Link(Controller.Instance.MultiGridTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
 			{
 				LocalSchedule.ThemeName = t.Name;
@@ -129,10 +139,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 						comboBoxEditSchedule.SelectedIndex = 0;
 				}
 
-				laDate.Text = LocalSchedule.PresentationDateObject != null ? LocalSchedule.PresentationDate.ToString("MM/dd/yy") : string.Empty;
+				laDate.Text = LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy") : string.Empty;
 				laBusinessName.Text = " " + LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
 				laDecisionMaker.Text = LocalSchedule.DecisionMaker;
-				laFlightDates.Text = " " + LocalSchedule.FlightDateStart.ToString("MM/dd/yy") + " - " + LocalSchedule.FlightDateEnd.ToString("MM/dd/yy");
+				laFlightDates.Text = " " + LocalSchedule.FlightDates;
 
 				PrepareInserts();
 				gridControlPublication.DataSource = _inserts;
@@ -179,9 +189,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		private void PrepareInserts()
 		{
 			_inserts.Clear();
-			foreach (PrintProduct publication in LocalSchedule.PrintProducts)
+			foreach (var publication in LocalSchedule.PrintProducts)
 				_inserts.AddRange(publication.Inserts);
-			_inserts.Sort((x, y) => x.Date.CompareTo(y.Date));
+			_inserts.Sort((x, y) => x.Date.HasValue && y.Date.HasValue ? x.Date.Value.CompareTo(y.Date.Value) : 0);
 		}
 		#endregion
 
@@ -1184,7 +1194,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					if (PositionID != -1)
 						row.Add(PositionID, _inserts[k].ID);
 					if (PositionDate != -1)
-						row.Add(PositionDate, _inserts[k].Date.ToString("MM/dd/yy"));
+						row.Add(PositionDate, _inserts[k].Date.HasValue ? _inserts[k].Date.Value.ToString("MM/dd/yy") : String.Empty);
 					if (PositionPCI != -1)
 						row.Add(PositionPCI, _inserts[k].PCIRate.HasValue ? (_inserts[k].PCIRate.Value.ToString("$#,###.00")) : "N/A");
 					if (PositionCost != -1)

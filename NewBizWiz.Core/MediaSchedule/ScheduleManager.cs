@@ -6,13 +6,13 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
-using ListManager = NewBizWiz.Core.Common.ListManager;
-using ScheduleBuilderViewSettings = NewBizWiz.Core.OnlineSchedule.ScheduleBuilderViewSettings;
+using NewBizWiz.Core.Calendar;
 
 namespace NewBizWiz.Core.MediaSchedule
 {
@@ -31,9 +31,16 @@ namespace NewBizWiz.Core.MediaSchedule
 	public class ScheduleManager
 	{
 		private Schedule _currentSchedule;
+		private readonly Func<IEnumerable<BroadcastMonthTemplate>> _getBroadcastMonthTemplates;
 
 		public bool ScheduleLoaded { get; set; }
+
 		public event EventHandler<ScheduleSaveEventArgs> SettingsSaved;
+
+		public ScheduleManager(Func<IEnumerable<BroadcastMonthTemplate>> getBroadcastMonthTemplates)
+		{
+			_getBroadcastMonthTemplates = getBroadcastMonthTemplates;
+		}
 
 		public void OpenSchedule(string scheduleName, bool create)
 		{
@@ -41,13 +48,13 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (create && File.Exists(scheduleFilePath))
 				if (Utilities.Instance.ShowWarningQuestion(string.Format("An older Schedule is already saved with this same file name.\nDo you want to replace this file with a newer schedule?", scheduleName)) == DialogResult.Yes)
 					File.Delete(scheduleFilePath);
-			_currentSchedule = new Schedule(scheduleFilePath);
+			_currentSchedule = new Schedule(scheduleFilePath, _getBroadcastMonthTemplates);
 			ScheduleLoaded = true;
 		}
 
 		public void OpenSchedule(string scheduleFilePath)
 		{
-			_currentSchedule = new Schedule(scheduleFilePath);
+			_currentSchedule = new Schedule(scheduleFilePath, _getBroadcastMonthTemplates);
 			ScheduleLoaded = true;
 		}
 
@@ -58,7 +65,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public Schedule GetLocalSchedule()
 		{
-			return new Schedule(_currentSchedule.ScheduleFile.FullName);
+			return new Schedule(_currentSchedule.ScheduleFile.FullName, _getBroadcastMonthTemplates);
 		}
 
 		public ShortSchedule GetShortSchedule()
@@ -169,8 +176,10 @@ namespace NewBizWiz.Core.MediaSchedule
 
 	public class Schedule : ISchedule
 	{
-		public Schedule(string fileName)
+		public Schedule(string fileName, Func<IEnumerable<BroadcastMonthTemplate>> getBroadcastMonthTemplates)
 		{
+			_getBroadcastMonthTemplates = getBroadcastMonthTemplates;
+
 			BusinessName = string.Empty;
 			DecisionMaker = string.Empty;
 			ClientType = string.Empty;
@@ -185,7 +194,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			Dayparts = new List<Daypart>();
 			Stations = new List<Station>();
 
-			ViewSettings = new ScheduleBuilderViewSettings();
+			ViewSettings = new OnlineSchedule.ScheduleBuilderViewSettings();
 
 			DigitalProducts = new List<DigitalProduct>();
 
@@ -205,12 +214,14 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 			else
 				Load();
+			LoadCalendars();
 
 			Dayparts.AddRange(MediaMetaData.Instance.ListManager.Dayparts.Where(x => !Dayparts.Select(y => y.Name).Contains(x.Name)));
 			Stations.AddRange(MediaMetaData.Instance.ListManager.Stations.Where(x => !Stations.Select(y => y.Name).Contains(x.Name)));
 		}
 
 		private FileInfo _scheduleFile { get; set; }
+		private readonly Func<IEnumerable<BroadcastMonthTemplate>> _getBroadcastMonthTemplates;
 		public bool IsNameNotAssigned { get; set; }
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
@@ -232,7 +243,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public List<Daypart> Dayparts { get; private set; }
 		public List<Station> Stations { get; private set; }
 
-		public ScheduleBuilderViewSettings ViewSettings { get; set; }
+		public OnlineSchedule.ScheduleBuilderViewSettings ViewSettings { get; set; }
 		public IScheduleViewSettings CommonViewSettings
 		{
 			get { return ViewSettings; }
@@ -240,40 +251,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public List<DigitalProduct> DigitalProducts { get; private set; }
 
-		DateTime ISchedule.PresentationDate
-		{
-			get
-			{
-				return PresentationDate.HasValue ? PresentationDate.Value : DateTime.MinValue;
-			}
-			set
-			{
-				PresentationDate = value;
-			}
-		}
-
-		DateTime ISchedule.FlightDateStart
-		{
-			get
-			{
-				return FlightDateStart.HasValue ? FlightDateStart.Value : DateTime.MinValue;
-			}
-			set
-			{
-				FlightDateStart = value;
-			}
-		}
-		DateTime ISchedule.FlightDateEnd
-		{
-			get
-			{
-				return FlightDateEnd.HasValue ? FlightDateEnd.Value : DateTime.MinValue;
-			}
-			set
-			{
-				FlightDateEnd = value;
-			}
-		}
+		public BroadcastCalendar BroadcastCalendar { get; set; }
 
 		public string Name
 		{
@@ -421,16 +399,16 @@ namespace NewBizWiz.Core.MediaSchedule
 
 			xml.AppendLine(@"<Schedule>");
 			xml.AppendLine(@"<BusinessName>" + BusinessName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</BusinessName>");
-			if (!ListManager.Instance.Advertisers.Contains(BusinessName))
+			if (!Common.ListManager.Instance.Advertisers.Contains(BusinessName))
 			{
-				ListManager.Instance.Advertisers.Add(BusinessName);
-				ListManager.Instance.SaveAdvertisers();
+				Common.ListManager.Instance.Advertisers.Add(BusinessName);
+				Common.ListManager.Instance.SaveAdvertisers();
 			}
 			xml.AppendLine(@"<DecisionMaker>" + DecisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
-			if (!ListManager.Instance.DecisionMakers.Contains(DecisionMaker))
+			if (!Common.ListManager.Instance.DecisionMakers.Contains(DecisionMaker))
 			{
-				ListManager.Instance.DecisionMakers.Add(DecisionMaker);
-				ListManager.Instance.SaveDecisionMakers();
+				Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
+				Common.ListManager.Instance.SaveDecisionMakers();
 			}
 			xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
 			xml.AppendLine(@"<ClientType>" + ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
@@ -468,12 +446,34 @@ namespace NewBizWiz.Core.MediaSchedule
 				xml.AppendLine(digitalProduct.Serialize());
 			xml.AppendLine(@"</DigitalProducts>");
 
+			xml.AppendLine(@"<BroadcastCalendar>" + BroadcastCalendar.Serialize() + @"</BroadcastCalendar>");
+
 			xml.AppendLine(@"</Schedule>");
 
 			using (var sw = new StreamWriter(_scheduleFile.FullName, false))
 			{
 				sw.Write(xml);
 				sw.Flush();
+			}
+		}
+
+		private void LoadCalendars()
+		{
+			BroadcastCalendar = new BroadcastCalendar(this, _getBroadcastMonthTemplates);
+			if (!_scheduleFile.Exists) return;
+			var document = new XmlDocument();
+			document.Load(_scheduleFile.FullName);
+
+			var node = document.SelectSingleNode(@"/Schedule/BroadcastCalendar");
+			if (node != null)
+			{
+				BroadcastCalendar.Deserialize(node);
+			}
+			else
+			{
+				BroadcastCalendar.UpdateDaysCollection();
+				BroadcastCalendar.UpdateMonthCollection();
+				BroadcastCalendar.UpdateNotesCollection();
 			}
 		}
 
@@ -657,7 +657,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			#endregion
 
 			result.AppendLine(@"<Programs>");
-			foreach (Program program in Programs)
+			foreach (var program in Programs)
 				result.AppendLine(program.Serialize());
 			result.AppendLine(@"</Programs>");
 			return result.ToString();
@@ -932,12 +932,10 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public void DeleteProgram(int programIndex)
 		{
-			if (programIndex >= 0 && programIndex < Programs.Count)
-			{
-				Program program = Programs[programIndex];
-				Programs.Remove(program);
-				RebuildProgramIndexes();
-			}
+			if (programIndex < 0 || programIndex >= Programs.Count) return;
+			var program = Programs[programIndex];
+			Programs.Remove(program);
+			RebuildProgramIndexes();
 		}
 
 		private void RebuildProgramIndexes()
@@ -948,7 +946,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public void RebuildSpots()
 		{
-			foreach (Program program in Programs)
+			foreach (var program in Programs)
 				program.RebuildSpots();
 		}
 
@@ -1052,6 +1050,7 @@ namespace NewBizWiz.Core.MediaSchedule
 	public class Program
 	{
 		private string _name;
+		private string _day;
 
 		#region Basic Properties
 
@@ -1059,7 +1058,6 @@ namespace NewBizWiz.Core.MediaSchedule
 		public int Index { get; set; }
 		public string Station { get; set; }
 		public string Daypart { get; set; }
-		public string Day { get; set; }
 		public string Time { get; set; }
 		public string Length { get; set; }
 		public double? Rate { get; set; }
@@ -1079,6 +1077,16 @@ namespace NewBizWiz.Core.MediaSchedule
 				_name = value;
 				if (string.IsNullOrEmpty(oldValue))
 					ApplyDefaultValues();
+			}
+		}
+
+		public string Day
+		{
+			get { return _day; }
+			set
+			{
+				_day = value;
+				_weekDays = null;
 			}
 		}
 
@@ -1112,6 +1120,41 @@ namespace NewBizWiz.Core.MediaSchedule
 		public Spot[] SpotsNotEmpty
 		{
 			get { return Spots.Where(x => Parent.Programs.Select(z => z.Spots.FirstOrDefault(y => y.Date.Equals(x.Date))).Sum(w => w.Count) > 0).ToArray(); }
+		}
+
+		private IEnumerable<DayOfWeek> _weekDays;
+		public IEnumerable<DayOfWeek> WeekDays
+		{
+			get
+			{
+				if (_weekDays != null) return _weekDays;
+				var weekdays = new List<DayOfWeek>();
+				if (String.IsNullOrEmpty(Day))
+				{
+					_weekDays = weekdays;
+					return weekdays;
+				}
+				var regexp = new Regex("(?<=[A-Z])(?=[A-Z][a-z])|(?=[A-Z])|(?<=[A-Za-z])(?=[^A-Za-z])");
+				foreach (var weekPart in regexp.Split(Day))
+				{
+					if (new[] { "M", "Mo", "Mon", "Mn" }.Any(d => weekPart.Equals(d)))
+						weekdays.Add(DayOfWeek.Monday);
+					else if (new[] { "T", "Tu", "Tue", "Tues" }.Any(d => weekPart.Equals(d)))
+						weekdays.Add(DayOfWeek.Tuesday);
+					else if (new[] { "W", "We", "Wed", "Wd" }.Any(d => weekPart.Equals(d)))
+						weekdays.Add(DayOfWeek.Wednesday);
+					else if (new[] { "Th", "Thu", "Thur", "Tr", "Thurs" }.Any(d => weekPart.Equals(d)))
+						weekdays.Add(DayOfWeek.Thursday);
+					else if (new[] { "F", "Fr", "Fri" }.Any(d => weekPart.Equals(d)))
+						weekdays.Add(DayOfWeek.Friday);
+					else if (new[] { "Sa", "Sat", "St" }.Any(d => weekPart.Equals(d)))
+						weekdays.Add(DayOfWeek.Saturday);
+					else if (new[] { "Su", "Sun", "Sn" }.Any(d => weekPart.Equals(d)))
+						weekdays.Add(DayOfWeek.Sunday);
+				}
+				_weekDays = weekdays;
+				return _weekDays;
+			}
 		}
 
 		#endregion
@@ -1207,20 +1250,18 @@ namespace NewBizWiz.Core.MediaSchedule
 		public void ApplyDefaultValues()
 		{
 			var source = MediaMetaData.Instance.ListManager.SourcePrograms.Where(x => x.Name.Equals(_name)).ToArray();
-			if (source.Length > 0)
-			{
-				Daypart = source[0].Day;
-				Day = source[0].Day;
-				Time = source[0].Time;
-			}
+			if (source.Length <= 0) return;
+			Daypart = source[0].Day;
+			Day = source[0].Day;
+			Time = source[0].Time;
 		}
 
 		public void RebuildSpots()
 		{
 			Spots.Clear();
 			if (!Parent.Parent.FlightDateStart.HasValue || !Parent.Parent.FlightDateEnd.HasValue) return;
-			DateTime spotDate = Parent.Parent.FlightDateStart.Value;
-			DateTime endDate = Parent.Parent.FlightDateEnd.Value;
+			var spotDate = Parent.Parent.FlightDateStart.Value;
+			var endDate = Parent.Parent.FlightDateEnd.Value;
 			while (spotDate < endDate)
 			{
 				var spot = new Spot(this) { Date = spotDate };
@@ -1377,6 +1418,39 @@ namespace NewBizWiz.Core.MediaSchedule
 		public DateTime Date { get; set; }
 		public int? Count { get; set; }
 
+		private IEnumerable<DateTime> DateRange
+		{
+			get
+			{
+				var dateRange = new List<DateTime>();
+				foreach (var dayOfWeek in _parent.WeekDays)
+				{
+					var date = Date;
+					while (date.DayOfWeek != dayOfWeek)
+						date = date.AddDays(1);
+					dateRange.Add(date);
+				}
+				dateRange.Sort();
+				return dateRange;
+			}
+		}
+
+		public DateTime? StartDate
+		{
+			get
+			{
+				return DateRange.FirstOrDefault();
+			}
+		}
+
+		public DateTime? EndDate
+		{
+			get
+			{
+				return DateRange.LastOrDefault();
+			}
+		}
+
 		public string ColumnName
 		{
 			get
@@ -1386,10 +1460,26 @@ namespace NewBizWiz.Core.MediaSchedule
 					case SpotType.Month:
 						return GetMonthAbbreviation(Date.Month);
 					case SpotType.Week:
-						return string.Format("{0}\n{1}", new object[] { GetMonthAbbreviation(Date.Month), Date.Day.ToString("00") });
+						return String.Format("{0}\n{1}", GetMonthAbbreviation(Date.Month), Date.Day.ToString("00"));
 					default:
 						return string.Empty;
 				}
+			}
+		}
+
+		public string DisplayString
+		{
+			get
+			{
+				var result = new List<string>();
+				if (!Count.HasValue) return String.Empty;
+				result.Add(_parent.Name);
+				if (!String.IsNullOrEmpty(_parent.Daypart))
+					result.Add(_parent.Daypart);
+				if (!String.IsNullOrEmpty(_parent.Time))
+					result.Add(_parent.Time);
+				result.Add(String.Format("{0}x", Count.Value));
+				return String.Format("[{0}]", String.Join(", ", result));
 			}
 		}
 
@@ -1406,18 +1496,17 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public void Deserialize(XmlNode node)
 		{
-			DateTime tempDateTime = DateTime.MinValue;
-			int tempInt = 0;
-
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
 				switch (childNode.Name)
 				{
 					case "Date":
+						DateTime tempDateTime;
 						if (DateTime.TryParse(childNode.InnerText, out tempDateTime))
 							Date = tempDateTime;
 						break;
 					case "Count":
+						int tempInt;
 						if (int.TryParse(childNode.InnerText, out tempInt))
 							Count = tempInt;
 						break;
@@ -1427,7 +1516,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public static string GetMonthAbbreviation(int monthNumber)
 		{
-			string result = string.Empty;
+			var result = string.Empty;
 			switch (monthNumber)
 			{
 				case 1:
@@ -1469,5 +1558,169 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 			return result;
 		}
+	}
+
+	public class BroadcastCalendar : CalendarMondayBased
+	{
+		private readonly Func<IEnumerable<BroadcastMonthTemplate>> _getBroadcastMonthTemplates;
+		private Schedule _parentSchedule;
+
+		public override bool AllowCustomNotes
+		{
+			get { return false; }
+		}
+
+		public BroadcastCalendar(ISchedule parent,
+			Func<IEnumerable<BroadcastMonthTemplate>> getBroadcastMonthTemplates)
+			: base(parent)
+		{
+			_parentSchedule = parent as Schedule;
+			_getBroadcastMonthTemplates = getBroadcastMonthTemplates;
+		}
+
+		public override void UpdateMonthCollection()
+		{
+			if (!Schedule.FlightDateStart.HasValue || !Schedule.FlightDateEnd.HasValue)
+			{
+				Months.Clear();
+				return;
+			}
+			var months = new List<CalendarMonth>();
+			var startDate = Schedule.FlightDateStart.Value;
+			var monthTemplates = _getBroadcastMonthTemplates();
+			while (startDate <= Schedule.FlightDateEnd.Value)
+			{
+				var month = Months.FirstOrDefault(x => x.Date.Equals(startDate));
+				if (month == null)
+				{
+					var monthTemplate = monthTemplates.FirstOrDefault(mt => startDate >= mt.StartDate && startDate <= mt.EndDate);
+					if (monthTemplate != null)
+					{
+						month = new CalendarMonthMondayBased(this);
+						startDate = monthTemplate.Month.Value;
+						month.Date = monthTemplate.Month.Value;
+						month.DaysRangeBegin = monthTemplate.StartDate.Value;
+						month.DaysRangeEnd = monthTemplate.EndDate.Value;
+					}
+				}
+				if (month == null) continue;
+				month.Days.Clear();
+				month.Days.AddRange(Days.Where(x => x.Date >= month.DaysRangeBegin && x.Date <= month.DaysRangeEnd));
+				months.Add(month);
+				startDate = startDate.AddMonths(1);
+			}
+			Months.Clear();
+			Months.AddRange(months);
+		}
+
+		public override void UpdateNotesCollection()
+		{
+			const string noteSeparator = "   ";
+			var notes = new List<CalendarNote>();
+			if (Schedule.FlightDateStart.HasValue && Schedule.FlightDateEnd.HasValue)
+			{
+				notes.AddRange(_parentSchedule.WeeklySchedule.Programs
+					.SelectMany(p => p.Spots)
+					.Where(s => s.Count > 0 && s.StartDate.HasValue && s.EndDate.HasValue)
+					.GroupBy(g => new { g.StartDate, g.EndDate })
+					.Select(g => new CalendarNote(this)
+					{
+						StartDay = g.Key.StartDate.Value,
+						FinishDay = g.Key.EndDate.Value,
+						Note = String.Join(noteSeparator, g.Select(sp => sp.DisplayString)),
+						ReadOnly = true
+					}));
+
+				bool needToSplit;
+				var splittedNotes = new List<CalendarNote>(notes);
+				do
+				{
+					needToSplit = false;
+					foreach (var calendarNote in notes.OrderByDescending(n => n.Length))
+					{
+						var intersectedNote = splittedNotes.Where(sn => sn != calendarNote).OrderBy(n => n.Length).FirstOrDefault(mn =>
+							(mn.StartDay >= calendarNote.StartDay && mn.StartDay <= calendarNote.FinishDay) ||
+							(mn.FinishDay >= calendarNote.StartDay && mn.FinishDay <= calendarNote.FinishDay));
+						if (intersectedNote == null) continue;
+						needToSplit = true;
+						if ((intersectedNote.StartDay >= calendarNote.StartDay && intersectedNote.StartDay <= calendarNote.FinishDay) &&
+							(intersectedNote.FinishDay >= calendarNote.StartDay && intersectedNote.FinishDay <= calendarNote.FinishDay))
+						{
+							if (intersectedNote.StartDay > calendarNote.StartDay)
+								splittedNotes.Add(new CalendarNote(this)
+								{
+									StartDay = calendarNote.StartDay,
+									FinishDay = intersectedNote.StartDay.AddDays(-1),
+									Note = calendarNote.Note,
+									ReadOnly = true
+								});
+							if (intersectedNote.FinishDay < calendarNote.FinishDay)
+								splittedNotes.Add(new CalendarNote(this)
+								{
+									StartDay = intersectedNote.FinishDay.AddDays(1),
+									FinishDay = calendarNote.FinishDay,
+									Note = calendarNote.Note,
+									ReadOnly = true
+								});
+							intersectedNote.Note = String.Format("{0}{1}{2}", calendarNote.Note, noteSeparator, intersectedNote.Note);
+							splittedNotes.Remove(calendarNote);
+						}
+						else if (intersectedNote.StartDay >= calendarNote.StartDay && intersectedNote.StartDay <= calendarNote.FinishDay)
+						{
+							splittedNotes.Add(new CalendarNote(this)
+							{
+								StartDay = calendarNote.StartDay,
+								FinishDay = intersectedNote.StartDay.AddDays(-1),
+								Note = calendarNote.Note,
+								ReadOnly = true
+							});
+							intersectedNote.Note = String.Format("{0}{1}{2}", calendarNote.Note, noteSeparator, intersectedNote.Note);
+							splittedNotes.Remove(calendarNote);
+						}
+						else if (intersectedNote.FinishDay >= calendarNote.StartDay && intersectedNote.FinishDay <= calendarNote.FinishDay)
+						{
+							splittedNotes.Add(new CalendarNote(this)
+							{
+								StartDay = intersectedNote.FinishDay.AddDays(1),
+								FinishDay = calendarNote.FinishDay,
+								Note = calendarNote.Note,
+								ReadOnly = true
+							});
+							intersectedNote.Note = String.Format("{0}{1}{2}", calendarNote.Note, noteSeparator, intersectedNote.Note);
+							splittedNotes.Remove(calendarNote);
+						}
+					}
+					notes.Clear();
+					notes.AddRange(splittedNotes);
+				} while (needToSplit);
+
+				if (Notes.Any(n => n.BackgroundColor != CalendarNote.DefaultBackgroundColor))
+				{
+					if (Notes.All(n => n.BackgroundColor == Notes.First().BackgroundColor))
+					{
+						notes.ForEach(note => note.BackgroundColor = Notes.First().BackgroundColor);
+					}
+					else
+					{
+						foreach (var note in notes)
+						{
+							var existedNote = Notes.FirstOrDefault(n => n.StartDay == note.StartDay && n.FinishDay == note.FinishDay);
+							if (existedNote != null)
+								note.BackgroundColor = existedNote.BackgroundColor;
+						}
+					}
+				}
+			}
+			Notes.Clear();
+			Notes.AddRange(notes);
+			UpdateDayAndNoteLinks();
+		}
+	}
+
+	public class BroadcastMonthTemplate
+	{
+		public DateTime? Month { get; set; }
+		public DateTime? StartDate { get; set; }
+		public DateTime? EndDate { get; set; }
 	}
 }

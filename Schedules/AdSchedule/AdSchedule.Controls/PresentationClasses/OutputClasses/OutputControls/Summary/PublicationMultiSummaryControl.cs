@@ -69,7 +69,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			Text = PrintProduct.Name.Replace("&", "&&");
 			pbLogo.Image = PrintProduct.SmallLogo != null ? new Bitmap(PrintProduct.SmallLogo) : null;
-			checkEditFlightDates.Text = PrintProduct.Parent.FlightDateStart.ToString("MM/dd/yy") + " - " + PrintProduct.Parent.FlightDateEnd.ToString("MM/dd/yy");
+			checkEditFlightDates.Text = PrintProduct.Parent.FlightDates;
 			checkEditName.Text = PrintProduct.Name.Replace("&", "&&");
 			checkEditTotalAds.Text = "Total Ads: " + PrintProduct.TotalInserts.ToString("#,##0");
 			checkEditTotalSquare.Text = PrintProduct.TotalSquare.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage ? ("Total Column Inches: " + PrintProduct.TotalSquare.Value.ToString("#,##0.00#")) : string.Empty;

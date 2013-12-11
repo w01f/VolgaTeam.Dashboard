@@ -285,6 +285,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.DetailedGridDigitalLegend.Image = Controller.Instance.DetailedGridDigitalLegend.Enabled && !LocalSchedule.ViewSettings.DetailedGridViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+			Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.DetailedGridDigitalLegend, new SuperTooltipInfo("Digital Products", "",
+				Controller.Instance.DetailedGridDigitalLegend.Enabled && LocalSchedule.ViewSettings.DetailedGridViewSettings.DigitalLegend.Enabled ?
+				"Digital Products are Enabled for this slide" :
+				"Digital Products are Disabled for this slide"
+				, null, null, eTooltipColor.Gray));
 			FormThemeSelector.Link(Controller.Instance.DetailedGridTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
 			{
 				LocalSchedule.ThemeName = t.Name;
@@ -944,6 +949,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (digitalLegend.ApplyForAll)
 					LocalSchedule.ApplyDigitalLegendForAllViews(digitalLegend);
 				Controller.Instance.DetailedGridDigitalLegend.Image = !digitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+				Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.DetailedGridDigitalLegend, new SuperTooltipInfo("Digital Products", "",
+					digitalLegend.Enabled ?
+					"Digital Products are Enabled for this slide" :
+					"Digital Products are Disabled for this slide"
+					, null, null, eTooltipColor.Gray));
 				SettingsNotSaved = true;
 			}
 		}

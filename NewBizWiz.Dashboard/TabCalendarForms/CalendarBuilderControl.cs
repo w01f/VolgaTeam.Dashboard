@@ -25,7 +25,6 @@ namespace NewBizWiz.Dashboard.TabCalendarForms
 			AppManager.Instance.SetClickEventHandler(this);
 			if ((CreateGraphics()).DpiX > 96)
 			{
-				laTitle.Font = new Font(laTitle.Font.Name, laTitle.Font.Size - 5, laTitle.Font.Style);
 				laNoDataWarning.Font = new Font(laNoDataWarning.Font.Name, laNoDataWarning.Font.Size - 5, laNoDataWarning.Font.Style);
 			}
 		}

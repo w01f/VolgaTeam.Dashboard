@@ -75,7 +75,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			checkEditBusinessName.Text = string.Format("Business Name: {0}", LocalSchedule.BusinessName);
 			checkEditDecisionMaker.Text = string.Format("Decision Maker: {0}", LocalSchedule.DecisionMaker);
-			checkEditPresentationDate.Text = string.Format("Presentation Date: {0}", LocalSchedule.PresentationDate.ToString("MM/dd/yyyy"));
+			checkEditPresentationDate.Text = string.Format("Presentation Date: {0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
 			checkEditFlightDates.Text = string.Format("Campaign Dates: {0}", LocalSchedule.FlightDates);
 			laSignatureLineTag.Text = LocalSchedule.DecisionMaker;
 			FormThemeSelector.Link(Controller.Instance.SummaryTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
@@ -387,8 +387,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		{
 			get
 			{
-				if (checkEditPresentationDate.Checked)
-					return LocalSchedule.PresentationDate.ToString("MM/dd/yy");
+				if (checkEditPresentationDate.Checked && LocalSchedule.PresentationDate.HasValue)
+					return LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy");
 				return String.Empty;
 			}
 		}

@@ -190,7 +190,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			if (Controller.Instance.HomeFlightDatesStart.EditValue != null)
 			{
 				_localSchedule.FlightDateStart = Controller.Instance.HomeFlightDatesStart.DateTime;
-				if (_localSchedule.FlightDateStart.DayOfWeek != DayOfWeek.Sunday)
+				if (_localSchedule.FlightDateStart.Value.DayOfWeek != DayOfWeek.Sunday)
 				{
 					Utilities.Instance.ShowWarning("Flight Start Date must be Sunday\nFlight End Date must be Saturday\nFlight Start Date must be less then Flight End Date.");
 					return false;
@@ -204,7 +204,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			if (Controller.Instance.HomeFlightDatesEnd.EditValue != null)
 			{
 				_localSchedule.FlightDateEnd = Controller.Instance.HomeFlightDatesEnd.DateTime;
-				if (_localSchedule.FlightDateEnd.DayOfWeek != DayOfWeek.Saturday || _localSchedule.FlightDateEnd < _localSchedule.FlightDateStart)
+				if (_localSchedule.FlightDateEnd.Value.DayOfWeek != DayOfWeek.Saturday || _localSchedule.FlightDateEnd < _localSchedule.FlightDateStart)
 				{
 					Utilities.Instance.ShowWarning("Flight Start Date must be Sunday\nFlight End Date must be Saturday\nFlight Start Date must be less then Flight End Date.");
 					return false;

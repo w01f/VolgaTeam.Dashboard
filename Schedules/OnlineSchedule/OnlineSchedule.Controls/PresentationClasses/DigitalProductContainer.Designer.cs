@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.labelControlOutputStatus = new DevExpress.XtraEditors.LabelControl();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.xtraTabControlProducts = new DevExpress.XtraTab.XtraTabControl();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
@@ -126,6 +129,9 @@
 			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
+			toolTipItem1.Text = "Reset your Data to original settings";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditReset.SuperTip = superToolTip1;
 			this.hyperLinkEditReset.TabIndex = 100;
 			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 

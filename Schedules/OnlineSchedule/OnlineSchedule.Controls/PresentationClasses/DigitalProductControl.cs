@@ -197,7 +197,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				_container.comboBoxEditSlideHeader.EditValue = Product.SlideHeader;
 			else
 				_container.comboBoxEditSlideHeader.EditValue = null;
-			labelControlPresentationDate.Text = "Presentation Date:\n" + Product.Parent.PresentationDate.ToString("MM/dd/yy");
+			labelControlPresentationDate.Text = Product.Parent.PresentationDate.HasValue ? "Presentation Date:\n" + Product.Parent.PresentationDate.Value.ToString("MM/dd/yy") : String.Empty;
 
 			switch (Product.Formula)
 			{

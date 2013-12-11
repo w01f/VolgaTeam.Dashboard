@@ -28,20 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-			DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip8 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem8 = new DevExpress.Utils.ToolTipItem();
+			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.pnButtons = new System.Windows.Forms.Panel();
 			this.buttonXCategory = new DevComponents.DotNetBar.ButtonX();
@@ -88,11 +91,11 @@
 			this.gridBandFormula = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnFormula = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemCheckEditFormula = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			this.pbDisabledOutput = new System.Windows.Forms.PictureBox();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.laAdvertiser = new System.Windows.Forms.Label();
-			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
 			this.splitContainerControl.SuspendLayout();
@@ -338,9 +341,9 @@
 			this.pbFormula.Location = new System.Drawing.Point(12, 5);
 			this.pbFormula.Name = "pbFormula";
 			this.pbFormula.Size = new System.Drawing.Size(34, 34);
-			toolTipItem6.Text = "How do you want to PRICE your Digital Schedule?";
-			superToolTip6.Items.Add(toolTipItem6);
-			this.toolTipController.SetSuperTip(this.pbFormula, superToolTip6);
+			toolTipItem1.Text = "How do you want to PRICE your Digital Schedule?";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.toolTipController.SetSuperTip(this.pbFormula, superToolTip1);
 			this.pbFormula.TabIndex = 52;
 			this.pbFormula.TabStop = false;
 			// 
@@ -350,9 +353,9 @@
 			this.labelControlFormula.Location = new System.Drawing.Point(52, 14);
 			this.labelControlFormula.Name = "labelControlFormula";
 			this.labelControlFormula.Size = new System.Drawing.Size(109, 16);
-			toolTipItem7.Text = "How do you want to PRICE your Digital Schedule?";
-			superToolTip7.Items.Add(toolTipItem7);
-			this.labelControlFormula.SuperTip = superToolTip7;
+			toolTipItem2.Text = "How do you want to PRICE your Digital Schedule?";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.labelControlFormula.SuperTip = superToolTip2;
 			this.labelControlFormula.TabIndex = 53;
 			this.labelControlFormula.Text = "Delivery Formula";
 			// 
@@ -383,9 +386,9 @@
 			this.checkEditFormulaCPM.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaCPM.Properties.RadioGroupIndex = 1;
 			this.checkEditFormulaCPM.Size = new System.Drawing.Size(211, 36);
-			toolTipItem8.Text = "Type Impressions and Investment";
-			superToolTip8.Items.Add(toolTipItem8);
-			this.checkEditFormulaCPM.SuperTip = superToolTip8;
+			toolTipItem3.Text = "Type Impressions and Investment";
+			superToolTip3.Items.Add(toolTipItem3);
+			this.checkEditFormulaCPM.SuperTip = superToolTip3;
 			this.checkEditFormulaCPM.TabIndex = 49;
 			this.checkEditFormulaCPM.TabStop = false;
 			this.checkEditFormulaCPM.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
@@ -417,9 +420,9 @@
 			this.checkEditFormulaInvestment.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaInvestment.Properties.RadioGroupIndex = 1;
 			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(211, 36);
-			toolTipItem3.Text = "Type Impressions and CPM";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.checkEditFormulaInvestment.SuperTip = superToolTip3;
+			toolTipItem4.Text = "Type Impressions and CPM";
+			superToolTip4.Items.Add(toolTipItem4);
+			this.checkEditFormulaInvestment.SuperTip = superToolTip4;
 			this.checkEditFormulaInvestment.TabIndex = 50;
 			this.checkEditFormulaInvestment.TabStop = false;
 			this.checkEditFormulaInvestment.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
@@ -451,9 +454,9 @@
 			this.checkEditFormulaImpressions.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaImpressions.Properties.RadioGroupIndex = 1;
 			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(211, 36);
-			toolTipItem4.Text = "Type CPM and Investment";
-			superToolTip4.Items.Add(toolTipItem4);
-			this.checkEditFormulaImpressions.SuperTip = superToolTip4;
+			toolTipItem5.Text = "Type CPM and Investment";
+			superToolTip5.Items.Add(toolTipItem5);
+			this.checkEditFormulaImpressions.SuperTip = superToolTip5;
 			this.checkEditFormulaImpressions.TabIndex = 51;
 			this.checkEditFormulaImpressions.TabStop = false;
 			this.checkEditFormulaImpressions.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
@@ -644,7 +647,7 @@
 			this.repositoryItemComboBoxGroup.AutoHeight = false;
 			this.repositoryItemComboBoxGroup.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "Clear Value", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "Clear Value", null, null, true)});
 			this.repositoryItemComboBoxGroup.Name = "repositoryItemComboBoxGroup";
 			this.repositoryItemComboBoxGroup.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemComboBox_Closed);
 			this.repositoryItemComboBoxGroup.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItem_ButtonClick);
@@ -674,7 +677,7 @@
 			this.repositoryItemComboBoxProduct.AutoHeight = false;
 			this.repositoryItemComboBoxProduct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "Clear Value", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "Clear Value", null, null, true)});
 			this.repositoryItemComboBoxProduct.Name = "repositoryItemComboBoxProduct";
 			this.repositoryItemComboBoxProduct.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItem_ButtonClick);
 			// 
@@ -846,16 +849,20 @@
 			this.repositoryItemCheckEditFormula.PictureUnchecked = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.FormulaLogoDisabled;
 			this.repositoryItemCheckEditFormula.CheckedChanged += new System.EventHandler(this.repositoryItemCheckEditFormula_CheckedChanged);
 			// 
+			// toolTipController
+			// 
+			this.toolTipController.Rounded = true;
+			this.toolTipController.ShowShadow = false;
+			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController_GetActiveObjectInfo);
+			// 
 			// pbDisabledOutput
 			// 
-			this.pbDisabledOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbDisabledOutput.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pbDisabledOutput.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pbDisabledOutput.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.DigitalPackageDisabled;
-			this.pbDisabledOutput.Location = new System.Drawing.Point(144, 187);
+			this.pbDisabledOutput.Location = new System.Drawing.Point(0, 0);
 			this.pbDisabledOutput.Name = "pbDisabledOutput";
-			this.pbDisabledOutput.Size = new System.Drawing.Size(503, 176);
+			this.pbDisabledOutput.Size = new System.Drawing.Size(791, 551);
 			this.pbDisabledOutput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pbDisabledOutput.TabIndex = 5;
 			this.pbDisabledOutput.TabStop = false;
@@ -890,6 +897,9 @@
 			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
+			toolTipItem6.Text = "Reset your Data to original settings";
+			superToolTip6.Items.Add(toolTipItem6);
+			this.hyperLinkEditReset.SuperTip = superToolTip6;
 			this.hyperLinkEditReset.TabIndex = 102;
 			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 
@@ -901,12 +911,6 @@
 			this.laAdvertiser.Size = new System.Drawing.Size(300, 30);
 			this.laAdvertiser.TabIndex = 2;
 			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// toolTipController
-			// 
-			this.toolTipController.Rounded = true;
-			this.toolTipController.ShowShadow = false;
-			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController_GetActiveObjectInfo);
 			// 
 			// WebPackageControl
 			// 
@@ -965,7 +969,6 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandInvestment;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandFormula;
 		private System.Windows.Forms.Panel pnData;
-		private System.Windows.Forms.PictureBox pbDisabledOutput;
 		protected System.Windows.Forms.Panel pnHeader;
 		protected System.Windows.Forms.Label laAdvertiser;
 		protected DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
@@ -998,6 +1001,7 @@
 		private DevExpress.XtraEditors.CheckEdit checkEditFormulaImpressions;
 		private System.Windows.Forms.Panel pnButtons;
 		private DevExpress.Utils.ToolTipController toolTipController;
+		protected System.Windows.Forms.PictureBox pbDisabledOutput;
 
     }
 }

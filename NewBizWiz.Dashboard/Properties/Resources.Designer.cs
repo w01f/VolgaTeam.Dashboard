@@ -95,13 +95,6 @@ namespace NewBizWiz.Dashboard.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap CalendarLogo {
-            get {
-                object obj = ResourceManager.GetObject("CalendarLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap Date {
             get {
                 object obj = ResourceManager.GetObject("Date", resourceCulture);
@@ -172,13 +165,6 @@ namespace NewBizWiz.Dashboard.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap HomeCalendarDisabled {
-            get {
-                object obj = ResourceManager.GetObject("HomeCalendarDisabled", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap HomeNewspaper {
             get {
                 object obj = ResourceManager.GetObject("HomeNewspaper", resourceCulture);
@@ -207,6 +193,41 @@ namespace NewBizWiz.Dashboard.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap LabelCalendar {
+            get {
+                object obj = ResourceManager.GetObject("LabelCalendar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap LabelNewspaper {
+            get {
+                object obj = ResourceManager.GetObject("LabelNewspaper", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap LableOnline {
+            get {
+                object obj = ResourceManager.GetObject("LableOnline", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap LableRadio {
+            get {
+                object obj = ResourceManager.GetObject("LableRadio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap LableTV {
+            get {
+                object obj = ResourceManager.GetObject("LableTV", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap MasterWizardLogo {
             get {
                 object obj = ResourceManager.GetObject("MasterWizardLogo", resourceCulture);
@@ -224,20 +245,6 @@ namespace NewBizWiz.Dashboard.Properties {
         internal static System.Drawing.Bitmap NewspaperLittle {
             get {
                 object obj = ResourceManager.GetObject("NewspaperLittle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap NewspaperLogo {
-            get {
-                object obj = ResourceManager.GetObject("NewspaperLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap OnlineLogo {
-            get {
-                object obj = ResourceManager.GetObject("OnlineLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -294,6 +301,41 @@ namespace NewBizWiz.Dashboard.Properties {
         internal static System.Drawing.Bitmap SavedFiles {
             get {
                 object obj = ResourceManager.GetObject("SavedFiles", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap TitleCalendar {
+            get {
+                object obj = ResourceManager.GetObject("TitleCalendar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap TitleNewspaper {
+            get {
+                object obj = ResourceManager.GetObject("TitleNewspaper", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap TitleOnline {
+            get {
+                object obj = ResourceManager.GetObject("TitleOnline", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap TitleRadio {
+            get {
+                object obj = ResourceManager.GetObject("TitleRadio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap TitleTV {
+            get {
+                object obj = ResourceManager.GetObject("TitleTV", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -86,8 +86,7 @@ namespace NewBizWiz.Dashboard
 					ribbonTabItemTV.Visible = true;
 					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
 					buttonItemTVScheduleBuilder.Image = Resources.TVLittle;
-					ribbonTabItemCalendar.Visible = true;
-					ribbonTabItemCalendar.Enabled = false;
+					ribbonTabItemCalendar.Visible = false;
 					break;
 				case "radio":
 					ribbonTabItemNewspaper.Visible = false;
@@ -95,8 +94,7 @@ namespace NewBizWiz.Dashboard
 					ribbonTabItemRadio.Visible = true;
 					ribbonTabItemRadio.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
 					ribbonTabItemTV.Visible = false;
-					ribbonTabItemCalendar.Visible = true;
-					ribbonTabItemCalendar.Enabled = false;
+					ribbonTabItemCalendar.Visible = false;
 					break;
 				case "cable":
 					ribbonTabItemNewspaper.Visible = false;
@@ -105,8 +103,7 @@ namespace NewBizWiz.Dashboard
 					ribbonTabItemTV.Visible = true;
 					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
 					buttonItemTVScheduleBuilder.Image = Resources.CableLittle;
-					ribbonTabItemCalendar.Visible = true;
-					ribbonTabItemCalendar.Enabled = false;
+					ribbonTabItemCalendar.Visible = false;
 					break;
 			}
 		}

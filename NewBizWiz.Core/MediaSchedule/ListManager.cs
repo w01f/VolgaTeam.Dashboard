@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Core.MediaSchedule
 {
@@ -11,6 +12,7 @@ namespace NewBizWiz.Core.MediaSchedule
 	{
 		protected abstract string StrategyFileName { get; }
 		protected abstract string XmlRootPrefix { get; }
+		protected abstract string ImageFolderPath { get; }
 
 		protected MediaListManager()
 		{
@@ -24,8 +26,34 @@ namespace NewBizWiz.Core.MediaSchedule
 			Days = new List<string>();
 			SourcePrograms = new List<SourceProgram>();
 			Statuses = new List<string>();
+
+			string folderPath = Path.Combine(ImageFolderPath, "Big Logos");
+			if (Directory.Exists(folderPath))
+				BigImageFolder = new DirectoryInfo(folderPath);
+
+			folderPath = Path.Combine(ImageFolderPath, "Small Logos");
+			if (Directory.Exists(folderPath))
+				SmallImageFolder = new DirectoryInfo(folderPath);
+
+			folderPath = Path.Combine(ImageFolderPath, "Tiny Logos");
+			if (Directory.Exists(folderPath))
+				TinyImageFolder = new DirectoryInfo(folderPath);
+
+			folderPath = Path.Combine(ImageFolderPath, "Xtra Tiny Logos");
+			if (Directory.Exists(folderPath))
+				XtraTinyImageFolder = new DirectoryInfo(folderPath);
+			Images = new List<ImageSource>();
+
+			LoadImages();
+
 			LoadLists();
 		}
+
+		public DirectoryInfo BigImageFolder { get; set; }
+		public DirectoryInfo SmallImageFolder { get; set; }
+		public DirectoryInfo TinyImageFolder { get; set; }
+		public DirectoryInfo XtraTinyImageFolder { get; set; }
+		public List<ImageSource> Images { get; set; }
 
 		public List<string> SlideHeaders { get; set; }
 		public List<string> ClientTypes { get; set; }
@@ -38,7 +66,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public List<SourceProgram> SourcePrograms { get; set; }
 		public List<string> Statuses { get; set; }
 
-		private void LoadTVStrategy()
+		private void LoadStrategy()
 		{
 			SlideHeaders.Clear();
 			ClientTypes.Clear();
@@ -167,6 +195,30 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 		}
 
+		private void LoadImages()
+		{
+			Images.Clear();
+			foreach (var bigImageFile in BigImageFolder.GetFiles("*.png"))
+			{
+				string imageFileName = Path.GetFileNameWithoutExtension(bigImageFile.FullName);
+				string imageFileExtension = Path.GetExtension(bigImageFile.FullName);
+
+				string smallImageFilePath = Path.Combine(SmallImageFolder.FullName, string.Format("{0}2{1}", new[] { imageFileName, imageFileExtension }));
+				string tinyImageFilePath = Path.Combine(TinyImageFolder.FullName, string.Format("{0}3{1}", new[] { imageFileName, imageFileExtension }));
+				string xtraTinyImageFilePath = Path.Combine(XtraTinyImageFolder.FullName, string.Format("{0}4{1}", new[] { imageFileName, imageFileExtension }));
+				if (File.Exists(smallImageFilePath) && File.Exists(tinyImageFilePath) && File.Exists(xtraTinyImageFilePath))
+				{
+					var imageSource = new ImageSource();
+					imageSource.IsDefault = bigImageFile.Name.ToLower().Contains("default");
+					imageSource.BigImage = new Bitmap(bigImageFile.FullName);
+					imageSource.SmallImage = new Bitmap(smallImageFilePath);
+					imageSource.TinyImage = new Bitmap(tinyImageFilePath);
+					imageSource.XtraTinyImage = new Bitmap(xtraTinyImageFilePath);
+					Images.Add(imageSource);
+				}
+			}
+		}
+
 		private void GetProgramProperties(XmlNode node, ref SourceProgram sourceProgram)
 		{
 			foreach (XmlAttribute attribute in node.Attributes)
@@ -223,7 +275,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		private void LoadLists()
 		{
-			LoadTVStrategy();
+			LoadStrategy();
 		}
 	}
 
@@ -238,6 +290,11 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			get { return "TV"; }
 		}
+
+		protected override string ImageFolderPath
+		{
+			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\TV\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
+		}
 	}
 
 	public class RadioListManager : MediaListManager
@@ -250,6 +307,11 @@ namespace NewBizWiz.Core.MediaSchedule
 		protected override string XmlRootPrefix
 		{
 			get { return "Radio"; }
+		}
+
+		protected override string ImageFolderPath
+		{
+			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\Radio\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
 		}
 	}
 }

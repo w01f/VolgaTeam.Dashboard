@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 using DevExpress.XtraBars.Docking;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
 using NewBizWiz.Core.Calendar;
@@ -21,10 +23,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			_container.ClosedPanel += ClosedPanel;
 			_container.DockChanged += PanelDockChanged;
 			_container.DoubleClick += PanelDoubleClick;
-
-			ContainedControl = new SlideInfoControl();
-			ContainedControl.Closed += PropertiesClosed;
-			ContainedControl.ThemeChanged += OnThemeChanged;
 		}
 
 		#region Container Event Handlers
@@ -84,6 +82,14 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 		#endregion
 
 		#region Common Methods
+
+		public void InitControl<TControl>() where TControl : ISlideInfoControl
+		{
+			_containedControl = (TControl)Activator.CreateInstance(typeof(TControl));
+			_containedControl.Closed += PropertiesClosed;
+			_containedControl.ThemeChanged += OnThemeChanged;
+		}
+
 		public void LoadVisibilitySettings()
 		{
 			if (_parentCalendar.CalendarSettings.SlideInfoVisible)
@@ -98,7 +104,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 				Close();
 				_parentCalendar.Splash(false);
 			}
-			Controller.Instance.CalendarVisualizer.SlideInfoButtonItem.Checked = _parentCalendar.CalendarSettings.SlideInfoVisible;
+			_parentCalendar.SlideInfoButton.Checked = _parentCalendar.CalendarSettings.SlideInfoVisible;
 		}
 
 		private void LoadLocationSettings()
@@ -113,7 +119,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 		private void SaveVisibilitySettings()
 		{
 			_parentCalendar.CalendarSettings.SlideInfoVisible = _container.Visibility == DockVisibility.Visible;
-			SettingsManager.Instance.ViewSettings.Save();
+			_parentCalendar.SaveSettings();
 		}
 
 		private void SaveLocationSettings()
@@ -122,22 +128,22 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 				_parentCalendar.CalendarSettings.SlideInfoDocked = _container.Dock == DockingStyle.Left;
 			_parentCalendar.CalendarSettings.SlideInfoFloatLeft = _container.FloatLocation.X;
 			_parentCalendar.CalendarSettings.SlideInfoFloatTop = _container.FloatLocation.Y;
-			SettingsManager.Instance.ViewSettings.Save();
+			_parentCalendar.SaveSettings();
 		}
 
 		public void LoadData(CalendarMonth month = null)
 		{
 			SaveData();
 			if (month == null)
-				ContainedControl.LoadCurrentMonthData();
+				_containedControl.LoadCurrentMonthData();
 			else
-				ContainedControl.LoadMonth(month);
-			_container.Text = ContainedControl.MonthTitle;
+				_containedControl.LoadMonth(month);
+			_container.Text = _containedControl.MonthTitle;
 		}
 
 		public void SaveData()
 		{
-			ContainedControl.SaveData();
+			_containedControl.SaveData();
 		}
 
 		public void Show()
@@ -158,15 +164,37 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 		}
 		#endregion
 
-		public SlideInfoControl ContainedControl { get; private set; }
+		private ISlideInfoControl _containedControl;
+		public Control ContainedControl
+		{
+			get { return _containedControl as UserControl; }
+		}
+
 		public bool SettingsNotSaved
 		{
-			get { return ContainedControl.SettingsNotSaved; }
+			get { return _containedControl.SettingsNotSaved; }
 		}
 
 		public event EventHandler<EventArgs> Shown;
 		public event EventHandler<EventArgs> Closed;
-		public event EventHandler<EventArgs> DateSaved;
 		public event EventHandler<EventArgs> ThemeChanged;
+	}
+
+	public interface ISlideInfoControl
+	{
+		string MonthTitle { get; set; }
+		bool SettingsNotSaved { get; set; }
+
+		[Browsable(true)]
+		[Category("Action")]
+		event EventHandler Closed;
+
+		[Browsable(true)]
+		[Category("Action")]
+		event EventHandler<EventArgs> ThemeChanged;
+
+		void LoadCurrentMonthData();
+		void LoadMonth(CalendarMonth month);
+		void SaveData();
 	}
 }

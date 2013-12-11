@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			this.laSmallDayCaption = new System.Windows.Forms.Label();
-			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
 			this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemPaste = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,11 +41,11 @@
 			this.pnData = new System.Windows.Forms.Panel();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.memoEditSimpleComment = new DevExpress.XtraEditors.MemoEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.labelControlData = new DevExpress.XtraEditors.LabelControl();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.pnCalendarNoteArea = new System.Windows.Forms.Panel();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.contextMenuStrip.SuspendLayout();
 			this.pnData.SuspendLayout();
 			this.xtraScrollableControl.SuspendLayout();
@@ -83,7 +82,7 @@
             this.toolStripMenuItemAddNote,
             this.toolStripMenuItemPasteNote});
 			this.contextMenuStrip.Name = "contextMenuStrip";
-			this.contextMenuStrip.Size = new System.Drawing.Size(171, 312);
+			this.contextMenuStrip.Size = new System.Drawing.Size(163, 276);
 			this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
 			this.contextMenuStrip.Opened += new System.EventHandler(this.contextMenuStrip_Opened);
 			// 
@@ -94,7 +93,7 @@
 			this.toolStripMenuItemCopy.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CopySmall;
 			this.toolStripMenuItemCopy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
-			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(170, 40);
+			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(162, 38);
 			this.toolStripMenuItemCopy.Text = "Copy Data";
 			this.toolStripMenuItemCopy.Click += new System.EventHandler(this.toolStripMenuItemCopy_Click);
 			// 
@@ -105,7 +104,7 @@
 			this.toolStripMenuItemPaste.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.PasteSmall;
 			this.toolStripMenuItemPaste.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemPaste.Name = "toolStripMenuItemPaste";
-			this.toolStripMenuItemPaste.Size = new System.Drawing.Size(170, 40);
+			this.toolStripMenuItemPaste.Size = new System.Drawing.Size(162, 38);
 			this.toolStripMenuItemPaste.Text = "Paste Data";
 			this.toolStripMenuItemPaste.Click += new System.EventHandler(this.toolStripMenuItemPaste_Click);
 			// 
@@ -116,7 +115,7 @@
 			this.toolStripMenuItemClone.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CloneSmall;
 			this.toolStripMenuItemClone.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemClone.Name = "toolStripMenuItemClone";
-			this.toolStripMenuItemClone.Size = new System.Drawing.Size(170, 40);
+			this.toolStripMenuItemClone.Size = new System.Drawing.Size(162, 38);
 			this.toolStripMenuItemClone.Text = "Clone Day...";
 			this.toolStripMenuItemClone.Click += new System.EventHandler(this.toolStripMenuItemClone_Click);
 			// 
@@ -127,7 +126,7 @@
 			this.toolStripMenuItemEdit.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.EditData;
 			this.toolStripMenuItemEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemEdit.Name = "toolStripMenuItemEdit";
-			this.toolStripMenuItemEdit.Size = new System.Drawing.Size(170, 40);
+			this.toolStripMenuItemEdit.Size = new System.Drawing.Size(162, 38);
 			this.toolStripMenuItemEdit.Text = "Edit Data...";
 			this.toolStripMenuItemEdit.Click += new System.EventHandler(this.toolStripMenuItemEdit_Click);
 			// 
@@ -138,14 +137,14 @@
 			this.toolStripMenuItemDelete.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.DeleteData;
 			this.toolStripMenuItemDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
-			this.toolStripMenuItemDelete.Size = new System.Drawing.Size(170, 40);
+			this.toolStripMenuItemDelete.Size = new System.Drawing.Size(162, 38);
 			this.toolStripMenuItemDelete.Text = "Delete Data";
 			this.toolStripMenuItemDelete.Click += new System.EventHandler(this.toolStripMenuItemDelete_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(167, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(159, 6);
 			// 
 			// toolStripMenuItemAddNote
 			// 
@@ -154,7 +153,7 @@
 			this.toolStripMenuItemAddNote.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.FloaterNote;
 			this.toolStripMenuItemAddNote.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemAddNote.Name = "toolStripMenuItemAddNote";
-			this.toolStripMenuItemAddNote.Size = new System.Drawing.Size(170, 40);
+			this.toolStripMenuItemAddNote.Size = new System.Drawing.Size(162, 38);
 			this.toolStripMenuItemAddNote.Text = "Add Note";
 			this.toolStripMenuItemAddNote.Click += new System.EventHandler(this.toolStripMenuItemAddNote_Click);
 			// 
@@ -165,7 +164,7 @@
 			this.toolStripMenuItemPasteNote.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.PasteSmall;
 			this.toolStripMenuItemPasteNote.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemPasteNote.Name = "toolStripMenuItemPasteNote";
-			this.toolStripMenuItemPasteNote.Size = new System.Drawing.Size(170, 40);
+			this.toolStripMenuItemPasteNote.Size = new System.Drawing.Size(162, 38);
 			this.toolStripMenuItemPasteNote.Text = "Paste Note";
 			this.toolStripMenuItemPasteNote.Click += new System.EventHandler(this.toolStripMenuItemPasteNote_Click);
 			// 

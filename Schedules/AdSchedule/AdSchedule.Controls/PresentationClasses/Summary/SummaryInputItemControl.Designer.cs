@@ -30,6 +30,12 @@
         {
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
 			this.laNumber = new System.Windows.Forms.Label();
 			this.panelExMain = new DevComponents.DotNetBar.PanelEx();
 			this.ckItem = new System.Windows.Forms.CheckBox();
@@ -45,6 +51,7 @@
 			this.pbUp = new System.Windows.Forms.PictureBox();
 			this.pbDown = new System.Windows.Forms.PictureBox();
 			this.pbDelete = new System.Windows.Forms.PictureBox();
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.panelExMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditItem.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDetails.Properties)).BeginInit();
@@ -248,6 +255,9 @@
 			this.pbUp.Location = new System.Drawing.Point(560, 55);
 			this.pbUp.Name = "pbUp";
 			this.pbUp.Size = new System.Drawing.Size(32, 32);
+			toolTipItem1.Text = "Nudge Up";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.toolTipController.SetSuperTip(this.pbUp, superToolTip1);
 			this.pbUp.TabIndex = 36;
 			this.pbUp.TabStop = false;
 			this.pbUp.Click += new System.EventHandler(this.pbUp_Click);
@@ -261,6 +271,9 @@
 			this.pbDown.Location = new System.Drawing.Point(560, 89);
 			this.pbDown.Name = "pbDown";
 			this.pbDown.Size = new System.Drawing.Size(32, 32);
+			toolTipItem2.Text = "Nudge Down";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.toolTipController.SetSuperTip(this.pbDown, superToolTip2);
 			this.pbDown.TabIndex = 35;
 			this.pbDown.TabStop = false;
 			this.pbDown.Click += new System.EventHandler(this.pbDown_Click);
@@ -274,11 +287,20 @@
 			this.pbDelete.Location = new System.Drawing.Point(560, 21);
 			this.pbDelete.Name = "pbDelete";
 			this.pbDelete.Size = new System.Drawing.Size(32, 32);
+			toolTipItem3.Text = "Delete this product";
+			superToolTip3.Items.Add(toolTipItem3);
+			this.toolTipController.SetSuperTip(this.pbDelete, superToolTip3);
 			this.pbDelete.TabIndex = 34;
 			this.pbDelete.TabStop = false;
 			this.pbDelete.Click += new System.EventHandler(this.pbDelete_Click);
 			this.pbDelete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
 			this.pbDelete.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+			// 
+			// toolTipController
+			// 
+			this.toolTipController.Rounded = true;
+			this.toolTipController.ToolTipLocation = DevExpress.Utils.ToolTipLocation.RightTop;
+			this.toolTipController.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
 			// 
 			// SummaryInputItemControl
 			// 
@@ -321,5 +343,6 @@
         private DevExpress.XtraEditors.MemoEdit memoEditDetails;
         private System.Windows.Forms.CheckBox ckItem;
         public System.Windows.Forms.CheckBox ckDetails;
+		private DevExpress.Utils.ToolTipController toolTipController;
     }
 }

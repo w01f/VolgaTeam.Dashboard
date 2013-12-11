@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
@@ -139,9 +140,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				Controller.Instance.HomeAccountNumberCheck.Checked = !string.IsNullOrEmpty(_localSchedule.AccountNumber);
 				Controller.Instance.HomeAccountNumberText.EditValue = _localSchedule.AccountNumber;
 
-				Controller.Instance.HomePresentationDate.EditValue = _localSchedule.PresentationDateObject;
-				Controller.Instance.HomeFlightDatesStart.EditValue = _localSchedule.FlightDateStartObject;
-				Controller.Instance.HomeFlightDatesEnd.EditValue = _localSchedule.FlightDateEndObject;
+				Controller.Instance.HomePresentationDate.EditValue = _localSchedule.PresentationDate;
+				Controller.Instance.HomeFlightDatesStart.EditValue = _localSchedule.FlightDateStart;
+				Controller.Instance.HomeFlightDatesEnd.EditValue = _localSchedule.FlightDateEnd;
 				Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
 				#endregion
 
@@ -235,7 +236,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			if (Controller.Instance.HomeFlightDatesStart.EditValue != null)
 			{
 				_localSchedule.FlightDateStart = Controller.Instance.HomeFlightDatesStart.DateTime;
-				if (_localSchedule.FlightDateStart.DayOfWeek != DayOfWeek.Sunday)
+				if (_localSchedule.FlightDateStart.Value.DayOfWeek != DayOfWeek.Sunday)
 				{
 					Utilities.Instance.ShowWarning("Flight Start Date must be Sunday\nFlight End Date must be Saturday\nFlight Start Date must be less then Flight End Date.");
 					return false;
@@ -249,7 +250,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			if (Controller.Instance.HomeFlightDatesEnd.EditValue != null)
 			{
 				_localSchedule.FlightDateEnd = Controller.Instance.HomeFlightDatesEnd.DateTime;
-				if (_localSchedule.FlightDateEnd.DayOfWeek != DayOfWeek.Saturday || _localSchedule.FlightDateEnd < _localSchedule.FlightDateStart)
+				if (_localSchedule.FlightDateEnd.Value.DayOfWeek != DayOfWeek.Saturday || _localSchedule.FlightDateEnd < _localSchedule.FlightDateStart)
 				{
 					Utilities.Instance.ShowWarning("Flight Start Date must be Sunday\nFlight End Date must be Saturday\nFlight Start Date must be less then Flight End Date.");
 					return false;
@@ -432,6 +433,24 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			}
 		}
 
+		public void SchedulePropertiesEditor_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode != Keys.Tab) return;
+			if (sender == Controller.Instance.HomeBusinessName)
+				Controller.Instance.HomeDecisionMaker.Focus();
+			else if (sender == Controller.Instance.HomeDecisionMaker)
+				Controller.Instance.HomeClientType.Focus();
+			else if (sender == Controller.Instance.HomeClientType)
+				Controller.Instance.HomePresentationDate.Focus();
+			else if (sender == Controller.Instance.HomePresentationDate)
+				Controller.Instance.HomeFlightDatesStart.Focus();
+			else if (sender == Controller.Instance.HomeFlightDatesStart)
+				Controller.Instance.HomeFlightDatesEnd.Focus();
+			else if (sender == Controller.Instance.HomeFlightDatesEnd)
+				Controller.Instance.HomeBusinessName.Focus();
+			e.Handled = true;
+		}
+
 		public void buttonItemPrintScheduleettingsHelp_Click(object sender, EventArgs e)
 		{
 			BusinessWrapper.Instance.HelpManager.OpenHelpLink("home");
@@ -533,6 +552,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void buttonItemSalesStrategyAbbreviation_CheckedChanged(object sender, EventArgs e)
 		{
 			gridBandAbbreviation.Visible = buttonXPrintProductCode.Checked;
+			var tooltip = new SuperToolTip();
+			tooltip.Items.Add(new ToolTipItem() { Text = buttonXPrintProductCode.Checked ? "Hide Publication Code" : "Show Publication Code" });
+			toolTipController.SetSuperTip(buttonXPrintProductCode, tooltip);
 			if (_allowToSave)
 			{
 				SettingsNotSaved = true;
@@ -542,6 +564,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void buttonItemSalesStrategyLogo_CheckedChanged(object sender, EventArgs e)
 		{
 			gridBandLogo.Visible = buttonXPrintProductLogo.Checked;
+			var tooltip = new SuperToolTip();
+			tooltip.Items.Add(new ToolTipItem() { Text = buttonXPrintProductLogo.Checked ? "Hide Logo" : "Show Logo" });
+			toolTipController.SetSuperTip(buttonXPrintProductLogo, tooltip);
 			if (_allowToSave)
 			{
 				SettingsNotSaved = true;
@@ -556,6 +581,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				gridColumnPrintProductsName.RowCount = 2;
 			else
 				gridColumnPrintProductsName.RowCount = 1;
+			var tooltip = new SuperToolTip();
+			tooltip.Items.Add(new ToolTipItem() { Text = buttonXPrintProductReadership.Checked ? "Hide Readership" : "Show Readership" });
+			toolTipController.SetSuperTip(buttonXPrintProductReadership, tooltip);
 			if (_allowToSave)
 			{
 				SettingsNotSaved = true;
@@ -570,6 +598,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				gridColumnPrintProductsName.RowCount = 2;
 			else
 				gridColumnPrintProductsName.RowCount = 1;
+			var tooltip = new SuperToolTip();
+			tooltip.Items.Add(new ToolTipItem() { Text = buttonXPrintProductDelivery.Checked ? "Hide Delivery" : "Show Delivery" });
+			toolTipController.SetSuperTip(buttonXPrintProductDelivery, tooltip);
 			if (_allowToSave)
 			{
 				SettingsNotSaved = true;
@@ -718,6 +749,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		{
 			gridBandDigitalProductWidth.Visible = buttonXDigitalProductDimensions.Checked;
 			gridBandDigitalProductHeight.Visible = buttonXDigitalProductDimensions.Checked;
+			var tooltip = new SuperToolTip();
+			tooltip.Items.Add(new ToolTipItem { Text = buttonXDigitalProductDimensions.Checked ? "Hide Ad Dimensions" : "Show Ad Dimensions" });
+			toolTipController.SetSuperTip(buttonXDigitalProductDimensions, tooltip);
 			if (_allowToSave)
 			{
 				SettingsNotSaved = true;
@@ -727,6 +761,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		private void buttonXDigitalProductStrategy_CheckedChanged(object sender, EventArgs e)
 		{
 			gridBandDigitalProductRate.Visible = buttonXDigitalProductStrategy.Checked;
+			var tooltip = new SuperToolTip();
+			tooltip.Items.Add(new ToolTipItem { Text = buttonXDigitalProductStrategy.Checked ? "Hide Pricing Strategy" : "Show Pricing Strategy" });
+			toolTipController.SetSuperTip(buttonXDigitalProductStrategy, tooltip);
 			if (_allowToSave)
 			{
 				SettingsNotSaved = true;

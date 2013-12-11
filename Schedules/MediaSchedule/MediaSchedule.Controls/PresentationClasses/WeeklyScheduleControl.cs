@@ -11,6 +11,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			laTotalPeriodsTitle.Text = "Total Weeks:";
 			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, "Weeks");
+			laScheduleName.Text = "Weekly Schedule";
 		}
 		public override ScheduleSection ScheduleSection
 		{

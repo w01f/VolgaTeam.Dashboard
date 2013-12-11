@@ -34,6 +34,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public RibbonTabItem TabMonthlySchedule { get; set; }
 		public RibbonTabItem TabDigitalProduct { get; set; }
 		public RibbonTabItem TabDigitalPackage { get; set; }
+		public RibbonTabItem TabCalendar { get; set; }
 
 		public void Init()
 		{
@@ -113,6 +114,21 @@ namespace NewBizWiz.MediaSchedule.Controls
 			DigitalPackageOptions.CheckedChanged += DigitalPackage.TogledButton_CheckedChanged;
 			#endregion
 
+			#region Calendar
+			BroadcastCalendar = new BroadcastCalendarControl();
+			CalendarMonthsList.SelectedIndexChanged += BroadcastCalendar.MonthList_SelectedIndexChanged;
+			CalendarSlideInfo.CheckedChanged += BroadcastCalendar.SlideInfo_CheckedChanged;
+			CalendarCopy.Click += BroadcastCalendar.CalendarCopy_Click;
+			CalendarPaste.Click += BroadcastCalendar.CalendarPaste_Click;
+			CalendarClone.Click += BroadcastCalendar.CalendarClone_Click;
+			CalendarSave.Click += BroadcastCalendar.Save_Click;
+			CalendarSaveAs.Click += BroadcastCalendar.SaveAs_Click;
+			CalendarPreview.Click += BroadcastCalendar.Preview_Click;
+			CalendarPowerPoint.Click += BroadcastCalendar.PowerPoint_Click;
+			CalendarEmail.Click += BroadcastCalendar.Email_Click;
+			CalendarHelp.Click += BroadcastCalendar.Help_Click;
+			#endregion
+
 			ConfigureTabPages();
 
 			UpdateOutputButtonsAccordingThemeStatus();
@@ -125,6 +141,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			MonthlySchedule.Dispose();
 			DigitalProductContainer.Dispose();
 			DigitalPackage.Dispose();
+			BroadcastCalendar.Dispose();
 			FloaterRequested = null;
 		}
 
@@ -135,6 +152,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			MonthlySchedule.LoadSchedule(false);
 			DigitalProductContainer.LoadSchedule(false);
 			DigitalPackage.LoadSchedule(false);
+			BroadcastCalendar.LoadCalendar(false);
 		}
 
 		private void ConfigureTabPages()
@@ -165,6 +183,10 @@ namespace NewBizWiz.MediaSchedule.Controls
 						TabDigitalPackage.Text = tabPageConfig.Name;
 						tabPages.Add(TabDigitalPackage);
 						break;
+					case "Calendar":
+						TabCalendar.Text = tabPageConfig.Name;
+						tabPages.Add(TabCalendar);
+						break;
 				}
 			}
 			Ribbon.Items.AddRange(tabPages.ToArray());
@@ -191,6 +213,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		{
 			TabWeeklySchedule.Enabled = enable;
 			TabMonthlySchedule.Enabled = enable;
+			TabCalendar.Enabled = enable;
 		}
 
 		public void UpdateDigitalProductTab(bool enable)
@@ -328,6 +351,20 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem DigitalPackageOptions { get; set; }
 		#endregion
 
+		#region Calendar
+		public ImageListBoxControl CalendarMonthsList { get; set; }
+		public ButtonItem CalendarSlideInfo { get; set; }
+		public ButtonItem CalendarCopy { get; set; }
+		public ButtonItem CalendarPaste { get; set; }
+		public ButtonItem CalendarClone { get; set; }
+		public ButtonItem CalendarHelp { get; set; }
+		public ButtonItem CalendarSave { get; set; }
+		public ButtonItem CalendarSaveAs { get; set; }
+		public ButtonItem CalendarPreview { get; set; }
+		public ButtonItem CalendarEmail { get; set; }
+		public ButtonItem CalendarPowerPoint { get; set; }
+		#endregion
+
 		#endregion
 
 		#region Forms
@@ -336,6 +373,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public MonthlyScheduleControl MonthlySchedule { get; private set; }
 		public DigitalProductContainerControl DigitalProductContainer { get; private set; }
 		public MediaWebPackageControl DigitalPackage { get; private set; }
+		public BroadcastCalendarControl BroadcastCalendar { get; private set; }
 		#endregion
 	}
 }

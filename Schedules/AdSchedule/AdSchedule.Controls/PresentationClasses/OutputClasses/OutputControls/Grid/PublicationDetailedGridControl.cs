@@ -50,10 +50,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			Text = PrintProduct.Name.Replace("&", "&&");
 			pbLogo.Image = PrintProduct.SmallLogo;
 			laPublicationName.Text = PrintProduct.Name.Replace("&", "&&");
-			laDate.Text = PrintProduct.Parent.PresentationDateObject != null ? PrintProduct.Parent.PresentationDate.ToString("MM/dd/yy") : string.Empty;
+			laDate.Text = PrintProduct.Parent.PresentationDate.HasValue ? PrintProduct.Parent.PresentationDate.Value.ToString("MM/dd/yy") : string.Empty;
 			laBusinessName.Text = PrintProduct.Parent.BusinessName + (!string.IsNullOrEmpty(PrintProduct.Parent.AccountNumber) ? (" - " + PrintProduct.Parent.AccountNumber) : string.Empty);
 			laDecisionMaker.Text = PrintProduct.Parent.DecisionMaker;
-			laFlightDates.Text = PrintProduct.Parent.FlightDateStart.ToString("MM/dd/yy") + " - " + PrintProduct.Parent.FlightDateEnd.ToString("MM/dd/yy");
+			laFlightDates.Text = PrintProduct.Parent.FlightDates;
 			gridControlPublication.DataSource = new BindingList<Insert>(PrintProduct.Inserts);
 
 			_allowToSave = false;
@@ -805,7 +805,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 						if (Controller.Instance.Grids.DetailedGrid.PositionID != -1 && Controller.Instance.Grids.DetailedGrid.ShowIDHeader)
 							row.Add(Controller.Instance.Grids.DetailedGrid.PositionID, printProduct.Inserts[i + j].ID);
 						if (Controller.Instance.Grids.DetailedGrid.PositionDate != -1 && Controller.Instance.Grids.DetailedGrid.ShowDateHeader)
-							row.Add(Controller.Instance.Grids.DetailedGrid.PositionDate, printProduct.Inserts[i + j].Date.ToString("MM/dd/yy"));
+							row.Add(Controller.Instance.Grids.DetailedGrid.PositionDate, printProduct.Inserts[i + j].Date.HasValue ? printProduct.Inserts[i + j].Date.Value.ToString("MM/dd/yy") : String.Empty);
 						if (Controller.Instance.Grids.DetailedGrid.PositionPCI != -1 && Controller.Instance.Grids.DetailedGrid.ShowPCIHeader)
 							row.Add(Controller.Instance.Grids.DetailedGrid.PositionPCI, printProduct.Inserts[i + j].PCIRate.HasValue ? (printProduct.Inserts[i + j].PCIRate.Value.ToString("$#,###.00")) : "N/A");
 						if (Controller.Instance.Grids.DetailedGrid.PositionCost != -1 && Controller.Instance.Grids.DetailedGrid.ShowCostHeader)

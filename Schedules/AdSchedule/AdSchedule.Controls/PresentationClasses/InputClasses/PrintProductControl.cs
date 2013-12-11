@@ -118,8 +118,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void CloneInsert()
 		{
 			if (PrintProduct.Inserts.Count <= 0 || advBandedGridViewPublication.FocusedRowHandle < 0) return;
-			Insert originalInsert = PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(advBandedGridViewPublication.FocusedRowHandle)];
-			if (originalInsert.DateObject != null)
+			var originalInsert = PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(advBandedGridViewPublication.FocusedRowHandle)];
+			if (originalInsert.Date.HasValue)
 			{
 				using (var form = new FormCloneInsert(originalInsert))
 				{
@@ -309,13 +309,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		{
 			if (e.SelectedControl != gridControlPublication)
 				return;
-			ToolTipControlInfo info = e.Info;
+			var info = e.Info;
 			try
 			{
 				var view = gridControlPublication.GetViewAt(e.ControlMousePosition) as GridView;
 				if (view == null)
 					return;
-				GridHitInfo hi = view.CalcHitInfo(e.ControlMousePosition);
+				var hi = view.CalcHitInfo(e.ControlMousePosition);
 				if (hi.InRowCell)
 				{
 					var adNotes = new List<string>();
@@ -505,12 +505,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				advBandedGridViewPublication.CloseEditor();
 				double temp = 0;
 				object value = advBandedGridViewPublication.GetFocusedRowCellValue(advBandedGridViewPublication.FocusedColumn);
-				if (value != null)
-					if (double.TryParse(value.ToString(), out temp))
-					{
-						PrintProduct.CopyPCIRate(temp);
-						LoadInserts();
-					}
+				if (value == null) return;
+				if (double.TryParse(value.ToString(), out temp))
+				{
+					PrintProduct.CopyPCIRate(temp);
+					LoadInserts();
+				}
 			}
 		}
 
@@ -521,12 +521,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				advBandedGridViewPublication.CloseEditor();
 				double temp = 0;
 				object value = advBandedGridViewPublication.GetFocusedRowCellValue(advBandedGridViewPublication.FocusedColumn);
-				if (value != null)
-					if (double.TryParse(value.ToString(), out temp))
-					{
-						PrintProduct.CopyAdRate(temp);
-						LoadInserts();
-					}
+				if (value == null) return;
+				if (double.TryParse(value.ToString(), out temp))
+				{
+					PrintProduct.CopyAdRate(temp);
+					LoadInserts();
+				}
 			}
 			else if (e.Button.Index == 2)
 			{
@@ -536,8 +536,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				using (var form = new FormAdNotes())
 				{
 					form.laID.Text = selectedInsert.ID;
-					form.laDate.Text = selectedInsert.Date.ToString("ddd, MM/dd/yy");
-					form.Date = selectedInsert.Date;
+					form.laDate.Text = selectedInsert.Date.HasValue ? selectedInsert.Date.Value.ToString("ddd, MM/dd/yy") : String.Empty;
+					form.Date = selectedInsert.Date.HasValue ? selectedInsert.Date.Value : DateTime.MinValue;
 					form.laFinalRate.Text = selectedInsert.FinalRate.ToString("$#,###.00");
 					form.CustomComment = selectedInsert.CustomComment;
 					form.Comments = selectedInsert.Comments.ToArray();
@@ -554,12 +554,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 							{
 								dateSelector.Text = formCaption;
 								dateSelector.laTitle.Text = header;
-								foreach (var insert in PrintProduct.Inserts.Where(i => i != selectedInsert))
-									dateSelector.checkedListBoxControlDates.Items.Add(insert.Date, String.Format("{0}   {1}", insert.Date.ToString("ddd, MM/dd/yy"), insert.FinalRate.ToString("$#,###.00")), form.adNotesDaysSelectorComments.SelectedDays.Contains(insert.Date) ? CheckState.Checked : CheckState.Unchecked, true);
+								foreach (var insert in PrintProduct.Inserts.Where(i => i != selectedInsert && i.Date.HasValue))
+									dateSelector.checkedListBoxControlDates.Items.Add(insert.Date.Value, String.Format("{0}   {1}", insert.Date.Value.ToString("ddd, MM/dd/yy"), insert.FinalRate.ToString("$#,###.00")), form.adNotesDaysSelectorComments.SelectedDays.Contains(insert.Date.Value) ? CheckState.Checked : CheckState.Unchecked, true);
 								if (dateSelector.ShowDialog() != DialogResult.OK) return;
 								daysSelectorContainer.SelectedDays.Clear();
 								foreach (var item in dateSelector.checkedListBoxControlDates.Items.Cast<CheckedListBoxItem>().Where(item => item.CheckState == CheckState.Checked))
-									daysSelectorContainer.SelectedDays.Add((DateTime) item.Value);
+									daysSelectorContainer.SelectedDays.Add((DateTime)item.Value);
 							}
 						});
 						form.adNotesDaysSelectorComments.buttonXApplyOtherDays.Click += (obj, args) => selectDays(form.adNotesDaysSelectorComments,
@@ -595,7 +595,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					if (form.adNotesDaysSelectorComments.SelectedDays.Any())
 					{
 						var selectedDays = form.adNotesDaysSelectorComments.SelectedDays;
-						foreach (var insert in PrintProduct.Inserts.Where(x => selectedDays.Contains(x.Date)))
+						foreach (var insert in PrintProduct.Inserts.Where(insert => insert.Date.HasValue && selectedDays.Contains(insert.Date.Value)))
 						{
 							insert.CustomComment = form.CustomComment;
 							insert.Comments.Clear();
@@ -609,7 +609,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					if (form.adNotesDaysSelectorSections.SelectedDays.Any())
 					{
 						var selectedDays = form.adNotesDaysSelectorSections.SelectedDays;
-						foreach (var insert in PrintProduct.Inserts.Where(x => selectedDays.Contains(x.Date)))
+						foreach (var insert in PrintProduct.Inserts.Where(insert => insert.Date.HasValue && selectedDays.Contains(insert.Date.Value)))
 						{
 							insert.CustomSection = form.CustomSection;
 							insert.Sections.Clear();
@@ -621,7 +621,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					if (form.adNotesDaysSelectorDeadlines.SelectedDays.Any())
 					{
 						var selectedDays = form.adNotesDaysSelectorDeadlines.SelectedDays;
-						foreach (var insert in PrintProduct.Inserts.Where(x => selectedDays.Contains(x.Date)))
+						foreach (var insert in PrintProduct.Inserts.Where(insert => insert.Date.HasValue && selectedDays.Contains(insert.Date.Value)))
 							insert.Deadline = form.Deadline;
 					}
 
@@ -629,7 +629,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					if (form.adNotesDaysSelectorMechanicals.SelectedDays.Any())
 					{
 						var selectedDays = form.adNotesDaysSelectorMechanicals.SelectedDays;
-						foreach (var insert in PrintProduct.Inserts.Where(x => selectedDays.Contains(x.Date)))
+						foreach (var insert in PrintProduct.Inserts.Where(insert => insert.Date.HasValue && selectedDays.Contains(insert.Date.Value)))
 							insert.Mechanicals = form.Mechanicals;
 					}
 

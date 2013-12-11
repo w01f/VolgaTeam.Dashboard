@@ -346,10 +346,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			laAdvertiser.Text = _localSchedule.BusinessName;
 			laDemoName.Text = _localSchedule.Demo + (!string.IsNullOrEmpty(_localSchedule.Source) ? (" (" + _localSchedule.Source + ")") : string.Empty);
 			laScheduleWindow.Text = _localSchedule.FlightDateStart.HasValue && _localSchedule.FlightDateEnd.HasValue ? string.Format("{0} - {1}", new object[] { _localSchedule.FlightDateStart.Value.ToString("MM/dd/yy"), _localSchedule.FlightDateEnd.Value.ToString("MM/dd/yy") }) : string.Empty;
-			laScheduleName.Text = _localSchedule.Name;
 			laDemoName.Visible = !string.IsNullOrEmpty(_localSchedule.Demo);
-			laDemoName.SendToBack();
-			laAdvertiser.SendToBack();
+			laDemoName.BringToFront();
 
 			buttonXRating.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 			buttonXCPP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);

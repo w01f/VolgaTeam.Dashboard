@@ -99,7 +99,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			laScheduleWindow.Text = string.Format("{0} - {1}", new object[] { LocalSchedule.FlightDateStart.ToString("MM/dd/yy"), LocalSchedule.FlightDateEnd.ToString("MM/dd/yy") });
+			laScheduleWindow.Text = LocalSchedule.FlightDates;
 			laAdvertiser.Text = LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
 			Controller.Instance.UpdateOutputTabs(LocalSchedule.PrintProducts.Select(x => x.Inserts.Count).Sum() > 0);
 			if (!quickLoad)

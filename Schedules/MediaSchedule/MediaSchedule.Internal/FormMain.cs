@@ -29,6 +29,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.TabMonthlySchedule = ribbonTabItemMonthlySchedule;
 			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSlides;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
+			Controller.Instance.TabCalendar = ribbonTabItemCalendar;
 
 			#region Command Controls
 
@@ -97,6 +98,20 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
 			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
 			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageOptions;
+			#endregion
+
+			#region Calendar
+			Controller.Instance.CalendarMonthsList = listBoxControlCalendar;
+			Controller.Instance.CalendarSlideInfo = buttonItemCalendarSlideInfo;
+			Controller.Instance.CalendarCopy = buttonItemCalendarCopy;
+			Controller.Instance.CalendarPaste = buttonItemCalendarPaste;
+			Controller.Instance.CalendarClone = buttonItemCalendarClone;
+			Controller.Instance.CalendarHelp = buttonItemCalendarHelp;
+			Controller.Instance.CalendarSave = buttonItemCalendarSave;
+			Controller.Instance.CalendarSaveAs = buttonItemCalendarSaveAs;
+			Controller.Instance.CalendarPreview = buttonItemCalendarPreview;
+			Controller.Instance.CalendarEmail = buttonItemCalendarEmail;
+			Controller.Instance.CalendarPowerPoint = buttonItemCalendarPowerPoint;
 			#endregion
 
 			#endregion
@@ -222,6 +237,17 @@ namespace NewBizWiz.MediaSchedule.Internal
 					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 				}
 			}
+			else if ((_currentControl == Controller.Instance.BroadcastCalendar))
+			{
+				if (Controller.Instance.BroadcastCalendar.AllowToLeaveControl)
+					result = true;
+				else
+				{
+					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
+					ribbonControl.SelectedRibbonTabItem = ribbonTabItemDigitalPackage;
+					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+				}
+			}
 			else
 				result = true;
 			return result;
@@ -307,6 +333,17 @@ namespace NewBizWiz.MediaSchedule.Internal
 				}
 				_currentControl.BringToFront();
 			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					Controller.Instance.BroadcastCalendar.ShowCalendar(false);
+					_currentControl = Controller.Instance.BroadcastCalendar;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+			}
 			pnMain.BringToFront();
 		}
 
@@ -323,6 +360,8 @@ namespace NewBizWiz.MediaSchedule.Internal
 				result = Controller.Instance.DigitalProductContainer.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.DigitalPackage)
 				result = Controller.Instance.DigitalPackage.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.BroadcastCalendar)
+				result = Controller.Instance.BroadcastCalendar.AllowToLeaveControl;
 		}
 
 		private void buttonItemFloater_Click(object sender, EventArgs e)

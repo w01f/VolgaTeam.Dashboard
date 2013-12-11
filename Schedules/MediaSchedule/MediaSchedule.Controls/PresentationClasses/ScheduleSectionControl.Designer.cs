@@ -74,9 +74,9 @@
 			this.repositoryItemSpinEdit000s = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemTextEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.pnTop = new System.Windows.Forms.Panel();
-			this.laScheduleWindow = new System.Windows.Forms.Label();
-			this.laDemoName = new System.Windows.Forms.Label();
 			this.laAdvertiser = new System.Windows.Forms.Label();
+			this.laDemoName = new System.Windows.Forms.Label();
+			this.laScheduleWindow = new System.Windows.Forms.Label();
 			this.laScheduleName = new System.Windows.Forms.Label();
 			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.pnBottom = new System.Windows.Forms.Panel();
@@ -1067,9 +1067,9 @@
 			// 
 			// pnTop
 			// 
-			this.pnTop.Controls.Add(this.laScheduleWindow);
 			this.pnTop.Controls.Add(this.laDemoName);
 			this.pnTop.Controls.Add(this.laAdvertiser);
+			this.pnTop.Controls.Add(this.laScheduleWindow);
 			this.pnTop.Controls.Add(this.laScheduleName);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(0, 0);
@@ -1077,41 +1077,42 @@
 			this.pnTop.Size = new System.Drawing.Size(850, 25);
 			this.pnTop.TabIndex = 1;
 			// 
-			// laScheduleWindow
+			// laAdvertiser
 			// 
-			this.laScheduleWindow.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.laScheduleWindow.Location = new System.Drawing.Point(358, 0);
-			this.laScheduleWindow.Name = "laScheduleWindow";
-			this.laScheduleWindow.Size = new System.Drawing.Size(288, 25);
-			this.laScheduleWindow.TabIndex = 3;
-			this.laScheduleWindow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.laAdvertiser.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.laAdvertiser.Location = new System.Drawing.Point(157, 0);
+			this.laAdvertiser.Name = "laAdvertiser";
+			this.laAdvertiser.Size = new System.Drawing.Size(500, 25);
+			this.laAdvertiser.TabIndex = 4;
+			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// laDemoName
 			// 
-			this.laDemoName.Dock = System.Windows.Forms.DockStyle.Left;
-			this.laDemoName.Location = new System.Drawing.Point(207, 0);
+			this.laDemoName.Dock = System.Windows.Forms.DockStyle.Right;
+			this.laDemoName.Location = new System.Drawing.Point(536, 0);
 			this.laDemoName.Name = "laDemoName";
-			this.laDemoName.Size = new System.Drawing.Size(151, 25);
+			this.laDemoName.Size = new System.Drawing.Size(121, 25);
 			this.laDemoName.TabIndex = 5;
-			this.laDemoName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.laDemoName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// laAdvertiser
+			// laScheduleWindow
 			// 
-			this.laAdvertiser.Dock = System.Windows.Forms.DockStyle.Left;
-			this.laAdvertiser.Location = new System.Drawing.Point(0, 0);
-			this.laAdvertiser.Name = "laAdvertiser";
-			this.laAdvertiser.Size = new System.Drawing.Size(207, 25);
-			this.laAdvertiser.TabIndex = 4;
-			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.laScheduleWindow.Dock = System.Windows.Forms.DockStyle.Right;
+			this.laScheduleWindow.Location = new System.Drawing.Point(657, 0);
+			this.laScheduleWindow.Name = "laScheduleWindow";
+			this.laScheduleWindow.Size = new System.Drawing.Size(193, 25);
+			this.laScheduleWindow.TabIndex = 3;
+			this.laScheduleWindow.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// laScheduleName
 			// 
-			this.laScheduleName.Dock = System.Windows.Forms.DockStyle.Right;
-			this.laScheduleName.Location = new System.Drawing.Point(646, 0);
+			this.laScheduleName.Dock = System.Windows.Forms.DockStyle.Left;
+			this.laScheduleName.Location = new System.Drawing.Point(0, 0);
 			this.laScheduleName.Name = "laScheduleName";
-			this.laScheduleName.Size = new System.Drawing.Size(204, 25);
+			this.laScheduleName.Size = new System.Drawing.Size(157, 25);
 			this.laScheduleName.TabIndex = 1;
-			this.laScheduleName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.laScheduleName.Text = "Schedule";
+			this.laScheduleName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// styleController
 			// 
@@ -2113,8 +2114,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxLengths;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditRate;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditRating;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditSpot;
-        private System.Windows.Forms.Label laScheduleName;
+		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditSpot;
         private DevExpress.XtraEditors.StyleController styleController;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit000s;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnTotalSpots;
@@ -2213,5 +2213,6 @@
 		private System.Windows.Forms.PictureBox pbOptionsSecurityHelp;
 		private System.Windows.Forms.Label laOptionsSecurityTitle;
 		protected DevExpress.XtraEditors.CheckEdit checkEditEmptySports;
+		protected System.Windows.Forms.Label laScheduleName;
     }
 }

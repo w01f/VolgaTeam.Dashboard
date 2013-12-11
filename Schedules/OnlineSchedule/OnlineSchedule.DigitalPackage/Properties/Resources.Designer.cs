@@ -80,5 +80,12 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap DigitalPackageDisabled {
+            get {
+                object obj = ResourceManager.GetObject("DigitalPackageDisabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

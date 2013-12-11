@@ -231,9 +231,9 @@ namespace NewBizWiz.Core.AdSchedule
 		public string AccountNumber { get; set; }
 		public string Status { get; set; }
 		public string ThemeName { get; set; }
-		public DateTime PresentationDate { get; set; }
-		public DateTime FlightDateStart { get; set; }
-		public DateTime FlightDateEnd { get; set; }
+		public DateTime? PresentationDate { get; set; }
+		public DateTime? FlightDateStart { get; set; }
+		public DateTime? FlightDateEnd { get; set; }
 		public List<PrintProduct> PrintProducts { get; set; }
 		public List<DigitalProduct> DigitalProducts { get; set; }
 
@@ -256,48 +256,12 @@ namespace NewBizWiz.Core.AdSchedule
 			get { return _scheduleFile; }
 		}
 
-		public object PresentationDateObject
-		{
-			get
-			{
-				if (PresentationDate.Equals(DateTime.MaxValue) || PresentationDate.Equals(DateTime.MinValue))
-				{
-					return null;
-				}
-				return PresentationDate;
-			}
-		}
-
-		public object FlightDateStartObject
-		{
-			get
-			{
-				if (FlightDateStart.Equals(DateTime.MaxValue) || FlightDateStart.Equals(DateTime.MinValue))
-				{
-					return null;
-				}
-				return FlightDateStart;
-			}
-		}
-
-		public object FlightDateEndObject
-		{
-			get
-			{
-				if (FlightDateEnd.Equals(DateTime.MaxValue) || FlightDateEnd.Equals(DateTime.MinValue))
-				{
-					return null;
-				}
-				return FlightDateEnd;
-			}
-		}
-
 		public string FlightDates
 		{
 			get
 			{
-				if (FlightDateStart != DateTime.MinValue && FlightDateEnd != DateTime.MinValue)
-					return FlightDateStart.ToString("MM/dd/yy") + " - " + FlightDateEnd.ToString("MM/dd/yy");
+				if (FlightDateStart.HasValue && FlightDateEnd.HasValue)
+					return FlightDateStart.Value.ToString("MM/dd/yy") + " - " + FlightDateEnd.Value.ToString("MM/dd/yy");
 				return string.Empty;
 			}
 		}
@@ -307,8 +271,9 @@ namespace NewBizWiz.Core.AdSchedule
 			get
 			{
 				var result = new List<DateTime>();
-				var startDate = FlightDateStart;
-				while (startDate <= FlightDateEnd)
+				if (!FlightDateStart.HasValue || !FlightDateEnd.HasValue) return result;
+				var startDate = FlightDateStart.Value;
+				while (startDate <= FlightDateEnd.Value)
 				{
 					result.Add(startDate);
 					startDate = startDate.AddDays(1);
@@ -325,15 +290,12 @@ namespace NewBizWiz.Core.AdSchedule
 
 		private void Load()
 		{
-			DateTime tempDateTime;
-
-			XmlNode node;
 			if (_scheduleFile.Exists)
 			{
 				var document = new XmlDocument();
 				document.Load(_scheduleFile.FullName);
 
-				node = document.SelectSingleNode(@"/Schedule/BusinessName");
+				var node = document.SelectSingleNode(@"/Schedule/BusinessName");
 				if (node != null)
 					BusinessName = node.InnerText;
 
@@ -358,21 +320,26 @@ namespace NewBizWiz.Core.AdSchedule
 					ThemeName = node.InnerText;
 
 				node = document.SelectSingleNode(@"/Schedule/PresentationDate");
+				DateTime tempDateTime;
 				if (node != null)
+				{
 					if (DateTime.TryParse(node.InnerText, out tempDateTime))
 						PresentationDate = tempDateTime;
+				}
 
 				node = document.SelectSingleNode(@"/Schedule/FlightDateStart");
 				if (node != null)
+				{
 					if (DateTime.TryParse(node.InnerText, out tempDateTime))
 						FlightDateStart = tempDateTime;
+				}
 
 				node = document.SelectSingleNode(@"/Schedule/FlightDateEnd");
 				if (node != null)
+				{
 					if (DateTime.TryParse(node.InnerText, out tempDateTime))
 						FlightDateEnd = tempDateTime;
-
-
+				}
 				node = document.SelectSingleNode(@"/Schedule/ViewSettings");
 				if (node != null)
 				{
@@ -442,9 +409,12 @@ namespace NewBizWiz.Core.AdSchedule
 			xml.AppendLine(@"<AccountNumber>" + AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");
 			xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : String.Empty) + @"</Status>");
 			xml.AppendLine(@"<ThemeName>" + (ThemeName != null ? ThemeName.Replace(@"&", "&#38;").Replace("\"", "&quot;") : String.Empty) + @"</ThemeName>");
-			xml.AppendLine(@"<PresentationDate>" + PresentationDate.ToString() + @"</PresentationDate>");
-			xml.AppendLine(@"<FlightDateStart>" + FlightDateStart.ToString() + @"</FlightDateStart>");
-			xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd.ToString() + @"</FlightDateEnd>");
+			if (PresentationDate.HasValue)
+				xml.AppendLine(@"<PresentationDate>" + PresentationDate + @"</PresentationDate>");
+			if (FlightDateStart.HasValue)
+				xml.AppendLine(@"<FlightDateStart>" + FlightDateStart + @"</FlightDateStart>");
+			if (FlightDateEnd.HasValue)
+				xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd + @"</FlightDateEnd>");
 
 			xml.AppendLine(@"<ViewSettings>" + ViewSettings.Serialize() + @"</ViewSettings>");
 			xml.AppendLine(@"<Summary>" + Summary.Serialize() + @"</Summary>");
@@ -531,9 +501,10 @@ namespace NewBizWiz.Core.AdSchedule
 
 		private void UpdateScheduleMonths()
 		{
-			DateTime startDate = FlightDateStart;
-			var endDate = new DateTime(FlightDateEnd.Month < 12 ? FlightDateEnd.Year : (FlightDateEnd.Year + 1), (FlightDateEnd.Month < 12 ? FlightDateEnd.Month + 1 : 1), 1);
 			_scheduleMonths.Clear();
+			if (!FlightDateStart.HasValue || !FlightDateEnd.HasValue) return;
+			var startDate = FlightDateStart.Value;
+			var endDate = new DateTime(FlightDateEnd.Value.Month < 12 ? FlightDateEnd.Value.Year : (FlightDateEnd.Value.Year + 1), (FlightDateEnd.Value.Month < 12 ? FlightDateEnd.Value.Month + 1 : 1), 1);
 			while (startDate < endDate)
 			{
 				_scheduleMonths.Add(new DateTime(startDate.Year, startDate.Month, 1));
@@ -733,37 +704,37 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public double TotalInserts
 		{
-			get { return Inserts.Count(x => x.DateObject != null); }
+			get { return Inserts.Count(x => x.Date.HasValue); }
 		}
 
 		public double AvgADRate
 		{
-			get { return TotalInserts != 0 ? Inserts.Where(x => x.DateObject != null).Sum(x => x.ADRate) / TotalInserts : 0; }
+			get { return TotalInserts != 0 ? Inserts.Where(x => x.Date.HasValue).Sum(x => x.ADRate) / TotalInserts : 0; }
 		}
 
 		public double AvgPCIRate
 		{
-			get { return TotalInserts != 0 ? Inserts.Where(x => x.DateObject != null).Sum(x => (x.PCIRate.HasValue ? x.PCIRate.Value : 0)) / TotalInserts : 0; }
+			get { return TotalInserts != 0 ? Inserts.Where(x => x.Date.HasValue).Sum(x => (x.PCIRate.HasValue ? x.PCIRate.Value : 0)) / TotalInserts : 0; }
 		}
 
 		public double TotalDiscountRate
 		{
-			get { return Inserts.Where(x => x.DateObject != null).Sum(x => x.DiscountRate); }
+			get { return Inserts.Where(x => x.Date.HasValue).Sum(x => x.DiscountRate); }
 		}
 
 		public double TotalColorPricingCalculated
 		{
-			get { return Inserts.Where(x => x.DateObject != null).Sum(x => x.ColorPricingCalculated); }
+			get { return Inserts.Where(x => x.Date.HasValue).Sum(x => x.ColorPricingCalculated); }
 		}
 
 		public double AvgFinalRate
 		{
-			get { return TotalInserts != 0 ? Inserts.Where(x => x.DateObject != null).Sum(x => x.FinalRate) / TotalInserts : 0; }
+			get { return TotalInserts != 0 ? Inserts.Where(x => x.Date.HasValue).Sum(x => x.FinalRate) / TotalInserts : 0; }
 		}
 
 		public double TotalFinalRate
 		{
-			get { return Inserts.Where(x => x.DateObject != null).Sum(x => x.FinalRate); }
+			get { return Inserts.Where(x => x.Date.HasValue).Sum(x => x.FinalRate); }
 		}
 
 		public string InsertSuffix
@@ -781,7 +752,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public string InsertDates
 		{
-			get { return String.Join(", ", Inserts.Where(i => i.DateObject != null).Select(i => i.Date.ToString("MM/dd/yy"))); }
+			get { return String.Join(", ", Inserts.Where(i => i.Date.HasValue).Select(i => i.Date.Value.ToString("MM/dd/yy"))); }
 		}
 
 		private string _encodedBigLogo;
@@ -1015,20 +986,20 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public void SortInserts()
 		{
-			Inserts.Sort((x, y) => x.Date.CompareTo(y.Date) == 0 ? x.Index.CompareTo(y.Index) : x.Date.CompareTo(y.Date));
+			Inserts.Sort((x, y) => !x.Date.HasValue || !y.Date.HasValue || x.Date.Value.CompareTo(y.Date.Value) == 0 ? x.Index.CompareTo(y.Index) : x.Date.Value.CompareTo(y.Date.Value));
 		}
 
 		public void RebuildInserts()
 		{
 			var temp = new List<Insert>();
 			temp.AddRange(Inserts);
-			temp.Sort((x, y) => x.Date.CompareTo(y.Date) == 0 ? x.Index.CompareTo(y.Index) : x.Date.CompareTo(y.Date));
-
-			DateTime startDate = Parent.FlightDateStart;
-			DateTime endDate = startDate.AddDays(7);
+			temp.Sort((x, y) => !x.Date.HasValue || !y.Date.HasValue || x.Date.Value.CompareTo(y.Date.Value) == 0 ? x.Index.CompareTo(y.Index) : x.Date.Value.CompareTo(y.Date.Value));
+			if (!Parent.FlightDateStart.HasValue || !Parent.FlightDateEnd.HasValue) return;
+			var startDate = Parent.FlightDateStart.Value;
+			var endDate = startDate.AddDays(7);
 			do
 			{
-				IEnumerable<Insert> insertsPerWeek =
+				var insertsPerWeek =
 					from insert in temp
 					where insert.Date >= startDate && insert.Date < endDate
 					select insert;
@@ -1123,8 +1094,9 @@ namespace NewBizWiz.Core.AdSchedule
 		public void RefreshAvailableDays()
 		{
 			AvailableDays.Clear();
-			DateTime dayInSchedule = Parent.FlightDateStart;
-			while (dayInSchedule <= Parent.FlightDateEnd)
+			if (!Parent.FlightDateStart.HasValue || !Parent.FlightDateEnd.HasValue) return;
+			var dayInSchedule = Parent.FlightDateStart.Value;
+			while (dayInSchedule <= Parent.FlightDateEnd.Value)
 			{
 				if ((dayInSchedule.DayOfWeek == DayOfWeek.Sunday && AllowSundaySelect) ||
 					(dayInSchedule.DayOfWeek == DayOfWeek.Monday && AllowMondaySelect) ||
@@ -1200,24 +1172,23 @@ namespace NewBizWiz.Core.AdSchedule
 	{
 		private double _adRate;
 		private double _pciRate;
+		private DateTime? _date;
 
 		public Insert(PrintProduct parent)
 		{
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
-			Date = DateTime.MinValue;
 			Index = 1;
 			CustomSection = string.Empty;
 			CustomComment = string.Empty;
 			Deadline = string.Empty;
-			Comments = new List<Common.NameCodePair>();
-			Sections = new List<Common.NameCodePair>();
+			Comments = new List<NameCodePair>();
+			Sections = new List<NameCodePair>();
 		}
 
 		public PrintProduct Parent { get; private set; }
 		public Guid UniqueID { get; set; }
 		public int Index { get; set; }
-		public DateTime Date { get; set; }
 		public double Discounts { get; set; }
 		public double ColorPricing { get; set; }
 		public double ColorPricingPercent { get; set; }
@@ -1225,8 +1196,8 @@ namespace NewBizWiz.Core.AdSchedule
 		public string CustomSection { get; set; }
 		public string Deadline { get; set; }
 		public string Mechanicals { get; set; }
-		public List<Common.NameCodePair> Comments { get; private set; }
-		public List<Common.NameCodePair> Sections { get; private set; }
+		public List<NameCodePair> Comments { get; private set; }
+		public List<NameCodePair> Sections { get; private set; }
 
 		public Guid ParentID
 		{
@@ -1238,21 +1209,15 @@ namespace NewBizWiz.Core.AdSchedule
 			get { return (Parent.Inserts.IndexOf(this) + 1).ToString("000") + Parent.InsertSuffix; }
 		}
 
-		public object DateObject
+		public DateTime? Date
 		{
 			get
 			{
-				if (Date.Equals(DateTime.MaxValue) || Date.Equals(DateTime.MinValue))
-					return null;
-				else
-					return Date;
+				return _date;
 			}
 			set
 			{
-				if (value == null)
-					Date = DateTime.MaxValue;
-				else
-					Date = (DateTime)value;
+				_date = value;
 				Parent.RebuildInserts();
 			}
 		}
@@ -1412,9 +1377,9 @@ namespace NewBizWiz.Core.AdSchedule
 		}
 
 		#region Output Stuff
-		public DateTime EndDate
+		public DateTime? EndDate
 		{
-			get { return Date.AddHours(1); }
+			get { return Date.HasValue ? Date.Value.AddHours(1) : (DateTime?)null; }
 		}
 
 		public string PageSize
@@ -1477,6 +1442,7 @@ namespace NewBizWiz.Core.AdSchedule
 			get
 			{
 				string result = string.Empty;
+				if (!Date.HasValue) return result;
 				if (Deadline.ToLower().Contains("day"))
 				{
 					var re = new Regex(@"\d+");
@@ -1486,7 +1452,7 @@ namespace NewBizWiz.Core.AdSchedule
 						int daysNumber = 0;
 						if (int.TryParse(m.Value, out daysNumber))
 						{
-							DateTime deadline = Date.AddDays(0 - daysNumber);
+							DateTime deadline = Date.Value.AddDays(0 - daysNumber);
 							while (deadline.DayOfWeek == DayOfWeek.Saturday || deadline.DayOfWeek == DayOfWeek.Sunday)
 								deadline = deadline.AddDays(-1);
 							result = deadline.ToString("ddd, MM/dd/yy");
@@ -1504,7 +1470,8 @@ namespace NewBizWiz.Core.AdSchedule
 			get
 			{
 				string result = string.Empty;
-				if (Date.DayOfWeek == DayOfWeek.Sunday)
+				if (!Date.HasValue) return result;
+				if (Date.Value.DayOfWeek == DayOfWeek.Sunday)
 				{
 					if (Parent.SundayDelivery != null)
 						if (Parent.SundayDelivery.Value > 0)
@@ -1525,7 +1492,8 @@ namespace NewBizWiz.Core.AdSchedule
 			get
 			{
 				string result = string.Empty;
-				if (Date.DayOfWeek == DayOfWeek.Sunday)
+				if (!Date.HasValue) return result;
+				if (Date.Value.DayOfWeek == DayOfWeek.Sunday)
 				{
 					if (Parent.SundayReadership != null)
 						if (Parent.SundayReadership.Value > 0)
@@ -1576,7 +1544,8 @@ namespace NewBizWiz.Core.AdSchedule
 
 			xml.Append(@"<Insert ");
 			xml.Append("Index = \"" + Index + "\" ");
-			xml.Append("Date = \"" + Date + "\" ");
+			if (_date.HasValue)
+				xml.Append("Date = \"" + _date + "\" ");
 			xml.Append("PCIRate = \"" + (PCIRate.HasValue ? PCIRate.Value : 0) + "\" ");
 			xml.Append("ADRate = \"" + ADRate + "\" ");
 			xml.Append("Discounts = \"" + Discounts + "\" ");
@@ -1602,8 +1571,8 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public void Deserialize(XmlNode node)
 		{
-			DateTime tempDateTime = DateTime.MinValue;
-			int tempInt = 0;
+			var tempDateTime = DateTime.MinValue;
+			var tempInt = 0;
 			double tempDouble;
 
 			foreach (XmlAttribute attribute in node.Attributes)
@@ -1614,7 +1583,7 @@ namespace NewBizWiz.Core.AdSchedule
 							Index = tempInt;
 						break;
 					case "Date":
-						if (DateTime.TryParse(attribute.Value, out tempDateTime))
+						if (DateTime.TryParse(attribute.Value, out tempDateTime) && tempDateTime != DateTime.MinValue && tempDateTime != DateTime.MaxValue)
 							Date = tempDateTime;
 						break;
 					case "PCIRate":
@@ -1659,7 +1628,7 @@ namespace NewBizWiz.Core.AdSchedule
 						Comments.Clear();
 						foreach (XmlNode commentNode in childNode.ChildNodes)
 						{
-							var comment = new Common.NameCodePair();
+							var comment = new NameCodePair();
 							comment.Deserialize(commentNode);
 							Comments.Add(comment);
 						}
@@ -1668,7 +1637,7 @@ namespace NewBizWiz.Core.AdSchedule
 						Sections.Clear();
 						foreach (XmlNode sectionNode in childNode.ChildNodes)
 						{
-							var section = new Common.NameCodePair();
+							var section = new NameCodePair();
 							section.Deserialize(sectionNode);
 							Sections.Add(section);
 						}
@@ -2097,7 +2066,7 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowValue = true;
 			ShowDescription = true;
 			ShowMonthly = true;
-			ShowTotal = true;
+			ShowTotal = false;
 
 			Identifier = Guid.NewGuid().ToString();
 			Order = 0;

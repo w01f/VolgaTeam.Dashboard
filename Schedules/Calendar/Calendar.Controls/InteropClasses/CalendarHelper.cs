@@ -7,10 +7,8 @@ using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.VisualBasic;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Core.Calendar;
-using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using Application = System.Windows.Forms.Application;
-using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace NewBizWiz.Calendar.Controls.InteropClasses

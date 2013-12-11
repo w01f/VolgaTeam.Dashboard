@@ -11,6 +11,7 @@ using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 using NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses;
+using NewBizWiz.OnlineSchedule.DigitalPackage.Properties;
 
 namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 {
@@ -27,6 +28,8 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 			: base(formContainer, true)
 		{
 			InitializeComponent();
+			pbDisabledOutput.SizeMode = PictureBoxSizeMode.Normal;
+			pbDisabledOutput.Image = Resources.DigitalPackageDisabled;
 			scheduleListControl.BringToFront();
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
 			{

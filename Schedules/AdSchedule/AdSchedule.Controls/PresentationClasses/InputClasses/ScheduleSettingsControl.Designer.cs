@@ -32,9 +32,21 @@
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
 			this.gridControlPrintProducts = new DevExpress.XtraGrid.GridControl();
 			this.gridViewPrintProducts = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
 			this.gridBandPrintProductsPosition = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -97,7 +109,7 @@
 			this.buttonXDigitalProductStrategy = new DevComponents.DotNetBar.ButtonX();
 			this.pictureBoxDigitalProductAppLogo = new System.Windows.Forms.PictureBox();
 			this.buttonXDigitalProductDimensions = new DevComponents.DotNetBar.ButtonX();
-			this.laDigitalProductBottomBarTitle = new System.Windows.Forms.Label();
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPrintProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewPrintProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditPrintProducts)).BeginInit();
@@ -514,6 +526,9 @@
 			this.buttonXPrintProductLogo.Name = "buttonXPrintProductLogo";
 			this.buttonXPrintProductLogo.Size = new System.Drawing.Size(84, 29);
 			this.buttonXPrintProductLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			toolTipItem1.Text = "Show Logo";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.toolTipController.SetSuperTip(this.buttonXPrintProductLogo, superToolTip1);
 			this.buttonXPrintProductLogo.TabIndex = 6;
 			this.buttonXPrintProductLogo.Text = "Logo";
 			this.buttonXPrintProductLogo.TextColor = System.Drawing.Color.Black;
@@ -528,6 +543,9 @@
 			this.buttonXPrintProductCode.Name = "buttonXPrintProductCode";
 			this.buttonXPrintProductCode.Size = new System.Drawing.Size(84, 29);
 			this.buttonXPrintProductCode.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			toolTipItem2.Text = "Show Publication Code";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.toolTipController.SetSuperTip(this.buttonXPrintProductCode, superToolTip2);
 			this.buttonXPrintProductCode.TabIndex = 5;
 			this.buttonXPrintProductCode.Text = "Code";
 			this.buttonXPrintProductCode.TextColor = System.Drawing.Color.Black;
@@ -542,6 +560,9 @@
 			this.buttonXPrintProductDelivery.Name = "buttonXPrintProductDelivery";
 			this.buttonXPrintProductDelivery.Size = new System.Drawing.Size(84, 29);
 			this.buttonXPrintProductDelivery.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			toolTipItem3.Text = "Show Delivery";
+			superToolTip3.Items.Add(toolTipItem3);
+			this.toolTipController.SetSuperTip(this.buttonXPrintProductDelivery, superToolTip3);
 			this.buttonXPrintProductDelivery.TabIndex = 4;
 			this.buttonXPrintProductDelivery.Text = "Delivery";
 			this.buttonXPrintProductDelivery.TextColor = System.Drawing.Color.Black;
@@ -556,6 +577,9 @@
 			this.buttonXPrintProductReadership.Name = "buttonXPrintProductReadership";
 			this.buttonXPrintProductReadership.Size = new System.Drawing.Size(84, 29);
 			this.buttonXPrintProductReadership.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			toolTipItem4.Text = "Show Readership";
+			superToolTip4.Items.Add(toolTipItem4);
+			this.toolTipController.SetSuperTip(this.buttonXPrintProductReadership, superToolTip4);
 			this.buttonXPrintProductReadership.TabIndex = 3;
 			this.buttonXPrintProductReadership.Text = "Readership";
 			this.buttonXPrintProductReadership.TextColor = System.Drawing.Color.Black;
@@ -1008,7 +1032,6 @@
 			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXDigitalProductStrategy);
 			this.pnDigitalProductBottomBar.Controls.Add(this.pictureBoxDigitalProductAppLogo);
 			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXDigitalProductDimensions);
-			this.pnDigitalProductBottomBar.Controls.Add(this.laDigitalProductBottomBarTitle);
 			this.pnDigitalProductBottomBar.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnDigitalProductBottomBar.Location = new System.Drawing.Point(0, 366);
 			this.pnDigitalProductBottomBar.Name = "pnDigitalProductBottomBar";
@@ -1021,10 +1044,13 @@
 			this.buttonXDigitalProductStrategy.AutoCheckOnClick = true;
 			this.buttonXDigitalProductStrategy.Checked = true;
 			this.buttonXDigitalProductStrategy.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDigitalProductStrategy.Location = new System.Drawing.Point(203, 5);
+			this.buttonXDigitalProductStrategy.Location = new System.Drawing.Point(151, 5);
 			this.buttonXDigitalProductStrategy.Name = "buttonXDigitalProductStrategy";
 			this.buttonXDigitalProductStrategy.Size = new System.Drawing.Size(115, 29);
 			this.buttonXDigitalProductStrategy.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			toolTipItem5.Text = "Hide Pricing Strategy";
+			superToolTip5.Items.Add(toolTipItem5);
+			this.toolTipController.SetSuperTip(this.buttonXDigitalProductStrategy, superToolTip5);
 			this.buttonXDigitalProductStrategy.TabIndex = 8;
 			this.buttonXDigitalProductStrategy.Text = "Pricing Strategy";
 			this.buttonXDigitalProductStrategy.TextColor = System.Drawing.Color.Black;
@@ -1046,25 +1072,23 @@
 			this.buttonXDigitalProductDimensions.AutoCheckOnClick = true;
 			this.buttonXDigitalProductDimensions.Checked = true;
 			this.buttonXDigitalProductDimensions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDigitalProductDimensions.Location = new System.Drawing.Point(67, 5);
+			this.buttonXDigitalProductDimensions.Location = new System.Drawing.Point(15, 5);
 			this.buttonXDigitalProductDimensions.Name = "buttonXDigitalProductDimensions";
 			this.buttonXDigitalProductDimensions.Size = new System.Drawing.Size(115, 29);
 			this.buttonXDigitalProductDimensions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			toolTipItem6.Text = "Hide Ad Dimensions";
+			superToolTip6.Items.Add(toolTipItem6);
+			this.toolTipController.SetSuperTip(this.buttonXDigitalProductDimensions, superToolTip6);
 			this.buttonXDigitalProductDimensions.TabIndex = 6;
 			this.buttonXDigitalProductDimensions.Text = "Ad Dimensions";
 			this.buttonXDigitalProductDimensions.TextColor = System.Drawing.Color.Black;
 			this.buttonXDigitalProductDimensions.CheckedChanged += new System.EventHandler(this.buttonXDigitalProductDimensions_CheckedChanged);
 			// 
-			// laDigitalProductBottomBarTitle
+			// toolTipController
 			// 
-			this.laDigitalProductBottomBarTitle.Dock = System.Windows.Forms.DockStyle.Left;
-			this.laDigitalProductBottomBarTitle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laDigitalProductBottomBarTitle.Location = new System.Drawing.Point(0, 0);
-			this.laDigitalProductBottomBarTitle.Name = "laDigitalProductBottomBarTitle";
-			this.laDigitalProductBottomBarTitle.Size = new System.Drawing.Size(61, 38);
-			this.laDigitalProductBottomBarTitle.TabIndex = 2;
-			this.laDigitalProductBottomBarTitle.Text = "Show:";
-			this.laDigitalProductBottomBarTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.toolTipController.Rounded = true;
+			this.toolTipController.ToolTipLocation = DevExpress.Utils.ToolTipLocation.RightTop;
+			this.toolTipController.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
 			// 
 			// ScheduleSettingsControl
 			// 
@@ -1160,7 +1184,6 @@
 		private System.Windows.Forms.Panel pnDigitalProductBottomBar;
 		private System.Windows.Forms.PictureBox pictureBoxDigitalProductAppLogo;
 		private DevComponents.DotNetBar.ButtonX buttonXDigitalProductDimensions;
-		private System.Windows.Forms.Label laDigitalProductBottomBarTitle;
 		private DevComponents.DotNetBar.ButtonX buttonXDigitalProductStrategy;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDigitalProductNumber;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDigitalProductType;
@@ -1169,6 +1192,7 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDigitalProductHeight;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDigitalProductRate;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDigitalProductDelete;
+		private DevExpress.Utils.ToolTipController toolTipController;
 
     }
 }

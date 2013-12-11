@@ -11,7 +11,6 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ViewInfo;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
 using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.CommonGUI.Themes;
@@ -32,7 +31,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 
-			HelpToolTip = new SuperTooltipInfo("HELP", "", "Learn more about the Multi-Publication Analysis", null, null, eTooltipColor.Gray);
+			HelpToolTip = new SuperTooltipInfo("HELP", "", "Learn more about the Schedule Analysis", null, null, eTooltipColor.Gray);
 
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
 			{
@@ -51,6 +50,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.MultiSummaryDigitalLegend.Image = Controller.Instance.MultiSummaryDigitalLegend.Enabled && !LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+			Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.MultiSummaryDigitalLegend, new SuperTooltipInfo("Digital Products", "",
+				Controller.Instance.MultiSummaryDigitalLegend.Enabled && LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.Enabled ?
+				"Digital Products are Enabled for this slide" :
+				"Digital Products are Disabled for this slide"
+				, null, null, eTooltipColor.Gray));
 			FormThemeSelector.Link(Controller.Instance.MultiSummaryTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
 			{
 				LocalSchedule.ThemeName = t.Name;
@@ -58,10 +62,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}));
 			if (!quickLoad)
 			{
-				checkEditDate.Text = LocalSchedule.PresentationDateObject != null ? LocalSchedule.PresentationDate.ToString("MM/dd/yy") : string.Empty;
+				checkEditDate.Text = LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy") : string.Empty;
 				checkEditBusinessName.Text = " " + LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
 				checkEditDecisionMaker.Text = " " + LocalSchedule.DecisionMaker;
-				checkEditFlightDates.Text = " " + LocalSchedule.FlightDateStart.ToString("MM/dd/yy") + " - " + LocalSchedule.FlightDateEnd.ToString("MM/dd/yy");
+				checkEditFlightDates.Text = " " + LocalSchedule.FlightDates;
 
 				_allowToSave = false;
 				comboBoxEditSchedule.Properties.Items.Clear();
@@ -120,7 +124,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				{
 					if (!string.IsNullOrEmpty(publication.Name))
 					{
-						PublicationMultiSummaryControl publicationTab = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID)).FirstOrDefault();
+						PublicationMultiSummaryControl publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
 						if (publicationTab != null)
 						{
 							publicationTab.PrintProduct = publication;
@@ -140,7 +144,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				publication.ViewSettings.MultiSummarySettings.ResetToDefault();
 				if (!string.IsNullOrEmpty(publication.Name))
 				{
-					PublicationMultiSummaryControl publicationTab = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID)).FirstOrDefault();
+					PublicationMultiSummaryControl publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
 					if (publicationTab != null)
 						publicationTab.LoadPublication();
 					Application.DoEvents();
@@ -431,6 +435,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (digitalLegend.ApplyForAll)
 					LocalSchedule.ApplyDigitalLegendForAllViews(digitalLegend);
 				Controller.Instance.MultiSummaryDigitalLegend.Image = !digitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+				Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.MultiSummaryDigitalLegend, new SuperTooltipInfo("Digital Products", "",
+					digitalLegend.Enabled ?
+					"Digital Products are Enabled for this slide" :
+					"Digital Products are Disabled for this slide"
+					, null, null, eTooltipColor.Gray));
 				SettingsNotSaved = true;
 			}
 		}

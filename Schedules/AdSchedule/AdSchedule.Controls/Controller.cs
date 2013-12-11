@@ -86,6 +86,14 @@ namespace NewBizWiz.AdSchedule.Controls
 			HomeAccountNumberText.Enter += Utilities.Instance.Editor_Enter;
 			HomeAccountNumberText.MouseDown += Utilities.Instance.Editor_MouseDown;
 			HomeAccountNumberText.MouseUp += Utilities.Instance.Editor_MouseUp;
+
+			HomeBusinessName.TabIndex = 0;
+			HomeBusinessName.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;
+			HomeDecisionMaker.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;
+			HomeClientType.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;
+			HomePresentationDate.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;
+			HomeFlightDatesStart.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;
+			HomeFlightDatesEnd.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;
 			#endregion
 
 			#region Print Product
@@ -510,7 +518,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			{
 				form.laProgress.Text = "Chill-Out for a few seconds...\nSaving settings...";
 				form.TopMost = true;
-				var thread = new Thread(delegate() { BusinessWrapper.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, sender); });
+				var thread = new Thread(() => BusinessWrapper.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, sender));
 				form.Show();
 				thread.Start();
 				while (thread.IsAlive)
@@ -527,7 +535,6 @@ namespace NewBizWiz.AdSchedule.Controls
 			if (FloaterRequested != null)
 				FloaterRequested(null, args);
 		}
-
 		#region Command Controls
 
 		#region Home

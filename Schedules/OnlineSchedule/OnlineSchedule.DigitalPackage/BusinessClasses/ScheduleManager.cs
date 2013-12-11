@@ -187,18 +187,18 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
 		public string AccountNumber { get; set; }
-		public DateTime PresentationDate { get; set; }
+		public DateTime? PresentationDate { get; set; }
 		public string FlightDates
 		{
 			get
 			{
-				if (FlightDateStart != DateTime.MinValue && FlightDateEnd != DateTime.MinValue)
-					return FlightDateStart.ToString("MM/dd/yy") + " - " + FlightDateEnd.ToString("MM/dd/yy");
+				if (FlightDateStart.HasValue && FlightDateEnd.HasValue)
+					return FlightDateStart.Value.ToString("MM/dd/yy") + " - " + FlightDateEnd.Value.ToString("MM/dd/yy");
 				return string.Empty;
 			}
 		}
-		public DateTime FlightDateStart { get; set; }
-		public DateTime FlightDateEnd { get; set; }
+		public DateTime? FlightDateStart { get; set; }
+		public DateTime? FlightDateEnd { get; set; }
 		#endregion
 
 		private void Load()

@@ -8,8 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using Microsoft.VisualBasic;
-using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.OnlineSchedule;
 using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
 namespace NewBizWiz.Core.Calendar
@@ -39,13 +39,7 @@ namespace NewBizWiz.Core.Calendar
 
 		public static ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
 		{
-			var calendarList = new List<ShortSchedule>();
-			foreach (FileInfo file in rootFolder.GetFiles("*.xml"))
-			{
-				var schedule = new ShortSchedule(file);
-				calendarList.Add(schedule);
-			}
-			return calendarList.ToArray();
+			return rootFolder.GetFiles("*.xml").Select(file => new ShortSchedule(file)).ToArray();
 		}
 
 		public void CreateSchedule(string scheduleName)
@@ -148,13 +142,12 @@ namespace NewBizWiz.Core.Calendar
 
 		private void Load()
 		{
-			XmlNode node;
 			if (_calendarFile.Exists)
 			{
 				var document = new XmlDocument();
 				document.Load(_calendarFile.FullName);
 
-				node = document.SelectSingleNode(@"/Schedule/BusinessName");
+				var node = document.SelectSingleNode(@"/Schedule/BusinessName");
 				if (node != null)
 					BusinessName = node.InnerText;
 
@@ -166,7 +159,6 @@ namespace NewBizWiz.Core.Calendar
 
 		public void Save()
 		{
-			XmlNode node;
 			if (_calendarFile.Exists)
 			{
 				try
@@ -174,7 +166,7 @@ namespace NewBizWiz.Core.Calendar
 					var document = new XmlDocument();
 					document.Load(_calendarFile.FullName);
 
-					node = document.SelectSingleNode(@"/Schedule/Status");
+					var node = document.SelectSingleNode(@"/Schedule/Status");
 					if (node != null)
 						node.InnerText = Status;
 					else
@@ -185,12 +177,14 @@ namespace NewBizWiz.Core.Calendar
 					}
 					document.Save(_calendarFile.FullName);
 				}
-				catch { }
+				catch
+				{
+				}
 			}
 		}
 	}
 
-	public class Schedule
+	public class Schedule : ISchedule
 	{
 		public Schedule(string fileName)
 		{
@@ -224,6 +218,7 @@ namespace NewBizWiz.Core.Calendar
 		}
 
 		private FileInfo _calendarFile { get; set; }
+		public bool IsNameNotAssigned { get; set; }
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
 		public string ClientType { get; set; }
@@ -239,6 +234,13 @@ namespace NewBizWiz.Core.Calendar
 		public bool ShowDigital { get; set; }
 		public bool ShowTV { get; set; }
 		public bool ShowRadio { get; set; }
+
+		public IScheduleViewSettings CommonViewSettings { get; private set; }
+		public List<DigitalProduct> DigitalProducts { get; private set; }
+		public void RebuildDigitalProductIndexes()
+		{
+			throw new NotImplementedException();
+		}
 
 		public string Name
 		{
@@ -257,100 +259,93 @@ namespace NewBizWiz.Core.Calendar
 			{
 				if (FlightDateStart.HasValue && FlightDateEnd.HasValue)
 					return FlightDateStart.Value.ToString("MM/dd/yy") + " - " + FlightDateEnd.Value.ToString("MM/dd/yy");
-				else
-					return string.Empty;
+				return string.Empty;
 			}
 		}
 
+		public string ThemeName { get; set; }
+
 		private void LoadSettings()
 		{
-			int tempInt;
+			if (!_calendarFile.Exists) return;
+			var document = new XmlDocument();
+			document.Load(_calendarFile.FullName);
+
+			var node = document.SelectSingleNode(@"/Schedule/BusinessName");
+			if (node != null)
+				BusinessName = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/DecisionMaker");
+			if (node != null)
+				DecisionMaker = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/ClientType");
+			if (node != null)
+				ClientType = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/AccountNumber");
+			if (node != null)
+				AccountNumber = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/Status");
+			if (node != null)
+				Status = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/PresentationDate");
 			DateTime tempDateTime;
+			if (node != null)
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
+					PresentationDate = tempDateTime;
+
+			node = document.SelectSingleNode(@"/Schedule/FlightDateStart");
+			if (node != null)
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
+					FlightDateStart = tempDateTime;
+
+			node = document.SelectSingleNode(@"/Schedule/FlightDateEnd");
+			if (node != null)
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
+					FlightDateEnd = tempDateTime;
+
+			node = document.SelectSingleNode(@"/Schedule/ShowNewspaper");
 			bool tempBool;
+			if (node != null)
+				if (bool.TryParse(node.InnerText, out tempBool))
+					ShowNewspaper = tempBool;
 
-			XmlNode node;
-			if (_calendarFile.Exists)
-			{
-				var document = new XmlDocument();
-				document.Load(_calendarFile.FullName);
+			node = document.SelectSingleNode(@"/Schedule/ShowDigital");
+			if (node != null)
+				if (bool.TryParse(node.InnerText, out tempBool))
+					ShowDigital = tempBool;
 
-				node = document.SelectSingleNode(@"/Schedule/BusinessName");
-				if (node != null)
-					BusinessName = node.InnerText;
+			node = document.SelectSingleNode(@"/Schedule/ShowTV");
+			if (node != null)
+				if (bool.TryParse(node.InnerText, out tempBool))
+					ShowTV = tempBool;
 
-				node = document.SelectSingleNode(@"/Schedule/DecisionMaker");
-				if (node != null)
-					DecisionMaker = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/ClientType");
-				if (node != null)
-					ClientType = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/AccountNumber");
-				if (node != null)
-					AccountNumber = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/Status");
-				if (node != null)
-					Status = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/PresentationDate");
-				if (node != null)
-					if (DateTime.TryParse(node.InnerText, out tempDateTime))
-						PresentationDate = tempDateTime;
-
-				node = document.SelectSingleNode(@"/Schedule/FlightDateStart");
-				if (node != null)
-					if (DateTime.TryParse(node.InnerText, out tempDateTime))
-						FlightDateStart = tempDateTime;
-
-				node = document.SelectSingleNode(@"/Schedule/FlightDateEnd");
-				if (node != null)
-					if (DateTime.TryParse(node.InnerText, out tempDateTime))
-						FlightDateEnd = tempDateTime;
-
-				node = document.SelectSingleNode(@"/Schedule/ShowNewspaper");
-				if (node != null)
-					if (bool.TryParse(node.InnerText, out tempBool))
-						ShowNewspaper = tempBool;
-
-				node = document.SelectSingleNode(@"/Schedule/ShowDigital");
-				if (node != null)
-					if (bool.TryParse(node.InnerText, out tempBool))
-						ShowDigital = tempBool;
-
-				node = document.SelectSingleNode(@"/Schedule/ShowTV");
-				if (node != null)
-					if (bool.TryParse(node.InnerText, out tempBool))
-						ShowTV = tempBool;
-
-				node = document.SelectSingleNode(@"/Schedule/ShowRadio");
-				if (node != null)
-					if (bool.TryParse(node.InnerText, out tempBool))
-						ShowRadio = tempBool;
-			}
+			node = document.SelectSingleNode(@"/Schedule/ShowRadio");
+			if (node != null)
+				if (bool.TryParse(node.InnerText, out tempBool))
+					ShowRadio = tempBool;
 		}
 
 		private void LoadCalendars()
 		{
 			GraphicCalendar = new CalendarSundayBased(this);
-			if (_calendarFile.Exists)
-			{
-				XmlNode node;
-				var document = new XmlDocument();
-				document.Load(_calendarFile.FullName);
+			if (!_calendarFile.Exists) return;
+			var document = new XmlDocument();
+			document.Load(_calendarFile.FullName);
 
-				node = document.SelectSingleNode(@"/Schedule/GraphicCalendar");
-				if (node != null)
-				{
-					GraphicCalendar.Deserialize(node);
-				}
-				else
-				{
-					GraphicCalendar.UpdateDaysCollection();
-					GraphicCalendar.UpdateMonthCollection();
-					GraphicCalendar.UpdateNotesCollection();
-				}
+			var node = document.SelectSingleNode(@"/Schedule/GraphicCalendar");
+			if (node != null)
+			{
+				GraphicCalendar.Deserialize(node);
+			}
+			else
+			{
+				GraphicCalendar.UpdateDaysCollection();
+				GraphicCalendar.UpdateMonthCollection();
+				GraphicCalendar.UpdateNotesCollection();
 			}
 		}
 
@@ -379,11 +374,11 @@ namespace NewBizWiz.Core.Calendar
 			xml.AppendLine(@"<ShowTV>" + ShowTV + @"</ShowTV>");
 			xml.AppendLine(@"<ShowRadio>" + ShowRadio + @"</ShowRadio>");
 			if (PresentationDate.HasValue)
-				xml.AppendLine(@"<PresentationDate>" + PresentationDate.Value.ToString() + @"</PresentationDate>");
+				xml.AppendLine(@"<PresentationDate>" + PresentationDate.Value + @"</PresentationDate>");
 			if (FlightDateStart.HasValue)
-				xml.AppendLine(@"<FlightDateStart>" + FlightDateStart.Value.ToString() + @"</FlightDateStart>");
+				xml.AppendLine(@"<FlightDateStart>" + FlightDateStart.Value + @"</FlightDateStart>");
 			if (FlightDateEnd.HasValue)
-				xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd.Value.ToString() + @"</FlightDateEnd>");
+				xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd.Value + @"</FlightDateEnd>");
 
 			xml.AppendLine(@"<GraphicCalendar>" + GraphicCalendar.Serialize() + @"</GraphicCalendar>");
 
@@ -399,7 +394,7 @@ namespace NewBizWiz.Core.Calendar
 
 	public abstract class Calendar
 	{
-		public Calendar(Schedule parent)
+		protected Calendar(ISchedule parent)
 		{
 			Schedule = parent;
 			Months = new List<CalendarMonth>();
@@ -407,26 +402,27 @@ namespace NewBizWiz.Core.Calendar
 			Notes = new List<CalendarNote>();
 		}
 
-		public Schedule Schedule { get; private set; }
+		public ISchedule Schedule { get; private set; }
 		public List<CalendarMonth> Months { get; private set; }
 		public List<CalendarDay> Days { get; private set; }
 		public List<CalendarNote> Notes { get; private set; }
+		public abstract bool AllowCustomNotes { get; }
 
 		public string Serialize()
 		{
 			var result = new StringBuilder();
 			result.AppendLine(@"<Days>");
-			foreach (CalendarDay day in Days)
+			foreach (var day in Days)
 				result.AppendLine(@"<Day>" + day.Serialize() + @"</Day>");
 			result.AppendLine(@"</Days>");
 
 			result.AppendLine(@"<Months>");
-			foreach (CalendarMonth month in Months)
+			foreach (var month in Months)
 				result.AppendLine(@"<Month>" + month.Serialize() + @"</Month>");
 			result.AppendLine(@"</Months>");
 
 			result.AppendLine(@"<CalendarNotes>");
-			foreach (CalendarNote note in Notes)
+			foreach (var note in Notes)
 				result.AppendLine(@"<CalendarNote>" + note.Serialize() + @"</CalendarNote>");
 			result.AppendLine(@"</CalendarNotes>");
 			return result.ToString();
@@ -438,16 +434,16 @@ namespace NewBizWiz.Core.Calendar
 
 		public abstract void UpdateMonthCollection();
 
-		public abstract DateRange[] CalculateDateRange(DateTime[] dates);
+		public abstract IEnumerable<DateRange> CalculateDateRange(IEnumerable<DateTime> dates);
 
 		public abstract DateTime[][] GetDaysByWeek(DateTime start, DateTime end);
 
-		public void UpdateNotesCollection()
+		public virtual void UpdateNotesCollection()
 		{
 			if (Schedule.FlightDateStart.HasValue && Schedule.FlightDateEnd.HasValue)
 			{
 				var _notesToDelete = new List<CalendarNote>();
-				foreach (CalendarNote note in Notes)
+				foreach (var note in Notes)
 				{
 					if (note.FinishDay < Schedule.FlightDateStart.Value || note.StartDay > Schedule.FlightDateEnd.Value)
 						_notesToDelete.Add(note);
@@ -458,7 +454,7 @@ namespace NewBizWiz.Core.Calendar
 					if (note.Length < 1)
 						_notesToDelete.Add(note);
 				}
-				foreach (CalendarNote note in _notesToDelete)
+				foreach (var note in _notesToDelete)
 					Notes.Remove(note);
 			}
 			else
@@ -468,8 +464,8 @@ namespace NewBizWiz.Core.Calendar
 
 		protected void UpdateDayAndNoteLinks()
 		{
-			foreach (CalendarDay day in Days)
-				day.HasNotes = Notes.Where(x => day.Date >= x.StartDay && day.Date <= x.FinishDay).Count() > 0;
+			foreach (var day in Days)
+				day.HasNotes = Notes.Any(x => day.Date >= x.StartDay && day.Date <= x.FinishDay);
 		}
 
 		public void AddNote(DateRange range, string noteText = "")
@@ -479,7 +475,7 @@ namespace NewBizWiz.Core.Calendar
 			newNote.FinishDay = range.FinishDate;
 			newNote.Note = noteText;
 			var _notesToDelete = new List<CalendarNote>();
-			foreach (CalendarNote note in Notes)
+			foreach (var note in Notes)
 			{
 				if (note.StartDay >= newNote.StartDay && note.FinishDay <= newNote.FinishDay)
 					_notesToDelete.Add(note);
@@ -490,7 +486,7 @@ namespace NewBizWiz.Core.Calendar
 				if (note.Length < 1)
 					_notesToDelete.Add(note);
 			}
-			foreach (CalendarNote note in _notesToDelete)
+			foreach (var note in _notesToDelete)
 				Notes.Remove(note);
 			Notes.Add(newNote);
 			UpdateDayAndNoteLinks();
@@ -504,11 +500,11 @@ namespace NewBizWiz.Core.Calendar
 
 		public void ImportDays(AdSchedule.Schedule sourceSchedule)
 		{
-			foreach (CalendarDay day in Days)
+			foreach (var day in Days)
 			{
 				var customNoteConstructor = new StringBuilder();
-				foreach (PrintProduct publication in sourceSchedule.PrintProducts)
-					foreach (var insert in publication.Inserts.Where(x => x.Date.Year == day.Date.Year && x.Date.Month == day.Date.Month && x.Date.Day == day.Date.Day))
+				foreach (var publication in sourceSchedule.PrintProducts)
+					foreach (var insert in publication.Inserts.Where(x => x.Date.HasValue && x.Date.Value.Year == day.Date.Year && x.Date.Value.Month == day.Date.Month && x.Date.Value.Day == day.Date.Day))
 					{
 						var properties = new List<string>();
 						if (!string.IsNullOrEmpty(insert.Publication))
@@ -530,14 +526,10 @@ namespace NewBizWiz.Core.Calendar
 				day.Comment1 = customNoteConstructor.ToString();
 			}
 		}
-	}
 
-	public class CalendarSundayBased : Calendar
-	{
-		public CalendarSundayBased(Schedule parent)
-			: base(parent) { }
-
-		public override void Deserialize(XmlNode node)
+		protected void Deserialize<TMonth, TDay>(XmlNode node, DayOfWeek startDay, DayOfWeek endDay)
+			where TMonth : CalendarMonth
+			where TDay : CalendarDay
 		{
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
@@ -547,7 +539,7 @@ namespace NewBizWiz.Core.Calendar
 						Days.Clear();
 						foreach (XmlNode dayNode in childNode.ChildNodes)
 						{
-							CalendarDay day = new CalendarDaySundayBased(this);
+							var day = (TDay)Activator.CreateInstance(typeof(TDay), this);
 							day.Deserialize(dayNode);
 							Days.Add(day);
 						}
@@ -556,7 +548,7 @@ namespace NewBizWiz.Core.Calendar
 						Months.Clear();
 						foreach (XmlNode monthNode in childNode.ChildNodes)
 						{
-							CalendarMonth month = new CalendarMonthSundayBased(this);
+							var month = (TMonth)Activator.CreateInstance(typeof(TMonth), this);
 							month.Deserialize(monthNode);
 							Months.Add(month);
 						}
@@ -579,26 +571,26 @@ namespace NewBizWiz.Core.Calendar
 			UpdateNotesCollection();
 		}
 
-		public override void UpdateDaysCollection()
+		protected void UpdateDaysCollection<T>(DayOfWeek startDay, DayOfWeek endDay) where T : CalendarDay
 		{
 			if (Schedule.FlightDateStart.HasValue && Schedule.FlightDateEnd.HasValue)
 			{
 				var days = new List<CalendarDay>();
 
 				var startDate = new DateTime(Schedule.FlightDateStart.Value.Year, Schedule.FlightDateStart.Value.Month, 1);
-				while (startDate.DayOfWeek != DayOfWeek.Sunday)
+				while (startDate.DayOfWeek != startDay)
 					startDate = startDate.AddDays(-1);
 
-				DateTime endDate = new DateTime(Schedule.FlightDateEnd.Value.Month < 12 ? Schedule.FlightDateEnd.Value.Year : (Schedule.FlightDateEnd.Value.Year + 1), (Schedule.FlightDateEnd.Value.Month < 12 ? Schedule.FlightDateEnd.Value.Month + 1 : 1), 1).AddDays(-1);
-				while (endDate.DayOfWeek != DayOfWeek.Saturday)
+				var endDate = new DateTime(Schedule.FlightDateEnd.Value.Month < 12 ? Schedule.FlightDateEnd.Value.Year : (Schedule.FlightDateEnd.Value.Year + 1), (Schedule.FlightDateEnd.Value.Month < 12 ? Schedule.FlightDateEnd.Value.Month + 1 : 1), 1).AddDays(-1);
+				while (endDate.DayOfWeek != endDay)
 					endDate = endDate.AddDays(1);
 
 				while (startDate <= endDate)
 				{
-					CalendarDay day = Days.Where(x => x.Date.Equals(startDate)).FirstOrDefault();
+					var day = Days.FirstOrDefault(x => x.Date.Equals(startDate));
 					if (day == null)
 					{
-						day = new CalendarDaySundayBased(this);
+						day = (T)Activator.CreateInstance(typeof(T), this);
 						day.Date = startDate;
 					}
 					day.BelongsToSchedules = day.Date >= Schedule.FlightDateStart & day.Date <= Schedule.FlightDateEnd;
@@ -612,7 +604,7 @@ namespace NewBizWiz.Core.Calendar
 				Days.Clear();
 		}
 
-		public override void UpdateMonthCollection()
+		protected void UpdateMonthCollection<T>() where T : CalendarMonth
 		{
 			if (Schedule.FlightDateStart.HasValue && Schedule.FlightDateEnd.HasValue)
 			{
@@ -620,10 +612,10 @@ namespace NewBizWiz.Core.Calendar
 				var startDate = new DateTime(Schedule.FlightDateStart.Value.Year, Schedule.FlightDateStart.Value.Month, 1);
 				while (startDate <= Schedule.FlightDateEnd.Value)
 				{
-					CalendarMonth month = Months.Where(x => x.Date.Equals(startDate)).FirstOrDefault();
+					var month = Months.FirstOrDefault(x => x.Date.Equals(startDate));
 					if (month == null)
 					{
-						month = new CalendarMonthSundayBased(this);
+						month = (T)Activator.CreateInstance(typeof(T), this);
 						month.Date = startDate;
 					}
 					month.Days.Clear();
@@ -638,41 +630,20 @@ namespace NewBizWiz.Core.Calendar
 				Months.Clear();
 		}
 
-		public override DateTime[][] GetDaysByWeek(DateTime start, DateTime end)
-		{
-			var weeks = new List<DateTime[]>();
-			var week = new List<DateTime>();
-			while (!(start > end))
-			{
-				week.Add(start);
-				if (start.DayOfWeek == DayOfWeek.Saturday)
-				{
-					weeks.Add(week.ToArray());
-					week.Clear();
-				}
-				start = start.AddDays(1);
-			}
-			if (week.Count > 0)
-				weeks.Add(week.ToArray());
-			return weeks.ToArray();
-		}
-
-		public override DateRange[] CalculateDateRange(DateTime[] dates)
+		protected IEnumerable<DateRange> CalculateDateRange(IEnumerable<DateTime> dates, DayOfWeek startDay, DayOfWeek endDay)
 		{
 			var result = new List<DateRange>();
 			var selectedDates = new List<DateTime>();
 			selectedDates.AddRange(dates);
 			selectedDates.Sort();
 
-			DateTime firstSelectedDate = selectedDates.FirstOrDefault();
-			DateTime lastSelectedDate = selectedDates.LastOrDefault();
-			//Get Sunday nearest to last selected sate
-			DateTime firstWeekday = firstSelectedDate;
-			while (firstWeekday.DayOfWeek != DayOfWeek.Sunday)
+			var firstSelectedDate = selectedDates.FirstOrDefault();
+			var lastSelectedDate = selectedDates.LastOrDefault();
+			var firstWeekday = firstSelectedDate;
+			while (firstWeekday.DayOfWeek != startDay)
 				firstWeekday = firstWeekday.AddDays(-1);
-			//Get Saturday nearest to last selected sate
-			DateTime lastWeekday = firstSelectedDate;
-			while (lastWeekday.DayOfWeek != DayOfWeek.Saturday)
+			var lastWeekday = firstSelectedDate;
+			while (lastWeekday.DayOfWeek != endDay)
 				lastWeekday = lastWeekday.AddDays(1);
 
 			while (firstWeekday < lastSelectedDate)
@@ -702,181 +673,102 @@ namespace NewBizWiz.Core.Calendar
 				firstWeekday = firstWeekday.AddDays(7);
 				lastWeekday = lastWeekday.AddDays(7);
 			}
-			return result.ToArray();
+			return result;
+		}
+
+		protected DateTime[][] GetDaysByWeek(DateTime start, DateTime end, DayOfWeek borderDay)
+		{
+			var weeks = new List<DateTime[]>();
+			var week = new List<DateTime>();
+			while (!(start > end))
+			{
+				week.Add(start);
+				if (start.DayOfWeek == borderDay)
+				{
+					weeks.Add(week.ToArray());
+					week.Clear();
+				}
+				start = start.AddDays(1);
+			}
+			if (week.Count > 0)
+				weeks.Add(week.ToArray());
+			return weeks.ToArray();
+		}
+	}
+
+	public class CalendarSundayBased : Calendar
+	{
+		public CalendarSundayBased(ISchedule parent)
+			: base(parent)
+		{
+		}
+
+		public override bool AllowCustomNotes
+		{
+			get { return true; }
+		}
+
+		public override void Deserialize(XmlNode node)
+		{
+			Deserialize<CalendarMonthSundayBased, CalendarDaySundayBased>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
+		}
+
+		public override void UpdateDaysCollection()
+		{
+			UpdateDaysCollection<CalendarDaySundayBased>(DayOfWeek.Sunday, DayOfWeek.Saturday);
+		}
+
+		public override void UpdateMonthCollection()
+		{
+			UpdateMonthCollection<CalendarMonthSundayBased>();
+		}
+
+		public override DateTime[][] GetDaysByWeek(DateTime start, DateTime end)
+		{
+			return GetDaysByWeek(start, end, DayOfWeek.Saturday);
+		}
+
+		public override IEnumerable<DateRange> CalculateDateRange(IEnumerable<DateTime> dates)
+		{
+			return CalculateDateRange(dates, DayOfWeek.Sunday, DayOfWeek.Saturday);
 		}
 	}
 
 	public class CalendarMondayBased : Calendar
 	{
-		public CalendarMondayBased(Schedule parent)
-			: base(parent) { }
+		public CalendarMondayBased(ISchedule parent)
+			: base(parent)
+		{
+		}
+
+		public override bool AllowCustomNotes
+		{
+			get { return true; }
+		}
 
 		public override void Deserialize(XmlNode node)
 		{
-			foreach (XmlNode childNode in node.ChildNodes)
-			{
-				switch (childNode.Name)
-				{
-					case "Days":
-						Days.Clear();
-						foreach (XmlNode dayNode in childNode.ChildNodes)
-						{
-							CalendarDay day = new CalendarDayMondayBased(this);
-							day.Deserialize(dayNode);
-							Days.Add(day);
-						}
-						break;
-					case "Months":
-						Months.Clear();
-						foreach (XmlNode monthNode in childNode.ChildNodes)
-						{
-							CalendarMonth month = new CalendarMonthMondayBased(this);
-							month.Deserialize(monthNode);
-							Months.Add(month);
-						}
-						break;
-					case "CalendarNotes":
-						Notes.Clear();
-						foreach (XmlNode noteNode in childNode.ChildNodes)
-						{
-							var note = new CalendarNote(this);
-							note.Deserialize(noteNode);
-							if (note.StartDay != DateTime.MinValue && note.FinishDay != DateTime.MinValue)
-								Notes.Add(note);
-						}
-						break;
-				}
-			}
-
-			UpdateDaysCollection();
-			UpdateMonthCollection();
-			UpdateNotesCollection();
+			Deserialize<CalendarMonthMondayBased, CalendarDayMondayBased>(node, DayOfWeek.Monday, DayOfWeek.Sunday);
 		}
 
 		public override void UpdateDaysCollection()
 		{
-			if (Schedule.FlightDateStart.HasValue && Schedule.FlightDateEnd.HasValue)
-			{
-				var days = new List<CalendarDay>();
-
-				var startDate = new DateTime(Schedule.FlightDateStart.Value.Year, Schedule.FlightDateStart.Value.Month, 1);
-				while (startDate.DayOfWeek != DayOfWeek.Monday)
-					startDate = startDate.AddDays(-1);
-
-				DateTime endDate = new DateTime(Schedule.FlightDateEnd.Value.Month < 12 ? Schedule.FlightDateEnd.Value.Year : (Schedule.FlightDateEnd.Value.Year + 1), (Schedule.FlightDateEnd.Value.Month < 12 ? Schedule.FlightDateEnd.Value.Month + 1 : 1), 1).AddDays(-1);
-				while (endDate.DayOfWeek != DayOfWeek.Sunday)
-					endDate = endDate.AddDays(1);
-
-				while (startDate <= endDate)
-				{
-					CalendarDay day = Days.Where(x => x.Date.Equals(startDate)).FirstOrDefault();
-					if (day == null)
-					{
-						day = new CalendarDayMondayBased(this);
-						day.Date = startDate;
-					}
-					day.BelongsToSchedules = day.Date >= Schedule.FlightDateStart & day.Date <= Schedule.FlightDateEnd;
-					days.Add(day);
-					startDate = startDate.AddDays(1);
-				}
-				Days.Clear();
-				Days.AddRange(days);
-			}
-			else
-				Days.Clear();
+			UpdateDaysCollection<CalendarDayMondayBased>(DayOfWeek.Monday, DayOfWeek.Sunday);
 		}
 
 		public override void UpdateMonthCollection()
 		{
-			if (Schedule.FlightDateStart.HasValue && Schedule.FlightDateEnd.HasValue)
-			{
-				var months = new List<CalendarMonth>();
-				var startDate = new DateTime(Schedule.FlightDateStart.Value.Year, Schedule.FlightDateStart.Value.Month, 1);
-				while (startDate <= Schedule.FlightDateEnd.Value)
-				{
-					CalendarMonth month = Months.Where(x => x.Date.Equals(startDate)).FirstOrDefault();
-					if (month == null)
-					{
-						month = new CalendarMonthMondayBased(this);
-						month.Date = startDate;
-					}
-					month.Days.Clear();
-					month.Days.AddRange(Days.Where(x => x.Date >= month.DaysRangeBegin && x.Date <= month.DaysRangeEnd));
-					months.Add(month);
-					startDate = startDate.AddMonths(1);
-				}
-				Months.Clear();
-				Months.AddRange(months);
-			}
-			else
-				Months.Clear();
+			UpdateMonthCollection<CalendarMonthMondayBased>();
 		}
 
 		public override DateTime[][] GetDaysByWeek(DateTime start, DateTime end)
 		{
-			var weeks = new List<DateTime[]>();
-			var week = new List<DateTime>();
-			while (!(start > end))
-			{
-				week.Add(start);
-				if (start.DayOfWeek == DayOfWeek.Sunday)
-				{
-					weeks.Add(week.ToArray());
-					week.Clear();
-				}
-				start = start.AddDays(1);
-			}
-			if (week.Count > 0)
-				weeks.Add(week.ToArray());
-			return weeks.ToArray();
+			return GetDaysByWeek(start, end, DayOfWeek.Sunday);
 		}
 
-		public override DateRange[] CalculateDateRange(DateTime[] dates)
+		public override IEnumerable<DateRange> CalculateDateRange(IEnumerable<DateTime> dates)
 		{
-			var result = new List<DateRange>();
-			var selectedDates = new List<DateTime>();
-			selectedDates.AddRange(dates);
-			selectedDates.Sort();
-
-			DateTime firstSelectedDate = selectedDates.FirstOrDefault();
-			DateTime lastSelectedDate = selectedDates.LastOrDefault();
-			//Get Monday nearest to last selected sate
-			DateTime firstWeekday = firstSelectedDate;
-			while (firstWeekday.DayOfWeek != DayOfWeek.Monday)
-				firstWeekday = firstWeekday.AddDays(-1);
-			//Get Sunday nearest to last selected sate
-			DateTime lastWeekday = firstSelectedDate;
-			while (lastWeekday.DayOfWeek != DayOfWeek.Sunday)
-				lastWeekday = lastWeekday.AddDays(1);
-
-			while (firstWeekday < lastSelectedDate)
-			{
-				var range = new DateRange();
-				if (firstWeekday >= firstSelectedDate && lastWeekday <= lastSelectedDate)
-				{
-					range.StartDate = firstWeekday;
-					range.FinishDate = lastWeekday;
-				}
-				else if (firstWeekday <= firstSelectedDate && lastWeekday >= lastSelectedDate)
-				{
-					range.StartDate = firstSelectedDate;
-					range.FinishDate = lastSelectedDate;
-				}
-				else if (firstWeekday <= firstSelectedDate && lastWeekday >= firstSelectedDate)
-				{
-					range.StartDate = firstSelectedDate;
-					range.FinishDate = lastWeekday;
-				}
-				else if (firstWeekday <= lastSelectedDate && lastWeekday >= lastSelectedDate)
-				{
-					range.StartDate = firstWeekday;
-					range.FinishDate = lastSelectedDate;
-				}
-				result.Add(range);
-				firstWeekday = firstWeekday.AddDays(7);
-				lastWeekday = lastWeekday.AddDays(7);
-			}
-			return result.ToArray();
+			return CalculateDateRange(dates, DayOfWeek.Monday, DayOfWeek.Sunday);
 		}
 	}
 
@@ -902,19 +794,19 @@ namespace NewBizWiz.Core.Calendar
 		public string Serialize()
 		{
 			var result = new StringBuilder();
-			result.AppendLine(@"<Date>" + _date.ToString() + @"</Date>");
+			result.AppendLine(@"<Date>" + _date + @"</Date>");
 			result.AppendLine(@"<OutputData>" + OutputData.Serialize() + @"</OutputData>");
 			return result.ToString();
 		}
 
 		public void Deserialize(XmlNode node)
 		{
-			DateTime tempDate;
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
 				switch (childNode.Name)
 				{
 					case "Date":
+						DateTime tempDate;
 						if (DateTime.TryParse(childNode.InnerText, out tempDate))
 							Date = tempDate;
 						break;
@@ -929,7 +821,9 @@ namespace NewBizWiz.Core.Calendar
 	public class CalendarMonthSundayBased : CalendarMonth
 	{
 		public CalendarMonthSundayBased(Calendar parent)
-			: base(parent) { }
+			: base(parent)
+		{
+		}
 
 		public override DateTime Date
 		{
@@ -946,7 +840,9 @@ namespace NewBizWiz.Core.Calendar
 	public class CalendarMonthMondayBased : CalendarMonth
 	{
 		public CalendarMonthMondayBased(Calendar parent)
-			: base(parent) { }
+			: base(parent)
+		{
+		}
 
 		public override DateTime Date
 		{
@@ -954,7 +850,7 @@ namespace NewBizWiz.Core.Calendar
 			set
 			{
 				_date = value;
-				DateTime temp = value;
+				var temp = value;
 				while (temp.DayOfWeek != DayOfWeek.Monday)
 					temp = temp.AddDays(-1);
 				DaysRangeBegin = temp;
@@ -1002,13 +898,14 @@ namespace NewBizWiz.Core.Calendar
 		{
 			get { return !string.IsNullOrEmpty(Summary) || Logo.ContainsData; }
 		}
+
 		public abstract int WeekDayIndex { get; }
 
 		public string Serialize()
 		{
 			var result = new StringBuilder();
 
-			result.AppendLine(@"<Date>" + Date.ToString() + @"</Date>");
+			result.AppendLine(@"<Date>" + Date + @"</Date>");
 			if (!string.IsNullOrEmpty(Comment1))
 				result.AppendLine(@"<Comment1>" + Comment1.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comment1>");
 			if (!string.IsNullOrEmpty(Comment2))
@@ -1019,12 +916,12 @@ namespace NewBizWiz.Core.Calendar
 
 		public void Deserialize(XmlNode node)
 		{
-			DateTime tempDate;
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
 				switch (childNode.Name)
 				{
 					case "Date":
+						DateTime tempDate;
 						if (DateTime.TryParse(childNode.InnerText, out tempDate))
 							Date = tempDate;
 						break;
@@ -1052,7 +949,9 @@ namespace NewBizWiz.Core.Calendar
 	public class CalendarDaySundayBased : CalendarDay
 	{
 		public CalendarDaySundayBased(Calendar parent)
-			: base(parent) { }
+			: base(parent)
+		{
+		}
 
 		public override int WeekDayIndex
 		{
@@ -1084,7 +983,9 @@ namespace NewBizWiz.Core.Calendar
 	public class CalendarDayMondayBased : CalendarDay
 	{
 		public CalendarDayMondayBased(Calendar parent)
-			: base(parent) { }
+			: base(parent)
+		{
+		}
 
 		public override int WeekDayIndex
 		{
@@ -1115,10 +1016,12 @@ namespace NewBizWiz.Core.Calendar
 
 	public class CalendarNote
 	{
+		public static Color DefaultBackgroundColor = Color.LemonChiffon;
+
 		public CalendarNote(Calendar parent)
 		{
 			Parent = parent;
-			BackgroundColor = Color.LemonChiffon;
+			BackgroundColor = DefaultBackgroundColor;
 			Note = string.Empty;
 
 			Height = 25f;
@@ -1129,54 +1032,49 @@ namespace NewBizWiz.Core.Calendar
 		public DateTime FinishDay { get; set; }
 		public Color BackgroundColor { get; set; }
 		public string Note { get; set; }
+		public bool ReadOnly { get; set; }
 
 		public int Length
 		{
-			get { return (FinishDay - StartDay).Days; }
+			get { return FinishDay.Subtract(StartDay).Days; }
 		}
 
 		public Color ForeColor
 		{
 			get
 			{
-				int d = 0;
-				// Counting the perceptive luminance - human eye favors green color... 
-				double a = 1 - (0.299 * BackgroundColor.R + 0.587 * BackgroundColor.G + 0.114 * BackgroundColor.B) / 255;
-
-				if (a < 0.5)
-					d = 0; // bright colors - black font
-				else
-					d = 255; // dark colors - white font
-
+				var d = 0;
+				var a = 1 - (0.299 * BackgroundColor.R + 0.587 * BackgroundColor.G + 0.114 * BackgroundColor.B) / 255;
+				d = a < 0.5 ? 0 : 255;
 				return Color.FromArgb(d, d, d);
 			}
 		}
 
 		#region Output Data
+
 		public float Top { get; set; }
 		public float Left { get; set; }
 		public float Right { get; set; }
 		public float Height { get; set; }
+
 		#endregion
 
 		public string Serialize()
 		{
 			var result = new StringBuilder();
 
-			result.AppendLine(@"<StartDay>" + StartDay.ToString() + @"</StartDay>");
-			result.AppendLine(@"<FinishDay>" + FinishDay.ToString() + @"</FinishDay>");
-			result.AppendLine(@"<BackgroundColor>" + BackgroundColor.ToArgb().ToString() + @"</BackgroundColor>");
+			result.AppendLine(@"<StartDay>" + StartDay + @"</StartDay>");
+			result.AppendLine(@"<FinishDay>" + FinishDay + @"</FinishDay>");
+			result.AppendLine(@"<BackgroundColor>" + BackgroundColor.ToArgb() + @"</BackgroundColor>");
 			result.AppendLine(@"<Note>" + Note.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Note>");
 			return result.ToString();
 		}
 
 		public void Deserialize(XmlNode node)
 		{
-			DateTime tempDate;
-			int tempInt;
-
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
+				DateTime tempDate;
 				switch (childNode.Name)
 				{
 					case "StartDay":
@@ -1188,6 +1086,7 @@ namespace NewBizWiz.Core.Calendar
 							FinishDay = tempDate;
 						break;
 					case "BackgroundColor":
+						int tempInt;
 						if (int.TryParse(childNode.InnerText, out tempInt))
 							BackgroundColor = Color.FromArgb(tempInt);
 						break;
@@ -1220,20 +1119,25 @@ namespace NewBizWiz.Core.Calendar
 			Notes = new List<CalendarNote>();
 
 			#region Basic
+
 			ShowHeader = true;
 			ShowBusinessName = true;
 			ShowDecisionMaker = true;
 			Header = string.Empty;
 			ApplyForAllBasic = true;
+
 			#endregion
 
 			#region Cost
+
 			ShowPrintTotalCostManual = false;
 			ShowDigitalTotalCost = false;
 			ApplyForAlCost = true;
+
 			#endregion
 
 			#region Notes
+
 			ShowCustomComment = false;
 			ApplyForAllCustomComment = true;
 
@@ -1242,9 +1146,11 @@ namespace NewBizWiz.Core.Calendar
 			ShowImpressions = false;
 			ShowDigitalCPM = false;
 			ApplyForAllOtherNumbers = true;
+
 			#endregion
 
 			#region Style
+
 			SlideColor = "gray";
 			ApplyForAllThemeColor = true;
 
@@ -1255,6 +1161,7 @@ namespace NewBizWiz.Core.Calendar
 			ApplyForAllLogo = true;
 
 			ShowBigDate = true;
+
 			#endregion
 		}
 
@@ -1263,6 +1170,7 @@ namespace NewBizWiz.Core.Calendar
 		public CalendarMonth Parent { get; private set; }
 
 		#region Basic
+
 		private string _businessName = string.Empty;
 		private string _decisionMaker = string.Empty;
 		public bool ShowHeader { get; set; }
@@ -1270,17 +1178,21 @@ namespace NewBizWiz.Core.Calendar
 		public bool ShowDecisionMaker { get; set; }
 		public string Header { get; set; }
 		public bool ApplyForAllBasic { get; set; }
+
 		#endregion
 
 		#region Cost
+
 		public bool ShowPrintTotalCostManual { get; set; }
 		public bool ShowDigitalTotalCost { get; set; }
 		public double? PrintTotalCost { get; set; }
 		public double? DigitalTotalCost { get; set; }
 		public bool ApplyForAlCost { get; set; }
+
 		#endregion
 
 		#region Notes
+
 		private int? _activeDays;
 		private int? _printAdsNumber;
 		public bool ShowCustomComment { get; set; }
@@ -1294,9 +1206,11 @@ namespace NewBizWiz.Core.Calendar
 		public double? Impressions { get; set; }
 		public double? DigitalCPM { get; set; }
 		public bool ApplyForAllOtherNumbers { get; set; }
+
 		#endregion
 
 		#region Style
+
 		public string SlideColor { get; set; }
 		public bool ApplyForAllThemeColor { get; set; }
 
@@ -1305,20 +1219,21 @@ namespace NewBizWiz.Core.Calendar
 		public bool ApplyForAllLogo { get; set; }
 
 		public bool ShowBigDate { get; set; }
+
 		#endregion
 
 		#region Calculated Options
+
+		private string _encodedLogo;
+
 		public string BusinessName
 		{
 			get
 			{
-				if (ShowBusinessName)
-				{
-					if (!string.IsNullOrEmpty(_businessName))
-						return _businessName;
-					return Parent.Parent.Schedule.BusinessName;
-				}
-				return string.Empty;
+				if (!ShowBusinessName) return string.Empty;
+				if (!string.IsNullOrEmpty(_businessName))
+					return _businessName;
+				return Parent.Parent.Schedule.BusinessName;
 			}
 		}
 
@@ -1326,30 +1241,21 @@ namespace NewBizWiz.Core.Calendar
 		{
 			get
 			{
-				if (ShowDecisionMaker)
-				{
-					if (!string.IsNullOrEmpty(_decisionMaker))
-						return _decisionMaker;
-					return Parent.Parent.Schedule.DecisionMaker;
-				}
-				return string.Empty;
+				if (!ShowDecisionMaker) return string.Empty;
+				if (!string.IsNullOrEmpty(_decisionMaker))
+					return _decisionMaker;
+				return Parent.Parent.Schedule.DecisionMaker;
 			}
 		}
 
 		public int CalculatedActiveDays
 		{
-			get { return Parent.Days.Where(x => x.ContainsData || x.HasNotes).Count(); }
+			get { return Parent.Days.Count(x => x.ContainsData || x.HasNotes); }
 		}
 
 		public int ActiveDays
 		{
-			get
-			{
-				if (!_activeDays.HasValue)
-					return CalculatedActiveDays;
-				else
-					return _activeDays.Value;
-			}
+			get { return !_activeDays.HasValue ? CalculatedActiveDays : _activeDays.Value; }
 			set
 			{
 				if (CalculatedActiveDays != value)
@@ -1365,16 +1271,13 @@ namespace NewBizWiz.Core.Calendar
 			set { _printAdsNumber = value; }
 		}
 
-		private string _encodedLogo;
 		public string EncodedLogo
 		{
 			get
 			{
-				if (String.IsNullOrEmpty(_encodedLogo))
-				{
-					TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
-					_encodedLogo = Convert.ToBase64String((byte[])converter.ConvertTo(Logo, typeof(byte[])));
-				}
+				if (!String.IsNullOrEmpty(_encodedLogo)) return _encodedLogo;
+				TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+				_encodedLogo = Convert.ToBase64String((byte[])converter.ConvertTo(Logo, typeof(byte[])));
 				return _encodedLogo;
 			}
 			set { _encodedLogo = value; }
@@ -1429,6 +1332,7 @@ namespace NewBizWiz.Core.Calendar
 		}
 
 		#region Slide Output Properties
+
 		public int SlideRGB
 		{
 			get
@@ -1464,11 +1368,9 @@ namespace NewBizWiz.Core.Calendar
 			get
 			{
 				string result = string.Empty;
-				if (ShowLogo && Logo != null)
-				{
-					result = Path.GetTempFileName();
-					Logo.Save(result);
-				}
+				if (!ShowLogo || Logo == null) return result;
+				result = Path.GetTempFileName();
+				Logo.Save(result);
 				return result;
 			}
 		}
@@ -1480,10 +1382,7 @@ namespace NewBizWiz.Core.Calendar
 
 		public string MonthText
 		{
-			get
-			{
-				return Parent.Date.ToString("MMMM yyyy");
-			}
+			get { return Parent.Date.ToString("MMMM yyyy"); }
 		}
 
 		public string BackgroundFileName
@@ -1564,6 +1463,7 @@ namespace NewBizWiz.Core.Calendar
 		{
 			get { return 7; }
 		}
+
 		#endregion
 
 		#endregion
@@ -1571,59 +1471,67 @@ namespace NewBizWiz.Core.Calendar
 		public string Serialize()
 		{
 			var result = new StringBuilder();
-			TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+			TypeDescriptor.GetConverter(typeof(Bitmap));
 
 			#region Basic
-			result.AppendLine(@"<ShowHeader>" + ShowHeader.ToString() + @"</ShowHeader>");
-			result.AppendLine(@"<ShowBusinessName>" + ShowBusinessName.ToString() + @"</ShowBusinessName>");
-			result.AppendLine(@"<ShowDecisionMaker>" + ShowDecisionMaker.ToString() + @"</ShowDecisionMaker>");
+
+			result.AppendLine(@"<ShowHeader>" + ShowHeader + @"</ShowHeader>");
+			result.AppendLine(@"<ShowBusinessName>" + ShowBusinessName + @"</ShowBusinessName>");
+			result.AppendLine(@"<ShowDecisionMaker>" + ShowDecisionMaker + @"</ShowDecisionMaker>");
 			result.AppendLine(@"<Header>" + Header.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Header>");
 			result.AppendLine(@"<BusinessName>" + _businessName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</BusinessName>");
 			result.AppendLine(@"<DecisionMaker>" + _decisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
-			result.AppendLine(@"<ApplyForAllBasic>" + ApplyForAllBasic.ToString() + @"</ApplyForAllBasic>");
+			result.AppendLine(@"<ApplyForAllBasic>" + ApplyForAllBasic + @"</ApplyForAllBasic>");
+
 			#endregion
 
 			#region Cost
+
 			if (PrintTotalCost.HasValue)
-				result.AppendLine(@"<PrintTotalCost>" + PrintTotalCost.Value.ToString() + @"</PrintTotalCost>");
-			result.AppendLine(@"<ShowPrintTotalCostManual>" + ShowPrintTotalCostManual.ToString() + @"</ShowPrintTotalCostManual>");
-			result.AppendLine(@"<ShowDigitalTotalCost>" + ShowDigitalTotalCost.ToString() + @"</ShowDigitalTotalCost>");
+				result.AppendLine(@"<PrintTotalCost>" + PrintTotalCost.Value + @"</PrintTotalCost>");
+			result.AppendLine(@"<ShowPrintTotalCostManual>" + ShowPrintTotalCostManual + @"</ShowPrintTotalCostManual>");
+			result.AppendLine(@"<ShowDigitalTotalCost>" + ShowDigitalTotalCost + @"</ShowDigitalTotalCost>");
 			if (DigitalTotalCost.HasValue)
-				result.AppendLine(@"<DigitalTotalCost>" + DigitalTotalCost.Value.ToString() + @"</DigitalTotalCost>");
-			result.AppendLine(@"<ApplyForAllCost>" + ApplyForAlCost.ToString() + @"</ApplyForAllCost>");
+				result.AppendLine(@"<DigitalTotalCost>" + DigitalTotalCost.Value + @"</DigitalTotalCost>");
+			result.AppendLine(@"<ApplyForAllCost>" + ApplyForAlCost + @"</ApplyForAllCost>");
+
 			#endregion
 
 			#region Notes
-			result.AppendLine(@"<ShowCustomComment>" + ShowCustomComment.ToString() + @"</ShowCustomComment>");
+
+			result.AppendLine(@"<ShowCustomComment>" + ShowCustomComment + @"</ShowCustomComment>");
 			if (!string.IsNullOrEmpty(CustomComment))
 				result.AppendLine(@"<CustomComment>" + CustomComment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</CustomComment>");
-			result.AppendLine(@"<ApplyForAllCustomComment>" + ApplyForAllCustomComment.ToString() + @"</ApplyForAllCustomComment>");
+			result.AppendLine(@"<ApplyForAllCustomComment>" + ApplyForAllCustomComment + @"</ApplyForAllCustomComment>");
 
 			if (_activeDays.HasValue)
-				result.AppendLine(@"<ActiveDays>" + _activeDays.Value.ToString() + @"</ActiveDays>");
+				result.AppendLine(@"<ActiveDays>" + _activeDays.Value + @"</ActiveDays>");
 			if (_printAdsNumber.HasValue)
-				result.AppendLine(@"<PrintAdsNumber>" + _printAdsNumber.Value.ToString() + @"</PrintAdsNumber>");
-			result.AppendLine(@"<ShowActiveDays>" + ShowActiveDays.ToString() + @"</ShowActiveDays>");
-			result.AppendLine(@"<ShowPrintAdsNumber>" + ShowPrintAdsNumber.ToString() + @"</ShowPrintAdsNumber>");
-			result.AppendLine(@"<ShowImpressions>" + ShowImpressions.ToString() + @"</ShowImpressions>");
-			result.AppendLine(@"<ShowDigitalCPM>" + ShowDigitalCPM.ToString() + @"</ShowDigitalCPM>");
-			result.AppendLine(@"<ApplyForAllOtherNumbers>" + ApplyForAllOtherNumbers.ToString() + @"</ApplyForAllOtherNumbers>");
+				result.AppendLine(@"<PrintAdsNumber>" + _printAdsNumber.Value + @"</PrintAdsNumber>");
+			result.AppendLine(@"<ShowActiveDays>" + ShowActiveDays + @"</ShowActiveDays>");
+			result.AppendLine(@"<ShowPrintAdsNumber>" + ShowPrintAdsNumber + @"</ShowPrintAdsNumber>");
+			result.AppendLine(@"<ShowImpressions>" + ShowImpressions + @"</ShowImpressions>");
+			result.AppendLine(@"<ShowDigitalCPM>" + ShowDigitalCPM + @"</ShowDigitalCPM>");
+			result.AppendLine(@"<ApplyForAllOtherNumbers>" + ApplyForAllOtherNumbers + @"</ApplyForAllOtherNumbers>");
 			if (Impressions.HasValue)
-				result.AppendLine(@"<Impressions>" + Impressions.Value.ToString() + @"</Impressions>");
+				result.AppendLine(@"<Impressions>" + Impressions.Value + @"</Impressions>");
 			if (DigitalCPM.HasValue)
-				result.AppendLine(@"<DigitalCPM>" + DigitalCPM.Value.ToString() + @"</DigitalCPM>");
+				result.AppendLine(@"<DigitalCPM>" + DigitalCPM.Value + @"</DigitalCPM>");
+
 			#endregion
 
 			#region Style
-			result.AppendLine(@"<SlideColor>" + SlideColor.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideColor>");
-			result.AppendLine(@"<ApplyForAllThemeColor>" + ApplyForAllThemeColor.ToString() + @"</ApplyForAllThemeColor>");
 
-			result.AppendLine(@"<ShowLogo>" + ShowLogo.ToString() + @"</ShowLogo>");
+			result.AppendLine(@"<SlideColor>" + SlideColor.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideColor>");
+			result.AppendLine(@"<ApplyForAllThemeColor>" + ApplyForAllThemeColor + @"</ApplyForAllThemeColor>");
+
+			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
 			if (!String.IsNullOrEmpty(EncodedLogo))
 				result.AppendLine(@"<Logo>" + EncodedLogo.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
-			result.AppendLine(@"<ApplyForAllLogo>" + ApplyForAllLogo.ToString() + @"</ApplyForAllLogo>");
+			result.AppendLine(@"<ApplyForAllLogo>" + ApplyForAllLogo + @"</ApplyForAllLogo>");
 
 			result.AppendLine(@"<ShowBigDate>" + ShowBigDate + @"</ShowBigDate>");
+
 			#endregion
 
 			return result.ToString();
@@ -1640,6 +1548,7 @@ namespace NewBizWiz.Core.Calendar
 				switch (childNode.Name)
 				{
 					#region Basic
+
 					case "ShowHeader":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowHeader = tempBool;
@@ -1665,9 +1574,11 @@ namespace NewBizWiz.Core.Calendar
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ApplyForAllBasic = tempBool;
 						break;
+
 					#endregion
 
 					#region Cost
+
 					case "PrintTotalCost":
 						if (double.TryParse(childNode.InnerText, out tempDouble))
 							PrintTotalCost = tempDouble;
@@ -1688,9 +1599,11 @@ namespace NewBizWiz.Core.Calendar
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ApplyForAlCost = tempBool;
 						break;
+
 					#endregion
 
 					#region Notes
+
 					case "ShowCustomComment":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowCustomComment = tempBool;
@@ -1739,9 +1652,11 @@ namespace NewBizWiz.Core.Calendar
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ApplyForAllOtherNumbers = tempBool;
 						break;
+
 					#endregion
 
 					#region Style
+
 					case "SlideColor":
 						SlideColor = childNode.InnerText;
 						break;
@@ -1772,6 +1687,7 @@ namespace NewBizWiz.Core.Calendar
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowBigDate = tempBool;
 						break;
+
 					#endregion
 				}
 			}
@@ -1798,7 +1714,7 @@ namespace NewBizWiz.Core.Calendar
 		public void PrepareDayLogoPaths()
 		{
 			_dayLogosPaths.Clear();
-			foreach (CalendarDay day in Parent.Days)
+			foreach (var day in Parent.Days)
 			{
 				if (day.Logo.TinyImage != null)
 				{
@@ -1815,7 +1731,7 @@ namespace NewBizWiz.Core.Calendar
 		public void PrepareNotes()
 		{
 			Notes.Clear();
-			Notes.AddRange(Parent.Parent.Notes.Where(x => x.StartDay >= Parent.Date && x.FinishDay < Parent.Date.AddMonths(1)));
+			Notes.AddRange(Parent.Parent.Notes.Where(x => x.StartDay >= Parent.DaysRangeBegin && x.FinishDay <= Parent.DaysRangeEnd));
 		}
 	}
 
@@ -1843,7 +1759,7 @@ namespace NewBizWiz.Core.Calendar
 
 			result.AppendLine(@"<Code>" + Code.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Code>");
 			result.AppendLine(@"<Description>" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Description>");
-			result.AppendLine(@"<Visible>" + Visible.ToString() + @"</Visible>");
+			result.AppendLine(@"<Visible>" + Visible + @"</Visible>");
 			return result.ToString();
 		}
 

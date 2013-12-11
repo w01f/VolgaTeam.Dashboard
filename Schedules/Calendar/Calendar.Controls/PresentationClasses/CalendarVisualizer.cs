@@ -10,7 +10,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 {
 	public class CalendarVisualizer
 	{
-		private readonly CalendarControl _graphicCalendar = new CalendarControl();
+		private readonly BaseCalendarControl _graphicCalendar = new CommonCalendarControl();
 
 		#region Operation Buttons
 		public ImageListBoxControl MonthsListBoxControl { get; set; }
@@ -35,21 +35,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 				_graphicCalendar.Dispose();
 			}
 			catch { }
-		}
-
-		public static void AssignCloseActiveEditorsonOutSideClick(Control control)
-		{
-			if (control.GetType() != typeof(TextEdit) && control.GetType() != typeof(MemoEdit) && control.GetType() != typeof(ComboBoxEdit) && control.GetType() != typeof(LookUpEdit) && control.GetType() != typeof(DateEdit) && control.GetType() != typeof(CheckedListBoxControl) && control.GetType() != typeof(SpinEdit) && control.GetType() != typeof(CheckEdit) && control.GetType() != typeof(ImageListBoxControl))
-			{
-				control.Click += CloseActiveEditorsonOutSideClick;
-				foreach (Control childControl in control.Controls)
-					AssignCloseActiveEditorsonOutSideClick(childControl);
-			}
-		}
-
-		private static void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
-		{
-			Controller.Instance.Ribbon.Focus();
 		}
 
 		public void LoadData()

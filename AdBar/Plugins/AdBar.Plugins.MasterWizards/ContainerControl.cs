@@ -26,7 +26,7 @@ namespace AdBar.Plugins.MasterWizards
 			_allowToSave = false;
 			SetPresentationSettings();
 			comboBoxEditStyle.Properties.Items.Clear();
-			foreach (string masterWizard in MasterWizardManager.Instance.MasterWizards.Keys)
+			foreach (var masterWizard in MasterWizardManager.Instance.MasterWizards.Keys)
 				comboBoxEditStyle.Properties.Items.Add(masterWizard);
 
 			int selectedIndex = comboBoxEditStyle.Properties.Items.IndexOf(SettingsManager.Instance.SelectedWizard);
@@ -91,7 +91,7 @@ namespace AdBar.Plugins.MasterWizards
 
 		private void SelectMasterWizard(string name)
 		{
-			MasterWizard masterWizard = null;
+			MasterWizard masterWizard;
 			MasterWizardManager.Instance.MasterWizards.TryGetValue(name, out masterWizard);
 			MasterWizardManager.Instance.SelectedWizard = masterWizard;
 			if (MasterWizardManager.Instance.SelectedWizard == null) return;
@@ -118,19 +118,20 @@ namespace AdBar.Plugins.MasterWizards
 			if (buttonItemSize5.Checked && !buttonItemSize5.Enabled)
 				buttonItemSize5.Checked = false;
 
-			if (!buttonItemSize1.Checked && !buttonItemSize2.Checked && !buttonItemSize3.Checked && !buttonItemSize4.Checked && !buttonItemSize5.Checked)
-			{
-				if (buttonItemSize1.Enabled)
-					buttonItemSize1.Checked = true;
-				else if (buttonItemSize2.Enabled)
-					buttonItemSize2.Checked = true;
-				else if (buttonItemSize3.Enabled)
-					buttonItemSize3.Checked = true;
-				else if (buttonItemSize4.Enabled)
-					buttonItemSize4.Checked = true;
-				else if (buttonItemSize5.Enabled)
-					buttonItemSize5.Checked = true;
-			}
+			var oldAllowToSave = _allowToSave;
+			_allowToSave = true;
+			if (buttonItemSize1.Checked || buttonItemSize2.Checked || buttonItemSize3.Checked || buttonItemSize4.Checked || buttonItemSize5.Checked) return;
+			if (buttonItemSize1.Enabled)
+				buttonItemSize1.Checked = true;
+			else if (buttonItemSize2.Enabled)
+				buttonItemSize2.Checked = true;
+			else if (buttonItemSize3.Enabled)
+				buttonItemSize3.Checked = true;
+			else if (buttonItemSize4.Enabled)
+				buttonItemSize4.Checked = true;
+			else if (buttonItemSize5.Enabled)
+				buttonItemSize5.Checked = true;
+			_allowToSave = oldAllowToSave;
 		}
 
 		private void buttonItemSize_Click(object sender, EventArgs e)
@@ -217,36 +218,32 @@ namespace AdBar.Plugins.MasterWizards
 
 		private void comboBoxEditStyle_EditValueChanging(object sender, ChangingEventArgs e)
 		{
-			if (_allowToSave)
+			if (!_allowToSave) return;
+			e.Cancel = false;
+			if (_controller.AplicationDetected())
 			{
-				e.Cancel = false;
-				if (_controller.AplicationDetected())
+				if (Utilities.Instance.ShowWarningQuestion("All active applications will be closed before you change PowerPoint settings.\nDo you want to continue?") == DialogResult.Yes)
 				{
-					if (Utilities.Instance.ShowWarningQuestion("All active applications will be closed before you change PowerPoint settings.\nDo you want to continue?") == DialogResult.Yes)
-					{
-						_controller.CloseActiveApplications();
-						e.Cancel = false;
-					}
-					else
-					{
-						e.Cancel = true;
-						return;
-					}
+					_controller.CloseActiveApplications();
+					e.Cancel = false;
 				}
-				if (AdBarPowerPointHelper.Instance.PowerPointDetected())
+				else
 				{
-					using (var form = new FormFormatChangeNotification())
-					{
-						string currentFormatText = SettingsManager.Instance.SelectedWizard;
-						string futureFormatText = e.NewValue != null ? e.NewValue.ToString() : string.Empty;
-						form.labelControlCurrentState.Text = "Your curent wizard is: " + currentFormatText;
-						form.labelControlFutureState.Text = "You want to change your wizard to: " + futureFormatText;
-						if (form.ShowDialog() == DialogResult.Yes)
-							e.Cancel = false;
-						else
-							e.Cancel = true;
-					}
+					e.Cancel = true;
+					return;
 				}
+			}
+			if (!AdBarPowerPointHelper.Instance.PowerPointDetected()) return;
+			using (var form = new FormFormatChangeNotification())
+			{
+				var currentFormatText = SettingsManager.Instance.SelectedWizard;
+				var futureFormatText = e.NewValue != null ? e.NewValue.ToString() : string.Empty;
+				form.labelControlCurrentState.Text = "Your curent wizard is: " + currentFormatText;
+				form.labelControlFutureState.Text = "You want to change your wizard to: " + futureFormatText;
+				if (form.ShowDialog() == DialogResult.Yes)
+					e.Cancel = false;
+				else
+					e.Cancel = true;
 			}
 		}
 

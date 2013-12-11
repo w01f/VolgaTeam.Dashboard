@@ -348,7 +348,7 @@
 			this.gridColumnDate.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.gridColumnDate.Caption = "Day/Date";
 			this.gridColumnDate.ColumnEdit = this.repositoryItemDateNull;
-			this.gridColumnDate.FieldName = "DateObject";
+			this.gridColumnDate.FieldName = "Date";
 			this.gridColumnDate.Name = "gridColumnDate";
 			this.gridColumnDate.OptionsColumn.FixedWidth = true;
 			this.gridColumnDate.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;

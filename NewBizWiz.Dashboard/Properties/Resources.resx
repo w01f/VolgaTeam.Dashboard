@@ -118,8 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Date" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Date.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LabelNewspaper" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LabelNewspaper.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LableTV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LableTV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HomeRadio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeRadio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -130,8 +133,8 @@
   <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BetaTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BetaTest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Date" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Date.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RadioLittle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RadioLittle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,11 +166,17 @@
   <data name="CalendarLittle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CalendarLittle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OnlineLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OnlineLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TitleOnline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TitleOnline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SavedFiles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SavedFiles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LabelCalendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LabelCalendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TitleRadio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TitleRadio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SalesRep" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SalesRep.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -177,6 +186,9 @@
   </data>
   <data name="HomeTV" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeTV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LableOnline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LableOnline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WebLittle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WebLittle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,11 +205,14 @@
   <data name="DeleteButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LableRadio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LableRadio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="HomeCalendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeCalendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NewspaperLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NewspaperLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BetaTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BetaTest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DecisionMaker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DecisionMaker.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,20 +220,20 @@
   <data name="Advertiser" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Advertiser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="TitleNewspaper" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TitleNewspaper.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="HomeNewspaper" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeNewspaper.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HomeCalendarDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HomeCalendarDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TitleTV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TitleTV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeleteSchedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteSchedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CalendarLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CalendarLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OpenSchedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OpenSchedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -228,5 +243,8 @@
   </data>
   <data name="RedWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RedWarning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TitleCalendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TitleCalendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -199,7 +199,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			get
 			{
-				return Schedule.PresentationDate.ToString("MM/dd/yy");
+				return Schedule.PresentationDate.HasValue ? Schedule.PresentationDate.Value.ToString("MM/dd/yy") : String.Empty;
 			}
 		}
 

@@ -41,10 +41,5 @@ namespace NewBizWiz.Dashboard.TabHomeForms.Dashboard
 		{
 			FormMain.Instance.ribbonTabItemOnline.Select();
 		}
-
-		private void pbCalendar_Click_1(object sender, EventArgs e)
-		{
-			FormMain.Instance.ribbonTabItemCalendar.Select();
-		}
 	}
 }

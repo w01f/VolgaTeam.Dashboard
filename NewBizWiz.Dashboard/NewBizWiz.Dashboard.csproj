@@ -453,19 +453,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\TitleCalendar.png" />
+    <None Include="Resources\LabelCalendar.png" />
+    <None Include="Resources\TitleNewspaper.png" />
+    <None Include="Resources\LabelNewspaper.png" />
+    <None Include="Resources\TitleOnline.png" />
+    <None Include="Resources\LableOnline.png" />
+    <None Include="Resources\TitleRadio.png" />
+    <None Include="Resources\LableRadio.png" />
+    <None Include="Resources\TitleTV.png" />
+    <None Include="Resources\LableTV.png" />
     <None Include="Resources\Preview.png" />
-    <None Include="Resources\HomeCalendarDisabled.png" />
     <None Include="Resources\DownArrow.png" />
     <None Include="Resources\UpArrow.png" />
     <None Include="Resources\CableLittle.png" />
     <None Include="Resources\DeleteButton.png" />
     <None Include="Resources\Floater.png" />
     <None Include="Resources\BetaTest.png" />
-    <None Include="Resources\CalendarLogo.png" />
     <None Include="Resources\CalendarLittle.png" />
     <None Include="Resources\HomeCalendar.png" />
-    <None Include="Resources\OnlineLogo.png" />
-    <None Include="Resources\NewspaperLogo.png" />
     <None Include="Resources\RedWarning.png" />
     <None Include="Resources\SavedFiles.png" />
     <None Include="Resources\Help.png" />

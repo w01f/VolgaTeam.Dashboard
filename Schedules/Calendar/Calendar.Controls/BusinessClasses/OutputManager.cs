@@ -12,7 +12,6 @@ namespace NewBizWiz.Calendar.Controls.BusinessClasses
 	{
 		private const string CalendarTemlatesFolderName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\{1}";
 		private const string CalendarFileLegendName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\FileLegend.xls";
-		public const string CalendarSlideTemplate = @"{0}\{1}";
 		public const string CalendarBackgroundFolderName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\!Calendar_Images";
 		public const string BackgroundFilePath = @"{0}\{1}";
 		public static string MasterWizardsRootFolderPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Dashboard", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
@@ -26,7 +25,7 @@ namespace NewBizWiz.Calendar.Controls.BusinessClasses
 
 		public string CalendarTemlatesFolderPath
 		{
-			get { return string.Format(CalendarTemlatesFolderName, new object[] { Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), SettingsManager.Instance.SlideFolder + "new" }); }
+			get { return string.Format(CalendarTemlatesFolderName, Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), SettingsManager.Instance.SlideFolder + "new"); }
 		}
 
 		public string CalendarFileLegendPath
@@ -36,7 +35,7 @@ namespace NewBizWiz.Calendar.Controls.BusinessClasses
 
 		public string CalendarBackgroundFolderPath
 		{
-			get { return string.Format(CalendarBackgroundFolderName, new object[] { Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), SettingsManager.Instance.SlideFolder }); }
+			get { return string.Format(CalendarBackgroundFolderName, Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
 		}
 
 		public void LoadCalendarTemplates()
@@ -145,7 +144,7 @@ namespace NewBizWiz.Calendar.Controls.BusinessClasses
 		public string GetSlideName(CalendarOutputData outputData)
 		{
 			string result = string.Empty;
-			var template = CalendarTemplates.Where(x => x.IsLarge == outputData.ShowBigDate && x.HasLogo == outputData.ShowLogo && x.Color.ToLower().Equals(outputData.SlideColor) && x.Month.ToLower().Equals(outputData.Parent.Date.ToString("MMM-yy").ToLower())).FirstOrDefault();
+			var template = CalendarTemplates.FirstOrDefault(x => x.IsLarge == outputData.ShowBigDate && x.HasLogo == outputData.ShowLogo && x.Color.ToLower().Equals(outputData.SlideColor) && x.Month.ToLower().Equals(outputData.Parent.Date.ToString("MMM-yy").ToLower()));
 			if (template != null)
 				result = template.TemplateName;
 			return result;
@@ -154,7 +153,7 @@ namespace NewBizWiz.Calendar.Controls.BusinessClasses
 		public string GetSlideMasterName(CalendarOutputData outputData)
 		{
 			string result = string.Empty;
-			var template = CalendarTemplates.Where(x => x.IsLarge == outputData.ShowBigDate && x.HasLogo == outputData.ShowLogo && x.Color.ToLower().Equals(outputData.SlideColor) && x.Month.ToLower().Equals(outputData.Parent.Date.ToString("MMM-yy").ToLower())).FirstOrDefault();
+			var template = CalendarTemplates.FirstOrDefault(x => x.IsLarge == outputData.ShowBigDate && x.HasLogo == outputData.ShowLogo && x.Color.ToLower().Equals(outputData.SlideColor) && x.Month.ToLower().Equals(outputData.Parent.Date.ToString("MMM-yy").ToLower()));
 			if (template != null)
 				result = template.SlideMaster;
 			return result;

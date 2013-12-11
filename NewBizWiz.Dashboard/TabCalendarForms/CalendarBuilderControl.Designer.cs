@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.pbTitle = new System.Windows.Forms.PictureBox();
-			this.pbLogo = new System.Windows.Forms.PictureBox();
-			this.laTitle = new System.Windows.Forms.Label();
 			this.gridControlCalendars = new DevExpress.XtraGrid.GridControl();
 			this.gridViewCalendars = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumnBusinessName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -42,61 +39,30 @@
 			this.pnNoDataWarning = new System.Windows.Forms.Panel();
 			this.pbNoDataWarning = new System.Windows.Forms.PictureBox();
 			this.laNoDataWarning = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize)(this.pbTitle)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+			this.pbWaterMark = new System.Windows.Forms.PictureBox();
+			this.pbTitle = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlCalendars)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewCalendars)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStatus)).BeginInit();
 			this.pnNoDataWarning.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoDataWarning)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbWaterMark)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbTitle)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// pbTitle
-			// 
-			this.pbTitle.Location = new System.Drawing.Point(16, 13);
-			this.pbTitle.Name = "pbTitle";
-			this.pbTitle.Size = new System.Drawing.Size(644, 73);
-			this.pbTitle.TabIndex = 19;
-			this.pbTitle.TabStop = false;
-			this.pbTitle.Visible = false;
-			this.pbTitle.Click += new System.EventHandler(this.gridControlCalendars_Click);
-			// 
-			// pbLogo
-			// 
-			this.pbLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.CalendarLogo;
-			this.pbLogo.Location = new System.Drawing.Point(666, 208);
-			this.pbLogo.Name = "pbLogo";
-			this.pbLogo.Size = new System.Drawing.Size(225, 266);
-			this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbLogo.TabIndex = 20;
-			this.pbLogo.TabStop = false;
-			// 
-			// laTitle
-			// 
-			this.laTitle.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(73)))), ((int)(((byte)(125)))));
-			this.laTitle.Location = new System.Drawing.Point(16, 13);
-			this.laTitle.Name = "laTitle";
-			this.laTitle.Size = new System.Drawing.Size(645, 73);
-			this.laTitle.TabIndex = 22;
-			this.laTitle.Text = "Build VERY COOL Calendars for your clients with NINJA SALES SKILLS!";
-			this.laTitle.UseMnemonic = false;
-			this.laTitle.Click += new System.EventHandler(this.gridControlCalendars_Click);
 			// 
 			// gridControlCalendars
 			// 
-			this.gridControlCalendars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+			this.gridControlCalendars.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.gridControlCalendars.Location = new System.Drawing.Point(16, 92);
 			this.gridControlCalendars.MainView = this.gridViewCalendars;
 			this.gridControlCalendars.Name = "gridControlCalendars";
 			this.gridControlCalendars.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit,
             this.repositoryItemComboBoxStatus});
-			this.gridControlCalendars.Size = new System.Drawing.Size(645, 382);
+			this.gridControlCalendars.Size = new System.Drawing.Size(630, 410);
 			this.gridControlCalendars.TabIndex = 25;
 			this.gridControlCalendars.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewCalendars});
@@ -233,7 +199,7 @@
 			this.pnNoDataWarning.Controls.Add(this.laNoDataWarning);
 			this.pnNoDataWarning.Location = new System.Drawing.Point(16, 92);
 			this.pnNoDataWarning.Name = "pnNoDataWarning";
-			this.pnNoDataWarning.Size = new System.Drawing.Size(645, 382);
+			this.pnNoDataWarning.Size = new System.Drawing.Size(630, 410);
 			this.pnNoDataWarning.TabIndex = 35;
 			// 
 			// pbNoDataWarning
@@ -258,36 +224,51 @@
     "k in a few days…\r\n\r\nIt will be ready soon…";
 			this.laNoDataWarning.UseMnemonic = false;
 			// 
+			// pbWaterMark
+			// 
+			this.pbWaterMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pbWaterMark.Image = global::NewBizWiz.Dashboard.Properties.Resources.LabelCalendar;
+			this.pbWaterMark.Location = new System.Drawing.Point(652, 438);
+			this.pbWaterMark.Name = "pbWaterMark";
+			this.pbWaterMark.Size = new System.Drawing.Size(254, 64);
+			this.pbWaterMark.TabIndex = 39;
+			this.pbWaterMark.TabStop = false;
+			// 
+			// pbTitle
+			// 
+			this.pbTitle.Image = global::NewBizWiz.Dashboard.Properties.Resources.TitleCalendar;
+			this.pbTitle.Location = new System.Drawing.Point(16, 36);
+			this.pbTitle.Name = "pbTitle";
+			this.pbTitle.Size = new System.Drawing.Size(630, 47);
+			this.pbTitle.TabIndex = 38;
+			this.pbTitle.TabStop = false;
+			// 
 			// CalendarBuilderControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.Controls.Add(this.laTitle);
-			this.Controls.Add(this.pbLogo);
+			this.Controls.Add(this.pbWaterMark);
 			this.Controls.Add(this.pbTitle);
 			this.Controls.Add(this.gridControlCalendars);
 			this.Controls.Add(this.pnNoDataWarning);
 			this.Name = "CalendarBuilderControl";
-			this.Size = new System.Drawing.Size(894, 487);
+			this.Size = new System.Drawing.Size(909, 515);
 			this.Click += new System.EventHandler(this.gridControlCalendars_Click);
-			((System.ComponentModel.ISupportInitialize)(this.pbTitle)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlCalendars)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewCalendars)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStatus)).EndInit();
 			this.pnNoDataWarning.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbNoDataWarning)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbWaterMark)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbTitle)).EndInit();
 			this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pbTitle;
-        private System.Windows.Forms.PictureBox pbLogo;
-        private System.Windows.Forms.Label laTitle;
-        private DevExpress.XtraGrid.GridControl gridControlCalendars;
+		private DevExpress.XtraGrid.GridControl gridControlCalendars;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewCalendars;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnBusinessName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnCalendarFile;
@@ -298,6 +279,8 @@
         private System.Windows.Forms.Panel pnNoDataWarning;
         private System.Windows.Forms.PictureBox pbNoDataWarning;
 		private System.Windows.Forms.Label laNoDataWarning;
+		private System.Windows.Forms.PictureBox pbWaterMark;
+		private System.Windows.Forms.PictureBox pbTitle;
 
     }
 }

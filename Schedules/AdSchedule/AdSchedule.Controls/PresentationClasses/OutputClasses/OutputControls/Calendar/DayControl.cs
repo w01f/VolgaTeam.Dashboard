@@ -34,10 +34,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				var result = new DayOutput();
 				result.RecordsCount = _monthViewRecords.Count;
-				result.HasNotes = ParentMonth.ParentCalendar.LocalSchedule.ViewSettings.CalendarViewSettings.DayCustomNotes.Where(x => x.Day.Equals(Date)).Count() > 0 || ParentMonth.ParentCalendar.LocalSchedule.ViewSettings.CalendarViewSettings.DayDeadlines.Where(x => x.Day.Equals(Date)).Count() > 0;
+				result.HasNotes = ParentMonth.ParentCalendar.LocalSchedule.ViewSettings.CalendarViewSettings.DayCustomNotes.Any(x => x.Day.Equals(Date)) || ParentMonth.ParentCalendar.LocalSchedule.ViewSettings.CalendarViewSettings.DayDeadlines.Where(x => x.Day.Equals(Date)).Count() > 0;
 				result.RecordsText = string.Empty;
 				var recordText = new List<string>();
-				foreach (CalendarRecordControl day in _monthViewRecords)
+				foreach (var day in _monthViewRecords)
 					recordText.Add(day.GetOutputText());
 				if (recordText.Count > 0)
 					result.RecordsText = string.Join(";" + ((char)13).ToString(), recordText.ToArray());
@@ -118,7 +118,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				dayViewRecord.BringToFront();
 			}
 
-			if (ParentMonth.ParentCalendar.LocalSchedule.ViewSettings.CalendarViewSettings.DayCustomNotes.Where(x => x.Day.Equals(Date)).Count() > 0 || ParentMonth.ParentCalendar.LocalSchedule.ViewSettings.CalendarViewSettings.DayDeadlines.Where(x => x.Day.Equals(Date)).Count() > 0)
+			if (ParentMonth.ParentCalendar.LocalSchedule.ViewSettings.CalendarViewSettings.DayCustomNotes.Any(x => x.Day.Equals(Date)) || ParentMonth.ParentCalendar.LocalSchedule.ViewSettings.CalendarViewSettings.DayDeadlines.Where(x => x.Day.Equals(Date)).Count() > 0)
 			{
 				var customNoteRecord = new CustomNoteRecordControl(this);
 				customNoteRecord.Init(insertsCount);
@@ -159,8 +159,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							selectedCustomNotesDays.Add(Date);
 							break;
 						case 1:
-							foreach (PrintProduct publication in ParentMonth.ParentCalendar.LocalSchedule.PrintProducts)
-								selectedCustomNotesDays.AddRange(publication.Inserts.Where(x => !selectedCustomNotesDays.Contains(x.Date) && x.Date != DateTime.MinValue && x.Date != DateTime.MaxValue).Select(x => x.Date).Distinct().ToArray());
+							foreach (var publication in ParentMonth.ParentCalendar.LocalSchedule.PrintProducts)
+								selectedCustomNotesDays.AddRange(publication.Inserts.Where(x => x.Date.HasValue && !selectedCustomNotesDays.Contains(x.Date.Value) ).Select(x => x.Date.Value).Distinct().ToArray());
 							break;
 						case 2:
 							var wholeMonthDate = new DateTime(Date.Year, Date.Month, 1);
@@ -172,7 +172,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							}
 							break;
 						case 3:
-							DateTime wholeScheduleDate = ParentMonth.ParentCalendar.LocalSchedule.FlightDateStart;
+
+							var wholeScheduleDate = ParentMonth.ParentCalendar.LocalSchedule.FlightDateStart.HasValue ? ParentMonth.ParentCalendar.LocalSchedule.FlightDateStart.Value : DateTime.MaxValue;
 							while (wholeScheduleDate <= ParentMonth.ParentCalendar.LocalSchedule.FlightDateEnd)
 							{
 								selectedCustomNotesDays.Add(wholeScheduleDate);
@@ -181,9 +182,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							break;
 					}
 
-					foreach (DateTime date in selectedCustomNotesDays)
+					foreach (var date in selectedCustomNotesDays)
 					{
-						CalendarDayInfo dayCustomNote = ParentMonth.ParentCalendar.LocalSchedule.ViewSettings.CalendarViewSettings.DayCustomNotes.Where(x => x.Day.Equals(date)).FirstOrDefault();
+						var dayCustomNote = ParentMonth.ParentCalendar.LocalSchedule.ViewSettings.CalendarViewSettings.DayCustomNotes.FirstOrDefault(x => x.Day.Equals(date));
 						if (dayCustomNote == null)
 						{
 							dayCustomNote = new CalendarDayInfo();
@@ -205,8 +206,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							selectedDeadlineDays.Add(Date);
 							break;
 						case 1:
-							foreach (PrintProduct publication in ParentMonth.ParentCalendar.LocalSchedule.PrintProducts)
-								selectedDeadlineDays.AddRange(publication.Inserts.Where(x => !selectedDeadlineDays.Contains(x.Date) && x.Date != DateTime.MinValue && x.Date != DateTime.MaxValue).Select(x => x.Date).Distinct().ToArray());
+							foreach (var publication in ParentMonth.ParentCalendar.LocalSchedule.PrintProducts)
+								selectedDeadlineDays.AddRange(publication.Inserts.Where(x => x.Date.HasValue && !selectedCustomNotesDays.Contains(x.Date.Value)).Select(x => x.Date.Value).Distinct().ToArray());
 							break;
 						case 2:
 							var wholeMonthDate = new DateTime(Date.Year, Date.Month, 1);
@@ -218,7 +219,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							}
 							break;
 						case 3:
-							DateTime wholeScheduleDate = ParentMonth.ParentCalendar.LocalSchedule.FlightDateStart;
+							DateTime wholeScheduleDate = ParentMonth.ParentCalendar.LocalSchedule.FlightDateStart.HasValue ? ParentMonth.ParentCalendar.LocalSchedule.FlightDateStart.Value : DateTime.MaxValue;
 							while (wholeScheduleDate <= ParentMonth.ParentCalendar.LocalSchedule.FlightDateEnd)
 							{
 								selectedDeadlineDays.Add(wholeScheduleDate);
@@ -227,9 +228,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							break;
 					}
 
-					foreach (DateTime date in selectedDeadlineDays)
+					foreach (var date in selectedDeadlineDays)
 					{
-						CalendarDayInfo dayDeadline = ParentMonth.ParentCalendar.LocalSchedule.ViewSettings.CalendarViewSettings.DayDeadlines.Where(x => x.Day.Equals(date)).FirstOrDefault();
+						var dayDeadline = ParentMonth.ParentCalendar.LocalSchedule.ViewSettings.CalendarViewSettings.DayDeadlines.FirstOrDefault(x => x.Day.Equals(date));
 						if (dayDeadline == null)
 						{
 							dayDeadline = new CalendarDayInfo();

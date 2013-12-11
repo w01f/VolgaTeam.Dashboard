@@ -150,10 +150,6 @@ namespace NewBizWiz.Core.Common
 
 		private void LoadSharedSettings()
 		{
-			XmlNode node;
-			double tempDouble;
-			bool tempBool;
-
 			Orientation = "Landscape";
 			SizeWidth = 10;
 			SizeHeght = 7.5;
@@ -164,23 +160,20 @@ namespace NewBizWiz.Core.Common
 				var document = new XmlDocument();
 				document.Load(_sharedSettingsFile);
 
-				node = document.SelectSingleNode(@"/SharedSettings/SelectedWizard");
+				var node = document.SelectSingleNode(@"/SharedSettings/SelectedWizard");
 				if (node != null)
 					SelectedWizard = node.InnerText;
 				node = document.SelectSingleNode(@"/SharedSettings/SizeWidth");
+				double tempDouble;
 				if (node != null)
 				{
-					tempDouble = 0;
-					double.TryParse(node.InnerText, out tempDouble);
-					if (tempDouble != 0)
+					if (double.TryParse(node.InnerText, out tempDouble))
 						SizeWidth = tempDouble;
 				}
 				node = document.SelectSingleNode(@"/SharedSettings/SizeHeght");
 				if (node != null)
 				{
-					tempDouble = 0;
-					double.TryParse(node.InnerText, out tempDouble);
-					if (tempDouble != 0)
+					if (double.TryParse(node.InnerText, out tempDouble))
 						SizeHeght = tempDouble;
 				}
 				node = document.SelectSingleNode(@"/SharedSettings/Orientation");

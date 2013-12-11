@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -17,8 +18,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		private bool _isSelected;
 		private Color _colorLight = Color.White;
 		private Color _colorDark = Color.LightGray;
+		private List<ImageSource> _images = new List<ImageSource>();
 
-		public DayControl(CalendarDay day)
+		public DayControl(CalendarDay day, IEnumerable<ImageSource> dayImages)
 		{
 			InitializeComponent();
 			Day = day;
@@ -28,6 +30,10 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			memoEditSimpleComment.Enter += Utilities.Instance.Editor_Enter;
 			memoEditSimpleComment.MouseDown += Utilities.Instance.Editor_MouseDown;
 			memoEditSimpleComment.MouseUp += Utilities.Instance.Editor_MouseUp;
+
+			toolStripMenuItemAddNote.Visible = toolStripMenuItemPasteNote.Visible = toolStripSeparator1.Visible = Day.Parent.AllowCustomNotes;
+
+			_images.AddRange(dayImages);
 		}
 
 		#region Coomon Methods
@@ -94,30 +100,22 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			toolStripMenuItemAddNote.Enabled = false;
 			toolStripMenuItemPasteNote.Text = "Paste Note";
 			toolStripMenuItemPasteNote.Enabled = false;
-			if (selectedDays.Length > 1)
-			{
-				DateRange noteDateRange = Day.Parent.CalculateDateRange(selectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
-				if (noteDateRange != null)
-				{
-					toolStripMenuItemAddNote.Text = "Add Note " + string.Format("({0}-{1})", new[] { noteDateRange.StartDate.ToString("MM/dd"), noteDateRange.FinishDate.ToString("MM/dd") });
-					toolStripMenuItemAddNote.Enabled = !Day.HasNotes;
-					toolStripMenuItemPasteNote.Text = "Paste Note " + string.Format("({0}-{1})", new[] { noteDateRange.StartDate.ToString("MM/dd"), noteDateRange.FinishDate.ToString("MM/dd") });
-					toolStripMenuItemPasteNote.Enabled = AllowToPasteNote;
-				}
-			}
+			if (selectedDays.Length <= 1) return;
+			var noteDateRange = Day.Parent.CalculateDateRange(selectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
+			if (noteDateRange == null) return;
+			toolStripMenuItemAddNote.Text = "Add Note " + string.Format("({0}-{1})", new[] { noteDateRange.StartDate.ToString("MM/dd"), noteDateRange.FinishDate.ToString("MM/dd") });
+			toolStripMenuItemAddNote.Enabled = !Day.HasNotes;
+			toolStripMenuItemPasteNote.Text = "Paste Note " + string.Format("({0}-{1})", new[] { noteDateRange.StartDate.ToString("MM/dd"), noteDateRange.FinishDate.ToString("MM/dd") });
+			toolStripMenuItemPasteNote.Enabled = AllowToPasteNote;
 		}
 
 		private void Control_Click(object sender, MouseEventArgs e)
 		{
-			if (RaiseEvents)
-			{
-				if (e.Button == MouseButtons.Left)
-				{
-					if (Day.BelongsToSchedules)
-						if (DaySelected != null)
-							DaySelected(this, new SelectDayEventArgs(this, ModifierKeys));
-				}
-			}
+			if (!RaiseEvents) return;
+			if (e.Button != MouseButtons.Left) return;
+			if (!Day.BelongsToSchedules) return;
+			if (DaySelected != null)
+				DaySelected(this, new SelectDayEventArgs(this, ModifierKeys));
 		}
 
 		private void DayControl_MouseDown(object sender, MouseEventArgs e)
@@ -135,11 +133,12 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		private void DayControl_MouseMove(object sender, MouseEventArgs e)
 		{
-			if (RaiseEvents)
-				if (MultiSelectEnabled)
-					if (DayMouseMove != null)
-						DayMouseMove(this, e);
+			if (!RaiseEvents) return;
+			if (!MultiSelectEnabled) return;
+			if (DayMouseMove != null)
+				DayMouseMove(this, e);
 		}
+
 		#endregion
 
 		#region Copy\Paste Methods
@@ -153,14 +152,12 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		#region Common Event Handlers
 		private void Control_DoubleClick(object sender, EventArgs e)
 		{
-			if (Day.BelongsToSchedules)
-			{
-				xtraScrollableControl.Padding = new Padding(0);
-				labelControlData.Visible = false;
-				memoEditSimpleComment.Visible = true;
-				memoEditSimpleComment.Focus();
-				memoEditSimpleComment.SelectAll();
-			}
+			if (!Day.BelongsToSchedules) return;
+			xtraScrollableControl.Padding = new Padding(0);
+			labelControlData.Visible = false;
+			memoEditSimpleComment.Visible = true;
+			memoEditSimpleComment.Focus();
+			memoEditSimpleComment.SelectAll();
 		}
 		#endregion
 
@@ -195,12 +192,11 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		{
 			using (var form = new FormDayProperties(Day))
 			{
-				if (form.ShowDialog() == DialogResult.OK)
-				{
-					RefreshData(_colorLight, _colorDark);
-					if (DataChanged != null)
-						DataChanged(sender, new EventArgs());
-				}
+				form.LoadImages(_images);
+				if (form.ShowDialog() != DialogResult.OK) return;
+				RefreshData(_colorLight, _colorDark);
+				if (DataChanged != null)
+					DataChanged(sender, new EventArgs());
 			}
 		}
 
@@ -232,13 +228,11 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		#region Simple Calendar Event Handlers
 		private void memoEditSimpleComment_EditValueChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				Day.Comment1 = memoEditSimpleComment.EditValue != null ? memoEditSimpleComment.EditValue.ToString() : string.Empty;
-				RefreshData(_colorLight, _colorDark);
-				if (DataChanged != null)
-					DataChanged(sender, new EventArgs());
-			}
+			if (!_allowToSave) return;
+			Day.Comment1 = memoEditSimpleComment.EditValue != null ? memoEditSimpleComment.EditValue.ToString() : string.Empty;
+			RefreshData(_colorLight, _colorDark);
+			if (DataChanged != null)
+				DataChanged(sender, new EventArgs());
 		}
 
 		private void memoEditSimpleComment_Leave(object sender, EventArgs e)

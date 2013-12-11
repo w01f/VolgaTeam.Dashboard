@@ -74,6 +74,13 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap CalendarDisabled {
+            get {
+                object obj = ResourceManager.GetObject("CalendarDisabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap CloneProduct {
             get {
                 object obj = ResourceManager.GetObject("CloneProduct", resourceCulture);

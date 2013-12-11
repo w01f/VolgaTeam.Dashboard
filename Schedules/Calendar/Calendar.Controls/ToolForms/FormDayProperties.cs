@@ -1,10 +1,10 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Layout;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
 namespace NewBizWiz.Calendar.Controls.ToolForms
 {
@@ -22,14 +22,18 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 
 		private void LoadData()
 		{
-			gridControlLogoGallery.DataSource = ListManager.Instance.Images;
-			var index = ListManager.Instance.Images.IndexOf(_day.Logo);
+			checkEditComment.Checked = !string.IsNullOrEmpty(_day.Comment1);
+			memoEditComment.EditValue = !string.IsNullOrEmpty(_day.Comment1) ? _day.Comment1 : null;
+		}
+
+		public void LoadImages(List<ImageSource> images)
+		{
+			gridControlLogoGallery.DataSource = images;
+			var index = images.IndexOf(_day.Logo);
 			if (index != GridControl.InvalidRowHandle)
 				layoutViewLogoGallery.FocusedRowHandle = layoutViewLogoGallery.GetRowHandle(index);
 			else
 				layoutViewLogoGallery.FocusedRowHandle = 0;
-			checkEditComment.Checked = !string.IsNullOrEmpty(_day.Comment1);
-			memoEditComment.EditValue = !string.IsNullOrEmpty(_day.Comment1) ? _day.Comment1 : null;
 		}
 
 		private void SaveData()

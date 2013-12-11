@@ -13,7 +13,7 @@ namespace NewBizWiz.Calendar.Single
 	public class AppManager
 	{
 		private static readonly AppManager _instance = new AppManager();
-		private FloaterManager _floater = new FloaterManager();
+		private readonly FloaterManager _floater = new FloaterManager();
 		public NBWLink AppConfig { get; private set; }
 
 		private AppManager() { }

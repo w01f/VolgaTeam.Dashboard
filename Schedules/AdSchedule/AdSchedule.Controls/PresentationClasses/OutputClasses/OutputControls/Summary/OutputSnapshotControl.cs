@@ -52,6 +52,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.SnapshotDigitalLegend.Image = Controller.Instance.SnapshotDigitalLegend.Enabled && !LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+			Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.SnapshotDigitalLegend, new SuperTooltipInfo("Digital Products", "",
+				Controller.Instance.SnapshotDigitalLegend.Enabled && LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled ?
+				"Digital Products are Enabled for this slide" :
+				"Digital Products are Disabled for this slide"
+				, null, null, eTooltipColor.Gray));
 			FormThemeSelector.Link(Controller.Instance.SnapshotTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
 			{
 				LocalSchedule.ThemeName = t.Name;
@@ -82,10 +87,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				checkEditFlightDates.Checked = LocalSchedule.ViewSettings.SnapshotViewSettings.ShowFlightDates;
 				_allowToSave = true;
 
-				checkEditDate.Text = LocalSchedule.PresentationDateObject != null ? LocalSchedule.PresentationDate.ToString("MM/dd/yy") : string.Empty;
+				checkEditDate.Text = LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy") : string.Empty;
 				checkEditBusinessName.Text = " " + LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
 				checkEditDecisionMaker.Text = LocalSchedule.DecisionMaker;
-				checkEditFlightDates.Text = " " + LocalSchedule.FlightDateStart.ToString("MM/dd/yy") + " - " + LocalSchedule.FlightDateEnd.ToString("MM/dd/yy");
+				checkEditFlightDates.Text = " " + LocalSchedule.FlightDates;
 
 				outputSnapshotContainer.UpdateSnapshots(LocalSchedule);
 
@@ -590,6 +595,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (digitalLegend.ApplyForAll)
 					LocalSchedule.ApplyDigitalLegendForAllViews(digitalLegend);
 				Controller.Instance.SnapshotDigitalLegend.Image = !digitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
+				Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.SnapshotDigitalLegend, new SuperTooltipInfo("Digital Products", "",
+					digitalLegend.Enabled ?
+					"Digital Products are Enabled for this slide" :
+					"Digital Products are Disabled for this slide"
+					, null, null, eTooltipColor.Gray));
 				SettingsNotSaved = true;
 			}
 		}

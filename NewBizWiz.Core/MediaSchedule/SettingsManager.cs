@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Xml;
+using NewBizWiz.Core.Calendar;
 
 namespace NewBizWiz.Core.MediaSchedule
 {
@@ -12,6 +13,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		string IconPath { get; set; }
 		string SelectedColor { get; set; }
 		bool UseSlideMaster { get; set; }
+		CalendarSettings BroadcastCalendarSettings { get; }
 		void SaveSettings();
 	}
 
@@ -21,6 +23,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		protected MediaSettingsManager()
 		{
+			BroadcastCalendarSettings = new CalendarSettings();
 			LoadSettings();
 		}
 
@@ -40,6 +43,9 @@ namespace NewBizWiz.Core.MediaSchedule
 				if (Boolean.TryParse(node.InnerText, out tempBool))
 					UseSlideMaster = tempBool;
 			}
+			node = document.SelectSingleNode(@"/Settings/BroadcastCalendarSettings");
+			if (node != null)
+				BroadcastCalendarSettings.Deserialize(node);
 		}
 
 		public void SaveSettings()
@@ -49,6 +55,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (!String.IsNullOrEmpty(SelectedColor))
 				xml.AppendLine(@"<ThemeName>" + SelectedColor.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ThemeName>");
 			xml.AppendLine(@"<UseSlideMaster>" + UseSlideMaster + @"</UseSlideMaster>");
+			xml.AppendLine(@"<BroadcastCalendarSettings>" + BroadcastCalendarSettings.Serialize() + @"</BroadcastCalendarSettings>");
 			xml.AppendLine(@"</Settings>");
 			var userConfigurationPath = Path.Combine(LocalSettingsPath);
 			using (var sw = new StreamWriter(userConfigurationPath, false))
@@ -63,6 +70,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public string IconPath { get; set; }
 		public string SelectedColor { get; set; }
 		public bool UseSlideMaster { get; set; }
+		public CalendarSettings BroadcastCalendarSettings { get; private set; }
 	}
 
 	public class TVSettingsManager : MediaSettingsManager

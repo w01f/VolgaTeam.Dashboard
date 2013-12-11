@@ -25,6 +25,16 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 
 			RefreshColor();
 
+			if (CalendarNote.ReadOnly)
+			{
+				memoEdit.Properties.HideSelection = true;
+				memoEdit.Properties.AllowFocused = false;
+				memoEdit.Width += pbClose.Width;
+				pbClose.Visible = false;
+				toolStripMenuItemClone.Visible = false;
+				toolStripMenuItemCopy.Visible = false;
+			}
+
 			memoEdit.Enter += Utilities.Instance.Editor_Enter;
 			memoEdit.MouseDown += Utilities.Instance.Editor_MouseDown;
 			memoEdit.MouseUp += Utilities.Instance.Editor_MouseUp;
@@ -41,11 +51,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			base.OnPaint(e);
-			Rectangle rect;
-			if (e.ClipRectangle.Top == 0)
-				rect = new Rectangle(e.ClipRectangle.Left, e.ClipRectangle.Top, e.ClipRectangle.Width, Height);
-			else
-				rect = new Rectangle(e.ClipRectangle.Left, 0, e.ClipRectangle.Width, e.ClipRectangle.Bottom);
+			var rect = e.ClipRectangle.Top == 0 ?
+				new Rectangle(e.ClipRectangle.Left, e.ClipRectangle.Top, e.ClipRectangle.Width, Height) :
+				new Rectangle(e.ClipRectangle.Left, 0, e.ClipRectangle.Width, e.ClipRectangle.Bottom);
 			for (int i = 0; i < 1; i++)
 			{
 				ControlPaint.DrawBorder(e.Graphics, rect, Color.DarkGray, ButtonBorderStyle.Solid);
@@ -65,33 +73,27 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		private void memoEdit_EditValueChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				CalendarNote.Note = memoEdit.EditValue != null ? memoEdit.EditValue.ToString() : string.Empty;
-				if (NoteChanged != null)
-					NoteChanged(sender, new EventArgs());
-			}
+			if (!_allowToSave) return;
+			CalendarNote.Note = memoEdit.EditValue != null ? memoEdit.EditValue.ToString() : string.Empty;
+			if (NoteChanged != null)
+				NoteChanged(sender, new EventArgs());
 		}
 
 		private void memoEdit_EditValueChanging(object sender, ChangingEventArgs e)
 		{
 			textBox.Text = e.NewValue != null ? e.NewValue.ToString() : string.Empty;
-			if (_allowToSave)
-			{
-				int linesCount = WinAPIHelper.SendMessage(textBox.Handle, 0x00BA, IntPtr.Zero, IntPtr.Zero);
-				if (linesCount > 2)
-				{
-					textBox.Text = e.OldValue != null ? e.OldValue.ToString() : string.Empty;
-					e.Cancel = true;
-				}
-			}
+			if (!_allowToSave) return;
+			int linesCount = WinAPIHelper.SendMessage(textBox.Handle, 0x00BA, IntPtr.Zero, IntPtr.Zero);
+			if (linesCount <= 2) return;
+			textBox.Text = e.OldValue != null ? e.OldValue.ToString() : string.Empty;
+			e.Cancel = true;
 		}
 
 		private void pbClose_Click(object sender, EventArgs e)
 		{
-			if (Utilities.Instance.ShowWarningQuestion("Do you want to delete note?") == DialogResult.Yes)
-				if (NoteDeleted != null)
-					NoteDeleted(sender, new EventArgs());
+			if (Utilities.Instance.ShowWarningQuestion("Do you want to delete note?") != DialogResult.Yes) return;
+			if (NoteDeleted != null)
+				NoteDeleted(sender, new EventArgs());
 		}
 
 		private void toolStripMenuItemCopy_Click(object sender, EventArgs e)

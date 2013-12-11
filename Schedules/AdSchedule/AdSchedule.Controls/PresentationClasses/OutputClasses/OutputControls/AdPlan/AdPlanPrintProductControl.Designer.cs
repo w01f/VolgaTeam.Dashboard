@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
 			this.pnItems = new System.Windows.Forms.Panel();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
@@ -53,7 +54,7 @@
 			this.laAdItems = new System.Windows.Forms.Label();
 			this.checkEditComments = new DevExpress.XtraEditors.CheckEdit();
 			this.memoEditComments = new DevExpress.XtraEditors.MemoEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.checkEditDates = new DevExpress.XtraEditors.CheckEdit();
 			this.memoEditDates = new DevExpress.XtraEditors.MemoEdit();
 			this.laDates = new System.Windows.Forms.Label();
@@ -74,6 +75,7 @@
 			this.laComments = new System.Windows.Forms.Label();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.pictureBoxDates = new System.Windows.Forms.PictureBox();
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).BeginInit();
 			this.pnItems.SuspendLayout();
 			this.xtraScrollableControl.SuspendLayout();
@@ -589,6 +591,9 @@
 			this.buttonXEditInvestment.Name = "buttonXEditInvestment";
 			this.buttonXEditInvestment.Size = new System.Drawing.Size(88, 24);
 			this.buttonXEditInvestment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			toolTipItem1.Text = "Click to change Investment";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.toolTipController.SetSuperTip(this.buttonXEditInvestment, superToolTip1);
 			this.buttonXEditInvestment.TabIndex = 64;
 			this.buttonXEditInvestment.Text = "Edit";
 			this.buttonXEditInvestment.TextColor = System.Drawing.Color.Black;
@@ -759,6 +764,12 @@
 			this.pictureBoxDates.TabIndex = 32;
 			this.pictureBoxDates.TabStop = false;
 			// 
+			// toolTipController
+			// 
+			this.toolTipController.Rounded = true;
+			this.toolTipController.ToolTipLocation = DevExpress.Utils.ToolTipLocation.RightTop;
+			this.toolTipController.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
+			// 
 			// AdPlanPrintProductControl
 			// 
 			this.Controls.Add(this.pnMain);
@@ -851,6 +862,7 @@
 		private DevComponents.DotNetBar.ButtonX buttonXItemsClear;
 		private System.Windows.Forms.PictureBox pbProductTypeLogo;
 		private DevComponents.DotNetBar.ButtonX buttonXNotOutput;
+		private DevExpress.Utils.ToolTipController toolTipController;
 
     }
 }

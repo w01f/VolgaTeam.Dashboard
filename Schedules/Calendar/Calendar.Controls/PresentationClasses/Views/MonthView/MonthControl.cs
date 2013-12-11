@@ -11,14 +11,13 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 	{
 		private readonly List<CalendarNoteControl> _noteControls = new List<CalendarNoteControl>();
 		private readonly List<WeekControl> _weekControls = new List<WeekControl>();
-		private readonly bool _weekSundayStarted = true;
+		protected bool _weekSundayStarted;
 
-		public MonthControl(bool weekSundayStarted = true)
+		protected MonthControl()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			HasData = false;
-			_weekSundayStarted = weekSundayStarted;
 			pnMain.Resize += MonthViewControl_Resize;
 		}
 
@@ -50,19 +49,19 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		public void RefreshData(Color colorLight, Color colorDark)
 		{
-			foreach (WeekControl week in _weekControls)
+			foreach (var week in _weekControls)
 				week.RefreshData(colorLight, colorDark);
 		}
 
 		public void RefreshNotes()
 		{
-			foreach (CalendarNoteControl note in _noteControls)
+			foreach (var note in _noteControls)
 				note.RefreshColor();
 		}
 
 		public void RaiseEvents(bool enable)
 		{
-			foreach (WeekControl week in _weekControls)
+			foreach (var week in _weekControls)
 				week.RaiseEvents(enable);
 		}
 
@@ -124,6 +123,23 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			FitWeekControls();
 			FitHeader();
 			pnMain.BringToFront();
+		}
+	}
+
+	public class MonthControlSundayBased : MonthControl
+	{
+		public MonthControlSundayBased() : base()
+		{
+			_weekSundayStarted = true;
+		}
+	}
+
+	public class MonthControlMondayBased : MonthControl
+	{
+		public MonthControlMondayBased()
+			: base()
+		{
+			_weekSundayStarted = false;
 		}
 	}
 }

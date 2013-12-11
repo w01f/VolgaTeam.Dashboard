@@ -78,9 +78,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			buttonXEditName.Checked = PrintProduct.ViewSettings.AdPlanSettings.EditName;
 
 			var defaultImage = PrintProduct.SmallLogo != null ? new Bitmap(PrintProduct.SmallLogo) : null;
-			pbLogo.Image = PrintProduct.ViewSettings.AdPlanSettings.Logo != null ? PrintProduct.ViewSettings.AdPlanSettings.Logo : defaultImage;
+			pbLogo.Image = PrintProduct.ViewSettings.AdPlanSettings.Logo ?? defaultImage;
 
-			checkEditFlightDates.Text = PrintProduct.Parent.FlightDateStart.ToString("MM/dd/yy") + " - " + PrintProduct.Parent.FlightDateEnd.ToString("MM/dd/yy");
+			checkEditFlightDates.Text = PrintProduct.Parent.FlightDates;
 			checkEditFlightDates.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowFlightDates;
 
 			checkEditDates.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowDates;

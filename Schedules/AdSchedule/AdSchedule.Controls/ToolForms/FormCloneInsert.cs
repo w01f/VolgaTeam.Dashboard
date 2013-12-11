@@ -21,14 +21,14 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 		{
 			InitializeComponent();
 			_originalInsert = originalInsert;
-			labelControlFlightDates.Text = string.Format(labelControlFlightDates.Text, string.Format("{0} - {1}", new object[] { _originalInsert.Parent.Parent.FlightDateStart.ToString("M/d/yy"), _originalInsert.Parent.Parent.FlightDateEnd.ToString("M/d/yy") }));
-			laOriginalDate.Text = _originalInsert.Date.ToString(@"ddd, MM/dd/yy");
+			labelControlFlightDates.Text = _originalInsert.Parent.Parent.FlightDates;
+			laOriginalDate.Text = _originalInsert.Date.HasValue ? _originalInsert.Date.Value.ToString(@"ddd, MM/dd/yy") : String.Empty;
 			laOriginalRate.Text = _originalInsert.FinalRate.ToString(@"$#,##0.00");
-			checkEditHighlightWeekdays.Text = string.Format(checkEditHighlightWeekdays.Text, _originalInsert.Date.ToString("dddd"));
-			buttonXAddAllWeekdays.Text = string.Format(buttonXAddAllWeekdays.Text, _originalInsert.Date.ToString("dddd"));
+			checkEditHighlightWeekdays.Text = _originalInsert.Date.HasValue ? String.Format(checkEditHighlightWeekdays.Text, _originalInsert.Date.Value.ToString("dddd")) : String.Empty;
+			buttonXAddAllWeekdays.Text = _originalInsert.Date.HasValue ? String.Format(buttonXAddAllWeekdays.Text, _originalInsert.Date.Value.ToString("dddd")) : String.Empty;
 			checkEditColorRate.Visible = _originalInsert.Parent.ColorOption != ColorOptions.BlackWhite;
-			monthCalendarClone.ActiveMonth.Month = _originalInsert.Date.Month;
-			monthCalendarClone.ActiveMonth.Year = _originalInsert.Date.Year;
+			monthCalendarClone.ActiveMonth.Month = _originalInsert.Date.HasValue ? _originalInsert.Date.Value.Month : 1;
+			monthCalendarClone.ActiveMonth.Year = _originalInsert.Date.HasValue ? _originalInsert.Date.Value.Year : 1;
 			monthCalendarClone.Header.TextColor = Color.Black;
 
 			UpdateTotals();
@@ -117,7 +117,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 				e.Info.DateColor = Color.White;
 				e.OwnerDraw = true;
 			}
-			else if (e.Date.DayOfWeek == _originalInsert.Date.DayOfWeek && checkEditHighlightWeekdays.Checked && (e.Date >= _originalInsert.Parent.Parent.FlightDateStart && e.Date <= _originalInsert.Parent.Parent.FlightDateEnd))
+			else if (_originalInsert.Date.HasValue && e.Date.DayOfWeek == _originalInsert.Date.Value.DayOfWeek && checkEditHighlightWeekdays.Checked && (e.Date >= _originalInsert.Parent.Parent.FlightDateStart && e.Date <= _originalInsert.Parent.Parent.FlightDateEnd))
 			{
 				e.Info.BoldedDate = true;
 				e.OwnerDraw = true;
@@ -139,12 +139,12 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 
 		private void buttonXAddAllWeekdays_Click(object sender, EventArgs e)
 		{
-			DateTime startDate = _originalInsert.Parent.Parent.FlightDateStart;
-			while (!startDate.DayOfWeek.Equals(_originalInsert.Date.DayOfWeek))
+			if (!_originalInsert.Parent.Parent.FlightDateStart.HasValue || !_originalInsert.Parent.Parent.FlightDateEnd.HasValue) return;
+			var startDate = _originalInsert.Parent.Parent.FlightDateStart.Value;
+			while (_originalInsert.Date.HasValue && !startDate.DayOfWeek.Equals(_originalInsert.Date.Value.DayOfWeek))
 				startDate = startDate.AddDays(1);
-			while (startDate <= _originalInsert.Parent.Parent.FlightDateEnd)
+			while (startDate <= _originalInsert.Parent.Parent.FlightDateEnd.Value)
 			{
-				//if (!_originalInsert.Parent.Inserts.Any(x => x.Date.Equals(startDate)))
 				if (startDate != _originalInsert.Date)
 					AddSelectedDate(startDate.Date);
 				startDate = startDate.AddDays(7);

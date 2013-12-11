@@ -295,7 +295,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			get
 			{
 				bool result = false;
-				foreach (DigitalProduct product in DigitalProducts)
+				foreach (var product in DigitalProducts)
 					result = result | (product.TotalImpressions.HasValue || product.TotalInvestment.HasValue);
 				return result;
 			}
@@ -306,110 +306,102 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public bool IsNameNotAssigned { get; set; }
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
-		public DateTime PresentationDate { get; set; }
+		public DateTime? PresentationDate { get; set; }
 		public string FlightDates
 		{
 			get
 			{
-				if (FlightDateStart != DateTime.MinValue && FlightDateEnd != DateTime.MinValue)
-					return FlightDateStart.ToString("MM/dd/yy") + " - " + FlightDateEnd.ToString("MM/dd/yy");
+				if (FlightDateStart.HasValue && FlightDateEnd.HasValue)
+					return FlightDateStart.Value.ToString("MM/dd/yy") + " - " + FlightDateEnd.Value.ToString("MM/dd/yy");
 				else
 					return string.Empty;
 			}
 		}
 
-		public DateTime FlightDateStart { get; set; }
-		public DateTime FlightDateEnd { get; set; }
+		public DateTime? FlightDateStart { get; set; }
+		public DateTime? FlightDateEnd { get; set; }
 		#endregion
 
 		private void Load()
 		{
-			bool tempBool;
+			if (!_scheduleFile.Exists) return;
+			var document = new XmlDocument();
+			document.Load(_scheduleFile.FullName);
+
+			XmlNode node = document.SelectSingleNode(@"/Schedule/BusinessName");
+			if (node != null)
+				BusinessName = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/DecisionMaker");
+			if (node != null)
+				DecisionMaker = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/Status");
+			if (node != null)
+				Status = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/ThemeName");
+			if (node != null)
+				ThemeName = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/ClientType");
+			if (node != null)
+				ClientType = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/AccountNumber");
+			if (node != null)
+				AccountNumber = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/PresentationDate");
 			DateTime tempDateTime;
-
-			XmlNode node;
-			if (_scheduleFile.Exists)
+			if (node != null)
 			{
-				var document = new XmlDocument();
-				document.Load(_scheduleFile.FullName);
-
-				node = document.SelectSingleNode(@"/Schedule/BusinessName");
-				if (node != null)
-					BusinessName = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/DecisionMaker");
-				if (node != null)
-					DecisionMaker = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/Status");
-				if (node != null)
-					Status = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/ThemeName");
-				if (node != null)
-					ThemeName = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/ClientType");
-				if (node != null)
-					ClientType = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/AccountNumber");
-				if (node != null)
-					AccountNumber = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/PresentationDate");
-				if (node != null)
-				{
-					tempDateTime = DateTime.MaxValue;
-					DateTime.TryParse(node.InnerText, out tempDateTime);
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
 					PresentationDate = tempDateTime;
-				}
+			}
 
-				node = document.SelectSingleNode(@"/Schedule/FlightDateStart");
-				if (node != null)
-				{
-					tempDateTime = DateTime.MaxValue;
-					DateTime.TryParse(node.InnerText, out tempDateTime);
+			node = document.SelectSingleNode(@"/Schedule/FlightDateStart");
+			if (node != null)
+			{
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
 					FlightDateStart = tempDateTime;
-				}
+			}
 
-				node = document.SelectSingleNode(@"/Schedule/FlightDateEnd");
-				if (node != null)
-				{
-					tempDateTime = DateTime.MaxValue;
-					DateTime.TryParse(node.InnerText, out tempDateTime);
+			node = document.SelectSingleNode(@"/Schedule/FlightDateEnd");
+			if (node != null)
+			{
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
 					FlightDateEnd = tempDateTime;
-				}
+			}
 
-				node = document.SelectSingleNode(@"/Schedule/ApplySettingsForeAllProducts");
-				if (node != null)
-				{
-					tempBool = false;
-					bool.TryParse(node.InnerText, out tempBool);
-					ApplySettingsForeAllProducts = tempBool;
-				}
+			node = document.SelectSingleNode(@"/Schedule/ApplySettingsForeAllProducts");
+			if (node != null)
+			{
+				bool tempBool = false;
+				bool.TryParse(node.InnerText, out tempBool);
+				ApplySettingsForeAllProducts = tempBool;
+			}
 
-				node = document.SelectSingleNode(@"/Schedule/ViewSettings");
-				if (node != null)
-				{
-					ViewSettings.Deserialize(node);
-				}
+			node = document.SelectSingleNode(@"/Schedule/ViewSettings");
+			if (node != null)
+			{
+				ViewSettings.Deserialize(node);
+			}
 
-				node = document.SelectSingleNode(@"/Schedule/ViewSettings");
-				if (node != null)
-				{
-					ViewSettings.Deserialize(node);
-				}
+			node = document.SelectSingleNode(@"/Schedule/ViewSettings");
+			if (node != null)
+			{
+				ViewSettings.Deserialize(node);
+			}
 
-				node = document.SelectSingleNode(@"/Schedule/Products");
-				if (node != null)
+			node = document.SelectSingleNode(@"/Schedule/Products");
+			if (node != null)
+			{
+				foreach (XmlNode productNode in node.ChildNodes)
 				{
-					foreach (XmlNode productNode in node.ChildNodes)
-					{
-						var product = new DigitalProduct(this);
-						product.Deserialize(productNode);
-						DigitalProducts.Add(product);
-					}
+					var product = new DigitalProduct(this);
+					product.Deserialize(productNode);
+					DigitalProducts.Add(product);
 				}
 			}
 		}
@@ -437,9 +429,12 @@ namespace NewBizWiz.Core.OnlineSchedule
 			xml.AppendLine(@"<AccountNumber>" + AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");
 			xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
 			xml.AppendLine(@"<ThemeName>" + (ThemeName != null ? ThemeName.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</ThemeName>");
-			xml.AppendLine(@"<PresentationDate>" + PresentationDate + @"</PresentationDate>");
-			xml.AppendLine(@"<FlightDateStart>" + FlightDateStart + @"</FlightDateStart>");
-			xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd + @"</FlightDateEnd>");
+			if (PresentationDate.HasValue)
+				xml.AppendLine(@"<PresentationDate>" + PresentationDate + @"</PresentationDate>");
+			if (FlightDateStart.HasValue)
+				xml.AppendLine(@"<FlightDateStart>" + FlightDateStart + @"</FlightDateStart>");
+			if (FlightDateEnd.HasValue)
+				xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd + @"</FlightDateEnd>");
 			xml.AppendLine(@"<ApplySettingsForeAllProducts>" + ApplySettingsForeAllProducts.ToString() + @"</ApplySettingsForeAllProducts>");
 
 			xml.AppendLine(@"<ViewSettings>" + ViewSettings.Serialize() + @"</ViewSettings>");
@@ -744,7 +739,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 			get
 			{
 				int result = 0;
-				TimeSpan diff = Parent.FlightDateEnd.Subtract(Parent.FlightDateStart);
+				if (!Parent.FlightDateStart.HasValue || !Parent.FlightDateEnd.HasValue) return result;
+				var diff = Parent.FlightDateEnd.Value.Subtract(Parent.FlightDateStart.Value);
 				result = diff.Days / 7;
 				return result;
 			}
@@ -752,7 +748,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		public int MonthDuraton
 		{
-			get { return Math.Abs((Parent.FlightDateEnd.Month - Parent.FlightDateStart.Month) + 12 * (Parent.FlightDateEnd.Year - Parent.FlightDateStart.Year)); }
+			get
+			{
+				if (!Parent.FlightDateStart.HasValue || !Parent.FlightDateEnd.HasValue) return 0;
+				return Math.Abs((Parent.FlightDateEnd.Value.Month - Parent.FlightDateStart.Value.Month) + 12 * (Parent.FlightDateEnd.Value.Year - Parent.FlightDateStart.Value.Year));
+			}
 		}
 
 		public IEnumerable<string> AllWebsites

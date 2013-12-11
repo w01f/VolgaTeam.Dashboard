@@ -44,7 +44,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 											shape.TextFrame.TextRange.Text = String.Join(", ", source.AllWebsites.ToArray());
 											break;
 										case "DATETAG":
-											shape.TextFrame.TextRange.Text = source.Parent.PresentationDate.ToString("MM/dd/yy");
+											shape.TextFrame.TextRange.Text = source.Parent.PresentationDate.HasValue ? source.Parent.PresentationDate.Value.ToString("MM/dd/yy") : String.Empty;
 											break;
 										case "ADVERTISER":
 											shape.TextFrame.TextRange.Text = source.Parent.BusinessName;

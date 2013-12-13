@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.components = new System.ComponentModel.Container();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.pbOnline = new System.Windows.Forms.PictureBox();
 			this.pbSellerPoint = new System.Windows.Forms.PictureBox();
 			this.pbCalendar = new System.Windows.Forms.PictureBox();
@@ -43,12 +44,11 @@
 			// 
 			// pbOnline
 			// 
-			this.pbOnline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbOnline.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pbOnline.Image = global::NewBizWiz.Dashboard.Properties.Resources.HomeOnline;
-			this.pbOnline.Location = new System.Drawing.Point(303, 71);
+			this.pbOnline.Location = new System.Drawing.Point(57, 182);
 			this.pbOnline.Name = "pbOnline";
-			this.pbOnline.Size = new System.Drawing.Size(425, 90);
+			this.pbOnline.Size = new System.Drawing.Size(452, 90);
 			this.pbOnline.TabIndex = 2;
 			this.pbOnline.TabStop = false;
 			this.pbOnline.Click += new System.EventHandler(this.pbOnline_Click);
@@ -59,9 +59,9 @@
 			// 
 			this.pbSellerPoint.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pbSellerPoint.Image = global::NewBizWiz.Dashboard.Properties.Resources.HomeNewspaper;
-			this.pbSellerPoint.Location = new System.Drawing.Point(13, 71);
+			this.pbSellerPoint.Location = new System.Drawing.Point(57, 39);
 			this.pbSellerPoint.Name = "pbSellerPoint";
-			this.pbSellerPoint.Size = new System.Drawing.Size(393, 90);
+			this.pbSellerPoint.Size = new System.Drawing.Size(452, 90);
 			this.pbSellerPoint.TabIndex = 0;
 			this.pbSellerPoint.TabStop = false;
 			this.pbSellerPoint.Click += new System.EventHandler(this.pbSellerPoint_Click);
@@ -72,7 +72,7 @@
 			// 
 			this.pbCalendar.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pbCalendar.Image = global::NewBizWiz.Dashboard.Properties.Resources.HomeCalendar;
-			this.pbCalendar.Location = new System.Drawing.Point(13, 279);
+			this.pbCalendar.Location = new System.Drawing.Point(57, 325);
 			this.pbCalendar.Name = "pbCalendar";
 			this.pbCalendar.Size = new System.Drawing.Size(452, 90);
 			this.pbCalendar.TabIndex = 1;

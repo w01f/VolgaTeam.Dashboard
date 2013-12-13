@@ -31,22 +31,22 @@ namespace NewBizWiz.Dashboard.InteropClasses
 								switch (shape.Tags.Name(i))
 								{
 									case "DATE_DATA0":
-										shape.TextFrame.TextRange.Text = CoverControl.Instance.PresentationDate;
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideCover.PresentationDate;
 										break;
 									case "TITLE":
-										shape.TextFrame.TextRange.Text = CoverControl.Instance.Title;
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideCover.Title;
 										break;
 									case "BUSINESS_NAME":
-										shape.TextFrame.TextRange.Text = CoverControl.Instance.DecisionMaker;
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideCover.DecisionMaker;
 										break;
 									case "DECISION_MAKER":
-										shape.TextFrame.TextRange.Text = CoverControl.Instance.Advertiser;
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideCover.Advertiser;
 										break;
 									case "QUOTE":
-										shape.TextFrame.TextRange.Text = CoverControl.Instance.Quote;
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideCover.Quote;
 										break;
 									case "SALESPERSON_NAME":
-										shape.TextFrame.TextRange.Text = CoverControl.Instance.SalesRep;
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideCover.SalesRep;
 										break;
 								}
 							}

@@ -36,7 +36,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public bool ItemChecked
 		{
-			get { return ckItem.Visible ? ckItem.Checked : false; }
+			get { return ckItem.Visible && ckItem.Checked; }
 		}
 
 		public bool ItemVisible
@@ -60,7 +60,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 				int heightDifference = textHeight - laDetails.Height;
 				pnDetails.Height += (heightDifference > 0 ? (heightDifference + 10) : 0);
-				SimpleSummaryControl.Instance.simpleSummaryItemContainer.HideDescription();
+				TabHomeMainPage.Instance.SlideSimpleSummary.simpleSummaryItemContainer.HideDescription();
 			}
 		}
 
@@ -106,10 +106,10 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		private void ckItem_CheckedChanged(object sender, EventArgs e)
 		{
-			if (SimpleSummaryControl.Instance.AllowToSave)
+			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
 			{
-				SimpleSummaryControl.Instance.UpdateOutputTotalValues();
-				SimpleSummaryControl.Instance.SettingsNotSaved = true;
+				TabHomeMainPage.Instance.SlideSimpleSummary.UpdateOutputTotalValues();
+				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 			}
 		}
 	}

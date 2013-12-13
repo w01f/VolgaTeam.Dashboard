@@ -1,26 +1,72 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.Dashboard.ToolForms;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
 	[ToolboxItem(false)]
-	public partial class TabHomeMainPage : UserControl
+	public sealed partial class TabHomeMainPage : UserControl
 	{
 		private static TabHomeMainPage _instance;
-		private readonly SuperTooltipInfo _clientGoalsHelpToolTip = new SuperTooltipInfo("HELP", "", "Help me with the Client Needs Analysis Slide", null, null, eTooltipColor.Gray);
-		private readonly SuperTooltipInfo _coverHelpToolTip = new SuperTooltipInfo("HELP", "", "Help me with the Cover Slide", null, null, eTooltipColor.Gray);
-		private readonly SuperTooltipInfo _leadOffHelpToolTip = new SuperTooltipInfo("HELP", "", "Help me with the Introduction Slide", null, null, eTooltipColor.Gray);
-		private readonly SuperTooltipInfo _overviewHelpToolTip = new SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, eTooltipColor.Gray);
-		private readonly SuperTooltipInfo _simpleSumaryHelpToolTip = new SuperTooltipInfo("HELP", "", "Help me with the Closing Summary Slide", null, null, eTooltipColor.Gray);
-		private readonly SuperTooltipInfo _targetCustomersHelpToolTip = new SuperTooltipInfo("HELP", "", "Help me with the Target Customer Slide", null, null, eTooltipColor.Gray);
+
+		private SlideType _selectedSlide = SlideType.None;
+
+		public SlideCleanslateControl SlideCleanslate { get; private set; }
+		public SlideCoverControl SlideCover { get; private set; }
+		public SlideLeadoffStatementControl SlideLeadoff { get; private set; }
+		public SlideClientGoalsControl SlideClientGoals { get; private set; }
+		public SlideTargetCustomersControl SlideTargetCustomers { get; private set; }
+		public SlideSimpleSummaryControl SlideSimpleSummary { get; private set; }
+
+		public string HelpKey
+		{
+			get
+			{
+				switch (_selectedSlide)
+				{
+					case SlideType.Cleanslate:
+						return "Home";
+					case SlideType.Cover:
+						return "Cover";
+					case SlideType.LeadoffStatement:
+						return "Intro";
+					case SlideType.ClientGoals:
+						return "Needs";
+					case SlideType.TargetCustomers:
+						return "Target";
+					case SlideType.SimpleSummary:
+						return "Closing";
+					default:
+						return String.Empty;
+				}
+			}
+		}
 
 		private TabHomeMainPage()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
+
+			SlideCleanslate = new SlideCleanslateControl();
+			SlideCleanslate.SlideChanged += OnSlideChanged;
+			SlideCover = new SlideCoverControl();
+			SlideCover.SlideChanged += OnSlideChanged;
+			SlideLeadoff = new SlideLeadoffStatementControl();
+			SlideLeadoff.SlideChanged += OnSlideChanged;
+			SlideClientGoals = new SlideClientGoalsControl();
+			SlideClientGoals.SlideChanged += OnSlideChanged;
+			SlideTargetCustomers = new SlideTargetCustomersControl();
+			SlideTargetCustomers.SlideChanged += OnSlideChanged;
+			SlideSimpleSummary = new SlideSimpleSummaryControl();
+			SlideSimpleSummary.SlideChanged += OnSlideChanged;
+
 			AppManager.Instance.SetClickEventHandler(this);
+		}
+
+		private void OnSlideChanged(object sender, SlideEventArgs args)
+		{
+			UpdatePageAccordingToggledButton(args.SlideType);
 		}
 
 		public static TabHomeMainPage Instance
@@ -33,101 +79,80 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 		}
 
-		public void UpdatePageAccordingToggledButton()
+		public void UpdatePageAccordingToggledButton(SlideType selectedSlide)
 		{
-			Control parent = Parent;
-			Parent = null;
-			Controls.Clear();
-
-			var borderedControl = new WhiteBorderControl();
-			if (FormMain.Instance.buttonItemHomeOverview != null && FormMain.Instance.buttonItemHomeOverview.Checked)
+			_selectedSlide = selectedSlide;
+			switch (_selectedSlide)
 			{
-				FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, _overviewHelpToolTip);
-				Controls.Add(TabHomeOverviewControl.Instance);
-				TabHomeOverviewControl.Instance.EnableOutput = borderedControl.EnableOutputButton;
-				TabHomeOverviewControl.Instance.UpdateOutputState();
-				FormMain.Instance.OutputClick = TabHomeOverviewControl.Instance.Output;
-				FormMain.Instance.PreviewClick = TabHomeOverviewControl.Instance.Preview;
+				case SlideType.Cleanslate:
+					SlideCleanslate.SelectSlideType(selectedSlide);
+					SlideCleanslate.UpdateOutputState();
+					FormMain.Instance.OutputClick = SlideCleanslate.Output;
+					FormMain.Instance.PreviewClick = SlideCleanslate.Preview;
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideCleanslate.Tooltip);
+					if (!Controls.Contains(SlideCleanslate))
+						Controls.Add(SlideCleanslate);
+					SlideCleanslate.BringToFront();
+					break;
+				case SlideType.Cover:
+					SlideCover.SelectSlideType(selectedSlide);
+					SlideCover.UpdateSavedFilesState();
+					SlideCover.UpdateOutputState();
+					FormMain.Instance.OutputClick = SlideCover.Output;
+					FormMain.Instance.PreviewClick = SlideCover.Preview;
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideCover.Tooltip);
+					if (!Controls.Contains(SlideCover))
+						Controls.Add(SlideCover);
+					SlideCover.BringToFront();
+					break;
+				case SlideType.LeadoffStatement:
+					SlideLeadoff.SelectSlideType(selectedSlide);
+					SlideLeadoff.UpdateSavedFilesState();
+					SlideLeadoff.UpdateOutputState();
+					FormMain.Instance.OutputClick = SlideLeadoff.Output;
+					FormMain.Instance.PreviewClick = SlideLeadoff.Preview;
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideLeadoff.Tooltip);
+					if (!Controls.Contains(SlideLeadoff))
+						Controls.Add(SlideLeadoff);
+					SlideLeadoff.BringToFront();
+					break;
+				case SlideType.ClientGoals:
+					SlideClientGoals.SelectSlideType(selectedSlide);
+					SlideClientGoals.UpdateSavedFilesState();
+					SlideClientGoals.UpdateOutputState();
+					FormMain.Instance.OutputClick = SlideClientGoals.Output;
+					FormMain.Instance.PreviewClick = SlideClientGoals.Preview;
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideClientGoals.Tooltip);
+					if (!Controls.Contains(SlideClientGoals))
+						Controls.Add(SlideClientGoals);
+					SlideClientGoals.BringToFront();
+					break;
+				case SlideType.TargetCustomers:
+					SlideTargetCustomers.SelectSlideType(selectedSlide);
+					SlideTargetCustomers.UpdateSavedFilesState();
+					SlideTargetCustomers.UpdateOutputState();
+					FormMain.Instance.OutputClick = SlideTargetCustomers.Output;
+					FormMain.Instance.PreviewClick = SlideTargetCustomers.Preview;
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideTargetCustomers.Tooltip);
+					if (!Controls.Contains(SlideTargetCustomers))
+						Controls.Add(SlideTargetCustomers);
+					SlideTargetCustomers.BringToFront();
+					break;
+				case SlideType.SimpleSummary:
+					SlideSimpleSummary.SelectSlideType(selectedSlide);
+					SlideSimpleSummary.UpdateSavedFilesState();
+					SlideSimpleSummary.ResetTab();
+					FormMain.Instance.OutputClick = SlideSimpleSummary.Output;
+					FormMain.Instance.PreviewClick = SlideSimpleSummary.Preview;
+					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideSimpleSummary.Tooltip);
+					if (!Controls.Contains(SlideSimpleSummary))
+						Controls.Add(SlideSimpleSummary);
+					SlideSimpleSummary.BringToFront();
+					break;
+				default:
+					pnEmpty.BringToFront();
+					break;
 			}
-			else if (FormMain.Instance.buttonItemHomeCover != null && FormMain.Instance.buttonItemHomeCover.Checked)
-			{
-				FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, _coverHelpToolTip);
-				Controls.Add(CoverControl.Instance);
-				CoverControl.Instance.EnableOutput = borderedControl.EnableOutputButton;
-				CoverControl.Instance.EnableSavedFiles = borderedControl.EnableSavedFilesButton;
-				CoverControl.Instance.UpdateOutputState();
-				CoverControl.Instance.UpdateSavedFilesState();
-				FormMain.Instance.OutputClick = CoverControl.Instance.Output;
-				FormMain.Instance.PreviewClick = CoverControl.Instance.Preview;
-			}
-			else if (FormMain.Instance.buttonItemSimpleSummary != null && FormMain.Instance.buttonItemSimpleSummary.Checked)
-			{
-				FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, _simpleSumaryHelpToolTip);
-				Controls.Add(SimpleSummaryControl.Instance);
-				SimpleSummaryControl.Instance.EnableOutput = borderedControl.EnableOutputButton;
-				SimpleSummaryControl.Instance.EnableSavedFiles = borderedControl.EnableSavedFilesButton;
-				SimpleSummaryControl.Instance.tabControl_SelectedTabChanged(null, null);
-				SimpleSummaryControl.Instance.UpdateSavedFilesState();
-				FormMain.Instance.OutputClick = SimpleSummaryControl.Instance.Output;
-				FormMain.Instance.PreviewClick = SimpleSummaryControl.Instance.Preview;
-			}
-			else
-			{
-				Controls.Add(borderedControl);
-				Control parentSecond = borderedControl.panelExTop.Parent;
-				borderedControl.panelExTop.Parent = null;
-				borderedControl.panelExTop.Controls.Clear();
-				borderedControl.OutputClick = null;
-
-				if (FormMain.Instance.buttonItemLeadoffStatement != null && FormMain.Instance.buttonItemLeadoffStatement.Checked)
-				{
-					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, _leadOffHelpToolTip);
-					borderedControl.panelExTop.Controls.Add(LeadoffStatementControl.Instance);
-					LeadoffStatementControl.Instance.EnableOutput = borderedControl.EnableOutputButton;
-					LeadoffStatementControl.Instance.EnableSavedFiles = borderedControl.EnableSavedFilesButton;
-					LeadoffStatementControl.Instance.UpdateOutputState();
-					LeadoffStatementControl.Instance.UpdateSavedFilesState();
-					borderedControl.OutputClick = LeadoffStatementControl.Instance.Output;
-					borderedControl.SavedFilesClick = LeadoffStatementControl.Instance.LoadFromFile;
-					FormMain.Instance.OutputClick = LeadoffStatementControl.Instance.Output;
-					FormMain.Instance.PreviewClick = LeadoffStatementControl.Instance.Preview;
-				}
-				else if (FormMain.Instance.buttonItemClientGoals != null && FormMain.Instance.buttonItemClientGoals.Checked)
-				{
-					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, _clientGoalsHelpToolTip);
-					borderedControl.panelExTop.Controls.Add(ClientGoalsControl.Instance);
-					ClientGoalsControl.Instance.EnableOutput = borderedControl.EnableOutputButton;
-					ClientGoalsControl.Instance.EnableSavedFiles = borderedControl.EnableSavedFilesButton;
-					ClientGoalsControl.Instance.UpdateOutputState();
-					ClientGoalsControl.Instance.UpdateSavedFilesState();
-					borderedControl.OutputClick = ClientGoalsControl.Instance.Output;
-					borderedControl.SavedFilesClick = ClientGoalsControl.Instance.LoadFromFile;
-					FormMain.Instance.OutputClick = ClientGoalsControl.Instance.Output;
-					FormMain.Instance.PreviewClick = ClientGoalsControl.Instance.Preview;
-				}
-				else if (FormMain.Instance.buttonItemTargetCustomers != null && FormMain.Instance.buttonItemTargetCustomers.Checked)
-				{
-					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, _targetCustomersHelpToolTip);
-					borderedControl.panelExTop.Controls.Add(TargetCustomersControl.Instance);
-					TargetCustomersControl.Instance.EnableOutput = borderedControl.EnableOutputButton;
-					TargetCustomersControl.Instance.EnableSavedFiles = borderedControl.EnableSavedFilesButton;
-					TargetCustomersControl.Instance.UpdateOutputState();
-					TargetCustomersControl.Instance.UpdateSavedFilesState();
-					borderedControl.OutputClick = TargetCustomersControl.Instance.Output;
-					borderedControl.SavedFilesClick = TargetCustomersControl.Instance.LoadFromFile;
-					FormMain.Instance.OutputClick = TargetCustomersControl.Instance.Output;
-					FormMain.Instance.PreviewClick = TargetCustomersControl.Instance.Preview;
-				}
-				borderedControl.panelExTop.Parent = parentSecond;
-
-				if (borderedControl.panelExTop.Controls.Count == 0)
-				{
-					FormMain.Instance.buttonItemHomeOverview.Checked = true;
-					Controls.Clear();
-					Controls.Add(TabHomeOverviewControl.Instance);
-				}
-			}
-			Parent = parent;
 		}
 	}
 }

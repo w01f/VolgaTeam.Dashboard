@@ -4,28 +4,28 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using DevExpress.XtraTab;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Dashboard;
 using NewBizWiz.Dashboard.InteropClasses;
-using NewBizWiz.Dashboard.ToolForms;
 using ListManager = NewBizWiz.Core.Dashboard.ListManager;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
 	[ToolboxItem(false)]
-	public partial class SimpleSummaryControl : UserControl
+	public sealed partial class SlideSimpleSummaryControl : SlideBaseControl
 	{
-		private static SimpleSummaryControl _instance;
+		private readonly SuperTooltipInfo _toolTip = new SuperTooltipInfo("HELP", "", "Help me with the Closing Summary Slide", null, null, eTooltipColor.Gray);
 
-		private SimpleSummaryControl()
+		public SlideSimpleSummaryControl()
+			: base()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			AppManager.Instance.SetClickEventHandler(this);
-			if ((base.CreateGraphics()).DpiX > 96)
+			if ((CreateGraphics()).DpiX > 96)
 			{
-				laDescription.Font = new Font(laDescription.Font.FontFamily, laDescription.Font.Size - 3, laDescription.Font.Style);
 				ckAdvertiser.Font = new Font(ckAdvertiser.Font.FontFamily, ckAdvertiser.Font.Size - 2, ckAdvertiser.Font.Style);
 				comboBoxEditAdvertiser.Font = new Font(comboBoxEditAdvertiser.Font.FontFamily, comboBoxEditAdvertiser.Font.Size - 2, comboBoxEditAdvertiser.Font.Style);
 				ckDecisionMaker.Font = new Font(ckDecisionMaker.Font.FontFamily, ckDecisionMaker.Font.Size - 2, ckDecisionMaker.Font.Style);
@@ -50,16 +50,10 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				ckEnableTotalsEdit.Font = new Font(ckEnableTotalsEdit.Font.FontFamily, ckEnableTotalsEdit.Font.Size - 2, ckEnableTotalsEdit.Font.Style);
 				ckPresentationDate.Font = new Font(ckPresentationDate.Font.FontFamily, ckPresentationDate.Font.Size - 2, ckPresentationDate.Font.Style);
 				laPresentationDateTag.Font = new Font(laPresentationDateTag.Font.FontFamily, laPresentationDateTag.Font.Size - 2, laPresentationDateTag.Font.Style);
-				ckSignatureLine.Font = new Font(ckSignatureLine.Font.FontFamily, ckSignatureLine.Font.Size - 2, ckSignatureLine.Font.Style);
-				laSignatureLineTag.Font = new Font(laSignatureLineTag.Font.FontFamily, laSignatureLineTag.Font.Size - 2, laSignatureLineTag.Font.Style);
 				laDetails.Font = new Font(laDetails.Font.FontFamily, laDetails.Font.Size - 3, laDetails.Font.Style);
 				laMonthly.Font = new Font(laMonthly.Font.FontFamily, laMonthly.Font.Size - 3, laMonthly.Font.Style);
 				laTotal.Font = new Font(laTotal.Font.FontFamily, laTotal.Font.Size - 3, laTotal.Font.Style);
-				buttonXSavedFiles.Font = new Font(buttonXSavedFiles.Font.FontFamily, buttonXSavedFiles.Font.Size - 2, buttonXSavedFiles.Font.Style);
 			}
-			comboBoxEditSlideHeader.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditSlideHeader.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditSlideHeader.Enter += FormMain.Instance.Editor_Enter;
 			comboBoxEditAdvertiser.MouseUp += FormMain.Instance.Editor_MouseUp;
 			comboBoxEditAdvertiser.MouseDown += FormMain.Instance.Editor_MouseDown;
 			comboBoxEditAdvertiser.Enter += FormMain.Instance.Editor_Enter;
@@ -72,25 +66,38 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			spinEditTotal.MouseUp += FormMain.Instance.Editor_MouseUp;
 			spinEditTotal.MouseDown += FormMain.Instance.Editor_MouseDown;
 			spinEditTotal.Enter += FormMain.Instance.Editor_Enter;
-			tabControlPanelAdvertiser.Style.BorderSide = eBorderSide.Right;
-			tabControlPanelDetails.Style.BorderSide = eBorderSide.Right;
-			tabControlPanelSlideOutput.Style.BorderSide = eBorderSide.Right;
-		}
 
-		public AppManager.SingleParameterDelegate EnableOutput { get; set; }
-		public AppManager.SingleParameterDelegate EnableSavedFiles { get; set; }
+			simpleSummaryItemContainer.OutputContainer = simpleSummaryOutputContainer;
+
+			comboBoxEditSlideHeader.Properties.Items.Clear();
+			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.SimpleSummaryLists.Headers);
+			if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
+				comboBoxEditSlideHeader.SelectedIndex = 0;
+
+			comboBoxEditAdvertiser.Properties.Items.Clear();
+			comboBoxEditAdvertiser.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers);
+
+			comboBoxEditDecisionMaker.Properties.Items.Clear();
+			comboBoxEditDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers);
+
+			FormMain.Instance.FormClosed += (sender1, e1) =>
+			{
+				if (SettingsNotSaved)
+				{
+					SaveState();
+					ViewSettingsManager.Instance.SimpleSummaryState.Save();
+				}
+			};
+
+			LoadSavedState();
+		}
 
 		public bool AllowToSave { get; set; }
 		public bool SettingsNotSaved { get; set; }
 
-		public static SimpleSummaryControl Instance
+		public override SuperTooltipInfo Tooltip
 		{
-			get
-			{
-				if (_instance == null)
-					_instance = new SimpleSummaryControl();
-				return _instance;
-			}
+			get { return _toolTip; }
 		}
 
 		public void UpdateTotalItems()
@@ -117,11 +124,14 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 		}
 
+		public void ResetTab()
+		{
+			xtraTabControl.SelectedTabPage = xtraTabPageAdvertiser;
+		}
+
 		public void UpdateSavedFilesState()
 		{
-			if (EnableSavedFiles != null)
-				EnableSavedFiles(ViewSettingsManager.Instance.SimpleSummaryState.AllowToLoad());
-			buttonXSavedFiles.Enabled = ViewSettingsManager.Instance.SimpleSummaryState.AllowToLoad();
+			SetLoadState(ViewSettingsManager.Instance.SimpleSummaryState.AllowToLoad());
 		}
 
 		private void LoadSavedState()
@@ -135,11 +145,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 			else
 			{
-				int index = comboBoxEditSlideHeader.Properties.Items.IndexOf(ViewSettingsManager.Instance.SimpleSummaryState.SlideHeader);
-				if (index >= 0)
-					comboBoxEditSlideHeader.SelectedIndex = index;
-				else
-					comboBoxEditSlideHeader.SelectedIndex = 0;
+				var index = comboBoxEditSlideHeader.Properties.Items.IndexOf(ViewSettingsManager.Instance.SimpleSummaryState.SlideHeader);
+				comboBoxEditSlideHeader.SelectedIndex = index >= 0 ? index : 0;
 			}
 
 			ckAdvertiser.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ShowAdvertiser;
@@ -147,7 +154,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			comboBoxEditAdvertiser.EditValue = string.IsNullOrEmpty(ViewSettingsManager.Instance.SimpleSummaryState.Advertiser) ? null : ViewSettingsManager.Instance.SimpleSummaryState.Advertiser;
 
 			ckDecisionMaker.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ShowDecisionMaker;
-			ckSignatureLine.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ShowDecisionMaker;
 			comboBoxEditDecisionMaker.EditValue = string.IsNullOrEmpty(ViewSettingsManager.Instance.SimpleSummaryState.DecisionMaker) ? null : ViewSettingsManager.Instance.SimpleSummaryState.DecisionMaker;
 
 			ckDate.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ShowPresentationDate;
@@ -188,7 +194,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			UpdateTotalItems();
 			UpdateSavedFilesState();
 
-			tabControl_SelectedTabChanged(null, null);
+			xtraTabControl_SelectedPageChanged(xtraTabControl, new TabPageChangedEventArgs(null, xtraTabControl.SelectedTabPage));
 		}
 
 		private void SaveState()
@@ -199,7 +205,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			ViewSettingsManager.Instance.SimpleSummaryState.ShowAdvertiser = ckAdvertiser.Checked & ckPreparedFor.Checked;
 			ViewSettingsManager.Instance.SimpleSummaryState.Advertiser = comboBoxEditAdvertiser.EditValue != null ? comboBoxEditAdvertiser.EditValue.ToString() : string.Empty;
 
-			ViewSettingsManager.Instance.SimpleSummaryState.ShowDecisionMaker = ckDecisionMaker.Checked & ckSignatureLine.Checked;
+			ViewSettingsManager.Instance.SimpleSummaryState.ShowDecisionMaker = ckDecisionMaker.Checked;
 			ViewSettingsManager.Instance.SimpleSummaryState.DecisionMaker = comboBoxEditDecisionMaker.EditValue != null ? comboBoxEditDecisionMaker.EditValue.ToString() : string.Empty;
 			ckDate.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ShowPresentationDate;
 
@@ -220,48 +226,14 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SettingsNotSaved = false;
 		}
 
-		public void LoadFromFile()
+		protected override void SavedFiles_Click(object sender, EventArgs e)
 		{
 			using (var form = new FormSavedSimpleSummary())
 			{
-				if (form.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(form.SelectedFile))
-				{
-					ViewSettingsManager.Instance.SimpleSummaryState.Load(form.SelectedFile);
-					LoadSavedState();
-				}
+				if (form.ShowDialog() != DialogResult.OK || string.IsNullOrEmpty(form.SelectedFile)) return;
+				ViewSettingsManager.Instance.SimpleSummaryState.Load(form.SelectedFile);
+				LoadSavedState();
 			}
-		}
-
-		private void CoverControl_Load(object sender, EventArgs e)
-		{
-			simpleSummaryItemContainer.OutputContainer = simpleSummaryOutputContainer;
-
-			comboBoxEditSlideHeader.Properties.Items.Clear();
-			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.SimpleSummaryLists.Headers);
-			if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
-				comboBoxEditSlideHeader.SelectedIndex = 0;
-
-			comboBoxEditAdvertiser.Properties.Items.Clear();
-			comboBoxEditAdvertiser.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers);
-
-			comboBoxEditDecisionMaker.Properties.Items.Clear();
-			comboBoxEditDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers);
-
-			FormMain.Instance.FormClosed += (sender1, e1) =>
-												{
-													if (SettingsNotSaved)
-													{
-														SaveState();
-														ViewSettingsManager.Instance.SimpleSummaryState.Save();
-													}
-												};
-
-			LoadSavedState();
-		}
-
-		private void buttonXSavedFiles_Click(object sender, EventArgs e)
-		{
-			LoadFromFile();
 		}
 
 		private void buttonXAddItem_Click(object sender, EventArgs e)
@@ -273,7 +245,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SettingsNotSaved = true;
 		}
 
-		public void tabControl_SelectedTabChanged(object sender, TabStripTabChangedEventArgs e)
+		private void xtraTabControl_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
 		{
 			laTotalItems.Visible = false;
 			buttonXAddItem.Visible = false;
@@ -285,10 +257,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			pnTotals.Visible = false;
 			ckPresentationDate.Visible = false;
 			laPresentationDateTag.Visible = false;
-			ckSignatureLine.Visible = false;
-			laSignatureLineTag.Visible = false;
 			ckEnableTotalsEdit.Visible = false;
-			pbTotals.Visible = false;
 			ckMonthlyInvestment.Visible = false;
 			spinEditMonthly.Visible = false;
 			ckTotalInvestment.Visible = false;
@@ -297,32 +266,21 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			simpleSummaryOutputContainer.Visible = false;
 			pnOutputWarning.Visible = false;
 
+			SetOutputState(false);
 
-			laDescription.Visible = false;
-
-			if (EnableOutput != null)
-				EnableOutput(false);
-
-			if (tabControlSimpleSummary.SelectedTab.Equals(tabItemAdvertiser))
-			{
-				laDescription.Visible = true;
-			}
-			else if (tabControlSimpleSummary.SelectedTab.Equals(tabItemCampaign))
-			{
-				laDescription.Visible = true;
-			}
-			else if (tabControlSimpleSummary.SelectedTab.Equals(tabItemPaymentDetails))
+			if (e.Page == xtraTabPagePaymentDetails)
 			{
 				laTotalItems.Visible = true;
 				buttonXAddItem.Visible = true;
 				pnTotals.Visible = true;
 				UpdateTotalValues();
 			}
-			else if (tabControlSimpleSummary.SelectedTab.Equals(tabItemSlideOutput))
+			else if (e.Page == xtraTabPageOutput)
 			{
 				bool itemsComplited = simpleSummaryItemContainer.ItemsComplited;
 				pnHeader.Visible = itemsComplited;
 				simpleSummaryOutputContainer.Visible = itemsComplited;
+				simpleSummaryOutputContainer.BringToFront();
 				pnOutputWarning.Visible = !itemsComplited;
 				ckPreparedFor.Visible = itemsComplited;
 				laAdvertiserTag.Visible = itemsComplited;
@@ -330,10 +288,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				laCampaignTag.Visible = itemsComplited;
 				ckPresentationDate.Visible = itemsComplited;
 				laPresentationDateTag.Visible = itemsComplited;
-				ckSignatureLine.Visible = itemsComplited;
-				laSignatureLineTag.Visible = itemsComplited;
 				ckEnableTotalsEdit.Visible = itemsComplited;
-				pbTotals.Visible = itemsComplited;
 				ckMonthlyInvestment.Visible = itemsComplited;
 				spinEditMonthly.Visible = itemsComplited;
 				ckTotalInvestment.Visible = itemsComplited;
@@ -344,10 +299,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				laAdvertiserTag.Text = Advertiser;
 				laCampaignTag.Text = CampaignDates;
 				laPresentationDateTag.Text = PresentationDate;
-				laSignatureLineTag.Text = DecisionMaker;
 
-				if (EnableOutput != null)
-					EnableOutput(itemsComplited);
+				SetOutputState(itemsComplited);
 			}
 		}
 
@@ -404,7 +357,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				SettingsNotSaved = true;
 		}
 
-
 		private void checkEdit_CheckedChanged(object sender, EventArgs e)
 		{
 			if (AllowToSave)
@@ -443,7 +395,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			get
 			{
-				if (ckDecisionMaker.Checked && ckSignatureLine.Checked)
+				if (ckDecisionMaker.Checked)
 					return comboBoxEditDecisionMaker.EditValue == null ? string.Empty : comboBoxEditDecisionMaker.EditValue.ToString();
 				else
 					return string.Empty;

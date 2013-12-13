@@ -28,27 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnMain = new DevExpress.XtraEditors.XtraScrollableControl();
-            this.SuspendLayout();
-            // 
-            // pnMain
-            // 
-            this.pnMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnMain.Location = new System.Drawing.Point(0, 0);
-            this.pnMain.Name = "pnMain";
-            this.pnMain.Size = new System.Drawing.Size(620, 282);
-            this.pnMain.TabIndex = 0;
-            // 
-            // SimpleSummaryItemContainer
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.Controls.Add(this.pnMain);
-            this.Name = "SimpleSummaryItemContainer";
-            this.Size = new System.Drawing.Size(620, 282);
-            this.ResumeLayout(false);
+			this.pnMain = new DevExpress.XtraEditors.XtraScrollableControl();
+			this.SuspendLayout();
+			// 
+			// pnMain
+			// 
+			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnMain.Location = new System.Drawing.Point(0, 0);
+			this.pnMain.Name = "pnMain";
+			this.pnMain.Size = new System.Drawing.Size(620, 282);
+			this.pnMain.TabIndex = 0;
+			// 
+			// SimpleSummaryItemContainer
+			// 
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.Controls.Add(this.pnMain);
+			this.Name = "SimpleSummaryItemContainer";
+			this.Size = new System.Drawing.Size(620, 282);
+			this.ResumeLayout(false);
 
         }
 

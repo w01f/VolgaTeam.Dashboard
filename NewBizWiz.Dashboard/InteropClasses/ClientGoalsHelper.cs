@@ -16,7 +16,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 		{
 			if (Directory.Exists(MasterWizardManager.Instance.SelectedWizard.ClientGoalsFolder))
 			{
-				string presentationTemplatePath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.ClientGoalsFolder, string.Format(MasterWizardManager.ClientGoalsSlideTemplate, ClientGoalsControl.Instance.GoalsCount));
+				string presentationTemplatePath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.ClientGoalsFolder, string.Format(MasterWizardManager.ClientGoalsSlideTemplate, TabHomeMainPage.Instance.SlideClientGoals.GoalsCount));
 				if (File.Exists(presentationTemplatePath))
 				{
 					try
@@ -34,22 +34,22 @@ namespace NewBizWiz.Dashboard.InteropClasses
 										switch (shape.Tags.Name(i))
 										{
 											case "HEADER":
-												shape.TextFrame.TextRange.Text = ClientGoalsControl.Instance.Title;
+												shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideClientGoals.Title;
 												break;
 											case "TEXTBOX0":
-												shape.TextFrame.TextRange.Text = ClientGoalsControl.Instance.SelectedGoals[0];
+												shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideClientGoals.SelectedGoals[0];
 												break;
 											case "TEXTBOX1":
-												shape.TextFrame.TextRange.Text = ClientGoalsControl.Instance.SelectedGoals[1];
+												shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideClientGoals.SelectedGoals[1];
 												break;
 											case "TEXTBOX2":
-												shape.TextFrame.TextRange.Text = ClientGoalsControl.Instance.SelectedGoals[2];
+												shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideClientGoals.SelectedGoals[2];
 												break;
 											case "TEXTBOX3":
-												shape.TextFrame.TextRange.Text = ClientGoalsControl.Instance.SelectedGoals[3];
+												shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideClientGoals.SelectedGoals[3];
 												break;
 											case "TEXTBOX4":
-												shape.TextFrame.TextRange.Text = ClientGoalsControl.Instance.SelectedGoals[4];
+												shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideClientGoals.SelectedGoals[4];
 												break;
 										}
 									}

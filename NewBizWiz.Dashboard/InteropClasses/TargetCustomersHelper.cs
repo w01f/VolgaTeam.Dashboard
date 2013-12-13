@@ -5,7 +5,6 @@ using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.Dashboard.TabHomeForms;
-using NewBizWiz.Dashboard.ToolForms;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
@@ -33,16 +32,16 @@ namespace NewBizWiz.Dashboard.InteropClasses
 								switch (shape.Tags.Name(i))
 								{
 									case "HEADER":
-										shape.TextFrame.TextRange.Text = TargetCustomersControl.Instance.Title;
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideTargetCustomers.Title;
 										break;
 									case "TEXTBOX0":
-										shape.TextFrame.TextRange.Text = TargetCustomersControl.Instance.TargetDemo;
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideTargetCustomers.TargetDemo;
 										break;
 									case "TEXTBOX1":
-										shape.TextFrame.TextRange.Text = TargetCustomersControl.Instance.HHI;
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideTargetCustomers.HHI;
 										break;
 									case "TEXTBOX2":
-										shape.TextFrame.TextRange.Text = TargetCustomersControl.Instance.Geography;
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideTargetCustomers.Geography;
 										break;
 								}
 							}

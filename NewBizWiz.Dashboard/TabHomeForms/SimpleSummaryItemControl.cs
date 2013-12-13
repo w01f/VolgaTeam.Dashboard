@@ -99,10 +99,10 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			spinEditMonthly.Enabled = ckMonthly.Checked;
 			OutputItem.MonthlyVisible = ckMonthly.Checked;
-			if (SimpleSummaryControl.Instance.AllowToSave)
+			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
 			{
-				SimpleSummaryControl.Instance.UpdateTotalValues();
-				SimpleSummaryControl.Instance.SettingsNotSaved = true;
+				TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
+				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 			}
 		}
 
@@ -110,10 +110,10 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			spinEditTotal.Enabled = ckTotal.Checked;
 			OutputItem.TotalVisible = ckTotal.Checked;
-			if (SimpleSummaryControl.Instance.AllowToSave)
+			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
 			{
-				SimpleSummaryControl.Instance.UpdateTotalValues();
-				SimpleSummaryControl.Instance.SettingsNotSaved = true;
+				TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
+				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 			}
 		}
 
@@ -121,16 +121,16 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			comboBoxEditItem.Enabled = ckItem.Checked;
 			OutputItem.ItemVisible = ckItem.Checked;
-			if (SimpleSummaryControl.Instance.AllowToSave)
-				SimpleSummaryControl.Instance.SettingsNotSaved = true;
+			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
+				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		private void ckDetails_CheckedChanged(object sender, EventArgs e)
 		{
 			memoEditDetails.Enabled = ckDetails.Checked;
 			OutputItem.DetailsVisible = ckDetails.Checked;
-			if (SimpleSummaryControl.Instance.AllowToSave)
-				SimpleSummaryControl.Instance.SettingsNotSaved = true;
+			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
+				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		private void comboBoxEditItem_EditValueChanged(object sender, EventArgs e)
@@ -139,10 +139,10 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				OutputItem.ItemValue = comboBoxEditItem.EditValue.ToString();
 			else
 				OutputItem.ItemValue = string.Empty;
-			if (SimpleSummaryControl.Instance.AllowToSave)
+			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
 			{
-				SimpleSummaryControl.Instance.UpdateTotalValues();
-				SimpleSummaryControl.Instance.SettingsNotSaved = true;
+				TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
+				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 			}
 		}
 
@@ -152,27 +152,27 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				OutputItem.DetailsValue = memoEditDetails.EditValue.ToString().Replace(Environment.NewLine, "; ");
 			else
 				OutputItem.DetailsValue = string.Empty;
-			if (SimpleSummaryControl.Instance.AllowToSave)
-				SimpleSummaryControl.Instance.SettingsNotSaved = true;
+			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
+				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		private void spinEditMonthly_EditValueChanged(object sender, EventArgs e)
 		{
 			OutputItem.MonthlyValue = spinEditMonthly.Value.ToString("$#,##0.00");
-			if (SimpleSummaryControl.Instance.AllowToSave)
+			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
 			{
-				SimpleSummaryControl.Instance.UpdateTotalValues();
-				SimpleSummaryControl.Instance.SettingsNotSaved = true;
+				TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
+				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 			}
 		}
 
 		private void spinEditTotal_EditValueChanged(object sender, EventArgs e)
 		{
 			OutputItem.ToatlValue = spinEditTotal.Value.ToString("$#,##0.00");
-			if (SimpleSummaryControl.Instance.AllowToSave)
+			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
 			{
-				SimpleSummaryControl.Instance.UpdateTotalValues();
-				SimpleSummaryControl.Instance.SettingsNotSaved = true;
+				TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
+				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 			}
 		}
 
@@ -206,9 +206,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return ckTotal.Checked; }
 		}
 
-		public bool ShowValueOutput
+		public bool ShowValue
 		{
-			get { return ckItem.Checked & OutputItem.ItemChecked; }
+			get { return ckItem.Checked; }
 		}
 
 		public bool ShowDescriptionOutput

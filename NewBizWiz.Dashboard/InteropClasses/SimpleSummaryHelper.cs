@@ -15,7 +15,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 		public void AppendSimpleSummary(Presentation destinationPresentation = null)
 		{
 			if (!Directory.Exists(MasterWizardManager.Instance.SelectedWizard.SimpleSummaryFolder)) return;
-			var itemsCount = SimpleSummaryControl.Instance.ItemsCount;
+			var itemsCount = TabHomeMainPage.Instance.SlideSimpleSummary.ItemsCount;
 			var mainFileTemplateIndex = itemsCount >= 5 ? 5 : itemsCount;
 
 			var additionalFileTemplateIndex = itemsCount > 5 ? itemsCount % 5 : 0;
@@ -46,61 +46,61 @@ namespace NewBizWiz.Dashboard.InteropClasses
 									switch (shape.Tags.Name(i))
 									{
 										case "HEADER":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.Title;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.Title;
 											break;
 										case "CAMPAIGN":
-											if (!string.IsNullOrEmpty(SimpleSummaryControl.Instance.CampaignDates))
+											if (!string.IsNullOrEmpty(TabHomeMainPage.Instance.SlideSimpleSummary.CampaignDates))
 												shape.Visible = MsoTriState.msoTrue;
 											else
 												shape.Visible = MsoTriState.msoFalse;
 											break;
 										case "STARTENDDATE":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.CampaignDates;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.CampaignDates;
 											break;
 										case "PREPAREDFOR":
-											if (!string.IsNullOrEmpty(SimpleSummaryControl.Instance.Advertiser))
+											if (!string.IsNullOrEmpty(TabHomeMainPage.Instance.SlideSimpleSummary.Advertiser))
 												shape.Visible = MsoTriState.msoTrue;
 											else
 												shape.Visible = MsoTriState.msoFalse;
 											break;
 										case "ADVERTISER":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.Advertiser;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.Advertiser;
 											break;
 										case "LINECLIENT":
-											if (!string.IsNullOrEmpty(SimpleSummaryControl.Instance.DecisionMaker))
+											if (!string.IsNullOrEmpty(TabHomeMainPage.Instance.SlideSimpleSummary.DecisionMaker))
 												shape.Visible = MsoTriState.msoTrue;
 											else
 												shape.Visible = MsoTriState.msoFalse;
 											break;
 										case "DECISIONMAKER":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.DecisionMaker;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.DecisionMaker;
 											break;
 										case "DATE_FORMAT":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.PresentationDate;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.PresentationDate;
 											break;
 										case "MNTHLY1":
-											shape.Visible = SimpleSummaryControl.Instance.ShowMonhlyHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
+											shape.Visible = TabHomeMainPage.Instance.SlideSimpleSummary.ShowMonhlyHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
 											break;
 										case "TOTAL2":
-											shape.Visible = SimpleSummaryControl.Instance.ShowTotalHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
+											shape.Visible = TabHomeMainPage.Instance.SlideSimpleSummary.ShowTotalHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
 											break;
 										case "MWH":
-											if (!string.IsNullOrEmpty(SimpleSummaryControl.Instance.TotalMonthlyValue))
+											if (!string.IsNullOrEmpty(TabHomeMainPage.Instance.SlideSimpleSummary.TotalMonthlyValue))
 												shape.Visible = MsoTriState.msoTrue;
 											else
 												shape.Visible = MsoTriState.msoFalse;
 											break;
 										case "TOTALMW":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.TotalMonthlyValue;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.TotalMonthlyValue;
 											break;
 										case "MWT":
-											if (!string.IsNullOrEmpty(SimpleSummaryControl.Instance.TotalTotalValue))
+											if (!string.IsNullOrEmpty(TabHomeMainPage.Instance.SlideSimpleSummary.TotalTotalValue))
 												shape.Visible = MsoTriState.msoTrue;
 											else
 												shape.Visible = MsoTriState.msoFalse;
 											break;
 										case "TOTALINVEST":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.TotalTotalValue;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.TotalTotalValue;
 											break;
 										default:
 											for (int k = 0; k < mainFileTemplateIndex; k++)
@@ -108,48 +108,48 @@ namespace NewBizWiz.Dashboard.InteropClasses
 												if (shape.Tags.Name(i).Equals(string.Format("SHAPE{0}", k)))
 												{
 													shape.Visible = MsoTriState.msoFalse;
-													if (SimpleSummaryControl.Instance.ItemTitles != null)
+													if (TabHomeMainPage.Instance.SlideSimpleSummary.ItemTitles != null)
 														if ((j + k) < itemsCount)
-															if (!string.IsNullOrEmpty(SimpleSummaryControl.Instance.ItemTitles[j + k]))
+															if (!string.IsNullOrEmpty(TabHomeMainPage.Instance.SlideSimpleSummary.ItemTitles[j + k]))
 																shape.Visible = MsoTriState.msoTrue;
 												}
 												else if (shape.Tags.Name(i).Equals(string.Format("SUBHEADER{0}", k)))
 												{
 													shape.Visible = MsoTriState.msoFalse;
-													if (SimpleSummaryControl.Instance.ItemTitles != null)
+													if (TabHomeMainPage.Instance.SlideSimpleSummary.ItemTitles != null)
 														if ((j + k) < itemsCount)
 														{
-															shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.ItemTitles[j + k];
+															shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.ItemTitles[j + k];
 															shape.Visible = MsoTriState.msoTrue;
 														}
 												}
 												else if (shape.Tags.Name(i).Equals(string.Format("SELECT{0}", k)))
 												{
 													shape.Visible = MsoTriState.msoFalse;
-													if (SimpleSummaryControl.Instance.ItemDetails != null)
+													if (TabHomeMainPage.Instance.SlideSimpleSummary.ItemDetails != null)
 														if ((j + k) < itemsCount)
 														{
-															shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.ItemDetails[j + k];
+															shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.ItemDetails[j + k];
 															shape.Visible = MsoTriState.msoTrue;
 														}
 												}
 												else if (shape.Tags.Name(i).Equals(string.Format("TINVEST{0}", k)))
 												{
 													shape.Visible = MsoTriState.msoFalse;
-													if (SimpleSummaryControl.Instance.MonthlyValues != null)
+													if (TabHomeMainPage.Instance.SlideSimpleSummary.MonthlyValues != null)
 														if ((j + k) < itemsCount)
 														{
-															shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.MonthlyValues[j + k];
+															shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.MonthlyValues[j + k];
 															shape.Visible = MsoTriState.msoTrue;
 														}
 												}
 												else if (shape.Tags.Name(i).Equals(string.Format("MWINVEST{0}", k)))
 												{
 													shape.Visible = MsoTriState.msoFalse;
-													if (SimpleSummaryControl.Instance.TotalValues != null)
+													if (TabHomeMainPage.Instance.SlideSimpleSummary.TotalValues != null)
 														if ((j + k) < itemsCount)
 														{
-															shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.TotalValues[j + k];
+															shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.TotalValues[j + k];
 															shape.Visible = MsoTriState.msoTrue;
 														}
 												}
@@ -193,58 +193,58 @@ namespace NewBizWiz.Dashboard.InteropClasses
 									switch (shape.Tags.Name(i))
 									{
 										case "HEADER":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.Title;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.Title;
 											break;
 										case "CAMPAIGN":
-											if (!string.IsNullOrEmpty(SimpleSummaryControl.Instance.CampaignDates))
+											if (!string.IsNullOrEmpty(TabHomeMainPage.Instance.SlideSimpleSummary.CampaignDates))
 												shape.Visible = MsoTriState.msoTrue;
 											else
 												shape.Visible = MsoTriState.msoFalse;
 											break;
 										case "STARTENDDATE":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.CampaignDates;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.CampaignDates;
 											break;
 										case "PREPAREDFOR":
-											if (!string.IsNullOrEmpty(SimpleSummaryControl.Instance.Advertiser))
+											if (!string.IsNullOrEmpty(TabHomeMainPage.Instance.SlideSimpleSummary.Advertiser))
 												shape.Visible = MsoTriState.msoTrue;
 											else
 												shape.Visible = MsoTriState.msoFalse;
 											break;
 										case "ADVERTISER":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.Advertiser;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.Advertiser;
 											break;
 										case "LINECLIENT":
-											if (!string.IsNullOrEmpty(SimpleSummaryControl.Instance.DecisionMaker))
+											if (!string.IsNullOrEmpty(TabHomeMainPage.Instance.SlideSimpleSummary.DecisionMaker))
 												shape.Visible = MsoTriState.msoTrue;
 											else
 												shape.Visible = MsoTriState.msoFalse;
 											break;
 										case "DECISIONMAKER":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.DecisionMaker;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.DecisionMaker;
 											break;
 										case "MNTHLY1":
-											shape.Visible = SimpleSummaryControl.Instance.ShowMonhlyHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
+											shape.Visible = TabHomeMainPage.Instance.SlideSimpleSummary.ShowMonhlyHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
 											break;
 										case "DATE_FORMAT":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.PresentationDate;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.PresentationDate;
 											break;
 										case "MWH":
-											if (!string.IsNullOrEmpty(SimpleSummaryControl.Instance.TotalMonthlyValue))
+											if (!string.IsNullOrEmpty(TabHomeMainPage.Instance.SlideSimpleSummary.TotalMonthlyValue))
 												shape.Visible = MsoTriState.msoTrue;
 											else
 												shape.Visible = MsoTriState.msoFalse;
 											break;
 										case "TOTALMW":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.TotalMonthlyValue;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.TotalMonthlyValue;
 											break;
 										case "MWT":
-											if (!string.IsNullOrEmpty(SimpleSummaryControl.Instance.TotalTotalValue))
+											if (!string.IsNullOrEmpty(TabHomeMainPage.Instance.SlideSimpleSummary.TotalTotalValue))
 												shape.Visible = MsoTriState.msoTrue;
 											else
 												shape.Visible = MsoTriState.msoFalse;
 											break;
 										case "TOTALINVEST":
-											shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.TotalTotalValue;
+											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.TotalTotalValue;
 											break;
 										default:
 											int j = mainFileTemplateIndex * mainFilesCount;
@@ -253,48 +253,48 @@ namespace NewBizWiz.Dashboard.InteropClasses
 												if (shape.Tags.Name(i).Equals(string.Format("SHAPE{0}", k)))
 												{
 													shape.Visible = MsoTriState.msoFalse;
-													if (SimpleSummaryControl.Instance.ItemTitles != null)
+													if (TabHomeMainPage.Instance.SlideSimpleSummary.ItemTitles != null)
 														if ((j + k) < itemsCount)
-															if (!string.IsNullOrEmpty(SimpleSummaryControl.Instance.ItemTitles[j + k]))
+															if (!string.IsNullOrEmpty(TabHomeMainPage.Instance.SlideSimpleSummary.ItemTitles[j + k]))
 																shape.Visible = MsoTriState.msoTrue;
 												}
 												else if (shape.Tags.Name(i).Equals(string.Format("SUBHEADER{0}", k)))
 												{
 													shape.Visible = MsoTriState.msoFalse;
-													if (SimpleSummaryControl.Instance.ItemTitles != null)
+													if (TabHomeMainPage.Instance.SlideSimpleSummary.ItemTitles != null)
 														if ((j + k) < itemsCount)
 														{
-															shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.ItemTitles[j + k];
+															shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.ItemTitles[j + k];
 															shape.Visible = MsoTriState.msoTrue;
 														}
 												}
 												else if (shape.Tags.Name(i).Equals(string.Format("SELECT{0}", k)))
 												{
 													shape.Visible = MsoTriState.msoFalse;
-													if (SimpleSummaryControl.Instance.ItemDetails != null)
+													if (TabHomeMainPage.Instance.SlideSimpleSummary.ItemDetails != null)
 														if ((j + k) < itemsCount)
 														{
-															shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.ItemDetails[j + k];
+															shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.ItemDetails[j + k];
 															shape.Visible = MsoTriState.msoTrue;
 														}
 												}
 												else if (shape.Tags.Name(i).Equals(string.Format("TINVEST{0}", k)))
 												{
 													shape.Visible = MsoTriState.msoFalse;
-													if (SimpleSummaryControl.Instance.MonthlyValues != null)
+													if (TabHomeMainPage.Instance.SlideSimpleSummary.MonthlyValues != null)
 														if ((j + k) < itemsCount)
 														{
-															shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.MonthlyValues[j + k];
+															shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.MonthlyValues[j + k];
 															shape.Visible = MsoTriState.msoTrue;
 														}
 												}
 												else if (shape.Tags.Name(i).Equals(string.Format("MWINVEST{0}", k)))
 												{
 													shape.Visible = MsoTriState.msoFalse;
-													if (SimpleSummaryControl.Instance.TotalValues != null)
+													if (TabHomeMainPage.Instance.SlideSimpleSummary.TotalValues != null)
 														if ((j + k) < itemsCount)
 														{
-															shape.TextFrame.TextRange.Text = SimpleSummaryControl.Instance.TotalValues[j + k];
+															shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.TotalValues[j + k];
 															shape.Visible = MsoTriState.msoTrue;
 														}
 												}

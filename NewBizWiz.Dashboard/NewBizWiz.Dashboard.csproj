@@ -161,8 +161,11 @@
     <EmbeddedResource Include="TabHomeForms\FormSavedStates.resx">
       <DependentUpon>FormSavedStates.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabHomeForms\SimpleSummaryControl.resx">
-      <DependentUpon>SimpleSummaryControl.cs</DependentUpon>
+    <EmbeddedResource Include="TabHomeForms\SlideBaseControl.resx">
+      <DependentUpon>SlideBaseControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabHomeForms\SlideSimpleSummaryControl.resx">
+      <DependentUpon>SlideSimpleSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TabHomeForms\SimpleSummaryOutputControl.resx">
       <DependentUpon>SimpleSummaryOutputControl.cs</DependentUpon>
@@ -176,8 +179,8 @@
     <EmbeddedResource Include="TabHomeForms\SimpleSummaryItemContainer.resx">
       <DependentUpon>SimpleSummaryItemContainer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabHomeForms\CoverControl.resx">
-      <DependentUpon>CoverControl.cs</DependentUpon>
+    <EmbeddedResource Include="TabHomeForms\SlideCoverControl.resx">
+      <DependentUpon>SlideCoverControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TabHomeForms\FormQuotes.resx">
       <DependentUpon>FormQuotes.cs</DependentUpon>
@@ -194,20 +197,20 @@
     <EmbeddedResource Include="TabOnlineForms\OnlineScheduleBuilderControl.resx">
       <DependentUpon>OnlineScheduleBuilderControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabHomeForms\ClientGoalsControl.resx">
-      <DependentUpon>ClientGoalsControl.cs</DependentUpon>
+    <EmbeddedResource Include="TabHomeForms\SlideClientGoalsControl.resx">
+      <DependentUpon>SlideClientGoalsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabHomeForms\TargetCustomersControl.resx">
-      <DependentUpon>TargetCustomersControl.cs</DependentUpon>
+    <EmbeddedResource Include="TabHomeForms\SlideTargetCustomersControl.resx">
+      <DependentUpon>SlideTargetCustomersControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabHomeForms\LeadoffStatementControl.resx">
-      <DependentUpon>LeadoffStatementControl.cs</DependentUpon>
+    <EmbeddedResource Include="TabHomeForms\SlideLeadoffStatementControl.resx">
+      <DependentUpon>SlideLeadoffStatementControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TabHomeForms\TabHomeMainPage.resx">
       <DependentUpon>TabHomeMainPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabHomeForms\TabHomeOverviewControl.resx">
-      <DependentUpon>TabHomeOverviewControl.cs</DependentUpon>
+    <EmbeddedResource Include="TabHomeForms\SlideCleanslateControl.resx">
+      <DependentUpon>SlideCleanslateControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TabSlides\TabSlidesMainPage.resx">
       <DependentUpon>TabSlidesMainPage.cs</DependentUpon>
@@ -287,11 +290,17 @@
     <Compile Include="TabHomeForms\FormSavedStates.Designer.cs">
       <DependentUpon>FormSavedStates.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabHomeForms\SimpleSummaryControl.cs">
+    <Compile Include="TabHomeForms\SlideBaseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabHomeForms\SimpleSummaryControl.Designer.cs">
-      <DependentUpon>SimpleSummaryControl.cs</DependentUpon>
+    <Compile Include="TabHomeForms\SlideBaseControl.Designer.cs">
+      <DependentUpon>SlideBaseControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabHomeForms\SlideSimpleSummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabHomeForms\SlideSimpleSummaryControl.Designer.cs">
+      <DependentUpon>SlideSimpleSummaryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="TabHomeForms\SimpleSummaryOutputControl.cs">
       <SubType>UserControl</SubType>
@@ -317,11 +326,11 @@
     <Compile Include="TabHomeForms\SimpleSummaryItemContainer.Designer.cs">
       <DependentUpon>SimpleSummaryItemContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabHomeForms\CoverControl.cs">
+    <Compile Include="TabHomeForms\SlideCoverControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabHomeForms\CoverControl.Designer.cs">
-      <DependentUpon>CoverControl.cs</DependentUpon>
+    <Compile Include="TabHomeForms\SlideCoverControl.Designer.cs">
+      <DependentUpon>SlideCoverControl.cs</DependentUpon>
     </Compile>
     <Compile Include="TabHomeForms\FormQuotes.cs">
       <SubType>Form</SubType>
@@ -353,23 +362,23 @@
     <Compile Include="TabOnlineForms\OnlineScheduleBuilderControl.Designer.cs">
       <DependentUpon>OnlineScheduleBuilderControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabHomeForms\ClientGoalsControl.cs">
+    <Compile Include="TabHomeForms\SlideClientGoalsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabHomeForms\ClientGoalsControl.Designer.cs">
-      <DependentUpon>ClientGoalsControl.cs</DependentUpon>
+    <Compile Include="TabHomeForms\SlideClientGoalsControl.Designer.cs">
+      <DependentUpon>SlideClientGoalsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabHomeForms\TargetCustomersControl.cs">
+    <Compile Include="TabHomeForms\SlideTargetCustomersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabHomeForms\TargetCustomersControl.Designer.cs">
-      <DependentUpon>TargetCustomersControl.cs</DependentUpon>
+    <Compile Include="TabHomeForms\SlideTargetCustomersControl.Designer.cs">
+      <DependentUpon>SlideTargetCustomersControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabHomeForms\LeadoffStatementControl.cs">
+    <Compile Include="TabHomeForms\SlideLeadoffStatementControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabHomeForms\LeadoffStatementControl.Designer.cs">
-      <DependentUpon>LeadoffStatementControl.cs</DependentUpon>
+    <Compile Include="TabHomeForms\SlideLeadoffStatementControl.Designer.cs">
+      <DependentUpon>SlideLeadoffStatementControl.cs</DependentUpon>
     </Compile>
     <Compile Include="TabHomeForms\TabHomeMainPage.cs">
       <SubType>UserControl</SubType>
@@ -377,11 +386,11 @@
     <Compile Include="TabHomeForms\TabHomeMainPage.Designer.cs">
       <DependentUpon>TabHomeMainPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabHomeForms\TabHomeOverviewControl.cs">
+    <Compile Include="TabHomeForms\SlideCleanslateControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabHomeForms\TabHomeOverviewControl.Designer.cs">
-      <DependentUpon>TabHomeOverviewControl.cs</DependentUpon>
+    <Compile Include="TabHomeForms\SlideCleanslateControl.Designer.cs">
+      <DependentUpon>SlideCleanslateControl.cs</DependentUpon>
     </Compile>
     <Compile Include="TabSlides\TabSlidesMainPage.cs">
       <SubType>UserControl</SubType>
@@ -453,6 +462,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\SlideSummary.png" />
+    <None Include="Resources\SlideTargetCustomers.png" />
+    <None Include="Resources\SlideClientGoals.png" />
+    <None Include="Resources\SlideLeadoff.png" />
+    <None Include="Resources\SlideCover.png" />
     <None Include="Resources\TitleCalendar.png" />
     <None Include="Resources\LabelCalendar.png" />
     <None Include="Resources\TitleNewspaper.png" />
@@ -469,7 +483,6 @@
     <None Include="Resources\CableLittle.png" />
     <None Include="Resources\DeleteButton.png" />
     <None Include="Resources\Floater.png" />
-    <None Include="Resources\BetaTest.png" />
     <None Include="Resources\CalendarLittle.png" />
     <None Include="Resources\HomeCalendar.png" />
     <None Include="Resources\RedWarning.png" />

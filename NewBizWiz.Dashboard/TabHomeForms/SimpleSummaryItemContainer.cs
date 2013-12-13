@@ -37,7 +37,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public bool ItemsComplited
 		{
-			get { return _itemsCollection.Where(x => x.Complited).Count() == _itemsCollection.Count; }
+			get { return _itemsCollection.Count(x => x.Complited) == _itemsCollection.Count; }
 		}
 
 		public void LoadItems()
@@ -75,11 +75,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		public void SaveItems()
 		{
 			ViewSettingsManager.Instance.SimpleSummaryState.ItemsState.Clear();
-			foreach (SimpleSummaryItemControl item in _itemsCollection)
+			foreach (var item in _itemsCollection)
 			{
 				var itemState = new SimpleSummaryItemState();
 				itemState.Order = item.ItemNumber;
-				itemState.ShowValue = item.ShowValueOutput;
+				itemState.ShowValue = item.ShowValue;
 				itemState.ShowDescription = item.ShowDescriptionOutput;
 				itemState.ShowMonthly = item.ShowMonthlyOutput;
 				itemState.ShowTotal = item.ShowTotalOutput;
@@ -122,11 +122,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				RefreshItems();
 
 				UpdateItemsNumbers();
-				SimpleSummaryControl.Instance.buttonXAddItem.Enabled = true;
+				TabHomeMainPage.Instance.SlideSimpleSummary.buttonXAddItem.Enabled = true;
 				pnMain.Focus();
-				SimpleSummaryControl.Instance.UpdateTotalItems();
+				TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalItems();
 
-				SimpleSummaryControl.Instance.SettingsNotSaved = true;
+				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 			}
 		}
 
@@ -143,7 +143,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				_itemsCollection.Sort((x, y) => x.ItemNumber.CompareTo(y.ItemNumber));
 				RefreshItems();
 				pnMain.ScrollControlIntoView(currentItem);
-				SimpleSummaryControl.Instance.SettingsNotSaved = true;
+				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 			}
 		}
 
@@ -160,7 +160,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				_itemsCollection.Sort((x, y) => x.ItemNumber.CompareTo(y.ItemNumber));
 				RefreshItems();
 				pnMain.ScrollControlIntoView(currentItem);
-				SimpleSummaryControl.Instance.SettingsNotSaved = true;
+				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 			}
 		}
 
@@ -210,9 +210,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get
 			{
 				var result = new List<string>();
-				foreach (SimpleSummaryItemControl item in _itemsCollection)
+				foreach (var item in _itemsCollection)
 					if (!string.IsNullOrEmpty(item.ItemTitle))
-						result.Add(item.ItemTitle);
+						result.Add(item.OutputItemTitle);
 				return result.ToArray();
 			}
 		}

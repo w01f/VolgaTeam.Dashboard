@@ -15,14 +15,14 @@ namespace NewBizWiz.Dashboard.InteropClasses
 		public void AppendLeadoffStatements(Presentation destinationPresentation = null)
 		{
 			if (!Directory.Exists(MasterWizardManager.Instance.SelectedWizard.LeadoffStatementsFolder)) return;
-			var presentationTemplatePath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.LeadoffStatementsFolder, string.Format(MasterWizardManager.LeadOffSlideTemplate, LeadoffStatementControl.Instance.StatementsCount));
+			var presentationTemplatePath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.LeadoffStatementsFolder, string.Format(MasterWizardManager.LeadOffSlideTemplate, TabHomeMainPage.Instance.SlideLeadoff.StatementsCount));
 			if (!File.Exists(presentationTemplatePath)) return;
 			try
 			{
 				var thread = new Thread(delegate()
 				{
 					MessageFilter.Register();
-					var presentation = _powerPointObject.Presentations.Open(FileName: presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+					var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 					foreach (Slide slide in presentation.Slides)
 					{
 						foreach (Shape shape in slide.Shapes)
@@ -32,16 +32,16 @@ namespace NewBizWiz.Dashboard.InteropClasses
 								switch (shape.Tags.Name(i))
 								{
 									case "HEADER":
-										shape.TextFrame.TextRange.Text = LeadoffStatementControl.Instance.Title;
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideLeadoff.Title;
 										break;
 									case "TEXTBOX1":
-										shape.TextFrame.TextRange.Text = LeadoffStatementControl.Instance.SelectedStatements[0];
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideLeadoff.SelectedStatements[0];
 										break;
 									case "TEXTBOX2":
-										shape.TextFrame.TextRange.Text = LeadoffStatementControl.Instance.SelectedStatements[1];
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideLeadoff.SelectedStatements[1];
 										break;
 									case "TEXTBOX3":
-										shape.TextFrame.TextRange.Text = LeadoffStatementControl.Instance.SelectedStatements[2];
+										shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideLeadoff.SelectedStatements[2];
 										break;
 								}
 							}

@@ -130,8 +130,6 @@
 			// ckTotal
 			// 
 			this.ckTotal.AutoSize = true;
-			this.ckTotal.Checked = true;
-			this.ckTotal.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.ckTotal.Location = new System.Drawing.Point(167, 56);
 			this.ckTotal.Name = "ckTotal";
 			this.ckTotal.Size = new System.Drawing.Size(15, 14);
@@ -225,6 +223,7 @@
             0,
             0,
             0});
+			this.spinEditTotal.Enabled = false;
 			this.spinEditTotal.Location = new System.Drawing.Point(188, 52);
 			this.spinEditTotal.Name = "spinEditTotal";
 			this.spinEditTotal.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);

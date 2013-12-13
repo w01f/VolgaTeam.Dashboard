@@ -28,19 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // TabHomeMainPage
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.Name = "TabHomeMainPage";
-            this.Size = new System.Drawing.Size(894, 487);
-            this.ResumeLayout(false);
+			this.pnEmpty = new System.Windows.Forms.Panel();
+			this.SuspendLayout();
+			// 
+			// pnEmpty
+			// 
+			this.pnEmpty.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnEmpty.Location = new System.Drawing.Point(0, 0);
+			this.pnEmpty.Name = "pnEmpty";
+			this.pnEmpty.Size = new System.Drawing.Size(894, 487);
+			this.pnEmpty.TabIndex = 0;
+			// 
+			// TabHomeMainPage
+			// 
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.Controls.Add(this.pnEmpty);
+			this.Name = "TabHomeMainPage";
+			this.Size = new System.Drawing.Size(894, 487);
+			this.ResumeLayout(false);
 
         }
 
         #endregion
+
+		private System.Windows.Forms.Panel pnEmpty;
 
 
     }

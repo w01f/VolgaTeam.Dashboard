@@ -8,7 +8,6 @@ using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
 using NewBizWiz.Dashboard.InteropClasses;
 using NewBizWiz.Dashboard.Properties;
 using NewBizWiz.Dashboard.TabCalendarForms;
@@ -30,8 +29,8 @@ namespace NewBizWiz.Dashboard
 			_instance = this;
 			InitializeComponent();
 			AppManager.Instance.SetClickEventHandler(ribbonControl);
-			AppManager.Instance.SetClickEventHandler(panelExMain);
-			if ((base.CreateGraphics()).DpiX > 96)
+			AppManager.Instance.SetClickEventHandler(pnMain);
+			if ((CreateGraphics()).DpiX > 96)
 			{
 				ribbonControl.Font = new Font(ribbonControl.Font.FontFamily, ribbonControl.Font.Size - 1, ribbonControl.Font.Style);
 			}
@@ -56,7 +55,7 @@ namespace NewBizWiz.Dashboard
 		private void ApplyMasterWizard()
 		{
 			Text = AppManager.FormCaption;
-			Image masterWizardLogo = MasterWizardManager.Instance.DefaultLogo;
+			var masterWizardLogo = MasterWizardManager.Instance.DefaultLogo;
 			buttonItemHomeOverview.Image = masterWizardLogo;
 			buttonItemOnlineLogo.Image = masterWizardLogo;
 			buttonItemNewspaperLogo.Image = masterWizardLogo;
@@ -196,45 +195,55 @@ namespace NewBizWiz.Dashboard
 
 		private void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
-			Control parent = panelExMainInternal.Parent;
-			panelExMainInternal.Parent = null;
-			panelExMainInternal.Controls.Clear();
 			OutsideClick = null;
 			if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemHome)
 			{
-				TabHomeMainPage.Instance.UpdatePageAccordingToggledButton();
-				panelExMainInternal.Controls.Add(TabHomeMainPage.Instance);
+				TabHomeMainPage.Instance.UpdatePageAccordingToggledButton(SlideType.Cleanslate);
+				if (!pnMain.Controls.Contains(TabHomeMainPage.Instance))
+					pnMain.Controls.Add(TabHomeMainPage.Instance);
+				TabHomeMainPage.Instance.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemOnline)
 			{
 				TabOnlineMainPage.Instance.UpdatePageAccordingToggledButton();
-				panelExMainInternal.Controls.Add(TabOnlineMainPage.Instance);
+				if (!pnMain.Controls.Contains(TabOnlineMainPage.Instance))
+					pnMain.Controls.Add(TabOnlineMainPage.Instance);
+				TabOnlineMainPage.Instance.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemNewspaper)
 			{
 				TabNewspaperMainPage.Instance.UpdatePageAccordingToggledButton();
-				panelExMainInternal.Controls.Add(TabNewspaperMainPage.Instance);
+				if (!pnMain.Controls.Contains(TabNewspaperMainPage.Instance))
+					pnMain.Controls.Add(TabNewspaperMainPage.Instance);
+				TabNewspaperMainPage.Instance.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemTV)
 			{
 				TabTVMainPage.Instance.UpdatePageAccordingToggledButton();
-				panelExMainInternal.Controls.Add(TabTVMainPage.Instance);
+				if (!pnMain.Controls.Contains(TabTVMainPage.Instance))
+					pnMain.Controls.Add(TabTVMainPage.Instance);
+				TabTVMainPage.Instance.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRadio)
 			{
 				TabRadioMainPage.Instance.UpdatePageAccordingToggledButton();
-				panelExMainInternal.Controls.Add(TabRadioMainPage.Instance);
+				if (!pnMain.Controls.Contains(TabRadioMainPage.Instance))
+					pnMain.Controls.Add(TabRadioMainPage.Instance);
+				TabRadioMainPage.Instance.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar)
 			{
 				TabCalendarMainPage.Instance.UpdatePageAccordingToggledButton();
-				panelExMainInternal.Controls.Add(TabCalendarMainPage.Instance);
+				if (!pnMain.Controls.Contains(TabCalendarMainPage.Instance))
+					pnMain.Controls.Add(TabCalendarMainPage.Instance);
+				TabCalendarMainPage.Instance.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSlides)
 			{
-				panelExMainInternal.Controls.Add(TabSlidesMainPage.Instance);
+				if (!pnMain.Controls.Contains(TabSlidesMainPage.Instance))
+					pnMain.Controls.Add(TabSlidesMainPage.Instance);
+				TabSlidesMainPage.Instance.BringToFront();
 			}
-			panelExMainInternal.Parent = parent;
 		}
 
 		private void labelItemLogo_Click(object sender, EventArgs e)
@@ -290,22 +299,9 @@ namespace NewBizWiz.Dashboard
 
 		private void buttonItemHelp_Click(object sender, EventArgs e)
 		{
-			string helpKey = string.Empty;
+			string helpKey = String.Empty;
 			if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemHome)
-			{
-				if (buttonItemHomeOverview.Checked)
-					helpKey = "Home";
-				else if (buttonItemHomeCover.Checked)
-					helpKey = "Cover";
-				else if (buttonItemLeadoffStatement.Checked)
-					helpKey = "Intro";
-				else if (buttonItemClientGoals.Checked)
-					helpKey = "Needs";
-				else if (buttonItemTargetCustomers.Checked)
-					helpKey = "Target";
-				else if (buttonItemSimpleSummary.Checked)
-					helpKey = "Closing";
-			}
+				helpKey = TabHomeMainPage.Instance.HelpKey;
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemOnline)
 				helpKey = "Online";
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemNewspaper)
@@ -326,11 +322,6 @@ namespace NewBizWiz.Dashboard
 		private void UncheckHomeButtons()
 		{
 			buttonItemHomeOverview.Checked = false;
-			buttonItemHomeCover.Checked = false;
-			buttonItemLeadoffStatement.Checked = false;
-			buttonItemClientGoals.Checked = false;
-			buttonItemTargetCustomers.Checked = false;
-			buttonItemSimpleSummary.Checked = false;
 			buttonItemPowerPoint.Enabled = false;
 		}
 
@@ -338,47 +329,7 @@ namespace NewBizWiz.Dashboard
 		{
 			UncheckHomeButtons();
 			buttonItemHomeOverview.Checked = true;
-			TabHomeMainPage.Instance.UpdatePageAccordingToggledButton();
-		}
-
-		public void buttonItemHomeCover_Click(object sender, EventArgs e)
-		{
-			if (buttonItemHomeCover.Checked)
-				UncheckHomeButtons();
-			else
-			{
-				UncheckHomeButtons();
-				buttonItemHomeCover.Checked = true;
-			}
-			TabHomeMainPage.Instance.UpdatePageAccordingToggledButton();
-		}
-
-		private void buttonItemLeadoffStatement_Click(object sender, EventArgs e)
-		{
-			UncheckHomeButtons();
-			buttonItemLeadoffStatement.Checked = true;
-			TabHomeMainPage.Instance.UpdatePageAccordingToggledButton();
-		}
-
-		private void buttonItemClientGoals_Click(object sender, EventArgs e)
-		{
-			UncheckHomeButtons();
-			buttonItemClientGoals.Checked = true;
-			TabHomeMainPage.Instance.UpdatePageAccordingToggledButton();
-		}
-
-		private void buttonItemTargetCustomers_Click(object sender, EventArgs e)
-		{
-			UncheckHomeButtons();
-			buttonItemTargetCustomers.Checked = true;
-			TabHomeMainPage.Instance.UpdatePageAccordingToggledButton();
-		}
-
-		public void buttonItemSimpleSummary_Click(object sender, EventArgs e)
-		{
-			UncheckHomeButtons();
-			buttonItemSimpleSummary.Checked = true;
-			TabHomeMainPage.Instance.UpdatePageAccordingToggledButton();
+			TabHomeMainPage.Instance.UpdatePageAccordingToggledButton(SlideType.Cleanslate);
 		}
 		#endregion
 

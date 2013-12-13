@@ -4,31 +4,29 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Dashboard;
 using NewBizWiz.Dashboard.InteropClasses;
-using NewBizWiz.Dashboard.ToolForms;
 using ListManager = NewBizWiz.Core.Dashboard.ListManager;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
 	[ToolboxItem(false)]
-	public partial class LeadoffStatementControl : UserControl
+	public sealed partial class SlideLeadoffStatementControl : SlideBaseControl
 	{
-		private static LeadoffStatementControl _instance;
 		private bool _allowToSave;
+		private readonly SuperTooltipInfo _toolTip = new SuperTooltipInfo("HELP", "", "Help me with the Introduction Slide", null, null, eTooltipColor.Gray);
 
-		private LeadoffStatementControl()
+		public SlideLeadoffStatementControl()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			AppManager.Instance.SetClickEventHandler(this);
-			if ((base.CreateGraphics()).DpiX > 96)
+			if ((CreateGraphics()).DpiX > 96)
 			{
-				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 3, laTitle.Font.Style);
 				laSlideHeader.Font = new Font(laSlideHeader.Font.FontFamily, laSlideHeader.Font.Size - 2, laSlideHeader.Font.Style);
-				laDetail.Font = new Font(laDetail.Font.FontFamily, laDetail.Font.Size - 3, laDetail.Font.Style);
 				ckA.Font = new Font(ckA.Font.FontFamily, ckA.Font.Size - 3, ckA.Font.Style);
 				ckB.Font = new Font(ckB.Font.FontFamily, ckB.Font.Size - 3, ckB.Font.Style);
 				ckC.Font = new Font(ckC.Font.FontFamily, ckC.Font.Size - 3, ckC.Font.Style);
@@ -46,21 +44,27 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			memoEditC.MouseUp += FormMain.Instance.Editor_MouseUp;
 			memoEditC.MouseDown += FormMain.Instance.Editor_MouseDown;
 			memoEditC.Enter += FormMain.Instance.Editor_Enter;
-		}
 
-		public AppManager.SingleParameterDelegate EnableOutput { get; set; }
-		public AppManager.SingleParameterDelegate EnableSavedFiles { get; set; }
+			comboBoxEditSlideHeader.Properties.Items.Clear();
+			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.LeadoffStatementLists.Headers);
+
+			FormMain.Instance.FormClosed += (sender1, e1) =>
+			{
+				if (SettingsNotSaved)
+				{
+					SaveState();
+					ViewSettingsManager.Instance.LeadoffStatementState.Save();
+				}
+			};
+
+			LoadSavedState();
+		}
 
 		public bool SettingsNotSaved { get; set; }
 
-		public static LeadoffStatementControl Instance
+		public override SuperTooltipInfo Tooltip
 		{
-			get
-			{
-				if (_instance == null)
-					_instance = new LeadoffStatementControl();
-				return _instance;
-			}
+			get { return _toolTip; }
 		}
 
 		private void UpdateEditState()
@@ -80,18 +84,15 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 			else
 			{
-				int index = comboBoxEditSlideHeader.Properties.Items.IndexOf(ViewSettingsManager.Instance.LeadoffStatementState.SlideHeader);
-				if (index >= 0)
-					comboBoxEditSlideHeader.SelectedIndex = index;
-				else
-					comboBoxEditSlideHeader.SelectedIndex = 0;
+				var index = comboBoxEditSlideHeader.Properties.Items.IndexOf(ViewSettingsManager.Instance.LeadoffStatementState.SlideHeader);
+				comboBoxEditSlideHeader.SelectedIndex = index >= 0 ? index : 0;
 			}
 			ckA.Checked = ViewSettingsManager.Instance.LeadoffStatementState.ShowStatement1;
 			ckB.Checked = ViewSettingsManager.Instance.LeadoffStatementState.ShowStatement2;
 			ckC.Checked = ViewSettingsManager.Instance.LeadoffStatementState.ShowStatement3;
-			memoEditA.EditValue = !string.IsNullOrEmpty(ViewSettingsManager.Instance.LeadoffStatementState.Statement1) ? ViewSettingsManager.Instance.LeadoffStatementState.Statement1 : (ListManager.Instance.LeadoffStatementLists.Statements.Count > 0 ? ListManager.Instance.LeadoffStatementLists.Statements[0] : string.Empty);
-			memoEditB.EditValue = !string.IsNullOrEmpty(ViewSettingsManager.Instance.LeadoffStatementState.Statement2) ? ViewSettingsManager.Instance.LeadoffStatementState.Statement2 : (ListManager.Instance.LeadoffStatementLists.Statements.Count > 1 ? ListManager.Instance.LeadoffStatementLists.Statements[1] : string.Empty);
-			memoEditC.EditValue = !string.IsNullOrEmpty(ViewSettingsManager.Instance.LeadoffStatementState.Statement3) ? ViewSettingsManager.Instance.LeadoffStatementState.Statement3 : (ListManager.Instance.LeadoffStatementLists.Statements.Count > 2 ? ListManager.Instance.LeadoffStatementLists.Statements[2] : string.Empty);
+			memoEditA.EditValue = !String.IsNullOrEmpty(ViewSettingsManager.Instance.LeadoffStatementState.Statement1) ? ViewSettingsManager.Instance.LeadoffStatementState.Statement1 : (ListManager.Instance.LeadoffStatementLists.Statements.Count > 0 ? ListManager.Instance.LeadoffStatementLists.Statements[0] : string.Empty);
+			memoEditB.EditValue = !String.IsNullOrEmpty(ViewSettingsManager.Instance.LeadoffStatementState.Statement2) ? ViewSettingsManager.Instance.LeadoffStatementState.Statement2 : (ListManager.Instance.LeadoffStatementLists.Statements.Count > 1 ? ListManager.Instance.LeadoffStatementLists.Statements[1] : string.Empty);
+			memoEditC.EditValue = !String.IsNullOrEmpty(ViewSettingsManager.Instance.LeadoffStatementState.Statement3) ? ViewSettingsManager.Instance.LeadoffStatementState.Statement3 : (ListManager.Instance.LeadoffStatementLists.Statements.Count > 2 ? ListManager.Instance.LeadoffStatementLists.Statements[2] : string.Empty);
 
 			_allowToSave = true;
 			SettingsNotSaved = false;
@@ -112,33 +113,14 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SettingsNotSaved = false;
 		}
 
-		public void LoadFromFile()
+		protected override void SavedFiles_Click(object sender, EventArgs e)
 		{
 			using (var form = new FormSavedLeadoffStatement())
 			{
-				if (form.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(form.SelectedFile))
-				{
-					ViewSettingsManager.Instance.LeadoffStatementState.Load(form.SelectedFile);
-					LoadSavedState();
-				}
+				if (form.ShowDialog() != DialogResult.OK || string.IsNullOrEmpty(form.SelectedFile)) return;
+				ViewSettingsManager.Instance.LeadoffStatementState.Load(form.SelectedFile);
+				LoadSavedState();
 			}
-		}
-
-		private void LeadoffStatementControl_Load(object sender, EventArgs e)
-		{
-			comboBoxEditSlideHeader.Properties.Items.Clear();
-			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.LeadoffStatementLists.Headers);
-
-			FormMain.Instance.FormClosed += (sender1, e1) =>
-												{
-													if (SettingsNotSaved)
-													{
-														SaveState();
-														ViewSettingsManager.Instance.LeadoffStatementState.Save();
-													}
-												};
-
-			LoadSavedState();
 		}
 
 		private void checkBoxes_CheckedChanged(object sender, EventArgs e)
@@ -160,7 +142,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			get
 			{
-				int result = 0;
+				var result = 0;
 				if (ckA.Checked && memoEditA.EditValue != null)
 					if (!string.IsNullOrEmpty(memoEditA.EditValue.ToString().Trim()))
 						result++;
@@ -199,24 +181,20 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public void UpdateOutputState()
 		{
-			if (EnableOutput != null)
-				EnableOutput(ckA.Checked || ckB.Checked || ckC.Checked);
+			SetOutputState(ckA.Checked || ckB.Checked || ckC.Checked);
 		}
 
 		public void UpdateSavedFilesState()
 		{
-			if (EnableSavedFiles != null)
-				EnableSavedFiles(ViewSettingsManager.Instance.LeadoffStatementState.AllowToLoad());
+			SetLoadState(ViewSettingsManager.Instance.LeadoffStatementState.AllowToLoad());
 		}
 
 		private void SaveChanges()
 		{
-			if (SettingsNotSaved)
-			{
-				SaveState();
-				ViewSettingsManager.Instance.LeadoffStatementState.Save();
-				UpdateSavedFilesState();
-			}
+			if (!SettingsNotSaved) return;
+			SaveState();
+			ViewSettingsManager.Instance.LeadoffStatementState.Save();
+			UpdateSavedFilesState();
 		}
 
 		public void Output()

@@ -4,40 +4,36 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Dashboard;
 using NewBizWiz.Dashboard.InteropClasses;
-using NewBizWiz.Dashboard.ToolForms;
 using ListManager = NewBizWiz.Core.Dashboard.ListManager;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
 	[ToolboxItem(false)]
-	public partial class ClientGoalsControl : UserControl
+	public sealed partial class SlideClientGoalsControl : SlideBaseControl
 	{
-		private static ClientGoalsControl _instance;
 		private bool _allowToSave;
+		private readonly SuperTooltipInfo _toolTip = new SuperTooltipInfo("HELP", "", "Help me with the Client Needs Analysis Slide", null, null, eTooltipColor.Gray);
 
-		private ClientGoalsControl()
+		public SlideClientGoalsControl()
+			: base()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			AppManager.Instance.SetClickEventHandler(this);
-			if ((base.CreateGraphics()).DpiX > 96)
+			if ((CreateGraphics()).DpiX > 96)
 			{
-				laTitle.Font = new Font(laTitle.Font.FontFamily, laTitle.Font.Size - 3, laTitle.Font.Style);
-				laSlideHeader.Font = new Font(laSlideHeader.Font.FontFamily, laSlideHeader.Font.Size - 2, laSlideHeader.Font.Style);
-				laDetail.Font = new Font(laDetail.Font.FontFamily, laDetail.Font.Size - 3, laDetail.Font.Style);
+
 				laGoal1.Font = new Font(laGoal1.Font.FontFamily, laGoal1.Font.Size - 3, laGoal1.Font.Style);
 				laGoal2.Font = new Font(laGoal2.Font.FontFamily, laGoal2.Font.Size - 3, laGoal2.Font.Style);
 				laGoal3.Font = new Font(laGoal3.Font.FontFamily, laGoal3.Font.Size - 3, laGoal3.Font.Style);
 				laGoal4.Font = new Font(laGoal4.Font.FontFamily, laGoal4.Font.Size - 3, laGoal4.Font.Style);
 				laGoal5.Font = new Font(laGoal5.Font.FontFamily, laGoal5.Font.Size - 3, laGoal5.Font.Style);
 			}
-			comboBoxEditSlideHeader.MouseUp += FormMain.Instance.Editor_MouseUp;
-			comboBoxEditSlideHeader.MouseDown += FormMain.Instance.Editor_MouseDown;
-			comboBoxEditSlideHeader.Enter += FormMain.Instance.Editor_Enter;
 			comboBoxEditGoal1.MouseUp += FormMain.Instance.Editor_MouseUp;
 			comboBoxEditGoal1.MouseDown += FormMain.Instance.Editor_MouseDown;
 			comboBoxEditGoal1.Enter += FormMain.Instance.Editor_Enter;
@@ -53,22 +49,41 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			comboBoxEditGoal5.MouseUp += FormMain.Instance.Editor_MouseUp;
 			comboBoxEditGoal5.MouseDown += FormMain.Instance.Editor_MouseDown;
 			comboBoxEditGoal5.Enter += FormMain.Instance.Editor_Enter;
+
+			comboBoxEditSlideHeader.Properties.Items.Clear();
+			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Headers);
+
+			comboBoxEditGoal1.Properties.Items.Clear();
+			comboBoxEditGoal1.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Goals);
+
+			comboBoxEditGoal2.Properties.Items.Clear();
+			comboBoxEditGoal2.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Goals);
+
+			comboBoxEditGoal3.Properties.Items.Clear();
+			comboBoxEditGoal3.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Goals);
+
+			comboBoxEditGoal4.Properties.Items.Clear();
+			comboBoxEditGoal4.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Goals);
+
+			comboBoxEditGoal5.Properties.Items.Clear();
+			comboBoxEditGoal5.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Goals);
+
+			FormMain.Instance.FormClosed += (sender1, e1) =>
+			{
+				if (!SettingsNotSaved) return;
+				SaveState();
+				ViewSettingsManager.Instance.ClientGoalsState.Save();
+			};
+
+			LoadSavedState();
 		}
 
-		public AppManager.SingleParameterDelegate EnableOutput { get; set; }
-		public AppManager.SingleParameterDelegate EnableSavedFiles { get; set; }
+		public override SuperTooltipInfo Tooltip
+		{
+			get { return _toolTip; }
+		}
 
 		public bool SettingsNotSaved { get; set; }
-
-		public static ClientGoalsControl Instance
-		{
-			get
-			{
-				if (_instance == null)
-					_instance = new ClientGoalsControl();
-				return _instance;
-			}
-		}
 
 		private void LoadSavedState()
 		{
@@ -80,11 +95,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 			else
 			{
-				int index = comboBoxEditSlideHeader.Properties.Items.IndexOf(ViewSettingsManager.Instance.ClientGoalsState.SlideHeader);
-				if (index >= 0)
-					comboBoxEditSlideHeader.SelectedIndex = index;
-				else
-					comboBoxEditSlideHeader.SelectedIndex = 0;
+				var index = comboBoxEditSlideHeader.Properties.Items.IndexOf(ViewSettingsManager.Instance.ClientGoalsState.SlideHeader);
+				comboBoxEditSlideHeader.SelectedIndex = index >= 0 ? index : 0;
 			}
 			comboBoxEditGoal1.EditValue = !string.IsNullOrEmpty(ViewSettingsManager.Instance.ClientGoalsState.Goal1) ? ViewSettingsManager.Instance.ClientGoalsState.Goal1 : null;
 			comboBoxEditGoal2.EditValue = !string.IsNullOrEmpty(ViewSettingsManager.Instance.ClientGoalsState.Goal2) ? ViewSettingsManager.Instance.ClientGoalsState.Goal2 : null;
@@ -109,48 +121,14 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SettingsNotSaved = false;
 		}
 
-		public void LoadFromFile()
+		protected override void SavedFiles_Click(object sender, EventArgs e)
 		{
 			using (var form = new FormSavedClentGoals())
 			{
-				if (form.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(form.SelectedFile))
-				{
-					ViewSettingsManager.Instance.ClientGoalsState.Load(form.SelectedFile);
-					LoadSavedState();
-				}
+				if (form.ShowDialog() != DialogResult.OK || string.IsNullOrEmpty(form.SelectedFile)) return;
+				ViewSettingsManager.Instance.ClientGoalsState.Load(form.SelectedFile);
+				LoadSavedState();
 			}
-		}
-
-		private void ClientGoalsControl_Load(object sender, EventArgs e)
-		{
-			comboBoxEditSlideHeader.Properties.Items.Clear();
-			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Headers);
-
-			comboBoxEditGoal1.Properties.Items.Clear();
-			comboBoxEditGoal1.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Goals);
-
-			comboBoxEditGoal2.Properties.Items.Clear();
-			comboBoxEditGoal2.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Goals);
-
-			comboBoxEditGoal3.Properties.Items.Clear();
-			comboBoxEditGoal3.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Goals);
-
-			comboBoxEditGoal4.Properties.Items.Clear();
-			comboBoxEditGoal4.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Goals);
-
-			comboBoxEditGoal5.Properties.Items.Clear();
-			comboBoxEditGoal5.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Goals);
-
-			FormMain.Instance.FormClosed += (sender1, e1) =>
-												{
-													if (SettingsNotSaved)
-													{
-														SaveState();
-														ViewSettingsManager.Instance.ClientGoalsState.Save();
-													}
-												};
-
-			LoadSavedState();
 		}
 
 		private void comboBoxEditGoal_EditValueChanged(object sender, EventArgs e)
@@ -216,12 +194,10 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		private void SaveChanges()
 		{
-			if (SettingsNotSaved)
-			{
-				SaveState();
-				ViewSettingsManager.Instance.ClientGoalsState.Save();
-				UpdateSavedFilesState();
-			}
+			if (!SettingsNotSaved) return;
+			SaveState();
+			ViewSettingsManager.Instance.ClientGoalsState.Save();
+			UpdateSavedFilesState();
 		}
 
 		public void Output()
@@ -235,7 +211,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				AppManager.Instance.ShowFloater(null, () =>
 				{
 					DashboardPowerPointHelper.Instance.AppendClientGoals();
-					form.Close();					
+					form.Close();
 				});
 			}
 		}
@@ -270,7 +246,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public void UpdateOutputState()
 		{
-			bool result = false;
+			var result = false;
 			if (comboBoxEditGoal1.EditValue != null)
 			{
 				if (!string.IsNullOrEmpty(comboBoxEditGoal1.EditValue.ToString().Trim()))
@@ -296,14 +272,12 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				if (!string.IsNullOrEmpty(comboBoxEditGoal5.EditValue.ToString().Trim()))
 					result = true;
 			}
-			if (EnableOutput != null)
-				EnableOutput(result);
+			SetOutputState(result);
 		}
 
 		public void UpdateSavedFilesState()
 		{
-			if (EnableSavedFiles != null)
-				EnableSavedFiles(ViewSettingsManager.Instance.ClientGoalsState.AllowToLoad());
+			SetLoadState(ViewSettingsManager.Instance.ClientGoalsState.AllowToLoad());
 		}
 		#endregion
 	}

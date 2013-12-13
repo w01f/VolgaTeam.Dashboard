@@ -2,28 +2,31 @@
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
 using NewBizWiz.Dashboard.TabHomeForms.Dashboard;
-using NewBizWiz.Dashboard.ToolForms;
 using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
 	[ToolboxItem(false)]
-	public partial class TabHomeOverviewControl : UserControl
+	public partial class SlideCleanslateControl : SlideBaseControl
 	{
-		private static TabHomeOverviewControl _instance;
+		private readonly SuperTooltipInfo _toolTip = new SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, eTooltipColor.Gray);
 
-		public AppManager.SingleParameterDelegate EnableOutput { get; set; }
+		public override SuperTooltipInfo Tooltip
+		{
+			get { return _toolTip; }
+		}
 
-		private TabHomeOverviewControl()
+		public SlideCleanslateControl()
+			: base()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 			AppManager.Instance.SetClickEventHandler(this);
-
 			Control dashboard = null;
 			switch (SettingsManager.Instance.DashboardCode)
 			{
@@ -43,27 +46,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			if (dashboard != null)
 				pnMain.Controls.Add(dashboard);
 
-			pbWatermark.Image = MasterWizardManager.Instance.Watermark;
-			pbWatermark.BringToFront();
 			laUserName.Text = Environment.UserName;
 			pbVersion.Image = MasterWizardManager.Instance.Version;
 		}
 
-		public static TabHomeOverviewControl Instance
-		{
-			get
-			{
-				if (_instance == null)
-					_instance = new TabHomeOverviewControl();
-				return _instance;
-			}
-		}
-
 		public void UpdateOutputState()
 		{
-			bool result = true;
-			if (EnableOutput != null)
-				EnableOutput(result);
+			SetOutputState(true);
 		}
 
 		public void Output()

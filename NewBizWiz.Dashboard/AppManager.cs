@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -24,7 +22,7 @@ namespace NewBizWiz.Dashboard
 
 		private static readonly AppManager _instance = new AppManager();
 		public HelpManager HelpManager { get; private set; }
-		private FloaterManager _floater = new FloaterManager();
+		private readonly FloaterManager _floater = new FloaterManager();
 
 		private AppManager()
 		{
@@ -64,43 +62,16 @@ namespace NewBizWiz.Dashboard
 			return DashboardPowerPointHelper.Instance.Connect();
 		}
 
-		public void RunMinibar()
-		{
-			Process[] processes = Process.GetProcesses();
-			if (processes.Where(x => x.ProcessName.ToLower().Contains("minibar")).Count() == 0)
-				if (File.Exists(SettingsManager.Instance.MinibarApplicationPath))
-					Process.Start(SettingsManager.Instance.MinibarApplicationPath);
-		}
-
-		public void RunOneDomain()
-		{
-			Process[] processes = Process.GetProcesses();
-			if (processes.Where(x => x.ProcessName.ToLower().Contains("onedomain")).Count() == 0)
-				if (File.Exists(SettingsManager.Instance.OneDomainApplicationPath))
-					Process.Start(SettingsManager.Instance.OneDomainApplicationPath);
-		}
-
-		public void RunSalesDepot()
-		{
-			Process[] processes = Process.GetProcesses();
-			if (processes.Where(x => x.ProcessName.ToLower().Contains("salesdepot")).Count() == 0)
-				if (File.Exists(SettingsManager.Instance.SalesDepotApplicationPath))
-					Process.Start(SettingsManager.Instance.SalesDepotApplicationPath);
-		}
-
 		public void ActivateMainForm()
 		{
 			var mainFormHandle = RegistryHelper.MainFormHandle;
 			if (mainFormHandle.ToInt32() == 0)
 			{
-				Process[] processList = Process.GetProcesses();
-				foreach (Process process in processList.Where(x => x.ProcessName.ToLower().Contains("adsalesapp")))
+				var processList = Process.GetProcesses();
+				foreach (var process in processList.Where(x => x.ProcessName.ToLower().Contains("adsalesapp")).Where(process => process.MainWindowHandle.ToInt32() != 0))
 				{
-					if (process.MainWindowHandle.ToInt32() != 0)
-					{
-						mainFormHandle = process.MainWindowHandle;
-						break;
-					}
+					mainFormHandle = process.MainWindowHandle;
+					break;
 				}
 			}
 			Utilities.Instance.ActivateForm(mainFormHandle, RegistryHelper.MaximizeMainForm, false);

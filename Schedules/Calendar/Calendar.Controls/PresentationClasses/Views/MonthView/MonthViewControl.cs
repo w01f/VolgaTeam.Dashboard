@@ -56,7 +56,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 				ClearContainer();
 				foreach (var monthData in Calendar.CalendarData.Months)
 				{
-					var month = Calendar is CalendarSundayBased ? (MonthControl)new MonthControlSundayBased() : new MonthControlMondayBased();
+					var month = Calendar.CalendarData is CalendarSundayBased ? (MonthControl)new MonthControlSundayBased() : new MonthControlMondayBased();
 					Months.Add(monthData.Date, month);
 				}
 			}

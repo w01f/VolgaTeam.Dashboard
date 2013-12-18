@@ -150,7 +150,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 		private void UpdateFormTitle()
 		{
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("SellerPoint WebSlides - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
+				Text = String.Format("SellerPoint WebPRO - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
 		}
 
 		private void LoadData()
@@ -230,7 +230,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("SellerPoint WebSlides - {0} - {1}", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size);
+				Text = String.Format("SellerPoint WebPRO - {0} - {1}", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size);
 			if (File.Exists(Core.OnlineSchedule.SettingsManager.Instance.IconPath))
 				Icon = new Icon(Core.OnlineSchedule.SettingsManager.Instance.IconPath);
 

@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.labelControlTitle = new DevExpress.XtraEditors.LabelControl();
 			this.checkEditBusinessName = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditDecisionMaker = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditPresentationDate = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
@@ -63,8 +62,8 @@
 			this.laMonthly = new System.Windows.Forms.Label();
 			this.laTotal = new System.Windows.Forms.Label();
 			this.pnOutputSummary = new System.Windows.Forms.Panel();
-			this.checkEditSignatureLine = new DevExpress.XtraEditors.CheckEdit();
-			this.laSignatureLineTag = new System.Windows.Forms.Label();
+			this.laFlightDates = new System.Windows.Forms.Label();
+			this.laPresentationDate = new System.Windows.Forms.Label();
 			this.checkEditTotalInvestmentOutput = new DevExpress.XtraEditors.CheckEdit();
 			this.spinEditTotal = new DevExpress.XtraEditors.SpinEdit();
 			this.spinEditMonthly = new DevExpress.XtraEditors.SpinEdit();
@@ -75,7 +74,6 @@
 			this.pnOutputFooter = new System.Windows.Forms.Panel();
 			this.laTotalItems = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditBusinessName.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditDecisionMaker.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -94,7 +92,6 @@
 			this.pnOutputColumnHeaderBorder.SuspendLayout();
 			this.pnOutputColumnHeader.SuspendLayout();
 			this.pnOutputSummary.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSignatureLine.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalInvestmentOutput.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotal.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthly.Properties)).BeginInit();
@@ -128,21 +125,9 @@
 			this.checkEditBusinessName.TabIndex = 1;
 			this.checkEditBusinessName.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
-			// checkEditDecisionMaker
-			// 
-			this.checkEditDecisionMaker.Location = new System.Drawing.Point(7, 75);
-			this.checkEditDecisionMaker.Name = "checkEditDecisionMaker";
-			this.checkEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
-			this.checkEditDecisionMaker.Properties.AutoWidth = true;
-			this.checkEditDecisionMaker.Properties.Caption = "Decision Maker: ";
-			this.checkEditDecisionMaker.Size = new System.Drawing.Size(121, 21);
-			this.checkEditDecisionMaker.TabIndex = 2;
-			this.checkEditDecisionMaker.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-			// 
 			// checkEditPresentationDate
 			// 
-			this.checkEditPresentationDate.Location = new System.Drawing.Point(347, 48);
+			this.checkEditPresentationDate.Location = new System.Drawing.Point(7, 89);
 			this.checkEditPresentationDate.Name = "checkEditPresentationDate";
 			this.checkEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditPresentationDate.Properties.Appearance.Options.UseFont = true;
@@ -154,7 +139,7 @@
 			// 
 			// checkEditFlightDates
 			// 
-			this.checkEditFlightDates.Location = new System.Drawing.Point(347, 75);
+			this.checkEditFlightDates.Location = new System.Drawing.Point(7, 15);
 			this.checkEditFlightDates.Name = "checkEditFlightDates";
 			this.checkEditFlightDates.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFlightDates.Properties.Appearance.Options.UseFont = true;
@@ -175,10 +160,10 @@
 			this.xtraTabControl.AppearancePage.Header.Options.UseFont = true;
 			this.xtraTabControl.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControl.AppearancePage.HeaderActive.Options.UseFont = true;
-			this.xtraTabControl.Location = new System.Drawing.Point(0, 102);
+			this.xtraTabControl.Location = new System.Drawing.Point(0, 75);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageInput;
-			this.xtraTabControl.Size = new System.Drawing.Size(737, 455);
+			this.xtraTabControl.Size = new System.Drawing.Size(737, 482);
 			this.xtraTabControl.TabIndex = 5;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageInput,
@@ -192,7 +177,7 @@
 			this.xtraTabPageInput.Controls.Add(this.pnInputHeader);
 			this.xtraTabPageInput.Controls.Add(this.pnInputFooter);
 			this.xtraTabPageInput.Name = "xtraTabPageInput";
-			this.xtraTabPageInput.Size = new System.Drawing.Size(735, 429);
+			this.xtraTabPageInput.Size = new System.Drawing.Size(735, 456);
 			this.xtraTabPageInput.Text = "What Are you Selling?";
 			// 
 			// pnInputBorder
@@ -203,7 +188,7 @@
 			this.pnInputBorder.Location = new System.Drawing.Point(0, 50);
 			this.pnInputBorder.Name = "pnInputBorder";
 			this.pnInputBorder.Padding = new System.Windows.Forms.Padding(2);
-			this.pnInputBorder.Size = new System.Drawing.Size(505, 353);
+			this.pnInputBorder.Size = new System.Drawing.Size(505, 380);
 			this.pnInputBorder.TabIndex = 2;
 			// 
 			// xtraScrollableControlInput
@@ -213,7 +198,7 @@
 			this.xtraScrollableControlInput.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControlInput.Location = new System.Drawing.Point(2, 2);
 			this.xtraScrollableControlInput.Name = "xtraScrollableControlInput";
-			this.xtraScrollableControlInput.Size = new System.Drawing.Size(501, 349);
+			this.xtraScrollableControlInput.Size = new System.Drawing.Size(501, 376);
 			this.xtraScrollableControlInput.TabIndex = 0;
 			// 
 			// pnInputSummary
@@ -223,7 +208,7 @@
 			this.pnInputSummary.Dock = System.Windows.Forms.DockStyle.Right;
 			this.pnInputSummary.Location = new System.Drawing.Point(505, 50);
 			this.pnInputSummary.Name = "pnInputSummary";
-			this.pnInputSummary.Size = new System.Drawing.Size(230, 353);
+			this.pnInputSummary.Size = new System.Drawing.Size(230, 380);
 			this.pnInputSummary.TabIndex = 1;
 			// 
 			// pnTotals
@@ -320,20 +305,20 @@
 			// 
 			this.pnInputFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.pnInputFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnInputFooter.Location = new System.Drawing.Point(0, 403);
+			this.pnInputFooter.Location = new System.Drawing.Point(0, 430);
 			this.pnInputFooter.Name = "pnInputFooter";
 			this.pnInputFooter.Size = new System.Drawing.Size(735, 26);
 			this.pnInputFooter.TabIndex = 3;
 			// 
 			// xtraTabPageOutput
 			// 
-			this.xtraTabPageOutput.Controls.Add(this.pnOutputWarning);
 			this.xtraTabPageOutput.Controls.Add(this.pnOutputBorder);
 			this.xtraTabPageOutput.Controls.Add(this.pnOutputSummary);
 			this.xtraTabPageOutput.Controls.Add(this.pnOutputHeader);
 			this.xtraTabPageOutput.Controls.Add(this.pnOutputFooter);
+			this.xtraTabPageOutput.Controls.Add(this.pnOutputWarning);
 			this.xtraTabPageOutput.Name = "xtraTabPageOutput";
-			this.xtraTabPageOutput.Size = new System.Drawing.Size(735, 429);
+			this.xtraTabPageOutput.Size = new System.Drawing.Size(735, 456);
 			this.xtraTabPageOutput.Text = "Slide Output Options";
 			// 
 			// pnOutputWarning
@@ -342,9 +327,9 @@
 			this.pnOutputWarning.Controls.Add(this.laOutputWarning);
 			this.pnOutputWarning.Controls.Add(this.pbOutputWarning);
 			this.pnOutputWarning.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnOutputWarning.Location = new System.Drawing.Point(0, 50);
+			this.pnOutputWarning.Location = new System.Drawing.Point(0, 0);
 			this.pnOutputWarning.Name = "pnOutputWarning";
-			this.pnOutputWarning.Size = new System.Drawing.Size(505, 353);
+			this.pnOutputWarning.Size = new System.Drawing.Size(735, 456);
 			this.pnOutputWarning.TabIndex = 8;
 			// 
 			// laOutputWarning
@@ -356,7 +341,7 @@
 			this.laOutputWarning.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.laOutputWarning.Location = new System.Drawing.Point(139, 12);
 			this.laOutputWarning.Name = "laOutputWarning";
-			this.laOutputWarning.Size = new System.Drawing.Size(354, 327);
+			this.laOutputWarning.Size = new System.Drawing.Size(584, 430);
 			this.laOutputWarning.TabIndex = 3;
 			this.laOutputWarning.Text = "You need to add Details on Tab #1 before You can output a slide";
 			this.laOutputWarning.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -368,7 +353,7 @@
 			this.pbOutputWarning.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.RedWarning;
 			this.pbOutputWarning.Location = new System.Drawing.Point(8, 12);
 			this.pbOutputWarning.Name = "pbOutputWarning";
-			this.pbOutputWarning.Size = new System.Drawing.Size(129, 327);
+			this.pbOutputWarning.Size = new System.Drawing.Size(129, 430);
 			this.pbOutputWarning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pbOutputWarning.TabIndex = 2;
 			this.pbOutputWarning.TabStop = false;
@@ -382,7 +367,7 @@
 			this.pnOutputBorder.Location = new System.Drawing.Point(0, 50);
 			this.pnOutputBorder.Name = "pnOutputBorder";
 			this.pnOutputBorder.Padding = new System.Windows.Forms.Padding(2);
-			this.pnOutputBorder.Size = new System.Drawing.Size(505, 353);
+			this.pnOutputBorder.Size = new System.Drawing.Size(505, 380);
 			this.pnOutputBorder.TabIndex = 6;
 			// 
 			// xtraScrollableControlOutput
@@ -392,7 +377,7 @@
 			this.xtraScrollableControlOutput.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControlOutput.Location = new System.Drawing.Point(2, 36);
 			this.xtraScrollableControlOutput.Name = "xtraScrollableControlOutput";
-			this.xtraScrollableControlOutput.Size = new System.Drawing.Size(501, 315);
+			this.xtraScrollableControlOutput.Size = new System.Drawing.Size(501, 342);
 			this.xtraScrollableControlOutput.TabIndex = 0;
 			// 
 			// pnOutputColumnHeaderBorder
@@ -435,9 +420,9 @@
 			this.laMonthly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.laMonthly.Dock = System.Windows.Forms.DockStyle.Right;
 			this.laMonthly.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laMonthly.Location = new System.Drawing.Point(199, 0);
+			this.laMonthly.Location = new System.Drawing.Point(201, 0);
 			this.laMonthly.Name = "laMonthly";
-			this.laMonthly.Size = new System.Drawing.Size(140, 32);
+			this.laMonthly.Size = new System.Drawing.Size(150, 32);
 			this.laMonthly.TabIndex = 39;
 			this.laMonthly.Text = "Monthly$:";
 			this.laMonthly.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -447,9 +432,9 @@
 			this.laTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.laTotal.Dock = System.Windows.Forms.DockStyle.Right;
 			this.laTotal.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTotal.Location = new System.Drawing.Point(339, 0);
+			this.laTotal.Location = new System.Drawing.Point(351, 0);
 			this.laTotal.Name = "laTotal";
-			this.laTotal.Size = new System.Drawing.Size(162, 32);
+			this.laTotal.Size = new System.Drawing.Size(150, 32);
 			this.laTotal.TabIndex = 40;
 			this.laTotal.Text = "Total$:";
 			this.laTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -457,44 +442,43 @@
 			// pnOutputSummary
 			// 
 			this.pnOutputSummary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnOutputSummary.Controls.Add(this.checkEditSignatureLine);
-			this.pnOutputSummary.Controls.Add(this.laSignatureLineTag);
+			this.pnOutputSummary.Controls.Add(this.laFlightDates);
+			this.pnOutputSummary.Controls.Add(this.laPresentationDate);
 			this.pnOutputSummary.Controls.Add(this.checkEditTotalInvestmentOutput);
 			this.pnOutputSummary.Controls.Add(this.spinEditTotal);
+			this.pnOutputSummary.Controls.Add(this.checkEditPresentationDate);
+			this.pnOutputSummary.Controls.Add(this.checkEditFlightDates);
 			this.pnOutputSummary.Controls.Add(this.spinEditMonthly);
 			this.pnOutputSummary.Controls.Add(this.checkEditMonthlyInvestmentOutput);
 			this.pnOutputSummary.Controls.Add(this.checkEditEnableTotalEdit);
 			this.pnOutputSummary.Dock = System.Windows.Forms.DockStyle.Right;
 			this.pnOutputSummary.Location = new System.Drawing.Point(505, 50);
 			this.pnOutputSummary.Name = "pnOutputSummary";
-			this.pnOutputSummary.Size = new System.Drawing.Size(230, 353);
+			this.pnOutputSummary.Size = new System.Drawing.Size(230, 380);
 			this.pnOutputSummary.TabIndex = 5;
 			// 
-			// checkEditSignatureLine
+			// laFlightDates
 			// 
-			this.checkEditSignatureLine.Location = new System.Drawing.Point(6, 286);
-			this.checkEditSignatureLine.Name = "checkEditSignatureLine";
-			this.checkEditSignatureLine.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-			this.checkEditSignatureLine.Properties.Appearance.Options.UseFont = true;
-			this.checkEditSignatureLine.Properties.AutoWidth = true;
-			this.checkEditSignatureLine.Properties.Caption = "Signature Line:";
-			this.checkEditSignatureLine.Size = new System.Drawing.Size(140, 24);
-			this.checkEditSignatureLine.TabIndex = 111;
-			this.checkEditSignatureLine.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+			this.laFlightDates.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laFlightDates.Location = new System.Drawing.Point(25, 39);
+			this.laFlightDates.Name = "laFlightDates";
+			this.laFlightDates.Size = new System.Drawing.Size(137, 21);
+			this.laFlightDates.TabIndex = 109;
+			this.laFlightDates.Text = "Start-End Date Tag";
 			// 
-			// laSignatureLineTag
+			// laPresentationDate
 			// 
-			this.laSignatureLineTag.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laSignatureLineTag.Location = new System.Drawing.Point(30, 313);
-			this.laSignatureLineTag.Name = "laSignatureLineTag";
-			this.laSignatureLineTag.Size = new System.Drawing.Size(198, 22);
-			this.laSignatureLineTag.TabIndex = 110;
-			this.laSignatureLineTag.Text = "$Tag";
-			this.laSignatureLineTag.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.laPresentationDate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laPresentationDate.Location = new System.Drawing.Point(25, 113);
+			this.laPresentationDate.Name = "laPresentationDate";
+			this.laPresentationDate.Size = new System.Drawing.Size(134, 22);
+			this.laPresentationDate.TabIndex = 110;
+			this.laPresentationDate.Text = "$Tag";
+			this.laPresentationDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// checkEditTotalInvestmentOutput
 			// 
-			this.checkEditTotalInvestmentOutput.Location = new System.Drawing.Point(6, 179);
+			this.checkEditTotalInvestmentOutput.Location = new System.Drawing.Point(7, 246);
 			this.checkEditTotalInvestmentOutput.Name = "checkEditTotalInvestmentOutput";
 			this.checkEditTotalInvestmentOutput.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditTotalInvestmentOutput.Properties.Appearance.Options.UseFont = true;
@@ -512,7 +496,7 @@
             0,
             0});
 			this.spinEditTotal.Enabled = false;
-			this.spinEditTotal.Location = new System.Drawing.Point(28, 206);
+			this.spinEditTotal.Location = new System.Drawing.Point(29, 273);
 			this.spinEditTotal.Name = "spinEditTotal";
 			this.spinEditTotal.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.spinEditTotal.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -525,7 +509,7 @@
 			this.spinEditTotal.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.spinEditTotal.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.spinEditTotal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
 			this.spinEditTotal.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditTotal.Properties.EditFormat.FormatString = "$#,###.00";
@@ -543,7 +527,7 @@
             0,
             0});
 			this.spinEditMonthly.Enabled = false;
-			this.spinEditMonthly.Location = new System.Drawing.Point(29, 110);
+			this.spinEditMonthly.Location = new System.Drawing.Point(29, 194);
 			this.spinEditMonthly.Name = "spinEditMonthly";
 			this.spinEditMonthly.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.spinEditMonthly.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -556,7 +540,7 @@
 			this.spinEditMonthly.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.spinEditMonthly.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.spinEditMonthly.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.spinEditMonthly.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditMonthly.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditMonthly.Properties.EditFormat.FormatString = "$#,###.00";
@@ -568,7 +552,7 @@
 			// 
 			// checkEditMonthlyInvestmentOutput
 			// 
-			this.checkEditMonthlyInvestmentOutput.Location = new System.Drawing.Point(7, 83);
+			this.checkEditMonthlyInvestmentOutput.Location = new System.Drawing.Point(7, 167);
 			this.checkEditMonthlyInvestmentOutput.Name = "checkEditMonthlyInvestmentOutput";
 			this.checkEditMonthlyInvestmentOutput.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditMonthlyInvestmentOutput.Properties.Appearance.Options.UseFont = true;
@@ -580,13 +564,13 @@
 			// 
 			// checkEditEnableTotalEdit
 			// 
-			this.checkEditEnableTotalEdit.Location = new System.Drawing.Point(6, 10);
+			this.checkEditEnableTotalEdit.Location = new System.Drawing.Point(7, 325);
 			this.checkEditEnableTotalEdit.Name = "checkEditEnableTotalEdit";
 			this.checkEditEnableTotalEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditEnableTotalEdit.Properties.Appearance.Options.UseFont = true;
 			this.checkEditEnableTotalEdit.Properties.AutoWidth = true;
-			this.checkEditEnableTotalEdit.Properties.Caption = "Enable Investment EDIT MODE?";
-			this.checkEditEnableTotalEdit.Size = new System.Drawing.Size(211, 21);
+			this.checkEditEnableTotalEdit.Properties.Caption = "Edit Mode";
+			this.checkEditEnableTotalEdit.Size = new System.Drawing.Size(82, 21);
 			this.checkEditEnableTotalEdit.TabIndex = 4;
 			this.checkEditEnableTotalEdit.CheckedChanged += new System.EventHandler(this.checkEditEnableTotalEdit_CheckedChanged);
 			// 
@@ -613,7 +597,7 @@
 			// 
 			this.pnOutputFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.pnOutputFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnOutputFooter.Location = new System.Drawing.Point(0, 403);
+			this.pnOutputFooter.Location = new System.Drawing.Point(0, 430);
 			this.pnOutputFooter.Name = "pnOutputFooter";
 			this.pnOutputFooter.Size = new System.Drawing.Size(735, 26);
 			this.pnOutputFooter.TabIndex = 7;
@@ -635,16 +619,12 @@
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.Controls.Add(this.laTotalItems);
 			this.Controls.Add(this.xtraTabControl);
-			this.Controls.Add(this.checkEditFlightDates);
-			this.Controls.Add(this.checkEditPresentationDate);
-			this.Controls.Add(this.checkEditDecisionMaker);
 			this.Controls.Add(this.checkEditBusinessName);
 			this.Controls.Add(this.labelControlTitle);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "SummaryControl";
 			this.Size = new System.Drawing.Size(737, 557);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditBusinessName.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditDecisionMaker.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
@@ -666,8 +646,6 @@
 			this.pnOutputColumnHeaderBorder.ResumeLayout(false);
 			this.pnOutputColumnHeader.ResumeLayout(false);
 			this.pnOutputSummary.ResumeLayout(false);
-			this.pnOutputSummary.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSignatureLine.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalInvestmentOutput.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotal.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthly.Properties)).EndInit();
@@ -685,7 +663,6 @@
 		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		private DevExpress.XtraEditors.LabelControl labelControlTitle;
 		private DevExpress.XtraEditors.CheckEdit checkEditBusinessName;
-		private DevExpress.XtraEditors.CheckEdit checkEditDecisionMaker;
 		private DevExpress.XtraEditors.CheckEdit checkEditPresentationDate;
 		private DevExpress.XtraEditors.CheckEdit checkEditFlightDates;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
@@ -721,11 +698,11 @@
 		private DevExpress.XtraEditors.CheckEdit checkEditTotalInvestmentOutput;
 		private DevExpress.XtraEditors.SpinEdit spinEditTotal;
 		private DevExpress.XtraEditors.SpinEdit spinEditMonthly;
-		private DevExpress.XtraEditors.CheckEdit checkEditSignatureLine;
-		private System.Windows.Forms.Label laSignatureLineTag;
 		private System.Windows.Forms.Panel pnOutputWarning;
 		private System.Windows.Forms.Label laOutputWarning;
 		private System.Windows.Forms.PictureBox pbOutputWarning;
+		private System.Windows.Forms.Label laFlightDates;
+		private System.Windows.Forms.Label laPresentationDate;
 
     }
 }

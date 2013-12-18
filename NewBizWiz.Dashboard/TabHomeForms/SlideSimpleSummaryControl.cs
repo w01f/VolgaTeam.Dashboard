@@ -117,6 +117,28 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			laMonthly.Visible = simpleSummaryItemContainer.TotalMonthlyValue.HasValue;
 			laTotal.Visible = simpleSummaryItemContainer.TotalTotalValue.HasValue;
+			if (laMonthly.Visible && laTotal.Visible)
+			{
+				laMonthly.Width = 150;
+				laMonthly.Text = "Monthly$:";
+				laMonthly.TextAlign = ContentAlignment.MiddleLeft;
+				laTotal.Width = 150;
+				laTotal.Text = "Total$:";
+				laTotal.TextAlign = ContentAlignment.MiddleLeft;
+			}
+			else if (laMonthly.Visible)
+			{
+				laMonthly.Width = 300;
+				laMonthly.Text = "Monthly Investment:";
+				laMonthly.TextAlign = ContentAlignment.MiddleRight;
+			}
+			else if (laTotal.Visible)
+			{
+				laTotal.Width = 300;
+				laTotal.Text = "Total Investment:";
+				laTotal.TextAlign = ContentAlignment.MiddleRight;
+			}
+
 			if (!ckEnableTotalsEdit.Checked)
 			{
 				spinEditMonthly.Value = (decimal)simpleSummaryItemContainer.OutputTotalMonthlyValue;
@@ -262,7 +284,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			spinEditMonthly.Visible = false;
 			ckTotalInvestment.Visible = false;
 			spinEditTotal.Visible = false;
-			pnHeader.Visible = false;
+			pnHeaderBorder.Visible = false;
 			simpleSummaryOutputContainer.Visible = false;
 			pnOutputWarning.Visible = false;
 
@@ -278,7 +300,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			else if (e.Page == xtraTabPageOutput)
 			{
 				bool itemsComplited = simpleSummaryItemContainer.ItemsComplited;
-				pnHeader.Visible = itemsComplited;
+				pnHeaderBorder.Visible = itemsComplited;
 				simpleSummaryOutputContainer.Visible = itemsComplited;
 				simpleSummaryOutputContainer.BringToFront();
 				pnOutputWarning.Visible = !itemsComplited;
@@ -437,12 +459,22 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public string[] MonthlyValues
 		{
-			get { return simpleSummaryItemContainer.OutputMonthlyValues; }
+			get
+			{
+				if (ShowMonthlyHeader && !ShowTotalHeader)
+					return null;
+				return simpleSummaryItemContainer.OutputMonthlyValues;
+			}
 		}
 
 		public string[] TotalValues
 		{
-			get { return simpleSummaryItemContainer.OutputTotalValues; }
+			get
+			{
+				if (ShowMonthlyHeader && !ShowTotalHeader)
+					return simpleSummaryItemContainer.OutputMonthlyValues;
+				return simpleSummaryItemContainer.OutputTotalValues;
+			}
 		}
 
 		public string TotalMonthlyValue
@@ -455,7 +487,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return ckTotalInvestment.Checked ? (ckEnableTotalsEdit.Checked ? (double)spinEditTotal.Value : simpleSummaryItemContainer.OutputTotalTotalValue).ToString("$#,##0.00") : string.Empty; }
 		}
 
-		public bool ShowMonhlyHeader
+		public bool ShowMonthlyHeader
 		{
 			get { return simpleSummaryItemContainer.TotalMonthlyValue.HasValue; }
 		}

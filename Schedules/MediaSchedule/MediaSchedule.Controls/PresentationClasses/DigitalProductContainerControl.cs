@@ -170,7 +170,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public void Help_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("digitalslides");
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink("digital");
 		}
 
 		public override void OutputSlides(IEnumerable<DigitalProductControl> tabsForOutput)

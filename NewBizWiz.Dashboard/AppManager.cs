@@ -124,7 +124,7 @@ namespace NewBizWiz.Dashboard
 
 		public void ShowFloater(Form sender, Action afterShow)
 		{
-			const string defaultText = "GO GET YOUR BIZ!";
+			var defaultText = String.Empty;
 			var afterBack = new Action(ActivateMainForm);
 			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, MasterWizardManager.Instance.DefaultLogo, afterShow, null, afterBack);
 		}

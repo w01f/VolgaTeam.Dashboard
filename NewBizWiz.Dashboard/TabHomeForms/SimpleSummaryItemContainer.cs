@@ -255,22 +255,22 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public bool ShowMonthlyTotal
 		{
-			get { return _itemsCollection.Where(x => x.MonthlyValue.HasValue).Count() > 0; }
+			get { return _itemsCollection.Any(x => x.MonthlyValue.HasValue); }
 		}
 
 		public double? TotalMonthlyValue
 		{
-			get { return _itemsCollection.Where(x => x.ShowMonthly).Count() > 0 ? (_itemsCollection.Sum(x => !string.IsNullOrEmpty(x.ItemTitle) && x.ShowMonthly ? x.MonthlyValue : null)) : null; }
+			get { return _itemsCollection.Any(x => x.ShowMonthly) ? (_itemsCollection.Sum(x => !string.IsNullOrEmpty(x.ItemTitle) && x.ShowMonthly ? x.MonthlyValue : null)) : null; }
 		}
 
 		public bool ShowTotalTotal
 		{
-			get { return _itemsCollection.Where(x => x.TotalValue.HasValue).Count() > 0; }
+			get { return _itemsCollection.Any(x => x.TotalValue.HasValue); }
 		}
 
 		public double? TotalTotalValue
 		{
-			get { return _itemsCollection.Where(x => x.ShowTotal).Count() > 0 ? (_itemsCollection.Sum(x => !string.IsNullOrEmpty(x.ItemTitle) && x.ShowTotal ? x.TotalValue : null)) : null; }
+			get { return _itemsCollection.Any(x => x.ShowTotal) ? (_itemsCollection.Sum(x => !string.IsNullOrEmpty(x.ItemTitle) && x.ShowTotal ? x.TotalValue : null)) : null; }
 		}
 
 		public double OutputTotalMonthlyValue

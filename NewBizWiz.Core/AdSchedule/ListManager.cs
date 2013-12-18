@@ -145,6 +145,7 @@ namespace NewBizWiz.Core.AdSchedule
 		private void LoadImages()
 		{
 			Images.Clear();
+			if (BigImageFolder == null || SmallImageFolder == null || TinyImageFolder == null || XtraTinyImageFolder == null) return;
 			foreach (FileInfo bigImageFile in BigImageFolder.GetFiles("*.png"))
 			{
 				string imageFileName = Path.GetFileNameWithoutExtension(bigImageFile.FullName);

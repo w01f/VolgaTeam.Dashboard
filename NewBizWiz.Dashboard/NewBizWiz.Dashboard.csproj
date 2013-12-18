@@ -462,6 +462,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\DescriptionTargetCustomers.png" />
+    <None Include="Resources\DescriptionSummary.png" />
+    <None Include="Resources\DescriptionLeadoff.png" />
+    <None Include="Resources\DescriptionCover.png" />
+    <None Include="Resources\DescriptionClientGoals.png" />
     <None Include="Resources\SlideSummary.png" />
     <None Include="Resources\SlideTargetCustomers.png" />
     <None Include="Resources\SlideClientGoals.png" />

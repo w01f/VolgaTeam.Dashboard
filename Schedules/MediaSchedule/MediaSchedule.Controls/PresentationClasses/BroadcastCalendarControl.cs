@@ -144,7 +144,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public override void OpenHelp()
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("adcalendar");
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink("adcal");
 		}
 
 		public override void SaveSettings()

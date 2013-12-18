@@ -74,8 +74,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public void UpdateOutputItem()
 		{
-			OutputItem.MonthlyVisible = ckMonthly.Checked && spinEditMonthly.EditValue != null;
 			OutputItem.TotalVisible = ckTotal.Checked && spinEditTotal.EditValue != null;
+			OutputItem.MonthlyVisible = ckMonthly.Checked && spinEditMonthly.EditValue != null;
 			OutputItem.ItemVisible = ckItem.Checked;
 			OutputItem.DetailsVisible = ckDetails.Checked;
 			OutputItem.MonthlyValue = spinEditMonthly.Value.ToString("$#,##0.00");
@@ -121,99 +121,83 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		private void ckMonthly_CheckedChanged(object sender, EventArgs e)
 		{
 			spinEditMonthly.Enabled = ckMonthly.Checked;
-			if (!_loading)
-			{
-				spinEditMonthly.Value = ckMonthly.Checked ? spinEditMonthly.Value : 0;
-				Data.ShowMonthly = ckMonthly.Checked;
-				if (InvestmentChanged != null)
-					InvestmentChanged(this, EventArgs.Empty);
-				if (DataChanged != null)
-					DataChanged(this, EventArgs.Empty);
-			}
+			if (_loading) return;
+			spinEditMonthly.Value = ckMonthly.Checked ? spinEditMonthly.Value : 0;
+			Data.ShowMonthly = ckMonthly.Checked;
+			if (InvestmentChanged != null)
+				InvestmentChanged(this, EventArgs.Empty);
+			if (DataChanged != null)
+				DataChanged(this, EventArgs.Empty);
 		}
 
 		private void ckTotal_CheckedChanged(object sender, EventArgs e)
 		{
 			spinEditTotal.Enabled = ckTotal.Checked;
-			if (!_loading)
-			{
-				spinEditTotal.Value = ckTotal.Checked ? spinEditTotal.Value : 0;
-				Data.ShowTotal = ckTotal.Checked;
-				if (InvestmentChanged != null)
-					InvestmentChanged(this, EventArgs.Empty);
-				if (DataChanged != null)
-					DataChanged(this, EventArgs.Empty);
-			}
+			if (_loading) return;
+			spinEditTotal.Value = ckTotal.Checked ? spinEditTotal.Value : 0;
+			Data.ShowTotal = ckTotal.Checked;
+			if (InvestmentChanged != null)
+				InvestmentChanged(this, EventArgs.Empty);
+			if (DataChanged != null)
+				DataChanged(this, EventArgs.Empty);
 		}
 
 		private void ckItem_CheckedChanged(object sender, EventArgs e)
 		{
 			comboBoxEditItem.Enabled = ckItem.Checked;
-			if (!_loading)
-			{
-				comboBoxEditItem.EditValue = ckItem.Checked ? comboBoxEditItem.EditValue : null;
-				Data.ShowValue = ckItem.Checked;
-				if (DataChanged != null)
-					DataChanged(this, EventArgs.Empty);
-			}
+			if (_loading) return;
+			comboBoxEditItem.EditValue = ckItem.Checked ? comboBoxEditItem.EditValue : null;
+			Data.ShowValue = ckItem.Checked;
+			if (DataChanged != null)
+				DataChanged(this, EventArgs.Empty);
 		}
 
 		private void ckDetails_CheckedChanged(object sender, EventArgs e)
 		{
 			memoEditDetails.Enabled = ckDetails.Checked;
-			if (!_loading)
-			{
-				memoEditDetails.EditValue = ckDetails.Checked ? memoEditDetails.EditValue : null;
-				Data.ShowDescription = ckDetails.Checked;
-				if (DataChanged != null)
-					DataChanged(this, EventArgs.Empty);
-			}
+			if (_loading) return;
+			memoEditDetails.EditValue = ckDetails.Checked ? memoEditDetails.EditValue : null;
+			Data.ShowDescription = ckDetails.Checked;
+			if (DataChanged != null)
+				DataChanged(this, EventArgs.Empty);
 		}
 
 		private void comboBoxEditItem_EditValueChanged(object sender, EventArgs e)
 		{
-			if (!_loading)
-			{
-				Data.Value = comboBoxEditItem.EditValue != null ? comboBoxEditItem.EditValue.ToString() : null;
-				if (InvestmentChanged != null)
-					InvestmentChanged(this, EventArgs.Empty);
-				if (DataChanged != null)
-					DataChanged(this, EventArgs.Empty);
-			}
+			if (_loading) return;
+			Data.Value = comboBoxEditItem.EditValue != null ? comboBoxEditItem.EditValue.ToString() : null;
+			if (InvestmentChanged != null)
+				InvestmentChanged(this, EventArgs.Empty);
+			if (DataChanged != null)
+				DataChanged(this, EventArgs.Empty);
 		}
 
 		private void memoEditDetails_EditValueChanged(object sender, EventArgs e)
 		{
-			if (!_loading)
-			{
-				Data.Description = memoEditDetails.EditValue != null ? memoEditDetails.EditValue.ToString() : null;
-				if (DataChanged != null)
-					DataChanged(this, EventArgs.Empty);
-			}
+			if (_loading) return;
+			Data.Description = memoEditDetails.EditValue != null ? memoEditDetails.EditValue.ToString() : null;
+			if (DataChanged != null)
+				DataChanged(this, EventArgs.Empty);
 		}
 
 		private void spinEditMonthly_EditValueChanged(object sender, EventArgs e)
 		{
-			if (!_loading)
-			{
-				Data.Monthly = spinEditMonthly.Value;
-				if (InvestmentChanged != null)
-					InvestmentChanged(this, EventArgs.Empty);
-				if (DataChanged != null)
-					DataChanged(this, EventArgs.Empty);
-			}
+			if (_loading) return;
+			Data.Monthly = spinEditMonthly.Value;
+			if (InvestmentChanged != null)
+				InvestmentChanged(this, EventArgs.Empty);
+			if (DataChanged != null)
+				DataChanged(this, EventArgs.Empty);
 		}
 
 		private void spinEditTotal_EditValueChanged(object sender, EventArgs e)
 		{
-			if (!_loading)
-			{
-				Data.Total = spinEditTotal.Value;
-				if (InvestmentChanged != null)
-					InvestmentChanged(this, EventArgs.Empty);
-				if (DataChanged != null)
-					DataChanged(this, EventArgs.Empty);
-			}
+			if (_loading) return;
+			Data.Total = spinEditTotal.Value;
+			if (InvestmentChanged != null)
+				InvestmentChanged(this, EventArgs.Empty);
+			if (DataChanged != null)
+				DataChanged(this, EventArgs.Empty);
 		}
 
 		#region Picture Box Clicks Habdlers

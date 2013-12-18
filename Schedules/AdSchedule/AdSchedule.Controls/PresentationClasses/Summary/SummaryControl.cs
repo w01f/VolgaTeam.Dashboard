@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -74,10 +75,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			checkEditBusinessName.Text = string.Format("Business Name: {0}", LocalSchedule.BusinessName);
-			checkEditDecisionMaker.Text = string.Format("Decision Maker: {0}", LocalSchedule.DecisionMaker);
-			checkEditPresentationDate.Text = string.Format("Presentation Date: {0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
-			checkEditFlightDates.Text = string.Format("Campaign Dates: {0}", LocalSchedule.FlightDates);
-			laSignatureLineTag.Text = LocalSchedule.DecisionMaker;
+			laPresentationDate.Text = String.Format("{0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
+			laFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
 			FormThemeSelector.Link(Controller.Instance.SummaryTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
 			{
 				LocalSchedule.ThemeName = t.Name;
@@ -87,17 +86,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			{
 				_allowToSave = false;
 				checkEditBusinessName.Checked = LocalSchedule.Summary.ShowAdvertiser;
-				checkEditDecisionMaker.Checked = LocalSchedule.Summary.ShowDecisionMaker;
 				checkEditPresentationDate.Checked = LocalSchedule.Summary.ShowPresentationDate;
 				checkEditFlightDates.Checked = LocalSchedule.Summary.ShowFlightDates;
 				checkEditEnableTotalEdit.Checked = LocalSchedule.Summary.EnableTotalsEdit;
 				checkEditMonthlyInvestmentOutput.Checked = LocalSchedule.Summary.ShowMonthly;
 				checkEditTotalInvestmentOutput.Checked = LocalSchedule.Summary.ShowTotal;
-				checkEditSignatureLine.Checked = LocalSchedule.Summary.ShowSignature;
 
 				_inputControls.Clear();
 				xtraScrollableControlInput.Controls.Clear();
-				foreach (SummaryItem summaryItem in LocalSchedule.Summary.Items.OrderBy(it => it.Order))
+				foreach (var summaryItem in LocalSchedule.Summary.Items.OrderBy(it => it.Order))
 				{
 					AddItemToList(summaryItem);
 					Application.DoEvents();
@@ -180,7 +177,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		{
 			int currentIndex = _inputControls.IndexOf(item);
 			if (!(currentIndex < (_inputControls.Count - 1))) return;
-			SummaryInputItemControl nextItem = _inputControls[currentIndex + 1];
+			var nextItem = _inputControls[currentIndex + 1];
 			int itemOrder = nextItem.Data.Order;
 			LocalSchedule.Summary.ReorderItems(itemOrder - 1);
 			nextItem.Data.Order = itemOrder - 1;
@@ -209,6 +206,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		{
 			laInputMonthlyInvestmentTag.Text = LocalSchedule.Summary.TotalMonthly.ToString("$#,##0.00");
 			laInputTotalInvestmentTag.Text = LocalSchedule.Summary.TotalTotal.ToString("$#,##0.00");
+			pnInputMonthlyInvestments.Visible = _inputControls.Any(ic => ic.ShowMonthly);
+			pnInputTotalInvestments.Visible = _inputControls.Any(ic => ic.ShowTotal);
 			spinEditMonthly.Value = LocalSchedule.Summary.EnableTotalsEdit ? LocalSchedule.Summary.MonthlyValue : LocalSchedule.Summary.TotalMonthly;
 			spinEditTotal.Value = LocalSchedule.Summary.EnableTotalsEdit ? LocalSchedule.Summary.TotalValue : LocalSchedule.Summary.TotalTotal;
 		}
@@ -222,11 +221,47 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 				pnOutputHeader.Visible = true;
 				pnOutputSummary.Visible = true;
 				pnOutputWarning.Visible = false;
+
 				foreach (var inputControl in _inputControls.Where(it => it.Complited).OrderBy(it => it.Data.Order))
 				{
 					xtraScrollableControlOutput.Controls.Add(inputControl.OutputItem);
 					inputControl.OutputItem.BringToFront();
 					inputControl.UpdateOutputItem();
+
+				}
+				var monthlyHeaderVisible = _inputControls.Any(it => it.OutputItem.MonthlyVisible);
+				var totalHeaderVisible = _inputControls.Any(it => it.OutputItem.TotalVisible);
+				foreach (var inputControl in _inputControls.Where(it => it.Complited).OrderBy(it => it.Data.Order))
+				{
+					inputControl.OutputItem.TotalVisible = totalHeaderVisible;
+					inputControl.OutputItem.MonthlyVisible = monthlyHeaderVisible;
+				}
+				if (monthlyHeaderVisible && totalHeaderVisible)
+				{
+					laMonthly.Visible = true;
+					laMonthly.Width = 150;
+					laMonthly.Text = "Monthly$:";
+					laMonthly.TextAlign = ContentAlignment.MiddleLeft;
+					laTotal.Visible = true;
+					laTotal.Width = 150;
+					laTotal.Text = "Total$:";
+					laTotal.TextAlign = ContentAlignment.MiddleLeft;
+				}
+				else if (monthlyHeaderVisible)
+				{
+					laMonthly.Visible = true;
+					laMonthly.Width = 300;
+					laMonthly.Text = "Monthly Investment:";
+					laMonthly.TextAlign = ContentAlignment.MiddleRight;
+					laTotal.Visible = false;
+				}
+				else if (totalHeaderVisible)
+				{
+					laMonthly.Visible = false;
+					laTotal.Visible = true;
+					laTotal.Width = 300;
+					laTotal.Text = "Total Investment:";
+					laTotal.TextAlign = ContentAlignment.MiddleRight;
 				}
 			}
 			else
@@ -251,38 +286,32 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public void SaveAs_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewSchedule())
+			using (var form = new FormNewSchedule())
 			{
-				from.Text = "Save Schedule";
-				from.laLogo.Text = "Please set a new name for your Schedule:";
-				if (from.ShowDialog() == DialogResult.OK)
+				form.Text = "Save Schedule";
+				form.laLogo.Text = "Please set a new name for your Schedule:";
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (!string.IsNullOrEmpty(form.ScheduleName))
 				{
-					if (!string.IsNullOrEmpty(from.ScheduleName))
-					{
-						if (SaveSchedule(from.ScheduleName))
-							Utilities.Instance.ShowInformation("Schedule was saved");
-					}
-					else
-					{
-						Utilities.Instance.ShowWarning("Schedule Name can't be empty");
-					}
+					if (SaveSchedule(form.ScheduleName))
+						Utilities.Instance.ShowInformation("Schedule was saved");
+				}
+				else
+				{
+					Utilities.Instance.ShowWarning("Schedule Name can't be empty");
 				}
 			}
 		}
 
 		private void checkEdit_CheckedChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				LocalSchedule.Summary.ShowAdvertiser = checkEditBusinessName.Checked;
-				LocalSchedule.Summary.ShowDecisionMaker = checkEditDecisionMaker.Checked;
-				LocalSchedule.Summary.ShowPresentationDate = checkEditPresentationDate.Checked;
-				LocalSchedule.Summary.ShowFlightDates = checkEditFlightDates.Checked;
-				LocalSchedule.Summary.ShowMonthly = checkEditMonthlyInvestmentOutput.Checked;
-				LocalSchedule.Summary.ShowTotal = checkEditTotalInvestmentOutput.Checked;
-				LocalSchedule.Summary.ShowSignature = checkEditSignatureLine.Checked;
-				SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			LocalSchedule.Summary.ShowAdvertiser = checkEditBusinessName.Checked;
+			LocalSchedule.Summary.ShowPresentationDate = checkEditPresentationDate.Checked;
+			LocalSchedule.Summary.ShowFlightDates = checkEditFlightDates.Checked;
+			LocalSchedule.Summary.ShowMonthly = checkEditMonthlyInvestmentOutput.Checked;
+			LocalSchedule.Summary.ShowTotal = checkEditTotalInvestmentOutput.Checked;
+			SettingsNotSaved = true;
 		}
 
 		private void checkEditEnableTotalEdit_CheckedChanged(object sender, EventArgs e)
@@ -310,11 +339,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		private void spinEditMonthly_EditValueChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				LocalSchedule.Summary.MonthlyValue = LocalSchedule.Summary.EnableTotalsEdit ? spinEditMonthly.Value : 0;
-				SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			LocalSchedule.Summary.MonthlyValue = LocalSchedule.Summary.EnableTotalsEdit ? spinEditMonthly.Value : 0;
+			SettingsNotSaved = true;
 		}
 
 		private void spinEditTotal_EditValueChanged(object sender, EventArgs e)
@@ -377,9 +404,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		{
 			get
 			{
-				if (checkEditDecisionMaker.Checked)
-					return LocalSchedule.DecisionMaker;
-				return String.Empty;
+				return LocalSchedule.DecisionMaker;
 			}
 		}
 
@@ -415,12 +440,22 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public string[] MonthlyValues
 		{
-			get { return _inputControls.Where(it => it.Complited).Select(it => it.OutputMonthlyValue.HasValue ? it.OutputMonthlyValue.Value.ToString("$#,##0") : String.Empty).ToArray(); }
+			get
+			{
+				if (ShowMonthlyHeader && ShowTotalHeader)
+					return _inputControls.Where(it => it.Complited).Select(it => it.OutputMonthlyValue.HasValue ? it.OutputMonthlyValue.Value.ToString("$#,##0") : String.Empty).ToArray();
+				return null;
+			}
 		}
 
 		public string[] TotalValues
 		{
-			get { return _inputControls.Where(it => it.Complited).Select(it => it.OutputTotalValue.HasValue ? it.OutputTotalValue.Value.ToString("$#,##0") : String.Empty).ToArray(); }
+			get
+			{
+				if (ShowMonthlyHeader && !ShowTotalHeader)
+					return _inputControls.Where(it => it.Complited).Select(it => it.OutputMonthlyValue.HasValue ? it.OutputMonthlyValue.Value.ToString("$#,##0") : String.Empty).ToArray();
+				return _inputControls.Where(it => it.Complited).Select(it => it.OutputTotalValue.HasValue ? it.OutputTotalValue.Value.ToString("$#,##0") : String.Empty).ToArray();
+			}
 		}
 
 		public string TotalMonthlyValue

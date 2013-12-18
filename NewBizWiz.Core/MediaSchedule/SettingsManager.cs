@@ -81,7 +81,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (!Directory.Exists(defaultSaveFolderPath))
 				Directory.CreateDirectory(defaultSaveFolderPath);
 			SaveFolder = defaultSaveFolderPath;
-			HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\TVScheduleHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\TVHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			IconPath = Path.Combine(Path.GetDirectoryName(typeof(TVSettingsManager).Assembly.Location), "icon.ico");
 		}
 
@@ -99,7 +99,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (!Directory.Exists(defaultSaveFolderPath))
 				Directory.CreateDirectory(defaultSaveFolderPath);
 			SaveFolder = defaultSaveFolderPath;
-			HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\RadioScheduleHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\RadioHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			IconPath = Path.Combine(Path.GetDirectoryName(typeof(RadioSettingsManager).Assembly.Location), "icon.ico");
 		}
 

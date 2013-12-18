@@ -77,7 +77,6 @@
 			this.buttonXPrintProductCode = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXPrintProductDelivery = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXPrintProductReadership = new DevComponents.DotNetBar.ButtonX();
-			this.laPrintProductBottomBarTitle = new System.Windows.Forms.Label();
 			this.xtraTabPageDigitalProducts = new DevExpress.XtraTab.XtraTabPage();
 			this.gridControlDigitalProducts = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridViewDigitalProducts = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
@@ -500,7 +499,6 @@
 			this.pnPrintProductBottomBar.Controls.Add(this.buttonXPrintProductCode);
 			this.pnPrintProductBottomBar.Controls.Add(this.buttonXPrintProductDelivery);
 			this.pnPrintProductBottomBar.Controls.Add(this.buttonXPrintProductReadership);
-			this.pnPrintProductBottomBar.Controls.Add(this.laPrintProductBottomBarTitle);
 			this.pnPrintProductBottomBar.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnPrintProductBottomBar.Location = new System.Drawing.Point(0, 366);
 			this.pnPrintProductBottomBar.Name = "pnPrintProductBottomBar";
@@ -511,9 +509,9 @@
 			// 
 			this.pictureBoxPrintProductAppLogo.Dock = System.Windows.Forms.DockStyle.Right;
 			this.pictureBoxPrintProductAppLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AppLogo;
-			this.pictureBoxPrintProductAppLogo.Location = new System.Drawing.Point(676, 0);
+			this.pictureBoxPrintProductAppLogo.Location = new System.Drawing.Point(670, 0);
 			this.pictureBoxPrintProductAppLogo.Name = "pictureBoxPrintProductAppLogo";
-			this.pictureBoxPrintProductAppLogo.Size = new System.Drawing.Size(150, 38);
+			this.pictureBoxPrintProductAppLogo.Size = new System.Drawing.Size(156, 38);
 			this.pictureBoxPrintProductAppLogo.TabIndex = 7;
 			this.pictureBoxPrintProductAppLogo.TabStop = false;
 			// 
@@ -522,7 +520,7 @@
 			this.buttonXPrintProductLogo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXPrintProductLogo.AutoCheckOnClick = true;
 			this.buttonXPrintProductLogo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXPrintProductLogo.Location = new System.Drawing.Point(67, 5);
+			this.buttonXPrintProductLogo.Location = new System.Drawing.Point(14, 5);
 			this.buttonXPrintProductLogo.Name = "buttonXPrintProductLogo";
 			this.buttonXPrintProductLogo.Size = new System.Drawing.Size(84, 29);
 			this.buttonXPrintProductLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -539,7 +537,7 @@
 			this.buttonXPrintProductCode.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXPrintProductCode.AutoCheckOnClick = true;
 			this.buttonXPrintProductCode.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXPrintProductCode.Location = new System.Drawing.Point(173, 5);
+			this.buttonXPrintProductCode.Location = new System.Drawing.Point(120, 5);
 			this.buttonXPrintProductCode.Name = "buttonXPrintProductCode";
 			this.buttonXPrintProductCode.Size = new System.Drawing.Size(84, 29);
 			this.buttonXPrintProductCode.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -556,7 +554,7 @@
 			this.buttonXPrintProductDelivery.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXPrintProductDelivery.AutoCheckOnClick = true;
 			this.buttonXPrintProductDelivery.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXPrintProductDelivery.Location = new System.Drawing.Point(279, 5);
+			this.buttonXPrintProductDelivery.Location = new System.Drawing.Point(226, 5);
 			this.buttonXPrintProductDelivery.Name = "buttonXPrintProductDelivery";
 			this.buttonXPrintProductDelivery.Size = new System.Drawing.Size(84, 29);
 			this.buttonXPrintProductDelivery.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -573,7 +571,7 @@
 			this.buttonXPrintProductReadership.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXPrintProductReadership.AutoCheckOnClick = true;
 			this.buttonXPrintProductReadership.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXPrintProductReadership.Location = new System.Drawing.Point(385, 5);
+			this.buttonXPrintProductReadership.Location = new System.Drawing.Point(332, 5);
 			this.buttonXPrintProductReadership.Name = "buttonXPrintProductReadership";
 			this.buttonXPrintProductReadership.Size = new System.Drawing.Size(84, 29);
 			this.buttonXPrintProductReadership.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -584,17 +582,6 @@
 			this.buttonXPrintProductReadership.Text = "Readership";
 			this.buttonXPrintProductReadership.TextColor = System.Drawing.Color.Black;
 			this.buttonXPrintProductReadership.CheckedChanged += new System.EventHandler(this.buttonItemSalesStrategyReadership_CheckedChanged);
-			// 
-			// laPrintProductBottomBarTitle
-			// 
-			this.laPrintProductBottomBarTitle.Dock = System.Windows.Forms.DockStyle.Left;
-			this.laPrintProductBottomBarTitle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laPrintProductBottomBarTitle.Location = new System.Drawing.Point(0, 0);
-			this.laPrintProductBottomBarTitle.Name = "laPrintProductBottomBarTitle";
-			this.laPrintProductBottomBarTitle.Size = new System.Drawing.Size(61, 38);
-			this.laPrintProductBottomBarTitle.TabIndex = 2;
-			this.laPrintProductBottomBarTitle.Text = "Show:";
-			this.laPrintProductBottomBarTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// xtraTabPageDigitalProducts
 			// 
@@ -1060,9 +1047,9 @@
 			// 
 			this.pictureBoxDigitalProductAppLogo.Dock = System.Windows.Forms.DockStyle.Right;
 			this.pictureBoxDigitalProductAppLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AppLogo;
-			this.pictureBoxDigitalProductAppLogo.Location = new System.Drawing.Point(676, 0);
+			this.pictureBoxDigitalProductAppLogo.Location = new System.Drawing.Point(670, 0);
 			this.pictureBoxDigitalProductAppLogo.Name = "pictureBoxDigitalProductAppLogo";
-			this.pictureBoxDigitalProductAppLogo.Size = new System.Drawing.Size(150, 38);
+			this.pictureBoxDigitalProductAppLogo.Size = new System.Drawing.Size(156, 38);
 			this.pictureBoxDigitalProductAppLogo.TabIndex = 7;
 			this.pictureBoxDigitalProductAppLogo.TabStop = false;
 			// 
@@ -1151,7 +1138,6 @@
         private DevExpress.XtraTab.XtraTabControl xtraTabControlProducts;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPagePrintProducts;
 		private System.Windows.Forms.Panel pnPrintProductBottomBar;
-		private System.Windows.Forms.Label laPrintProductBottomBarTitle;
 		private DevComponents.DotNetBar.ButtonX buttonXPrintProductLogo;
 		private DevComponents.DotNetBar.ButtonX buttonXPrintProductCode;
 		private DevComponents.DotNetBar.ButtonX buttonXPrintProductDelivery;

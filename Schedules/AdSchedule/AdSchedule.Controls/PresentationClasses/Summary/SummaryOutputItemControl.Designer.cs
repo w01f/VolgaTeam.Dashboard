@@ -91,7 +91,7 @@
 			this.ckMonthly.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.ckMonthly.Location = new System.Drawing.Point(0, 0);
 			this.ckMonthly.Name = "ckMonthly";
-			this.ckMonthly.Size = new System.Drawing.Size(137, 52);
+			this.ckMonthly.Size = new System.Drawing.Size(140, 52);
 			this.ckMonthly.TabIndex = 32;
 			this.ckMonthly.Text = "$0.00";
 			this.ckMonthly.UseVisualStyleBackColor = true;
@@ -104,7 +104,7 @@
 			this.ckTotal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.ckTotal.Location = new System.Drawing.Point(0, 0);
 			this.ckTotal.Name = "ckTotal";
-			this.ckTotal.Size = new System.Drawing.Size(144, 52);
+			this.ckTotal.Size = new System.Drawing.Size(140, 52);
 			this.ckTotal.TabIndex = 33;
 			this.ckTotal.Text = "$0.00";
 			this.ckTotal.UseVisualStyleBackColor = true;
@@ -125,18 +125,18 @@
 			// 
 			this.pnMonthly.Controls.Add(this.ckMonthly);
 			this.pnMonthly.Dock = System.Windows.Forms.DockStyle.Right;
-			this.pnMonthly.Location = new System.Drawing.Point(350, 0);
+			this.pnMonthly.Location = new System.Drawing.Point(351, 0);
 			this.pnMonthly.Name = "pnMonthly";
-			this.pnMonthly.Size = new System.Drawing.Size(137, 52);
+			this.pnMonthly.Size = new System.Drawing.Size(140, 52);
 			this.pnMonthly.TabIndex = 35;
 			// 
 			// pnTotal
 			// 
 			this.pnTotal.Controls.Add(this.ckTotal);
 			this.pnTotal.Dock = System.Windows.Forms.DockStyle.Right;
-			this.pnTotal.Location = new System.Drawing.Point(487, 0);
+			this.pnTotal.Location = new System.Drawing.Point(491, 0);
 			this.pnTotal.Name = "pnTotal";
-			this.pnTotal.Size = new System.Drawing.Size(144, 52);
+			this.pnTotal.Size = new System.Drawing.Size(140, 52);
 			this.pnTotal.TabIndex = 34;
 			// 
 			// pnDetails

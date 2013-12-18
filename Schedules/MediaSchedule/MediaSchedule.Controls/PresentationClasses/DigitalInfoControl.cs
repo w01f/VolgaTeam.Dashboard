@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
+using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 {
@@ -185,6 +186,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				spinEditTotal.EditValue = null;
 			if (SettingsChanged != null)
 				SettingsChanged(this, EventArgs.Empty);
+		}
+
+		private void pbHelp_Click(object sender, EventArgs e)
+		{
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink("navdig");
 		}
 
 		#region Picture Box Clicks Habdlers

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Layout;
@@ -28,12 +29,14 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 
 		public void LoadImages(List<ImageSource> images)
 		{
+			if (!images.Any())
+			{
+				pnLogo.Visible = false;
+				Height = pnComment.Height + 20;
+			}
 			gridControlLogoGallery.DataSource = images;
 			var index = images.IndexOf(_day.Logo);
-			if (index != GridControl.InvalidRowHandle)
-				layoutViewLogoGallery.FocusedRowHandle = layoutViewLogoGallery.GetRowHandle(index);
-			else
-				layoutViewLogoGallery.FocusedRowHandle = 0;
+			layoutViewLogoGallery.FocusedRowHandle = index != GridControl.InvalidRowHandle ? layoutViewLogoGallery.GetRowHandle(index) : 0;
 		}
 
 		private void SaveData()
@@ -46,11 +49,9 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 		private void layoutViewLogoGallery_CustomFieldValueStyle(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventArgs e)
 		{
 			var view = sender as LayoutView;
-			if (view.FocusedRowHandle == e.RowHandle)
-			{
-				e.Appearance.BackColor = Color.Orange;
-				e.Appearance.BackColor2 = Color.Orange;
-			}
+			if (view.FocusedRowHandle != e.RowHandle) return;
+			e.Appearance.BackColor = Color.Orange;
+			e.Appearance.BackColor2 = Color.Orange;
 		}
 
 		private void FormDayProperties_FormClosing(object sender, FormClosingEventArgs e)

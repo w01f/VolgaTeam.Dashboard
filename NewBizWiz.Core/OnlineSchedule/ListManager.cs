@@ -69,7 +69,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 		private void LoadImages()
 		{
 			Images.Clear();
-			foreach (FileInfo bigImageFile in BigImageFolder.GetFiles("*.png"))
+			if (BigImageFolder == null || SmallImageFolder == null || TinyImageFolder == null || XtraTinyImageFolder == null) return;
+			foreach (var bigImageFile in BigImageFolder.GetFiles("*.png"))
 			{
 				string imageFileName = Path.GetFileNameWithoutExtension(bigImageFile.FullName);
 				string imageFileExtension = Path.GetExtension(bigImageFile.FullName);

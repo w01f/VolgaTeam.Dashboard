@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.stationsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.StationsControl();
 			this.pbMonthlySchedule = new System.Windows.Forms.PictureBox();
 			this.pbWeeklySchedule = new System.Windows.Forms.PictureBox();
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
-			this.xtraTabPageTV = new DevExpress.XtraTab.XtraTabPage();
+			this.xtraTabPageMedia = new DevExpress.XtraTab.XtraTabPage();
 			this.pnTV = new System.Windows.Forms.Panel();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
@@ -103,7 +103,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbWeeklySchedule)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).BeginInit();
 			this.xtraTabControlMain.SuspendLayout();
-			this.xtraTabPageTV.SuspendLayout();
+			this.xtraTabPageMedia.SuspendLayout();
 			this.pnTV.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
 			this.xtraTabPageDigital.SuspendLayout();
@@ -154,7 +154,7 @@
 			// 
 			// pbMonthlySchedule
 			// 
-			this.pbMonthlySchedule.Image = ((System.Drawing.Image)(resources.GetObject("pbMonthlySchedule.Image")));
+			this.pbMonthlySchedule.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.MonthlySchedule;
 			this.pbMonthlySchedule.Location = new System.Drawing.Point(27, 316);
 			this.pbMonthlySchedule.Name = "pbMonthlySchedule";
 			this.pbMonthlySchedule.Size = new System.Drawing.Size(595, 96);
@@ -166,7 +166,7 @@
 			// 
 			// pbWeeklySchedule
 			// 
-			this.pbWeeklySchedule.Image = ((System.Drawing.Image)(resources.GetObject("pbWeeklySchedule.Image")));
+			this.pbWeeklySchedule.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.WeeklySchedule;
 			this.pbWeeklySchedule.Location = new System.Drawing.Point(27, 150);
 			this.pbWeeklySchedule.Name = "pbWeeklySchedule";
 			this.pbWeeklySchedule.Size = new System.Drawing.Size(595, 96);
@@ -198,22 +198,22 @@
 			this.xtraTabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraTabControlMain.Location = new System.Drawing.Point(0, 42);
 			this.xtraTabControlMain.Name = "xtraTabControlMain";
-			this.xtraTabControlMain.SelectedTabPage = this.xtraTabPageTV;
+			this.xtraTabControlMain.SelectedTabPage = this.xtraTabPageMedia;
 			this.xtraTabControlMain.Size = new System.Drawing.Size(664, 521);
 			this.xtraTabControlMain.TabIndex = 18;
 			this.xtraTabControlMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPageTV,
+            this.xtraTabPageMedia,
             this.xtraTabPageDigital});
 			this.xtraTabControlMain.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlProducts_SelectedPageChanged);
 			// 
-			// xtraTabPageTV
+			// xtraTabPageMedia
 			// 
-			this.xtraTabPageTV.Appearance.PageClient.BackColor = System.Drawing.Color.DarkRed;
-			this.xtraTabPageTV.Appearance.PageClient.Options.UseBackColor = true;
-			this.xtraTabPageTV.Controls.Add(this.pnTV);
-			this.xtraTabPageTV.Name = "xtraTabPageTV";
-			this.xtraTabPageTV.Size = new System.Drawing.Size(658, 491);
-			this.xtraTabPageTV.Text = "Television Strategy";
+			this.xtraTabPageMedia.Appearance.PageClient.BackColor = System.Drawing.Color.DarkRed;
+			this.xtraTabPageMedia.Appearance.PageClient.Options.UseBackColor = true;
+			this.xtraTabPageMedia.Controls.Add(this.pnTV);
+			this.xtraTabPageMedia.Name = "xtraTabPageMedia";
+			this.xtraTabPageMedia.Size = new System.Drawing.Size(658, 491);
+			this.xtraTabPageMedia.Text = "Television Strategy";
 			// 
 			// pnTV
 			// 
@@ -369,8 +369,8 @@
 			this.repositoryItemButtonEditDigitalProducts.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemButtonEditDigitalProducts.AutoHeight = false;
 			this.repositoryItemButtonEditDigitalProducts.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProducts.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "Nudge Up", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProducts.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "Nudge Down", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProducts.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "Nudge Up", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProducts.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "Nudge Down", null, null, true)});
 			this.repositoryItemButtonEditDigitalProducts.Name = "repositoryItemButtonEditDigitalProducts";
 			this.repositoryItemButtonEditDigitalProducts.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.repositoryItemButtonEditDigitalProducts.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditDigitalProducts_ButtonClick);
@@ -661,7 +661,7 @@
 			// 
 			this.repositoryItemButtonEditDigitalProductsDelete.AutoHeight = false;
 			this.repositoryItemButtonEditDigitalProductsDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProductsDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "Delete this line", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProductsDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "Delete this line", null, null, true)});
 			this.repositoryItemButtonEditDigitalProductsDelete.Name = "repositoryItemButtonEditDigitalProductsDelete";
 			this.repositoryItemButtonEditDigitalProductsDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
 			this.repositoryItemButtonEditDigitalProductsDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditDigitalProductsDelete_ButtonClick);
@@ -1087,7 +1087,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbWeeklySchedule)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).EndInit();
 			this.xtraTabControlMain.ResumeLayout(false);
-			this.xtraTabPageTV.ResumeLayout(false);
+			this.xtraTabPageMedia.ResumeLayout(false);
 			this.pnTV.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			this.xtraTabPageDigital.ResumeLayout(false);
@@ -1135,7 +1135,7 @@
         private StationsControl stationsControl;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlMain;
-		private DevExpress.XtraTab.XtraTabPage xtraTabPageTV;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageMedia;
 		private System.Windows.Forms.Panel pnTV;
         private DaypartsControl daypartsControl;
         private System.Windows.Forms.Panel pnRightTop;

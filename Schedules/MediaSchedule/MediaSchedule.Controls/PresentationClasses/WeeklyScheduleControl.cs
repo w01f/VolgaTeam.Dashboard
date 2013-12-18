@@ -9,6 +9,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public WeeklyScheduleControl()
 			: base()
 		{
+			_helpKey = "week";
 			laTotalPeriodsTitle.Text = "Total Weeks:";
 			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, "Weeks");
 			laScheduleName.Text = "Weekly Schedule";

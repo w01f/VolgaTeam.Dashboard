@@ -79,10 +79,15 @@ namespace NewBizWiz.Dashboard.InteropClasses
 											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.PresentationDate;
 											break;
 										case "MNTHLY1":
-											shape.Visible = TabHomeMainPage.Instance.SlideSimpleSummary.ShowMonhlyHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
+											shape.Visible = TabHomeMainPage.Instance.SlideSimpleSummary.ShowMonthlyHeader && TabHomeMainPage.Instance.SlideSimpleSummary.ShowTotalHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
 											break;
 										case "TOTAL2":
-											shape.Visible = TabHomeMainPage.Instance.SlideSimpleSummary.ShowTotalHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
+											if ((TabHomeMainPage.Instance.SlideSimpleSummary.ShowMonthlyHeader && TabHomeMainPage.Instance.SlideSimpleSummary.ShowTotalHeader) || TabHomeMainPage.Instance.SlideSimpleSummary.ShowTotalHeader)
+												shape.TextFrame.TextRange.Text = "Total Investment";
+											else if (TabHomeMainPage.Instance.SlideSimpleSummary.ShowMonthlyHeader)
+												shape.TextFrame.TextRange.Text = "Monthly Investment";
+											else
+												shape.Visible = MsoTriState.msoFalse;
 											break;
 										case "MWH":
 											if (!string.IsNullOrEmpty(TabHomeMainPage.Instance.SlideSimpleSummary.TotalMonthlyValue))
@@ -136,12 +141,12 @@ namespace NewBizWiz.Dashboard.InteropClasses
 												else if (shape.Tags.Name(i).Equals(string.Format("TINVEST{0}", k)))
 												{
 													shape.Visible = MsoTriState.msoFalse;
-													if (TabHomeMainPage.Instance.SlideSimpleSummary.MonthlyValues != null)
-														if ((j + k) < itemsCount)
-														{
-															shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.MonthlyValues[j + k];
-															shape.Visible = MsoTriState.msoTrue;
-														}
+													if (TabHomeMainPage.Instance.SlideSimpleSummary.MonthlyValues == null) continue;
+													if ((j + k) < itemsCount)
+													{
+														shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.MonthlyValues[j + k];
+														shape.Visible = MsoTriState.msoTrue;
+													}
 												}
 												else if (shape.Tags.Name(i).Equals(string.Format("MWINVEST{0}", k)))
 												{
@@ -223,7 +228,15 @@ namespace NewBizWiz.Dashboard.InteropClasses
 											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.DecisionMaker;
 											break;
 										case "MNTHLY1":
-											shape.Visible = TabHomeMainPage.Instance.SlideSimpleSummary.ShowMonhlyHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
+											shape.Visible = TabHomeMainPage.Instance.SlideSimpleSummary.ShowMonthlyHeader && TabHomeMainPage.Instance.SlideSimpleSummary.ShowTotalHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
+											break;
+										case "TOTAL2":
+											if ((TabHomeMainPage.Instance.SlideSimpleSummary.ShowMonthlyHeader && TabHomeMainPage.Instance.SlideSimpleSummary.ShowTotalHeader) || TabHomeMainPage.Instance.SlideSimpleSummary.ShowTotalHeader)
+												shape.TextFrame.TextRange.Text = "Total Investment";
+											else if (TabHomeMainPage.Instance.SlideSimpleSummary.ShowMonthlyHeader)
+												shape.TextFrame.TextRange.Text = "Monthly Investment";
+											else
+												shape.Visible = MsoTriState.msoFalse;
 											break;
 										case "DATE_FORMAT":
 											shape.TextFrame.TextRange.Text = TabHomeMainPage.Instance.SlideSimpleSummary.PresentationDate;

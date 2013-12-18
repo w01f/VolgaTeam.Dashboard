@@ -36,7 +36,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 						var thread = new Thread(delegate()
 						{
 							MessageFilter.Register();
-							Presentation presentation = _powerPointObject.Presentations.Open(FileName: mainPresentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+							var presentation = _powerPointObject.Presentations.Open(FileName: mainPresentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 							for (int j = 0; j < (itemsCount - additionalFileTemplateIndex); j += mainFileTemplateIndex)
 							{
 								foreach (Slide slide in presentation.Slides)
@@ -82,11 +82,15 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 													break;
 												case "MNTHLY1":
 													shape.Visible = Controller.Instance.Summary.ShowMonthlyHeader && Controller.Instance.Summary.ShowTotalHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
-													shape.TextFrame.TextRange.Text = Controller.Instance.Summary.ShowMonthlyHeader ? String.Format("Monthly{0}Investment", (char)13) : String.Format("Total{0}Investment", (char)13);
+													shape.TextFrame.TextRange.Text = String.Format("Monthly{0}Investment", (char)13);
 													break;
 												case "TOTAL2":
-													shape.Visible = Controller.Instance.Summary.ShowMonthlyHeader || Controller.Instance.Summary.ShowTotalHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
-													shape.TextFrame.TextRange.Text = Controller.Instance.Summary.ShowMonthlyHeader && Controller.Instance.Summary.ShowTotalHeader ? String.Format("Total{0}Investment", (char)13) : String.Format("Monthly{0}Investment", (char)13);
+													if ((Controller.Instance.Summary.ShowMonthlyHeader && Controller.Instance.Summary.ShowTotalHeader) || Controller.Instance.Summary.ShowTotalHeader)
+														shape.TextFrame.TextRange.Text = "Total Investment";
+													else if (Controller.Instance.Summary.ShowMonthlyHeader)
+														shape.TextFrame.TextRange.Text = "Monthly Investment";
+													else
+														shape.Visible = MsoTriState.msoFalse;
 													break;
 												case "MWH":
 													if (!string.IsNullOrEmpty(Controller.Instance.Summary.TotalMonthlyValue))
@@ -112,62 +116,42 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 														if (shape.Tags.Name(i).Equals(string.Format("SHAPE{0}", k)))
 														{
 															shape.Visible = MsoTriState.msoFalse;
-															if (Controller.Instance.Summary.ItemTitles != null)
-																if ((j + k) < itemsCount)
-																	if (!string.IsNullOrEmpty(Controller.Instance.Summary.ItemTitles[j + k]))
-																		shape.Visible = MsoTriState.msoTrue;
+															if (Controller.Instance.Summary.ItemTitles == null) continue;
+															if ((j + k) < itemsCount)
+																if (!string.IsNullOrEmpty(Controller.Instance.Summary.ItemTitles[j + k]))
+																	shape.Visible = MsoTriState.msoTrue;
 														}
 														else if (shape.Tags.Name(i).Equals(string.Format("SUBHEADER{0}", k)))
 														{
 															shape.Visible = MsoTriState.msoFalse;
-															if (Controller.Instance.Summary.ItemTitles != null)
-																if ((j + k) < itemsCount)
-																{
-																	shape.TextFrame.TextRange.Text = Controller.Instance.Summary.ItemTitles[j + k];
-																	shape.Visible = MsoTriState.msoTrue;
-																}
+															if (Controller.Instance.Summary.ItemTitles == null) continue;
+															if ((j + k) >= itemsCount) continue;
+															shape.TextFrame.TextRange.Text = Controller.Instance.Summary.ItemTitles[j + k];
+															shape.Visible = MsoTriState.msoTrue;
 														}
 														else if (shape.Tags.Name(i).Equals(string.Format("SELECT{0}", k)))
 														{
 															shape.Visible = MsoTriState.msoFalse;
-															if (Controller.Instance.Summary.ItemDetails != null)
-																if ((j + k) < itemsCount)
-																{
-																	shape.TextFrame.TextRange.Text = Controller.Instance.Summary.ItemDetails[j + k];
-																	shape.Visible = MsoTriState.msoTrue;
-																}
+															if (Controller.Instance.Summary.ItemDetails == null) continue;
+															if ((j + k) >= itemsCount) continue;
+															shape.TextFrame.TextRange.Text = Controller.Instance.Summary.ItemDetails[j + k];
+															shape.Visible = MsoTriState.msoTrue;
 														}
 														else if (shape.Tags.Name(i).Equals(string.Format("TINVEST{0}", k)))
 														{
 															shape.Visible = MsoTriState.msoFalse;
-															if (Controller.Instance.Summary.ShowMonthlyHeader && Controller.Instance.Summary.ShowTotalHeader && Controller.Instance.Summary.MonthlyValues.Any())
-															{
-																if ((j + k) < itemsCount)
-																{
-																	shape.TextFrame.TextRange.Text = Controller.Instance.Summary.MonthlyValues[j + k];
-																	shape.Visible = MsoTriState.msoTrue;
-																}
-															}
+															if (Controller.Instance.Summary.MonthlyValues == null) continue;
+															if ((j + k) >= itemsCount) continue;
+															shape.TextFrame.TextRange.Text = Controller.Instance.Summary.MonthlyValues[j + k];
+															shape.Visible = MsoTriState.msoTrue;
 														}
 														else if (shape.Tags.Name(i).Equals(string.Format("MWINVEST{0}", k)))
 														{
 															shape.Visible = MsoTriState.msoFalse;
-															if (Controller.Instance.Summary.ShowMonthlyHeader && Controller.Instance.Summary.ShowTotalHeader && Controller.Instance.Summary.TotalValues.Any())
-															{
-																if ((j + k) < itemsCount)
-																{
-																	shape.TextFrame.TextRange.Text = Controller.Instance.Summary.TotalValues[j + k];
-																	shape.Visible = MsoTriState.msoTrue;
-																}
-															}
-															else if (Controller.Instance.Summary.ShowMonthlyHeader && Controller.Instance.Summary.MonthlyValues.Any())
-															{
-																if ((j + k) < itemsCount)
-																{
-																	shape.TextFrame.TextRange.Text = Controller.Instance.Summary.MonthlyValues[j + k];
-																	shape.Visible = MsoTriState.msoTrue;
-																}
-															}
+															if (Controller.Instance.Summary.TotalValues == null) continue;
+															if ((j + k) >= itemsCount) continue;
+															shape.TextFrame.TextRange.Text = Controller.Instance.Summary.TotalValues[j + k];
+															shape.Visible = MsoTriState.msoTrue;
 														}
 													}
 													break;
@@ -199,7 +183,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 							var thread = new Thread(delegate()
 							{
 								MessageFilter.Register();
-								Presentation presentation = _powerPointObject.Presentations.Open(FileName: additionalPresentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+								var presentation = _powerPointObject.Presentations.Open(FileName: additionalPresentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 								foreach (Slide slide in presentation.Slides)
 								{
 									foreach (Shape shape in slide.Shapes)
@@ -239,7 +223,16 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 													shape.TextFrame.TextRange.Text = Controller.Instance.Summary.DecisionMaker;
 													break;
 												case "MNTHLY1":
-													shape.Visible = Controller.Instance.Summary.ShowMonthlyHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
+													shape.Visible = Controller.Instance.Summary.ShowMonthlyHeader && Controller.Instance.Summary.ShowTotalHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
+													shape.TextFrame.TextRange.Text = String.Format("Monthly{0}Investment", (char)13);
+													break;
+												case "TOTAL2":
+													if ((Controller.Instance.Summary.ShowMonthlyHeader && Controller.Instance.Summary.ShowTotalHeader) || Controller.Instance.Summary.ShowTotalHeader)
+														shape.TextFrame.TextRange.Text = "Total Investment";
+													else if (Controller.Instance.Summary.ShowMonthlyHeader)
+														shape.TextFrame.TextRange.Text = "Monthly Investment";
+													else
+														shape.Visible = MsoTriState.msoFalse;
 													break;
 												case "DATE_FORMAT":
 													shape.TextFrame.TextRange.Text = Controller.Instance.Summary.PresentationDate;
@@ -269,50 +262,42 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 														if (shape.Tags.Name(i).Equals(string.Format("SHAPE{0}", k)))
 														{
 															shape.Visible = MsoTriState.msoFalse;
-															if (Controller.Instance.Summary.ItemTitles != null)
-																if ((j + k) < itemsCount)
-																	if (!string.IsNullOrEmpty(Controller.Instance.Summary.ItemTitles[j + k]))
-																		shape.Visible = MsoTriState.msoTrue;
+															if (Controller.Instance.Summary.ItemTitles == null) continue;
+															if ((j + k) < itemsCount)
+																if (!string.IsNullOrEmpty(Controller.Instance.Summary.ItemTitles[j + k]))
+																	shape.Visible = MsoTriState.msoTrue;
 														}
 														else if (shape.Tags.Name(i).Equals(string.Format("SUBHEADER{0}", k)))
 														{
 															shape.Visible = MsoTriState.msoFalse;
-															if (Controller.Instance.Summary.ItemTitles != null)
-																if ((j + k) < itemsCount)
-																{
-																	shape.TextFrame.TextRange.Text = Controller.Instance.Summary.ItemTitles[j + k];
-																	shape.Visible = MsoTriState.msoTrue;
-																}
+															if (Controller.Instance.Summary.ItemTitles == null) continue;
+															if ((j + k) >= itemsCount) continue;
+															shape.TextFrame.TextRange.Text = Controller.Instance.Summary.ItemTitles[j + k];
+															shape.Visible = MsoTriState.msoTrue;
 														}
 														else if (shape.Tags.Name(i).Equals(string.Format("SELECT{0}", k)))
 														{
 															shape.Visible = MsoTriState.msoFalse;
-															if (Controller.Instance.Summary.ItemDetails != null)
-																if ((j + k) < itemsCount)
-																{
-																	shape.TextFrame.TextRange.Text = Controller.Instance.Summary.ItemDetails[j + k];
-																	shape.Visible = MsoTriState.msoTrue;
-																}
+															if (Controller.Instance.Summary.ItemDetails == null) continue;
+															if ((j + k) >= itemsCount) continue;
+															shape.TextFrame.TextRange.Text = Controller.Instance.Summary.ItemDetails[j + k];
+															shape.Visible = MsoTriState.msoTrue;
 														}
 														else if (shape.Tags.Name(i).Equals(string.Format("TINVEST{0}", k)))
 														{
 															shape.Visible = MsoTriState.msoFalse;
-															if (Controller.Instance.Summary.MonthlyValues != null)
-																if ((j + k) < itemsCount)
-																{
-																	shape.TextFrame.TextRange.Text = Controller.Instance.Summary.MonthlyValues[j + k];
-																	shape.Visible = MsoTriState.msoTrue;
-																}
+															if (Controller.Instance.Summary.MonthlyValues == null) continue;
+															if ((j + k) >= itemsCount) continue;
+															shape.TextFrame.TextRange.Text = Controller.Instance.Summary.MonthlyValues[j + k];
+															shape.Visible = MsoTriState.msoTrue;
 														}
 														else if (shape.Tags.Name(i).Equals(string.Format("MWINVEST{0}", k)))
 														{
 															shape.Visible = MsoTriState.msoFalse;
-															if (Controller.Instance.Summary.TotalValues != null)
-																if ((j + k) < itemsCount)
-																{
-																	shape.TextFrame.TextRange.Text = Controller.Instance.Summary.TotalValues[j + k];
-																	shape.Visible = MsoTriState.msoTrue;
-																}
+															if (Controller.Instance.Summary.TotalValues == null) continue;
+															if ((j + k) >= itemsCount) continue;
+															shape.TextFrame.TextRange.Text = Controller.Instance.Summary.TotalValues[j + k];
+															shape.Visible = MsoTriState.msoTrue;
 														}
 													}
 													break;

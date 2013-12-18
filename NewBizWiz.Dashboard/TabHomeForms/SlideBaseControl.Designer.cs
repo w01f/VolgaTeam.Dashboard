@@ -43,18 +43,20 @@
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.laSlideHeader = new System.Windows.Forms.Label();
 			this.pnBottom = new System.Windows.Forms.Panel();
-			this.buttonXSavedFiles = new DevComponents.DotNetBar.ButtonX();
 			this.pnSlideSelector = new System.Windows.Forms.Panel();
 			this.simpleButtonSummary = new DevExpress.XtraEditors.SimpleButton();
 			this.simpleButtonTargetCustomers = new DevExpress.XtraEditors.SimpleButton();
 			this.simpleButtonClientGoals = new DevExpress.XtraEditors.SimpleButton();
 			this.simpleButtonLeadoff = new DevExpress.XtraEditors.SimpleButton();
 			this.simpleButtonCover = new DevExpress.XtraEditors.SimpleButton();
+			this.pbDescription = new System.Windows.Forms.PictureBox();
+			this.buttonXSavedFiles = new DevComponents.DotNetBar.ButtonX();
 			this.pnMain.SuspendLayout();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnBottom.SuspendLayout();
 			this.pnSlideSelector.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pnMain
@@ -111,27 +113,13 @@
 			// pnBottom
 			// 
 			this.pnBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnBottom.Controls.Add(this.pbDescription);
 			this.pnBottom.Controls.Add(this.buttonXSavedFiles);
 			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnBottom.Location = new System.Drawing.Point(0, 438);
 			this.pnBottom.Name = "pnBottom";
 			this.pnBottom.Size = new System.Drawing.Size(919, 74);
 			this.pnBottom.TabIndex = 1;
-			// 
-			// buttonXSavedFiles
-			// 
-			this.buttonXSavedFiles.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXSavedFiles.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSavedFiles.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXSavedFiles.Image = global::NewBizWiz.Dashboard.Properties.Resources.SavedFiles;
-			this.buttonXSavedFiles.Location = new System.Drawing.Point(11, 8);
-			this.buttonXSavedFiles.Name = "buttonXSavedFiles";
-			this.buttonXSavedFiles.Size = new System.Drawing.Size(165, 55);
-			this.buttonXSavedFiles.TabIndex = 104;
-			this.buttonXSavedFiles.TabStop = false;
-			this.buttonXSavedFiles.Text = "My Saved Files";
-			this.buttonXSavedFiles.TextColor = System.Drawing.Color.Black;
-			this.buttonXSavedFiles.Click += new System.EventHandler(this.SavedFiles_Click);
 			// 
 			// pnSlideSelector
 			// 
@@ -222,6 +210,31 @@
 			this.simpleButtonCover.TabIndex = 0;
 			this.simpleButtonCover.Click += new System.EventHandler(this.SlideType_Click);
 			// 
+			// pbDescription
+			// 
+			this.pbDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pbDescription.Location = new System.Drawing.Point(259, 21);
+			this.pbDescription.Name = "pbDescription";
+			this.pbDescription.Size = new System.Drawing.Size(650, 29);
+			this.pbDescription.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.pbDescription.TabIndex = 105;
+			this.pbDescription.TabStop = false;
+			// 
+			// buttonXSavedFiles
+			// 
+			this.buttonXSavedFiles.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXSavedFiles.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSavedFiles.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.buttonXSavedFiles.Image = global::NewBizWiz.Dashboard.Properties.Resources.SavedFiles;
+			this.buttonXSavedFiles.Location = new System.Drawing.Point(11, 8);
+			this.buttonXSavedFiles.Name = "buttonXSavedFiles";
+			this.buttonXSavedFiles.Size = new System.Drawing.Size(165, 55);
+			this.buttonXSavedFiles.TabIndex = 104;
+			this.buttonXSavedFiles.TabStop = false;
+			this.buttonXSavedFiles.Text = "My Saved Files";
+			this.buttonXSavedFiles.TextColor = System.Drawing.Color.Black;
+			this.buttonXSavedFiles.Click += new System.EventHandler(this.SavedFiles_Click);
+			// 
 			// SlideBaseControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -239,7 +252,9 @@
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnBottom.ResumeLayout(false);
+			this.pnBottom.PerformLayout();
 			this.pnSlideSelector.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -258,5 +273,6 @@
 		protected System.Windows.Forms.Label laSlideHeader;
 		protected DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSlideHeader;
 		protected System.Windows.Forms.Panel pnTop;
+		protected System.Windows.Forms.PictureBox pbDescription;
 	}
 }

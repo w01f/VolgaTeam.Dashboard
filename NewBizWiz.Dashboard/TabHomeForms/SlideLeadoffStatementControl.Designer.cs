@@ -37,6 +37,8 @@
 			this.pnMain.SuspendLayout();
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
+			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditC.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditB.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditA.Properties)).BeginInit();
@@ -50,6 +52,7 @@
 			this.pnMain.Controls.Add(this.memoEditA);
 			this.pnMain.Controls.Add(this.memoEditB);
 			this.pnMain.Controls.Add(this.memoEditC);
+			this.pnMain.Controls.SetChildIndex(this.pnTop, 0);
 			this.pnMain.Controls.SetChildIndex(this.memoEditC, 0);
 			this.pnMain.Controls.SetChildIndex(this.memoEditB, 0);
 			this.pnMain.Controls.SetChildIndex(this.memoEditA, 0);
@@ -74,6 +77,11 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.memoEditC_EditValueChanged);
+			// 
+			// pbDescription
+			// 
+			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionLeadoff;
+			this.pbDescription.Size = new System.Drawing.Size(650, 28);
 			// 
 			// ckC
 			// 
@@ -157,14 +165,17 @@
 			this.memoEditA.TabIndex = 1;
 			this.memoEditA.EditValueChanged += new System.EventHandler(this.memoEditC_EditValueChanged);
 			// 
-			// LeadoffStatementControl
+			// SlideLeadoffStatementControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.Name = "LeadoffStatementControl";
+			this.Name = "SlideLeadoffStatementControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnMain.PerformLayout();
 			this.pnBottom.ResumeLayout(false);
+			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
+			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditC.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditB.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditA.Properties)).EndInit();

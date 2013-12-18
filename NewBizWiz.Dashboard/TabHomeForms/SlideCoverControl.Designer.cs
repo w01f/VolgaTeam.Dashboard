@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlideCoverControl));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.pbSalesQuotes = new System.Windows.Forms.PictureBox();
@@ -48,13 +47,14 @@
 			this.checkEditSalesRep = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditFirstSlide = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditUseEmptyCover = new DevExpress.XtraEditors.CheckEdit();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.comboBoxEditSalesRep = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.laSalesRepDetails = new System.Windows.Forms.Label();
 			this.pnMain.SuspendLayout();
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbSalesQuotes)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).BeginInit();
@@ -132,6 +132,10 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.comboBoxEdit_EditValueChanged);
+			// 
+			// pbDescription
+			// 
+			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionCover;
 			// 
 			// pbSalesQuotes
 			// 
@@ -490,8 +494,10 @@
 			this.Name = "SlideCoverControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
+			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbSalesQuotes)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).EndInit();

@@ -34,6 +34,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		private readonly List<BandedGridColumn> _spotColumns = new List<BandedGridColumn>();
 		private bool _allowTosave;
 		protected Schedule _localSchedule;
+		protected string _helpKey;
 
 		public ScheduleSectionControl()
 		{
@@ -528,7 +529,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public void Help_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("week");
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink(_helpKey);
 		}
 
 		public void Save_Click(object sender, EventArgs e)
@@ -644,7 +645,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 			UpdateTotalsVisibility();
 			UpdateTotalsValues();
-			
+
 			UpdateColumnsAccordingScreenSize();
 
 			SettingsNotSaved = true;
@@ -669,6 +670,18 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			if (!_allowTosave) return;
 			SettingsNotSaved = true;
+		}
+
+		private void pbOptionsHelp_Click(object sender, EventArgs e)
+		{
+			if (xtraTabControlOptions.SelectedTabPage == xtraTabPageOptionsLine)
+				BusinessWrapper.Instance.HelpManager.OpenHelpLink(String.Format("nav{0}", MediaMetaData.Instance.DataTypeString));
+			else if (xtraTabControlOptions.SelectedTabPage == xtraTabPageOptionsSecurity)
+				BusinessWrapper.Instance.HelpManager.OpenHelpLink("navsecurity");
+			else if (xtraTabControlOptions.SelectedTabPage == xtraTabPageOptionsStyle)
+				BusinessWrapper.Instance.HelpManager.OpenHelpLink("navstyle");
+			else if (xtraTabControlOptions.SelectedTabPage == xtraTabPageOptionsTotals)
+				BusinessWrapper.Instance.HelpManager.OpenHelpLink("navinfo");
 		}
 		#endregion
 

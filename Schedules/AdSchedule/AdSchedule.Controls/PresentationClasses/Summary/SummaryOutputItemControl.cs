@@ -84,7 +84,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public bool MonthlyVisible
 		{
-			set { ckMonthly.Visible = value; }
+			get { return pnMonthly.Visible; }
+			set
+			{
+				pnMonthly.Visible = value;
+				pnTotal.BringToFront();
+				pnMonthly.BringToFront();
+			}
 		}
 
 		public string ToatlValue
@@ -99,7 +105,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public bool TotalVisible
 		{
-			set { ckTotal.Visible = value; }
+			get { return pnTotal.Visible; }
+			set
+			{
+				pnTotal.Visible = value;
+				pnTotal.BringToFront();
+				pnMonthly.BringToFront();
+			}
 		}
 	}
 }

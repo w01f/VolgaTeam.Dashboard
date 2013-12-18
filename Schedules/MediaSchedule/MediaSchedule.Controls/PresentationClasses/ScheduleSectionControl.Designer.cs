@@ -74,8 +74,8 @@
 			this.repositoryItemSpinEdit000s = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemTextEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.pnTop = new System.Windows.Forms.Panel();
-			this.laAdvertiser = new System.Windows.Forms.Label();
 			this.laDemoName = new System.Windows.Forms.Label();
+			this.laAdvertiser = new System.Windows.Forms.Label();
 			this.laScheduleWindow = new System.Windows.Forms.Label();
 			this.laScheduleName = new System.Windows.Forms.Label();
 			this.styleController = new DevExpress.XtraEditors.StyleController();
@@ -144,7 +144,7 @@
 			this.xtraScrollableControlColors = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.pbOptionsSyleHelp = new System.Windows.Forms.PictureBox();
 			this.laOptionsStyleTitle = new System.Windows.Forms.Label();
-			this.xtraTabPageOptionsSEcurity = new DevExpress.XtraTab.XtraTabPage();
+			this.xtraTabPageOptionsSecurity = new DevExpress.XtraTab.XtraTabPage();
 			this.pnSecurity = new System.Windows.Forms.Panel();
 			this.laOptionsSecurityDescription = new DevExpress.XtraEditors.LabelControl();
 			this.pbOptionsSecurityHelp = new System.Windows.Forms.PictureBox();
@@ -195,7 +195,7 @@
 			this.pnStyle.SuspendLayout();
 			this.pnColors.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsSyleHelp)).BeginInit();
-			this.xtraTabPageOptionsSEcurity.SuspendLayout();
+			this.xtraTabPageOptionsSecurity.SuspendLayout();
 			this.pnSecurity.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsSecurityHelp)).BeginInit();
 			this.SuspendLayout();
@@ -1077,15 +1077,6 @@
 			this.pnTop.Size = new System.Drawing.Size(850, 25);
 			this.pnTop.TabIndex = 1;
 			// 
-			// laAdvertiser
-			// 
-			this.laAdvertiser.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.laAdvertiser.Location = new System.Drawing.Point(157, 0);
-			this.laAdvertiser.Name = "laAdvertiser";
-			this.laAdvertiser.Size = new System.Drawing.Size(500, 25);
-			this.laAdvertiser.TabIndex = 4;
-			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
 			// laDemoName
 			// 
 			this.laDemoName.Dock = System.Windows.Forms.DockStyle.Right;
@@ -1094,6 +1085,15 @@
 			this.laDemoName.Size = new System.Drawing.Size(121, 25);
 			this.laDemoName.TabIndex = 5;
 			this.laDemoName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// laAdvertiser
+			// 
+			this.laAdvertiser.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.laAdvertiser.Location = new System.Drawing.Point(157, 0);
+			this.laAdvertiser.Name = "laAdvertiser";
+			this.laAdvertiser.Size = new System.Drawing.Size(500, 25);
+			this.laAdvertiser.TabIndex = 4;
+			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// laScheduleWindow
 			// 
@@ -1462,7 +1462,7 @@
             this.xtraTabPageOptionsDigital,
             this.xtraTabPageOptionsTotals,
             this.xtraTabPageOptionsStyle,
-            this.xtraTabPageOptionsSEcurity});
+            this.xtraTabPageOptionsSecurity});
 			// 
 			// xtraTabPageOptionsLine
 			// 
@@ -1683,6 +1683,7 @@
 			this.pbOptionsLineHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pbOptionsLineHelp.TabIndex = 38;
 			this.pbOptionsLineHelp.TabStop = false;
+			this.pbOptionsLineHelp.Click += new System.EventHandler(this.pbOptionsHelp_Click);
 			this.pbOptionsLineHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
 			this.pbOptionsLineHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
@@ -1869,6 +1870,7 @@
 			this.pbOptionsTotalsHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pbOptionsTotalsHelp.TabIndex = 52;
 			this.pbOptionsTotalsHelp.TabStop = false;
+			this.pbOptionsTotalsHelp.Click += new System.EventHandler(this.pbOptionsHelp_Click);
 			this.pbOptionsTotalsHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
 			this.pbOptionsTotalsHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
@@ -1934,6 +1936,7 @@
 			this.pbOptionsSyleHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pbOptionsSyleHelp.TabIndex = 40;
 			this.pbOptionsSyleHelp.TabStop = false;
+			this.pbOptionsSyleHelp.Click += new System.EventHandler(this.pbOptionsHelp_Click);
 			this.pbOptionsSyleHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
 			this.pbOptionsSyleHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
@@ -1950,12 +1953,12 @@
 			this.laOptionsStyleTitle.Text = "Select style below:";
 			this.laOptionsStyleTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// xtraTabPageOptionsSEcurity
+			// xtraTabPageOptionsSecurity
 			// 
-			this.xtraTabPageOptionsSEcurity.Controls.Add(this.pnSecurity);
-			this.xtraTabPageOptionsSEcurity.Name = "xtraTabPageOptionsSEcurity";
-			this.xtraTabPageOptionsSEcurity.Size = new System.Drawing.Size(268, 479);
-			this.xtraTabPageOptionsSEcurity.Text = "Security";
+			this.xtraTabPageOptionsSecurity.Controls.Add(this.pnSecurity);
+			this.xtraTabPageOptionsSecurity.Name = "xtraTabPageOptionsSecurity";
+			this.xtraTabPageOptionsSecurity.Size = new System.Drawing.Size(268, 479);
+			this.xtraTabPageOptionsSecurity.Text = "Security";
 			// 
 			// pnSecurity
 			// 
@@ -1995,6 +1998,7 @@
 			this.pbOptionsSecurityHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pbOptionsSecurityHelp.TabIndex = 46;
 			this.pbOptionsSecurityHelp.TabStop = false;
+			this.pbOptionsSecurityHelp.Click += new System.EventHandler(this.pbOptionsHelp_Click);
 			this.pbOptionsSecurityHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
 			this.pbOptionsSecurityHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
@@ -2084,7 +2088,7 @@
 			this.pnStyle.ResumeLayout(false);
 			this.pnColors.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsSyleHelp)).EndInit();
-			this.xtraTabPageOptionsSEcurity.ResumeLayout(false);
+			this.xtraTabPageOptionsSecurity.ResumeLayout(false);
 			this.pnSecurity.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsSecurityHelp)).EndInit();
 			this.ResumeLayout(false);
@@ -2207,7 +2211,7 @@
 		private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControlColors;
 		protected System.Windows.Forms.Label laTotalPeriodsTitle;
 		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditProgram;
-		private DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsSEcurity;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsSecurity;
 		private System.Windows.Forms.Panel pnSecurity;
 		private DevExpress.XtraEditors.LabelControl laOptionsSecurityDescription;
 		private System.Windows.Forms.PictureBox pbOptionsSecurityHelp;

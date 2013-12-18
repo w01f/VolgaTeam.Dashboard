@@ -93,7 +93,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			{
 				#region Media Tab
 
-				xtraTabPageTV.Text = String.Format("{0} Strategy", MediaMetaData.Instance.DataTypeString);
+				xtraTabPageMedia.Text = String.Format("{0} Strategy", MediaMetaData.Instance.DataTypeString);
 
 				Controller.Instance.HomeBusinessName.Properties.Items.Clear();
 				Controller.Instance.HomeBusinessName.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers.ToArray());
@@ -211,7 +211,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 				LoadDigitalView();
 				Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
-				xtraTabControlProducts_SelectedPageChanged(this, new TabPageChangedEventArgs(null, xtraTabPageTV));
+				xtraTabControlProducts_SelectedPageChanged(this, new TabPageChangedEventArgs(null, xtraTabPageMedia));
 
 				#endregion
 			}
@@ -268,8 +268,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 			if (Controller.Instance.HomeFlightDatesStart.EditValue != null && Controller.Instance.HomeFlightDatesEnd.EditValue != null)
 			{
-				DateTime startDate = Controller.Instance.HomeFlightDatesStart.DateTime;
-				DateTime endDate = Controller.Instance.HomeFlightDatesEnd.DateTime;
+				var startDate = Controller.Instance.HomeFlightDatesStart.DateTime;
+				var endDate = Controller.Instance.HomeFlightDatesEnd.DateTime;
 				if (startDate.DayOfWeek != DayOfWeek.Monday)
 				{
 					if (!quiet)
@@ -496,7 +496,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public void Help_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("Home");
+			if (xtraTabControlMain.SelectedTabPage == xtraTabPageMedia)
+				BusinessWrapper.Instance.HelpManager.OpenHelpLink(String.Format("Home{0}", MediaMetaData.Instance.DataTypeString));
+			else if (xtraTabControlMain.SelectedTabPage == xtraTabPageDigital)
+				BusinessWrapper.Instance.HelpManager.OpenHelpLink(String.Format("Home{0}", "dig"));
 		}
 
 		public void Save_Click(object sender, EventArgs e)
@@ -642,6 +645,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		private void pbOptionsHelp_Click(object sender, EventArgs e)
 		{
+			if (xtraTabControlOptions.SelectedTabPage == xtraTabPageStations)
+				BusinessWrapper.Instance.HelpManager.OpenHelpLink("stations");
+			else if (xtraTabControlOptions.SelectedTabPage == xtraTabPageDayparts)
+				BusinessWrapper.Instance.HelpManager.OpenHelpLink("dayparts");
+			else if (xtraTabControlOptions.SelectedTabPage == xtraTabPageDemos)
+				BusinessWrapper.Instance.HelpManager.OpenHelpLink("demos");
 		}
 
 		#endregion

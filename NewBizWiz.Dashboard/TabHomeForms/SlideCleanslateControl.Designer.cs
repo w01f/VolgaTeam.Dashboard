@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+			this.toolTip = new System.Windows.Forms.ToolTip();
 			this.laUserName = new System.Windows.Forms.Label();
 			this.pbVersion = new System.Windows.Forms.PictureBox();
 			this.pnMain.SuspendLayout();
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbVersion)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -49,6 +49,7 @@
 			this.pnBottom.Controls.Add(this.laUserName);
 			this.pnBottom.Location = new System.Drawing.Point(0, 437);
 			this.pnBottom.Size = new System.Drawing.Size(919, 75);
+			this.pnBottom.Controls.SetChildIndex(this.pbDescription, 0);
 			this.pnBottom.Controls.SetChildIndex(this.laUserName, 0);
 			this.pnBottom.Controls.SetChildIndex(this.pbVersion, 0);
 			this.pnBottom.Controls.SetChildIndex(this.buttonXSavedFiles, 0);
@@ -78,6 +79,10 @@
 			// pnTop
 			// 
 			this.pnTop.Visible = false;
+			// 
+			// pbDescription
+			// 
+			this.pbDescription.Visible = false;
 			// 
 			// toolTip
 			// 
@@ -111,8 +116,10 @@
 			this.Name = "SlideCleanslateControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
+			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbVersion)).EndInit();
 			this.ResumeLayout(false);
 

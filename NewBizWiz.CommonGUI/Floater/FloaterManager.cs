@@ -15,7 +15,7 @@ namespace NewBizWiz.CommonGUI.Floater
 		{
 			var x = _floaterPositionX == Int32.MinValue ? sender.Left + sender.Width - 40 : _floaterPositionX;
 			var y = _floaterPositionY == Int32.MinValue ? (sender.Top + (sender.Height - 65) / 2) : _floaterPositionY;
-
+			
 			using (var form = new FormFloater(x, y, logo, ribbonText))
 			{
 				if (afterShow != null)

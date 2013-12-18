@@ -33,6 +33,7 @@
 			this.buttonItemBack = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHide = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemExit = new DevComponents.DotNetBar.ButtonItem();
+			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.SuspendLayout();
 			// 
 			// styleManager
@@ -118,8 +119,13 @@
 			this.buttonItemExit.Image = global::NewBizWiz.CommonGUI.Properties.Resources.FloaterHide;
 			this.buttonItemExit.Name = "buttonItemExit";
 			this.buttonItemExit.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemExit, new DevComponents.DotNetBar.SuperTooltipInfo("Hide Floater", "", "Minimize this toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemExit.Text = "buttonItem1";
 			this.buttonItemExit.Click += new System.EventHandler(this.buttonItemHide_Click);
+			// 
+			// superTooltip
+			// 
+			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
 			// FormFloater
 			// 
@@ -146,6 +152,7 @@
         private DevComponents.DotNetBar.ButtonItem buttonItemBack;
         private DevComponents.DotNetBar.RibbonBar ribbonBarHide;
         private DevComponents.DotNetBar.ButtonItem buttonItemExit;
+		public DevComponents.DotNetBar.SuperTooltip superTooltip;
 
     }
 }

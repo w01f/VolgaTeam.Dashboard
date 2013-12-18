@@ -28,11 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DigitalInfoControl));
 			this.memoEditInfo = new DevExpress.XtraEditors.MemoEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.checkEditEnable = new DevExpress.XtraEditors.CheckEdit();
 			this.buttonXShowInvestment = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXShowCPM = new DevComponents.DotNetBar.ButtonX();
@@ -292,6 +291,7 @@
 			this.pbHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pbHelp.TabIndex = 107;
 			this.pbHelp.TabStop = false;
+			this.pbHelp.Click += new System.EventHandler(this.pbHelp_Click);
 			this.pbHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
 			this.pbHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
@@ -452,7 +452,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthly.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthly.Properties)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 

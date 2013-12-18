@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlideSimpleSummaryControl));
@@ -42,7 +41,7 @@
 			this.dateEditFligtDatesEnd = new DevExpress.XtraEditors.DateEdit();
 			this.laFlightDatesStart = new System.Windows.Forms.Label();
 			this.laFlightDatesEnd = new System.Windows.Forms.Label();
-			this.tabItemCampaign = new DevComponents.DotNetBar.TabItem(this.components);
+			this.tabItemCampaign = new DevComponents.DotNetBar.TabItem();
 			this.comboBoxEditDecisionMaker = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.comboBoxEditAdvertiser = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.dateEditDate = new DevExpress.XtraEditors.DateEdit();
@@ -81,7 +80,7 @@
 			this.pnMonthInvestments = new System.Windows.Forms.Panel();
 			this.laMonthlyInvestmentTag = new System.Windows.Forms.Label();
 			this.laMonthlyInvestment = new System.Windows.Forms.Label();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageAdvertiser = new DevExpress.XtraTab.XtraTabPage();
 			this.pnAdvertiser = new System.Windows.Forms.Panel();
@@ -89,10 +88,12 @@
 			this.pnCampaign = new System.Windows.Forms.Panel();
 			this.xtraTabPagePaymentDetails = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageOutput = new DevExpress.XtraTab.XtraTabPage();
+			this.pnHeaderBorder = new System.Windows.Forms.Panel();
 			this.pnMain.SuspendLayout();
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbStartDate)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbEndDate)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditFligtDatesStart.Properties.VistaTimeProperties)).BeginInit();
@@ -122,6 +123,7 @@
 			this.pnCampaign.SuspendLayout();
 			this.xtraTabPagePaymentDetails.SuspendLayout();
 			this.xtraTabPageOutput.SuspendLayout();
+			this.pnHeaderBorder.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pnMain
@@ -176,6 +178,10 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.edit_EditValueChanged);
+			// 
+			// pbDescription
+			// 
+			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionSummary;
 			// 
 			// pbStartDate
 			// 
@@ -475,9 +481,9 @@
 			// 
 			this.simpleSummaryOutputContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.simpleSummaryOutputContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.simpleSummaryOutputContainer.Location = new System.Drawing.Point(0, 28);
+			this.simpleSummaryOutputContainer.Location = new System.Drawing.Point(0, 0);
 			this.simpleSummaryOutputContainer.Name = "simpleSummaryOutputContainer";
-			this.simpleSummaryOutputContainer.Size = new System.Drawing.Size(643, 269);
+			this.simpleSummaryOutputContainer.Size = new System.Drawing.Size(643, 297);
 			this.simpleSummaryOutputContainer.TabIndex = 41;
 			// 
 			// pnHeader
@@ -486,10 +492,10 @@
 			this.pnHeader.Controls.Add(this.laDetails);
 			this.pnHeader.Controls.Add(this.laMonthly);
 			this.pnHeader.Controls.Add(this.laTotal);
-			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnHeader.Name = "pnHeader";
-			this.pnHeader.Size = new System.Drawing.Size(643, 28);
+			this.pnHeader.Size = new System.Drawing.Size(643, 31);
 			this.pnHeader.TabIndex = 42;
 			// 
 			// laDetails
@@ -500,7 +506,7 @@
 			this.laDetails.Location = new System.Drawing.Point(0, 0);
 			this.laDetails.Name = "laDetails";
 			this.laDetails.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-			this.laDetails.Size = new System.Drawing.Size(135, 28);
+			this.laDetails.Size = new System.Drawing.Size(135, 31);
 			this.laDetails.TabIndex = 38;
 			this.laDetails.Text = "Details:";
 			this.laDetails.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -510,9 +516,9 @@
 			this.laMonthly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.laMonthly.Dock = System.Windows.Forms.DockStyle.Right;
 			this.laMonthly.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laMonthly.Location = new System.Drawing.Point(342, 0);
+			this.laMonthly.Location = new System.Drawing.Point(343, 0);
 			this.laMonthly.Name = "laMonthly";
-			this.laMonthly.Size = new System.Drawing.Size(147, 28);
+			this.laMonthly.Size = new System.Drawing.Size(150, 31);
 			this.laMonthly.TabIndex = 39;
 			this.laMonthly.Text = "Monthly$:";
 			this.laMonthly.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -522,9 +528,9 @@
 			this.laTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.laTotal.Dock = System.Windows.Forms.DockStyle.Right;
 			this.laTotal.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTotal.Location = new System.Drawing.Point(489, 0);
+			this.laTotal.Location = new System.Drawing.Point(493, 0);
 			this.laTotal.Name = "laTotal";
-			this.laTotal.Size = new System.Drawing.Size(154, 28);
+			this.laTotal.Size = new System.Drawing.Size(150, 31);
 			this.laTotal.TabIndex = 40;
 			this.laTotal.Text = "Total$:";
 			this.laTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -915,12 +921,23 @@
 			// 
 			// xtraTabPageOutput
 			// 
+			this.xtraTabPageOutput.Controls.Add(this.pnHeaderBorder);
 			this.xtraTabPageOutput.Controls.Add(this.simpleSummaryOutputContainer);
-			this.xtraTabPageOutput.Controls.Add(this.pnHeader);
 			this.xtraTabPageOutput.Controls.Add(this.pnOutputWarning);
 			this.xtraTabPageOutput.Name = "xtraTabPageOutput";
 			this.xtraTabPageOutput.Size = new System.Drawing.Size(643, 297);
 			this.xtraTabPageOutput.Text = "4. Slide Output";
+			// 
+			// pnHeaderBorder
+			// 
+			this.pnHeaderBorder.BackColor = System.Drawing.Color.White;
+			this.pnHeaderBorder.Controls.Add(this.pnHeader);
+			this.pnHeaderBorder.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnHeaderBorder.Location = new System.Drawing.Point(0, 0);
+			this.pnHeaderBorder.Name = "pnHeaderBorder";
+			this.pnHeaderBorder.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+			this.pnHeaderBorder.Size = new System.Drawing.Size(643, 32);
+			this.pnHeaderBorder.TabIndex = 44;
 			// 
 			// SlideSimpleSummaryControl
 			// 
@@ -930,8 +947,10 @@
 			this.pnMain.ResumeLayout(false);
 			this.pnMain.PerformLayout();
 			this.pnBottom.ResumeLayout(false);
+			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbStartDate)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbEndDate)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditFligtDatesStart.Properties.VistaTimeProperties)).EndInit();
@@ -964,6 +983,7 @@
 			this.pnCampaign.PerformLayout();
 			this.xtraTabPagePaymentDetails.ResumeLayout(false);
 			this.xtraTabPageOutput.ResumeLayout(false);
+			this.pnHeaderBorder.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -1024,6 +1044,7 @@
 		private System.Windows.Forms.Label laFlightDatesStart;
 		private System.Windows.Forms.Label laFlightDatesEnd;
 		private DevComponents.DotNetBar.TabItem tabItemCampaign;
+		private System.Windows.Forms.Panel pnHeaderBorder;
 
     }
 }

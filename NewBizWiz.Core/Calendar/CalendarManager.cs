@@ -776,18 +776,17 @@ namespace NewBizWiz.Core.Calendar
 	{
 		protected DateTime _date;
 
-		public CalendarMonth(Calendar parent)
+		protected CalendarMonth(Calendar parent)
 		{
 			Parent = parent;
 			Days = new List<CalendarDay>();
-			OutputData = new CalendarOutputData(this);
 		}
 
 		public Calendar Parent { get; private set; }
 		public DateTime DaysRangeBegin { get; set; }
 		public DateTime DaysRangeEnd { get; set; }
 		public List<CalendarDay> Days { get; private set; }
-		public CalendarOutputData OutputData { get; private set; }
+		public CalendarOutputData OutputData { get; protected set; }
 
 		public abstract DateTime Date { get; set; }
 
@@ -823,6 +822,7 @@ namespace NewBizWiz.Core.Calendar
 		public CalendarMonthSundayBased(Calendar parent)
 			: base(parent)
 		{
+			OutputData = new CalendarOutputData(this);
 		}
 
 		public override DateTime Date
@@ -842,6 +842,7 @@ namespace NewBizWiz.Core.Calendar
 		public CalendarMonthMondayBased(Calendar parent)
 			: base(parent)
 		{
+			OutputData = new CalendarOutputData(this);
 		}
 
 		public override DateTime Date
@@ -865,7 +866,7 @@ namespace NewBizWiz.Core.Calendar
 
 	public abstract class CalendarDay
 	{
-		public CalendarDay(Calendar parent)
+		protected CalendarDay(Calendar parent)
 		{
 			Parent = parent;
 			Logo = new ImageSource();
@@ -1155,7 +1156,7 @@ namespace NewBizWiz.Core.Calendar
 			ApplyForAllThemeColor = true;
 
 			ShowLogo = true;
-			string defaultLogoPath = Path.Combine(ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
+			var defaultLogoPath = Path.Combine(ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
 			if (File.Exists(defaultLogoPath))
 				Logo = new Bitmap(defaultLogoPath);
 			ApplyForAllLogo = true;
@@ -1394,7 +1395,7 @@ namespace NewBizWiz.Core.Calendar
 		{
 			get
 			{
-				string result = string.Empty;
+				var result = string.Empty;
 				if (ShowCustomComment)
 					result = CustomComment;
 				return result;

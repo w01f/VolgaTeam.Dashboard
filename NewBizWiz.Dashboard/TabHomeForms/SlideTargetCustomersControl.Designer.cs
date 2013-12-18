@@ -42,6 +42,7 @@
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlGeographicResidence)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlHouseholdIncome)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlTargetDemo)).BeginInit();
@@ -76,6 +77,10 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.comboBoxEditSlideHeader_EditValueChanged);
+			// 
+			// pbDescription
+			// 
+			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionTargetCustomers;
 			// 
 			// tabControlPanelGeographicResidence
 			// 
@@ -234,8 +239,10 @@
 			this.Name = "SlideTargetCustomersControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
+			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlGeographicResidence)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlHouseholdIncome)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlTargetDemo)).EndInit();

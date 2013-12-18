@@ -9,6 +9,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public MonthlyScheduleControl()
 			: base()
 		{
+			_helpKey = "month";
 			laTotalPeriodsTitle.Text = "Total Months:";
 			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, "Months");
 			laScheduleName.Text = "Monthly Schedule";

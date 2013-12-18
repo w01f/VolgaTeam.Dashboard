@@ -50,7 +50,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 
 		public void ShowFloater(Form sender, Action afterShow)
 		{
-			var defaultText = !String.IsNullOrEmpty(AppConfig.Title) ? AppConfig.Title : "SellerPoint WebSlides";
+			var defaultText = !String.IsNullOrEmpty(AppConfig.Title) ? AppConfig.Title : "SellerPoint WebPRO";
 			var afterBack = new Action(ActivateMainForm);
 			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, AppConfig.Image, afterShow, null, afterBack);
 		}

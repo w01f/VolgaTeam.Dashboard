@@ -1578,6 +1578,11 @@ namespace NewBizWiz.Core.MediaSchedule
 			_getBroadcastMonthTemplates = getBroadcastMonthTemplates;
 		}
 
+		public override void Deserialize(XmlNode node)
+		{
+			Deserialize<CalendarMonthBroadcast, CalendarDayMondayBased>(node, DayOfWeek.Monday, DayOfWeek.Sunday);
+		}
+
 		public override void UpdateMonthCollection()
 		{
 			if (!Schedule.FlightDateStart.HasValue || !Schedule.FlightDateEnd.HasValue)
@@ -1590,20 +1595,13 @@ namespace NewBizWiz.Core.MediaSchedule
 			var monthTemplates = _getBroadcastMonthTemplates();
 			while (startDate <= Schedule.FlightDateEnd.Value)
 			{
-				var month = Months.FirstOrDefault(x => x.Date.Equals(startDate));
-				if (month == null)
-				{
-					var monthTemplate = monthTemplates.FirstOrDefault(mt => startDate >= mt.StartDate && startDate <= mt.EndDate);
-					if (monthTemplate != null)
-					{
-						month = new CalendarMonthMondayBased(this);
-						startDate = monthTemplate.Month.Value;
-						month.Date = monthTemplate.Month.Value;
-						month.DaysRangeBegin = monthTemplate.StartDate.Value;
-						month.DaysRangeEnd = monthTemplate.EndDate.Value;
-					}
-				}
-				if (month == null) continue;
+				var month = Months.FirstOrDefault(x => x.Date.Equals(startDate)) ?? new CalendarMonthBroadcast(this);
+				var monthTemplate = monthTemplates.FirstOrDefault(mt => startDate >= mt.StartDate && startDate <= mt.EndDate);
+				if (monthTemplate == null) continue;
+				startDate = monthTemplate.Month.Value;
+				month.Date = monthTemplate.Month.Value;
+				month.DaysRangeBegin = monthTemplate.StartDate.Value;
+				month.DaysRangeEnd = monthTemplate.EndDate.Value;
 				month.Days.Clear();
 				month.Days.AddRange(Days.Where(x => x.Date >= month.DaysRangeBegin && x.Date <= month.DaysRangeEnd));
 				months.Add(month);
@@ -1714,6 +1712,31 @@ namespace NewBizWiz.Core.MediaSchedule
 			Notes.Clear();
 			Notes.AddRange(notes);
 			UpdateDayAndNoteLinks();
+		}
+	}
+
+	public class CalendarMonthBroadcast : CalendarMonth
+	{
+		public CalendarMonthBroadcast(Calendar.Calendar parent)
+			: base(parent)
+		{
+			OutputData = new BroadcastCalendarOutputData(this);
+		}
+
+		public override DateTime Date
+		{
+			get { return _date; }
+			set { _date = value; }
+		}
+	}
+
+	public class BroadcastCalendarOutputData : CalendarOutputData
+	{
+		public BroadcastCalendarOutputData(CalendarMonth parent)
+			: base(parent)
+		{
+			ApplyForAllCustomComment = false;
+			ShowLogo = false;
 		}
 	}
 

@@ -41,6 +41,8 @@
 			this.pnMain.SuspendLayout();
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
+			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal5.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal4.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal3.Properties)).BeginInit();
@@ -60,6 +62,7 @@
 			this.pnMain.Controls.Add(this.laGoal5);
 			this.pnMain.Controls.Add(this.laGoal3);
 			this.pnMain.Controls.Add(this.laGoal4);
+			this.pnMain.Controls.SetChildIndex(this.pnTop, 0);
 			this.pnMain.Controls.SetChildIndex(this.laGoal4, 0);
 			this.pnMain.Controls.SetChildIndex(this.laGoal3, 0);
 			this.pnMain.Controls.SetChildIndex(this.laGoal5, 0);
@@ -88,6 +91,10 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.comboBoxEditGoal_EditValueChanged);
+			// 
+			// pbDescription
+			// 
+			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionClientGoals;
 			// 
 			// comboBoxEditGoal5
 			// 
@@ -250,7 +257,10 @@
 			this.Name = "SlideClientGoalsControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
+			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
+			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal5.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal4.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal3.Properties)).EndInit();

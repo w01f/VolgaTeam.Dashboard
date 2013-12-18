@@ -20,18 +20,15 @@ namespace NewBizWiz.Core.Common
 		private void LoadHelpLinks()
 		{
 			_helpLinks.Clear();
-			XmlNode node;
 			if (!File.Exists(_contentPath)) return;
 			var document = new XmlDocument();
 			document.Load(_contentPath);
-			node = document.SelectSingleNode(@"/Help");
-			if (node != null)
+			var node = document.SelectSingleNode(@"/Help");
+			if (node == null) return;
+			foreach (XmlNode childNode in node.ChildNodes)
 			{
-				foreach (XmlNode childNode in node.ChildNodes)
-				{
-					if (!_helpLinks.Keys.Contains(childNode.Name.ToLower()))
-						_helpLinks.Add(childNode.Name.ToLower(), childNode.InnerText);
-				}
+				if (!_helpLinks.Keys.Contains(childNode.Name.ToLower()))
+					_helpLinks.Add(childNode.Name.ToLower(), childNode.InnerText);
 			}
 		}
 

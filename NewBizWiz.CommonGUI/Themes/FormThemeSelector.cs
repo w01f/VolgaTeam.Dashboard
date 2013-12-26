@@ -70,15 +70,13 @@ namespace NewBizWiz.CommonGUI.Themes
 							{
 								form.SetSelectedTheme((selectorButton.Tag as Theme).Name);
 							};
-							if (form.ShowDialog() == DialogResult.OK)
-							{
-								var selectedTheme = form.SelectedTheme;
-								if (selectedTheme == null) return;
-								selectorButton.Image = selectedTheme.RibbonLogo;
-								(selectorButton.ContainerControl as RibbonBar).Text = String.Format("{0}", selectedTheme.Name);
-								selectorButton.Tag = selectedTheme;
-								themeSelected(selectedTheme);
-							}
+							if (form.ShowDialog() != DialogResult.OK) return;
+							var selectedTheme = form.SelectedTheme;
+							if (selectedTheme == null) return;
+							selectorButton.Image = selectedTheme.RibbonLogo;
+							(selectorButton.ContainerControl as RibbonBar).Text = String.Format("{0}", selectedTheme.Name);
+							selectorButton.Tag = selectedTheme;
+							themeSelected(selectedTheme);
 						}
 					};
 				selectorButton.Tag = currentTheme;

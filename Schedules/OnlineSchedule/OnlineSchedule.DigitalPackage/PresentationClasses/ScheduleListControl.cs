@@ -131,5 +131,10 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 				e.Info = info;
 			}
 		}
+
+		private void barLargeButtonItemHelp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink("filemgr");
+		}
 	}
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
@@ -39,12 +38,14 @@
 			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
+			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.pnButtons = new System.Windows.Forms.Panel();
 			this.buttonXCategory = new DevComponents.DotNetBar.ButtonX();
@@ -58,6 +59,7 @@
 			this.buttonXInvestment = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXRate = new DevComponents.DotNetBar.ButtonX();
 			this.pnFormula = new System.Windows.Forms.Panel();
+			this.pbFormualHelp = new System.Windows.Forms.PictureBox();
 			this.pbFormula = new System.Windows.Forms.PictureBox();
 			this.labelControlFormula = new DevExpress.XtraEditors.LabelControl();
 			this.checkEditFormulaCPM = new DevExpress.XtraEditors.CheckEdit();
@@ -91,7 +93,7 @@
 			this.gridBandFormula = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnFormula = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemCheckEditFormula = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.pbDisabledOutput = new System.Windows.Forms.PictureBox();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
@@ -101,6 +103,7 @@
 			this.splitContainerControl.SuspendLayout();
 			this.pnButtons.SuspendLayout();
 			this.pnFormula.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbFormualHelp)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbFormula)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaCPM.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaInvestment.Properties)).BeginInit();
@@ -324,6 +327,7 @@
 			// 
 			// pnFormula
 			// 
+			this.pnFormula.Controls.Add(this.pbFormualHelp);
 			this.pnFormula.Controls.Add(this.pbFormula);
 			this.pnFormula.Controls.Add(this.labelControlFormula);
 			this.pnFormula.Controls.Add(this.checkEditFormulaCPM);
@@ -335,15 +339,30 @@
 			this.pnFormula.Size = new System.Drawing.Size(230, 245);
 			this.pnFormula.TabIndex = 54;
 			// 
+			// pbFormualHelp
+			// 
+			this.pbFormualHelp.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.FormulaLogo;
+			this.pbFormualHelp.Location = new System.Drawing.Point(187, 5);
+			this.pbFormualHelp.Name = "pbFormualHelp";
+			this.pbFormualHelp.Size = new System.Drawing.Size(34, 34);
+			toolTipItem1.Text = "How do you want to PRICE your Digital Schedule?";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.toolTipController.SetSuperTip(this.pbFormualHelp, superToolTip1);
+			this.pbFormualHelp.TabIndex = 54;
+			this.pbFormualHelp.TabStop = false;
+			this.pbFormualHelp.Visible = false;
+			this.pbFormualHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+			this.pbFormualHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+			// 
 			// pbFormula
 			// 
 			this.pbFormula.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.FormulaLogo;
 			this.pbFormula.Location = new System.Drawing.Point(12, 5);
 			this.pbFormula.Name = "pbFormula";
 			this.pbFormula.Size = new System.Drawing.Size(34, 34);
-			toolTipItem1.Text = "How do you want to PRICE your Digital Schedule?";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.toolTipController.SetSuperTip(this.pbFormula, superToolTip1);
+			toolTipItem2.Text = "How do you want to PRICE your Digital Schedule?";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.toolTipController.SetSuperTip(this.pbFormula, superToolTip2);
 			this.pbFormula.TabIndex = 52;
 			this.pbFormula.TabStop = false;
 			// 
@@ -353,9 +372,9 @@
 			this.labelControlFormula.Location = new System.Drawing.Point(52, 14);
 			this.labelControlFormula.Name = "labelControlFormula";
 			this.labelControlFormula.Size = new System.Drawing.Size(109, 16);
-			toolTipItem2.Text = "How do you want to PRICE your Digital Schedule?";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.labelControlFormula.SuperTip = superToolTip2;
+			toolTipItem3.Text = "How do you want to PRICE your Digital Schedule?";
+			superToolTip3.Items.Add(toolTipItem3);
+			this.labelControlFormula.SuperTip = superToolTip3;
 			this.labelControlFormula.TabIndex = 53;
 			this.labelControlFormula.Text = "Delivery Formula";
 			// 
@@ -386,9 +405,9 @@
 			this.checkEditFormulaCPM.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaCPM.Properties.RadioGroupIndex = 1;
 			this.checkEditFormulaCPM.Size = new System.Drawing.Size(211, 36);
-			toolTipItem3.Text = "Type Impressions and Investment";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.checkEditFormulaCPM.SuperTip = superToolTip3;
+			toolTipItem4.Text = "Type Impressions and Investment";
+			superToolTip4.Items.Add(toolTipItem4);
+			this.checkEditFormulaCPM.SuperTip = superToolTip4;
 			this.checkEditFormulaCPM.TabIndex = 49;
 			this.checkEditFormulaCPM.TabStop = false;
 			this.checkEditFormulaCPM.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
@@ -420,9 +439,9 @@
 			this.checkEditFormulaInvestment.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaInvestment.Properties.RadioGroupIndex = 1;
 			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(211, 36);
-			toolTipItem4.Text = "Type Impressions and CPM";
-			superToolTip4.Items.Add(toolTipItem4);
-			this.checkEditFormulaInvestment.SuperTip = superToolTip4;
+			toolTipItem5.Text = "Type Impressions and CPM";
+			superToolTip5.Items.Add(toolTipItem5);
+			this.checkEditFormulaInvestment.SuperTip = superToolTip5;
 			this.checkEditFormulaInvestment.TabIndex = 50;
 			this.checkEditFormulaInvestment.TabStop = false;
 			this.checkEditFormulaInvestment.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
@@ -454,9 +473,9 @@
 			this.checkEditFormulaImpressions.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaImpressions.Properties.RadioGroupIndex = 1;
 			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(211, 36);
-			toolTipItem5.Text = "Type CPM and Investment";
-			superToolTip5.Items.Add(toolTipItem5);
-			this.checkEditFormulaImpressions.SuperTip = superToolTip5;
+			toolTipItem6.Text = "Type CPM and Investment";
+			superToolTip6.Items.Add(toolTipItem6);
+			this.checkEditFormulaImpressions.SuperTip = superToolTip6;
 			this.checkEditFormulaImpressions.TabIndex = 51;
 			this.checkEditFormulaImpressions.TabStop = false;
 			this.checkEditFormulaImpressions.CheckedChanged += new System.EventHandler(this.TogledButton_CheckedChanged);
@@ -897,9 +916,9 @@
 			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
-			toolTipItem6.Text = "Reset your Data to original settings";
-			superToolTip6.Items.Add(toolTipItem6);
-			this.hyperLinkEditReset.SuperTip = superToolTip6;
+			toolTipItem7.Text = "Reset your Data to original settings";
+			superToolTip7.Items.Add(toolTipItem7);
+			this.hyperLinkEditReset.SuperTip = superToolTip7;
 			this.hyperLinkEditReset.TabIndex = 102;
 			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 
@@ -926,6 +945,7 @@
 			this.pnButtons.ResumeLayout(false);
 			this.pnFormula.ResumeLayout(false);
 			this.pnFormula.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbFormualHelp)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbFormula)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaCPM.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaInvestment.Properties)).EndInit();
@@ -1002,6 +1022,7 @@
 		private System.Windows.Forms.Panel pnButtons;
 		private DevExpress.Utils.ToolTipController toolTipController;
 		protected System.Windows.Forms.PictureBox pbDisabledOutput;
+		protected System.Windows.Forms.PictureBox pbFormualHelp;
 
     }
 }

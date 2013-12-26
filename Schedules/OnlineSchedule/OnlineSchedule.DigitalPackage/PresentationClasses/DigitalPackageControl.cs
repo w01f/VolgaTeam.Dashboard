@@ -155,7 +155,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 
 		public override void Help_Click(object sender, EventArgs e)
 		{
-			HelpManager.OpenHelpLink("webquick");
+			HelpManager.OpenHelpLink("Home");
 		}
 
 		public void Add_Click(object sender, EventArgs e)
@@ -214,6 +214,11 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 			if (File.Exists(scheduleFile))
 				File.Delete(scheduleFile);
 			Controller.Instance.CreateSchedule();
+		}
+
+		private void pbFormualHelp_Click(object sender, EventArgs e)
+		{
+			HelpManager.OpenHelpLink("formula");
 		}
 	}
 }

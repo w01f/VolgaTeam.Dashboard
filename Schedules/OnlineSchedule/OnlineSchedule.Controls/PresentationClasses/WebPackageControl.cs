@@ -44,6 +44,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 			if (placeFormulaBottom)
 			{
+				pbFormualHelp.Visible = true;
 				checkEditFormulaCPM.Left = labelControlFormula.Right + 50;
 				checkEditFormulaCPM.Top = pbFormula.Top;
 				checkEditFormulaCPM.Anchor = AnchorStyles.Top | AnchorStyles.Left;
@@ -53,6 +54,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				checkEditFormulaImpressions.Left = checkEditFormulaInvestment.Right + 50;
 				checkEditFormulaImpressions.Top = pbFormula.Top;
 				checkEditFormulaImpressions.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+				pbFormualHelp.Visible = true;
+				pbFormualHelp.Left = pnFormula.Right - pbFormualHelp.Width - 10;
+				pbFormualHelp.Top = pbFormula.Top;
+				pbFormualHelp.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 				pnFormula.Parent = null;
 				Controls.Add(pnFormula);
 				pnFormula.BorderStyle = BorderStyle.Fixed3D;

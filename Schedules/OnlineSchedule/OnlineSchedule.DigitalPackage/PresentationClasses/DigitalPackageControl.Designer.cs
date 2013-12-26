@@ -28,7 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.components = new System.ComponentModel.Container();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.comboBoxEditAdvertiser = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.scheduleListControl = new NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses.ScheduleListControl();
 			this.laLastModified = new System.Windows.Forms.Label();
@@ -36,6 +37,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
 			this.splitContainerControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbDisabledOutput)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbFormualHelp)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditAdvertiser.Properties)).BeginInit();
 			this.SuspendLayout();
@@ -44,6 +47,7 @@
 			// 
 			this.pnHeader.Controls.Add(this.comboBoxEditAdvertiser);
 			this.pnHeader.Controls.Add(this.laLastModified);
+			this.pnHeader.Controls.SetChildIndex(this.laLastModified, 0);
 			this.pnHeader.Controls.SetChildIndex(this.laAdvertiser, 0);
 			this.pnHeader.Controls.SetChildIndex(this.hyperLinkEditReset, 0);
 			this.pnHeader.Controls.SetChildIndex(this.comboBoxEditAdvertiser, 0);
@@ -66,7 +70,14 @@
 			// 
 			// splitContainerControl
 			// 
+			this.splitContainerControl.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.splitContainerControl.Appearance.Options.UseBackColor = true;
 			this.splitContainerControl.Panel1.Controls.Add(this.scheduleListControl);
+			// 
+			// pbFormualHelp
+			// 
+			this.pbFormualHelp.Image = global::NewBizWiz.OnlineSchedule.DigitalPackage.Properties.Resources.HelpSmall;
+			this.pbFormualHelp.Click += new System.EventHandler(this.pbFormualHelp_Click);
 			// 
 			// styleController
 			// 
@@ -88,21 +99,12 @@
 			this.comboBoxEditAdvertiser.Location = new System.Drawing.Point(3, 4);
 			this.comboBoxEditAdvertiser.Name = "comboBoxEditAdvertiser";
 			this.comboBoxEditAdvertiser.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-			new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditAdvertiser.Properties.NullText = "Select or Type Advertiser...";
 			this.comboBoxEditAdvertiser.Size = new System.Drawing.Size(297, 22);
 			this.comboBoxEditAdvertiser.StyleController = this.styleController;
 			this.comboBoxEditAdvertiser.TabIndex = 103;
 			this.comboBoxEditAdvertiser.EditValueChanged += new System.EventHandler(this.comboBoxEditAdvertiser_EditValueChanged);
-			// 
-			// laLastModified
-			// 
-			this.laLastModified.Dock = System.Windows.Forms.DockStyle.Right;
-			this.laLastModified.Location = new System.Drawing.Point(0, 0);
-			this.laLastModified.Name = "laLastModified";
-			this.laLastModified.Size = new System.Drawing.Size(300, 30);
-			this.laLastModified.TabIndex = 104;
-			this.laLastModified.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// scheduleListControl
 			// 
@@ -110,14 +112,23 @@
 			this.scheduleListControl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.scheduleListControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.scheduleListControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.scheduleListControl.Location = new System.Drawing.Point(0, 250);
+			this.scheduleListControl.Location = new System.Drawing.Point(0, 0);
 			this.scheduleListControl.Name = "scheduleListControl";
-			this.scheduleListControl.Size = new System.Drawing.Size(230, 86);
+			this.scheduleListControl.Size = new System.Drawing.Size(230, 581);
 			this.scheduleListControl.TabIndex = 55;
 			this.scheduleListControl.ScheduleChanged += new System.EventHandler<NewBizWiz.OnlineSchedule.DigitalPackage.ScheduleEventArgs>(this.scheduleListControl_ScheduleChanged);
 			this.scheduleListControl.ScheduleCreated += new System.EventHandler<System.EventArgs>(this.scheduleListControl_ScheduleCreated);
 			this.scheduleListControl.ScheduleCloned += new System.EventHandler<System.EventArgs>(this.scheduleListControl_ScheduleCloned);
 			this.scheduleListControl.ScheduleDeleted += new System.EventHandler<NewBizWiz.OnlineSchedule.DigitalPackage.ScheduleEventArgs>(this.scheduleListControl_ScheduleDeleted);
+			// 
+			// laLastModified
+			// 
+			this.laLastModified.Dock = System.Windows.Forms.DockStyle.Right;
+			this.laLastModified.Location = new System.Drawing.Point(491, 0);
+			this.laLastModified.Name = "laLastModified";
+			this.laLastModified.Size = new System.Drawing.Size(300, 30);
+			this.laLastModified.TabIndex = 104;
+			this.laLastModified.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// DigitalPackageControl
 			// 
@@ -128,6 +139,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
 			this.splitContainerControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbDisabledOutput)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbFormualHelp)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditAdvertiser.Properties)).EndInit();
 			this.ResumeLayout(false);

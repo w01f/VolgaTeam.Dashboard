@@ -28,19 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip8 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem8 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip9 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem9 = new DevExpress.Utils.ToolTipItem();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-			this.barManager = new DevExpress.XtraBars.BarManager();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
 			this.barToolbar = new DevExpress.XtraBars.Bar();
 			this.barLargeButtonItemAdd = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemClone = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemDelete = new DevExpress.XtraBars.BarLargeButtonItem();
+			this.barLargeButtonItemHelp = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -48,7 +50,7 @@
 			this.gridControlFiles = new DevExpress.XtraGrid.GridControl();
 			this.gridViewFiles = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumnName = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.toolTipController = new DevExpress.Utils.ToolTipController();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlFiles)).BeginInit();
@@ -90,8 +92,9 @@
 			this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barLargeButtonItemAdd,
             this.barLargeButtonItemClone,
-            this.barLargeButtonItemDelete});
-			this.barManager.MaxItemId = 13;
+            this.barLargeButtonItemDelete,
+            this.barLargeButtonItemHelp});
+			this.barManager.MaxItemId = 14;
 			// 
 			// barToolbar
 			// 
@@ -103,7 +106,8 @@
 			this.barToolbar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemAdd),
             new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemClone),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemDelete)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemHelp)});
 			this.barToolbar.OptionsBar.AllowQuickCustomization = false;
 			this.barToolbar.OptionsBar.DrawDragBorder = false;
 			this.barToolbar.OptionsBar.UseWholeRow = true;
@@ -142,6 +146,15 @@
 			superToolTip9.Items.Add(toolTipItem9);
 			this.barLargeButtonItemDelete.SuperTip = superToolTip9;
 			this.barLargeButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemDelete_ItemClick);
+			// 
+			// barLargeButtonItemHelp
+			// 
+			this.barLargeButtonItemHelp.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+			this.barLargeButtonItemHelp.Caption = "help";
+			this.barLargeButtonItemHelp.Glyph = global::NewBizWiz.OnlineSchedule.DigitalPackage.Properties.Resources.HelpSmall;
+			this.barLargeButtonItemHelp.Id = 13;
+			this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
+			this.barLargeButtonItemHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemHelp_ItemClick);
 			// 
 			// barDockControlTop
 			// 
@@ -273,5 +286,6 @@
 		private DevExpress.XtraGrid.Views.Grid.GridView gridViewFiles;
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumnName;
 		private DevExpress.Utils.ToolTipController toolTipController;
+		private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemHelp;
     }
 }

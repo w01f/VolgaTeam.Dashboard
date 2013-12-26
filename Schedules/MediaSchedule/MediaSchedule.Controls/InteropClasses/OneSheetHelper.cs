@@ -75,7 +75,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							Design design;
 							if (selectedTheme != null)
 							{
-								presentation.ApplyTemplate(selectedTheme.ThemeFilePath);
+								presentation.ApplyTheme(selectedTheme.ThemeFilePath);
 								design = presentation.Designs[presentation.Designs.Count];
 								design.Name = DateTime.Now.ToString("MMddyy-hhmmsstt");
 							}
@@ -86,7 +86,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							newSlide.Design = design;
 						}
 						else if (selectedTheme != null)
-							presentation.ApplyTemplate(selectedTheme.ThemeFilePath);
+							presentation.ApplyTheme(selectedTheme.ThemeFilePath);
 						AppendSlide(presentation, 1, destinationPresentation);
 						presentation.Close();
 					}

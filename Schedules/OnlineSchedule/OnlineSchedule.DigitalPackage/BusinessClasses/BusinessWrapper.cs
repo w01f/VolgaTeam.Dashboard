@@ -10,7 +10,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 		private BusinessWrapper()
 		{
 			ScheduleManager = new ScheduleManager();
-			HelpManager = new HelpManager(Core.OnlineSchedule.SettingsManager.Instance.HelpLinksPath);
+			HelpManager = new HelpManager(SettingsManager.Instance.HelpLinksPath);
 			OutputManager = new OutputManager();
 			ThemeManager = new ThemeManager(Path.Combine(Core.Common.SettingsManager.Instance.ThemeCollectionPath, Core.Common.SettingsManager.Instance.SlideMasterFolder));
 		}

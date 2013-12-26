@@ -176,6 +176,7 @@
     <Content Include="Resources\AddSchedule.png" />
     <Content Include="Resources\CloneSchedule.png" />
     <Content Include="Resources\DeleteSchedule.png" />
+    <None Include="Resources\HelpSmall.png" />
     <None Include="Resources\DigitalPackageDisabled.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

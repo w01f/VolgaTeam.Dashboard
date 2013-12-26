@@ -12,7 +12,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 
 		private SettingsManager()
 		{
-			HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\OnlineHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\WebQuickHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			IconPath = Path.Combine(Path.GetDirectoryName(typeof(SettingsManager).Assembly.Location), "icon.ico");
 			SaveFolder = Path.Combine(string.Format(@"{0}\newlocaldirect.com\sync\Outgoing", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)), "AppID-" + Core.Common.SettingsManager.Instance.AppID, @"Saved_Schedules\Web Quick");
 			if (!Directory.Exists(SaveFolder))

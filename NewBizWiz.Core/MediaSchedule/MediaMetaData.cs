@@ -1,5 +1,4 @@
 ﻿using System;
-using NewBizWiz.Core.Calendar;
 
 namespace NewBizWiz.Core.MediaSchedule
 {

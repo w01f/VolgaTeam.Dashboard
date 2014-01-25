@@ -8,6 +8,7 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
+using NewBizWiz.Dashboard.InteropClasses;
 
 namespace NewBizWiz.Dashboard.TabRadioForms
 {
@@ -98,6 +99,7 @@ namespace NewBizWiz.Dashboard.TabRadioForms
 			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 			RegistryHelper.MaximizeMainForm = false;
 			LoadSchedules();
+			DashboardPowerPointHelper.Instance.Connect();
 		}
 
 		public void buttonXOpenSchedule_Click(object sender, EventArgs e)
@@ -114,6 +116,7 @@ namespace NewBizWiz.Dashboard.TabRadioForms
 			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 			RegistryHelper.MaximizeMainForm = false;
 			LoadSchedules();
+			DashboardPowerPointHelper.Instance.Connect();
 		}
 
 		public void buttonXDeleteSchedule_Click(object sender, EventArgs e)

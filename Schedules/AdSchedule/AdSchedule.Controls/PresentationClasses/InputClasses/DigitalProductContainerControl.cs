@@ -47,9 +47,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Controller.Instance.DigitalProductTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.DigitalProductTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintDigitalProduct), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintDigitalProduct), (t =>
 			{
-				LocalSchedule.ThemeName = t.Name;
+				BusinessWrapper.Instance.SetSelectedTheme(SlideType.PrintDigitalProduct, t.Name);
+				BusinessWrapper.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
 			if (!quickLoad)
@@ -119,7 +120,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintDigitalProduct).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintDigitalProduct)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintDigitalProduct))); }
 		}
 
 		protected override bool SaveSchedule(string scheduleName = "")
@@ -194,7 +195,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain,AdSchedulePowerPointHelper.Instance,BusinessWrapper.Instance.HelpManager,Controller.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Digital Product";
 				formPreview.PresentationFile = tempFileName;

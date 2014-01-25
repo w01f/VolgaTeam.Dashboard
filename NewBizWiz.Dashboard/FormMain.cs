@@ -3,10 +3,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Floater;
-using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
 using NewBizWiz.Dashboard.Properties;
@@ -114,23 +112,16 @@ namespace NewBizWiz.Dashboard
 			timer.Start();
 			ApplyMasterWizard();
 			SetDashboardCode();
-			FormThemeSelector.Link(buttonItemHomeTheme, SettingsManager.Instance.ThemeManager, SettingsManager.Instance.ThemeName, (t =>
-			{
-				SettingsManager.Instance.ThemeName = t.Name;
-				SettingsManager.Instance.SaveDashboardSettings();
-			}));
-			if (!SettingsManager.Instance.ThemeManager.Themes.Any())
-			{
-				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
-				buttonItemPowerPoint.Visible = false;
-				ribbonBarPowerPoint.Text = "Important Info";
-				superTooltip.SetSuperTooltip(buttonItemHomeTheme, selectorToolTip);
-			}
-			else
-			{
-				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
-				superTooltip.SetSuperTooltip(buttonItemHomeTheme, selectorToolTip);
-			}
+		}
+
+		public void HideThemeButtons()
+		{
+			buttonItemHomeThemeCleanslate.Visible = false;
+			buttonItemHomeThemeCover.Visible = false;
+			buttonItemHomeThemeLeadoff.Visible = false;
+			buttonItemHomeThemeClientGoals.Visible = false;
+			buttonItemHomeThemeTargetCustomers.Visible = false;
+			buttonItemHomeThemeSimpleSummary.Visible = false;
 		}
 
 		public void FormMain_Activated(object sender, EventArgs e)
@@ -293,7 +284,7 @@ namespace NewBizWiz.Dashboard
 
 		private void buttonItemHomeTheme_Click(object sender, EventArgs e)
 		{
-			if (!SettingsManager.Instance.ThemeManager.Themes.Any())
+			if (!SettingsManager.Instance.ThemeManager.GetThemes(SlideType.None).Any())
 				AppManager.Instance.HelpManager.OpenHelpLink("NoTheme");
 		}
 

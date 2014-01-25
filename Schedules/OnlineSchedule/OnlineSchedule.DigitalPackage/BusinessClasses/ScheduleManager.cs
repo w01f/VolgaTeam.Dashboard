@@ -141,7 +141,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 
 		private FileInfo _scheduleFile { get; set; }
 		public bool IsNameNotAssigned { get; set; }
-		public string ThemeName { get; set; }
 		public bool ApplySettingsForeAllProducts { get; set; }
 		public List<DigitalProduct> DigitalProducts { get; set; }
 
@@ -221,10 +220,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 				node = document.SelectSingleNode(@"/Schedule/DecisionMaker");
 				if (node != null)
 					DecisionMaker = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/ThemeName");
-				if (node != null)
-					ThemeName = node.InnerText;
 
 				node = document.SelectSingleNode(@"/Schedule/PresentationDate");
 				if (node != null)
@@ -308,7 +303,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 					Core.Common.ListManager.Instance.SaveDecisionMakers();
 				}
 			}
-			xml.AppendLine(@"<ThemeName>" + (ThemeName != null ? ThemeName.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</ThemeName>");
 			xml.AppendLine(@"<PresentationDate>" + PresentationDate + @"</PresentationDate>");
 			xml.AppendLine(@"<FlightDateStart>" + FlightDateStart + @"</FlightDateStart>");
 			xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd + @"</FlightDateEnd>");

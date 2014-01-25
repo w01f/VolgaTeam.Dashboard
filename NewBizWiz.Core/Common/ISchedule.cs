@@ -12,7 +12,6 @@ namespace NewBizWiz.Core.Common
 		string DecisionMaker { get; set; }
 		string AccountNumber { get; set; }
 		string FlightDates { get; }
-		string ThemeName { get; set; }
 		DateTime? PresentationDate { get; set; }
 		DateTime? FlightDateStart { get; set; }
 		DateTime? FlightDateEnd { get; set; }

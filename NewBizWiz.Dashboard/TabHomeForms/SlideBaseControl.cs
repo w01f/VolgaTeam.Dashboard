@@ -5,6 +5,9 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
+using NewBizWiz.CommonGUI.Themes;
+using NewBizWiz.Core.Common;
+using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
@@ -15,6 +18,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private readonly Color _regularButtonColor = Color.FromArgb(175, 210, 255);
 
 		public virtual SuperTooltipInfo Tooltip
+		{
+			get { return null; }
+		}
+
+		public virtual ButtonItem ThemeButton
 		{
 			get { return null; }
 		}
@@ -43,6 +51,31 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			FormMain.Instance.buttonItemPowerPoint.Enabled = enable;
 			FormMain.Instance.buttonItemPreview.Enabled = enable;
+		}
+
+		protected void LoadThemes(SlideType slideType)
+		{
+			var themes = SettingsManager.Instance.ThemeManager.GetThemes(slideType);
+			FormMain.Instance.HideThemeButtons();
+			ThemeButton.Visible = true;
+			FormThemeSelector.Link(ThemeButton, themes, SettingsManager.Instance.GetSelectedTheme(slideType).Name, (t =>
+			{
+				SettingsManager.Instance.SetSelectedTheme(slideType, t.Name);
+				SettingsManager.Instance.SaveDashboardSettings();
+			}));
+			if (!themes.Any())
+			{
+				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
+				FormMain.Instance.buttonItemPowerPoint.Visible = false;
+				FormMain.Instance.ribbonBarPowerPoint.Text = "Important Info";
+				FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeThemeCleanslate, selectorToolTip);
+			}
+			else
+			{
+				var selectorToolTip = new SuperTooltipInfo("Slide Theme", "", "Select the PowerPoint Slide theme you want to use for this schedule", null, null, eTooltipColor.Gray);
+				FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeThemeCleanslate, selectorToolTip);
+			}
+			FormMain.Instance.ribbonBarPowerPoint.RecalcLayout();
 		}
 
 		protected virtual void SavedFiles_Click(object sender, EventArgs e)
@@ -76,6 +109,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					simpleButtonSummary.Appearance.BackColor = _selectedButtonColor;
 					break;
 			}
+			LoadThemes(slideType);
 		}
 
 		private void SlideType_Click(object sender, EventArgs e)
@@ -94,17 +128,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				slideType = SlideType.SimpleSummary;
 			SlideChanged(this, new SlideEventArgs { SlideType = slideType });
 		}
-	}
-
-	public enum SlideType
-	{
-		None = 0,
-		Cleanslate,
-		Cover,
-		LeadoffStatement,
-		ClientGoals,
-		TargetCustomers,
-		SimpleSummary,
 	}
 
 	public class SlideEventArgs : EventArgs

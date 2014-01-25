@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -23,7 +24,7 @@ namespace NewBizWiz.CommonGUI.Themes
 			laSlideSize.Text = String.Format(laSlideSize.Text, SettingsManager.Instance.Size);
 		}
 
-		public void LoadThemes(ThemeManager themeManager)
+		public void LoadThemes(IEnumerable<Theme> themes)
 		{
 			_themeContainer = new ThemeContainerControl();
 			_themeContainer.ThemeChanged += (o, e) =>
@@ -35,7 +36,7 @@ namespace NewBizWiz.CommonGUI.Themes
 				DialogResult = DialogResult.OK;
 				Close();
 			};
-			_themeContainer.LoadThemes(themeManager.Themes);
+			_themeContainer.LoadThemes(themes);
 			pnMain.Controls.Add(_themeContainer);
 			_themeContainer.BringToFront();
 		}
@@ -46,9 +47,9 @@ namespace NewBizWiz.CommonGUI.Themes
 			laThemeName.Text = selectedTheme;
 		}
 
-		public static void Link(ButtonItem selectorButton, ThemeManager themeManager, string selectedThemeName, Action<Theme> themeSelected)
+		public static void Link(ButtonItem selectorButton, IEnumerable<Theme> themes , string selectedThemeName, Action<Theme> themeSelected)
 		{
-			var themesExisted = themeManager.Themes.Any();
+			var themesExisted = themes.Any();
 			selectorButton.ForeColor = Color.Black;
 			selectorButton.ImagePosition = eImagePosition.Left;
 			selectorButton.BeginGroup = themesExisted;
@@ -56,7 +57,7 @@ namespace NewBizWiz.CommonGUI.Themes
 			selectorButton.AutoExpandOnClick = false;
 			if (themesExisted)
 			{
-				var currentTheme = themeManager.Themes.FirstOrDefault(t => t.Name.Equals(selectedThemeName) || String.IsNullOrEmpty(selectedThemeName)) ?? themeManager.Themes.FirstOrDefault();
+				var currentTheme = themes.FirstOrDefault(t => t.Name.Equals(selectedThemeName) || String.IsNullOrEmpty(selectedThemeName)) ?? themes.FirstOrDefault();
 				if (currentTheme == null) return;
 				selectorButton.Image = currentTheme.RibbonLogo;
 				(selectorButton.ContainerControl as RibbonBar).Text = String.Format("{0}", currentTheme.Name);
@@ -65,7 +66,7 @@ namespace NewBizWiz.CommonGUI.Themes
 					{
 						using (var form = new FormThemeSelector())
 						{
-							form.LoadThemes(themeManager);
+							form.LoadThemes(themes);
 							form.Shown += (o, args) =>
 							{
 								form.SetSelectedTheme((selectorButton.Tag as Theme).Name);

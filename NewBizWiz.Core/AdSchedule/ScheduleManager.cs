@@ -230,7 +230,6 @@ namespace NewBizWiz.Core.AdSchedule
 		public string ClientType { get; set; }
 		public string AccountNumber { get; set; }
 		public string Status { get; set; }
-		public string ThemeName { get; set; }
 		public DateTime? PresentationDate { get; set; }
 		public DateTime? FlightDateStart { get; set; }
 		public DateTime? FlightDateEnd { get; set; }
@@ -314,10 +313,6 @@ namespace NewBizWiz.Core.AdSchedule
 				node = document.SelectSingleNode(@"/Schedule/Status");
 				if (node != null)
 					Status = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/ThemeName");
-				if (node != null)
-					ThemeName = node.InnerText;
 
 				node = document.SelectSingleNode(@"/Schedule/PresentationDate");
 				DateTime tempDateTime;
@@ -408,7 +403,6 @@ namespace NewBizWiz.Core.AdSchedule
 			xml.AppendLine(@"<ClientType>" + ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
 			xml.AppendLine(@"<AccountNumber>" + AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");
 			xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : String.Empty) + @"</Status>");
-			xml.AppendLine(@"<ThemeName>" + (ThemeName != null ? ThemeName.Replace(@"&", "&#38;").Replace("\"", "&quot;") : String.Empty) + @"</ThemeName>");
 			if (PresentationDate.HasValue)
 				xml.AppendLine(@"<PresentationDate>" + PresentationDate + @"</PresentationDate>");
 			if (FlightDateStart.HasValue)

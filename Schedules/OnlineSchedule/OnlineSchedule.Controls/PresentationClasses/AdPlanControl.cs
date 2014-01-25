@@ -8,6 +8,7 @@ using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
+using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
 
@@ -57,10 +58,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			_allowToSave = false;
 			laAdvertiser.Text = Schedule.BusinessName + (!string.IsNullOrEmpty(Schedule.AccountNumber) ? (" - " + Schedule.AccountNumber) : string.Empty);
-			FormThemeSelector.Link(Theme, ThemeManager, Schedule.ThemeName, (t =>
+			FormThemeSelector.Link(Theme, ThemeManager.GetThemes(SlideType.OnlineAdPlan), BusinessWrapper.Instance.GetSelectedTheme(SlideType.OnlineAdPlan), (t =>
 			{
-				Schedule.ThemeName = t.Name;
-				SettingsNotSaved = true;
+				BusinessWrapper.Instance.SetSelectedTheme(SlideType.OnlineAdPlan, t.Name);
+				BusinessWrapper.Instance.SaveLocalSettings();
 			}));
 			if (!quickLoad)
 			{
@@ -190,11 +191,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 		}
 
-		public Theme SelectedTheme
-		{
-			get { return ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(Schedule.ThemeName) || String.IsNullOrEmpty(Schedule.ThemeName)); }
-		}
-
+		public abstract Theme SelectedTheme { get; }
+	
 		public string Date
 		{
 			get

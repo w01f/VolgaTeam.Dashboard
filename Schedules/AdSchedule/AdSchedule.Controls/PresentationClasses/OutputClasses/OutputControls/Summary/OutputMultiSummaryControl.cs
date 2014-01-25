@@ -55,9 +55,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				"Digital Products are Enabled for this slide" :
 				"Digital Products are Disabled for this slide"
 				, null, null, eTooltipColor.Gray));
-			FormThemeSelector.Link(Controller.Instance.MultiSummaryTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.MultiSummaryTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintMultiSummary), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiSummary), (t =>
 			{
-				LocalSchedule.ThemeName = t.Name;
+				BusinessWrapper.Instance.SetSelectedTheme(SlideType.PrintMultiSummary, t.Name);
+				BusinessWrapper.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
 			if (!quickLoad)
@@ -214,7 +215,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintMultiSummary).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiSummary)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiSummary))); }
 		}
 
 		public string Header

@@ -13,6 +13,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 			HelpManager = new HelpManager(SettingsManager.Instance.HelpLinksPath);
 			OutputManager = new OutputManager();
 			ThemeManager = new ThemeManager(Path.Combine(Core.Common.SettingsManager.Instance.ThemeCollectionPath, Core.Common.SettingsManager.Instance.SlideMasterFolder));
+			SettingsManager.Instance.InitThemeHelper(ThemeManager);
 		}
 
 		public static BusinessWrapper Instance

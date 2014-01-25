@@ -5,6 +5,7 @@ using DevComponents.DotNetBar;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
+using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
@@ -51,6 +52,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public override void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			FormThemeSelector.Link(Theme, ThemeManager.GetThemes(SlideType.PrintAdPlan), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintAdPlan), (t =>
+			{
+				BusinessWrapper.Instance.SetSelectedTheme(SlideType.PrintAdPlan, t.Name);
+				BusinessWrapper.Instance.SaveLocalSettings();
+				SettingsNotSaved = true;
+			}));
+
 			base.LoadSchedule(quickLoad);
 		}
 
@@ -146,6 +154,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			if (!string.IsNullOrEmpty(scheduleName))
 				LocalSchedule.Name = scheduleName;
 			Controller.Instance.SaveSchedule(LocalSchedule, false, this);
+		}
+
+		public override Theme SelectedTheme
+		{
+			get { return ThemeManager.GetThemes(SlideType.PrintAdPlan).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintAdPlan)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintAdPlan))); }
 		}
 
 		protected override void OutputSlides()

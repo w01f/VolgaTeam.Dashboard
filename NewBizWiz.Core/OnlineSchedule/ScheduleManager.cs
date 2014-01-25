@@ -205,7 +205,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		private FileInfo _scheduleFile { get; set; }
 		public string Status { get; set; }
-		public string ThemeName { get; set; }
 		public string ClientType { get; set; }
 		public string AccountNumber { get; set; }
 		public bool ApplySettingsForeAllProducts { get; set; }
@@ -340,10 +339,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 			if (node != null)
 				Status = node.InnerText;
 
-			node = document.SelectSingleNode(@"/Schedule/ThemeName");
-			if (node != null)
-				ThemeName = node.InnerText;
-
 			node = document.SelectSingleNode(@"/Schedule/ClientType");
 			if (node != null)
 				ClientType = node.InnerText;
@@ -428,7 +423,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 			xml.AppendLine(@"<ClientType>" + ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
 			xml.AppendLine(@"<AccountNumber>" + AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");
 			xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
-			xml.AppendLine(@"<ThemeName>" + (ThemeName != null ? ThemeName.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</ThemeName>");
 			if (PresentationDate.HasValue)
 				xml.AppendLine(@"<PresentationDate>" + PresentationDate + @"</PresentationDate>");
 			if (FlightDateStart.HasValue)

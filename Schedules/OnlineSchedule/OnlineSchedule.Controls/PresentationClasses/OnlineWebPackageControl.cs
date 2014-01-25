@@ -19,7 +19,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.OnlineWebPackage).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.OnlineWebPackage)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.OnlineWebPackage))); }
 		}
 
 		public override HelpManager HelpManager
@@ -75,9 +75,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public override void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Controller.Instance.DigitalPackageTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.DigitalPackageTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.OnlineWebPackage), BusinessWrapper.Instance.GetSelectedTheme(SlideType.OnlineWebPackage), (t =>
 			{
-				LocalSchedule.ThemeName = t.Name;
+				BusinessWrapper.Instance.SetSelectedTheme(SlideType.OnlineWebPackage,t.Name);
+				BusinessWrapper.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
 			base.LoadSchedule(quickLoad);

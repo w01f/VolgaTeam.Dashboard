@@ -53,6 +53,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return _toolTip; }
 		}
 
+		public override ButtonItem ThemeButton
+		{
+			get { return FormMain.Instance.buttonItemHomeThemeTargetCustomers; }
+		}
+
 		public bool SettingsNotSaved { get; set; }
 
 		private void LoadSavedState()

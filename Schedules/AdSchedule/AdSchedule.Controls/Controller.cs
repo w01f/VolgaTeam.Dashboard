@@ -350,7 +350,7 @@ namespace NewBizWiz.AdSchedule.Controls
 
 		public void UpdateOutputButtonsAccordingThemeStatus()
 		{
-			var themesExisted = BusinessWrapper.Instance.ThemeManager.Themes.Any();
+			var themesExisted = BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.None).Any();
 			if (!themesExisted)
 			{
 				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);

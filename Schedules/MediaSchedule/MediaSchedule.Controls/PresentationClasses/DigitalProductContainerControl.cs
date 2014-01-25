@@ -46,10 +46,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Controller.Instance.DigitalProductTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.DigitalProductTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct), (t =>
 			{
-				LocalSchedule.ThemeName = t.Name;
-				SettingsNotSaved = true;
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct, t.Name);
+				MediaMetaData.Instance.SettingsManager.SaveSettings();
 			}));
 			if (!quickLoad || LocalSchedule.DigitalProducts.Count != _tabPages.Count)
 			{
@@ -117,7 +117,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVDigitalProduct : SlideType.RadioDigitalProduct))); }
 		}
 
 		protected override bool SaveSchedule(string scheduleName = "")

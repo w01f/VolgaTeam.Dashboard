@@ -16,6 +16,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 			HelpManager = new HelpManager(MediaMetaData.Instance.SettingsManager.HelpLinksPath);
 			TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), String.Format("{0}_tab_names.xml", MediaMetaData.Instance.DataTypeString)));
 			ThemeManager = new ThemeManager(Path.Combine(SettingsManager.Instance.ThemeCollectionPath, SettingsManager.Instance.SlideMasterFolder));
+			MediaMetaData.Instance.SettingsManager.InitThemeHelper(ThemeManager);
 		}
 
 		public static BusinessWrapper Instance

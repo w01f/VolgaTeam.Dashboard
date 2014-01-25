@@ -52,7 +52,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 							}
 						}
 					}
-					var selectedTheme = Core.Dashboard.SettingsManager.Instance.SelectedTheme;
+					var selectedTheme = Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.Cover);
 					if (selectedTheme != null)
 						presentation.ApplyTheme(selectedTheme.ThemeFilePath);
 					AppendSlide(presentation, -1, destinationPresentation, firstSlide);
@@ -84,7 +84,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 				{
 					MessageFilter.Register();
 					var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
-					var selectedTheme = Core.Dashboard.SettingsManager.Instance.SelectedTheme;
+					var selectedTheme = Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.Cover);
 					if (selectedTheme != null)
 						presentation.ApplyTheme(selectedTheme.ThemeFilePath);
 					AppendSlide(presentation, -1, destinationPresentation, firstSlide);

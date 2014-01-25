@@ -290,9 +290,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				"Digital Products are Enabled for this slide" :
 				"Digital Products are Disabled for this slide"
 				, null, null, eTooltipColor.Gray));
-			FormThemeSelector.Link(Controller.Instance.DetailedGridTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.DetailedGridTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintDetailedGrid), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintDetailedGrid), (t =>
 			{
-				LocalSchedule.ThemeName = t.Name;
+				BusinessWrapper.Instance.SetSelectedTheme(SlideType.PrintDetailedGrid, t.Name);
+				BusinessWrapper.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
 			if (!quickLoad)

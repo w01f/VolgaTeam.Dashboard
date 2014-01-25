@@ -172,7 +172,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 
 		public void UpdateOutputButtonsAccordingThemeStatus()
 		{
-			if (!BusinessWrapper.Instance.ThemeManager.Themes.Any())
+			if (!BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.None).Any())
 			{
 				var selectorToolTip = new SuperTooltipInfo("Important Info", "", "Click to get more info why output is disabled", null, null, eTooltipColor.Gray);
 				var themesDisabledHandler = new Action(() => BusinessWrapper.Instance.HelpManager.OpenHelpLink("NoTheme"));

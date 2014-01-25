@@ -114,6 +114,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			Controller.Instance.SaveSchedule(LocalSchedule, false, this);
 		}
 
+		public override Theme SelectedTheme
+		{
+			get { throw new NotImplementedException(); }
+		}
+
 		protected override void OutputSlides()
 		{
 			using (var formProgress = new FormProgress())

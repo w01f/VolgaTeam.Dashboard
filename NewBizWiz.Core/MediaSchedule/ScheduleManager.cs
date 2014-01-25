@@ -274,8 +274,6 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 		}
 
-		public string ThemeName { get; set; }
-
 		private void Load()
 		{
 			if (!_scheduleFile.Exists) return;

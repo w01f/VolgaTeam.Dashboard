@@ -81,6 +81,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return _toolTip; }
 		}
 
+		public override ButtonItem ThemeButton
+		{
+			get { return FormMain.Instance.buttonItemHomeThemeCover; }
+		}
+
 		private void LoadSavedState()
 		{
 			_allowToSave = false;

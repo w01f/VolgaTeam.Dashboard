@@ -130,6 +130,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			get { return null; }
 		}
 
+		public virtual SlideType SlideType
+		{
+			get { return SlideType.None; }
+		}
+
 		public bool AllowToLeaveControl
 		{
 			get
@@ -338,9 +343,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			ScheduleSection.DataChanged += ScheduleSection_DataChanged;
-			FormThemeSelector.Link(ThemeButton, BusinessWrapper.Instance.ThemeManager, _localSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(ThemeButton, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
 			{
-				_localSchedule.ThemeName = t.Name;
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
+				MediaMetaData.Instance.SettingsManager.SaveSettings();
 				SettingsNotSaved = true;
 			}));
 
@@ -823,7 +829,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(_localSchedule.ThemeName) || String.IsNullOrEmpty(_localSchedule.ThemeName)); }
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType))); }
 		}
 
 		private IEnumerable<OutputScheduleGridBased> PrepareOutputTableBased()

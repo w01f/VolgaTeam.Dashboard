@@ -115,9 +115,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							"Digital Products are Enabled for this slide" :
 							"Digital Products are Disabled for this slide"
 							, null, null, eTooltipColor.Gray));
-			FormThemeSelector.Link(Controller.Instance.MultiGridTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.MultiGridTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintMultiGrid), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiGrid), (t =>
 			{
-				LocalSchedule.ThemeName = t.Name;
+				BusinessWrapper.Instance.SetSelectedTheme(SlideType.PrintMultiGrid, t.Name);
+				BusinessWrapper.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
 			if (!quickLoad)
@@ -797,7 +798,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintMultiGrid).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiGrid)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiGrid))); }
 		}
 
 		public string Header

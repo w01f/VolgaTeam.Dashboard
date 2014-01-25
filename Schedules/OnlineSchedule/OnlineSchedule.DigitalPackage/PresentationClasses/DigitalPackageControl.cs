@@ -41,7 +41,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.WebQuick).FirstOrDefault(t => t.Name.Equals(BusinessClasses.SettingsManager.Instance.GetSelectedTheme(SlideType.WebQuick)) || String.IsNullOrEmpty(BusinessClasses.SettingsManager.Instance.GetSelectedTheme(SlideType.WebQuick))); }
 		}
 
 		public override HelpManager HelpManager
@@ -90,10 +90,10 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			UpdateLastModifiedDate(LocalSchedule);
-			FormThemeSelector.Link(Controller.Instance.DigitalPackageTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.DigitalPackageTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.WebQuick), BusinessClasses.SettingsManager.Instance.GetSelectedTheme(SlideType.WebQuick), (t =>
 			{
-				LocalSchedule.ThemeName = t.Name;
-				SettingsNotSaved = true;
+				BusinessClasses.SettingsManager.Instance.SetSelectedTheme(SlideType.WebQuick, t.Name);
+				BusinessClasses.SettingsManager.Instance.SaveSettings();
 			}));
 			(Controller.Instance.DigitalPackageTheme.ContainerControl as RibbonBar).RecalcLayout();
 

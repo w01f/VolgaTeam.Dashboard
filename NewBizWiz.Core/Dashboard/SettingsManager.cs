@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace NewBizWiz.Core.Dashboard
 		private static readonly SettingsManager _instance = new SettingsManager();
 
 		private readonly string _dashboardSettingsFile = string.Empty;
+		private readonly ThemeSaveHelper _themeSaveHelper;
 
 		private SettingsManager()
 		{
@@ -24,12 +26,12 @@ namespace NewBizWiz.Core.Dashboard
 			DashboardSaveFolder = string.Empty;
 			ThemeManager = new ThemeManager(Path.Combine(Common.SettingsManager.Instance.ThemeCollectionPath, Common.SettingsManager.Instance.SlideMasterFolder));
 			SlideManager = new SlideManager(Common.SettingsManager.Instance.SlideMastersPath);
+			_themeSaveHelper = new ThemeSaveHelper(ThemeManager);
 		}
 
 		public string HelpLinksPath { get; set; }
 		public string DashboardSaveFolder { get; set; }
 		public string DashboardCode { get; set; }
-		public string ThemeName { get; set; }
 		public string IconPath { get; set; }
 		public ThemeManager ThemeManager { get; private set; }
 		public SlideManager SlideManager { get; private set; }
@@ -39,9 +41,14 @@ namespace NewBizWiz.Core.Dashboard
 			get { return _instance; }
 		}
 
-		public Theme SelectedTheme
+		public Theme GetSelectedTheme(SlideType slideType)
 		{
-			get { return ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(ThemeName) || String.IsNullOrEmpty(ThemeName)); }
+			return _themeSaveHelper.GetSelectedTheme(slideType);
+		}
+
+		public void SetSelectedTheme(SlideType slideType, string themeName)
+		{
+			_themeSaveHelper.SetSelectedTheme(slideType, themeName);
 		}
 
 		public void LoadSettings()
@@ -54,30 +61,23 @@ namespace NewBizWiz.Core.Dashboard
 
 		public void LoadDashboardSettings()
 		{
-			XmlNode node;
-			if (File.Exists(_dashboardSettingsFile))
+			if (!File.Exists(_dashboardSettingsFile)) return;
+			var document = new XmlDocument();
+			document.Load(_dashboardSettingsFile);
+			var node = document.SelectSingleNode(@"/DashboardSettings/SalesRepState");
+			if (node != null)
 			{
-				var document = new XmlDocument();
-				document.Load(_dashboardSettingsFile);
-
-				node = document.SelectSingleNode(@"/DashboardSettings/ThemeName");
-				if (node != null)
-					ThemeName = node.InnerText;
-				node = document.SelectSingleNode(@"/DashboardSettings/SalesRepState");
-				if (node != null)
-				{
-					ViewSettingsManager.Instance.CoverState.DeserializeSalesRep(node);
-				}
+				ViewSettingsManager.Instance.CoverState.DeserializeSalesRep(node);
 			}
+			_themeSaveHelper.Deserialize(document.SelectNodes(@"//DashboardSettings/SelectedTheme").OfType<XmlNode>());
 		}
 
 		public void SaveDashboardSettings()
 		{
 			var xml = new StringBuilder();
 			xml.AppendLine(@"<DashboardSettings>");
-			if (!String.IsNullOrEmpty(ThemeName))
-				xml.AppendLine(@"<ThemeName>" + ThemeName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ThemeName>");
 			xml.AppendLine(@"<SalesRepState>" + ViewSettingsManager.Instance.CoverState.SerializeSalesRep() + @"</SalesRepState>");
+			xml.AppendLine(_themeSaveHelper.Serialize());
 			xml.AppendLine(@"</DashboardSettings>");
 			string userConfigurationPath = Path.Combine(_dashboardSettingsFile);
 			using (var sw = new StreamWriter(userConfigurationPath, false))

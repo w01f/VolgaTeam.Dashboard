@@ -49,9 +49,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				"Digital Products are Enabled for this slide":
 				"Digital Products are Disabled for this slide"
 				, null, null, eTooltipColor.Gray));
-			FormThemeSelector.Link(Controller.Instance.BasicOverviewTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.BasicOverviewTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintBasicOverview), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintBasicOverview), (t =>
 			{
-				LocalSchedule.ThemeName = t.Name;
+				BusinessWrapper.Instance.SetSelectedTheme(SlideType.PrintBasicOverview, t.Name);
+				BusinessWrapper.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
 			if (!quickLoad)
@@ -63,7 +64,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				{
 					if (!string.IsNullOrEmpty(publication.Name))
 					{
-						var publicationTab = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID)).FirstOrDefault();
+						var publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
 						if (publicationTab == null)
 						{
 							publicationTab = new PublicationBasicOverviewControl();
@@ -87,7 +88,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				{
 					if (!string.IsNullOrEmpty(publication.Name))
 					{
-						var publicationTab = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID)).FirstOrDefault();
+						var publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
 						if (publicationTab != null)
 						{
 							publicationTab.PrintProduct = publication;

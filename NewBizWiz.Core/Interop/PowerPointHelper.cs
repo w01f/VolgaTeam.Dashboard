@@ -215,7 +215,7 @@ namespace NewBizWiz.Core.Interop
 				MessageFilter.Register();
 				try
 				{
-					if (_powerPointObject == null)
+					if (_powerPointObject == null || run)
 						_powerPointObject =
 							Marshal.GetActiveObject("PowerPoint.Application") as Application;
 				}

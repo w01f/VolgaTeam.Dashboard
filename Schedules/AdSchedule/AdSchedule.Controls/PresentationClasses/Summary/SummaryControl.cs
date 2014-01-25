@@ -77,9 +77,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			checkEditBusinessName.Text = string.Format("Business Name: {0}", LocalSchedule.BusinessName);
 			laPresentationDate.Text = String.Format("{0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
 			laFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
-			FormThemeSelector.Link(Controller.Instance.SummaryTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.SummaryTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintSimpleSummary), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintSimpleSummary), (t =>
 			{
-				LocalSchedule.ThemeName = t.Name;
+				BusinessWrapper.Instance.SetSelectedTheme(SlideType.PrintSimpleSummary, t.Name);
+				BusinessWrapper.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
 			if (!quickLoad)
@@ -382,7 +383,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintSimpleSummary).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintSimpleSummary)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintSimpleSummary))); }
 		}
 
 		public string Title

@@ -30,9 +30,10 @@ namespace NewBizWiz.Dashboard
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-			this.toolTip = new System.Windows.Forms.ToolTip();
-			this.timer = new System.Windows.Forms.Timer();
+			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
@@ -43,7 +44,7 @@ namespace NewBizWiz.Dashboard
 			this.buttonItemHomeHelp = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarPowerPoint = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemPowerPoint = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemHomeTheme = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemHomeThemeCleanslate = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarPreview = new DevComponents.DotNetBar.RibbonBar();
 			this.buttonItemPreview = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeOverview = new DevComponents.DotNetBar.RibbonBar();
@@ -153,9 +154,14 @@ namespace NewBizWiz.Dashboard
 			this.ribbonTabItemOnline = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemCalendar = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemSlides = new DevComponents.DotNetBar.RibbonTabItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnMain = new System.Windows.Forms.Panel();
+			this.buttonItemHomeThemeCover = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemHomeThemeLeadoff = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemHomeThemeClientGoals = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemHomeThemeTargetCustomers = new DevComponents.DotNetBar.ButtonItem();
+			this.buttonItemHomeThemeSimpleSummary = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelHome.SuspendLayout();
 			this.ribbonPanelSlides.SuspendLayout();
@@ -271,7 +277,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeExit});
 			this.ribbonBarHomeExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeExit.Location = new System.Drawing.Point(590, 0);
+			this.ribbonBarHomeExit.Location = new System.Drawing.Point(587, 0);
 			this.ribbonBarHomeExit.Name = "ribbonBarHomeExit";
 			this.ribbonBarHomeExit.Size = new System.Drawing.Size(94, 128);
 			this.ribbonBarHomeExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -312,7 +318,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeFloater.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeFloater});
 			this.ribbonBarHomeFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeFloater.Location = new System.Drawing.Point(502, 0);
+			this.ribbonBarHomeFloater.Location = new System.Drawing.Point(499, 0);
 			this.ribbonBarHomeFloater.Name = "ribbonBarHomeFloater";
 			this.ribbonBarHomeFloater.Size = new System.Drawing.Size(88, 128);
 			this.ribbonBarHomeFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -352,7 +358,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeHelp});
 			this.ribbonBarHomeHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeHelp.Location = new System.Drawing.Point(426, 0);
+			this.ribbonBarHomeHelp.Location = new System.Drawing.Point(423, 0);
 			this.ribbonBarHomeHelp.Name = "ribbonBarHomeHelp";
 			this.ribbonBarHomeHelp.Size = new System.Drawing.Size(76, 128);
 			this.ribbonBarHomeHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -391,11 +397,16 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarPowerPoint.Dock = System.Windows.Forms.DockStyle.Left;
 			this.ribbonBarPowerPoint.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemPowerPoint,
-            this.buttonItemHomeTheme});
+            this.buttonItemHomeThemeCleanslate,
+            this.buttonItemHomeThemeCover,
+            this.buttonItemHomeThemeLeadoff,
+            this.buttonItemHomeThemeClientGoals,
+            this.buttonItemHomeThemeTargetCustomers,
+            this.buttonItemHomeThemeSimpleSummary});
 			this.ribbonBarPowerPoint.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarPowerPoint.Location = new System.Drawing.Point(291, 0);
 			this.ribbonBarPowerPoint.Name = "ribbonBarPowerPoint";
-			this.ribbonBarPowerPoint.Size = new System.Drawing.Size(135, 128);
+			this.ribbonBarPowerPoint.Size = new System.Drawing.Size(132, 128);
 			this.ribbonBarPowerPoint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarPowerPoint.TabIndex = 20;
 			this.ribbonBarPowerPoint.Text = "PowerPoint";
@@ -416,12 +427,12 @@ namespace NewBizWiz.Dashboard
 			this.superTooltip.SetSuperTooltip(this.buttonItemPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to PowerPoiint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemPowerPoint.Click += new System.EventHandler(this.buttonItemPowerPoint_Click);
 			// 
-			// buttonItemHomeTheme
+			// buttonItemHomeThemeCleanslate
 			// 
-			this.buttonItemHomeTheme.Name = "buttonItemHomeTheme";
-			this.buttonItemHomeTheme.SubItemsExpandWidth = 14;
-			this.buttonItemHomeTheme.Text = "Theme:\r\nDefault";
-			this.buttonItemHomeTheme.Click += new System.EventHandler(this.buttonItemHomeTheme_Click);
+			this.buttonItemHomeThemeCleanslate.Name = "buttonItemHomeThemeCleanslate";
+			this.buttonItemHomeThemeCleanslate.SubItemsExpandWidth = 14;
+			this.buttonItemHomeThemeCleanslate.Text = "Theme:\r\nDefault";
+			this.buttonItemHomeThemeCleanslate.Click += new System.EventHandler(this.buttonItemHomeTheme_Click);
 			// 
 			// ribbonBarPreview
 			// 
@@ -2613,6 +2624,41 @@ namespace NewBizWiz.Dashboard
 			this.pnMain.Size = new System.Drawing.Size(919, 512);
 			this.pnMain.TabIndex = 6;
 			// 
+			// buttonItemHomeThemeCover
+			// 
+			this.buttonItemHomeThemeCover.Name = "buttonItemHomeThemeCover";
+			this.buttonItemHomeThemeCover.SubItemsExpandWidth = 14;
+			this.buttonItemHomeThemeCover.Text = "Theme:\r\nDefault";
+			this.buttonItemHomeThemeCover.Visible = false;
+			// 
+			// buttonItemHomeThemeLeadoff
+			// 
+			this.buttonItemHomeThemeLeadoff.Name = "buttonItemHomeThemeLeadoff";
+			this.buttonItemHomeThemeLeadoff.SubItemsExpandWidth = 14;
+			this.buttonItemHomeThemeLeadoff.Text = "Theme:\r\nDefault";
+			this.buttonItemHomeThemeLeadoff.Visible = false;
+			// 
+			// buttonItemHomeThemeClientGoals
+			// 
+			this.buttonItemHomeThemeClientGoals.Name = "buttonItemHomeThemeClientGoals";
+			this.buttonItemHomeThemeClientGoals.SubItemsExpandWidth = 14;
+			this.buttonItemHomeThemeClientGoals.Text = "Theme:\r\nDefault";
+			this.buttonItemHomeThemeClientGoals.Visible = false;
+			// 
+			// buttonItemHomeThemeTargetCustomers
+			// 
+			this.buttonItemHomeThemeTargetCustomers.Name = "buttonItemHomeThemeTargetCustomers";
+			this.buttonItemHomeThemeTargetCustomers.SubItemsExpandWidth = 14;
+			this.buttonItemHomeThemeTargetCustomers.Text = "Theme:\r\nDefault";
+			this.buttonItemHomeThemeTargetCustomers.Visible = false;
+			// 
+			// buttonItemHomeThemeSimpleSummary
+			// 
+			this.buttonItemHomeThemeSimpleSummary.Name = "buttonItemHomeThemeSimpleSummary";
+			this.buttonItemHomeThemeSimpleSummary.SubItemsExpandWidth = 14;
+			this.buttonItemHomeThemeSimpleSummary.Text = "Theme:\r\nDefault";
+			this.buttonItemHomeThemeSimpleSummary.Visible = false;
+			// 
 			// FormMain
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2755,7 +2801,7 @@ namespace NewBizWiz.Dashboard
 		private DevComponents.DotNetBar.ButtonItem buttonItemTVFloater;
         private DevComponents.DotNetBar.RibbonBar ribbonBarNewspaperFloater;
 		private DevComponents.DotNetBar.ButtonItem buttonItemNewspaperFloater;
-		private DevComponents.DotNetBar.ButtonItem buttonItemHomeTheme;
+		public DevComponents.DotNetBar.ButtonItem buttonItemHomeThemeCleanslate;
 		private DevComponents.DotNetBar.RibbonPanel ribbonPanelSlides;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarSlidesExit;
 		private DevComponents.DotNetBar.ButtonItem buttonItemSlidesExit;
@@ -2773,6 +2819,11 @@ namespace NewBizWiz.Dashboard
 		private DevComponents.DotNetBar.ButtonItem buttonItemSlidesPreview;
 		public DevComponents.DotNetBar.ButtonItem buttonItemPreview;
 		private System.Windows.Forms.Panel pnMain;
+		public DevComponents.DotNetBar.ButtonItem buttonItemHomeThemeCover;
+		public DevComponents.DotNetBar.ButtonItem buttonItemHomeThemeLeadoff;
+		public DevComponents.DotNetBar.ButtonItem buttonItemHomeThemeClientGoals;
+		public DevComponents.DotNetBar.ButtonItem buttonItemHomeThemeTargetCustomers;
+		public DevComponents.DotNetBar.ButtonItem buttonItemHomeThemeSimpleSummary;
     }
 }
 

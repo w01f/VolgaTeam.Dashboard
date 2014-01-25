@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Xml;
 using NewBizWiz.Core.Calendar;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Core.MediaSchedule
 {
@@ -15,16 +17,19 @@ namespace NewBizWiz.Core.MediaSchedule
 		bool UseSlideMaster { get; set; }
 		CalendarSettings BroadcastCalendarSettings { get; }
 		void SaveSettings();
+		void InitThemeHelper(ThemeManager themeManager);
+		string GetSelectedTheme(SlideType slideType);
+		void SetSelectedTheme(SlideType slideType, string themeName);
 	}
 
 	public abstract class MediaSettingsManager : IMediaSettingsManager
 	{
+		protected ThemeSaveHelper _themeSaveHelper;
 		protected abstract string LocalSettingsPath { get; }
 
 		protected MediaSettingsManager()
 		{
 			BroadcastCalendarSettings = new CalendarSettings();
-			LoadSettings();
 		}
 
 		private void LoadSettings()
@@ -46,14 +51,16 @@ namespace NewBizWiz.Core.MediaSchedule
 			node = document.SelectSingleNode(@"/Settings/BroadcastCalendarSettings");
 			if (node != null)
 				BroadcastCalendarSettings.Deserialize(node);
+			_themeSaveHelper.Deserialize(document.SelectNodes(@"//Settings/SelectedTheme").OfType<XmlNode>());
 		}
 
 		public void SaveSettings()
 		{
 			var xml = new StringBuilder();
 			xml.AppendLine(@"<Settings>");
+			xml.AppendLine(_themeSaveHelper.Serialize());
 			if (!String.IsNullOrEmpty(SelectedColor))
-				xml.AppendLine(@"<ThemeName>" + SelectedColor.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ThemeName>");
+				xml.AppendLine(@"<SelectedColor>" + SelectedColor.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SelectedColor>");
 			xml.AppendLine(@"<UseSlideMaster>" + UseSlideMaster + @"</UseSlideMaster>");
 			xml.AppendLine(@"<BroadcastCalendarSettings>" + BroadcastCalendarSettings.Serialize() + @"</BroadcastCalendarSettings>");
 			xml.AppendLine(@"</Settings>");
@@ -63,6 +70,22 @@ namespace NewBizWiz.Core.MediaSchedule
 				sw.Write(xml);
 				sw.Flush();
 			}
+		}
+
+		public void InitThemeHelper(ThemeManager themeManager)
+		{
+			_themeSaveHelper = new ThemeSaveHelper(themeManager);
+			LoadSettings();
+		}
+
+		public string GetSelectedTheme(SlideType slideType)
+		{
+			return _themeSaveHelper.GetSelectedTheme(slideType).Name;
+		}
+
+		public void SetSelectedTheme(SlideType slideType, string themeName)
+		{
+			_themeSaveHelper.SetSelectedTheme(slideType, themeName);
 		}
 
 		public string SaveFolder { get; set; }

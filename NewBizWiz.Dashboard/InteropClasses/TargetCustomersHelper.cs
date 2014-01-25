@@ -47,7 +47,7 @@ namespace NewBizWiz.Dashboard.InteropClasses
 							}
 						}
 					}
-					var selectedTheme = Core.Dashboard.SettingsManager.Instance.SelectedTheme;
+					var selectedTheme = Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.TargetCustomers);
 					if (selectedTheme != null)
 						presentation.ApplyTheme(selectedTheme.ThemeFilePath);
 					AppendSlide(presentation, -1, destinationPresentation);

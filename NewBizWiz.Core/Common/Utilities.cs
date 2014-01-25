@@ -57,15 +57,13 @@ namespace NewBizWiz.Core.Common
 
 		public void ActivatePowerPoint(Application powerPoint)
 		{
-			if (powerPoint != null)
-			{
-				var powerPointHandle = new IntPtr(powerPoint.HWND);
-				WinAPIHelper.ShowWindow(powerPointHandle, WindowShowStyle.ShowMaximized);
-				uint lpdwProcessId;
-				WinAPIHelper.AttachThreadInput(WinAPIHelper.GetCurrentThreadId(), WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), true);
-				WinAPIHelper.SetForegroundWindow(powerPointHandle);
-				WinAPIHelper.AttachThreadInput(WinAPIHelper.GetCurrentThreadId(), WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), false);
-			}
+			if (powerPoint == null) return;
+			var powerPointHandle = new IntPtr(powerPoint.HWND);
+			WinAPIHelper.ShowWindow(powerPointHandle, WindowShowStyle.ShowMaximized);
+			uint lpdwProcessId;
+			WinAPIHelper.AttachThreadInput(WinAPIHelper.GetCurrentThreadId(), WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), true);
+			WinAPIHelper.SetForegroundWindow(powerPointHandle);
+			WinAPIHelper.AttachThreadInput(WinAPIHelper.GetCurrentThreadId(), WinAPIHelper.GetWindowThreadProcessId(WinAPIHelper.GetForegroundWindow(), out lpdwProcessId), false);
 		}
 
 		public void ActivateTaskbar()

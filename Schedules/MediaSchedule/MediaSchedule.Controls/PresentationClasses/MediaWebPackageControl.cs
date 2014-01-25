@@ -6,6 +6,7 @@ using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
@@ -31,7 +32,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.Themes.FirstOrDefault(t => t.Name.Equals(LocalSchedule.ThemeName) || String.IsNullOrEmpty(LocalSchedule.ThemeName)); }
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVWebPackage : SlideType.RadioWebPackage).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVWebPackage : SlideType.RadioWebPackage)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVWebPackage : SlideType.RadioWebPackage))); }
 		}
 
 		public override HelpManager HelpManager
@@ -77,10 +78,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public override void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Controller.Instance.DigitalPackageTheme, BusinessWrapper.Instance.ThemeManager, LocalSchedule.ThemeName, (t =>
+			FormThemeSelector.Link(Controller.Instance.DigitalPackageTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVWebPackage : SlideType.RadioWebPackage), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVWebPackage : SlideType.RadioWebPackage), (t =>
 			{
-				LocalSchedule.ThemeName = t.Name;
-				SettingsNotSaved = true;
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVWebPackage : SlideType.RadioWebPackage, t.Name);
+				MediaMetaData.Instance.SettingsManager.SaveSettings();
 			}));
 			base.LoadSchedule(quickLoad);
 		}

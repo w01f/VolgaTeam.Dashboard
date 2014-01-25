@@ -1,5 +1,6 @@
 ﻿using System;
 using DevComponents.DotNetBar;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
@@ -38,6 +39,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public override ButtonItem PreviewButton
 		{
 			get { return Controller.Instance.MonthlySchedulePreview; }
+		}
+
+		public override SlideType SlideType
+		{
+			get { return MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVMonthlySchedule : SlideType.RadioMonthlySchedule; }
 		}
 	}
 }

@@ -6,10 +6,9 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
-using NewBizWiz.AdSchedule.Controls;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
+using NewBizWiz.Dashboard.InteropClasses;
 using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
@@ -98,13 +97,12 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.AppManager.NewSchedule();
-			if (!FormMain.Instance.IsDead)
-			{
-				FormMain.Instance.Opacity = 1;
-				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				LoadSchedules();
-			}
+			if (FormMain.Instance.IsDead) return;
+			FormMain.Instance.Opacity = 1;
+			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+			RegistryHelper.MaximizeMainForm = false;
+			LoadSchedules();
+			DashboardPowerPointHelper.Instance.Connect();
 		}
 
 		public void buttonXOpenSchedule_Click(object sender, EventArgs e)
@@ -116,13 +114,12 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
-			if (!FormMain.Instance.IsDead)
-			{
-				FormMain.Instance.Opacity = 1;
-				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				LoadSchedules();
-			}
+			if (FormMain.Instance.IsDead) return;
+			FormMain.Instance.Opacity = 1;
+			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+			RegistryHelper.MaximizeMainForm = false;
+			LoadSchedules();
+			DashboardPowerPointHelper.Instance.Connect();
 		}
 
 		public void buttonXDeleteSchedule_Click(object sender, EventArgs e)

@@ -156,12 +156,6 @@
     <Compile Include="ToolForms\FormNewSchedule.Designer.cs">
       <DependentUpon>FormNewSchedule.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormSelectPublication.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormSelectPublication.Designer.cs">
-      <DependentUpon>FormSelectPublication.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="PresentationClasses\AdPlanControl.resx">
       <DependentUpon>AdPlanControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -182,9 +176,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormNewSchedule.resx">
       <DependentUpon>FormNewSchedule.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormSelectPublication.resx">
-      <DependentUpon>FormSelectPublication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\DigitalProductContainer.resx">
       <DependentUpon>DigitalProductContainer.cs</DependentUpon>
@@ -276,28 +267,10 @@
     <None Include="Resources\DeleteProduct.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AdCampaignLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CommentsLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ProductLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImpressionsLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\InvestmentLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\SaveSmall.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Help.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Websites.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Exit.png" />
@@ -341,40 +314,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Dimensions.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ArrowRight.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ArrowLeft.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AdCampaignLogoDisabled.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CommentsLogoDisabled.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DimensionsDisabled.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImpressionsLogoDisabled.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\InvestmentLogoDisabled.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ProductLogoDisabled.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\WebsitesDisabled.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\FormulaLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\FormulaLogoDisabled.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AppLogo.png" />
@@ -390,15 +336,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Preview.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HelpSmallGreen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HelpSmallRed.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalPackageDisabled.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CloneProduct.png" />
@@ -420,6 +357,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DigitalPackageDisabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FormulaLogoDisabled.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

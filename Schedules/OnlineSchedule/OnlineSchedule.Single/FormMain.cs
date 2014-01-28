@@ -59,7 +59,6 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.DigitalSlidesEmail = buttonItemDigitalScheduleEmail;
 			Controller.Instance.DigitalSlidesPowerPoint = buttonItemDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalSlidesTheme = buttonItemDigitalScheduleTheme;
-			Controller.Instance.DigitalSlidesOptions = buttonItemDigitalScheduleOptions;
 			#endregion
 
 			#region Web Package
@@ -101,6 +100,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 				styleController.AppearanceReadOnly.Font = font;
 				comboBoxEditBusinessName.Font = font;
 				comboBoxEditDecisionMaker.Font = font;
+				comboBoxEditClientType.Font = font;
 				dateEditFlightDatesEnd.Font = font;
 				dateEditFlightDatesStart.Font = font;
 				dateEditPresentationDate.Font = font;

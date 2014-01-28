@@ -18,8 +18,6 @@ namespace NewBizWiz.Core.AdSchedule
 			HomeViewSettings = new HomeViewSettings();
 			HomeViewSettings.ResetToDefault();
 
-			DigitalSchedulesViewSettings = new DigitalSchedulesViewSettings();
-
 			DigitalPackageSettings = new DigitalPackageSettings();
 
 			BasicOverviewViewSettings = new BasicOverviewViewSettings();
@@ -38,7 +36,6 @@ namespace NewBizWiz.Core.AdSchedule
 		}
 
 		public HomeViewSettings HomeViewSettings { get; set; }
-		public DigitalSchedulesViewSettings DigitalSchedulesViewSettings { get; set; }
 		public DigitalPackageSettings DigitalPackageSettings { get; private set; }
 
 		public BasicOverviewViewSettings BasicOverviewViewSettings { get; set; }
@@ -56,8 +53,6 @@ namespace NewBizWiz.Core.AdSchedule
 			var result = new StringBuilder();
 
 			result.AppendLine(@"<HomeViewSettings>" + HomeViewSettings.Serialize() + @"</HomeViewSettings>");
-
-			result.AppendLine(@"<DigitalSchedulesViewSettings>" + DigitalSchedulesViewSettings.Serialize() + @"</DigitalSchedulesViewSettings>");
 
 			result.AppendLine(@"<DigitalPackageSettings>" + DigitalPackageSettings.Serialize() + @"</DigitalPackageSettings>");
 
@@ -81,9 +76,6 @@ namespace NewBizWiz.Core.AdSchedule
 				{
 					case "HomeViewSettings":
 						HomeViewSettings.Deserialize(childNode);
-						break;
-					case "DigitalSchedulesViewSettings":
-						DigitalSchedulesViewSettings.Deserialize(childNode);
 						break;
 					case "DigitalPackageSettings":
 						DigitalPackageSettings.Deserialize(childNode);
@@ -1620,39 +1612,6 @@ namespace NewBizWiz.Core.AdSchedule
 			DefaultPercentOfAd &= EnablePercentOfAd;
 			DefaultColorIncluded &= EnableColorIncluded;
 			DefaultCostPerInch &= EnableCostPerInch;
-		}
-	}
-
-	public class DigitalSchedulesViewSettings
-	{
-		public DigitalSchedulesViewSettings()
-		{
-			ShowOptions = true;
-		}
-
-		public bool ShowOptions { get; set; }
-
-		public string Serialize()
-		{
-			var result = new StringBuilder();
-			result.AppendLine(@"<ShowOptions>" + ShowOptions + @"</ShowOptions>");
-			return result.ToString();
-		}
-
-		public void Deserialize(XmlNode node)
-		{
-			bool tempBool = false;
-
-			foreach (XmlNode childNode in node.ChildNodes)
-			{
-				switch (childNode.Name)
-				{
-					case "ShowOptions":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowOptions = tempBool;
-						break;
-				}
-			}
 		}
 	}
 

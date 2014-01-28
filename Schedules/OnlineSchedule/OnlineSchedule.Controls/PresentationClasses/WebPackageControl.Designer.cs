@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
@@ -44,8 +45,8 @@
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.pnButtons = new System.Windows.Forms.Panel();
 			this.buttonXCategory = new DevComponents.DotNetBar.ButtonX();
@@ -93,7 +94,7 @@
 			this.gridBandFormula = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnFormula = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemCheckEditFormula = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-			this.toolTipController = new DevExpress.Utils.ToolTipController();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			this.pbDisabledOutput = new System.Windows.Forms.PictureBox();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
@@ -907,7 +908,7 @@
 			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
 			this.hyperLinkEditReset.Properties.AllowFocused = false;
 			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
 			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
 			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;

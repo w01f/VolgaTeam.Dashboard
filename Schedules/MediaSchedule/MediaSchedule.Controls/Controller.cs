@@ -64,6 +64,14 @@ namespace NewBizWiz.MediaSchedule.Controls
 			HomeDecisionMaker.Enter += Utilities.Instance.Editor_Enter;
 			HomeDecisionMaker.MouseDown += Utilities.Instance.Editor_MouseDown;
 			HomeDecisionMaker.MouseUp += Utilities.Instance.Editor_MouseUp;
+
+			HomeBusinessName.TabIndex = 0;
+			HomeBusinessName.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
+			HomeDecisionMaker.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
+			HomeClientType.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
+			HomePresentationDate.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
+			HomeFlightDatesStart.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
+			HomeFlightDatesEnd.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
 			#endregion
 
 			#region Weekly Schedule
@@ -99,7 +107,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 			DigitalProductPowerPoint.Click += DigitalProductContainer.PowerPoint_Click;
 			DigitalProductEmail.Click += DigitalProductContainer.Email_Click;
 			DigitalProductHelp.Click += DigitalProductContainer.Help_Click;
-			DigitalProductOptions.CheckedChanged += DigitalProductContainer.Options_CheckedChanged;
 			DigitalProductPreview.Click += DigitalProductContainer.Preview_Click;
 			#endregion
 
@@ -330,7 +337,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Digital Product
-		public ButtonItem DigitalProductOptions { get; set; }
 		public ButtonItem DigitalProductPreview { get; set; }
 		public ButtonItem DigitalProductPowerPoint { get; set; }
 		public ButtonItem DigitalProductEmail { get; set; }

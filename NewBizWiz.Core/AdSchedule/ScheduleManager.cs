@@ -511,7 +511,7 @@ namespace NewBizWiz.Core.AdSchedule
 			var result = new StringBuilder();
 			if (args.ShowWebsites)
 			{
-				var compiledWebsites = String.Join(", ", DigitalProducts.SelectMany(p => p.AllWebsites).Distinct());
+				var compiledWebsites = String.Join(", ", DigitalProducts.SelectMany(p => p.Websites).Distinct());
 				if (!String.IsNullOrEmpty(compiledWebsites))
 					result.AppendLine(String.Format("{0}", compiledWebsites));
 			}

@@ -53,17 +53,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			}));
 			if (!quickLoad || LocalSchedule.DigitalProducts.Count != _tabPages.Count)
 			{
-				comboBoxEditSlideHeader.Properties.Items.Clear();
-				comboBoxEditSlideHeader.Properties.Items.AddRange(Core.OnlineSchedule.ListManager.Instance.SlideHeaders.ToArray());
-				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
-					comboBoxEditSlideHeader.SelectedIndex = 0;
+				labelControlFlightDates.Text = String.Format("Digital Campaign Dates: {0}", LocalSchedule.FlightDates);
 
 				bool temp = AllowApplyValues;
 				AllowApplyValues = false;
 				AllowApplyValues = temp;
 				Application.DoEvents();
-
-				Options_CheckedChanged(this, EventArgs.Empty);
 
 				xtraTabControlProducts.SuspendLayout();
 				Application.DoEvents();
@@ -72,26 +67,25 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				_tabPages.RemoveAll(x => !LocalSchedule.DigitalProducts.Select(y => y.UniqueID).Contains(x.Product.UniqueID));
 				foreach (var product in LocalSchedule.DigitalProducts)
 				{
-					if (!string.IsNullOrEmpty(product.Name))
+					if (string.IsNullOrEmpty(product.Name)) continue;
+					var productTab = _tabPages.FirstOrDefault(x => x.Product.UniqueID.Equals(product.UniqueID));
+					if (productTab == null)
 					{
-						var productTab = _tabPages.FirstOrDefault(x => x.Product.UniqueID.Equals(product.UniqueID));
-						if (productTab == null)
-						{
-							productTab = new DigitalProductControl(this);
-							_tabPages.Add(productTab);
-							Application.DoEvents();
-						}
-						productTab.Product = product;
-						productTab.LoadValues();
+						productTab = new DigitalProductControl(this);
+						AssignCloseActiveEditorsonOutSideClick(productTab);
+						_tabPages.Add(productTab);
 						Application.DoEvents();
 					}
+					productTab.Product = product;
+					productTab.LoadValues();
+					Application.DoEvents();
 				}
 				_tabPages.Sort((x, y) => x.Product.Index.CompareTo(y.Product.Index));
 				xtraTabControlProducts.TabPages.AddRange(_tabPages.ToArray());
 				Application.DoEvents();
 				xtraTabControlProducts.ResumeLayout();
 
-				LoadProduct();
+				LoadProduct(_tabPages.FirstOrDefault());
 				Application.DoEvents();
 				xtraTabControlProducts.SelectedPageChanged += xtraTabControlProducts_SelectedPageChanged;
 
@@ -122,23 +116,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		protected override bool SaveSchedule(string scheduleName = "")
 		{
+			base.SaveSchedule(scheduleName);
 			if (!string.IsNullOrEmpty(scheduleName))
-			{
 				LocalSchedule.Name = scheduleName;
-			}
-			foreach (DigitalProductControl product in xtraTabControlProducts.TabPages.OfType<DigitalProductControl>())
-				product.SaveValues();
-
 			Controller.Instance.SaveSchedule(LocalSchedule, false, this);
 			SettingsNotSaved = false;
 			return true;
-		}
-
-		public void Options_CheckedChanged(object sender, EventArgs e)
-		{
-			splitContainerControl.PanelVisibility = Controller.Instance.DigitalProductOptions.Checked ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
-			if (AllowApplyValues)
-				SettingsNotSaved = true;
 		}
 
 		public void Save_Click(object sender, EventArgs e)
@@ -203,23 +186,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				if (previewResult != DialogResult.OK)
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 			}
-		}
-
-		public override ButtonItem Preview
-		{
-			get { return Controller.Instance.DigitalProductPreview; }
-		}
-		public override ButtonItem PowerPoint
-		{
-			get { return Controller.Instance.DigitalProductPowerPoint; }
-		}
-		public override ButtonItem Email
-		{
-			get { return Controller.Instance.DigitalProductEmail; }
-		}
-		public override ButtonItem Theme
-		{
-			get { return Controller.Instance.DigitalProductTheme; }
 		}
 
 		public override HelpManager HelpManager

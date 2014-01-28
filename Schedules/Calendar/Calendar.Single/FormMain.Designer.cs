@@ -71,9 +71,9 @@
 			this.buttonItemHomeSave = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemHomeSaveAs = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeFlightDates = new DevComponents.DotNetBar.RibbonBar();
-			this.dateEditFlightDatesStart = new DevExpress.XtraEditors.DateEdit();
+			this.dateEditFlightDatesStart = new Core.Common.TabbedDateEdit();
 			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.dateEditFlightDatesEnd = new DevExpress.XtraEditors.DateEdit();
+			this.dateEditFlightDatesEnd = new Core.Common.TabbedDateEdit();
 			this.itemContainerHomeFlightDates = new DevComponents.DotNetBar.ItemContainer();
 			this.itemContainerFlightDatesStart = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemMonday = new DevComponents.DotNetBar.LabelItem();
@@ -83,10 +83,10 @@
 			this.controlContainerItemFlightDatesEnd = new DevComponents.DotNetBar.ControlContainerItem();
 			this.labelItemFlightDatesWeeks = new DevComponents.DotNetBar.LabelItem();
 			this.ribbonBarHomeBasicInfo = new DevComponents.DotNetBar.RibbonBar();
-			this.comboBoxEditBusinessName = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.comboBoxEditDecisionMaker = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.comboBoxEditClientType = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.dateEditPresentationDate = new DevExpress.XtraEditors.DateEdit();
+			this.comboBoxEditBusinessName = new Core.Common.TabbedCombobox();
+			this.comboBoxEditDecisionMaker = new Core.Common.TabbedCombobox();
+			this.comboBoxEditClientType = new Core.Common.TabbedCombobox();
+			this.dateEditPresentationDate = new Core.Common.TabbedDateEdit();
 			this.textEditAccountNumber = new DevExpress.XtraEditors.TextEdit();
 			this.itemContainerHomeAdvertiser = new DevComponents.DotNetBar.ItemContainer();
 			this.labelItemHomeAdvertiserTitle = new DevComponents.DotNetBar.LabelItem();
@@ -1957,8 +1957,6 @@
 		private System.Windows.Forms.Panel pnMain;
         private DevComponents.DotNetBar.RibbonTabItem ribbonTabItemHome;
         private DevComponents.DotNetBar.RibbonBar ribbonBarHomeFlightDates;
-        public DevExpress.XtraEditors.DateEdit dateEditFlightDatesStart;
-        public DevExpress.XtraEditors.DateEdit dateEditFlightDatesEnd;
         private DevComponents.DotNetBar.ItemContainer itemContainerHomeFlightDates;
         private DevComponents.DotNetBar.LabelItem labelItemMonday;
         private DevComponents.DotNetBar.ItemContainer itemContainerFlightDatesStart;
@@ -1998,10 +1996,6 @@
         public DevComponents.DotNetBar.RibbonTabItem ribbonTabItemCalendar;
 		private System.Windows.Forms.Panel pnEmpty;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarHomeBasicInfo;
-		public DevExpress.XtraEditors.ComboBoxEdit comboBoxEditBusinessName;
-		public DevExpress.XtraEditors.ComboBoxEdit comboBoxEditDecisionMaker;
-		public DevExpress.XtraEditors.ComboBoxEdit comboBoxEditClientType;
-		public DevExpress.XtraEditors.DateEdit dateEditPresentationDate;
 		public DevExpress.XtraEditors.TextEdit textEditAccountNumber;
 		private DevComponents.DotNetBar.ItemContainer itemContainerHomeAdvertiser;
 		private DevComponents.DotNetBar.LabelItem labelItemHomeAdvertiserTitle;
@@ -2057,6 +2051,12 @@
 		private DevComponents.DotNetBar.ButtonItem buttonItemGridFloater;
 		private DevComponents.DotNetBar.RibbonBar ribbonBarCalendarFloater;
 		private DevComponents.DotNetBar.ButtonItem buttonItemCalendarFloater;
+		public Core.Common.TabbedDateEdit dateEditFlightDatesEnd;
+		public Core.Common.TabbedDateEdit dateEditFlightDatesStart;
+		public Core.Common.TabbedCombobox comboBoxEditBusinessName;
+		public Core.Common.TabbedCombobox comboBoxEditDecisionMaker;
+		public Core.Common.TabbedCombobox comboBoxEditClientType;
+		public Core.Common.TabbedDateEdit dateEditPresentationDate;
     }
 }
 

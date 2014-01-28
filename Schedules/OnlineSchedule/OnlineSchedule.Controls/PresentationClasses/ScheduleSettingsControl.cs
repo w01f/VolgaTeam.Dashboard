@@ -352,6 +352,24 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 		}
 
+		public void SchedulePropertiesEditor_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode != Keys.Tab) return;
+			if (sender == Controller.Instance.HomeBusinessName)
+				Controller.Instance.HomeDecisionMaker.Focus();
+			else if (sender == Controller.Instance.HomeDecisionMaker)
+				Controller.Instance.HomeClientType.Focus();
+			else if (sender == Controller.Instance.HomeClientType)
+				Controller.Instance.HomePresentationDate.Focus();
+			else if (sender == Controller.Instance.HomePresentationDate)
+				Controller.Instance.HomeFlightDatesStart.Focus();
+			else if (sender == Controller.Instance.HomeFlightDatesStart)
+				Controller.Instance.HomeFlightDatesEnd.Focus();
+			else if (sender == Controller.Instance.HomeFlightDatesEnd)
+				Controller.Instance.HomeBusinessName.Focus();
+			e.Handled = true;
+		}
+
 		public void ScheduleSettingsHelp_Click(object sender, EventArgs e)
 		{
 			BusinessWrapper.Instance.HelpManager.OpenHelpLink("home");

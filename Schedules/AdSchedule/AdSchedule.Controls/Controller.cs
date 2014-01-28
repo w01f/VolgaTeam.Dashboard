@@ -159,7 +159,6 @@ namespace NewBizWiz.AdSchedule.Controls
 			DigitalProductPowerPoint.Click += DigitalProductContainer.PowerPoint_Click;
 			DigitalProductEmail.Click += DigitalProductContainer.Email_Click;
 			DigitalProductHelp.Click += DigitalProductContainer.Help_Click;
-			DigitalProductOptions.CheckedChanged += DigitalProductContainer.Options_CheckedChanged;
 			DigitalProductPreview.Click += DigitalProductContainer.Preview_Click;
 			#endregion
 
@@ -605,7 +604,6 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Digital Product
-		public ButtonItem DigitalProductOptions { get; set; }
 		public ButtonItem DigitalProductPreview { get; set; }
 		public ButtonItem DigitalProductPowerPoint { get; set; }
 		public ButtonItem DigitalProductEmail { get; set; }

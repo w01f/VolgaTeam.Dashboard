@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
-using DevExpress.XtraEditors;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.CommonGUI.Themes;
@@ -12,7 +10,6 @@ using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 using FormNewSchedule = NewBizWiz.AdSchedule.Controls.ToolForms.FormNewSchedule;
-using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
 using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
@@ -55,18 +52,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			}));
 			if (!quickLoad)
 			{
-				comboBoxEditSlideHeader.Properties.Items.Clear();
-				comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.SlideHeaders.ToArray());
-				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
-					comboBoxEditSlideHeader.SelectedIndex = 0;
-
+				labelControlFlightDates.Text = String.Format("Digital Campaign Dates: {0}", LocalSchedule.FlightDates);
 				bool temp = AllowApplyValues;
 				AllowApplyValues = false;
 				AllowApplyValues = temp;
 				Application.DoEvents();
-
-				Controller.Instance.DigitalProductOptions.Checked = LocalSchedule.ViewSettings.DigitalSchedulesViewSettings.ShowOptions;
-				Options_CheckedChanged(this, EventArgs.Empty);
 
 				xtraTabControlProducts.SuspendLayout();
 				Application.DoEvents();
@@ -75,26 +65,25 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				_tabPages.RemoveAll(x => !LocalSchedule.DigitalProducts.Select(y => y.UniqueID).Contains(x.Product.UniqueID));
 				foreach (var product in LocalSchedule.DigitalProducts)
 				{
-					if (!string.IsNullOrEmpty(product.Name))
+					if (string.IsNullOrEmpty(product.Name)) continue;
+					var productTab = _tabPages.FirstOrDefault(x => x.Product.UniqueID.Equals(product.UniqueID));
+					if (productTab == null)
 					{
-						DigitalProductControl productTab = _tabPages.Where(x => x.Product.UniqueID.Equals(product.UniqueID)).FirstOrDefault();
-						if (productTab == null)
-						{
-							productTab = new DigitalProductControl(this);
-							_tabPages.Add(productTab);
-							Application.DoEvents();
-						}
-						productTab.Product = product;
-						productTab.LoadValues();
+						productTab = new DigitalProductControl(this);
+						AssignCloseActiveEditorsonOutSideClick(productTab);
+						_tabPages.Add(productTab);
 						Application.DoEvents();
 					}
+					productTab.Product = product;
+					productTab.LoadValues();
+					Application.DoEvents();
 				}
 				_tabPages.Sort((x, y) => x.Product.Index.CompareTo(y.Product.Index));
 				xtraTabControlProducts.TabPages.AddRange(_tabPages.ToArray());
 				Application.DoEvents();
 				xtraTabControlProducts.ResumeLayout();
 
-				LoadProduct();
+				LoadProduct(_tabPages.FirstOrDefault());
 				Application.DoEvents();
 				xtraTabControlProducts.SelectedPageChanged += xtraTabControlProducts_SelectedPageChanged;
 
@@ -125,24 +114,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		protected override bool SaveSchedule(string scheduleName = "")
 		{
+			base.SaveSchedule(scheduleName);
 			if (!string.IsNullOrEmpty(scheduleName))
-			{
 				LocalSchedule.Name = scheduleName;
-			}
-			LocalSchedule.ViewSettings.DigitalSchedulesViewSettings.ShowOptions = Controller.Instance.DigitalProductOptions.Checked;
-			foreach (DigitalProductControl product in xtraTabControlProducts.TabPages.OfType<DigitalProductControl>())
-				product.SaveValues();
-
 			Controller.Instance.SaveSchedule(LocalSchedule, false, this);
 			SettingsNotSaved = false;
 			return true;
-		}
-
-		public void Options_CheckedChanged(object sender, EventArgs e)
-		{
-			splitContainerControl.PanelVisibility = Controller.Instance.DigitalProductOptions.Checked ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
-			if (AllowApplyValues)
-				SettingsNotSaved = true;
 		}
 
 		public void Save_Click(object sender, EventArgs e)
@@ -207,23 +184,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				if (previewResult != DialogResult.OK)
 					Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 			}
-		}
-
-		public override ButtonItem Preview
-		{
-			get { return Controller.Instance.DigitalProductPreview; }
-		}
-		public override ButtonItem PowerPoint
-		{
-			get { return Controller.Instance.DigitalProductPowerPoint; }
-		}
-		public override ButtonItem Email
-		{
-			get { return Controller.Instance.DigitalProductEmail; }
-		}
-		public override ButtonItem Theme
-		{
-			get { return Controller.Instance.DigitalProductTheme; }
 		}
 
 		public override HelpManager HelpManager

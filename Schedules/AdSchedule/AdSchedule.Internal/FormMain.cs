@@ -108,7 +108,6 @@ namespace NewBizWiz.AdSchedule.Internal
 			#endregion
 
 			#region Digital Product
-			Controller.Instance.DigitalProductOptions = buttonItemDigitalScheduleOptions;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalProductEmail = buttonItemDigitalScheduleEmail;

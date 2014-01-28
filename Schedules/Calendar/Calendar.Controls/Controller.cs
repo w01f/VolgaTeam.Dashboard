@@ -51,6 +51,14 @@ namespace NewBizWiz.Calendar.Controls
 			HomeFlightDatesStart.CloseUp += HomeControl.dateEditFlightDatesStart_CloseUp;
 			HomeFlightDatesEnd.CloseUp += HomeControl.dateEditFlightDatesEnd_CloseUp;
 
+			HomeBusinessName.TabIndex = 0;
+			HomeBusinessName.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
+			HomeDecisionMaker.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
+			HomeClientType.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
+			HomePresentationDate.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
+			HomeFlightDatesStart.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
+			HomeFlightDatesEnd.KeyDown += HomeControl.SchedulePropertiesEditor_KeyDown;
+
 			CalendarVisualizer = new CalendarVisualizer();
 			CalendarMonthsList.SelectedIndexChanged += CalendarVisualizer.imageListBoxEditCalendar_SelectedIndexChanged;
 			CalendarSlideInfo.CheckedChanged += CalendarVisualizer.buttonItemCalendarSlideInfo_CheckedChanged;

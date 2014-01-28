@@ -21,7 +21,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 			Strengths = new List<string>();
 			Categories = new List<Category>();
 			ProductSources = new List<ProductSource>();
-			SlideSources = new List<SlideSource>();
 			Statuses = new List<string>();
 
 			string imageFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\DIGITAL\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
@@ -57,7 +56,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public List<string> Strengths { get; set; }
 		public List<Category> Categories { get; set; }
 		public List<ProductSource> ProductSources { get; set; }
-		public List<SlideSource> SlideSources { get; set; }
 		public List<string> Statuses { get; set; }
 		public FormulaType DefaultFormula { get; set; }
 
@@ -99,7 +97,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 			Strengths.Clear();
 			Categories.Clear();
 			ProductSources.Clear();
-			SlideSources.Clear();
 			string listPath = Path.Combine(Common.SettingsManager.Instance.SharedListFolder, OnlineStrategyFileName);
 			if (File.Exists(listPath))
 			{
@@ -174,12 +171,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 								GetProductProperties(childeNode, ref productSource);
 								if (!string.IsNullOrEmpty(productSource.Name))
 									ProductSources.Add(productSource);
-								break;
-							case "SlideSource":
-								var slideSource = new SlideSource();
-								GetSlideSourceProperties(childeNode, ref slideSource);
-								if (!string.IsNullOrEmpty(slideSource.TemplateName))
-									SlideSources.Add(slideSource);
 								break;
 							case "Status":
 								foreach (XmlAttribute attribute in childeNode.Attributes)
@@ -271,131 +262,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 						break;
 					case "TooltipValue":
 						category.TooltipValue = attribute.Value;
-						break;
-				}
-			}
-		}
-
-		private void GetSlideSourceProperties(XmlNode node, ref SlideSource slideSource)
-		{
-			bool tempBool = false;
-
-			foreach (XmlAttribute attribute in node.Attributes)
-			{
-				switch (attribute.Name)
-				{
-					case "Name":
-						slideSource.TemplateName = attribute.Value;
-						break;
-					case "ShowActiveDays":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowActiveDays = tempBool;
-						break;
-					case "ShowAdRate":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowAdRate = tempBool;
-						break;
-					case "ShowBusinessName":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowBusinessName = tempBool;
-						break;
-					case "ShowComments":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowComments = tempBool;
-						break;
-					case "ShowDecisionMaker":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowDecisionMaker = tempBool;
-						break;
-					case "ShowDescription":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowDescription = tempBool;
-						break;
-					case "ShowDimensions":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowDimensions = tempBool;
-						break;
-					case "ShowDuration":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowDuration = tempBool;
-						break;
-					case "ShowFlightDates":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowFlightDates = tempBool;
-						break;
-					case "ShowImages":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowImages = tempBool;
-						break;
-					case "ShowMonthlyCPM":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowMonthlyCPM = tempBool;
-						break;
-					case "ShowMonthlyImpressions":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowMonthlyImpressions = tempBool;
-						break;
-					case "ShowMonthlyInvestment":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowMonthlyInvestment = tempBool;
-						break;
-					case "ShowPresentationDate":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowPresentationDate = tempBool;
-						break;
-					case "ShowProduct":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowProduct = tempBool;
-						break;
-					case "ShowScreenshot":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowScreenshot = tempBool;
-						break;
-					case "ShowSignature":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowSignature = tempBool;
-						break;
-					case "ShowTotalAds":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowTotalAds = tempBool;
-						break;
-					case "ShowTotalCPM":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowTotalCPM = tempBool;
-						break;
-					case "ShowTotalImpressions":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowTotalImpressions = tempBool;
-						break;
-					case "ShowTotalInvestment":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowTotalInvestment = tempBool;
-						break;
-					case "ShowWebsite":
-						tempBool = false;
-						bool.TryParse(attribute.Value, out tempBool);
-						slideSource.ShowWebsite = tempBool;
 						break;
 				}
 			}

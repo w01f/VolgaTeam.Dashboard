@@ -81,8 +81,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			spinEditInvestment.EditValue = DigitalProduct.AdPlanSettings.EditInvestment && DigitalProduct.AdPlanSettings.Investment.HasValue ? DigitalProduct.AdPlanSettings.Investment : (decimal?)DigitalProduct.TotalInvestmentCalculated;
 			buttonXEditInvestment.Checked = DigitalProduct.AdPlanSettings.EditInvestment;
 
-			checkEditWebsites.Text = "Active Websites: " + String.Join(", ", DigitalProduct.AllWebsites);
-			checkEditWebsites.Visible = !DigitalProduct.AllWebsites.Any();
+			checkEditWebsites.Text = "Active Websites: " + String.Join(", ", DigitalProduct.Websites);
+			checkEditWebsites.Visible = !DigitalProduct.Websites.Any();
 			checkEditDimensions.Text = !String.IsNullOrEmpty(DigitalProduct.Dimensions) ? ("Dimensions: " + DigitalProduct.Dimensions) : String.Empty;
 			checkEditDimensions.Visible = !String.IsNullOrEmpty(DigitalProduct.Dimensions);
 			checkEditMonthlyImpressions.Text = DigitalProduct.MonthlyImpressionsCalculated.HasValue ? ("Monthly Impressions: " + DigitalProduct.MonthlyImpressionsCalculated.Value.ToString("#,##0")) : String.Empty;
@@ -99,7 +99,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			checkEditComment2.Visible = !String.IsNullOrEmpty(DigitalProduct.Strength2);
 			checkEditComment3.Text = DigitalProduct.Comment;
 			checkEditComment3.Visible = !String.IsNullOrEmpty(DigitalProduct.Comment);
-			checkEditWebsites.Checked = DigitalProduct.AdPlanSettings.ShowWebsites & !DigitalProduct.AllWebsites.Any();
+			checkEditWebsites.Checked = DigitalProduct.AdPlanSettings.ShowWebsites & !DigitalProduct.Websites.Any();
 			checkEditDimensions.Checked = DigitalProduct.AdPlanSettings.ShowDimensions & !String.IsNullOrEmpty(DigitalProduct.Dimensions);
 			checkEditMonthlyImpressions.Checked = DigitalProduct.AdPlanSettings.ShowMonthlyImpressions & DigitalProduct.MonthlyImpressionsCalculated.HasValue;
 			checkEditMonthlyCPM.Checked = DigitalProduct.AdPlanSettings.ShowMonthlyImpressions & DigitalProduct.MonthlyCPMCalculated.HasValue;
@@ -232,7 +232,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			DigitalProduct.AdPlanSettings.ResetItemsToDefault();
 			_allowToSave = false;
-			checkEditWebsites.Checked = DigitalProduct.AdPlanSettings.ShowWebsites & !DigitalProduct.AllWebsites.Any();
+			checkEditWebsites.Checked = DigitalProduct.AdPlanSettings.ShowWebsites & !DigitalProduct.Websites.Any();
 			checkEditDimensions.Checked = DigitalProduct.AdPlanSettings.ShowDimensions & !String.IsNullOrEmpty(DigitalProduct.Dimensions);
 			checkEditMonthlyImpressions.Checked = DigitalProduct.AdPlanSettings.ShowMonthlyImpressions & DigitalProduct.MonthlyImpressionsCalculated.HasValue;
 			checkEditMonthlyCPM.Checked = DigitalProduct.AdPlanSettings.ShowMonthlyImpressions & DigitalProduct.MonthlyCPMCalculated.HasValue;

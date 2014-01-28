@@ -133,45 +133,39 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		private void Load()
 		{
-			XmlNode node;
-			if (_scheduleFile.Exists)
-			{
-				var document = new XmlDocument();
-				document.Load(_scheduleFile.FullName);
+			if (!_scheduleFile.Exists) return;
+			var document = new XmlDocument();
+			document.Load(_scheduleFile.FullName);
 
-				node = document.SelectSingleNode(@"/Schedule/BusinessName");
-				if (node != null)
-					BusinessName = node.InnerText;
+			var node = document.SelectSingleNode(@"/Schedule/BusinessName");
+			if (node != null)
+				BusinessName = node.InnerText;
 
-				node = document.SelectSingleNode(@"/Schedule/Status");
-				if (node != null)
-					Status = node.InnerText;
-			}
+			node = document.SelectSingleNode(@"/Schedule/Status");
+			if (node != null)
+				Status = node.InnerText;
 		}
 
 		public void Save()
 		{
-			XmlNode node;
-			if (_scheduleFile.Exists)
+			if (!_scheduleFile.Exists) return;
+			try
 			{
-				try
-				{
-					var document = new XmlDocument();
-					document.Load(_scheduleFile.FullName);
+				var document = new XmlDocument();
+				document.Load(_scheduleFile.FullName);
 
-					node = document.SelectSingleNode(@"/Schedule/Status");
+				var node = document.SelectSingleNode(@"/Schedule/Status");
+				if (node != null)
+					node.InnerText = Status;
+				else
+				{
+					node = document.SelectSingleNode(@"/Schedule");
 					if (node != null)
-						node.InnerText = Status;
-					else
-					{
-						node = document.SelectSingleNode(@"/Schedule");
-						if (node != null)
-							node.InnerXml += (@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
-					}
-					document.Save(_scheduleFile.FullName);
+						node.InnerXml += (@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
 				}
-				catch { }
+				document.Save(_scheduleFile.FullName);
 			}
+			catch { }
 		}
 	}
 
@@ -498,12 +492,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		#region Additional Properties
 		public string UserDefinedName { get; set; }
-		public string SlideHeader { get; set; }
 		public List<string> Websites { get; set; }
-		public string CustomWebsite1 { get; set; }
-		public string CustomWebsite2 { get; set; }
-		public string CustomWebsite3 { get; set; }
-		public string CustomWebsite4 { get; set; }
 		public int? ActiveDays { get; set; }
 		public int? TotalAds { get; set; }
 		public string DurationType { get; set; }
@@ -523,88 +512,16 @@ namespace NewBizWiz.Core.OnlineSchedule
 		#endregion
 
 		#region Show Properties
-		private bool _defaultShowCPMButton = true;
-		private bool _showCPMButton = true;
-		public bool DefaultShowPresentationDate { get; set; }
-		public bool DefaultShowBusinessName { get; set; }
-		public bool DefaultShowDecisionMaker { get; set; }
-		public bool DefaultShowWebsite { get; set; }
-		public bool DefaultShowCustomWebsite1 { get; set; }
-		public bool DefaultShowCustomWebsite2 { get; set; }
-		public bool DefaultShowCustomWebsite3 { get; set; }
-		public bool DefaultShowCustomWebsite4 { get; set; }
-		public bool DefaultShowProduct { get; set; }
-		public bool DefaultShowDescription { get; set; }
-		public bool DefaultShowDimensions { get; set; }
-		public bool DefaultShowFlightDates { get; set; }
-		public bool DefaultShowActiveDays { get; set; }
-		public bool DefaultShowTotalAds { get; set; }
-		public bool DefaultShowAdRate { get; set; }
-		public bool DefaultShowMonthlyInvestment { get; set; }
-		public bool DefaultShowTotalInvestment { get; set; }
-		public bool DefaultShowMonthlyImpressions { get; set; }
-		public bool DefaultShowTotalImpressions { get; set; }
-		public bool DefaultShowComments { get; set; }
-		public bool DefaultShowDuration { get; set; }
-		public bool DefaultShowCommentText { get; set; }
-		public bool DefaultShowStrength1 { get; set; }
-		public bool DefaultShowStrength2 { get; set; }
-		public bool DefaultShowImages { get; set; }
-		public bool DefaultShowScreenshot { get; set; }
-		public bool DefaultShowSignature { get; set; }
-
-		public bool ShowPresentationDate { get; set; }
-		public bool ShowBusinessName { get; set; }
-		public bool ShowDecisionMaker { get; set; }
-		public bool ShowWebsite { get; set; }
-		public bool ShowCustomWebsite1 { get; set; }
-		public bool ShowCustomWebsite2 { get; set; }
-		public bool ShowCustomWebsite3 { get; set; }
-		public bool ShowCustomWebsite4 { get; set; }
-		public bool ShowProduct { get; set; }
-		public bool ShowDescription { get; set; }
-		public bool ShowDimensions { get; set; }
-		public bool ShowFlightDates { get; set; }
-		public bool ShowActiveDays { get; set; }
-		public bool ShowTotalAds { get; set; }
-		public bool ShowAdRate { get; set; }
-		public bool ShowMonthlyInvestment { get; set; }
-		public bool ShowTotalInvestment { get; set; }
-		public bool ShowMonthlyImpressions { get; set; }
-		public bool ShowTotalImpressions { get; set; }
-		public bool ShowComments { get; set; }
 		public bool ShowDuration { get; set; }
-		public bool ShowCommentText { get; set; }
-		public bool ShowStrength1 { get; set; }
-		public bool ShowStrength2 { get; set; }
-		public bool ShowImages { get; set; }
-		public bool ShowScreenshot { get; set; }
-		public bool ShowSignature { get; set; }
+		public bool ShowMonthly { get; set; }
+		public bool ShowTotal { get; set; }
 
 		public ProductPackageRecord PackageRecord { get; private set; }
 		public DigitalProductAdPlanSettings AdPlanSettings { get; set; }
 
-		public bool ShowCPMButton
-		{
-			get { return (ShowMonthlyImpressions | ShowTotalImpressions) & _showCPMButton; }
-			set { _showCPMButton = value; }
-		}
-
-		public bool EnableCPMButton
-		{
-			get { return ShowMonthlyImpressions | ShowTotalImpressions; }
-		}
-
-		public bool ShowMonthlyCPM
-		{
-			get { return ShowMonthlyInvestment & ShowMonthlyImpressions & _showCPMButton; }
-		}
-
-		public bool ShowTotalCPM
-		{
-			get { return ShowTotalInvestment & ShowTotalImpressions & _showCPMButton; }
-		}
 		#endregion
+
+		public Output OutputData { get; private set; }
 
 		#region Calculated Properties
 		public string Name
@@ -663,7 +580,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			get
 			{
 				if (Width.HasValue && Height.HasValue)
-					return Width.Value.ToString() + " x " + Height.Value.ToString();
+					return Width.Value + " x " + Height.Value;
 				return string.Empty;
 			}
 		}
@@ -749,24 +666,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 			}
 		}
 
-		public IEnumerable<string> AllWebsites
-		{
-			get
-			{
-				var websites = new List<string>();
-				websites.AddRange(Websites);
-				if (ShowCustomWebsite1)
-					websites.Add(CustomWebsite1);
-				if (ShowCustomWebsite2)
-					websites.Add(CustomWebsite2);
-				if (ShowCustomWebsite3)
-					websites.Add(CustomWebsite3);
-				if (ShowCustomWebsite4)
-					websites.Add(CustomWebsite4);
-				return websites;
-			}
-		}
-
 		public string ProductSummary
 		{
 			get
@@ -796,48 +695,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 			UniqueID = Guid.NewGuid();
 			Category = string.Empty;
 			SubCategory = string.Empty;
-			Description = string.Empty;
 			Websites = new List<string>();
-			CustomWebsite1 = string.Empty;
-			CustomWebsite2 = string.Empty;
-			CustomWebsite3 = string.Empty;
-			CustomWebsite4 = string.Empty;
-			Strength1 = string.Empty;
-			Strength2 = string.Empty;
-			Comment = string.Empty;
-			DurationType = string.Empty;
-			SlideHeader = string.Empty;
-
-			DefaultShowPresentationDate = true;
-			DefaultShowBusinessName = true;
-			DefaultShowDecisionMaker = true;
-			DefaultShowWebsite = true;
-			DefaultShowCustomWebsite1 = false;
-			DefaultShowCustomWebsite2 = false;
-			DefaultShowCustomWebsite3 = false;
-			DefaultShowCustomWebsite4 = false;
-			DefaultShowProduct = true;
-			DefaultShowDescription = true;
-			DefaultShowDimensions = true;
-			DefaultShowFlightDates = true;
-			DefaultShowActiveDays = false;
-			DefaultShowTotalAds = false;
-			DefaultShowAdRate = false;
-			DefaultShowMonthlyInvestment = true;
-			DefaultShowTotalInvestment = false;
-			DefaultShowMonthlyImpressions = true;
-			DefaultShowTotalImpressions = false;
-			DefaultShowComments = true;
-			DefaultShowDuration = true;
-			DefaultShowCommentText = true;
-			DefaultShowStrength1 = true;
-			DefaultShowStrength2 = true;
-			DefaultShowImages = true;
-			DefaultShowScreenshot = false;
-			DefaultShowSignature = true;
-
 			PackageRecord = new ProductPackageRecord(this);
 			AdPlanSettings = new DigitalProductAdPlanSettings();
+
+			OutputData = new Output(this);
 
 			ApplyDefaultView();
 		}
@@ -851,7 +713,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			#region Basic Properties
 			if (!String.IsNullOrEmpty(Name))
 				xml.Append("Name = \"" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("UniqueID = \"" + UniqueID.ToString() + "\" ");
+			xml.Append("UniqueID = \"" + UniqueID + "\" ");
 			xml.Append("Index = \"" + Index + "\" ");
 			if (!String.IsNullOrEmpty(Category))
 				xml.Append("Category = \"" + Category.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
@@ -866,11 +728,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 			#region Additional Properties
 			xml.Append("UserDefinedName = \"" + (String.IsNullOrEmpty(UserDefinedName) ? ExtendedName : UserDefinedName).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("SlideHeader = \"" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("CustomWebsite1 = \"" + CustomWebsite1.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("CustomWebsite2 = \"" + CustomWebsite2.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("CustomWebsite3 = \"" + CustomWebsite3.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("CustomWebsite4 = \"" + CustomWebsite4.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("ActiveDays = \"" + (ActiveDays.HasValue ? ActiveDays.Value.ToString() : string.Empty) + "\" ");
 			xml.Append("TotalAds = \"" + (TotalAds.HasValue ? TotalAds.Value.ToString() : string.Empty) + "\" ");
 			xml.Append("DurationType = \"" + DurationType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
@@ -879,45 +736,26 @@ namespace NewBizWiz.Core.OnlineSchedule
 			xml.Append("Strength2 = \"" + Strength2.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("Comment = \"" + Comment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("AdRate = \"" + (AdRate.HasValue ? AdRate.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("MonthlyInvestment = \"" + (MonthlyInvestment.HasValue ? MonthlyInvestment.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("MonthlyImpressions = \"" + (MonthlyImpressions.HasValue ? MonthlyImpressions.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("MonthlyCPM = \"" + (MonthlyCPM.HasValue ? MonthlyCPM.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("TotalInvestment = \"" + (TotalInvestment.HasValue ? TotalInvestment.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("TotalImpressions = \"" + (TotalImpressions.HasValue ? TotalImpressions.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("TotalCPM = \"" + (TotalCPM.HasValue ? TotalCPM.Value.ToString() : string.Empty) + "\" ");
+			if (MonthlyInvestment.HasValue)
+				xml.Append("MonthlyInvestment = \"" + MonthlyInvestment.Value + "\" ");
+			if (MonthlyImpressions.HasValue)
+				xml.Append("MonthlyImpressions = \"" + MonthlyImpressions.Value + "\" ");
+			if (MonthlyCPM.HasValue && MonthlyCPM.Value != DefaultRate)
+				xml.Append("MonthlyCPM = \"" + MonthlyCPM.Value + "\" ");
+			if (TotalInvestment.HasValue)
+				xml.Append("TotalInvestment = \"" + TotalInvestment.Value + "\" ");
+			if (TotalImpressions.HasValue)
+				xml.Append("TotalImpressions = \"" + TotalImpressions.Value + "\" ");
+			if (TotalCPM.HasValue && TotalCPM.Value != DefaultRate)
+				xml.Append("TotalCPM = \"" + TotalCPM.Value + "\" ");
 			xml.Append("DefaultRate = \"" + (DefaultRate.HasValue ? DefaultRate.Value.ToString() : string.Empty) + "\" ");
 			xml.Append("Formula = \"" + (int)Formula + "\" ");
 			#endregion
 
 			#region Show Properties
-			xml.Append("ShowActiveDays = \"" + ShowActiveDays.ToString() + "\" ");
-			xml.Append("ShowAdRate = \"" + ShowAdRate.ToString() + "\" ");
-			xml.Append("ShowBusinessName = \"" + ShowBusinessName.ToString() + "\" ");
-			xml.Append("ShowCommentText = \"" + ShowCommentText.ToString() + "\" ");
-			xml.Append("ShowComments = \"" + ShowComments.ToString() + "\" ");
-			xml.Append("ShowCPMButton = \"" + ShowCPMButton.ToString() + "\" ");
-			xml.Append("ShowDecisionMaker = \"" + ShowDecisionMaker.ToString() + "\" ");
-			xml.Append("ShowDescription = \"" + ShowDescription.ToString() + "\" ");
-			xml.Append("ShowDimensions = \"" + ShowDimensions.ToString() + "\" ");
-			xml.Append("ShowFlightDates = \"" + ShowFlightDates.ToString() + "\" ");
-			xml.Append("ShowMonthlyImpressions = \"" + ShowMonthlyImpressions.ToString() + "\" ");
-			xml.Append("ShowMonthlyInvestment = \"" + ShowMonthlyInvestment.ToString() + "\" ");
-			xml.Append("ShowPresentationDate = \"" + ShowPresentationDate.ToString() + "\" ");
-			xml.Append("ShowProduct = \"" + ShowProduct.ToString() + "\" ");
-			xml.Append("ShowStrength1 = \"" + ShowStrength1.ToString() + "\" ");
-			xml.Append("ShowStrength2 = \"" + ShowStrength2.ToString() + "\" ");
-			xml.Append("ShowTotalAds = \"" + ShowTotalAds.ToString() + "\" ");
-			xml.Append("ShowTotalImpressions = \"" + ShowTotalImpressions.ToString() + "\" ");
-			xml.Append("ShowTotalInvestment = \"" + ShowTotalInvestment.ToString() + "\" ");
-			xml.Append("ShowDuration = \"" + ShowDuration.ToString() + "\" ");
-			xml.Append("ShowWebsite = \"" + ShowWebsite.ToString() + "\" ");
-			xml.Append("ShowCustomWebsite1 = \"" + ShowCustomWebsite1.ToString() + "\" ");
-			xml.Append("ShowCustomWebsite2 = \"" + ShowCustomWebsite2.ToString() + "\" ");
-			xml.Append("ShowCustomWebsite3 = \"" + ShowCustomWebsite3.ToString() + "\" ");
-			xml.Append("ShowCustomWebsite4 = \"" + ShowCustomWebsite4.ToString() + "\" ");
-			xml.Append("ShowImages = \"" + ShowImages.ToString() + "\" ");
-			xml.Append("ShowScreenshot = \"" + ShowScreenshot.ToString() + "\" ");
-			xml.Append("ShowSignature = \"" + ShowSignature.ToString() + "\" ");
+			xml.Append("ShowDuration = \"" + ShowDuration + "\" ");
+			xml.Append("ShowMonthly = \"" + ShowMonthly + "\" ");
+			xml.Append("ShowTotal = \"" + ShowTotal + "\" ");
 			#endregion
 
 			xml.AppendLine(@">");
@@ -935,9 +773,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public void Deserialize(XmlNode node)
 		{
 			int tempInt;
-			bool tempBool;
 			double tempDouble;
-			Guid tempGuid;
 
 			foreach (XmlAttribute productAttribute in node.Attributes)
 				switch (productAttribute.Name)
@@ -947,6 +783,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 						Name = productAttribute.Value;
 						break;
 					case "UniqueID":
+						Guid tempGuid;
 						if (Guid.TryParse(productAttribute.Value, out tempGuid))
 							UniqueID = tempGuid;
 						break;
@@ -984,21 +821,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 					#region Additional Properties
 					case "UserDefinedName":
 						UserDefinedName = productAttribute.Value;
-						break;
-					case "SlideHeader":
-						SlideHeader = productAttribute.Value;
-						break;
-					case "CustomWebsite1":
-						CustomWebsite1 = productAttribute.Value;
-						break;
-					case "CustomWebsite2":
-						CustomWebsite2 = productAttribute.Value;
-						break;
-					case "CustomWebsite3":
-						CustomWebsite3 = productAttribute.Value;
-						break;
-					case "CustomWebsite4":
-						CustomWebsite4 = productAttribute.Value;
 						break;
 					case "ActiveDays":
 						if (int.TryParse(productAttribute.Value, out tempInt))
@@ -1086,117 +908,26 @@ namespace NewBizWiz.Core.OnlineSchedule
 					#endregion
 
 					#region Show Properties
-					case "ShowBusinessName":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowBusinessName = tempBool;
-						break;
-					case "ShowDecisionMaker":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowDecisionMaker = tempBool;
-						break;
-					case "ShowPresentationDate":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowPresentationDate = tempBool;
-						break;
-					case "ShowWebsite":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowWebsite = tempBool;
-						break;
-					case "ShowCustomWebsite1":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowCustomWebsite1 = tempBool;
-						break;
-					case "ShowCustomWebsite2":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowCustomWebsite2 = tempBool;
-						break;
-					case "ShowCustomWebsite3":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowCustomWebsite3 = tempBool;
-						break;
-					case "ShowCustomWebsite4":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowCustomWebsite4 = tempBool;
-						break;
-					case "ShowActiveDays":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowActiveDays = tempBool;
-						break;
-					case "ShowAdRate":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowAdRate = tempBool;
-						break;
-					case "ShowComments":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowComments = tempBool;
-						break;
-					case "ShowCommentText":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowCommentText = tempBool;
-						break;
-					case "ShowCPMButton":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowCPMButton = tempBool;
-						break;
-					case "ShowDescription":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowDescription = tempBool;
-						break;
-					case "ShowDimensions":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowDimensions = tempBool;
-						break;
-					case "ShowFlightDates":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowFlightDates = tempBool;
-						break;
-					case "ShowMonthlyImpressions":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowMonthlyImpressions = tempBool;
-						break;
-					case "ShowMonthlyInvestment":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowMonthlyInvestment = tempBool;
-						break;
-					case "ShowProduct":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowProduct = tempBool;
-						break;
-					case "ShowStrength1":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowStrength1 = tempBool;
-						break;
-					case "ShowStrength2":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowStrength2 = tempBool;
-						break;
-					case "ShowTotalAds":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowTotalAds = tempBool;
-						break;
-					case "ShowTotalImpressions":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowTotalImpressions = tempBool;
-						break;
-					case "ShowTotalInvestment":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowTotalInvestment = tempBool;
-						break;
 					case "ShowDuration":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowDuration = tempBool;
+						{
+							bool tempBool;
+							if (bool.TryParse(productAttribute.Value, out tempBool))
+								ShowDuration = tempBool;
+						}
 						break;
-					case "ShowImages":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowImages = tempBool;
+					case "ShowMonthly":
+						{
+							bool tempBool;
+							if (bool.TryParse(productAttribute.Value, out tempBool))
+								ShowMonthly = tempBool;
+						}
 						break;
-					case "ShowScreenshot":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowScreenshot = tempBool;
-						break;
-					case "ShowSignature":
-						if (bool.TryParse(productAttribute.Value, out tempBool))
-							ShowSignature = tempBool;
+					case "ShowTotal":
+						{
+							bool tempBool;
+							if (bool.TryParse(productAttribute.Value, out tempBool))
+								ShowTotal = tempBool;
+						}
 						break;
 					#endregion
 				}
@@ -1218,79 +949,38 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		public void ApplyDefaultValues()
 		{
-			ProductSource source = ListManager.Instance.ProductSources.Where(x => x.Name.Equals(_name) && x.Category.Name.Equals(Category) && (x.SubCategory.Equals(SubCategory) || string.IsNullOrEmpty(SubCategory))).FirstOrDefault();
-			if (source != null)
-			{
-				RateType = source.RateType;
-				DefaultRate = source.Rate;
-				Width = source.Width;
-				Height = source.Height;
-				Description = source.Overview;
-			}
+			var source = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(_name) && x.Category.Name.Equals(Category) && (x.SubCategory.Equals(SubCategory) || string.IsNullOrEmpty(SubCategory)));
+			if (source == null) return;
+			RateType = source.RateType;
+			DefaultRate = source.Rate;
+			Width = source.Width;
+			Height = source.Height;
+			Description = source.Overview;
 		}
 
 		public void ApplyDefaultView()
 		{
-			_showCPMButton = _defaultShowCPMButton;
-			ShowPresentationDate = DefaultShowPresentationDate;
-			ShowBusinessName = DefaultShowBusinessName;
-			ShowDecisionMaker = DefaultShowDecisionMaker;
-			ShowWebsite = DefaultShowWebsite;
-			ShowCustomWebsite1 = DefaultShowCustomWebsite1;
-			ShowCustomWebsite2 = DefaultShowCustomWebsite2;
-			ShowCustomWebsite3 = DefaultShowCustomWebsite3;
-			ShowCustomWebsite4 = DefaultShowCustomWebsite4;
-			ShowProduct = DefaultShowProduct;
-			ShowDescription = DefaultShowDescription;
-			ShowDimensions = DefaultShowDimensions;
-			ShowFlightDates = DefaultShowFlightDates;
-			ShowActiveDays = DefaultShowActiveDays;
-			ShowTotalAds = DefaultShowTotalAds;
-			ShowAdRate = DefaultShowAdRate;
-			ShowMonthlyInvestment = DefaultShowMonthlyInvestment;
-			ShowTotalInvestment = DefaultShowTotalInvestment;
-			ShowMonthlyImpressions = DefaultShowMonthlyImpressions;
-			ShowTotalImpressions = DefaultShowTotalImpressions;
-			ShowComments = DefaultShowComments;
-			ShowDuration = DefaultShowDuration;
-			ShowCommentText = DefaultShowCommentText;
-			ShowStrength1 = DefaultShowStrength1;
-			ShowStrength2 = DefaultShowStrength2;
-			ShowImages = DefaultShowImages;
-			ShowScreenshot = DefaultShowScreenshot;
-			ShowSignature = DefaultShowSignature;
-
+			UserDefinedName = ExtendedName;
+			Description = string.Empty;
+			Websites.Clear();
+			Strength1 = string.Empty;
+			Strength2 = string.Empty;
+			Comment = string.Empty;
+			DurationType = string.Empty;
+			ActiveDays = null;
+			TotalAds = null;
+			DurationValue = null;
+			AdRate = null;
+			MonthlyInvestment = null;
+			MonthlyImpressions = null;
+			MonthlyCPM = null;
+			TotalInvestment = null;
+			TotalImpressions = null;
+			TotalCPM = null;
+			ShowDuration = false;
+			ShowMonthly = true;
+			ShowTotal = false;
 			Formula = ListManager.Instance.DefaultFormula;
-		}
-
-		public string GetSlideSource(string outputTemplateFolderPath)
-		{
-			string templateName = string.Empty;
-			SlideSource slideSource = ListManager.Instance.SlideSources.FirstOrDefault(x => x.ShowActiveDays == ShowActiveDays &&
-																							x.ShowAdRate == ShowAdRate &&
-																							x.ShowBusinessName == ShowBusinessName &&
-																							x.ShowComments == ShowComments &&
-																							x.ShowDecisionMaker == ShowDecisionMaker &&
-																							x.ShowDescription == ShowDescription &&
-																							x.ShowDimensions == ShowDimensions &&
-																							x.ShowDuration == (ShowDuration & ShowFlightDates) &&
-																							x.ShowFlightDates == ShowFlightDates &&
-																							x.ShowImages == ShowImages &&
-																							x.ShowMonthlyCPM == ShowMonthlyCPM &&
-																							x.ShowMonthlyImpressions == ShowMonthlyImpressions &&
-																							x.ShowMonthlyInvestment == ShowMonthlyInvestment &&
-																							x.ShowPresentationDate == ShowPresentationDate &&
-																							x.ShowProduct == ShowProduct &&
-																							x.ShowScreenshot == ShowScreenshot &&
-																							x.ShowSignature == ShowSignature &&
-																							x.ShowTotalAds == ShowTotalAds &&
-																							x.ShowTotalCPM == ShowTotalCPM &&
-																							x.ShowTotalImpressions == ShowTotalImpressions &&
-																							x.ShowTotalInvestment == ShowTotalInvestment &&
-																							x.ShowWebsite == ShowWebsite);
-			if (slideSource != null)
-				templateName = Path.Combine(outputTemplateFolderPath, slideSource.TemplateName);
-			return templateName;
 		}
 
 		public DigitalProduct Clone()
@@ -1305,6 +995,164 @@ namespace NewBizWiz.Core.OnlineSchedule
 			Parent.DigitalProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
 			Parent.RebuildDigitalProductIndexes();
 			return result;
+		}
+
+		public class Output
+		{
+			private readonly DigitalProduct source;
+
+			public Output(DigitalProduct parent)
+			{
+				source = parent;
+			}
+
+			public string Websites
+			{
+				get { return String.Join(", ", source.Websites.ToArray()); }
+			}
+
+			public string PresentationDate
+			{
+				get { return source.Parent.PresentationDate.HasValue ? source.Parent.PresentationDate.Value.ToString("MM/dd/yy") : String.Empty; }
+			}
+
+			public string BusinessName
+			{
+				get { return source.Parent.BusinessName; }
+			}
+
+			public string DecisionMaker
+			{
+				get { return source.Parent.DecisionMaker; }
+			}
+
+			public string FlightDates
+			{
+				get { return String.Format("{0}", source.Parent.FlightDates); }
+			}
+
+			public string DurationValue
+			{
+				get { return source.DurationValue.HasValue && source.ShowDuration ? source.DurationValue.Value.ToString("#,##0") : String.Empty; }
+			}
+
+			public string DurationType
+			{
+				get { return source.ShowDuration ? source.DurationType : String.Empty; }
+			}
+
+			public string ProductName
+			{
+				get { return source.UserDefinedName; }
+			}
+
+			public string Dimensions
+			{
+				get { return source.Dimensions; }
+			}
+
+			public string Description
+			{
+				get { return source.Description; }
+			}
+
+			public IEnumerable<NameCodePair> MonthlyData
+			{
+				get
+				{
+					var result = new List<NameCodePair>();
+					if (source.ShowMonthly)
+					{
+						if (source.MonthlyImpressionsCalculated.HasValue)
+							result.Add(new NameCodePair {Name = "monthly impressions:", Code = source.MonthlyImpressionsCalculated.Value.ToString("#,##0")});
+						if (source.MonthlyInvestmentCalculated.HasValue)
+							result.Add(new NameCodePair {Name = "monthly investment:", Code = source.MonthlyInvestmentCalculated.Value.ToString("$#,###.00")});
+						if (source.MonthlyCPMCalculated.HasValue)
+							result.Add(new NameCodePair {Name = "cpm:", Code = source.MonthlyCPMCalculated.Value.ToString("$#,###.00")});
+					}
+					return result;
+				}
+			}
+
+			public IEnumerable<NameCodePair> TotalData
+			{
+				get
+				{
+					var result = new List<NameCodePair>();
+					if (source.ShowTotal)
+					{
+						if (source.TotalImpressionsCalculated.HasValue)
+							result.Add(new NameCodePair {Name = "total impressions:", Code = source.TotalImpressionsCalculated.Value.ToString("#,##0")});
+						if (source.TotalInvestmentCalculated.HasValue)
+							result.Add(new NameCodePair {Name = "total investment:", Code = source.TotalInvestmentCalculated.Value.ToString("$#,###.00")});
+						if (source.TotalCPMCalculated.HasValue)
+							result.Add(new NameCodePair {Name = "cpm:", Code = source.TotalCPMCalculated.Value.ToString("$#,###.00")});
+					}
+					return result;
+				}
+			}
+
+			public IEnumerable<NameCodePair> DigitalData
+			{
+				get
+				{
+					var result = new List<NameCodePair>();
+					if (source.TotalAds.HasValue)
+						result.Add(new NameCodePair { Name = "total ads:", Code = source.TotalAds.Value.ToString("#,##0") });
+					if (source.ActiveDays.HasValue)
+						result.Add(new NameCodePair { Name = "days", Code = source.ActiveDays.Value.ToString("#,##0") });
+					if (source.AdRate.HasValue)
+						result.Add(new NameCodePair { Name = "ad rate:", Code = source.AdRate.Value.ToString("$#,###.00") });
+					return result;
+				}
+			}
+
+			public string Comment
+			{
+				get
+				{
+					var list = new List<string>();
+					if (!String.IsNullOrEmpty(source.Strength1))
+						list.Add(source.Strength1);
+					if (!String.IsNullOrEmpty(source.Strength2))
+						list.Add(source.Strength2);
+					if (!String.IsNullOrEmpty(source.Comment))
+						list.Add(source.Comment);
+					return String.Join(". ", list.ToArray());
+				}
+			}
+
+			public string GetSlideSource(string outputTemplateFolderPath)
+			{
+				if (!String.IsNullOrEmpty(Comment))
+				{
+					if ((MonthlyData.Any() || TotalData.Any()) && DigitalData.Any())
+						return Path.Combine(outputTemplateFolderPath, "comments", "1digital_all.ppt");
+					if (MonthlyData.Any() || TotalData.Any())
+						return Path.Combine(outputTemplateFolderPath, "comments", "2digital_nodays_noads_norate.ppt");
+					if (MonthlyData.Any())
+						return Path.Combine(outputTemplateFolderPath, "comments", "3digital_monthly_only.ppt");
+					if (TotalData.Any())
+						return Path.Combine(outputTemplateFolderPath, "comments", "4digital_total_only.ppt");
+					if (DigitalData.Any())
+						return Path.Combine(outputTemplateFolderPath, "comments", "5nomonthly_nototal.ppt");
+					return Path.Combine(outputTemplateFolderPath, "comments", "6nomonthly_nototal_nodaysadsrate.ppt");
+				}
+				else
+				{
+					if ((MonthlyData.Any() || TotalData.Any()) && DigitalData.Any())
+						return Path.Combine(outputTemplateFolderPath, "no_comments", "1digital_all.ppt");
+					if (MonthlyData.Any() || TotalData.Any())
+						return Path.Combine(outputTemplateFolderPath, "no_comments", "2digital_nodays_noads_norate.ppt");
+					if (MonthlyData.Any())
+						return Path.Combine(outputTemplateFolderPath, "no_comments", "3digital_monthly_only.ppt");
+					if (TotalData.Any())
+						return Path.Combine(outputTemplateFolderPath, "no_comments", "4digital_total_only.ppt");
+					if (DigitalData.Any())
+						return Path.Combine(outputTemplateFolderPath, "no_comments", "5nomonthly_nototal.ppt");
+					return Path.Combine(outputTemplateFolderPath, "no_comments", "6nomonthly_nototal_nodaysadsrate.ppt");
+				}
+			}
 		}
 	}
 
@@ -1508,7 +1356,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public void Deserialize(XmlNode node)
 		{
 			decimal tempDecimal;
-			bool tempBool;
 
 			foreach (XmlNode childNode in node.ChildNodes)
 				switch (childNode.Name)
@@ -1545,6 +1392,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 							_cpm = tempDecimal;
 						break;
 					case "UseFormula":
+						bool tempBool;
 						if (Boolean.TryParse(childNode.InnerText, out tempBool))
 							UseFormula = tempBool;
 						break;
@@ -1591,37 +1439,5 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public Image Logo { get; set; }
 		public string TooltipTitle { get; set; }
 		public string TooltipValue { get; set; }
-	}
-
-	public class SlideSource
-	{
-		public SlideSource()
-		{
-			TemplateName = string.Empty;
-		}
-
-		public string TemplateName { get; set; }
-		public bool ShowWebsite { get; set; }
-		public bool ShowBusinessName { get; set; }
-		public bool ShowDecisionMaker { get; set; }
-		public bool ShowPresentationDate { get; set; }
-		public bool ShowProduct { get; set; }
-		public bool ShowDescription { get; set; }
-		public bool ShowDimensions { get; set; }
-		public bool ShowFlightDates { get; set; }
-		public bool ShowActiveDays { get; set; }
-		public bool ShowTotalAds { get; set; }
-		public bool ShowAdRate { get; set; }
-		public bool ShowMonthlyInvestment { get; set; }
-		public bool ShowTotalInvestment { get; set; }
-		public bool ShowMonthlyImpressions { get; set; }
-		public bool ShowTotalImpressions { get; set; }
-		public bool ShowMonthlyCPM { get; set; }
-		public bool ShowTotalCPM { get; set; }
-		public bool ShowComments { get; set; }
-		public bool ShowDuration { get; set; }
-		public bool ShowImages { get; set; }
-		public bool ShowScreenshot { get; set; }
-		public bool ShowSignature { get; set; }
 	}
 }

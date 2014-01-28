@@ -61,6 +61,14 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			HomeDecisionMaker.Enter += Utilities.Instance.Editor_Enter;
 			HomeDecisionMaker.MouseDown += Utilities.Instance.Editor_MouseDown;
 			HomeDecisionMaker.MouseUp += Utilities.Instance.Editor_MouseUp;
+
+			HomeBusinessName.TabIndex = 0;
+			HomeBusinessName.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;
+			HomeDecisionMaker.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;
+			HomeClientType.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;
+			HomePresentationDate.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;
+			HomeFlightDatesStart.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;
+			HomeFlightDatesEnd.KeyDown += ScheduleSettings.SchedulePropertiesEditor_KeyDown;
 			#endregion
 
 			#region Schedule Slides
@@ -71,7 +79,6 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			DigitalSlidesPreview.Click += ScheduleSlides.Preview_Click;
 			DigitalSlidesEmail.Click += ScheduleSlides.Email_Click;
 			DigitalSlidesHelp.Click += ScheduleSlides.Help_Click;
-			DigitalSlidesOptions.CheckedChanged += ScheduleSlides.Options_Click;
 			#endregion
 
 			#region Web Package
@@ -245,7 +252,6 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		public ButtonItem DigitalSlidesHelp { get; set; }
 		public ButtonItem DigitalSlidesSave { get; set; }
 		public ButtonItem DigitalSlidesSaveAs { get; set; }
-		public ButtonItem DigitalSlidesOptions { get; set; }
 		public ButtonItem DigitalSlidesPreview { get; set; }
 		public ButtonItem DigitalSlidesEmail { get; set; }
 		public ButtonItem DigitalSlidesPowerPoint { get; set; }

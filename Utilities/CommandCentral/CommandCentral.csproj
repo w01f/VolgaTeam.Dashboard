@@ -79,7 +79,6 @@
     <Compile Include="CommonClasses\Demo.cs" />
     <Compile Include="CommonClasses\MechanicalItem.cs" />
     <Compile Include="CommonClasses\MechanicalType.cs" />
-    <Compile Include="CommonClasses\OnlineSlideSource.cs" />
     <Compile Include="CommonClasses\Product.cs" />
     <Compile Include="CommonClasses\Publication.cs" />
     <Compile Include="CommonClasses\RadioProgram.cs" />
@@ -141,7 +140,6 @@
     <Compile Include="TabMarketProForms\MarketProMainPage.Designer.cs">
       <DependentUpon>MarketProMainPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabMainDashboardForms\MobileStrategyManager.cs" />
     <Compile Include="TabMainDashboardForms\NewspaperStrategyManager.cs" />
     <Compile Include="TabMainDashboardForms\OnlineStrategyManager.cs" />
     <Compile Include="TabMainDashboardForms\RadioStrategyManager.cs" />

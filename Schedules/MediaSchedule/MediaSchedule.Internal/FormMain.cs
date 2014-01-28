@@ -79,7 +79,6 @@ namespace NewBizWiz.MediaSchedule.Internal
 			#endregion
 
 			#region Digital Product
-			Controller.Instance.DigitalProductOptions = buttonItemDigitalScheduleOptions;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalProductEmail = buttonItemDigitalScheduleEmail;
@@ -133,6 +132,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 				styleController.AppearanceReadOnly.Font = font;
 				comboBoxEditBusinessName.Font = font;
 				comboBoxEditDecisionMaker.Font = font;
+				comboBoxEditClientType.Font = font;
 				dateEditFlightDatesEnd.Font = font;
 				dateEditFlightDatesStart.Font = font;
 				dateEditPresentationDate.Font = font;

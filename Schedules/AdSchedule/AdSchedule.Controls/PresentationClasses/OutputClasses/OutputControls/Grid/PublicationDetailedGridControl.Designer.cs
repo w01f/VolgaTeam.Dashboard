@@ -193,7 +193,7 @@
 			this.gridColumnDate.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.gridColumnDate.Caption = "Day/Date";
 			this.gridColumnDate.ColumnEdit = this.repositoryItemDate;
-			this.gridColumnDate.FieldName = "DateObject";
+			this.gridColumnDate.FieldName = "Date";
 			this.gridColumnDate.Name = "gridColumnDate";
 			this.gridColumnDate.Visible = true;
 			this.gridColumnDate.VisibleIndex = 0;
@@ -619,7 +619,6 @@
 			this.Controls.Add(this.gridControlPublication);
 			this.Controls.Add(this.pnHeader);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.Name = "PublicationDetailedGridControl";
 			this.Size = new System.Drawing.Size(717, 420);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPublication)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewPublications)).EndInit();

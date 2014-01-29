@@ -488,6 +488,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public int? Width { get; set; }
 		public int? Height { get; set; }
 		public string Description { get; set; }
+		public bool ShowDimensions { get; set; }
 		#endregion
 
 		#region Additional Properties
@@ -581,7 +582,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				if (Width.HasValue && Height.HasValue)
 					return Width.Value + " x " + Height.Value;
-				return string.Empty;
+				return String.Empty;
 			}
 		}
 
@@ -724,6 +725,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			xml.Append("Height = \"" + (Height.HasValue ? Height.Value.ToString() : string.Empty) + "\" ");
 			if (!String.IsNullOrEmpty(Description))
 				xml.Append("Description = \"" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			xml.Append("ShowDimensions = \"" + ShowDimensions + "\" ");
 			#endregion
 
 			#region Additional Properties
@@ -815,6 +817,13 @@ namespace NewBizWiz.Core.OnlineSchedule
 						break;
 					case "Description":
 						Description = productAttribute.Value;
+						break;
+					case "ShowDimensions":
+						{
+							bool tempBool;
+							if (Boolean.TryParse(productAttribute.Value, out tempBool))
+								ShowDimensions = tempBool;
+						}
 						break;
 					#endregion
 
@@ -961,7 +970,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public void ApplyDefaultView()
 		{
 			UserDefinedName = ExtendedName;
-			Description = string.Empty;
 			Websites.Clear();
 			Strength1 = string.Empty;
 			Strength2 = string.Empty;
@@ -980,7 +988,12 @@ namespace NewBizWiz.Core.OnlineSchedule
 			ShowDuration = false;
 			ShowMonthly = true;
 			ShowTotal = false;
+			ShowDimensions = true;
 			Formula = ListManager.Instance.DefaultFormula;
+
+			var source = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(_name) && x.Category.Name.Equals(Category) && (x.SubCategory.Equals(SubCategory) || string.IsNullOrEmpty(SubCategory)));
+			if (source == null) return;
+			Description = source.Overview;
 		}
 
 		public DigitalProduct Clone()
@@ -1046,14 +1059,14 @@ namespace NewBizWiz.Core.OnlineSchedule
 				get { return source.UserDefinedName; }
 			}
 
-			public string Dimensions
-			{
-				get { return source.Dimensions; }
-			}
-
 			public string Description
 			{
-				get { return source.Description; }
+				get
+				{
+					return source.ShowDimensions && !String.IsNullOrEmpty(source.Dimensions) ?
+					String.Format("(Ad Dimensions: {0}){1}{1}{2}", source.Dimensions, Environment.NewLine, source.Description) :
+						source.Description;
+				}
 			}
 
 			public IEnumerable<NameCodePair> MonthlyData
@@ -1064,11 +1077,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 					if (source.ShowMonthly)
 					{
 						if (source.MonthlyImpressionsCalculated.HasValue)
-							result.Add(new NameCodePair {Name = "monthly impressions:", Code = source.MonthlyImpressionsCalculated.Value.ToString("#,##0")});
+							result.Add(new NameCodePair { Name = "monthly impressions:", Code = source.MonthlyImpressionsCalculated.Value.ToString("#,##0") });
 						if (source.MonthlyInvestmentCalculated.HasValue)
-							result.Add(new NameCodePair {Name = "monthly investment:", Code = source.MonthlyInvestmentCalculated.Value.ToString("$#,###.00")});
+							result.Add(new NameCodePair { Name = "monthly investment:", Code = source.MonthlyInvestmentCalculated.Value.ToString("$#,###.00") });
 						if (source.MonthlyCPMCalculated.HasValue)
-							result.Add(new NameCodePair {Name = "cpm:", Code = source.MonthlyCPMCalculated.Value.ToString("$#,###.00")});
+							result.Add(new NameCodePair { Name = "cpm:", Code = source.MonthlyCPMCalculated.Value.ToString("$#,###.00") });
 					}
 					return result;
 				}
@@ -1082,11 +1095,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 					if (source.ShowTotal)
 					{
 						if (source.TotalImpressionsCalculated.HasValue)
-							result.Add(new NameCodePair {Name = "total impressions:", Code = source.TotalImpressionsCalculated.Value.ToString("#,##0")});
+							result.Add(new NameCodePair { Name = "total impressions:", Code = source.TotalImpressionsCalculated.Value.ToString("#,##0") });
 						if (source.TotalInvestmentCalculated.HasValue)
-							result.Add(new NameCodePair {Name = "total investment:", Code = source.TotalInvestmentCalculated.Value.ToString("$#,###.00")});
+							result.Add(new NameCodePair { Name = "total investment:", Code = source.TotalInvestmentCalculated.Value.ToString("$#,###.00") });
 						if (source.TotalCPMCalculated.HasValue)
-							result.Add(new NameCodePair {Name = "cpm:", Code = source.TotalCPMCalculated.Value.ToString("$#,###.00")});
+							result.Add(new NameCodePair { Name = "cpm:", Code = source.TotalCPMCalculated.Value.ToString("$#,###.00") });
 					}
 					return result;
 				}

@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.laFlightDates = new System.Windows.Forms.Label();
 			this.laBusinessName = new System.Windows.Forms.Label();
@@ -331,7 +332,7 @@
 			this.gridColumnDate.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 			this.gridColumnDate.Caption = "Day/Date";
 			this.gridColumnDate.ColumnEdit = this.repositoryItemDate;
-			this.gridColumnDate.FieldName = "DateObject";
+			this.gridColumnDate.FieldName = "Date";
 			this.gridColumnDate.Name = "gridColumnDate";
 			this.gridColumnDate.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumnDate.OptionsColumn.FixedWidth = true;

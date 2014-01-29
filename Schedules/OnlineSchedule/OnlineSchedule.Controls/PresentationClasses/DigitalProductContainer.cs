@@ -72,8 +72,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public void LoadProduct(DigitalProductControl productControl)
 		{
 			if (productControl == null) return;
-			bool tempSettingsNotSaved = SettingsNotSaved;
-			bool temp = AllowApplyValues;
+			var tempSettingsNotSaved = SettingsNotSaved;
+			var temp = AllowApplyValues;
 			AllowApplyValues = false;
 
 			var product = productControl.Product;

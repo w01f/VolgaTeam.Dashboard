@@ -53,7 +53,6 @@
 			this.spinEditAdRate = new DevExpress.XtraEditors.SpinEdit();
 			this.spinEditTotalAds = new DevExpress.XtraEditors.SpinEdit();
 			this.spinEditActiveDays = new DevExpress.XtraEditors.SpinEdit();
-			this.textEditDimensions = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditMonthlyFormulaImpressions = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditMonthlyFormulaInvestment = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditMonthlyFormulaCPM = new DevExpress.XtraEditors.CheckEdit();
@@ -91,7 +90,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.spinEditAdRate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalAds.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditActiveDays.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditDimensions.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyFormulaImpressions.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyFormulaInvestment.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyFormulaCPM.Properties)).BeginInit();
@@ -144,9 +142,9 @@
 			// 
 			this.memoEditDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.memoEditDescription.Location = new System.Drawing.Point(633, 83);
+			this.memoEditDescription.Location = new System.Drawing.Point(633, 58);
 			this.memoEditDescription.Name = "memoEditDescription";
-			this.memoEditDescription.Size = new System.Drawing.Size(293, 122);
+			this.memoEditDescription.Size = new System.Drawing.Size(293, 147);
 			this.memoEditDescription.StyleController = this.styleController;
 			this.memoEditDescription.TabIndex = 9;
 			// 
@@ -155,9 +153,9 @@
 			this.memoEditProductName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.memoEditProductName.Location = new System.Drawing.Point(293, 56);
+			this.memoEditProductName.Location = new System.Drawing.Point(293, 58);
 			this.memoEditProductName.Name = "memoEditProductName";
-			this.memoEditProductName.Size = new System.Drawing.Size(312, 149);
+			this.memoEditProductName.Size = new System.Drawing.Size(312, 147);
 			this.memoEditProductName.StyleController = this.styleController;
 			this.memoEditProductName.TabIndex = 11;
 			this.memoEditProductName.EditValueChanged += new System.EventHandler(this.memoEditProductName_EditValueChanged);
@@ -561,16 +559,6 @@
 			this.spinEditActiveDays.StyleController = this.styleController;
 			this.spinEditActiveDays.TabIndex = 13;
 			// 
-			// textEditDimensions
-			// 
-			this.textEditDimensions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textEditDimensions.Location = new System.Drawing.Point(633, 55);
-			this.textEditDimensions.Name = "textEditDimensions";
-			this.textEditDimensions.Properties.ReadOnly = true;
-			this.textEditDimensions.Size = new System.Drawing.Size(293, 22);
-			this.textEditDimensions.StyleController = this.styleController;
-			this.textEditDimensions.TabIndex = 28;
-			// 
 			// checkEditMonthlyFormulaImpressions
 			// 
 			this.checkEditMonthlyFormulaImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -854,7 +842,6 @@
 			this.Controls.Add(this.spinEditTotalInvestment);
 			this.Controls.Add(this.checkEditStrengths2);
 			this.Controls.Add(this.spinEditActiveDays);
-			this.Controls.Add(this.textEditDimensions);
 			this.Controls.Add(this.memoEditComments);
 			this.Controls.Add(this.checkEditMonthlyFormulaImpressions);
 			this.Controls.Add(this.labelControlProduct);
@@ -897,7 +884,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.spinEditAdRate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalAds.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditActiveDays.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.textEditDimensions.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyFormulaImpressions.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyFormulaInvestment.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyFormulaCPM.Properties)).EndInit();
@@ -939,7 +925,6 @@
 		public DevExpress.XtraEditors.CheckEdit checkEditMonthlyFormulaImpressions;
 		public DevExpress.XtraEditors.CheckEdit checkEditMonthlyFormulaInvestment;
 		public DevExpress.XtraEditors.CheckEdit checkEditMonthlyFormulaCPM;
-		private DevExpress.XtraEditors.TextEdit textEditDimensions;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 		private DevExpress.XtraEditors.LabelControl labelControlProduct;
 		private DevExpress.XtraEditors.LabelControl labelControlDescription;

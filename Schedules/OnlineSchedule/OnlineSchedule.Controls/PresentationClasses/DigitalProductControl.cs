@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
@@ -34,7 +35,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				styleController.AppearanceDropDownHeader.Font = font;
 				styleController.AppearanceFocused.Font = font;
 				styleController.AppearanceReadOnly.Font = font;
-				textEditDimensions.Font = font;
 				font = new Font(labelControlWebsite.Font.FontFamily, labelControlWebsite.Font.Size - 3, labelControlWebsite.Font.Style);
 				labelControlWebsite.Font = font;
 				labelControlProduct.Font = font;
@@ -205,7 +205,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					break;
 			}
 
-			spinEditMonthlyInvestment.EditValue = Product.MonthlyImpressionsCalculated;
+			spinEditMonthlyImpressions.EditValue = Product.MonthlyImpressionsCalculated;
 			spinEditMonthlyInvestment.EditValue = Product.MonthlyInvestmentCalculated;
 			spinEditMonthlyCPM.EditValue = Product.MonthlyCPMCalculated;
 			spinEditTotalImpressions.EditValue = Product.TotalImpressionsCalculated;
@@ -220,21 +220,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				if (Product.Websites.Contains(item.Value.ToString()))
 					item.CheckState = CheckState.Checked;
 
-			if (Product.Width.HasValue && Product.Height.HasValue)
-			{
-				textEditDimensions.EditValue = "Ad Dimensions: " + Product.Dimensions;
-				textEditDimensions.Visible = true;
-				memoEditDescription.Top = 55 + 28;
-				memoEditDescription.Height = memoEditProductName.Height - 28;
-			}
+			if (Product.Width.HasValue && Product.Height.HasValue && Product.ShowDimensions)
+				memoEditDescription.EditValue = String.Format("(Ad Dimensions: {0}){1}{1}{2}", Product.Dimensions, Environment.NewLine, Product.Description);
 			else
-			{
-				textEditDimensions.Visible = false;
-				memoEditDescription.Top = 55;
-				memoEditDescription.Height = memoEditProductName.Height;
-			}
+				memoEditDescription.EditValue = Product.Description;
 
-			memoEditDescription.EditValue = Product.Description;
 			spinEditAdRate.EditValue = Product.AdRate;
 			spinEditActiveDays.EditValue = Product.ActiveDays;
 			spinEditTotalAds.EditValue = Product.TotalAds;
@@ -339,7 +329,14 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			foreach (CheckedListBoxItem item in checkedListBoxControlWebsite.Items)
 				if (item.CheckState == CheckState.Checked)
 					Product.Websites.Add(item.Value.ToString());
-			Product.Description = memoEditDescription.EditValue != null ? memoEditDescription.EditValue.ToString() : string.Empty;
+
+			var dimensionsMatch = new Regex(@"\(Ad Dimensions:[\s\w]*\)");
+			var description = memoEditDescription.EditValue != null ? memoEditDescription.EditValue.ToString() : String.Empty;
+			Product.ShowDimensions = dimensionsMatch.IsMatch(description);
+			Product.Description = dimensionsMatch.IsMatch(description) ?
+				dimensionsMatch.Replace(description, String.Empty).Trim() :
+				description.Trim();
+
 			Product.AdRate = spinEditAdRate.EditValue != null ? (double?)spinEditAdRate.Value : null;
 			Product.MonthlyInvestment = spinEditMonthlyInvestment.EditValue != null ? (double?)spinEditMonthlyInvestment.Value : null;
 			Product.TotalInvestment = spinEditTotalInvestment.EditValue != null ? (double?)spinEditTotalInvestment.Value : null;

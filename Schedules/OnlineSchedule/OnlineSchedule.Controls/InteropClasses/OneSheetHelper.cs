@@ -62,9 +62,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 										case "WEBPRODUCT":
 											shape.TextFrame.TextRange.Text = source.OutputData.ProductName;
 											break;
-										case "DIMVALUE":
-											shape.TextFrame.TextRange.Text = source.OutputData.Dimensions;
-											break;
 										case "WEBDESCRIPT":
 											shape.TextFrame.TextRange.Text = source.OutputData.Description;
 											break;
@@ -72,15 +69,15 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 
 										case "MTHIMPLABEL":
 											if(source.OutputData.MonthlyData.Any())
-												shape.TextFrame.TextRange.Text = source.OutputData.MonthlyData.Count() > 0 ? source.OutputData.MonthlyData.ElementAt(0).Name : String.Empty;
+												shape.TextFrame.TextRange.Text = source.OutputData.MonthlyData.Any() ? source.OutputData.MonthlyData.ElementAt(0).Name : String.Empty;
 											else
-												shape.TextFrame.TextRange.Text = source.OutputData.TotalData.Count() > 0 ? source.OutputData.TotalData.ElementAt(0).Name : String.Empty;	
+												shape.TextFrame.TextRange.Text = source.OutputData.TotalData.Any() ? source.OutputData.TotalData.ElementAt(0).Name : String.Empty;	
 											break;
 										case "MONTHLYIMPVALUE":
 											if(source.OutputData.MonthlyData.Any())
-												shape.TextFrame.TextRange.Text = source.OutputData.MonthlyData.Count() > 0 ? source.OutputData.MonthlyData.ElementAt(0).Code : String.Empty;
+												shape.TextFrame.TextRange.Text = source.OutputData.MonthlyData.Any() ? source.OutputData.MonthlyData.ElementAt(0).Code : String.Empty;
 											else
-												shape.TextFrame.TextRange.Text = source.OutputData.TotalData.Count() > 0 ? source.OutputData.TotalData.ElementAt(0).Code : String.Empty;	
+												shape.TextFrame.TextRange.Text = source.OutputData.TotalData.Any() ? source.OutputData.TotalData.ElementAt(0).Code : String.Empty;	
 											break;
 										case "MONTHINVLBL":
 											if(source.OutputData.MonthlyData.Any())
@@ -108,10 +105,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 											break;
 
 										case "TTLIMPLABEL":
-											shape.TextFrame.TextRange.Text = source.OutputData.MonthlyData.Any() && source.OutputData.TotalData.Count() > 0 ? source.OutputData.TotalData.ElementAt(0).Name : String.Empty;
+											shape.TextFrame.TextRange.Text = source.OutputData.MonthlyData.Any() && source.OutputData.TotalData.Any() ? source.OutputData.TotalData.ElementAt(0).Name : String.Empty;
 											break;
 										case "TOTALIMPVALUE":
-											shape.TextFrame.TextRange.Text = source.OutputData.MonthlyData.Any() && source.OutputData.TotalData.Count() > 0 ? source.OutputData.TotalData.ElementAt(0).Code : String.Empty;
+											shape.TextFrame.TextRange.Text = source.OutputData.MonthlyData.Any() && source.OutputData.TotalData.Any() ? source.OutputData.TotalData.ElementAt(0).Code : String.Empty;
 											break;
 										case "TOTINVLBL":
 											shape.TextFrame.TextRange.Text = source.OutputData.MonthlyData.Any() && source.OutputData.TotalData.Count() > 1 ? source.OutputData.TotalData.ElementAt(1).Name : String.Empty;
@@ -127,10 +124,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 											break;
 
 										case "TOTALADS":
-											shape.TextFrame.TextRange.Text = source.OutputData.DigitalData.Count() > 0 ? source.OutputData.DigitalData.ElementAt(0).Name : String.Empty;
+											shape.TextFrame.TextRange.Text = source.OutputData.DigitalData.Any() ? source.OutputData.DigitalData.ElementAt(0).Name : String.Empty;
 											break;
 										case "TTLADSVALUE":
-											shape.TextFrame.TextRange.Text = source.OutputData.DigitalData.Count() > 0 ? source.OutputData.DigitalData.ElementAt(0).Code : String.Empty;
+											shape.TextFrame.TextRange.Text = source.OutputData.DigitalData.Any() ? source.OutputData.DigitalData.ElementAt(0).Code : String.Empty;
 											break;
 										case "DAYS":
 											shape.TextFrame.TextRange.Text = source.OutputData.DigitalData.Count() > 1 ? source.OutputData.DigitalData.ElementAt(1).Name : String.Empty;

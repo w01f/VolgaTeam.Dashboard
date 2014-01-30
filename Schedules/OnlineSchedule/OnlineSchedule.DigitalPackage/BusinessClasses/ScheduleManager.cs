@@ -69,13 +69,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 
 		public static ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
 		{
-			var scheduleList = new List<ShortSchedule>();
-			foreach (FileInfo file in rootFolder.GetFiles("*.xml"))
-			{
-				var schedule = new ShortSchedule(file);
-				scheduleList.Add(schedule);
-			}
-			return scheduleList.ToArray();
+			return rootFolder.GetFiles("*.xml").Select(file => new ShortSchedule(file)).ToArray();
 		}
 
 		public static IEnumerable<ShortSchedule> GetShortScheduleList()
@@ -162,22 +156,22 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 			get { return _scheduleFile; }
 		}
 
-		public double MonthlyInvestment
+		public decimal MonthlyInvestment
 		{
 			get { return DigitalProducts.Select(x => (x.MonthlyInvestment.HasValue ? x.MonthlyInvestment.Value : 0)).Sum(); }
 		}
 
-		public double MonthlyImpressions
+		public decimal MonthlyImpressions
 		{
 			get { return DigitalProducts.Select(x => (x.MonthlyImpressions.HasValue ? x.MonthlyImpressions.Value : 0)).Sum(); }
 		}
 
-		public double TotalInvestment
+		public decimal TotalInvestment
 		{
 			get { return DigitalProducts.Select(x => (x.TotalInvestment.HasValue ? x.TotalInvestment.Value : 0)).Sum(); }
 		}
 
-		public double TotalImpressions
+		public decimal TotalImpressions
 		{
 			get { return DigitalProducts.Select(x => (x.TotalImpressions.HasValue ? x.TotalImpressions.Value : 0)).Sum(); }
 		}
@@ -202,10 +196,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 
 		private void Load()
 		{
-			bool tempBool;
-			DateTime tempDateTime;
-
-			XmlNode node;
 			if (_scheduleFile != null && _scheduleFile.Exists)
 			{
 				IsNameNotAssigned = false;
@@ -213,7 +203,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 				var document = new XmlDocument();
 				document.Load(_scheduleFile.FullName);
 
-				node = document.SelectSingleNode(@"/Schedule/BusinessName");
+				var node = document.SelectSingleNode(@"/Schedule/BusinessName");
 				if (node != null)
 					BusinessName = node.InnerText;
 
@@ -222,33 +212,31 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 					DecisionMaker = node.InnerText;
 
 				node = document.SelectSingleNode(@"/Schedule/PresentationDate");
+				DateTime tempDateTime;
 				if (node != null)
 				{
-					tempDateTime = DateTime.MaxValue;
-					DateTime.TryParse(node.InnerText, out tempDateTime);
-					PresentationDate = tempDateTime;
+					if (DateTime.TryParse(node.InnerText, out tempDateTime))
+						PresentationDate = tempDateTime;
 				}
 
 				node = document.SelectSingleNode(@"/Schedule/FlightDateStart");
 				if (node != null)
 				{
-					tempDateTime = DateTime.MaxValue;
-					DateTime.TryParse(node.InnerText, out tempDateTime);
-					FlightDateStart = tempDateTime;
+					if (DateTime.TryParse(node.InnerText, out tempDateTime))
+						FlightDateStart = tempDateTime;
 				}
 
 				node = document.SelectSingleNode(@"/Schedule/FlightDateEnd");
 				if (node != null)
 				{
-					tempDateTime = DateTime.MaxValue;
-					DateTime.TryParse(node.InnerText, out tempDateTime);
-					FlightDateEnd = tempDateTime;
+					if (DateTime.TryParse(node.InnerText, out tempDateTime))
+						FlightDateEnd = tempDateTime;
 				}
 
 				node = document.SelectSingleNode(@"/Schedule/ApplySettingsForeAllProducts");
 				if (node != null)
 				{
-					tempBool = false;
+					bool tempBool;
 					bool.TryParse(node.InnerText, out tempBool);
 					ApplySettingsForeAllProducts = tempBool;
 				}

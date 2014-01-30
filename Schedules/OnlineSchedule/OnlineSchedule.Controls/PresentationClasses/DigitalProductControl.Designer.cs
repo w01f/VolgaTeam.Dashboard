@@ -43,33 +43,18 @@
 			this.comboBoxEditStrengths2 = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.checkEditStrengths2 = new DevExpress.XtraEditors.CheckEdit();
 			this.memoEditComments = new DevExpress.XtraEditors.MemoEdit();
-			this.spinEditTotalCPM = new DevExpress.XtraEditors.SpinEdit();
-			this.spinEditTotalImpressions = new DevExpress.XtraEditors.SpinEdit();
-			this.spinEditMonthlyCPM = new DevExpress.XtraEditors.SpinEdit();
-			this.spinEditMonthlyImpressions = new DevExpress.XtraEditors.SpinEdit();
-			this.labelControlMonthlyImpressions = new DevExpress.XtraEditors.LabelControl();
-			this.spinEditTotalInvestment = new DevExpress.XtraEditors.SpinEdit();
-			this.spinEditMonthlyInvestment = new DevExpress.XtraEditors.SpinEdit();
-			this.spinEditAdRate = new DevExpress.XtraEditors.SpinEdit();
-			this.spinEditTotalAds = new DevExpress.XtraEditors.SpinEdit();
-			this.spinEditActiveDays = new DevExpress.XtraEditors.SpinEdit();
-			this.checkEditMonthlyFormulaImpressions = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditMonthlyFormulaInvestment = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditMonthlyFormulaCPM = new DevExpress.XtraEditors.CheckEdit();
+			this.spinEditCPM = new DevExpress.XtraEditors.SpinEdit();
+			this.spinEditImpressions = new DevExpress.XtraEditors.SpinEdit();
+			this.labelControlPriceType = new DevExpress.XtraEditors.LabelControl();
+			this.spinEditInvestment = new DevExpress.XtraEditors.SpinEdit();
+			this.checkEditFormulaImpressions = new DevExpress.XtraEditors.CheckEdit();
+			this.checkEditFormulaInvestment = new DevExpress.XtraEditors.CheckEdit();
+			this.checkEditFormulaCPM = new DevExpress.XtraEditors.CheckEdit();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.labelControlProduct = new DevExpress.XtraEditors.LabelControl();
 			this.labelControlDescription = new DevExpress.XtraEditors.LabelControl();
-			this.labelControlTotalImpressions = new DevExpress.XtraEditors.LabelControl();
 			this.labelControlComments = new DevExpress.XtraEditors.LabelControl();
-			this.labelControlOther = new DevExpress.XtraEditors.LabelControl();
-			this.labelControlTotalAds = new DevExpress.XtraEditors.LabelControl();
-			this.labelControlActiveDays = new DevExpress.XtraEditors.LabelControl();
-			this.labelControlAdRate = new DevExpress.XtraEditors.LabelControl();
-			this.checkEditTotalFormulaImpressions = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditTotalFormulaInvestment = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditTotalFormulaCPM = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditMonthly = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditTotal = new DevExpress.XtraEditors.CheckEdit();
+			this.comboBoxEditPriceType = new DevExpress.XtraEditors.ComboBoxEdit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditResetProductName.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDescription.Properties)).BeginInit();
@@ -81,24 +66,14 @@
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditStrengths2.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStrengths2.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditComments.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalCPM.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalImpressions.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthlyCPM.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthlyImpressions.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalInvestment.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthlyInvestment.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditAdRate.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalAds.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditActiveDays.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyFormulaImpressions.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyFormulaInvestment.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyFormulaCPM.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditCPM.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditImpressions.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditInvestment.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaImpressions.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaInvestment.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaCPM.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalFormulaImpressions.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalFormulaInvestment.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalFormulaCPM.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthly.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditTotal.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditPriceType.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -146,7 +121,7 @@
 			this.memoEditDescription.Name = "memoEditDescription";
 			this.memoEditDescription.Size = new System.Drawing.Size(293, 147);
 			this.memoEditDescription.StyleController = this.styleController;
-			this.memoEditDescription.TabIndex = 9;
+			this.memoEditDescription.TabIndex = 2;
 			// 
 			// memoEditProductName
 			// 
@@ -157,7 +132,7 @@
 			this.memoEditProductName.Name = "memoEditProductName";
 			this.memoEditProductName.Size = new System.Drawing.Size(312, 147);
 			this.memoEditProductName.StyleController = this.styleController;
-			this.memoEditProductName.TabIndex = 11;
+			this.memoEditProductName.TabIndex = 1;
 			this.memoEditProductName.EditValueChanged += new System.EventHandler(this.memoEditProductName_EditValueChanged);
 			// 
 			// checkedListBoxControlWebsite
@@ -170,7 +145,7 @@
 			this.checkedListBoxControlWebsite.SelectionMode = System.Windows.Forms.SelectionMode.None;
 			this.checkedListBoxControlWebsite.Size = new System.Drawing.Size(252, 147);
 			this.checkedListBoxControlWebsite.StyleController = this.styleController;
-			this.checkedListBoxControlWebsite.TabIndex = 13;
+			this.checkedListBoxControlWebsite.TabIndex = 0;
 			this.checkedListBoxControlWebsite.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControlWebsite_ItemCheck);
 			// 
 			// labelControlWebsite
@@ -194,7 +169,7 @@
 			this.checkEditComments.Properties.Caption = "";
 			this.checkEditComments.Size = new System.Drawing.Size(18, 21);
 			this.checkEditComments.StyleController = this.styleController;
-			this.checkEditComments.TabIndex = 22;
+			this.checkEditComments.TabIndex = 14;
 			this.checkEditComments.CheckedChanged += new System.EventHandler(this.checkEditComments_CheckedChanged);
 			// 
 			// comboBoxEditStrengths1
@@ -208,7 +183,7 @@
 			this.comboBoxEditStrengths1.Properties.NullText = "Positioning Strengths";
 			this.comboBoxEditStrengths1.Size = new System.Drawing.Size(399, 22);
 			this.comboBoxEditStrengths1.StyleController = this.styleController;
-			this.comboBoxEditStrengths1.TabIndex = 21;
+			this.comboBoxEditStrengths1.TabIndex = 11;
 			this.comboBoxEditStrengths1.EditValueChanged += new System.EventHandler(this.Edit_EditValueChanged);
 			// 
 			// checkEditStrengths1
@@ -219,7 +194,7 @@
 			this.checkEditStrengths1.Properties.Caption = "";
 			this.checkEditStrengths1.Size = new System.Drawing.Size(18, 21);
 			this.checkEditStrengths1.StyleController = this.styleController;
-			this.checkEditStrengths1.TabIndex = 20;
+			this.checkEditStrengths1.TabIndex = 10;
 			this.checkEditStrengths1.CheckedChanged += new System.EventHandler(this.checkEditStrengths1_CheckedChanged);
 			// 
 			// comboBoxEditStrengths2
@@ -233,7 +208,7 @@
 			this.comboBoxEditStrengths2.Properties.NullText = "Positioning Strengths";
 			this.comboBoxEditStrengths2.Size = new System.Drawing.Size(399, 22);
 			this.comboBoxEditStrengths2.StyleController = this.styleController;
-			this.comboBoxEditStrengths2.TabIndex = 19;
+			this.comboBoxEditStrengths2.TabIndex = 13;
 			this.comboBoxEditStrengths2.EditValueChanged += new System.EventHandler(this.Edit_EditValueChanged);
 			// 
 			// checkEditStrengths2
@@ -244,7 +219,7 @@
 			this.checkEditStrengths2.Properties.Caption = "";
 			this.checkEditStrengths2.Size = new System.Drawing.Size(18, 21);
 			this.checkEditStrengths2.StyleController = this.styleController;
-			this.checkEditStrengths2.TabIndex = 18;
+			this.checkEditStrengths2.TabIndex = 12;
 			this.checkEditStrengths2.CheckedChanged += new System.EventHandler(this.checkEditStrengths2_CheckedChanged);
 			// 
 			// memoEditComments
@@ -253,362 +228,181 @@
 			this.memoEditComments.Enabled = false;
 			this.memoEditComments.Location = new System.Drawing.Point(527, 346);
 			this.memoEditComments.Name = "memoEditComments";
-			this.memoEditComments.Size = new System.Drawing.Size(399, 70);
+			this.memoEditComments.Size = new System.Drawing.Size(399, 129);
 			this.memoEditComments.StyleController = this.styleController;
-			this.memoEditComments.TabIndex = 17;
+			this.memoEditComments.TabIndex = 15;
 			this.memoEditComments.EditValueChanged += new System.EventHandler(this.Edit_EditValueChanged);
 			// 
-			// spinEditTotalCPM
+			// spinEditCPM
 			// 
-			this.spinEditTotalCPM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.spinEditTotalCPM.EditValue = new decimal(new int[] {
+			this.spinEditCPM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.spinEditCPM.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-			this.spinEditTotalCPM.Location = new System.Drawing.Point(339, 453);
-			this.spinEditTotalCPM.Name = "spinEditTotalCPM";
-			this.spinEditTotalCPM.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditTotalCPM.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditTotalCPM.Properties.Appearance.Options.UseFont = true;
-			this.spinEditTotalCPM.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditTotalCPM.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-			this.spinEditTotalCPM.Properties.AppearanceDisabled.Options.UseFont = true;
-			this.spinEditTotalCPM.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.spinEditTotalCPM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.spinEditCPM.Location = new System.Drawing.Point(337, 390);
+			this.spinEditCPM.Name = "spinEditCPM";
+			this.spinEditCPM.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+			this.spinEditCPM.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.spinEditCPM.Properties.Appearance.Options.UseFont = true;
+			this.spinEditCPM.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.spinEditCPM.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+			this.spinEditCPM.Properties.AppearanceDisabled.Options.UseFont = true;
+			this.spinEditCPM.Properties.AppearanceDisabled.Options.UseForeColor = true;
+			this.spinEditCPM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditTotalCPM.Properties.DisplayFormat.FormatString = "$#,###.00";
-			this.spinEditTotalCPM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditTotalCPM.Properties.EditFormat.FormatString = "$#,###.00";
-			this.spinEditTotalCPM.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditTotalCPM.Properties.MaxValue = new decimal(new int[] {
+			this.spinEditCPM.Properties.DisplayFormat.FormatString = "$#,###.00";
+			this.spinEditCPM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditCPM.Properties.EditFormat.FormatString = "$#,###.00";
+			this.spinEditCPM.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditCPM.Properties.MaxValue = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-			this.spinEditTotalCPM.Size = new System.Drawing.Size(128, 22);
-			this.spinEditTotalCPM.StyleController = this.styleController;
-			this.spinEditTotalCPM.TabIndex = 13;
-			this.spinEditTotalCPM.EditValueChanged += new System.EventHandler(this.spinEditTotal_EditValueChanged);
+			this.spinEditCPM.Size = new System.Drawing.Size(128, 22);
+			this.spinEditCPM.StyleController = this.styleController;
+			this.spinEditCPM.TabIndex = 9;
+			this.spinEditCPM.EditValueChanged += new System.EventHandler(this.spinEditPricing_EditValueChanged);
 			// 
-			// spinEditTotalImpressions
+			// spinEditImpressions
 			// 
-			this.spinEditTotalImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.spinEditTotalImpressions.EditValue = new decimal(new int[] {
+			this.spinEditImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.spinEditImpressions.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-			this.spinEditTotalImpressions.Location = new System.Drawing.Point(24, 453);
-			this.spinEditTotalImpressions.Name = "spinEditTotalImpressions";
-			this.spinEditTotalImpressions.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditTotalImpressions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditTotalImpressions.Properties.Appearance.Options.UseFont = true;
-			this.spinEditTotalImpressions.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditTotalImpressions.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-			this.spinEditTotalImpressions.Properties.AppearanceDisabled.Options.UseFont = true;
-			this.spinEditTotalImpressions.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.spinEditTotalImpressions.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.spinEditImpressions.Location = new System.Drawing.Point(22, 390);
+			this.spinEditImpressions.Name = "spinEditImpressions";
+			this.spinEditImpressions.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+			this.spinEditImpressions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.spinEditImpressions.Properties.Appearance.Options.UseFont = true;
+			this.spinEditImpressions.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.spinEditImpressions.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+			this.spinEditImpressions.Properties.AppearanceDisabled.Options.UseFont = true;
+			this.spinEditImpressions.Properties.AppearanceDisabled.Options.UseForeColor = true;
+			this.spinEditImpressions.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditTotalImpressions.Properties.DisplayFormat.FormatString = "#,##0";
-			this.spinEditTotalImpressions.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditTotalImpressions.Properties.EditFormat.FormatString = "#,##0";
-			this.spinEditTotalImpressions.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditTotalImpressions.Properties.Increment = new decimal(new int[] {
+			this.spinEditImpressions.Properties.DisplayFormat.FormatString = "#,##0";
+			this.spinEditImpressions.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditImpressions.Properties.EditFormat.FormatString = "#,##0";
+			this.spinEditImpressions.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditImpressions.Properties.Increment = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-			this.spinEditTotalImpressions.Properties.IsFloatValue = false;
-			this.spinEditTotalImpressions.Properties.Mask.EditMask = "N00";
-			this.spinEditTotalImpressions.Properties.MaxValue = new decimal(new int[] {
+			this.spinEditImpressions.Properties.IsFloatValue = false;
+			this.spinEditImpressions.Properties.Mask.EditMask = "N00";
+			this.spinEditImpressions.Properties.MaxValue = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-			this.spinEditTotalImpressions.Size = new System.Drawing.Size(128, 22);
-			this.spinEditTotalImpressions.StyleController = this.styleController;
-			this.spinEditTotalImpressions.TabIndex = 10;
-			this.spinEditTotalImpressions.EditValueChanged += new System.EventHandler(this.spinEditTotal_EditValueChanged);
+			this.spinEditImpressions.Size = new System.Drawing.Size(128, 22);
+			this.spinEditImpressions.StyleController = this.styleController;
+			this.spinEditImpressions.TabIndex = 7;
+			this.spinEditImpressions.EditValueChanged += new System.EventHandler(this.spinEditPricing_EditValueChanged);
 			// 
-			// spinEditMonthlyCPM
+			// labelControlPriceType
 			// 
-			this.spinEditMonthlyCPM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.spinEditMonthlyCPM.EditValue = new decimal(new int[] {
+			this.labelControlPriceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.labelControlPriceType.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlPriceType.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.labelControlPriceType.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControlPriceType.Location = new System.Drawing.Point(11, 252);
+			this.labelControlPriceType.Name = "labelControlPriceType";
+			this.labelControlPriceType.Size = new System.Drawing.Size(454, 32);
+			this.labelControlPriceType.StyleController = this.styleController;
+			this.labelControlPriceType.TabIndex = 10;
+			this.labelControlPriceType.Text = "D. How do you want to PRICE this Digital Product?";
+			this.labelControlPriceType.UseMnemonic = false;
+			// 
+			// spinEditInvestment
+			// 
+			this.spinEditInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.spinEditInvestment.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-			this.spinEditMonthlyCPM.Location = new System.Drawing.Point(339, 315);
-			this.spinEditMonthlyCPM.Name = "spinEditMonthlyCPM";
-			this.spinEditMonthlyCPM.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditMonthlyCPM.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditMonthlyCPM.Properties.Appearance.Options.UseFont = true;
-			this.spinEditMonthlyCPM.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditMonthlyCPM.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-			this.spinEditMonthlyCPM.Properties.AppearanceDisabled.Options.UseFont = true;
-			this.spinEditMonthlyCPM.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.spinEditMonthlyCPM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.spinEditInvestment.Location = new System.Drawing.Point(179, 390);
+			this.spinEditInvestment.Name = "spinEditInvestment";
+			this.spinEditInvestment.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+			this.spinEditInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.spinEditInvestment.Properties.Appearance.Options.UseFont = true;
+			this.spinEditInvestment.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.spinEditInvestment.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
+			this.spinEditInvestment.Properties.AppearanceDisabled.Options.UseFont = true;
+			this.spinEditInvestment.Properties.AppearanceDisabled.Options.UseForeColor = true;
+			this.spinEditInvestment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditMonthlyCPM.Properties.DisplayFormat.FormatString = "$#,###.00";
-			this.spinEditMonthlyCPM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditMonthlyCPM.Properties.EditFormat.FormatString = "$#,###.00";
-			this.spinEditMonthlyCPM.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditMonthlyCPM.Properties.MaxValue = new decimal(new int[] {
+			this.spinEditInvestment.Properties.DisplayFormat.FormatString = "$#,###.00";
+			this.spinEditInvestment.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditInvestment.Properties.EditFormat.FormatString = "$#,###.00";
+			this.spinEditInvestment.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.spinEditInvestment.Properties.MaxValue = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-			this.spinEditMonthlyCPM.Size = new System.Drawing.Size(128, 22);
-			this.spinEditMonthlyCPM.StyleController = this.styleController;
-			this.spinEditMonthlyCPM.TabIndex = 12;
-			this.spinEditMonthlyCPM.EditValueChanged += new System.EventHandler(this.spinEditMonthly_EditValueChanged);
+			this.spinEditInvestment.Size = new System.Drawing.Size(128, 22);
+			this.spinEditInvestment.StyleController = this.styleController;
+			this.spinEditInvestment.TabIndex = 8;
+			this.spinEditInvestment.EditValueChanged += new System.EventHandler(this.spinEditPricing_EditValueChanged);
 			// 
-			// spinEditMonthlyImpressions
+			// checkEditFormulaImpressions
 			// 
-			this.spinEditMonthlyImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.spinEditMonthlyImpressions.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditMonthlyImpressions.Location = new System.Drawing.Point(24, 315);
-			this.spinEditMonthlyImpressions.Name = "spinEditMonthlyImpressions";
-			this.spinEditMonthlyImpressions.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditMonthlyImpressions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditMonthlyImpressions.Properties.Appearance.Options.UseFont = true;
-			this.spinEditMonthlyImpressions.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditMonthlyImpressions.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-			this.spinEditMonthlyImpressions.Properties.AppearanceDisabled.Options.UseFont = true;
-			this.spinEditMonthlyImpressions.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.spinEditMonthlyImpressions.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditMonthlyImpressions.Properties.DisplayFormat.FormatString = "#,##0";
-			this.spinEditMonthlyImpressions.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditMonthlyImpressions.Properties.EditFormat.FormatString = "#,##0";
-			this.spinEditMonthlyImpressions.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditMonthlyImpressions.Properties.Increment = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-			this.spinEditMonthlyImpressions.Properties.IsFloatValue = false;
-			this.spinEditMonthlyImpressions.Properties.Mask.EditMask = "N00";
-			this.spinEditMonthlyImpressions.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditMonthlyImpressions.Size = new System.Drawing.Size(128, 22);
-			this.spinEditMonthlyImpressions.StyleController = this.styleController;
-			this.spinEditMonthlyImpressions.TabIndex = 10;
-			this.spinEditMonthlyImpressions.EditValueChanged += new System.EventHandler(this.spinEditMonthly_EditValueChanged);
+			this.checkEditFormulaImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.checkEditFormulaImpressions.Location = new System.Drawing.Point(20, 365);
+			this.checkEditFormulaImpressions.Name = "checkEditFormulaImpressions";
+			this.checkEditFormulaImpressions.Properties.AllowHtmlString = true;
+			this.checkEditFormulaImpressions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditFormulaImpressions.Properties.Appearance.Options.UseFont = true;
+			this.checkEditFormulaImpressions.Properties.AutoWidth = true;
+			this.checkEditFormulaImpressions.Properties.Caption = "Impressions";
+			this.checkEditFormulaImpressions.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
+			this.checkEditFormulaImpressions.Properties.RadioGroupIndex = 1;
+			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(92, 20);
+			this.checkEditFormulaImpressions.TabIndex = 4;
+			this.checkEditFormulaImpressions.TabStop = false;
+			this.checkEditFormulaImpressions.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
 			// 
-			// labelControlMonthlyImpressions
+			// checkEditFormulaInvestment
 			// 
-			this.labelControlMonthlyImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.labelControlMonthlyImpressions.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelControlMonthlyImpressions.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.labelControlMonthlyImpressions.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlMonthlyImpressions.Location = new System.Drawing.Point(33, 252);
-			this.labelControlMonthlyImpressions.Name = "labelControlMonthlyImpressions";
-			this.labelControlMonthlyImpressions.Size = new System.Drawing.Size(260, 32);
-			this.labelControlMonthlyImpressions.StyleController = this.styleController;
-			this.labelControlMonthlyImpressions.TabIndex = 10;
-			this.labelControlMonthlyImpressions.Text = "D. Monthly Delivery & Analytics:";
-			this.labelControlMonthlyImpressions.UseMnemonic = false;
+			this.checkEditFormulaInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.checkEditFormulaInvestment.Location = new System.Drawing.Point(177, 365);
+			this.checkEditFormulaInvestment.Name = "checkEditFormulaInvestment";
+			this.checkEditFormulaInvestment.Properties.AllowHtmlString = true;
+			this.checkEditFormulaInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditFormulaInvestment.Properties.Appearance.Options.UseFont = true;
+			this.checkEditFormulaInvestment.Properties.AutoWidth = true;
+			this.checkEditFormulaInvestment.Properties.Caption = "Investment";
+			this.checkEditFormulaInvestment.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
+			this.checkEditFormulaInvestment.Properties.RadioGroupIndex = 1;
+			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(84, 20);
+			this.checkEditFormulaInvestment.TabIndex = 5;
+			this.checkEditFormulaInvestment.TabStop = false;
+			this.checkEditFormulaInvestment.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
 			// 
-			// spinEditTotalInvestment
+			// checkEditFormulaCPM
 			// 
-			this.spinEditTotalInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.spinEditTotalInvestment.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditTotalInvestment.Location = new System.Drawing.Point(181, 453);
-			this.spinEditTotalInvestment.Name = "spinEditTotalInvestment";
-			this.spinEditTotalInvestment.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditTotalInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditTotalInvestment.Properties.Appearance.Options.UseFont = true;
-			this.spinEditTotalInvestment.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditTotalInvestment.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-			this.spinEditTotalInvestment.Properties.AppearanceDisabled.Options.UseFont = true;
-			this.spinEditTotalInvestment.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.spinEditTotalInvestment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditTotalInvestment.Properties.DisplayFormat.FormatString = "$#,###.00";
-			this.spinEditTotalInvestment.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditTotalInvestment.Properties.EditFormat.FormatString = "$#,###.00";
-			this.spinEditTotalInvestment.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditTotalInvestment.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditTotalInvestment.Size = new System.Drawing.Size(128, 22);
-			this.spinEditTotalInvestment.StyleController = this.styleController;
-			this.spinEditTotalInvestment.TabIndex = 10;
-			this.spinEditTotalInvestment.EditValueChanged += new System.EventHandler(this.spinEditTotal_EditValueChanged);
-			// 
-			// spinEditMonthlyInvestment
-			// 
-			this.spinEditMonthlyInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.spinEditMonthlyInvestment.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditMonthlyInvestment.Location = new System.Drawing.Point(181, 315);
-			this.spinEditMonthlyInvestment.Name = "spinEditMonthlyInvestment";
-			this.spinEditMonthlyInvestment.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditMonthlyInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditMonthlyInvestment.Properties.Appearance.Options.UseFont = true;
-			this.spinEditMonthlyInvestment.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.spinEditMonthlyInvestment.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-			this.spinEditMonthlyInvestment.Properties.AppearanceDisabled.Options.UseFont = true;
-			this.spinEditMonthlyInvestment.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.spinEditMonthlyInvestment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditMonthlyInvestment.Properties.DisplayFormat.FormatString = "$#,###.00";
-			this.spinEditMonthlyInvestment.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditMonthlyInvestment.Properties.EditFormat.FormatString = "$#,###.00";
-			this.spinEditMonthlyInvestment.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditMonthlyInvestment.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditMonthlyInvestment.Size = new System.Drawing.Size(128, 22);
-			this.spinEditMonthlyInvestment.StyleController = this.styleController;
-			this.spinEditMonthlyInvestment.TabIndex = 10;
-			this.spinEditMonthlyInvestment.EditValueChanged += new System.EventHandler(this.spinEditMonthly_EditValueChanged);
-			// 
-			// spinEditAdRate
-			// 
-			this.spinEditAdRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.spinEditAdRate.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditAdRate.Location = new System.Drawing.Point(826, 453);
-			this.spinEditAdRate.Name = "spinEditAdRate";
-			this.spinEditAdRate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditAdRate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditAdRate.Properties.DisplayFormat.FormatString = "$#,###.00";
-			this.spinEditAdRate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditAdRate.Properties.EditFormat.FormatString = "$#,###.00";
-			this.spinEditAdRate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditAdRate.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditAdRate.Size = new System.Drawing.Size(100, 22);
-			this.spinEditAdRate.StyleController = this.styleController;
-			this.spinEditAdRate.TabIndex = 10;
-			this.spinEditAdRate.EditValueChanged += new System.EventHandler(this.Edit_EditValueChanged);
-			// 
-			// spinEditTotalAds
-			// 
-			this.spinEditTotalAds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.spinEditTotalAds.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditTotalAds.Location = new System.Drawing.Point(538, 453);
-			this.spinEditTotalAds.Name = "spinEditTotalAds";
-			this.spinEditTotalAds.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditTotalAds.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditTotalAds.Properties.IsFloatValue = false;
-			this.spinEditTotalAds.Properties.Mask.EditMask = "N00";
-			this.spinEditTotalAds.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditTotalAds.Size = new System.Drawing.Size(70, 22);
-			this.spinEditTotalAds.StyleController = this.styleController;
-			this.spinEditTotalAds.TabIndex = 12;
-			// 
-			// spinEditActiveDays
-			// 
-			this.spinEditActiveDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.spinEditActiveDays.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-			this.spinEditActiveDays.Location = new System.Drawing.Point(681, 453);
-			this.spinEditActiveDays.Name = "spinEditActiveDays";
-			this.spinEditActiveDays.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-			this.spinEditActiveDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.spinEditActiveDays.Properties.IsFloatValue = false;
-			this.spinEditActiveDays.Properties.Mask.EditMask = "N00";
-			this.spinEditActiveDays.Properties.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.spinEditActiveDays.Size = new System.Drawing.Size(71, 22);
-			this.spinEditActiveDays.StyleController = this.styleController;
-			this.spinEditActiveDays.TabIndex = 13;
-			// 
-			// checkEditMonthlyFormulaImpressions
-			// 
-			this.checkEditMonthlyFormulaImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditMonthlyFormulaImpressions.Location = new System.Drawing.Point(22, 290);
-			this.checkEditMonthlyFormulaImpressions.Name = "checkEditMonthlyFormulaImpressions";
-			this.checkEditMonthlyFormulaImpressions.Properties.AllowHtmlString = true;
-			this.checkEditMonthlyFormulaImpressions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditMonthlyFormulaImpressions.Properties.Appearance.Options.UseFont = true;
-			this.checkEditMonthlyFormulaImpressions.Properties.AutoWidth = true;
-			this.checkEditMonthlyFormulaImpressions.Properties.Caption = "Impressions";
-			this.checkEditMonthlyFormulaImpressions.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
-			this.checkEditMonthlyFormulaImpressions.Properties.RadioGroupIndex = 1;
-			this.checkEditMonthlyFormulaImpressions.Size = new System.Drawing.Size(92, 20);
-			this.checkEditMonthlyFormulaImpressions.TabIndex = 26;
-			this.checkEditMonthlyFormulaImpressions.TabStop = false;
-			this.checkEditMonthlyFormulaImpressions.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
-			// 
-			// checkEditMonthlyFormulaInvestment
-			// 
-			this.checkEditMonthlyFormulaInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditMonthlyFormulaInvestment.Location = new System.Drawing.Point(179, 290);
-			this.checkEditMonthlyFormulaInvestment.Name = "checkEditMonthlyFormulaInvestment";
-			this.checkEditMonthlyFormulaInvestment.Properties.AllowHtmlString = true;
-			this.checkEditMonthlyFormulaInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditMonthlyFormulaInvestment.Properties.Appearance.Options.UseFont = true;
-			this.checkEditMonthlyFormulaInvestment.Properties.AutoWidth = true;
-			this.checkEditMonthlyFormulaInvestment.Properties.Caption = "Investment";
-			this.checkEditMonthlyFormulaInvestment.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
-			this.checkEditMonthlyFormulaInvestment.Properties.RadioGroupIndex = 1;
-			this.checkEditMonthlyFormulaInvestment.Size = new System.Drawing.Size(84, 20);
-			this.checkEditMonthlyFormulaInvestment.TabIndex = 25;
-			this.checkEditMonthlyFormulaInvestment.TabStop = false;
-			this.checkEditMonthlyFormulaInvestment.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
-			// 
-			// checkEditMonthlyFormulaCPM
-			// 
-			this.checkEditMonthlyFormulaCPM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditMonthlyFormulaCPM.Location = new System.Drawing.Point(337, 290);
-			this.checkEditMonthlyFormulaCPM.Name = "checkEditMonthlyFormulaCPM";
-			this.checkEditMonthlyFormulaCPM.Properties.AllowHtmlString = true;
-			this.checkEditMonthlyFormulaCPM.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditMonthlyFormulaCPM.Properties.Appearance.Options.UseFont = true;
-			this.checkEditMonthlyFormulaCPM.Properties.AutoWidth = true;
-			this.checkEditMonthlyFormulaCPM.Properties.Caption = "CPM";
-			this.checkEditMonthlyFormulaCPM.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
-			this.checkEditMonthlyFormulaCPM.Properties.RadioGroupIndex = 1;
-			this.checkEditMonthlyFormulaCPM.Size = new System.Drawing.Size(51, 20);
-			this.checkEditMonthlyFormulaCPM.TabIndex = 24;
-			this.checkEditMonthlyFormulaCPM.TabStop = false;
-			this.checkEditMonthlyFormulaCPM.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
+			this.checkEditFormulaCPM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.checkEditFormulaCPM.Location = new System.Drawing.Point(335, 365);
+			this.checkEditFormulaCPM.Name = "checkEditFormulaCPM";
+			this.checkEditFormulaCPM.Properties.AllowHtmlString = true;
+			this.checkEditFormulaCPM.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditFormulaCPM.Properties.Appearance.Options.UseFont = true;
+			this.checkEditFormulaCPM.Properties.AutoWidth = true;
+			this.checkEditFormulaCPM.Properties.Caption = "CPM";
+			this.checkEditFormulaCPM.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
+			this.checkEditFormulaCPM.Properties.RadioGroupIndex = 1;
+			this.checkEditFormulaCPM.Size = new System.Drawing.Size(51, 20);
+			this.checkEditFormulaCPM.TabIndex = 6;
+			this.checkEditFormulaCPM.TabStop = false;
+			this.checkEditFormulaCPM.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
 			// 
 			// hyperLinkEditReset
 			// 
@@ -662,20 +456,6 @@
 			this.labelControlDescription.Text = "C. Product Description & Info:";
 			this.labelControlDescription.UseMnemonic = false;
 			// 
-			// labelControlTotalImpressions
-			// 
-			this.labelControlTotalImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.labelControlTotalImpressions.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelControlTotalImpressions.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.labelControlTotalImpressions.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlTotalImpressions.Location = new System.Drawing.Point(33, 389);
-			this.labelControlTotalImpressions.Name = "labelControlTotalImpressions";
-			this.labelControlTotalImpressions.Size = new System.Drawing.Size(260, 32);
-			this.labelControlTotalImpressions.StyleController = this.styleController;
-			this.labelControlTotalImpressions.TabIndex = 104;
-			this.labelControlTotalImpressions.Text = "E. Overall Delivery & Analytics:";
-			this.labelControlTotalImpressions.UseMnemonic = false;
-			// 
 			// labelControlComments
 			// 
 			this.labelControlComments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -687,179 +467,50 @@
 			this.labelControlComments.Size = new System.Drawing.Size(260, 32);
 			this.labelControlComments.StyleController = this.styleController;
 			this.labelControlComments.TabIndex = 105;
-			this.labelControlComments.Text = "F. Comments & Positioning:";
+			this.labelControlComments.Text = "E. Comments & Positioning:";
 			this.labelControlComments.UseMnemonic = false;
 			// 
-			// labelControlOther
+			// comboBoxEditPriceType
 			// 
-			this.labelControlOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelControlOther.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelControlOther.Appearance.ForeColor = System.Drawing.Color.DimGray;
-			this.labelControlOther.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.labelControlOther.Location = new System.Drawing.Point(505, 434);
-			this.labelControlOther.Name = "labelControlOther";
-			this.labelControlOther.Size = new System.Drawing.Size(62, 16);
-			this.labelControlOther.StyleController = this.styleController;
-			this.labelControlOther.TabIndex = 106;
-			this.labelControlOther.Text = "Other Info:";
-			this.labelControlOther.UseMnemonic = false;
-			// 
-			// labelControlTotalAds
-			// 
-			this.labelControlTotalAds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelControlTotalAds.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelControlTotalAds.Appearance.ForeColor = System.Drawing.Color.DimGray;
-			this.labelControlTotalAds.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.labelControlTotalAds.Location = new System.Drawing.Point(505, 456);
-			this.labelControlTotalAds.Name = "labelControlTotalAds";
-			this.labelControlTotalAds.Size = new System.Drawing.Size(27, 16);
-			this.labelControlTotalAds.StyleController = this.styleController;
-			this.labelControlTotalAds.TabIndex = 107;
-			this.labelControlTotalAds.Text = "Ads:";
-			this.labelControlTotalAds.UseMnemonic = false;
-			// 
-			// labelControlActiveDays
-			// 
-			this.labelControlActiveDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelControlActiveDays.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelControlActiveDays.Appearance.ForeColor = System.Drawing.Color.DimGray;
-			this.labelControlActiveDays.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.labelControlActiveDays.Location = new System.Drawing.Point(641, 456);
-			this.labelControlActiveDays.Name = "labelControlActiveDays";
-			this.labelControlActiveDays.Size = new System.Drawing.Size(33, 16);
-			this.labelControlActiveDays.StyleController = this.styleController;
-			this.labelControlActiveDays.TabIndex = 108;
-			this.labelControlActiveDays.Text = "Days:";
-			this.labelControlActiveDays.UseMnemonic = false;
-			// 
-			// labelControlAdRate
-			// 
-			this.labelControlAdRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelControlAdRate.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelControlAdRate.Appearance.ForeColor = System.Drawing.Color.DimGray;
-			this.labelControlAdRate.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.labelControlAdRate.Location = new System.Drawing.Point(786, 456);
-			this.labelControlAdRate.Name = "labelControlAdRate";
-			this.labelControlAdRate.Size = new System.Drawing.Size(31, 16);
-			this.labelControlAdRate.StyleController = this.styleController;
-			this.labelControlAdRate.TabIndex = 109;
-			this.labelControlAdRate.Text = "Rate:";
-			this.labelControlAdRate.UseMnemonic = false;
-			// 
-			// checkEditTotalFormulaImpressions
-			// 
-			this.checkEditTotalFormulaImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditTotalFormulaImpressions.Location = new System.Drawing.Point(22, 427);
-			this.checkEditTotalFormulaImpressions.Name = "checkEditTotalFormulaImpressions";
-			this.checkEditTotalFormulaImpressions.Properties.AllowHtmlString = true;
-			this.checkEditTotalFormulaImpressions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditTotalFormulaImpressions.Properties.Appearance.Options.UseFont = true;
-			this.checkEditTotalFormulaImpressions.Properties.AutoWidth = true;
-			this.checkEditTotalFormulaImpressions.Properties.Caption = "Impressions";
-			this.checkEditTotalFormulaImpressions.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
-			this.checkEditTotalFormulaImpressions.Properties.RadioGroupIndex = 2;
-			this.checkEditTotalFormulaImpressions.Size = new System.Drawing.Size(92, 20);
-			this.checkEditTotalFormulaImpressions.TabIndex = 112;
-			this.checkEditTotalFormulaImpressions.TabStop = false;
-			this.checkEditTotalFormulaImpressions.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
-			// 
-			// checkEditTotalFormulaInvestment
-			// 
-			this.checkEditTotalFormulaInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditTotalFormulaInvestment.Location = new System.Drawing.Point(179, 427);
-			this.checkEditTotalFormulaInvestment.Name = "checkEditTotalFormulaInvestment";
-			this.checkEditTotalFormulaInvestment.Properties.AllowHtmlString = true;
-			this.checkEditTotalFormulaInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditTotalFormulaInvestment.Properties.Appearance.Options.UseFont = true;
-			this.checkEditTotalFormulaInvestment.Properties.AutoWidth = true;
-			this.checkEditTotalFormulaInvestment.Properties.Caption = "Investment";
-			this.checkEditTotalFormulaInvestment.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
-			this.checkEditTotalFormulaInvestment.Properties.RadioGroupIndex = 2;
-			this.checkEditTotalFormulaInvestment.Size = new System.Drawing.Size(84, 20);
-			this.checkEditTotalFormulaInvestment.TabIndex = 111;
-			this.checkEditTotalFormulaInvestment.TabStop = false;
-			this.checkEditTotalFormulaInvestment.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
-			// 
-			// checkEditTotalFormulaCPM
-			// 
-			this.checkEditTotalFormulaCPM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditTotalFormulaCPM.Location = new System.Drawing.Point(337, 427);
-			this.checkEditTotalFormulaCPM.Name = "checkEditTotalFormulaCPM";
-			this.checkEditTotalFormulaCPM.Properties.AllowHtmlString = true;
-			this.checkEditTotalFormulaCPM.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditTotalFormulaCPM.Properties.Appearance.Options.UseFont = true;
-			this.checkEditTotalFormulaCPM.Properties.AutoWidth = true;
-			this.checkEditTotalFormulaCPM.Properties.Caption = "CPM";
-			this.checkEditTotalFormulaCPM.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
-			this.checkEditTotalFormulaCPM.Properties.RadioGroupIndex = 2;
-			this.checkEditTotalFormulaCPM.Size = new System.Drawing.Size(51, 20);
-			this.checkEditTotalFormulaCPM.TabIndex = 110;
-			this.checkEditTotalFormulaCPM.TabStop = false;
-			this.checkEditTotalFormulaCPM.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
-			// 
-			// checkEditMonthly
-			// 
-			this.checkEditMonthly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditMonthly.EditValue = true;
-			this.checkEditMonthly.Location = new System.Drawing.Point(9, 257);
-			this.checkEditMonthly.Name = "checkEditMonthly";
-			this.checkEditMonthly.Properties.Caption = "";
-			this.checkEditMonthly.Size = new System.Drawing.Size(18, 21);
-			this.checkEditMonthly.StyleController = this.styleController;
-			this.checkEditMonthly.TabIndex = 113;
-			this.checkEditMonthly.CheckedChanged += new System.EventHandler(this.checkEditMonthly_CheckedChanged);
-			// 
-			// checkEditTotal
-			// 
-			this.checkEditTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditTotal.EditValue = true;
-			this.checkEditTotal.Location = new System.Drawing.Point(9, 394);
-			this.checkEditTotal.Name = "checkEditTotal";
-			this.checkEditTotal.Properties.Caption = "";
-			this.checkEditTotal.Size = new System.Drawing.Size(18, 21);
-			this.checkEditTotal.StyleController = this.styleController;
-			this.checkEditTotal.TabIndex = 114;
-			this.checkEditTotal.CheckedChanged += new System.EventHandler(this.checkEditTotal_CheckedChanged);
+			this.comboBoxEditPriceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.comboBoxEditPriceType.Location = new System.Drawing.Point(31, 292);
+			this.comboBoxEditPriceType.Name = "comboBoxEditPriceType";
+			this.comboBoxEditPriceType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.comboBoxEditPriceType.Properties.Items.AddRange(new object[] {
+            "1. Monthly (Impressions & CPM)",
+            "2. Total/Overall (Impressions & CPM)",
+            "3. I will not show ANY PRICING info on this slide"});
+			this.comboBoxEditPriceType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.comboBoxEditPriceType.Size = new System.Drawing.Size(443, 22);
+			this.comboBoxEditPriceType.StyleController = this.styleController;
+			this.comboBoxEditPriceType.TabIndex = 3;
+			this.comboBoxEditPriceType.SelectedIndexChanged += new System.EventHandler(this.comboBoxEditPriceType_SelectedIndexChanged);
 			// 
 			// DigitalProductControl
 			// 
-			this.Controls.Add(this.checkEditTotal);
-			this.Controls.Add(this.checkEditMonthly);
-			this.Controls.Add(this.checkEditTotalFormulaImpressions);
-			this.Controls.Add(this.checkEditTotalFormulaInvestment);
-			this.Controls.Add(this.checkEditTotalFormulaCPM);
-			this.Controls.Add(this.labelControlAdRate);
-			this.Controls.Add(this.labelControlActiveDays);
-			this.Controls.Add(this.labelControlTotalAds);
-			this.Controls.Add(this.labelControlOther);
+			this.Controls.Add(this.comboBoxEditPriceType);
 			this.Controls.Add(this.labelControlComments);
-			this.Controls.Add(this.labelControlTotalImpressions);
 			this.Controls.Add(this.checkEditComments);
 			this.Controls.Add(this.comboBoxEditStrengths1);
 			this.Controls.Add(this.checkEditStrengths1);
-			this.Controls.Add(this.spinEditTotalAds);
 			this.Controls.Add(this.comboBoxEditStrengths2);
-			this.Controls.Add(this.spinEditTotalInvestment);
 			this.Controls.Add(this.checkEditStrengths2);
-			this.Controls.Add(this.spinEditActiveDays);
 			this.Controls.Add(this.memoEditComments);
-			this.Controls.Add(this.checkEditMonthlyFormulaImpressions);
+			this.Controls.Add(this.checkEditFormulaImpressions);
 			this.Controls.Add(this.labelControlProduct);
-			this.Controls.Add(this.checkEditMonthlyFormulaInvestment);
+			this.Controls.Add(this.checkEditFormulaInvestment);
 			this.Controls.Add(this.hyperLinkEditReset);
-			this.Controls.Add(this.checkEditMonthlyFormulaCPM);
+			this.Controls.Add(this.checkEditFormulaCPM);
 			this.Controls.Add(this.checkedListBoxControlWebsite);
-			this.Controls.Add(this.spinEditTotalCPM);
-			this.Controls.Add(this.spinEditTotalImpressions);
-			this.Controls.Add(this.spinEditMonthlyInvestment);
+			this.Controls.Add(this.spinEditInvestment);
 			this.Controls.Add(this.labelControlWebsite);
 			this.Controls.Add(this.hyperLinkEditResetProductName);
-			this.Controls.Add(this.spinEditAdRate);
 			this.Controls.Add(this.memoEditProductName);
 			this.Controls.Add(this.memoEditDescription);
-			this.Controls.Add(this.labelControlMonthlyImpressions);
-			this.Controls.Add(this.spinEditMonthlyImpressions);
-			this.Controls.Add(this.spinEditMonthlyCPM);
+			this.Controls.Add(this.labelControlPriceType);
+			this.Controls.Add(this.spinEditImpressions);
+			this.Controls.Add(this.spinEditCPM);
 			this.Controls.Add(this.labelControlDescription);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "DigitalProductControl";
@@ -875,26 +526,15 @@
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditStrengths2.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStrengths2.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditComments.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalCPM.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalImpressions.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthlyCPM.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthlyImpressions.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalInvestment.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthlyInvestment.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditAdRate.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditTotalAds.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.spinEditActiveDays.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyFormulaImpressions.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyFormulaInvestment.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyFormulaCPM.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditCPM.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditImpressions.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditInvestment.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaImpressions.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaInvestment.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaCPM.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalFormulaImpressions.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalFormulaInvestment.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalFormulaCPM.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthly.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditTotal.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditPriceType.Properties)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
         }
 
@@ -902,43 +542,28 @@
 
 		private DevExpress.XtraEditors.StyleController styleController;
 		private DevExpress.XtraEditors.MemoEdit memoEditDescription;
-		private DevExpress.XtraEditors.SpinEdit spinEditAdRate;
-		private DevExpress.XtraEditors.SpinEdit spinEditTotalInvestment;
-		private DevExpress.XtraEditors.SpinEdit spinEditMonthlyInvestment;
-		private DevExpress.XtraEditors.SpinEdit spinEditMonthlyImpressions;
-		private DevExpress.XtraEditors.SpinEdit spinEditTotalImpressions;
+		private DevExpress.XtraEditors.SpinEdit spinEditInvestment;
+		private DevExpress.XtraEditors.SpinEdit spinEditImpressions;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditStrengths1;
         private DevExpress.XtraEditors.CheckEdit checkEditStrengths1;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditStrengths2;
         private DevExpress.XtraEditors.CheckEdit checkEditStrengths2;
         private DevExpress.XtraEditors.MemoEdit memoEditComments;
 		private DevExpress.XtraEditors.CheckEdit checkEditComments;
-		private DevExpress.XtraEditors.SpinEdit spinEditTotalAds;
-		private DevExpress.XtraEditors.SpinEdit spinEditActiveDays;
-		private DevExpress.XtraEditors.LabelControl labelControlMonthlyImpressions;
+		private DevExpress.XtraEditors.LabelControl labelControlPriceType;
 		private DevExpress.XtraEditors.LabelControl labelControlWebsite;
 		private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControlWebsite;
-        private DevExpress.XtraEditors.SpinEdit spinEditTotalCPM;
-        private DevExpress.XtraEditors.SpinEdit spinEditMonthlyCPM;
+        private DevExpress.XtraEditors.SpinEdit spinEditCPM;
 		private DevExpress.XtraEditors.MemoEdit memoEditProductName;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditResetProductName;
-		public DevExpress.XtraEditors.CheckEdit checkEditMonthlyFormulaImpressions;
-		public DevExpress.XtraEditors.CheckEdit checkEditMonthlyFormulaInvestment;
-		public DevExpress.XtraEditors.CheckEdit checkEditMonthlyFormulaCPM;
+		public DevExpress.XtraEditors.CheckEdit checkEditFormulaImpressions;
+		public DevExpress.XtraEditors.CheckEdit checkEditFormulaInvestment;
+		public DevExpress.XtraEditors.CheckEdit checkEditFormulaCPM;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 		private DevExpress.XtraEditors.LabelControl labelControlProduct;
 		private DevExpress.XtraEditors.LabelControl labelControlDescription;
-		private DevExpress.XtraEditors.LabelControl labelControlTotalImpressions;
 		private DevExpress.XtraEditors.LabelControl labelControlComments;
-		private DevExpress.XtraEditors.LabelControl labelControlOther;
-		private DevExpress.XtraEditors.LabelControl labelControlTotalAds;
-		private DevExpress.XtraEditors.LabelControl labelControlActiveDays;
-		private DevExpress.XtraEditors.LabelControl labelControlAdRate;
-		public DevExpress.XtraEditors.CheckEdit checkEditTotalFormulaImpressions;
-		public DevExpress.XtraEditors.CheckEdit checkEditTotalFormulaInvestment;
-		public DevExpress.XtraEditors.CheckEdit checkEditTotalFormulaCPM;
-		private DevExpress.XtraEditors.CheckEdit checkEditMonthly;
-		private DevExpress.XtraEditors.CheckEdit checkEditTotal;
+		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditPriceType;
 
     }
 }

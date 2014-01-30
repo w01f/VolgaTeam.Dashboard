@@ -173,7 +173,7 @@
 			this.labelControlFlightDates.Size = new System.Drawing.Size(485, 41);
 			this.labelControlFlightDates.StyleController = this.styleController;
 			this.labelControlFlightDates.TabIndex = 20;
-			this.labelControlFlightDates.Text = "Digital Campaign Dates";
+			this.labelControlFlightDates.Text = "Digital Campaign";
 			// 
 			// DigitalProductContainer
 			// 

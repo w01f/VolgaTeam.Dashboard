@@ -52,7 +52,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			}));
 			if (!quickLoad)
 			{
-				labelControlFlightDates.Text = String.Format("Digital Campaign Dates: {0}", LocalSchedule.FlightDates);
+				labelControlFlightDates.Text = String.Format("Digital Campaign: {0}", LocalSchedule.FlightDates);
 				bool temp = AllowApplyValues;
 				AllowApplyValues = false;
 				AllowApplyValues = temp;

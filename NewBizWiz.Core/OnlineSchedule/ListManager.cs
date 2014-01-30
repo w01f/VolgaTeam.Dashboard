@@ -190,11 +190,9 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		private void GetProductProperties(XmlNode node, ref ProductSource productSource)
 		{
-			int tempInt = 0;
-			double tempDouble = 0;
-
 			foreach (XmlAttribute attribute in node.Attributes)
 			{
+				int tempInt;
 				switch (attribute.Name)
 				{
 					case "Name":
@@ -218,8 +216,9 @@ namespace NewBizWiz.Core.OnlineSchedule
 						}
 						break;
 					case "Rate":
-						if (double.TryParse(attribute.Value, out tempDouble))
-							productSource.Rate = tempDouble;
+						decimal tempDecimal;
+						if (Decimal.TryParse(attribute.Value, out tempDecimal))
+							productSource.Rate = tempDecimal;
 						else
 							productSource.Rate = null;
 						break;

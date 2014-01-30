@@ -53,7 +53,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			}));
 			if (!quickLoad || LocalSchedule.DigitalProducts.Count != _tabPages.Count)
 			{
-				labelControlFlightDates.Text = String.Format("Digital Campaign Dates: {0}", LocalSchedule.FlightDates);
+				labelControlFlightDates.Text = String.Format("Digital Campaign: {0}", LocalSchedule.FlightDates);
 
 				bool temp = AllowApplyValues;
 				AllowApplyValues = false;

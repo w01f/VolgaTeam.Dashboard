@@ -79,7 +79,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public static ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
 		{
 			var scheduleList = new List<ShortSchedule>();
-			foreach (FileInfo file in rootFolder.GetFiles("*.xml"))
+			foreach (var file in rootFolder.GetFiles("*.xml"))
 			{
 				var schedule = new ShortSchedule(file);
 				scheduleList.Add(schedule);
@@ -252,12 +252,12 @@ namespace NewBizWiz.Core.OnlineSchedule
 			}
 		}
 
-		public double MonthlyInvestment
+		public decimal MonthlyInvestment
 		{
 			get { return DigitalProducts.Select(x => (x.MonthlyInvestment.HasValue ? x.MonthlyInvestment.Value : 0)).Sum(); }
 		}
 
-		public double MonthlyImpressions
+		public decimal MonthlyImpressions
 		{
 			get { return DigitalProducts.Select(x => (x.MonthlyImpressions.HasValue ? x.MonthlyImpressions.Value : 0)).Sum(); }
 		}
@@ -267,18 +267,18 @@ namespace NewBizWiz.Core.OnlineSchedule
 			get
 			{
 				bool result = false;
-				foreach (DigitalProduct product in DigitalProducts)
+				foreach (var product in DigitalProducts)
 					result = result | (product.MonthlyImpressions.HasValue || product.MonthlyInvestment.HasValue);
 				return result;
 			}
 		}
 
-		public double TotalInvestment
+		public decimal TotalInvestment
 		{
 			get { return DigitalProducts.Select(x => (x.TotalInvestment.HasValue ? x.TotalInvestment.Value : 0)).Sum(); }
 		}
 
-		public double TotalImpressions
+		public decimal TotalImpressions
 		{
 			get { return DigitalProducts.Select(x => (x.TotalImpressions.HasValue ? x.TotalImpressions.Value : 0)).Sum(); }
 		}
@@ -494,21 +494,18 @@ namespace NewBizWiz.Core.OnlineSchedule
 		#region Additional Properties
 		public string UserDefinedName { get; set; }
 		public List<string> Websites { get; set; }
-		public int? ActiveDays { get; set; }
-		public int? TotalAds { get; set; }
 		public string DurationType { get; set; }
 		public int? DurationValue { get; set; }
 		public string Strength1 { get; set; }
 		public string Strength2 { get; set; }
 		public string Comment { get; set; }
-		public double? AdRate { get; set; }
-		public double? MonthlyInvestment { get; set; }
-		public double? MonthlyImpressions { get; set; }
-		public double? MonthlyCPM { get; set; }
-		public double? TotalInvestment { get; set; }
-		public double? TotalImpressions { get; set; }
-		public double? TotalCPM { get; set; }
-		public double? DefaultRate { get; set; }
+		public decimal? MonthlyInvestment { get; set; }
+		public decimal? MonthlyImpressions { get; set; }
+		public decimal? MonthlyCPM { get; set; }
+		public decimal? TotalInvestment { get; set; }
+		public decimal? TotalImpressions { get; set; }
+		public decimal? TotalCPM { get; set; }
+		public decimal? DefaultRate { get; set; }
 		public FormulaType Formula { get; set; }
 		#endregion
 
@@ -586,62 +583,62 @@ namespace NewBizWiz.Core.OnlineSchedule
 			}
 		}
 
-		public double? MonthlyInvestmentCalculated
+		public decimal? MonthlyInvestmentCalculated
 		{
 			get
 			{
 				if (Formula == FormulaType.Investment)
-					return MonthlyImpressions.HasValue && MonthlyCPMCalculated.HasValue ? Math.Round(MonthlyCPMCalculated.Value * (MonthlyImpressions.Value / 1000.00), 2) : (double?)null;
+					return MonthlyImpressions.HasValue && MonthlyCPMCalculated.HasValue ? Math.Round(MonthlyCPMCalculated.Value * (MonthlyImpressions.Value / 1000), 2) : (decimal?)null;
 				return MonthlyInvestment;
 			}
 		}
 
-		public double? TotalInvestmentCalculated
+		public decimal? TotalInvestmentCalculated
 		{
 			get
 			{
 				if (Formula == FormulaType.Investment)
-					return TotalImpressions.HasValue && TotalCPMCalculated.HasValue ? Math.Round((TotalCPMCalculated.Value * (TotalImpressions.Value / 1000.00)), 2) : (double?)null;
+					return TotalImpressions.HasValue && TotalCPMCalculated.HasValue ? Math.Round((TotalCPMCalculated.Value * (TotalImpressions.Value / 1000)), 2) : (decimal?)null;
 				return TotalInvestment;
 			}
 		}
 
-		public double? MonthlyImpressionsCalculated
+		public decimal? MonthlyImpressionsCalculated
 		{
 			get
 			{
 				if (Formula == FormulaType.Impressions)
-					return MonthlyCPMCalculated.HasValue && MonthlyInvestment.HasValue ? (MonthlyCPMCalculated.Value != 0 ? Math.Round(((MonthlyInvestment.Value * 1000) / MonthlyCPMCalculated.Value), 0) : (double?)null) : null;
+					return MonthlyCPMCalculated.HasValue && MonthlyInvestment.HasValue ? (MonthlyCPMCalculated.Value != 0 ? Math.Round(((MonthlyInvestment.Value * 1000) / MonthlyCPMCalculated.Value), 0) : (decimal?)null) : null;
 				return MonthlyImpressions;
 			}
 		}
 
-		public double? TotalImpressionsCalculated
+		public decimal? TotalImpressionsCalculated
 		{
 			get
 			{
 				if (Formula == FormulaType.Impressions)
-					return TotalCPMCalculated.HasValue && TotalInvestment.HasValue ? (TotalCPMCalculated.Value != 0 ? Math.Round(((TotalInvestment.Value * 1000) / TotalCPMCalculated.Value), 0) : (double?)null) : null;
+					return TotalCPMCalculated.HasValue && TotalInvestment.HasValue ? (TotalCPMCalculated.Value != 0 ? Math.Round(((TotalInvestment.Value * 1000) / TotalCPMCalculated.Value), 0) : (decimal?)null) : null;
 				return TotalImpressions;
 			}
 		}
 
-		public double? MonthlyCPMCalculated
+		public decimal? MonthlyCPMCalculated
 		{
 			get
 			{
 				if (Formula == FormulaType.CPM)
-					return MonthlyImpressions.HasValue && MonthlyInvestment.HasValue ? (MonthlyImpressions.Value != 0 ? Math.Round(MonthlyInvestment.Value / (MonthlyImpressions.Value / 1000.00), 2) : (double?)null) : null;
+					return MonthlyImpressions.HasValue && MonthlyInvestment.HasValue ? (MonthlyImpressions.Value != 0 ? Math.Round(MonthlyInvestment.Value / (MonthlyImpressions.Value / 1000), 2) : (decimal?)null) : null;
 				return !MonthlyCPM.HasValue && RateType == RateType.CPM ? DefaultRate : MonthlyCPM;
 			}
 		}
 
-		public double? TotalCPMCalculated
+		public decimal? TotalCPMCalculated
 		{
 			get
 			{
 				if (Formula == FormulaType.CPM)
-					return TotalImpressions.HasValue && TotalInvestment.HasValue ? (TotalImpressions.Value != 0 ? Math.Round((TotalInvestment.Value / (TotalImpressions.Value / 1000.00)), 2) : (double?)null) : null;
+					return TotalImpressions.HasValue && TotalInvestment.HasValue ? (TotalImpressions.Value != 0 ? Math.Round((TotalInvestment.Value / (TotalImpressions.Value / 1000)), 2) : (decimal?)null) : null;
 				return !TotalCPM.HasValue && RateType == RateType.CPM ? DefaultRate : TotalCPM;
 			}
 		}
@@ -730,14 +727,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 			#region Additional Properties
 			xml.Append("UserDefinedName = \"" + (String.IsNullOrEmpty(UserDefinedName) ? ExtendedName : UserDefinedName).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("ActiveDays = \"" + (ActiveDays.HasValue ? ActiveDays.Value.ToString() : string.Empty) + "\" ");
-			xml.Append("TotalAds = \"" + (TotalAds.HasValue ? TotalAds.Value.ToString() : string.Empty) + "\" ");
 			xml.Append("DurationType = \"" + DurationType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("DurationValue = \"" + (DurationValue.HasValue ? DurationValue.Value.ToString() : string.Empty) + "\" ");
 			xml.Append("Strength1 = \"" + Strength1.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("Strength2 = \"" + Strength2.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("Comment = \"" + Comment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("AdRate = \"" + (AdRate.HasValue ? AdRate.Value.ToString() : string.Empty) + "\" ");
 			if (MonthlyInvestment.HasValue)
 				xml.Append("MonthlyInvestment = \"" + MonthlyInvestment.Value + "\" ");
 			if (MonthlyImpressions.HasValue)
@@ -775,7 +769,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public void Deserialize(XmlNode node)
 		{
 			int tempInt;
-			double tempDouble;
+			decimal tempDecimal;
 
 			foreach (XmlAttribute productAttribute in node.Attributes)
 				switch (productAttribute.Name)
@@ -831,18 +825,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 					case "UserDefinedName":
 						UserDefinedName = productAttribute.Value;
 						break;
-					case "ActiveDays":
-						if (int.TryParse(productAttribute.Value, out tempInt))
-							ActiveDays = tempInt;
-						else
-							ActiveDays = null;
-						break;
-					case "TotalAds":
-						if (int.TryParse(productAttribute.Value, out tempInt))
-							TotalAds = tempInt;
-						else
-							TotalAds = null;
-						break;
 					case "DurationType":
 						DurationType = productAttribute.Value;
 						break;
@@ -861,51 +843,45 @@ namespace NewBizWiz.Core.OnlineSchedule
 					case "Comment":
 						Comment = productAttribute.Value;
 						break;
-					case "AdRate":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							AdRate = tempDouble;
-						else
-							AdRate = null;
-						break;
 					case "MonthlyInvestment":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							MonthlyInvestment = tempDouble;
+						if (Decimal.TryParse(productAttribute.Value, out tempDecimal))
+							MonthlyInvestment = tempDecimal;
 						else
 							MonthlyInvestment = null;
 						break;
 					case "MonthlyImpressions":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							MonthlyImpressions = tempDouble;
+						if (Decimal.TryParse(productAttribute.Value, out tempDecimal))
+							MonthlyImpressions = tempDecimal;
 						else
 							MonthlyImpressions = null;
 						break;
 					case "MonthlyCPM":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							MonthlyCPM = tempDouble;
+						if (Decimal.TryParse(productAttribute.Value, out tempDecimal))
+							MonthlyCPM = tempDecimal;
 						else
 							MonthlyCPM = null;
 						break;
 					case "TotalInvestment":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							TotalInvestment = tempDouble;
+						if (Decimal.TryParse(productAttribute.Value, out tempDecimal))
+							TotalInvestment = tempDecimal;
 						else
 							TotalInvestment = null;
 						break;
 					case "TotalImpressions":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							TotalImpressions = tempDouble;
+						if (Decimal.TryParse(productAttribute.Value, out tempDecimal))
+							TotalImpressions = tempDecimal;
 						else
 							TotalImpressions = null;
 						break;
 					case "TotalCPM":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							TotalCPM = tempDouble;
+						if (Decimal.TryParse(productAttribute.Value, out tempDecimal))
+							TotalCPM = tempDecimal;
 						else
 							TotalCPM = null;
 						break;
 					case "DefaultRate":
-						if (double.TryParse(productAttribute.Value, out tempDouble))
-							DefaultRate = tempDouble;
+						if (Decimal.TryParse(productAttribute.Value, out tempDecimal))
+							DefaultRate = tempDecimal;
 						else
 							DefaultRate = null;
 						break;
@@ -975,16 +951,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 			Strength2 = string.Empty;
 			Comment = string.Empty;
 			DurationType = string.Empty;
-			ActiveDays = null;
-			TotalAds = null;
 			DurationValue = null;
-			AdRate = null;
 			MonthlyInvestment = null;
 			MonthlyImpressions = null;
-			MonthlyCPM = null;
 			TotalInvestment = null;
 			TotalImpressions = null;
-			TotalCPM = null;
 			ShowDuration = false;
 			ShowMonthly = true;
 			ShowTotal = false;
@@ -994,6 +965,9 @@ namespace NewBizWiz.Core.OnlineSchedule
 			var source = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(_name) && x.Category.Name.Equals(Category) && (x.SubCategory.Equals(SubCategory) || string.IsNullOrEmpty(SubCategory)));
 			if (source == null) return;
 			Description = source.Overview;
+			DefaultRate = source.Rate;
+			MonthlyCPM = DefaultRate;
+			TotalCPM = DefaultRate;
 		}
 
 		public DigitalProduct Clone()
@@ -1076,11 +1050,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 					var result = new List<NameCodePair>();
 					if (source.ShowMonthly)
 					{
-						if (source.MonthlyImpressionsCalculated.HasValue)
+						if (source.MonthlyImpressionsCalculated.HasValue && source.MonthlyImpressionsCalculated.Value > 0)
 							result.Add(new NameCodePair { Name = "monthly impressions:", Code = source.MonthlyImpressionsCalculated.Value.ToString("#,##0") });
-						if (source.MonthlyInvestmentCalculated.HasValue)
+						if (source.MonthlyInvestmentCalculated.HasValue && source.MonthlyInvestmentCalculated.Value > 0)
 							result.Add(new NameCodePair { Name = "monthly investment:", Code = source.MonthlyInvestmentCalculated.Value.ToString("$#,###.00") });
-						if (source.MonthlyCPMCalculated.HasValue)
+						if (source.MonthlyCPMCalculated.HasValue && source.MonthlyCPMCalculated.Value > 0)
 							result.Add(new NameCodePair { Name = "cpm:", Code = source.MonthlyCPMCalculated.Value.ToString("$#,###.00") });
 					}
 					return result;
@@ -1094,28 +1068,13 @@ namespace NewBizWiz.Core.OnlineSchedule
 					var result = new List<NameCodePair>();
 					if (source.ShowTotal)
 					{
-						if (source.TotalImpressionsCalculated.HasValue)
+						if (source.TotalImpressionsCalculated.HasValue && source.TotalImpressionsCalculated.Value > 0)
 							result.Add(new NameCodePair { Name = "total impressions:", Code = source.TotalImpressionsCalculated.Value.ToString("#,##0") });
-						if (source.TotalInvestmentCalculated.HasValue)
+						if (source.TotalInvestmentCalculated.HasValue && source.TotalInvestmentCalculated.Value > 0)
 							result.Add(new NameCodePair { Name = "total investment:", Code = source.TotalInvestmentCalculated.Value.ToString("$#,###.00") });
-						if (source.TotalCPMCalculated.HasValue)
+						if (source.TotalCPMCalculated.HasValue && source.TotalCPMCalculated.Value > 0)
 							result.Add(new NameCodePair { Name = "cpm:", Code = source.TotalCPMCalculated.Value.ToString("$#,###.00") });
 					}
-					return result;
-				}
-			}
-
-			public IEnumerable<NameCodePair> DigitalData
-			{
-				get
-				{
-					var result = new List<NameCodePair>();
-					if (source.TotalAds.HasValue)
-						result.Add(new NameCodePair { Name = "total ads:", Code = source.TotalAds.Value.ToString("#,##0") });
-					if (source.ActiveDays.HasValue)
-						result.Add(new NameCodePair { Name = "days", Code = source.ActiveDays.Value.ToString("#,##0") });
-					if (source.AdRate.HasValue)
-						result.Add(new NameCodePair { Name = "ad rate:", Code = source.AdRate.Value.ToString("$#,###.00") });
 					return result;
 				}
 			}
@@ -1139,31 +1098,19 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				if (!String.IsNullOrEmpty(Comment))
 				{
-					if ((MonthlyData.Any() || TotalData.Any()) && DigitalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "comments", "1digital_all.ppt");
-					if (MonthlyData.Any() || TotalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "comments", "2digital_nodays_noads_norate.ppt");
 					if (MonthlyData.Any())
-						return Path.Combine(outputTemplateFolderPath, "comments", "3digital_monthly_only.ppt");
+						return Path.Combine(outputTemplateFolderPath, "comments", "1_monthly.ppt");
 					if (TotalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "comments", "4digital_total_only.ppt");
-					if (DigitalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "comments", "5nomonthly_nototal.ppt");
-					return Path.Combine(outputTemplateFolderPath, "comments", "6nomonthly_nototal_nodaysadsrate.ppt");
+						return Path.Combine(outputTemplateFolderPath, "comments", "2_total.ppt");
+					return Path.Combine(outputTemplateFolderPath, "comments", "3_none.ppt");
 				}
 				else
 				{
-					if ((MonthlyData.Any() || TotalData.Any()) && DigitalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "no_comments", "1digital_all.ppt");
-					if (MonthlyData.Any() || TotalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "no_comments", "2digital_nodays_noads_norate.ppt");
 					if (MonthlyData.Any())
-						return Path.Combine(outputTemplateFolderPath, "no_comments", "3digital_monthly_only.ppt");
+						return Path.Combine(outputTemplateFolderPath, "no_comments", "1_monthly.ppt");
 					if (TotalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "no_comments", "4digital_total_only.ppt");
-					if (DigitalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "no_comments", "5nomonthly_nototal.ppt");
-					return Path.Combine(outputTemplateFolderPath, "no_comments", "6nomonthly_nototal_nodaysadsrate.ppt");
+						return Path.Combine(outputTemplateFolderPath, "no_comments", "2_total.ppt");
+					return Path.Combine(outputTemplateFolderPath, "no_comments", "3_none.ppt");
 				}
 			}
 		}
@@ -1440,7 +1387,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public Category Category { get; set; }
 		public string SubCategory { get; set; }
 		public RateType RateType { get; set; }
-		public double? Rate { get; set; }
+		public Decimal? Rate { get; set; }
 		public int? Width { get; set; }
 		public int? Height { get; set; }
 		public string Overview { get; set; }

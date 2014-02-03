@@ -192,6 +192,9 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			else
 				memoEditDescription.EditValue = Product.Description;
 
+			checkEditInvestmentDetails.Checked = !String.IsNullOrEmpty(Product.InvestmentDetails);
+			textEditInvestmentDetails.EditValue = Product.InvestmentDetails;
+
 			checkEditComments.Checked = !String.IsNullOrEmpty(Product.Comment);
 			memoEditComments.EditValue = Product.Comment;
 			checkEditStrengths1.Checked = !String.IsNullOrEmpty(Product.Strength1);
@@ -260,6 +263,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			Product.Description = dimensionsMatch.IsMatch(description) ?
 				dimensionsMatch.Replace(description, String.Empty).Trim() :
 				description.Trim();
+			Product.InvestmentDetails = checkEditInvestmentDetails.Checked ? textEditInvestmentDetails.EditValue as String : null;
 			Product.Comment = checkEditComments.Checked && memoEditComments.EditValue != null ? memoEditComments.EditValue.ToString() : string.Empty;
 			Product.Strength1 = checkEditStrengths1.Checked && comboBoxEditStrengths1.EditValue != null ? comboBoxEditStrengths1.EditValue.ToString() : string.Empty;
 			Product.Strength2 = checkEditStrengths2.Checked && comboBoxEditStrengths2.EditValue != null ? comboBoxEditStrengths2.EditValue.ToString() : string.Empty;
@@ -329,6 +333,15 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				UpdateFormula();
 				_container.SettingsNotSaved = true;
 			}
+		}
+
+		private void checkEditInvestmentDetails_CheckedChanged(object sender, EventArgs e)
+		{
+			textEditInvestmentDetails.Enabled = checkEditInvestmentDetails.Checked;
+			if (!checkEditInvestmentDetails.Checked)
+				textEditInvestmentDetails.EditValue = null;
+			if (_allowToSave)
+				_container.SettingsNotSaved = true;
 		}
 
 		private void spinEditPricing_EditValueChanged(object sender, EventArgs e)

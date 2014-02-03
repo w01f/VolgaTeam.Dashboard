@@ -507,6 +507,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public decimal? TotalCPM { get; set; }
 		public decimal? DefaultRate { get; set; }
 		public FormulaType Formula { get; set; }
+		public string InvestmentDetails { get; set; }
 		#endregion
 
 		#region Show Properties
@@ -746,6 +747,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 				xml.Append("TotalCPM = \"" + TotalCPM.Value + "\" ");
 			xml.Append("DefaultRate = \"" + (DefaultRate.HasValue ? DefaultRate.Value.ToString() : string.Empty) + "\" ");
 			xml.Append("Formula = \"" + (int)Formula + "\" ");
+			if (!String.IsNullOrEmpty(InvestmentDetails))
+				xml.Append("InvestmentDetails = \"" + InvestmentDetails.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			#endregion
 
 			#region Show Properties
@@ -890,6 +893,10 @@ namespace NewBizWiz.Core.OnlineSchedule
 						if (int.TryParse(productAttribute.Value, out tempInt))
 							Formula = (FormulaType)tempInt;
 						break;
+
+					case "InvestmentDetails":
+						InvestmentDetails = productAttribute.Value;
+						break;
 					#endregion
 
 					#region Show Properties
@@ -946,11 +953,10 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public void ApplyDefaultView()
 		{
 			UserDefinedName = ExtendedName;
-			Websites.Clear();
-			Strength1 = string.Empty;
-			Strength2 = string.Empty;
-			Comment = string.Empty;
-			DurationType = string.Empty;
+			Strength1 = String.Empty;
+			Strength2 = String.Empty;
+			Comment = String.Empty;
+			DurationType = String.Empty;
 			DurationValue = null;
 			MonthlyInvestment = null;
 			MonthlyImpressions = null;
@@ -961,6 +967,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			ShowTotal = false;
 			ShowDimensions = true;
 			Formula = ListManager.Instance.DefaultFormula;
+			InvestmentDetails = null;
 
 			var source = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(_name) && x.Category.Name.Equals(Category) && (x.SubCategory.Equals(SubCategory) || string.IsNullOrEmpty(SubCategory)));
 			if (source == null) return;
@@ -1015,7 +1022,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 			public string FlightDates
 			{
-				get { return String.Format("{0}", source.Parent.FlightDates); }
+				get
+				{
+					return String.Format("Campaign:  {0}{1}", source.Parent.FlightDates,
+						(!String.IsNullOrEmpty(DurationType) && !String.IsNullOrEmpty(DurationValue) ? String.Format("      {0} {1}", DurationValue, DurationType) : String.Empty));
+				}
 			}
 
 			public string DurationValue
@@ -1079,6 +1090,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 				}
 			}
 
+			public string InvestmentDetails
+			{
+				get { return source.InvestmentDetails; }
+			}
+
 			public string Comment
 			{
 				get
@@ -1099,18 +1115,18 @@ namespace NewBizWiz.Core.OnlineSchedule
 				if (!String.IsNullOrEmpty(Comment))
 				{
 					if (MonthlyData.Any())
-						return Path.Combine(outputTemplateFolderPath, "comments", "1_monthly.ppt");
+						return Path.Combine(outputTemplateFolderPath, "comments", String.Format("monthly{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
 					if (TotalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "comments", "2_total.ppt");
-					return Path.Combine(outputTemplateFolderPath, "comments", "3_none.ppt");
+						return Path.Combine(outputTemplateFolderPath, "comments", String.Format("total{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
+					return Path.Combine(outputTemplateFolderPath, "comments", String.Format("none{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
 				}
 				else
 				{
 					if (MonthlyData.Any())
-						return Path.Combine(outputTemplateFolderPath, "no_comments", "1_monthly.ppt");
+						return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("monthly{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
 					if (TotalData.Any())
-						return Path.Combine(outputTemplateFolderPath, "no_comments", "2_total.ppt");
-					return Path.Combine(outputTemplateFolderPath, "no_comments", "3_none.ppt");
+						return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("total{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
+					return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("none{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
 				}
 			}
 		}

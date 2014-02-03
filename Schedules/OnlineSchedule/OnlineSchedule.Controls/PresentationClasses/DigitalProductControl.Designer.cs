@@ -55,6 +55,8 @@
 			this.labelControlDescription = new DevExpress.XtraEditors.LabelControl();
 			this.labelControlComments = new DevExpress.XtraEditors.LabelControl();
 			this.comboBoxEditPriceType = new DevExpress.XtraEditors.ComboBoxEdit();
+			this.checkEditInvestmentDetails = new DevExpress.XtraEditors.CheckEdit();
+			this.textEditInvestmentDetails = new DevExpress.XtraEditors.TextEdit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditResetProductName.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDescription.Properties)).BeginInit();
@@ -74,6 +76,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaCPM.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditPriceType.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditInvestmentDetails.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEditInvestmentDetails.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -169,7 +173,7 @@
 			this.checkEditComments.Properties.Caption = "";
 			this.checkEditComments.Size = new System.Drawing.Size(18, 21);
 			this.checkEditComments.StyleController = this.styleController;
-			this.checkEditComments.TabIndex = 14;
+			this.checkEditComments.TabIndex = 16;
 			this.checkEditComments.CheckedChanged += new System.EventHandler(this.checkEditComments_CheckedChanged);
 			// 
 			// comboBoxEditStrengths1
@@ -183,7 +187,7 @@
 			this.comboBoxEditStrengths1.Properties.NullText = "Positioning Strengths";
 			this.comboBoxEditStrengths1.Size = new System.Drawing.Size(399, 22);
 			this.comboBoxEditStrengths1.StyleController = this.styleController;
-			this.comboBoxEditStrengths1.TabIndex = 11;
+			this.comboBoxEditStrengths1.TabIndex = 13;
 			this.comboBoxEditStrengths1.EditValueChanged += new System.EventHandler(this.Edit_EditValueChanged);
 			// 
 			// checkEditStrengths1
@@ -194,7 +198,7 @@
 			this.checkEditStrengths1.Properties.Caption = "";
 			this.checkEditStrengths1.Size = new System.Drawing.Size(18, 21);
 			this.checkEditStrengths1.StyleController = this.styleController;
-			this.checkEditStrengths1.TabIndex = 10;
+			this.checkEditStrengths1.TabIndex = 12;
 			this.checkEditStrengths1.CheckedChanged += new System.EventHandler(this.checkEditStrengths1_CheckedChanged);
 			// 
 			// comboBoxEditStrengths2
@@ -208,7 +212,7 @@
 			this.comboBoxEditStrengths2.Properties.NullText = "Positioning Strengths";
 			this.comboBoxEditStrengths2.Size = new System.Drawing.Size(399, 22);
 			this.comboBoxEditStrengths2.StyleController = this.styleController;
-			this.comboBoxEditStrengths2.TabIndex = 13;
+			this.comboBoxEditStrengths2.TabIndex = 15;
 			this.comboBoxEditStrengths2.EditValueChanged += new System.EventHandler(this.Edit_EditValueChanged);
 			// 
 			// checkEditStrengths2
@@ -219,7 +223,7 @@
 			this.checkEditStrengths2.Properties.Caption = "";
 			this.checkEditStrengths2.Size = new System.Drawing.Size(18, 21);
 			this.checkEditStrengths2.StyleController = this.styleController;
-			this.checkEditStrengths2.TabIndex = 12;
+			this.checkEditStrengths2.TabIndex = 14;
 			this.checkEditStrengths2.CheckedChanged += new System.EventHandler(this.checkEditStrengths2_CheckedChanged);
 			// 
 			// memoEditComments
@@ -230,7 +234,7 @@
 			this.memoEditComments.Name = "memoEditComments";
 			this.memoEditComments.Size = new System.Drawing.Size(399, 129);
 			this.memoEditComments.StyleController = this.styleController;
-			this.memoEditComments.TabIndex = 15;
+			this.memoEditComments.TabIndex = 17;
 			this.memoEditComments.EditValueChanged += new System.EventHandler(this.Edit_EditValueChanged);
 			// 
 			// spinEditCPM
@@ -241,7 +245,7 @@
             0,
             0,
             0});
-			this.spinEditCPM.Location = new System.Drawing.Point(337, 390);
+			this.spinEditCPM.Location = new System.Drawing.Point(337, 374);
 			this.spinEditCPM.Name = "spinEditCPM";
 			this.spinEditCPM.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.spinEditCPM.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -274,7 +278,7 @@
             0,
             0,
             0});
-			this.spinEditImpressions.Location = new System.Drawing.Point(22, 390);
+			this.spinEditImpressions.Location = new System.Drawing.Point(22, 374);
 			this.spinEditImpressions.Name = "spinEditImpressions";
 			this.spinEditImpressions.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.spinEditImpressions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -328,7 +332,7 @@
             0,
             0,
             0});
-			this.spinEditInvestment.Location = new System.Drawing.Point(179, 390);
+			this.spinEditInvestment.Location = new System.Drawing.Point(179, 374);
 			this.spinEditInvestment.Name = "spinEditInvestment";
 			this.spinEditInvestment.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.spinEditInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -356,7 +360,7 @@
 			// checkEditFormulaImpressions
 			// 
 			this.checkEditFormulaImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditFormulaImpressions.Location = new System.Drawing.Point(20, 365);
+			this.checkEditFormulaImpressions.Location = new System.Drawing.Point(20, 349);
 			this.checkEditFormulaImpressions.Name = "checkEditFormulaImpressions";
 			this.checkEditFormulaImpressions.Properties.AllowHtmlString = true;
 			this.checkEditFormulaImpressions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -373,7 +377,7 @@
 			// checkEditFormulaInvestment
 			// 
 			this.checkEditFormulaInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditFormulaInvestment.Location = new System.Drawing.Point(177, 365);
+			this.checkEditFormulaInvestment.Location = new System.Drawing.Point(177, 349);
 			this.checkEditFormulaInvestment.Name = "checkEditFormulaInvestment";
 			this.checkEditFormulaInvestment.Properties.AllowHtmlString = true;
 			this.checkEditFormulaInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -390,7 +394,7 @@
 			// checkEditFormulaCPM
 			// 
 			this.checkEditFormulaCPM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditFormulaCPM.Location = new System.Drawing.Point(335, 365);
+			this.checkEditFormulaCPM.Location = new System.Drawing.Point(335, 349);
 			this.checkEditFormulaCPM.Name = "checkEditFormulaCPM";
 			this.checkEditFormulaCPM.Properties.AllowHtmlString = true;
 			this.checkEditFormulaCPM.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -473,7 +477,7 @@
 			// comboBoxEditPriceType
 			// 
 			this.comboBoxEditPriceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.comboBoxEditPriceType.Location = new System.Drawing.Point(31, 292);
+			this.comboBoxEditPriceType.Location = new System.Drawing.Point(22, 292);
 			this.comboBoxEditPriceType.Name = "comboBoxEditPriceType";
 			this.comboBoxEditPriceType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -487,8 +491,33 @@
 			this.comboBoxEditPriceType.TabIndex = 3;
 			this.comboBoxEditPriceType.SelectedIndexChanged += new System.EventHandler(this.comboBoxEditPriceType_SelectedIndexChanged);
 			// 
+			// checkEditInvestmentDetails
+			// 
+			this.checkEditInvestmentDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.checkEditInvestmentDetails.Location = new System.Drawing.Point(20, 425);
+			this.checkEditInvestmentDetails.Name = "checkEditInvestmentDetails";
+			this.checkEditInvestmentDetails.Properties.AutoWidth = true;
+			this.checkEditInvestmentDetails.Properties.Caption = "Other Investment Details?";
+			this.checkEditInvestmentDetails.Size = new System.Drawing.Size(172, 21);
+			this.checkEditInvestmentDetails.StyleController = this.styleController;
+			this.checkEditInvestmentDetails.TabIndex = 10;
+			this.checkEditInvestmentDetails.CheckedChanged += new System.EventHandler(this.checkEditInvestmentDetails_CheckedChanged);
+			// 
+			// textEditInvestmentDetails
+			// 
+			this.textEditInvestmentDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.textEditInvestmentDetails.Enabled = false;
+			this.textEditInvestmentDetails.Location = new System.Drawing.Point(22, 453);
+			this.textEditInvestmentDetails.Name = "textEditInvestmentDetails";
+			this.textEditInvestmentDetails.Size = new System.Drawing.Size(443, 22);
+			this.textEditInvestmentDetails.StyleController = this.styleController;
+			this.textEditInvestmentDetails.TabIndex = 11;
+			this.textEditInvestmentDetails.EditValueChanged += new System.EventHandler(this.Edit_EditValueChanged);
+			// 
 			// DigitalProductControl
 			// 
+			this.Controls.Add(this.textEditInvestmentDetails);
+			this.Controls.Add(this.checkEditInvestmentDetails);
 			this.Controls.Add(this.comboBoxEditPriceType);
 			this.Controls.Add(this.labelControlComments);
 			this.Controls.Add(this.checkEditComments);
@@ -513,7 +542,6 @@
 			this.Controls.Add(this.spinEditCPM);
 			this.Controls.Add(this.labelControlDescription);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.Name = "DigitalProductControl";
 			this.Size = new System.Drawing.Size(939, 497);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditResetProductName.Properties)).EndInit();
@@ -534,7 +562,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFormulaCPM.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditPriceType.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditInvestmentDetails.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEditInvestmentDetails.Properties)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 
@@ -564,6 +595,8 @@
 		private DevExpress.XtraEditors.LabelControl labelControlDescription;
 		private DevExpress.XtraEditors.LabelControl labelControlComments;
 		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditPriceType;
+		private DevExpress.XtraEditors.CheckEdit checkEditInvestmentDetails;
+		private DevExpress.XtraEditors.TextEdit textEditInvestmentDetails;
 
     }
 }

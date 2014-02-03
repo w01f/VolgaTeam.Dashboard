@@ -53,12 +53,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 										case "CAMPVALUE":
 											shape.TextFrame.TextRange.Text = source.OutputData.FlightDates;
 											break;
-										case "MWVALUE":
-											shape.TextFrame.TextRange.Text = source.OutputData.DurationValue;
-											break;
-										case "MONTHSWEEKS":
-											shape.TextFrame.TextRange.Text = source.OutputData.DurationType;
-											break;
 										case "WEBPRODUCT":
 											shape.TextFrame.TextRange.Text = source.OutputData.ProductName;
 											break;
@@ -103,6 +97,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 											break;
 										case "TCPMVALUE":
 											shape.TextFrame.TextRange.Text = source.OutputData.TotalData.Count() > 2 ? source.OutputData.TotalData.ElementAt(2).Code : String.Empty;
+											break;
+
+										case "INVDET":
+											shape.TextFrame.TextRange.Text = source.OutputData.InvestmentDetails; ;
 											break;
 
 										case "CMNTVALUE":

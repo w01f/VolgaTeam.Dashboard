@@ -154,6 +154,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		public void LoadData()
 		{
+			MediaMetaData.Instance.SettingsManager.InitThemeHelper(BusinessWrapper.Instance.ThemeManager);
 			HomeControl.LoadSchedule(false);
 			WeeklySchedule.LoadSchedule(false);
 			MonthlySchedule.LoadSchedule(false);

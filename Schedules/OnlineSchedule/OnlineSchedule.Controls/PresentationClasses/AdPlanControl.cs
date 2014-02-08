@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
@@ -284,13 +285,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				formProgress.Show();
 				string tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				OnlineSchedulePowerPointHelper.Instance.PrepareAdPlanEmail(tempFileName, this);
-				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
-				using (var formEmail = new FormEmail(_formContainer, OnlineSchedulePowerPointHelper.Instance, HelpManager))
+				using (var formEmail = new FormEmail(OnlineSchedulePowerPointHelper.Instance, HelpManager))
 				{
 					formEmail.Text = "Email this AdPlan";
-					formEmail.PresentationFile = tempFileName;
+					formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 					RegistryHelper.MainFormHandle = formEmail.Handle;
 					RegistryHelper.MaximizeMainForm = false;
 					formEmail.ShowDialog();

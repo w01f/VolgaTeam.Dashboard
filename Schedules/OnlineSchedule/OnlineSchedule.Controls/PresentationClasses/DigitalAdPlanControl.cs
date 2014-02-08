@@ -3,12 +3,12 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraTab;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
-using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
 
 namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 {
@@ -139,7 +139,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview AdPlan";
-				formPreview.PresentationFile = tempFileName;
+				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
 				RegistryHelper.MainFormHandle = formPreview.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				var previewResult = formPreview.ShowDialog();

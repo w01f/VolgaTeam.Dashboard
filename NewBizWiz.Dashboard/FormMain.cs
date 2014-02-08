@@ -53,6 +53,14 @@ namespace NewBizWiz.Dashboard
 		private void ApplyMasterWizard()
 		{
 			Text = AppManager.FormCaption;
+
+			ribbonBarHomeOverview.Text = SettingsManager.Instance.DashboardText;
+			ribbonBarOnlineLogo.Text = SettingsManager.Instance.DashboardText;
+			ribbonBarNewspaperLogo.Text = SettingsManager.Instance.DashboardText;
+			ribbonBarTVLogo.Text = SettingsManager.Instance.DashboardText;
+			ribbonBarRadioLogo.Text = SettingsManager.Instance.DashboardText;
+			ribbonBarCalendarLogo.Text = SettingsManager.Instance.DashboardText;
+
 			var masterWizardLogo = MasterWizardManager.Instance.DefaultLogo;
 			buttonItemHomeOverview.Image = masterWizardLogo;
 			buttonItemOnlineLogo.Image = masterWizardLogo;

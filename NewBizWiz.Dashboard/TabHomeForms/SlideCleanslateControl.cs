@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
@@ -90,7 +91,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
 				{
 					formPreview.Text = "Preview Slides";
-					formPreview.PresentationFile = tempFileName;
+					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
 					RegistryHelper.MainFormHandle = formPreview.Handle;
 					RegistryHelper.MaximizeMainForm = false;
 					var previewResult = formPreview.ShowDialog();

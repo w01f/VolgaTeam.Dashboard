@@ -357,12 +357,6 @@
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormCalendarOutputOptions.designer.cs">
       <DependentUpon>FormCalendarOutputOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormSelectPublication.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormSelectPublication.Designer.cs">
-      <DependentUpon>FormSelectPublication.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormDayView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -591,9 +585,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormCalendarOutputOptions.resx">
       <DependentUpon>FormCalendarOutputOptions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormSelectPublication.resx">
-      <DependentUpon>FormSelectPublication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormDayView.resx">
       <DependentUpon>FormDayView.cs</DependentUpon>

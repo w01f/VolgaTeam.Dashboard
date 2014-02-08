@@ -9,8 +9,8 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
@@ -505,19 +505,19 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 				formProgress.Show();
 				string tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				AdSchedulePowerPointHelper.Instance.PrepareSummaryEmail(tempFileName);
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
-				if (File.Exists(tempFileName))
-					using (var formEmail = new FormEmail(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
-					{
-						formEmail.Text = "Email this Summary";
-						formEmail.PresentationFile = tempFileName;
-						RegistryHelper.MainFormHandle = formEmail.Handle;
-						RegistryHelper.MaximizeMainForm = false;
-						formEmail.ShowDialog();
-						RegistryHelper.MaximizeMainForm = true;
-						RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-					}
+				if (!File.Exists(tempFileName)) return;
+				using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+				{
+					formEmail.Text = "Email this Summary";
+					formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+					RegistryHelper.MainFormHandle = formEmail.Handle;
+					RegistryHelper.MaximizeMainForm = false;
+					formEmail.ShowDialog();
+					RegistryHelper.MaximizeMainForm = true;
+					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+				}
 			}
 		}
 
@@ -533,19 +533,19 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 				AdSchedulePowerPointHelper.Instance.PrepareSummaryEmail(tempFileName);
 				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
-				if (File.Exists(tempFileName))
-					using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
-					{
-						formPreview.Text = "Preview Summary";
-						formPreview.PresentationFile = tempFileName;
-						RegistryHelper.MainFormHandle = formPreview.Handle;
-						RegistryHelper.MaximizeMainForm = false;
-						DialogResult previewResult = formPreview.ShowDialog();
-						RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-						RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-						if (previewResult != DialogResult.OK)
-							Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-					}
+				if (!File.Exists(tempFileName)) return;
+				using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+				{
+					formPreview.Text = "Preview Summary";
+					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+					RegistryHelper.MainFormHandle = formPreview.Handle;
+					RegistryHelper.MaximizeMainForm = false;
+					DialogResult previewResult = formPreview.ShowDialog();
+					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+					if (previewResult != DialogResult.OK)
+						Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				}
 			}
 		}
 		#endregion

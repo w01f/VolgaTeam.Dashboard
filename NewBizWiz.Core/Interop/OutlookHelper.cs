@@ -58,22 +58,19 @@ namespace NewBizWiz.Core.Interop
 		{
 			try
 			{
-				IntPtr handle = IntPtr.Zero;
-				Process[] processList = Process.GetProcesses();
-				foreach (Process process in processList.Where(x => x.ProcessName.ToLower().Contains("outlook")))
+				var handle = IntPtr.Zero;
+				var processList = Process.GetProcesses();
+				foreach (var process in processList.Where(x => x.ProcessName.ToLower().Contains("outlook")).Where(process => process.MainWindowHandle.ToInt32() != 0))
 				{
-					if (process.MainWindowHandle.ToInt32() != 0)
-					{
-						handle = process.MainWindowHandle;
-						break;
-					}
+					handle = process.MainWindowHandle;
+					break;
 				}
 				Utilities.Instance.ActivateForm(handle, true, false);
 				var mi = (MailItem)_outlookObject.CreateItem(OlItemType.olMailItem);
 				mi.Attachments.Add(attachmentPath, OlAttachmentType.olByValue, 1, "Attachment");
 				mi.Subject = subject;
 				mi.Display(true);
-				int count = 100000;
+				var count = 100000;
 				handle = IntPtr.Zero;
 				while (handle == IntPtr.Zero && count > 0)
 				{

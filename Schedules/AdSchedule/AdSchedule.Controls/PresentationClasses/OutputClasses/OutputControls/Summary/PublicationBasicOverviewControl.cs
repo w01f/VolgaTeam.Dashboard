@@ -10,9 +10,11 @@ using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
+using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
@@ -584,6 +586,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public Theme SelectedTheme
 		{
 			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintBasicOverview).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintBasicOverview)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintBasicOverview))); }
+		}
+
+		public PreviewGroup GetPreviewGroup()
+		{
+			return new PreviewGroup
+			{
+				Name = PrintProduct.Name,
+				PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+			};
 		}
 
 		public void PrintOutput()

@@ -1,16 +1,19 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
 using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
+using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 {
@@ -414,6 +417,15 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		}
 
 		#region Output Staff
+		public PreviewGroup GetPreviewGroup()
+		{
+			return new PreviewGroup
+			{
+				Name = Product.Name,
+				PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+			};
+		}
+
 		public void Output()
 		{
 			OnlineSchedulePowerPointHelper.Instance.AppendOneSheet(new[] { Product }, _container.SelectedTheme);

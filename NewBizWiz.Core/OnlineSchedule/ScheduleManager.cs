@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -9,6 +8,7 @@ using System.Windows.Forms;
 using System.Xml;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.Interop;
 
 namespace NewBizWiz.Core.OnlineSchedule
 {
@@ -78,12 +78,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		public static ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
 		{
-			var scheduleList = new List<ShortSchedule>();
-			foreach (var file in rootFolder.GetFiles("*.xml"))
-			{
-				var schedule = new ShortSchedule(file);
-				scheduleList.Add(schedule);
-			}
+			var scheduleList = rootFolder.GetFiles("*.xml").Select(file => new ShortSchedule(file)).ToList();
+			scheduleList.Sort((x, y) => WinAPIHelper.StrCmpLogicalW(x.ShortFileName, y.ShortFileName));
 			return scheduleList.ToArray();
 		}
 
@@ -514,6 +510,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public bool ShowDuration { get; set; }
 		public bool ShowMonthly { get; set; }
 		public bool ShowTotal { get; set; }
+		public bool ShowCategory { get; set; }
+		public bool ShowFlightDates { get; set; }
 
 		public ProductPackageRecord PackageRecord { get; private set; }
 		public DigitalProductAdPlanSettings AdPlanSettings { get; set; }
@@ -752,6 +750,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 			#endregion
 
 			#region Show Properties
+			xml.Append("ShowCategory = \"" + ShowCategory + "\" ");
+			xml.Append("ShowFlightDates = \"" + ShowFlightDates + "\" ");
 			xml.Append("ShowDuration = \"" + ShowDuration + "\" ");
 			xml.Append("ShowMonthly = \"" + ShowMonthly + "\" ");
 			xml.Append("ShowTotal = \"" + ShowTotal + "\" ");
@@ -900,6 +900,20 @@ namespace NewBizWiz.Core.OnlineSchedule
 					#endregion
 
 					#region Show Properties
+					case "ShowCategory":
+						{
+							bool tempBool;
+							if (bool.TryParse(productAttribute.Value, out tempBool))
+								ShowCategory = tempBool;
+						}
+						break;
+					case "ShowFlightDates":
+						{
+							bool tempBool;
+							if (bool.TryParse(productAttribute.Value, out tempBool))
+								ShowFlightDates = tempBool;
+						}
+						break;
 					case "ShowDuration":
 						{
 							bool tempBool;
@@ -962,6 +976,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 			MonthlyImpressions = null;
 			TotalInvestment = null;
 			TotalImpressions = null;
+			ShowCategory = true;
+			ShowFlightDates = true;
 			ShowDuration = false;
 			ShowMonthly = true;
 			ShowTotal = false;
@@ -1000,6 +1016,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 				source = parent;
 			}
 
+			public string Header
+			{
+				get { return source.ShowCategory && !String.IsNullOrEmpty(source.Category) ? String.Format("{0}: {1}", "{0}", source.Category) : "{0}"; }
+			}
+
 			public string Websites
 			{
 				get { return String.Join(", ", source.Websites.ToArray()); }
@@ -1024,8 +1045,12 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				get
 				{
-					return String.Format("Campaign:  {0}{1}", source.Parent.FlightDates,
-						(!String.IsNullOrEmpty(DurationType) && !String.IsNullOrEmpty(DurationValue) ? String.Format("      {0} {1}", DurationValue, DurationType) : String.Empty));
+					var campaignStack = new List<string>();
+					if (source.ShowFlightDates)
+						campaignStack.Add(source.Parent.FlightDates);
+					if (!String.IsNullOrEmpty(DurationType) && !String.IsNullOrEmpty(DurationValue))
+						campaignStack.Add(String.Format("{0} {1}", DurationValue, DurationType));
+					return campaignStack.Any() ? String.Format("Campaign:  {0}", String.Join("      ", campaignStack)) : String.Empty;
 				}
 			}
 

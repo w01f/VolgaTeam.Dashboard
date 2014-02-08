@@ -34,7 +34,8 @@ namespace NewBizWiz.Core.Interop
 		void AppendSlideMaster(string presentationTemplatePath, Presentation destinationPresentation = null);
 		void SetPresentationSettings();
 		void SavePDF(string fileName);
-		void PreparePresentation(string fileName, Action<Presentation> buildPresentation);
+		void MergeFiles(string mergedFileName, string[] filesToMerge);
+		void PreparePresentation(string fileName, Action<Presentation> buildPresentation, bool generateImages = true);
 	}
 
 	public class PowerPointHelper<T> : IPowerPointHelper where T : class,new()
@@ -670,6 +671,20 @@ namespace NewBizWiz.Core.Interop
 			}
 		}
 
+		public void MergeFiles(string mergedFileName, string[] filesToMerge)
+		{
+			PreparePresentation(mergedFileName, mergedPresentation =>
+			{
+				foreach (var file in filesToMerge)
+				{
+					var presentation = _powerPointObject.Presentations.Open(file, WithWindow: MsoTriState.msoFalse);
+					AppendSlide(presentation, -1, mergedPresentation);
+					presentation.Close();
+					Utilities.Instance.ReleaseComObject(presentation);
+				}
+			});
+		}
+
 		protected void SavePrevSlideIndex()
 		{
 			previouseSlideIndex = GetActiveSlideIndex();
@@ -680,7 +695,7 @@ namespace NewBizWiz.Core.Interop
 			_powerPointObject.ActivePresentation.Slides[previouseSlideIndex].Select();
 		}
 
-		public void PreparePresentation(string fileName, Action<Presentation> buildPresentation)
+		public void PreparePresentation(string fileName, Action<Presentation> buildPresentation, bool generateImages = true)
 		{
 			try
 			{
@@ -704,10 +719,13 @@ namespace NewBizWiz.Core.Interop
 				var thread = new Thread(delegate()
 				{
 					presentation.SaveAs(fileName);
-					var destinationFolder = fileName.Replace(Path.GetExtension(fileName), string.Empty);
-					if (!Directory.Exists(destinationFolder))
-						Directory.CreateDirectory(destinationFolder);
-					presentation.Export(destinationFolder, "PNG");
+					if (generateImages)
+					{
+						var destinationFolder = fileName.Replace(Path.GetExtension(fileName), string.Empty);
+						if (!Directory.Exists(destinationFolder))
+							Directory.CreateDirectory(destinationFolder);
+						presentation.Export(destinationFolder, "PNG");
+					}
 					presentation.Close();
 				});
 				thread.Start();

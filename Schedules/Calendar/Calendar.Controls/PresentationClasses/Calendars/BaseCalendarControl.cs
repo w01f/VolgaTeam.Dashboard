@@ -13,6 +13,7 @@ using NewBizWiz.Calendar.Controls.PresentationClasses.Views.GridView;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView;
 using NewBizWiz.Calendar.Controls.Properties;
 using NewBizWiz.Calendar.Controls.ToolForms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
 
@@ -193,115 +194,97 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		public void Print()
 		{
 			if (MonthList.SelectedIndex < 0) return;
-			var selectedMonth = CalendarData.Months[MonthList.SelectedIndex];
+			var currentMonth = CalendarData.Months[MonthList.SelectedIndex];
+			var selectedMonths = new List<CalendarMonth>();
 			foreach (var month in CalendarData.Months)
 				month.OutputData.PrepareNotes();
-			using (var form = new FormSelectCalendar())
-			{
-				form.Text = "Calendar Slide Output";
-				form.pbLogo.Image = Resources.Calendar;
-				form.laTitle.Text = "You have several Calendars available for your presentation…";
-				form.buttonXCurrentPublication.Text = string.Format("Send ONLY {0} Calendar Slide to PowerPoint", selectedMonth.Date.ToString("MMMM, yyyy"));
-				form.buttonXSelectedPublications.Text = "Send all of the Selected Calendars to PowerPoint";
-				foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
-					form.checkedListBoxControlMonths.Items.Add(month, month.Date.ToString("MMMM, yyyy"), CheckState.Checked, true);
-				RegistryHelper.MainFormHandle = form.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var result = form.ShowDialog();
-				RegistryHelper.MaximizeMainForm = FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = FormMain.Handle;
-				if (result == DialogResult.Cancel) return;
-				IEnumerable<CalendarOutputData> outputData = null;
-				switch (result)
+			if (CalendarData.Months.Count > 1)
+				using (var form = new FormSelectOutputItems())
 				{
-					case DialogResult.Yes:
-						if (!selectedMonth.Days.Any(x => x.ContainsData || x.HasNotes) && !selectedMonth.OutputData.Notes.Any())
-							if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to send this slide to PowerPoint?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
-								return;
-						outputData = new[] { selectedMonth.OutputData };
-						break;
-					case DialogResult.No:
-						outputData = form.checkedListBoxControlMonths.Items.OfType<CheckedListBoxItem>().Where(it => it.CheckState == CheckState.Checked).Select(it => ((CalendarMonth)it.Value).OutputData);
-						break;
+					form.Text = "Select Months";
+					foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
+					{
+						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (month == currentMonth)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedMonths.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<CalendarMonth>());
 				}
-				PowerPointInternal(outputData);
-			}
+			else
+				selectedMonths.AddRange(CalendarData.Months);
+			if (!selectedMonths.Any()) return;
+			PowerPointInternal(selectedMonths.Select(m => m.OutputData));
 		}
 
 		public void Email()
 		{
 			if (MonthList.SelectedIndex < 0) return;
-			var selectedMonth = CalendarData.Months[MonthList.SelectedIndex];
+			var currentMonth = CalendarData.Months[MonthList.SelectedIndex];
+			var selectedMonths = new List<CalendarMonth>();
 			foreach (var month in CalendarData.Months)
 				month.OutputData.PrepareNotes();
-			using (var form = new FormSelectCalendar())
-			{
-				form.Text = "Calendar Email Output";
-				form.pbLogo.Image = Resources.EmailBig;
-				form.laTitle.Text = "You have several Calendars that can be ATTACHED to an email…";
-				form.buttonXCurrentPublication.Text = string.Format("Attach just the {0} Calendar Slide to my email message", selectedMonth.Date.ToString("MMMM, yyyy"));
-				form.buttonXSelectedPublications.Text = "Attach ALL Selected Calendars to my email message";
-				foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
-					form.checkedListBoxControlMonths.Items.Add(month, month.Date.ToString("MMMM, yyyy"), CheckState.Checked, true);
-				RegistryHelper.MainFormHandle = form.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var result = form.ShowDialog();
-				RegistryHelper.MaximizeMainForm = FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = FormMain.Handle;
-				if (result == DialogResult.Cancel) return;
-				IEnumerable<CalendarOutputData> outputData = null;
-				switch (result)
+			if (CalendarData.Months.Count > 1)
+				using (var form = new FormSelectOutputItems())
 				{
-					case DialogResult.Yes:
-						if (!selectedMonth.Days.Any(x => x.ContainsData || x.HasNotes) && !selectedMonth.OutputData.Notes.Any())
-							if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to email this slide?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
-								return;
-						outputData = new[] { selectedMonth.OutputData };
-						break;
-					case DialogResult.No:
-						outputData = form.checkedListBoxControlMonths.Items.OfType<CheckedListBoxItem>().Where(it => it.CheckState == CheckState.Checked).Select(it => ((CalendarMonth)it.Value).OutputData);
-						break;
+					form.Text = "Select Months";
+					foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
+					{
+						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (month == currentMonth)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedMonths.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<CalendarMonth>());
 				}
-				EmailInternal(outputData);
-			}
+			else
+				selectedMonths.AddRange(CalendarData.Months);
+			if (!selectedMonths.Any()) return;
+			EmailInternal(selectedMonths.Select(m => m.OutputData));
 		}
 
 		public void Preview()
 		{
 			if (MonthList.SelectedIndex < 0) return;
-			var selectedMonth = CalendarData.Months[MonthList.SelectedIndex];
+			var currentMonth = CalendarData.Months[MonthList.SelectedIndex];
+			var selectedMonths = new List<CalendarMonth>();
 			foreach (var month in CalendarData.Months)
 				month.OutputData.PrepareNotes();
-			using (var form = new FormSelectCalendar())
-			{
-				form.Text = "Calendar Preview";
-				form.pbLogo.Image = Resources.Preview;
-				form.laTitle.Text = "You have several Calendars available for preview…";
-				form.buttonXCurrentPublication.Text = string.Format("Preview just the {0} Calendar Slide", selectedMonth.Date.ToString("MMMM, yyyy"));
-				form.buttonXSelectedPublications.Text = "Preview ALL Selected Calendars";
-				foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
-					form.checkedListBoxControlMonths.Items.Add(month, month.Date.ToString("MMMM, yyyy"), CheckState.Checked, true);
-				RegistryHelper.MainFormHandle = form.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				var result = form.ShowDialog();
-				RegistryHelper.MaximizeMainForm = FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = FormMain.Handle;
-				if (result == DialogResult.Cancel) return;
-				IEnumerable<CalendarOutputData> outputData = null;
-				switch (result)
+			if (CalendarData.Months.Count > 1)
+				using (var form = new FormSelectOutputItems())
 				{
-					case DialogResult.Yes:
-						if (!selectedMonth.Days.Any(x => x.ContainsData || x.HasNotes) && !selectedMonth.OutputData.Notes.Any())
-							if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no records for {0}.\nDo you still want to preview this slide?", selectedMonth.Date.ToString("MMMM, yyyy"))) == DialogResult.No)
-								return;
-						outputData = new[] { selectedMonth.OutputData };
-						break;
-					case DialogResult.No:
-						outputData = form.checkedListBoxControlMonths.Items.OfType<CheckedListBoxItem>().Where(it => it.CheckState == CheckState.Checked).Select(it => ((CalendarMonth)it.Value).OutputData);
-						break;
+					form.Text = "Select Months";
+					foreach (var month in CalendarData.Months.Where(y => y.Days.Any(z => z.ContainsData || z.HasNotes) || y.OutputData.Notes.Any()))
+					{
+						var item = new CheckedListBoxItem(month, month.OutputData.MonthText);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (month == currentMonth)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedMonths.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<CalendarMonth>());
 				}
-				PreviewInternal(outputData);
-			}
+			else
+				selectedMonths.AddRange(CalendarData.Months);
+			if (!selectedMonths.Any()) return;
+			PreviewInternal(selectedMonths.Select(m => m.OutputData));
 		}
 		#endregion
 

@@ -16,6 +16,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.BandedGrid;
 using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
@@ -1041,7 +1042,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 				{
 					formPreview.Text = "Preview Schedule";
-					formPreview.PresentationFile = tempFileName;
+					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
 					RegistryHelper.MainFormHandle = formPreview.Handle;
 					RegistryHelper.MaximizeMainForm = false;
 					var previewResult = formPreview.ShowDialog();
@@ -1071,13 +1072,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				while (thread.IsAlive)
 					Application.DoEvents();
 				MediaSchedulePowerPointHelper.Instance.PrepareOneSheetEmailTableBased(tempFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
-				using (var formEmail = new FormEmail(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+				using (var formEmail = new FormEmail(MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
 				{
 					formEmail.Text = "Email this Schedule";
-					formEmail.PresentationFile = tempFileName;
+					formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 					RegistryHelper.MainFormHandle = formEmail.Handle;
 					RegistryHelper.MaximizeMainForm = false;
 					formEmail.ShowDialog();

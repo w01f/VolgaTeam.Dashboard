@@ -124,7 +124,7 @@ namespace NewBizWiz.Dashboard
 
 		public void ShowFloater(Form sender, Action afterShow)
 		{
-			var defaultText = String.Empty;
+			var defaultText = Core.Dashboard.SettingsManager.Instance.DashboardText;
 			var afterBack = new Action(ActivateMainForm);
 			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, MasterWizardManager.Instance.DefaultLogo, afterShow, null, afterBack);
 		}

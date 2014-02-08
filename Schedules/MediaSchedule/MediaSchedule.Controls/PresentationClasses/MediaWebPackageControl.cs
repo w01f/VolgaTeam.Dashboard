@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
@@ -114,7 +115,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Digital Package";
-				formPreview.PresentationFile = tempFileName;
+				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
 				RegistryHelper.MainFormHandle = formPreview.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				var previewResult = formPreview.ShowDialog();

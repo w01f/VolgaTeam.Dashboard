@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Slides;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
@@ -86,7 +87,7 @@ namespace NewBizWiz.Dashboard.TabSlides
 				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
 				{
 					formPreview.Text = "Preview Slides";
-					formPreview.PresentationFile = tempFileName;
+					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
 					RegistryHelper.MainFormHandle = formPreview.Handle;
 					RegistryHelper.MaximizeMainForm = false;
 					var previewResult = formPreview.ShowDialog();

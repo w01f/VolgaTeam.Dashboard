@@ -38,6 +38,9 @@ namespace NewBizWiz.OnlineSchedule.Controls.InteropClasses
 									switch (shape.Tags.Name(i))
 									{
 										#region Top Part
+										case "HEADER":
+											shape.TextFrame.TextRange.Text = String.Format(source.OutputData.Header, shape.TextFrame.TextRange.Text);
+											break;
 										case "WEBSITEURL":
 											shape.TextFrame.TextRange.Text = source.OutputData.Websites;
 											break;

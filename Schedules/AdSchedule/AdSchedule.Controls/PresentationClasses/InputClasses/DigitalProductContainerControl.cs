@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
@@ -52,7 +53,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			}));
 			if (!quickLoad)
 			{
-				labelControlFlightDates.Text = String.Format("Digital Campaign: {0}", LocalSchedule.FlightDates);
+				checkEditShowFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
 				bool temp = AllowApplyValues;
 				AllowApplyValues = false;
 				AllowApplyValues = temp;
@@ -170,12 +171,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			}
 		}
 
-		public override void ShowPreview(string tempFileName)
+		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups )
 		{
 			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Digital Product";
-				formPreview.PresentationFile = tempFileName;
+				formPreview.LoadGroups(previewGroups);
 				RegistryHelper.MainFormHandle = formPreview.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				var previewResult = formPreview.ShowDialog();

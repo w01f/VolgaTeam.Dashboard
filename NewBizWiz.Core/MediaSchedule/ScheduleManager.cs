@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Xml;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.Interop;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.Core.Calendar;
 
@@ -91,7 +92,9 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public static ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
 		{
-			return rootFolder.GetFiles("*.xml").Select(file => new ShortSchedule(file)).ToArray();
+			var scheduleList = rootFolder.GetFiles("*.xml").Select(file => new ShortSchedule(file)).ToList();
+			scheduleList.Sort((x, y) => WinAPIHelper.StrCmpLogicalW(x.ShortFileName, y.ShortFileName));
+			return scheduleList.ToArray();
 		}
 
 		public void RemoveInstance()

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Xml;
 using Microsoft.VisualBasic;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.Interop;
 using NewBizWiz.Core.OnlineSchedule;
 using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
@@ -39,7 +40,9 @@ namespace NewBizWiz.Core.Calendar
 
 		public static ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
 		{
-			return rootFolder.GetFiles("*.xml").Select(file => new ShortSchedule(file)).ToArray();
+			var scheduleList = rootFolder.GetFiles("*.xml").Select(file => new ShortSchedule(file)).ToList();
+			scheduleList.Sort((x, y) => WinAPIHelper.StrCmpLogicalW(x.ShortFileName, y.ShortFileName));
+			return scheduleList.ToArray();
 		}
 
 		public void CreateSchedule(string scheduleName)

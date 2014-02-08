@@ -14,6 +14,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
@@ -699,13 +700,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				formProgress.Show();
 				var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				OnlineSchedulePowerPointHelper.Instance.PrepareWebPackageEmail(this, tempFileName);
-				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				formProgress.Close();
 				if (File.Exists(tempFileName))
-					using (var formEmail = new FormEmail(_formContainer, OnlineSchedulePowerPointHelper.Instance, HelpManager))
+					using (var formEmail = new FormEmail(OnlineSchedulePowerPointHelper.Instance, HelpManager))
 					{
 						formEmail.Text = "Email this Online Schedule";
-						formEmail.PresentationFile = tempFileName;
+						formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+						Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 						RegistryHelper.MainFormHandle = formEmail.Handle;
 						RegistryHelper.MaximizeMainForm = false;
 						formEmail.ShowDialog();

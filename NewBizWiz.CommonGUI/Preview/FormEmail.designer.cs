@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.CommonGUI.ToolForms
+﻿namespace NewBizWiz.CommonGUI.Preview
 {
     partial class FormEmail
     {
@@ -28,25 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEmail));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.barManager = new DevExpress.XtraBars.BarManager();
+			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem6 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip9 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem9 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem9 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip10 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem10 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem10 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem7 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip8 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem8 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem8 = new DevExpress.Utils.ToolTipItem();
+			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
 			this.barOperations = new DevExpress.XtraBars.Bar();
 			this.barLargeButtonItemRegularEmail = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemLockedEmail = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -57,15 +55,9 @@
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-			this.pnNavigationArea = new System.Windows.Forms.Panel();
-			this.laSlideSize = new System.Windows.Forms.Label();
-			this.laSlideNumber = new System.Windows.Forms.Label();
-			this.comboBoxEditSlides = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
+			this.xtraTabControlGroups = new DevExpress.XtraTab.XtraTabControl();
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
-			this.pnNavigationArea.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlides.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlGroups)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// barManager
@@ -118,12 +110,12 @@
 			this.barLargeButtonItemRegularEmail.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.RegularEmail;
 			this.barLargeButtonItemRegularEmail.Id = 4;
 			this.barLargeButtonItemRegularEmail.Name = "barLargeButtonItemRegularEmail";
-			toolTipTitleItem1.Text = "Email PowerPoint file";
-			toolTipItem1.LeftIndent = 6;
-			toolTipItem1.Text = "Send this Online Schedule as a PowerPoint email attachment";
-			superToolTip1.Items.Add(toolTipTitleItem1);
-			superToolTip1.Items.Add(toolTipItem1);
-			this.barLargeButtonItemRegularEmail.SuperTip = superToolTip1;
+			toolTipTitleItem6.Text = "Email PowerPoint file";
+			toolTipItem6.LeftIndent = 6;
+			toolTipItem6.Text = "Send this Online Schedule as a PowerPoint email attachment";
+			superToolTip6.Items.Add(toolTipTitleItem6);
+			superToolTip6.Items.Add(toolTipItem6);
+			this.barLargeButtonItemRegularEmail.SuperTip = superToolTip6;
 			this.barLargeButtonItemRegularEmail.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemRegularEmail_ItemClick);
 			// 
 			// barLargeButtonItemLockedEmail
@@ -134,12 +126,12 @@
 			this.barLargeButtonItemLockedEmail.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.LockedEmail;
 			this.barLargeButtonItemLockedEmail.Id = 13;
 			this.barLargeButtonItemLockedEmail.Name = "barLargeButtonItemLockedEmail";
-			toolTipTitleItem2.Text = "Email Locked PowerPoint";
-			toolTipItem2.LeftIndent = 6;
-			toolTipItem2.Text = "Send this Online Schedule as a PowerPoint Image File that is locked for editing";
-			superToolTip2.Items.Add(toolTipTitleItem2);
-			superToolTip2.Items.Add(toolTipItem2);
-			this.barLargeButtonItemLockedEmail.SuperTip = superToolTip2;
+			toolTipTitleItem9.Text = "Email Locked PowerPoint";
+			toolTipItem9.LeftIndent = 6;
+			toolTipItem9.Text = "Send this Online Schedule as a PowerPoint Image File that is locked for editing";
+			superToolTip9.Items.Add(toolTipTitleItem9);
+			superToolTip9.Items.Add(toolTipItem9);
+			this.barLargeButtonItemLockedEmail.SuperTip = superToolTip9;
 			this.barLargeButtonItemLockedEmail.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemLockedEmail_ItemClick);
 			// 
 			// barLargeButtonItemPDFEmail
@@ -150,12 +142,12 @@
 			this.barLargeButtonItemPDFEmail.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.PDFEmail;
 			this.barLargeButtonItemPDFEmail.Id = 14;
 			this.barLargeButtonItemPDFEmail.Name = "barLargeButtonItemPDFEmail";
-			toolTipTitleItem3.Text = "Email as PDF";
-			toolTipItem3.LeftIndent = 6;
-			toolTipItem3.Text = "Send this Online Schedule as a PDF file email attachment";
-			superToolTip3.Items.Add(toolTipTitleItem3);
-			superToolTip3.Items.Add(toolTipItem3);
-			this.barLargeButtonItemPDFEmail.SuperTip = superToolTip3;
+			toolTipTitleItem10.Text = "Email as PDF";
+			toolTipItem10.LeftIndent = 6;
+			toolTipItem10.Text = "Send this Online Schedule as a PDF file email attachment";
+			superToolTip10.Items.Add(toolTipTitleItem10);
+			superToolTip10.Items.Add(toolTipItem10);
+			this.barLargeButtonItemPDFEmail.SuperTip = superToolTip10;
 			this.barLargeButtonItemPDFEmail.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemPDFEmail_ItemClick);
 			// 
 			// barLargeButtonItemHelp
@@ -165,12 +157,12 @@
 			this.barLargeButtonItemHelp.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.Help;
 			this.barLargeButtonItemHelp.Id = 6;
 			this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
-			toolTipTitleItem4.Text = "HELP";
-			toolTipItem4.LeftIndent = 6;
-			toolTipItem4.Text = "Help me understand how to Email my Schedules";
-			superToolTip4.Items.Add(toolTipTitleItem4);
-			superToolTip4.Items.Add(toolTipItem4);
-			this.barLargeButtonItemHelp.SuperTip = superToolTip4;
+			toolTipTitleItem7.Text = "HELP";
+			toolTipItem7.LeftIndent = 6;
+			toolTipItem7.Text = "Help me understand how to Email my Schedules";
+			superToolTip7.Items.Add(toolTipTitleItem7);
+			superToolTip7.Items.Add(toolTipItem7);
+			this.barLargeButtonItemHelp.SuperTip = superToolTip7;
 			this.barLargeButtonItemHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemHelp_ItemClick);
 			// 
 			// barLargeButtonItemExit
@@ -180,12 +172,12 @@
 			this.barLargeButtonItemExit.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.Exit;
 			this.barLargeButtonItemExit.Id = 7;
 			this.barLargeButtonItemExit.Name = "barLargeButtonItemExit";
-			toolTipTitleItem5.Text = "EXIT";
-			toolTipItem5.LeftIndent = 6;
-			toolTipItem5.Text = "Close this Window ";
-			superToolTip5.Items.Add(toolTipTitleItem5);
-			superToolTip5.Items.Add(toolTipItem5);
-			this.barLargeButtonItemExit.SuperTip = superToolTip5;
+			toolTipTitleItem8.Text = "EXIT";
+			toolTipItem8.LeftIndent = 6;
+			toolTipItem8.Text = "Close this Window ";
+			superToolTip8.Items.Add(toolTipTitleItem8);
+			superToolTip8.Items.Add(toolTipItem8);
+			this.barLargeButtonItemExit.SuperTip = superToolTip8;
 			this.barLargeButtonItemExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemExit_ItemClick);
 			// 
 			// barDockControlTop
@@ -216,80 +208,32 @@
 			this.barDockControlRight.Location = new System.Drawing.Point(934, 86);
 			this.barDockControlRight.Size = new System.Drawing.Size(0, 476);
 			// 
-			// pnNavigationArea
+			// xtraTabControlGroups
 			// 
-			this.pnNavigationArea.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pnNavigationArea.Controls.Add(this.laSlideSize);
-			this.pnNavigationArea.Controls.Add(this.laSlideNumber);
-			this.pnNavigationArea.Controls.Add(this.comboBoxEditSlides);
-			this.pnNavigationArea.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnNavigationArea.Location = new System.Drawing.Point(0, 495);
-			this.pnNavigationArea.Name = "pnNavigationArea";
-			this.pnNavigationArea.Size = new System.Drawing.Size(934, 67);
-			this.pnNavigationArea.TabIndex = 4;
-			// 
-			// laSlideSize
-			// 
-			this.laSlideSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.laSlideSize.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laSlideSize.Location = new System.Drawing.Point(687, 0);
-			this.laSlideSize.Name = "laSlideSize";
-			this.laSlideSize.Size = new System.Drawing.Size(240, 32);
-			this.laSlideSize.TabIndex = 8;
-			this.laSlideSize.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// laSlideNumber
-			// 
-			this.laSlideNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.laSlideNumber.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laSlideNumber.Location = new System.Drawing.Point(690, 32);
-			this.laSlideNumber.Name = "laSlideNumber";
-			this.laSlideNumber.Size = new System.Drawing.Size(237, 31);
-			this.laSlideNumber.TabIndex = 6;
-			this.laSlideNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// comboBoxEditSlides
-			// 
-			this.comboBoxEditSlides.EditValue = "";
-			this.comboBoxEditSlides.Location = new System.Drawing.Point(373, 4);
-			this.comboBoxEditSlides.MenuManager = this.barManager;
-			this.comboBoxEditSlides.Name = "comboBoxEditSlides";
-			this.comboBoxEditSlides.Properties.Appearance.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.comboBoxEditSlides.Properties.Appearance.Options.UseFont = true;
-			this.comboBoxEditSlides.Properties.Appearance.Options.UseTextOptions = true;
-			this.comboBoxEditSlides.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.comboBoxEditSlides.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.comboBoxEditSlides.Properties.AppearanceDropDown.Options.UseFont = true;
-			this.comboBoxEditSlides.Properties.AppearanceDropDown.Options.UseTextOptions = true;
-			this.comboBoxEditSlides.Properties.AppearanceDropDown.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.comboBoxEditSlides.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("comboBoxEditSlides.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("comboBoxEditSlides.Properties.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
-			this.comboBoxEditSlides.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditSlides.Size = new System.Drawing.Size(184, 54);
-			this.comboBoxEditSlides.TabIndex = 5;
-			this.comboBoxEditSlides.SelectedIndexChanged += new System.EventHandler(this.comboBoxEditSlides_SelectedIndexChanged);
-			this.comboBoxEditSlides.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.comboBoxEditSlides_ButtonClick);
-			// 
-			// pictureBoxPreview
-			// 
-			this.pictureBoxPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pictureBoxPreview.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pictureBoxPreview.Location = new System.Drawing.Point(0, 86);
-			this.pictureBoxPreview.Name = "pictureBoxPreview";
-			this.pictureBoxPreview.Size = new System.Drawing.Size(934, 409);
-			this.pictureBoxPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pictureBoxPreview.TabIndex = 5;
-			this.pictureBoxPreview.TabStop = false;
+			this.xtraTabControlGroups.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlGroups.Appearance.Options.UseFont = true;
+			this.xtraTabControlGroups.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlGroups.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControlGroups.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlGroups.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControlGroups.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlGroups.AppearancePage.HeaderDisabled.Options.UseFont = true;
+			this.xtraTabControlGroups.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlGroups.AppearancePage.HeaderHotTracked.Options.UseFont = true;
+			this.xtraTabControlGroups.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlGroups.AppearancePage.PageClient.Options.UseFont = true;
+			this.xtraTabControlGroups.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.xtraTabControlGroups.Location = new System.Drawing.Point(0, 86);
+			this.xtraTabControlGroups.Name = "xtraTabControlGroups";
+			this.xtraTabControlGroups.Size = new System.Drawing.Size(934, 476);
+			this.xtraTabControlGroups.TabIndex = 11;
 			// 
 			// FormEmail
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.ClientSize = new System.Drawing.Size(934, 562);
-			this.Controls.Add(this.pictureBoxPreview);
-			this.Controls.Add(this.pnNavigationArea);
+			this.Controls.Add(this.xtraTabControlGroups);
 			this.Controls.Add(this.barDockControlLeft);
 			this.Controls.Add(this.barDockControlRight);
 			this.Controls.Add(this.barDockControlBottom);
@@ -301,12 +245,8 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Email this Basic Overview";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormQuickView_FormClosed);
-			this.Shown += new System.EventHandler(this.FormQuickView_Shown);
-			this.Resize += new System.EventHandler(this.FormQuickView_Resize);
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
-			this.pnNavigationArea.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlides.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlGroups)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -321,14 +261,10 @@
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemRegularEmail;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemHelp;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemExit;
-        private System.Windows.Forms.Panel pnNavigationArea;
-        private System.Windows.Forms.Label laSlideSize;
-        private System.Windows.Forms.Label laSlideNumber;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSlides;
-        private System.Windows.Forms.PictureBox pictureBoxPreview;
+		private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemExit;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemLockedEmail;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemPDFEmail;
+		private DevExpress.XtraTab.XtraTabControl xtraTabControlGroups;
 
     }
 }

@@ -71,6 +71,13 @@
     <Compile Include="Floater\FormFloater.designer.cs">
       <DependentUpon>FormFloater.cs</DependentUpon>
     </Compile>
+    <Compile Include="Preview\PreviewGroup.cs" />
+    <Compile Include="Preview\PreviewGroupControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Preview\PreviewGroupControl.Designer.cs">
+      <DependentUpon>PreviewGroupControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -107,10 +114,10 @@
     <Compile Include="Themes\ThemeContainerControl.Designer.cs">
       <DependentUpon>ThemeContainerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormEmail.cs">
+    <Compile Include="Preview\FormEmail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ToolForms\FormEmail.designer.cs">
+    <Compile Include="Preview\FormEmail.designer.cs">
       <DependentUpon>FormEmail.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormEmailFileName.cs">
@@ -125,10 +132,10 @@
     <Compile Include="ToolForms\FormImageGallery.Designer.cs">
       <DependentUpon>FormImageGallery.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormPreview.cs">
+    <Compile Include="Preview\FormPreview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ToolForms\FormPreview.designer.cs">
+    <Compile Include="Preview\FormPreview.designer.cs">
       <DependentUpon>FormPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormProgress.cs">
@@ -137,10 +144,19 @@
     <Compile Include="ToolForms\FormProgress.Designer.cs">
       <DependentUpon>FormProgress.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolForms\FormSelectOutputItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormSelectOutputItems.Designer.cs">
+      <DependentUpon>FormSelectOutputItems.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Floater\FormFloater.resx">
       <DependentUpon>FormFloater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preview\PreviewGroupControl.resx">
+      <DependentUpon>PreviewGroupControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -163,7 +179,7 @@
     <EmbeddedResource Include="Themes\ThemeContainerControl.resx">
       <DependentUpon>ThemeContainerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormEmail.resx">
+    <EmbeddedResource Include="Preview\FormEmail.resx">
       <DependentUpon>FormEmail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormEmailFileName.resx">
@@ -172,11 +188,14 @@
     <EmbeddedResource Include="ToolForms\FormImageGallery.resx">
       <DependentUpon>FormImageGallery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormPreview.resx">
+    <EmbeddedResource Include="Preview\FormPreview.resx">
       <DependentUpon>FormPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormSelectOutputItems.resx">
+      <DependentUpon>FormSelectOutputItems.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

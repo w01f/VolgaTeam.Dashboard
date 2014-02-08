@@ -6,11 +6,14 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
+using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
 using NewBizWiz.OnlineSchedule.Controls.ToolForms;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
@@ -66,7 +69,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		protected void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
 		{
-			labelControlFlightDates.Focus();
+			checkEditShowCategory.Focus();
 		}
 
 		public void LoadProduct(DigitalProductControl productControl)
@@ -77,6 +80,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			AllowApplyValues = false;
 
 			var product = productControl.Product;
+
+			checkEditShowCategory.Checked = product.ShowFlightDates;
+			checkEditShowCategory.Text = String.Format("Strategy: {0}", product.Category);
+			checkEditShowFlightDates.Checked = product.ShowFlightDates;
+
 			checkEditDuration.Checked = product.ShowDuration;
 			switch (product.DurationType)
 			{
@@ -107,6 +115,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		protected void SaveProduct(DigitalProductControl productControl)
 		{
 			if (productControl == null) return;
+
+			productControl.Product.ShowCategory = checkEditShowCategory.Checked;
+			productControl.Product.ShowFlightDates = checkEditShowFlightDates.Checked;
+
 			SaveDurationCheckboxValues(productControl);
 			productControl.Product.DurationValue = spinEditDuration.EditValue != null ? (int?)spinEditDuration.Value : null;
 		}
@@ -212,13 +224,44 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 			if (!AllowApplyValues) return;
 			SaveDurationCheckboxValues(xtraTabControlProducts.SelectedTabPage as DigitalProductControl);
+		}
 
+		private void checkEditProductTogle_CheckedChanged(object sender, EventArgs e)
+		{
+			if (!AllowApplyValues) return;
+			SettingsNotSaved = true;
 		}
 
 		public void PowerPoint_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
-			OutputSlides(_tabPages);
+			var selectedTabPages = new List<DigitalProductControl>();
+			if (_tabPages.Count > 1)
+			{
+				using (var form = new FormSelectOutputItems())
+				{
+					form.Text = "Select Digital Products";
+					var currentProduct = xtraTabControlProducts.SelectedTabPage as DigitalProductControl;
+					foreach (var tabPage in _tabPages)
+					{
+						var item = new CheckedListBoxItem(tabPage, tabPage.Product.Name);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (tabPage == currentProduct)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedTabPages.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<DigitalProductControl>());
+				}
+			}
+			else
+				selectedTabPages.AddRange(_tabPages);
+			if (!selectedTabPages.Any()) return;
+			OutputSlides(selectedTabPages);
 		}
 
 		public abstract void OutputSlides(IEnumerable<DigitalProductControl> tabsForOutput);
@@ -226,47 +269,109 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public void Email_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
+			var selectedTabPages = new List<DigitalProductControl>();
+			if (_tabPages.Count > 1)
+			{
+				using (var form = new FormSelectOutputItems())
+				{
+					form.Text = "Select Digital Products";
+					var currentProduct = xtraTabControlProducts.SelectedTabPage as DigitalProductControl;
+					foreach (var tabPage in _tabPages)
+					{
+						var item = new CheckedListBoxItem(tabPage, tabPage.Product.Name);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (tabPage == currentProduct)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedTabPages.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<DigitalProductControl>());
+				}
+			}
+			else
+				selectedTabPages.AddRange(_tabPages);
+			if (!selectedTabPages.Any()) return;
+			var previewGroups = new List<PreviewGroup>();
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				var tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
-				OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, _tabPages.Select(t => t.Product).ToArray(), SelectedTheme);
-				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
+				foreach (var productControl in selectedTabPages)
+				{
+					var previewGroup = productControl.GetPreviewGroup();
+					OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, new[] { productControl.Product }, SelectedTheme);
+					previewGroups.Add(previewGroup);
+				}
 				formProgress.Close();
-				if (File.Exists(tempFileName))
-					using (var formEmail = new FormEmail(_formContainer, OnlineSchedulePowerPointHelper.Instance, HelpManager))
-					{
-						formEmail.Text = "Email this Online Schedule";
-						formEmail.PresentationFile = tempFileName;
-						RegistryHelper.MainFormHandle = formEmail.Handle;
-						RegistryHelper.MaximizeMainForm = false;
-						formEmail.ShowDialog();
-						RegistryHelper.MaximizeMainForm = true;
-						RegistryHelper.MainFormHandle = _formContainer.Handle;
-					}
+			}
+			if (!previewGroups.Any() || !previewGroups.All(pg => File.Exists(pg.PresentationSourcePath))) return;
+			using (var formEmail = new FormEmail(OnlineSchedulePowerPointHelper.Instance, HelpManager))
+			{
+				formEmail.Text = "Email this Online Schedule";
+				formEmail.LoadGroups(previewGroups);
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				RegistryHelper.MainFormHandle = formEmail.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				formEmail.ShowDialog();
+				RegistryHelper.MaximizeMainForm = true;
+				RegistryHelper.MainFormHandle = _formContainer.Handle;
 			}
 		}
 
 		public void Preview_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
+			var selectedTabPages = new List<DigitalProductControl>();
+			if (_tabPages.Count > 1)
+			{
+				using (var form = new FormSelectOutputItems())
+				{
+					form.Text = "Select Digital Products";
+					var currentProduct = xtraTabControlProducts.SelectedTabPage as DigitalProductControl;
+					foreach (var tabPage in _tabPages)
+					{
+						var item = new CheckedListBoxItem(tabPage, tabPage.Product.Name);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (tabPage == currentProduct)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedTabPages.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<DigitalProductControl>());
+				}
+			}
+			else
+				selectedTabPages.AddRange(_tabPages);
+			if (!selectedTabPages.Any()) return;
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				var tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
-				OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(tempFileName, _tabPages.Select(t => t.Product).ToArray(), SelectedTheme);
+				var previewGroups = new List<PreviewGroup>();
+				foreach (var productControl in selectedTabPages)
+				{
+					var previewGroup = productControl.GetPreviewGroup();
+					OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, new[] { productControl.Product }, SelectedTheme);
+					previewGroups.Add(previewGroup);
+				}
 				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				formProgress.Close();
-				if (File.Exists(tempFileName))
-					ShowPreview(tempFileName);
+				if (previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))
+					ShowPreview(previewGroups);
 			}
 		}
 
-		public abstract void ShowPreview(string tempFileName);
+		public abstract void ShowPreview(IEnumerable<PreviewGroup> previewGroups);
 
 		#region Picture Box Clicks Habdlers
 		/// <summary>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,6 +22,7 @@ namespace NewBizWiz.Core.Dashboard
 			IconPath = string.Format(@"{0}\newlocaldirect.com\app\tab2icon.ico", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\DashboardHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			DashboardCode = String.Empty;
+			DashboardText = "GO GET YOUR BIZ!";
 			DashboardSaveFolder = string.Empty;
 			ThemeManager = new ThemeManager(Path.Combine(Common.SettingsManager.Instance.ThemeCollectionPath, Common.SettingsManager.Instance.SlideMasterFolder));
 			SlideManager = new SlideManager(Common.SettingsManager.Instance.SlideMastersPath);
@@ -32,6 +32,7 @@ namespace NewBizWiz.Core.Dashboard
 		public string HelpLinksPath { get; set; }
 		public string DashboardSaveFolder { get; set; }
 		public string DashboardCode { get; set; }
+		public string DashboardText { get; set; }
 		public string IconPath { get; set; }
 		public ThemeManager ThemeManager { get; private set; }
 		public SlideManager SlideManager { get; private set; }
@@ -96,17 +97,20 @@ namespace NewBizWiz.Core.Dashboard
 
 		private void LoadDashdoardCode()
 		{
-			string dashboardCodePath = Path.Combine(Application.StartupPath, DashboardCodeFile);
-			if (File.Exists(dashboardCodePath))
-			{
-				var document = new XmlDocument();
-				document.Load(dashboardCodePath);
+			var dashboardCodePath = Path.Combine(Application.StartupPath, DashboardCodeFile);
+			if (!File.Exists(dashboardCodePath)) return;
+			var document = new XmlDocument();
+			document.Load(dashboardCodePath);
 
-				XmlNode node = document.SelectSingleNode(@"/Settings/dashboard/DashboardCode");
-				if (node != null)
-				{
-					DashboardCode = node.InnerText.Trim().ToLower();
-				}
+			var node = document.SelectSingleNode(@"/Settings/dashboard/DashboardCode");
+			if (node != null)
+			{
+				DashboardCode = node.InnerText.Trim().ToLower();
+			}
+			node = document.SelectSingleNode(@"/Settings/dashboard/Group1");
+			if (node != null)
+			{
+				DashboardText = node.InnerText.Trim();
 			}
 		}
 	}

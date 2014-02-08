@@ -9,6 +9,7 @@ using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.InteropClasses;
 using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Views.GridView;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
@@ -153,23 +154,32 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		protected override void EmailInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
-			var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+			var previewGroups = new List<PreviewGroup>();
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Calendar for Email...";
 				formProgress.TopMost = true;
 				formProgress.Show();
 				Enabled = false;
-				CalendarPowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, outputData.ToArray());
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				foreach (var outputItem in outputData)
+				{
+					var previewGroup = new PreviewGroup
+					{
+						Name = outputItem.MonthText,
+						PresentationSourcePath = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+					};
+					CalendarPowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+					previewGroups.Add(previewGroup);
+				}
 				Enabled = true;
 				formProgress.Close();
 			}
-			if (!File.Exists(tempFileName)) return;
-			using (var formEmail = new FormEmail(FormMain, CalendarPowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
+			using (var formEmail = new FormEmail(CalendarPowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Calendar";
-				formEmail.PresentationFile = tempFileName;
+				formEmail.LoadGroups(previewGroups);
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				RegistryHelper.MainFormHandle = formEmail.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				formEmail.ShowDialog();
@@ -181,23 +191,32 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		protected override void PreviewInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
-			var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+			var previewGroups = new List<PreviewGroup>();
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Calendar for Preview...";
 				formProgress.TopMost = true;
 				formProgress.Show();
 				Enabled = false;
-				CalendarPowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, outputData.ToArray());
+				foreach (var outputItem in outputData)
+				{
+					var previewGroup = new PreviewGroup
+					{
+						Name = outputItem.MonthText,
+						PresentationSourcePath = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+					};
+					CalendarPowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+					previewGroups.Add(previewGroup);
+				}
 				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				Enabled = true;
 				formProgress.Close();
 			}
-			if (!File.Exists(tempFileName)) return;
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
 			using (var formPreview = new FormPreview(Controller.Instance.FormMain, CalendarPowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview this Calendar";
-				formPreview.PresentationFile = tempFileName;
+				formPreview.LoadGroups(previewGroups);
 				RegistryHelper.MainFormHandle = formPreview.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				var previewResult = formPreview.ShowDialog();

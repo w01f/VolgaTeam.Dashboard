@@ -5,11 +5,14 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.Design;
+using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
 using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
@@ -44,9 +47,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			Controller.Instance.BasicOverviewDigitalLegend.Image = Controller.Instance.BasicOverviewDigitalLegend.Enabled && !LocalSchedule.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Enabled ? Resources.DigitalDisabled : Resources.Digital;
-			Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.BasicOverviewDigitalLegend, new SuperTooltipInfo("Digital Products", "", 
-				Controller.Instance.BasicOverviewDigitalLegend.Enabled && LocalSchedule.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Enabled?
-				"Digital Products are Enabled for this slide":
+			Controller.Instance.Supertip.SetSuperTooltip(Controller.Instance.BasicOverviewDigitalLegend, new SuperTooltipInfo("Digital Products", "",
+				Controller.Instance.BasicOverviewDigitalLegend.Enabled && LocalSchedule.ViewSettings.BasicOverviewViewSettings.DigitalLegend.Enabled ?
+				"Digital Products are Enabled for this slide" :
 				"Digital Products are Disabled for this slide"
 				, null, null, eTooltipColor.Gray));
 			FormThemeSelector.Link(Controller.Instance.BasicOverviewTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintBasicOverview), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintBasicOverview), (t =>
@@ -158,175 +161,155 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void PrintOutput()
 		{
-			using (var form = new FormSelectPublication())
-			{
-				form.Text = "Basic Overview Slide Output";
-				form.pbLogo.Image = Resources.AdNoteNormal;
-				form.laTitle.Text = "You have Several Publications in this Basic Overview Summary…";
-				form.buttonXCurrentPublication.Text = "Send just the Current Publication Overview to my PowerPoint presentation";
-				form.buttonXSelectedPublications.Text = "Send all Selected Publications to my PowerPoint presentation";
-				foreach (var tabPage in _tabPages)
-					if (tabPage.PageEnabled)
-						form.checkedListBoxControlPublications.Items.Add(tabPage.PrintProduct.UniqueID, tabPage.PrintProduct.Name, CheckState.Checked, true);
-				var result = DialogResult.Yes;
-				if (form.checkedListBoxControlPublications.Items.Count > 1)
+			var tabPages = _tabPages.Where(tabPage => tabPage.PageEnabled);
+			var selectedProducts = new List<PublicationBasicOverviewControl>();
+			if (tabPages.Count() > 1)
+				using (var form = new FormSelectOutputItems())
 				{
-					RegistryHelper.MainFormHandle = form.Handle;
-					RegistryHelper.MaximizeMainForm = false;
-					result = form.ShowDialog();
-					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-					if (result == DialogResult.Cancel)
-						return;
-				}
-				using (var formProgress = new FormProgress())
-				{
-					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-					formProgress.TopMost = true;
-					Controller.Instance.ShowFloater(() =>
+					form.Text = "Select Products";
+					var currentProduct = xtraTabControlPublications.SelectedTabPage as PublicationBasicOverviewControl;
+					foreach (var tabPage in tabPages)
 					{
-						formProgress.Show();
-						if (result == DialogResult.Yes)
-							(xtraTabControlPublications.TabPages[xtraTabControlPublications.SelectedTabPageIndex] as PublicationBasicOverviewControl).PrintOutput();
-						else if (result == DialogResult.No)
-						{
-							foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
-							{
-								if (item.CheckState != CheckState.Checked) continue;
-								var tabPage = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(item.Value));
-								if (tabPage != null)
-									tabPage.PrintOutput();
-							}
-						}
-						formProgress.Close();
-					});
+						var item = new CheckedListBoxItem(tabPage, tabPage.PrintProduct.Name);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (tabPage == currentProduct)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedProducts.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<PublicationBasicOverviewControl>());
 				}
+			else
+				selectedProducts.AddRange(tabPages);
+			if (!selectedProducts.Any()) return;
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.Show();
+					foreach (var product in selectedProducts)
+						product.PrintOutput();
+					formProgress.Close();
+				});
 			}
 		}
 
+
 		public void Email()
 		{
-			using (var form = new FormSelectPublication())
-			{
-				form.Text = "Basic Overview Email Output";
-				form.pbLogo.Image = Resources.EmailBig;
-				form.laTitle.Text = "You have Several Publications in this Basic Overview Summary…";
-				form.buttonXCurrentPublication.Text = "Attach just the Current Publication Overview to my Outlook Email Message";
-				form.buttonXSelectedPublications.Text = "Attach all Selected Publications to my Outlook Email Message";
-				foreach (PublicationBasicOverviewControl tabPage in _tabPages)
-					if (tabPage.PageEnabled)
-						form.checkedListBoxControlPublications.Items.Add(tabPage.PrintProduct.UniqueID, tabPage.PrintProduct.Name, CheckState.Checked, true);
-				var result = DialogResult.Yes;
-				if (form.checkedListBoxControlPublications.Items.Count > 1)
+			var tabPages = _tabPages.Where(tabPage => tabPage.PageEnabled);
+			var selectedProducts = new List<PublicationBasicOverviewControl>();
+			if (tabPages.Count() > 1)
+				using (var form = new FormSelectOutputItems())
 				{
-					RegistryHelper.MainFormHandle = form.Handle;
-					RegistryHelper.MaximizeMainForm = false;
-					result = form.ShowDialog();
-					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-					if (result == DialogResult.Cancel)
-						return;
-				}
-				using (var formProgress = new FormProgress())
-				{
-					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
-					formProgress.TopMost = true;
-					formProgress.Show();
-					string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
-					if (result == DialogResult.Yes)
-						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(tempFileName, new[] { xtraTabControlPublications.TabPages[xtraTabControlPublications.SelectedTabPageIndex] as PublicationBasicOverviewControl });
-					else if (result == DialogResult.No)
+					form.Text = "Select Products";
+					var currentProduct = xtraTabControlPublications.SelectedTabPage as PublicationBasicOverviewControl;
+					foreach (var tabPage in tabPages)
 					{
-						var emailPages = new List<PublicationBasicOverviewControl>();
-						foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
-						{
-							if (item.CheckState == CheckState.Checked)
-							{
-								PublicationBasicOverviewControl tabPage = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(item.Value)).FirstOrDefault();
-								if (tabPage != null)
-									emailPages.Add(tabPage);
-							}
-						}
-						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(tempFileName, emailPages.ToArray());
+						var item = new CheckedListBoxItem(tabPage, tabPage.PrintProduct.Name);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (tabPage == currentProduct)
+							form.buttonXSelectCurrent.Tag = item;
 					}
-					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-					formProgress.Close();
-					if (File.Exists(tempFileName))
-						using (var formEmail = new FormEmail(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
-						{
-							formEmail.Text = "Email this Basic Overview";
-							formEmail.PresentationFile = tempFileName;
-							RegistryHelper.MainFormHandle = formEmail.Handle;
-							RegistryHelper.MaximizeMainForm = false;
-							formEmail.ShowDialog();
-							RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-							RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-						}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedProducts.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<PublicationBasicOverviewControl>());
 				}
+			else
+				selectedProducts.AddRange(tabPages);
+			if (!selectedProducts.Any()) return;
+			var previewGroups = new List<PreviewGroup>();
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
+				formProgress.TopMost = true;
+				formProgress.Show();
+				foreach (var productControl in selectedProducts)
+				{
+					var previewGroup = productControl.GetPreviewGroup();
+					AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(previewGroup.PresentationSourcePath, new[] { productControl });
+					previewGroups.Add(previewGroup);
+				}
+				formProgress.Close();
+			}
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
+			using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			{
+				formEmail.Text = "Email this Basic Overview";
+				formEmail.LoadGroups(previewGroups);
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				RegistryHelper.MainFormHandle = formEmail.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				formEmail.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 			}
 		}
 
 		public void Preview()
 		{
-			using (var form = new FormSelectPublication())
-			{
-				form.Text = "Basic Overview Output Preview";
-				form.pbLogo.Image = Resources.Preview;
-				form.laTitle.Text = "You have Several Publications in this Basic Overview Summary…";
-				form.buttonXCurrentPublication.Text = "Preview just the Current Publication Overview";
-				form.buttonXSelectedPublications.Text = "Preview all Selected Publications";
-				foreach (PublicationBasicOverviewControl tabPage in _tabPages)
-					if (tabPage.PageEnabled)
-						form.checkedListBoxControlPublications.Items.Add(tabPage.PrintProduct.UniqueID, tabPage.PrintProduct.Name, CheckState.Checked, true);
-				var result = DialogResult.Yes;
-				if (form.checkedListBoxControlPublications.Items.Count > 1)
+			var tabPages = _tabPages.Where(tabPage => tabPage.PageEnabled);
+			var selectedProducts = new List<PublicationBasicOverviewControl>();
+			if (tabPages.Count() > 1)
+				using (var form = new FormSelectOutputItems())
 				{
-					RegistryHelper.MainFormHandle = form.Handle;
-					RegistryHelper.MaximizeMainForm = false;
-					result = form.ShowDialog();
-					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-					if (result == DialogResult.Cancel)
-						return;
-				}
-				using (var formProgress = new FormProgress())
-				{
-					formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
-					formProgress.TopMost = true;
-					formProgress.Show();
-					string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
-					if (result == DialogResult.Yes)
-						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(tempFileName, new[] { xtraTabControlPublications.TabPages[xtraTabControlPublications.SelectedTabPageIndex] as PublicationBasicOverviewControl });
-					else if (result == DialogResult.No)
+					form.Text = "Select Products";
+					var currentProduct = xtraTabControlPublications.SelectedTabPage as PublicationBasicOverviewControl;
+					foreach (var tabPage in tabPages)
 					{
-						var emailPages = new List<PublicationBasicOverviewControl>();
-						foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
-						{
-							if (item.CheckState == CheckState.Checked)
-							{
-								PublicationBasicOverviewControl tabPage = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(item.Value)).FirstOrDefault();
-								if (tabPage != null)
-									emailPages.Add(tabPage);
-							}
-						}
-						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(tempFileName, emailPages.ToArray());
+						var item = new CheckedListBoxItem(tabPage, tabPage.PrintProduct.Name);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (tabPage == currentProduct)
+							form.buttonXSelectCurrent.Tag = item;
 					}
-					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-					formProgress.Close();
-					if (File.Exists(tempFileName))
-						using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
-						{
-							formPreview.Text = "Preview Basic Overview";
-							formPreview.PresentationFile = tempFileName;
-							RegistryHelper.MainFormHandle = formPreview.Handle;
-							RegistryHelper.MaximizeMainForm = false;
-							DialogResult previewResult = formPreview.ShowDialog();
-							RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-							RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-							if (previewResult != DialogResult.OK)
-								Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-						}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedProducts.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<PublicationBasicOverviewControl>());
 				}
+			else
+				selectedProducts.AddRange(tabPages);
+			if (!selectedProducts.Any()) return;
+			var previewGroups = new List<PreviewGroup>();
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
+				formProgress.TopMost = true;
+				formProgress.Show();
+				foreach (var productControl in selectedProducts)
+				{
+					var previewGroup = productControl.GetPreviewGroup();
+					AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(previewGroup.PresentationSourcePath, new[] { productControl });
+					previewGroups.Add(previewGroup);
+				}
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				formProgress.Close();
+			}
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			{
+				formPreview.Text = "Preview Basic Overview";
+				formPreview.LoadGroups(previewGroups);
+				RegistryHelper.MainFormHandle = formPreview.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				DialogResult previewResult = formPreview.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+				if (previewResult != DialogResult.OK)
+					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			}
 		}
 		#endregion

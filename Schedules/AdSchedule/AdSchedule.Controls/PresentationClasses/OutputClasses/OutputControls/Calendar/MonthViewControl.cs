@@ -9,9 +9,10 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
 using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
+using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
@@ -187,8 +188,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				string result = string.Empty;
-				CalendarTemplate template = BusinessWrapper.Instance.OutputManager.CalendarTemplates.Where(x => x.IsLarge == _settings.Parent.ShowBigDate && x.HasLogo == _settings.Parent.ShowLogo && x.Color.ToLower().Equals(_settings.Parent.SlideColor) && x.Month.ToLower().Equals(_settings.Month.ToString("MMM-yy").ToLower())).FirstOrDefault();
+				var result = string.Empty;
+				var template = BusinessWrapper.Instance.OutputManager.CalendarTemplates.FirstOrDefault(x => x.IsLarge == _settings.Parent.ShowBigDate && x.HasLogo == _settings.Parent.ShowLogo && x.Color.ToLower().Equals(_settings.Parent.SlideColor) && x.Month.ToLower().Equals(_settings.Month.ToString("MMM-yy").ToLower()));
 				if (template != null)
 					result = template.TemplateName;
 				return result;
@@ -229,14 +230,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				string result = string.Empty;
-				CalendarTemplate template = BusinessWrapper.Instance.OutputManager.CalendarTemplates.Where(x => x.IsLarge == _settings.Parent.ShowBigDate && x.HasLogo == _settings.Parent.ShowLogo && x.Color.ToLower().Equals(_settings.Parent.SlideColor) && x.Month.ToLower().Equals(_settings.Month.ToString("MMM-yy").ToLower())).FirstOrDefault();
+				var result = string.Empty;
+				var template = BusinessWrapper.Instance.OutputManager.CalendarTemplates.FirstOrDefault(x => x.IsLarge == _settings.Parent.ShowBigDate && x.HasLogo == _settings.Parent.ShowLogo && x.Color.ToLower().Equals(_settings.Parent.SlideColor) && x.Month.ToLower().Equals(_settings.Month.ToString("MMM-yy").ToLower()));
 				if (template != null)
 					result = template.SlideMaster;
 				return result;
 			}
 		}
-
 
 		public string LogoFile
 		{
@@ -372,6 +372,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public DateTime OutputMonth
 		{
 			get { return _settings.Month; }
+		}
+
+		public PreviewGroup GetPreviewGroup()
+		{
+			return new PreviewGroup
+			{
+				Name = MonthText,
+				PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+			};
 		}
 
 		public void PrintOutput()

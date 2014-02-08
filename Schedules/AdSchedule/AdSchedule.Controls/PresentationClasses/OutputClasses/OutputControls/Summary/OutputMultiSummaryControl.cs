@@ -13,6 +13,7 @@ using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
@@ -467,21 +468,21 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				AdSchedulePowerPointHelper.Instance.PrepareMultiSummaryEmail(tempFileName);
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
-				if (File.Exists(tempFileName))
-					using (var formEmail = new FormEmail(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
-					{
-						formEmail.Text = "Email this Multi-Publication Analysis";
-						formEmail.PresentationFile = tempFileName;
-						RegistryHelper.MainFormHandle = formEmail.Handle;
-						RegistryHelper.MaximizeMainForm = false;
-						formEmail.ShowDialog();
-						RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-						RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-					}
+				if (!File.Exists(tempFileName)) return;
+				using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+				{
+					formEmail.Text = "Email this Multi-Publication Analysis";
+					formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+					RegistryHelper.MainFormHandle = formEmail.Handle;
+					RegistryHelper.MaximizeMainForm = false;
+					formEmail.ShowDialog();
+					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+				}
 			}
 		}
 
@@ -496,19 +497,19 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				AdSchedulePowerPointHelper.Instance.PrepareMultiSummaryEmail(tempFileName);
 				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
-				if (File.Exists(tempFileName))
-					using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
-					{
-						formPreview.Text = "Preview Multi-Publication Analysis";
-						formPreview.PresentationFile = tempFileName;
-						RegistryHelper.MainFormHandle = formPreview.Handle;
-						RegistryHelper.MaximizeMainForm = false;
-						DialogResult previewResult = formPreview.ShowDialog();
-						RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-						RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-						if (previewResult != DialogResult.OK)
-							Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-					}
+				if (!File.Exists(tempFileName)) return;
+				using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+				{
+					formPreview.Text = "Preview Multi-Publication Analysis";
+					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+					RegistryHelper.MainFormHandle = formPreview.Handle;
+					RegistryHelper.MaximizeMainForm = false;
+					DialogResult previewResult = formPreview.ShowDialog();
+					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+					if (previewResult != DialogResult.OK)
+						Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				}
 			}
 		}
 		#endregion

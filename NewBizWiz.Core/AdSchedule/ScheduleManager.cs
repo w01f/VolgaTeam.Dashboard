@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.Interop;
 using NewBizWiz.Core.OnlineSchedule;
 
 namespace NewBizWiz.Core.AdSchedule
@@ -98,12 +99,8 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public static ShortSchedule[] GetShortScheduleList(DirectoryInfo rootFolder)
 		{
-			var scheduleList = new List<ShortSchedule>();
-			foreach (FileInfo file in rootFolder.GetFiles("*.xml"))
-			{
-				var schedule = new ShortSchedule(file);
-				scheduleList.Add(schedule);
-			}
+			var scheduleList = rootFolder.GetFiles("*.xml").Select(file => new ShortSchedule(file)).ToList();
+			scheduleList.Sort((x, y) => WinAPIHelper.StrCmpLogicalW(x.ShortFileName, y.ShortFileName));
 			return scheduleList.ToArray();
 		}
 

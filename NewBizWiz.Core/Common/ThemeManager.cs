@@ -235,8 +235,11 @@ namespace NewBizWiz.Core.Common
 			foreach (var childNode in nodes)
 			{
 				SlideType temp;
-				if (Enum.TryParse(childNode.Attributes["SlideType"].Value, out temp) && !String.IsNullOrEmpty(childNode.Attributes["Theme"].Value))
-					_selectedThemes.Add(temp, childNode.Attributes["Theme"].Value);
+				if (!Enum.TryParse(childNode.Attributes["SlideType"].Value, out temp) || String.IsNullOrEmpty(childNode.Attributes["Theme"].Value)) continue;
+				var themeName = childNode.Attributes["Theme"].Value;
+				var availableThemsForSlideType = _themeManager.GetThemes(temp);
+				if (availableThemsForSlideType.Any(t => t.Name.Equals(themeName)))
+					_selectedThemes.Add(temp, themeName);
 			}
 		}
 

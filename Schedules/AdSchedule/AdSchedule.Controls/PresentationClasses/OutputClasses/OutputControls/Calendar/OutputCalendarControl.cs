@@ -12,6 +12,7 @@ using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputCont
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
 using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
@@ -377,190 +378,157 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		public void PrintOutput()
 		{
 			if (_selectedMonth == null) return;
-			using (var form = new FormSelectPublication())
-			{
-				form.Text = "Ad Calendar Slide Output";
-				form.pbLogo.Image = Resources.Calendar;
-				form.laTitle.Text = "You have several Advertising Calendars available for your presentation…";
-				form.buttonXCurrentPublication.Text = string.Format("Send ONLY {0} Calendar Slide to PowerPoint", _selectedMonth.Settings.Month.ToString("MMMM, yyyy"));
-				form.buttonXSelectedPublications.Text = "Send all of the Selected Ad Calendars to PowerPoint";
-				foreach (var monthView in _monthViews.Where(x => Inserts.Any(y => y.Date.HasValue && y.Date.Value.Year.Equals(x.Month.Year) && y.Date.Value.Month.Equals(x.Month.Month))))
-					form.checkedListBoxControlPublications.Items.Add(monthView, monthView.Settings.Month.ToString("MMMM, yyyy"), CheckState.Checked, true);
-				RegistryHelper.MainFormHandle = form.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				DialogResult result = form.ShowDialog();
-				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				if (result == DialogResult.Cancel) return;
-				using (var formProgress = new FormProgress())
+			var monthViews = _monthViews.Where(x => Inserts.Any(y => y.Date.HasValue && y.Date.Value.Year.Equals(x.Month.Year) && y.Date.Value.Month.Equals(x.Month.Month)));
+			var selectedMonths = new List<MonthViewControl>();
+			if (monthViews.Count() > 1)
+				using (var form = new FormSelectOutputItems())
 				{
-					formProgress.TopMost = true;
-					Controller.Instance.ShowFloater(() =>
+					form.Text = "Select Months";
+					foreach (var monthViewControl in monthViews)
 					{
-						if (result == DialogResult.Yes)
-						{
-							formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
-							if (!Inserts.Any(y => y.Date.HasValue && y.Date.Value.Year.Equals(_selectedMonth.Month.Year) && y.Date.Value.Month.Equals(_selectedMonth.Month.Month)))
-								if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no Ads scheduled for {0}.\nDo you still want to send this slide to PowerPoint?", _selectedMonth.Month.ToString("MMMM, yyyy"))) == DialogResult.No)
-									return;
-							formProgress.Show();
-							Enabled = false;
-							_selectedMonth.PrintOutput();
-						}
-						else if (result == DialogResult.No)
-						{
-							formProgress.laProgress.Text = form.checkedListBoxControlPublications.CheckedItems.Count == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Several Calendar slides…\nThis will take a few minutes…";
-							formProgress.Show();
-							Enabled = false;
-							foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
-							{
-								if (item.CheckState == CheckState.Checked)
-								{
-									var monthView = item.Value as MonthViewControl;
-									if (monthView != null)
-										monthView.PrintOutput();
-								}
-							}
-						}
+						var item = new CheckedListBoxItem(monthViewControl, monthViewControl.MonthText);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (monthViewControl == _selectedMonth)
+							form.buttonXSelectCurrent.Tag = item;
+					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedMonths.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<MonthViewControl>());
+				}
+			else
+				selectedMonths.AddRange(monthViews);
+			if (!selectedMonths.Any()) return;
+			using (var formProgress = new FormProgress())
+			{
+				Enabled = false;
+				formProgress.TopMost = true;
+				formProgress.laProgress.Text = "Creating Calendar slides…\nThis will take a few minutes…";
+				formProgress.Show();
+				Controller.Instance.ShowFloater(() =>
+					{
+						foreach (var monthView in monthViews)
+							monthView.PrintOutput();
 						Enabled = true;
 						formProgress.Close();
 					});
-				}
 			}
 		}
 
 		public void Email()
 		{
-			using (var form = new FormSelectPublication())
-			{
-				form.Text = "Ad Calendar Email Output";
-				form.pbLogo.Image = Resources.EmailBig;
-				form.laTitle.Text = "You have several Advertising Calendars that can be ATTACHED to an email…";
-				form.buttonXCurrentPublication.Text = string.Format("Attach just the {0} Calendar Slide to my email message", _selectedMonth.Settings.Month.ToString("MMMM, yyyy"));
-				form.buttonXSelectedPublications.Text = "Attach ALL Selected Ad Calendars to my email message";
-				foreach (var monthView in _monthViews.Where(x => Inserts.Any(y => y.Date.HasValue && y.Date.Value.Year.Equals(x.Month.Year) && y.Date.Value.Month.Equals(x.Month.Month))))
-					form.checkedListBoxControlPublications.Items.Add(monthView, monthView.Settings.Month.ToString("MMMM, yyyy"), CheckState.Checked, true);
-				RegistryHelper.MainFormHandle = form.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				DialogResult result = form.ShowDialog();
-				RegistryHelper.MaximizeMainForm = true;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				if (result == DialogResult.Cancel) return;
-				using (var formProgress = new FormProgress())
+			var monthViews = _monthViews.Where(x => Inserts.Any(y => y.Date.HasValue && y.Date.Value.Year.Equals(x.Month.Year) && y.Date.Value.Month.Equals(x.Month.Month)));
+			var selectedMonths = new List<MonthViewControl>();
+			if (monthViews.Count() > 1)
+				using (var form = new FormSelectOutputItems())
 				{
-					formProgress.TopMost = true;
-					string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
-					if (result == DialogResult.Yes)
+					form.Text = "Select Months";
+					foreach (var monthViewControl in monthViews)
 					{
-						formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
-						if (!Inserts.Any(y => y.Date.HasValue && y.Date.Value.Year.Equals(_selectedMonth.Month.Year) && y.Date.Value.Month.Equals(_selectedMonth.Month.Month)))
-							if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no Ads scheduled for {0}.\nDo you still want to Email this slide?", _selectedMonth.Month.ToString("MMMM, yyyy"))) == DialogResult.No)
-								return;
-						formProgress.Show();
-						Enabled = false;
-						AdSchedulePowerPointHelper.Instance.
-							PrepareCalendarEmail(tempFileName, new[] { _selectedMonth });
+						var item = new CheckedListBoxItem(monthViewControl, monthViewControl.MonthText);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (monthViewControl == _selectedMonth)
+							form.buttonXSelectCurrent.Tag = item;
 					}
-					else if (result == DialogResult.No)
-					{
-						formProgress.laProgress.Text = form.checkedListBoxControlPublications.CheckedItems.Count == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Several Calendar slides…\nThis will take a few minutes…";
-						formProgress.Show();
-						Enabled = false;
-						var emailPages = new List<MonthViewControl>();
-						foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
-						{
-							if (item.CheckState == CheckState.Checked)
-							{
-								var monthView = item.Value as MonthViewControl;
-								if (monthView != null)
-									emailPages.Add(monthView);
-							}
-						}
-						AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, emailPages.ToArray());
-					}
-					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-					Enabled = true;
-					formProgress.Close();
-					if (!File.Exists(tempFileName)) return;
-					using (var formEmail = new FormEmail(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
-					{
-						formEmail.Text = "Email this Advertising Calendar";
-						formEmail.PresentationFile = tempFileName;
-						RegistryHelper.MainFormHandle = formEmail.Handle;
-						RegistryHelper.MaximizeMainForm = false;
-						formEmail.ShowDialog();
-						RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-						RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedMonths.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<MonthViewControl>());
 				}
+			else
+				selectedMonths.AddRange(monthViews);
+			if (!selectedMonths.Any()) return;
+			var previewGroups = new List<PreviewGroup>();
+			using (var formProgress = new FormProgress())
+			{
+				Enabled = false;
+				formProgress.TopMost = true;
+				formProgress.laProgress.Text = "Creating Calendar slides…\nThis will take a few minutes…";
+				formProgress.Show();
+				foreach (var monthViewControl in selectedMonths)
+				{
+					var previewGroup = monthViewControl.GetPreviewGroup();
+					AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { monthViewControl });
+					previewGroups.Add(previewGroup);
+				}
+				Enabled = true;
+				formProgress.Close();
+			}
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
+			using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			{
+				formEmail.Text = "Email this Advertising Calendar";
+				formEmail.LoadGroups(previewGroups);
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				RegistryHelper.MainFormHandle = formEmail.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				formEmail.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 			}
 		}
 
 		public void Preview()
 		{
-			using (var form = new FormSelectPublication())
-			{
-				form.Text = "Ad Calendar Preview";
-				form.pbLogo.Image = Resources.Preview;
-				form.laTitle.Text = "You have several Advertising Calendars that can be ATTACHED to an email…";
-				form.buttonXCurrentPublication.Text = string.Format("Preview just the {0} Calendar Slide", _selectedMonth.Settings.Month.ToString("MMMM, yyyy"));
-				form.buttonXSelectedPublications.Text = "Preview ALL Selected Ad Calendars";
-				foreach (var monthView in _monthViews.Where(x => Inserts.Any(y => y.Date.HasValue && y.Date.Value.Year.Equals(x.Month.Year) && y.Date.Value.Month.Equals(x.Month.Month))))
-					form.checkedListBoxControlPublications.Items.Add(monthView, monthView.Settings.Month.ToString("MMMM, yyyy"), CheckState.Checked, true);
-				RegistryHelper.MainFormHandle = form.Handle;
-				RegistryHelper.MaximizeMainForm = false;
-				DialogResult result = form.ShowDialog();
-				RegistryHelper.MaximizeMainForm = true;
-				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				if (result == DialogResult.Cancel) return;
-				using (var formProgress = new FormProgress())
+			var monthViews = _monthViews.Where(x => Inserts.Any(y => y.Date.HasValue && y.Date.Value.Year.Equals(x.Month.Year) && y.Date.Value.Month.Equals(x.Month.Month)));
+			var selectedMonths = new List<MonthViewControl>();
+			if (monthViews.Count() > 1)
+				using (var form = new FormSelectOutputItems())
 				{
-					formProgress.TopMost = true;
-					string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
-					if (result == DialogResult.Yes)
+					form.Text = "Select Months";
+					foreach (var monthViewControl in monthViews)
 					{
-						formProgress.laProgress.Text = "Creating your Calendar Slide…\nThis will take about 30 seconds…";
-						if (!Inserts.Any(y => y.Date.HasValue && y.Date.Value.Year.Equals(_selectedMonth.Month.Year) && y.Date.Value.Month.Equals(_selectedMonth.Month.Month)))
-							if (Utilities.Instance.ShowWarningQuestion(string.Format("There are no Ads scheduled for {0}.\nDo you still want to create this slide?", _selectedMonth.Month.ToString("MMMM, yyyy"))) == DialogResult.No)
-								return;
-						formProgress.Show();
-						Enabled = false;
-						AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, new[] { _selectedMonth });
+						var item = new CheckedListBoxItem(monthViewControl, monthViewControl.MonthText);
+						form.checkedListBoxControlOutputItems.Items.Add(item);
+						if (monthViewControl == _selectedMonth)
+							form.buttonXSelectCurrent.Tag = item;
 					}
-					else if (result == DialogResult.No)
-					{
-						formProgress.laProgress.Text = form.checkedListBoxControlPublications.CheckedItems.Count == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Several Calendar slides…\nThis will take a few minutes…";
-						formProgress.Show();
-						Enabled = false;
-						var emailPages = new List<MonthViewControl>();
-						foreach (CheckedListBoxItem item in form.checkedListBoxControlPublications.Items)
-						{
-							if (item.CheckState == CheckState.Checked)
-							{
-								var monthView = item.Value as MonthViewControl;
-								if (monthView != null)
-									emailPages.Add(monthView);
-							}
-						}
-						AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(tempFileName, emailPages.ToArray());
-					}
-					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-					Enabled = true;
-					formProgress.Close();
-					if (!File.Exists(tempFileName)) return;
-					using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
-					{
-						formPreview.Text = "Preview Advertising Calendar";
-						formPreview.PresentationFile = tempFileName;
-						RegistryHelper.MainFormHandle = formPreview.Handle;
-						RegistryHelper.MaximizeMainForm = false;
-						DialogResult previewResult = formPreview.ShowDialog();
-						RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-						RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-						if (previewResult != DialogResult.OK)
-							Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-					}
+					form.checkedListBoxControlOutputItems.CheckAll();
+					if (form.ShowDialog() == DialogResult.OK)
+						selectedMonths.AddRange(form.checkedListBoxControlOutputItems.Items.
+							OfType<CheckedListBoxItem>().
+							Where(ci => ci.CheckState == CheckState.Checked).
+							Select(ci => ci.Value).
+							OfType<MonthViewControl>());
 				}
+			else
+				selectedMonths.AddRange(monthViews);
+			if (!selectedMonths.Any()) return;
+			var previewGroups = new List<PreviewGroup>();
+			using (var formProgress = new FormProgress())
+			{
+				Enabled = false;
+				formProgress.laProgress.Text = "Creating Calendar slides…\nThis will take a few minutes…";
+				formProgress.TopMost = true;
+				formProgress.Show();
+				foreach (var monthViewControl in selectedMonths)
+				{
+					var previewGroup = monthViewControl.GetPreviewGroup();
+					AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { monthViewControl });
+					previewGroups.Add(previewGroup);
+				}
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				Enabled = true;
+				formProgress.Close();
+			}
+			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			{
+				formPreview.Text = "Preview Advertising Calendar";
+				formPreview.LoadGroups(previewGroups);
+				RegistryHelper.MainFormHandle = formPreview.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				DialogResult previewResult = formPreview.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+				if (previewResult != DialogResult.OK)
+					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			}
 		}
 		#endregion

@@ -306,7 +306,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public string Investment
 		{
-			get { return checkEditInvestment.Checked ? spinEditInvestment.Value.ToString("$#,##0.00") : String.Empty; }
+			get { return checkEditInvestment.Checked && spinEditInvestment.EditValue!= null ? spinEditInvestment.Value.ToString("$#,##0.00") : String.Empty; }
 		}
 
 		public bool NotOutput

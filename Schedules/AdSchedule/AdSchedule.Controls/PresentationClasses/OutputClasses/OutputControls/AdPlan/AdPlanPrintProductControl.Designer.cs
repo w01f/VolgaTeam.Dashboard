@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
@@ -54,7 +55,7 @@
 			this.laAdItems = new System.Windows.Forms.Label();
 			this.checkEditComments = new DevExpress.XtraEditors.CheckEdit();
 			this.memoEditComments = new DevExpress.XtraEditors.MemoEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.checkEditDates = new DevExpress.XtraEditors.CheckEdit();
 			this.memoEditDates = new DevExpress.XtraEditors.MemoEdit();
 			this.laDates = new System.Windows.Forms.Label();
@@ -75,7 +76,7 @@
 			this.laComments = new System.Windows.Forms.Label();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.pictureBoxDates = new System.Windows.Forms.PictureBox();
-			this.toolTipController = new DevExpress.Utils.ToolTipController();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).BeginInit();
 			this.pnItems.SuspendLayout();
 			this.xtraScrollableControl.SuspendLayout();
@@ -608,6 +609,7 @@
             0});
 			this.spinEditInvestment.Location = new System.Drawing.Point(317, 415);
 			this.spinEditInvestment.Name = "spinEditInvestment";
+			this.spinEditInvestment.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.spinEditInvestment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.spinEditInvestment.Properties.DisplayFormat.FormatString = "$#,##0.00";

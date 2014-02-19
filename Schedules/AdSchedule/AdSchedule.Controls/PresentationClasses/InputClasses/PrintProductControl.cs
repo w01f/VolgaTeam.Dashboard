@@ -678,8 +678,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				!Controller.Instance.PrintProductStandartWidth.EditorContainsFocus &&
 				!Controller.Instance.PrintProductPercentOfPage.EditorContainsFocus &&
 				!Controller.Instance.PrintProductRateCard.EditorContainsFocus &&
-				!Controller.Instance.PrintProductSharePagePageSizeCombo.EditorContainsFocus &&
-				!Controller.Instance.PrintProductStandartPageSizeCombo.EditorContainsFocus &&
+				!Controller.Instance.PrintProductPageSizeCombo.EditorContainsFocus &&
+				!Controller.Instance.PrintProductColor.EditorContainsFocus &&
 				!Controller.Instance.PrintProductCostPerInch.EditorContainsFocus)
 				advBandedGridViewPublication.Focus();
 		}

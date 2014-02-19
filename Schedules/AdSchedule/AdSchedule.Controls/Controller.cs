@@ -108,21 +108,14 @@ namespace NewBizWiz.AdSchedule.Controls
 			PrintProductAdPricingFlat.CheckedChanged += PrintProductContainer.buttonItemAdPricing_CheckedChanged;
 			PrintProductAdPricingPagePercent.CheckedChanged += PrintProductContainer.buttonItemAdPricing_CheckedChanged;
 			PrintProductAdSizeStandartSquare.CheckedChanged += PrintProductContainer.checkBoxItemAdSizeStandartSquare_CheckedChanged;
-			PrintProductStandartPageSizeCheck.CheckedChanged += PrintProductContainer.checkBoxItemSizeOptions_CheckedChanged;
-			PrintProductSharePagePageSizeCheck.CheckedChanged += PrintProductContainer.checkBoxItemSizeOptions_CheckedChanged;
+			PrintProductPageSizeCheck.CheckedChanged += PrintProductContainer.checkBoxItemSizeOptions_CheckedChanged;
 			PrintProductStandartHeight.EditValueChanged += PrintProductContainer.spinEditStandart_EditValueChanged;
 			PrintProductStandartWidth.EditValueChanged += PrintProductContainer.spinEditStandart_EditValueChanged;
-			PrintProductStandartPageSizeCombo.EditValueChanged += PrintProductContainer.comboBoxEditSizeOptions_EditValueChanged;
-			PrintProductSharePagePageSizeCombo.EditValueChanged += PrintProductContainer.comboBoxEditSizeOptions_EditValueChanged;
+			PrintProductPageSizeCombo.EditValueChanged += PrintProductContainer.comboBoxEditSizeOptions_EditValueChanged;
 			PrintProductRateCard.EditValueChanged += PrintProductContainer.comboBoxEditRateCard_EditValueChanged;
 			PrintProductPercentOfPage.EditValueChanged += PrintProductContainer.comboBoxEditPercentOfPage_EditValueChanged;
 			PrintProductSharePageSquare.ItemCheck += PrintProductContainer.checkedListBoxControlSharePageSquare_ItemCheck;
-			PrintProductColorOptionsSingle.Click += PrintProductContainer.ColorOptions_Click;
-			PrintProductColorOptionsSpot.Click += PrintProductContainer.ColorOptions_Click;
-			PrintProductColorOptionsFull.Click += PrintProductContainer.ColorOptions_Click;
-			PrintProductColorOptionsSingle.CheckedChanged += PrintProductContainer.ColorOptions_CheckedChanged;
-			PrintProductColorOptionsSpot.CheckedChanged += PrintProductContainer.ColorOptions_CheckedChanged;
-			PrintProductColorOptionsFull.CheckedChanged += PrintProductContainer.ColorOptions_CheckedChanged;
+			PrintProductColor.SelectedIndexChanged += PrintProductContainer.ColorOptions_SelectedIndexChanged;
 			PrintProductColorOptionsCostPerAd.Click += PrintProductContainer.buttonItemColorOptions_Click;
 			PrintProductColorOptionsPercentOfAd.Click += PrintProductContainer.buttonItemColorOptions_Click;
 			PrintProductColorOptionsIncluded.Click += PrintProductContainer.buttonItemColorOptions_Click;
@@ -144,12 +137,9 @@ namespace NewBizWiz.AdSchedule.Controls
 			PrintProductStandartWidth.Enter += Utilities.Instance.Editor_Enter;
 			PrintProductStandartWidth.MouseDown += Utilities.Instance.Editor_MouseDown;
 			PrintProductStandartWidth.MouseUp += Utilities.Instance.Editor_MouseUp;
-			PrintProductStandartPageSizeCombo.Enter += Utilities.Instance.Editor_Enter;
-			PrintProductStandartPageSizeCombo.MouseDown += Utilities.Instance.Editor_MouseDown;
-			PrintProductStandartPageSizeCombo.MouseUp += Utilities.Instance.Editor_MouseUp;
-			PrintProductSharePagePageSizeCombo.Enter += Utilities.Instance.Editor_Enter;
-			PrintProductSharePagePageSizeCombo.MouseDown += Utilities.Instance.Editor_MouseDown;
-			PrintProductSharePagePageSizeCombo.MouseUp += Utilities.Instance.Editor_MouseUp;
+			PrintProductPageSizeCombo.Enter += Utilities.Instance.Editor_Enter;
+			PrintProductPageSizeCombo.MouseDown += Utilities.Instance.Editor_MouseDown;
+			PrintProductPageSizeCombo.MouseUp += Utilities.Instance.Editor_MouseUp;
 			#endregion
 
 			#region Digital Product
@@ -571,32 +561,22 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem PrintProductAdPricingColumnInches { get; set; }
 		public ButtonItem PrintProductAdPricingFlat { get; set; }
 		public ButtonItem PrintProductAdPricingPagePercent { get; set; }
-		public ButtonItem PrintProductColorOptionsSingle { get; set; }
-		public ButtonItem PrintProductColorOptionsSpot { get; set; }
-		public ButtonItem PrintProductColorOptionsFull { get; set; }
 		public ButtonItem PrintProductColorOptionsCostPerAd { get; set; }
 		public ButtonItem PrintProductColorOptionsPercentOfAd { get; set; }
 		public ButtonItem PrintProductColorOptionsIncluded { get; set; }
 		public ButtonItem PrintProductColorOptionsPCI { get; set; }
 		public ItemContainer PrintProductAdSizeStandart { get; set; }
 		public ItemContainer PrintProductAdSizeSharePage { get; set; }
-		public Label PrintProductStandartEqualSign { get; set; }
-		public Label PrintProductStandartSquareMetric { get; set; }
 		public Label PrintProductStandartSquareValue { get; set; }
-		public ControlContainerItem PrintProductStandartEqualSignContainer { get; set; }
-		public ControlContainerItem PrintProductStandartSquareMetricContainer { get; set; }
 		public ControlContainerItem PrintProductStandartSquareValueContainer { get; set; }
-		public LabelItem PrintProductAdSizeSharePagePercentOfPageLabel { get; set; }
-		public LabelItem PrintProductAdSizeSharePageDimensionsLabel { get; set; }
-		public RibbonBar PrintProductAdSizeRibbonBar { get; set; }
+		public RibbonBar PrintProductDimensionsRibbonBar { get; set; }
 		public RibbonPanel PrintProductPanel { get; set; }
 		public CheckBoxItem PrintProductAdSizeStandartSquare { get; set; }
-		public CheckBoxItem PrintProductStandartPageSizeCheck { get; set; }
-		public CheckBoxItem PrintProductSharePagePageSizeCheck { get; set; }
-		public ComboBoxEdit PrintProductStandartPageSizeCombo { get; set; }
-		public ComboBoxEdit PrintProductSharePagePageSizeCombo { get; set; }
+		public CheckBoxItem PrintProductPageSizeCheck { get; set; }
+		public ComboBoxEdit PrintProductPageSizeCombo { get; set; }
 		public ComboBoxEdit PrintProductRateCard { get; set; }
 		public ComboBoxEdit PrintProductPercentOfPage { get; set; }
+		public ComboBoxEdit PrintProductColor { get; set; }
 		public SpinEdit PrintProductStandartHeight { get; set; }
 		public SpinEdit PrintProductStandartWidth { get; set; }
 		public CheckedListBoxControl PrintProductSharePageSquare { get; set; }

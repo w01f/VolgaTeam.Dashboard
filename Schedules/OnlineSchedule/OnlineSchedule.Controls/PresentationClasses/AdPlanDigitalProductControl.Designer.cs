@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
 			this.pnItems = new System.Windows.Forms.Panel();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
@@ -47,7 +46,7 @@
 			this.laAdItems = new System.Windows.Forms.Label();
 			this.checkEditComments = new DevExpress.XtraEditors.CheckEdit();
 			this.memoEditComments = new DevExpress.XtraEditors.MemoEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.laDates = new System.Windows.Forms.Label();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.buttonXNotOutput = new DevComponents.DotNetBar.ButtonX();
@@ -467,6 +466,7 @@
             0});
 			this.spinEditInvestment.Location = new System.Drawing.Point(317, 415);
 			this.spinEditInvestment.Name = "spinEditInvestment";
+			this.spinEditInvestment.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.spinEditInvestment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.spinEditInvestment.Properties.DisplayFormat.FormatString = "$#,##0.00";
@@ -612,6 +612,7 @@
 			// 
 			this.Controls.Add(this.pnMain);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.Name = "AdPlanDigitalProductControl";
 			this.Size = new System.Drawing.Size(949, 463);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).EndInit();
 			this.pnItems.ResumeLayout(false);

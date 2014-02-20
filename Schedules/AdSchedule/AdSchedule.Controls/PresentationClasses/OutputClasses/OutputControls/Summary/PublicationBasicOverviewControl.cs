@@ -41,7 +41,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				checkEditDecisionMaker.Font = new Font(checkEditDecisionMaker.Font.FontFamily, checkEditDecisionMaker.Font.Size - 2, checkEditDecisionMaker.Font.Style);
 				checkEditFlightDates.Font = new Font(checkEditFlightDates.Font.FontFamily, checkEditFlightDates.Font.Size - 2, checkEditFlightDates.Font.Style);
 				checkEditFlightDates2.Font = new Font(checkEditFlightDates2.Font.FontFamily, checkEditFlightDates2.Font.Size - 2, checkEditFlightDates2.Font.Style);
-				checkEditStandartMechanicals.Font = new Font(checkEditStandartMechanicals.Font.FontFamily, checkEditStandartMechanicals.Font.Size - 2, checkEditStandartMechanicals.Font.Style);
 				checkEditName.Font = new Font(checkEditName.Font.FontFamily, checkEditName.Font.Size - 3, checkEditName.Font.Style);
 				checkEditStandartPageSize.Font = new Font(checkEditStandartPageSize.Font.FontFamily, checkEditStandartPageSize.Font.Size - 2, checkEditStandartPageSize.Font.Style);
 				checkEditTotalAds.Font = new Font(checkEditTotalAds.Font.FontFamily, checkEditTotalAds.Font.Size - 2, checkEditTotalAds.Font.Style);
@@ -74,12 +73,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditStandartSquare.Visible = PrintProduct.SizeOptions.Square.HasValue;
 			checkEditTotalSquare.Text = PrintProduct.TotalSquare.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage ? ("Total Inches: " + PrintProduct.TotalSquare.Value.ToString("#,##0.00#")) : string.Empty;
 			checkEditTotalSquare.Visible = PrintProduct.TotalSquare.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage;
-			checkEditStandartPageSize.Visible = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSize);
-			checkEditStandartPageSize.Text = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSize) ? PrintProduct.SizeOptions.PageSize : string.Empty;
-			checkEditSharePagePageSize.Visible = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSize);
-			checkEditSharePagePageSize.Text = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSize) ? PrintProduct.SizeOptions.PageSize : string.Empty;
-			checkEditStandartMechanicals.Visible = false; // !string.IsNullOrEmpty(this.Publication.SizeOptions.Mechanicals);
-			checkEditStandartMechanicals.Text = string.Empty; // !string.IsNullOrEmpty(this.Publication.SizeOptions.Mechanicals) ? ("Mechanicals: " + this.Publication.SizeOptions.Mechanicals) : string.Empty;
+			checkEditStandartPageSize.Visible = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup);
+			checkEditStandartPageSize.Text = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup) ? PrintProduct.SizeOptions.PageSizeAndGroup : String.Empty;
+			checkEditSharePagePageSize.Visible = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup);
+			checkEditSharePagePageSize.Text = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup) ? PrintProduct.SizeOptions.PageSizeAndGroup : String.Empty;
 			checkEditSharePagePercentOfPage.Visible = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage);
 			checkEditSharePagePercentOfPage.Text = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage) ? (PrintProduct.SizeOptions.PercentOfPage + " Share of Page") : string.Empty;
 			pnAdSizeStandart.Visible = PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage;
@@ -169,7 +166,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditStandartDimensions.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowDimensions;
 			checkEditSharePageDimensions.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowDimensions;
 			checkEditStandartSquare.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowSquare;
-			checkEditStandartMechanicals.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowMechanicals;
 
 			checkEditTotalAds.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableTotalInserts;
 			checkEditTotalSquare.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableTotalSquare;
@@ -228,14 +224,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEdit_CheckedChanged(null, null);
 		}
 
-		private void checkEditAdSizePicture_CheckedChanged(object sender, EventArgs e) { }
-
-		private void checkEditTotalAdsPicture_CheckedChanged(object sender, EventArgs e) { }
-
-		private void checkEditInvestmentDetailsPicture_CheckedChanged(object sender, EventArgs e) { }
-
-		private void checkEditDatesPicture_CheckedChanged(object sender, EventArgs e) { }
-
 		private void checkEdit_CheckedChanged(object sender, EventArgs e)
 		{
 			if (_allowToSave)
@@ -258,7 +246,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				PrintProduct.ViewSettings.BasicOverviewSettings.ShowInvestment = checkEditTotalCost.Checked;
 				PrintProduct.ViewSettings.BasicOverviewSettings.ShowInvestmentDetails = checkEditInvestmentDetailsPicture.Checked;
 				PrintProduct.ViewSettings.BasicOverviewSettings.ShowLogo = checkEditLogo.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowMechanicals = checkEditStandartMechanicals.Checked;
 				PrintProduct.ViewSettings.BasicOverviewSettings.ShowName = checkEditName.Checked;
 				PrintProduct.ViewSettings.BasicOverviewSettings.ShowPresentationDate = checkEditDate.Checked;
 				PrintProduct.ViewSettings.BasicOverviewSettings.ShowSlideHeader = checkEditSchedule.Checked;
@@ -414,7 +401,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 						values.Add(checkEditSharePagePercentOfPage.Text);
 					if (checkEditSharePageColor.Checked)
 						values.Add(checkEditSharePageColor.Text.Replace("&&", "&"));
-					if (checkEditSharePagePageSize.Checked && !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSize))
+					if (checkEditSharePagePageSize.Checked && !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup))
 						values.Add(checkEditSharePagePageSize.Text);
 					if (checkEditSharePageDimensions.Checked && !string.IsNullOrEmpty(checkEditSharePageDimensions.Text))
 						values.Add(checkEditSharePageDimensions.Text);
@@ -423,7 +410,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				{
 					if (checkEditStandartSquare.Checked && !string.IsNullOrEmpty(checkEditStandartSquare.Text))
 						values.Add(checkEditStandartSquare.Text);
-					if (checkEditStandartPageSize.Checked && !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSize))
+					if (checkEditStandartPageSize.Checked && !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup))
 						values.Add(checkEditStandartPageSize.Text);
 					if (checkEditStandartDimensions.Checked && !string.IsNullOrEmpty(checkEditStandartDimensions.Text))
 						values.Add(checkEditStandartDimensions.Text);

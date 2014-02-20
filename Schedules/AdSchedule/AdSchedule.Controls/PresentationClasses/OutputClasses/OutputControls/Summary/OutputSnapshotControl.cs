@@ -527,8 +527,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					var adSpecs = new List<string>();
 					if (LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalInserts)
 						adSpecs.Add("Total Ads: " + publication.TotalInserts.ToString("#,##0"));
-					if (LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPageSize && !string.IsNullOrEmpty(publication.SizeOptions.PageSize))
-						adSpecs.Add("Page Size: " + publication.SizeOptions.PageSize);
+					if (LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPageSize && !String.IsNullOrEmpty(publication.SizeOptions.PageSizeAndGroup))
+						adSpecs.Add("Page Size: " + publication.SizeOptions.PageSizeAndGroup);
 					if (LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPercentOfPage && !string.IsNullOrEmpty(publication.SizeOptions.PercentOfPage) && publication.AdPricingStrategy == AdPricingStrategies.SharePage)
 						adSpecs.Add(publication.SizeOptions.PercentOfPage + " Share of Page");
 					if (LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDimensions && !string.IsNullOrEmpty(publication.SizeOptions.Dimensions))

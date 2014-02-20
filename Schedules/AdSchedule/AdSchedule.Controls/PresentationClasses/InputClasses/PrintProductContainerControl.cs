@@ -75,7 +75,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control != Controller.Instance.PrintProductStandartHeight
 				&& control != Controller.Instance.PrintProductStandartWidth
 				&& control != Controller.Instance.PrintProductPercentOfPage
-				&& control != Controller.Instance.PrintProductPageSizeCombo
+				&& control != Controller.Instance.PrintProductPageSizeGroup
+				&& control != Controller.Instance.PrintProductPageSizeName
 				&& control != Controller.Instance.PrintProductColor
 				&& control != Controller.Instance.PrintProductSharePageSquare
 				&& control != Controller.Instance.PrintProductCostPerInch)
@@ -173,11 +174,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			Controller.Instance.PrintProductStandartWidth.Value = 0;
 			Controller.Instance.PrintProductStandartHeight.Value = 0;
 			Controller.Instance.PrintProductStandartWidth.Value = 0;
-			Controller.Instance.PrintProductStandartSquareValue.Visible = false;
-			Controller.Instance.PrintProductStandartSquareValue.Text = "0.00";
+			Controller.Instance.PrintProductStandardSquareValue.Visible = false;
+			Controller.Instance.PrintProductStandardSquareValue.Text = "0.00";
 			Controller.Instance.PrintProductPageSizeCheck.Checked = false;
-			Controller.Instance.PrintProductPageSizeCombo.Enabled = false;
-			Controller.Instance.PrintProductPageSizeCombo.EditValue = null;
+			Controller.Instance.PrintProductPageSizeGroup.Enabled = false;
+			Controller.Instance.PrintProductPageSizeName.Enabled = false;
+			Controller.Instance.PrintProductPageSizeName.EditValue = null;
 
 			Controller.Instance.PrintProductAdSizeSharePage.Visible = false;
 			Controller.Instance.PrintProductRateCard.EditValue = null;
@@ -605,14 +607,21 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		private void LoadSizeOptions(PrintProductControl printProductControl)
 		{
 			_allowToSave = false;
-			SizeOptions sizeOptions = printProductControl.PrintProduct.SizeOptions;
-			Controller.Instance.PrintProductPageSizeCombo.Properties.Items.Clear();
-			Controller.Instance.PrintProductPageSizeCombo.Properties.Items.AddRange(ListManager.Instance.PageSizes.ToArray());
+			var sizeOptions = printProductControl.PrintProduct.SizeOptions;
+			Controller.Instance.PrintProductPageSizeCheck.Checked = sizeOptions.EnablePageSize;
+			Controller.Instance.PrintProductPageSizeGroup.Properties.Items.Clear();
+			Controller.Instance.PrintProductPageSizeGroup.Properties.Items.AddRange(ListManager.Instance.PageSizes.Select(ps => ps.Code).Distinct().ToArray());
+			Controller.Instance.PrintProductPageSizeGroupContainer.Visible = Controller.Instance.PrintProductPageSizeGroup.Properties.Items.Count > 1;
+			if (!String.IsNullOrEmpty(sizeOptions.PageSizeGroup))
+				Controller.Instance.PrintProductPageSizeGroup.EditValue = sizeOptions.PageSizeGroup;
+			else
+				Controller.Instance.PrintProductPageSizeGroup.EditValue = ListManager.Instance.PageSizes.Select(ps => ps.Code).Distinct().FirstOrDefault();
+			Controller.Instance.PrintProductPageSizeName.Properties.Items.Clear();
+			Controller.Instance.PrintProductPageSizeName.Properties.Items.AddRange(ListManager.Instance.PageSizes.Where(ps => ps.Code.Equals(Controller.Instance.PrintProductPageSizeGroup.EditValue as String) || Controller.Instance.PrintProductPageSizeGroup.Properties.Items.Count <= 1).Select(ps => ps.Name).ToArray());
+			Controller.Instance.PrintProductPageSizeName.EditValue = sizeOptions.PageSize;
 			Controller.Instance.PrintProductRateCard.Properties.Items.Clear();
 			Controller.Instance.PrintProductRateCard.Properties.Items.AddRange(ListManager.Instance.ShareUnits.Select(x => x.RateCard).Distinct().ToArray());
-			Controller.Instance.PrintProductPageSizeCheck.Checked = sizeOptions.EnablePageSize;
-			Controller.Instance.PrintProductPageSizeCombo.EditValue = sizeOptions.PageSize;
-			Controller.Instance.PrintProductPageSizeCheck.Checked = sizeOptions.EnablePageSize;
+
 			switch (printProductControl.PrintProduct.AdPricingStrategy)
 			{
 				case AdPricingStrategies.StandartPCI:
@@ -634,7 +643,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					if (shareUnits.Length > 0)
 					{
 						ShareUnit storedShareUnit = printProductControl.PrintProduct.SizeOptions.RelatedShareUnit;
-						foreach (ShareUnit shareUnit in shareUnits)
+						foreach (var shareUnit in shareUnits)
 							Controller.Instance.PrintProductSharePageSquare.Items.Add(shareUnit, shareUnit.Dimensions, shareUnit.Dimensions.Equals(storedShareUnit.Dimensions) ? CheckState.Checked : CheckState.Unchecked, true);
 						if (Controller.Instance.PrintProductSharePageSquare.CheckedIndices.Count == 0)
 							Controller.Instance.PrintProductSharePageSquare.Items[0].CheckState = CheckState.Checked;
@@ -647,7 +656,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		private void SetSizeOptions(PrintProductControl printProductControl)
 		{
-			SizeOptions sizeOptions = printProductControl.PrintProduct.SizeOptions;
+			var sizeOptions = printProductControl.PrintProduct.SizeOptions;
 			switch (printProductControl.PrintProduct.AdPricingStrategy)
 			{
 				case AdPricingStrategies.StandartPCI:
@@ -662,8 +671,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					sizeOptions.EnableSquare = Controller.Instance.PrintProductAdSizeStandartSquare.Checked;
 					sizeOptions.Width = sizeOptions.EnableSquare ? (double)Controller.Instance.PrintProductStandartWidth.Value : 0;
 					sizeOptions.Height = sizeOptions.EnableSquare ? (double)Controller.Instance.PrintProductStandartHeight.Value : 0;
-					sizeOptions.EnablePageSize = Controller.Instance.PrintProductPageSizeCheck.Checked;
-					sizeOptions.PageSize = sizeOptions.EnablePageSize && !string.IsNullOrEmpty((string)Controller.Instance.PrintProductPageSizeCombo.EditValue) ? Controller.Instance.PrintProductPageSizeCombo.EditValue.ToString() : null;
 					break;
 				case AdPricingStrategies.SharePage:
 					sizeOptions.ResetToDefaults(AdPricingStrategies.SharePage);
@@ -674,22 +681,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					_allowToSave = true;
 					sizeOptions.RateCard = !string.IsNullOrEmpty((string)Controller.Instance.PrintProductRateCard.EditValue) ? Controller.Instance.PrintProductRateCard.EditValue.ToString() : null;
 					sizeOptions.PercentOfPage = !string.IsNullOrEmpty((string)Controller.Instance.PrintProductPercentOfPage.EditValue) ? Controller.Instance.PrintProductPercentOfPage.EditValue.ToString() : null;
-					ShareUnit shareUnit = null;
-					foreach (CheckedListBoxItem item in Controller.Instance.PrintProductSharePageSquare.Items)
-						if (item.CheckState == CheckState.Checked)
-						{
-							shareUnit = item.Value as ShareUnit;
-							break;
-						}
+					var shareUnit = (from CheckedListBoxItem item in Controller.Instance.PrintProductSharePageSquare.Items where item.CheckState == CheckState.Checked select item.Value as ShareUnit).FirstOrDefault();
 					sizeOptions.Height = shareUnit != null ? shareUnit.HeightValue : 0;
 					sizeOptions.HeightMeasure = shareUnit != null ? shareUnit.HeightMeasureUnit : sizeOptions.HeightMeasure;
 					sizeOptions.Width = shareUnit != null ? shareUnit.WidthValue : 0;
 					sizeOptions.WidthMeasure = shareUnit != null ? shareUnit.WidthMeasureUnit : sizeOptions.WidthMeasure;
-					sizeOptions.EnablePageSize = Controller.Instance.PrintProductPageSizeCheck.Checked;
 					sizeOptions.EnableSquare = false;
-					sizeOptions.PageSize = sizeOptions.EnablePageSize && !string.IsNullOrEmpty((string)Controller.Instance.PrintProductPageSizeCombo.EditValue) ? Controller.Instance.PrintProductPageSizeCombo.EditValue.ToString() : null;
 					break;
 			}
+			sizeOptions.EnablePageSize = Controller.Instance.PrintProductPageSizeCheck.Checked;
+			sizeOptions.PageSizeGroup = sizeOptions.EnablePageSize ? Controller.Instance.PrintProductPageSizeGroup.EditValue as String : null;
+			sizeOptions.PageSize = sizeOptions.EnablePageSize ? Controller.Instance.PrintProductPageSizeName.EditValue as String : null;
 			FormatAccordingSizeOptions(printProductControl);
 			printProductControl.LoadInserts();
 			printProductControl.UpdateTotals();
@@ -697,12 +699,23 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		private void FormatAccordingSizeOptions(PrintProductControl printProductControl)
 		{
-			SizeOptions sizeOptions = printProductControl.PrintProduct.SizeOptions;
+			var sizeOptions = printProductControl.PrintProduct.SizeOptions;
 			Controller.Instance.PrintProductStandartHeight.Enabled = sizeOptions.EnableSquare;
 			Controller.Instance.PrintProductStandartWidth.Enabled = sizeOptions.EnableSquare;
-			Controller.Instance.PrintProductStandartSquareValueContainer.Visible = sizeOptions.Square.HasValue;
-			Controller.Instance.PrintProductStandartSquareValue.Text = sizeOptions.Square.HasValue ? sizeOptions.Square.Value.ToString("#,##0.00#") : string.Empty;
-			Controller.Instance.PrintProductPageSizeCombo.Enabled = sizeOptions.EnablePageSize;
+			Controller.Instance.PrintProductStandardSquareValueContainer.Visible = sizeOptions.Square.HasValue;
+			Controller.Instance.PrintProductStandardSquareValue.Text = sizeOptions.Square.HasValue ? sizeOptions.Square.Value.ToString("#,##0.00#") : string.Empty;
+			Controller.Instance.PrintProductPageSizeGroup.Enabled = sizeOptions.EnablePageSize;
+			Controller.Instance.PrintProductPageSizeName.Enabled = sizeOptions.EnablePageSize;
+			if (sizeOptions.EnablePageSize)
+			{
+				if (Controller.Instance.PrintProductPageSizeGroup.EditValue == null && Controller.Instance.PrintProductPageSizeGroup.Properties.Items.Count > 0)
+					Controller.Instance.PrintProductPageSizeGroup.EditValue = Controller.Instance.PrintProductPageSizeGroup.Properties.Items[0];
+			}
+			else
+			{
+				Controller.Instance.PrintProductPageSizeGroup.EditValue = null;
+				Controller.Instance.PrintProductPageSizeName.EditValue = null;
+			}
 			Controller.Instance.PrintProductColorOptionsPCI.Enabled = sizeOptions.EnableSquare & printProductControl.PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage & printProductControl.PrintProduct.ColorOption != ColorOptions.BlackWhite;
 			Controller.Instance.PrintProductCostPerInch.Enabled = sizeOptions.EnableSquare & printProductControl.PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage & printProductControl.PrintProduct.ColorOption != ColorOptions.BlackWhite & printProductControl.PrintProduct.ColorPricing == ColorPricingType.CostPerInch;
 			Controller.Instance.PrintProductPercentOfPage.Enabled = !string.IsNullOrEmpty(sizeOptions.RateCard);
@@ -715,63 +728,63 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void checkBoxItemAdSizeStandartSquare_CheckedChanged(object sender, CheckBoxChangeEventArgs e)
 		{
 			var publicationControl = xtraTabControlPublications.SelectedTabPage as PrintProductControl;
-			if (publicationControl != null && _allowToSave)
+			if (publicationControl == null || !_allowToSave) return;
+			if (!Controller.Instance.PrintProductAdSizeStandartSquare.Checked)
 			{
-				if (!Controller.Instance.PrintProductAdSizeStandartSquare.Checked)
+				var prevColorPricing = publicationControl.PrintProduct.ColorPricing;
+				if (prevColorPricing == ColorPricingType.CostPerInch)
 				{
-					ColorPricingType prevColorPricing = publicationControl.PrintProduct.ColorPricing;
-					if (prevColorPricing == ColorPricingType.CostPerInch)
+					switch (ListManager.Instance.DefaultColorPricing)
 					{
-						switch (ListManager.Instance.DefaultColorPricing)
-						{
-							case ColorPricingType.CostPerAd:
-								buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsCostPerAd, null);
-								break;
-							case ColorPricingType.PercentOfAdRate:
-								buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsPercentOfAd, null);
-								break;
-							case ColorPricingType.ColorIncluded:
-								buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsIncluded, null);
-								break;
-							case ColorPricingType.CostPerInch:
-								buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsPCI, null);
-								break;
-						}
+						case ColorPricingType.CostPerAd:
+							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsCostPerAd, null);
+							break;
+						case ColorPricingType.PercentOfAdRate:
+							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsPercentOfAd, null);
+							break;
+						case ColorPricingType.ColorIncluded:
+							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsIncluded, null);
+							break;
+						case ColorPricingType.CostPerInch:
+							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsPCI, null);
+							break;
 					}
 				}
-				SetSizeOptions(publicationControl);
-				SettingsNotSaved = true;
 			}
+			SetSizeOptions(publicationControl);
+			SettingsNotSaved = true;
 		}
 
 		public void checkBoxItemSizeOptions_CheckedChanged(object sender, CheckBoxChangeEventArgs e)
 		{
 			var publicationControl = xtraTabControlPublications.SelectedTabPage as PrintProductControl;
-			if (publicationControl != null && _allowToSave)
-			{
-				SetSizeOptions(publicationControl);
-				SettingsNotSaved = true;
-			}
+			if (publicationControl == null || !_allowToSave) return;
+			SetSizeOptions(publicationControl);
+			SettingsNotSaved = true;
 		}
 
 		public void spinEditStandart_EditValueChanged(object sender, EventArgs e)
 		{
 			var publicationControl = xtraTabControlPublications.SelectedTabPage as PrintProductControl;
-			if (publicationControl != null && _allowToSave)
-			{
-				SetSizeOptions(publicationControl);
-				SettingsNotSaved = true;
-			}
+			if (publicationControl == null || !_allowToSave) return;
+			SetSizeOptions(publicationControl);
+			SettingsNotSaved = true;
 		}
 
 		public void comboBoxEditSizeOptions_EditValueChanged(object sender, EventArgs e)
 		{
 			var publicationControl = xtraTabControlPublications.SelectedTabPage as PrintProductControl;
-			if (publicationControl != null && _allowToSave)
-			{
-				SetSizeOptions(publicationControl);
-				SettingsNotSaved = true;
-			}
+			if (publicationControl == null || !_allowToSave) return;
+			SetSizeOptions(publicationControl);
+			SettingsNotSaved = true;
+		}
+
+		public void comboBoxEditPageSizeGroup_EditValueChanged(object sender, EventArgs e)
+		{
+			var publicationControl = xtraTabControlPublications.SelectedTabPage as PrintProductControl;
+			if (publicationControl == null || !_allowToSave) return;
+			Controller.Instance.PrintProductPageSizeName.Properties.Items.Clear();
+			Controller.Instance.PrintProductPageSizeName.Properties.Items.AddRange(ListManager.Instance.PageSizes.Where(ps => ps.Code.Equals(Controller.Instance.PrintProductPageSizeGroup.EditValue as String)).Select(ps => ps.Name).ToArray());
 		}
 
 		public void comboBoxEditRateCard_EditValueChanged(object sender, EventArgs e)

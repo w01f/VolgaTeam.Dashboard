@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -46,7 +47,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			laDiscountsValue.Text = _printProduct.TotalDiscountRate.ToString("$#,###.00");
 			laFinalCostValue.Text = _printProduct.AvgFinalRate.ToString("$#,###.00");
 			laInvestmentValue.Text = _printProduct.TotalFinalRate.ToString("$#,###.00");
-			laPageSizeValue.Text = !string.IsNullOrEmpty(_printProduct.SizeOptions.PageSize) ? _printProduct.SizeOptions.PageSize : "N/A";
+			laPageSizeValue.Text = !String.IsNullOrEmpty(_printProduct.SizeOptions.PageSizeAndGroup) ? _printProduct.SizeOptions.PageSizeAndGroup : "N/A";
 			laPercentOfPageValue.Text = !string.IsNullOrEmpty(_printProduct.SizeOptions.PercentOfPage) && _printProduct.AdPricingStrategy == AdPricingStrategies.SharePage ? _printProduct.SizeOptions.PercentOfPage : "N/A";
 			laPCIValue.Text = _printProduct.AvgPCIRate > 0 ? _printProduct.AvgPCIRate.ToString("$#,###.00") : "N/A";
 			if (_printProduct.DailyReadership.HasValue)

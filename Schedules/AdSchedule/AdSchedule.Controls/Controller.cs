@@ -111,7 +111,9 @@ namespace NewBizWiz.AdSchedule.Controls
 			PrintProductPageSizeCheck.CheckedChanged += PrintProductContainer.checkBoxItemSizeOptions_CheckedChanged;
 			PrintProductStandartHeight.EditValueChanged += PrintProductContainer.spinEditStandart_EditValueChanged;
 			PrintProductStandartWidth.EditValueChanged += PrintProductContainer.spinEditStandart_EditValueChanged;
-			PrintProductPageSizeCombo.EditValueChanged += PrintProductContainer.comboBoxEditSizeOptions_EditValueChanged;
+			PrintProductPageSizeGroup.EditValueChanged += PrintProductContainer.comboBoxEditSizeOptions_EditValueChanged;
+			PrintProductPageSizeGroup.EditValueChanged += PrintProductContainer.comboBoxEditPageSizeGroup_EditValueChanged;
+			PrintProductPageSizeName.EditValueChanged += PrintProductContainer.comboBoxEditSizeOptions_EditValueChanged;
 			PrintProductRateCard.EditValueChanged += PrintProductContainer.comboBoxEditRateCard_EditValueChanged;
 			PrintProductPercentOfPage.EditValueChanged += PrintProductContainer.comboBoxEditPercentOfPage_EditValueChanged;
 			PrintProductSharePageSquare.ItemCheck += PrintProductContainer.checkedListBoxControlSharePageSquare_ItemCheck;
@@ -137,9 +139,9 @@ namespace NewBizWiz.AdSchedule.Controls
 			PrintProductStandartWidth.Enter += Utilities.Instance.Editor_Enter;
 			PrintProductStandartWidth.MouseDown += Utilities.Instance.Editor_MouseDown;
 			PrintProductStandartWidth.MouseUp += Utilities.Instance.Editor_MouseUp;
-			PrintProductPageSizeCombo.Enter += Utilities.Instance.Editor_Enter;
-			PrintProductPageSizeCombo.MouseDown += Utilities.Instance.Editor_MouseDown;
-			PrintProductPageSizeCombo.MouseUp += Utilities.Instance.Editor_MouseUp;
+			PrintProductPageSizeName.Enter += Utilities.Instance.Editor_Enter;
+			PrintProductPageSizeName.MouseDown += Utilities.Instance.Editor_MouseDown;
+			PrintProductPageSizeName.MouseUp += Utilities.Instance.Editor_MouseUp;
 			#endregion
 
 			#region Digital Product
@@ -567,13 +569,15 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem PrintProductColorOptionsPCI { get; set; }
 		public ItemContainer PrintProductAdSizeStandart { get; set; }
 		public ItemContainer PrintProductAdSizeSharePage { get; set; }
-		public Label PrintProductStandartSquareValue { get; set; }
-		public ControlContainerItem PrintProductStandartSquareValueContainer { get; set; }
+		public Label PrintProductStandardSquareValue { get; set; }
+		public ControlContainerItem PrintProductStandardSquareValueContainer { get; set; }
 		public RibbonBar PrintProductDimensionsRibbonBar { get; set; }
 		public RibbonPanel PrintProductPanel { get; set; }
 		public CheckBoxItem PrintProductAdSizeStandartSquare { get; set; }
 		public CheckBoxItem PrintProductPageSizeCheck { get; set; }
-		public ComboBoxEdit PrintProductPageSizeCombo { get; set; }
+		public ComboBoxEdit PrintProductPageSizeGroup { get; set; }
+		public ControlContainerItem PrintProductPageSizeGroupContainer { get; set; }
+		public ComboBoxEdit PrintProductPageSizeName { get; set; }
 		public ComboBoxEdit PrintProductRateCard { get; set; }
 		public ComboBoxEdit PrintProductPercentOfPage { get; set; }
 		public ComboBoxEdit PrintProductColor { get; set; }

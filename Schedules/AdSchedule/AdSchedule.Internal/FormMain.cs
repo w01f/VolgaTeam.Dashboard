@@ -82,11 +82,13 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.PrintProductColorOptionsPCI = buttonItemPrintScheduleColorOptionsPCI;
 			Controller.Instance.PrintProductAdSizeStandart = itemContainerPrintScheduleDimensionsStandard;
 			Controller.Instance.PrintProductAdSizeSharePage = itemContainerPrintScheduleDimensionsSharePage;
-			Controller.Instance.PrintProductStandartSquareValue = laStandartSquareValue;
-			Controller.Instance.PrintProductStandartSquareValueContainer = controlContainerItemSquareValue;
+			Controller.Instance.PrintProductStandardSquareValue = laStandartSquareValue;
+			Controller.Instance.PrintProductStandardSquareValueContainer = controlContainerItemStandartSquareValue;
 			Controller.Instance.PrintProductAdSizeStandartSquare = checkBoxItemPrintScheduleAdSizeStandartSquare;
 			Controller.Instance.PrintProductPageSizeCheck = checkBoxItemPrintScheduleAdSizePageSize;
-			Controller.Instance.PrintProductPageSizeCombo = comboBoxEditPageSize;
+			Controller.Instance.PrintProductPageSizeGroup = comboBoxEditPageSizeGroup;
+			Controller.Instance.PrintProductPageSizeGroupContainer = controlContainerItemPageSizeGroup;
+			Controller.Instance.PrintProductPageSizeName = comboBoxEditPageSizeName;
 			Controller.Instance.PrintProductRateCard = comboBoxEditRateCard;
 			Controller.Instance.PrintProductPercentOfPage = comboBoxEditPercentOfPage;
 			Controller.Instance.PrintProductStandartHeight = spinEditStandartHeight;
@@ -242,7 +244,8 @@ namespace NewBizWiz.AdSchedule.Internal
 				comboBoxEditRateCard.Font = font;
 				comboBoxEditRateCards.Font = font;
 				comboBoxEditColor.Font = font;
-				comboBoxEditPageSize.Font = font;
+				comboBoxEditPageSizeGroup.Font = font;
+				comboBoxEditPageSizeName.Font = font;
 				checkedListBoxControlSharePageSquare.Font = font;
 				dateEditFlightDatesEnd.Font = font;
 				dateEditFlightDatesStart.Font = font;

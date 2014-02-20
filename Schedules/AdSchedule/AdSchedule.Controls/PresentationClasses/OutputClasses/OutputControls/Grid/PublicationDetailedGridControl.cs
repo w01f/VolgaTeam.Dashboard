@@ -448,7 +448,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (Controller.Instance.Grids.DetailedGrid.SlideBulletsState.ShowTotalInserts)
 					values.Add("Total Ads: " + PrintProduct.TotalInserts.ToString("#,##0"));
 				if (Controller.Instance.Grids.DetailedGrid.SlideBulletsState.ShowPageSize)
-					values.Add("Page Size: " + PrintProduct.SizeOptions.PageSize);
+					values.Add("Page Size: " + PrintProduct.SizeOptions.PageSizeAndGroup);
 				if (Controller.Instance.Grids.DetailedGrid.SlideBulletsState.ShowPercentOfPage)
 					values.Add("% of Page: " + PrintProduct.SizeOptions.PercentOfPage);
 				if (Controller.Instance.Grids.DetailedGrid.SlideBulletsState.ShowDimensions)

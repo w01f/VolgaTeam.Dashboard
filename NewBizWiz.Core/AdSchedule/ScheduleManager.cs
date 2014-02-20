@@ -1375,12 +1375,12 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public string PageSize
 		{
-			get { return Parent.SizeOptions.PageSize; }
+			get { return Parent.SizeOptions.PageSizeAndGroup; }
 		}
 
 		public string PageSizeOutput
 		{
-			get { return !string.IsNullOrEmpty(Parent.SizeOptions.PageSize) ? Parent.SizeOptions.PageSize : "N/A"; }
+			get { return !string.IsNullOrEmpty(Parent.SizeOptions.PageSizeAndGroup) ? Parent.SizeOptions.PageSizeAndGroup : "N/A"; }
 		}
 
 		public string PercentOfPage
@@ -1664,6 +1664,7 @@ namespace NewBizWiz.Core.AdSchedule
 		public string WidthMeasure { get; set; }
 		public string HeightMeasure { get; set; }
 		public bool EnableSquare { get; set; }
+		public string PageSizeGroup { get; set; }
 		public string PageSize { get; set; }
 		public bool EnablePageSize { get; set; }
 		public string RateCard { get; set; }
@@ -1712,8 +1713,7 @@ namespace NewBizWiz.Core.AdSchedule
 			{
 				if (Width > 0 && Height > 0)
 					return Width * Height;
-				else
-					return null;
+				return null;
 			}
 		}
 
@@ -1727,9 +1727,23 @@ namespace NewBizWiz.Core.AdSchedule
 			get { return Square.HasValue ? (string.Format("{0}x{1}", new object[] { Width.ToString("#,##0.00"), Height.ToString("#,###.00#") })) : "N/A"; }
 		}
 
+		public string PageSizeAndGroup
+		{
+			get
+			{
+				return EnablePageSize && !String.IsNullOrEmpty(PageSize) ?
+					String.Format("{0}{1}",
+						PageSize,
+						!String.IsNullOrEmpty(PageSizeGroup) && ListManager.Instance.PageSizes.Select(ps => ps.Code).Distinct().Count() > 1 ?
+							String.Format(" ({0})", PageSizeGroup) :
+							String.Empty) :
+					String.Empty;
+			}
+		}
+
 		public string PageSizeOutput
 		{
-			get { return !string.IsNullOrEmpty(PageSize) ? PageSize : "N/A"; }
+			get { return !String.IsNullOrEmpty(PageSizeAndGroup) ? PageSizeAndGroup : "N/A"; }
 		}
 
 		public string PercentOfPageOutput
@@ -1756,13 +1770,14 @@ namespace NewBizWiz.Core.AdSchedule
 			var xml = new StringBuilder();
 
 			xml.Append(@"<SizeOptions ");
-			xml.Append("Width = \"" + Width.ToString() + "\" ");
-			xml.Append("Height = \"" + Height.ToString() + "\" ");
+			xml.Append("Width = \"" + Width + "\" ");
+			xml.Append("Height = \"" + Height + "\" ");
 			xml.Append("WidthMeasure = \"" + WidthMeasure.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("HeightMeasure = \"" + HeightMeasure.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("EnableSquare = \"" + EnableSquare.ToString() + "\" ");
+			xml.Append("EnableSquare = \"" + EnableSquare + "\" ");
+			xml.Append("PageSizeGroup = \"" + (PageSizeGroup != null ? PageSizeGroup.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + "\" ");
 			xml.Append("PageSize = \"" + (PageSize != null ? PageSize.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + "\" ");
-			xml.Append("EnablePageSize = \"" + EnablePageSize.ToString() + "\" ");
+			xml.Append("EnablePageSize = \"" + EnablePageSize + "\" ");
 			xml.Append("RateCard = \"" + (RateCard != null ? RateCard.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + "\" ");
 			xml.Append("PercentOfPage = \"" + (PercentOfPage != null ? PercentOfPage.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + "\" ");
 			xml.AppendLine(@"/>");
@@ -1795,6 +1810,10 @@ namespace NewBizWiz.Core.AdSchedule
 					case "EnableSquare":
 						if (bool.TryParse(attribute.Value, out tempBool))
 							EnableSquare = tempBool;
+						break;
+					case "PageSizeGroup":
+						if (!string.IsNullOrEmpty(attribute.Value))
+							PageSizeGroup = attribute.Value;
 						break;
 					case "PageSize":
 						if (!string.IsNullOrEmpty(attribute.Value))

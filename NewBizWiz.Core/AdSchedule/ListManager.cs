@@ -18,7 +18,7 @@ namespace NewBizWiz.Core.AdSchedule
 		{
 			PublicationSources = new List<PrintProductSource>();
 			Readerships = new List<PrintProductSource>();
-			PageSizes = new List<string>();
+			PageSizes = new List<NameCodePair>();
 			Mechanicals = new List<MechanicalType>();
 			Notes = new List<NameCodePair>();
 			OutputHeaders = new List<string>();
@@ -106,7 +106,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public List<PrintProductSource> PublicationSources { get; set; }
 		public List<PrintProductSource> Readerships { get; set; }
-		public List<string> PageSizes { get; set; }
+		public List<NameCodePair> PageSizes { get; set; }
 		public List<NameCodePair> Notes { get; set; }
 		public List<string> OutputHeaders { get; set; }
 		public List<string> ClientTypes { get; set; }
@@ -151,9 +151,9 @@ namespace NewBizWiz.Core.AdSchedule
 				string imageFileName = Path.GetFileNameWithoutExtension(bigImageFile.FullName);
 				string imageFileExtension = Path.GetExtension(bigImageFile.FullName);
 
-				string smallImageFilePath = Path.Combine(SmallImageFolder.FullName, string.Format("{0}2{1}", new[] {imageFileName, imageFileExtension}));
-				string tinyImageFilePath = Path.Combine(TinyImageFolder.FullName, string.Format("{0}3{1}", new[] {imageFileName, imageFileExtension}));
-				string xtraTinyImageFilePath = Path.Combine(XtraTinyImageFolder.FullName, string.Format("{0}4{1}", new[] {imageFileName, imageFileExtension}));
+				string smallImageFilePath = Path.Combine(SmallImageFolder.FullName, string.Format("{0}2{1}", new[] { imageFileName, imageFileExtension }));
+				string tinyImageFilePath = Path.Combine(TinyImageFolder.FullName, string.Format("{0}3{1}", new[] { imageFileName, imageFileExtension }));
+				string xtraTinyImageFilePath = Path.Combine(XtraTinyImageFolder.FullName, string.Format("{0}4{1}", new[] { imageFileName, imageFileExtension }));
 				if (File.Exists(smallImageFilePath) && File.Exists(tinyImageFilePath) && File.Exists(xtraTinyImageFilePath))
 				{
 					var imageSource = new ImageSource();
@@ -337,14 +337,18 @@ namespace NewBizWiz.Core.AdSchedule
 								PublicationSources.Add(sundaySource);
 								break;
 							case "AdSize":
+								var adSize = new NameCodePair();
 								foreach (XmlAttribute attribute in childeNode.Attributes)
 									switch (attribute.Name)
 									{
 										case "Name":
-											if (!PageSizes.Contains(attribute.Value))
-												PageSizes.Add(attribute.Value);
+											adSize.Name = attribute.Value;
+											break;
+										case "Group":
+											adSize.Code = attribute.Value;
 											break;
 									}
+								PageSizes.Add(adSize);
 								break;
 							case "Note":
 								var note = new NameCodePair();
@@ -637,7 +641,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public string Dimensions
 		{
-			get { return !string.IsNullOrEmpty(Width) && !string.IsNullOrEmpty(Height) ? (string.Format("{0}{1} x {2}{3}", new object[] {WidthValue.ToString("#,##0.00"), ShortWidthMeasure, HeightValue.ToString("#,##0.00"), ShortHeightMeasure})) : string.Empty; }
+			get { return !string.IsNullOrEmpty(Width) && !string.IsNullOrEmpty(Height) ? (string.Format("{0}{1} x {2}{3}", new object[] { WidthValue.ToString("#,##0.00"), ShortWidthMeasure, HeightValue.ToString("#,##0.00"), ShortHeightMeasure })) : string.Empty; }
 		}
 	}
 }

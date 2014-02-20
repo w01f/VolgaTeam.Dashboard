@@ -198,7 +198,6 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowPercentOfPage = true;
 			ShowSquare = true;
 			ShowColor = true;
-			ShowMechanicals = true;
 
 			EnableTotalInserts = true;
 			EnableTotalSquare = true;
@@ -247,7 +246,6 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool ShowPercentOfPage { get; set; }
 		public bool ShowSquare { get; set; }
 		public bool ShowColor { get; set; }
-		public bool ShowMechanicals { get; set; }
 
 		public bool EnableTotalInserts { get; set; }
 		public bool EnableTotalSquare { get; set; }
@@ -307,7 +305,6 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<ShowPercentOfPage>" + ShowPercentOfPage + @"</ShowPercentOfPage>");
 			result.AppendLine(@"<ShowSquare>" + ShowSquare + @"</ShowSquare>");
 			result.AppendLine(@"<ShowColor>" + ShowColor + @"</ShowColor>");
-			result.AppendLine(@"<ShowMechanicals>" + ShowMechanicals + @"</ShowMechanicals>");
 
 			result.AppendLine(@"<EnableTotalInserts>" + EnableTotalInserts + @"</EnableTotalInserts>");
 			result.AppendLine(@"<EnableTotalSquare>" + EnableTotalSquare + @"</EnableTotalSquare>");
@@ -420,10 +417,6 @@ namespace NewBizWiz.Core.AdSchedule
 					case "ShowPercentOfPage":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowPercentOfPage = tempBool;
-						break;
-					case "ShowMechanicals":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowMechanicals = tempBool;
 						break;
 
 					case "EnableTotalInserts":

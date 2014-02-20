@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CommandCentral.CommonClasses
+﻿namespace CommandCentral.CommonClasses
 {
-    class AdSize
-    {
-        public string Name { get; set; }
+	internal class AdSize
+	{
+		public AdSize()
+		{
+			Name = string.Empty;
+		}
 
-
-        public AdSize()
-        {
-            this.Name = string.Empty;
-        }
-    }
+		public string Group { get; set; }
+		public string Name { get; set; }
+	}
 }

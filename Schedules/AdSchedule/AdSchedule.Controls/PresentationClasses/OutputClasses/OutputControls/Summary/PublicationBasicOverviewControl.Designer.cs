@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
 			this.pnHeader = new System.Windows.Forms.Panel();
+			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.checkEditLogo = new DevExpress.XtraEditors.CheckEdit();
 			this.comboBoxEditSchedule = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.checkEditSchedule = new DevExpress.XtraEditors.CheckEdit();
@@ -46,19 +47,23 @@
 			this.checkEditFlightDates2 = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditTotalSquare = new DevExpress.XtraEditors.CheckEdit();
 			this.memoEditDates = new DevExpress.XtraEditors.MemoEdit();
+			this.pictureBoxAdSize = new System.Windows.Forms.PictureBox();
 			this.checkEditRunDatesComment = new DevExpress.XtraEditors.CheckEdit();
 			this.textEditRunDatesComment = new DevExpress.XtraEditors.TextEdit();
 			this.checkEditDates = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditAdSizePicture = new DevExpress.XtraEditors.CheckEdit();
 			this.laDates = new System.Windows.Forms.Label();
 			this.laAdSize = new System.Windows.Forms.Label();
+			this.pictureBoxDates = new System.Windows.Forms.PictureBox();
 			this.checkEditDatesPicture = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditTotalAdsPicture = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditTotalDiscounts = new DevExpress.XtraEditors.CheckEdit();
+			this.pictureBoxTotalAds = new System.Windows.Forms.PictureBox();
 			this.laTotalAds = new System.Windows.Forms.Label();
 			this.checkEditAvgADRate = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditTotalAds = new DevExpress.XtraEditors.CheckEdit();
 			this.laInvestmentDetails = new System.Windows.Forms.Label();
+			this.pictureBoxInvestmentDetails = new System.Windows.Forms.PictureBox();
 			this.checkEditInvestmentDetailsPicture = new DevExpress.XtraEditors.CheckEdit();
 			this.pnAdSize = new System.Windows.Forms.Panel();
 			this.pnAdSizeSharePage = new System.Windows.Forms.Panel();
@@ -70,18 +75,13 @@
 			this.checkEditSharePagePercentOfPage = new DevExpress.XtraEditors.CheckEdit();
 			this.pnAdSizeStandart = new System.Windows.Forms.Panel();
 			this.pnAdSizeStandartLine2 = new System.Windows.Forms.Panel();
-			this.checkEditStandartMechanicals = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditStandartPageSize = new DevExpress.XtraEditors.CheckEdit();
 			this.pnAdSizeStandartLine1 = new System.Windows.Forms.Panel();
 			this.checkEditStandartColor = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditStandartDimensions = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditStandartSquare = new DevExpress.XtraEditors.CheckEdit();
-			this.pictureBoxAdSize = new System.Windows.Forms.PictureBox();
-			this.pictureBoxDates = new System.Windows.Forms.PictureBox();
-			this.pictureBoxTotalAds = new System.Windows.Forms.PictureBox();
-			this.pictureBoxInvestmentDetails = new System.Windows.Forms.PictureBox();
-			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.pnHeader.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSchedule.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSchedule.Properties)).BeginInit();
@@ -98,15 +98,19 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates2.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalSquare.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDates.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxAdSize)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditRunDatesComment.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditRunDatesComment.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDates.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAdSizePicture.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDates)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDatesPicture.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalAdsPicture.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalDiscounts.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxTotalAds)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAvgADRate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalAds.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxInvestmentDetails)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditInvestmentDetailsPicture.Properties)).BeginInit();
 			this.pnAdSize.SuspendLayout();
 			this.pnAdSizeSharePage.SuspendLayout();
@@ -118,17 +122,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSharePagePercentOfPage.Properties)).BeginInit();
 			this.pnAdSizeStandart.SuspendLayout();
 			this.pnAdSizeStandartLine2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditStandartMechanicals.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStandartPageSize.Properties)).BeginInit();
 			this.pnAdSizeStandartLine1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStandartColor.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStandartDimensions.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStandartSquare.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxAdSize)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDates)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxTotalAds)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxInvestmentDetails)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pnHeader
@@ -149,6 +147,15 @@
 			this.pnHeader.Name = "pnHeader";
 			this.pnHeader.Size = new System.Drawing.Size(1000, 150);
 			this.pnHeader.TabIndex = 41;
+			// 
+			// pbLogo
+			// 
+			this.pbLogo.Location = new System.Drawing.Point(29, 9);
+			this.pbLogo.Name = "pbLogo";
+			this.pbLogo.Size = new System.Drawing.Size(165, 75);
+			this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pbLogo.TabIndex = 44;
+			this.pbLogo.TabStop = false;
 			// 
 			// checkEditLogo
 			// 
@@ -439,6 +446,15 @@
 			this.memoEditDates.Size = new System.Drawing.Size(858, 66);
 			this.memoEditDates.TabIndex = 37;
 			// 
+			// pictureBoxAdSize
+			// 
+			this.pictureBoxAdSize.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AdSizeOutput;
+			this.pictureBoxAdSize.Location = new System.Drawing.Point(29, 8);
+			this.pictureBoxAdSize.Name = "pictureBoxAdSize";
+			this.pictureBoxAdSize.Size = new System.Drawing.Size(76, 74);
+			this.pictureBoxAdSize.TabIndex = 10;
+			this.pictureBoxAdSize.TabStop = false;
+			// 
 			// checkEditRunDatesComment
 			// 
 			this.checkEditRunDatesComment.AutoSizeInLayoutControl = true;
@@ -507,6 +523,15 @@
 			this.laAdSize.TabIndex = 11;
 			this.laAdSize.Text = "Ad Size:";
 			// 
+			// pictureBoxDates
+			// 
+			this.pictureBoxDates.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Calendar;
+			this.pictureBoxDates.Location = new System.Drawing.Point(29, 199);
+			this.pictureBoxDates.Name = "pictureBoxDates";
+			this.pictureBoxDates.Size = new System.Drawing.Size(76, 68);
+			this.pictureBoxDates.TabIndex = 31;
+			this.pictureBoxDates.TabStop = false;
+			// 
 			// checkEditDatesPicture
 			// 
 			this.checkEditDatesPicture.AutoSizeInLayoutControl = true;
@@ -552,6 +577,15 @@
 			this.checkEditTotalDiscounts.TabIndex = 28;
 			this.checkEditTotalDiscounts.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditTotalDiscounts.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
+			// 
+			// pictureBoxTotalAds
+			// 
+			this.pictureBoxTotalAds.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.TotalAds;
+			this.pictureBoxTotalAds.Location = new System.Drawing.Point(529, -5);
+			this.pictureBoxTotalAds.Name = "pictureBoxTotalAds";
+			this.pictureBoxTotalAds.Size = new System.Drawing.Size(76, 68);
+			this.pictureBoxTotalAds.TabIndex = 15;
+			this.pictureBoxTotalAds.TabStop = false;
 			// 
 			// laTotalAds
 			// 
@@ -616,6 +650,15 @@
 			this.laInvestmentDetails.Size = new System.Drawing.Size(155, 19);
 			this.laInvestmentDetails.TabIndex = 25;
 			this.laInvestmentDetails.Text = "Investment Details:";
+			// 
+			// pictureBoxInvestmentDetails
+			// 
+			this.pictureBoxInvestmentDetails.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.InvestmentDetails;
+			this.pictureBoxInvestmentDetails.Location = new System.Drawing.Point(29, 95);
+			this.pictureBoxInvestmentDetails.Name = "pictureBoxInvestmentDetails";
+			this.pictureBoxInvestmentDetails.Size = new System.Drawing.Size(78, 79);
+			this.pictureBoxInvestmentDetails.TabIndex = 24;
+			this.pictureBoxInvestmentDetails.TabStop = false;
 			// 
 			// checkEditInvestmentDetailsPicture
 			// 
@@ -768,7 +811,6 @@
 			// 
 			// pnAdSizeStandartLine2
 			// 
-			this.pnAdSizeStandartLine2.Controls.Add(this.checkEditStandartMechanicals);
 			this.pnAdSizeStandartLine2.Controls.Add(this.checkEditStandartPageSize);
 			this.pnAdSizeStandartLine2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnAdSizeStandartLine2.Location = new System.Drawing.Point(0, 23);
@@ -776,32 +818,9 @@
 			this.pnAdSizeStandartLine2.Size = new System.Drawing.Size(415, 38);
 			this.pnAdSizeStandartLine2.TabIndex = 42;
 			// 
-			// checkEditStandartMechanicals
-			// 
-			this.checkEditStandartMechanicals.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.checkEditStandartMechanicals.EditValue = true;
-			this.checkEditStandartMechanicals.Location = new System.Drawing.Point(148, 0);
-			this.checkEditStandartMechanicals.Name = "checkEditStandartMechanicals";
-			this.checkEditStandartMechanicals.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditStandartMechanicals.Properties.Appearance.ForeColor = System.Drawing.Color.Maroon;
-			this.checkEditStandartMechanicals.Properties.Appearance.Options.UseFont = true;
-			this.checkEditStandartMechanicals.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditStandartMechanicals.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Maroon;
-			this.checkEditStandartMechanicals.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.checkEditStandartMechanicals.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Maroon;
-			this.checkEditStandartMechanicals.Properties.AppearanceFocused.Options.UseForeColor = true;
-			this.checkEditStandartMechanicals.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Maroon;
-			this.checkEditStandartMechanicals.Properties.AppearanceReadOnly.Options.UseForeColor = true;
-			this.checkEditStandartMechanicals.Properties.AutoHeight = false;
-			this.checkEditStandartMechanicals.Properties.Caption = "Mech Tag";
-			this.checkEditStandartMechanicals.Size = new System.Drawing.Size(267, 38);
-			this.checkEditStandartMechanicals.TabIndex = 40;
-			this.checkEditStandartMechanicals.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-			this.checkEditStandartMechanicals.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
-			// 
 			// checkEditStandartPageSize
 			// 
-			this.checkEditStandartPageSize.Dock = System.Windows.Forms.DockStyle.Left;
+			this.checkEditStandartPageSize.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.checkEditStandartPageSize.EditValue = true;
 			this.checkEditStandartPageSize.Location = new System.Drawing.Point(0, 0);
 			this.checkEditStandartPageSize.Name = "checkEditStandartPageSize";
@@ -817,7 +836,7 @@
 			this.checkEditStandartPageSize.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.checkEditStandartPageSize.Properties.AutoHeight = false;
 			this.checkEditStandartPageSize.Properties.Caption = "Page Size Tag";
-			this.checkEditStandartPageSize.Size = new System.Drawing.Size(148, 38);
+			this.checkEditStandartPageSize.Size = new System.Drawing.Size(415, 38);
 			this.checkEditStandartPageSize.TabIndex = 13;
 			this.checkEditStandartPageSize.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditStandartPageSize.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -902,51 +921,6 @@
 			this.checkEditStandartSquare.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditStandartSquare.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
 			// 
-			// pictureBoxAdSize
-			// 
-			this.pictureBoxAdSize.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AdSizeOutput;
-			this.pictureBoxAdSize.Location = new System.Drawing.Point(29, 8);
-			this.pictureBoxAdSize.Name = "pictureBoxAdSize";
-			this.pictureBoxAdSize.Size = new System.Drawing.Size(76, 74);
-			this.pictureBoxAdSize.TabIndex = 10;
-			this.pictureBoxAdSize.TabStop = false;
-			// 
-			// pictureBoxDates
-			// 
-			this.pictureBoxDates.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Calendar;
-			this.pictureBoxDates.Location = new System.Drawing.Point(29, 199);
-			this.pictureBoxDates.Name = "pictureBoxDates";
-			this.pictureBoxDates.Size = new System.Drawing.Size(76, 68);
-			this.pictureBoxDates.TabIndex = 31;
-			this.pictureBoxDates.TabStop = false;
-			// 
-			// pictureBoxTotalAds
-			// 
-			this.pictureBoxTotalAds.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.TotalAds;
-			this.pictureBoxTotalAds.Location = new System.Drawing.Point(529, -5);
-			this.pictureBoxTotalAds.Name = "pictureBoxTotalAds";
-			this.pictureBoxTotalAds.Size = new System.Drawing.Size(76, 68);
-			this.pictureBoxTotalAds.TabIndex = 15;
-			this.pictureBoxTotalAds.TabStop = false;
-			// 
-			// pictureBoxInvestmentDetails
-			// 
-			this.pictureBoxInvestmentDetails.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.InvestmentDetails;
-			this.pictureBoxInvestmentDetails.Location = new System.Drawing.Point(29, 95);
-			this.pictureBoxInvestmentDetails.Name = "pictureBoxInvestmentDetails";
-			this.pictureBoxInvestmentDetails.Size = new System.Drawing.Size(78, 79);
-			this.pictureBoxInvestmentDetails.TabIndex = 24;
-			this.pictureBoxInvestmentDetails.TabStop = false;
-			// 
-			// pbLogo
-			// 
-			this.pbLogo.Location = new System.Drawing.Point(29, 9);
-			this.pbLogo.Name = "pbLogo";
-			this.pbLogo.Size = new System.Drawing.Size(165, 75);
-			this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbLogo.TabIndex = 44;
-			this.pbLogo.TabStop = false;
-			// 
 			// PublicationBasicOverviewControl
 			// 
 			this.Controls.Add(this.pnMain);
@@ -955,6 +929,7 @@
 			this.Name = "PublicationBasicOverviewControl";
 			this.Size = new System.Drawing.Size(1000, 491);
 			this.pnHeader.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSchedule.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSchedule.Properties)).EndInit();
@@ -972,15 +947,19 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates2.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalSquare.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDates.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxAdSize)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditRunDatesComment.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditRunDatesComment.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDates.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAdSizePicture.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDates)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDatesPicture.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalAdsPicture.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalDiscounts.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxTotalAds)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAvgADRate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalAds.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxInvestmentDetails)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditInvestmentDetailsPicture.Properties)).EndInit();
 			this.pnAdSize.ResumeLayout(false);
 			this.pnAdSizeSharePage.ResumeLayout(false);
@@ -992,17 +971,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSharePagePercentOfPage.Properties)).EndInit();
 			this.pnAdSizeStandart.ResumeLayout(false);
 			this.pnAdSizeStandartLine2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditStandartMechanicals.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStandartPageSize.Properties)).EndInit();
 			this.pnAdSizeStandartLine1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStandartColor.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStandartDimensions.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditStandartSquare.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxAdSize)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDates)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxTotalAds)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxInvestmentDetails)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -1023,8 +996,7 @@
         private System.Windows.Forms.Panel pnMain;
         private System.Windows.Forms.Panel pnBody;
         public DevExpress.XtraEditors.CheckEdit checkEditFlightDates2;
-        public DevExpress.XtraEditors.CheckEdit checkEditStandartDimensions;
-        public DevExpress.XtraEditors.CheckEdit checkEditStandartMechanicals;
+		public DevExpress.XtraEditors.CheckEdit checkEditStandartDimensions;
         public DevExpress.XtraEditors.CheckEdit checkEditTotalSquare;
         public DevExpress.XtraEditors.MemoEdit memoEditDates;
         private System.Windows.Forms.PictureBox pictureBoxAdSize;

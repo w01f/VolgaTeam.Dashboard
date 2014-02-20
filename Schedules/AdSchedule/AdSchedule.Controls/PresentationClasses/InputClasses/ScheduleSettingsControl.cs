@@ -87,7 +87,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control != Controller.Instance.PrintProductStandartHeight
 				&& control != Controller.Instance.PrintProductStandartWidth
 				&& control != Controller.Instance.PrintProductPercentOfPage
-				&& control != Controller.Instance.PrintProductPageSizeCombo
+				&& control != Controller.Instance.PrintProductPageSizeGroup
+				&& control != Controller.Instance.PrintProductPageSizeName
 				&& control != Controller.Instance.PrintProductColor
 				&& control != Controller.Instance.PrintProductSharePageSquare
 				&& control != Controller.Instance.PrintProductCostPerInch)

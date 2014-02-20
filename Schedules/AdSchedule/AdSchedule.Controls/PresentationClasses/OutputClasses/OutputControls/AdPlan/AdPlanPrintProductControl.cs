@@ -97,8 +97,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditTotalAds.Text = "Total Ads: " + PrintProduct.TotalInserts.ToString("#,##0");
 			checkEditTotalSquare.Text = PrintProduct.TotalSquare.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage ? ("Total Column Inches: " + PrintProduct.TotalSquare.Value.ToString("#,##0.00#")) : string.Empty;
 			checkEditTotalSquare.Visible = PrintProduct.TotalSquare.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage;
-			checkEditPageSize.Text = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSize) ? ("Page Size: " + PrintProduct.SizeOptions.PageSize) : string.Empty;
-			checkEditPageSize.Visible = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSize);
+			checkEditPageSize.Text = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup) ? ("Page Size: " + PrintProduct.SizeOptions.PageSizeAndGroup) : String.Empty;
+			checkEditPageSize.Visible = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup);
 			checkEditPercentOfPage.Text = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage) ? (PrintProduct.SizeOptions.PercentOfPage + " Share of Page") : string.Empty;
 			checkEditPercentOfPage.Visible = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage);
 			checkEditAvgAdCost.Text = "BW Avg Ad Cost: " + PrintProduct.AvgADRate.ToString("$#,##0.00");
@@ -125,7 +125,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 			checkEditTotalAds.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowTotalInserts;
 			checkEditDimensions.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowDimensions & !string.IsNullOrEmpty(PrintProduct.SizeOptions.Dimensions);
-			checkEditPageSize.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowPageSize & !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSize);
+			checkEditPageSize.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowPageSize & !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup);
 			checkEditPercentOfPage.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowPercentOfPage & !string.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage);
 			checkEditColor.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowTotalColor;
 			checkEditAvgAdCost.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowAvgAdCost;
@@ -290,7 +290,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			_allowToSave = false;
 			checkEditTotalAds.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowTotalInserts;
 			checkEditDimensions.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowDimensions & !string.IsNullOrEmpty(PrintProduct.SizeOptions.Dimensions);
-			checkEditPageSize.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowPageSize & !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSize);
+			checkEditPageSize.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowPageSize & !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup);
 			checkEditPercentOfPage.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowPercentOfPage & !string.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage);
 			checkEditColor.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowTotalColor;
 			checkEditAvgAdCost.Checked = PrintProduct.ViewSettings.AdPlanSettings.ShowAvgAdCost;

@@ -74,8 +74,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditTotalAds.Text = "Total Ads: " + PrintProduct.TotalInserts.ToString("#,##0");
 			checkEditTotalSquare.Text = PrintProduct.TotalSquare.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage ? ("Total Column Inches: " + PrintProduct.TotalSquare.Value.ToString("#,##0.00#")) : string.Empty;
 			checkEditTotalSquare.Visible = PrintProduct.TotalSquare.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage;
-			checkEditPageSize.Text = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSize) ? ("Page Size: " + PrintProduct.SizeOptions.PageSize) : string.Empty;
-			checkEditPageSize.Visible = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSize);
+			checkEditPageSize.Text = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup) ? ("Page Size: " + PrintProduct.SizeOptions.PageSizeAndGroup) : string.Empty;
+			checkEditPageSize.Visible = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup);
 			checkEditPercentOfPage.Text = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage) ? (PrintProduct.SizeOptions.PercentOfPage + " Share of Page") : string.Empty;
 			checkEditPercentOfPage.Visible = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage);
 			checkEditAvgAdCost.Text = "BW Avg Ad Cost: " + PrintProduct.AvgADRate.ToString("$#,##0.00");
@@ -126,8 +126,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditDiscounts.Enabled = PrintProduct.ViewSettings.MultiSummarySettings.EnableDiscounts;
 			checkEditSections.Enabled = PrintProduct.ViewSettings.MultiSummarySettings.EnableSection;
 			checkEditTotalAds.Checked = PrintProduct.ViewSettings.MultiSummarySettings.ShowTotalInserts;
-			checkEditDimensions.Checked = PrintProduct.ViewSettings.MultiSummarySettings.ShowDimensions & !string.IsNullOrEmpty(PrintProduct.SizeOptions.Dimensions);
-			checkEditPageSize.Checked = PrintProduct.ViewSettings.MultiSummarySettings.ShowPageSize & !string.IsNullOrEmpty(PrintProduct.SizeOptions.PageSize);
+			checkEditDimensions.Checked = PrintProduct.ViewSettings.MultiSummarySettings.ShowDimensions & !String.IsNullOrEmpty(PrintProduct.SizeOptions.Dimensions);
+			checkEditPageSize.Checked = PrintProduct.ViewSettings.MultiSummarySettings.ShowPageSize & !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup);
 			checkEditPercentOfPage.Checked = PrintProduct.ViewSettings.MultiSummarySettings.ShowPercentOfPage & !string.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage);
 			checkEditColor.Checked = PrintProduct.ViewSettings.MultiSummarySettings.ShowTotalColor;
 			checkEditAvgAdCost.Checked = PrintProduct.ViewSettings.MultiSummarySettings.ShowAvgAdCost;

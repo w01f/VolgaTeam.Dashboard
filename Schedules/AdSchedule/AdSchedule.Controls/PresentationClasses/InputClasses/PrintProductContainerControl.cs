@@ -78,8 +78,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control != Controller.Instance.PrintProductPageSizeGroup
 				&& control != Controller.Instance.PrintProductPageSizeName
 				&& control != Controller.Instance.PrintProductColor
-				&& control != Controller.Instance.PrintProductSharePageSquare
-				&& control != Controller.Instance.PrintProductCostPerInch)
+				&& control != Controller.Instance.PrintProductSharePageSquare)
 			{
 				control.Click += CloseActiveEditorsonOutSideClick;
 				foreach (Control childControl in control.Controls)
@@ -110,23 +109,21 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				xtraTabControlPublications.SelectedPageChanged -= xtraTabControlPublications_SelectedPageChanged;
 				xtraTabControlPublications.TabPages.Clear();
 				_tabPages.RemoveAll(x => !LocalSchedule.PrintProducts.Select(y => y.UniqueID).Contains(x.PrintProduct.UniqueID));
-				foreach (PrintProduct publication in LocalSchedule.PrintProducts)
+				foreach (var publication in LocalSchedule.PrintProducts)
 				{
-					if (!string.IsNullOrEmpty(publication.Name))
+					if (string.IsNullOrEmpty(publication.Name)) continue;
+					var printProductTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
+					if (printProductTab == null)
 					{
-						PrintProductControl printProductTab = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID)).FirstOrDefault();
-						if (printProductTab == null)
-						{
-							printProductTab = new PrintProductControl();
-							_tabPages.Add(printProductTab);
-							Application.DoEvents();
-						}
-						printProductTab.PrintProduct = publication;
-						printProductTab.Text = publication.Name.Replace("&", "&&");
-						publication.RefreshAvailableDays();
-						printProductTab.LoadInserts();
+						printProductTab = new PrintProductControl();
+						_tabPages.Add(printProductTab);
 						Application.DoEvents();
 					}
+					printProductTab.PrintProduct = publication;
+					printProductTab.Text = publication.Name.Replace("&", "&&");
+					publication.RefreshAvailableDays();
+					printProductTab.LoadInserts();
+					Application.DoEvents();
 				}
 				_tabPages.Sort((x, y) => x.PrintProduct.Index.CompareTo(y.PrintProduct.Index));
 				xtraTabControlPublications.TabPages.AddRange(_tabPages.ToArray());
@@ -138,19 +135,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			}
 			else
 			{
-				foreach (PrintProduct publication in LocalSchedule.PrintProducts)
+				foreach (var publication in LocalSchedule.PrintProducts)
 				{
-					if (!string.IsNullOrEmpty(publication.Name))
+					if (string.IsNullOrEmpty(publication.Name)) continue;
+					var printProductTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
+					if (printProductTab != null)
 					{
-						PrintProductControl printProductTab = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID)).FirstOrDefault();
-						if (printProductTab != null)
-						{
-							printProductTab.PrintProduct = publication;
-							publication.RefreshAvailableDays();
-							printProductTab.LoadInserts();
-						}
-						Application.DoEvents();
+						printProductTab.PrintProduct = publication;
+						publication.RefreshAvailableDays();
+						printProductTab.LoadInserts();
 					}
+					Application.DoEvents();
 				}
 			}
 			SettingsNotSaved = false;
@@ -198,8 +193,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			Controller.Instance.PrintProductColorOptionsIncluded.Checked = false;
 			Controller.Instance.PrintProductColorOptionsIncluded.Enabled = false;
 			Controller.Instance.PrintProductColorOptionsPCI.Checked = false;
-			Controller.Instance.PrintProductCostPerInch.Value = 0;
-			Controller.Instance.PrintProductCostPerInch.Enabled = false;
 			#endregion
 
 			_allowToSave = true;
@@ -209,30 +202,50 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		{
 			bool temSettingsNotSaved = SettingsNotSaved;
 			var publicationControl = xtraTabControlPublications.SelectedTabPage as PrintProductControl;
-			if (publicationControl != null)
+			if (publicationControl == null) return;
+			var printProduct = publicationControl.PrintProduct;
+			Controller.Instance.PrintProductDelete.Enabled = printProduct.Inserts.Count > 0;
+			Controller.Instance.PrintProductClone.Enabled = printProduct.Inserts.Count > 0;
+
+			var visbleStrategies = 0;
+			if (ListManager.Instance.DefaultPrintScheduleViewSettings.EnablePCI)
 			{
-				PrintProduct printProduct = publicationControl.PrintProduct;
-				Controller.Instance.PrintProductDelete.Enabled = printProduct.Inserts.Count > 0;
-				Controller.Instance.PrintProductClone.Enabled = printProduct.Inserts.Count > 0;
-
-				Controller.Instance.PrintProductAdPricingColumnInches.Enabled = ListManager.Instance.DefaultPrintScheduleViewSettings.EnablePCI;
-				Controller.Instance.PrintProductAdPricingFlat.Enabled = ListManager.Instance.DefaultPrintScheduleViewSettings.EnableFlat;
-				Controller.Instance.PrintProductAdPricingPagePercent.Enabled = ListManager.Instance.ShareUnits.Count > 0 & ListManager.Instance.DefaultPrintScheduleViewSettings.EnableShare;
-
-				Controller.Instance.PrintProductColor.Enabled = ListManager.Instance.DefaultPrintScheduleViewSettings.EnableBlackWhite;
-
-				Controller.Instance.PrintProductColorOptionsCostPerAd.Enabled = ListManager.Instance.DefaultPrintScheduleViewSettings.EnableCostPerAd;
-				Controller.Instance.PrintProductColorOptionsPercentOfAd.Enabled = ListManager.Instance.DefaultPrintScheduleViewSettings.EnablePercentOfAd;
-				Controller.Instance.PrintProductColorOptionsIncluded.Enabled = ListManager.Instance.DefaultPrintScheduleViewSettings.EnableColorIncluded;
-				Controller.Instance.PrintProductColorOptionsPCI.Enabled = ListManager.Instance.DefaultPrintScheduleViewSettings.EnableCostPerInch;
-				Controller.Instance.PrintProductCostPerInch.Enabled = ListManager.Instance.DefaultPrintScheduleViewSettings.EnableCostPerInch;
-
-				ClearSettings();
-				LoadPricingOptions(publicationControl);
-				LoadSizeOptions(publicationControl);
-				LoadColorOptions(publicationControl);
-				SettingsNotSaved = temSettingsNotSaved;
+				Controller.Instance.PrintProductAdPricingColumnInches.Visible = true;
+				visbleStrategies++;
 			}
+			else
+				Controller.Instance.PrintProductAdPricingColumnInches.Visible = false;
+			if (ListManager.Instance.DefaultPrintScheduleViewSettings.EnableFlat)
+			{
+				Controller.Instance.PrintProductAdPricingFlat.Visible = true;
+				visbleStrategies++;
+			}
+			else
+				Controller.Instance.PrintProductAdPricingFlat.Visible = false;
+			if (ListManager.Instance.ShareUnits.Count > 0 & ListManager.Instance.DefaultPrintScheduleViewSettings.EnableShare)
+			{
+				Controller.Instance.PrintProductAdPricingPagePercent.Visible = true;
+				visbleStrategies++;
+			}
+			else
+				Controller.Instance.PrintProductAdPricingPagePercent.Visible = false;
+			Controller.Instance.PrintProductStrategy.Visible = visbleStrategies > 1;
+			Controller.Instance.PrintProductStrategy.ItemSpacing = (3 - visbleStrategies) * 20;
+			Controller.Instance.PrintProductStrategy.RecalcLayout();
+			Controller.Instance.PrintProductPanel.PerformLayout();
+
+			Controller.Instance.PrintProductColor.Enabled = ListManager.Instance.DefaultPrintScheduleViewSettings.EnableBlackWhite;
+
+			Controller.Instance.PrintProductColorOptionsCostPerAd.Enabled = ListManager.Instance.DefaultPrintScheduleViewSettings.EnableCostPerAd;
+			Controller.Instance.PrintProductColorOptionsPercentOfAd.Enabled = ListManager.Instance.DefaultPrintScheduleViewSettings.EnablePercentOfAd;
+			Controller.Instance.PrintProductColorOptionsIncluded.Enabled = ListManager.Instance.DefaultPrintScheduleViewSettings.EnableColorIncluded;
+			Controller.Instance.PrintProductColorOptionsPCI.Enabled = ListManager.Instance.DefaultPrintScheduleViewSettings.EnableCostPerInch;
+
+			ClearSettings();
+			LoadPricingOptions(publicationControl);
+			LoadSizeOptions(publicationControl);
+			LoadColorOptions(publicationControl);
+			SettingsNotSaved = temSettingsNotSaved;
 		}
 
 		private bool SaveSchedule(string scheduleName = "")
@@ -328,7 +341,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					Controller.Instance.PrintProductAdSizeStandartSquare.Enabled = false;
 					Controller.Instance.PrintProductAdSizeStandartSquare.Checked = true;
 					Controller.Instance.PrintProductColorOptionsPCI.Enabled = printProductControl.PrintProduct.ColorOption != ColorOptions.BlackWhite;
-					Controller.Instance.PrintProductCostPerInch.Enabled = printProductControl.PrintProduct.ColorOption != ColorOptions.BlackWhite & printProductControl.PrintProduct.ColorPricing == ColorPricingType.CostPerInch;
 					Controller.Instance.PrintProductDimensionsRibbonBar.Text = "Col. x In.";
 
 					printProductControl.gridBandPCIRate.Caption = "PCI";
@@ -370,7 +382,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					Controller.Instance.PrintProductAdSizeStandartSquare.Enabled = true;
 					Controller.Instance.PrintProductAdSizeStandartSquare.Enabled = true;
 					Controller.Instance.PrintProductColorOptionsPCI.Enabled = printProduct.SizeOptions.EnableSquare & printProductControl.PrintProduct.ColorOption != ColorOptions.BlackWhite;
-					Controller.Instance.PrintProductCostPerInch.Enabled = printProduct.SizeOptions.EnableSquare & printProductControl.PrintProduct.ColorOption != ColorOptions.BlackWhite & printProductControl.PrintProduct.ColorPricing == ColorPricingType.CostPerInch;
 					Controller.Instance.PrintProductDimensionsRibbonBar.Text = "Col. x In.";
 
 					printProductControl.gridBandPCIRate.Caption = "Package PCI";
@@ -411,8 +422,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					Controller.Instance.PrintProductAdSizeSharePage.Visible = true;
 					Controller.Instance.PrintProductAdSizeStandartSquare.Enabled = false;
 					Controller.Instance.PrintProductColorOptionsPCI.Enabled = false;
-					Controller.Instance.PrintProductCostPerInch.Enabled = false;
-					Controller.Instance.PrintProductCostPerInch.Value = 0;
 					Controller.Instance.PrintProductDimensionsRibbonBar.Text = "Ratecard && Share";
 
 					printProductControl.gridBandPCIRate.Caption = "Package PCI";
@@ -512,11 +521,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 						if (form.rbDelete.Checked)
 							printProduct.Inserts.Clear();
 						if (form.ckDeleteAllColorRates.Checked)
-							foreach (Insert insert in printProduct.Inserts)
+							foreach (var insert in printProduct.Inserts)
 							{
 								insert.ColorPricing = 0;
 								insert.ColorPricingPercent = 0;
-								printProduct.ColorInchRate = 0;
+								insert.ColorInchRate = 0;
 							}
 						if (form.ckDeleteAllDiscounts.Checked)
 							foreach (var insert in printProduct.Inserts)
@@ -642,7 +651,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 						shareUnits = ListManager.Instance.ShareUnits.Where(x => x.RateCard.Equals(Controller.Instance.PrintProductRateCard.EditValue.ToString()) && x.PercentOfPage.Equals(Controller.Instance.PrintProductPercentOfPage.EditValue.ToString())).ToArray();
 					if (shareUnits.Length > 0)
 					{
-						ShareUnit storedShareUnit = printProductControl.PrintProduct.SizeOptions.RelatedShareUnit;
+						var storedShareUnit = printProductControl.PrintProduct.SizeOptions.RelatedShareUnit;
 						foreach (var shareUnit in shareUnits)
 							Controller.Instance.PrintProductSharePageSquare.Items.Add(shareUnit, shareUnit.Dimensions, shareUnit.Dimensions.Equals(storedShareUnit.Dimensions) ? CheckState.Checked : CheckState.Unchecked, true);
 						if (Controller.Instance.PrintProductSharePageSquare.CheckedIndices.Count == 0)
@@ -717,7 +726,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				Controller.Instance.PrintProductPageSizeName.EditValue = null;
 			}
 			Controller.Instance.PrintProductColorOptionsPCI.Enabled = sizeOptions.EnableSquare & printProductControl.PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage & printProductControl.PrintProduct.ColorOption != ColorOptions.BlackWhite;
-			Controller.Instance.PrintProductCostPerInch.Enabled = sizeOptions.EnableSquare & printProductControl.PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage & printProductControl.PrintProduct.ColorOption != ColorOptions.BlackWhite & printProductControl.PrintProduct.ColorPricing == ColorPricingType.CostPerInch;
 			Controller.Instance.PrintProductPercentOfPage.Enabled = !string.IsNullOrEmpty(sizeOptions.RateCard);
 			Controller.Instance.PrintProductSharePageSquare.Enabled = Controller.Instance.PrintProductSharePageSquare.ItemCount > 0;
 			Controller.Instance.PrintProductSharePageSquare.BackColor = Controller.Instance.PrintProductSharePageSquare.ItemCount > 0 ? Color.White : Color.FromArgb(197, 214, 232);
@@ -873,7 +881,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 							break;
 						case ColorPricingType.CostPerInch:
 							Controller.Instance.PrintProductColorOptionsPCI.Checked = true;
-							Controller.Instance.PrintProductCostPerInch.Value = (decimal)printProduct.ColorInchRate;
 							break;
 					}
 					break;
@@ -892,13 +899,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					Controller.Instance.PrintProductColorOptionsPercentOfAd.Enabled = false;
 					Controller.Instance.PrintProductColorOptionsIncluded.Enabled = false;
 					Controller.Instance.PrintProductColorOptionsPCI.Enabled = false;
-					Controller.Instance.PrintProductCostPerInch.Enabled = false;
-					Controller.Instance.PrintProductCostPerInch.Value = 0;
 
 					printProductControl.gridBandColorPricing.Caption = @"Black & White";
 					printProductControl.gridColumnColorPricing.OptionsColumn.ReadOnly = true;
 					printProductControl.gridColumnColorPricing.OptionsColumn.AllowEdit = false;
 					printProductControl.gridColumnColorPricingPercent.Visible = false;
+					printProductControl.gridColumnColorPricingPCI.Visible = false;
 					printProductControl.gridColumnColorPricing.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
 					printProductControl.repositoryItemSpinEditColorPricingDisplay.NullText = "B-W";
 					printProductControl.repositoryItemSpinEditColorPricingDisplayFirstRow.NullText = "B-W";
@@ -924,45 +930,38 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					switch (printProduct.ColorPricing)
 					{
 						case ColorPricingType.CostPerAd:
-							Controller.Instance.PrintProductCostPerInch.Enabled = false;
-							Controller.Instance.PrintProductCostPerInch.Value = 0;
-
 							printProductControl.gridColumnColorPricing.OptionsColumn.AllowEdit = true;
 							printProductControl.gridColumnColorPricing.OptionsColumn.ReadOnly = false;
 							printProductControl.gridColumnColorPricingPercent.Visible = false;
+							printProductControl.gridColumnColorPricingPCI.Visible = false;
 							printProductControl.gridColumnColorPricing.ColumnEdit = printProductControl.repositoryItemSpinEditColorPricingDisplay;
 							printProductControl.repositoryItemSpinEditColorPricingDisplayFirstRow.Buttons[1].Visible = true;
 							printProductControl.gridColumnColorPricing.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Near;
 
 							break;
 						case ColorPricingType.PercentOfAdRate:
-							Controller.Instance.PrintProductCostPerInch.Enabled = false;
-							Controller.Instance.PrintProductCostPerInch.Value = 0;
-
 							printProductControl.gridColumnColorPricing.OptionsColumn.AllowEdit = false;
 							printProductControl.gridColumnColorPricing.OptionsColumn.ReadOnly = true;
 							printProductControl.gridColumnColorPricingPercent.Visible = true;
+							printProductControl.gridColumnColorPricingPCI.Visible = false;
 							printProductControl.gridColumnColorPricing.ColumnEdit = printProductControl.repositoryItemSpinEditDiscountRate;
 							printProductControl.repositoryItemSpinEditColorPricingDisplayFirstRow.Buttons[1].Visible = false;
 							printProductControl.gridColumnColorPricing.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Near;
 							break;
 						case ColorPricingType.ColorIncluded:
-							Controller.Instance.PrintProductCostPerInch.Enabled = false;
-							Controller.Instance.PrintProductCostPerInch.Value = 0;
-
 							printProductControl.gridColumnColorPricing.OptionsColumn.AllowEdit = false;
 							printProductControl.gridColumnColorPricing.OptionsColumn.ReadOnly = true;
 							printProductControl.gridColumnColorPricingPercent.Visible = false;
+							printProductControl.gridColumnColorPricingPCI.Visible = false;
 							printProductControl.gridColumnColorPricing.ColumnEdit = printProductControl.repositoryItemSpinEditColorPricingDisplay;
 							printProductControl.repositoryItemSpinEditColorPricingDisplayFirstRow.Buttons[1].Visible = false;
 							printProductControl.gridColumnColorPricing.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
 							break;
 						case ColorPricingType.CostPerInch:
-							Controller.Instance.PrintProductCostPerInch.Enabled = printProduct.SizeOptions.EnableSquare & printProduct.AdPricingStrategy != AdPricingStrategies.SharePage;
-
 							printProductControl.gridColumnColorPricing.OptionsColumn.AllowEdit = false;
 							printProductControl.gridColumnColorPricing.OptionsColumn.ReadOnly = true;
 							printProductControl.gridColumnColorPricingPercent.Visible = false;
+							printProductControl.gridColumnColorPricingPCI.Visible = true;
 							printProductControl.gridColumnColorPricing.ColumnEdit = printProductControl.repositoryItemSpinEditColorPricingDisplay;
 							printProductControl.repositoryItemSpinEditColorPricingDisplayFirstRow.Buttons[1].Visible = false;
 							printProductControl.gridColumnColorPricing.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center;
@@ -1031,49 +1030,30 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void buttonItemColorOptions_CheckedChanged(object sender, EventArgs e)
 		{
 			var publicationControl = xtraTabControlPublications.SelectedTabPage as PrintProductControl;
-			if (publicationControl != null && _allowToSave)
+			if (publicationControl == null || !_allowToSave) return;
+			var printProduct = publicationControl.PrintProduct;
+			if (Controller.Instance.PrintProductColorOptionsPCI.Checked)
 			{
-				PrintProduct printProduct = publicationControl.PrintProduct;
-				Controller.Instance.PrintProductCostPerInch.Enabled = Controller.Instance.PrintProductColorOptionsPCI.Checked;
-				if (Controller.Instance.PrintProductColorOptionsPCI.Checked)
-				{
-					printProduct.ColorPricing = ColorPricingType.CostPerInch;
-				}
-				else if (Controller.Instance.PrintProductColorOptionsCostPerAd.Checked)
-				{
-					printProduct.ColorPricing = ColorPricingType.CostPerAd;
-					printProduct.ColorInchRate = 0;
-				}
-				else if (Controller.Instance.PrintProductColorOptionsPercentOfAd.Checked)
-				{
-					printProduct.ColorPricing = ColorPricingType.PercentOfAdRate;
-					printProduct.ColorInchRate = 0;
-				}
-				else if (Controller.Instance.PrintProductColorOptionsIncluded.Checked)
-				{
-					printProduct.ColorPricing = ColorPricingType.ColorIncluded;
-					printProduct.ColorInchRate = 0;
-				}
-				_allowToSave = false;
-				FormatAccordingColorOptions(publicationControl);
-				_allowToSave = true;
-				publicationControl.LoadInserts();
-				publicationControl.UpdateTotals();
-				SettingsNotSaved = true;
+				printProduct.ColorPricing = ColorPricingType.CostPerInch;
 			}
-		}
-
-		public void spinEditCostPerInch_EditValueChanged(object sender, EventArgs e)
-		{
-			var publicationControl = xtraTabControlPublications.SelectedTabPage as PrintProductControl;
-			if (publicationControl != null && _allowToSave)
+			else if (Controller.Instance.PrintProductColorOptionsCostPerAd.Checked)
 			{
-				PrintProduct printProduct = publicationControl.PrintProduct;
-				printProduct.ColorInchRate = (double)Controller.Instance.PrintProductCostPerInch.Value;
-				publicationControl.LoadInserts();
-				publicationControl.UpdateTotals();
-				SettingsNotSaved = true;
+				printProduct.ColorPricing = ColorPricingType.CostPerAd;
 			}
+			else if (Controller.Instance.PrintProductColorOptionsPercentOfAd.Checked)
+			{
+				printProduct.ColorPricing = ColorPricingType.PercentOfAdRate;
+			}
+			else if (Controller.Instance.PrintProductColorOptionsIncluded.Checked)
+			{
+				printProduct.ColorPricing = ColorPricingType.ColorIncluded;
+			}
+			_allowToSave = false;
+			FormatAccordingColorOptions(publicationControl);
+			_allowToSave = true;
+			publicationControl.LoadInserts();
+			publicationControl.UpdateTotals();
+			SettingsNotSaved = true;
 		}
 		#endregion
 

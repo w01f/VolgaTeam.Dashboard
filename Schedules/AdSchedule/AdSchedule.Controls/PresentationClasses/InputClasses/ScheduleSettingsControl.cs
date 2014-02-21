@@ -90,8 +90,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control != Controller.Instance.PrintProductPageSizeGroup
 				&& control != Controller.Instance.PrintProductPageSizeName
 				&& control != Controller.Instance.PrintProductColor
-				&& control != Controller.Instance.PrintProductSharePageSquare
-				&& control != Controller.Instance.PrintProductCostPerInch)
+				&& control != Controller.Instance.PrintProductSharePageSquare)
 			{
 				control.Click += CloseActiveEditorsonOutSideClick;
 				foreach (Control childControl in control.Controls)
@@ -118,6 +117,18 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			gridControlPrintProducts.DataSource = new BindingList<PrintProduct>(_localSchedule.PrintProducts);
 			gridControlDigitalProducts.DataSource = new BindingList<DigitalProduct>(_localSchedule.DigitalProducts);
+			if (ListManager.Instance.LockedMode)
+			{
+				gridColumnDigitalProductsWidth.OptionsColumn.ReadOnly = true;
+				gridColumnDigitalProductsWidth.OptionsColumn.AllowEdit = false;
+				gridColumnDigitalProductsHeight.OptionsColumn.ReadOnly = true;
+				gridColumnDigitalProductsHeight.OptionsColumn.AllowEdit = false;
+				gridColumnDigitalProductsRate.OptionsColumn.ReadOnly = true;
+				gridColumnDigitalProductsRate.OptionsColumn.AllowEdit = false;
+				gridColumnDigitalProductsRateType.OptionsColumn.ReadOnly = true;
+				gridColumnDigitalProductsRateType.OptionsColumn.AllowEdit = false;
+				repositoryItemComboBoxDigitalProductsNames.TextEditStyle = TextEditStyles.DisableTextEditor;
+			}
 			if (!quickLoad)
 			{
 				LoadView();
@@ -675,30 +686,30 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void DigitalProductClone(object sender, EventArgs e)
 		{
-			if (advBandedGridViewDigitalProducts.FocusedRowHandle != GridControl.InvalidRowHandle)
-			{
-				var newRowHandle = advBandedGridViewDigitalProducts.FocusedRowHandle + 1;
-				((BindingList<DigitalProduct>)advBandedGridViewDigitalProducts.DataSource)[advBandedGridViewDigitalProducts.GetDataSourceRowIndex(advBandedGridViewDigitalProducts.FocusedRowHandle)].Clone();
-				((BindingList<DigitalProduct>)advBandedGridViewDigitalProducts.DataSource).ResetBindings();
-				advBandedGridViewDigitalProducts.FocusedRowHandle = newRowHandle;
-				UpdateProductsCount();
-				Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
-				if (_allowToSave)
-					SettingsNotSaved = true;
-			}
+			if (advBandedGridViewDigitalProducts.FocusedRowHandle == GridControl.InvalidRowHandle) return;
+			var newRowHandle = advBandedGridViewDigitalProducts.FocusedRowHandle + 1;
+			((BindingList<DigitalProduct>)advBandedGridViewDigitalProducts.DataSource)[advBandedGridViewDigitalProducts.GetDataSourceRowIndex(advBandedGridViewDigitalProducts.FocusedRowHandle)].Clone();
+			((BindingList<DigitalProduct>)advBandedGridViewDigitalProducts.DataSource).ResetBindings();
+			advBandedGridViewDigitalProducts.FocusedRowHandle = newRowHandle;
+			UpdateProductsCount();
+			Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
+			if (_allowToSave)
+				SettingsNotSaved = true;
 		}
 
 		private void gridViewDigitalProducts_CellValueChanged(object sender, CellValueChangedEventArgs e)
 		{
-			if (e.Column == gridColumnDigitalProductsName)
+			if (e.Column == gridColumnDigitalProductsName ||
+				e.Column == gridColumnDigitalProductsCategory ||
+				e.Column == gridColumnDigitalProductsSubCategory)
 			{
-				if (e.Value != null)
+				var product = advBandedGridViewDigitalProducts.GetFocusedRow() as DigitalProduct;
+				if (product != null)
 				{
-					var value = e.Value.ToString();
-					var productSource = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(value));
+					var productSource = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(product.Name));
 					if (productSource != null)
 					{
-						_localSchedule.DigitalProducts[advBandedGridViewDigitalProducts.GetFocusedDataSourceRowIndex()].ApplyDefaultValues();
+						product.ApplyDefaultValues();
 						advBandedGridViewDigitalProducts.RefreshData();
 					}
 				}
@@ -717,16 +728,29 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			e.Cancel = false;
 			if (advBandedGridViewDigitalProducts.FocusedColumn == gridColumnDigitalProductsName)
 			{
-				string category = _localSchedule.DigitalProducts[advBandedGridViewDigitalProducts.GetFocusedDataSourceRowIndex()].Category;
-				string subCategory = _localSchedule.DigitalProducts[advBandedGridViewDigitalProducts.GetFocusedDataSourceRowIndex()].SubCategory;
-				repositoryItemComboBoxDigitalProductsNames.Items.Clear();
-				repositoryItemComboBoxDigitalProductsNames.Items.AddRange(ListManager.Instance.ProductSources.Where(x => x.Category.Name.Equals(category) && (x.SubCategory.Equals(subCategory) || string.IsNullOrEmpty(subCategory))).Select(x => x.Name).Distinct().ToArray());
+				var category = _localSchedule.DigitalProducts[advBandedGridViewDigitalProducts.GetFocusedDataSourceRowIndex()].Category;
+				var subCategories = ListManager.Instance.ProductSources.Where(x => x.Category.Name.Equals(category) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray();
+				var subCategory = _localSchedule.DigitalProducts[advBandedGridViewDigitalProducts.GetFocusedDataSourceRowIndex()].SubCategory;
+				if ((subCategories.Any() && !String.IsNullOrEmpty(subCategory)) || !subCategories.Any())
+				{
+					repositoryItemComboBoxDigitalProductsNames.Items.Clear();
+					repositoryItemComboBoxDigitalProductsNames.Items.AddRange(
+						ListManager.Instance.ProductSources.
+							Where(x => x.Category.Name.Equals(category) &&
+									   (x.SubCategory.Equals(subCategory) || String.IsNullOrEmpty(subCategory))).
+							Select(x => x.Name).Distinct().ToArray());
+				}
+				else
+				{
+					e.Cancel = true;
+					Utilities.Instance.ShowWarning("You need to select Web Category first");
+				}
 			}
 			else if (advBandedGridViewDigitalProducts.FocusedColumn == gridColumnDigitalProductsType)
 			{
-				string category = _localSchedule.DigitalProducts[advBandedGridViewDigitalProducts.GetFocusedDataSourceRowIndex()].Category;
-				string[] subCategories = ListManager.Instance.ProductSources.Where(x => x.Category.Name.Equals(category) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray();
-				if (subCategories.Length > 0)
+				var category = _localSchedule.DigitalProducts[advBandedGridViewDigitalProducts.GetFocusedDataSourceRowIndex()].Category;
+				var subCategories = ListManager.Instance.ProductSources.Where(x => x.Category.Name.Equals(category) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray();
+				if (subCategories.Any())
 				{
 					repositoryItemComboBoxDigitalProductsType.Items.Clear();
 					repositoryItemComboBoxDigitalProductsType.Items.AddRange(subCategories);

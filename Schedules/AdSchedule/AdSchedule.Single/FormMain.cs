@@ -79,6 +79,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.PrintProductAdPricingColumnInches = buttonItemPrintScheduleAdPricingColumnInches;
 			Controller.Instance.PrintProductAdPricingFlat = buttonItemPrintScheduleAdPricingFlat;
 			Controller.Instance.PrintProductAdPricingPagePercent = buttonItemPrintScheduleAdPricingPagePercent;
+			Controller.Instance.PrintProductStrategy = ribbonBarPrintScheduleStrategy;
 			Controller.Instance.PrintProductColor = comboBoxEditColor;
 			Controller.Instance.PrintProductColorOptionsCostPerAd = buttonItemPrintScheduleColorOptionsCostPerAd;
 			Controller.Instance.PrintProductColorOptionsPercentOfAd = buttonItemPrintScheduleColorOptionsPercentOfAd;
@@ -98,7 +99,6 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.PrintProductStandartHeight = spinEditStandartHeight;
 			Controller.Instance.PrintProductStandartWidth = spinEditStandartWidth;
 			Controller.Instance.PrintProductSharePageSquare = checkedListBoxControlSharePageSquare;
-			Controller.Instance.PrintProductCostPerInch = spinEditCostPerInch;
 			Controller.Instance.PrintProductDimensionsRibbonBar = ribbonBarPrintScheduleDimensions;
 			Controller.Instance.PrintProductPanel = ribbonPanelPrintSchedule;
 			#endregion
@@ -241,7 +241,6 @@ namespace NewBizWiz.AdSchedule.Single
 				comboBoxEditClientType.Font = font;
 				comboBoxEditDecisionMaker.Font = font;
 				textEditAccountNumber.Font = font;
-				spinEditCostPerInch.Font = font;
 				spinEditStandartHeight.Font = font;
 				spinEditStandartWidth.Font = font;
 				comboBoxEditPercentOfPage.Font = font;
@@ -768,6 +767,11 @@ namespace NewBizWiz.AdSchedule.Single
 		{
 			var formSender = sender as Form;
 			AppManager.Instance.ShowFloater(formSender ?? this, null);
+		}
+
+		private void buttonItemPrintScheduleColorOptionsPercentOfAd_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

@@ -12,7 +12,6 @@ using DevExpress.XtraGrid.Views.BandedGrid;
 using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
@@ -80,6 +79,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			repositoryItemSpinEditDiscountsEditFirstRow.Enter += Utilities.Instance.Editor_Enter;
 			repositoryItemSpinEditDiscountsEditFirstRow.MouseDown += Utilities.Instance.Editor_MouseDown;
 			repositoryItemSpinEditDiscountsEditFirstRow.MouseUp += Utilities.Instance.Editor_MouseUp;
+			repositoryItemSpinEditColorPCIEditFirtsRow.Enter += Utilities.Instance.Editor_Enter;
+			repositoryItemSpinEditColorPCIEditFirtsRow.MouseDown += Utilities.Instance.Editor_MouseDown;
+			repositoryItemSpinEditColorPCIEditFirtsRow.MouseUp += Utilities.Instance.Editor_MouseUp;
+			repositoryItemSpinEditColorPCIEdit.Enter += Utilities.Instance.Editor_Enter;
+			repositoryItemSpinEditColorPCIEdit.MouseDown += Utilities.Instance.Editor_MouseDown;
+			repositoryItemSpinEditColorPCIEdit.MouseUp += Utilities.Instance.Editor_MouseUp;
 		}
 
 		#region Insert's Processing
@@ -126,7 +131,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					form.checkEditPCIRate.Text = PrintProduct.AdPricingStrategy == AdPricingStrategies.StandartPCI ? gridBandPCIRate.Caption : gridBandADRate.Caption;
 					if (form.ShowDialog() == DialogResult.OK)
 					{
-						PrintProduct.CloneInsert(originalInsert, form.SelectedDates, form.checkEditPCIRate.Checked, form.checkEditDiscount.Checked, PrintProduct.ColorOption == ColorOptions.BlackWhite ? false : form.checkEditColorRate.Checked, form.checkEditComment.Checked, form.checkEditSections.Checked, form.checkEditDeadline.Checked, form.checkEditMechanicals.Checked);
+						PrintProduct.CloneInsert(originalInsert, form.SelectedDates, form.checkEditPCIRate.Checked, form.checkEditDiscount.Checked, PrintProduct.ColorOption != ColorOptions.BlackWhite && form.checkEditColorRate.Checked, form.checkEditComment.Checked, form.checkEditSections.Checked, form.checkEditDeadline.Checked, form.checkEditMechanicals.Checked);
 						LoadInserts();
 						Controller.Instance.ScheduleSettings.SettingsNotSaved = true;
 					}
@@ -220,13 +225,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			var gridC = sender as GridControl;
 			var gridView = gridC.FocusedView as AdvBandedGridView;
 			var viewinfo = gridView.GetViewInfo() as BandedGridViewInfo;
-			BandedGridViewRects gridViewRects = viewinfo.ViewRects;
-			Rectangle r = gridViewRects.BandPanel;
-			GridColumnsInfo gci = viewinfo.ColumnsInfo;
-			int y = gci[gridColumnADRate].Bounds.Y - r.Height;
-			int x = gci[gridColumnADRate].Bounds.Right;
+			var gridViewRects = viewinfo.ViewRects;
+			var r = gridViewRects.BandPanel;
+			var gci = viewinfo.ColumnsInfo;
+			var y = gci[gridColumnADRate].Bounds.Y - r.Height;
+			var x = gci[gridColumnADRate].Bounds.Right;
 			var p1 = new Point(x, y);
-			int y2 = gridViewRects.Rows.Bottom;
+			var y2 = gridViewRects.Rows.Bottom;
 			var p2 = new Point(x, y2);
 			e.Graphics.DrawLine(Pens.LightBlue, p1, p2);
 
@@ -276,33 +281,31 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		private void advBandedGridViewPublication_CustomDrawBandHeader(object sender, BandHeaderCustomDrawEventArgs e)
 		{
 			if (e.Band == null) return;
-			if (e.Band == gridBandDiscounts || e.Band == gridBandColorPricing)
+			if (e.Band != gridBandDiscounts && e.Band != gridBandColorPricing) return;
+			var rect = e.Bounds;
+			ControlPaint.DrawBorder3D(e.Graphics, e.Bounds);
+			var brush =
+				e.Cache.GetGradientBrush(rect, e.Band.AppearanceHeader.BackColor,
+					e.Band.AppearanceHeader.BackColor2, e.Band.AppearanceHeader.GradientMode);
+			rect.Inflate(-1, -1);
+			e.Graphics.FillRectangle(brush, rect);
+			e.Appearance.DrawString(e.Cache, e.Info.Caption, e.Info.CaptionRect);
+			e.Painter.DrawObject(e.Info);
+
+			Image img = null;
+			if (e.Band == gridBandDiscounts)
+				img = imageList.Images[0];
+			else if (e.Band == gridBandColorPricing)
+				img = PrintProduct.ColorOption == ColorOptions.BlackWhite ? null : imageList.Images[1];
+			if (img != null)
 			{
-				Rectangle rect = e.Bounds;
-				ControlPaint.DrawBorder3D(e.Graphics, e.Bounds);
-				Brush brush =
-					e.Cache.GetGradientBrush(rect, e.Band.AppearanceHeader.BackColor,
-											 e.Band.AppearanceHeader.BackColor2, e.Band.AppearanceHeader.GradientMode);
-				rect.Inflate(-1, -1);
-				e.Graphics.FillRectangle(brush, rect);
-				e.Appearance.DrawString(e.Cache, e.Info.Caption, e.Info.CaptionRect);
-				e.Painter.DrawObject(e.Info);
-
-				Image img = null;
-				if (e.Band == gridBandDiscounts)
-					img = imageList.Images[0];
-				else if (e.Band == gridBandColorPricing)
-					img = PrintProduct.ColorOption == ColorOptions.BlackWhite ? null : imageList.Images[1];
-				if (img != null)
-				{
-					Point p = Point.Empty;
-					p.X = (e.Bounds.Width - (img.Width + (int)e.Graphics.MeasureString(e.Info.Caption, advBandedGridViewPublication.Appearance.BandPanel.Font).Width + 15)) / 2 + e.Bounds.Left;
-					p.Y = (e.Bounds.Height - img.Height) / 2 + e.Bounds.Top;
-					e.Graphics.DrawImage(img, p);
-				}
-
-				e.Handled = true;
+				var p = Point.Empty;
+				p.X = (e.Bounds.Width - (img.Width + (int)e.Graphics.MeasureString(e.Info.Caption, advBandedGridViewPublication.Appearance.BandPanel.Font).Width + 15)) / 2 + e.Bounds.Left;
+				p.Y = (e.Bounds.Height - img.Height) / 2 + e.Bounds.Top;
+				e.Graphics.DrawImage(img, p);
 			}
+
+			e.Handled = true;
 		}
 
 		private void toolTipController_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
@@ -331,13 +334,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 					if (hi.Column == gridColumnADRate && adNotes.Count > 0)
 					{
-						info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), string.Join(", ", adNotes.ToArray()));
-						info.ToolTipImage = Resources.AdNoteSmall;
-						return;
+						info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), string.Join(", ", adNotes.ToArray())) { ToolTipImage = Resources.AdNoteSmall };
 					}
 					else if (e.Info != null)
 					{
-						if (hi.Column == gridColumnColorPricingPercent)
+						if (hi.Column == gridColumnColorPricingPercent || hi.Column == gridColumnColorPricingPCI)
 							e.Info.Text = "Apply this Color Rate on Line 1, to all Ads in this schedule";
 						else if (hi.Column == gridColumnDiscountRate)
 							e.Info.Text = "Apply this Discount on Line 1 to all Ads in this schedule";
@@ -358,17 +359,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		{
 			if (e.Column == gridColumnDate)
 			{
-				if (e.CellValue == null)
-					e.RepositoryItem = repositoryItemDateNull;
-				else
-					e.RepositoryItem = repositoryItemDateEditNull;
+				e.RepositoryItem = e.CellValue == null ?
+					repositoryItemDateNull :
+					repositoryItemDateEditNull;
 			}
 			else if (e.Column == gridColumnPCIRate && PrintProduct.AdPricingStrategy == AdPricingStrategies.StandartPCI)
 			{
-				if (e.RowHandle == 0)
-					e.RepositoryItem = repositoryItemSpinEditPCIRateDisplayFirstRow;
-				else
-					e.RepositoryItem = repositoryItemSpinEditPCIRateDisplay;
+				e.RepositoryItem = e.RowHandle == 0 ?
+					repositoryItemSpinEditPCIRateDisplayFirstRow :
+					repositoryItemSpinEditPCIRateDisplay;
 			}
 			else if (e.Column == gridColumnADRate)
 			{
@@ -395,10 +394,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			}
 			else if (e.Column == gridColumnDiscounts || e.Column == gridColumnColorPricingPercent)
 			{
-				if (e.RowHandle == 0)
-					e.RepositoryItem = repositoryItemSpinEditDiscountsDisplayFirstRow;
-				else
-					e.RepositoryItem = repositoryItemSpinEditDiscountsDisplay;
+				e.RepositoryItem = e.RowHandle == 0 ?
+					repositoryItemSpinEditDiscountsDisplayFirstRow :
+					repositoryItemSpinEditDiscountsDisplay;
 			}
 			else if (e.Column == gridColumnColorPricing)
 			{
@@ -408,11 +406,16 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				}
 				else
 				{
-					if (e.RowHandle == 0)
-						e.RepositoryItem = repositoryItemSpinEditColorPricingDisplayFirstRow;
-					else
-						e.RepositoryItem = repositoryItemSpinEditColorPricingDisplay;
+					e.RepositoryItem = e.RowHandle == 0 ?
+						repositoryItemSpinEditColorPricingDisplayFirstRow :
+						repositoryItemSpinEditColorPricingDisplay;
 				}
+			}
+			else if (e.Column == gridColumnColorPricingPCI)
+			{
+				e.RepositoryItem = e.RowHandle == 0 ?
+					repositoryItemSpinEditColorPCIDisplayFirtsRow:
+					repositoryItemSpinEditColorPCIDisplay;
 			}
 		}
 
@@ -420,24 +423,27 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		{
 			if (e.Column == gridColumnDiscounts || e.Column == gridColumnColorPricingPercent)
 			{
-				if (e.RowHandle == 0)
-					e.RepositoryItem = repositoryItemSpinEditDiscountsEditFirstRow;
-				else
-					e.RepositoryItem = repositoryItemSpinEditDiscountsEdit;
+				e.RepositoryItem = e.RowHandle == 0 ?
+					repositoryItemSpinEditDiscountsEditFirstRow :
+					repositoryItemSpinEditDiscountsEdit;
 			}
 			if (e.Column == gridColumnColorPricing)
 			{
-				if (e.RowHandle == 0)
-					e.RepositoryItem = repositoryItemSpinEditColorPricingEditFirstRow;
-				else
-					e.RepositoryItem = repositoryItemSpinEditColorPricingEdit;
+				e.RepositoryItem = e.RowHandle == 0 ?
+					repositoryItemSpinEditColorPricingEditFirstRow :
+					repositoryItemSpinEditColorPricingEdit;
+			}
+			if (e.Column == gridColumnColorPricingPCI)
+			{
+				e.RepositoryItem = e.RowHandle == 0 ?
+					repositoryItemSpinEditColorPCIEditFirtsRow :
+					repositoryItemSpinEditColorPCIEdit;
 			}
 			if (e.Column == gridColumnPCIRate && PrintProduct.AdPricingStrategy == AdPricingStrategies.StandartPCI)
 			{
-				if (e.RowHandle == 0)
-					e.RepositoryItem = repositoryItemSpinEditPCIRateEditFirstRow;
-				else
-					e.RepositoryItem = repositoryItemSpinEditPCIRateEdit;
+				e.RepositoryItem = e.RowHandle == 0 ?
+					repositoryItemSpinEditPCIRateEditFirstRow :
+					repositoryItemSpinEditPCIRateEdit;
 			}
 			if (e.Column == gridColumnADRate && (PrintProduct.AdPricingStrategy == AdPricingStrategies.FlatModular || PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage))
 			{
@@ -446,17 +452,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Mechanicals) &&
 					string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Deadline))
 				{
-					if (e.RowHandle == 0)
-						e.RepositoryItem = repositoryItemSpinEditADRateEditNullFirstRow;
-					else
-						e.RepositoryItem = repositoryItemSpinEditADRateEditNull;
+					e.RepositoryItem = e.RowHandle == 0 ?
+						repositoryItemSpinEditADRateEditNullFirstRow :
+						repositoryItemSpinEditADRateEditNull;
 				}
 				else
 				{
-					if (e.RowHandle == 0)
-						e.RepositoryItem = repositoryItemSpinEditADRateEditFirstRow;
-					else
-						e.RepositoryItem = repositoryItemSpinEditADRateEdit;
+					e.RepositoryItem = e.RowHandle == 0 ?
+						repositoryItemSpinEditADRateEditFirstRow :
+						repositoryItemSpinEditADRateEdit;
 				}
 			}
 		}
@@ -481,21 +485,29 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		private void repositoryItemSpinEditDiscountsFirstRow_ButtonClick(object sender, ButtonPressedEventArgs e)
 		{
-			if (e.Button.Index == 1)
-			{
-				advBandedGridViewPublication.CloseEditor();
-				double temp = 0;
-				object value = advBandedGridViewPublication.GetFocusedRowCellValue(advBandedGridViewPublication.FocusedColumn);
-				if (value != null)
-					if (double.TryParse(value.ToString(), out temp))
-					{
-						if (advBandedGridViewPublication.FocusedColumn == gridColumnDiscounts)
-							PrintProduct.CopyDiscounts(temp);
-						else if (advBandedGridViewPublication.FocusedColumn == gridColumnColorPricingPercent)
-							PrintProduct.CopyColorRatePercent(temp);
-						LoadInserts();
-					}
-			}
+			if (e.Button.Index != 1) return;
+			advBandedGridViewPublication.CloseEditor();
+			double temp;
+			var value = advBandedGridViewPublication.GetFocusedRowCellValue(advBandedGridViewPublication.FocusedColumn);
+			if (value == null) return;
+			if (!double.TryParse(value.ToString(), out temp)) return;
+			if (advBandedGridViewPublication.FocusedColumn == gridColumnDiscounts)
+				PrintProduct.CopyDiscounts(temp);
+			else if (advBandedGridViewPublication.FocusedColumn == gridColumnColorPricingPercent)
+				PrintProduct.CopyColorRatePercent(temp);
+			LoadInserts();
+		}
+
+		private void repositoryItemSpinEditColorPCIFirstRow_ButtonClick(object sender, ButtonPressedEventArgs e)
+		{
+			if (e.Button.Index != 1) return;
+			advBandedGridViewPublication.CloseEditor();
+			double temp;
+			var value = advBandedGridViewPublication.GetFocusedRowCellValue(advBandedGridViewPublication.FocusedColumn);
+			if (value == null) return;
+			if (!double.TryParse(value.ToString(), out temp)) return;
+			PrintProduct.CopyColorPCI(temp);
+			LoadInserts();
 		}
 
 		private void repositoryItemSpinEditPCIRateFirstRow_ButtonClick(object sender, ButtonPressedEventArgs e)
@@ -664,7 +676,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		private void advBandedGridViewPublication_Click(object sender, EventArgs e)
 		{
 			var view = (AdvBandedGridView)sender;
-			BandedGridHitInfo hi = view.CalcHitInfo(view.GridControl.PointToClient(MousePosition));
+			var hi = view.CalcHitInfo(view.GridControl.PointToClient(MousePosition));
 			if (hi.InBandPanel && (hi.Band == gridBandDate || hi.Band == gridBandIndex))
 			{
 				SortInserts();
@@ -680,8 +692,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				!Controller.Instance.PrintProductRateCard.EditorContainsFocus &&
 				!Controller.Instance.PrintProductPageSizeGroup.EditorContainsFocus &&
 				!Controller.Instance.PrintProductPageSizeName.EditorContainsFocus &&
-				!Controller.Instance.PrintProductColor.EditorContainsFocus &&
-				!Controller.Instance.PrintProductCostPerInch.EditorContainsFocus)
+				!Controller.Instance.PrintProductColor.EditorContainsFocus)
 				advBandedGridViewPublication.Focus();
 		}
 		#endregion

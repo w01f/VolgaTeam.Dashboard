@@ -28,9 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrintProductControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject38 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject25 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject26 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject27 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject28 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject29 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject30 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject31 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject32 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject33 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject34 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject35 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject36 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject37 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject38 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject39 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject40 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject41 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -38,7 +75,6 @@
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject43 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject44 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject45 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject46 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject47 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject48 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -47,25 +83,6 @@
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject51 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject52 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject53 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject54 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject55 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject56 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject57 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject58 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject59 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject60 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject61 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject62 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject63 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject64 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject65 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject66 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject67 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject68 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject69 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject70 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject71 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.gridControlPublication = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridViewPublication = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
 			this.gridBandID = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -85,6 +102,8 @@
 			this.gridColumnDiscountRate = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemSpinEditDiscountRate = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.gridBandColorPricing = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridColumnColorPricingPCI = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.repositoryItemSpinEditColorPricingEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.gridColumnColorPricingPercent = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.gridColumnColorPricing = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemSpinEditColorPricingDisplay = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
@@ -92,7 +111,7 @@
 			this.gridColumnFinalRate = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.gridBandIndex = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.gridColumnIndex = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.imageList = new System.Windows.Forms.ImageList();
+			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.repositoryItemDateEdit = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
 			this.repositoryItemSpinEditPCIRateEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemSpinEditADRateDisplayNull = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
@@ -102,7 +121,6 @@
 			this.repositoryItemSpinEditDiscountsDisplayFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemSpinEditDiscountsEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemSpinEditColorPricingDisplayFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-			this.repositoryItemSpinEditColorPricingEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemDateEditNull = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
 			this.repositoryItemSpinEditDiscountsEditFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemSpinEditColorPricingEditFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
@@ -112,7 +130,11 @@
 			this.repositoryItemSpinEditADRateDisplayNullFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemSpinEditADRateEditFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemSpinEditADRateEditNullFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-			this.toolTipController = new DevExpress.Utils.ToolTipController();
+			this.repositoryItemSpinEditColorPCIDisplayFirtsRow = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+			this.repositoryItemSpinEditColorPCIDisplay = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+			this.repositoryItemSpinEditColorPCIEditFirtsRow = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+			this.repositoryItemSpinEditColorPCIEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			this.panelBottom = new System.Windows.Forms.Panel();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -140,7 +162,7 @@
 			this.layoutControlGroup9 = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.laAvgFinalRate = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.laTotalFinalRate = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPublication)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewPublication)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateNull)).BeginInit();
@@ -149,6 +171,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRateDisplay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsDisplay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountRate)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingDisplay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit.VistaTimeProperties)).BeginInit();
@@ -160,7 +183,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsDisplayFirstRow)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingDisplayFirstRow)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditNull)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditNull.VistaTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsEditFirstRow)).BeginInit();
@@ -171,6 +193,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRateDisplayNullFirstRow)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRateEditFirstRow)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRateEditNullFirstRow)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIDisplayFirtsRow)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIDisplay)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIEditFirtsRow)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIEdit)).BeginInit();
 			this.panelBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
@@ -231,7 +257,11 @@
             this.repositoryItemSpinEditADRateDisplayFirstRow,
             this.repositoryItemSpinEditADRateDisplayNullFirstRow,
             this.repositoryItemSpinEditADRateEditFirstRow,
-            this.repositoryItemSpinEditADRateEditNullFirstRow});
+            this.repositoryItemSpinEditADRateEditNullFirstRow,
+            this.repositoryItemSpinEditColorPCIDisplayFirtsRow,
+            this.repositoryItemSpinEditColorPCIDisplay,
+            this.repositoryItemSpinEditColorPCIEditFirtsRow,
+            this.repositoryItemSpinEditColorPCIEdit});
 			this.gridControlPublication.Size = new System.Drawing.Size(986, 295);
 			this.gridControlPublication.TabIndex = 0;
 			this.gridControlPublication.ToolTipController = this.toolTipController;
@@ -274,7 +304,8 @@
             this.gridColumnColorPricingPercent,
             this.gridColumnColorPricing,
             this.gridColumnFinalRate,
-            this.gridColumnIndex});
+            this.gridColumnIndex,
+            this.gridColumnColorPricingPCI});
 			this.advBandedGridViewPublication.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
 			this.advBandedGridViewPublication.GridControl = this.gridControlPublication;
 			this.advBandedGridViewPublication.Images = this.imageList;
@@ -363,7 +394,7 @@
 			this.repositoryItemDateNull.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemDateNull.AutoHeight = false;
 			this.repositoryItemDateNull.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemDateNull.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject38, "What day will your Ad run?", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemDateNull.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "What day will your Ad run?", null, null, true)});
 			this.repositoryItemDateNull.DisplayFormat.FormatString = "ddd, MM/dd/yy";
 			this.repositoryItemDateNull.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemDateNull.EditFormat.FormatString = "ddd, MM/dd/yy";
@@ -409,7 +440,7 @@
 			this.repositoryItemSpinEditPCIRateDisplay.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.repositoryItemSpinEditPCIRateDisplay.AutoHeight = false;
 			this.repositoryItemSpinEditPCIRateDisplay.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.repositoryItemSpinEditPCIRateDisplay.DisplayFormat.FormatString = "  $#,###.00";
 			this.repositoryItemSpinEditPCIRateDisplay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditPCIRateDisplay.EditFormat.FormatString = "  $#,###.00";
@@ -454,9 +485,9 @@
 			this.repositoryItemSpinEditADRateDisplay.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.repositoryItemSpinEditADRateDisplay.AutoHeight = false;
 			this.repositoryItemSpinEditADRateDisplay.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject39, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, false, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject40, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateDisplay.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject41, "Add Comments, Sections and Deadlines", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, false, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateDisplay.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "Add Comments, Sections and Deadlines", null, null, true)});
 			this.repositoryItemSpinEditADRateDisplay.DisplayFormat.FormatString = "$#,###.00";
 			this.repositoryItemSpinEditADRateDisplay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditADRateDisplay.EditFormat.FormatString = "$#,###.00";
@@ -495,7 +526,7 @@
 			// 
 			this.repositoryItemSpinEditDiscountsDisplay.AutoHeight = false;
 			this.repositoryItemSpinEditDiscountsDisplay.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject42, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
 			this.repositoryItemSpinEditDiscountsDisplay.DisplayFormat.FormatString = "  #0.##\\%";
 			this.repositoryItemSpinEditDiscountsDisplay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditDiscountsDisplay.EditFormat.FormatString = "  #0.##\\%";
@@ -523,7 +554,7 @@
 			// 
 			this.repositoryItemSpinEditDiscountRate.AutoHeight = false;
 			this.repositoryItemSpinEditDiscountRate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject43, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject7, "", null, null, true)});
 			this.repositoryItemSpinEditDiscountRate.DisplayFormat.FormatString = "  ($#,###.00)";
 			this.repositoryItemSpinEditDiscountRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditDiscountRate.EditFormat.FormatString = "  ($#,###.00)";
@@ -538,10 +569,40 @@
 			// gridBandColorPricing
 			// 
 			this.gridBandColorPricing.Caption = "Color Pricing";
+			this.gridBandColorPricing.Columns.Add(this.gridColumnColorPricingPCI);
 			this.gridBandColorPricing.Columns.Add(this.gridColumnColorPricingPercent);
 			this.gridBandColorPricing.Columns.Add(this.gridColumnColorPricing);
 			this.gridBandColorPricing.Name = "gridBandColorPricing";
-			this.gridBandColorPricing.Width = 190;
+			this.gridBandColorPricing.Width = 270;
+			// 
+			// gridColumnColorPricingPCI
+			// 
+			this.gridColumnColorPricingPCI.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumnColorPricingPCI.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.gridColumnColorPricingPCI.Caption = "Color Pricing PCI";
+			this.gridColumnColorPricingPCI.ColumnEdit = this.repositoryItemSpinEditColorPricingEdit;
+			this.gridColumnColorPricingPCI.FieldName = "ColorInchRate";
+			this.gridColumnColorPricingPCI.Name = "gridColumnColorPricingPCI";
+			this.gridColumnColorPricingPCI.OptionsColumn.FixedWidth = true;
+			this.gridColumnColorPricingPCI.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+			this.gridColumnColorPricingPCI.Visible = true;
+			this.gridColumnColorPricingPCI.Width = 80;
+			// 
+			// repositoryItemSpinEditColorPricingEdit
+			// 
+			this.repositoryItemSpinEditColorPricingEdit.AutoHeight = false;
+			this.repositoryItemSpinEditColorPricingEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject8, "", null, null, true)});
+			this.repositoryItemSpinEditColorPricingEdit.DisplayFormat.FormatString = " + $#,###.00";
+			this.repositoryItemSpinEditColorPricingEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.repositoryItemSpinEditColorPricingEdit.EditFormat.FormatString = " + $#,###.00";
+			this.repositoryItemSpinEditColorPricingEdit.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.repositoryItemSpinEditColorPricingEdit.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.repositoryItemSpinEditColorPricingEdit.Name = "repositoryItemSpinEditColorPricingEdit";
 			// 
 			// gridColumnColorPricingPercent
 			// 
@@ -571,7 +632,7 @@
 			// 
 			this.repositoryItemSpinEditColorPricingDisplay.AutoHeight = false;
 			this.repositoryItemSpinEditColorPricingDisplay.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject44, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, "", null, null, true)});
 			this.repositoryItemSpinEditColorPricingDisplay.DisplayFormat.FormatString = " + $#,###.00";
 			this.repositoryItemSpinEditColorPricingDisplay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditColorPricingDisplay.EditFormat.FormatString = " + $#,###.00";
@@ -637,7 +698,7 @@
 			// repositoryItemDateEdit
 			// 
 			this.repositoryItemDateEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemDateEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject45, "What day will your Ad run?", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemDateEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject10, "What day will your Ad run?", null, null, true)});
 			this.repositoryItemDateEdit.DisplayFormat.FormatString = "ddd, MM/dd/yy";
 			this.repositoryItemDateEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemDateEdit.EditFormat.FormatString = "ddd, MM/dd/yy";
@@ -655,7 +716,7 @@
 			// 
 			this.repositoryItemSpinEditPCIRateEdit.AutoHeight = false;
 			this.repositoryItemSpinEditPCIRateEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject11, "", null, null, true)});
 			this.repositoryItemSpinEditPCIRateEdit.DisplayFormat.FormatString = "  $#,###.00";
 			this.repositoryItemSpinEditPCIRateEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditPCIRateEdit.EditFormat.FormatString = "  $#,###.00";
@@ -680,9 +741,9 @@
 			this.repositoryItemSpinEditADRateDisplayNull.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.repositoryItemSpinEditADRateDisplayNull.AutoHeight = false;
 			this.repositoryItemSpinEditADRateDisplayNull.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, false, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject46, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateDisplayNull.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject47, "Add Comments, Sections and Deadlines", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject12, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, false, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateDisplayNull.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject14, "Add Comments, Sections and Deadlines", null, null, true)});
 			this.repositoryItemSpinEditADRateDisplayNull.DisplayFormat.FormatString = "$#,###.00";
 			this.repositoryItemSpinEditADRateDisplayNull.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditADRateDisplayNull.EditFormat.FormatString = "$#,###.00";
@@ -708,9 +769,9 @@
 			this.repositoryItemSpinEditADRateEdit.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.repositoryItemSpinEditADRateEdit.AutoHeight = false;
 			this.repositoryItemSpinEditADRateEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, false, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject48, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject49, "Add Comments, Sections and Deadlines", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject15, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, false, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject16, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, "Add Comments, Sections and Deadlines", null, null, true)});
 			this.repositoryItemSpinEditADRateEdit.DisplayFormat.FormatString = "  $#,###.00";
 			this.repositoryItemSpinEditADRateEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditADRateEdit.EditFormat.FormatString = "  $#,###.00";
@@ -735,9 +796,9 @@
 			this.repositoryItemSpinEditADRateEditNull.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.repositoryItemSpinEditADRateEditNull.AutoHeight = false;
 			this.repositoryItemSpinEditADRateEditNull.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, false, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject50, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateEditNull.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject51, "Add Comments, Sections and Deadlines", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject18, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, false, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject19, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateEditNull.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject20, "Add Comments, Sections and Deadlines", null, null, true)});
 			this.repositoryItemSpinEditADRateEditNull.DisplayFormat.FormatString = "  $#,###.00";
 			this.repositoryItemSpinEditADRateEditNull.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditADRateEditNull.EditFormat.FormatString = "  $#,###.00";
@@ -754,7 +815,7 @@
 			// 
 			this.repositoryItemSpinEditColorRate.AutoHeight = false;
 			this.repositoryItemSpinEditColorRate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject52, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, "", null, null, true)});
 			this.repositoryItemSpinEditColorRate.DisplayFormat.FormatString = " + $#,###.00";
 			this.repositoryItemSpinEditColorRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditColorRate.EditFormat.FormatString = " + $#,###.00";
@@ -770,8 +831,8 @@
 			// 
 			this.repositoryItemSpinEditDiscountsDisplayFirstRow.AutoHeight = false;
 			this.repositoryItemSpinEditDiscountsDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject53, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditDiscountsDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject54, "Apply this Discount on Line 1 to all Ads in this schedule", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject22, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditDiscountsDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject23, "Apply this Discount on Line 1 to all Ads in this schedule", null, null, true)});
 			this.repositoryItemSpinEditDiscountsDisplayFirstRow.DisplayFormat.FormatString = "  #0.##\\%";
 			this.repositoryItemSpinEditDiscountsDisplayFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditDiscountsDisplayFirstRow.EditFormat.FormatString = "  #0.##\\%";
@@ -788,7 +849,7 @@
 			// 
 			this.repositoryItemSpinEditDiscountsEdit.AutoHeight = false;
 			this.repositoryItemSpinEditDiscountsEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject24, "", null, null, true)});
 			this.repositoryItemSpinEditDiscountsEdit.DisplayFormat.FormatString = "  #0.##\\%";
 			this.repositoryItemSpinEditDiscountsEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditDiscountsEdit.EditFormat.FormatString = "  #0.##\\%";
@@ -804,8 +865,8 @@
 			// 
 			this.repositoryItemSpinEditColorPricingDisplayFirstRow.AutoHeight = false;
 			this.repositoryItemSpinEditColorPricingDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject55, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditColorPricingDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject56, "Apply this Color Rate on Line 1, to all Ads in this schedule", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject25, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditColorPricingDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject26, "Apply this Color Rate on Line 1, to all Ads in this schedule", null, null, true)});
 			this.repositoryItemSpinEditColorPricingDisplayFirstRow.DisplayFormat.FormatString = " + $#,###.00";
 			this.repositoryItemSpinEditColorPricingDisplayFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditColorPricingDisplayFirstRow.EditFormat.FormatString = " + $#,###.00";
@@ -819,22 +880,6 @@
 			this.repositoryItemSpinEditColorPricingDisplayFirstRow.NullText = "B-W";
 			this.repositoryItemSpinEditColorPricingDisplayFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemSpinEditColorPricingFirstRow_ButtonClick);
 			// 
-			// repositoryItemSpinEditColorPricingEdit
-			// 
-			this.repositoryItemSpinEditColorPricingEdit.AutoHeight = false;
-			this.repositoryItemSpinEditColorPricingEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.repositoryItemSpinEditColorPricingEdit.DisplayFormat.FormatString = " + $#,###.00";
-			this.repositoryItemSpinEditColorPricingEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.repositoryItemSpinEditColorPricingEdit.EditFormat.FormatString = " + $#,###.00";
-			this.repositoryItemSpinEditColorPricingEdit.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.repositoryItemSpinEditColorPricingEdit.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.repositoryItemSpinEditColorPricingEdit.Name = "repositoryItemSpinEditColorPricingEdit";
-			// 
 			// repositoryItemDateEditNull
 			// 
 			this.repositoryItemDateEditNull.Appearance.Options.UseTextOptions = true;
@@ -843,7 +888,7 @@
 			this.repositoryItemDateEditNull.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemDateEditNull.AutoHeight = false;
 			this.repositoryItemDateEditNull.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemDateEditNull.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject57, "What day will your Ad run?", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemDateEditNull.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject27, "What day will your Ad run?", null, null, true)});
 			this.repositoryItemDateEditNull.DisplayFormat.FormatString = "ddd, MM/dd/yy";
 			this.repositoryItemDateEditNull.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemDateEditNull.EditFormat.FormatString = "ddd, MM/dd/yy";
@@ -863,8 +908,8 @@
 			// 
 			this.repositoryItemSpinEditDiscountsEditFirstRow.AutoHeight = false;
 			this.repositoryItemSpinEditDiscountsEditFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditDiscountsEditFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject22, "Apply this Discount on Line 1 to all Ads in this schedule", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject28, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditDiscountsEditFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject29, "Apply this Discount on Line 1 to all Ads in this schedule", null, null, true)});
 			this.repositoryItemSpinEditDiscountsEditFirstRow.DisplayFormat.FormatString = "  #0.##\\%";
 			this.repositoryItemSpinEditDiscountsEditFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditDiscountsEditFirstRow.EditFormat.FormatString = "  #0.##\\%";
@@ -881,8 +926,8 @@
 			// 
 			this.repositoryItemSpinEditColorPricingEditFirstRow.AutoHeight = false;
 			this.repositoryItemSpinEditColorPricingEditFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditColorPricingEditFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject58, "Apply this Color Rate on Line 1, to all Ads in this schedule", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject30, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditColorPricingEditFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject31, "Apply this Color Rate on Line 1, to all Ads in this schedule", null, null, true)});
 			this.repositoryItemSpinEditColorPricingEditFirstRow.DisplayFormat.FormatString = " + $#,###.00";
 			this.repositoryItemSpinEditColorPricingEditFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditColorPricingEditFirstRow.EditFormat.FormatString = " + $#,###.00";
@@ -907,8 +952,8 @@
 			this.repositoryItemSpinEditPCIRateEditFirstRow.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.repositoryItemSpinEditPCIRateEditFirstRow.AutoHeight = false;
 			this.repositoryItemSpinEditPCIRateEditFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditPCIRateEditFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject59, "Apply this Rate on Line 1 to all Ads in this schedule", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject32, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditPCIRateEditFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject33, "Apply this Rate on Line 1 to all Ads in this schedule", null, null, true)});
 			this.repositoryItemSpinEditPCIRateEditFirstRow.DisplayFormat.FormatString = "  $#,###.00";
 			this.repositoryItemSpinEditPCIRateEditFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditPCIRateEditFirstRow.EditFormat.FormatString = "  $#,###.00";
@@ -934,8 +979,8 @@
 			this.repositoryItemSpinEditPCIRateDisplayFirstRow.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.repositoryItemSpinEditPCIRateDisplayFirstRow.AutoHeight = false;
 			this.repositoryItemSpinEditPCIRateDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject60, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditPCIRateDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject61, "Apply this Rate on Line 1 to all Ads in this schedule", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject34, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditPCIRateDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject35, "Apply this Rate on Line 1 to all Ads in this schedule", null, null, true)});
 			this.repositoryItemSpinEditPCIRateDisplayFirstRow.DisplayFormat.FormatString = "  $#,###.00";
 			this.repositoryItemSpinEditPCIRateDisplayFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditPCIRateDisplayFirstRow.EditFormat.FormatString = "  $#,###.00";
@@ -961,9 +1006,9 @@
 			this.repositoryItemSpinEditADRateDisplayFirstRow.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.repositoryItemSpinEditADRateDisplayFirstRow.AutoHeight = false;
 			this.repositoryItemSpinEditADRateDisplayFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject62, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject63, "Apply this Rate on Line 1 to all Ads in this schedule", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateDisplayFirstRow.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject64, "Add Comments, Sections and Deadlines", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject36, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateDisplayFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject37, "Apply this Rate on Line 1 to all Ads in this schedule", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateDisplayFirstRow.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject38, "Add Comments, Sections and Deadlines", null, null, true)});
 			this.repositoryItemSpinEditADRateDisplayFirstRow.DisplayFormat.FormatString = "$#,###.00";
 			this.repositoryItemSpinEditADRateDisplayFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditADRateDisplayFirstRow.EditFormat.FormatString = "$#,###.00";
@@ -988,9 +1033,9 @@
 			this.repositoryItemSpinEditADRateDisplayNullFirstRow.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.repositoryItemSpinEditADRateDisplayNullFirstRow.AutoHeight = false;
 			this.repositoryItemSpinEditADRateDisplayNullFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject65, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateDisplayNullFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject66, "Apply this Rate on Line 1 to all Ads in this schedule", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateDisplayNullFirstRow.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject67, "Add Comments, Sections and Deadlines", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject39, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateDisplayNullFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject40, "Apply this Rate on Line 1 to all Ads in this schedule", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateDisplayNullFirstRow.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject41, "Add Comments, Sections and Deadlines", null, null, true)});
 			this.repositoryItemSpinEditADRateDisplayNullFirstRow.DisplayFormat.FormatString = "$#,###.00";
 			this.repositoryItemSpinEditADRateDisplayNullFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditADRateDisplayNullFirstRow.EditFormat.FormatString = "$#,###.00";
@@ -1015,9 +1060,9 @@
 			this.repositoryItemSpinEditADRateEditFirstRow.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.repositoryItemSpinEditADRateEditFirstRow.AutoHeight = false;
 			this.repositoryItemSpinEditADRateEditFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateEditFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject68, "Apply this Rate on Line 1 to all Ads in this schedule", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateEditFirstRow.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject69, "Add Comments, Sections and Deadlines", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject42, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateEditFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject43, "Apply this Rate on Line 1 to all Ads in this schedule", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateEditFirstRow.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject44, "Add Comments, Sections and Deadlines", null, null, true)});
 			this.repositoryItemSpinEditADRateEditFirstRow.DisplayFormat.FormatString = "  $#,###.00";
 			this.repositoryItemSpinEditADRateEditFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditADRateEditFirstRow.EditFormat.FormatString = "  $#,###.00";
@@ -1042,9 +1087,9 @@
 			this.repositoryItemSpinEditADRateEditNullFirstRow.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.repositoryItemSpinEditADRateEditNullFirstRow.AutoHeight = false;
 			this.repositoryItemSpinEditADRateEditNullFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateEditNullFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject70, "Apply this Rate on Line 1 to all Ads in this schedule", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateEditNullFirstRow.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject71, "Add Comments, Sections and Deadlines", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject45, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateEditNullFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject46, "Apply this Rate on Line 1 to all Ads in this schedule", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditADRateEditNullFirstRow.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject47, "Add Comments, Sections and Deadlines", null, null, true)});
 			this.repositoryItemSpinEditADRateEditNullFirstRow.DisplayFormat.FormatString = "  $#,###.00";
 			this.repositoryItemSpinEditADRateEditNullFirstRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditADRateEditNullFirstRow.EditFormat.FormatString = "  $#,###.00";
@@ -1056,6 +1101,74 @@
             0});
 			this.repositoryItemSpinEditADRateEditNullFirstRow.Name = "repositoryItemSpinEditADRateEditNullFirstRow";
 			this.repositoryItemSpinEditADRateEditNullFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemSpinEditADRate_ButtonClick);
+			// 
+			// repositoryItemSpinEditColorPCIDisplayFirtsRow
+			// 
+			this.repositoryItemSpinEditColorPCIDisplayFirtsRow.AutoHeight = false;
+			this.repositoryItemSpinEditColorPCIDisplayFirtsRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject48, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditColorPCIDisplayFirtsRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject49, "Apply this Color Rate on Line 1, to all Ads in this schedule", null, null, true)});
+			this.repositoryItemSpinEditColorPCIDisplayFirtsRow.DisplayFormat.FormatString = "$#,###.00";
+			this.repositoryItemSpinEditColorPCIDisplayFirtsRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.repositoryItemSpinEditColorPCIDisplayFirtsRow.EditFormat.FormatString = "$#,###.00";
+			this.repositoryItemSpinEditColorPCIDisplayFirtsRow.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.repositoryItemSpinEditColorPCIDisplayFirtsRow.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.repositoryItemSpinEditColorPCIDisplayFirtsRow.Name = "repositoryItemSpinEditColorPCIDisplayFirtsRow";
+			this.repositoryItemSpinEditColorPCIDisplayFirtsRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemSpinEditColorPCIFirstRow_ButtonClick);
+			// 
+			// repositoryItemSpinEditColorPCIDisplay
+			// 
+			this.repositoryItemSpinEditColorPCIDisplay.AutoHeight = false;
+			this.repositoryItemSpinEditColorPCIDisplay.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject50, "", null, null, true)});
+			this.repositoryItemSpinEditColorPCIDisplay.DisplayFormat.FormatString = "$#,###.00";
+			this.repositoryItemSpinEditColorPCIDisplay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.repositoryItemSpinEditColorPCIDisplay.EditFormat.FormatString = "$#,###.00";
+			this.repositoryItemSpinEditColorPCIDisplay.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.repositoryItemSpinEditColorPCIDisplay.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.repositoryItemSpinEditColorPCIDisplay.Name = "repositoryItemSpinEditColorPCIDisplay";
+			// 
+			// repositoryItemSpinEditColorPCIEditFirtsRow
+			// 
+			this.repositoryItemSpinEditColorPCIEditFirtsRow.AutoHeight = false;
+			this.repositoryItemSpinEditColorPCIEditFirtsRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject51, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemSpinEditColorPCIEditFirtsRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject52, "Apply this Color Rate on Line 1, to all Ads in this schedule", null, null, true)});
+			this.repositoryItemSpinEditColorPCIEditFirtsRow.DisplayFormat.FormatString = "$#,###.00";
+			this.repositoryItemSpinEditColorPCIEditFirtsRow.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.repositoryItemSpinEditColorPCIEditFirtsRow.EditFormat.FormatString = "$#,###.00";
+			this.repositoryItemSpinEditColorPCIEditFirtsRow.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.repositoryItemSpinEditColorPCIEditFirtsRow.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.repositoryItemSpinEditColorPCIEditFirtsRow.Name = "repositoryItemSpinEditColorPCIEditFirtsRow";
+			this.repositoryItemSpinEditColorPCIEditFirtsRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemSpinEditColorPCIFirstRow_ButtonClick);
+			// 
+			// repositoryItemSpinEditColorPCIEdit
+			// 
+			this.repositoryItemSpinEditColorPCIEdit.AutoHeight = false;
+			this.repositoryItemSpinEditColorPCIEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject53, "", null, null, true)});
+			this.repositoryItemSpinEditColorPCIEdit.DisplayFormat.FormatString = "$#,###.00";
+			this.repositoryItemSpinEditColorPCIEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.repositoryItemSpinEditColorPCIEdit.EditFormat.FormatString = "$#,###.00";
+			this.repositoryItemSpinEditColorPCIEdit.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.repositoryItemSpinEditColorPCIEdit.MaxValue = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+			this.repositoryItemSpinEditColorPCIEdit.Name = "repositoryItemSpinEditColorPCIEdit";
 			// 
 			// toolTipController
 			// 
@@ -1444,7 +1557,6 @@
 			// 
 			this.Controls.Add(this.gridControlPublication);
 			this.Controls.Add(this.panelBottom);
-			this.Name = "PrintProductControl";
 			this.Size = new System.Drawing.Size(986, 352);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPublication)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewPublication)).EndInit();
@@ -1454,6 +1566,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRateDisplay)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsDisplay)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountRate)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingDisplay)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit.VistaTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit)).EndInit();
@@ -1465,7 +1578,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsDisplayFirstRow)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingDisplayFirstRow)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditNull.VistaTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditNull)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsEditFirstRow)).EndInit();
@@ -1476,6 +1588,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRateDisplayNullFirstRow)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRateEditFirstRow)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRateEditNullFirstRow)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIDisplayFirtsRow)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIDisplay)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIEditFirtsRow)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIEdit)).EndInit();
 			this.panelBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
@@ -1567,15 +1683,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateNull;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEditNull;
         private DevExpress.Utils.ToolTipController toolTipController;
-        private System.Windows.Forms.ImageList imageList;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandID;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDate;
-        public DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandPCIRate;
-        public DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandADRate;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDiscounts;
-        public DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandColorPricing;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandFinalRate;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandIndex;
+		private System.Windows.Forms.ImageList imageList;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         public DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditPCIRateEditFirstRow;
         public DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditPCIRateDisplay;
@@ -1584,5 +1692,18 @@
         public DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditADRateDisplayNullFirstRow;
         public DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditADRateEditFirstRow;
         public DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditADRateEditNullFirstRow;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandID;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDate;
+		public DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandPCIRate;
+		public DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandADRate;
+		public DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDiscounts;
+		public DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandColorPricing;
+		public DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnColorPricingPCI;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandFinalRate;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandIndex;
+		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditColorPCIDisplayFirtsRow;
+		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditColorPCIDisplay;
+		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditColorPCIEditFirtsRow;
+		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditColorPCIEdit;
     }
 }

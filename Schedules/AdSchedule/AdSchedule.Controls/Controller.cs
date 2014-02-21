@@ -126,13 +126,9 @@ namespace NewBizWiz.AdSchedule.Controls
 			PrintProductColorOptionsPercentOfAd.CheckedChanged += PrintProductContainer.buttonItemColorOptions_CheckedChanged;
 			PrintProductColorOptionsIncluded.CheckedChanged += PrintProductContainer.buttonItemColorOptions_CheckedChanged;
 			PrintProductColorOptionsPCI.CheckedChanged += PrintProductContainer.buttonItemColorOptions_CheckedChanged;
-			PrintProductCostPerInch.EditValueChanged += PrintProductContainer.spinEditCostPerInch_EditValueChanged;
 			PrintProductAdd.Click += PrintProductContainer.buttonItemAddInsert_Click;
 			PrintProductClone.Click += PrintProductContainer.buttonItemCloneInsert_Click;
 			PrintProductDelete.Click += PrintProductContainer.buttonItemDeleteInsert_Click;
-			PrintProductCostPerInch.Enter += Utilities.Instance.Editor_Enter;
-			PrintProductCostPerInch.MouseDown += Utilities.Instance.Editor_MouseDown;
-			PrintProductCostPerInch.MouseUp += Utilities.Instance.Editor_MouseUp;
 			PrintProductStandartHeight.Enter += Utilities.Instance.Editor_Enter;
 			PrintProductStandartHeight.MouseDown += Utilities.Instance.Editor_MouseDown;
 			PrintProductStandartHeight.MouseUp += Utilities.Instance.Editor_MouseUp;
@@ -567,6 +563,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem PrintProductColorOptionsPercentOfAd { get; set; }
 		public ButtonItem PrintProductColorOptionsIncluded { get; set; }
 		public ButtonItem PrintProductColorOptionsPCI { get; set; }
+		public RibbonBar PrintProductStrategy { get; set; }
 		public ItemContainer PrintProductAdSizeStandart { get; set; }
 		public ItemContainer PrintProductAdSizeSharePage { get; set; }
 		public Label PrintProductStandardSquareValue { get; set; }
@@ -584,7 +581,6 @@ namespace NewBizWiz.AdSchedule.Controls
 		public SpinEdit PrintProductStandartHeight { get; set; }
 		public SpinEdit PrintProductStandartWidth { get; set; }
 		public CheckedListBoxControl PrintProductSharePageSquare { get; set; }
-		public SpinEdit PrintProductCostPerInch { get; set; }
 		#endregion
 
 		#region Digital Product

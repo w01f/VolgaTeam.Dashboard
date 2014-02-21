@@ -606,7 +606,6 @@ namespace NewBizWiz.Core.AdSchedule
 		public double Index { get; set; }
 		public AdPricingStrategies AdPricingStrategy { get; set; }
 		public List<Insert> Inserts { get; set; }
-		public double ColorInchRate { get; set; }
 		public string Note { get; set; }
 
 		public SizeOptions SizeOptions { get; set; }
@@ -634,11 +633,11 @@ namespace NewBizWiz.Core.AdSchedule
 				if (value == ColorOptions.BlackWhite)
 				{
 					ColorPricing = ColorPricingType.None;
-					ColorInchRate = 0;
-					foreach (Insert insert in Inserts)
+					foreach (var insert in Inserts)
 					{
 						insert.ColorPricing = 0;
 						insert.ColorPricingPercent = 0;
+						insert.ColorInchRate = 0;
 					}
 				}
 			}
@@ -654,25 +653,29 @@ namespace NewBizWiz.Core.AdSchedule
 				{
 					case ColorPricingType.CostPerAd:
 					case ColorPricingType.None:
-						foreach (Insert insert in Inserts)
+						foreach (var insert in Inserts)
+						{
 							insert.ColorPricingPercent = 0;
-						ColorInchRate = 0;
+							insert.ColorInchRate = 0;
+						}
 						break;
 					case ColorPricingType.PercentOfAdRate:
-						foreach (Insert insert in Inserts)
+						foreach (var insert in Inserts)
+						{
 							insert.ColorPricing = 0;
-						ColorInchRate = 0;
+							insert.ColorInchRate = 0;
+						}
 						break;
 					case ColorPricingType.ColorIncluded:
-						foreach (Insert insert in Inserts)
+						foreach (var insert in Inserts)
 						{
 							insert.ColorPricing = 0;
 							insert.ColorPricingPercent = 0;
+							insert.ColorInchRate = 0;
 						}
-						ColorInchRate = 0;
 						break;
 					case ColorPricingType.CostPerInch:
-						foreach (Insert insert in Inserts)
+						foreach (var insert in Inserts)
 						{
 							insert.ColorPricing = 0;
 							insert.ColorPricingPercent = 0;
@@ -789,7 +792,6 @@ namespace NewBizWiz.Core.AdSchedule
 			xml.Append("AdPricingStrategy = \"" + (int)AdPricingStrategy + "\" ");
 			xml.Append("ColorOption = \"" + (int)ColorOption + "\" ");
 			xml.Append("ColorPricing = \"" + (int)ColorPricing + "\" ");
-			xml.Append("ColorInchRate = \"" + ColorInchRate.ToString() + "\" ");
 			xml.Append("Note = \"" + Note.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("BigLogo = \"" + Convert.ToBase64String((byte[])converter.ConvertTo(BigLogo, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("SmallLogo = \"" + Convert.ToBase64String((byte[])converter.ConvertTo(SmallLogo, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
@@ -878,11 +880,6 @@ namespace NewBizWiz.Core.AdSchedule
 						tempInt = 0;
 						int.TryParse(attribute.Value, out tempInt);
 						ColorPricing = (ColorPricingType)tempInt;
-						break;
-					case "ColorInchRate":
-						tempDouble = 0;
-						double.TryParse(attribute.Value, out tempDouble);
-						ColorInchRate = tempDouble;
 						break;
 					case "Note":
 						Note = attribute.Value;
@@ -1020,13 +1017,14 @@ namespace NewBizWiz.Core.AdSchedule
 				{
 					insert.ColorPricing = originalInsert.ColorPricing;
 					insert.ColorPricingPercent = originalInsert.ColorPricingPercent;
+					insert.ColorInchRate = originalInsert.ColorInchRate;
 				}
 				if (comment)
 				{
 					insert.CustomComment = originalInsert.CustomComment;
-					foreach (Common.NameCodePair originalComment in originalInsert.Comments)
+					foreach (var originalComment in originalInsert.Comments)
 					{
-						var newComment = new Common.NameCodePair();
+						var newComment = new NameCodePair();
 						newComment.Name = originalComment.Name;
 						newComment.Code = originalComment.Code;
 						insert.Comments.Add(newComment);
@@ -1035,9 +1033,9 @@ namespace NewBizWiz.Core.AdSchedule
 				if (section)
 				{
 					insert.CustomSection = originalInsert.CustomSection;
-					foreach (Common.NameCodePair originalSection in originalInsert.Sections)
+					foreach (var originalSection in originalInsert.Sections)
 					{
-						var newSection = new Common.NameCodePair();
+						var newSection = new NameCodePair();
 						newSection.Name = originalSection.Name;
 						newSection.Code = originalSection.Code;
 						insert.Sections.Add(newSection);
@@ -1054,32 +1052,38 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public void CopyPCIRate(double value)
 		{
-			foreach (Insert insert in Inserts)
+			foreach (var insert in Inserts)
 				insert.PCIRate = value;
 		}
 
 		public void CopyAdRate(double value)
 		{
-			foreach (Insert insert in Inserts)
+			foreach (var insert in Inserts)
 				insert.ADRate = value;
 		}
 
 		public void CopyDiscounts(double value)
 		{
-			foreach (Insert insert in Inserts)
+			foreach (var insert in Inserts)
 				insert.Discounts = value;
 		}
 
 		public void CopyColorRate(double value)
 		{
-			foreach (Insert insert in Inserts)
+			foreach (var insert in Inserts)
 				insert.ColorPricing = value;
 		}
 
 		public void CopyColorRatePercent(double value)
 		{
-			foreach (Insert insert in Inserts)
+			foreach (var insert in Inserts)
 				insert.ColorPricingPercent = value;
+		}
+
+		public void CopyColorPCI(double value)
+		{
+			foreach (var insert in Inserts)
+				insert.ColorInchRate = value;
 		}
 
 		public void RefreshAvailableDays()
@@ -1182,6 +1186,7 @@ namespace NewBizWiz.Core.AdSchedule
 		public int Index { get; set; }
 		public double Discounts { get; set; }
 		public double ColorPricing { get; set; }
+		public double ColorInchRate { get; set; }
 		public double ColorPricingPercent { get; set; }
 		public string CustomComment { get; set; }
 		public string CustomSection { get; set; }
@@ -1278,7 +1283,7 @@ namespace NewBizWiz.Core.AdSchedule
 						return 0;
 					case ColorPricingType.CostPerInch:
 						if (Parent.SizeOptions.Square.HasValue)
-							return Parent.SizeOptions.Square.Value * Parent.ColorInchRate;
+							return Parent.SizeOptions.Square.Value * ColorInchRate;
 						else
 							return 0;
 					default:
@@ -1293,10 +1298,9 @@ namespace NewBizWiz.Core.AdSchedule
 			{
 				if (Parent.ColorOption == ColorOptions.BlackWhite)
 					return "B-W";
-				else if (Parent.ColorPricing == ColorPricingType.ColorIncluded)
+				if (Parent.ColorPricing == ColorPricingType.ColorIncluded)
 					return "Included";
-				else
-					return ColorPricingCalculated;
+				return ColorPricingCalculated;
 			}
 			set
 			{
@@ -1353,17 +1357,16 @@ namespace NewBizWiz.Core.AdSchedule
 				var sections = new List<string>();
 				if (!string.IsNullOrEmpty(CustomSection))
 					sections.Add(CustomSection);
-				foreach (Common.NameCodePair section in Sections)
+				foreach (var section in Sections)
 				{
 					if (!string.IsNullOrEmpty(section.Code) && (Sections.Count + (!string.IsNullOrEmpty(CustomSection) ? 1 : 0)) >= ListManager.Instance.SelectedSectionsBorderValue)
 						sections.Add(section.Code);
 					else if (!string.IsNullOrEmpty(section.Name))
 						sections.Add(section.Name);
 				}
-				if (sections.Count > 0)
-					return string.Join(", ", sections.ToArray());
-				else
-					return string.Empty;
+				return sections.Count > 0 ?
+					string.Join(", ", sections.ToArray()) :
+					string.Empty;
 			}
 		}
 
@@ -1541,6 +1544,7 @@ namespace NewBizWiz.Core.AdSchedule
 			xml.Append("ADRate = \"" + ADRate + "\" ");
 			xml.Append("Discounts = \"" + Discounts + "\" ");
 			xml.Append("ColorPricing = \"" + ColorPricing + "\" ");
+			xml.Append("ColorInchRate = \"" + ColorInchRate + "\" ");
 			xml.Append("ColorPricingPercent = \"" + ColorPricingPercent + "\" ");
 			xml.Append("CustomSection = \"" + CustomSection.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("CustomComment = \"" + CustomComment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
@@ -1562,18 +1566,18 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public void Deserialize(XmlNode node)
 		{
-			var tempDateTime = DateTime.MinValue;
-			var tempInt = 0;
 			double tempDouble;
 
 			foreach (XmlAttribute attribute in node.Attributes)
 				switch (attribute.Name)
 				{
 					case "Index":
+						int tempInt;
 						if (int.TryParse(attribute.Value, out tempInt))
 							Index = tempInt;
 						break;
 					case "Date":
+						DateTime tempDateTime;
 						if (DateTime.TryParse(attribute.Value, out tempDateTime) && tempDateTime != DateTime.MinValue && tempDateTime != DateTime.MaxValue)
 							Date = tempDateTime;
 						break;
@@ -1592,6 +1596,10 @@ namespace NewBizWiz.Core.AdSchedule
 					case "ColorPricing":
 						if (double.TryParse(attribute.Value, out tempDouble))
 							ColorPricing = tempDouble;
+						break;
+					case "ColorInchRate":
+						if (double.TryParse(attribute.Value, out tempDouble))
+							ColorInchRate = tempDouble;
 						break;
 					case "ColorPricingPercent":
 						if (double.TryParse(attribute.Value, out tempDouble))

@@ -34,7 +34,17 @@ namespace CommandCentral.TabMainDashboard
 					var category = new Category();
 					category.Name = row["TABLE_NAME"].ToString().Replace("$", "").Replace('"'.ToString(), "'").Replace("'", "").Replace("#", ".");
 
-					if (!category.Name.Trim().Equals("Headers") && !category.Name.Trim().Equals("Sites") && !category.Name.Trim().Equals("Strengths") && !category.Name.Trim().Equals("Categories") && !category.Name.Trim().Equals("Slides") && !category.Name.Trim().Equals("File-Status") && !category.Name.Trim().Equals("WebFormula"))
+					if (!new[]
+					{
+						"Headers",
+						"Sites",
+						"Strengths",
+						"Categories",
+						"Slides",
+						"File-Status",
+						"WebFormula",
+						"LockedMode"
+					}.Contains(category.Name.Trim()))
 						_categories.Add(category);
 				}
 			}
@@ -60,7 +70,8 @@ namespace CommandCentral.TabMainDashboard
 			var strengths = new List<SlideHeader>();
 			var products = new List<Product>();
 			var statuses = new List<SlideHeader>();
-			string defaultFormula = string.Empty;
+			var defaultFormula = string.Empty;
+			var lockedMode = false;
 
 			string connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
 			var connection = new OleDbConnection(connnectionString);
@@ -254,6 +265,36 @@ namespace CommandCentral.TabMainDashboard
 					dataTable.Dispose();
 				}
 
+				//Load Locked Mode
+				dataAdapter = new OleDbDataAdapter("SELECT * FROM [LockedMode$]", connection);
+				dataTable = new DataTable();
+				try
+				{
+					dataAdapter.Fill(dataTable);
+					if (dataTable.Columns.Count > 0)
+						foreach (DataRow row in dataTable.Rows)
+						{
+							bool temp;
+							if(row[0]== null) continue;
+							var rowValue = row[0].ToString();
+							if (!String.IsNullOrEmpty(rowValue) &&
+								!rowValue.StartsWith("*") &&
+								Boolean.TryParse(rowValue, out temp))
+							{
+								lockedMode = temp;
+								break;
+							}
+						}
+				}
+				catch
+				{
+				}
+				finally
+				{
+					dataAdapter.Dispose();
+					dataTable.Dispose();
+				}
+
 				//Load Categories
 				GetCategories(connection);
 				dataAdapter = new OleDbDataAdapter("SELECT * FROM [Categories$]", connection);
@@ -329,13 +370,13 @@ namespace CommandCentral.TabMainDashboard
 			//Save XML
 			var xml = new StringBuilder();
 			xml.AppendLine("<OnlineStrategy>");
-			foreach (SlideHeader header in slideHeaders)
+			foreach (var header in slideHeaders)
 			{
 				xml.Append(@"<Header ");
 				xml.Append("Value = \"" + header.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 				xml.AppendLine(@"/>");
 			}
-			foreach (SlideHeader status in statuses)
+			foreach (var status in statuses)
 			{
 				xml.Append(@"<Status ");
 				xml.Append("Value = \"" + status.Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
@@ -355,8 +396,9 @@ namespace CommandCentral.TabMainDashboard
 			}
 
 			xml.AppendLine("<DefaultFormula>" + defaultFormula.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</DefaultFormula>");
+			xml.AppendLine("<LockedMode>" + lockedMode + "</LockedMode>");
 
-			TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+			var converter = TypeDescriptor.GetConverter(typeof(Bitmap));
 			foreach (var category in _categories.Where(c => !String.IsNullOrEmpty(c.Name) && !String.IsNullOrEmpty(c.TooltipTitle) && !String.IsNullOrEmpty(c.TooltipValue) && c.Logo != null))
 			{
 				xml.Append(@"<Category ");
@@ -381,7 +423,7 @@ namespace CommandCentral.TabMainDashboard
 			}
 			xml.AppendLine(@"</OnlineStrategy>");
 
-			string xmlPath = Path.Combine(Application.StartupPath, DestinationFileName);
+			var xmlPath = Path.Combine(Application.StartupPath, DestinationFileName);
 			using (var sw = new StreamWriter(xmlPath, false))
 			{
 				sw.Write(xml.ToString());

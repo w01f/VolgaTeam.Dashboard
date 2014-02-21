@@ -58,6 +58,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public List<ProductSource> ProductSources { get; set; }
 		public List<string> Statuses { get; set; }
 		public FormulaType DefaultFormula { get; set; }
+		public bool LockedMode { get; set; }
 
 		public static ListManager Instance
 		{
@@ -97,92 +98,97 @@ namespace NewBizWiz.Core.OnlineSchedule
 			Strengths.Clear();
 			Categories.Clear();
 			ProductSources.Clear();
-			string listPath = Path.Combine(Common.SettingsManager.Instance.SharedListFolder, OnlineStrategyFileName);
-			if (File.Exists(listPath))
-			{
-				var document = new XmlDocument();
-				document.Load(listPath);
+			var listPath = Path.Combine(Common.SettingsManager.Instance.SharedListFolder, OnlineStrategyFileName);
+			if (!File.Exists(listPath)) return;
+			var document = new XmlDocument();
+			document.Load(listPath);
 
-				XmlNode node = document.SelectSingleNode(@"/OnlineStrategy");
-				if (node != null)
+			var node = document.SelectSingleNode(@"/OnlineStrategy");
+			if (node != null)
+			{
+				foreach (XmlNode childeNode in node.ChildNodes)
 				{
-					foreach (XmlNode childeNode in node.ChildNodes)
+					switch (childeNode.Name)
 					{
-						switch (childeNode.Name)
-						{
-							case "Header":
-								foreach (XmlAttribute attribute in childeNode.Attributes)
+						case "Header":
+							foreach (XmlAttribute attribute in childeNode.Attributes)
+							{
+								switch (attribute.Name)
 								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value) && !SlideHeaders.Contains(attribute.Value))
-												SlideHeaders.Add(attribute.Value);
-											break;
-									}
-								}
-								break;
-							case "Site":
-								foreach (XmlAttribute attribute in childeNode.Attributes)
-								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value) && !Websites.Contains(attribute.Value))
-												Websites.Add(attribute.Value);
-											break;
-									}
-								}
-								break;
-							case "Strength":
-								foreach (XmlAttribute attribute in childeNode.Attributes)
-								{
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!string.IsNullOrEmpty(attribute.Value) && !Strengths.Contains(attribute.Value))
-												Strengths.Add(attribute.Value);
-											break;
-									}
-								}
-								break;
-							case "DefaultFormula":
-								switch (childeNode.InnerText.ToLower().Trim())
-								{
-									case "cpm":
-										DefaultFormula = FormulaType.CPM;
-										break;
-									case "investment":
-										DefaultFormula = FormulaType.Investment;
-										break;
-									case "impressions":
-										DefaultFormula = FormulaType.Impressions;
+									case "Value":
+										if (!string.IsNullOrEmpty(attribute.Value) && !SlideHeaders.Contains(attribute.Value))
+											SlideHeaders.Add(attribute.Value);
 										break;
 								}
-								break;
-							case "Category":
-								var category = new Category();
-								GetCategories(childeNode, ref category);
-								if (!string.IsNullOrEmpty(category.Name))
-									Categories.Add(category);
-								break;
-							case "Product":
-								productSource = new ProductSource();
-								GetProductProperties(childeNode, ref productSource);
-								if (!string.IsNullOrEmpty(productSource.Name))
-									ProductSources.Add(productSource);
-								break;
-							case "Status":
-								foreach (XmlAttribute attribute in childeNode.Attributes)
-									switch (attribute.Name)
-									{
-										case "Value":
-											if (!Statuses.Contains(attribute.Value))
-												Statuses.Add(attribute.Value);
-											break;
-									}
-								break;
-						}
+							}
+							break;
+						case "Site":
+							foreach (XmlAttribute attribute in childeNode.Attributes)
+							{
+								switch (attribute.Name)
+								{
+									case "Value":
+										if (!string.IsNullOrEmpty(attribute.Value) && !Websites.Contains(attribute.Value))
+											Websites.Add(attribute.Value);
+										break;
+								}
+							}
+							break;
+						case "Strength":
+							foreach (XmlAttribute attribute in childeNode.Attributes)
+							{
+								switch (attribute.Name)
+								{
+									case "Value":
+										if (!string.IsNullOrEmpty(attribute.Value) && !Strengths.Contains(attribute.Value))
+											Strengths.Add(attribute.Value);
+										break;
+								}
+							}
+							break;
+						case "DefaultFormula":
+							switch (childeNode.InnerText.ToLower().Trim())
+							{
+								case "cpm":
+									DefaultFormula = FormulaType.CPM;
+									break;
+								case "investment":
+									DefaultFormula = FormulaType.Investment;
+									break;
+								case "impressions":
+									DefaultFormula = FormulaType.Impressions;
+									break;
+							}
+							break;
+						case "LockedMode":
+							{
+								bool temp;
+								if (Boolean.TryParse(childeNode.InnerText, out temp))
+									LockedMode = temp;
+							}
+							break;
+						case "Category":
+							var category = new Category();
+							GetCategories(childeNode, ref category);
+							if (!string.IsNullOrEmpty(category.Name))
+								Categories.Add(category);
+							break;
+						case "Product":
+							productSource = new ProductSource();
+							GetProductProperties(childeNode, ref productSource);
+							if (!string.IsNullOrEmpty(productSource.Name))
+								ProductSources.Add(productSource);
+							break;
+						case "Status":
+							foreach (XmlAttribute attribute in childeNode.Attributes)
+								switch (attribute.Name)
+								{
+									case "Value":
+										if (!Statuses.Contains(attribute.Value))
+											Statuses.Add(attribute.Value);
+										break;
+								}
+							break;
 					}
 				}
 			}

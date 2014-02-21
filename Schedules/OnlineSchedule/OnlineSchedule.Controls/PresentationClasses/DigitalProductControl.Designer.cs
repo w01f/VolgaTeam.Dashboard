@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.hyperLinkEditResetProductName = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.memoEditDescription = new DevExpress.XtraEditors.MemoEdit();
 			this.memoEditProductName = new DevExpress.XtraEditors.MemoEdit();
@@ -255,7 +257,7 @@
 			this.spinEditCPM.Properties.AppearanceDisabled.Options.UseFont = true;
 			this.spinEditCPM.Properties.AppearanceDisabled.Options.UseForeColor = true;
 			this.spinEditCPM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
 			this.spinEditCPM.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditCPM.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditCPM.Properties.EditFormat.FormatString = "$#,###.00";
@@ -288,7 +290,7 @@
 			this.spinEditImpressions.Properties.AppearanceDisabled.Options.UseFont = true;
 			this.spinEditImpressions.Properties.AppearanceDisabled.Options.UseForeColor = true;
 			this.spinEditImpressions.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.spinEditImpressions.Properties.DisplayFormat.FormatString = "#,##0";
 			this.spinEditImpressions.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditImpressions.Properties.EditFormat.FormatString = "#,##0";
@@ -342,7 +344,7 @@
 			this.spinEditInvestment.Properties.AppearanceDisabled.Options.UseFont = true;
 			this.spinEditInvestment.Properties.AppearanceDisabled.Options.UseForeColor = true;
 			this.spinEditInvestment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
 			this.spinEditInvestment.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditInvestment.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditInvestment.Properties.EditFormat.FormatString = "$#,###.00";

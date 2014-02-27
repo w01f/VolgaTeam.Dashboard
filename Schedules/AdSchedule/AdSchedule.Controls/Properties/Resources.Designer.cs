@@ -213,6 +213,16 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap CalendarDayDetails {
+            get {
+                object obj = ResourceManager.GetObject("CalendarDayDetails", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap CalendarEditButton {
             get {
                 object obj = ResourceManager.GetObject("CalendarEditButton", resourceCulture);

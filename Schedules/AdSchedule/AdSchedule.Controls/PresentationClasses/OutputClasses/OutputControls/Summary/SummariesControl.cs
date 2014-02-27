@@ -102,6 +102,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
+		public void ExternalOptionChanged(object sender, EventArgs e)
+		{
+			if (_selectedOutput == null) return;
+			_selectedOutput.OnOptionChanged(sender, e);
+		}
+
 		public void Preview_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
@@ -171,6 +177,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		bool SettingsNotSaved { get; set; }
 		SuperTooltipInfo HelpToolTip { get; }
 		void UpdateOutput(bool quickLoad);
+		void OnOptionChanged(object sender, EventArgs e);
 		void EditDigitalLegend();
 		void PrintOutput();
 		void Email();

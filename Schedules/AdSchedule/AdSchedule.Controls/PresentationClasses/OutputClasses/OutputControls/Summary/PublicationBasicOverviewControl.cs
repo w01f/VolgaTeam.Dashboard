@@ -4,8 +4,10 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
@@ -13,7 +15,6 @@ using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
@@ -22,10 +23,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 	//public partial class PublicationBasicOverviewControl : System.Windows.Forms.UserControl
 	{
 		private bool _allowToSave;
+		private readonly OutputBasicOverviewControl _parent;
 
-		public PublicationBasicOverviewControl()
+		public PublicationBasicOverviewControl(OutputBasicOverviewControl parent)
 		{
 			InitializeComponent();
+			_parent = parent;
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
 				laAdSize.Font = new Font(laAdSize.Font.FontFamily, laAdSize.Font.Size - 3, laAdSize.Font.Style);
@@ -34,17 +37,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				laTotalAds.Font = new Font(laTotalAds.Font.FontFamily, laTotalAds.Font.Size - 3, laTotalAds.Font.Style);
 				checkEditAvgADRate.Font = new Font(checkEditAvgADRate.Font.FontFamily, checkEditAvgADRate.Font.Size - 2, checkEditAvgADRate.Font.Style);
 				checkEditAvgPCIRate.Font = new Font(checkEditAvgPCIRate.Font.FontFamily, checkEditAvgPCIRate.Font.Size - 2, checkEditAvgPCIRate.Font.Style);
-				checkEditBusinessName.Font = new Font(checkEditBusinessName.Font.FontFamily, checkEditBusinessName.Font.Size - 2, checkEditBusinessName.Font.Style);
-				checkEditStandartColor.Font = new Font(checkEditStandartColor.Font.FontFamily, checkEditStandartColor.Font.Size - 2, checkEditStandartColor.Font.Style);
-				checkEditStandartDimensions.Font = new Font(checkEditStandartDimensions.Font.FontFamily, checkEditStandartDimensions.Font.Size - 2, checkEditStandartDimensions.Font.Style);
-				checkEditDate.Font = new Font(checkEditDate.Font.FontFamily, checkEditDate.Font.Size - 2, checkEditDate.Font.Style);
-				checkEditDecisionMaker.Font = new Font(checkEditDecisionMaker.Font.FontFamily, checkEditDecisionMaker.Font.Size - 2, checkEditDecisionMaker.Font.Style);
-				checkEditFlightDates.Font = new Font(checkEditFlightDates.Font.FontFamily, checkEditFlightDates.Font.Size - 2, checkEditFlightDates.Font.Style);
+				checkEditColor.Font = new Font(checkEditColor.Font.FontFamily, checkEditColor.Font.Size - 2, checkEditColor.Font.Style);
+				checkEditDimensions.Font = new Font(checkEditDimensions.Font.FontFamily, checkEditDimensions.Font.Size - 2, checkEditDimensions.Font.Style);
 				checkEditFlightDates2.Font = new Font(checkEditFlightDates2.Font.FontFamily, checkEditFlightDates2.Font.Size - 2, checkEditFlightDates2.Font.Style);
-				checkEditName.Font = new Font(checkEditName.Font.FontFamily, checkEditName.Font.Size - 3, checkEditName.Font.Style);
-				checkEditStandartPageSize.Font = new Font(checkEditStandartPageSize.Font.FontFamily, checkEditStandartPageSize.Font.Size - 2, checkEditStandartPageSize.Font.Style);
+				checkEditPageSize.Font = new Font(checkEditPageSize.Font.FontFamily, checkEditPageSize.Font.Size - 2, checkEditPageSize.Font.Style);
 				checkEditTotalAds.Font = new Font(checkEditTotalAds.Font.FontFamily, checkEditTotalAds.Font.Size - 2, checkEditTotalAds.Font.Style);
-				checkEditStandartSquare.Font = new Font(checkEditStandartSquare.Font.FontFamily, checkEditStandartSquare.Font.Size - 2, checkEditStandartSquare.Font.Style);
+				checkEditSquare.Font = new Font(checkEditSquare.Font.FontFamily, checkEditSquare.Font.Size - 2, checkEditSquare.Font.Style);
 				checkEditTotalCost.Font = new Font(checkEditTotalCost.Font.FontFamily, checkEditTotalCost.Font.Size - 2, checkEditTotalCost.Font.Style);
 				checkEditTotalDiscounts.Font = new Font(checkEditTotalDiscounts.Font.FontFamily, checkEditTotalDiscounts.Font.Size - 2, checkEditTotalDiscounts.Font.Style);
 				checkEditTotalSquare.Font = new Font(checkEditTotalSquare.Font.FontFamily, checkEditTotalSquare.Font.Size - 2, checkEditTotalSquare.Font.Style);
@@ -55,66 +53,41 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public bool SettingsNotSaved
 		{
-			get { return Controller.Instance.Summaries.BasicOverview.SettingsNotSaved; }
-			set { Controller.Instance.Summaries.BasicOverview.SettingsNotSaved = value; }
+			get { return _parent.SettingsNotSaved; }
+			set { _parent.SettingsNotSaved = value; }
 		}
 
 		public void LoadPublication()
 		{
 			Text = PrintProduct.Name.Replace("&", "&&");
-			pbLogo.Image = PrintProduct.SmallLogo != null ? new Bitmap(PrintProduct.SmallLogo) : null;
-			checkEditName.Text = PrintProduct.Name.Replace("&", "&&");
-
-			checkEditStandartDimensions.Text = !string.IsNullOrEmpty(PrintProduct.SizeOptions.Dimensions) ? PrintProduct.SizeOptions.Dimensions : string.Empty;
-			checkEditStandartDimensions.Visible = !string.IsNullOrEmpty(PrintProduct.SizeOptions.Dimensions);
-			checkEditSharePageDimensions.Text = !string.IsNullOrEmpty(PrintProduct.SizeOptions.Dimensions) ? PrintProduct.SizeOptions.Dimensions : string.Empty;
-			checkEditSharePageDimensions.Visible = !string.IsNullOrEmpty(PrintProduct.SizeOptions.Dimensions);
-			checkEditStandartSquare.Text = PrintProduct.SizeOptions.Square.HasValue ? (PrintProduct.SizeOptions.Square.Value.ToString("#,##0.00#") + " col. in.") : string.Empty;
-			checkEditStandartSquare.Visible = PrintProduct.SizeOptions.Square.HasValue;
+			pbLogo.Image = PrintProduct.TinyLogo != null ? new Bitmap(PrintProduct.TinyLogo) : null;
+			checkEditDimensions.Text = !string.IsNullOrEmpty(PrintProduct.SizeOptions.Dimensions) ? PrintProduct.SizeOptions.Dimensions : string.Empty;
+			checkEditDimensions.Visible = !string.IsNullOrEmpty(PrintProduct.SizeOptions.Dimensions);
+			checkEditSquare.Text = PrintProduct.SizeOptions.Square.HasValue ? (PrintProduct.SizeOptions.Square.Value.ToString("#,##0.00#") + " col. in.") : string.Empty;
+			checkEditSquare.Visible = PrintProduct.SizeOptions.Square.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage;
 			checkEditTotalSquare.Text = PrintProduct.TotalSquare.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage ? ("Total Inches: " + PrintProduct.TotalSquare.Value.ToString("#,##0.00#")) : string.Empty;
 			checkEditTotalSquare.Visible = PrintProduct.TotalSquare.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage;
-			checkEditStandartPageSize.Visible = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup);
-			checkEditStandartPageSize.Text = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup) ? PrintProduct.SizeOptions.PageSizeAndGroup : String.Empty;
-			checkEditSharePagePageSize.Visible = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup);
-			checkEditSharePagePageSize.Text = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup) ? PrintProduct.SizeOptions.PageSizeAndGroup : String.Empty;
-			checkEditSharePagePercentOfPage.Visible = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage);
-			checkEditSharePagePercentOfPage.Text = !string.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage) ? (PrintProduct.SizeOptions.PercentOfPage + " Share of Page") : string.Empty;
-			pnAdSizeStandart.Visible = PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage;
-			pnAdSizeSharePage.Visible = PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage;
-
+			checkEditPageSize.Visible = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup);
+			checkEditPageSize.Text = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup) ? PrintProduct.SizeOptions.PageSizeAndGroup : String.Empty;
+			checkEditPercentOfPage.Visible = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage) && PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage;
+			checkEditPercentOfPage.Text = !String.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage) ? (PrintProduct.SizeOptions.PercentOfPage + " Share of Page") : string.Empty;
 			checkEditAvgADRate.Text = "Avg Ad Rate: " + PrintProduct.AvgADRate.ToString("$#,##0.00");
 			checkEditAvgPCIRate.Text = PrintProduct.AvgPCIRate > 0 ? ("Avg PCI: " + PrintProduct.AvgPCIRate.ToString("$#,##0.00")) : string.Empty;
 			checkEditAvgPCIRate.Visible = PrintProduct.AvgPCIRate > 0;
-			checkEditBusinessName.Text = PrintProduct.Parent.BusinessName + (!string.IsNullOrEmpty(PrintProduct.Parent.AccountNumber) ? (" - " + PrintProduct.Parent.AccountNumber) : string.Empty);
-
 			switch (PrintProduct.ColorOption)
 			{
 				case ColorOptions.BlackWhite:
-					checkEditStandartColor.Text = "Black && White";
-					checkEditSharePageColor.Text = "Black && White";
+					checkEditColor.Text = "Black && White";
 					break;
 				case ColorOptions.SpotColor:
-					checkEditStandartColor.Text = "Spot Color";
-					checkEditSharePageColor.Text = "Spot Color";
+					checkEditColor.Text = "Spot Color";
 					break;
 				case ColorOptions.FullColor:
-					checkEditStandartColor.Text = "Full Color";
-					checkEditSharePageColor.Text = "Full Color";
+					checkEditColor.Text = "Full Color";
 					break;
 			}
 
-			checkEditDate.Text = PrintProduct.Parent.PresentationDate.HasValue ? PrintProduct.Parent.PresentationDate.Value.ToString("MM/dd/yy") : string.Empty;
-
-			var dates = new List<string>();
-			foreach (var insert in PrintProduct.Inserts)
-			{
-				if (insert.Date.HasValue)
-					dates.Add(insert.Date.Value.ToString("MM/dd/yy"));
-			}
-			memoEditDates.EditValue = string.Join(", ", dates.ToArray());
-
-			checkEditDecisionMaker.Text = PrintProduct.Parent.DecisionMaker;
-			checkEditFlightDates.Text = "   " + PrintProduct.Parent.FlightDates;
+			memoEditDates.EditValue = String.Join(", ", (PrintProduct.Inserts.Where(insert => insert.Date.HasValue).Select(insert => insert.Date.Value.ToString("MM/dd/yy"))));
 			checkEditFlightDates2.Text = PrintProduct.Parent.FlightDates;
 			checkEditTotalAds.Text = "Total Ads: " + PrintProduct.TotalInserts.ToString("#,##0");
 			checkEditTotalCost.Text = "Total Cost: " + PrintProduct.TotalFinalRate.ToString("$#,##0.00");
@@ -122,50 +95,19 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 			_allowToSave = false;
 			checkEditTotalDiscounts.Checked = PrintProduct.TotalDiscountRate > 0;
-
-
-			comboBoxEditSchedule.Properties.Items.Clear();
-			comboBoxEditSchedule.Properties.Items.AddRange(ListManager.Instance.OutputHeaders.ToArray());
-			if (string.IsNullOrEmpty(PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader))
-			{
-				if (comboBoxEditSchedule.Properties.Items.Count > 0)
-					comboBoxEditSchedule.SelectedIndex = 0;
-			}
-			else
-			{
-				int index = comboBoxEditSchedule.Properties.Items.IndexOf(PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader);
-				if (index >= 0)
-					comboBoxEditSchedule.SelectedIndex = index;
-				else
-					comboBoxEditSchedule.SelectedIndex = 0;
-			}
 			textEditRunDatesComment.EditValue = PrintProduct.ViewSettings.BasicOverviewSettings.Comments;
-
-			checkEditName.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowName;
-			checkEditBusinessName.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowAdvertiser;
-			checkEditDecisionMaker.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowDecisionMaker;
-			checkEditDate.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowPresentationDate;
-			checkEditSchedule.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowSlideHeader;
-			checkEditFlightDates.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates;
 			checkEditLogo.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowLogo;
-
-			checkEditStandartPageSize.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnablePageSize;
-			checkEditSharePagePageSize.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnablePageSize;
-			checkEditSharePagePercentOfPage.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnablePercentOfPage;
-			checkEditStandartColor.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableColor;
-			checkEditSharePageColor.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableColor;
-			checkEditStandartDimensions.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableDimensions;
-			checkEditSharePageDimensions.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableDimensions;
-			checkEditStandartSquare.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableSquare;
+			checkEditPageSize.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnablePageSize;
+			checkEditPercentOfPage.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnablePercentOfPage;
+			checkEditColor.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableColor;
+			checkEditDimensions.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableDimensions;
+			checkEditSquare.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableSquare;
 			checkEditAdSizePicture.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowAdSizeDetails;
-			checkEditStandartPageSize.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowPageSize;
-			checkEditSharePagePageSize.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowPageSize;
-			checkEditSharePagePercentOfPage.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowPercentOfPage;
-			checkEditStandartColor.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowColor;
-			checkEditSharePageColor.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowColor;
-			checkEditStandartDimensions.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowDimensions;
-			checkEditSharePageDimensions.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowDimensions;
-			checkEditStandartSquare.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowSquare;
+			checkEditPageSize.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowPageSize;
+			checkEditPercentOfPage.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowPercentOfPage;
+			checkEditColor.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowColor;
+			checkEditDimensions.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowDimensions;
+			checkEditSquare.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowSquare;
 
 			checkEditTotalAds.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableTotalInserts;
 			checkEditTotalSquare.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableTotalSquare;
@@ -183,7 +125,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditTotalCost.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowInvestment;
 			checkEditTotalDiscounts.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowDiscounts && PrintProduct.TotalDiscountRate > 0;
 
-
 			checkEditRunDatesComment.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableComments;
 			checkEditDates.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableDates;
 			checkEditFlightDates2.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableFlightDates2;
@@ -195,26 +136,53 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			_allowToSave = true;
 		}
 
+		public void LoadExternalOption()
+		{
+			_allowToSave = false;
+			Controller.Instance.BasicOverviewBusinessNameCheck.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowAdvertiser;
+			Controller.Instance.BasicOverviewDecisionMakerCheck.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowDecisionMaker;
+			Controller.Instance.BasicOverviewPresentationDateCheck.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowPresentationDate;
+			Controller.Instance.BasicOverviewHeaderCheck.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowSlideHeader;
+			if (string.IsNullOrEmpty(PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader))
+			{
+				if (Controller.Instance.BasicOverviewHeaderText.Properties.Items.Count > 0)
+					Controller.Instance.BasicOverviewHeaderText.SelectedIndex = 0;
+			}
+			else
+			{
+				var index = Controller.Instance.BasicOverviewHeaderText.Properties.Items.IndexOf(PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader);
+				Controller.Instance.BasicOverviewHeaderText.SelectedIndex = index >= 0 ? index : 0;
+			}
+			_parent.checkEditFlightDates.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates;
+			_parent.checkEditProductName.Text = PrintProduct.Name.Replace("&", "&&");
+			_parent.checkEditProductName.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowName;
+			_allowToSave = true;
+		}
+
 		private void checkEdit_MouseDown(object sender, MouseEventArgs e)
 		{
 			var cEdit = (CheckEdit)sender;
 			var cInfo = (CheckEditViewInfo)cEdit.GetViewInfo();
-			Rectangle r = cInfo.CheckInfo.GlyphRect;
+			var r = cInfo.CheckInfo.GlyphRect;
 			var editorRect = new Rectangle(new Point(0, 0), cEdit.Size);
 			if (!r.Contains(e.Location) && editorRect.Contains(e.Location))
 				((DXMouseEventArgs)e).Handled = true;
 		}
 
 		#region Check Event Handlers
+		public void OnOptionChanged(object sender)
+		{
+			if (sender == Controller.Instance.BasicOverviewHeaderCheck)
+				checkEditHeader_CheckedChanged();
+			else if (sender == Controller.Instance.BasicOverviewHeaderText)
+				comboBoxEditHeader_EditValueChanged();
+			else if (sender is CheckBoxItem)
+				checkEdit_CheckedChanged(sender, EventArgs.Empty);
+		}
+
 		private void checkEditTextEdit_CheckedChanged(object sender, EventArgs e)
 		{
 			textEditRunDatesComment.Enabled = checkEditRunDatesComment.Checked;
-			checkEdit_CheckedChanged(null, null);
-		}
-
-		private void checkEditSchedule_CheckedChanged(object sender, EventArgs e)
-		{
-			comboBoxEditSchedule.Enabled = checkEditSchedule.Checked;
 			checkEdit_CheckedChanged(null, null);
 		}
 
@@ -226,64 +194,70 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void checkEdit_CheckedChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowPageSize = PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage ? checkEditSharePagePageSize.Checked : checkEditStandartPageSize.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowPercentOfPage = checkEditSharePagePercentOfPage.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowAdSizeDetails = checkEditAdSizePicture.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowAdvertiser = checkEditBusinessName.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowAvgAdCost = checkEditAvgADRate.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowAvgPCI = checkEditAvgPCIRate.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowColor = PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage ? checkEditSharePageColor.Checked : checkEditStandartColor.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowDimensions = PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage ? checkEditSharePageDimensions.Checked : checkEditStandartDimensions.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowComments = checkEditRunDatesComment.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowDateDetails = checkEditDatesPicture.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowDates = checkEditDates.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowDecisionMaker = checkEditDecisionMaker.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowDiscounts = checkEditTotalDiscounts.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates = checkEditFlightDates.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates2 = checkEditFlightDates2.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowInvestment = checkEditTotalCost.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowInvestmentDetails = checkEditInvestmentDetailsPicture.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowLogo = checkEditLogo.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowName = checkEditName.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowPresentationDate = checkEditDate.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowSlideHeader = checkEditSchedule.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowSquare = checkEditStandartSquare.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowTotalDetails = checkEditTotalAdsPicture.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowTotalInserts = checkEditTotalAds.Checked;
-				PrintProduct.ViewSettings.BasicOverviewSettings.ShowTotalSquare = checkEditTotalSquare.Checked;
-				SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowPageSize = checkEditPageSize.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowPercentOfPage = checkEditPercentOfPage.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowAdSizeDetails = checkEditAdSizePicture.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowAdvertiser = Controller.Instance.BasicOverviewBusinessNameCheck.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowAvgAdCost = checkEditAvgADRate.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowAvgPCI = checkEditAvgPCIRate.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowColor = checkEditColor.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowDimensions = checkEditDimensions.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowComments = checkEditRunDatesComment.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowDateDetails = checkEditDatesPicture.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowDates = checkEditDates.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowDecisionMaker = Controller.Instance.BasicOverviewDecisionMakerCheck.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowDiscounts = checkEditTotalDiscounts.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates = _parent.checkEditFlightDates.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates2 = checkEditFlightDates2.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowInvestment = checkEditTotalCost.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowInvestmentDetails = checkEditInvestmentDetailsPicture.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowLogo = checkEditLogo.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowName = _parent.checkEditProductName.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowPresentationDate = Controller.Instance.BasicOverviewPresentationDateCheck.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowSlideHeader = Controller.Instance.BasicOverviewHeaderCheck.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowSquare = checkEditSquare.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowTotalDetails = checkEditTotalAdsPicture.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowTotalInserts = checkEditTotalAds.Checked;
+			PrintProduct.ViewSettings.BasicOverviewSettings.ShowTotalSquare = checkEditTotalSquare.Checked;
+			SettingsNotSaved = true;
 		}
 
-		private void comboBoxEditSchedule_EditValueChanged(object sender, EventArgs e)
+		private void checkEditHeader_CheckedChanged()
 		{
-			if (_allowToSave)
-			{
-				PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader = comboBoxEditSchedule.EditValue != null ? comboBoxEditSchedule.EditValue.ToString() : string.Empty;
-				SettingsNotSaved = true;
-			}
+			Controller.Instance.BasicOverviewHeaderText.Enabled = Controller.Instance.BasicOverviewHeaderCheck.Checked;
+			checkEdit_CheckedChanged(null, null);
+		}
+
+		private void comboBoxEditHeader_EditValueChanged()
+		{
+			if (!_allowToSave) return;
+			PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader = Controller.Instance.BasicOverviewHeaderText.EditValue as String ?? String.Empty;
+			SettingsNotSaved = true;
 		}
 
 		private void textEditRunDatesComment_EditValueChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				PrintProduct.ViewSettings.BasicOverviewSettings.Comments = textEditRunDatesComment.EditValue != null ? textEditRunDatesComment.EditValue.ToString() : string.Empty;
-				SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			PrintProduct.ViewSettings.BasicOverviewSettings.Comments = textEditRunDatesComment.EditValue != null ? textEditRunDatesComment.EditValue.ToString() : string.Empty;
+			SettingsNotSaved = true;
 		}
 		#endregion
+
+		private void hyperLinkEditReset_OpenLink(object sender, OpenLinkEventArgs e)
+		{
+			_parent.ResetToDefault();
+			e.Handled = true;
+		}
 
 		#region Output Staff
 		public string Header
 		{
 			get
 			{
-				string result = string.Empty;
-				if (checkEditSchedule.Checked)
-					result = comboBoxEditSchedule.EditValue.ToString();
+				var result = string.Empty;
+				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowSlideHeader)
+					result = PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader;
 				return result;
 			}
 		}
@@ -292,12 +266,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				string result = string.Empty;
-				if (checkEditLogo.Checked)
-				{
-					result = Path.GetTempFileName();
-					pbLogo.Image.Save(result);
-				}
+				var result = string.Empty;
+				if (!checkEditLogo.Checked) return result;
+				result = Path.GetTempFileName();
+				pbLogo.Image.Save(result);
 				return result;
 			}
 		}
@@ -306,8 +278,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				string result = string.Empty;
-				if (checkEditName.Checked && checkEditLogo.Checked)
+				var result = string.Empty;
+				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowName && checkEditLogo.Checked)
 					result = Text;
 				return result.Replace("&&", "&");
 			}
@@ -317,9 +289,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				string result = string.Empty;
-				if (checkEditDate.Checked && checkEditLogo.Checked)
-					result = checkEditDate.Text;
+				var result = string.Empty;
+				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowPresentationDate && checkEditLogo.Checked)
+					result = Controller.Instance.BasicOverviewPresentationDateText.Text;
 				return result;
 			}
 		}
@@ -328,8 +300,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				string result = string.Empty;
-				if (checkEditName.Checked && !checkEditLogo.Checked)
+				var result = string.Empty;
+				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowName && !checkEditLogo.Checked)
 					result = Text;
 				return result.Replace("&&", "&");
 			}
@@ -339,9 +311,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				string result = string.Empty;
-				if (checkEditDate.Checked && !checkEditLogo.Checked)
-					result = checkEditDate.Text;
+				var result = string.Empty;
+				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowPresentationDate && !checkEditLogo.Checked)
+					result = Controller.Instance.BasicOverviewPresentationDateText.Text;
 				return result;
 			}
 		}
@@ -350,9 +322,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				string result = string.Empty;
-				if (checkEditBusinessName.Checked)
-					result = checkEditBusinessName.Text;
+				var result = string.Empty;
+				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowAdvertiser)
+					result = Controller.Instance.BasicOverviewBusinessNameText.Text;
 				return result;
 			}
 		}
@@ -361,9 +333,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				string result = string.Empty;
-				if (checkEditDecisionMaker.Checked)
-					result = checkEditDecisionMaker.Text;
+				var result = string.Empty;
+				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowDecisionMaker)
+					result = Controller.Instance.BasicOverviewDecisionMakerText.Text;
 				return result;
 			}
 		}
@@ -372,9 +344,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				string result = string.Empty;
-				if (checkEditFlightDates.Checked)
-					result = checkEditFlightDates.Text;
+				var result = string.Empty;
+				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates)
+					result = _parent.checkEditFlightDates.Text;
 				return result;
 			}
 		}
@@ -383,7 +355,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			get
 			{
-				string result = string.Empty;
+				var result = string.Empty;
 				if (checkEditFlightDates2.Checked)
 					result = checkEditFlightDates2.Text;
 				return result;
@@ -395,30 +367,16 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get
 			{
 				var values = new List<string>();
-				if (PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage)
-				{
-					if (checkEditSharePagePercentOfPage.Checked && !string.IsNullOrEmpty(checkEditSharePagePercentOfPage.Text))
-						values.Add(checkEditSharePagePercentOfPage.Text);
-					if (checkEditSharePageColor.Checked)
-						values.Add(checkEditSharePageColor.Text.Replace("&&", "&"));
-					if (checkEditSharePagePageSize.Checked && !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup))
-						values.Add(checkEditSharePagePageSize.Text);
-					if (checkEditSharePageDimensions.Checked && !string.IsNullOrEmpty(checkEditSharePageDimensions.Text))
-						values.Add(checkEditSharePageDimensions.Text);
-				}
-				else
-				{
-					if (checkEditStandartSquare.Checked && !string.IsNullOrEmpty(checkEditStandartSquare.Text))
-						values.Add(checkEditStandartSquare.Text);
-					if (checkEditStandartPageSize.Checked && !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup))
-						values.Add(checkEditStandartPageSize.Text);
-					if (checkEditStandartDimensions.Checked && !string.IsNullOrEmpty(checkEditStandartDimensions.Text))
-						values.Add(checkEditStandartDimensions.Text);
-					//if (checkEditStandartMechanicals.Checked && !string.IsNullOrEmpty(this.Publication.SizeOptions.Mechanicals))
-					//    values.Add(checkEditStandartMechanicals.Text);
-					if (checkEditStandartColor.Checked)
-						values.Add(checkEditStandartColor.Text.Replace("&&", "&"));
-				}
+				if (checkEditPercentOfPage.Checked && !string.IsNullOrEmpty(checkEditPercentOfPage.Text) && PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage)
+					values.Add(checkEditPercentOfPage.Text);
+				if (checkEditSquare.Checked && !string.IsNullOrEmpty(checkEditSquare.Text) && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage)
+					values.Add(checkEditSquare.Text);
+				if (checkEditPageSize.Checked && !String.IsNullOrEmpty(PrintProduct.SizeOptions.PageSizeAndGroup))
+					values.Add(checkEditPageSize.Text);
+				if (checkEditDimensions.Checked && !string.IsNullOrEmpty(checkEditDimensions.Text))
+					values.Add(checkEditDimensions.Text);
+				if (checkEditColor.Checked)
+					values.Add(checkEditColor.Text.Replace("&&", "&"));
 				return values.ToArray();
 			}
 		}

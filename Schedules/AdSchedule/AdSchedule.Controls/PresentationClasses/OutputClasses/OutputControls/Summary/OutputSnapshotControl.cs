@@ -89,15 +89,20 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				_allowToSave = true;
 
 				checkEditDate.Text = LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy") : string.Empty;
-				checkEditBusinessName.Text = " " + LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
+				checkEditBusinessName.Text =  LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
 				checkEditDecisionMaker.Text = LocalSchedule.DecisionMaker;
-				checkEditFlightDates.Text = " " + LocalSchedule.FlightDates;
+				checkEditFlightDates.Text = String.Format("Campaign: {0}", LocalSchedule.FlightDates);
 
 				outputSnapshotContainer.UpdateSnapshots(LocalSchedule);
 
 				LoadView();
 			}
 			SettingsNotSaved = false;
+		}
+
+		public void OnOptionChanged(object sender, EventArgs e)
+		{
+			throw new NotImplementedException();
 		}
 
 		private void ResetToDefault()
@@ -240,15 +245,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void checkEdit_CheckedChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAdvertiser = checkEditBusinessName.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDecisionMaker = checkEditDecisionMaker.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowFlightDates = checkEditFlightDates.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPresentationDate = checkEditDate.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowSlideHeader = checkEditSchedule.Checked;
-				SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAdvertiser = checkEditBusinessName.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDecisionMaker = checkEditDecisionMaker.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowFlightDates = checkEditFlightDates.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPresentationDate = checkEditDate.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowSlideHeader = checkEditSchedule.Checked;
+			SettingsNotSaved = true;
 		}
 
 		private void checkEdit_MouseDown(object sender, MouseEventArgs e)

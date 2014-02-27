@@ -53,9 +53,15 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			spinEditImpressions.Enter += Utilities.Instance.Editor_Enter;
 			spinEditImpressions.MouseDown += Utilities.Instance.Editor_MouseDown;
 			spinEditImpressions.MouseUp += Utilities.Instance.Editor_MouseUp;
+			spinEditImpressionsOnly.Enter += Utilities.Instance.Editor_Enter;
+			spinEditImpressionsOnly.MouseDown += Utilities.Instance.Editor_MouseDown;
+			spinEditImpressionsOnly.MouseUp += Utilities.Instance.Editor_MouseUp;
 			spinEditInvestment.Enter += Utilities.Instance.Editor_Enter;
 			spinEditInvestment.MouseDown += Utilities.Instance.Editor_MouseDown;
 			spinEditInvestment.MouseUp += Utilities.Instance.Editor_MouseUp;
+			spinEditInvestmentOnly.Enter += Utilities.Instance.Editor_Enter;
+			spinEditInvestmentOnly.MouseDown += Utilities.Instance.Editor_MouseDown;
+			spinEditInvestmentOnly.MouseUp += Utilities.Instance.Editor_MouseUp;
 			spinEditCPM.Enter += Utilities.Instance.Editor_Enter;
 			spinEditCPM.MouseDown += Utilities.Instance.Editor_MouseDown;
 			spinEditCPM.MouseUp += Utilities.Instance.Editor_MouseUp;
@@ -95,13 +101,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			switch (Product.Formula)
 			{
 				case FormulaType.CPM:
-					if (Product.ShowMonthly)
+					if (Product.ShowAllPricingMonthly)
 					{
 						Product.MonthlyInvestment = inv;
 						Product.MonthlyImpressions = imp;
 						spinEditCPM.EditValue = Product.MonthlyCPMCalculated;
 					}
-					else if (Product.ShowTotal)
+					else if (Product.ShowAllPricingTotal)
 					{
 						Product.TotalInvestment = inv;
 						Product.TotalImpressions = imp;
@@ -109,13 +115,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					}
 					break;
 				case FormulaType.Investment:
-					if (Product.ShowMonthly)
+					if (Product.ShowAllPricingMonthly)
 					{
 						Product.MonthlyImpressions = imp;
 						Product.MonthlyCPM = cpm;
 						spinEditInvestment.EditValue = Product.MonthlyInvestmentCalculated;
 					}
-					else if (Product.ShowTotal)
+					else if (Product.ShowAllPricingTotal)
 					{
 						Product.TotalImpressions = imp;
 						Product.TotalCPM = cpm;
@@ -123,19 +129,50 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					}
 					break;
 				case FormulaType.Impressions:
-					if (Product.ShowMonthly)
+					if (Product.ShowAllPricingMonthly)
 					{
 						Product.MonthlyInvestment = inv;
 						Product.MonthlyCPM = cpm;
 						spinEditImpressions.EditValue = Product.MonthlyImpressionsCalculated;
 					}
-					else if (Product.ShowTotal)
+					else if (Product.ShowAllPricingTotal)
 					{
 						Product.TotalInvestment = inv;
 						Product.TotalCPM = cpm;
 						spinEditImpressions.EditValue = Product.TotalImpressionsCalculated;
 					}
 					break;
+			}
+		}
+
+		private void UpdateSinglePricing()
+		{
+			if (Product.ShowMonthlyInvestments || Product.ShowTotalInvestments)
+			{
+				Product.ShowMonthlyInvestments = comboBoxEditInvestmentType.SelectedIndex == 0;
+				Product.ShowTotalInvestments = comboBoxEditInvestmentType.SelectedIndex == 1;
+			}
+			if (Product.ShowMonthlyImpressions || Product.ShowTotalImpressions)
+			{
+				Product.ShowMonthlyImpressions = comboBoxEditImpressionsType.SelectedIndex == 0;
+				Product.ShowTotalImpressions = comboBoxEditImpressionsType.SelectedIndex == 1;
+			}
+
+			if (Product.ShowMonthlyInvestments)
+			{
+				Product.MonthlyInvestment = spinEditInvestmentOnly.EditValue as decimal?;
+			}
+			else if (Product.ShowTotalInvestments)
+			{
+				Product.TotalInvestment = spinEditInvestmentOnly.EditValue as decimal?;
+			}
+			else if (Product.ShowMonthlyImpressions)
+			{
+				Product.MonthlyImpressions = spinEditImpressionsOnly.EditValue as decimal?;
+			}
+			else if (Product.ShowTotalImpressions)
+			{
+				Product.TotalImpressions = spinEditImpressionsOnly.EditValue as decimal?;
 			}
 		}
 
@@ -178,12 +215,16 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 
 			comboBoxEditPriceType.SelectedIndex = -1;
-			if (Product.ShowMonthly)
+			if (Product.ShowAllPricingMonthly)
 				comboBoxEditPriceType.SelectedIndex = 0;
-			else if (Product.ShowTotal)
+			else if (Product.ShowAllPricingTotal)
 				comboBoxEditPriceType.SelectedIndex = 1;
-			else
+			else if (Product.ShowMonthlyImpressions || Product.ShowTotalImpressions)
 				comboBoxEditPriceType.SelectedIndex = 2;
+			else if (Product.ShowMonthlyInvestments || Product.ShowTotalInvestments)
+				comboBoxEditPriceType.SelectedIndex = 3;
+			else
+				comboBoxEditPriceType.SelectedIndex = 4;
 
 			checkedListBoxControlWebsite.UnCheckAll();
 			foreach (CheckedListBoxItem item in checkedListBoxControlWebsite.Items)
@@ -276,53 +317,138 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			if (!_allowToSave) return;
 			_allowToSave = false;
-			if (comboBoxEditPriceType.SelectedIndex == 0)
+			switch (comboBoxEditPriceType.SelectedIndex)
 			{
-				checkEditFormulaImpressions.Visible = true;
-				checkEditFormulaInvestment.Visible = true;
-				checkEditFormulaCPM.Visible = true;
-				spinEditImpressions.Visible = true;
-				spinEditInvestment.Visible = true;
-				spinEditCPM.Visible = true;
+				case 0:
+					pnPricyTypeAll.Visible = true;
+					checkEditFormulaImpressions.Visible = true;
+					checkEditFormulaInvestment.Visible = true;
+					checkEditFormulaCPM.Visible = true;
+					spinEditImpressions.Visible = true;
+					spinEditInvestment.Visible = true;
+					spinEditCPM.Visible = true;
 
-				Product.ShowMonthly = true;
-				Product.ShowTotal = false;
+					pnPriceTypeImpressions.Visible = false;
+					pnPriceTypeInvestment.Visible = false;
 
-				spinEditImpressions.EditValue = Product.MonthlyImpressionsCalculated;
-				spinEditInvestment.EditValue = Product.MonthlyInvestmentCalculated;
-				spinEditCPM.EditValue = Product.MonthlyCPMCalculated;
-			}
-			else if (comboBoxEditPriceType.SelectedIndex == 1)
-			{
-				checkEditFormulaImpressions.Visible = true;
-				checkEditFormulaInvestment.Visible = true;
-				checkEditFormulaCPM.Visible = true;
-				spinEditImpressions.Visible = true;
-				spinEditInvestment.Visible = true;
-				spinEditCPM.Visible = true;
+					Product.ShowAllPricingMonthly = true;
+					Product.ShowAllPricingTotal = false;
+					Product.ShowMonthlyInvestments = false;
+					Product.ShowMonthlyImpressions = false;
+					Product.ShowTotalInvestments = false;
+					Product.ShowTotalImpressions = false;
 
-				Product.ShowMonthly = false;
-				Product.ShowTotal = true;
+					spinEditImpressions.EditValue = Product.MonthlyImpressionsCalculated;
+					spinEditInvestment.EditValue = Product.MonthlyInvestmentCalculated;
+					spinEditCPM.EditValue = Product.MonthlyCPMCalculated;
 
-				spinEditImpressions.EditValue = Product.TotalImpressionsCalculated;
-				spinEditInvestment.EditValue = Product.TotalInvestmentCalculated;
-				spinEditCPM.EditValue = Product.TotalCPMCalculated;
-			}
-			else
-			{
-				checkEditFormulaImpressions.Visible = false;
-				checkEditFormulaInvestment.Visible = false;
-				checkEditFormulaCPM.Visible = false;
-				spinEditImpressions.Visible = false;
-				spinEditInvestment.Visible = false;
-				spinEditCPM.Visible = false;
+					comboBoxEditInvestmentType.SelectedIndex = 0;
+					spinEditInvestmentOnly.EditValue = null;
+					comboBoxEditImpressionsType.SelectedIndex = 0;
+					spinEditImpressionsOnly.EditValue = null;
+					break;
+				case 1:
+					pnPricyTypeAll.Visible = true;
+					checkEditFormulaImpressions.Visible = true;
+					checkEditFormulaInvestment.Visible = true;
+					checkEditFormulaCPM.Visible = true;
+					spinEditImpressions.Visible = true;
+					spinEditInvestment.Visible = true;
+					spinEditCPM.Visible = true;
 
-				Product.ShowMonthly = false;
-				Product.ShowTotal = false;
+					pnPriceTypeImpressions.Visible = false;
+					pnPriceTypeInvestment.Visible = false;
 
-				spinEditImpressions.EditValue = null;
-				spinEditInvestment.EditValue = null;
-				spinEditCPM.EditValue = Product.Formula != FormulaType.CPM ? Product.DefaultRate : null; ;
+					Product.ShowAllPricingMonthly = false;
+					Product.ShowAllPricingTotal = true;
+					Product.ShowMonthlyInvestments = false;
+					Product.ShowMonthlyImpressions = false;
+					Product.ShowTotalInvestments = false;
+					Product.ShowTotalImpressions = false;
+
+					spinEditImpressions.EditValue = Product.TotalImpressionsCalculated;
+					spinEditInvestment.EditValue = Product.TotalInvestmentCalculated;
+					spinEditCPM.EditValue = Product.TotalCPMCalculated;
+
+					comboBoxEditInvestmentType.SelectedIndex = 0;
+					spinEditInvestmentOnly.EditValue = null;
+					comboBoxEditImpressionsType.SelectedIndex = 0;
+					spinEditImpressionsOnly.EditValue = null;
+					break;
+				case 2:
+					pnPricyTypeAll.Visible = false;
+					pnPriceTypeImpressions.Visible = true;
+					pnPriceTypeInvestment.Visible = false;
+
+					Product.ShowAllPricingMonthly = false;
+					Product.ShowAllPricingTotal = false;
+					Product.ShowMonthlyInvestments = false;
+					Product.ShowTotalInvestments = false;
+					if (!(Product.ShowMonthlyImpressions || Product.ShowTotalImpressions))
+						Product.ShowMonthlyImpressions = true;
+
+					spinEditImpressions.EditValue = null;
+					spinEditInvestment.EditValue = null;
+					spinEditCPM.EditValue = null;
+
+					comboBoxEditInvestmentType.SelectedIndex = 0;
+					spinEditInvestmentOnly.EditValue = null;
+					comboBoxEditImpressionsType.SelectedIndex = Product.ShowTotalImpressions ? 1 : 0; ;
+					spinEditImpressionsOnly.EditValue = Product.ShowTotalImpressions ? Product.TotalImpressions : Product.MonthlyImpressions;
+
+					UpdateSinglePricing();
+					break;
+				case 3:
+					pnPricyTypeAll.Visible = false;
+					pnPriceTypeImpressions.Visible = false;
+					pnPriceTypeInvestment.Visible = true;
+
+					Product.ShowAllPricingMonthly = false;
+					Product.ShowAllPricingTotal = false;
+					Product.ShowMonthlyImpressions = false;
+					Product.ShowTotalImpressions = false;
+					if (!(Product.ShowMonthlyInvestments || Product.ShowTotalInvestments))
+						Product.ShowMonthlyInvestments = true;
+
+					spinEditImpressions.EditValue = null;
+					spinEditInvestment.EditValue = null;
+					spinEditCPM.EditValue = null;
+
+					comboBoxEditInvestmentType.SelectedIndex = Product.ShowTotalInvestments ? 1 : 0;
+					spinEditInvestmentOnly.EditValue = Product.ShowTotalInvestments ? Product.TotalInvestment : Product.MonthlyInvestment;
+					comboBoxEditImpressionsType.SelectedIndex = 0;
+					spinEditImpressionsOnly.EditValue = null;
+
+					UpdateSinglePricing();
+					break;
+				default:
+					pnPricyTypeAll.Visible = false;
+					pnPriceTypeImpressions.Visible = false;
+					pnPriceTypeInvestment.Visible = false;
+
+					checkEditFormulaImpressions.Visible = false;
+					checkEditFormulaInvestment.Visible = false;
+					checkEditFormulaCPM.Visible = false;
+					spinEditImpressions.Visible = false;
+					spinEditInvestment.Visible = false;
+					spinEditCPM.Visible = false;
+
+					Product.ShowAllPricingMonthly = false;
+					Product.ShowAllPricingTotal = false;
+					Product.ShowMonthlyInvestments = false;
+					Product.ShowMonthlyImpressions = false;
+					Product.ShowTotalInvestments = false;
+					Product.ShowTotalImpressions = false;
+
+					spinEditImpressions.EditValue = null;
+					spinEditInvestment.EditValue = null;
+					spinEditCPM.EditValue = Product.Formula != FormulaType.CPM ? Product.DefaultRate : null;
+
+					comboBoxEditInvestmentType.SelectedIndex = 0;
+					spinEditInvestmentOnly.EditValue = null;
+					comboBoxEditImpressionsType.SelectedIndex = 0;
+					spinEditImpressionsOnly.EditValue = null;
+					break;
 			}
 			_allowToSave = true;
 			_container.SettingsNotSaved = true;
@@ -331,11 +457,9 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		private void checkEditFormula_CheckedChanged(object sender, EventArgs e)
 		{
 			UpdateFormulaComponents();
-			if (_allowToSave)
-			{
-				UpdateFormula();
-				_container.SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			UpdateFormula();
+			_container.SettingsNotSaved = true;
 		}
 
 		private void checkEditInvestmentDetails_CheckedChanged(object sender, EventArgs e)
@@ -351,6 +475,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			if (!_allowToSave) return;
 			UpdateFormula();
+			_container.SettingsNotSaved = true;
+		}
+
+		private void SinglePricing_EditValueChanged(object sender, EventArgs e)
+		{
+			if (!_allowToSave) return;
+			UpdateSinglePricing();
 			_container.SettingsNotSaved = true;
 		}
 
@@ -374,6 +505,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		private void Edit_EditValueChanged(object sender, EventArgs e)
 		{
+			if (!_allowToSave) return;
 			_container.SettingsNotSaved = true;
 		}
 

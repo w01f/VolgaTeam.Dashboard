@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-			this.pnHeader = new System.Windows.Forms.Panel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.comboBoxEditSchedule = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.checkEditSchedule = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditDate = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditDecisionMaker = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditBusinessName = new DevExpress.XtraEditors.CheckEdit();
-			this.pnLine = new System.Windows.Forms.Panel();
 			this.pnTopHeader = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
+			this.laDescription = new System.Windows.Forms.Label();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.outputSnapshotContainer = new NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.OutputSnapshotContainer();
 			this.pnMain = new System.Windows.Forms.Panel();
@@ -65,8 +65,9 @@
 			this.buttonXTotalInserts = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXTotalFinalCost = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXLogo = new DevComponents.DotNetBar.ButtonX();
+			this.xtraTabPageSlideInfo = new DevExpress.XtraTab.XtraTabPage();
+			this.pnSlideInfo = new System.Windows.Forms.Panel();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-			this.pnHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSchedule.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSchedule.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDate.Properties)).BeginInit();
@@ -84,37 +85,24 @@
 			this.xtraTabPagePrint.SuspendLayout();
 			this.pnPrint.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbPrintHelp)).BeginInit();
+			this.xtraTabPageSlideInfo.SuspendLayout();
+			this.pnSlideInfo.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// defaultLookAndFeel
 			// 
 			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
 			// 
-			// pnHeader
-			// 
-			this.pnHeader.Controls.Add(this.comboBoxEditSchedule);
-			this.pnHeader.Controls.Add(this.checkEditSchedule);
-			this.pnHeader.Controls.Add(this.checkEditDate);
-			this.pnHeader.Controls.Add(this.checkEditDecisionMaker);
-			this.pnHeader.Controls.Add(this.checkEditFlightDates);
-			this.pnHeader.Controls.Add(this.checkEditBusinessName);
-			this.pnHeader.Controls.Add(this.pnLine);
-			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnHeader.Location = new System.Drawing.Point(0, 30);
-			this.pnHeader.Name = "pnHeader";
-			this.pnHeader.Size = new System.Drawing.Size(536, 108);
-			this.pnHeader.TabIndex = 0;
-			// 
 			// comboBoxEditSchedule
 			// 
-			this.comboBoxEditSchedule.Location = new System.Drawing.Point(28, 9);
+			this.comboBoxEditSchedule.Location = new System.Drawing.Point(26, 72);
 			this.comboBoxEditSchedule.Name = "comboBoxEditSchedule";
-			this.comboBoxEditSchedule.Properties.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.comboBoxEditSchedule.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditSchedule.Properties.Appearance.Options.UseFont = true;
 			this.comboBoxEditSchedule.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditSchedule.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditSchedule.Size = new System.Drawing.Size(389, 28);
+			this.comboBoxEditSchedule.Size = new System.Drawing.Size(213, 22);
 			this.comboBoxEditSchedule.TabIndex = 43;
 			this.comboBoxEditSchedule.EditValueChanged += new System.EventHandler(this.comboBoxEditSchedule_EditValueChanged);
 			// 
@@ -122,7 +110,7 @@
 			// 
 			this.checkEditSchedule.AutoSizeInLayoutControl = true;
 			this.checkEditSchedule.EditValue = true;
-			this.checkEditSchedule.Location = new System.Drawing.Point(3, 14);
+			this.checkEditSchedule.Location = new System.Drawing.Point(5, 74);
 			this.checkEditSchedule.Name = "checkEditSchedule";
 			this.checkEditSchedule.Properties.Caption = "";
 			this.checkEditSchedule.Size = new System.Drawing.Size(19, 19);
@@ -131,94 +119,69 @@
 			// 
 			// checkEditDate
 			// 
-			this.checkEditDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditDate.EditValue = true;
-			this.checkEditDate.Location = new System.Drawing.Point(378, 14);
+			this.checkEditDate.Location = new System.Drawing.Point(5, 14);
 			this.checkEditDate.Name = "checkEditDate";
-			this.checkEditDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditDate.Properties.Appearance.Options.UseFont = true;
-			this.checkEditDate.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.checkEditDate.Properties.AppearanceDisabled.Options.UseTextOptions = true;
-			this.checkEditDate.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.checkEditDate.Properties.AppearanceFocused.Options.UseTextOptions = true;
-			this.checkEditDate.Properties.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.checkEditDate.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-			this.checkEditDate.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.checkEditDate.Properties.AutoWidth = true;
 			this.checkEditDate.Properties.Caption = "Date Tag";
-			this.checkEditDate.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.checkEditDate.Size = new System.Drawing.Size(155, 21);
+			this.checkEditDate.Size = new System.Drawing.Size(75, 21);
 			this.checkEditDate.TabIndex = 21;
 			this.checkEditDate.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditDate.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
 			// 
 			// checkEditDecisionMaker
 			// 
-			this.checkEditDecisionMaker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditDecisionMaker.EditValue = true;
-			this.checkEditDecisionMaker.Location = new System.Drawing.Point(264, 54);
+			this.checkEditDecisionMaker.Location = new System.Drawing.Point(5, 131);
 			this.checkEditDecisionMaker.Name = "checkEditDecisionMaker";
-			this.checkEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
-			this.checkEditDecisionMaker.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditDecisionMaker.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.checkEditDecisionMaker.Properties.AppearanceDisabled.Options.UseTextOptions = true;
-			this.checkEditDecisionMaker.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.checkEditDecisionMaker.Properties.AppearanceFocused.Options.UseTextOptions = true;
-			this.checkEditDecisionMaker.Properties.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.checkEditDecisionMaker.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
-			this.checkEditDecisionMaker.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.checkEditDecisionMaker.Properties.AutoWidth = true;
 			this.checkEditDecisionMaker.Properties.Caption = "Decision-Maker Tag";
-			this.checkEditDecisionMaker.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.checkEditDecisionMaker.Size = new System.Drawing.Size(269, 21);
+			this.checkEditDecisionMaker.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+			this.checkEditDecisionMaker.Size = new System.Drawing.Size(138, 21);
 			this.checkEditDecisionMaker.TabIndex = 20;
 			this.checkEditDecisionMaker.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditDecisionMaker.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
 			// 
 			// checkEditFlightDates
 			// 
-			this.checkEditFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditFlightDates.EditValue = true;
-			this.checkEditFlightDates.Location = new System.Drawing.Point(3, 81);
+			this.checkEditFlightDates.Location = new System.Drawing.Point(5, 247);
 			this.checkEditFlightDates.Name = "checkEditFlightDates";
-			this.checkEditFlightDates.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditFlightDates.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFlightDates.Properties.Appearance.Options.UseFont = true;
+			this.checkEditFlightDates.Properties.AutoWidth = true;
 			this.checkEditFlightDates.Properties.Caption = "Flight Dates";
-			this.checkEditFlightDates.Size = new System.Drawing.Size(530, 21);
+			this.checkEditFlightDates.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+			this.checkEditFlightDates.Size = new System.Drawing.Size(93, 21);
 			this.checkEditFlightDates.TabIndex = 19;
 			this.checkEditFlightDates.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditFlightDates.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
 			// 
 			// checkEditBusinessName
 			// 
-			this.checkEditBusinessName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditBusinessName.EditValue = true;
-			this.checkEditBusinessName.Location = new System.Drawing.Point(3, 54);
+			this.checkEditBusinessName.Location = new System.Drawing.Point(5, 189);
 			this.checkEditBusinessName.Name = "checkEditBusinessName";
-			this.checkEditBusinessName.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditBusinessName.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditBusinessName.Properties.Appearance.Options.UseFont = true;
+			this.checkEditBusinessName.Properties.AutoWidth = true;
 			this.checkEditBusinessName.Properties.Caption = "Business Name Tag";
-			this.checkEditBusinessName.Size = new System.Drawing.Size(255, 21);
+			this.checkEditBusinessName.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+			this.checkEditBusinessName.Size = new System.Drawing.Size(140, 21);
 			this.checkEditBusinessName.TabIndex = 18;
 			this.checkEditBusinessName.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditBusinessName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
 			// 
-			// pnLine
-			// 
-			this.pnLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.pnLine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pnLine.Location = new System.Drawing.Point(2, 43);
-			this.pnLine.Name = "pnLine";
-			this.pnLine.Size = new System.Drawing.Size(533, 1);
-			this.pnLine.TabIndex = 12;
-			// 
 			// pnTopHeader
 			// 
-			this.pnTopHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnTopHeader.BackColor = System.Drawing.Color.AliceBlue;
+			this.pnTopHeader.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnTopHeader.Controls.Add(this.hyperLinkEditReset);
+			this.pnTopHeader.Controls.Add(this.laDescription);
 			this.pnTopHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTopHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnTopHeader.Name = "pnTopHeader";
@@ -228,24 +191,31 @@
 			// hyperLinkEditReset
 			// 
 			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.hyperLinkEditReset.EditValue = "Reset";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(472, 4);
+			this.hyperLinkEditReset.EditValue = "Reset Defaults";
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(430, 5);
 			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
 			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
 			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
 			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
 			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
-			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
+			this.hyperLinkEditReset.Size = new System.Drawing.Size(101, 20);
 			toolTipItem1.Text = "Reset original default data";
 			superToolTip1.Items.Add(toolTipItem1);
 			this.hyperLinkEditReset.SuperTip = superToolTip1;
-			this.hyperLinkEditReset.TabIndex = 103;
+			this.hyperLinkEditReset.TabIndex = 105;
 			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
+			// 
+			// laDescription
+			// 
+			this.laDescription.AutoSize = true;
+			this.laDescription.Location = new System.Drawing.Point(3, 7);
+			this.laDescription.Name = "laDescription";
+			this.laDescription.Size = new System.Drawing.Size(193, 16);
+			this.laDescription.TabIndex = 104;
+			this.laDescription.Text = "Show up to 5 items per product:";
 			// 
 			// xtraScrollableControl
 			// 
@@ -254,7 +224,7 @@
 			this.xtraScrollableControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControl.Location = new System.Drawing.Point(0, 0);
 			this.xtraScrollableControl.Name = "xtraScrollableControl";
-			this.xtraScrollableControl.Size = new System.Drawing.Size(532, 395);
+			this.xtraScrollableControl.Size = new System.Drawing.Size(532, 503);
 			this.xtraScrollableControl.TabIndex = 6;
 			// 
 			// outputSnapshotContainer
@@ -271,9 +241,9 @@
 			this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnMain.Controls.Add(this.xtraScrollableControl);
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnMain.Location = new System.Drawing.Point(0, 138);
+			this.pnMain.Location = new System.Drawing.Point(0, 30);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(536, 399);
+			this.pnMain.Size = new System.Drawing.Size(536, 507);
 			this.pnMain.TabIndex = 7;
 			// 
 			// splitContainerControl
@@ -285,7 +255,6 @@
 			this.splitContainerControl.Panel1.MinSize = 250;
 			this.splitContainerControl.Panel1.Text = "Panel1";
 			this.splitContainerControl.Panel2.Controls.Add(this.pnMain);
-			this.splitContainerControl.Panel2.Controls.Add(this.pnHeader);
 			this.splitContainerControl.Panel2.Controls.Add(this.pnTopHeader);
 			this.splitContainerControl.Panel2.Text = "Panel2";
 			this.splitContainerControl.Size = new System.Drawing.Size(792, 537);
@@ -316,7 +285,8 @@
 			this.xtraTabControlOptions.Size = new System.Drawing.Size(250, 537);
 			this.xtraTabControlOptions.TabIndex = 0;
 			this.xtraTabControlOptions.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPagePrint});
+            this.xtraTabPagePrint,
+            this.xtraTabPageSlideInfo});
 			this.xtraTabControlOptions.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlOptions_SelectedPageChanged);
 			// 
 			// xtraTabPagePrint
@@ -597,6 +567,28 @@
 			this.buttonXLogo.CheckedChanged += new System.EventHandler(this.buttonItemSnapshotToggle_CheckedChanged);
 			this.buttonXLogo.Click += new System.EventHandler(this.buttonItemSnapshotButton_Click);
 			// 
+			// xtraTabPageSlideInfo
+			// 
+			this.xtraTabPageSlideInfo.Controls.Add(this.pnSlideInfo);
+			this.xtraTabPageSlideInfo.Name = "xtraTabPageSlideInfo";
+			this.xtraTabPageSlideInfo.Size = new System.Drawing.Size(248, 511);
+			this.xtraTabPageSlideInfo.Text = "Basic Info";
+			// 
+			// pnSlideInfo
+			// 
+			this.pnSlideInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnSlideInfo.Controls.Add(this.checkEditFlightDates);
+			this.pnSlideInfo.Controls.Add(this.checkEditDecisionMaker);
+			this.pnSlideInfo.Controls.Add(this.checkEditBusinessName);
+			this.pnSlideInfo.Controls.Add(this.comboBoxEditSchedule);
+			this.pnSlideInfo.Controls.Add(this.checkEditDate);
+			this.pnSlideInfo.Controls.Add(this.checkEditSchedule);
+			this.pnSlideInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnSlideInfo.Location = new System.Drawing.Point(0, 0);
+			this.pnSlideInfo.Name = "pnSlideInfo";
+			this.pnSlideInfo.Size = new System.Drawing.Size(248, 511);
+			this.pnSlideInfo.TabIndex = 0;
+			// 
 			// superTooltip
 			// 
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
@@ -609,7 +601,6 @@
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "OutputSnapshotControl";
 			this.Size = new System.Drawing.Size(792, 537);
-			this.pnHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSchedule.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSchedule.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDate.Properties)).EndInit();
@@ -617,6 +608,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditBusinessName.Properties)).EndInit();
 			this.pnTopHeader.ResumeLayout(false);
+			this.pnTopHeader.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			this.xtraScrollableControl.ResumeLayout(false);
 			this.pnMain.ResumeLayout(false);
@@ -627,15 +619,15 @@
 			this.xtraTabPagePrint.ResumeLayout(false);
 			this.pnPrint.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbPrintHelp)).EndInit();
+			this.xtraTabPageSlideInfo.ResumeLayout(false);
+			this.pnSlideInfo.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        private System.Windows.Forms.Panel pnHeader;
-        private System.Windows.Forms.Panel pnLine;
+		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         public DevExpress.XtraEditors.CheckEdit checkEditBusinessName;
         public DevExpress.XtraEditors.CheckEdit checkEditFlightDates;
         public DevExpress.XtraEditors.CheckEdit checkEditDate;
@@ -667,7 +659,10 @@
 		private DevComponents.DotNetBar.ButtonX buttonXAvgFinalCost;
         private System.Windows.Forms.PictureBox pbPrintHelp;
         private System.Windows.Forms.Label laTitle;
-        private DevComponents.DotNetBar.SuperTooltip superTooltip;
+		private DevComponents.DotNetBar.SuperTooltip superTooltip;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageSlideInfo;
+		private System.Windows.Forms.Panel pnSlideInfo;
+		private System.Windows.Forms.Label laDescription;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 
     }

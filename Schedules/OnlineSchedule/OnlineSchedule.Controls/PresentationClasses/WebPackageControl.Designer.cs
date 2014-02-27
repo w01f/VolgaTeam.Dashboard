@@ -43,6 +43,8 @@
 			DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
@@ -766,7 +768,7 @@
 			// 
 			this.repositoryItemSpinEditImpressions.AutoHeight = false;
 			this.repositoryItemSpinEditImpressions.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
 			this.repositoryItemSpinEditImpressions.DisplayFormat.FormatString = "#,##0";
 			this.repositoryItemSpinEditImpressions.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditImpressions.EditFormat.FormatString = "#,##0";
@@ -799,7 +801,7 @@
 			// 
 			this.repositoryItemSpinEditInvestment.AutoHeight = false;
 			this.repositoryItemSpinEditInvestment.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
 			this.repositoryItemSpinEditInvestment.DisplayFormat.FormatString = "$#,###.00";
 			this.repositoryItemSpinEditInvestment.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemSpinEditInvestment.EditFormat.FormatString = "$#,###.00";

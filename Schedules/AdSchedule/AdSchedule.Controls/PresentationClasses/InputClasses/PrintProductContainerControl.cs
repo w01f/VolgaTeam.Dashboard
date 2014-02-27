@@ -48,7 +48,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				{
 					((PrintProductControl)tab).advBandedGridViewPublication.CloseEditor();
 				}
-				bool result = false;
+				var result = false;
 				if (SettingsNotSaved)
 				{
 					if (SaveSchedule())
@@ -78,7 +78,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control != Controller.Instance.PrintProductPageSizeGroup
 				&& control != Controller.Instance.PrintProductPageSizeName
 				&& control != Controller.Instance.PrintProductColor
-				&& control != Controller.Instance.PrintProductSharePageSquare)
+				&& control != Controller.Instance.PrintProductSharePageSquare
+				&& control != Controller.Instance.BasicOverviewHeaderText
+				&& control != Controller.Instance.MultiSummaryHeaderText)
 			{
 				control.Click += CloseActiveEditorsonOutSideClick;
 				foreach (Control childControl in control.Controls)

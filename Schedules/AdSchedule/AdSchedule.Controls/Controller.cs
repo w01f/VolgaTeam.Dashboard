@@ -172,6 +172,11 @@ namespace NewBizWiz.AdSchedule.Controls
 			BasicOverviewSaveAs.Click += Summaries.SaveAs_Click;
 			BasicOverviewPowerPoint.Click += Summaries.PowerPoint_Click;
 			BasicOverviewDigitalLegend.Click += Summaries.Digital_Click;
+			BasicOverviewHeaderCheck.CheckedChanged += Summaries.ExternalOptionChanged;
+			BasicOverviewHeaderText.EditValueChanged += Summaries.ExternalOptionChanged;
+			BasicOverviewPresentationDateCheck.CheckedChanged += Summaries.ExternalOptionChanged;
+			BasicOverviewBusinessNameCheck.CheckedChanged += Summaries.ExternalOptionChanged;
+			BasicOverviewDecisionMakerCheck.CheckedChanged += Summaries.ExternalOptionChanged;
 			#endregion
 
 			#region Multi Summary
@@ -182,6 +187,11 @@ namespace NewBizWiz.AdSchedule.Controls
 			MultiSummarySaveAs.Click += Summaries.SaveAs_Click;
 			MultiSummaryPowerPoint.Click += Summaries.PowerPoint_Click;
 			MultiSummaryDigitalLegend.Click += Summaries.Digital_Click;
+			MultiSummaryHeaderCheck.CheckedChanged += Summaries.ExternalOptionChanged;
+			MultiSummaryHeaderText.EditValueChanged += Summaries.ExternalOptionChanged;
+			MultiSummaryPresentationDateCheck.CheckedChanged += Summaries.ExternalOptionChanged;
+			MultiSummaryBusinessNameCheck.CheckedChanged += Summaries.ExternalOptionChanged;
+			MultiSummaryDecisionMakerCheck.CheckedChanged += Summaries.ExternalOptionChanged;
 			#endregion
 
 			#region Snapshot
@@ -613,6 +623,14 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem BasicOverviewPowerPoint { get; set; }
 		public ButtonItem BasicOverviewTheme { get; set; }
 		public ButtonItem BasicOverviewDigitalLegend { get; set; }
+		public CheckBoxItem BasicOverviewHeaderCheck { get; set; }
+		public ComboBoxEdit BasicOverviewHeaderText { get; set; }
+		public CheckBoxItem BasicOverviewPresentationDateCheck { get; set; }
+		public LabelItem BasicOverviewPresentationDateText { get; set; }
+		public CheckBoxItem BasicOverviewBusinessNameCheck { get; set; }
+		public LabelItem BasicOverviewBusinessNameText { get; set; }
+		public CheckBoxItem BasicOverviewDecisionMakerCheck { get; set; }
+		public LabelItem BasicOverviewDecisionMakerText { get; set; }
 		#endregion
 
 		#region Multi Summary
@@ -624,6 +642,14 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem MultiSummaryPowerPoint { get; set; }
 		public ButtonItem MultiSummaryTheme { get; set; }
 		public ButtonItem MultiSummaryDigitalLegend { get; set; }
+		public CheckBoxItem MultiSummaryHeaderCheck { get; set; }
+		public ComboBoxEdit MultiSummaryHeaderText { get; set; }
+		public CheckBoxItem MultiSummaryPresentationDateCheck { get; set; }
+		public LabelItem MultiSummaryPresentationDateText { get; set; }
+		public CheckBoxItem MultiSummaryBusinessNameCheck { get; set; }
+		public LabelItem MultiSummaryBusinessNameText { get; set; }
+		public CheckBoxItem MultiSummaryDecisionMakerCheck { get; set; }
+		public LabelItem MultiSummaryDecisionMakerText { get; set; }
 		#endregion
 
 		#region Snapshot

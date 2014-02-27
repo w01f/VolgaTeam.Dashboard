@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.xtraTabControlProducts = new DevExpress.XtraTab.XtraTabControl();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.checkEditShowCategory = new DevExpress.XtraEditors.CheckEdit();

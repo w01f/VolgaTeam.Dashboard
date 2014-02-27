@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -19,10 +18,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 	//public partial class PublicationMultiSummaryControl : System.Windows.Forms.UserControl
 	{
 		private bool _allowToSave;
+		private readonly OutputMultiSummaryControl _parent;
 
-		public PublicationMultiSummaryControl()
+		public PublicationMultiSummaryControl(OutputMultiSummaryControl parent)
 		{
 			InitializeComponent();
+			_parent = parent;
 		}
 
 		public PrintProduct PrintProduct { get; set; }
@@ -70,7 +71,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			Text = PrintProduct.Name.Replace("&", "&&");
 			pbLogo.Image = PrintProduct.SmallLogo != null ? new Bitmap(PrintProduct.SmallLogo) : null;
 			checkEditFlightDates.Text = PrintProduct.Parent.FlightDates;
-			checkEditName.Text = PrintProduct.Name.Replace("&", "&&");
 			checkEditTotalAds.Text = "Total Ads: " + PrintProduct.TotalInserts.ToString("#,##0");
 			checkEditTotalSquare.Text = PrintProduct.TotalSquare.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage ? ("Total Column Inches: " + PrintProduct.TotalSquare.Value.ToString("#,##0.00#")) : string.Empty;
 			checkEditTotalSquare.Visible = PrintProduct.TotalSquare.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage;
@@ -105,7 +105,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			laInvestment.Text = "Investment: " + PrintProduct.TotalFinalRate.ToString("$#,##0.00");
 
 			_allowToSave = false;
-			checkEditName.Checked = PrintProduct.ViewSettings.MultiSummarySettings.ShowName;
 			checkEditLogo.Checked = PrintProduct.ViewSettings.MultiSummarySettings.ShowLogo;
 			checkEditInvestment.Checked = PrintProduct.ViewSettings.MultiSummarySettings.ShowInvestment;
 
@@ -145,6 +144,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			_allowToSave = true;
 		}
 
+		public void LoadExternalOption()
+		{
+			_allowToSave = false;
+			_parent.checkEditProductName.Text = PrintProduct.Name.Replace("&", "&&");
+			_parent.checkEditProductName.Checked = PrintProduct.ViewSettings.MultiSummarySettings.ShowName;
+			checkEditTwoPerSlide.Checked = !PrintProduct.Parent.ViewSettings.MultiSummaryViewSettings.ShowOnePublicationPerSlide;
+			_allowToSave = true;
+		}
+
 		private void checkEditInvestment_CheckedChanged(object sender, EventArgs e)
 		{
 			comboBoxEditInvestment.Enabled = checkEditInvestment.Checked;
@@ -165,72 +173,67 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void checkEditAdItems_EditValueChanging(object sender, ChangingEventArgs e)
 		{
-			if (_allowToSave)
-			{
-				if ((bool)e.NewValue)
-				{
-					if (!AllowToCheck())
-					{
-						Utilities.Instance.ShowWarning("You may select only up to 6 Ad-Items");
-						e.Cancel = true;
-					}
-				}
-			}
+			if (!_allowToSave) return;
+			if (!(bool)e.NewValue) return;
+			if (AllowToCheck()) return;
+			Utilities.Instance.ShowWarning("You may select only up to 6 Ad-Items");
+			e.Cancel = true;
 		}
 
 		private void comboBoxEditInvestment_EditValueChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				PrintProduct.ViewSettings.MultiSummarySettings.InvestmentType = comboBoxEditInvestment.EditValue != null ? comboBoxEditInvestment.EditValue.ToString() : string.Empty;
-				SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			PrintProduct.ViewSettings.MultiSummarySettings.InvestmentType = comboBoxEditInvestment.EditValue != null ? comboBoxEditInvestment.EditValue.ToString() : string.Empty;
+			SettingsNotSaved = true;
 		}
 
 		private void memoEditComments_EditValueChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				PrintProduct.ViewSettings.MultiSummarySettings.Comments = memoEditComments.EditValue != null ? memoEditComments.EditValue.ToString() : string.Empty;
-				SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			PrintProduct.ViewSettings.MultiSummarySettings.Comments = memoEditComments.EditValue != null ? memoEditComments.EditValue.ToString() : string.Empty;
+			SettingsNotSaved = true;
 		}
 
 		private void checkEdit_CheckedChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowPageSize = checkEditPageSize.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowPercentOfPage = checkEditPercentOfPage.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowAvgAdCost = checkEditAvgAdCost.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowAvgFinalCost = checkEditAvgFinalCost.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowAvgPCI = checkEditAvgPCI.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowSquare = checkEditSquare.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowComments = checkEditComments.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowDates = checkEditDates.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowDimensions = checkEditDimensions.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowDiscounts = checkEditDiscounts.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowFlightDates = checkEditFlightDates.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowInvestment = checkEditInvestment.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowLogo = checkEditLogo.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowMechanicals = checkEditMechanicals.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowName = checkEditName.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowSection = checkEditSections.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowTotalColor = checkEditColor.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowTotalInserts = checkEditTotalAds.Checked;
-				PrintProduct.ViewSettings.MultiSummarySettings.ShowTotalSquare = checkEditTotalSquare.Checked;
-				SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowPageSize = checkEditPageSize.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowPercentOfPage = checkEditPercentOfPage.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowAvgAdCost = checkEditAvgAdCost.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowAvgFinalCost = checkEditAvgFinalCost.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowAvgPCI = checkEditAvgPCI.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowSquare = checkEditSquare.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowComments = checkEditComments.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowDates = checkEditDates.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowDimensions = checkEditDimensions.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowDiscounts = checkEditDiscounts.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowFlightDates = checkEditFlightDates.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowInvestment = checkEditInvestment.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowLogo = checkEditLogo.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowMechanicals = checkEditMechanicals.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowName = _parent.checkEditProductName.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowSection = checkEditSections.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowTotalColor = checkEditColor.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowTotalInserts = checkEditTotalAds.Checked;
+			PrintProduct.ViewSettings.MultiSummarySettings.ShowTotalSquare = checkEditTotalSquare.Checked;
+			PrintProduct.Parent.ViewSettings.MultiSummaryViewSettings.ShowOnePublicationPerSlide = !checkEditTwoPerSlide.Checked;
+			SettingsNotSaved = true;
 		}
 
 		private void checkEdit_MouseDown(object sender, MouseEventArgs e)
 		{
 			var cEdit = (CheckEdit)sender;
 			var cInfo = (CheckEditViewInfo)cEdit.GetViewInfo();
-			Rectangle r = cInfo.CheckInfo.GlyphRect;
+			var r = cInfo.CheckInfo.GlyphRect;
 			var editorRect = new Rectangle(new Point(0, 0), cEdit.Size);
 			if (!r.Contains(e.Location) && editorRect.Contains(e.Location))
 				((DXMouseEventArgs)e).Handled = true;
+		}
+
+		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		{
+			_parent.ResetToDefault();
+			e.Handled = true;
 		}
 	}
 }

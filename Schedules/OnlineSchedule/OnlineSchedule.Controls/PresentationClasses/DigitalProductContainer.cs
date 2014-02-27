@@ -13,9 +13,7 @@ using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
-using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
 using NewBizWiz.OnlineSchedule.Controls.ToolForms;
-using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 {
@@ -193,13 +191,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			if (productControl == null) return;
 			checkEditWeeks.CheckedChanged -= checkEditWeeks_CheckedChanged;
 			checkEditWeeks.Checked = !checkEditMonths.Checked;
-			if (!productControl.Product.DurationValue.HasValue)
-			{
-				if (checkEditMonths.Checked)
-					spinEditDuration.EditValue = productControl.Product.MonthDuraton;
-				else if (checkEditWeeks.Checked)
-					spinEditDuration.EditValue = productControl.Product.WeeksDuration;
-			}
+			if (checkEditMonths.Checked)
+				spinEditDuration.EditValue = productControl.Product.MonthDuraton;
+			else if (checkEditWeeks.Checked)
+				spinEditDuration.EditValue = productControl.Product.WeeksDuration;
 			checkEditWeeks.CheckedChanged += checkEditWeeks_CheckedChanged;
 
 			if (!AllowApplyValues) return;
@@ -212,14 +207,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			if (productControl == null) return;
 			checkEditMonths.CheckedChanged -= checkEditMonths_CheckedChanged;
 			checkEditMonths.Checked = !checkEditWeeks.Checked;
-			if (!productControl.Product.DurationValue.HasValue)
-			{
-				if (checkEditMonths.Checked)
-					spinEditDuration.EditValue = productControl.Product.MonthDuraton;
-				else if (checkEditWeeks.Checked)
-					spinEditDuration.EditValue = productControl.Product.WeeksDuration;
-			}
-
+			if (checkEditMonths.Checked)
+				spinEditDuration.EditValue = productControl.Product.MonthDuraton;
+			else if (checkEditWeeks.Checked)
+				spinEditDuration.EditValue = productControl.Product.WeeksDuration;
 			checkEditMonths.CheckedChanged += checkEditMonths_CheckedChanged;
 
 			if (!AllowApplyValues) return;

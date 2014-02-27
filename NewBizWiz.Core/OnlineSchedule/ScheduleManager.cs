@@ -508,8 +508,12 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		#region Show Properties
 		public bool ShowDuration { get; set; }
-		public bool ShowMonthly { get; set; }
-		public bool ShowTotal { get; set; }
+		public bool ShowAllPricingMonthly { get; set; }
+		public bool ShowAllPricingTotal { get; set; }
+		public bool ShowMonthlyInvestments { get; set; }
+		public bool ShowMonthlyImpressions { get; set; }
+		public bool ShowTotalInvestments { get; set; }
+		public bool ShowTotalImpressions { get; set; }
 		public bool ShowCategory { get; set; }
 		public bool ShowFlightDates { get; set; }
 
@@ -646,7 +650,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		{
 			get
 			{
-				int result = 0;
+				var result = 0;
 				if (!Parent.FlightDateStart.HasValue || !Parent.FlightDateEnd.HasValue) return result;
 				var diff = Parent.FlightDateEnd.Value.Subtract(Parent.FlightDateStart.Value);
 				result = diff.Days / 7;
@@ -753,8 +757,12 @@ namespace NewBizWiz.Core.OnlineSchedule
 			xml.Append("ShowCategory = \"" + ShowCategory + "\" ");
 			xml.Append("ShowFlightDates = \"" + ShowFlightDates + "\" ");
 			xml.Append("ShowDuration = \"" + ShowDuration + "\" ");
-			xml.Append("ShowMonthly = \"" + ShowMonthly + "\" ");
-			xml.Append("ShowTotal = \"" + ShowTotal + "\" ");
+			xml.Append("ShowAllPricingMonthly = \"" + ShowAllPricingMonthly + "\" ");
+			xml.Append("ShowAllPricingTotal = \"" + ShowAllPricingTotal + "\" ");
+			xml.Append("ShowMonthlyInvestments = \"" + ShowMonthlyInvestments + "\" ");
+			xml.Append("ShowMonthlyImpressions = \"" + ShowMonthlyImpressions + "\" ");
+			xml.Append("ShowTotalInvestments = \"" + ShowTotalInvestments + "\" ");
+			xml.Append("ShowTotalImpressions = \"" + ShowTotalImpressions + "\" ");
 			#endregion
 
 			xml.AppendLine(@">");
@@ -921,18 +929,46 @@ namespace NewBizWiz.Core.OnlineSchedule
 								ShowDuration = tempBool;
 						}
 						break;
-					case "ShowMonthly":
+					case "ShowAllPricingMonthly":
 						{
 							bool tempBool;
 							if (bool.TryParse(productAttribute.Value, out tempBool))
-								ShowMonthly = tempBool;
+								ShowAllPricingMonthly = tempBool;
 						}
 						break;
-					case "ShowTotal":
+					case "ShowAllPricingTotal":
 						{
 							bool tempBool;
 							if (bool.TryParse(productAttribute.Value, out tempBool))
-								ShowTotal = tempBool;
+								ShowAllPricingTotal = tempBool;
+						}
+						break;
+					case "ShowMonthlyInvestments":
+						{
+							bool tempBool;
+							if (bool.TryParse(productAttribute.Value, out tempBool))
+								ShowMonthlyInvestments = tempBool;
+						}
+						break;
+					case "ShowMonthlyImpressions":
+						{
+							bool tempBool;
+							if (bool.TryParse(productAttribute.Value, out tempBool))
+								ShowMonthlyImpressions = tempBool;
+						}
+						break;
+					case "ShowTotalInvestments":
+						{
+							bool tempBool;
+							if (bool.TryParse(productAttribute.Value, out tempBool))
+								ShowTotalInvestments = tempBool;
+						}
+						break;
+					case "ShowTotalImpressions":
+						{
+							bool tempBool;
+							if (bool.TryParse(productAttribute.Value, out tempBool))
+								ShowTotalImpressions = tempBool;
 						}
 						break;
 					#endregion
@@ -979,8 +1015,12 @@ namespace NewBizWiz.Core.OnlineSchedule
 			ShowCategory = true;
 			ShowFlightDates = true;
 			ShowDuration = false;
-			ShowMonthly = true;
-			ShowTotal = false;
+			ShowAllPricingMonthly = true;
+			ShowAllPricingTotal = false;
+			ShowMonthlyInvestments = false;
+			ShowMonthlyImpressions = false;
+			ShowTotalImpressions = false;
+			ShowTotalInvestments = false;
 			ShowDimensions = true;
 			Formula = ListManager.Instance.DefaultFormula;
 			InvestmentDetails = null;
@@ -1084,7 +1124,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 				get
 				{
 					var result = new List<NameCodePair>();
-					if (source.ShowMonthly)
+					if (source.ShowAllPricingMonthly)
 					{
 						if (source.MonthlyImpressionsCalculated.HasValue && source.MonthlyImpressionsCalculated.Value > 0)
 							result.Add(new NameCodePair { Name = "monthly impressions:", Code = source.MonthlyImpressionsCalculated.Value.ToString("#,##0") });
@@ -1092,6 +1132,14 @@ namespace NewBizWiz.Core.OnlineSchedule
 							result.Add(new NameCodePair { Name = "monthly investment:", Code = source.MonthlyInvestmentCalculated.Value.ToString("$#,###.00") });
 						if (source.MonthlyCPMCalculated.HasValue && source.MonthlyCPMCalculated.Value > 0)
 							result.Add(new NameCodePair { Name = "cpm:", Code = source.MonthlyCPMCalculated.Value.ToString("$#,###.00") });
+					}
+					else if (source.ShowMonthlyInvestments && source.MonthlyInvestment.HasValue)
+					{
+						result.Add(new NameCodePair { Name = "monthly investment:", Code = source.MonthlyInvestment.Value.ToString("$#,###.00") });
+					}
+					else if (source.ShowMonthlyImpressions && source.MonthlyImpressions.HasValue)
+					{
+						result.Add(new NameCodePair { Name = "monthly impressions:", Code = source.MonthlyImpressions.Value.ToString("#,##0") });
 					}
 					return result;
 				}
@@ -1102,7 +1150,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 				get
 				{
 					var result = new List<NameCodePair>();
-					if (source.ShowTotal)
+					if (source.ShowAllPricingTotal)
 					{
 						if (source.TotalImpressionsCalculated.HasValue && source.TotalImpressionsCalculated.Value > 0)
 							result.Add(new NameCodePair { Name = "total impressions:", Code = source.TotalImpressionsCalculated.Value.ToString("#,##0") });
@@ -1110,6 +1158,14 @@ namespace NewBizWiz.Core.OnlineSchedule
 							result.Add(new NameCodePair { Name = "total investment:", Code = source.TotalInvestmentCalculated.Value.ToString("$#,###.00") });
 						if (source.TotalCPMCalculated.HasValue && source.TotalCPMCalculated.Value > 0)
 							result.Add(new NameCodePair { Name = "cpm:", Code = source.TotalCPMCalculated.Value.ToString("$#,###.00") });
+					}
+					else if (source.ShowTotalInvestments && source.TotalInvestment.HasValue)
+					{
+						result.Add(new NameCodePair { Name = "total investment:", Code = source.TotalInvestment.Value.ToString("$#,###.00") });
+					}
+					else if (source.ShowTotalImpressions && source.TotalImpressions.HasValue)
+					{
+						result.Add(new NameCodePair { Name = "total impressions:", Code = source.TotalImpressions.Value.ToString("#,##0") });
 					}
 					return result;
 				}

@@ -129,6 +129,14 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.BasicOverviewPowerPoint = buttonItemOverviewPowerPoint;
 			Controller.Instance.BasicOverviewTheme = buttonItemOverviewTheme;
 			Controller.Instance.BasicOverviewDigitalLegend = buttonItemOverviewDigital;
+			Controller.Instance.BasicOverviewHeaderCheck = checkBoxItemOverviewHeader;
+			Controller.Instance.BasicOverviewHeaderText = comboBoxEditOverviewHeader;
+			Controller.Instance.BasicOverviewPresentationDateCheck = checkBoxItemOverviewPresentationDate;
+			Controller.Instance.BasicOverviewPresentationDateText = labelItemOverviewPresentationDate;
+			Controller.Instance.BasicOverviewBusinessNameCheck = checkBoxItemOverviewBusinessName;
+			Controller.Instance.BasicOverviewBusinessNameText = labelItemOverviewBusinessName;
+			Controller.Instance.BasicOverviewDecisionMakerCheck = checkBoxItemOverviewDecisionMaker;
+			Controller.Instance.BasicOverviewDecisionMakerText = labelItemOverviewDecisionMaker;
 			#endregion
 
 			#region Multi Summary
@@ -140,6 +148,14 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.MultiSummaryPowerPoint = buttonItemMultiSummaryPowerPoint;
 			Controller.Instance.MultiSummaryTheme = buttonItemMultiSummaryTheme;
 			Controller.Instance.MultiSummaryDigitalLegend = buttonItemMultiSummaryDigital;
+			Controller.Instance.MultiSummaryHeaderCheck = checkBoxItemMultiSummaryHeader;
+			Controller.Instance.MultiSummaryHeaderText = comboBoxEditMultiSummaryHeader;
+			Controller.Instance.MultiSummaryPresentationDateCheck = checkBoxItemMultiSummaryPresentationDate;
+			Controller.Instance.MultiSummaryPresentationDateText = labelItemMultiSummaryPresentationDate;
+			Controller.Instance.MultiSummaryBusinessNameCheck = checkBoxItemMultiSummaryBusinessName;
+			Controller.Instance.MultiSummaryBusinessNameText = labelItemMultiSummaryBusinessName;
+			Controller.Instance.MultiSummaryDecisionMakerCheck = checkBoxItemMultiSummaryDecisionMaker;
+			Controller.Instance.MultiSummaryDecisionMakerText = labelItemMultiSummaryDecisionMaker;
 			#endregion
 
 			#region Snapshot
@@ -249,6 +265,8 @@ namespace NewBizWiz.AdSchedule.Internal
 				dateEditFlightDatesEnd.Font = font;
 				dateEditFlightDatesStart.Font = font;
 				dateEditPresentationDate.Font = font;
+				comboBoxEditOverviewHeader.Font = font;
+				comboBoxEditMultiSummaryHeader.Font = font;
 
 				laRateCards.Font = new Font(laRateCards.Font.FontFamily, laRateCards.Font.Size - 3, laRateCards.Font.Style);
 				laStandartSquareValue.Font = new Font(laStandartSquareValue.Font.FontFamily, laStandartSquareValue.Font.Size - 2, laStandartSquareValue.Font.Style);
@@ -271,9 +289,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				ribbonBarPrintScheduleAdSize.RecalcLayout();
 				ribbonBarPrintScheduleOptions.RecalcLayout();
 				ribbonBarSnapshotExit.RecalcLayout();
-				ribbonBarSnapshotHelp.RecalcLayout();
 				ribbonBarSnapshotPowerPoint.RecalcLayout();
-				ribbonBarSnapshotSave.RecalcLayout();
 				ribbonBarSnapshotOptions.RecalcLayout();
 				ribbonPanelPrintSchedule.PerformLayout();
 				ribbonPanelScheduleSettings.PerformLayout();

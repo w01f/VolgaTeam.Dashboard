@@ -64,56 +64,26 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}));
 			if (!quickLoad)
 			{
-				checkEditDate.Text = LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy") : string.Empty;
-				checkEditBusinessName.Text = " " + LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
-				checkEditDecisionMaker.Text = " " + LocalSchedule.DecisionMaker;
-				checkEditFlightDates.Text = " " + LocalSchedule.FlightDates;
-
-				_allowToSave = false;
-				comboBoxEditSchedule.Properties.Items.Clear();
-				comboBoxEditSchedule.Properties.Items.AddRange(Core.AdSchedule.ListManager.Instance.OutputHeaders.ToArray());
-				if (string.IsNullOrEmpty(LocalSchedule.ViewSettings.MultiSummaryViewSettings.SlideHeader))
-				{
-					if (comboBoxEditSchedule.Properties.Items.Count > 0)
-						comboBoxEditSchedule.SelectedIndex = 0;
-				}
-				else
-				{
-					int index = comboBoxEditSchedule.Properties.Items.IndexOf(LocalSchedule.ViewSettings.MultiSummaryViewSettings.SlideHeader);
-					if (index >= 0)
-						comboBoxEditSchedule.SelectedIndex = index;
-					else
-						comboBoxEditSchedule.SelectedIndex = 0;
-				}
-				checkEditSchedule.Checked = LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowSlideHeader;
-				checkEditBusinessName.Checked = LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowAdvertiser;
-				checkEditDate.Checked = LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowPresentationDate;
-				checkEditDecisionMaker.Checked = LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowDecisionMaker;
-				checkEditFlightDates.Checked = LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowFlightDates;
-				rbOnePerSlide.Checked = LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowOnePublicationPerSlide;
-				rbTwoPerSlide.Checked = !LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowOnePublicationPerSlide;
-				_allowToSave = true;
+				LoadSharedOptions();
 
 				xtraTabControlPublications.SuspendLayout();
 				Application.DoEvents();
 				xtraTabControlPublications.TabPages.Clear();
 				_tabPages.RemoveAll(x => !LocalSchedule.PrintProducts.Select(y => y.UniqueID).Contains(x.PrintProduct.UniqueID));
-				foreach (PrintProduct publication in LocalSchedule.PrintProducts)
+				foreach (var publication in LocalSchedule.PrintProducts)
 				{
-					if (!string.IsNullOrEmpty(publication.Name))
+					if (string.IsNullOrEmpty(publication.Name)) continue;
+					var publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
+					if (publicationTab == null)
 					{
-						PublicationMultiSummaryControl publicationTab = _tabPages.Where(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID)).FirstOrDefault();
-						if (publicationTab == null)
-						{
-							publicationTab = new PublicationMultiSummaryControl();
-							_tabPages.Add(publicationTab);
-							Application.DoEvents();
-						}
-						publicationTab.PrintProduct = publication;
-						publicationTab.PageEnabled = publication.Inserts.Count > 0;
-						publicationTab.LoadPublication();
+						publicationTab = new PublicationMultiSummaryControl(this);
+						_tabPages.Add(publicationTab);
 						Application.DoEvents();
 					}
+					publicationTab.PrintProduct = publication;
+					publicationTab.PageEnabled = publication.Inserts.Count > 0;
+					publicationTab.LoadPublication();
+					Application.DoEvents();
 				}
 				_tabPages.Sort((x, y) => x.PrintProduct.Index.CompareTo(y.PrintProduct.Index));
 				xtraTabControlPublications.TabPages.AddRange(_tabPages.ToArray());
@@ -122,40 +92,84 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 			else
 			{
-				foreach (PrintProduct publication in LocalSchedule.PrintProducts)
+				foreach (var publication in LocalSchedule.PrintProducts)
 				{
-					if (!string.IsNullOrEmpty(publication.Name))
+					if (string.IsNullOrEmpty(publication.Name)) continue;
+					var publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
+					if (publicationTab != null)
 					{
-						PublicationMultiSummaryControl publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
-						if (publicationTab != null)
-						{
-							publicationTab.PrintProduct = publication;
-							publicationTab.PageEnabled = publication.Inserts.Count > 0;
-						}
-						Application.DoEvents();
+						publicationTab.PrintProduct = publication;
+						publicationTab.PageEnabled = publication.Inserts.Count > 0;
 					}
+					Application.DoEvents();
 				}
 			}
+			LoadProductOptions();
 			SettingsNotSaved = false;
 		}
 
-		private void ResetToDefault()
+		private void LoadSharedOptions()
+		{
+			Controller.Instance.MultiSummaryPresentationDateText.Text = LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy") : string.Empty;
+			Controller.Instance.MultiSummaryBusinessNameText.Text = LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
+			Controller.Instance.MultiSummaryDecisionMakerText.Text = LocalSchedule.DecisionMaker;
+			checkEditFlightDates.Text = String.Format("Campaign: {0}", LocalSchedule.FlightDates);
+
+			_allowToSave = false;
+			Controller.Instance.MultiSummaryHeaderText.Properties.Items.Clear();
+			Controller.Instance.MultiSummaryHeaderText.Properties.Items.AddRange(Core.AdSchedule.ListManager.Instance.OutputHeaders.ToArray());
+			if (string.IsNullOrEmpty(LocalSchedule.ViewSettings.MultiSummaryViewSettings.SlideHeader))
+			{
+				if (Controller.Instance.MultiSummaryHeaderText.Properties.Items.Count > 0)
+					Controller.Instance.MultiSummaryHeaderText.SelectedIndex = 0;
+			}
+			else
+			{
+				var index = Controller.Instance.MultiSummaryHeaderText.Properties.Items.IndexOf(LocalSchedule.ViewSettings.MultiSummaryViewSettings.SlideHeader);
+				if (index >= 0)
+					Controller.Instance.MultiSummaryHeaderText.SelectedIndex = index;
+				else
+					Controller.Instance.MultiSummaryHeaderText.SelectedIndex = 0;
+			}
+			Controller.Instance.MultiSummaryHeaderCheck.Checked = LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowSlideHeader;
+			Controller.Instance.MultiSummaryBusinessNameCheck.Checked = LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowAdvertiser;
+			Controller.Instance.MultiSummaryPresentationDateCheck.Checked = LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowPresentationDate;
+			Controller.Instance.MultiSummaryDecisionMakerCheck.Checked = LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowDecisionMaker;
+			checkEditFlightDates.Checked = LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowFlightDates;
+			_allowToSave = true;
+		}
+
+		private void LoadProductOptions()
+		{
+			var selectedProduct = xtraTabControlPublications.SelectedTabPage as PublicationMultiSummaryControl;
+			if (selectedProduct == null) return;
+			selectedProduct.LoadExternalOption();
+		}
+
+		public void OnOptionChanged(object sender, EventArgs e)
+		{
+			if (sender == Controller.Instance.MultiSummaryHeaderCheck)
+				checkEditHeader_CheckedChanged();
+			else if (sender == Controller.Instance.MultiSummaryHeaderText)
+				comboBoxEditHeader_EditValueChanged();
+			else if (sender is CheckBoxItem)
+				checkEdit_CheckedChanged(sender, EventArgs.Empty);
+		}
+
+		public void ResetToDefault()
 		{
 			foreach (PrintProduct publication in LocalSchedule.PrintProducts)
 			{
 				publication.ViewSettings.MultiSummarySettings.ResetToDefault();
-				if (!string.IsNullOrEmpty(publication.Name))
-				{
-					PublicationMultiSummaryControl publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
-					if (publicationTab != null)
-						publicationTab.LoadPublication();
-					Application.DoEvents();
-				}
+				if (string.IsNullOrEmpty(publication.Name)) continue;
+				var publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
+				if (publicationTab != null)
+					publicationTab.LoadPublication();
+				Application.DoEvents();
 			}
 			SettingsNotSaved = false;
 			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
 		}
-
 
 		public void OpenHelp()
 		{
@@ -163,33 +177,28 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		}
 		#endregion
 
-		private void checkEditSchedule_CheckedChanged(object sender, EventArgs e)
+		private void checkEditHeader_CheckedChanged()
 		{
-			comboBoxEditSchedule.Enabled = checkEditSchedule.Checked;
+			Controller.Instance.MultiSummaryHeaderText.Enabled = Controller.Instance.MultiSummaryHeaderCheck.Checked;
 			checkEdit_CheckedChanged(null, null);
 		}
 
-		private void comboBoxEditSchedule_EditValueChanged(object sender, EventArgs e)
+		private void comboBoxEditHeader_EditValueChanged()
 		{
-			if (_allowToSave)
-			{
-				LocalSchedule.ViewSettings.MultiSummaryViewSettings.SlideHeader = comboBoxEditSchedule.EditValue != null ? comboBoxEditSchedule.EditValue.ToString() : string.Empty;
-				SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			LocalSchedule.ViewSettings.MultiSummaryViewSettings.SlideHeader = Controller.Instance.MultiSummaryHeaderText.EditValue as String ?? String.Empty;
+			SettingsNotSaved = true;
 		}
 
 		private void checkEdit_CheckedChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowAdvertiser = checkEditBusinessName.Checked;
-				LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowDecisionMaker = checkEditDecisionMaker.Checked;
-				LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowFlightDates = checkEditFlightDates.Checked;
-				LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowPresentationDate = checkEditDate.Checked;
-				LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowSlideHeader = checkEditSchedule.Checked;
-				LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowOnePublicationPerSlide = rbOnePerSlide.Checked;
-				SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowAdvertiser = Controller.Instance.MultiSummaryBusinessNameCheck.Checked;
+			LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowDecisionMaker = Controller.Instance.MultiSummaryDecisionMakerCheck.Checked;
+			LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowFlightDates = checkEditFlightDates.Checked;
+			LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowPresentationDate = Controller.Instance.MultiSummaryPresentationDateCheck.Checked;
+			LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowSlideHeader = Controller.Instance.MultiSummaryHeaderCheck.Checked;
+			SettingsNotSaved = true;
 		}
 
 		private void checkEdit_MouseDown(object sender, MouseEventArgs e)
@@ -202,16 +211,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				((DXMouseEventArgs)e).Handled = true;
 		}
 
-		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		private void xtraTabControlPublications_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
 		{
-			ResetToDefault();
-			e.Handled = true;
+			LoadProductOptions();
 		}
-
 		#region Output Stuff
 		public int OutputFileIndex
 		{
-			get { return rbOnePerSlide.Checked ? 1 : 2; }
+			get { return LocalSchedule.ViewSettings.MultiSummaryViewSettings.ShowOnePublicationPerSlide ? 1 : 2; }
 		}
 
 		public Theme SelectedTheme
@@ -224,8 +231,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get
 			{
 				string result = string.Empty;
-				if (comboBoxEditSchedule.EditValue != null && checkEditSchedule.Checked)
-					result = comboBoxEditSchedule.EditValue.ToString();
+				if (Controller.Instance.MultiSummaryHeaderText.EditValue != null && Controller.Instance.MultiSummaryHeaderCheck.Checked)
+					result = Controller.Instance.MultiSummaryHeaderText.EditValue.ToString();
 				return result;
 			}
 		}
@@ -235,8 +242,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get
 			{
 				string result = string.Empty;
-				if (checkEditDate.Checked)
-					result = checkEditDate.Text;
+				if (Controller.Instance.MultiSummaryPresentationDateCheck.Checked)
+					result = Controller.Instance.MultiSummaryPresentationDateText.Text;
 				return result;
 			}
 		}
@@ -246,8 +253,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get
 			{
 				string result = string.Empty;
-				if (checkEditBusinessName.Checked)
-					result = checkEditBusinessName.Text;
+				if (Controller.Instance.MultiSummaryBusinessNameCheck.Checked)
+					result = Controller.Instance.MultiSummaryBusinessNameText.Text;
 				return result;
 			}
 		}
@@ -257,8 +264,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get
 			{
 				string result = string.Empty;
-				if (checkEditDecisionMaker.Checked)
-					result = checkEditDecisionMaker.Text;
+				if (Controller.Instance.MultiSummaryDecisionMakerCheck.Checked)
+					result = Controller.Instance.MultiSummaryDecisionMakerText.Text;
 				return result;
 			}
 		}
@@ -309,7 +316,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				var result = new List<string>();
 				foreach (PublicationMultiSummaryControl publication in xtraTabControlPublications.TabPages.Where(x => x.PageEnabled))
-					result.Add(publication.checkEditName.Checked && publication.checkEditLogo.Checked ? publication.checkEditName.Text.Replace("&&", "&") : string.Empty);
+					result.Add(publication.PrintProduct.ViewSettings.MultiSummarySettings.ShowName && publication.checkEditLogo.Checked ? publication.PrintProduct.Name : String.Empty);
 				return result.ToArray();
 			}
 		}
@@ -320,7 +327,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				var result = new List<string>();
 				foreach (PublicationMultiSummaryControl publication in xtraTabControlPublications.TabPages.Where(x => x.PageEnabled))
-					result.Add(publication.checkEditName.Checked && !publication.checkEditLogo.Checked ? publication.checkEditName.Text.Replace("&&", "&") : string.Empty);
+					result.Add(publication.PrintProduct.ViewSettings.MultiSummarySettings.ShowName && !publication.checkEditLogo.Checked ? publication.PrintProduct.Name : String.Empty);
 				return result.ToArray();
 			}
 		}

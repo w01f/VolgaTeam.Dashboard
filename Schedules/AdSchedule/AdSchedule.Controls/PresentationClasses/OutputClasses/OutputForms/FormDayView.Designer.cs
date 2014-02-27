@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.laDayTitle = new System.Windows.Forms.Label();
 			this.pnFooter = new System.Windows.Forms.Panel();
@@ -35,11 +36,11 @@
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.pnCustomNote = new System.Windows.Forms.Panel();
 			this.radioGroupCustomNote = new DevExpress.XtraEditors.RadioGroup();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pbCustomNoteLogo = new System.Windows.Forms.PictureBox();
 			this.memoEditCustomNote = new DevExpress.XtraEditors.MemoEdit();
 			this.checkEditUseCustomNote = new DevExpress.XtraEditors.CheckEdit();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.pnDataLogo = new System.Windows.Forms.Panel();
@@ -250,7 +251,7 @@
 			// 
 			// pbDataLogo
 			// 
-			this.pbDataLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AdSizeOutput;
+			this.pbDataLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.CalendarDayDetails;
 			this.pbDataLogo.Location = new System.Drawing.Point(12, 4);
 			this.pbDataLogo.Name = "pbDataLogo";
 			this.pbDataLogo.Size = new System.Drawing.Size(74, 67);

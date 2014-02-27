@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraEditors.Design;
-using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputForms;
 using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.CommonGUI.Preview;
@@ -35,6 +34,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (sender != this)
 					UpdateOutput(e.QuickSave);
 			});
+			if ((base.CreateGraphics()).DpiX > 96)
+			{
+				checkEditFlightDates.Font = new Font(checkEditFlightDates.Font.FontFamily, checkEditFlightDates.Font.Size - 2, checkEditFlightDates.Font.Style);
+				checkEditProductName.Font = new Font(checkEditProductName.Font.FontFamily, checkEditProductName.Font.Size - 2, checkEditProductName.Font.Style);
+			}
 		}
 
 		#region ISummaryOutputControl Members
@@ -60,25 +64,24 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}));
 			if (!quickLoad)
 			{
+				LoadSharedOptions();
 				Application.DoEvents();
 				xtraTabControlPublications.TabPages.Clear();
 				_tabPages.RemoveAll(x => !LocalSchedule.PrintProducts.Select(y => y.UniqueID).Contains(x.PrintProduct.UniqueID));
 				foreach (var publication in LocalSchedule.PrintProducts)
 				{
-					if (!string.IsNullOrEmpty(publication.Name))
+					if (string.IsNullOrEmpty(publication.Name)) continue;
+					var publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
+					if (publicationTab == null)
 					{
-						var publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
-						if (publicationTab == null)
-						{
-							publicationTab = new PublicationBasicOverviewControl();
-							_tabPages.Add(publicationTab);
-							Application.DoEvents();
-						}
-						publicationTab.PrintProduct = publication;
-						publicationTab.PageEnabled = publication.Inserts.Count > 0;
-						publicationTab.LoadPublication();
+						publicationTab = new PublicationBasicOverviewControl(this);
+						_tabPages.Add(publicationTab);
 						Application.DoEvents();
 					}
+					publicationTab.PrintProduct = publication;
+					publicationTab.PageEnabled = publication.Inserts.Count > 0;
+					publicationTab.LoadPublication();
+					Application.DoEvents();
 				}
 				_tabPages.Sort((x, y) => x.PrintProduct.Index.CompareTo(y.PrintProduct.Index));
 				xtraTabControlPublications.TabPages.AddRange(_tabPages.ToArray());
@@ -89,42 +92,62 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				foreach (var publication in LocalSchedule.PrintProducts)
 				{
-					if (!string.IsNullOrEmpty(publication.Name))
+					if (string.IsNullOrEmpty(publication.Name)) continue;
+					var publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
+					if (publicationTab != null)
 					{
-						var publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
-						if (publicationTab != null)
-						{
-							publicationTab.PrintProduct = publication;
-							publicationTab.PageEnabled = publication.Inserts.Count > 0;
-						}
-						Application.DoEvents();
+						publicationTab.PrintProduct = publication;
+						publicationTab.PageEnabled = publication.Inserts.Count > 0;
 					}
+					Application.DoEvents();
 				}
 			}
+			LoadProductOptions();
 			SettingsNotSaved = false;
 		}
 
-		private void ResetToDefault()
+		private void LoadSharedOptions()
+		{
+			Controller.Instance.BasicOverviewHeaderText.Properties.Items.Clear();
+			Controller.Instance.BasicOverviewHeaderText.Properties.Items.AddRange(Core.AdSchedule.ListManager.Instance.OutputHeaders.ToArray());
+			Controller.Instance.BasicOverviewBusinessNameText.Text = LocalSchedule.BusinessName + (!String.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : String.Empty);
+			Controller.Instance.BasicOverviewDecisionMakerText.Text = LocalSchedule.DecisionMaker;
+			Controller.Instance.BasicOverviewPresentationDateText.Text = LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy") : String.Empty;
+			checkEditFlightDates.Text = String.Format("Campaign: {0}", LocalSchedule.FlightDates);
+		}
+
+		private void LoadProductOptions()
+		{
+			var selectedProduct = xtraTabControlPublications.SelectedTabPage as PublicationBasicOverviewControl;
+			if (selectedProduct == null) return;
+			selectedProduct.LoadExternalOption();
+		}
+
+		public void OnOptionChanged(object sender, EventArgs e)
+		{
+			var selectedProduct = xtraTabControlPublications.SelectedTabPage as PublicationBasicOverviewControl;
+			if (selectedProduct == null) return;
+			selectedProduct.OnOptionChanged(sender);
+		}
+
+		private void xtraTabControlPublications_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+		{
+			LoadProductOptions();
+		}
+
+		public void ResetToDefault()
 		{
 			foreach (var publication in LocalSchedule.PrintProducts)
 			{
 				publication.ViewSettings.BasicOverviewSettings.ResetToDefault();
-				if (!string.IsNullOrEmpty(publication.Name))
-				{
-					var publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
-					if (publicationTab != null)
-						publicationTab.LoadPublication();
-					Application.DoEvents();
-				}
+				if (string.IsNullOrEmpty(publication.Name)) continue;
+				var publicationTab = _tabPages.FirstOrDefault(x => x.PrintProduct.UniqueID.Equals(publication.UniqueID));
+				if (publicationTab != null)
+					publicationTab.LoadPublication();
+				Application.DoEvents();
 			}
 			SettingsNotSaved = false;
 			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
-		}
-
-		private void hyperLinkEditReset_OpenLink(object sender, OpenLinkEventArgs e)
-		{
-			ResetToDefault();
-			e.Handled = true;
 		}
 
 		public void OpenHelp()
@@ -199,7 +222,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				});
 			}
 		}
-
 
 		public void Email()
 		{

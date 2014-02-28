@@ -70,7 +70,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			Text = PrintProduct.Name.Replace("&", "&&");
 			pbLogo.Image = PrintProduct.SmallLogo != null ? new Bitmap(PrintProduct.SmallLogo) : null;
-			checkEditFlightDates.Text = PrintProduct.Parent.FlightDates;
+			laFlightDates.Text = PrintProduct.Parent.FlightDates;
 			checkEditTotalAds.Text = "Total Ads: " + PrintProduct.TotalInserts.ToString("#,##0");
 			checkEditTotalSquare.Text = PrintProduct.TotalSquare.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage ? ("Total Column Inches: " + PrintProduct.TotalSquare.Value.ToString("#,##0.00#")) : string.Empty;
 			checkEditTotalSquare.Visible = PrintProduct.TotalSquare.HasValue && PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage;
@@ -156,19 +156,26 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		private void checkEditInvestment_CheckedChanged(object sender, EventArgs e)
 		{
 			comboBoxEditInvestment.Enabled = checkEditInvestment.Checked;
-			checkEdit_CheckedChanged(null, null);
+			laInvestment.Enabled = checkEditInvestment.Checked;
+			checkEdit_CheckedChanged(sender, e);
+		}
+
+		private void checkEditFlightDates_CheckedChanged(object sender, EventArgs e)
+		{
+			laFlightDates.Enabled = checkEditFlightDates.Checked;
+			checkEdit_CheckedChanged(sender, e);
 		}
 
 		private void checkEditDates_CheckedChanged(object sender, EventArgs e)
 		{
 			memoEditDates.Enabled = checkEditDates.Checked;
-			checkEdit_CheckedChanged(null, null);
+			checkEdit_CheckedChanged(sender, e);
 		}
 
 		private void checkEditComments_CheckedChanged(object sender, EventArgs e)
 		{
 			memoEditComments.Enabled = checkEditComments.Checked;
-			checkEdit_CheckedChanged(null, null);
+			checkEdit_CheckedChanged(sender, e);
 		}
 
 		private void checkEditAdItems_EditValueChanging(object sender, ChangingEventArgs e)

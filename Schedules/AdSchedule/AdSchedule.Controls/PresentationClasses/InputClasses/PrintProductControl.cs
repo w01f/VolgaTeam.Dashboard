@@ -126,16 +126,18 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			var originalInsert = PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(advBandedGridViewPublication.FocusedRowHandle)];
 			if (originalInsert.Date.HasValue)
 			{
+				if (!(originalInsert.Comments.Any() || originalInsert.Sections.Any() || !String.IsNullOrEmpty(originalInsert.Deadline) || !String.IsNullOrEmpty(originalInsert.Mechanicals)))
+					if (Utilities.Instance.ShowWarningQuestion(String.Format("The Ad you are Cloning does not have any Unique Ad-notes or Comments.{0}{0}Do you still want to CLONE this Ad?", Environment.NewLine)) != DialogResult.Yes)
+						return;
 				using (var form = new FormCloneInsert(originalInsert))
 				{
 					form.checkEditPCIRate.Text = PrintProduct.AdPricingStrategy == AdPricingStrategies.StandartPCI ? gridBandPCIRate.Caption : gridBandADRate.Caption;
-					if (form.ShowDialog() == DialogResult.OK)
-					{
-						PrintProduct.CloneInsert(originalInsert, form.SelectedDates, form.checkEditPCIRate.Checked, form.checkEditDiscount.Checked, PrintProduct.ColorOption != ColorOptions.BlackWhite && form.checkEditColorRate.Checked, form.checkEditComment.Checked, form.checkEditSections.Checked, form.checkEditDeadline.Checked, form.checkEditMechanicals.Checked);
-						LoadInserts();
-						Controller.Instance.PrintProductContainer.SettingsNotSaved = true;
-					}
+					if (form.ShowDialog() != DialogResult.OK) return;
+					PrintProduct.CloneInsert(originalInsert, form.SelectedDates, form.checkEditPCIRate.Checked, form.checkEditDiscount.Checked, PrintProduct.ColorOption != ColorOptions.BlackWhite && form.checkEditColorRate.Checked, form.checkEditComment.Checked, form.checkEditSections.Checked, form.checkEditDeadline.Checked, form.checkEditMechanicals.Checked);
+					LoadInserts();
+					Controller.Instance.PrintProductContainer.SettingsNotSaved = true;
 				}
+
 			}
 			else
 				Utilities.Instance.ShowWarning("You need to select Date first.");
@@ -527,126 +529,126 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			switch (e.Button.Index)
 			{
 				case 1:
-				{
-					advBandedGridViewPublication.CloseEditor();
-					double temp = 0;
-					var value = advBandedGridViewPublication.GetFocusedRowCellValue(advBandedGridViewPublication.FocusedColumn);
-					if (value == null) return;
-					if (!double.TryParse(value.ToString(), out temp)) return;
-					PrintProduct.CopyAdRate(temp);
-					LoadInserts();
-				}
+					{
+						advBandedGridViewPublication.CloseEditor();
+						double temp = 0;
+						var value = advBandedGridViewPublication.GetFocusedRowCellValue(advBandedGridViewPublication.FocusedColumn);
+						if (value == null) return;
+						if (!double.TryParse(value.ToString(), out temp)) return;
+						PrintProduct.CopyAdRate(temp);
+						LoadInserts();
+					}
 					break;
 				case 2:
-				{
-					advBandedGridViewPublication.CloseEditor();
-					var selectedInsert = advBandedGridViewPublication.GetFocusedRow() as Insert;
-					if (selectedInsert == null) return;
-					using (var form = new FormAdNotes())
 					{
-						form.laID.Text = selectedInsert.ID;
-						form.laDate.Text = selectedInsert.Date.HasValue ? selectedInsert.Date.Value.ToString("ddd, MM/dd/yy") : String.Empty;
-						form.Date = selectedInsert.Date.HasValue ? selectedInsert.Date.Value : DateTime.MinValue;
-						form.laFinalRate.Text = selectedInsert.FinalRate.ToString("$#,###.00");
-						form.CustomComment = selectedInsert.CustomComment;
-						form.Comments = selectedInsert.Comments.ToArray();
-						form.CustomSection = selectedInsert.CustomSection;
-						form.Sections = selectedInsert.Sections.ToArray();
-						form.Deadline = selectedInsert.Deadline;
-						form.Mechanicals = selectedInsert.Mechanicals;
-
-						if (PrintProduct.Inserts.Count > 1)
+						advBandedGridViewPublication.CloseEditor();
+						var selectedInsert = advBandedGridViewPublication.GetFocusedRow() as Insert;
+						if (selectedInsert == null) return;
+						using (var form = new FormAdNotes())
 						{
-							var selectDays = new Action<AdNotesDaysSelector, string, string>((daysSelectorContainer, formCaption, header) =>
+							form.laID.Text = selectedInsert.ID;
+							form.laDate.Text = selectedInsert.Date.HasValue ? selectedInsert.Date.Value.ToString("ddd, MM/dd/yy") : String.Empty;
+							form.Date = selectedInsert.Date.HasValue ? selectedInsert.Date.Value : DateTime.MinValue;
+							form.laFinalRate.Text = selectedInsert.FinalRate.ToString("$#,###.00");
+							form.CustomComment = selectedInsert.CustomComment;
+							form.Comments = selectedInsert.Comments.ToArray();
+							form.CustomSection = selectedInsert.CustomSection;
+							form.Sections = selectedInsert.Sections.ToArray();
+							form.Deadline = selectedInsert.Deadline;
+							form.Mechanicals = selectedInsert.Mechanicals;
+
+							if (PrintProduct.Inserts.Count > 1)
 							{
-								using (var dateSelector = new FormDateSelector())
+								var selectDays = new Action<AdNotesDaysSelector, string, string>((daysSelectorContainer, formCaption, header) =>
 								{
-									dateSelector.Text = formCaption;
-									dateSelector.laTitle.Text = header;
-									foreach (var insert in PrintProduct.Inserts.Where(i => i != selectedInsert && i.Date.HasValue))
-										dateSelector.checkedListBoxControlDates.Items.Add(insert.Date.Value, String.Format("{0}   {1}", insert.Date.Value.ToString("ddd, MM/dd/yy"), insert.FinalRate.ToString("$#,###.00")), form.adNotesDaysSelectorComments.SelectedDays.Contains(insert.Date.Value) ? CheckState.Checked : CheckState.Unchecked, true);
-									if (dateSelector.ShowDialog() != DialogResult.OK) return;
-									daysSelectorContainer.SelectedDays.Clear();
-									foreach (var item in dateSelector.checkedListBoxControlDates.Items.Cast<CheckedListBoxItem>().Where(item => item.CheckState == CheckState.Checked))
-										daysSelectorContainer.SelectedDays.Add((DateTime)item.Value);
+									using (var dateSelector = new FormDateSelector())
+									{
+										dateSelector.Text = formCaption;
+										dateSelector.laTitle.Text = header;
+										foreach (var insert in PrintProduct.Inserts.Where(i => i != selectedInsert && i.Date.HasValue))
+											dateSelector.checkedListBoxControlDates.Items.Add(insert.Date.Value, String.Format("{0}   {1}", insert.Date.Value.ToString("ddd, MM/dd/yy"), insert.FinalRate.ToString("$#,###.00")), form.adNotesDaysSelectorComments.SelectedDays.Contains(insert.Date.Value) ? CheckState.Checked : CheckState.Unchecked, true);
+										if (dateSelector.ShowDialog() != DialogResult.OK) return;
+										daysSelectorContainer.SelectedDays.Clear();
+										foreach (var item in dateSelector.checkedListBoxControlDates.Items.Cast<CheckedListBoxItem>().Where(item => item.CheckState == CheckState.Checked))
+											daysSelectorContainer.SelectedDays.Add((DateTime)item.Value);
+									}
+								});
+								form.adNotesDaysSelectorComments.buttonXApplyOtherDays.Click += (obj, args) => selectDays(form.adNotesDaysSelectorComments,
+									"Comments & Publications",
+									"Do you want to add these comments to other days in your schedule?"
+									);
+								form.adNotesDaysSelectorSections.buttonXApplyOtherDays.Click += (obj, args) => selectDays(form.adNotesDaysSelectorSections,
+									"Sections",
+									"Do you want to add these sections to other days in your schedule?"
+									);
+								form.adNotesDaysSelectorDeadlines.buttonXApplyOtherDays.Click += (obj, args) => selectDays(form.adNotesDaysSelectorDeadlines,
+									"Deadlines",
+									"Do you want to add these deadlines to other days in your schedule?"
+									);
+								form.adNotesDaysSelectorMechanicals.buttonXApplyOtherDays.Click += (obj, args) => selectDays(form.adNotesDaysSelectorMechanicals,
+									"Mechanicals",
+									"Do you want to add these mechanicals to other days in your schedule?"
+									);
+							}
+							else
+							{
+								form.adNotesDaysSelectorComments.Visible = false;
+								form.adNotesDaysSelectorSections.Visible = false;
+								form.adNotesDaysSelectorDeadlines.Visible = false;
+								form.adNotesDaysSelectorMechanicals.Visible = false;
+							}
+
+							if (form.ShowDialog() != DialogResult.OK) return;
+
+							selectedInsert.CustomComment = form.CustomComment;
+							selectedInsert.Comments.Clear();
+							selectedInsert.Comments.AddRange(form.Comments);
+							if (form.adNotesDaysSelectorComments.SelectedDays.Any())
+							{
+								var selectedDays = form.adNotesDaysSelectorComments.SelectedDays;
+								foreach (var insert in PrintProduct.Inserts.Where(insert => insert.Date.HasValue && selectedDays.Contains(insert.Date.Value)))
+								{
+									insert.CustomComment = form.CustomComment;
+									insert.Comments.Clear();
+									insert.Comments.AddRange(form.Comments);
 								}
-							});
-							form.adNotesDaysSelectorComments.buttonXApplyOtherDays.Click += (obj, args) => selectDays(form.adNotesDaysSelectorComments,
-								"Comments & Publications",
-								"Do you want to add these comments to other days in your schedule?"
-								);
-							form.adNotesDaysSelectorSections.buttonXApplyOtherDays.Click += (obj, args) => selectDays(form.adNotesDaysSelectorSections,
-								"Sections",
-								"Do you want to add these sections to other days in your schedule?"
-								);
-							form.adNotesDaysSelectorDeadlines.buttonXApplyOtherDays.Click += (obj, args) => selectDays(form.adNotesDaysSelectorDeadlines,
-								"Deadlines",
-								"Do you want to add these deadlines to other days in your schedule?"
-								);
-							form.adNotesDaysSelectorMechanicals.buttonXApplyOtherDays.Click += (obj, args) => selectDays(form.adNotesDaysSelectorMechanicals,
-								"Mechanicals",
-								"Do you want to add these mechanicals to other days in your schedule?"
-								);
-						}
-						else
-						{
-							form.adNotesDaysSelectorComments.Visible = false;
-							form.adNotesDaysSelectorSections.Visible = false;
-							form.adNotesDaysSelectorDeadlines.Visible = false;
-							form.adNotesDaysSelectorMechanicals.Visible = false;
-						}
-
-						if (form.ShowDialog() != DialogResult.OK) return;
-
-						selectedInsert.CustomComment = form.CustomComment;
-						selectedInsert.Comments.Clear();
-						selectedInsert.Comments.AddRange(form.Comments);
-						if (form.adNotesDaysSelectorComments.SelectedDays.Any())
-						{
-							var selectedDays = form.adNotesDaysSelectorComments.SelectedDays;
-							foreach (var insert in PrintProduct.Inserts.Where(insert => insert.Date.HasValue && selectedDays.Contains(insert.Date.Value)))
-							{
-								insert.CustomComment = form.CustomComment;
-								insert.Comments.Clear();
-								insert.Comments.AddRange(form.Comments);
 							}
-						}
 
-						selectedInsert.CustomSection = form.CustomSection;
-						selectedInsert.Sections.Clear();
-						selectedInsert.Sections.AddRange(form.Sections);
-						if (form.adNotesDaysSelectorSections.SelectedDays.Any())
-						{
-							var selectedDays = form.adNotesDaysSelectorSections.SelectedDays;
-							foreach (var insert in PrintProduct.Inserts.Where(insert => insert.Date.HasValue && selectedDays.Contains(insert.Date.Value)))
+							selectedInsert.CustomSection = form.CustomSection;
+							selectedInsert.Sections.Clear();
+							selectedInsert.Sections.AddRange(form.Sections);
+							if (form.adNotesDaysSelectorSections.SelectedDays.Any())
 							{
-								insert.CustomSection = form.CustomSection;
-								insert.Sections.Clear();
-								insert.Sections.AddRange(form.Sections);
+								var selectedDays = form.adNotesDaysSelectorSections.SelectedDays;
+								foreach (var insert in PrintProduct.Inserts.Where(insert => insert.Date.HasValue && selectedDays.Contains(insert.Date.Value)))
+								{
+									insert.CustomSection = form.CustomSection;
+									insert.Sections.Clear();
+									insert.Sections.AddRange(form.Sections);
+								}
 							}
+
+							selectedInsert.Deadline = form.Deadline;
+							if (form.adNotesDaysSelectorDeadlines.SelectedDays.Any())
+							{
+								var selectedDays = form.adNotesDaysSelectorDeadlines.SelectedDays;
+								foreach (var insert in PrintProduct.Inserts.Where(insert => insert.Date.HasValue && selectedDays.Contains(insert.Date.Value)))
+									insert.Deadline = form.Deadline;
+							}
+
+							selectedInsert.Mechanicals = form.Mechanicals;
+							if (form.adNotesDaysSelectorMechanicals.SelectedDays.Any())
+							{
+								var selectedDays = form.adNotesDaysSelectorMechanicals.SelectedDays;
+								foreach (var insert in PrintProduct.Inserts.Where(insert => insert.Date.HasValue && selectedDays.Contains(insert.Date.Value)))
+									insert.Mechanicals = form.Mechanicals;
+							}
+
+							LoadInserts();
+
+							Controller.Instance.PrintProductContainer.SettingsNotSaved = true;
 						}
-
-						selectedInsert.Deadline = form.Deadline;
-						if (form.adNotesDaysSelectorDeadlines.SelectedDays.Any())
-						{
-							var selectedDays = form.adNotesDaysSelectorDeadlines.SelectedDays;
-							foreach (var insert in PrintProduct.Inserts.Where(insert => insert.Date.HasValue && selectedDays.Contains(insert.Date.Value)))
-								insert.Deadline = form.Deadline;
-						}
-
-						selectedInsert.Mechanicals = form.Mechanicals;
-						if (form.adNotesDaysSelectorMechanicals.SelectedDays.Any())
-						{
-							var selectedDays = form.adNotesDaysSelectorMechanicals.SelectedDays;
-							foreach (var insert in PrintProduct.Inserts.Where(insert => insert.Date.HasValue && selectedDays.Contains(insert.Date.Value)))
-								insert.Mechanicals = form.Mechanicals;
-						}
-
-						LoadInserts();
-
-						Controller.Instance.PrintProductContainer.SettingsNotSaved = true;
 					}
-				}
 					break;
 			}
 		}

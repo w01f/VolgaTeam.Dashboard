@@ -153,6 +153,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				var index = Controller.Instance.BasicOverviewHeaderText.Properties.Items.IndexOf(PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader);
 				Controller.Instance.BasicOverviewHeaderText.SelectedIndex = index >= 0 ? index : 0;
 			}
+			PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader = Controller.Instance.BasicOverviewHeaderText.EditValue as String ?? String.Empty;
 			_parent.checkEditFlightDates.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates;
 			_parent.checkEditProductName.Text = PrintProduct.Name.Replace("&", "&&");
 			_parent.checkEditProductName.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowName;

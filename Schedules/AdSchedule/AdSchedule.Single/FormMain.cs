@@ -278,16 +278,12 @@ namespace NewBizWiz.AdSchedule.Single
 				ribbonBarPrintScheduleDimensions.RecalcLayout();
 				ribbonBarHomeBasicInfo.RecalcLayout();
 				ribbonBarCalendarsExit.RecalcLayout();
-				ribbonBarCalendarsHelp.RecalcLayout();
-				ribbonBarCalendarsSave.RecalcLayout();
 				ribbonBarPrintScheduleColor.RecalcLayout();
 				ribbonBarHomeFlightDates.RecalcLayout();
 				ribbonBarHomeExit.RecalcLayout();
 				ribbonBarHomeProduct.RecalcLayout();
 				ribbonBarRateCards.RecalcLayout();
 				ribbonBarPrintScheduleLines.RecalcLayout();
-				ribbonBarHomeHelp.RecalcLayout();
-				ribbonBarHomeSave.RecalcLayout();
 				ribbonBarPrintScheduleExit.RecalcLayout();
 				ribbonBarPrintScheduleAdSize.RecalcLayout();
 				ribbonBarPrintScheduleOptions.RecalcLayout();

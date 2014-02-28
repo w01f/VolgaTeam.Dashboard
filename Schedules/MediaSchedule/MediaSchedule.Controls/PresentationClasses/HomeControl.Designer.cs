@@ -154,7 +154,7 @@
 			// 
 			// pbMonthlySchedule
 			// 
-			this.pbMonthlySchedule.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.MonthlySchedule;
+			this.pbMonthlySchedule.Image = ((System.Drawing.Image)(resources.GetObject("pbMonthlySchedule.Image")));
 			this.pbMonthlySchedule.Location = new System.Drawing.Point(27, 316);
 			this.pbMonthlySchedule.Name = "pbMonthlySchedule";
 			this.pbMonthlySchedule.Size = new System.Drawing.Size(595, 96);
@@ -166,7 +166,7 @@
 			// 
 			// pbWeeklySchedule
 			// 
-			this.pbWeeklySchedule.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.WeeklySchedule;
+			this.pbWeeklySchedule.Image = ((System.Drawing.Image)(resources.GetObject("pbWeeklySchedule.Image")));
 			this.pbWeeklySchedule.Location = new System.Drawing.Point(27, 150);
 			this.pbWeeklySchedule.Name = "pbWeeklySchedule";
 			this.pbWeeklySchedule.Size = new System.Drawing.Size(595, 96);
@@ -377,7 +377,7 @@
 			// 
 			// gridBandDigitalProductType
 			// 
-			this.gridBandDigitalProductType.Caption = "Web Category";
+			this.gridBandDigitalProductType.Caption = "Product Group";
 			this.gridBandDigitalProductType.Columns.Add(this.gridColumnDigitalProductsType);
 			this.gridBandDigitalProductType.Columns.Add(this.gridColumnDigitalProductsCategory);
 			this.gridBandDigitalProductType.Columns.Add(this.gridColumnDigitalProductsSubCategory);
@@ -439,7 +439,7 @@
 			// 
 			// gridBandDigitalProductName
 			// 
-			this.gridBandDigitalProductName.Caption = "Web Product";
+			this.gridBandDigitalProductName.Caption = "Ad Sales Unit";
 			this.gridBandDigitalProductName.Columns.Add(this.gridColumnDigitalProductsName);
 			this.gridBandDigitalProductName.MinWidth = 20;
 			this.gridBandDigitalProductName.Name = "gridBandDigitalProductName";
@@ -478,7 +478,7 @@
 			// 
 			// gridBandDigitalProductWidth
 			// 
-			this.gridBandDigitalProductWidth.Caption = "Width";
+			this.gridBandDigitalProductWidth.Caption = "W";
 			this.gridBandDigitalProductWidth.Columns.Add(this.gridColumnDigitalProductsWidth);
 			this.gridBandDigitalProductWidth.MinWidth = 20;
 			this.gridBandDigitalProductWidth.Name = "gridBandDigitalProductWidth";
@@ -528,7 +528,7 @@
 			// 
 			// gridBandDigitalProductHeight
 			// 
-			this.gridBandDigitalProductHeight.Caption = "Height";
+			this.gridBandDigitalProductHeight.Caption = "H";
 			this.gridBandDigitalProductHeight.Columns.Add(this.gridColumnDigitalProductsHeight);
 			this.gridBandDigitalProductHeight.MinWidth = 20;
 			this.gridBandDigitalProductHeight.Name = "gridBandDigitalProductHeight";

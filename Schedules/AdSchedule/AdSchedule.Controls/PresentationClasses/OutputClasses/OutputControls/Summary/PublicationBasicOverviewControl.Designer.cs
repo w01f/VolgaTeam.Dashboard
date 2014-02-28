@@ -101,7 +101,7 @@
 			this.checkEditLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditLogo.AutoSizeInLayoutControl = true;
 			this.checkEditLogo.EditValue = true;
-			this.checkEditLogo.Location = new System.Drawing.Point(867, 13);
+			this.checkEditLogo.Location = new System.Drawing.Point(868, 20);
 			this.checkEditLogo.Name = "checkEditLogo";
 			this.checkEditLogo.Properties.Caption = "";
 			this.checkEditLogo.Size = new System.Drawing.Size(19, 19);
@@ -112,7 +112,7 @@
 			// pbLogo
 			// 
 			this.pbLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbLogo.Location = new System.Drawing.Point(891, 0);
+			this.pbLogo.Location = new System.Drawing.Point(892, 7);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(100, 40);
 			this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -640,6 +640,7 @@
 			this.Controls.Add(this.laAdSize);
 			this.Controls.Add(this.laTotalAds);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.Name = "PublicationBasicOverviewControl";
 			this.Size = new System.Drawing.Size(1000, 491);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();

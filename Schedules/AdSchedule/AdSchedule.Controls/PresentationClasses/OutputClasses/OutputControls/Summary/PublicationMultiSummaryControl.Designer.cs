@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
 			this.pnItems = new System.Windows.Forms.Panel();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
@@ -52,7 +51,7 @@
 			this.laAdItems = new System.Windows.Forms.Label();
 			this.checkEditComments = new DevExpress.XtraEditors.CheckEdit();
 			this.memoEditComments = new DevExpress.XtraEditors.MemoEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.checkEditDates = new DevExpress.XtraEditors.CheckEdit();
 			this.memoEditDates = new DevExpress.XtraEditors.MemoEdit();
 			this.laInvestment = new System.Windows.Forms.Label();
@@ -62,11 +61,12 @@
 			this.pictureBoxDates = new System.Windows.Forms.PictureBox();
 			this.checkEditLogo = new DevExpress.XtraEditors.CheckEdit();
 			this.pnMain = new System.Windows.Forms.Panel();
+			this.laFlightDates = new System.Windows.Forms.Label();
+			this.checkEditTwoPerSlide = new DevExpress.XtraEditors.CheckEdit();
+			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.pbComments = new System.Windows.Forms.PictureBox();
 			this.laComments = new System.Windows.Forms.Label();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
-			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
-			this.checkEditTwoPerSlide = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).BeginInit();
 			this.pnItems.SuspendLayout();
 			this.xtraScrollableControl.SuspendLayout();
@@ -94,10 +94,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDates)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo.Properties)).BeginInit();
 			this.pnMain.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditTwoPerSlide.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbComments)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditTwoPerSlide.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// checkEditFlightDates
@@ -109,10 +109,11 @@
 			this.checkEditFlightDates.Name = "checkEditFlightDates";
 			this.checkEditFlightDates.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFlightDates.Properties.Appearance.Options.UseFont = true;
-			this.checkEditFlightDates.Properties.Caption = "Flight Dates";
-			this.checkEditFlightDates.Size = new System.Drawing.Size(441, 21);
+			this.checkEditFlightDates.Properties.AutoWidth = true;
+			this.checkEditFlightDates.Properties.Caption = "";
+			this.checkEditFlightDates.Size = new System.Drawing.Size(23, 21);
 			this.checkEditFlightDates.TabIndex = 52;
-			this.checkEditFlightDates.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+			this.checkEditFlightDates.CheckedChanged += new System.EventHandler(this.checkEditFlightDates_CheckedChanged);
 			this.checkEditFlightDates.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
 			// 
 			// pnItems
@@ -535,6 +536,7 @@
 			// pnMain
 			// 
 			this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnMain.Controls.Add(this.laFlightDates);
 			this.pnMain.Controls.Add(this.checkEditTwoPerSlide);
 			this.pnMain.Controls.Add(this.hyperLinkEditReset);
 			this.pnMain.Controls.Add(this.pbComments);
@@ -558,6 +560,52 @@
 			this.pnMain.Name = "pnMain";
 			this.pnMain.Size = new System.Drawing.Size(949, 420);
 			this.pnMain.TabIndex = 53;
+			// 
+			// laFlightDates
+			// 
+			this.laFlightDates.AutoSize = true;
+			this.laFlightDates.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laFlightDates.Location = new System.Drawing.Point(519, 23);
+			this.laFlightDates.Name = "laFlightDates";
+			this.laFlightDates.Size = new System.Drawing.Size(78, 16);
+			this.laFlightDates.TabIndex = 106;
+			this.laFlightDates.Text = "Flight Dates";
+			// 
+			// checkEditTwoPerSlide
+			// 
+			this.checkEditTwoPerSlide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditTwoPerSlide.Location = new System.Drawing.Point(754, 362);
+			this.checkEditTwoPerSlide.Name = "checkEditTwoPerSlide";
+			this.checkEditTwoPerSlide.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditTwoPerSlide.Properties.Appearance.Options.UseFont = true;
+			this.checkEditTwoPerSlide.Properties.Appearance.Options.UseTextOptions = true;
+			this.checkEditTwoPerSlide.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.checkEditTwoPerSlide.Properties.AutoWidth = true;
+			this.checkEditTwoPerSlide.Properties.Caption = "Output 2 Products Per Slide";
+			this.checkEditTwoPerSlide.Size = new System.Drawing.Size(186, 21);
+			this.checkEditTwoPerSlide.TabIndex = 105;
+			this.checkEditTwoPerSlide.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+			this.checkEditTwoPerSlide.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
+			// 
+			// hyperLinkEditReset
+			// 
+			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.hyperLinkEditReset.EditValue = "Reset Defaults";
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(8, 393);
+			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
+			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.hyperLinkEditReset.Size = new System.Drawing.Size(101, 20);
+			toolTipItem1.Text = "Reset original default data";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditReset.SuperTip = superToolTip1;
+			this.hyperLinkEditReset.TabIndex = 104;
+			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 
 			// pbComments
 			// 
@@ -587,42 +635,6 @@
 			this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pbLogo.TabIndex = 53;
 			this.pbLogo.TabStop = false;
-			// 
-			// hyperLinkEditReset
-			// 
-			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.hyperLinkEditReset.EditValue = "Reset Defaults";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(8, 393);
-			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
-			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
-			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
-			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditReset.Size = new System.Drawing.Size(101, 20);
-			toolTipItem2.Text = "Reset original default data";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.hyperLinkEditReset.SuperTip = superToolTip2;
-			this.hyperLinkEditReset.TabIndex = 104;
-			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
-			// 
-			// checkEditTwoPerSlide
-			// 
-			this.checkEditTwoPerSlide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditTwoPerSlide.Location = new System.Drawing.Point(754, 362);
-			this.checkEditTwoPerSlide.Name = "checkEditTwoPerSlide";
-			this.checkEditTwoPerSlide.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditTwoPerSlide.Properties.Appearance.Options.UseFont = true;
-			this.checkEditTwoPerSlide.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditTwoPerSlide.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.checkEditTwoPerSlide.Properties.AutoWidth = true;
-			this.checkEditTwoPerSlide.Properties.Caption = "Output 2 Products Per Slide";
-			this.checkEditTwoPerSlide.Size = new System.Drawing.Size(186, 21);
-			this.checkEditTwoPerSlide.TabIndex = 105;
-			this.checkEditTwoPerSlide.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
-			this.checkEditTwoPerSlide.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
 			// 
 			// PublicationMultiSummaryControl
 			// 
@@ -658,10 +670,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogo.Properties)).EndInit();
 			this.pnMain.ResumeLayout(false);
 			this.pnMain.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditTwoPerSlide.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbComments)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditTwoPerSlide.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -704,6 +716,7 @@
         public DevExpress.XtraEditors.CheckEdit checkEditPercentOfPage;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
 		public DevExpress.XtraEditors.CheckEdit checkEditTwoPerSlide;
+		public System.Windows.Forms.Label laFlightDates;
 
     }
 }

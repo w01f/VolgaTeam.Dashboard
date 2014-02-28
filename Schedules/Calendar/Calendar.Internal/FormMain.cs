@@ -96,8 +96,6 @@ namespace NewBizWiz.Calendar.Internal
 				dateEditPresentationDate.Font = font;
 				ribbonBarHomeExit.RecalcLayout();
 				ribbonBarHomeFlightDates.RecalcLayout();
-				ribbonBarHomeHelp.RecalcLayout();
-				ribbonBarHomeSave.RecalcLayout();
 				ribbonPanelHome.PerformLayout();
 			}
 		}

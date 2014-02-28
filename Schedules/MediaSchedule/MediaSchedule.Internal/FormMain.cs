@@ -139,18 +139,13 @@ namespace NewBizWiz.MediaSchedule.Internal
 				ribbonBarHomeBasicInfo.RecalcLayout();
 				ribbonBarHomeFlightDates.RecalcLayout();
 				ribbonBarHomeExit.RecalcLayout();
-				ribbonBarDigitalScheduleHelp.RecalcLayout();
-				ribbonBarDigitalScheduleSave.RecalcLayout();
 				ribbonBarDigitalScheduleEmail.RecalcLayout();
 				ribbonBarDigitalScheduleExit.RecalcLayout();
-				ribbonBarDigitalScheduleHelp.RecalcLayout();
 				ribbonBarDigitalSchedulePowerPoint.RecalcLayout();
 				ribbonBarDigitalPackageEmail.RecalcLayout();
 				ribbonBarDigitalPackageExit.RecalcLayout();
-				ribbonBarDigitalPackageHelp.RecalcLayout();
 				ribbonBarDigitalPackageOptions.RecalcLayout();
 				ribbonBarDigitalPackagePowerPoint.RecalcLayout();
-				ribbonBarDigitalPackageSave.RecalcLayout();
 				ribbonPanelDigitalSlides.PerformLayout();
 				ribbonPanelHome.PerformLayout();
 				ribbonPanelDigitalPackage.PerformLayout();

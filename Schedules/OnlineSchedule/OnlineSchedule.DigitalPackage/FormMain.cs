@@ -81,10 +81,8 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 				styleController.AppearanceReadOnly.Font = font;
 				ribbonBarDigitalPackageEmail.RecalcLayout();
 				ribbonBarDigitalPackageExit.RecalcLayout();
-				ribbonBarDigitalPackageHelp.RecalcLayout();
 				ribbonBarDigitalPackageOptions.RecalcLayout();
 				ribbonBarDigitalPackagePowerPoint.RecalcLayout();
-				ribbonBarDigitalPackageSave.RecalcLayout();
 				ribbonPanelDigitalPackage.PerformLayout();
 			}
 		}

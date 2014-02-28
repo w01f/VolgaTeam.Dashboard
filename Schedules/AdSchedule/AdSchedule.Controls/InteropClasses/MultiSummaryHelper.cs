@@ -101,7 +101,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 														}
 														else if (shape.Tags.Name(i).Equals(string.Format("INVTAG{0}", j + 1)))
 														{
-															if ((k + j) < Controller.Instance.Summaries.MultiSummary.Investments.Length)
+															if ((k + j) < Controller.Instance.Summaries.MultiSummary.Investments.Length && !String.IsNullOrEmpty(Controller.Instance.Summaries.MultiSummary.Investments[k + j]))
 															{
 																shape.TextFrame.TextRange.Text = Controller.Instance.Summaries.MultiSummary.Investments[k + j];
 																shape.Width = shape.TextFrame.TextRange.BoundWidth + 10;

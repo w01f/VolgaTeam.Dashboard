@@ -50,6 +50,7 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.HomeSave = buttonItemHomeSave;
 			Controller.Instance.HomeSaveAs = buttonItemHomeSaveAs;
 			Controller.Instance.HomeProduct = ribbonBarHomeProduct;
+			Controller.Instance.HomeSpecialButtons = ribbonBarHomeSpecialButtons;
 			Controller.Instance.HomeAdProduct = itemContainerHomePrintProduct;
 			Controller.Instance.HomeAdProductAdd = buttonItemHomePrintProductAdd;
 			Controller.Instance.HomeAdProductClone = buttonItemHomePrintProductClone;
@@ -104,6 +105,7 @@ namespace NewBizWiz.AdSchedule.Single
 			#endregion
 
 			#region Digital Product
+			Controller.Instance.DigitalProductSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalProductEmail = buttonItemDigitalScheduleEmail;
@@ -114,6 +116,7 @@ namespace NewBizWiz.AdSchedule.Single
 			#endregion
 
 			#region Digital Package
+			Controller.Instance.DigitalPackageSpecialButtons = ribbonBarDigitalPackageSpecialButtons;
 			Controller.Instance.DigitalPackageHelp = buttonItemDigitalPackageHelp;
 			Controller.Instance.DigitalPackageSave = buttonItemDigitalPackageSave;
 			Controller.Instance.DigitalPackageSaveAs = buttonItemDigitalPackageSaveAs;
@@ -175,6 +178,7 @@ namespace NewBizWiz.AdSchedule.Single
 			#endregion
 
 			#region AdPlan
+			Controller.Instance.AdPlanSpecialButtons = ribbonBarAdPlanSpecialButtons;
 			Controller.Instance.AdPlanHelp = buttonItemAdPlanHelp;
 			Controller.Instance.AdPlanSave = buttonItemAdPlanSave;
 			Controller.Instance.AdPlanSaveAs = buttonItemAdPlanSaveAs;

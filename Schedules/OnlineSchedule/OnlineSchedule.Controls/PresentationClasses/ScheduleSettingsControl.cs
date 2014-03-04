@@ -107,10 +107,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				gridColumnDigitalProductsWidth.OptionsColumn.AllowEdit = false;
 				gridColumnDigitalProductsHeight.OptionsColumn.ReadOnly = true;
 				gridColumnDigitalProductsHeight.OptionsColumn.AllowEdit = false;
-				gridColumnDigitalProductsRate.OptionsColumn.ReadOnly = true;
-				gridColumnDigitalProductsRate.OptionsColumn.AllowEdit = false;
-				gridColumnDigitalProductsRateType.OptionsColumn.ReadOnly = true;
-				gridColumnDigitalProductsRateType.OptionsColumn.AllowEdit = false;
 				repositoryItemComboBoxDigitalProductsNames.TextEditStyle = TextEditStyles.DisableTextEditor;
 			}
 			if (!quickLoad)
@@ -139,6 +135,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 				UpdateProductsCount();
 
+				repositoryItemComboBoxDigitalProductsRateType.Items.Clear();
+				repositoryItemComboBoxDigitalProductsRateType.Items.AddRange(ListManager.Instance.PricingStrategies);
+				repositoryItemComboBoxDigitalProductsLocation.Items.Clear();
+				repositoryItemComboBoxDigitalProductsLocation.Items.AddRange(ListManager.Instance.ColumnPositions);
+
 				Controller.Instance.UpdateSimpleOutputTabPageState(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
 			}
 			SettingsNotSaved = false;
@@ -150,12 +151,14 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			Controller.Instance.HomeAccountNumberCheck.Enabled = _localSchedule.ViewSettings.HomeViewSettings.EnableAccountNumber;
 			buttonXDigitalProductDimensions.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowDigitalDimensions;
 			buttonXDigitalProductStrategy.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowDigitalStrategy;
+			buttonXDigitalProductLocation.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowDigitalLocation;
 		}
 
 		private void SaveView()
 		{
 			_localSchedule.ViewSettings.HomeViewSettings.ShowDigitalDimensions = buttonXDigitalProductDimensions.Checked;
 			_localSchedule.ViewSettings.HomeViewSettings.ShowDigitalStrategy = buttonXDigitalProductStrategy.Checked;
+			_localSchedule.ViewSettings.HomeViewSettings.ShowDigitalLocation = buttonXDigitalProductLocation.Checked;
 		}
 
 		private bool SaveSchedule(string scheduleName = "")
@@ -470,17 +473,19 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		private void gridViewDigitalProducts_ShowingEditor(object sender, CancelEventArgs e)
 		{
 			e.Cancel = false;
+			var digitalProduct = advBandedGridViewDigitalProducts.GetFocusedRow() as DigitalProduct;
+			if (digitalProduct == null) return;
 			if (advBandedGridViewDigitalProducts.FocusedColumn == gridColumnDigitalProductsName)
 			{
-				var category = _localSchedule.DigitalProducts[advBandedGridViewDigitalProducts.GetFocusedDataSourceRowIndex()].Category;
-				var subCategories = ListManager.Instance.ProductSources.Where(x => x.Category.Name.Equals(category) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray();
-				var subCategory = _localSchedule.DigitalProducts[advBandedGridViewDigitalProducts.GetFocusedDataSourceRowIndex()].SubCategory;
+				var category = digitalProduct.Category;
+				var subCategories = ListManager.Instance.ProductSources.Where(x => x.Category != null && x.Category.Name.Equals(category) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray();
+				var subCategory = digitalProduct.SubCategory;
 				if ((subCategories.Any() && !String.IsNullOrEmpty(subCategory)) || !subCategories.Any())
 				{
 					repositoryItemComboBoxDigitalProductsNames.Items.Clear();
 					repositoryItemComboBoxDigitalProductsNames.Items.AddRange(
 						ListManager.Instance.ProductSources.
-							Where(x => x.Category.Name.Equals(category) &&
+							Where(x => x.Category != null && x.Category.Name.Equals(category) &&
 									   (x.SubCategory.Equals(subCategory) || String.IsNullOrEmpty(subCategory))).
 							Select(x => x.Name).Distinct().ToArray());
 				}
@@ -490,10 +495,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					Utilities.Instance.ShowWarning("You need to select Web Category first");
 				}
 			}
-			else if (advBandedGridViewDigitalProducts.FocusedColumn == gridColumnDigitalProductsType)
+			else if (advBandedGridViewDigitalProducts.FocusedColumn == gridColumnDigitalProductsSubCategory)
 			{
-				var category = _localSchedule.DigitalProducts[advBandedGridViewDigitalProducts.GetFocusedDataSourceRowIndex()].Category;
-				var subCategories = ListManager.Instance.ProductSources.Where(x => x.Category.Name.Equals(category) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray();
+				var category = digitalProduct.Category;
+				var subCategories = ListManager.Instance.ProductSources.Where(x => x.Category != null && x.Category.Name.Equals(category) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray();
 				if (subCategories.Any())
 				{
 					repositoryItemComboBoxDigitalProductsType.Items.Clear();
@@ -501,6 +506,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				}
 				else
 					e.Cancel = true;
+			}
+			else if (advBandedGridViewDigitalProducts.FocusedColumn == gridColumnDigitalProductsRate)
+			{
+				e.Cancel = digitalProduct.RateType == "Fixed" || digitalProduct.RateType == "CPM";
 			}
 		}
 
@@ -512,6 +521,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				advBandedGridViewDigitalProducts.SetFocusedRowCellValue(gridColumnDigitalProductsSubCategory, e.Value);
 				advBandedGridViewDigitalProducts.CloseEditor();
 			}
+		}
+
+		private void repositoryItemButtonEditDigitalProductsTarget_ButtonClick(object sender, ButtonPressedEventArgs e)
+		{
+			Utilities.Instance.ShowInformation("Upgrade in Development");
 		}
 
 		private void buttonXDigitalProductDimensions_CheckedChanged(object sender, EventArgs e)
@@ -532,6 +546,26 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				SettingsNotSaved = true;
 			}
 		}
+
+		private void buttonXDigitalProductLocation_CheckedChanged(object sender, EventArgs e)
+		{
+			if (buttonXDigitalProductLocation.Checked)
+			{
+				gridColumnDigitalProductsName.RowCount = 1;
+				gridColumnDigitalProductsLocation.Visible = true;
+				advBandedGridViewDigitalProducts.SetColumnPosition(gridColumnDigitalProductsLocation, 1, 0);
+			}
+			else
+			{
+				gridColumnDigitalProductsLocation.Visible = false;
+				gridColumnDigitalProductsName.RowCount = 2;
+			}
+			if (_allowToSave)
+			{
+				SettingsNotSaved = true;
+			}
+		}
 		#endregion
+
 	}
 }

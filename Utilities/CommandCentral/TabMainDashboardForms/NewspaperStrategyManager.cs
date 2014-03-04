@@ -545,30 +545,6 @@ namespace CommandCentral.TabMainDashboard
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
 											_defaultHomeViewSettings.ShowAccountNumber = tempBool;
 									break;
-								case "Sales Call Type Person":
-									if (row[1] != null)
-										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.EnableSalesStrategyPerson = tempBool;
-									if (row[2] != null)
-										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.ShowSalesStrategyPerson = tempBool;
-									break;
-								case "Sales Call Type Email":
-									if (row[1] != null)
-										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.EnableSalesStrategyEmail = tempBool;
-									if (row[2] != null)
-										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.ShowSalesStrategyEmail = tempBool;
-									break;
-								case "Sales Call Type Fax":
-									if (row[1] != null)
-										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.EnableSalesStrategyFax = tempBool;
-									if (row[2] != null)
-										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.ShowSalesStrategyFax = tempBool;
-									break;
 								case "Logo":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))

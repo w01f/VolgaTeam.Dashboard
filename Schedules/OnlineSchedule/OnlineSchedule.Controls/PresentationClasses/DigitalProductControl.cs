@@ -232,7 +232,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					item.CheckState = CheckState.Checked;
 
 			if (Product.Width.HasValue && Product.Height.HasValue && Product.ShowDimensions)
-				memoEditDescription.EditValue = String.Format("(Ad Dimensions: {0}){1}{1}{2}", Product.Dimensions, Environment.NewLine, Product.Description);
+				memoEditDescription.EditValue = String.Format("(Ad Dimensions: {0}{3}) {1}{1}{2}", Product.Dimensions, Environment.NewLine, Product.Description, !String.IsNullOrEmpty(Product.Location) && !Product.Location.Equals("N/A") ? String.Format(" Location - {0}", Product.Location) : String.Empty);
 			else
 				memoEditDescription.EditValue = Product.Description;
 

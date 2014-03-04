@@ -72,6 +72,7 @@
     <Compile Include="CommonClasses\Category.cs" />
     <Compile Include="CommonClasses\NewspaperViewSettings.cs" />
     <Compile Include="CommonClasses\SalesDepotUserLibraries.cs" />
+    <Compile Include="CommonClasses\SpecialLinkButton.cs" />
     <Compile Include="CommonClasses\Station.cs" />
     <Compile Include="CommonClasses\ShareUnit.cs" />
     <Compile Include="CommonClasses\NameCodePair.cs" />

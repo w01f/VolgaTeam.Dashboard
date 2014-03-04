@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -105,6 +107,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			ConfigureTabPages();
 
 			UpdateOutputButtonsAccordingThemeStatus();
+
+			ConfigureSpecialButtons();
 		}
 
 		public void RemoveInstance()
@@ -221,6 +225,66 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			};
 		}
 
+		private void ConfigureSpecialButtons()
+		{
+			HomeSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+			DigitalSlidesSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+			DigitalPackageSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+			AdPlanSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+			foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
+			{
+				var toolTip = new SuperTooltipInfo(specialLinkButton.Name, "", specialLinkButton.Tooltip, null, null, eTooltipColor.Gray);
+				var clickAction = new Action(() =>
+				{
+					try
+					{
+						Process.Start(specialLinkButton.Paths.FirstOrDefault(p => File.Exists(p) || specialLinkButton.Type == "URL"));
+					}
+					catch { }
+				});
+
+				{
+					var button = new ButtonItem();
+					button.Image = specialLinkButton.Logo;
+					button.Text = specialLinkButton.Name;
+					button.Tag = specialLinkButton;
+					Supertip.SetSuperTooltip(button, toolTip);
+					button.Click += (o, e) => clickAction();
+					HomeSpecialButtons.Items.Add(button);
+				}
+
+				{
+					var button = new ButtonItem();
+					button.Image = specialLinkButton.Logo;
+					button.Text = specialLinkButton.Name;
+					button.Tag = specialLinkButton;
+					Supertip.SetSuperTooltip(button, toolTip);
+					button.Click += (o, e) => clickAction();
+					DigitalSlidesSpecialButtons.Items.Add(button);
+				}
+
+				{
+					var button = new ButtonItem();
+					button.Image = specialLinkButton.Logo;
+					button.Text = specialLinkButton.Name;
+					button.Tag = specialLinkButton;
+					Supertip.SetSuperTooltip(button, toolTip);
+					button.Click += (o, e) => clickAction();
+					DigitalPackageSpecialButtons.Items.Add(button);
+				}
+
+				{
+					var button = new ButtonItem();
+					button.Image = specialLinkButton.Logo;
+					button.Text = specialLinkButton.Name;
+					button.Tag = specialLinkButton;
+					Supertip.SetSuperTooltip(button, toolTip);
+					button.Click += (o, e) => clickAction();
+					AdPlanSpecialButtons.Items.Add(button);
+				}
+			}
+		}
+
 		public void ShowFloater(Action afterShow)
 		{
 			var args = new FloaterRequestedEventArgs { AfterShow = afterShow };
@@ -231,6 +295,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		#region Command Controls
 
 		#region Home
+		public RibbonBar HomeSpecialButtons { get; set; }
 		public ButtonItem HomeHelp { get; set; }
 		public ButtonItem HomeSave { get; set; }
 		public ButtonItem HomeSaveAs { get; set; }
@@ -249,6 +314,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		#endregion
 
 		#region Schedule Slides
+		public RibbonBar DigitalSlidesSpecialButtons { get; set; }
 		public ButtonItem DigitalSlidesHelp { get; set; }
 		public ButtonItem DigitalSlidesSave { get; set; }
 		public ButtonItem DigitalSlidesSaveAs { get; set; }
@@ -259,6 +325,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		#endregion
 
 		#region Web Package
+		public RibbonBar DigitalPackageSpecialButtons { get; set; }
 		public ButtonItem DigitalPackageHelp { get; set; }
 		public ButtonItem DigitalPackageSave { get; set; }
 		public ButtonItem DigitalPackageSaveAs { get; set; }
@@ -270,6 +337,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		#endregion
 
 		#region AdPlan
+		public RibbonBar AdPlanSpecialButtons { get; set; }
 		public ButtonItem AdPlanHelp { get; set; }
 		public ButtonItem AdPlanSave { get; set; }
 		public ButtonItem AdPlanSaveAs { get; set; }

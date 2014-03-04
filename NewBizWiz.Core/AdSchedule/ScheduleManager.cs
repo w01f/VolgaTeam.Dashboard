@@ -1850,6 +1850,7 @@ namespace NewBizWiz.Core.AdSchedule
 			Height = 0;
 			RateCard = null;
 			PercentOfPage = null;
+			EnablePageSize = true;
 			switch (pricing)
 			{
 				case AdPricingStrategies.StandartPCI:

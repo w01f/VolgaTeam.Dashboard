@@ -43,6 +43,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 			#region Command Controls
 
 			#region Web Package
+			Controller.Instance.DigitalPackageSpecialButtons = ribbonBarDigitalPackageSpecialButtons;
 			Controller.Instance.DigitalPackageAdd = buttonItemDigitalPackageProductsAdd;
 			Controller.Instance.DigitalPackageDelete = buttonItemDigitalPackageProductsDelete;
 			Controller.Instance.DigitalPackageHelp = buttonItemDigitalPackageHelp;

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -139,6 +141,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 			ConfigureTabPages();
 
 			UpdateOutputButtonsAccordingThemeStatus();
+
+			ConfigureSpecialButtons();
 		}
 
 		public void RemoveInstance()
@@ -283,6 +287,55 @@ namespace NewBizWiz.MediaSchedule.Controls
 			};
 		}
 
+		private void ConfigureSpecialButtons()
+		{
+			HomeSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+			DigitalProductSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+			DigitalPackageSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+			foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
+			{
+				var toolTip = new SuperTooltipInfo(specialLinkButton.Name, "", specialLinkButton.Tooltip, null, null, eTooltipColor.Gray);
+				var clickAction = new Action(() =>
+				{
+					try
+					{
+						Process.Start(specialLinkButton.Paths.FirstOrDefault(p => File.Exists(p) || specialLinkButton.Type == "URL"));
+					}
+					catch { }
+				});
+
+				{
+					var button = new ButtonItem();
+					button.Image = specialLinkButton.Logo;
+					button.Text = specialLinkButton.Name;
+					button.Tag = specialLinkButton;
+					Supertip.SetSuperTooltip(button, toolTip);
+					button.Click += (o, e) => clickAction();
+					HomeSpecialButtons.Items.Add(button);
+				}
+
+				{
+					var button = new ButtonItem();
+					button.Image = specialLinkButton.Logo;
+					button.Text = specialLinkButton.Name;
+					button.Tag = specialLinkButton;
+					Supertip.SetSuperTooltip(button, toolTip);
+					button.Click += (o, e) => clickAction();
+					DigitalProductSpecialButtons.Items.Add(button);
+				}
+
+				{
+					var button = new ButtonItem();
+					button.Image = specialLinkButton.Logo;
+					button.Text = specialLinkButton.Name;
+					button.Tag = specialLinkButton;
+					Supertip.SetSuperTooltip(button, toolTip);
+					button.Click += (o, e) => clickAction();
+					DigitalPackageSpecialButtons.Items.Add(button);
+				}
+			}
+		}
+
 		public void ShowFloater(Action afterShow)
 		{
 			var args = new FloaterRequestedEventArgs { AfterShow = afterShow };
@@ -293,6 +346,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#region Command Controls
 
 		#region Home
+		public RibbonBar HomeSpecialButtons { get; set; }
 		public ButtonItem HomeHelp { get; set; }
 		public ButtonItem HomeSave { get; set; }
 		public ButtonItem HomeSaveAs { get; set; }
@@ -338,6 +392,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Digital Product
+		public RibbonBar DigitalProductSpecialButtons { get; set; }
 		public ButtonItem DigitalProductPreview { get; set; }
 		public ButtonItem DigitalProductPowerPoint { get; set; }
 		public ButtonItem DigitalProductEmail { get; set; }
@@ -348,6 +403,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Digital Package
+		public RibbonBar DigitalPackageSpecialButtons { get; set; }
 		public ButtonItem DigitalPackageHelp { get; set; }
 		public ButtonItem DigitalPackageSave { get; set; }
 		public ButtonItem DigitalPackageSaveAs { get; set; }

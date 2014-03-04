@@ -161,7 +161,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			if (!quickLoad)
 			{
 				repositoryItemComboBoxCategory.Items.Clear();
-				repositoryItemComboBoxCategory.Items.AddRange(Core.OnlineSchedule.ListManager.Instance.ProductSources.Select(ps => ps.Category.Name).Distinct().ToArray());
+				repositoryItemComboBoxCategory.Items.AddRange(Core.OnlineSchedule.ListManager.Instance.ProductSources.Where(ps => ps.Category != null).Select(ps => ps.Category.Name).Distinct().ToArray());
 				laAdvertiser.Text = Schedule.BusinessName + (!string.IsNullOrEmpty(Schedule.AccountNumber) ? (" - " + Schedule.AccountNumber) : string.Empty);
 				LoadSettings();
 				UpdateControls();

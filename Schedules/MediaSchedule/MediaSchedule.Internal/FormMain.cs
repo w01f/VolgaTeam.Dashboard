@@ -34,6 +34,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			#region Command Controls
 
 			#region Home
+			Controller.Instance.HomeSpecialButtons = ribbonBarHomeSpecialButtons;
 			Controller.Instance.HomeBusinessName = comboBoxEditBusinessName;
 			Controller.Instance.HomeDecisionMaker = comboBoxEditDecisionMaker;
 			Controller.Instance.HomePresentationDate = dateEditPresentationDate;
@@ -79,6 +80,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			#endregion
 
 			#region Digital Product
+			Controller.Instance.DigitalProductSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
 			Controller.Instance.DigitalProductPreview = buttonItemDigitalSchedulePreview;
 			Controller.Instance.DigitalProductPowerPoint = buttonItemDigitalSchedulePowerPoint;
 			Controller.Instance.DigitalProductEmail = buttonItemDigitalScheduleEmail;
@@ -89,6 +91,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			#endregion
 
 			#region Digital Package
+			Controller.Instance.DigitalPackageSpecialButtons = ribbonBarDigitalPackageSpecialButtons;
 			Controller.Instance.DigitalPackageHelp = buttonItemDigitalPackageHelp;
 			Controller.Instance.DigitalPackageSave = buttonItemDigitalPackageSave;
 			Controller.Instance.DigitalPackageSaveAs = buttonItemDigitalPackageSaveAs;

@@ -22,6 +22,10 @@ namespace NewBizWiz.Core.OnlineSchedule
 			Categories = new List<Category>();
 			ProductSources = new List<ProductSource>();
 			Statuses = new List<string>();
+			PricingStrategies = new List<string>();
+			ColumnPositions = new List<string>();
+			SpecialLinksGroupName = String.Empty;
+			SpecialLinkButtons = new List<SpecialLinkButton>();
 
 			string imageFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\DIGITAL\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			string folderPath = Path.Combine(imageFolderPath, "Big Logos");
@@ -54,11 +58,15 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public List<string> SlideHeaders { get; set; }
 		public List<string> Websites { get; set; }
 		public List<string> Strengths { get; set; }
+		public List<string> PricingStrategies { get; set; }
+		public List<string> ColumnPositions { get; set; }
 		public List<Category> Categories { get; set; }
 		public List<ProductSource> ProductSources { get; set; }
 		public List<string> Statuses { get; set; }
 		public FormulaType DefaultFormula { get; set; }
 		public bool LockedMode { get; set; }
+		public string SpecialLinksGroupName { get; set; }
+		public List<SpecialLinkButton> SpecialLinkButtons { get; set; }
 
 		public static ListManager Instance
 		{
@@ -92,7 +100,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		private void LoadOnlineStrategy()
 		{
-			ProductSource productSource = null;
 			SlideHeaders.Clear();
 			Websites.Clear();
 			Strengths.Clear();
@@ -146,6 +153,30 @@ namespace NewBizWiz.Core.OnlineSchedule
 								}
 							}
 							break;
+						case "PricingStrategy":
+							foreach (XmlAttribute attribute in childeNode.Attributes)
+							{
+								switch (attribute.Name)
+								{
+									case "Value":
+										if (!string.IsNullOrEmpty(attribute.Value) && !PricingStrategies.Contains(attribute.Value))
+											PricingStrategies.Add(attribute.Value);
+										break;
+								}
+							}
+							break;
+						case "PositionColumn":
+							foreach (XmlAttribute attribute in childeNode.Attributes)
+							{
+								switch (attribute.Name)
+								{
+									case "Value":
+										if (!string.IsNullOrEmpty(attribute.Value) && !ColumnPositions.Contains(attribute.Value))
+											ColumnPositions.Add(attribute.Value);
+										break;
+								}
+							}
+							break;
 						case "DefaultFormula":
 							switch (childeNode.InnerText.ToLower().Trim())
 							{
@@ -167,6 +198,15 @@ namespace NewBizWiz.Core.OnlineSchedule
 									LockedMode = temp;
 							}
 							break;
+						case "SpecialButtonsGroupName":
+							SpecialLinksGroupName = childeNode.InnerText;
+							break;
+						case "SpecialButton":
+							var specialLinkButton = new SpecialLinkButton();
+							GetSpecialButton(childeNode, ref specialLinkButton);
+							if (!String.IsNullOrEmpty(specialLinkButton.Name) && !String.IsNullOrEmpty(specialLinkButton.Type) && specialLinkButton.Paths.Any())
+								SpecialLinkButtons.Add(specialLinkButton);
+							break;
 						case "Category":
 							var category = new Category();
 							GetCategories(childeNode, ref category);
@@ -174,7 +214,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 								Categories.Add(category);
 							break;
 						case "Product":
-							productSource = new ProductSource();
+							var productSource = new ProductSource();
 							GetProductProperties(childeNode, ref productSource);
 							if (!string.IsNullOrEmpty(productSource.Name))
 								ProductSources.Add(productSource);
@@ -205,21 +245,13 @@ namespace NewBizWiz.Core.OnlineSchedule
 						productSource.Name = attribute.Value;
 						break;
 					case "Category":
-						productSource.Category = Categories.Where(x => x.Name.Equals(attribute.Value)).FirstOrDefault();
+						productSource.Category = Categories.FirstOrDefault(x => x.Name.Equals(attribute.Value));
 						break;
 					case "SubCategory":
 						productSource.SubCategory = attribute.Value;
 						break;
 					case "RateType":
-						switch (attribute.Value)
-						{
-							case "CPM":
-								productSource.RateType = RateType.CPM;
-								break;
-							case "Fixed":
-								productSource.RateType = RateType.Fixed;
-								break;
-						}
+						productSource.RateType = attribute.Value;
 						break;
 					case "Rate":
 						decimal tempDecimal;
@@ -267,6 +299,40 @@ namespace NewBizWiz.Core.OnlineSchedule
 						break;
 					case "TooltipValue":
 						category.TooltipValue = attribute.Value;
+						break;
+				}
+			}
+		}
+
+		private void GetSpecialButton(XmlNode node, ref SpecialLinkButton specialLinkButton)
+		{
+			foreach (XmlAttribute attribute in node.Attributes)
+			{
+				switch (attribute.Name)
+				{
+					case "Name":
+						specialLinkButton.Name = attribute.Value;
+						break;
+					case "Type":
+						specialLinkButton.Type = attribute.Value.ToUpper();
+						break;
+					case "Tooltip":
+						specialLinkButton.Tooltip = attribute.Value;
+						break;
+					case "Image":
+						if (string.IsNullOrEmpty(attribute.Value))
+							specialLinkButton.Logo = null;
+						else
+							specialLinkButton.Logo = new Bitmap(new MemoryStream(Convert.FromBase64String(attribute.Value)));
+						break;
+				}
+			}
+			foreach (var childNode in node.ChildNodes.OfType<XmlNode>())
+			{
+				switch (childNode.Name)
+				{
+					case "Path":
+						specialLinkButton.Paths.Add(childNode.InnerText);
 						break;
 				}
 			}

@@ -17,7 +17,8 @@ namespace CommandCentral.TabMainDashboard
 	{
 		private const string SourceFileName = @"Data\!Main_Dashboard\Online Source\Online Strategy.xls";
 		private const string DestinationFileName = @"Data\!Main_Dashboard\Online XML\Online Strategy.xml";
-		private const string ImageSourceFolder = @"Data\!Main_Dashboard\Online Source\Category Images";
+		private const string CategoryImageSourceFolder = @"Data\!Main_Dashboard\Online Source\Category Images";
+		private const string SpecialButtonsImageSourceFolder = @"Data\!Main_Dashboard\Online Source\Special Buttons Images";
 
 		public const string ButtonText = "Online Strategy\nData";
 
@@ -43,7 +44,10 @@ namespace CommandCentral.TabMainDashboard
 						"Slides",
 						"File-Status",
 						"WebFormula",
-						"LockedMode"
+						"LockedMode",
+						"PricingStrategy",
+						"PositionColumn",
+						"SpecialRBNLinks"
 					}.Contains(category.Name.Trim()))
 						_categories.Add(category);
 				}
@@ -70,8 +74,12 @@ namespace CommandCentral.TabMainDashboard
 			var strengths = new List<SlideHeader>();
 			var products = new List<Product>();
 			var statuses = new List<SlideHeader>();
-			var defaultFormula = string.Empty;
+			var defaultFormula = String.Empty;
 			var lockedMode = false;
+			var specialLinksGroupName = String.Empty;
+			var pricingStrategies = new List<string>();
+			var columnPositions = new List<string>();
+			var specialLinkButtons = new List<SpecialLinkButton>();
 
 			string connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
 			var connection = new OleDbConnection(connnectionString);
@@ -216,7 +224,7 @@ namespace CommandCentral.TabMainDashboard
 
 					strengths.Sort((x, y) =>
 					{
-						int result = y.IsDefault.CompareTo(x.IsDefault);
+						var result = y.IsDefault.CompareTo(x.IsDefault);
 						if (result == 0)
 							result = WinAPIHelper.StrCmpLogicalW(x.Value, y.Value);
 						return result;
@@ -235,24 +243,16 @@ namespace CommandCentral.TabMainDashboard
 				dataAdapter = new OleDbDataAdapter("SELECT * FROM [WebFormula$]", connection);
 				dataTable = new DataTable();
 
-				bool loadDefaultFormula = true;
-
 				try
 				{
 					dataAdapter.Fill(dataTable);
 					if (dataTable.Rows.Count > 0 && dataTable.Columns.Count >= 2)
 						foreach (DataRow row in dataTable.Rows)
 						{
-							if (row[0].ToString().Trim().Equals("*Web Formula Default"))
+							if (row[0] != null && row[1] != null && row[1].ToString().Trim().ToLower().Equals("d"))
 							{
-								loadDefaultFormula = true;
-								continue;
-							}
-
-							if (loadDefaultFormula)
-							{
-								if (row[0] != null && row[1] != null && row[1].ToString().Trim().ToLower().Equals("d"))
-									defaultFormula = row[0].ToString();
+								defaultFormula = row[0].ToString();
+								break;
 							}
 						}
 				}
@@ -275,7 +275,7 @@ namespace CommandCentral.TabMainDashboard
 						foreach (DataRow row in dataTable.Rows)
 						{
 							bool temp;
-							if(row[0]== null) continue;
+							if (row[0] == null) continue;
 							var rowValue = row[0].ToString();
 							if (!String.IsNullOrEmpty(rowValue) &&
 								!rowValue.StartsWith("*") &&
@@ -285,6 +285,130 @@ namespace CommandCentral.TabMainDashboard
 								break;
 							}
 						}
+				}
+				catch
+				{
+				}
+				finally
+				{
+					dataAdapter.Dispose();
+					dataTable.Dispose();
+				}
+
+				//Load Pricing Strategy
+				dataAdapter = new OleDbDataAdapter("SELECT * FROM [PricingStrategy$]", connection);
+				dataTable = new DataTable();
+				try
+				{
+					dataAdapter.Fill(dataTable);
+					if (dataTable.Columns.Count > 0)
+						foreach (DataRow row in dataTable.Rows)
+						{
+							if (row[0] == null) continue;
+							var rowValue = row[0].ToString();
+							if (!String.IsNullOrEmpty(rowValue) && !pricingStrategies.Contains(rowValue))
+								pricingStrategies.Add(rowValue);
+						}
+				}
+				catch
+				{
+				}
+				finally
+				{
+					dataAdapter.Dispose();
+					dataTable.Dispose();
+				}
+
+				//Load Position Column
+				dataAdapter = new OleDbDataAdapter("SELECT * FROM [PositionColumn$]", connection);
+				dataTable = new DataTable();
+				try
+				{
+					dataAdapter.Fill(dataTable);
+					if (dataTable.Columns.Count > 0)
+						foreach (DataRow row in dataTable.Rows)
+						{
+							if (row[0] == null) continue;
+							var rowValue = row[0].ToString();
+							if (!String.IsNullOrEmpty(rowValue) && !columnPositions.Contains(rowValue))
+								columnPositions.Add(rowValue);
+						}
+				}
+				catch
+				{
+				}
+				finally
+				{
+					dataAdapter.Dispose();
+					dataTable.Dispose();
+				}
+
+				//Load Special Links Group
+				dataAdapter = new OleDbDataAdapter("SELECT * FROM [SpecialRBNLinks$A1:A2]", connection);
+				dataTable = new DataTable();
+				try
+				{
+					dataAdapter.Fill(dataTable);
+					if (dataTable.Columns.Count > 0)
+						foreach (DataRow row in dataTable.Rows)
+						{
+							if (row[0] == null) continue;
+							var rowValue = row[0].ToString();
+							if (!String.IsNullOrEmpty(rowValue))
+							{
+								specialLinksGroupName = rowValue;
+								break;
+							}
+						}
+				}
+				catch
+				{
+				}
+				finally
+				{
+					dataAdapter.Dispose();
+					dataTable.Dispose();
+				}
+
+				//Load Special Link Buttons
+				dataAdapter = new OleDbDataAdapter("SELECT * FROM [SpecialRBNLinks$A4:E14]", connection);
+				dataTable = new DataTable();
+				try
+				{
+					dataAdapter.Fill(dataTable);
+					foreach (DataRow row in dataTable.Rows)
+					{
+						var specialButton = new SpecialLinkButton();
+						var colCount = dataTable.Columns.Count;
+						for (var i = 0; i < colCount; i++)
+						{
+							if (row[i] == null) continue;
+							var rowValue = row[i].ToString().Trim();
+							if (String.IsNullOrEmpty(rowValue)) continue;
+							switch (i)
+							{
+								case 0:
+									specialButton.Name = rowValue;
+									break;
+								case 1:
+									specialButton.Type = rowValue;
+									break;
+								case 2:
+									specialButton.Tooltip = rowValue;
+									break;
+								case 3:
+									var imageFilePath = Path.Combine(Application.StartupPath, SpecialButtonsImageSourceFolder, rowValue);
+									if (File.Exists(imageFilePath))
+										specialButton.Image = new Bitmap(imageFilePath);
+									break;
+								default:
+									specialButton.Paths.Add(rowValue);
+									break;
+							}
+						}
+						if (!String.IsNullOrEmpty(specialButton.Name) && !String.IsNullOrEmpty(specialButton.Type) && specialButton.Paths.Any())
+							specialLinkButtons.Add(specialButton);
+					}
 				}
 				catch
 				{
@@ -313,7 +437,7 @@ namespace CommandCentral.TabMainDashboard
 								category.Order = i;
 								category.TooltipTitle = row[1].ToString().Trim();
 								category.TooltipValue = row[2].ToString().Trim();
-								var filePath = Path.Combine(Application.StartupPath, ImageSourceFolder, row[3].ToString().Trim());
+								var filePath = Path.Combine(Application.StartupPath, CategoryImageSourceFolder, row[3].ToString().Trim());
 								if (File.Exists(filePath))
 									category.Logo = new Bitmap(filePath);
 							}
@@ -368,6 +492,7 @@ namespace CommandCentral.TabMainDashboard
 			}
 
 			//Save XML
+			var converter = TypeDescriptor.GetConverter(typeof(Bitmap));
 			var xml = new StringBuilder();
 			xml.AppendLine("<OnlineStrategy>");
 			foreach (var header in slideHeaders)
@@ -398,7 +523,34 @@ namespace CommandCentral.TabMainDashboard
 			xml.AppendLine("<DefaultFormula>" + defaultFormula.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</DefaultFormula>");
 			xml.AppendLine("<LockedMode>" + lockedMode + "</LockedMode>");
 
-			var converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+			foreach (var pricingStrategy in pricingStrategies)
+			{
+				xml.Append(@"<PricingStrategy ");
+				xml.Append("Value = \"" + pricingStrategy.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+				xml.AppendLine(@"/>");
+			}
+
+			foreach (var columnPosition in columnPositions)
+			{
+				xml.Append(@"<PositionColumn ");
+				xml.Append("Value = \"" + columnPosition.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+				xml.AppendLine(@"/>");
+			}
+
+			xml.AppendLine("<SpecialButtonsGroupName>" + specialLinksGroupName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</SpecialButtonsGroupName>");
+
+			foreach (var specialLinkButton in specialLinkButtons)
+			{
+				xml.Append(@"<SpecialButton ");
+				xml.Append("Name = \"" + specialLinkButton.Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+				xml.Append("Type = \"" + specialLinkButton.Type.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+				xml.Append("Tooltip = \"" + specialLinkButton.Tooltip.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+				xml.Append("Image = \"" + Convert.ToBase64String((byte[])converter.ConvertTo(specialLinkButton.Image, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+				xml.AppendLine(@">");
+				foreach (var path in specialLinkButton.Paths)
+					xml.AppendLine(String.Format(@"<Path>{0}</Path>", path.Replace(@"&", "&#38;").Replace("\"", "&quot;")));
+				xml.AppendLine(@"</SpecialButton>");
+			}
 			foreach (var category in _categories.Where(c => !String.IsNullOrEmpty(c.Name) && !String.IsNullOrEmpty(c.TooltipTitle) && !String.IsNullOrEmpty(c.TooltipValue) && c.Logo != null))
 			{
 				xml.Append(@"<Category ");

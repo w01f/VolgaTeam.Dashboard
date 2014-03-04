@@ -54,19 +54,23 @@ namespace NewBizWiz.Core.OnlineSchedule
 			EnableAccountNumber = true;
 			EnableDigitalDimensions = true;
 			EnableDigitalStrategy = true;
+			EnableDigitalLocation = true;
 
 			ShowAccountNumber = false;
 			ShowDigitalDimensions = true;
 			ShowDigitalStrategy = true;
+			ShowDigitalLocation = true;
 		}
 
 		public bool EnableAccountNumber { get; set; }
 		public bool EnableDigitalDimensions { get; set; }
 		public bool EnableDigitalStrategy { get; set; }
+		public bool EnableDigitalLocation { get; set; }
 
 		public bool ShowAccountNumber { get; set; }
 		public bool ShowDigitalDimensions { get; set; }
 		public bool ShowDigitalStrategy { get; set; }
+		public bool ShowDigitalLocation { get; set; }
 
 		public string Serialize()
 		{
@@ -79,6 +83,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			result.AppendLine(@"<ShowAccountNumber>" + ShowAccountNumber + @"</ShowAccountNumber>");
 			result.AppendLine(@"<ShowDigitalDimensions>" + ShowDigitalDimensions + @"</ShowDigitalDimensions>");
 			result.AppendLine(@"<ShowDigitalStrategy>" + ShowDigitalStrategy + @"</ShowDigitalStrategy>");
+			result.AppendLine(@"<ShowDigitalLocation>" + ShowDigitalLocation + @"</ShowDigitalLocation>");
 
 			return result.ToString();
 		}
@@ -116,12 +121,17 @@ namespace NewBizWiz.Core.OnlineSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowDigitalStrategy = tempBool;
 						break;
+					case "ShowDigitalLocation":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowDigitalLocation = tempBool;
+						break;
 				}
 			}
 
 			ShowAccountNumber &= EnableAccountNumber;
 			ShowDigitalDimensions &= EnableDigitalDimensions;
 			ShowDigitalStrategy &= EnableDigitalStrategy;
+			ShowDigitalLocation &= EnableDigitalLocation;
 		}
 	}
 

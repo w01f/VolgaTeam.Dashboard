@@ -12,12 +12,6 @@ using NewBizWiz.Core.Interop;
 
 namespace NewBizWiz.Core.OnlineSchedule
 {
-	public enum RateType
-	{
-		CPM = 0,
-		Fixed
-	}
-
 	public enum FormulaType
 	{
 		CPM = 0,
@@ -480,7 +474,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public double Index { get; set; }
 		public string Category { get; set; }
 		public string SubCategory { get; set; }
-		public RateType RateType { get; set; }
+		public string RateType { get; set; }
+		public string Location { get; set; }
 		public int? Width { get; set; }
 		public int? Height { get; set; }
 		public string Description { get; set; }
@@ -542,40 +537,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 			get { return String.Format("{0}{1}", !String.IsNullOrEmpty(SubCategory) ? (SubCategory + " - ") : String.Empty, Name); }
 		}
 
-		public string WebCategory
-		{
-			get { return string.Format("{0}{1}", new object[] { Category, !string.IsNullOrEmpty(SubCategory) ? (@"\" + SubCategory) : (ListManager.Instance.ProductSources.Where(x => x.Category.Name.Equals(Category) && !string.IsNullOrEmpty(x.SubCategory)).Count() > 0 ? " (select)" : string.Empty) }); }
-			set { }
-		}
-
-		public string RateTypeText
-		{
-			get
-			{
-				switch (RateType)
-				{
-					case RateType.CPM:
-						return "CPM";
-					case RateType.Fixed:
-						return "Fixed";
-					default:
-						return string.Empty;
-				}
-			}
-			set
-			{
-				switch (value)
-				{
-					case "CPM":
-						RateType = RateType.CPM;
-						break;
-					case "Fixed":
-						RateType = RateType.Fixed;
-						break;
-				}
-			}
-		}
-
 		public string Dimensions
 		{
 			get
@@ -632,7 +593,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				if (Formula == FormulaType.CPM)
 					return MonthlyImpressions.HasValue && MonthlyInvestment.HasValue ? (MonthlyImpressions.Value != 0 ? Math.Round(MonthlyInvestment.Value / (MonthlyImpressions.Value / 1000), 2) : (decimal?)null) : null;
-				return !MonthlyCPM.HasValue && RateType == RateType.CPM ? DefaultRate : MonthlyCPM;
+				return !MonthlyCPM.HasValue && RateType.Equals("CPM") ? DefaultRate : MonthlyCPM;
 			}
 		}
 
@@ -642,7 +603,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				if (Formula == FormulaType.CPM)
 					return TotalImpressions.HasValue && TotalInvestment.HasValue ? (TotalImpressions.Value != 0 ? Math.Round((TotalInvestment.Value / (TotalImpressions.Value / 1000)), 2) : (decimal?)null) : null;
-				return !TotalCPM.HasValue && RateType == RateType.CPM ? DefaultRate : TotalCPM;
+				return !TotalCPM.HasValue && RateType.Equals("CPM") ? DefaultRate : TotalCPM;
 			}
 		}
 
@@ -695,10 +656,10 @@ namespace NewBizWiz.Core.OnlineSchedule
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
 			Category = string.Empty;
-			SubCategory = string.Empty;
 			Websites = new List<string>();
 			PackageRecord = new ProductPackageRecord(this);
 			AdPlanSettings = new DigitalProductAdPlanSettings();
+			RateType = "CPM";
 
 			OutputData = new Output(this);
 
@@ -720,7 +681,10 @@ namespace NewBizWiz.Core.OnlineSchedule
 				xml.Append("Category = \"" + Category.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			if (!String.IsNullOrEmpty(SubCategory))
 				xml.Append("SubCategory = \"" + SubCategory.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("RateType = \"" + (int)RateType + "\" ");
+			if (!String.IsNullOrEmpty(RateType))
+				xml.Append("RateType = \"" + RateType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			if (!String.IsNullOrEmpty(Location))
+				xml.Append("Location = \"" + Location.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("Width = \"" + (Width.HasValue ? Width.Value.ToString() : string.Empty) + "\" ");
 			xml.Append("Height = \"" + (Height.HasValue ? Height.Value.ToString() : string.Empty) + "\" ");
 			if (!String.IsNullOrEmpty(Description))
@@ -805,8 +769,19 @@ namespace NewBizWiz.Core.OnlineSchedule
 						SubCategory = productAttribute.Value;
 						break;
 					case "RateType":
-						if (int.TryParse(productAttribute.Value, out tempInt))
-							RateType = (RateType)tempInt;
+						RateType = productAttribute.Value;
+						switch (RateType)
+						{
+							case "0":
+								RateType = "CPM";
+								break;
+							case "1":
+								RateType = "Fixed";
+								break;
+						}
+						break;
+					case "Location":
+						Location = productAttribute.Value;
 						break;
 					case "Width":
 						if (int.TryParse(productAttribute.Value, out tempInt))
@@ -991,7 +966,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		public void ApplyDefaultValues()
 		{
-			var source = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(_name) && x.Category.Name.Equals(Category) && (x.SubCategory.Equals(SubCategory) || string.IsNullOrEmpty(SubCategory)));
+			var source = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(_name) && x.Category.Name.Equals(Category) && (x.SubCategory == SubCategory || String.IsNullOrEmpty(SubCategory)));
 			if (source == null) return;
 			RateType = source.RateType;
 			DefaultRate = source.Rate;
@@ -1025,7 +1000,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			Formula = ListManager.Instance.DefaultFormula;
 			InvestmentDetails = null;
 
-			var source = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(_name) && x.Category.Name.Equals(Category) && (x.SubCategory.Equals(SubCategory) || string.IsNullOrEmpty(SubCategory)));
+			var source = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(_name) && x.Category.Name.Equals(Category) && (x.SubCategory == SubCategory || String.IsNullOrEmpty(SubCategory)));
 			if (source == null) return;
 			Description = source.Overview;
 			DefaultRate = source.Rate;
@@ -1478,12 +1453,13 @@ namespace NewBizWiz.Core.OnlineSchedule
 			Name = string.Empty;
 			SubCategory = string.Empty;
 			Overview = string.Empty;
+			RateType = "CPM";
 		}
 
 		public string Name { get; set; }
 		public Category Category { get; set; }
 		public string SubCategory { get; set; }
-		public RateType RateType { get; set; }
+		public string RateType { get; set; }
 		public Decimal? Rate { get; set; }
 		public int? Width { get; set; }
 		public int? Height { get; set; }
@@ -1496,5 +1472,21 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public Image Logo { get; set; }
 		public string TooltipTitle { get; set; }
 		public string TooltipValue { get; set; }
+	}
+
+	public class SpecialLinkButton
+	{
+		public string Name { get; set; }
+		public string Type { get; set; }
+		public string Tooltip { get; set; }
+		public Image Logo { get; set; }
+		public List<string> Paths { get; private set; }
+
+		public SpecialLinkButton()
+		{
+			Name = String.Empty;
+			Type = String.Empty;
+			Paths = new List<string>();
+		}
 	}
 }

@@ -862,9 +862,9 @@ namespace NewBizWiz.Core.AdSchedule
 	{
 		public PrintProductAdPlanSettings()
 		{
-			ShowInvestment = true;
+			ShowInvestment = false;
 			ShowFlightDates = true;
-			ShowDates = true;
+			ShowDates = false;
 			ShowComments = false;
 
 			ResetItemsToDefault();
@@ -1085,7 +1085,7 @@ namespace NewBizWiz.Core.AdSchedule
 	{
 		public DigitalProductAdPlanSettings()
 		{
-			ShowInvestment = true;
+			ShowInvestment = false;
 			ShowFlightDates = true;
 			ShowComments = false;
 
@@ -1118,11 +1118,11 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public void ResetItemsToDefault()
 		{
-			ShowWebsites = true;
+			ShowWebsites = false;
 			ShowDimensions = true;
-			ShowMonthlyImpressions = true;
-			ShowMonthlyCPM = true;
-			ShowTotalImpressions = true;
+			ShowMonthlyImpressions = false;
+			ShowMonthlyCPM = false;
+			ShowTotalImpressions = false;
 			ShowTotalCPM = true;
 			ShowComment1 = false;
 			ShowComment2 = false;
@@ -1268,17 +1268,16 @@ namespace NewBizWiz.Core.AdSchedule
 			EnablePrintCode = true;
 			EnableDigitalDimensions = true;
 			EnableDigitalStrategy = true;
+			EnableDigitalLocation = true;
 
 			ShowAccountNumber = false;
-			ShowSalesStrategyPerson = true;
-			ShowSalesStrategyEmail = false;
-			ShowSalesStrategyFax = false;
 			ShowPrintDelivery = false;
 			ShowPrintReadership = false;
 			ShowPrintLogo = true;
 			ShowPrintCode = true;
 			ShowDigitalDimensions = true;
 			ShowDigitalStrategy = true;
+			ShowDigitalLocation = true;
 		}
 
 		public bool EnableAccountNumber { get; set; }
@@ -1288,17 +1287,16 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool EnablePrintCode { get; set; }
 		public bool EnableDigitalDimensions { get; set; }
 		public bool EnableDigitalStrategy { get; set; }
+		public bool EnableDigitalLocation { get; set; }
 
 		public bool ShowAccountNumber { get; set; }
-		public bool ShowSalesStrategyPerson { get; set; }
-		public bool ShowSalesStrategyEmail { get; set; }
-		public bool ShowSalesStrategyFax { get; set; }
 		public bool ShowPrintDelivery { get; set; }
 		public bool ShowPrintReadership { get; set; }
 		public bool ShowPrintLogo { get; set; }
 		public bool ShowPrintCode { get; set; }
 		public bool ShowDigitalDimensions { get; set; }
 		public bool ShowDigitalStrategy { get; set; }
+		public bool ShowDigitalLocation { get; set; }
 
 		public void ResetToDefault()
 		{
@@ -1320,15 +1318,13 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<EnableDigitalStrategy>" + EnableDigitalStrategy + @"</EnableDigitalStrategy>");
 
 			result.AppendLine(@"<ShowAccountNumber>" + ShowAccountNumber + @"</ShowAccountNumber>");
-			result.AppendLine(@"<ShowSalesStrategyPerson>" + ShowSalesStrategyPerson + @"</ShowSalesStrategyPerson>");
-			result.AppendLine(@"<ShowSalesStrategyEmail>" + ShowSalesStrategyEmail + @"</ShowSalesStrategyEmail>");
-			result.AppendLine(@"<ShowSalesStrategyFax>" + ShowSalesStrategyFax + @"</ShowSalesStrategyFax>");
 			result.AppendLine(@"<ShowCode>" + ShowPrintCode + @"</ShowCode>");
 			result.AppendLine(@"<ShowDelivery>" + ShowPrintDelivery + @"</ShowDelivery>");
 			result.AppendLine(@"<ShowLogo>" + ShowPrintLogo + @"</ShowLogo>");
 			result.AppendLine(@"<ShowReadership>" + ShowPrintReadership + @"</ShowReadership>");
 			result.AppendLine(@"<ShowDigitalDimensions>" + ShowDigitalDimensions + @"</ShowDigitalDimensions>");
 			result.AppendLine(@"<ShowDigitalStrategy>" + ShowDigitalStrategy + @"</ShowDigitalStrategy>");
+			result.AppendLine(@"<ShowDigitalLocation>" + ShowDigitalLocation + @"</ShowDigitalLocation>");
 
 			return result.ToString();
 		}
@@ -1374,18 +1370,6 @@ namespace NewBizWiz.Core.AdSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowAccountNumber = tempBool;
 						break;
-					case "ShowSalesStrategyPerson":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowSalesStrategyPerson = tempBool;
-						break;
-					case "ShowSalesStrategyEmail":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowSalesStrategyEmail = tempBool;
-						break;
-					case "ShowSalesStrategyFax":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowSalesStrategyFax = tempBool;
-						break;
 					case "ShowCode":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowPrintCode = tempBool;
@@ -1410,6 +1394,10 @@ namespace NewBizWiz.Core.AdSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowDigitalStrategy = tempBool;
 						break;
+					case "ShowDigitalLocation":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowDigitalLocation = tempBool;
+						break;
 				}
 			}
 
@@ -1420,6 +1408,7 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowPrintCode &= EnablePrintCode;
 			ShowDigitalDimensions &= EnableDigitalDimensions;
 			ShowDigitalStrategy &= EnableDigitalStrategy;
+			ShowDigitalLocation &= EnableDigitalLocation;
 		}
 	}
 

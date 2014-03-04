@@ -987,6 +987,9 @@
   <ItemGroup>
     <None Include="Resources\CalendarDayDetails.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TargetButton.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rem "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe" sign /f d:\temp\NewBizWiz\NLDCertificate.pfx /t http://timestamp.verisign.com/scripts/timstamp.dll  /p bubbadude AdScheduleBuilder.dll</PostBuildEvent>

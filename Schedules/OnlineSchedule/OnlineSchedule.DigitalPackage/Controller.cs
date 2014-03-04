@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -46,6 +48,8 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 			#endregion
 
 			UpdateOutputButtonsAccordingThemeStatus();
+
+			ConfigureSpecialButtons();
 		}
 
 		public void RemoveInstance()
@@ -118,6 +122,33 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 			};
 		}
 
+		private void ConfigureSpecialButtons()
+		{
+			DigitalPackageSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+			foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
+			{
+				var toolTip = new SuperTooltipInfo(specialLinkButton.Name, "", specialLinkButton.Tooltip, null, null, eTooltipColor.Gray);
+				var clickAction = new Action(() =>
+				{
+					try
+					{
+						Process.Start(specialLinkButton.Paths.FirstOrDefault(p => File.Exists(p) || specialLinkButton.Type == "URL"));
+					}
+					catch { }
+				});
+
+				{
+					var button = new ButtonItem();
+					button.Image = specialLinkButton.Logo;
+					button.Text = specialLinkButton.Name;
+					button.Tag = specialLinkButton;
+					Supertip.SetSuperTooltip(button, toolTip);
+					button.Click += (o, e) => clickAction();
+					DigitalPackageSpecialButtons.Items.Add(button);
+				}
+			}
+		}
+
 		public void ShowFloater(Action afterShow)
 		{
 			var args = new FloaterRequestedEventArgs { AfterShow = afterShow };
@@ -128,6 +159,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		#region Command Controls
 
 		#region Web Package
+		public RibbonBar DigitalPackageSpecialButtons { get; set; }
 		public ButtonItem DigitalPackageAdd { get; set; }
 		public ButtonItem DigitalPackageDelete { get; set; }
 		public ButtonItem DigitalPackageHelp { get; set; }

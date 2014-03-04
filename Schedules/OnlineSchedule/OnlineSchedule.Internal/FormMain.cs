@@ -31,6 +31,7 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			#region Command Controls
 
 			#region Home
+			Controller.Instance.HomeSpecialButtons = ribbonBarHomeSpecialButtons;
 			Controller.Instance.HomeBusinessName = comboBoxEditBusinessName;
 			Controller.Instance.HomeDecisionMaker = comboBoxEditDecisionMaker;
 			Controller.Instance.HomePresentationDate = dateEditPresentationDate;
@@ -49,6 +50,7 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			#endregion
 
 			#region Schedule Slides
+			Controller.Instance.DigitalSlidesSpecialButtons = ribbonBarDigitalScheduleSpecialButtons;
 			Controller.Instance.DigitalSlidesHelp = buttonItemDigitalScheduleHelp;
 			Controller.Instance.DigitalSlidesSave = buttonItemDigitalScheduleSave;
 			Controller.Instance.DigitalSlidesSaveAs = buttonItemDigitalScheduleSaveAs;
@@ -59,6 +61,7 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			#endregion
 
 			#region Web Package
+			Controller.Instance.DigitalPackageSpecialButtons = ribbonBarDigitalPackageSpecialButtons;
 			Controller.Instance.DigitalPackageHelp = buttonItemDigitalPackageHelp;
 			Controller.Instance.DigitalPackageSave = buttonItemDigitalPackageSave;
 			Controller.Instance.DigitalPackageSaveAs = buttonItemDigitalPackageSaveAs;
@@ -70,6 +73,7 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			#endregion
 
 			#region AdPlan
+			Controller.Instance.AdPlanSpecialButtons = ribbonBarAdPlanSpecialButtons;
 			Controller.Instance.AdPlanHelp = buttonItemAdPlanHelp;
 			Controller.Instance.AdPlanSave = buttonItemAdPlanSave;
 			Controller.Instance.AdPlanSaveAs = buttonItemAdPlanSaveAs;

@@ -28,53 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleSettingsControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SuperToolTip superToolTip9 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem9 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip10 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem10 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip11 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem11 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip12 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem12 = new DevExpress.Utils.ToolTipItem();
 			this.gridControlPrintProducts = new DevExpress.XtraGrid.GridControl();
 			this.gridViewPrintProducts = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
 			this.gridBandPrintProductsPosition = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnPrintProductsPosition = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemButtonEditPrintProducts = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+			this.gridColumnPosition = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.repositoryItemButtonEditPosition = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
 			this.gridBandPrintProductsPublication = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnPrintProductsName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemComboBoxPrintProducts = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-			this.gridColumnPrintProductsDailyDelivery = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemSpinEditPrintProducts = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-			this.gridColumnPrintProductsSundayDelivery = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.gridColumnPrintProductsDailyReadership = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.gridColumnPrintProductsSundayReadership = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.gridColumnName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.repositoryItemComboBox = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+			this.gridColumnDailyDelivery = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.repositoryItemSpinEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+			this.gridColumnSundayDelivery = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.gridColumnDailyReadership = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.gridColumnSundayReadership = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.gridBandAbbreviation = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnPrintProductsAbbreviation = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemTextEditPrintProducts = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+			this.gridColumnAbbreviation = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.repositoryItemTextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.gridBandLogo = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnPrintProductsLogo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemPictureEditPrintProducts = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
-			this.gridColumnPrintProductsChangeLogo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemButtonEditChangeLogoPrintProducts = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.gridColumnLogo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.repositoryItemPictureEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
+			this.gridBandDelete = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridColumnDelete = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.repositoryItemButtonEditDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.xtraTabControlProducts = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPagePrintProducts = new DevExpress.XtraTab.XtraTabPage();
 			this.pnPrintProductBottomBar = new System.Windows.Forms.Panel();
@@ -84,69 +73,22 @@
 			this.buttonXPrintProductDelivery = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXPrintProductReadership = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageDigitalProducts = new DevExpress.XtraTab.XtraTabPage();
-			this.gridControlDigitalProducts = new DevExpress.XtraGrid.GridControl();
-			this.advBandedGridViewDigitalProducts = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
-			this.gridBandDigitalProductNumber = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnDigitalProductsPosition = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemButtonEditDigitalProducts = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-			this.gridBandDigitalProductType = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnDigitalProductsCategory = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.gridColumnDigitalProductsSubCategory = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemComboBoxDigitalProductsType = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-			this.gridBandDigitalProductName = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnDigitalProductsName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemComboBoxDigitalProductsNames = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-			this.gridColumnDigitalProductsLocation = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemComboBoxDigitalProductsLocation = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-			this.gridBandDigitalProductWidth = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnDigitalProductsWidth = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemSpinEditDigitalProductsSize = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-			this.gridBandDigitalProductHeight = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnDigitalProductsHeight = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.gridBandDigitalProductRate = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnDigitalProductsRateType = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemComboBoxDigitalProductsRateType = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-			this.gridColumnDigitalProductsRate = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemSpinEditDigitalProductsRate = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-			this.gridBandTarget = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnDigitalProductsTarget = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemButtonEditDigitalProductsTarget = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-			this.gridBandDigitalProductDelete = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-			this.gridColumnDigitalProductsDelete = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.repositoryItemButtonEditDigitalProductsDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-			this.pnDigitalProductBottomBar = new System.Windows.Forms.Panel();
-			this.buttonXDigitalProductLocation = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXDigitalProductStrategy = new DevComponents.DotNetBar.ButtonX();
-			this.pictureBoxDigitalProductAppLogo = new System.Windows.Forms.PictureBox();
-			this.buttonXDigitalProductDimensions = new DevComponents.DotNetBar.ButtonX();
-			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.digitalProductListControl = new NewBizWiz.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPrintProducts)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewPrintProducts)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditPrintProducts)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxPrintProducts)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditPrintProducts)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditPrintProducts)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEditPrintProducts)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditChangeLogoPrintProducts)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditPosition)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDelete)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlProducts)).BeginInit();
 			this.xtraTabControlProducts.SuspendLayout();
 			this.xtraTabPagePrintProducts.SuspendLayout();
 			this.pnPrintProductBottomBar.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPrintProductAppLogo)).BeginInit();
 			this.xtraTabPageDigitalProducts.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.gridControlDigitalProducts)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewDigitalProducts)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDigitalProducts)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDigitalProductsType)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDigitalProductsNames)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDigitalProductsLocation)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDigitalProductsSize)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDigitalProductsRateType)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDigitalProductsRate)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDigitalProductsTarget)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDigitalProductsDelete)).BeginInit();
-			this.pnDigitalProductBottomBar.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDigitalProductAppLogo)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gridControlPrintProducts
@@ -156,12 +98,12 @@
 			this.gridControlPrintProducts.MainView = this.gridViewPrintProducts;
 			this.gridControlPrintProducts.Name = "gridControlPrintProducts";
 			this.gridControlPrintProducts.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemButtonEditPrintProducts,
-            this.repositoryItemComboBoxPrintProducts,
-            this.repositoryItemPictureEditPrintProducts,
-            this.repositoryItemSpinEditPrintProducts,
-            this.repositoryItemButtonEditChangeLogoPrintProducts,
-            this.repositoryItemTextEditPrintProducts});
+            this.repositoryItemButtonEditPosition,
+            this.repositoryItemComboBox,
+            this.repositoryItemPictureEdit,
+            this.repositoryItemSpinEdit,
+            this.repositoryItemTextEdit,
+            this.repositoryItemButtonEditDelete});
 			this.gridControlPrintProducts.Size = new System.Drawing.Size(826, 366);
 			this.gridControlPrintProducts.TabIndex = 0;
 			this.gridControlPrintProducts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -185,17 +127,18 @@
             this.gridBandPrintProductsPosition,
             this.gridBandPrintProductsPublication,
             this.gridBandAbbreviation,
-            this.gridBandLogo});
+            this.gridBandLogo,
+            this.gridBandDelete});
 			this.gridViewPrintProducts.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
-            this.gridColumnPrintProductsPosition,
-            this.gridColumnPrintProductsName,
-            this.gridColumnPrintProductsLogo,
-            this.gridColumnPrintProductsAbbreviation,
-            this.gridColumnPrintProductsDailyDelivery,
-            this.gridColumnPrintProductsSundayDelivery,
-            this.gridColumnPrintProductsDailyReadership,
-            this.gridColumnPrintProductsSundayReadership,
-            this.gridColumnPrintProductsChangeLogo});
+            this.gridColumnPosition,
+            this.gridColumnName,
+            this.gridColumnLogo,
+            this.gridColumnAbbreviation,
+            this.gridColumnDailyDelivery,
+            this.gridColumnSundayDelivery,
+            this.gridColumnDailyReadership,
+            this.gridColumnSundayReadership,
+            this.gridColumnDelete});
 			this.gridViewPrintProducts.GridControl = this.gridControlPrintProducts;
 			this.gridViewPrintProducts.Name = "gridViewPrintProducts";
 			this.gridViewPrintProducts.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -223,152 +166,155 @@
 			this.gridViewPrintProducts.OptionsView.ShowGroupPanel = false;
 			this.gridViewPrintProducts.OptionsView.ShowIndicator = false;
 			this.gridViewPrintProducts.RowHeight = 25;
-			this.gridViewPrintProducts.RowSeparatorHeight = 10;
+			this.gridViewPrintProducts.RowSeparatorHeight = 30;
+			this.gridViewPrintProducts.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridViewPrintProducts_RowCellClick);
 			this.gridViewPrintProducts.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewPublications_CellValueChanged);
+			this.gridViewPrintProducts.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gridViewPrintProducts_MouseMove);
+			this.gridViewPrintProducts.MouseLeave += new System.EventHandler(this.gridViewPrintProducts_MouseLeave);
 			// 
 			// gridBandPrintProductsPosition
 			// 
 			this.gridBandPrintProductsPosition.Caption = "Position";
-			this.gridBandPrintProductsPosition.Columns.Add(this.gridColumnPrintProductsPosition);
+			this.gridBandPrintProductsPosition.Columns.Add(this.gridColumnPosition);
 			this.gridBandPrintProductsPosition.Name = "gridBandPrintProductsPosition";
 			this.gridBandPrintProductsPosition.OptionsBand.AllowMove = false;
 			this.gridBandPrintProductsPosition.OptionsBand.AllowSize = false;
 			this.gridBandPrintProductsPosition.OptionsBand.FixedWidth = true;
 			this.gridBandPrintProductsPosition.Width = 120;
 			// 
-			// gridColumnPrintProductsPosition
+			// gridColumnPosition
 			// 
-			this.gridColumnPrintProductsPosition.AppearanceCell.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
-			this.gridColumnPrintProductsPosition.AppearanceCell.Options.UseFont = true;
-			this.gridColumnPrintProductsPosition.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnPrintProductsPosition.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumnPrintProductsPosition.Caption = "Position";
-			this.gridColumnPrintProductsPosition.ColumnEdit = this.repositoryItemButtonEditPrintProducts;
-			this.gridColumnPrintProductsPosition.FieldName = "Index";
-			this.gridColumnPrintProductsPosition.Name = "gridColumnPrintProductsPosition";
-			this.gridColumnPrintProductsPosition.OptionsColumn.AllowMove = false;
-			this.gridColumnPrintProductsPosition.OptionsColumn.AllowSize = false;
-			this.gridColumnPrintProductsPosition.OptionsColumn.FixedWidth = true;
-			this.gridColumnPrintProductsPosition.OptionsColumn.ReadOnly = true;
-			this.gridColumnPrintProductsPosition.OptionsColumn.ShowCaption = false;
-			this.gridColumnPrintProductsPosition.RowCount = 2;
-			this.gridColumnPrintProductsPosition.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-			this.gridColumnPrintProductsPosition.Visible = true;
-			this.gridColumnPrintProductsPosition.Width = 120;
+			this.gridColumnPosition.AppearanceCell.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
+			this.gridColumnPosition.AppearanceCell.Options.UseFont = true;
+			this.gridColumnPosition.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumnPosition.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumnPosition.Caption = "Position";
+			this.gridColumnPosition.ColumnEdit = this.repositoryItemButtonEditPosition;
+			this.gridColumnPosition.FieldName = "Index";
+			this.gridColumnPosition.Name = "gridColumnPosition";
+			this.gridColumnPosition.OptionsColumn.AllowMove = false;
+			this.gridColumnPosition.OptionsColumn.AllowSize = false;
+			this.gridColumnPosition.OptionsColumn.FixedWidth = true;
+			this.gridColumnPosition.OptionsColumn.ReadOnly = true;
+			this.gridColumnPosition.OptionsColumn.ShowCaption = false;
+			this.gridColumnPosition.RowCount = 2;
+			this.gridColumnPosition.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+			this.gridColumnPosition.Visible = true;
+			this.gridColumnPosition.Width = 120;
 			// 
-			// repositoryItemButtonEditPrintProducts
+			// repositoryItemButtonEditPosition
 			// 
-			this.repositoryItemButtonEditPrintProducts.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.repositoryItemButtonEditPrintProducts.Appearance.Options.UseFont = true;
-			this.repositoryItemButtonEditPrintProducts.Appearance.Options.UseTextOptions = true;
-			this.repositoryItemButtonEditPrintProducts.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.repositoryItemButtonEditPrintProducts.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.repositoryItemButtonEditPrintProducts.AppearanceDisabled.Options.UseFont = true;
-			this.repositoryItemButtonEditPrintProducts.AppearanceDisabled.Options.UseTextOptions = true;
-			this.repositoryItemButtonEditPrintProducts.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.repositoryItemButtonEditPrintProducts.AutoHeight = false;
-			this.repositoryItemButtonEditPrintProducts.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditPrintProducts.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "Nudge Up", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditPrintProducts.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "Nudge Down", null, null, true)});
-			this.repositoryItemButtonEditPrintProducts.Name = "repositoryItemButtonEditPrintProducts";
-			this.repositoryItemButtonEditPrintProducts.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.repositoryItemButtonEditPrintProducts.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit_ButtonClick);
+			this.repositoryItemButtonEditPosition.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.repositoryItemButtonEditPosition.Appearance.Options.UseFont = true;
+			this.repositoryItemButtonEditPosition.Appearance.Options.UseTextOptions = true;
+			this.repositoryItemButtonEditPosition.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.repositoryItemButtonEditPosition.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.repositoryItemButtonEditPosition.AppearanceDisabled.Options.UseFont = true;
+			this.repositoryItemButtonEditPosition.AppearanceDisabled.Options.UseTextOptions = true;
+			this.repositoryItemButtonEditPosition.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.repositoryItemButtonEditPosition.AutoHeight = false;
+			this.repositoryItemButtonEditPosition.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditPosition.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, "Nudge Up", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditPosition.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject10, "Nudge Down", null, null, true)});
+			this.repositoryItemButtonEditPosition.Name = "repositoryItemButtonEditPosition";
+			this.repositoryItemButtonEditPosition.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.repositoryItemButtonEditPosition.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit_ButtonClick);
 			// 
 			// gridBandPrintProductsPublication
 			// 
 			this.gridBandPrintProductsPublication.Caption = "Product";
-			this.gridBandPrintProductsPublication.Columns.Add(this.gridColumnPrintProductsName);
-			this.gridBandPrintProductsPublication.Columns.Add(this.gridColumnPrintProductsDailyDelivery);
-			this.gridBandPrintProductsPublication.Columns.Add(this.gridColumnPrintProductsSundayDelivery);
-			this.gridBandPrintProductsPublication.Columns.Add(this.gridColumnPrintProductsDailyReadership);
-			this.gridBandPrintProductsPublication.Columns.Add(this.gridColumnPrintProductsSundayReadership);
+			this.gridBandPrintProductsPublication.Columns.Add(this.gridColumnName);
+			this.gridBandPrintProductsPublication.Columns.Add(this.gridColumnDailyDelivery);
+			this.gridBandPrintProductsPublication.Columns.Add(this.gridColumnSundayDelivery);
+			this.gridBandPrintProductsPublication.Columns.Add(this.gridColumnDailyReadership);
+			this.gridBandPrintProductsPublication.Columns.Add(this.gridColumnSundayReadership);
 			this.gridBandPrintProductsPublication.Name = "gridBandPrintProductsPublication";
 			this.gridBandPrintProductsPublication.Width = 679;
 			// 
-			// gridColumnPrintProductsName
+			// gridColumnName
 			// 
-			this.gridColumnPrintProductsName.AppearanceCell.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.gridColumnPrintProductsName.AppearanceCell.Options.UseFont = true;
-			this.gridColumnPrintProductsName.Caption = "Product";
-			this.gridColumnPrintProductsName.ColumnEdit = this.repositoryItemComboBoxPrintProducts;
-			this.gridColumnPrintProductsName.FieldName = "Name";
-			this.gridColumnPrintProductsName.Name = "gridColumnPrintProductsName";
-			this.gridColumnPrintProductsName.RowCount = 2;
-			this.gridColumnPrintProductsName.Visible = true;
-			this.gridColumnPrintProductsName.Width = 679;
+			this.gridColumnName.AppearanceCell.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.gridColumnName.AppearanceCell.Options.UseFont = true;
+			this.gridColumnName.Caption = "Product";
+			this.gridColumnName.ColumnEdit = this.repositoryItemComboBox;
+			this.gridColumnName.FieldName = "Name";
+			this.gridColumnName.Name = "gridColumnName";
+			this.gridColumnName.RowCount = 2;
+			this.gridColumnName.Visible = true;
+			this.gridColumnName.Width = 679;
 			// 
-			// repositoryItemComboBoxPrintProducts
+			// repositoryItemComboBox
 			// 
-			this.repositoryItemComboBoxPrintProducts.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.repositoryItemComboBoxPrintProducts.Appearance.Options.UseFont = true;
-			this.repositoryItemComboBoxPrintProducts.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.repositoryItemComboBoxPrintProducts.AppearanceDropDown.Options.UseFont = true;
-			this.repositoryItemComboBoxPrintProducts.AppearanceFocused.Font = new System.Drawing.Font("Arial", 12F);
-			this.repositoryItemComboBoxPrintProducts.AppearanceFocused.Options.UseFont = true;
-			this.repositoryItemComboBoxPrintProducts.AutoHeight = false;
-			this.repositoryItemComboBoxPrintProducts.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.repositoryItemComboBox.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.repositoryItemComboBox.Appearance.Options.UseFont = true;
+			this.repositoryItemComboBox.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.repositoryItemComboBox.AppearanceDropDown.Options.UseFont = true;
+			this.repositoryItemComboBox.AppearanceFocused.Font = new System.Drawing.Font("Arial", 12F);
+			this.repositoryItemComboBox.AppearanceFocused.Options.UseFont = true;
+			this.repositoryItemComboBox.AutoHeight = false;
+			this.repositoryItemComboBox.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.repositoryItemComboBoxPrintProducts.Name = "repositoryItemComboBoxPrintProducts";
-			this.repositoryItemComboBoxPrintProducts.NullText = "Click here to select publication";
-			this.repositoryItemComboBoxPrintProducts.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemComboBox_Closed);
+			this.repositoryItemComboBox.Name = "repositoryItemComboBox";
+			this.repositoryItemComboBox.NullText = "Click here to select publication";
+			this.repositoryItemComboBox.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemComboBox_Closed);
 			// 
-			// gridColumnPrintProductsDailyDelivery
+			// gridColumnDailyDelivery
 			// 
-			this.gridColumnPrintProductsDailyDelivery.Caption = "Daily Delivery";
-			this.gridColumnPrintProductsDailyDelivery.ColumnEdit = this.repositoryItemSpinEditPrintProducts;
-			this.gridColumnPrintProductsDailyDelivery.FieldName = "DailyDelivery";
-			this.gridColumnPrintProductsDailyDelivery.Name = "gridColumnPrintProductsDailyDelivery";
-			this.gridColumnPrintProductsDailyDelivery.RowIndex = 1;
-			this.gridColumnPrintProductsDailyDelivery.Width = 86;
+			this.gridColumnDailyDelivery.Caption = "Daily Delivery";
+			this.gridColumnDailyDelivery.ColumnEdit = this.repositoryItemSpinEdit;
+			this.gridColumnDailyDelivery.FieldName = "DailyDelivery";
+			this.gridColumnDailyDelivery.Name = "gridColumnDailyDelivery";
+			this.gridColumnDailyDelivery.RowIndex = 1;
+			this.gridColumnDailyDelivery.Width = 86;
 			// 
-			// repositoryItemSpinEditPrintProducts
+			// repositoryItemSpinEdit
 			// 
-			this.repositoryItemSpinEditPrintProducts.AutoHeight = false;
-			this.repositoryItemSpinEditPrintProducts.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
-			this.repositoryItemSpinEditPrintProducts.DisplayFormat.FormatString = "#,##0";
-			this.repositoryItemSpinEditPrintProducts.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.repositoryItemSpinEditPrintProducts.IsFloatValue = false;
-			this.repositoryItemSpinEditPrintProducts.Mask.EditMask = "N00";
-			this.repositoryItemSpinEditPrintProducts.MaxValue = new decimal(new int[] {
+			this.repositoryItemSpinEdit.AutoHeight = false;
+			this.repositoryItemSpinEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject11, "", null, null, true)});
+			this.repositoryItemSpinEdit.DisplayFormat.FormatString = "#,##0";
+			this.repositoryItemSpinEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+			this.repositoryItemSpinEdit.IsFloatValue = false;
+			this.repositoryItemSpinEdit.Mask.EditMask = "N00";
+			this.repositoryItemSpinEdit.MaxValue = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-			this.repositoryItemSpinEditPrintProducts.Name = "repositoryItemSpinEditPrintProducts";
-			this.repositoryItemSpinEditPrintProducts.NullText = "N/A";
+			this.repositoryItemSpinEdit.Name = "repositoryItemSpinEdit";
+			this.repositoryItemSpinEdit.NullText = "N/A";
 			// 
-			// gridColumnPrintProductsSundayDelivery
+			// gridColumnSundayDelivery
 			// 
-			this.gridColumnPrintProductsSundayDelivery.Caption = "Sunday Delivery";
-			this.gridColumnPrintProductsSundayDelivery.ColumnEdit = this.repositoryItemSpinEditPrintProducts;
-			this.gridColumnPrintProductsSundayDelivery.FieldName = "SundayDelivery";
-			this.gridColumnPrintProductsSundayDelivery.Name = "gridColumnPrintProductsSundayDelivery";
-			this.gridColumnPrintProductsSundayDelivery.RowIndex = 1;
-			this.gridColumnPrintProductsSundayDelivery.Width = 89;
+			this.gridColumnSundayDelivery.Caption = "Sunday Delivery";
+			this.gridColumnSundayDelivery.ColumnEdit = this.repositoryItemSpinEdit;
+			this.gridColumnSundayDelivery.FieldName = "SundayDelivery";
+			this.gridColumnSundayDelivery.Name = "gridColumnSundayDelivery";
+			this.gridColumnSundayDelivery.RowIndex = 1;
+			this.gridColumnSundayDelivery.Width = 89;
 			// 
-			// gridColumnPrintProductsDailyReadership
+			// gridColumnDailyReadership
 			// 
-			this.gridColumnPrintProductsDailyReadership.Caption = "Daily Readership";
-			this.gridColumnPrintProductsDailyReadership.ColumnEdit = this.repositoryItemSpinEditPrintProducts;
-			this.gridColumnPrintProductsDailyReadership.FieldName = "DailyReadership";
-			this.gridColumnPrintProductsDailyReadership.Name = "gridColumnPrintProductsDailyReadership";
-			this.gridColumnPrintProductsDailyReadership.RowIndex = 1;
-			this.gridColumnPrintProductsDailyReadership.Width = 88;
+			this.gridColumnDailyReadership.Caption = "Daily Readership";
+			this.gridColumnDailyReadership.ColumnEdit = this.repositoryItemSpinEdit;
+			this.gridColumnDailyReadership.FieldName = "DailyReadership";
+			this.gridColumnDailyReadership.Name = "gridColumnDailyReadership";
+			this.gridColumnDailyReadership.RowIndex = 1;
+			this.gridColumnDailyReadership.Width = 88;
 			// 
-			// gridColumnPrintProductsSundayReadership
+			// gridColumnSundayReadership
 			// 
-			this.gridColumnPrintProductsSundayReadership.Caption = "Sunday Readership";
-			this.gridColumnPrintProductsSundayReadership.ColumnEdit = this.repositoryItemSpinEditPrintProducts;
-			this.gridColumnPrintProductsSundayReadership.FieldName = "SundayReadership";
-			this.gridColumnPrintProductsSundayReadership.Name = "gridColumnPrintProductsSundayReadership";
-			this.gridColumnPrintProductsSundayReadership.RowIndex = 1;
-			this.gridColumnPrintProductsSundayReadership.Width = 116;
+			this.gridColumnSundayReadership.Caption = "Sunday Readership";
+			this.gridColumnSundayReadership.ColumnEdit = this.repositoryItemSpinEdit;
+			this.gridColumnSundayReadership.FieldName = "SundayReadership";
+			this.gridColumnSundayReadership.Name = "gridColumnSundayReadership";
+			this.gridColumnSundayReadership.RowIndex = 1;
+			this.gridColumnSundayReadership.Width = 116;
 			// 
 			// gridBandAbbreviation
 			// 
 			this.gridBandAbbreviation.Caption = "Code";
-			this.gridBandAbbreviation.Columns.Add(this.gridColumnPrintProductsAbbreviation);
+			this.gridBandAbbreviation.Columns.Add(this.gridColumnAbbreviation);
 			this.gridBandAbbreviation.Name = "gridBandAbbreviation";
 			this.gridBandAbbreviation.OptionsBand.AllowMove = false;
 			this.gridBandAbbreviation.OptionsBand.AllowSize = false;
@@ -376,36 +322,35 @@
 			this.gridBandAbbreviation.Visible = false;
 			this.gridBandAbbreviation.Width = 114;
 			// 
-			// gridColumnPrintProductsAbbreviation
+			// gridColumnAbbreviation
 			// 
-			this.gridColumnPrintProductsAbbreviation.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnPrintProductsAbbreviation.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumnPrintProductsAbbreviation.Caption = "Code";
-			this.gridColumnPrintProductsAbbreviation.ColumnEdit = this.repositoryItemTextEditPrintProducts;
-			this.gridColumnPrintProductsAbbreviation.FieldName = "Abbreviation";
-			this.gridColumnPrintProductsAbbreviation.Name = "gridColumnPrintProductsAbbreviation";
-			this.gridColumnPrintProductsAbbreviation.RowCount = 2;
-			this.gridColumnPrintProductsAbbreviation.Visible = true;
-			this.gridColumnPrintProductsAbbreviation.Width = 114;
+			this.gridColumnAbbreviation.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumnAbbreviation.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumnAbbreviation.Caption = "Code";
+			this.gridColumnAbbreviation.ColumnEdit = this.repositoryItemTextEdit;
+			this.gridColumnAbbreviation.FieldName = "Abbreviation";
+			this.gridColumnAbbreviation.Name = "gridColumnAbbreviation";
+			this.gridColumnAbbreviation.RowCount = 2;
+			this.gridColumnAbbreviation.Visible = true;
+			this.gridColumnAbbreviation.Width = 114;
 			// 
-			// repositoryItemTextEditPrintProducts
+			// repositoryItemTextEdit
 			// 
-			this.repositoryItemTextEditPrintProducts.Appearance.Font = new System.Drawing.Font("Arial", 10F);
-			this.repositoryItemTextEditPrintProducts.Appearance.Options.UseFont = true;
-			this.repositoryItemTextEditPrintProducts.Appearance.Options.UseTextOptions = true;
-			this.repositoryItemTextEditPrintProducts.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.repositoryItemTextEditPrintProducts.AppearanceFocused.Font = new System.Drawing.Font("Arial", 10F);
-			this.repositoryItemTextEditPrintProducts.AppearanceFocused.Options.UseFont = true;
-			this.repositoryItemTextEditPrintProducts.AppearanceFocused.Options.UseTextOptions = true;
-			this.repositoryItemTextEditPrintProducts.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.repositoryItemTextEditPrintProducts.AutoHeight = false;
-			this.repositoryItemTextEditPrintProducts.Name = "repositoryItemTextEditPrintProducts";
+			this.repositoryItemTextEdit.Appearance.Font = new System.Drawing.Font("Arial", 10F);
+			this.repositoryItemTextEdit.Appearance.Options.UseFont = true;
+			this.repositoryItemTextEdit.Appearance.Options.UseTextOptions = true;
+			this.repositoryItemTextEdit.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.repositoryItemTextEdit.AppearanceFocused.Font = new System.Drawing.Font("Arial", 10F);
+			this.repositoryItemTextEdit.AppearanceFocused.Options.UseFont = true;
+			this.repositoryItemTextEdit.AppearanceFocused.Options.UseTextOptions = true;
+			this.repositoryItemTextEdit.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.repositoryItemTextEdit.AutoHeight = false;
+			this.repositoryItemTextEdit.Name = "repositoryItemTextEdit";
 			// 
 			// gridBandLogo
 			// 
 			this.gridBandLogo.Caption = "Logo";
-			this.gridBandLogo.Columns.Add(this.gridColumnPrintProductsLogo);
-			this.gridBandLogo.Columns.Add(this.gridColumnPrintProductsChangeLogo);
+			this.gridBandLogo.Columns.Add(this.gridColumnLogo);
 			this.gridBandLogo.Name = "gridBandLogo";
 			this.gridBandLogo.OptionsBand.AllowMove = false;
 			this.gridBandLogo.OptionsBand.AllowSize = false;
@@ -413,59 +358,67 @@
 			this.gridBandLogo.Visible = false;
 			this.gridBandLogo.Width = 170;
 			// 
-			// gridColumnPrintProductsLogo
+			// gridColumnLogo
 			// 
-			this.gridColumnPrintProductsLogo.Caption = "Logo";
-			this.gridColumnPrintProductsLogo.ColumnEdit = this.repositoryItemPictureEditPrintProducts;
-			this.gridColumnPrintProductsLogo.FieldName = "SmallLogo";
-			this.gridColumnPrintProductsLogo.Name = "gridColumnPrintProductsLogo";
-			this.gridColumnPrintProductsLogo.OptionsColumn.AllowEdit = false;
-			this.gridColumnPrintProductsLogo.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
-			this.gridColumnPrintProductsLogo.OptionsColumn.AllowSize = false;
-			this.gridColumnPrintProductsLogo.OptionsColumn.FixedWidth = true;
-			this.gridColumnPrintProductsLogo.OptionsColumn.ReadOnly = true;
-			this.gridColumnPrintProductsLogo.RowCount = 2;
-			this.gridColumnPrintProductsLogo.Visible = true;
-			this.gridColumnPrintProductsLogo.Width = 120;
+			this.gridColumnLogo.Caption = "Logo";
+			this.gridColumnLogo.ColumnEdit = this.repositoryItemPictureEdit;
+			this.gridColumnLogo.FieldName = "SmallLogo";
+			this.gridColumnLogo.Name = "gridColumnLogo";
+			this.gridColumnLogo.OptionsColumn.AllowEdit = false;
+			this.gridColumnLogo.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
+			this.gridColumnLogo.OptionsColumn.AllowSize = false;
+			this.gridColumnLogo.OptionsColumn.FixedWidth = true;
+			this.gridColumnLogo.OptionsColumn.ReadOnly = true;
+			this.gridColumnLogo.RowCount = 2;
+			this.gridColumnLogo.Visible = true;
+			this.gridColumnLogo.Width = 120;
 			// 
-			// repositoryItemPictureEditPrintProducts
+			// repositoryItemPictureEdit
 			// 
-			this.repositoryItemPictureEditPrintProducts.AllowFocused = false;
-			this.repositoryItemPictureEditPrintProducts.Appearance.Options.UseTextOptions = true;
-			this.repositoryItemPictureEditPrintProducts.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.repositoryItemPictureEditPrintProducts.AppearanceDisabled.Options.UseTextOptions = true;
-			this.repositoryItemPictureEditPrintProducts.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.repositoryItemPictureEditPrintProducts.AppearanceFocused.Options.UseTextOptions = true;
-			this.repositoryItemPictureEditPrintProducts.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.repositoryItemPictureEditPrintProducts.AppearanceReadOnly.Options.UseTextOptions = true;
-			this.repositoryItemPictureEditPrintProducts.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.repositoryItemPictureEditPrintProducts.CustomHeight = 50;
-			this.repositoryItemPictureEditPrintProducts.Name = "repositoryItemPictureEditPrintProducts";
-			this.repositoryItemPictureEditPrintProducts.NullText = "No Logo";
-			this.repositoryItemPictureEditPrintProducts.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.Image;
-			this.repositoryItemPictureEditPrintProducts.ReadOnly = true;
-			this.repositoryItemPictureEditPrintProducts.ShowMenu = false;
-			this.repositoryItemPictureEditPrintProducts.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
+			this.repositoryItemPictureEdit.AllowFocused = false;
+			this.repositoryItemPictureEdit.Appearance.Options.UseTextOptions = true;
+			this.repositoryItemPictureEdit.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.repositoryItemPictureEdit.AppearanceDisabled.Options.UseTextOptions = true;
+			this.repositoryItemPictureEdit.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.repositoryItemPictureEdit.AppearanceFocused.Options.UseTextOptions = true;
+			this.repositoryItemPictureEdit.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.repositoryItemPictureEdit.AppearanceReadOnly.Options.UseTextOptions = true;
+			this.repositoryItemPictureEdit.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.repositoryItemPictureEdit.CustomHeight = 50;
+			this.repositoryItemPictureEdit.Name = "repositoryItemPictureEdit";
+			this.repositoryItemPictureEdit.NullText = "No Logo";
+			this.repositoryItemPictureEdit.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.Image;
+			this.repositoryItemPictureEdit.ReadOnly = true;
+			this.repositoryItemPictureEdit.ShowMenu = false;
+			this.repositoryItemPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
 			// 
-			// gridColumnPrintProductsChangeLogo
+			// gridBandDelete
 			// 
-			this.gridColumnPrintProductsChangeLogo.Caption = "Change Logo";
-			this.gridColumnPrintProductsChangeLogo.ColumnEdit = this.repositoryItemButtonEditChangeLogoPrintProducts;
-			this.gridColumnPrintProductsChangeLogo.Name = "gridColumnPrintProductsChangeLogo";
-			this.gridColumnPrintProductsChangeLogo.OptionsColumn.ShowCaption = false;
-			this.gridColumnPrintProductsChangeLogo.RowCount = 2;
-			this.gridColumnPrintProductsChangeLogo.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-			this.gridColumnPrintProductsChangeLogo.Visible = true;
-			this.gridColumnPrintProductsChangeLogo.Width = 50;
+			this.gridBandDelete.Columns.Add(this.gridColumnDelete);
+			this.gridBandDelete.Name = "gridBandDelete";
+			this.gridBandDelete.OptionsBand.FixedWidth = true;
+			this.gridBandDelete.OptionsBand.ShowCaption = false;
+			this.gridBandDelete.Width = 48;
 			// 
-			// repositoryItemButtonEditChangeLogoPrintProducts
+			// gridColumnDelete
 			// 
-			this.repositoryItemButtonEditChangeLogoPrintProducts.AutoHeight = false;
-			this.repositoryItemButtonEditChangeLogoPrintProducts.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "Browse for a logo", null, null, true)});
-			this.repositoryItemButtonEditChangeLogoPrintProducts.Name = "repositoryItemButtonEditChangeLogoPrintProducts";
-			this.repositoryItemButtonEditChangeLogoPrintProducts.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-			this.repositoryItemButtonEditChangeLogoPrintProducts.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditChangeLogo_ButtonClick);
+			this.gridColumnDelete.Caption = "Delete";
+			this.gridColumnDelete.ColumnEdit = this.repositoryItemButtonEditDelete;
+			this.gridColumnDelete.Name = "gridColumnDelete";
+			this.gridColumnDelete.OptionsColumn.ShowCaption = false;
+			this.gridColumnDelete.RowCount = 2;
+			this.gridColumnDelete.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+			this.gridColumnDelete.Visible = true;
+			this.gridColumnDelete.Width = 48;
+			// 
+			// repositoryItemButtonEditDelete
+			// 
+			this.repositoryItemButtonEditDelete.AutoHeight = false;
+			this.repositoryItemButtonEditDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject12, "", null, null, true)});
+			this.repositoryItemButtonEditDelete.Name = "repositoryItemButtonEditDelete";
+			this.repositoryItemButtonEditDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+			this.repositoryItemButtonEditDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditDelete_ButtonClick);
 			// 
 			// defaultLookAndFeel
 			// 
@@ -522,9 +475,9 @@
 			// 
 			this.pictureBoxPrintProductAppLogo.Dock = System.Windows.Forms.DockStyle.Right;
 			this.pictureBoxPrintProductAppLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AppLogo;
-			this.pictureBoxPrintProductAppLogo.Location = new System.Drawing.Point(670, 0);
+			this.pictureBoxPrintProductAppLogo.Location = new System.Drawing.Point(666, 0);
 			this.pictureBoxPrintProductAppLogo.Name = "pictureBoxPrintProductAppLogo";
-			this.pictureBoxPrintProductAppLogo.Size = new System.Drawing.Size(156, 38);
+			this.pictureBoxPrintProductAppLogo.Size = new System.Drawing.Size(160, 38);
 			this.pictureBoxPrintProductAppLogo.TabIndex = 7;
 			this.pictureBoxPrintProductAppLogo.TabStop = false;
 			// 
@@ -537,9 +490,9 @@
 			this.buttonXPrintProductLogo.Name = "buttonXPrintProductLogo";
 			this.buttonXPrintProductLogo.Size = new System.Drawing.Size(84, 29);
 			this.buttonXPrintProductLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem1.Text = "Show Logo";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.toolTipController.SetSuperTip(this.buttonXPrintProductLogo, superToolTip1);
+			toolTipItem9.Text = "Show Logo";
+			superToolTip9.Items.Add(toolTipItem9);
+			this.toolTipController.SetSuperTip(this.buttonXPrintProductLogo, superToolTip9);
 			this.buttonXPrintProductLogo.TabIndex = 6;
 			this.buttonXPrintProductLogo.Text = "Logo";
 			this.buttonXPrintProductLogo.TextColor = System.Drawing.Color.Black;
@@ -554,9 +507,9 @@
 			this.buttonXPrintProductCode.Name = "buttonXPrintProductCode";
 			this.buttonXPrintProductCode.Size = new System.Drawing.Size(84, 29);
 			this.buttonXPrintProductCode.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem2.Text = "Show Publication Code";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.toolTipController.SetSuperTip(this.buttonXPrintProductCode, superToolTip2);
+			toolTipItem10.Text = "Show Publication Code";
+			superToolTip10.Items.Add(toolTipItem10);
+			this.toolTipController.SetSuperTip(this.buttonXPrintProductCode, superToolTip10);
 			this.buttonXPrintProductCode.TabIndex = 5;
 			this.buttonXPrintProductCode.Text = "Code";
 			this.buttonXPrintProductCode.TextColor = System.Drawing.Color.Black;
@@ -571,9 +524,9 @@
 			this.buttonXPrintProductDelivery.Name = "buttonXPrintProductDelivery";
 			this.buttonXPrintProductDelivery.Size = new System.Drawing.Size(84, 29);
 			this.buttonXPrintProductDelivery.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem3.Text = "Show Delivery";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.toolTipController.SetSuperTip(this.buttonXPrintProductDelivery, superToolTip3);
+			toolTipItem11.Text = "Show Delivery";
+			superToolTip11.Items.Add(toolTipItem11);
+			this.toolTipController.SetSuperTip(this.buttonXPrintProductDelivery, superToolTip11);
 			this.buttonXPrintProductDelivery.TabIndex = 4;
 			this.buttonXPrintProductDelivery.Text = "Delivery";
 			this.buttonXPrintProductDelivery.TextColor = System.Drawing.Color.Black;
@@ -588,9 +541,9 @@
 			this.buttonXPrintProductReadership.Name = "buttonXPrintProductReadership";
 			this.buttonXPrintProductReadership.Size = new System.Drawing.Size(84, 29);
 			this.buttonXPrintProductReadership.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem4.Text = "Show Readership";
-			superToolTip4.Items.Add(toolTipItem4);
-			this.toolTipController.SetSuperTip(this.buttonXPrintProductReadership, superToolTip4);
+			toolTipItem12.Text = "Show Readership";
+			superToolTip12.Items.Add(toolTipItem12);
+			this.toolTipController.SetSuperTip(this.buttonXPrintProductReadership, superToolTip12);
 			this.buttonXPrintProductReadership.TabIndex = 3;
 			this.buttonXPrintProductReadership.Text = "Readership";
 			this.buttonXPrintProductReadership.TextColor = System.Drawing.Color.Black;
@@ -598,591 +551,21 @@
 			// 
 			// xtraTabPageDigitalProducts
 			// 
-			this.xtraTabPageDigitalProducts.Controls.Add(this.gridControlDigitalProducts);
-			this.xtraTabPageDigitalProducts.Controls.Add(this.pnDigitalProductBottomBar);
+			this.xtraTabPageDigitalProducts.Controls.Add(this.digitalProductListControl);
 			this.xtraTabPageDigitalProducts.Name = "xtraTabPageDigitalProducts";
 			this.xtraTabPageDigitalProducts.Size = new System.Drawing.Size(826, 404);
 			this.xtraTabPageDigitalProducts.Text = "Digital Products";
 			// 
-			// gridControlDigitalProducts
-			// 
-			this.gridControlDigitalProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControlDigitalProducts.Location = new System.Drawing.Point(0, 0);
-			this.gridControlDigitalProducts.MainView = this.advBandedGridViewDigitalProducts;
-			this.gridControlDigitalProducts.Name = "gridControlDigitalProducts";
-			this.gridControlDigitalProducts.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemButtonEditDigitalProducts,
-            this.repositoryItemComboBoxDigitalProductsNames,
-            this.repositoryItemComboBoxDigitalProductsType,
-            this.repositoryItemComboBoxDigitalProductsRateType,
-            this.repositoryItemSpinEditDigitalProductsSize,
-            this.repositoryItemButtonEditDigitalProductsDelete,
-            this.repositoryItemSpinEditDigitalProductsRate,
-            this.repositoryItemComboBoxDigitalProductsLocation,
-            this.repositoryItemButtonEditDigitalProductsTarget});
-			this.gridControlDigitalProducts.Size = new System.Drawing.Size(826, 366);
-			this.gridControlDigitalProducts.TabIndex = 1;
-			this.gridControlDigitalProducts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.advBandedGridViewDigitalProducts});
-			// 
-			// advBandedGridViewDigitalProducts
-			// 
-			this.advBandedGridViewDigitalProducts.Appearance.BandPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-			this.advBandedGridViewDigitalProducts.Appearance.BandPanel.Options.UseFont = true;
-			this.advBandedGridViewDigitalProducts.Appearance.BandPanel.Options.UseTextOptions = true;
-			this.advBandedGridViewDigitalProducts.Appearance.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.advBandedGridViewDigitalProducts.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-			this.advBandedGridViewDigitalProducts.Appearance.HeaderPanel.Options.UseFont = true;
-			this.advBandedGridViewDigitalProducts.Appearance.HeaderPanel.Options.UseTextOptions = true;
-			this.advBandedGridViewDigitalProducts.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.advBandedGridViewDigitalProducts.Appearance.Preview.Font = new System.Drawing.Font("Tahoma", 3.75F);
-			this.advBandedGridViewDigitalProducts.Appearance.Preview.Options.UseFont = true;
-			this.advBandedGridViewDigitalProducts.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.advBandedGridViewDigitalProducts.Appearance.Row.Options.UseFont = true;
-			this.advBandedGridViewDigitalProducts.Appearance.RowSeparator.BackColor = System.Drawing.Color.AliceBlue;
-			this.advBandedGridViewDigitalProducts.Appearance.RowSeparator.Options.UseBackColor = true;
-			this.advBandedGridViewDigitalProducts.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
-            this.gridBandDigitalProductNumber,
-            this.gridBandDigitalProductType,
-            this.gridBandDigitalProductName,
-            this.gridBandDigitalProductWidth,
-            this.gridBandDigitalProductHeight,
-            this.gridBandDigitalProductRate,
-            this.gridBandTarget,
-            this.gridBandDigitalProductDelete});
-			this.advBandedGridViewDigitalProducts.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
-            this.gridColumnDigitalProductsPosition,
-            this.gridColumnDigitalProductsName,
-            this.gridColumnDigitalProductsRateType,
-            this.gridColumnDigitalProductsWidth,
-            this.gridColumnDigitalProductsHeight,
-            this.gridColumnDigitalProductsDelete,
-            this.gridColumnDigitalProductsCategory,
-            this.gridColumnDigitalProductsSubCategory,
-            this.gridColumnDigitalProductsRate,
-            this.gridColumnDigitalProductsLocation,
-            this.gridColumnDigitalProductsTarget});
-			this.advBandedGridViewDigitalProducts.GridControl = this.gridControlDigitalProducts;
-			this.advBandedGridViewDigitalProducts.Name = "advBandedGridViewDigitalProducts";
-			this.advBandedGridViewDigitalProducts.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-			this.advBandedGridViewDigitalProducts.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-			this.advBandedGridViewDigitalProducts.OptionsBehavior.AutoPopulateColumns = false;
-			this.advBandedGridViewDigitalProducts.OptionsBehavior.AutoUpdateTotalSummary = false;
-			this.advBandedGridViewDigitalProducts.OptionsCustomization.AllowBandMoving = false;
-			this.advBandedGridViewDigitalProducts.OptionsCustomization.AllowFilter = false;
-			this.advBandedGridViewDigitalProducts.OptionsCustomization.AllowGroup = false;
-			this.advBandedGridViewDigitalProducts.OptionsCustomization.AllowQuickHideColumns = false;
-			this.advBandedGridViewDigitalProducts.OptionsCustomization.AllowSort = false;
-			this.advBandedGridViewDigitalProducts.OptionsFilter.AllowColumnMRUFilterList = false;
-			this.advBandedGridViewDigitalProducts.OptionsFilter.AllowFilterEditor = false;
-			this.advBandedGridViewDigitalProducts.OptionsFilter.AllowMRUFilterList = false;
-			this.advBandedGridViewDigitalProducts.OptionsMenu.EnableColumnMenu = false;
-			this.advBandedGridViewDigitalProducts.OptionsMenu.EnableFooterMenu = false;
-			this.advBandedGridViewDigitalProducts.OptionsMenu.EnableGroupPanelMenu = false;
-			this.advBandedGridViewDigitalProducts.OptionsMenu.ShowDateTimeGroupIntervalItems = false;
-			this.advBandedGridViewDigitalProducts.OptionsMenu.ShowGroupSortSummaryItems = false;
-			this.advBandedGridViewDigitalProducts.OptionsSelection.EnableAppearanceHideSelection = false;
-			this.advBandedGridViewDigitalProducts.OptionsSelection.UseIndicatorForSelection = false;
-			this.advBandedGridViewDigitalProducts.OptionsView.ColumnAutoWidth = true;
-			this.advBandedGridViewDigitalProducts.OptionsView.ShowColumnHeaders = false;
-			this.advBandedGridViewDigitalProducts.OptionsView.ShowDetailButtons = false;
-			this.advBandedGridViewDigitalProducts.OptionsView.ShowGroupExpandCollapseButtons = false;
-			this.advBandedGridViewDigitalProducts.OptionsView.ShowGroupPanel = false;
-			this.advBandedGridViewDigitalProducts.OptionsView.ShowIndicator = false;
-			this.advBandedGridViewDigitalProducts.RowSeparatorHeight = 10;
-			this.advBandedGridViewDigitalProducts.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridViewDigitalProducts_ShowingEditor);
-			this.advBandedGridViewDigitalProducts.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewDigitalProducts_CellValueChanged);
-			// 
-			// gridBandDigitalProductNumber
-			// 
-			this.gridBandDigitalProductNumber.Columns.Add(this.gridColumnDigitalProductsPosition);
-			this.gridBandDigitalProductNumber.MinWidth = 20;
-			this.gridBandDigitalProductNumber.Name = "gridBandDigitalProductNumber";
-			this.gridBandDigitalProductNumber.OptionsBand.AllowSize = false;
-			this.gridBandDigitalProductNumber.OptionsBand.FixedWidth = true;
-			this.gridBandDigitalProductNumber.Width = 120;
-			// 
-			// gridColumnDigitalProductsPosition
-			// 
-			this.gridColumnDigitalProductsPosition.AppearanceCell.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
-			this.gridColumnDigitalProductsPosition.AppearanceCell.Options.UseFont = true;
-			this.gridColumnDigitalProductsPosition.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnDigitalProductsPosition.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumnDigitalProductsPosition.Caption = "Position";
-			this.gridColumnDigitalProductsPosition.ColumnEdit = this.repositoryItemButtonEditDigitalProducts;
-			this.gridColumnDigitalProductsPosition.FieldName = "Index";
-			this.gridColumnDigitalProductsPosition.Name = "gridColumnDigitalProductsPosition";
-			this.gridColumnDigitalProductsPosition.OptionsColumn.AllowMove = false;
-			this.gridColumnDigitalProductsPosition.OptionsColumn.AllowSize = false;
-			this.gridColumnDigitalProductsPosition.OptionsColumn.FixedWidth = true;
-			this.gridColumnDigitalProductsPosition.OptionsColumn.ReadOnly = true;
-			this.gridColumnDigitalProductsPosition.OptionsColumn.ShowCaption = false;
-			this.gridColumnDigitalProductsPosition.RowCount = 2;
-			this.gridColumnDigitalProductsPosition.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-			this.gridColumnDigitalProductsPosition.Visible = true;
-			this.gridColumnDigitalProductsPosition.Width = 120;
-			// 
-			// repositoryItemButtonEditDigitalProducts
-			// 
-			this.repositoryItemButtonEditDigitalProducts.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.repositoryItemButtonEditDigitalProducts.Appearance.Options.UseFont = true;
-			this.repositoryItemButtonEditDigitalProducts.Appearance.Options.UseTextOptions = true;
-			this.repositoryItemButtonEditDigitalProducts.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.repositoryItemButtonEditDigitalProducts.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.repositoryItemButtonEditDigitalProducts.AppearanceDisabled.Options.UseFont = true;
-			this.repositoryItemButtonEditDigitalProducts.AppearanceDisabled.Options.UseTextOptions = true;
-			this.repositoryItemButtonEditDigitalProducts.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.repositoryItemButtonEditDigitalProducts.AutoHeight = false;
-			this.repositoryItemButtonEditDigitalProducts.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProducts.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "Nudge Up", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProducts.Buttons1"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "Nudge Down", null, null, true)});
-			this.repositoryItemButtonEditDigitalProducts.Name = "repositoryItemButtonEditDigitalProducts";
-			this.repositoryItemButtonEditDigitalProducts.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.repositoryItemButtonEditDigitalProducts.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditDigitalProducts_ButtonClick);
-			// 
-			// gridBandDigitalProductType
-			// 
-			this.gridBandDigitalProductType.Caption = "Product Group";
-			this.gridBandDigitalProductType.Columns.Add(this.gridColumnDigitalProductsCategory);
-			this.gridBandDigitalProductType.Columns.Add(this.gridColumnDigitalProductsSubCategory);
-			this.gridBandDigitalProductType.MinWidth = 20;
-			this.gridBandDigitalProductType.Name = "gridBandDigitalProductType";
-			this.gridBandDigitalProductType.RowCount = 2;
-			this.gridBandDigitalProductType.Width = 143;
-			// 
-			// gridColumnDigitalProductsCategory
-			// 
-			this.gridColumnDigitalProductsCategory.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.gridColumnDigitalProductsCategory.AppearanceCell.Options.UseFont = true;
-			this.gridColumnDigitalProductsCategory.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnDigitalProductsCategory.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumnDigitalProductsCategory.Caption = "Category";
-			this.gridColumnDigitalProductsCategory.FieldName = "Category";
-			this.gridColumnDigitalProductsCategory.Name = "gridColumnDigitalProductsCategory";
-			this.gridColumnDigitalProductsCategory.OptionsColumn.AllowEdit = false;
-			this.gridColumnDigitalProductsCategory.OptionsColumn.ReadOnly = true;
-			this.gridColumnDigitalProductsCategory.Visible = true;
-			this.gridColumnDigitalProductsCategory.Width = 143;
-			// 
-			// gridColumnDigitalProductsSubCategory
-			// 
-			this.gridColumnDigitalProductsSubCategory.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.gridColumnDigitalProductsSubCategory.AppearanceCell.Options.UseFont = true;
-			this.gridColumnDigitalProductsSubCategory.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnDigitalProductsSubCategory.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumnDigitalProductsSubCategory.Caption = "Product Group";
-			this.gridColumnDigitalProductsSubCategory.ColumnEdit = this.repositoryItemComboBoxDigitalProductsType;
-			this.gridColumnDigitalProductsSubCategory.FieldName = "SubCategory";
-			this.gridColumnDigitalProductsSubCategory.Name = "gridColumnDigitalProductsSubCategory";
-			this.gridColumnDigitalProductsSubCategory.RowIndex = 1;
-			this.gridColumnDigitalProductsSubCategory.Visible = true;
-			this.gridColumnDigitalProductsSubCategory.Width = 143;
-			// 
-			// repositoryItemComboBoxDigitalProductsType
-			// 
-			this.repositoryItemComboBoxDigitalProductsType.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsType.Appearance.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsType.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsType.AppearanceDisabled.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsType.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsType.AppearanceDropDown.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsType.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsType.AppearanceFocused.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsType.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsType.AppearanceReadOnly.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsType.AutoHeight = false;
-			this.repositoryItemComboBoxDigitalProductsType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.repositoryItemComboBoxDigitalProductsType.Name = "repositoryItemComboBoxDigitalProductsType";
-			this.repositoryItemComboBoxDigitalProductsType.NullText = "N/A";
-			this.repositoryItemComboBoxDigitalProductsType.Sorted = true;
-			this.repositoryItemComboBoxDigitalProductsType.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.repositoryItemComboBoxDigitalProductsType.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this.repositoryItemComboBoxDigitalProductType_CloseUp);
-			// 
-			// gridBandDigitalProductName
-			// 
-			this.gridBandDigitalProductName.Caption = "Ad Sales Unit";
-			this.gridBandDigitalProductName.Columns.Add(this.gridColumnDigitalProductsName);
-			this.gridBandDigitalProductName.Columns.Add(this.gridColumnDigitalProductsLocation);
-			this.gridBandDigitalProductName.MinWidth = 20;
-			this.gridBandDigitalProductName.Name = "gridBandDigitalProductName";
-			this.gridBandDigitalProductName.RowCount = 2;
-			this.gridBandDigitalProductName.Width = 148;
-			// 
-			// gridColumnDigitalProductsName
-			// 
-			this.gridColumnDigitalProductsName.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.gridColumnDigitalProductsName.AppearanceCell.Options.UseFont = true;
-			this.gridColumnDigitalProductsName.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnDigitalProductsName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumnDigitalProductsName.Caption = "Web Product";
-			this.gridColumnDigitalProductsName.ColumnEdit = this.repositoryItemComboBoxDigitalProductsNames;
-			this.gridColumnDigitalProductsName.FieldName = "Name";
-			this.gridColumnDigitalProductsName.Name = "gridColumnDigitalProductsName";
-			this.gridColumnDigitalProductsName.Visible = true;
-			this.gridColumnDigitalProductsName.Width = 148;
-			// 
-			// repositoryItemComboBoxDigitalProductsNames
-			// 
-			this.repositoryItemComboBoxDigitalProductsNames.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.repositoryItemComboBoxDigitalProductsNames.Appearance.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsNames.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsNames.AppearanceDisabled.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsNames.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.repositoryItemComboBoxDigitalProductsNames.AppearanceDropDown.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsNames.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsNames.AppearanceFocused.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsNames.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsNames.AppearanceReadOnly.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsNames.AutoHeight = false;
-			this.repositoryItemComboBoxDigitalProductsNames.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.repositoryItemComboBoxDigitalProductsNames.Name = "repositoryItemComboBoxDigitalProductsNames";
-			this.repositoryItemComboBoxDigitalProductsNames.NullText = "Select Product";
-			this.repositoryItemComboBoxDigitalProductsNames.Sorted = true;
-			this.repositoryItemComboBoxDigitalProductsNames.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemComboBoxDigitalProductName_Closed);
-			// 
-			// gridColumnDigitalProductsLocation
-			// 
-			this.gridColumnDigitalProductsLocation.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.gridColumnDigitalProductsLocation.AppearanceCell.Options.UseFont = true;
-			this.gridColumnDigitalProductsLocation.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnDigitalProductsLocation.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumnDigitalProductsLocation.Caption = "Location";
-			this.gridColumnDigitalProductsLocation.ColumnEdit = this.repositoryItemComboBoxDigitalProductsLocation;
-			this.gridColumnDigitalProductsLocation.FieldName = "Location";
-			this.gridColumnDigitalProductsLocation.Name = "gridColumnDigitalProductsLocation";
-			this.gridColumnDigitalProductsLocation.RowIndex = 1;
-			this.gridColumnDigitalProductsLocation.Visible = true;
-			this.gridColumnDigitalProductsLocation.Width = 148;
-			// 
-			// repositoryItemComboBoxDigitalProductsLocation
-			// 
-			this.repositoryItemComboBoxDigitalProductsLocation.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsLocation.Appearance.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsLocation.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsLocation.AppearanceDisabled.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsLocation.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsLocation.AppearanceDropDown.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsLocation.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsLocation.AppearanceFocused.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsLocation.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsLocation.AppearanceReadOnly.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsLocation.AutoHeight = false;
-			this.repositoryItemComboBoxDigitalProductsLocation.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.repositoryItemComboBoxDigitalProductsLocation.Name = "repositoryItemComboBoxDigitalProductsLocation";
-			this.repositoryItemComboBoxDigitalProductsLocation.NullText = "N/A";
-			this.repositoryItemComboBoxDigitalProductsLocation.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			// 
-			// gridBandDigitalProductWidth
-			// 
-			this.gridBandDigitalProductWidth.Caption = "W";
-			this.gridBandDigitalProductWidth.Columns.Add(this.gridColumnDigitalProductsWidth);
-			this.gridBandDigitalProductWidth.MinWidth = 20;
-			this.gridBandDigitalProductWidth.Name = "gridBandDigitalProductWidth";
-			this.gridBandDigitalProductWidth.OptionsBand.AllowSize = false;
-			this.gridBandDigitalProductWidth.OptionsBand.FixedWidth = true;
-			this.gridBandDigitalProductWidth.Width = 60;
-			// 
-			// gridColumnDigitalProductsWidth
-			// 
-			this.gridColumnDigitalProductsWidth.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.gridColumnDigitalProductsWidth.AppearanceCell.Options.UseFont = true;
-			this.gridColumnDigitalProductsWidth.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnDigitalProductsWidth.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumnDigitalProductsWidth.Caption = "Width";
-			this.gridColumnDigitalProductsWidth.ColumnEdit = this.repositoryItemSpinEditDigitalProductsSize;
-			this.gridColumnDigitalProductsWidth.FieldName = "Width";
-			this.gridColumnDigitalProductsWidth.Name = "gridColumnDigitalProductsWidth";
-			this.gridColumnDigitalProductsWidth.OptionsColumn.FixedWidth = true;
-			this.gridColumnDigitalProductsWidth.RowCount = 2;
-			this.gridColumnDigitalProductsWidth.Visible = true;
-			this.gridColumnDigitalProductsWidth.Width = 60;
-			// 
-			// repositoryItemSpinEditDigitalProductsSize
-			// 
-			this.repositoryItemSpinEditDigitalProductsSize.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemSpinEditDigitalProductsSize.Appearance.Options.UseFont = true;
-			this.repositoryItemSpinEditDigitalProductsSize.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemSpinEditDigitalProductsSize.AppearanceDisabled.Options.UseFont = true;
-			this.repositoryItemSpinEditDigitalProductsSize.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemSpinEditDigitalProductsSize.AppearanceFocused.Options.UseFont = true;
-			this.repositoryItemSpinEditDigitalProductsSize.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemSpinEditDigitalProductsSize.AppearanceReadOnly.Options.UseFont = true;
-			this.repositoryItemSpinEditDigitalProductsSize.AutoHeight = false;
-			this.repositoryItemSpinEditDigitalProductsSize.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.repositoryItemSpinEditDigitalProductsSize.DisplayFormat.FormatString = "#,##0";
-			this.repositoryItemSpinEditDigitalProductsSize.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.repositoryItemSpinEditDigitalProductsSize.EditFormat.FormatString = "#,##0";
-			this.repositoryItemSpinEditDigitalProductsSize.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.repositoryItemSpinEditDigitalProductsSize.HideSelection = false;
-			this.repositoryItemSpinEditDigitalProductsSize.IsFloatValue = false;
-			this.repositoryItemSpinEditDigitalProductsSize.Mask.EditMask = "N00";
-			this.repositoryItemSpinEditDigitalProductsSize.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.repositoryItemSpinEditDigitalProductsSize.Name = "repositoryItemSpinEditDigitalProductsSize";
-			this.repositoryItemSpinEditDigitalProductsSize.NullText = "N/A";
-			// 
-			// gridBandDigitalProductHeight
-			// 
-			this.gridBandDigitalProductHeight.Caption = "H";
-			this.gridBandDigitalProductHeight.Columns.Add(this.gridColumnDigitalProductsHeight);
-			this.gridBandDigitalProductHeight.MinWidth = 20;
-			this.gridBandDigitalProductHeight.Name = "gridBandDigitalProductHeight";
-			this.gridBandDigitalProductHeight.OptionsBand.AllowSize = false;
-			this.gridBandDigitalProductHeight.OptionsBand.FixedWidth = true;
-			this.gridBandDigitalProductHeight.Width = 60;
-			// 
-			// gridColumnDigitalProductsHeight
-			// 
-			this.gridColumnDigitalProductsHeight.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.gridColumnDigitalProductsHeight.AppearanceCell.Options.UseFont = true;
-			this.gridColumnDigitalProductsHeight.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnDigitalProductsHeight.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumnDigitalProductsHeight.Caption = "Height";
-			this.gridColumnDigitalProductsHeight.ColumnEdit = this.repositoryItemSpinEditDigitalProductsSize;
-			this.gridColumnDigitalProductsHeight.FieldName = "Height";
-			this.gridColumnDigitalProductsHeight.Name = "gridColumnDigitalProductsHeight";
-			this.gridColumnDigitalProductsHeight.OptionsColumn.FixedWidth = true;
-			this.gridColumnDigitalProductsHeight.RowCount = 2;
-			this.gridColumnDigitalProductsHeight.Visible = true;
-			this.gridColumnDigitalProductsHeight.Width = 60;
-			// 
-			// gridBandDigitalProductRate
-			// 
-			this.gridBandDigitalProductRate.Caption = "Pricing Strategy";
-			this.gridBandDigitalProductRate.Columns.Add(this.gridColumnDigitalProductsRateType);
-			this.gridBandDigitalProductRate.Columns.Add(this.gridColumnDigitalProductsRate);
-			this.gridBandDigitalProductRate.MinWidth = 20;
-			this.gridBandDigitalProductRate.Name = "gridBandDigitalProductRate";
-			this.gridBandDigitalProductRate.OptionsBand.AllowSize = false;
-			this.gridBandDigitalProductRate.OptionsBand.FixedWidth = true;
-			this.gridBandDigitalProductRate.Width = 195;
-			// 
-			// gridColumnDigitalProductsRateType
-			// 
-			this.gridColumnDigitalProductsRateType.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.gridColumnDigitalProductsRateType.AppearanceCell.Options.UseFont = true;
-			this.gridColumnDigitalProductsRateType.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnDigitalProductsRateType.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.gridColumnDigitalProductsRateType.Caption = "Pricing Strategy";
-			this.gridColumnDigitalProductsRateType.ColumnEdit = this.repositoryItemComboBoxDigitalProductsRateType;
-			this.gridColumnDigitalProductsRateType.FieldName = "RateType";
-			this.gridColumnDigitalProductsRateType.Name = "gridColumnDigitalProductsRateType";
-			this.gridColumnDigitalProductsRateType.OptionsColumn.FixedWidth = true;
-			this.gridColumnDigitalProductsRateType.RowCount = 2;
-			this.gridColumnDigitalProductsRateType.Visible = true;
-			this.gridColumnDigitalProductsRateType.Width = 108;
-			// 
-			// repositoryItemComboBoxDigitalProductsRateType
-			// 
-			this.repositoryItemComboBoxDigitalProductsRateType.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsRateType.Appearance.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsRateType.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsRateType.AppearanceDisabled.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsRateType.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsRateType.AppearanceDropDown.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsRateType.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsRateType.AppearanceFocused.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsRateType.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemComboBoxDigitalProductsRateType.AppearanceReadOnly.Options.UseFont = true;
-			this.repositoryItemComboBoxDigitalProductsRateType.AutoHeight = false;
-			this.repositoryItemComboBoxDigitalProductsRateType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.repositoryItemComboBoxDigitalProductsRateType.Name = "repositoryItemComboBoxDigitalProductsRateType";
-			this.repositoryItemComboBoxDigitalProductsRateType.NullText = "Select pricing strategy";
-			this.repositoryItemComboBoxDigitalProductsRateType.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			// 
-			// gridColumnDigitalProductsRate
-			// 
-			this.gridColumnDigitalProductsRate.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.gridColumnDigitalProductsRate.AppearanceCell.Options.UseFont = true;
-			this.gridColumnDigitalProductsRate.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnDigitalProductsRate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.gridColumnDigitalProductsRate.Caption = "Rate";
-			this.gridColumnDigitalProductsRate.ColumnEdit = this.repositoryItemSpinEditDigitalProductsRate;
-			this.gridColumnDigitalProductsRate.FieldName = "DefaultRate";
-			this.gridColumnDigitalProductsRate.Name = "gridColumnDigitalProductsRate";
-			this.gridColumnDigitalProductsRate.OptionsColumn.FixedWidth = true;
-			this.gridColumnDigitalProductsRate.RowCount = 2;
-			this.gridColumnDigitalProductsRate.Visible = true;
-			this.gridColumnDigitalProductsRate.Width = 87;
-			// 
-			// repositoryItemSpinEditDigitalProductsRate
-			// 
-			this.repositoryItemSpinEditDigitalProductsRate.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemSpinEditDigitalProductsRate.Appearance.Options.UseFont = true;
-			this.repositoryItemSpinEditDigitalProductsRate.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemSpinEditDigitalProductsRate.AppearanceDisabled.Options.UseFont = true;
-			this.repositoryItemSpinEditDigitalProductsRate.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemSpinEditDigitalProductsRate.AppearanceFocused.Options.UseFont = true;
-			this.repositoryItemSpinEditDigitalProductsRate.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
-			this.repositoryItemSpinEditDigitalProductsRate.AppearanceReadOnly.Options.UseFont = true;
-			this.repositoryItemSpinEditDigitalProductsRate.AutoHeight = false;
-			this.repositoryItemSpinEditDigitalProductsRate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject7, "", null, null, true)});
-			this.repositoryItemSpinEditDigitalProductsRate.DisplayFormat.FormatString = "$#,##0.00";
-			this.repositoryItemSpinEditDigitalProductsRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.repositoryItemSpinEditDigitalProductsRate.EditFormat.FormatString = "$#,##0.00";
-			this.repositoryItemSpinEditDigitalProductsRate.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.repositoryItemSpinEditDigitalProductsRate.MaxValue = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-			this.repositoryItemSpinEditDigitalProductsRate.Name = "repositoryItemSpinEditDigitalProductsRate";
-			// 
-			// gridBandTarget
-			// 
-			this.gridBandTarget.Caption = "Target";
-			this.gridBandTarget.Columns.Add(this.gridColumnDigitalProductsTarget);
-			this.gridBandTarget.MinWidth = 56;
-			this.gridBandTarget.Name = "gridBandTarget";
-			this.gridBandTarget.OptionsBand.AllowSize = false;
-			this.gridBandTarget.OptionsBand.FixedWidth = true;
-			this.gridBandTarget.RowCount = 2;
-			this.gridBandTarget.Width = 56;
-			// 
-			// gridColumnDigitalProductsTarget
-			// 
-			this.gridColumnDigitalProductsTarget.Caption = "Target";
-			this.gridColumnDigitalProductsTarget.ColumnEdit = this.repositoryItemButtonEditDigitalProductsTarget;
-			this.gridColumnDigitalProductsTarget.FieldName = "Index";
-			this.gridColumnDigitalProductsTarget.Name = "gridColumnDigitalProductsTarget";
-			this.gridColumnDigitalProductsTarget.OptionsColumn.AllowMove = false;
-			this.gridColumnDigitalProductsTarget.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-			this.gridColumnDigitalProductsTarget.OptionsColumn.FixedWidth = true;
-			this.gridColumnDigitalProductsTarget.OptionsColumn.ReadOnly = true;
-			this.gridColumnDigitalProductsTarget.OptionsColumn.ShowCaption = false;
-			this.gridColumnDigitalProductsTarget.RowCount = 2;
-			this.gridColumnDigitalProductsTarget.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-			this.gridColumnDigitalProductsTarget.Visible = true;
-			this.gridColumnDigitalProductsTarget.Width = 56;
-			// 
-			// repositoryItemButtonEditDigitalProductsTarget
-			// 
-			this.repositoryItemButtonEditDigitalProductsTarget.AutoHeight = false;
-			this.repositoryItemButtonEditDigitalProductsTarget.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProductsTarget.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject8, "", null, null, true)});
-			this.repositoryItemButtonEditDigitalProductsTarget.Name = "repositoryItemButtonEditDigitalProductsTarget";
-			this.repositoryItemButtonEditDigitalProductsTarget.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-			this.repositoryItemButtonEditDigitalProductsTarget.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditDigitalProductsTarget_ButtonClick);
-			// 
-			// gridBandDigitalProductDelete
-			// 
-			this.gridBandDigitalProductDelete.Columns.Add(this.gridColumnDigitalProductsDelete);
-			this.gridBandDigitalProductDelete.MinWidth = 20;
-			this.gridBandDigitalProductDelete.Name = "gridBandDigitalProductDelete";
-			this.gridBandDigitalProductDelete.OptionsBand.AllowSize = false;
-			this.gridBandDigitalProductDelete.OptionsBand.FixedWidth = true;
-			this.gridBandDigitalProductDelete.Width = 48;
-			// 
-			// gridColumnDigitalProductsDelete
-			// 
-			this.gridColumnDigitalProductsDelete.Caption = "Delete";
-			this.gridColumnDigitalProductsDelete.ColumnEdit = this.repositoryItemButtonEditDigitalProductsDelete;
-			this.gridColumnDigitalProductsDelete.FieldName = "Index";
-			this.gridColumnDigitalProductsDelete.Name = "gridColumnDigitalProductsDelete";
-			this.gridColumnDigitalProductsDelete.OptionsColumn.AllowMove = false;
-			this.gridColumnDigitalProductsDelete.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-			this.gridColumnDigitalProductsDelete.OptionsColumn.FixedWidth = true;
-			this.gridColumnDigitalProductsDelete.OptionsColumn.ReadOnly = true;
-			this.gridColumnDigitalProductsDelete.OptionsColumn.ShowCaption = false;
-			this.gridColumnDigitalProductsDelete.RowCount = 2;
-			this.gridColumnDigitalProductsDelete.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-			this.gridColumnDigitalProductsDelete.Visible = true;
-			this.gridColumnDigitalProductsDelete.Width = 48;
-			// 
-			// repositoryItemButtonEditDigitalProductsDelete
-			// 
-			this.repositoryItemButtonEditDigitalProductsDelete.AutoHeight = false;
-			this.repositoryItemButtonEditDigitalProductsDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditDigitalProductsDelete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, "Delete this line", null, null, true)});
-			this.repositoryItemButtonEditDigitalProductsDelete.Name = "repositoryItemButtonEditDigitalProductsDelete";
-			this.repositoryItemButtonEditDigitalProductsDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-			this.repositoryItemButtonEditDigitalProductsDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditDigitalProductsDelete_ButtonClick);
-			// 
-			// pnDigitalProductBottomBar
-			// 
-			this.pnDigitalProductBottomBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXDigitalProductLocation);
-			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXDigitalProductStrategy);
-			this.pnDigitalProductBottomBar.Controls.Add(this.pictureBoxDigitalProductAppLogo);
-			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXDigitalProductDimensions);
-			this.pnDigitalProductBottomBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnDigitalProductBottomBar.Location = new System.Drawing.Point(0, 366);
-			this.pnDigitalProductBottomBar.Name = "pnDigitalProductBottomBar";
-			this.pnDigitalProductBottomBar.Size = new System.Drawing.Size(826, 38);
-			this.pnDigitalProductBottomBar.TabIndex = 2;
-			// 
-			// buttonXDigitalProductLocation
-			// 
-			this.buttonXDigitalProductLocation.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXDigitalProductLocation.AutoCheckOnClick = true;
-			this.buttonXDigitalProductLocation.Checked = true;
-			this.buttonXDigitalProductLocation.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDigitalProductLocation.Location = new System.Drawing.Point(156, 5);
-			this.buttonXDigitalProductLocation.Name = "buttonXDigitalProductLocation";
-			this.buttonXDigitalProductLocation.Size = new System.Drawing.Size(115, 29);
-			this.buttonXDigitalProductLocation.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem5.Text = "Hide Pricing Strategy";
-			superToolTip5.Items.Add(toolTipItem5);
-			this.toolTipController.SetSuperTip(this.buttonXDigitalProductLocation, superToolTip5);
-			this.buttonXDigitalProductLocation.TabIndex = 9;
-			this.buttonXDigitalProductLocation.Text = "Location";
-			this.buttonXDigitalProductLocation.TextColor = System.Drawing.Color.Black;
-			this.buttonXDigitalProductLocation.CheckedChanged += new System.EventHandler(this.buttonXDigitalProductLocation_CheckedChanged);
-			// 
-			// buttonXDigitalProductStrategy
-			// 
-			this.buttonXDigitalProductStrategy.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXDigitalProductStrategy.AutoCheckOnClick = true;
-			this.buttonXDigitalProductStrategy.Checked = true;
-			this.buttonXDigitalProductStrategy.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDigitalProductStrategy.Location = new System.Drawing.Point(298, 5);
-			this.buttonXDigitalProductStrategy.Name = "buttonXDigitalProductStrategy";
-			this.buttonXDigitalProductStrategy.Size = new System.Drawing.Size(115, 29);
-			this.buttonXDigitalProductStrategy.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem6.Text = "Hide Pricing Strategy";
-			superToolTip6.Items.Add(toolTipItem6);
-			this.toolTipController.SetSuperTip(this.buttonXDigitalProductStrategy, superToolTip6);
-			this.buttonXDigitalProductStrategy.TabIndex = 8;
-			this.buttonXDigitalProductStrategy.Text = "Pricing Strategy";
-			this.buttonXDigitalProductStrategy.TextColor = System.Drawing.Color.Black;
-			this.buttonXDigitalProductStrategy.CheckedChanged += new System.EventHandler(this.buttonXDigitalProductStrategy_CheckedChanged);
-			// 
-			// pictureBoxDigitalProductAppLogo
-			// 
-			this.pictureBoxDigitalProductAppLogo.Dock = System.Windows.Forms.DockStyle.Right;
-			this.pictureBoxDigitalProductAppLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AppLogo;
-			this.pictureBoxDigitalProductAppLogo.Location = new System.Drawing.Point(670, 0);
-			this.pictureBoxDigitalProductAppLogo.Name = "pictureBoxDigitalProductAppLogo";
-			this.pictureBoxDigitalProductAppLogo.Size = new System.Drawing.Size(156, 38);
-			this.pictureBoxDigitalProductAppLogo.TabIndex = 7;
-			this.pictureBoxDigitalProductAppLogo.TabStop = false;
-			// 
-			// buttonXDigitalProductDimensions
-			// 
-			this.buttonXDigitalProductDimensions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXDigitalProductDimensions.AutoCheckOnClick = true;
-			this.buttonXDigitalProductDimensions.Checked = true;
-			this.buttonXDigitalProductDimensions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDigitalProductDimensions.Location = new System.Drawing.Point(15, 5);
-			this.buttonXDigitalProductDimensions.Name = "buttonXDigitalProductDimensions";
-			this.buttonXDigitalProductDimensions.Size = new System.Drawing.Size(115, 29);
-			this.buttonXDigitalProductDimensions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem7.Text = "Hide Ad Dimensions";
-			superToolTip7.Items.Add(toolTipItem7);
-			this.toolTipController.SetSuperTip(this.buttonXDigitalProductDimensions, superToolTip7);
-			this.buttonXDigitalProductDimensions.TabIndex = 6;
-			this.buttonXDigitalProductDimensions.Text = "Ad Dimensions";
-			this.buttonXDigitalProductDimensions.TextColor = System.Drawing.Color.Black;
-			this.buttonXDigitalProductDimensions.CheckedChanged += new System.EventHandler(this.buttonXDigitalProductDimensions_CheckedChanged);
+			// digitalProductListControl
+			// 
+			this.digitalProductListControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.digitalProductListControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.digitalProductListControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.digitalProductListControl.Location = new System.Drawing.Point(0, 0);
+			this.digitalProductListControl.Logo = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AppLogo;
+			this.digitalProductListControl.Name = "digitalProductListControl";
+			this.digitalProductListControl.Size = new System.Drawing.Size(826, 404);
+			this.digitalProductListControl.TabIndex = 0;
 			// 
 			// toolTipController
 			// 
@@ -1201,31 +584,18 @@
 			this.Load += new System.EventHandler(this.ScheduleSettingsControl_Load);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPrintProducts)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewPrintProducts)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditPrintProducts)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxPrintProducts)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditPrintProducts)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditPrintProducts)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEditPrintProducts)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditChangeLogoPrintProducts)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditPosition)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDelete)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlProducts)).EndInit();
 			this.xtraTabControlProducts.ResumeLayout(false);
 			this.xtraTabPagePrintProducts.ResumeLayout(false);
 			this.pnPrintProductBottomBar.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPrintProductAppLogo)).EndInit();
 			this.xtraTabPageDigitalProducts.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.gridControlDigitalProducts)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewDigitalProducts)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDigitalProducts)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDigitalProductsType)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDigitalProductsNames)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDigitalProductsLocation)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDigitalProductsSize)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDigitalProductsRateType)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDigitalProductsRate)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDigitalProductsTarget)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDigitalProductsDelete)).EndInit();
-			this.pnDigitalProductBottomBar.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDigitalProductAppLogo)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -1233,23 +603,21 @@
         #endregion
 
         private DevExpress.XtraGrid.GridControl gridControlPrintProducts;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxPrintProducts;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditPrintProducts;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditPosition;
 		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEditPrintProducts;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPrintProductsPosition;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPrintProductsName;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPrintProductsAbbreviation;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPrintProductsDailyDelivery;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPrintProductsSundayDelivery;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPrintProductsDailyReadership;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPrintProductsSundayReadership;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPrintProductsLogo;
+        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPosition;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnName;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnAbbreviation;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDailyDelivery;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnSundayDelivery;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDailyReadership;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnSundayReadership;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnLogo;
         public DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView gridViewPrintProducts;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditPrintProducts;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnPrintProductsChangeLogo;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditChangeLogoPrintProducts;
-		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditPrintProducts;
+		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit;
+		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlProducts;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPagePrintProducts;
 		private System.Windows.Forms.Panel pnPrintProductBottomBar;
@@ -1258,47 +626,16 @@
 		private DevComponents.DotNetBar.ButtonX buttonXPrintProductDelivery;
 		private DevComponents.DotNetBar.ButtonX buttonXPrintProductReadership;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageDigitalProducts;
-		private DevExpress.XtraGrid.GridControl gridControlDigitalProducts;
-		private DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView advBandedGridViewDigitalProducts;
-		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDigitalProductsPosition;
-		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditDigitalProducts;
-		private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxDigitalProductsType;
-		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDigitalProductsCategory;
-		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDigitalProductsSubCategory;
-		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDigitalProductsName;
-		private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxDigitalProductsNames;
-		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDigitalProductsWidth;
-		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditDigitalProductsSize;
-		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDigitalProductsHeight;
-		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDigitalProductsRateType;
-		private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxDigitalProductsRateType;
-		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDigitalProductsRate;
-		private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditDigitalProductsRate;
-		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDigitalProductsDelete;
-		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditDigitalProductsDelete;
+		private System.Windows.Forms.PictureBox pictureBoxPrintProductAppLogo;
+		private DevExpress.Utils.ToolTipController toolTipController;
+		private OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl digitalProductListControl;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandPrintProductsPosition;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandPrintProductsPublication;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandAbbreviation;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandLogo;
-		private System.Windows.Forms.PictureBox pictureBoxPrintProductAppLogo;
-		private System.Windows.Forms.Panel pnDigitalProductBottomBar;
-		private System.Windows.Forms.PictureBox pictureBoxDigitalProductAppLogo;
-		private DevComponents.DotNetBar.ButtonX buttonXDigitalProductDimensions;
-		private DevComponents.DotNetBar.ButtonX buttonXDigitalProductStrategy;
-		private DevExpress.Utils.ToolTipController toolTipController;
-		private DevComponents.DotNetBar.ButtonX buttonXDigitalProductLocation;
-		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDigitalProductsLocation;
-		private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxDigitalProductsLocation;
-		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDigitalProductsTarget;
-		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditDigitalProductsTarget;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDigitalProductNumber;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDigitalProductType;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDigitalProductName;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDigitalProductWidth;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDigitalProductHeight;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDigitalProductRate;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandTarget;
-		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDigitalProductDelete;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandDelete;
+		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumnDelete;
+		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditDelete;
 
     }
 }

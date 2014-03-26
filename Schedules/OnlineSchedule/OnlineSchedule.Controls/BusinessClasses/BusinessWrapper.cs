@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Xml;
+using NewBizWiz.CommonGUI.RateCard;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 
@@ -17,9 +18,12 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 			ScheduleManager = new ScheduleManager();
 			HelpManager = new HelpManager(Core.OnlineSchedule.SettingsManager.Instance.HelpLinksPath);
 			OutputManager = new OutputManager();
+			RateCardManager = new RateCardManager(Core.Common.SettingsManager.Instance.RateCardPath);
 			TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "digital_tab_names.xml"));
 			ThemeManager = new ThemeManager(Path.Combine(Core.Common.SettingsManager.Instance.ThemeCollectionPath, Core.Common.SettingsManager.Instance.SlideMasterFolder));
 			_themeSaveHelper = new ThemeSaveHelper(ThemeManager);
+			ActivityManager = new ActivityManager("web_pro");
+			GalleryManager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery.xml"));
 			LoadLocalSettings();
 		}
 
@@ -33,6 +37,9 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 		public OutputManager OutputManager { get; private set; }
 		public TabPageManager TabPageManager { get; private set; }
 		public ThemeManager ThemeManager { get; private set; }
+		public ActivityManager ActivityManager { get; private set; }
+		public RateCardManager RateCardManager { get; private set; }
+		public GalleryManager GalleryManager { get; private set; }
 
 		public string GetSelectedTheme(SlideType slideType)
 		{

@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
@@ -18,8 +17,8 @@ using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 {
 	[ToolboxItem(false)]
-	//public partial class DigitalProductControl : UserControl
-	public partial class DigitalProductControl : XtraTabPage
+	//public partial class DigitalProductControl : UserControl, IDigitalOutputControl
+	public partial class DigitalProductControl : XtraTabPage, IDigitalOutputControl
 	{
 		private readonly DigitalProductContainer _container;
 		private bool _allowToSave;
@@ -79,9 +78,12 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			spinEditInvestment.EditValue = null;
 
 			AssignCloseActiveEditorsonOutSideClick(this);
+
+			SummaryControl = new DigitalProductSummaryControl(this);
 		}
 
 		public DigitalProduct Product { get; set; }
+		public DigitalProductSummaryControl SummaryControl { get; private set; }
 
 		private void AssignCloseActiveEditorsonOutSideClick(Control control)
 		{
@@ -231,15 +233,22 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				if (Product.Websites.Contains(item.Value.ToString()))
 					item.CheckState = CheckState.Checked;
 
-			if (Product.Width.HasValue && Product.Height.HasValue && Product.ShowDimensions)
-				memoEditDescription.EditValue = String.Format("(Ad Dimensions: {0}{3}) {1}{1}{2}", Product.Dimensions, Environment.NewLine, Product.Description, !String.IsNullOrEmpty(Product.Location) && !Product.Location.Equals("N/A") ? String.Format(" Location - {0}", Product.Location) : String.Empty);
-			else
-				memoEditDescription.EditValue = Product.Description;
+			checkEditDescriptionManualEdit.Checked = Product.DescriptionManualEdit;
+			buttonXShowDescriptionTargeting.Enabled = Product.TargetingAvailable;
+			buttonXShowDescriptionTargeting.Checked = Product.ShowDescriptionTargeting && Product.TargetingAvailable;
+			buttonXShowDescriptionRichMedia.Enabled = Product.RichMediaAvailable;
+			buttonXShowDescriptionRichMedia.Checked = Product.ShowDescriptionRichMedia && Product.RichMediaAvailable;
+			memoEditDescription.EditValue = Product.UserDescription;
 
 			checkEditInvestmentDetails.Checked = !String.IsNullOrEmpty(Product.InvestmentDetails);
 			textEditInvestmentDetails.EditValue = Product.InvestmentDetails;
 
-			checkEditComments.Checked = !String.IsNullOrEmpty(Product.Comment);
+			checkEditComments.Checked = Product.EnableComment;
+			checkEditCommentManualEdit.Checked = Product.CommentManualEdit;
+			buttonXShowCommentTargeting.Enabled = Product.EnableComment && Product.TargetingAvailable;
+			buttonXShowCommentTargeting.Checked = Product.ShowCommentTargeting && Product.TargetingAvailable;
+			buttonXShowCommentRichMedia.Enabled = Product.EnableComment && Product.RichMediaAvailable;
+			buttonXShowCommentRichMedia.Checked = Product.ShowCommentRichMedia && Product.RichMediaAvailable;
 			memoEditComments.EditValue = Product.Comment;
 			checkEditStrengths1.Checked = !String.IsNullOrEmpty(Product.Strength1);
 			comboBoxEditStrengths1.EditValue = Product.Strength1;
@@ -250,6 +259,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			_allowToSave = true;
 
 			comboBoxEditPriceType_SelectedIndexChanged(comboBoxEditPriceType, EventArgs.Empty);
+
+			SummaryControl.UpdateControls();
 		}
 
 		private void UpdateFormulaComponents()
@@ -300,17 +311,14 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			foreach (CheckedListBoxItem item in checkedListBoxControlWebsite.Items)
 				if (item.CheckState == CheckState.Checked)
 					Product.Websites.Add(item.Value.ToString());
-
-			var dimensionsMatch = new Regex(@"\(Ad Dimensions:[\s\w]*\)");
-			var description = memoEditDescription.EditValue != null ? memoEditDescription.EditValue.ToString() : String.Empty;
-			Product.ShowDimensions = dimensionsMatch.IsMatch(description);
-			Product.Description = dimensionsMatch.IsMatch(description) ?
-				dimensionsMatch.Replace(description, String.Empty).Trim() :
-				description.Trim();
+			Product.UserDescription = memoEditDescription.EditValue as String;
 			Product.InvestmentDetails = checkEditInvestmentDetails.Checked ? textEditInvestmentDetails.EditValue as String : null;
+			Product.EnableComment = checkEditComments.Checked;
 			Product.Comment = checkEditComments.Checked && memoEditComments.EditValue != null ? memoEditComments.EditValue.ToString() : string.Empty;
 			Product.Strength1 = checkEditStrengths1.Checked && comboBoxEditStrengths1.EditValue != null ? comboBoxEditStrengths1.EditValue.ToString() : string.Empty;
 			Product.Strength2 = checkEditStrengths2.Checked && comboBoxEditStrengths2.EditValue != null ? comboBoxEditStrengths2.EditValue.ToString() : string.Empty;
+
+			SummaryControl.UpdateControls();
 		}
 
 		private void comboBoxEditPriceType_SelectedIndexChanged(object sender, EventArgs e)
@@ -500,6 +508,12 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		private void checkEditComments_CheckedChanged(object sender, EventArgs e)
 		{
 			memoEditComments.Enabled = checkEditComments.Checked;
+			checkEditCommentManualEdit.Enabled = checkEditComments.Checked;
+			if (!checkEditComments.Checked)
+				checkEditCommentManualEdit.Checked = false;
+			buttonXShowCommentTargeting.Enabled = checkEditComments.Checked && Product.TargetingAvailable;
+			buttonXShowCommentRichMedia.Enabled = checkEditComments.Checked && Product.RichMediaAvailable;
+			if (!_allowToSave) return;
 			_container.SettingsNotSaved = true;
 		}
 
@@ -531,6 +545,48 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				_container.SettingsNotSaved = true;
 		}
 
+		private void checkEditDescriptionManualEdit_CheckedChanged(object sender, EventArgs e)
+		{
+			memoEditDescription.Properties.ReadOnly = !checkEditDescriptionManualEdit.Checked;
+			buttonXShowDescriptionTargeting.Enabled = !checkEditDescriptionManualEdit.Checked && Product.TargetingAvailable;
+			buttonXShowDescriptionRichMedia.Enabled = !checkEditDescriptionManualEdit.Checked && Product.RichMediaAvailable;
+			if (!_allowToSave) return;
+			Product.DescriptionManualEdit = checkEditDescriptionManualEdit.Checked;
+			Product.UserDescription = null;
+			memoEditDescription.EditValue = Product.UserDescription;
+			_container.SettingsNotSaved = true;
+		}
+
+		private void buttonXShowDescriptionAdditionalInfo_CheckedChanged(object sender, EventArgs e)
+		{
+			if (!_allowToSave) return;
+			Product.ShowDescriptionTargeting = buttonXShowDescriptionTargeting.Checked;
+			Product.ShowDescriptionRichMedia = buttonXShowDescriptionRichMedia.Checked;
+			memoEditDescription.EditValue = Product.UserDescription;
+			_container.SettingsNotSaved = true;
+		}
+
+		private void checkEditCommentManualEdit_CheckedChanged(object sender, EventArgs e)
+		{
+			memoEditComments.Properties.ReadOnly = !checkEditCommentManualEdit.Checked;
+			buttonXShowCommentTargeting.Enabled = !checkEditCommentManualEdit.Checked && checkEditComments.Checked && Product.TargetingAvailable;
+			buttonXShowCommentRichMedia.Enabled = !checkEditCommentManualEdit.Checked && checkEditComments.Checked && Product.RichMediaAvailable;
+			if (!_allowToSave) return;
+			Product.CommentManualEdit = checkEditCommentManualEdit.Checked;
+			Product.Comment = null;
+			memoEditComments.EditValue = Product.Comment;
+			_container.SettingsNotSaved = true;
+		}
+
+		private void buttonXShowCommentAdditonalInfo_CheckedChanged(object sender, EventArgs e)
+		{
+			if (!_allowToSave) return;
+			Product.ShowCommentTargeting = buttonXShowCommentTargeting.Checked;
+			Product.ShowCommentRichMedia = buttonXShowCommentRichMedia.Checked;
+			memoEditComments.EditValue = Product.Comment;
+			_container.SettingsNotSaved = true;
+		}
+
 		private void hyperLinkEditReset_OpenLink(object sender, OpenLinkEventArgs e)
 		{
 			Product.ApplyDefaultView();
@@ -539,7 +595,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			_container.LoadProduct(this);
 			_container.SettingsNotSaved = true;
 			e.Handled = true;
-
 		}
 
 		public void ResetProductName(object sender, OpenLinkEventArgs e)
@@ -556,6 +611,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				Name = Product.Name,
 				PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
 			};
+		}
+
+		public string SlideName
+		{
+			get { return Product.Name; }
 		}
 
 		public void Output()

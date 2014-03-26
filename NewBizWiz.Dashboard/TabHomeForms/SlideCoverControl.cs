@@ -77,6 +77,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public bool SettingsNotSaved { get; set; }
 
+		public override string SlideName
+		{
+			get { return "Cover"; }
+		}
+
 		public override SuperTooltipInfo Tooltip
 		{
 			get { return _toolTip; }
@@ -329,9 +334,15 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 		}
 
+		public void TrackOutput()
+		{
+			AppManager.Instance.ActivityManager.AddActivity(new OutputActivity("Cover", Advertiser, null));
+		}
+
 		public void Output()
 		{
 			SaveChanges();
+			TrackOutput();
 			using (var form = new FormProgress())
 			{
 				form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -369,7 +380,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
+				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, TrackOutput))
 				{
 					formPreview.Text = "Preview Slides";
 					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

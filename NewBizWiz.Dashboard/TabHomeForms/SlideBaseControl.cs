@@ -17,6 +17,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private readonly Color _selectedButtonColor = Color.FromArgb(255, 218, 150);
 		private readonly Color _regularButtonColor = Color.FromArgb(175, 210, 255);
 
+		public virtual string SlideName
+		{
+			get { return null; }
+		}
+
 		public virtual SuperTooltipInfo Tooltip
 		{
 			get { return null; }

@@ -10,11 +10,14 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 		private const string OneSheetsTemplatesFolderName = @"{0}\Online Slides\onesheets";
 		private const string ExcelTemplatesFolderName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\ExcelOutput{1}\Online Slides";
 		public const string ExcelTemplateFileName = "Online_{0}_Output{1}.xls";
-		public static string MasterWizardsRootFolderPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Dashboard", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+		public static string MasterWizardsRootFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Dashboard", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 		private const string DigitalPackageTemplatesFolderName = @"{0}\Online Slides\table";
 		public const string DigitalPackageTemplateFileName = "digitaltable_{0}{1}.pptx";
 
 		private const string AdPlanTemlatesFolderName = @"{0}\Online Slides\adplan";
+
+		private const string DigitalSummaryTemlpatesFolderName = @"{0}\Online Slides\summary";
+		public const string DigitalSummaryTemplateFileName = "digital_summary.pptx";
 
 		public string OneSheetsTemplatesFolderPath
 		{
@@ -34,6 +37,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 		public string AdPlanTemlatesFolderPath
 		{
 			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, string.Format(AdPlanTemlatesFolderName, SettingsManager.Instance.SlideFolder)); }
+		}
+
+		public string DigitalSummaryTemplatesFolderPath
+		{
+			get { return Path.Combine(MasterWizardsRootFolderPath, SettingsManager.Instance.SelectedWizard, string.Format(DigitalSummaryTemlpatesFolderName, SettingsManager.Instance.SlideFolder)); }
 		}
 	}
 }

@@ -39,6 +39,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 			Controller.Instance.Supertip = superTooltip;
 			Controller.Instance.Ribbon = ribbonControl;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
+			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
 
 			#region Command Controls
 
@@ -53,7 +54,12 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
 			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
-			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageOptions;
+			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageSettings;
+			#endregion
+
+			#region Rate Card
+			Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
+			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
 			#endregion
 
 			#endregion
@@ -82,7 +88,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 				styleController.AppearanceReadOnly.Font = font;
 				ribbonBarDigitalPackageEmail.RecalcLayout();
 				ribbonBarDigitalPackageExit.RecalcLayout();
-				ribbonBarDigitalPackageOptions.RecalcLayout();
+				ribbonBarDigitalPackageSettings.RecalcLayout();
 				ribbonBarDigitalPackagePowerPoint.RecalcLayout();
 				ribbonPanelDigitalPackage.PerformLayout();
 			}
@@ -173,7 +179,17 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 				{
 					_currentControl = Controller.Instance.DigitalPackage;
 					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(Controller.Instance.DigitalPackage);
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRateCard)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.RateCard;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
 				}
 				_currentControl.BringToFront();
 			}

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.Dashboard;
 using NewBizWiz.Dashboard.InteropClasses;
 using NewBizWiz.Dashboard.Properties;
 using NewBizWiz.Dashboard.TabCalendarForms;
@@ -159,6 +160,8 @@ namespace NewBizWiz.Dashboard
 			buttonItemRadioDelete.Click += RadioScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
 			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
 			buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
+			ribbonControl_SelectedRibbonTabChanged(ribbonControl, EventArgs.Empty);
+			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 		}
 
 		private void FormMain_Shown(object sender, EventArgs e)
@@ -195,6 +198,7 @@ namespace NewBizWiz.Dashboard
 		private void ribbonControl_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
 			OutsideClick = null;
+			AppManager.Instance.ActivityManager.AddActivity(new TabActivity(ribbonControl.SelectedRibbonTabItem.Text));
 			if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemHome)
 			{
 				TabHomeMainPage.Instance.UpdatePageAccordingToggledButton(SlideType.Cleanslate);

@@ -97,6 +97,7 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.AppManager.NewSchedule();
+			AppManager.Instance.SetCultureSettings();
 			if (FormMain.Instance.IsDead) return;
 			FormMain.Instance.Opacity = 1;
 			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
@@ -115,6 +116,7 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
+			AppManager.Instance.SetCultureSettings();
 			if (FormMain.Instance.IsDead) return;
 			FormMain.Instance.Opacity = 1;
 			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;

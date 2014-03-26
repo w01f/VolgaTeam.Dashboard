@@ -70,6 +70,8 @@
     <Compile Include="AppManager.cs" />
     <Compile Include="CommonClasses\AdSize.cs" />
     <Compile Include="CommonClasses\Category.cs" />
+    <Compile Include="CommonClasses\DigitalViewSettings.cs" />
+    <Compile Include="CommonClasses\DigitalProductInfo.cs" />
     <Compile Include="CommonClasses\NewspaperViewSettings.cs" />
     <Compile Include="CommonClasses\SalesDepotUserLibraries.cs" />
     <Compile Include="CommonClasses\SpecialLinkButton.cs" />

@@ -184,7 +184,7 @@ namespace NewBizWiz.Core.AdSchedule
 		}
 	}
 
-	public class Schedule : ISchedule
+	public class Schedule : IDigitalSchedule, ISummarySchedule
 	{
 		private readonly List<DateTime> _scheduleMonths = new List<DateTime>();
 
@@ -195,8 +195,9 @@ namespace NewBizWiz.Core.AdSchedule
 			Status = ListManager.Instance.Statuses.FirstOrDefault();
 			PrintProducts = new List<PrintProduct>();
 			DigitalProducts = new List<DigitalProduct>();
-			Summary = new SummarySettings();
+			Summary = new SummarySettings(this);
 			ViewSettings = new ScheduleBuilderViewSettings();
+			DigitalProductSummary = new DigitalProductSummary();
 
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
@@ -221,7 +222,7 @@ namespace NewBizWiz.Core.AdSchedule
 		}
 
 		private FileInfo _scheduleFile { get; set; }
-		public bool IsNameNotAssigned { get; set; }
+		public bool IsNew { get; set; }
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
 		public string ClientType { get; set; }
@@ -232,9 +233,10 @@ namespace NewBizWiz.Core.AdSchedule
 		public DateTime? FlightDateEnd { get; set; }
 		public List<PrintProduct> PrintProducts { get; set; }
 		public List<DigitalProduct> DigitalProducts { get; set; }
+		public DigitalProductSummary DigitalProductSummary { get; private set; }
 
 		public ScheduleBuilderViewSettings ViewSettings { get; set; }
-		public IScheduleViewSettings CommonViewSettings
+		public IScheduleViewSettings SharedViewSettings
 		{
 			get { return ViewSettings; }
 		}
@@ -282,6 +284,17 @@ namespace NewBizWiz.Core.AdSchedule
 		public DateTime[] ScheduleMonths
 		{
 			get { return _scheduleMonths.ToArray(); }
+		}
+
+		public IEnumerable<ISummaryProduct> ProductSummaries
+		{
+			get
+			{
+				var result = new List<ISummaryProduct>();
+				result.AddRange(PrintProducts);
+				result.AddRange(DigitalProducts);
+				return result;
+			}
 		}
 
 		private void Load()
@@ -337,18 +350,11 @@ namespace NewBizWiz.Core.AdSchedule
 				{
 					ViewSettings.Deserialize(node);
 				}
-
 				node = document.SelectSingleNode(@"/Schedule/Summary");
 				if (node != null)
 				{
 					Summary.Deserialize(node);
 				}
-				if (Summary.Items.Count == 0)
-				{
-					Summary.Items.Add(new SummaryItem { Order = 0 });
-					Summary.Items.Add(new SummaryItem { Order = 1 });
-				}
-
 				node = document.SelectSingleNode(@"/Schedule/Publications");
 				if (node != null)
 				{
@@ -359,7 +365,6 @@ namespace NewBizWiz.Core.AdSchedule
 						PrintProducts.Add(publication);
 					}
 				}
-
 				node = document.SelectSingleNode(@"/Schedule/DigitalProducts");
 				if (node != null)
 				{
@@ -369,6 +374,11 @@ namespace NewBizWiz.Core.AdSchedule
 						digitalProduct.Deserialize(publicationNode);
 						DigitalProducts.Add(digitalProduct);
 					}
+				}
+				node = document.SelectSingleNode(@"/Schedule/DigitalProductSummary");
+				if (node != null)
+				{
+					DigitalProductSummary.Deserialize(node);
 				}
 			}
 
@@ -418,6 +428,7 @@ namespace NewBizWiz.Core.AdSchedule
 			foreach (var digitalProduct in DigitalProducts)
 				xml.AppendLine(digitalProduct.Serialize());
 			xml.AppendLine(@"</DigitalProducts>");
+			xml.AppendLine(@"<DigitalProductSummary>" + DigitalProductSummary.Serialize() + @"</DigitalProductSummary>");
 
 			xml.AppendLine(@"</Schedule>");
 
@@ -561,7 +572,7 @@ namespace NewBizWiz.Core.AdSchedule
 		}
 	}
 
-	public class PrintProduct
+	public class PrintProduct : ISummaryProduct
 	{
 		private ColorOptions _colorOptions;
 		private ColorPricingType _colorPricing;
@@ -577,6 +588,7 @@ namespace NewBizWiz.Core.AdSchedule
 			Note = string.Empty;
 			ViewSettings = new PublicationViewSettings();
 			SizeOptions = new SizeOptions();
+			SummaryItem = new SummaryItem(this);
 
 			ColorOption = ListManager.Instance.DefaultColor;
 			AdPricingStrategy = ListManager.Instance.DefaultPricingStrategy;
@@ -611,6 +623,7 @@ namespace NewBizWiz.Core.AdSchedule
 		public SizeOptions SizeOptions { get; set; }
 
 		public PublicationViewSettings ViewSettings { get; set; }
+		public SummaryItem SummaryItem { get; private set; }
 
 		public string Name
 		{
@@ -806,6 +819,7 @@ namespace NewBizWiz.Core.AdSchedule
 			xml.AppendLine(@">");
 			xml.AppendLine(SizeOptions.Serialize());
 			xml.AppendLine(@"<ViewSettings>" + ViewSettings.Serialize() + @"</ViewSettings>");
+			xml.AppendLine(@"<SummaryItem>" + SummaryItem.Serialize() + @"</SummaryItem>");
 			foreach (Insert insert in Inserts)
 				xml.AppendLine(insert.Serialize());
 			xml.AppendLine(@"</Publication>");
@@ -941,6 +955,9 @@ namespace NewBizWiz.Core.AdSchedule
 						break;
 					case "ViewSettings":
 						ViewSettings.Deserialize(childNode);
+						break;
+					case "SummaryItem":
+						SummaryItem.Deserialize(childNode);
 						break;
 					case "Insert":
 						var insert = new Insert(this);
@@ -1160,6 +1177,29 @@ namespace NewBizWiz.Core.AdSchedule
 			Parent.PrintProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
 			Parent.RebuildPublicationIndexes();
 			return result;
+		}
+
+		public string SummaryTitle
+		{
+			get { return Name; }
+		}
+
+		public string SummaryInfo
+		{
+			get
+			{
+				var values = new List<string>();
+				if (SizeOptions.EnablePageSize && (!String.IsNullOrEmpty(SizeOptions.PageSizeAndGroup)))
+					values.Add(String.Format("Ad Size: {0}", SizeOptions.PageSizeAndGroup));
+				if (SizeOptions.EnableSquare && SizeOptions.Square.HasValue)
+					values.Add(String.Format("{0}", SizeOptions.DimensionsShort));
+				if (!String.IsNullOrEmpty(SizeOptions.PercentOfPage))
+					values.Add(String.Format("{0}", SizeOptions.PercentOfPage));
+				if (TotalInserts > 0)
+					values.Add(String.Format("{0} Ads ({1})", TotalInserts, Parent.FlightDates));
+				values.Add(String.Format("{0}", Parent.FlightDates));
+				return String.Join(", ", values).Replace(Environment.NewLine, ", ");
+			}
 		}
 	}
 
@@ -1732,7 +1772,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public string DimensionsShort
 		{
-			get { return Square.HasValue ? (string.Format("{0}x{1}", new object[] { Width.ToString("#,##0.00"), Height.ToString("#,###.00#") })) : "N/A"; }
+			get { return Square.HasValue ? (String.Format("{0}x{1}", Width.ToString("#,##0.00"), Height.ToString("#,###.00#"))) : "N/A"; }
 		}
 
 		public string PageSizeAndGroup
@@ -1919,22 +1959,20 @@ namespace NewBizWiz.Core.AdSchedule
 
 	public class SummarySettings
 	{
-		public SummarySettings()
+		private readonly ISummarySchedule _parent;
+
+		public SummarySettings(ISummarySchedule parent)
 		{
+			_parent = parent;
 			ShowAdvertiser = true;
 			ShowDecisionMaker = true;
 			ShowPresentationDate = true;
 			ShowFlightDates = true;
-			ShowMonthly = true;
-			ShowTotal = true;
+			ShowMonthly = false;
+			ShowTotal = false;
 			ShowSignature = true;
-			EnableTotalsEdit = false;
 
 			SlideHeader = string.Empty;
-			MonthlyValue = 0;
-			TotalValue = 0;
-
-			Items = new List<SummaryItem>();
 		}
 
 		public bool ShowAdvertiser { get; set; }
@@ -1944,22 +1982,17 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool ShowMonthly { get; set; }
 		public bool ShowTotal { get; set; }
 		public bool ShowSignature { get; set; }
-		public bool EnableTotalsEdit { get; set; }
 
 		public string SlideHeader { get; set; }
-		public decimal MonthlyValue { get; set; }
-		public decimal TotalValue { get; set; }
-
-		public List<SummaryItem> Items { get; set; }
+		public decimal? MonthlyValue { get; set; }
+		public decimal? TotalValue { get; set; }
 
 		public decimal TotalMonthly
 		{
 			get
 			{
-				var items = Items.Where(it => !String.IsNullOrEmpty(it.Value) && it.ShowMonthly);
-				if (items.Any())
-					return items.Sum(it => it.Monthly);
-				return 0;
+				var items = _parent.ProductSummaries.Select(ps => ps.SummaryItem).Where(si => si.ShowMonthly);
+				return items.Any() ? items.Sum(it => it.Monthly) : 0;
 			}
 		}
 
@@ -1967,10 +2000,8 @@ namespace NewBizWiz.Core.AdSchedule
 		{
 			get
 			{
-				var items = Items.Where(it => !String.IsNullOrEmpty(it.Value) && it.ShowTotal);
-				if (items.Any())
-					return items.Sum(it => it.Total);
-				return 0;
+				var items = _parent.ProductSummaries.Select(ps => ps.SummaryItem).Where(si => si.ShowTotal);
+				return items.Any() ? items.Sum(it => it.Total) : 0;
 			}
 		}
 
@@ -1985,27 +2016,20 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<ShowMonthly>" + ShowMonthly + @"</ShowMonthly>");
 			result.AppendLine(@"<ShowTotal>" + ShowTotal + @"</ShowTotal>");
 			result.AppendLine(@"<ShowSignature>" + ShowSignature + @"</ShowSignature>");
-			result.AppendLine(@"<EnableTotalsEdit>" + EnableTotalsEdit + @"</EnableTotalsEdit>");
 
 			result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
 			result.AppendLine(@"<MonthlyValue>" + MonthlyValue + @"</MonthlyValue>");
 			result.AppendLine(@"<TotalValue>" + TotalValue + @"</TotalValue>");
-
-			result.AppendLine(@"<Items>");
-			foreach (var item in Items.Where(it => it.Commited))
-				result.AppendLine(@"<Item>" + item.Serialize() + @"</Item>");
-			result.AppendLine(@"</Items>");
 
 			return result.ToString();
 		}
 
 		public void Deserialize(XmlNode node)
 		{
-			bool tempBool;
-			decimal tempDecimal;
-
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
+				decimal tempDecimal;
+				bool tempBool;
 				switch (childNode.Name)
 				{
 					case "ShowAdvertiser":
@@ -2036,70 +2060,53 @@ namespace NewBizWiz.Core.AdSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowSignature = tempBool;
 						break;
-					case "EnableTotalsEdit":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableTotalsEdit = tempBool;
-						break;
 					case "SlideHeader":
 						SlideHeader = childNode.InnerText;
 						break;
 					case "MonthlyValue":
-						if (decimal.TryParse(childNode.InnerText, out tempDecimal))
-							MonthlyValue = tempDecimal;
-						break;
+						if (decimal.TryParse(childNode.InnerText, out tempDecimal) && tempDecimal > 0)
+							MonthlyValue = tempDecimal;break;
 					case "TotalValue":
-						if (decimal.TryParse(childNode.InnerText, out tempDecimal))
+						if (decimal.TryParse(childNode.InnerText, out tempDecimal) && tempDecimal > 0)
 							TotalValue = tempDecimal;
-						break;
-					case "Items":
-						Items.Clear();
-						foreach (XmlNode itemNode in childNode.ChildNodes)
-						{
-							var item = new SummaryItem();
-							item.Deserialize(itemNode);
-							Items.Add(item);
-						}
-						Items.Sort((x, y) => x.Order.CompareTo(y.Order));
 						break;
 				}
 			}
 		}
+	}
 
-		public void ReorderItems(int shifIndex = -1)
-		{
-			var i = 0;
-			foreach (var item in Items.OrderBy(it => it.Order))
-			{
-				if (i == shifIndex)
-					i++;
-				item.Order = i;
-				i++;
-			}
-		}
+	public interface ISummaryProduct
+	{
+		Guid UniqueID { get; }
+		string SummaryTitle { get; }
+		string SummaryInfo { get; }
+		SummaryItem SummaryItem { get; }
 	}
 
 	public class SummaryItem
 	{
-		public SummaryItem()
+		public SummaryItem(ISummaryProduct parent)
 		{
-			ShowValue = true;
-			ShowDescription = true;
-			ShowMonthly = true;
-			ShowTotal = false;
+			Parent = parent;
 
-			Identifier = Guid.NewGuid().ToString();
-			Order = 0;
+			ShowValue = true;
+			ShowDescription = false;
+			ShowMonthly = false;
+			ShowTotal = false;
 		}
 
+		public ISummaryProduct Parent { get; private set; }
 		public bool ShowValue { get; set; }
 		public bool ShowDescription { get; set; }
 		public bool ShowMonthly { get; set; }
 		public bool ShowTotal { get; set; }
 
-		public string Identifier { get; set; }
-		public int Order { get; set; }
-		public string Value { get; set; }
-		public string Description { get; set; }
+		private string _description;
+		public string Description
+		{
+			get { return !String.IsNullOrEmpty(_description) ? _description : Parent.SummaryInfo; }
+			set { _description = value != Parent.SummaryInfo ? value : null; }
+		}
 		public decimal Monthly { get; set; }
 		public decimal Total { get; set; }
 
@@ -2114,12 +2121,8 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<ShowTotal>" + ShowTotal + @"</ShowTotal>");
 			result.AppendLine(@"<ShowValue>" + ShowValue + @"</ShowValue>");
 
-			result.AppendLine(@"<Identifier>" + Identifier + @"</Identifier>");
-			result.AppendLine(@"<Order>" + Order + @"</Order>");
-			if (!String.IsNullOrEmpty(Value))
-				result.AppendLine(@"<Value>" + Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Value>");
-			if (!String.IsNullOrEmpty(Description))
-				result.AppendLine(@"<Description>" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Description>");
+			if (!String.IsNullOrEmpty(_description))
+				result.AppendLine(@"<Description>" + _description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Description>");
 			result.AppendLine(@"<Monthly>" + Monthly + @"</Monthly>");
 			result.AppendLine(@"<Total>" + Total + @"</Total>");
 
@@ -2128,12 +2131,10 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public void Deserialize(XmlNode node)
 		{
-			bool tempBool;
-			int tempInt;
-			decimal tempDecimal;
-
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
+				bool tempBool;
+				decimal tempDecimal;
 				switch (childNode.Name)
 				{
 					case "ShowDescription":
@@ -2152,13 +2153,6 @@ namespace NewBizWiz.Core.AdSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowValue = tempBool;
 						break;
-					case "Identifier":
-						Identifier = childNode.InnerText;
-						break;
-					case "Order":
-						if (int.TryParse(childNode.InnerText, out tempInt))
-							Order = tempInt;
-						break;
 					case "Monthly":
 						if (decimal.TryParse(childNode.InnerText, out tempDecimal))
 							Monthly = tempDecimal;
@@ -2167,11 +2161,8 @@ namespace NewBizWiz.Core.AdSchedule
 						if (decimal.TryParse(childNode.InnerText, out tempDecimal))
 							Total = tempDecimal;
 						break;
-					case "Value":
-						Value = childNode.InnerText;
-						break;
 					case "Description":
-						Description = childNode.InnerText;
+						_description = childNode.InnerText;
 						break;
 				}
 			}

@@ -14,19 +14,20 @@ namespace NewBizWiz.Core.Common
 
 		private SettingsManager()
 		{
-			_sharedSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app\SharedSettings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			_appIDFile = string.Format(@"{0}\newlocaldirect.com\xml\app\AppID.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			_dashboardNamePath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\Tab2Name.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			TempPath = string.Format(@"{0}\newlocaldirect.com\Sync\Temp", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			_sharedSettingsFile = String.Format(@"{0}\newlocaldirect.com\xml\app\SharedSettings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			_appIDFile = String.Format(@"{0}\newlocaldirect.com\xml\app\AppID.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			_dashboardNamePath = String.Format(@"{0}\newlocaldirect.com\app\Minibar\Tab2Name.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			TempPath = String.Format(@"{0}\newlocaldirect.com\Sync\Temp", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			if (!Directory.Exists(TempPath))
 				Directory.CreateDirectory(TempPath);
-			SharedListFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Data", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			MinibarApplicationPath = string.Format(@"{0}\newlocaldirect.com\app\Minibar\MiniBar.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			OneDomainApplicationPath = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\applications\APP_One_Domain\OneDomain.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			SalesDepotApplicationPath = string.Format(@"{0}\newlocaldirect.com\Sales Depot\SalesDepot.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			SharedListFolder = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Data", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			MinibarApplicationPath = String.Format(@"{0}\newlocaldirect.com\app\Minibar\MiniBar.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			OneDomainApplicationPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\applications\APP_One_Domain\OneDomain.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			SalesDepotApplicationPath = String.Format(@"{0}\newlocaldirect.com\Sales Depot\SalesDepot.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			ThemeCollectionPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides\SellerPointThemes", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			SlideMastersPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides\SlidesTab", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			SelectedWizard = string.Empty;
+			RateCardPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\RateCard", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			SelectedWizard = String.Empty;
 			DashboardName = "Schedule APP";
 			SelectedWizard = String.Empty;
 
@@ -50,6 +51,8 @@ namespace NewBizWiz.Core.Common
 		public string SharedListFolder { get; set; }
 		public string ThemeCollectionPath { get; set; }
 		public string SlideMastersPath { get; set; }
+		public string ActivityDataPath { get; set; }
+		public string RateCardPath { get; set; }
 
 		public Guid AppID { get; set; }
 
@@ -182,6 +185,7 @@ namespace NewBizWiz.Core.Common
 			}
 			LoadAppID();
 			LoadDashboardName();
+			ActivityDataPath = String.Format(@"{0}\newlocaldirect.com\sync\outgoing\AppID-{1}\user_data", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), AppID);
 		}
 
 		public void SaveSharedSettings()

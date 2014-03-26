@@ -63,6 +63,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public bool SettingsNotSaved { get; set; }
 
+		public override string SlideName
+		{
+			get { return "Introduction"; }
+		}
+
 		public override SuperTooltipInfo Tooltip
 		{
 			get { return _toolTip; }

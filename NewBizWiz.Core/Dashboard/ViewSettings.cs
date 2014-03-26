@@ -510,9 +510,8 @@ namespace NewBizWiz.Core.Dashboard
 			ShowDecisionMaker = true;
 			ShowPresentationDate = true;
 			ShowFlightDates = true;
-			ShowMonthly = true;
-			ShowTotal = true;
-			EnableTotalsEdit = false;
+			ShowMonthly = false;
+			ShowTotal = false;
 
 			SlideHeader = string.Empty;
 			Advertiser = string.Empty;
@@ -520,8 +519,6 @@ namespace NewBizWiz.Core.Dashboard
 			PresentationDate = DateTime.MinValue;
 			FlightDatesStart = DateTime.MinValue;
 			FlightDatesEnd = DateTime.MinValue;
-			MonthlyValue = 0;
-			TotalValue = 0;
 
 			ItemsState = new List<SimpleSummaryItemState>();
 		}
@@ -532,7 +529,6 @@ namespace NewBizWiz.Core.Dashboard
 		public bool ShowFlightDates { get; set; }
 		public bool ShowMonthly { get; set; }
 		public bool ShowTotal { get; set; }
-		public bool EnableTotalsEdit { get; set; }
 
 		public string SlideHeader { get; set; }
 		public string Advertiser { get; set; }
@@ -540,8 +536,8 @@ namespace NewBizWiz.Core.Dashboard
 		public DateTime PresentationDate { get; set; }
 		public DateTime FlightDatesStart { get; set; }
 		public DateTime FlightDatesEnd { get; set; }
-		public double MonthlyValue { get; set; }
-		public double TotalValue { get; set; }
+		public decimal? MonthlyValue { get; set; }
+		public decimal? TotalValue { get; set; }
 
 		public List<SimpleSummaryItemState> ItemsState { get; set; }
 
@@ -555,7 +551,6 @@ namespace NewBizWiz.Core.Dashboard
 			result.AppendLine(@"<ShowFlightDates>" + ShowFlightDates + @"</ShowFlightDates>");
 			result.AppendLine(@"<ShowMonthly>" + ShowMonthly + @"</ShowMonthly>");
 			result.AppendLine(@"<ShowTotal>" + ShowTotal + @"</ShowTotal>");
-			result.AppendLine(@"<EnableTotalsEdit>" + EnableTotalsEdit + @"</EnableTotalsEdit>");
 
 			result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
 			result.AppendLine(@"<Advertiser>" + Advertiser.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Advertiser>");
@@ -563,8 +558,10 @@ namespace NewBizWiz.Core.Dashboard
 			result.AppendLine(@"<PresentationDate>" + PresentationDate + @"</PresentationDate>");
 			result.AppendLine(@"<FlightDatesStart>" + FlightDatesStart + @"</FlightDatesStart>");
 			result.AppendLine(@"<FlightDatesEnd>" + FlightDatesEnd + @"</FlightDatesEnd>");
-			result.AppendLine(@"<MonthlyValue>" + MonthlyValue + @"</MonthlyValue>");
-			result.AppendLine(@"<TotalValue>" + TotalValue + @"</TotalValue>");
+			if (MonthlyValue.HasValue)
+				result.AppendLine(@"<MonthlyValue>" + MonthlyValue + @"</MonthlyValue>");
+			if (TotalValue.HasValue)
+				result.AppendLine(@"<TotalValue>" + TotalValue + @"</TotalValue>");
 
 			result.AppendLine(@"<Items>");
 			foreach (SimpleSummaryItemState item in ItemsState)
@@ -576,16 +573,15 @@ namespace NewBizWiz.Core.Dashboard
 
 		private void Deserialize(XmlNode node)
 		{
-			bool tempBool = false;
-			DateTime tempDateTime = DateTime.Now;
-			double tempDouble = 0;
-
 			PresentationDate = DateTime.MinValue;
 			FlightDatesStart = DateTime.MinValue;
 			FlightDatesEnd = DateTime.MinValue;
 
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
+				bool tempBool = false;
+				DateTime tempDateTime;
+				decimal tempDecimal = 0;
 				switch (childNode.Name)
 				{
 					case "ShowAdvertiser":
@@ -612,10 +608,6 @@ namespace NewBizWiz.Core.Dashboard
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowTotal = tempBool;
 						break;
-					case "EnableTotalsEdit":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableTotalsEdit = tempBool;
-						break;
 					case "SlideHeader":
 						SlideHeader = childNode.InnerText;
 						break;
@@ -638,12 +630,12 @@ namespace NewBizWiz.Core.Dashboard
 							FlightDatesEnd = tempDateTime;
 						break;
 					case "MonthlyValue":
-						if (double.TryParse(childNode.InnerText, out tempDouble))
-							MonthlyValue = tempDouble;
+						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
+							MonthlyValue = tempDecimal;
 						break;
 					case "TotalValue":
-						if (double.TryParse(childNode.InnerText, out tempDouble))
-							TotalValue = tempDouble;
+						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
+							TotalValue = tempDecimal;
 						break;
 					case "Items":
 						ItemsState.Clear();
@@ -700,15 +692,13 @@ namespace NewBizWiz.Core.Dashboard
 		public SimpleSummaryItemState()
 		{
 			ShowValue = true;
-			ShowDescription = true;
-			ShowMonthly = true;
-			ShowTotal = true;
+			ShowDescription = false;
+			ShowMonthly = false;
+			ShowTotal = false;
 
 			Order = 0;
 			Value = string.Empty;
 			Description = string.Empty;
-			Monthly = 0;
-			Total = 0;
 		}
 
 		public bool ShowValue { get; set; }
@@ -719,8 +709,8 @@ namespace NewBizWiz.Core.Dashboard
 		public int Order { get; set; }
 		public string Value { get; set; }
 		public string Description { get; set; }
-		public double Monthly { get; set; }
-		public double Total { get; set; }
+		public decimal? Monthly { get; set; }
+		public decimal? Total { get; set; }
 
 		public string Serialize()
 		{
@@ -734,8 +724,10 @@ namespace NewBizWiz.Core.Dashboard
 			result.AppendLine(@"<Order>" + Order + @"</Order>");
 			result.AppendLine(@"<Value>" + Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Value>");
 			result.AppendLine(@"<Description>" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Description>");
-			result.AppendLine(@"<Monthly>" + Monthly + @"</Monthly>");
-			result.AppendLine(@"<Total>" + Total + @"</Total>");
+			if (Monthly.HasValue)
+				result.AppendLine(@"<Monthly>" + Monthly + @"</Monthly>");
+			if (Total.HasValue)
+				result.AppendLine(@"<Total>" + Total + @"</Total>");
 
 			return result.ToString();
 		}
@@ -744,7 +736,7 @@ namespace NewBizWiz.Core.Dashboard
 		{
 			bool tempBool = false;
 			int tempInt = 0;
-			double tempDouble = 0;
+			decimal tempDecimal = 0;
 
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
@@ -771,12 +763,12 @@ namespace NewBizWiz.Core.Dashboard
 							Order = tempInt;
 						break;
 					case "Monthly":
-						if (double.TryParse(childNode.InnerText, out tempDouble))
-							Monthly = tempDouble;
+						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
+							Monthly = tempDecimal;
 						break;
 					case "Total":
-						if (double.TryParse(childNode.InnerText, out tempDouble))
-							Total = tempDouble;
+						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
+							Total = tempDecimal;
 						break;
 					case "Value":
 						Value = childNode.InnerText;

@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
-using ListManager = NewBizWiz.Core.Dashboard.ListManager;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 {
@@ -14,9 +13,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		private bool _loading;
 		public SummaryItem Data { get; set; }
 
-		public event EventHandler<EventArgs> ItemDeleted;
-		public event EventHandler<EventArgs> ItemUp;
-		public event EventHandler<EventArgs> ItemDown;
 		public event EventHandler<EventArgs> DataChanged;
 		public event EventHandler<EventArgs> InvestmentChanged;
 
@@ -24,12 +20,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		{
 			InitializeComponent();
 			Dock = DockStyle.Top;
-			comboBoxEditItem.Properties.Items.Clear();
-			comboBoxEditItem.Properties.Items.AddRange(ListManager.Instance.SimpleSummaryLists.Details);
-
-			comboBoxEditItem.MouseUp += Utilities.Instance.Editor_MouseUp;
-			comboBoxEditItem.MouseDown += Utilities.Instance.Editor_MouseDown;
-			comboBoxEditItem.Enter += Utilities.Instance.Editor_Enter;
 			spinEditMonthly.MouseUp += Utilities.Instance.Editor_MouseUp;
 			spinEditMonthly.MouseDown += Utilities.Instance.Editor_MouseDown;
 			spinEditMonthly.Enter += Utilities.Instance.Editor_Enter;
@@ -44,83 +34,30 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			{
 				laTotal.Font = new Font(laTotal.Font.FontFamily, laTotal.Font.Size - 2, laTotal.Font.Style);
 			}
-			OutputItem = new SummaryOutputItemControl();
 			DataChanged += (o, e) => { Data.Commited = true; };
 		}
-
-		public SummaryOutputItemControl OutputItem { get; set; }
 
 		public void LoadData()
 		{
 			_loading = true;
+			pictureBoxLogo.Image = Data.Parent is PrintProduct ? Properties.Resources.SummaryPrint : Properties.Resources.SummaryDigital;
 			ckItem.Checked = Data.ShowValue;
 			ckDetails.Checked = Data.ShowDescription;
 			ckMonthly.Checked = Data.ShowMonthly;
 			ckTotal.Checked = Data.ShowTotal;
 
-			comboBoxEditItem.EditValue = Data.Value;
+			laTitle.Text = Data.Parent.SummaryTitle;
 			memoEditDetails.EditValue = Data.Description;
 			spinEditMonthly.EditValue = Data.Monthly;
 			spinEditTotal.EditValue = Data.Total;
 
-			UpdateItemNumber();
 			_loading = false;
-		}
-
-		public void UpdateItemNumber()
-		{
-			laNumber.Text = (Data.Order + 1).ToString();
-		}
-
-		public void UpdateOutputItem()
-		{
-			OutputItem.TotalVisible = ckTotal.Checked && spinEditTotal.EditValue != null;
-			OutputItem.MonthlyVisible = ckMonthly.Checked && spinEditMonthly.EditValue != null;
-			OutputItem.ItemVisible = ckItem.Checked;
-			OutputItem.DetailsVisible = ckDetails.Checked;
-			OutputItem.MonthlyValue = spinEditMonthly.Value.ToString("$#,##0.00");
-			OutputItem.ToatlValue = spinEditTotal.Value.ToString("$#,##0.00");
-			if (comboBoxEditItem.EditValue != null)
-				OutputItem.ItemValue = comboBoxEditItem.EditValue.ToString();
-			else
-				OutputItem.ItemValue = string.Empty;
-			if (!String.IsNullOrEmpty(ItemDetail))
-			{
-				OutputItem.DetailsValue = memoEditDetails.EditValue.ToString().Replace(Environment.NewLine, "; ");
-				OutputItem.pnDetails.Visible = true;
-			}
-			else
-			{
-				OutputItem.DetailsValue = string.Empty;
-				OutputItem.pnDetails.Visible = false;
-			}
-			OutputItem.Height = (String.IsNullOrEmpty(ItemDetail) ? OutputItem.pnHeader.Height : (OutputItem.pnHeader.Height + OutputItem.pnDetails.Height)) + 40;
-		}
-
-		private void pbDelete_Click(object sender, EventArgs e)
-		{
-			if (ItemDeleted != null)
-				ItemDeleted(this, EventArgs.Empty);
-			UpdateItemNumber();
-		}
-
-		private void pbUp_Click(object sender, EventArgs e)
-		{
-			if (ItemUp != null)
-				ItemUp(this, EventArgs.Empty);
-			UpdateItemNumber();
-		}
-
-		private void pbDown_Click(object sender, EventArgs e)
-		{
-			if (ItemDown != null)
-				ItemDown(this, EventArgs.Empty);
-			UpdateItemNumber();
 		}
 
 		private void ckMonthly_CheckedChanged(object sender, EventArgs e)
 		{
 			spinEditMonthly.Enabled = ckMonthly.Checked;
+			laMonthly.Enabled = ckMonthly.Checked;
 			if (_loading) return;
 			spinEditMonthly.Value = ckMonthly.Checked ? spinEditMonthly.Value : 0;
 			Data.ShowMonthly = ckMonthly.Checked;
@@ -133,6 +70,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		private void ckTotal_CheckedChanged(object sender, EventArgs e)
 		{
 			spinEditTotal.Enabled = ckTotal.Checked;
+			laTotal.Enabled = ckTotal.Checked;
 			if (_loading) return;
 			spinEditTotal.Value = ckTotal.Checked ? spinEditTotal.Value : 0;
 			Data.ShowTotal = ckTotal.Checked;
@@ -144,9 +82,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		private void ckItem_CheckedChanged(object sender, EventArgs e)
 		{
-			comboBoxEditItem.Enabled = ckItem.Checked;
+			laTitle.Enabled = ckItem.Checked;
 			if (_loading) return;
-			comboBoxEditItem.EditValue = ckItem.Checked ? comboBoxEditItem.EditValue : null;
 			Data.ShowValue = ckItem.Checked;
 			if (DataChanged != null)
 				DataChanged(this, EventArgs.Empty);
@@ -156,18 +93,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		{
 			memoEditDetails.Enabled = ckDetails.Checked;
 			if (_loading) return;
-			memoEditDetails.EditValue = ckDetails.Checked ? memoEditDetails.EditValue : null;
+			memoEditDetails.EditValue = ckDetails.Checked ? memoEditDetails.EditValue : Data.Parent.SummaryInfo;
 			Data.ShowDescription = ckDetails.Checked;
-			if (DataChanged != null)
-				DataChanged(this, EventArgs.Empty);
-		}
-
-		private void comboBoxEditItem_EditValueChanged(object sender, EventArgs e)
-		{
-			if (_loading) return;
-			Data.Value = comboBoxEditItem.EditValue != null ? comboBoxEditItem.EditValue.ToString() : null;
-			if (InvestmentChanged != null)
-				InvestmentChanged(this, EventArgs.Empty);
 			if (DataChanged != null)
 				DataChanged(this, EventArgs.Empty);
 		}
@@ -175,7 +102,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		private void memoEditDetails_EditValueChanged(object sender, EventArgs e)
 		{
 			if (_loading) return;
-			Data.Description = memoEditDetails.EditValue != null ? memoEditDetails.EditValue.ToString() : null;
+			Data.Description = memoEditDetails.EditValue as String;
 			if (DataChanged != null)
 				DataChanged(this, EventArgs.Empty);
 		}
@@ -200,25 +127,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 				DataChanged(this, EventArgs.Empty);
 		}
 
-		#region Picture Box Clicks Habdlers
-		/// <summary>
-		/// Buttonize the PictureBox 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top += 1;
-		}
-
-		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top -= 1;
-		}
-		#endregion
-
 		#region Output Stuff
 		public bool ShowMonthly
 		{
@@ -232,27 +140,27 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public bool ShowValueOutput
 		{
-			get { return Data.ShowValue & OutputItem.ItemChecked; }
+			get { return Data.ShowValue; }
 		}
 
 		public bool ShowDescriptionOutput
 		{
-			get { return Data.ShowDescription & OutputItem.DetailsChecked; }
+			get { return Data.ShowDescription; }
 		}
 
 		public bool ShowMonthlyOutput
 		{
-			get { return ShowMonthly & OutputItem.MonthlyChecked; }
+			get { return ShowMonthly; }
 		}
 
 		public bool ShowTotalOutput
 		{
-			get { return ShowTotal & OutputItem.TotalChecked; }
+			get { return ShowTotal; }
 		}
 
 		public string ItemTitle
 		{
-			get { return Data.Value; }
+			get { return Data.Parent.SummaryTitle; }
 		}
 
 		public string OutputItemTitle
@@ -260,14 +168,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			get { return !String.IsNullOrEmpty(ItemTitle) && ShowValueOutput ? ItemTitle : String.Empty; }
 		}
 
-		public string ItemDetail
+		private string ItemDetail
 		{
 			get { return !String.IsNullOrEmpty(Data.Description) && Data.ShowDescription ? Data.Description : String.Empty; }
 		}
 
 		public string ItemDetailOutput
 		{
-			get { return !String.IsNullOrEmpty(ItemDetail) && OutputItem.DetailsChecked ? ItemDetail : String.Empty; }
+			get { return !String.IsNullOrEmpty(ItemDetail) ? ItemDetail : String.Empty; }
 		}
 
 		public decimal MonthlyValue
@@ -282,12 +190,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public decimal? OutputMonthlyValue
 		{
-			get { return ckMonthly.Checked && OutputItem.MonthlyChecked ? MonthlyValue : (decimal?)null; }
+			get { return ckMonthly.Checked ? MonthlyValue : (decimal?)null; }
 		}
 
 		public decimal? OutputTotalValue
 		{
-			get { return ckTotal.Checked &&  OutputItem.TotalChecked ? TotalValue : (decimal?)null; }
+			get { return ckTotal.Checked ? TotalValue : (decimal?)null; }
 		}
 
 		public bool Complited

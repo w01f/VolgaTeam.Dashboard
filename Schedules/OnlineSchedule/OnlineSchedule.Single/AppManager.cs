@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using NewBizWiz.CommonGUI;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
@@ -12,7 +13,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 	public class AppManager
 	{
 		private static readonly AppManager _instance = new AppManager();
-		private FloaterManager _floater = new FloaterManager();
+		private readonly FloaterManager _floater = new FloaterManager();
 
 		public NBWLink AppConfig { get; private set; }
 
@@ -25,6 +26,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 
 		public void RunForm()
 		{
+			LicenseHelper.Register();
 			OnlineSchedulePowerPointHelper.Instance.SetPresentationSettings();
 			AppConfig = NBWLink.CreateLink(new DirectoryInfo(Application.StartupPath));
 			Application.Run(FormMain.Instance);

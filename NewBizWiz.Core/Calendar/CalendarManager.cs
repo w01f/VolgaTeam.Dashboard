@@ -221,7 +221,7 @@ namespace NewBizWiz.Core.Calendar
 		}
 
 		private FileInfo _calendarFile { get; set; }
-		public bool IsNameNotAssigned { get; set; }
+		public bool IsNew { get; set; }
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
 		public string ClientType { get; set; }
@@ -230,6 +230,7 @@ namespace NewBizWiz.Core.Calendar
 		public DateTime? PresentationDate { get; set; }
 		public DateTime? FlightDateStart { get; set; }
 		public DateTime? FlightDateEnd { get; set; }
+		public IScheduleViewSettings SharedViewSettings { get; private set; }
 
 		public Calendar GraphicCalendar { get; set; }
 
@@ -237,13 +238,6 @@ namespace NewBizWiz.Core.Calendar
 		public bool ShowDigital { get; set; }
 		public bool ShowTV { get; set; }
 		public bool ShowRadio { get; set; }
-
-		public IScheduleViewSettings CommonViewSettings { get; private set; }
-		public List<DigitalProduct> DigitalProducts { get; private set; }
-		public void RebuildDigitalProductIndexes()
-		{
-			throw new NotImplementedException();
-		}
 
 		public string Name
 		{

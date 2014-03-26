@@ -28,9 +28,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			});
 		}
 
-		public Schedule LocalSchedule { get; set; }
-
-
 		public bool AllowToLeaveControl
 		{
 			get
@@ -81,6 +78,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				}
 				_tabPages.Sort((x, y) => x.Product.Index.CompareTo(y.Product.Index));
 				xtraTabControlProducts.TabPages.AddRange(_tabPages.ToArray());
+
+				var summaryControl = new DigitalSummaryControl(this);
+				summaryControl.UpdateControls(_tabPages.Select(tp => tp.SummaryControl));
+				xtraTabControlProducts.TabPages.Add(summaryControl);
+
 				Application.DoEvents();
 				xtraTabControlProducts.ResumeLayout();
 
@@ -118,7 +120,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			base.SaveSchedule(scheduleName);
 			if (!string.IsNullOrEmpty(scheduleName))
 				LocalSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule(LocalSchedule, false, this);
+			Controller.Instance.SaveSchedule((Schedule)LocalSchedule, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}
@@ -155,7 +157,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			BusinessWrapper.Instance.HelpManager.OpenHelpLink("digital");
 		}
 
-		public override void OutputSlides(IEnumerable<DigitalProductControl> tabsForOutput)
+		public override void OutputSlides(IEnumerable<IDigitalOutputControl> tabsForOutput)
 		{
 			using (var formProgress = new FormProgress())
 			{
@@ -171,9 +173,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			}
 		}
 
-		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups)
+		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackOutput))
 			{
 				formPreview.Text = "Preview Digital Product";
 				formPreview.LoadGroups(previewGroups);
@@ -190,6 +192,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public override HelpManager HelpManager
 		{
 			get { return BusinessWrapper.Instance.HelpManager; }
+		}
+
+		protected override string SlideName
+		{
+			get { return Controller.Instance.TabDigitalProduct.Text; }
 		}
 	}
 }

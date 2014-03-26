@@ -66,8 +66,8 @@ namespace NewBizWiz.Core.AdSchedule
 				XtraTinyImageFolder = new DirectoryInfo(folderPath);
 			Images = new List<ImageSource>();
 
-			LoadImages();
 			LoadLists();
+			LoadImages();
 
 			if (DefaultPrintScheduleViewSettings.DefaultPCI)
 				DefaultPricingStrategy = AdPricingStrategies.StandartPCI;
@@ -146,33 +146,34 @@ namespace NewBizWiz.Core.AdSchedule
 		{
 			Images.Clear();
 			if (BigImageFolder == null || SmallImageFolder == null || TinyImageFolder == null || XtraTinyImageFolder == null) return;
-			foreach (FileInfo bigImageFile in BigImageFolder.GetFiles("*.png"))
+			foreach (var printProductSource in PublicationSources)
 			{
-				string imageFileName = Path.GetFileNameWithoutExtension(bigImageFile.FullName);
-				string imageFileExtension = Path.GetExtension(bigImageFile.FullName);
+				if (String.IsNullOrEmpty(printProductSource.BigLogoFileName)) continue;
+				var imageFileName = Path.GetFileNameWithoutExtension(printProductSource.BigLogoFileName);
+				var imageFileExtension = Path.GetExtension(printProductSource.BigLogoFileName);
 
-				string smallImageFilePath = Path.Combine(SmallImageFolder.FullName, string.Format("{0}2{1}", new[] { imageFileName, imageFileExtension }));
-				string tinyImageFilePath = Path.Combine(TinyImageFolder.FullName, string.Format("{0}3{1}", new[] { imageFileName, imageFileExtension }));
-				string xtraTinyImageFilePath = Path.Combine(XtraTinyImageFolder.FullName, string.Format("{0}4{1}", new[] { imageFileName, imageFileExtension }));
-				if (File.Exists(smallImageFilePath) && File.Exists(tinyImageFilePath) && File.Exists(xtraTinyImageFilePath))
+				var bigImageFilePath = Path.Combine(BigImageFolder.FullName, printProductSource.BigLogoFileName);
+				var smallImageFilePath = Path.Combine(SmallImageFolder.FullName, printProductSource.SmallLogoFileName);
+				var tinyImageFilePath = Path.Combine(TinyImageFolder.FullName, printProductSource.TinyLogoFileName);
+				var xtraTinyImageFilePath = Path.Combine(XtraTinyImageFolder.FullName, string.Format("{0}4{1}", new[] { imageFileName, imageFileExtension }));
+				if (!File.Exists(bigImageFilePath) || !File.Exists(smallImageFilePath) || !File.Exists(tinyImageFilePath) || !File.Exists(xtraTinyImageFilePath)) continue;
+				var imageSource = new ImageSource
 				{
-					var imageSource = new ImageSource();
-					imageSource.IsDefault = bigImageFile.Name.ToLower().Contains("default");
-					imageSource.BigImage = new Bitmap(bigImageFile.FullName);
-					imageSource.SmallImage = new Bitmap(smallImageFilePath);
-					imageSource.TinyImage = new Bitmap(tinyImageFilePath);
-					imageSource.XtraTinyImage = new Bitmap(xtraTinyImageFilePath);
+					IsDefault = imageFileName.ToLower().Contains("default"),
+					Name = printProductSource.Name,
+					BigImage = new Bitmap(bigImageFilePath),
+					SmallImage = new Bitmap(smallImageFilePath),
+					TinyImage = new Bitmap(tinyImageFilePath),
+					XtraTinyImage = new Bitmap(xtraTinyImageFilePath)
+				};
+				if (Images.All(i => i.Name != imageSource.Name))
 					Images.Add(imageSource);
-				}
 			}
 		}
 
 		private void LoadPrintStrategy()
 		{
-			double tempDouble = 0;
-			bool tempBool;
-			int tempInt;
-			string filePath = string.Empty;
+			var filePath = string.Empty;
 
 			PublicationSources.Clear();
 			Readerships.Clear();
@@ -188,34 +189,26 @@ namespace NewBizWiz.Core.AdSchedule
 			var defaultPublication = new PrintProductSource();
 			filePath = Path.Combine(BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
 			defaultPublication.Name = "Default";
-			if (File.Exists(filePath))
-				defaultPublication.BigLogo = new Bitmap(filePath);
-			else
-				defaultPublication.BigLogo = null;
+			defaultPublication.BigLogo = File.Exists(filePath) ? new Bitmap(filePath) : null;
 			filePath = Path.Combine(SmallImageFolder.FullName, Common.ListManager.DefaultSmallLogoFileName);
-			if (File.Exists(filePath))
-				defaultPublication.SmallLogo = new Bitmap(filePath);
-			else
-				defaultPublication.SmallLogo = null;
+			defaultPublication.SmallLogo = File.Exists(filePath) ? new Bitmap(filePath) : null;
 			filePath = Path.Combine(TinyImageFolder.FullName, Common.ListManager.DefaultTinyLogoFileName);
-			if (File.Exists(filePath))
-				defaultPublication.TinyLogo = new Bitmap(filePath);
-			else
-				defaultPublication.TinyLogo = null;
+			defaultPublication.TinyLogo = File.Exists(filePath) ? new Bitmap(filePath) : null;
 			PublicationSources.Add(defaultPublication);
 
 
-			string listPath = Path.Combine(Common.SettingsManager.Instance.SharedListFolder, PrintStrategyFileName);
+			var listPath = Path.Combine(Common.SettingsManager.Instance.SharedListFolder, PrintStrategyFileName);
 			if (File.Exists(listPath))
 			{
 				var document = new XmlDocument();
 				document.Load(listPath);
 
-				XmlNode node = document.SelectSingleNode(@"/PrintStrategy");
+				var node = document.SelectSingleNode(@"/PrintStrategy");
 				if (node != null)
 				{
 					foreach (XmlNode childeNode in node.ChildNodes)
 					{
+						int tempInt;
 						switch (childeNode.Name)
 						{
 							case "Publication":
@@ -224,6 +217,9 @@ namespace NewBizWiz.Core.AdSchedule
 								var sundaySource = new PrintProductSource();
 								sundaySource.Circulation = CirculationType.Sunday;
 								foreach (XmlAttribute attribute in childeNode.Attributes)
+								{
+									double tempDouble;
+									bool tempBool;
 									switch (attribute.Name)
 									{
 										case "Name":
@@ -333,6 +329,7 @@ namespace NewBizWiz.Core.AdSchedule
 											}
 											break;
 									}
+								}
 								PublicationSources.Add(dailySource);
 								PublicationSources.Add(sundaySource);
 								break;

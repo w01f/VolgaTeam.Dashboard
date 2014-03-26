@@ -58,6 +58,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Assemblies\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -69,14 +72,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdSchedule\Activities.cs" />
+    <Compile Include="Common\ActivityManager.cs" />
     <Compile Include="Common\Enums.cs" />
+    <Compile Include="Common\GalleryManager.cs" />
     <Compile Include="Common\NBWLink.cs" />
     <Compile Include="Common\ScheduleSaveEventArgs.cs" />
     <Compile Include="Common\SlideManager.cs" />
+    <Compile Include="Common\SpecialLinkButton.cs" />
     <Compile Include="Common\TabbedControls.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Common\ThemeManager.cs" />
+    <Compile Include="Dashboard\Activities.cs" />
     <Compile Include="Interop\FileIcon.cs" />
     <Compile Include="Interop\ShellLink.cs" />
     <Compile Include="Common\TabPageManager.cs" />
@@ -110,7 +118,9 @@
     <Compile Include="MediaSchedule\MediaMetaData.cs" />
     <Compile Include="MediaSchedule\ScheduleManager.cs" />
     <Compile Include="MediaSchedule\SettingsManager.cs" />
+    <Compile Include="OnlineSchedule\Activities.cs" />
     <Compile Include="OnlineSchedule\ListManager.cs" />
+    <Compile Include="OnlineSchedule\ProductInfo.cs" />
     <Compile Include="OnlineSchedule\ScheduleManager.cs" />
     <Compile Include="OnlineSchedule\SettingsManager.cs" />
     <Compile Include="OnlineSchedule\ViewSettings.cs" />

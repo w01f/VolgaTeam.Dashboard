@@ -28,16 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.xtraTabControlPublications = new DevExpress.XtraTab.XtraTabControl();
 			this.pnHeader = new System.Windows.Forms.Panel();
-			this.checkEditProductName = new DevExpress.XtraEditors.CheckEdit();
-			this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
+			this.laAdvertiser = new System.Windows.Forms.Label();
+			this.laFlightDates = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPublications)).BeginInit();
 			this.pnHeader.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditProductName.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// defaultLookAndFeel
@@ -57,42 +54,35 @@
 			this.xtraTabControlPublications.Name = "xtraTabControlPublications";
 			this.xtraTabControlPublications.Size = new System.Drawing.Size(737, 400);
 			this.xtraTabControlPublications.TabIndex = 3;
-			this.xtraTabControlPublications.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlPublications_SelectedPageChanged);
 			// 
 			// pnHeader
 			// 
-			this.pnHeader.Controls.Add(this.checkEditProductName);
-			this.pnHeader.Controls.Add(this.checkEditFlightDates);
+			this.pnHeader.Controls.Add(this.laFlightDates);
+			this.pnHeader.Controls.Add(this.laAdvertiser);
 			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnHeader.Name = "pnHeader";
 			this.pnHeader.Size = new System.Drawing.Size(737, 30);
 			this.pnHeader.TabIndex = 4;
 			// 
-			// checkEditProductName
+			// laAdvertiser
 			// 
-			this.checkEditProductName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditProductName.Location = new System.Drawing.Point(427, 5);
-			this.checkEditProductName.Name = "checkEditProductName";
-			this.checkEditProductName.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditProductName.Properties.Appearance.Options.UseFont = true;
-			this.checkEditProductName.Properties.Appearance.Options.UseTextOptions = true;
-			this.checkEditProductName.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.checkEditProductName.Properties.Caption = "Product Name";
-			this.checkEditProductName.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.checkEditProductName.Size = new System.Drawing.Size(307, 21);
-			this.checkEditProductName.TabIndex = 27;
+			this.laAdvertiser.Location = new System.Drawing.Point(3, 5);
+			this.laAdvertiser.Name = "laAdvertiser";
+			this.laAdvertiser.Size = new System.Drawing.Size(315, 20);
+			this.laAdvertiser.TabIndex = 0;
+			this.laAdvertiser.Text = "label1";
+			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// checkEditFlightDates
+			// laFlightDates
 			// 
-			this.checkEditFlightDates.Location = new System.Drawing.Point(3, 5);
-			this.checkEditFlightDates.Name = "checkEditFlightDates";
-			this.checkEditFlightDates.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditFlightDates.Properties.Appearance.Options.UseFont = true;
-			this.checkEditFlightDates.Properties.Caption = "Flight Dates";
-			this.checkEditFlightDates.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-			this.checkEditFlightDates.Size = new System.Drawing.Size(218, 21);
-			this.checkEditFlightDates.TabIndex = 26;
+			this.laFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.laFlightDates.Location = new System.Drawing.Point(419, 5);
+			this.laFlightDates.Name = "laFlightDates";
+			this.laFlightDates.Size = new System.Drawing.Size(315, 20);
+			this.laFlightDates.TabIndex = 1;
+			this.laFlightDates.Text = "label1";
+			this.laFlightDates.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// OutputBasicOverviewControl
 			// 
@@ -105,8 +95,6 @@
 			this.Size = new System.Drawing.Size(737, 430);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPublications)).EndInit();
 			this.pnHeader.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditProductName.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -116,8 +104,8 @@
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlPublications;
 		private System.Windows.Forms.Panel pnHeader;
-		public DevExpress.XtraEditors.CheckEdit checkEditProductName;
-		public DevExpress.XtraEditors.CheckEdit checkEditFlightDates;
+	    public System.Windows.Forms.Label laFlightDates;
+		private System.Windows.Forms.Label laAdvertiser;
 
     }
 }

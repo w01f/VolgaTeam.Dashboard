@@ -30,6 +30,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSlides;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
 			Controller.Instance.TabCalendar = ribbonTabItemCalendar;
+			Controller.Instance.TabGallery = ribbonTabItemGallery;
 
 			#region Command Controls
 
@@ -44,10 +45,8 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.HomeSave = buttonItemHomeSave;
 			Controller.Instance.HomeSaveAs = buttonItemHomeSaveAs;
 			Controller.Instance.HomeHelp = buttonItemHomeHelp;
-			Controller.Instance.HomeOptions = buttonItemHomeOptions;
 			Controller.Instance.HomeProductAdd = buttonItemHomeDigitalProductAdd;
 			Controller.Instance.HomeProductClone = buttonItemHomeDigitalProductClone;
-			Controller.Instance.HomeProductDelete = buttonItemHomeDigitalProductDelete;
 			Controller.Instance.HomeClientType = comboBoxEditClientType;
 			Controller.Instance.HomeAccountNumberText = textEditAccountNumber;
 			Controller.Instance.HomeAccountNumberCheck = checkBoxItemHomeAccountNumber;
@@ -61,7 +60,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.WeeklyScheduleEmail = buttonItemWeeklyScheduleEmail;
 			Controller.Instance.WeeklySchedulePowerPoint = buttonItemWeeklySchedulePowerPoint;
 			Controller.Instance.WeeklyScheduleTheme = buttonItemWeeklyScheduleTheme;
-			Controller.Instance.WeeklyScheduleOptions = buttonItemWeeklyScheduleOptions;
+			Controller.Instance.WeeklyScheduleOptions = buttonItemWeeklyScheduleSettings;
 			Controller.Instance.WeeklyScheduleProgramAdd = buttonItemWeeklyScheduleProgramAdd;
 			Controller.Instance.WeeklyScheduleProgramDelete = buttonItemWeeklyScheduleProgramDelete;
 			#endregion
@@ -74,7 +73,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.MonthlyScheduleEmail = buttonItemMonthlyScheduleEmail;
 			Controller.Instance.MonthlySchedulePowerPoint = buttonItemMonthlySchedulePowerPoint;
 			Controller.Instance.MonthlyScheduleTheme = buttonItemMonthlyScheduleTheme;
-			Controller.Instance.MonthlyScheduleOptions = buttonItemMonthlyScheduleOptions;
+			Controller.Instance.MonthlyScheduleOptions = buttonItemMonthlyScheduleSettings;
 			Controller.Instance.MonthlyScheduleProgramAdd = buttonItemMonthlyScheduleProgramAdd;
 			Controller.Instance.MonthlyScheduleProgramDelete = buttonItemMonthlyScheduleProgramDelete;
 			#endregion
@@ -99,7 +98,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
 			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
-			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageOptions;
+			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageSettings;
 			#endregion
 
 			#region Calendar
@@ -114,6 +113,25 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.CalendarPreview = buttonItemCalendarPreview;
 			Controller.Instance.CalendarEmail = buttonItemCalendarEmail;
 			Controller.Instance.CalendarPowerPoint = buttonItemCalendarPowerPoint;
+			#endregion
+
+			#region Gallery
+			Controller.Instance.GalleryBrowseBar = ribbonBarGalleryBrowse;
+			Controller.Instance.GalleryImageBar = ribbonBarGalleryImage;
+			Controller.Instance.GalleryZoomBar = ribbonBarGalleryZoom;
+			Controller.Instance.GalleryCopyBar = ribbonBarGalleryCopy;
+			Controller.Instance.GalleryScreenshots = buttonItemGalleryBrowseScreenshots;
+			Controller.Instance.GalleryAdSpecs = buttonItemGalleryBrowseAdSpecs;
+			Controller.Instance.GalleryView = buttonItemGalleryView;
+			Controller.Instance.GalleryEdit = buttonItemGalleryEdit;
+			Controller.Instance.GalleryImageSelect = buttonItemGalleryImageSelect;
+			Controller.Instance.GalleryImageCrop = buttonItemGalleryImageCrop;
+			Controller.Instance.GalleryZoomIn = buttonItemGalleryZoomIn;
+			Controller.Instance.GalleryZoomOut = buttonItemGalleryZoomOut;
+			Controller.Instance.GalleryCopy = buttonItemGalleryCopy;
+			Controller.Instance.GalleryHelp = buttonItemGalleryHelp;
+			Controller.Instance.GallerySections = comboBoxEditGallerySections;
+			Controller.Instance.GalleryGroups = comboBoxEditGalleryGroups;
 			#endregion
 
 			#endregion
@@ -147,7 +165,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 				ribbonBarDigitalSchedulePowerPoint.RecalcLayout();
 				ribbonBarDigitalPackageEmail.RecalcLayout();
 				ribbonBarDigitalPackageExit.RecalcLayout();
-				ribbonBarDigitalPackageOptions.RecalcLayout();
+				ribbonBarDigitalPackageSettings.RecalcLayout();
 				ribbonBarDigitalPackagePowerPoint.RecalcLayout();
 				ribbonPanelDigitalSlides.PerformLayout();
 				ribbonPanelHome.PerformLayout();
@@ -290,6 +308,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 						pnMain.Controls.Add(_currentControl);
 				}
 				_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemWeeklySchedule)
 			{
@@ -300,6 +319,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 						pnMain.Controls.Add(_currentControl);
 				}
 				_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemMonthlySchedule)
 			{
@@ -310,6 +330,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 						pnMain.Controls.Add(_currentControl);
 				}
 				_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDigitalSlides)
 			{
@@ -320,6 +341,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 						pnMain.Controls.Add(_currentControl);
 				}
 				_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDigitalPackage)
 			{
@@ -330,6 +352,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 						pnMain.Controls.Add(_currentControl);
 				}
 				_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar)
 			{
@@ -341,8 +364,30 @@ namespace NewBizWiz.MediaSchedule.Internal
 						pnMain.Controls.Add(_currentControl);
 				}
 				_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
-			pnMain.BringToFront();
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGallery)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.Gallery;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
+			else
+			{
+				pnEmpty.Visible = true;
+				_currentControl = null;
+				pnEmpty.BringToFront();
+			}
+			if (WindowState == FormWindowState.Normal)
+			{
+				Width++;
+				Width--;
+			}
 		}
 
 		private void FormMain_FormClosing(object sender, FormClosingEventArgs e)

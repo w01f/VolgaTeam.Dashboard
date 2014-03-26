@@ -24,9 +24,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 			if (FormMain.Instance != null)
 			{
-				comboBoxEditItem.MouseUp += FormMain.Instance.Editor_MouseUp;
-				comboBoxEditItem.MouseDown += FormMain.Instance.Editor_MouseDown;
-				comboBoxEditItem.Enter += FormMain.Instance.Editor_Enter;
+				textEditItem.MouseUp += FormMain.Instance.Editor_MouseUp;
+				textEditItem.MouseDown += FormMain.Instance.Editor_MouseDown;
+				textEditItem.Enter += FormMain.Instance.Editor_Enter;
 				spinEditMonthly.MouseUp += FormMain.Instance.Editor_MouseUp;
 				spinEditMonthly.MouseDown += FormMain.Instance.Editor_MouseDown;
 				spinEditMonthly.Enter += FormMain.Instance.Editor_Enter;
@@ -37,13 +37,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				memoEditDetails.MouseDown += FormMain.Instance.Editor_MouseDown;
 				memoEditDetails.Enter += FormMain.Instance.Editor_Enter;
 			}
-
-			OutputItem = new SimpleSummaryOutputControl();
-			if (_parent.OutputContainer != null)
-				_parent.OutputContainer.AddItem(OutputItem);
 		}
-
-		public SimpleSummaryOutputControl OutputItem { get; set; }
 
 		public int ItemNumber
 		{
@@ -51,76 +45,57 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			set
 			{
 				_itemNumber = value;
-				if (OutputItem != null)
-					OutputItem.ItemNumber = value;
 				laNumber.Text = _itemNumber.ToString();
 			}
 		}
 
-		public void LoadSavedState()
+		public void LoadSavedState(SimpleSummaryItemState itemState)
 		{
-			ckItem.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ItemsState[_itemNumber - 1].ShowValue;
-			ckDetails.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ItemsState[_itemNumber - 1].ShowDescription;
-			ckMonthly.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ItemsState[_itemNumber - 1].ShowMonthly;
-			ckTotal.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ItemsState[_itemNumber - 1].ShowTotal;
+			ckItem.Checked = itemState.ShowValue;
+			ckDetails.Checked = itemState.ShowDescription;
+			ckMonthly.Checked = itemState.ShowMonthly;
+			ckTotal.Checked = itemState.ShowTotal;
 
-			comboBoxEditItem.EditValue = !string.IsNullOrEmpty(ViewSettingsManager.Instance.SimpleSummaryState.ItemsState[_itemNumber - 1].Value) ? ViewSettingsManager.Instance.SimpleSummaryState.ItemsState[_itemNumber - 1].Value : null;
-			memoEditDetails.EditValue = !string.IsNullOrEmpty(ViewSettingsManager.Instance.SimpleSummaryState.ItemsState[_itemNumber - 1].Description) ? ViewSettingsManager.Instance.SimpleSummaryState.ItemsState[_itemNumber - 1].Description : null;
-			spinEditMonthly.Value = (decimal)ViewSettingsManager.Instance.SimpleSummaryState.ItemsState[_itemNumber - 1].Monthly;
-			spinEditTotal.Value = (decimal)ViewSettingsManager.Instance.SimpleSummaryState.ItemsState[_itemNumber - 1].Total;
+			textEditItem.EditValue = !string.IsNullOrEmpty(itemState.Value) ? itemState.Value : null;
+			memoEditDetails.EditValue = !string.IsNullOrEmpty(itemState.Description) ? itemState.Description : null;
+			spinEditMonthly.EditValue = itemState.ShowMonthly?(decimal?)itemState.Monthly:null;
+			spinEditTotal.EditValue = itemState.ShowTotal ? (decimal?)itemState.Total : null;
 		}
 
 		private void pbDelete_Click(object sender, EventArgs e)
 		{
 			_parent.DeleteItem(_itemNumber);
-			_parent.OutputContainer.DeleteItem(OutputItem);
 		}
 
 		private void pbUp_Click(object sender, EventArgs e)
 		{
 			_parent.UpItem(_itemNumber);
-			_parent.OutputContainer.UpItem(_itemNumber);
 		}
 
 		private void pbDown_Click(object sender, EventArgs e)
 		{
 			_parent.DownItem(_itemNumber);
-			_parent.OutputContainer.DownItem(_itemNumber);
-		}
-
-		private void SimpleSummaryItemControl_Load(object sender, EventArgs e)
-		{
-			comboBoxEditItem.Properties.Items.Clear();
-			if (ListManager.Instance != null && ListManager.Instance.SimpleSummaryLists != null && ListManager.Instance.SimpleSummaryLists.Details != null)
-				comboBoxEditItem.Properties.Items.AddRange(ListManager.Instance.SimpleSummaryLists.Details);
 		}
 
 		private void ckMonthly_CheckedChanged(object sender, EventArgs e)
 		{
 			spinEditMonthly.Enabled = ckMonthly.Checked;
-			OutputItem.MonthlyVisible = ckMonthly.Checked;
-			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
-			{
-				TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
-				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
-			}
+			if (!TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave) return;
+			spinEditMonthly.EditValue = ckMonthly.Checked ? spinEditMonthly.EditValue : null;
+			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		private void ckTotal_CheckedChanged(object sender, EventArgs e)
 		{
 			spinEditTotal.Enabled = ckTotal.Checked;
-			OutputItem.TotalVisible = ckTotal.Checked;
-			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
-			{
-				TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
-				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
-			}
+			if (!TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave) return;
+			spinEditTotal.EditValue = ckTotal.Checked ? spinEditTotal.EditValue : null;
+			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		private void ckItem_CheckedChanged(object sender, EventArgs e)
 		{
-			comboBoxEditItem.Enabled = ckItem.Checked;
-			OutputItem.ItemVisible = ckItem.Checked;
+			textEditItem.Enabled = ckItem.Checked;
 			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
 				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
@@ -128,52 +103,34 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void ckDetails_CheckedChanged(object sender, EventArgs e)
 		{
 			memoEditDetails.Enabled = ckDetails.Checked;
-			OutputItem.DetailsVisible = ckDetails.Checked;
 			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
 				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
-		private void comboBoxEditItem_EditValueChanged(object sender, EventArgs e)
+		private void textEditItem_EditValueChanged(object sender, EventArgs e)
 		{
-			if (comboBoxEditItem.EditValue != null)
-				OutputItem.ItemValue = comboBoxEditItem.EditValue.ToString();
-			else
-				OutputItem.ItemValue = string.Empty;
-			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
-			{
-				TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
-				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
-			}
+			if (!TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave) return;
+			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		private void memoEditDetails_EditValueChanged(object sender, EventArgs e)
 		{
-			if (memoEditDetails.EditValue != null)
-				OutputItem.DetailsValue = memoEditDetails.EditValue.ToString().Replace(Environment.NewLine, "; ");
-			else
-				OutputItem.DetailsValue = string.Empty;
 			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
 				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		private void spinEditMonthly_EditValueChanged(object sender, EventArgs e)
 		{
-			OutputItem.MonthlyValue = spinEditMonthly.Value.ToString("$#,##0.00");
-			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
-			{
-				TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
-				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
-			}
+			if (!TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave) return;
+			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
+			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		private void spinEditTotal_EditValueChanged(object sender, EventArgs e)
 		{
-			OutputItem.ToatlValue = spinEditTotal.Value.ToString("$#,##0.00");
-			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
-			{
-				TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
-				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
-			}
+			if (!TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave) return;
+			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
+			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		#region Picture Box Clicks Habdlers
@@ -198,12 +155,12 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		#region Output Stuff
 		public bool ShowMonthly
 		{
-			get { return ckMonthly.Checked; }
+			get { return ckMonthly.Checked && spinEditMonthly.EditValue != null; }
 		}
 
 		public bool ShowTotal
 		{
-			get { return ckTotal.Checked; }
+			get { return ckTotal.Checked && spinEditTotal.EditValue != null; }
 		}
 
 		public bool ShowValue
@@ -211,29 +168,14 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return ckItem.Checked; }
 		}
 
-		public bool ShowDescriptionOutput
+		public bool ShowDescription
 		{
-			get { return ckDetails.Checked & OutputItem.DetailsChecked; }
-		}
-
-		public bool ShowMonthlyOutput
-		{
-			get { return ckMonthly.Checked & OutputItem.MonthlyChecked; }
-		}
-
-		public bool ShowTotalOutput
-		{
-			get { return ckTotal.Checked & OutputItem.TotalChecked; }
+			get { return ckDetails.Checked; }
 		}
 
 		public string ItemTitle
 		{
-			get { return comboBoxEditItem.EditValue != null && ckItem.Checked ? comboBoxEditItem.EditValue.ToString() : string.Empty; }
-		}
-
-		public string OutputItemTitle
-		{
-			get { return comboBoxEditItem.EditValue != null && ckItem.Checked && OutputItem.ItemChecked ? comboBoxEditItem.EditValue.ToString() : string.Empty; }
+			get { return textEditItem.EditValue != null && ckItem.Checked ? textEditItem.EditValue.ToString() : string.Empty; }
 		}
 
 		public string ItemDetail
@@ -241,29 +183,14 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return memoEditDetails.EditValue != null && ckDetails.Checked ? memoEditDetails.EditValue.ToString() : string.Empty; }
 		}
 
-		public string ItemDetailOutput
+		public decimal? MonthlyValue
 		{
-			get { return memoEditDetails.EditValue != null && ckDetails.Checked && OutputItem.DetailsChecked ? memoEditDetails.EditValue.ToString() : string.Empty; }
+			get { return (decimal?)spinEditMonthly.EditValue; }
 		}
 
-		public double? MonthlyValue
+		public decimal? TotalValue
 		{
-			get { return ckMonthly.Checked ? (double?)spinEditMonthly.Value : null; }
-		}
-
-		public double? TotalValue
-		{
-			get { return ckTotal.Checked ? (double?)spinEditTotal.Value : null; }
-		}
-
-		public double? OutputMonthlyValue
-		{
-			get { return ckMonthly.Checked && OutputItem.MonthlyChecked ? (double?)spinEditMonthly.Value : null; }
-		}
-
-		public double? OutputTotalValue
-		{
-			get { return ckTotal.Checked && OutputItem.TotalChecked ? (double?)spinEditTotal.Value : null; }
+			get { return (decimal?)spinEditTotal.EditValue; }
 		}
 
 		public bool Complited

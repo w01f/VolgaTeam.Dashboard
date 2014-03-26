@@ -2,7 +2,7 @@
 using System.Text;
 using System.Xml;
 
-namespace CommandCentral.CommonClasses
+namespace CommandCentral.CommonClasses.NewspaperViewSettings
 {
 	public class HomeViewSettings
 	{
@@ -15,9 +15,6 @@ namespace CommandCentral.CommonClasses
 			EnableCode = true;
 
 			ShowAccountNumber = false;
-			ShowSalesStrategyPerson = true;
-			ShowSalesStrategyEmail = false;
-			ShowSalesStrategyFax = false;
 			ShowDelivery = false;
 			ShowReadership = false;
 			ShowLogo = true;
@@ -31,9 +28,6 @@ namespace CommandCentral.CommonClasses
 		public bool EnableCode { get; set; }
 
 		public bool ShowAccountNumber { get; set; }
-		public bool ShowSalesStrategyPerson { get; set; }
-		public bool ShowSalesStrategyEmail { get; set; }
-		public bool ShowSalesStrategyFax { get; set; }
 		public bool ShowDelivery { get; set; }
 		public bool ShowReadership { get; set; }
 		public bool ShowLogo { get; set; }
@@ -50,9 +44,6 @@ namespace CommandCentral.CommonClasses
 			result.AppendLine(@"<EnableReadership>" + EnableReadership + @"</EnableReadership>");
 
 			result.AppendLine(@"<ShowAccountNumber>" + ShowAccountNumber + @"</ShowAccountNumber>");
-			result.AppendLine(@"<ShowSalesStrategyPerson>" + ShowSalesStrategyPerson + @"</ShowSalesStrategyPerson>");
-			result.AppendLine(@"<ShowSalesStrategyEmail>" + ShowSalesStrategyEmail + @"</ShowSalesStrategyEmail>");
-			result.AppendLine(@"<ShowSalesStrategyFax>" + ShowSalesStrategyFax + @"</ShowSalesStrategyFax>");
 			result.AppendLine(@"<ShowCode>" + ShowCode + @"</ShowCode>");
 			result.AppendLine(@"<ShowDelivery>" + ShowDelivery + @"</ShowDelivery>");
 			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
@@ -93,18 +84,6 @@ namespace CommandCentral.CommonClasses
 					case "ShowAccountNumber":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowAccountNumber = tempBool;
-						break;
-					case "ShowSalesStrategyPerson":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowSalesStrategyPerson = tempBool;
-						break;
-					case "ShowSalesStrategyEmail":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowSalesStrategyEmail = tempBool;
-						break;
-					case "ShowSalesStrategyFax":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowSalesStrategyFax = tempBool;
 						break;
 					case "ShowCode":
 						if (bool.TryParse(childNode.InnerText, out tempBool))

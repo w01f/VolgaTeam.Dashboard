@@ -82,11 +82,11 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			set
 			{
 				checkedListBoxControlComments.Items.Clear();
-				_useMultiLineComment = ListManager.Instance.Notes.Where(x => !string.IsNullOrEmpty(x.Code)).Count() > 0;
+				_useMultiLineComment = ListManager.Instance.Notes.Any(x => !string.IsNullOrEmpty(x.Code));
 				int i = 0;
 				foreach (NameCodePair comment in ListManager.Instance.Notes)
 				{
-					bool itemChecked = value.Where(x => x.Name.Equals(comment.Name) && x.Code.Equals(comment.Code)).Count() > 0;
+					bool itemChecked = value.Any(x => x.Name.Equals(comment.Name) && x.Code.Equals(comment.Code));
 					checkedListBoxControlComments.Items.Add(comment.Code, comment.Name, itemChecked ? CheckState.Checked : CheckState.Unchecked, true);
 					if (itemChecked && _selectedCommentRecordNumber == -1)
 						_selectedCommentRecordNumber = i;
@@ -136,11 +136,11 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			set
 			{
 				checkedListBoxControlSections.Items.Clear();
-				_useMultiLineSection = ListManager.Instance.Sections.Where(x => !string.IsNullOrEmpty(x.Code)).Count() > 0;
+				_useMultiLineSection = ListManager.Instance.Sections.Any(x => !string.IsNullOrEmpty(x.Code));
 				int i = 0;
 				foreach (NameCodePair section in ListManager.Instance.Sections)
 				{
-					bool itemChecked = value.Where(x => x.Name.Equals(section.Name) && x.Code.Equals(section.Code)).Count() > 0;
+					bool itemChecked = value.Any(x => x.Name.Equals(section.Name) && x.Code.Equals(section.Code));
 					checkedListBoxControlSections.Items.Add(section.Code, section.Name, itemChecked ? CheckState.Checked : CheckState.Unchecked, true);
 					if (itemChecked && _selectedSectionRecordNumber == -1)
 						_selectedSectionRecordNumber = i;
@@ -231,35 +231,6 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 				tabItemDeadlines.Image = Resources.Selected;
 			else
 				tabItemDeadlines.Image = Resources.Unselected;
-
-			string deadline;
-			if (ckDeadline.Checked)
-				deadline = textEditDeadline.EditValue != null ? textEditDeadline.EditValue.ToString() : string.Empty;
-			else
-				deadline = checkedListBoxControlDeadline.CheckedIndices.Count > 0 ? CalculateDeadline((checkedListBoxControlDeadline.Items[checkedListBoxControlDeadline.CheckedIndices[0]]).Description) : string.Empty;
-			if (!string.IsNullOrEmpty(deadline))
-				laDeadline.Text = "Deadline: " + deadline;
-			else
-				laDeadline.Text = "Deadline: Not Selected";
-		}
-
-		private string CalculateDeadline(string deadlineRange)
-		{
-			string result = string.Empty;
-			var re = new Regex(@"\d+");
-			Match m = re.Match(deadlineRange);
-			if (m.Success)
-			{
-				int daysNumber = 0;
-				if (int.TryParse(m.Value, out daysNumber))
-				{
-					DateTime deadline = Date.AddDays(0 - daysNumber);
-					while (deadline.DayOfWeek == DayOfWeek.Saturday || deadline.DayOfWeek == DayOfWeek.Sunday)
-						deadline = deadline.AddDays(-1);
-					result = deadline.ToString("ddd, MM/dd/yy");
-				}
-			}
-			return result;
 		}
 
 		private void ckComment_CheckedChanged(object sender, EventArgs e)

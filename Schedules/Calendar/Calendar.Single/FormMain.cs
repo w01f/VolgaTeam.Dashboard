@@ -29,6 +29,8 @@ namespace NewBizWiz.Calendar.Single
 			Controller.Instance.TabHome = ribbonTabItemHome;
 			Controller.Instance.TabCalendar = ribbonTabItemCalendar;
 			Controller.Instance.TabGrid = ribbonTabItemGrid;
+			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
+			Controller.Instance.TabGallery = ribbonTabItemGallery;
 
 			#region Command Controls
 			#region Home
@@ -73,6 +75,30 @@ namespace NewBizWiz.Calendar.Single
 			Controller.Instance.GridPreview = buttonItemGridPreview;
 			Controller.Instance.GridEmail = buttonItemGridEmail;
 			Controller.Instance.GridPowerPoint = buttonItemGridPowerPoint;
+			#endregion
+
+			#region Rate Card
+			Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
+			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
+			#endregion
+
+			#region Gallery
+			Controller.Instance.GalleryBrowseBar = ribbonBarGalleryBrowse;
+			Controller.Instance.GalleryImageBar = ribbonBarGalleryImage;
+			Controller.Instance.GalleryZoomBar = ribbonBarGalleryZoom;
+			Controller.Instance.GalleryCopyBar = ribbonBarGalleryCopy;
+			Controller.Instance.GalleryScreenshots = buttonItemGalleryBrowseScreenshots;
+			Controller.Instance.GalleryAdSpecs = buttonItemGalleryBrowseAdSpecs;
+			Controller.Instance.GalleryView = buttonItemGalleryView;
+			Controller.Instance.GalleryEdit = buttonItemGalleryEdit;
+			Controller.Instance.GalleryImageSelect = buttonItemGalleryImageSelect;
+			Controller.Instance.GalleryImageCrop = buttonItemGalleryImageCrop;
+			Controller.Instance.GalleryZoomIn = buttonItemGalleryZoomIn;
+			Controller.Instance.GalleryZoomOut = buttonItemGalleryZoomOut;
+			Controller.Instance.GalleryCopy = buttonItemGalleryCopy;
+			Controller.Instance.GalleryHelp = buttonItemGalleryHelp;
+			Controller.Instance.GallerySections = comboBoxEditGallerySections;
+			Controller.Instance.GalleryGroups = comboBoxEditGalleryGroups;
 			#endregion
 			#endregion
 
@@ -268,7 +294,32 @@ namespace NewBizWiz.Calendar.Single
 					_currentControl = Controller.Instance.CalendarVisualizer.SelectCalendar(pnMain, true) as Control;
 				_currentControl.BringToFront();
 			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRateCard)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.RateCard;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGallery)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.Gallery;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+			}
 			pnMain.BringToFront();
+			if (WindowState == FormWindowState.Normal)
+			{
+				Width++;
+				Width--;
+			}
 		}
 
 		private void FormMain_FormClosing(object sender, FormClosingEventArgs e)

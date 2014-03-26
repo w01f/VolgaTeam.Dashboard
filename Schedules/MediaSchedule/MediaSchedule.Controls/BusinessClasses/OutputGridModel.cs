@@ -58,10 +58,10 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 						result = "Rtg";
 						break;
 					case DemoType.Imp:
-						result = "000s";
+						result = "(000s)";
 						break;
 				}
-				return result;
+				return String.Format("{0}{1}", (!String.IsNullOrEmpty(_parent.Parent.Demo) ? String.Format("{0}{1}", _parent.Parent.Demo, (char)13) : String.Empty), result);
 			}
 		}
 
@@ -289,7 +289,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 						if (ShowTime)
 							temp.Add(String.Format("{0}", program.Time));
 						if (ShowRating)
-							temp.Add(String.Format("{0}: {1}", RtgHeaderTitle, program.Rating));
+							temp.Add(String.Format("{0}: {1}", RtgHeaderTitle.Replace(((char)13).ToString(), " "), program.Rating));
 						if (ShowGRP)
 							temp.Add(String.Format("{0}: {1}", GRPHeaderTitle, program.GRP));
 						if (ShowCPP)
@@ -314,7 +314,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 							if (ShowTime)
 								temp.Add(String.Format("Time: {0}", program.Time));
 							if (ShowRating)
-								temp.Add(String.Format("{0}: {1}", RtgHeaderTitle, program.Rating));
+								temp.Add(String.Format("{0}: {1}", RtgHeaderTitle.Replace(((char)13).ToString(), " "), program.Rating));
 							if (ShowGRP)
 								temp.Add(String.Format("{0}: {1}", GRPHeaderTitle, program.GRP));
 							if (ShowCPP)
@@ -340,7 +340,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 							key = String.Format("rtg{0}     pts{0}     cpp{0}", i + 1);
 							temp.Clear();
 							if (ShowRating)
-								temp.Add(String.Format("{0}: {1}", RtgHeaderTitle, program.Rating));
+								temp.Add(String.Format("{0}: {1}", RtgHeaderTitle.Replace(((char)13).ToString(), " "), program.Rating));
 							if (ShowGRP)
 								temp.Add(String.Format("{0}: {1}", GRPHeaderTitle, program.GRP));
 							if (ShowCPP)

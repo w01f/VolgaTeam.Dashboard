@@ -32,14 +32,12 @@ namespace NewBizWiz.Calendar.Internal
 					{
 						if (!string.IsNullOrEmpty(from.ScheduleName))
 						{
-							SetCulture();
 							RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 							string fileName = from.ScheduleName.Trim();
 							BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
 							BusinessWrapper.Instance.ScheduleManager.CreateSchedule(fileName);
 							FormMain.Instance.ShowDialog();
 							CalendarPowerPointHelper.Instance.Disconnect();
-							RestoreCulture();
 							RemoveInstances();
 						}
 						else
@@ -62,7 +60,6 @@ namespace NewBizWiz.Calendar.Internal
 				{
 					if (CalendarPowerPointHelper.Instance.Connect())
 					{
-						SetCulture();
 						RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 						string fileName = dialog.FileName;
 						SettingsManager.Instance.SaveFolder = new FileInfo(fileName).Directory.FullName;
@@ -70,7 +67,6 @@ namespace NewBizWiz.Calendar.Internal
 						BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
 						FormMain.Instance.ShowDialog();
 						CalendarPowerPointHelper.Instance.Disconnect();
-						RestoreCulture();
 						RemoveInstances();
 					}
 				}
@@ -81,13 +77,11 @@ namespace NewBizWiz.Calendar.Internal
 		{
 			if (CalendarPowerPointHelper.Instance.Connect())
 			{
-				SetCulture();
 				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 				BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
 				BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
 				FormMain.Instance.ShowDialog();
 				CalendarPowerPointHelper.Instance.Disconnect();
-				RestoreCulture();
 				RemoveInstances();
 			}
 		}
@@ -111,22 +105,6 @@ namespace NewBizWiz.Calendar.Internal
 		public static void ShowInformation(string text)
 		{
 			MessageBox.Show(text, "Ninja Calendar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-		}
-
-		private static void SetCulture()
-		{
-			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-		}
-
-		private static void RestoreCulture()
-		{
-			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 		}
 
 		public static void ReleaseComObject(object o)

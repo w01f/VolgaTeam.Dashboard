@@ -12,6 +12,7 @@ using DevExpress.XtraTab.ViewInfo;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.ToolForms;
 
@@ -50,7 +51,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		#region CommandButtons
 		public abstract HelpManager HelpManager { get; }
 		#endregion
-
+		protected abstract string SlideName { get; }
+		public IDigitalSchedule LocalSchedule { get; protected set; }
 		public bool SettingsNotSaved { get; set; }
 		public bool AllowApplyValues { get; set; }
 		public abstract Theme SelectedTheme { get; }
@@ -67,7 +69,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		protected void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
 		{
-			checkEditShowCategory.Focus();
+			labelControlCategory.Focus();
 		}
 
 		public void LoadProduct(DigitalProductControl productControl)
@@ -79,8 +81,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 			var product = productControl.Product;
 
-			checkEditShowCategory.Checked = product.ShowFlightDates;
-			checkEditShowCategory.Text = String.Format("Strategy: {0}", product.Category);
+			labelControlCategory.Text = String.Format("Strategy: {0}", product.Category);
 			checkEditShowFlightDates.Checked = product.ShowFlightDates;
 
 			checkEditDuration.Checked = product.ShowDuration;
@@ -114,7 +115,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			if (productControl == null) return;
 
-			productControl.Product.ShowCategory = checkEditShowCategory.Checked;
 			productControl.Product.ShowFlightDates = checkEditShowFlightDates.Checked;
 
 			SaveDurationCheckboxValues(productControl);
@@ -126,6 +126,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			SaveProduct(xtraTabControlProducts.SelectedTabPage as DigitalProductControl);
 			foreach (var tabPage in _tabPages)
 				tabPage.SaveValues();
+			xtraTabControlProducts.TabPages.OfType<DigitalSummaryControl>().First().Save();
 			return true;
 		}
 
@@ -136,8 +137,27 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		protected void xtraTabControlProducts_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
 		{
-			SaveProduct(e.PrevPage as DigitalProductControl);
-			LoadProduct(e.Page as DigitalProductControl);
+			if (e.Page is DigitalSummaryControl)
+			{
+				_tabPages.ForEach(tp => tp.SaveValues());
+				labelControlCategory.Text = "Digital Product Summary";
+				checkEditDuration.Visible = false;
+				spinEditDuration.Visible = false;
+				checkEditMonths.Visible = false;
+				checkEditWeeks.Visible = false;
+
+				((DigitalSummaryControl)e.Page).SetFocus();
+			}
+			else
+			{
+				SaveProduct(e.PrevPage as DigitalProductControl);
+				LoadProduct(e.Page as DigitalProductControl);
+
+				checkEditDuration.Visible = true;
+				spinEditDuration.Visible = true;
+				checkEditMonths.Visible = true;
+				checkEditWeeks.Visible = true;
+			}
 		}
 
 		private void xtraTabControlProducts_MouseDown(object sender, MouseEventArgs e)
@@ -223,19 +243,34 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			SettingsNotSaved = true;
 		}
 
+		private void DigitalProductContainer_Resize(object sender, EventArgs e)
+		{
+			checkEditShowFlightDates.Left = (Width - checkEditShowFlightDates.Width) / 2;
+		}
+
+		protected virtual IEnumerable<UserActivity> TrackOutput(IEnumerable<DigitalProductControl> tabsForOutput)
+		{
+			return tabsForOutput.Select(outputControl => new DigitalProductOutputActivity(
+					SlideName,
+					LocalSchedule.BusinessName,
+					outputControl.SlideName,
+					outputControl.Product.OutputData.Investments))
+				.ToList();
+		}
+
 		public void PowerPoint_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
-			var selectedTabPages = new List<DigitalProductControl>();
+
+			var selectedTabPages = new List<IDigitalOutputControl>();
 			if (_tabPages.Count > 1)
 			{
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Digital Products";
-					var currentProduct = xtraTabControlProducts.SelectedTabPage as DigitalProductControl;
-					foreach (var tabPage in _tabPages)
+					var currentProduct = xtraTabControlProducts.SelectedTabPage as IDigitalOutputControl; foreach (var tabPage in xtraTabControlProducts.TabPages.OfType<IDigitalOutputControl>())
 					{
-						var item = new CheckedListBoxItem(tabPage, tabPage.Product.Name);
+						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
 						if (tabPage == currentProduct)
 							form.buttonXSelectCurrent.Tag = item;
@@ -246,30 +281,32 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 							OfType<CheckedListBoxItem>().
 							Where(ci => ci.CheckState == CheckState.Checked).
 							Select(ci => ci.Value).
-							OfType<DigitalProductControl>());
+							OfType<IDigitalOutputControl>());
 				}
 			}
 			else
-				selectedTabPages.AddRange(_tabPages);
+				selectedTabPages.AddRange(xtraTabControlProducts.TabPages.OfType<IDigitalOutputControl>());
 			if (!selectedTabPages.Any()) return;
+			TrackOutput(selectedTabPages.OfType<DigitalProductControl>());
 			OutputSlides(selectedTabPages);
 		}
 
-		public abstract void OutputSlides(IEnumerable<DigitalProductControl> tabsForOutput);
+		public abstract void OutputSlides(IEnumerable<IDigitalOutputControl> tabsForOutput);
 
 		public void Email_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
-			var selectedTabPages = new List<DigitalProductControl>();
+			var previewGroups = new List<PreviewGroup>();
+			var selectedTabPages = new List<IDigitalOutputControl>();
 			if (_tabPages.Count > 1)
 			{
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Digital Products";
-					var currentProduct = xtraTabControlProducts.SelectedTabPage as DigitalProductControl;
-					foreach (var tabPage in _tabPages)
+					var currentProduct = xtraTabControlProducts.SelectedTabPage as IDigitalOutputControl;
+					foreach (var tabPage in xtraTabControlProducts.TabPages.OfType<IDigitalOutputControl>())
 					{
-						var item = new CheckedListBoxItem(tabPage, tabPage.Product.Name);
+						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
 						if (tabPage == currentProduct)
 							form.buttonXSelectCurrent.Tag = item;
@@ -280,13 +317,12 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 							OfType<CheckedListBoxItem>().
 							Where(ci => ci.CheckState == CheckState.Checked).
 							Select(ci => ci.Value).
-							OfType<DigitalProductControl>());
+							OfType<IDigitalOutputControl>());
 				}
 			}
 			else
-				selectedTabPages.AddRange(_tabPages);
+				selectedTabPages.AddRange(xtraTabControlProducts.TabPages.OfType<IDigitalOutputControl>());
 			if (!selectedTabPages.Any()) return;
-			var previewGroups = new List<PreviewGroup>();
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
@@ -295,7 +331,14 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				foreach (var productControl in selectedTabPages)
 				{
 					var previewGroup = productControl.GetPreviewGroup();
-					OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, new[] { productControl.Product }, SelectedTheme);
+					if (productControl is DigitalProductControl)
+						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, new[] { ((DigitalProductControl)productControl).Product }, SelectedTheme);
+					else if (productControl is DigitalSummaryControl)
+					{
+						var summaryControl = productControl as DigitalSummaryControl;
+						summaryControl.PopulateReplacementsList();
+						OnlineSchedulePowerPointHelper.Instance.PrepareDigitalSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
+					}
 					previewGroups.Add(previewGroup);
 				}
 				formProgress.Close();
@@ -305,7 +348,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			{
 				formEmail.Text = "Email this Online Schedule";
 				formEmail.LoadGroups(previewGroups);
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				RegistryHelper.MainFormHandle = formEmail.Handle;
 				RegistryHelper.MaximizeMainForm = false;
 				formEmail.ShowDialog();
@@ -317,16 +360,17 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public void Preview_Click(object sender, EventArgs e)
 		{
 			SaveSchedule();
-			var selectedTabPages = new List<DigitalProductControl>();
+			var previewGroups = new List<PreviewGroup>();
+			var selectedTabPages = new List<IDigitalOutputControl>();
 			if (_tabPages.Count > 1)
 			{
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Digital Products";
-					var currentProduct = xtraTabControlProducts.SelectedTabPage as DigitalProductControl;
-					foreach (var tabPage in _tabPages)
+					var currentProduct = xtraTabControlProducts.SelectedTabPage as IDigitalOutputControl;
+					foreach (var tabPage in xtraTabControlProducts.TabPages.OfType<IDigitalOutputControl>())
 					{
-						var item = new CheckedListBoxItem(tabPage, tabPage.Product.Name);
+						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
 						if (tabPage == currentProduct)
 							form.buttonXSelectCurrent.Tag = item;
@@ -337,32 +381,39 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 							OfType<CheckedListBoxItem>().
 							Where(ci => ci.CheckState == CheckState.Checked).
 							Select(ci => ci.Value).
-							OfType<DigitalProductControl>());
+							OfType<IDigitalOutputControl>());
 				}
 			}
 			else
-				selectedTabPages.AddRange(_tabPages);
+				selectedTabPages.AddRange(xtraTabControlProducts.TabPages.OfType<IDigitalOutputControl>());
 			if (!selectedTabPages.Any()) return;
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
 				formProgress.TopMost = true;
 				formProgress.Show();
-				var previewGroups = new List<PreviewGroup>();
+
 				foreach (var productControl in selectedTabPages)
 				{
 					var previewGroup = productControl.GetPreviewGroup();
-					OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, new[] { productControl.Product }, SelectedTheme);
+					if (productControl is DigitalProductControl)
+						OnlineSchedulePowerPointHelper.Instance.PrepareScheduleEmail(previewGroup.PresentationSourcePath, new[] { ((DigitalProductControl)productControl).Product }, SelectedTheme);
+					else if (productControl is DigitalSummaryControl)
+					{
+						var summaryControl = productControl as DigitalSummaryControl;
+						summaryControl.PopulateReplacementsList();
+						OnlineSchedulePowerPointHelper.Instance.PrepareDigitalSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
+					}
 					previewGroups.Add(previewGroup);
 				}
 				Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 				formProgress.Close();
-				if (previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))
-					ShowPreview(previewGroups);
 			}
+			if (previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))
+				ShowPreview(previewGroups, () => TrackOutput(selectedTabPages.OfType<DigitalProductControl>()));
 		}
 
-		public abstract void ShowPreview(IEnumerable<PreviewGroup> previewGroups);
+		public abstract void ShowPreview(IEnumerable<PreviewGroup> previewGroups, Action trackOutput);
 
 		#region Picture Box Clicks Habdlers
 		/// <summary>
@@ -383,4 +434,12 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		}
 		#endregion
 	}
+
+	public interface IDigitalOutputControl
+	{
+		string SlideName { get; }
+		PreviewGroup GetPreviewGroup();
+		void Output();
+	}
+
 }

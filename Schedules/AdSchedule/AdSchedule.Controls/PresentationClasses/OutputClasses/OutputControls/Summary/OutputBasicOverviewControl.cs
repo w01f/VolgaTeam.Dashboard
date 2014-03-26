@@ -36,8 +36,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			});
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
-				checkEditFlightDates.Font = new Font(checkEditFlightDates.Font.FontFamily, checkEditFlightDates.Font.Size - 2, checkEditFlightDates.Font.Style);
-				checkEditProductName.Font = new Font(checkEditProductName.Font.FontFamily, checkEditProductName.Font.Size - 2, checkEditProductName.Font.Style);
+				laFlightDates.Font = new Font(laFlightDates.Font.FontFamily, laFlightDates.Font.Size - 2, laFlightDates.Font.Style);
+				laAdvertiser.Font = new Font(laAdvertiser.Font.FontFamily, laAdvertiser.Font.Size - 2, laAdvertiser.Font.Style);
 			}
 		}
 
@@ -102,25 +102,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 					Application.DoEvents();
 				}
 			}
-			LoadProductOptions();
 			SettingsNotSaved = false;
 		}
 
 		private void LoadSharedOptions()
 		{
-			Controller.Instance.BasicOverviewHeaderText.Properties.Items.Clear();
-			Controller.Instance.BasicOverviewHeaderText.Properties.Items.AddRange(Core.AdSchedule.ListManager.Instance.OutputHeaders.ToArray());
-			Controller.Instance.BasicOverviewBusinessNameText.Text = LocalSchedule.BusinessName + (!String.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : String.Empty);
-			Controller.Instance.BasicOverviewDecisionMakerText.Text = LocalSchedule.DecisionMaker;
-			Controller.Instance.BasicOverviewPresentationDateText.Text = LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy") : String.Empty;
-			checkEditFlightDates.Text = String.Format("Campaign: {0}", LocalSchedule.FlightDates);
-		}
-
-		private void LoadProductOptions()
-		{
-			var selectedProduct = xtraTabControlPublications.SelectedTabPage as PublicationBasicOverviewControl;
-			if (selectedProduct == null) return;
-			selectedProduct.LoadExternalOption();
+			laAdvertiser.Text = LocalSchedule.BusinessName;
+			laFlightDates.Text = String.Format("Campaign: {0}", LocalSchedule.FlightDates);
 		}
 
 		public void OnOptionChanged(object sender, EventArgs e)
@@ -128,11 +116,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			var selectedProduct = xtraTabControlPublications.SelectedTabPage as PublicationBasicOverviewControl;
 			if (selectedProduct == null) return;
 			selectedProduct.OnOptionChanged(sender);
-		}
-
-		private void xtraTabControlPublications_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
-		{
-			LoadProductOptions();
 		}
 
 		public void ResetToDefault()
@@ -147,7 +130,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				Application.DoEvents();
 			}
 			SettingsNotSaved = false;
-			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, false, true, this);
 		}
 
 		public void OpenHelp()
@@ -182,6 +165,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
+		private void TrackOutput(IEnumerable<PublicationBasicOverviewControl> publications)
+		{
+			foreach (var publication in publications)
+				BusinessWrapper.Instance.ActivityManager.AddActivity(new PublicationOutputActivity(Controller.Instance.TabBasicOverview.Text, LocalSchedule.BusinessName, publication.PrintProduct.Name, (decimal)publication.PrintProduct.TotalFinalRate));
+		}
+
 		public void PrintOutput()
 		{
 			var tabPages = _tabPages.Where(tabPage => tabPage.PageEnabled);
@@ -209,6 +198,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			else
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
+			TrackOutput(selectedProducts);
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -321,7 +311,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			var trackAction = new Action(() => TrackOutput(selectedProducts));
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
 			{
 				formPreview.Text = "Preview Basic Overview";
 				formPreview.LoadGroups(previewGroups);

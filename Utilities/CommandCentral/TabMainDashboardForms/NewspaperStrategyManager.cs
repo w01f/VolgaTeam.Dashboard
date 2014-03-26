@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CommandCentral.CommonClasses;
+using CommandCentral.CommonClasses.NewspaperViewSettings;
 using CommandCentral.InteropClasses;
 
 namespace CommandCentral.TabMainDashboard
@@ -48,25 +48,25 @@ namespace CommandCentral.TabMainDashboard
 			string selectedNotesBorderValue = string.Empty;
 			string selectedSectionsBorderValue = string.Empty;
 
-			var _defaultHomeViewSettings = new HomeViewSettings();
+			var defaultHomeViewSettings = new HomeViewSettings();
 
-			var _defaultPrintScheduleViewSettings = new PrintScheduleViewSettings();
+			var defaultPrintScheduleViewSettings = new PrintScheduleViewSettings();
 
-			var _defaultPublicationBasicOverviewSettings = new PublicationBasicOverviewSettings();
-			var _defaultPublicationMultiSummarySettings = new PublicationMultiSummarySettings();
-			var _defaultSnapshotViewSettings = new SnapshotViewSettings();
+			var defaultPublicationBasicOverviewSettings = new PublicationBasicOverviewSettings();
+			var defaultPublicationMultiSummarySettings = new PublicationMultiSummarySettings();
+			var defaultSnapshotViewSettings = new SnapshotViewSettings();
 
-			var _defaultDetailedGridColumnState = new GridColumnsState();
-			var _defaultDetailedGridAdNotesState = new AdNotesState();
-			var _defaultDetailedGridSlideBulletsState = new SlideBulletsState();
-			var _defaultDetailedGridSlideHeaderState = new SlideHeaderState();
+			var defaultDetailedGridColumnState = new GridColumnsState();
+			var defaultDetailedGridAdNotesState = new AdNotesState();
+			var defaultDetailedGridSlideBulletsState = new SlideBulletsState();
+			var defaultDetailedGridSlideHeaderState = new SlideHeaderState();
 
-			var _defaultMultiGridColumnState = new GridColumnsState();
-			var _defaultMultiGridAdNotesState = new AdNotesState();
-			var _defaultMultiGridSlideBulletsState = new SlideBulletsState();
-			var _defaultMultiGridSlideHeaderState = new SlideHeaderState();
+			var defaultMultiGridColumnState = new GridColumnsState();
+			var defaultMultiGridAdNotesState = new AdNotesState();
+			var defaultMultiGridSlideBulletsState = new SlideBulletsState();
+			var defaultMultiGridSlideHeaderState = new SlideHeaderState();
 
-			var _defaultCalendarViewSettings = new CalendarViewSettings();
+			var defaultCalendarViewSettings = new CalendarViewSettings();
 
 			string connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=No;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
 			var connection = new OleDbConnection(connnectionString);
@@ -540,42 +540,42 @@ namespace CommandCentral.TabMainDashboard
 								case "Acct #":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.EnableAccountNumber = tempBool;
+											defaultHomeViewSettings.EnableAccountNumber = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.ShowAccountNumber = tempBool;
+											defaultHomeViewSettings.ShowAccountNumber = tempBool;
 									break;
 								case "Logo":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.EnableLogo = tempBool;
+											defaultHomeViewSettings.EnableLogo = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.ShowLogo = tempBool;
+											defaultHomeViewSettings.ShowLogo = tempBool;
 									break;
 								case "Code":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.EnableCode = tempBool;
+											defaultHomeViewSettings.EnableCode = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.ShowCode = tempBool;
+											defaultHomeViewSettings.ShowCode = tempBool;
 									break;
 								case "Delivery":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.EnableDelivery = tempBool;
+											defaultHomeViewSettings.EnableDelivery = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.ShowDelivery = tempBool;
+											defaultHomeViewSettings.ShowDelivery = tempBool;
 									break;
 								case "Readership":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.EnableReadership = tempBool;
+											defaultHomeViewSettings.EnableReadership = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultHomeViewSettings.ShowReadership = tempBool;
+											defaultHomeViewSettings.ShowReadership = tempBool;
 									break;
 							}
 						}
@@ -605,82 +605,82 @@ namespace CommandCentral.TabMainDashboard
 								case "Column Inches":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.EnablePCI = tempBool;
+											defaultPrintScheduleViewSettings.EnablePCI = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.DefaultPCI = tempBool;
+											defaultPrintScheduleViewSettings.DefaultPCI = tempBool;
 									break;
 								case "Flat":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.EnableFlat = tempBool;
+											defaultPrintScheduleViewSettings.EnableFlat = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.DefaultFlat = tempBool;
+											defaultPrintScheduleViewSettings.DefaultFlat = tempBool;
 									break;
 								case "Share":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.EnableShare = tempBool;
+											defaultPrintScheduleViewSettings.EnableShare = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.DefaultShare = tempBool;
+											defaultPrintScheduleViewSettings.DefaultShare = tempBool;
 									break;
 								case "BW":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.EnableBlackWhite = tempBool;
+											defaultPrintScheduleViewSettings.EnableBlackWhite = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.DefaultBlackWhite = tempBool;
+											defaultPrintScheduleViewSettings.DefaultBlackWhite = tempBool;
 									break;
 								case "Spot Color":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.EnableSpotColor = tempBool;
+											defaultPrintScheduleViewSettings.EnableSpotColor = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.DefaultSpotColor = tempBool;
+											defaultPrintScheduleViewSettings.DefaultSpotColor = tempBool;
 									break;
 								case "Full Color":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.EnableFullColor = tempBool;
+											defaultPrintScheduleViewSettings.EnableFullColor = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.DefaultFullColor = tempBool;
+											defaultPrintScheduleViewSettings.DefaultFullColor = tempBool;
 									break;
 								case "Per Ad":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.EnableCostPerAd = tempBool;
+											defaultPrintScheduleViewSettings.EnableCostPerAd = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.DefaultCostPerAd = tempBool;
+											defaultPrintScheduleViewSettings.DefaultCostPerAd = tempBool;
 									break;
 								case "% of Ad":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.EnablePercentOfAd = tempBool;
+											defaultPrintScheduleViewSettings.EnablePercentOfAd = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.DefaultPercentOfAd = tempBool;
+											defaultPrintScheduleViewSettings.DefaultPercentOfAd = tempBool;
 									break;
 								case "Included":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.EnableColorIncluded = tempBool;
+											defaultPrintScheduleViewSettings.EnableColorIncluded = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.DefaultColorIncluded = tempBool;
+											defaultPrintScheduleViewSettings.DefaultColorIncluded = tempBool;
 									break;
 								case "PCI":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.EnableCostPerInch = tempBool;
+											defaultPrintScheduleViewSettings.EnableCostPerInch = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPrintScheduleViewSettings.DefaultCostPerInch = tempBool;
+											defaultPrintScheduleViewSettings.DefaultCostPerInch = tempBool;
 									break;
 							}
 						}
@@ -710,114 +710,114 @@ namespace CommandCentral.TabMainDashboard
 								case "Column Inches":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnableSquare = tempBool;
+											defaultPublicationBasicOverviewSettings.EnableSquare = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowSquare = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowSquare = tempBool;
 									break;
 								case "Columns X Inches":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnableDimensions = tempBool;
+											defaultPublicationBasicOverviewSettings.EnableDimensions = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowDimensions = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowDimensions = tempBool;
 									break;
 								case "% of Page":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnablePercentOfPage = tempBool;
+											defaultPublicationBasicOverviewSettings.EnablePercentOfPage = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowPercentOfPage = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowPercentOfPage = tempBool;
 									break;
 								case "Page Size":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnablePageSize = tempBool;
+											defaultPublicationBasicOverviewSettings.EnablePageSize = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowPageSize = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowPageSize = tempBool;
 									break;
 								case "Color":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnableColor = tempBool;
+											defaultPublicationBasicOverviewSettings.EnableColor = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowColor = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowColor = tempBool;
 									break;
 								case "Total Ads":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnableTotalInserts = tempBool;
+											defaultPublicationBasicOverviewSettings.EnableTotalInserts = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowTotalInserts = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowTotalInserts = tempBool;
 									break;
 								case "Total Inches":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnableTotalSquare = tempBool;
+											defaultPublicationBasicOverviewSettings.EnableTotalSquare = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowTotalSquare = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowTotalSquare = tempBool;
 									break;
 								case "Avg Ad Rate":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnableAvgAdCost = tempBool;
+											defaultPublicationBasicOverviewSettings.EnableAvgAdCost = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowAvgAdCost = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowAvgAdCost = tempBool;
 									break;
 								case "Avg PCI":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnableAvgPCI = tempBool;
+											defaultPublicationBasicOverviewSettings.EnableAvgPCI = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowAvgPCI = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowAvgPCI = tempBool;
 									break;
 								case "Total Discounts":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnableDiscounts = tempBool;
+											defaultPublicationBasicOverviewSettings.EnableDiscounts = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowDiscounts = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowDiscounts = tempBool;
 									break;
 								case "Total Cost":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnableInvestment = tempBool;
+											defaultPublicationBasicOverviewSettings.EnableInvestment = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowInvestment = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowInvestment = tempBool;
 									break;
 								case "Flight Dates":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnableFlightDates2 = tempBool;
+											defaultPublicationBasicOverviewSettings.EnableFlightDates2 = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowFlightDates2 = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowFlightDates2 = tempBool;
 									break;
 								case "Specific Days":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnableDates = tempBool;
+											defaultPublicationBasicOverviewSettings.EnableDates = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowDates = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowDates = tempBool;
 									break;
 								case "Custom Field":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.EnableComments = tempBool;
+											defaultPublicationBasicOverviewSettings.EnableComments = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationBasicOverviewSettings.ShowComments = tempBool;
+											defaultPublicationBasicOverviewSettings.ShowComments = tempBool;
 									break;
 							}
 						}
@@ -847,98 +847,98 @@ namespace CommandCentral.TabMainDashboard
 								case "Total Ads":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.EnableTotalInserts = tempBool;
+											defaultPublicationMultiSummarySettings.EnableTotalInserts = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.ShowTotalInserts = tempBool;
+											defaultPublicationMultiSummarySettings.ShowTotalInserts = tempBool;
 									break;
 								case "Dimensions":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.EnableDimensions = tempBool;
+											defaultPublicationMultiSummarySettings.EnableDimensions = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.ShowDimensions = tempBool;
+											defaultPublicationMultiSummarySettings.ShowDimensions = tempBool;
 									break;
 								case "Page Size":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.EnablePageSize = tempBool;
+											defaultPublicationMultiSummarySettings.EnablePageSize = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.ShowPageSize = tempBool;
+											defaultPublicationMultiSummarySettings.ShowPageSize = tempBool;
 									break;
 								case "% of Page":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.EnablePercentOfPage = tempBool;
+											defaultPublicationMultiSummarySettings.EnablePercentOfPage = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.ShowPercentOfPage = tempBool;
+											defaultPublicationMultiSummarySettings.ShowPercentOfPage = tempBool;
 									break;
 								case "Color":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.EnableTotalColor = tempBool;
+											defaultPublicationMultiSummarySettings.EnableTotalColor = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.ShowTotalColor = tempBool;
+											defaultPublicationMultiSummarySettings.ShowTotalColor = tempBool;
 									break;
 								case "BW Avg Ad Cost":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.EnableAvgAdCost = tempBool;
+											defaultPublicationMultiSummarySettings.EnableAvgAdCost = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.ShowAvgAdCost = tempBool;
+											defaultPublicationMultiSummarySettings.ShowAvgAdCost = tempBool;
 									break;
 								case "FINAL Avg Ad Cost":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.EnableAvgFinalCost = tempBool;
+											defaultPublicationMultiSummarySettings.EnableAvgFinalCost = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.ShowAvgFinalCost = tempBool;
+											defaultPublicationMultiSummarySettings.ShowAvgFinalCost = tempBool;
 									break;
 								case "Discounts":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.EnableDiscounts = tempBool;
+											defaultPublicationMultiSummarySettings.EnableDiscounts = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.ShowDiscounts = tempBool;
+											defaultPublicationMultiSummarySettings.ShowDiscounts = tempBool;
 									break;
 								case "Sections":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.EnableSection = tempBool;
+											defaultPublicationMultiSummarySettings.EnableSection = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.ShowSection = tempBool;
+											defaultPublicationMultiSummarySettings.ShowSection = tempBool;
 									break;
 								case "Flight Dates":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.EnableFlightDates = tempBool;
+											defaultPublicationMultiSummarySettings.EnableFlightDates = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.ShowFlightDates = tempBool;
+											defaultPublicationMultiSummarySettings.ShowFlightDates = tempBool;
 									break;
 								case "Specific Days":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.EnableDates = tempBool;
+											defaultPublicationMultiSummarySettings.EnableDates = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.ShowDates = tempBool;
+											defaultPublicationMultiSummarySettings.ShowDates = tempBool;
 									break;
 								case "Custom Field":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.EnableComments = tempBool;
+											defaultPublicationMultiSummarySettings.EnableComments = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultPublicationMultiSummarySettings.ShowComments = tempBool;
+											defaultPublicationMultiSummarySettings.ShowComments = tempBool;
 									break;
 							}
 						}
@@ -968,106 +968,106 @@ namespace CommandCentral.TabMainDashboard
 								case "Logo":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.EnableLogo = tempBool;
+											defaultSnapshotViewSettings.EnableLogo = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.ShowLogo = tempBool;
+											defaultSnapshotViewSettings.ShowLogo = tempBool;
 									break;
 								case "Total Ads":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.EnableTotalInserts = tempBool;
+											defaultSnapshotViewSettings.EnableTotalInserts = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.ShowTotalInserts = tempBool;
+											defaultSnapshotViewSettings.ShowTotalInserts = tempBool;
 									break;
 								case "Investment":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.EnableTotalFinalCost = tempBool;
+											defaultSnapshotViewSettings.EnableTotalFinalCost = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.ShowTotalFinalCost = tempBool;
+											defaultSnapshotViewSettings.ShowTotalFinalCost = tempBool;
 									break;
 								case "Page Size":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.EnablePageSize = tempBool;
+											defaultSnapshotViewSettings.EnablePageSize = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.ShowPageSize = tempBool;
+											defaultSnapshotViewSettings.ShowPageSize = tempBool;
 									break;
 								case "Columns X Inches":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.EnableDimensions = tempBool;
+											defaultSnapshotViewSettings.EnableDimensions = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.ShowDimensions = tempBool;
+											defaultSnapshotViewSettings.ShowDimensions = tempBool;
 									break;
 								case "Total Column Inches":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.EnableSquare = tempBool;
+											defaultSnapshotViewSettings.EnableSquare = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.ShowSquare = tempBool;
+											defaultSnapshotViewSettings.ShowSquare = tempBool;
 									break;
 								case "Total Inches":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.EnableTotalSquare = tempBool;
+											defaultSnapshotViewSettings.EnableTotalSquare = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.ShowTotalSquare = tempBool;
+											defaultSnapshotViewSettings.ShowTotalSquare = tempBool;
 									break;
 								case "Final Ad Cost":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.EnableAvgFinalCost = tempBool;
+											defaultSnapshotViewSettings.EnableAvgFinalCost = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.ShowAvgFinalCost = tempBool;
+											defaultSnapshotViewSettings.ShowAvgFinalCost = tempBool;
 									break;
 								case "Total Color":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.EnableTotalColor = tempBool;
+											defaultSnapshotViewSettings.EnableTotalColor = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.ShowTotalColor = tempBool;
+											defaultSnapshotViewSettings.ShowTotalColor = tempBool;
 									break;
 								case "Discounts":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.EnableTotalDiscounts = tempBool;
+											defaultSnapshotViewSettings.EnableTotalDiscounts = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.ShowTotalDiscounts = tempBool;
+											defaultSnapshotViewSettings.ShowTotalDiscounts = tempBool;
 									break;
 								case "Readership":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.EnableReadership = tempBool;
+											defaultSnapshotViewSettings.EnableReadership = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.ShowReadership = tempBool;
+											defaultSnapshotViewSettings.ShowReadership = tempBool;
 									break;
 								case "Delivery":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.EnableDelivery = tempBool;
+											defaultSnapshotViewSettings.EnableDelivery = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.ShowDelivery = tempBool;
+											defaultSnapshotViewSettings.ShowDelivery = tempBool;
 									break;
 								case "% of Page":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.EnablePercentOfPage = tempBool;
+											defaultSnapshotViewSettings.EnablePercentOfPage = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultSnapshotViewSettings.ShowPercentOfPage = tempBool;
+											defaultSnapshotViewSettings.ShowPercentOfPage = tempBool;
 									break;
 							}
 						}
@@ -1112,208 +1112,208 @@ namespace CommandCentral.TabMainDashboard
 									case "ID":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableID = tempBool;
+												defaultDetailedGridColumnState.EnableID = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowID = tempBool;
+												defaultDetailedGridColumnState.ShowID = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.IDPosition = tempInt;
+												defaultDetailedGridColumnState.IDPosition = tempInt;
 										break;
 									case "INS#":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableIndex = tempBool;
+												defaultDetailedGridColumnState.EnableIndex = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowIndex = tempBool;
+												defaultDetailedGridColumnState.ShowIndex = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.IndexPosition = tempInt;
+												defaultDetailedGridColumnState.IndexPosition = tempInt;
 										break;
 									case "Date":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableDate = tempBool;
+												defaultDetailedGridColumnState.EnableDate = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowDate = tempBool;
+												defaultDetailedGridColumnState.ShowDate = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.DatePosition = tempInt;
+												defaultDetailedGridColumnState.DatePosition = tempInt;
 										break;
 									case "Color":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableColor = tempBool;
+												defaultDetailedGridColumnState.EnableColor = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowColor = tempBool;
+												defaultDetailedGridColumnState.ShowColor = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.ColorPosition = tempInt;
+												defaultDetailedGridColumnState.ColorPosition = tempInt;
 										break;
 									case "Section":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableSection = tempBool;
+												defaultDetailedGridColumnState.EnableSection = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowSection = tempBool;
+												defaultDetailedGridColumnState.ShowSection = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.SectionPosition = tempInt;
+												defaultDetailedGridColumnState.SectionPosition = tempInt;
 										break;
 									case "PCI":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnablePCI = tempBool;
+												defaultDetailedGridColumnState.EnablePCI = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowPCI = tempBool;
+												defaultDetailedGridColumnState.ShowPCI = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.PCIPosition = tempInt;
+												defaultDetailedGridColumnState.PCIPosition = tempInt;
 										break;
 									case "Total Cost":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableFinalCost = tempBool;
+												defaultDetailedGridColumnState.EnableFinalCost = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowFinalCost = tempBool;
+												defaultDetailedGridColumnState.ShowFinalCost = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.FinalCostPosition = tempInt;
+												defaultDetailedGridColumnState.FinalCostPosition = tempInt;
 										break;
 									case "Publication":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnablePublication = tempBool;
+												defaultDetailedGridColumnState.EnablePublication = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowPublication = tempBool;
+												defaultDetailedGridColumnState.ShowPublication = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.PublicationPosition = tempInt;
+												defaultDetailedGridColumnState.PublicationPosition = tempInt;
 										break;
 									case "% of Page":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnablePercentOfPage = tempBool;
+												defaultDetailedGridColumnState.EnablePercentOfPage = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowPercentOfPage = tempBool;
+												defaultDetailedGridColumnState.ShowPercentOfPage = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.PercentOfPagePosition = tempInt;
+												defaultDetailedGridColumnState.PercentOfPagePosition = tempInt;
 										break;
 									case "BW Ad Cost":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableCost = tempBool;
+												defaultDetailedGridColumnState.EnableCost = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowCost = tempBool;
+												defaultDetailedGridColumnState.ShowCost = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.CostPosition = tempInt;
+												defaultDetailedGridColumnState.CostPosition = tempInt;
 										break;
 									case "Col x In":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableDimensions = tempBool;
+												defaultDetailedGridColumnState.EnableDimensions = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowDimensions = tempBool;
+												defaultDetailedGridColumnState.ShowDimensions = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.DimensionsPosition = tempInt;
+												defaultDetailedGridColumnState.DimensionsPosition = tempInt;
 										break;
 									case "Mechanicals":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableMechanicals = tempBool;
+												defaultDetailedGridColumnState.EnableMechanicals = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowMechanicals = tempBool;
+												defaultDetailedGridColumnState.ShowMechanicals = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.MechanicalsPosition = tempInt;
+												defaultDetailedGridColumnState.MechanicalsPosition = tempInt;
 										break;
 									case "Delivery":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableDelivery = tempBool;
+												defaultDetailedGridColumnState.EnableDelivery = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowDelivery = tempBool;
+												defaultDetailedGridColumnState.ShowDelivery = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.DeliveryPosition = tempInt;
+												defaultDetailedGridColumnState.DeliveryPosition = tempInt;
 										break;
 									case "Discounts":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableDiscount = tempBool;
+												defaultDetailedGridColumnState.EnableDiscount = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowDiscount = tempBool;
+												defaultDetailedGridColumnState.ShowDiscount = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.DiscountPosition = tempInt;
+												defaultDetailedGridColumnState.DiscountPosition = tempInt;
 										break;
 									case "Page Size":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnablePageSize = tempBool;
+												defaultDetailedGridColumnState.EnablePageSize = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowPageSize = tempBool;
+												defaultDetailedGridColumnState.ShowPageSize = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.PageSizePosition = tempInt;
+												defaultDetailedGridColumnState.PageSizePosition = tempInt;
 										break;
 									case "Total Col. In.":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableSquare = tempBool;
+												defaultDetailedGridColumnState.EnableSquare = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowSquare = tempBool;
+												defaultDetailedGridColumnState.ShowSquare = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.SquarePosition = tempInt;
+												defaultDetailedGridColumnState.SquarePosition = tempInt;
 										break;
 									case "Deadline":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableDeadline = tempBool;
+												defaultDetailedGridColumnState.EnableDeadline = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowDeadline = tempBool;
+												defaultDetailedGridColumnState.ShowDeadline = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.DeadlinePosition = tempInt;
+												defaultDetailedGridColumnState.DeadlinePosition = tempInt;
 										break;
 									case "Readership":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableReadership = tempBool;
+												defaultDetailedGridColumnState.EnableReadership = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowReadership = tempBool;
+												defaultDetailedGridColumnState.ShowReadership = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridColumnState.ReadershipPosition = tempInt;
+												defaultDetailedGridColumnState.ReadershipPosition = tempInt;
 										break;
 									case "Select up to 4 Ad-Notes":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.EnableAdNotes = tempBool;
+												defaultDetailedGridColumnState.EnableAdNotes = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridColumnState.ShowAdNotes = tempBool;
+												defaultDetailedGridColumnState.ShowAdNotes = tempBool;
 										break;
 								}
 							}
@@ -1359,123 +1359,123 @@ namespace CommandCentral.TabMainDashboard
 									case "Comment":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.EnableComments = tempBool;
+												defaultDetailedGridAdNotesState.EnableComments = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.ShowComments = tempBool;
+												defaultDetailedGridAdNotesState.ShowComments = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridAdNotesState.PositionComments = tempInt;
+												defaultDetailedGridAdNotesState.PositionComments = tempInt;
 										break;
 									case "Section":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.EnableSection = tempBool;
+												defaultDetailedGridAdNotesState.EnableSection = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.ShowSection = tempBool;
+												defaultDetailedGridAdNotesState.ShowSection = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridAdNotesState.PositionSection = tempInt;
+												defaultDetailedGridAdNotesState.PositionSection = tempInt;
 										break;
 									case "Mechanicals":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.EnableMechanicals = tempBool;
+												defaultDetailedGridAdNotesState.EnableMechanicals = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.ShowMechanicals = tempBool;
+												defaultDetailedGridAdNotesState.ShowMechanicals = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridAdNotesState.PositionMechanicals = tempInt;
+												defaultDetailedGridAdNotesState.PositionMechanicals = tempInt;
 										break;
 									case "Col. X Inches":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.EnableDimensions = tempBool;
+												defaultDetailedGridAdNotesState.EnableDimensions = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.ShowDimensions = tempBool;
+												defaultDetailedGridAdNotesState.ShowDimensions = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridAdNotesState.PositionDimensions = tempInt;
+												defaultDetailedGridAdNotesState.PositionDimensions = tempInt;
 										break;
 									case "Delivery":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.EnableDelivery = tempBool;
+												defaultDetailedGridAdNotesState.EnableDelivery = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.ShowDelivery = tempBool;
+												defaultDetailedGridAdNotesState.ShowDelivery = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridAdNotesState.PositionDelivery = tempInt;
+												defaultDetailedGridAdNotesState.PositionDelivery = tempInt;
 										break;
 									case "Publication":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.EnablePublication = tempBool;
+												defaultDetailedGridAdNotesState.EnablePublication = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.ShowPublication = tempBool;
+												defaultDetailedGridAdNotesState.ShowPublication = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridAdNotesState.PositionPublication = tempInt;
+												defaultDetailedGridAdNotesState.PositionPublication = tempInt;
 										break;
 									case "Total Col In":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.EnableSquare = tempBool;
+												defaultDetailedGridAdNotesState.EnableSquare = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.ShowSquare = tempBool;
+												defaultDetailedGridAdNotesState.ShowSquare = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridAdNotesState.PositionSquare = tempInt;
+												defaultDetailedGridAdNotesState.PositionSquare = tempInt;
 										break;
 									case "Page Size":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.EnablePageSize = tempBool;
+												defaultDetailedGridAdNotesState.EnablePageSize = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.ShowPageSize = tempBool;
+												defaultDetailedGridAdNotesState.ShowPageSize = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridAdNotesState.PositionPageSize = tempInt;
+												defaultDetailedGridAdNotesState.PositionPageSize = tempInt;
 										break;
 									case "% of Page":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.EnablePercentOfPage = tempBool;
+												defaultDetailedGridAdNotesState.EnablePercentOfPage = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.ShowPercentOfPage = tempBool;
+												defaultDetailedGridAdNotesState.ShowPercentOfPage = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridAdNotesState.PositionPercentOfPage = tempInt;
+												defaultDetailedGridAdNotesState.PositionPercentOfPage = tempInt;
 										break;
 									case "Readership":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.EnableReadership = tempBool;
+												defaultDetailedGridAdNotesState.EnableReadership = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.ShowReadership = tempBool;
+												defaultDetailedGridAdNotesState.ShowReadership = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridAdNotesState.PositionReadership = tempInt;
+												defaultDetailedGridAdNotesState.PositionReadership = tempInt;
 										break;
 									case "Deadline":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.EnableDeadline = tempBool;
+												defaultDetailedGridAdNotesState.EnableDeadline = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridAdNotesState.ShowDeadline = tempBool;
+												defaultDetailedGridAdNotesState.ShowDeadline = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultDetailedGridAdNotesState.PositionDeadline = tempInt;
+												defaultDetailedGridAdNotesState.PositionDeadline = tempInt;
 										break;
 								}
 							}
@@ -1521,138 +1521,138 @@ namespace CommandCentral.TabMainDashboard
 									case "Show Slide Totals":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableSlideBullets = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableSlideBullets = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowSlideBullets = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowSlideBullets = tempBool;
 										break;
 									case "Last Slide":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableOnlyOnLastSlide = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableOnlyOnLastSlide = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowOnlyOnLastSlide = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowOnlyOnLastSlide = tempBool;
 										break;
 									case "Total Ads":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableTotalInserts = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableTotalInserts = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowTotalInserts = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowTotalInserts = tempBool;
 										break;
 									case "Investment":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableTotalFinalCost = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableTotalFinalCost = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowTotalFinalCost = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowTotalFinalCost = tempBool;
 										break;
 									case "Page Size":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnablePageSize = tempBool;
+												defaultDetailedGridSlideBulletsState.EnablePageSize = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowPageSize = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowPageSize = tempBool;
 										break;
 									case "Col. X Inches":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableDimensions = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableDimensions = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowDimensions = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowDimensions = tempBool;
 										break;
 									case "% of Page":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnablePercentOfPage = tempBool;
+												defaultDetailedGridSlideBulletsState.EnablePercentOfPage = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowPercentOfPage = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowPercentOfPage = tempBool;
 										break;
 									case "Total Col. In.":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableColumnInches = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableColumnInches = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowColumnInches = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowColumnInches = tempBool;
 										break;
 									case "Total Inches":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableTotalSquare = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableTotalSquare = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowTotalSquare = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowTotalSquare = tempBool;
 										break;
 									case "BW Ad Cost":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableAvgAdCost = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableAvgAdCost = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowAvgAdCost = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowAvgAdCost = tempBool;
 										break;
 									case "Final Ad Cost":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableAvgFinalCost = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableAvgFinalCost = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowAvgFinalCost = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowAvgFinalCost = tempBool;
 										break;
 									case "Avg PCI":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableAvgPCI = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableAvgPCI = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowAvgPCI = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowAvgPCI = tempBool;
 										break;
 									case "Total Color":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableTotalColor = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableTotalColor = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowTotalColor = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowTotalColor = tempBool;
 										break;
 									case "Discounts":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableDiscounts = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableDiscounts = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowDiscounts = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowDiscounts = tempBool;
 										break;
 									case "Delivery":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableDelivery = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableDelivery = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowDelivery = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowDelivery = tempBool;
 										break;
 									case "Readership":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableReadership = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableReadership = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowReadership = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowReadership = tempBool;
 										break;
 									case "Show Signature":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.EnableSignature = tempBool;
+												defaultDetailedGridSlideBulletsState.EnableSignature = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideBulletsState.ShowSignature = tempBool;
+												defaultDetailedGridSlideBulletsState.ShowSignature = tempBool;
 										break;
 								}
 							}
@@ -1698,66 +1698,66 @@ namespace CommandCentral.TabMainDashboard
 									case "Slide Header Options":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.EnableSlideInfo = tempBool;
+												defaultDetailedGridSlideHeaderState.EnableSlideInfo = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.ShowSlideInfo = tempBool;
+												defaultDetailedGridSlideHeaderState.ShowSlideInfo = tempBool;
 										break;
 									case "Slide Title":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.EnableSlideHeader = tempBool;
+												defaultDetailedGridSlideHeaderState.EnableSlideHeader = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.ShowSlideHeader = tempBool;
+												defaultDetailedGridSlideHeaderState.ShowSlideHeader = tempBool;
 										break;
 									case "Advertiser":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.EnableAdvertiser = tempBool;
+												defaultDetailedGridSlideHeaderState.EnableAdvertiser = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.ShowAdvertiser = tempBool;
+												defaultDetailedGridSlideHeaderState.ShowAdvertiser = tempBool;
 										break;
 									case "Decision Maker":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.EnableDecisionMaker = tempBool;
+												defaultDetailedGridSlideHeaderState.EnableDecisionMaker = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.ShowDecisionMaker = tempBool;
+												defaultDetailedGridSlideHeaderState.ShowDecisionMaker = tempBool;
 										break;
 									case "Presentation Date":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.EnablePresentationDate = tempBool;
+												defaultDetailedGridSlideHeaderState.EnablePresentationDate = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.ShowPresentationDate = tempBool;
+												defaultDetailedGridSlideHeaderState.ShowPresentationDate = tempBool;
 										break;
 									case "Schedule Window":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.EnableFlightDates = tempBool;
+												defaultDetailedGridSlideHeaderState.EnableFlightDates = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.ShowFlightDates = tempBool;
+												defaultDetailedGridSlideHeaderState.ShowFlightDates = tempBool;
 										break;
 									case "Publication Name":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.EnableName = tempBool;
+												defaultDetailedGridSlideHeaderState.EnableName = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.ShowName = tempBool;
+												defaultDetailedGridSlideHeaderState.ShowName = tempBool;
 										break;
 									case "Publication Logo":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.EnableLogo1 = tempBool;
+												defaultDetailedGridSlideHeaderState.EnableLogo1 = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultDetailedGridSlideHeaderState.ShowLogo1 = tempBool;
+												defaultDetailedGridSlideHeaderState.ShowLogo1 = tempBool;
 										break;
 								}
 							}
@@ -1803,208 +1803,208 @@ namespace CommandCentral.TabMainDashboard
 									case "ID":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableID = tempBool;
+												defaultMultiGridColumnState.EnableID = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowID = tempBool;
+												defaultMultiGridColumnState.ShowID = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.IDPosition = tempInt;
+												defaultMultiGridColumnState.IDPosition = tempInt;
 										break;
 									case "INS#":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableIndex = tempBool;
+												defaultMultiGridColumnState.EnableIndex = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowIndex = tempBool;
+												defaultMultiGridColumnState.ShowIndex = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.IndexPosition = tempInt;
+												defaultMultiGridColumnState.IndexPosition = tempInt;
 										break;
 									case "Date":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableDate = tempBool;
+												defaultMultiGridColumnState.EnableDate = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowDate = tempBool;
+												defaultMultiGridColumnState.ShowDate = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.DatePosition = tempInt;
+												defaultMultiGridColumnState.DatePosition = tempInt;
 										break;
 									case "Color":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableColor = tempBool;
+												defaultMultiGridColumnState.EnableColor = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowColor = tempBool;
+												defaultMultiGridColumnState.ShowColor = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.ColorPosition = tempInt;
+												defaultMultiGridColumnState.ColorPosition = tempInt;
 										break;
 									case "Section":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableSection = tempBool;
+												defaultMultiGridColumnState.EnableSection = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowSection = tempBool;
+												defaultMultiGridColumnState.ShowSection = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.SectionPosition = tempInt;
+												defaultMultiGridColumnState.SectionPosition = tempInt;
 										break;
 									case "PCI":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnablePCI = tempBool;
+												defaultMultiGridColumnState.EnablePCI = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowPCI = tempBool;
+												defaultMultiGridColumnState.ShowPCI = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.PCIPosition = tempInt;
+												defaultMultiGridColumnState.PCIPosition = tempInt;
 										break;
 									case "Total Cost":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableFinalCost = tempBool;
+												defaultMultiGridColumnState.EnableFinalCost = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowFinalCost = tempBool;
+												defaultMultiGridColumnState.ShowFinalCost = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.FinalCostPosition = tempInt;
+												defaultMultiGridColumnState.FinalCostPosition = tempInt;
 										break;
 									case "Publication":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnablePublication = tempBool;
+												defaultMultiGridColumnState.EnablePublication = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowPublication = tempBool;
+												defaultMultiGridColumnState.ShowPublication = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.PublicationPosition = tempInt;
+												defaultMultiGridColumnState.PublicationPosition = tempInt;
 										break;
 									case "% of Page":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnablePercentOfPage = tempBool;
+												defaultMultiGridColumnState.EnablePercentOfPage = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowPercentOfPage = tempBool;
+												defaultMultiGridColumnState.ShowPercentOfPage = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.PercentOfPagePosition = tempInt;
+												defaultMultiGridColumnState.PercentOfPagePosition = tempInt;
 										break;
 									case "BW Ad Cost":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableCost = tempBool;
+												defaultMultiGridColumnState.EnableCost = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowCost = tempBool;
+												defaultMultiGridColumnState.ShowCost = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.CostPosition = tempInt;
+												defaultMultiGridColumnState.CostPosition = tempInt;
 										break;
 									case "Col x In":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableDimensions = tempBool;
+												defaultMultiGridColumnState.EnableDimensions = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowDimensions = tempBool;
+												defaultMultiGridColumnState.ShowDimensions = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.DimensionsPosition = tempInt;
+												defaultMultiGridColumnState.DimensionsPosition = tempInt;
 										break;
 									case "Mechanicals":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableMechanicals = tempBool;
+												defaultMultiGridColumnState.EnableMechanicals = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowMechanicals = tempBool;
+												defaultMultiGridColumnState.ShowMechanicals = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.MechanicalsPosition = tempInt;
+												defaultMultiGridColumnState.MechanicalsPosition = tempInt;
 										break;
 									case "Delivery":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableDelivery = tempBool;
+												defaultMultiGridColumnState.EnableDelivery = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowDelivery = tempBool;
+												defaultMultiGridColumnState.ShowDelivery = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.DeliveryPosition = tempInt;
+												defaultMultiGridColumnState.DeliveryPosition = tempInt;
 										break;
 									case "Discounts":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableDiscount = tempBool;
+												defaultMultiGridColumnState.EnableDiscount = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowDiscount = tempBool;
+												defaultMultiGridColumnState.ShowDiscount = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.DiscountPosition = tempInt;
+												defaultMultiGridColumnState.DiscountPosition = tempInt;
 										break;
 									case "Page Size":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnablePageSize = tempBool;
+												defaultMultiGridColumnState.EnablePageSize = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowPageSize = tempBool;
+												defaultMultiGridColumnState.ShowPageSize = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.PageSizePosition = tempInt;
+												defaultMultiGridColumnState.PageSizePosition = tempInt;
 										break;
 									case "Total Col. In.":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableSquare = tempBool;
+												defaultMultiGridColumnState.EnableSquare = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowSquare = tempBool;
+												defaultMultiGridColumnState.ShowSquare = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.SquarePosition = tempInt;
+												defaultMultiGridColumnState.SquarePosition = tempInt;
 										break;
 									case "Deadline":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableDeadline = tempBool;
+												defaultMultiGridColumnState.EnableDeadline = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowDeadline = tempBool;
+												defaultMultiGridColumnState.ShowDeadline = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.DeadlinePosition = tempInt;
+												defaultMultiGridColumnState.DeadlinePosition = tempInt;
 										break;
 									case "Readership":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableReadership = tempBool;
+												defaultMultiGridColumnState.EnableReadership = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowReadership = tempBool;
+												defaultMultiGridColumnState.ShowReadership = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridColumnState.ReadershipPosition = tempInt;
+												defaultMultiGridColumnState.ReadershipPosition = tempInt;
 										break;
 									case "Select up to 4 Ad-Notes":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.EnableAdNotes = tempBool;
+												defaultMultiGridColumnState.EnableAdNotes = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridColumnState.ShowAdNotes = tempBool;
+												defaultMultiGridColumnState.ShowAdNotes = tempBool;
 										break;
 								}
 							}
@@ -2050,123 +2050,123 @@ namespace CommandCentral.TabMainDashboard
 									case "Comment":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.EnableComments = tempBool;
+												defaultMultiGridAdNotesState.EnableComments = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.ShowComments = tempBool;
+												defaultMultiGridAdNotesState.ShowComments = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridAdNotesState.PositionComments = tempInt;
+												defaultMultiGridAdNotesState.PositionComments = tempInt;
 										break;
 									case "Section":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.EnableSection = tempBool;
+												defaultMultiGridAdNotesState.EnableSection = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.ShowSection = tempBool;
+												defaultMultiGridAdNotesState.ShowSection = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridAdNotesState.PositionSection = tempInt;
+												defaultMultiGridAdNotesState.PositionSection = tempInt;
 										break;
 									case "Mechanicals":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.EnableMechanicals = tempBool;
+												defaultMultiGridAdNotesState.EnableMechanicals = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.ShowMechanicals = tempBool;
+												defaultMultiGridAdNotesState.ShowMechanicals = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridAdNotesState.PositionMechanicals = tempInt;
+												defaultMultiGridAdNotesState.PositionMechanicals = tempInt;
 										break;
 									case "Col. X Inches":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.EnableDimensions = tempBool;
+												defaultMultiGridAdNotesState.EnableDimensions = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.ShowDimensions = tempBool;
+												defaultMultiGridAdNotesState.ShowDimensions = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridAdNotesState.PositionDimensions = tempInt;
+												defaultMultiGridAdNotesState.PositionDimensions = tempInt;
 										break;
 									case "Delivery":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.EnableDelivery = tempBool;
+												defaultMultiGridAdNotesState.EnableDelivery = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.ShowDelivery = tempBool;
+												defaultMultiGridAdNotesState.ShowDelivery = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridAdNotesState.PositionDelivery = tempInt;
+												defaultMultiGridAdNotesState.PositionDelivery = tempInt;
 										break;
 									case "Publication":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.EnablePublication = tempBool;
+												defaultMultiGridAdNotesState.EnablePublication = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.ShowPublication = tempBool;
+												defaultMultiGridAdNotesState.ShowPublication = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridAdNotesState.PositionPublication = tempInt;
+												defaultMultiGridAdNotesState.PositionPublication = tempInt;
 										break;
 									case "Total Col In":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.EnableSquare = tempBool;
+												defaultMultiGridAdNotesState.EnableSquare = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.ShowSquare = tempBool;
+												defaultMultiGridAdNotesState.ShowSquare = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridAdNotesState.PositionSquare = tempInt;
+												defaultMultiGridAdNotesState.PositionSquare = tempInt;
 										break;
 									case "Page Size":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.EnablePageSize = tempBool;
+												defaultMultiGridAdNotesState.EnablePageSize = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.ShowPageSize = tempBool;
+												defaultMultiGridAdNotesState.ShowPageSize = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridAdNotesState.PositionPageSize = tempInt;
+												defaultMultiGridAdNotesState.PositionPageSize = tempInt;
 										break;
 									case "% of Page":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.EnablePercentOfPage = tempBool;
+												defaultMultiGridAdNotesState.EnablePercentOfPage = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.ShowPercentOfPage = tempBool;
+												defaultMultiGridAdNotesState.ShowPercentOfPage = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridAdNotesState.PositionPercentOfPage = tempInt;
+												defaultMultiGridAdNotesState.PositionPercentOfPage = tempInt;
 										break;
 									case "Readership":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.EnableReadership = tempBool;
+												defaultMultiGridAdNotesState.EnableReadership = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.ShowReadership = tempBool;
+												defaultMultiGridAdNotesState.ShowReadership = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridAdNotesState.PositionReadership = tempInt;
+												defaultMultiGridAdNotesState.PositionReadership = tempInt;
 										break;
 									case "Deadline":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.EnableDeadline = tempBool;
+												defaultMultiGridAdNotesState.EnableDeadline = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridAdNotesState.ShowDeadline = tempBool;
+												defaultMultiGridAdNotesState.ShowDeadline = tempBool;
 										if (row[3] != null)
 											if (int.TryParse(row[3].ToString().Trim(), out tempInt))
-												_defaultMultiGridAdNotesState.PositionDeadline = tempInt;
+												defaultMultiGridAdNotesState.PositionDeadline = tempInt;
 										break;
 								}
 							}
@@ -2212,138 +2212,138 @@ namespace CommandCentral.TabMainDashboard
 									case "Show Slide Totals":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableSlideBullets = tempBool;
+												defaultMultiGridSlideBulletsState.EnableSlideBullets = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowSlideBullets = tempBool;
+												defaultMultiGridSlideBulletsState.ShowSlideBullets = tempBool;
 										break;
 									case "Last Slide":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableOnlyOnLastSlide = tempBool;
+												defaultMultiGridSlideBulletsState.EnableOnlyOnLastSlide = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowOnlyOnLastSlide = tempBool;
+												defaultMultiGridSlideBulletsState.ShowOnlyOnLastSlide = tempBool;
 										break;
 									case "Total Ads":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableTotalInserts = tempBool;
+												defaultMultiGridSlideBulletsState.EnableTotalInserts = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowTotalInserts = tempBool;
+												defaultMultiGridSlideBulletsState.ShowTotalInserts = tempBool;
 										break;
 									case "Investment":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableTotalFinalCost = tempBool;
+												defaultMultiGridSlideBulletsState.EnableTotalFinalCost = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowTotalFinalCost = tempBool;
+												defaultMultiGridSlideBulletsState.ShowTotalFinalCost = tempBool;
 										break;
 									case "Page Size":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnablePageSize = tempBool;
+												defaultMultiGridSlideBulletsState.EnablePageSize = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowPageSize = tempBool;
+												defaultMultiGridSlideBulletsState.ShowPageSize = tempBool;
 										break;
 									case "Col. X Inches":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableDimensions = tempBool;
+												defaultMultiGridSlideBulletsState.EnableDimensions = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowDimensions = tempBool;
+												defaultMultiGridSlideBulletsState.ShowDimensions = tempBool;
 										break;
 									case "% of Page":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnablePercentOfPage = tempBool;
+												defaultMultiGridSlideBulletsState.EnablePercentOfPage = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowPercentOfPage = tempBool;
+												defaultMultiGridSlideBulletsState.ShowPercentOfPage = tempBool;
 										break;
 									case "Total Col. In.":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableColumnInches = tempBool;
+												defaultMultiGridSlideBulletsState.EnableColumnInches = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowColumnInches = tempBool;
+												defaultMultiGridSlideBulletsState.ShowColumnInches = tempBool;
 										break;
 									case "Total Inches":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableTotalSquare = tempBool;
+												defaultMultiGridSlideBulletsState.EnableTotalSquare = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowTotalSquare = tempBool;
+												defaultMultiGridSlideBulletsState.ShowTotalSquare = tempBool;
 										break;
 									case "BW Ad Cost":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableAvgAdCost = tempBool;
+												defaultMultiGridSlideBulletsState.EnableAvgAdCost = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowAvgAdCost = tempBool;
+												defaultMultiGridSlideBulletsState.ShowAvgAdCost = tempBool;
 										break;
 									case "Final Ad Cost":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableAvgFinalCost = tempBool;
+												defaultMultiGridSlideBulletsState.EnableAvgFinalCost = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowAvgFinalCost = tempBool;
+												defaultMultiGridSlideBulletsState.ShowAvgFinalCost = tempBool;
 										break;
 									case "Avg PCI":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableAvgPCI = tempBool;
+												defaultMultiGridSlideBulletsState.EnableAvgPCI = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowAvgPCI = tempBool;
+												defaultMultiGridSlideBulletsState.ShowAvgPCI = tempBool;
 										break;
 									case "Total Color":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableTotalColor = tempBool;
+												defaultMultiGridSlideBulletsState.EnableTotalColor = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowTotalColor = tempBool;
+												defaultMultiGridSlideBulletsState.ShowTotalColor = tempBool;
 										break;
 									case "Discounts":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableDiscounts = tempBool;
+												defaultMultiGridSlideBulletsState.EnableDiscounts = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowDiscounts = tempBool;
+												defaultMultiGridSlideBulletsState.ShowDiscounts = tempBool;
 										break;
 									case "Delivery":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableDelivery = tempBool;
+												defaultMultiGridSlideBulletsState.EnableDelivery = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowDelivery = tempBool;
+												defaultMultiGridSlideBulletsState.ShowDelivery = tempBool;
 										break;
 									case "Readership":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableReadership = tempBool;
+												defaultMultiGridSlideBulletsState.EnableReadership = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowReadership = tempBool;
+												defaultMultiGridSlideBulletsState.ShowReadership = tempBool;
 										break;
 									case "Show Signature":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.EnableSignature = tempBool;
+												defaultMultiGridSlideBulletsState.EnableSignature = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideBulletsState.ShowSignature = tempBool;
+												defaultMultiGridSlideBulletsState.ShowSignature = tempBool;
 										break;
 								}
 							}
@@ -2389,66 +2389,66 @@ namespace CommandCentral.TabMainDashboard
 									case "Slide Header Options":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.EnableSlideInfo = tempBool;
+												defaultMultiGridSlideHeaderState.EnableSlideInfo = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.ShowSlideInfo = tempBool;
+												defaultMultiGridSlideHeaderState.ShowSlideInfo = tempBool;
 										break;
 									case "Slide Title":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.EnableSlideHeader = tempBool;
+												defaultMultiGridSlideHeaderState.EnableSlideHeader = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.ShowSlideHeader = tempBool;
+												defaultMultiGridSlideHeaderState.ShowSlideHeader = tempBool;
 										break;
 									case "Advertiser":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.EnableAdvertiser = tempBool;
+												defaultMultiGridSlideHeaderState.EnableAdvertiser = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.ShowAdvertiser = tempBool;
+												defaultMultiGridSlideHeaderState.ShowAdvertiser = tempBool;
 										break;
 									case "Decision Maker":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.EnableDecisionMaker = tempBool;
+												defaultMultiGridSlideHeaderState.EnableDecisionMaker = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.ShowDecisionMaker = tempBool;
+												defaultMultiGridSlideHeaderState.ShowDecisionMaker = tempBool;
 										break;
 									case "Presentation Date":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.EnablePresentationDate = tempBool;
+												defaultMultiGridSlideHeaderState.EnablePresentationDate = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.ShowPresentationDate = tempBool;
+												defaultMultiGridSlideHeaderState.ShowPresentationDate = tempBool;
 										break;
 									case "Schedule Window":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.EnableFlightDates = tempBool;
+												defaultMultiGridSlideHeaderState.EnableFlightDates = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.ShowFlightDates = tempBool;
+												defaultMultiGridSlideHeaderState.ShowFlightDates = tempBool;
 										break;
 									case "Publication Name":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.EnableName = tempBool;
+												defaultMultiGridSlideHeaderState.EnableName = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.ShowName = tempBool;
+												defaultMultiGridSlideHeaderState.ShowName = tempBool;
 										break;
 									case "Publication Logo":
 										if (row[1] != null)
 											if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.EnableLogo1 = tempBool;
+												defaultMultiGridSlideHeaderState.EnableLogo1 = tempBool;
 										if (row[2] != null)
 											if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-												_defaultMultiGridSlideHeaderState.ShowLogo1 = tempBool;
+												defaultMultiGridSlideHeaderState.ShowLogo1 = tempBool;
 										break;
 								}
 							}
@@ -2479,200 +2479,200 @@ namespace CommandCentral.TabMainDashboard
 								case "Ad Section":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableSection = tempBool;
+											defaultCalendarViewSettings.EnableSection = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowSection = tempBool;
+											defaultCalendarViewSettings.ShowSection = tempBool;
 									break;
 								case "Ad Cost":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableAvgCost = tempBool;
+											defaultCalendarViewSettings.EnableAvgCost = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowAvgCost = tempBool;
+											defaultCalendarViewSettings.ShowAvgCost = tempBool;
 									break;
 								case "Color-BW":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableColor = tempBool;
+											defaultCalendarViewSettings.EnableColor = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowColor = tempBool;
+											defaultCalendarViewSettings.ShowColor = tempBool;
 									break;
 								case "Codes Only":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableAbbreviationOnly = tempBool;
+											defaultCalendarViewSettings.EnableAbbreviationOnly = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowAbbreviationOnly = tempBool;
+											defaultCalendarViewSettings.ShowAbbreviationOnly = tempBool;
 									break;
 								case "Col x In":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableAdSize = tempBool;
+											defaultCalendarViewSettings.EnableAdSize = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowAdSize = tempBool;
+											defaultCalendarViewSettings.ShowAdSize = tempBool;
 									break;
 								case "Page Size":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnablePageSize = tempBool;
+											defaultCalendarViewSettings.EnablePageSize = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowPageSize = tempBool;
+											defaultCalendarViewSettings.ShowPageSize = tempBool;
 									break;
 								case "% of Page":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnablePercentOfPage = tempBool;
+											defaultCalendarViewSettings.EnablePercentOfPage = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowPercentOfPage = tempBool;
+											defaultCalendarViewSettings.ShowPercentOfPage = tempBool;
 									break;
 								case "Big Dates":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableBigDate = tempBool;
+											defaultCalendarViewSettings.EnableBigDate = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowBigDate = tempBool;
+											defaultCalendarViewSettings.ShowBigDate = tempBool;
 									break;
 								case "Slide Title":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableTitle = tempBool;
+											defaultCalendarViewSettings.EnableTitle = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowTitle = tempBool;
+											defaultCalendarViewSettings.ShowTitle = tempBool;
 									break;
 								case "Logo":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableLogo = tempBool;
+											defaultCalendarViewSettings.EnableLogo = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowLogo = tempBool;
+											defaultCalendarViewSettings.ShowLogo = tempBool;
 									break;
 								case "Advertiser":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableBusinessName = tempBool;
+											defaultCalendarViewSettings.EnableBusinessName = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowBusinessName = tempBool;
+											defaultCalendarViewSettings.ShowBusinessName = tempBool;
 									break;
 								case "Contact":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableDecisionMaker = tempBool;
+											defaultCalendarViewSettings.EnableDecisionMaker = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowDecisionMaker = tempBool;
+											defaultCalendarViewSettings.ShowDecisionMaker = tempBool;
 									break;
 								case "Monthly $":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableCost = tempBool;
+											defaultCalendarViewSettings.EnableCost = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowCost = tempBool;
+											defaultCalendarViewSettings.ShowCost = tempBool;
 									break;
 								case "Legend":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableLegend = tempBool;
+											defaultCalendarViewSettings.EnableLegend = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowLegend = tempBool;
+											defaultCalendarViewSettings.ShowLegend = tempBool;
 									break;
 								case "Avg Rate":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableAvgCost = tempBool;
+											defaultCalendarViewSettings.EnableAvgCost = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowAvgCost = tempBool;
+											defaultCalendarViewSettings.ShowAvgCost = tempBool;
 									break;
 								case "Comment":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableComments = tempBool;
+											defaultCalendarViewSettings.EnableComments = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowComments = tempBool;
+											defaultCalendarViewSettings.ShowComments = tempBool;
 									break;
 								case "# Ads":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableTotalAds = tempBool;
+											defaultCalendarViewSettings.EnableTotalAds = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowTotalAds = tempBool;
+											defaultCalendarViewSettings.ShowTotalAds = tempBool;
 									break;
 								case "# Days":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableActiveDays = tempBool;
+											defaultCalendarViewSettings.EnableActiveDays = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.ShowActiveDays = tempBool;
+											defaultCalendarViewSettings.ShowActiveDays = tempBool;
 									break;
 								case "Gray":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableGray = tempBool;
+											defaultCalendarViewSettings.EnableGray = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
 											if (tempBool)
-												_defaultCalendarViewSettings.SlideColor = "gray";
+												defaultCalendarViewSettings.SlideColor = "gray";
 									break;
 								case "Black":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableBlack = tempBool;
+											defaultCalendarViewSettings.EnableBlack = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
 											if (tempBool)
-												_defaultCalendarViewSettings.SlideColor = "black";
+												defaultCalendarViewSettings.SlideColor = "black";
 									break;
 								case "Blue":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableBlue = tempBool;
+											defaultCalendarViewSettings.EnableBlue = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
 											if (tempBool)
-												_defaultCalendarViewSettings.SlideColor = "blue";
+												defaultCalendarViewSettings.SlideColor = "blue";
 									break;
 								case "Teal":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableTeal = tempBool;
+											defaultCalendarViewSettings.EnableTeal = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
 											if (tempBool)
-												_defaultCalendarViewSettings.SlideColor = "teal";
+												defaultCalendarViewSettings.SlideColor = "teal";
 									break;
 								case "Orange":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableOrange = tempBool;
+											defaultCalendarViewSettings.EnableOrange = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
 											if (tempBool)
-												_defaultCalendarViewSettings.SlideColor = "orange";
+												defaultCalendarViewSettings.SlideColor = "orange";
 									break;
 								case "Green":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											_defaultCalendarViewSettings.EnableGreen = tempBool;
+											defaultCalendarViewSettings.EnableGreen = tempBool;
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
 											if (tempBool)
-												_defaultCalendarViewSettings.SlideColor = "green";
+												defaultCalendarViewSettings.SlideColor = "green";
 									break;
 							}
 						}
@@ -2787,25 +2787,25 @@ namespace CommandCentral.TabMainDashboard
 					xml.AppendLine(@"/>");
 				}
 
-				xml.AppendLine(@"<DefaultHomeViewSettings>" + _defaultHomeViewSettings.Serialize() + @"</DefaultHomeViewSettings>");
+				xml.AppendLine(@"<DefaultHomeViewSettings>" + defaultHomeViewSettings.Serialize() + @"</DefaultHomeViewSettings>");
 
-				xml.AppendLine(@"<DefaultPrintScheduleViewSettings>" + _defaultPrintScheduleViewSettings.Serialize() + @"</DefaultPrintScheduleViewSettings>");
+				xml.AppendLine(@"<DefaultPrintScheduleViewSettings>" + defaultPrintScheduleViewSettings.Serialize() + @"</DefaultPrintScheduleViewSettings>");
 
-				xml.AppendLine(@"<DefaultPublicationBasicOverviewSettings>" + _defaultPublicationBasicOverviewSettings.Serialize() + @"</DefaultPublicationBasicOverviewSettings>");
-				xml.AppendLine(@"<DefaultPublicationMultiSummarySettings>" + _defaultPublicationMultiSummarySettings.Serialize() + @"</DefaultPublicationMultiSummarySettings>");
-				xml.AppendLine(@"<DefaultSnapshotViewSettings>" + _defaultSnapshotViewSettings.Serialize() + @"</DefaultSnapshotViewSettings>");
+				xml.AppendLine(@"<DefaultPublicationBasicOverviewSettings>" + defaultPublicationBasicOverviewSettings.Serialize() + @"</DefaultPublicationBasicOverviewSettings>");
+				xml.AppendLine(@"<DefaultPublicationMultiSummarySettings>" + defaultPublicationMultiSummarySettings.Serialize() + @"</DefaultPublicationMultiSummarySettings>");
+				xml.AppendLine(@"<DefaultSnapshotViewSettings>" + defaultSnapshotViewSettings.Serialize() + @"</DefaultSnapshotViewSettings>");
 
-				xml.AppendLine(@"<DefaultDetailedGridColumnState>" + _defaultDetailedGridColumnState.Serialize() + @"</DefaultDetailedGridColumnState>");
-				xml.AppendLine(@"<DefaultDetailedGridAdNotesState>" + _defaultDetailedGridAdNotesState.Serialize() + @"</DefaultDetailedGridAdNotesState>");
-				xml.AppendLine(@"<DefaultDetailedGridSlideBulletsState>" + _defaultDetailedGridSlideBulletsState.Serialize() + @"</DefaultDetailedGridSlideBulletsState>");
-				xml.AppendLine(@"<DefaultDetailedGridSlideHeaderState>" + _defaultDetailedGridSlideHeaderState.Serialize() + @"</DefaultDetailedGridSlideHeaderState>");
+				xml.AppendLine(@"<DefaultDetailedGridColumnState>" + defaultDetailedGridColumnState.Serialize() + @"</DefaultDetailedGridColumnState>");
+				xml.AppendLine(@"<DefaultDetailedGridAdNotesState>" + defaultDetailedGridAdNotesState.Serialize() + @"</DefaultDetailedGridAdNotesState>");
+				xml.AppendLine(@"<DefaultDetailedGridSlideBulletsState>" + defaultDetailedGridSlideBulletsState.Serialize() + @"</DefaultDetailedGridSlideBulletsState>");
+				xml.AppendLine(@"<DefaultDetailedGridSlideHeaderState>" + defaultDetailedGridSlideHeaderState.Serialize() + @"</DefaultDetailedGridSlideHeaderState>");
 
-				xml.AppendLine(@"<DefaultMultiGridColumnState>" + _defaultMultiGridColumnState.Serialize() + @"</DefaultMultiGridColumnState>");
-				xml.AppendLine(@"<DefaultMultiGridAdNotesState>" + _defaultMultiGridAdNotesState.Serialize() + @"</DefaultMultiGridAdNotesState>");
-				xml.AppendLine(@"<DefaultMultiGridSlideBulletsState>" + _defaultMultiGridSlideBulletsState.Serialize() + @"</DefaultMultiGridSlideBulletsState>");
-				xml.AppendLine(@"<DefaultMultiGridSlideHeaderState>" + _defaultMultiGridSlideHeaderState.Serialize() + @"</DefaultMultiGridSlideHeaderState>");
+				xml.AppendLine(@"<DefaultMultiGridColumnState>" + defaultMultiGridColumnState.Serialize() + @"</DefaultMultiGridColumnState>");
+				xml.AppendLine(@"<DefaultMultiGridAdNotesState>" + defaultMultiGridAdNotesState.Serialize() + @"</DefaultMultiGridAdNotesState>");
+				xml.AppendLine(@"<DefaultMultiGridSlideBulletsState>" + defaultMultiGridSlideBulletsState.Serialize() + @"</DefaultMultiGridSlideBulletsState>");
+				xml.AppendLine(@"<DefaultMultiGridSlideHeaderState>" + defaultMultiGridSlideHeaderState.Serialize() + @"</DefaultMultiGridSlideHeaderState>");
 
-				xml.AppendLine(@"<DefaultCalendarViewSettings>" + _defaultCalendarViewSettings.Serialize() + @"</DefaultCalendarViewSettings>");
+				xml.AppendLine(@"<DefaultCalendarViewSettings>" + defaultCalendarViewSettings.Serialize() + @"</DefaultCalendarViewSettings>");
 
 				xml.AppendLine(@"</PrintStrategy>");
 

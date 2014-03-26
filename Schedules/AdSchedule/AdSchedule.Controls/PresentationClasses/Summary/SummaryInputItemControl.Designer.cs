@@ -30,13 +30,6 @@
         {
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
-			this.laNumber = new System.Windows.Forms.Label();
 			this.panelExMain = new DevComponents.DotNetBar.PanelEx();
 			this.ckItem = new System.Windows.Forms.CheckBox();
 			this.laTotal = new System.Windows.Forms.Label();
@@ -44,33 +37,18 @@
 			this.ckTotal = new System.Windows.Forms.CheckBox();
 			this.laMonthly = new System.Windows.Forms.Label();
 			this.ckMonthly = new System.Windows.Forms.CheckBox();
-			this.comboBoxEditItem = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.memoEditDetails = new DevExpress.XtraEditors.MemoEdit();
 			this.spinEditMonthly = new DevExpress.XtraEditors.SpinEdit();
 			this.spinEditTotal = new DevExpress.XtraEditors.SpinEdit();
-			this.pbUp = new System.Windows.Forms.PictureBox();
-			this.pbDown = new System.Windows.Forms.PictureBox();
-			this.pbDelete = new System.Windows.Forms.PictureBox();
 			this.toolTipController = new DevExpress.Utils.ToolTipController();
+			this.laTitle = new System.Windows.Forms.Label();
+			this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
 			this.panelExMain.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditItem.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDetails.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthly.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotal.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbUp)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbDown)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbDelete)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// laNumber
-			// 
-			this.laNumber.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laNumber.Location = new System.Drawing.Point(2, 11);
-			this.laNumber.Name = "laNumber";
-			this.laNumber.Size = new System.Drawing.Size(42, 42);
-			this.laNumber.TabIndex = 27;
-			this.laNumber.Text = "1";
-			this.laNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// panelExMain
 			// 
@@ -79,19 +57,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panelExMain.CanvasColor = System.Drawing.SystemColors.Control;
 			this.panelExMain.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.panelExMain.Controls.Add(this.laTitle);
 			this.panelExMain.Controls.Add(this.ckItem);
 			this.panelExMain.Controls.Add(this.laTotal);
 			this.panelExMain.Controls.Add(this.ckDetails);
 			this.panelExMain.Controls.Add(this.ckTotal);
 			this.panelExMain.Controls.Add(this.laMonthly);
 			this.panelExMain.Controls.Add(this.ckMonthly);
-			this.panelExMain.Controls.Add(this.comboBoxEditItem);
 			this.panelExMain.Controls.Add(this.memoEditDetails);
 			this.panelExMain.Controls.Add(this.spinEditMonthly);
 			this.panelExMain.Controls.Add(this.spinEditTotal);
 			this.panelExMain.Location = new System.Drawing.Point(45, 21);
 			this.panelExMain.Name = "panelExMain";
-			this.panelExMain.Size = new System.Drawing.Size(509, 99);
+			this.panelExMain.Size = new System.Drawing.Size(543, 99);
 			this.panelExMain.Style.Alignment = System.Drawing.StringAlignment.Center;
 			this.panelExMain.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
 			this.panelExMain.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -169,27 +147,6 @@
 			this.ckMonthly.UseVisualStyleBackColor = true;
 			this.ckMonthly.CheckedChanged += new System.EventHandler(this.ckMonthly_CheckedChanged);
 			// 
-			// comboBoxEditItem
-			// 
-			this.comboBoxEditItem.Location = new System.Drawing.Point(30, 8);
-			this.comboBoxEditItem.Name = "comboBoxEditItem";
-			this.comboBoxEditItem.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
-			this.comboBoxEditItem.Properties.Appearance.Options.UseFont = true;
-			this.comboBoxEditItem.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9F);
-			this.comboBoxEditItem.Properties.AppearanceDisabled.Options.UseFont = true;
-			this.comboBoxEditItem.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9F);
-			this.comboBoxEditItem.Properties.AppearanceDropDown.Options.UseFont = true;
-			this.comboBoxEditItem.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F);
-			this.comboBoxEditItem.Properties.AppearanceFocused.Options.UseFont = true;
-			this.comboBoxEditItem.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F);
-			this.comboBoxEditItem.Properties.AppearanceReadOnly.Options.UseFont = true;
-			this.comboBoxEditItem.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.comboBoxEditItem.Properties.NullText = "Type or Select";
-			this.comboBoxEditItem.Size = new System.Drawing.Size(264, 21);
-			this.comboBoxEditItem.TabIndex = 0;
-			this.comboBoxEditItem.EditValueChanged += new System.EventHandler(this.comboBoxEditItem_EditValueChanged);
-			// 
 			// memoEditDetails
 			// 
 			this.memoEditDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -200,7 +157,7 @@
 			this.memoEditDetails.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.memoEditDetails.Properties.Appearance.Options.UseFont = true;
 			this.memoEditDetails.Properties.NullText = "Brief Overview...";
-			this.memoEditDetails.Size = new System.Drawing.Size(182, 84);
+			this.memoEditDetails.Size = new System.Drawing.Size(216, 84);
 			this.memoEditDetails.TabIndex = 3;
 			this.memoEditDetails.EditValueChanged += new System.EventHandler(this.memoEditDetails_EditValueChanged);
 			// 
@@ -248,101 +205,62 @@
 			this.spinEditTotal.TabIndex = 2;
 			this.spinEditTotal.EditValueChanged += new System.EventHandler(this.spinEditTotal_EditValueChanged);
 			// 
-			// pbUp
-			// 
-			this.pbUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbUp.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.NudgeUp;
-			this.pbUp.Location = new System.Drawing.Point(560, 55);
-			this.pbUp.Name = "pbUp";
-			this.pbUp.Size = new System.Drawing.Size(32, 32);
-			toolTipItem1.Text = "Nudge Up";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.toolTipController.SetSuperTip(this.pbUp, superToolTip1);
-			this.pbUp.TabIndex = 36;
-			this.pbUp.TabStop = false;
-			this.pbUp.Click += new System.EventHandler(this.pbUp_Click);
-			this.pbUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
-			// pbDown
-			// 
-			this.pbDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbDown.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.NudgeDown;
-			this.pbDown.Location = new System.Drawing.Point(560, 89);
-			this.pbDown.Name = "pbDown";
-			this.pbDown.Size = new System.Drawing.Size(32, 32);
-			toolTipItem2.Text = "Nudge Down";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.toolTipController.SetSuperTip(this.pbDown, superToolTip2);
-			this.pbDown.TabIndex = 35;
-			this.pbDown.TabStop = false;
-			this.pbDown.Click += new System.EventHandler(this.pbDown_Click);
-			this.pbDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbDown.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
-			// pbDelete
-			// 
-			this.pbDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbDelete.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.DeleteButton;
-			this.pbDelete.Location = new System.Drawing.Point(560, 21);
-			this.pbDelete.Name = "pbDelete";
-			this.pbDelete.Size = new System.Drawing.Size(32, 32);
-			toolTipItem3.Text = "Delete this product";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.toolTipController.SetSuperTip(this.pbDelete, superToolTip3);
-			this.pbDelete.TabIndex = 34;
-			this.pbDelete.TabStop = false;
-			this.pbDelete.Click += new System.EventHandler(this.pbDelete_Click);
-			this.pbDelete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbDelete.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
 			// toolTipController
 			// 
 			this.toolTipController.Rounded = true;
 			this.toolTipController.ToolTipLocation = DevExpress.Utils.ToolTipLocation.RightTop;
 			this.toolTipController.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
 			// 
+			// laTitle
+			// 
+			this.laTitle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laTitle.Location = new System.Drawing.Point(30, 10);
+			this.laTitle.Name = "laTitle";
+			this.laTitle.Size = new System.Drawing.Size(264, 25);
+			this.laTitle.TabIndex = 38;
+			this.laTitle.Text = "label1";
+			// 
+			// pictureBoxLogo
+			// 
+			this.pictureBoxLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.SummaryPrint;
+			this.pictureBoxLogo.Location = new System.Drawing.Point(7, 21);
+			this.pictureBoxLogo.Name = "pictureBoxLogo";
+			this.pictureBoxLogo.Size = new System.Drawing.Size(32, 32);
+			this.pictureBoxLogo.TabIndex = 31;
+			this.pictureBoxLogo.TabStop = false;
+			// 
 			// SummaryInputItemControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.Controls.Add(this.pbUp);
-			this.Controls.Add(this.pbDown);
-			this.Controls.Add(this.pbDelete);
+			this.Controls.Add(this.pictureBoxLogo);
 			this.Controls.Add(this.panelExMain);
-			this.Controls.Add(this.laNumber);
 			this.Name = "SummaryInputItemControl";
 			this.Size = new System.Drawing.Size(595, 140);
 			this.panelExMain.ResumeLayout(false);
 			this.panelExMain.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditItem.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDetails.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthly.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotal.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbUp)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbDown)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbDelete)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
 			this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label laNumber;
-        private DevComponents.DotNetBar.PanelEx panelExMain;
-        private System.Windows.Forms.PictureBox pbUp;
-        private System.Windows.Forms.PictureBox pbDown;
-        private System.Windows.Forms.PictureBox pbDelete;
+		private DevComponents.DotNetBar.PanelEx panelExMain;
         private System.Windows.Forms.Label laTotal;
         private System.Windows.Forms.CheckBox ckTotal;
         private System.Windows.Forms.Label laMonthly;
-        private System.Windows.Forms.CheckBox ckMonthly;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditItem;
+		private System.Windows.Forms.CheckBox ckMonthly;
         private DevExpress.XtraEditors.SpinEdit spinEditMonthly;
         private DevExpress.XtraEditors.SpinEdit spinEditTotal;
         private DevExpress.XtraEditors.MemoEdit memoEditDetails;
         private System.Windows.Forms.CheckBox ckItem;
         public System.Windows.Forms.CheckBox ckDetails;
 		private DevExpress.Utils.ToolTipController toolTipController;
+		private System.Windows.Forms.Label laTitle;
+		private System.Windows.Forms.PictureBox pictureBoxLogo;
     }
 }

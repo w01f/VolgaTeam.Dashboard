@@ -352,18 +352,16 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			}));
 
 			laAdvertiser.Text = _localSchedule.BusinessName;
-			laDemoName.Text = _localSchedule.Demo + (!string.IsNullOrEmpty(_localSchedule.Source) ? (" (" + _localSchedule.Source + ")") : string.Empty);
 			laScheduleWindow.Text = _localSchedule.FlightDateStart.HasValue && _localSchedule.FlightDateEnd.HasValue ? string.Format("{0} - {1}", new object[] { _localSchedule.FlightDateStart.Value.ToString("MM/dd/yy"), _localSchedule.FlightDateEnd.Value.ToString("MM/dd/yy") }) : string.Empty;
-			laDemoName.Visible = !string.IsNullOrEmpty(_localSchedule.Demo);
-			laDemoName.BringToFront();
-
 			buttonXRating.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 			buttonXCPP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 			buttonXGRP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 			buttonXTotalCPP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 			buttonXTotalGRP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 			buttonXRating.Text = _localSchedule.DemoType == DemoType.Rtg ? "Rtg" : "(000s)";
-			bandedGridColumnRating.Caption = _localSchedule.DemoType == DemoType.Rtg ? "Rtg" : "(000s)";
+			bandedGridColumnRating.Caption = String.Format("{0}{1}",
+				(!String.IsNullOrEmpty(_localSchedule.Demo) ? String.Format("{0} ",_localSchedule.Demo) : String.Empty),
+				_localSchedule.DemoType == DemoType.Rtg ? "Rtg" : "(000)");
 			bandedGridColumnRating.ColumnEdit = _localSchedule.DemoType == DemoType.Rtg ? repositoryItemSpinEditRating : repositoryItemSpinEdit000s;
 			buttonXCPP.Text = _localSchedule.DemoType == DemoType.Rtg ? "CPP" : "CPM";
 			buttonXTotalCPP.Text = _localSchedule.DemoType == DemoType.Rtg ? "Overall CPP" : "Overall CPM";

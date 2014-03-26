@@ -102,6 +102,9 @@
     <Compile Include="PresentationClasses\CopyPasterManager.cs" />
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="PresentationClasses\Calendars\ICalendarControl.cs" />
+    <Compile Include="PresentationClasses\CalendarGalleryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\SelectionManager.cs" />
     <Compile Include="PresentationClasses\Views\IView.cs" />
     <Compile Include="PresentationClasses\Views\MonthView\CalendarNoteControl.cs">

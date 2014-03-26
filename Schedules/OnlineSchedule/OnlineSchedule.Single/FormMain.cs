@@ -30,6 +30,8 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.TabScheduleSlides = ribbonTabItemDigitalSlides;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
 			Controller.Instance.TabAdPlan = ribbonTabItemAdPlan;
+			Controller.Instance.TabGallery = ribbonTabItemGallery;
+			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
 
 			#region Command Controls
 
@@ -46,7 +48,6 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.HomeHelp = buttonItemHomeHelp;
 			Controller.Instance.HomeProductAdd = buttonItemHomeDigitalProductAdd;
 			Controller.Instance.HomeProductClone = buttonItemHomeDigitalProductClone;
-			Controller.Instance.HomeProductDelete = buttonItemHomeDigitalProductDelete;
 			Controller.Instance.HomeClientType = comboBoxEditClientType;
 			Controller.Instance.HomeAccountNumberText = textEditAccountNumber;
 			Controller.Instance.HomeAccountNumberCheck = checkBoxItemHomeAccountNumber;
@@ -72,7 +73,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
 			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
-			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageOptions;
+			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageSettings;
 			#endregion
 
 			#region AdPlan
@@ -84,6 +85,30 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.AdPlanEmail = buttonItemAdPlanEmail;
 			Controller.Instance.AdPlanPowerPoint = buttonItemAdPlanPowerPoint;
 			Controller.Instance.AdPlanTheme = buttonItemAdPlanTheme;
+			#endregion
+
+			#region Rate Card
+			Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
+			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
+			#endregion
+
+			#region Gallery
+			Controller.Instance.GalleryBrowseBar = ribbonBarGalleryBrowse;
+			Controller.Instance.GalleryImageBar = ribbonBarGalleryImage;
+			Controller.Instance.GalleryZoomBar = ribbonBarGalleryZoom;
+			Controller.Instance.GalleryCopyBar = ribbonBarGalleryCopy;
+			Controller.Instance.GalleryScreenshots = buttonItemGalleryBrowseScreenshots;
+			Controller.Instance.GalleryAdSpecs = buttonItemGalleryBrowseAdSpecs;
+			Controller.Instance.GalleryView = buttonItemGalleryView;
+			Controller.Instance.GalleryEdit = buttonItemGalleryEdit;
+			Controller.Instance.GalleryImageSelect = buttonItemGalleryImageSelect;
+			Controller.Instance.GalleryImageCrop = buttonItemGalleryImageCrop;
+			Controller.Instance.GalleryZoomIn = buttonItemGalleryZoomIn;
+			Controller.Instance.GalleryZoomOut = buttonItemGalleryZoomOut;
+			Controller.Instance.GalleryCopy = buttonItemGalleryCopy;
+			Controller.Instance.GalleryHelp = buttonItemGalleryHelp;
+			Controller.Instance.GallerySections = comboBoxEditGallerySections;
+			Controller.Instance.GalleryGroups = comboBoxEditGalleryGroups;
 			#endregion
 			#endregion
 
@@ -116,7 +141,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 				ribbonBarDigitalSchedulePowerPoint.RecalcLayout();
 				ribbonBarDigitalPackageEmail.RecalcLayout();
 				ribbonBarDigitalPackageExit.RecalcLayout();
-				ribbonBarDigitalPackageOptions.RecalcLayout();
+				ribbonBarDigitalPackageSettings.RecalcLayout();
 				ribbonBarDigitalPackagePowerPoint.RecalcLayout();
 				ribbonBarAdPlanEmail.RecalcLayout();
 				ribbonBarAdPlanExit.RecalcLayout();
@@ -265,9 +290,10 @@ namespace NewBizWiz.OnlineSchedule.Single
 				{
 					_currentControl = Controller.Instance.ScheduleSettings;
 					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(Controller.Instance.ScheduleSettings);
+						pnMain.Controls.Add(_currentControl);
 				}
 				_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDigitalSlides)
 			{
@@ -275,9 +301,10 @@ namespace NewBizWiz.OnlineSchedule.Single
 				{
 					_currentControl = Controller.Instance.ScheduleSlides;
 					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(Controller.Instance.ScheduleSlides);
+						pnMain.Controls.Add(_currentControl);
 				}
 				_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDigitalPackage)
 			{
@@ -285,9 +312,10 @@ namespace NewBizWiz.OnlineSchedule.Single
 				{
 					_currentControl = Controller.Instance.DigitalPackage;
 					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(Controller.Instance.DigitalPackage);
+						pnMain.Controls.Add(_currentControl);
 				}
 				_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemAdPlan)
 			{
@@ -295,11 +323,44 @@ namespace NewBizWiz.OnlineSchedule.Single
 				{
 					_currentControl = Controller.Instance.AdPlan;
 					if (!pnMain.Controls.Contains(_currentControl))
-						pnMain.Controls.Add(Controller.Instance.AdPlan);
+						pnMain.Controls.Add(_currentControl);
 				}
 				_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
-			pnMain.BringToFront();
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRateCard)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.RateCard;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGallery)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.Gallery;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
+			else
+			{
+				pnEmpty.Visible = true;
+				_currentControl = null;
+				pnEmpty.BringToFront();
+			}
+			if (WindowState == FormWindowState.Normal)
+			{
+				Width++;
+				Width--;
+			}
 		}
 
 		private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -324,7 +385,8 @@ namespace NewBizWiz.OnlineSchedule.Single
 				{
 					if (!string.IsNullOrEmpty(from.ScheduleName))
 					{
-						string fileName = from.ScheduleName.Trim();
+						var fileName = from.ScheduleName.Trim();
+						BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", fileName));
 						BusinessWrapper.Instance.ScheduleManager.CreateSchedule(fileName);
 						LoadData();
 					}
@@ -344,7 +406,8 @@ namespace NewBizWiz.OnlineSchedule.Single
 			{
 				if (from.ShowDialog() == DialogResult.OK)
 				{
-					string fileName = BusinessWrapper.Instance.ScheduleManager.GetScheduleFileName(from.ScheduleName.Trim());
+					var fileName = BusinessWrapper.Instance.ScheduleManager.GetScheduleFileName(from.ScheduleName.Trim());
+					BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Previous Opened", Path.GetFileNameWithoutExtension(fileName)));
 					BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
 					LoadData();
 				}

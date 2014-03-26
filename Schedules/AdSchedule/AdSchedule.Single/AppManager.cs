@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
+using NewBizWiz.CommonGUI;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
@@ -13,7 +14,7 @@ namespace NewBizWiz.AdSchedule.Single
 	public class AppManager
 	{
 		private static readonly AppManager _instance = new AppManager();
-		private FloaterManager _floater = new FloaterManager();
+		private readonly FloaterManager _floater = new FloaterManager();
 		public NBWLink AppConfig { get; private set; }
 
 		private AppManager() { }
@@ -25,6 +26,7 @@ namespace NewBizWiz.AdSchedule.Single
 
 		public void RunForm()
 		{
+			LicenseHelper.Register();
 			MasterWizardManager.Instance.SetMasterWizard();
 			Controls.BusinessClasses.BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
 			AdSchedulePowerPointHelper.Instance.SetPresentationSettings();

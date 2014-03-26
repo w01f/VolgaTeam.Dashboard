@@ -37,6 +37,7 @@
 			this.repositoryItemPictureEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
 			this.layoutViewField_gridColumnLogoGallery = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
 			this.layoutViewCardLogoGallery = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlLogoGallery)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewLogoGallery)).BeginInit();
@@ -91,6 +92,7 @@
             this.repositoryItemPictureEdit});
 			this.gridControlLogoGallery.Size = new System.Drawing.Size(411, 361);
 			this.gridControlLogoGallery.TabIndex = 38;
+			this.gridControlLogoGallery.ToolTipController = this.toolTipController;
 			this.gridControlLogoGallery.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.layoutViewLogoGallery});
 			// 
@@ -194,6 +196,12 @@
 			this.layoutViewCardLogoGallery.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
 			this.layoutViewCardLogoGallery.Text = "TemplateCard";
 			// 
+			// toolTipController
+			// 
+			this.toolTipController.Rounded = true;
+			this.toolTipController.ShowShadow = false;
+			this.toolTipController.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController_GetActiveObjectInfo);
+			// 
 			// FormImageGallery
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -231,6 +239,7 @@
 		private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit;
 		private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_gridColumnLogoGallery;
 		private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCardLogoGallery;
+		private DevExpress.Utils.ToolTipController toolTipController;
 
 
     }

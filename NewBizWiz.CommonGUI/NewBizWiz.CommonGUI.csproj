@@ -52,6 +52,12 @@
     <Reference Include="DevExpress.XtraLayout.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="EO.WebBrowser">
+      <HintPath>..\Assemblies\EO.Web\EO.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebBrowser.WinForm">
+      <HintPath>..\Assemblies\EO.Web\EO.WebBrowser.WinForm.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -61,6 +67,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Vintasoft.Imaging">
+      <HintPath>..\Assemblies\Vintasoft.Imaging\Vintasoft.Imaging.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Floater\FloaterManager.cs" />
@@ -70,6 +79,12 @@
     </Compile>
     <Compile Include="Floater\FormFloater.designer.cs">
       <DependentUpon>FormFloater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gallery\GalleryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gallery\GalleryControl.Designer.cs">
+      <DependentUpon>GalleryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Preview\PreviewGroup.cs" />
     <Compile Include="Preview\PreviewGroupControl.cs">
@@ -84,6 +99,50 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RateCard\DefaultViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RateCard\DefaultViewer.Designer.cs">
+      <DependentUpon>DefaultViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\ExcelViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RateCard\ExcelViewer.Designer.cs">
+      <DependentUpon>ExcelViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\PDFViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RateCard\PDFViewer.Designer.cs">
+      <DependentUpon>PDFViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\PowerPointViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RateCard\PowerPointViewer.Designer.cs">
+      <DependentUpon>PowerPointViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\RateCardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RateCard\RateCardControl.Designer.cs">
+      <DependentUpon>RateCardControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\RateCardManager.cs" />
+    <Compile Include="RateCard\RateFolderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RateCard\RateFolderControl.Designer.cs">
+      <DependentUpon>RateFolderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateCard\WordViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RateCard\WordViewer.Designer.cs">
+      <DependentUpon>WordViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LicenseHelper.cs" />
     <Compile Include="Slides\FormSlideSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +214,9 @@
     <EmbeddedResource Include="Floater\FormFloater.resx">
       <DependentUpon>FormFloater.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Gallery\GalleryControl.resx">
+      <DependentUpon>GalleryControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Preview\PreviewGroupControl.resx">
       <DependentUpon>PreviewGroupControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +224,27 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\DefaultViewer.resx">
+      <DependentUpon>DefaultViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\ExcelViewer.resx">
+      <DependentUpon>ExcelViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\PDFViewer.resx">
+      <DependentUpon>PDFViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\PowerPointViewer.resx">
+      <DependentUpon>PowerPointViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\RateCardControl.resx">
+      <DependentUpon>RateCardControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\RateFolderControl.resx">
+      <DependentUpon>RateFolderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateCard\WordViewer.resx">
+      <DependentUpon>WordViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Slides\FormSlideSelector.resx">
       <DependentUpon>FormSlideSelector.cs</DependentUpon>
@@ -251,6 +334,46 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DigitalInfoWebsites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GalleryCopy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GalleryCrop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GalleryEdit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GalleryView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GalleryZoomIn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GalleryZoomOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GallerySelect.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

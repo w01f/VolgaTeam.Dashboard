@@ -5,11 +5,12 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.Utils;
-using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTab;
+using Microsoft.Vbe.Interop;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.CommonGUI.ToolForms;
@@ -43,18 +44,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public bool SettingsNotSaved { get; set; }
 		public bool AllowToLeaveControl
 		{
-			get
-			{
-				var result = false;
-				if (SettingsNotSaved)
-				{
-					if (SaveSchedule())
-						result = true;
-				}
-				else
-					result = true;
-				return result;
-			}
+			get { return !SettingsNotSaved || SaveSchedule(); }
 		}
 
 		#region Methods
@@ -81,6 +71,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control != Controller.Instance.HomeAccountNumberText
 				&& control != Controller.Instance.PrintProductRateCard
 				&& control != Controller.Instance.RateCardCombo
+				&& control != Controller.Instance.GallerySections
+				&& control != Controller.Instance.GalleryGroups
 				&& control != Controller.Instance.HomeFlightDatesEnd
 				&& control != Controller.Instance.HomeFlightDatesStart
 				&& control != Controller.Instance.HomePresentationDate
@@ -91,7 +83,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control != Controller.Instance.PrintProductPageSizeName
 				&& control != Controller.Instance.PrintProductColor
 				&& control != Controller.Instance.PrintProductSharePageSquare
-				&& control != Controller.Instance.BasicOverviewHeaderText
 				&& control != Controller.Instance.MultiSummaryHeaderText)
 			{
 				control.Click += CloseActiveEditorsonOutSideClick;
@@ -104,7 +95,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		{
 			Focus();
 			gridViewPrintProducts.CloseEditor();
-			advBandedGridViewDigitalProducts.CloseEditor();
+			digitalProductListControl.CloseEditors();
 		}
 
 		private void UpdateProductsCount()
@@ -118,22 +109,28 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			_allowToSave = false;
 			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			gridControlPrintProducts.DataSource = new BindingList<PrintProduct>(_localSchedule.PrintProducts);
-			gridControlDigitalProducts.DataSource = new BindingList<DigitalProduct>(_localSchedule.DigitalProducts);
-			if (ListManager.Instance.LockedMode)
-			{
-				gridColumnDigitalProductsWidth.OptionsColumn.ReadOnly = true;
-				gridColumnDigitalProductsWidth.OptionsColumn.AllowEdit = false;
-				gridColumnDigitalProductsHeight.OptionsColumn.ReadOnly = true;
-				gridColumnDigitalProductsHeight.OptionsColumn.AllowEdit = false;
-				repositoryItemComboBoxDigitalProductsNames.TextEditStyle = TextEditStyles.DisableTextEditor;
-			}
+			digitalProductListControl.UpdateData(_localSchedule,
+				() =>
+				{
+					UpdateProductsCount();
+					Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
+					if (_allowToSave)
+						SettingsNotSaved = true;
+				},
+				activity =>
+				{
+					var propertyEditActivity = activity as PropertyEditActivity;
+					if (propertyEditActivity != null)
+						propertyEditActivity.Advertiser = Controller.Instance.HomeBusinessName.EditValue as String;
+					BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+				});
 			if (!quickLoad)
 			{
 				LoadView();
 
 				#region Print Products
-				repositoryItemComboBoxPrintProducts.Items.Clear();
-				repositoryItemComboBoxPrintProducts.Items.AddRange(Core.AdSchedule.ListManager.Instance.PublicationSources.Where(x => !x.Name.Equals("Default")).Select(x => x.Name).Distinct().ToArray());
+				repositoryItemComboBox.Items.Clear();
+				repositoryItemComboBox.Items.AddRange(Core.AdSchedule.ListManager.Instance.PublicationSources.Where(x => !x.Name.Equals("Default")).Select(x => x.Name).Distinct().ToArray());
 				Controller.Instance.HomeBusinessName.Properties.Items.Clear();
 				Controller.Instance.HomeBusinessName.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers.ToArray());
 				Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
@@ -156,16 +153,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
 				#endregion
 
-				#region Digital Products
-				repositoryItemComboBoxDigitalProductsRateType.Items.Clear();
-				repositoryItemComboBoxDigitalProductsRateType.Items.AddRange(ListManager.Instance.PricingStrategies);
-				repositoryItemComboBoxDigitalProductsLocation.Items.Clear();
-				repositoryItemComboBoxDigitalProductsLocation.Items.AddRange(ListManager.Instance.ColumnPositions);
-				Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
-				#endregion
-
-				UpdateProductsCount();
 				Controller.Instance.UpdateOutputTabs(_localSchedule.PrintProducts.Select(x => x.Inserts.Count).Sum() > 0);
+
 				xtraTabControlProducts_SelectedPageChanged(xtraTabControlProducts, new TabPageChangedEventArgs(null, xtraTabControlProducts.SelectedTabPage));
 			}
 			SettingsNotSaved = false;
@@ -180,9 +169,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			buttonXPrintProductDelivery.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowPrintDelivery;
 			buttonXPrintProductReadership.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowPrintReadership;
 
-			buttonXDigitalProductDimensions.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowDigitalDimensions;
-			buttonXDigitalProductStrategy.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowDigitalStrategy;
-			buttonXDigitalProductLocation.Checked = _localSchedule.ViewSettings.HomeViewSettings.ShowDigitalLocation;
+			digitalProductListControl.LoadView();
 		}
 
 		private void SaveView()
@@ -191,10 +178,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			_localSchedule.ViewSettings.HomeViewSettings.ShowPrintLogo = buttonXPrintProductLogo.Checked;
 			_localSchedule.ViewSettings.HomeViewSettings.ShowPrintDelivery = buttonXPrintProductDelivery.Checked;
 			_localSchedule.ViewSettings.HomeViewSettings.ShowPrintReadership = buttonXPrintProductReadership.Checked;
-
-			_localSchedule.ViewSettings.HomeViewSettings.ShowDigitalDimensions = buttonXDigitalProductDimensions.Checked;
-			_localSchedule.ViewSettings.HomeViewSettings.ShowDigitalStrategy = buttonXDigitalProductStrategy.Checked;
-			_localSchedule.ViewSettings.HomeViewSettings.ShowDigitalLocation = buttonXDigitalProductLocation.Checked;
+			digitalProductListControl.SaveView();
 		}
 
 		private bool AllowToAddPublication()
@@ -210,19 +194,31 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		private bool SaveSchedule(string scheduleName = "")
 		{
-			if (!string.IsNullOrEmpty(scheduleName))
-				_localSchedule.Name = scheduleName;
 			gridViewPrintProducts.CloseEditor();
-			advBandedGridViewDigitalProducts.CloseEditor();
-			if (Controller.Instance.HomeBusinessName.EditValue != null)
-				_localSchedule.BusinessName = Controller.Instance.HomeBusinessName.EditValue.ToString();
+			digitalProductListControl.CloseEditors();
+			var businessName = Controller.Instance.HomeBusinessName.EditValue as String;
+			if (!String.IsNullOrEmpty(businessName))
+			{
+				if (_localSchedule.BusinessName != businessName)
+				{
+					_localSchedule.BusinessName = businessName;
+					BusinessWrapper.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Business Name", businessName));
+				}
+			}
 			else
 			{
 				Utilities.Instance.ShowWarning("You must set Business Name before save");
 				return false;
 			}
-			if (Controller.Instance.HomeDecisionMaker.EditValue != null)
-				_localSchedule.DecisionMaker = Controller.Instance.HomeDecisionMaker.EditValue.ToString();
+			var decisionMaker = Controller.Instance.HomeDecisionMaker.EditValue as String;
+			if (!String.IsNullOrEmpty(decisionMaker))
+			{
+				if (_localSchedule.DecisionMaker != decisionMaker)
+				{
+					_localSchedule.DecisionMaker = decisionMaker;
+					BusinessWrapper.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Decision Maker", decisionMaker));
+				}
+			}
 			else
 			{
 				Utilities.Instance.ShowWarning("You must set Owner/Decision-maker before save");
@@ -292,51 +288,34 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 			SaveView();
 
-			repositoryItemComboBoxPrintProducts.Items.Clear();
-			repositoryItemComboBoxPrintProducts.Items.AddRange(Core.AdSchedule.ListManager.Instance.PublicationSources.Select(x => x.Name).Distinct().ToArray());
+			repositoryItemComboBox.Items.Clear();
+			repositoryItemComboBox.Items.AddRange(Core.AdSchedule.ListManager.Instance.PublicationSources.Select(x => x.Name).Distinct().ToArray());
 			Controller.Instance.HomeBusinessName.Properties.Items.Clear();
 			Controller.Instance.HomeBusinessName.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers.ToArray());
 			Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
 			Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers.ToArray());
 
-			Controller.Instance.SaveSchedule(_localSchedule, false, this);
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			if (nameChanged)
+				_localSchedule.Name = scheduleName;
+			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, false, this);
 			SettingsNotSaved = false;
 			return true;
-		}
-
-		private void RefreshDigitalAfterAddProduct()
-		{
-			((BindingList<DigitalProduct>)advBandedGridViewDigitalProducts.DataSource).ResetBindings();
-			advBandedGridViewDigitalProducts.FocusedRowHandle = advBandedGridViewDigitalProducts.RowCount - 1;
-			UpdateProductsCount();
-			Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
-			SettingsNotSaved = true;
 		}
 		#endregion
 
 		#region Schedule Event Handlers
 		private void ScheduleSettingsControl_Load(object sender, EventArgs e)
 		{
-			repositoryItemComboBoxPrintProducts.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemComboBoxPrintProducts.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemComboBoxPrintProducts.MouseUp += Utilities.Instance.Editor_MouseUp;
-			repositoryItemSpinEditPrintProducts.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemSpinEditPrintProducts.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemSpinEditPrintProducts.MouseUp += Utilities.Instance.Editor_MouseUp;
-			repositoryItemTextEditPrintProducts.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemTextEditPrintProducts.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemTextEditPrintProducts.MouseUp += Utilities.Instance.Editor_MouseUp;
-
-			repositoryItemComboBoxDigitalProductsType.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemComboBoxDigitalProductsType.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemComboBoxDigitalProductsType.MouseUp += Utilities.Instance.Editor_MouseUp;
-			repositoryItemComboBoxDigitalProductsNames.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemComboBoxDigitalProductsNames.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemComboBoxDigitalProductsNames.MouseUp += Utilities.Instance.Editor_MouseUp;
-			repositoryItemSpinEditDigitalProductsSize.Enter += Utilities.Instance.Editor_Enter;
-			repositoryItemSpinEditDigitalProductsSize.MouseDown += Utilities.Instance.Editor_MouseDown;
-			repositoryItemSpinEditDigitalProductsSize.MouseUp += Utilities.Instance.Editor_MouseUp;
-
+			repositoryItemComboBox.Enter += Utilities.Instance.Editor_Enter;
+			repositoryItemComboBox.MouseDown += Utilities.Instance.Editor_MouseDown;
+			repositoryItemComboBox.MouseUp += Utilities.Instance.Editor_MouseUp;
+			repositoryItemSpinEdit.Enter += Utilities.Instance.Editor_Enter;
+			repositoryItemSpinEdit.MouseDown += Utilities.Instance.Editor_MouseDown;
+			repositoryItemSpinEdit.MouseUp += Utilities.Instance.Editor_MouseUp;
+			repositoryItemTextEdit.Enter += Utilities.Instance.Editor_Enter;
+			repositoryItemTextEdit.MouseDown += Utilities.Instance.Editor_MouseDown;
+			repositoryItemTextEdit.MouseUp += Utilities.Instance.Editor_MouseUp;
 			AssignCloseActiveEditorsonOutSideClick(Controller.Instance.Ribbon);
 		}
 
@@ -388,26 +367,22 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void FlightDateStartEditValueChanged(object sender, EventArgs e)
 		{
-			if (Controller.Instance.HomeFlightDatesStart.EditValue != null)
-			{
-				DateTime dateStart = Controller.Instance.HomeFlightDatesStart.DateTime;
-				while (dateStart.DayOfWeek != DayOfWeek.Saturday)
-					dateStart = dateStart.AddDays(1);
-				Controller.Instance.HomeFlightDatesEnd.EditValue = dateStart;
-			}
+			if (Controller.Instance.HomeFlightDatesStart.EditValue == null) return;
+			var dateStart = Controller.Instance.HomeFlightDatesStart.DateTime;
+			while (dateStart.DayOfWeek != DayOfWeek.Saturday)
+				dateStart = dateStart.AddDays(1);
+			Controller.Instance.HomeFlightDatesEnd.EditValue = dateStart;
 		}
 
 		public void CalcWeeksOnFlightDatesChange(object sender, EventArgs e)
 		{
 			Controller.Instance.HomeWeeks.Text = "";
 			Controller.Instance.HomeWeeks.Visible = false;
-			if (Controller.Instance.HomeFlightDatesStart.EditValue != null && Controller.Instance.HomeFlightDatesEnd.EditValue != null)
-			{
-				TimeSpan datesRange = Controller.Instance.HomeFlightDatesEnd.DateTime - Controller.Instance.HomeFlightDatesStart.DateTime;
-				int weeksCount = datesRange.Days / 7 + 1;
-				Controller.Instance.HomeWeeks.Text = weeksCount.ToString() + (weeksCount > 1 ? " Weeks" : " Week");
-				Controller.Instance.HomeWeeks.Visible = true;
-			}
+			if (Controller.Instance.HomeFlightDatesStart.EditValue == null || Controller.Instance.HomeFlightDatesEnd.EditValue == null) return;
+			TimeSpan datesRange = Controller.Instance.HomeFlightDatesEnd.DateTime - Controller.Instance.HomeFlightDatesStart.DateTime;
+			int weeksCount = datesRange.Days / 7 + 1;
+			Controller.Instance.HomeWeeks.Text = weeksCount.ToString() + (weeksCount > 1 ? " Weeks" : " Week");
+			Controller.Instance.HomeWeeks.Visible = true;
 		}
 
 		public void checkBoxItemAccountNumber_CheckedChanged(object sender, CheckBoxChangeEventArgs e)
@@ -418,38 +393,28 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void SchedulePropertyEditValueChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			SettingsNotSaved = true;
 		}
 
 		public void dateEditFlightDatesStart_CloseUp(object sender, CloseUpEventArgs e)
 		{
-			if (e.Value != null)
-			{
-				DateTime temp = DateTime.MinValue;
-				if (DateTime.TryParse(e.Value.ToString(), out temp))
-				{
-					while (temp.DayOfWeek != DayOfWeek.Sunday)
-						temp = temp.AddDays(-1);
-					e.Value = temp;
-				}
-			}
+			if (e.Value == null) return;
+			DateTime temp;
+			if (!DateTime.TryParse(e.Value.ToString(), out temp)) return;
+			while (temp.DayOfWeek != DayOfWeek.Sunday)
+				temp = temp.AddDays(-1);
+			e.Value = temp;
 		}
 
 		public void dateEditFlightDatesEnd_CloseUp(object sender, CloseUpEventArgs e)
 		{
-			if (e.Value != null)
-			{
-				DateTime temp = DateTime.MinValue;
-				if (DateTime.TryParse(e.Value.ToString(), out temp))
-				{
-					while (temp.DayOfWeek != DayOfWeek.Saturday)
-						temp = temp.AddDays(1);
-					e.Value = temp;
-				}
-			}
+			if (e.Value == null) return;
+			DateTime temp;
+			if (!DateTime.TryParse(e.Value.ToString(), out temp)) return;
+			while (temp.DayOfWeek != DayOfWeek.Saturday)
+				temp = temp.AddDays(1);
+			e.Value = temp;
 		}
 
 		public void SchedulePropertiesEditor_KeyDown(object sender, KeyEventArgs e)
@@ -498,48 +463,45 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void PrintProductClone(object sender, EventArgs e)
 		{
-			if (gridViewPrintProducts.FocusedRowHandle != GridControl.InvalidRowHandle)
+			if (gridViewPrintProducts.FocusedRowHandle == GridControl.InvalidRowHandle) return;
+			var newRowHandle = gridViewPrintProducts.FocusedRowHandle + 1;
+			((BindingList<PrintProduct>)gridControlPrintProducts.DataSource)[gridViewPrintProducts.GetDataSourceRowIndex(gridViewPrintProducts.FocusedRowHandle)].Clone();
+			((BindingList<PrintProduct>)gridControlPrintProducts.DataSource).ResetBindings();
+			gridViewPrintProducts.FocusedRowHandle = newRowHandle;
+			UpdateProductsCount();
+			Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
+			Controller.Instance.UpdateOutputTabs(_localSchedule.PrintProducts.Select(x => x.Inserts.Count).Sum() > 0);
+			if (_allowToSave)
 			{
-				int newRowHandle = gridViewPrintProducts.FocusedRowHandle + 1;
-				((BindingList<PrintProduct>)gridControlPrintProducts.DataSource)[gridViewPrintProducts.GetDataSourceRowIndex(gridViewPrintProducts.FocusedRowHandle)].Clone();
-				((BindingList<PrintProduct>)gridControlPrintProducts.DataSource).ResetBindings();
-				gridViewPrintProducts.FocusedRowHandle = newRowHandle;
-				UpdateProductsCount();
-				Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
-				Controller.Instance.UpdateOutputTabs(_localSchedule.PrintProducts.Select(x => x.Inserts.Count).Sum() > 0);
-				if (_allowToSave)
-				{
-					SettingsNotSaved = true;
-				}
+				SettingsNotSaved = true;
 			}
 		}
 
-		public void PrintProductDelete(object sender, EventArgs e)
+		private void repositoryItemButtonEditDelete_ButtonClick(object sender, ButtonPressedEventArgs e)
 		{
-			if (Utilities.Instance.ShowWarningQuestion("Are you SURE you want to DELETE\nthis publication from your schedule?") == DialogResult.Yes)
+			if (Utilities.Instance.ShowWarningQuestion("Are you SURE you want to DELETE\nthis publication from your schedule?") != DialogResult.Yes) return;
+			gridViewPrintProducts.DeleteSelectedRows();
+			_localSchedule.RebuildPublicationIndexes();
+			UpdateProductsCount();
+			Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
+			Controller.Instance.UpdateOutputTabs(_localSchedule.PrintProducts.Select(x => x.Inserts.Count).Sum() > 0);
+			if (_allowToSave)
 			{
-				gridViewPrintProducts.DeleteSelectedRows();
-				_localSchedule.RebuildPublicationIndexes();
-				UpdateProductsCount();
-				Controller.Instance.UpdatePrintProductTab(_localSchedule.PrintProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
-				Controller.Instance.UpdateOutputTabs(_localSchedule.PrintProducts.Select(x => x.Inserts.Count).Sum() > 0);
-				if (_allowToSave)
-				{
-					SettingsNotSaved = true;
-				}
+				SettingsNotSaved = true;
 			}
 		}
 
 		private void gridViewPublications_CellValueChanged(object sender, CellValueChangedEventArgs e)
 		{
-			if (e.Column == gridColumnPrintProductsName)
+			if (e.Column == gridColumnName)
 			{
 				if (e.Value != null)
 				{
-					string value = e.Value.ToString();
+					var value = e.Value.ToString();
 					var printProductSource = Core.AdSchedule.ListManager.Instance.PublicationSources.FirstOrDefault(x => x.Name.Equals(value));
 					if (printProductSource != null)
 					{
+						BusinessWrapper.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Publication Name", printProductSource.Name, advertiser: Controller.Instance.HomeBusinessName.EditValue as String));
 						_localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].ApplyDefaultValues();
 						gridViewPrintProducts.RefreshData();
 					}
@@ -549,13 +511,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			SchedulePropertyEditValueChanged(null, null);
 		}
 
-		private void repositoryItemComboBox_Closed(object sender, ClosedEventArgs e)
+		private void gridViewPrintProducts_RowCellClick(object sender, RowCellClickEventArgs e)
 		{
-			gridViewPrintProducts.CloseEditor();
-		}
-
-		private void repositoryItemButtonEditChangeLogo_ButtonClick(object sender, ButtonPressedEventArgs e)
-		{
+			if (e.Column != gridColumnLogo) return;
 			using (var form = new FormImageGallery(Core.AdSchedule.ListManager.Instance.Images))
 			{
 				form.SelectedImage = _localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].BigLogo;
@@ -566,6 +524,27 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				_localSchedule.PrintProducts[gridViewPrintProducts.GetFocusedDataSourceRowIndex()].TinyLogo = new Bitmap(form.SelectedImageSource.TinyImage);
 				gridViewPrintProducts.RefreshData();
 			}
+		}
+
+		private void gridViewPrintProducts_MouseMove(object sender, MouseEventArgs e)
+		{
+			var hi = (sender as GridView).CalcHitInfo(new Point(e.X, e.Y));
+			if (hi.InRowCell && hi.Column == gridColumnLogo)
+			{
+				Cursor = Cursors.Hand;
+			}
+			else
+				Cursor = Cursors.Default;
+		}
+
+		private void gridViewPrintProducts_MouseLeave(object sender, EventArgs e)
+		{
+			Cursor = Cursors.Default;
+		}
+
+		private void repositoryItemComboBox_Closed(object sender, ClosedEventArgs e)
+		{
+			gridViewPrintProducts.CloseEditor();
 		}
 
 		public void buttonItemSalesStrategyAbbreviation_CheckedChanged(object sender, EventArgs e)
@@ -594,14 +573,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void buttonItemSalesStrategyReadership_CheckedChanged(object sender, EventArgs e)
 		{
-			gridColumnPrintProductsDailyReadership.Visible = buttonXPrintProductReadership.Checked;
-			gridColumnPrintProductsSundayReadership.Visible = buttonXPrintProductReadership.Checked;
+			gridColumnDailyReadership.Visible = buttonXPrintProductReadership.Checked;
+			gridColumnSundayReadership.Visible = buttonXPrintProductReadership.Checked;
 			if (!buttonXPrintProductReadership.Checked && !buttonXPrintProductDelivery.Checked)
-				gridColumnPrintProductsName.RowCount = 2;
+				gridColumnName.RowCount = 2;
 			else
-				gridColumnPrintProductsName.RowCount = 1;
+				gridColumnName.RowCount = 1;
 			var tooltip = new SuperToolTip();
-			tooltip.Items.Add(new ToolTipItem() { Text = buttonXPrintProductReadership.Checked ? "Hide Readership" : "Show Readership" });
+			tooltip.Items.Add(new ToolTipItem { Text = buttonXPrintProductReadership.Checked ? "Hide Readership" : "Show Readership" });
 			toolTipController.SetSuperTip(buttonXPrintProductReadership, tooltip);
 			if (_allowToSave)
 			{
@@ -611,12 +590,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void buttonItemSalesStrategyDelivery_CheckedChanged(object sender, EventArgs e)
 		{
-			gridColumnPrintProductsDailyDelivery.Visible = buttonXPrintProductDelivery.Checked;
-			gridColumnPrintProductsSundayDelivery.Visible = buttonXPrintProductDelivery.Checked;
+			gridColumnDailyDelivery.Visible = buttonXPrintProductDelivery.Checked;
+			gridColumnSundayDelivery.Visible = buttonXPrintProductDelivery.Checked;
 			if (!buttonXPrintProductReadership.Checked && !buttonXPrintProductDelivery.Checked)
-				gridColumnPrintProductsName.RowCount = 2;
+				gridColumnName.RowCount = 2;
 			else
-				gridColumnPrintProductsName.RowCount = 1;
+				gridColumnName.RowCount = 1;
 			var tooltip = new SuperToolTip();
 			tooltip.Items.Add(new ToolTipItem() { Text = buttonXPrintProductDelivery.Checked ? "Hide Delivery" : "Show Delivery" });
 			toolTipController.SetSuperTip(buttonXPrintProductDelivery, tooltip);
@@ -652,187 +631,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void DigitalProductAdd(object sender, EventArgs e)
 		{
 			var category = (sender as ButtonItem).Tag as Category;
-			_localSchedule.AddDigital(category.Name);
-			RefreshDigitalAfterAddProduct();
-		}
-
-		public void DigitalProductDelete(object sender, EventArgs e)
-		{
-			if (Utilities.Instance.ShowWarningQuestion("Are you sure you want to delete this line?") == DialogResult.Yes)
-			{
-				advBandedGridViewDigitalProducts.DeleteSelectedRows();
-				_localSchedule.RebuildDigitalProductIndexes();
-				UpdateProductsCount();
-				RefreshDigitalAfterAddProduct();
-				SettingsNotSaved = true;
-			}
-		}
-
-		private void repositoryItemButtonEditDigitalProducts_ButtonClick(object sender, ButtonPressedEventArgs e)
-		{
-			switch (e.Button.Index)
-			{
-				case 0:
-					_localSchedule.UpDigital(advBandedGridViewDigitalProducts.GetDataSourceRowIndex(advBandedGridViewDigitalProducts.FocusedRowHandle));
-					if (advBandedGridViewDigitalProducts.FocusedRowHandle > 0)
-						advBandedGridViewDigitalProducts.FocusedRowHandle--;
-					break;
-				case 1:
-					_localSchedule.DownDigital(advBandedGridViewDigitalProducts.GetDataSourceRowIndex(advBandedGridViewDigitalProducts.FocusedRowHandle));
-					if (advBandedGridViewDigitalProducts.FocusedRowHandle < advBandedGridViewDigitalProducts.RowCount - 1)
-						advBandedGridViewDigitalProducts.FocusedRowHandle++;
-					break;
-			}
-			SettingsNotSaved = true;
-		}
-
-		private void repositoryItemButtonEditDigitalProductsDelete_ButtonClick(object sender, ButtonPressedEventArgs e)
-		{
-			DigitalProductDelete(sender, EventArgs.Empty);
+			digitalProductListControl.AddProduct(category);
 		}
 
 		public void DigitalProductClone(object sender, EventArgs e)
 		{
-			if (advBandedGridViewDigitalProducts.FocusedRowHandle == GridControl.InvalidRowHandle) return;
-			var newRowHandle = advBandedGridViewDigitalProducts.FocusedRowHandle + 1;
-			((BindingList<DigitalProduct>)advBandedGridViewDigitalProducts.DataSource)[advBandedGridViewDigitalProducts.GetDataSourceRowIndex(advBandedGridViewDigitalProducts.FocusedRowHandle)].Clone();
-			((BindingList<DigitalProduct>)advBandedGridViewDigitalProducts.DataSource).ResetBindings();
-			advBandedGridViewDigitalProducts.FocusedRowHandle = newRowHandle;
-			UpdateProductsCount();
-			Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
-			if (_allowToSave)
-				SettingsNotSaved = true;
-		}
-
-		private void gridViewDigitalProducts_CellValueChanged(object sender, CellValueChangedEventArgs e)
-		{
-			if (e.Column == gridColumnDigitalProductsName ||
-				e.Column == gridColumnDigitalProductsCategory ||
-				e.Column == gridColumnDigitalProductsSubCategory)
-			{
-				var product = advBandedGridViewDigitalProducts.GetFocusedRow() as DigitalProduct;
-				if (product != null)
-				{
-					var productSource = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(product.Name));
-					if (productSource != null)
-					{
-						product.ApplyDefaultValues();
-						advBandedGridViewDigitalProducts.RefreshData();
-					}
-				}
-			}
-			SchedulePropertyEditValueChanged(null, null);
-			Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
-		}
-
-		private void repositoryItemComboBoxDigitalProductName_Closed(object sender, ClosedEventArgs e)
-		{
-			advBandedGridViewDigitalProducts.CloseEditor();
-		}
-
-		private void gridViewDigitalProducts_ShowingEditor(object sender, CancelEventArgs e)
-		{
-			e.Cancel = false;
-			var digitalProduct = advBandedGridViewDigitalProducts.GetFocusedRow() as DigitalProduct;
-			if (digitalProduct == null) return;
-			if (advBandedGridViewDigitalProducts.FocusedColumn == gridColumnDigitalProductsName)
-			{
-				var category = digitalProduct.Category;
-				var subCategories = ListManager.Instance.ProductSources.Where(x => x.Category != null && x.Category.Name.Equals(category) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray();
-				var subCategory = digitalProduct.SubCategory;
-				if ((subCategories.Any() && !String.IsNullOrEmpty(subCategory)) || !subCategories.Any())
-				{
-					repositoryItemComboBoxDigitalProductsNames.Items.Clear();
-					repositoryItemComboBoxDigitalProductsNames.Items.AddRange(
-						ListManager.Instance.ProductSources.
-							Where(x => x.Category != null && x.Category.Name.Equals(category) &&
-									   (x.SubCategory.Equals(subCategory) || String.IsNullOrEmpty(subCategory))).
-							Select(x => x.Name).Distinct().ToArray());
-				}
-				else
-				{
-					e.Cancel = true;
-					Utilities.Instance.ShowWarning("You need to select Web Category first");
-				}
-			}
-			else if (advBandedGridViewDigitalProducts.FocusedColumn == gridColumnDigitalProductsSubCategory)
-			{
-				var category = digitalProduct.Category;
-				var subCategories = ListManager.Instance.ProductSources.Where(x => x.Category != null && x.Category.Name.Equals(category) && !string.IsNullOrEmpty(x.SubCategory)).Select(x => x.SubCategory).Distinct().ToArray();
-				if (subCategories.Any())
-				{
-					repositoryItemComboBoxDigitalProductsType.Items.Clear();
-					repositoryItemComboBoxDigitalProductsType.Items.AddRange(subCategories);
-				}
-				else
-					e.Cancel = true;
-			}
-			else if (advBandedGridViewDigitalProducts.FocusedColumn == gridColumnDigitalProductsRate)
-			{
-				e.Cancel = digitalProduct.RateType == "Fixed" || digitalProduct.RateType == "CPM";
-			}
-		}
-
-		private void repositoryItemComboBoxDigitalProductType_CloseUp(object sender, CloseUpEventArgs e)
-		{
-			if (e.CloseMode == PopupCloseMode.Normal)
-			{
-				e.AcceptValue = false;
-				advBandedGridViewDigitalProducts.SetFocusedRowCellValue(gridColumnDigitalProductsSubCategory, e.Value);
-				advBandedGridViewDigitalProducts.CloseEditor();
-			}
-		}
-
-		private void repositoryItemButtonEditDigitalProductsTarget_ButtonClick(object sender, ButtonPressedEventArgs e)
-		{
-			Utilities.Instance.ShowInformation("Upgrade in Development");
-		}
-
-		private void buttonXDigitalProductDimensions_CheckedChanged(object sender, EventArgs e)
-		{
-			gridBandDigitalProductWidth.Visible = buttonXDigitalProductDimensions.Checked;
-			gridBandDigitalProductHeight.Visible = buttonXDigitalProductDimensions.Checked;
-			var tooltip = new SuperToolTip();
-			tooltip.Items.Add(new ToolTipItem { Text = buttonXDigitalProductDimensions.Checked ? "Hide Ad Dimensions" : "Show Ad Dimensions" });
-			toolTipController.SetSuperTip(buttonXDigitalProductDimensions, tooltip);
-			if (_allowToSave)
-			{
-				SettingsNotSaved = true;
-			}
-		}
-
-		private void buttonXDigitalProductStrategy_CheckedChanged(object sender, EventArgs e)
-		{
-			gridBandDigitalProductRate.Visible = buttonXDigitalProductStrategy.Checked;
-			var tooltip = new SuperToolTip();
-			tooltip.Items.Add(new ToolTipItem { Text = buttonXDigitalProductStrategy.Checked ? "Hide Pricing Strategy" : "Show Pricing Strategy" });
-			toolTipController.SetSuperTip(buttonXDigitalProductStrategy, tooltip);
-			if (_allowToSave)
-			{
-				SettingsNotSaved = true;
-			}
-		}
-
-		private void buttonXDigitalProductLocation_CheckedChanged(object sender, EventArgs e)
-		{
-			if (buttonXDigitalProductLocation.Checked)
-			{
-				gridColumnDigitalProductsName.RowCount = 1;
-				gridColumnDigitalProductsLocation.Visible = true;
-				advBandedGridViewDigitalProducts.SetColumnPosition(gridColumnDigitalProductsLocation, 1, 0);
-			}
-			else
-			{
-				gridColumnDigitalProductsLocation.Visible = false;
-				gridColumnDigitalProductsName.RowCount = 2;
-			}
-			var tooltip = new SuperToolTip();
-			tooltip.Items.Add(new ToolTipItem { Text = buttonXDigitalProductLocation.Checked ? "Hide Location" : "Show Location" });
-			toolTipController.SetSuperTip(buttonXDigitalProductStrategy, tooltip);
-			if (_allowToSave)
-			{
-				SettingsNotSaved = true;
-			}
+			digitalProductListControl.CloneProduct();
 		}
 		#endregion
 	}

@@ -10,8 +10,6 @@ namespace NewBizWiz.Dashboard
 {
 	internal static class Program
 	{
-		private static Mutex mutex; //Used to determine if the application is already open
-
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -19,9 +17,9 @@ namespace NewBizWiz.Dashboard
 		private static void Main(string[] args)
 		{
 			bool firstInstance;
-			string uniqueIdentifier = "Local\\NewBizWizApplication";
-			mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
-			bool firstRun = false;
+			const string uniqueIdentifier = "Local\\NewBizWizApplication";
+			new Mutex(false, uniqueIdentifier, out firstInstance);
+			bool firstRun;
 			SettingsManager.Instance.LoadSettings();
 			Core.Common.SettingsManager.Instance.CheckStaticFolders(out firstRun);
 			if (firstRun)
@@ -34,11 +32,6 @@ namespace NewBizWiz.Dashboard
 				RegistryHelper.MaximizeMainForm = false;
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
-				Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
-				Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
-				Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-				Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-
 				if (AppManager.Instance.RunPowerPoint())
 					AppManager.Instance.RunForm();
 			}

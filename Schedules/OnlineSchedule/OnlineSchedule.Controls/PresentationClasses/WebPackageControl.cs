@@ -13,7 +13,6 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
@@ -638,7 +637,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void Save_Click(object sender, EventArgs e)
 		{
-			if (Schedule.IsNameNotAssigned)
+			if (Schedule.IsNew)
 			{
 				SaveAs_Click(sender, e);
 				return;
@@ -657,7 +656,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				{
 					if (!string.IsNullOrEmpty(from.ScheduleName))
 					{
-						Schedule.IsNameNotAssigned = false;
+						Schedule.IsNew = false;
 						SaveSchedule(from.ScheduleName);
 					}
 					else

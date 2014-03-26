@@ -24,16 +24,20 @@ namespace NewBizWiz.CommonGUI.Preview
 			Text = PreviewGroup.Name;
 			laSlideSize.Text = String.Format("{0} {1} x {2}", SettingsManager.Instance.Orientation, SettingsManager.Instance.SizeWidth.ToString("#.##"), SettingsManager.Instance.SizeHeght.ToString("#.##"));
 			GetPreviewImages();
-			comboBoxEditSlides.SelectedIndexChanged -= comboBoxEditSlides_SelectedIndexChanged;
-			comboBoxEditSlides.Properties.Items.Clear();
-			for (var i = 1; i <= _previewImages.Count; i++)
-				comboBoxEditSlides.Properties.Items.Add(i.ToString());
-			if (_previewImages.Any())
-				comboBoxEditSlides.SelectedIndex = 0;
-			pnNavigationArea.Visible = _previewImages.Count > 1;
-			comboBoxEditSlides_SelectedIndexChanged(null, null);
-			comboBoxEditSlides.SelectedIndexChanged += comboBoxEditSlides_SelectedIndexChanged;
 			Resize += OnResize;
+
+			if (_previewImages.Any())
+			{
+				comboBoxEditSlides.SelectedIndexChanged -= comboBoxEditSlides_SelectedIndexChanged;
+				comboBoxEditSlides.Properties.Items.Clear();
+				for (var i = 1; i <= _previewImages.Count; i++)
+					comboBoxEditSlides.Properties.Items.Add(i.ToString());
+				if (_previewImages.Any())
+					comboBoxEditSlides.SelectedIndex = 0;
+				comboBoxEditSlides_SelectedIndexChanged(null, null);
+				comboBoxEditSlides.SelectedIndexChanged += comboBoxEditSlides_SelectedIndexChanged;
+			}
+			pnNavigationArea.Visible = _previewImages.Count > 1;
 		}
 
 		#region Other Event Handlers

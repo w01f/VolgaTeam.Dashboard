@@ -168,7 +168,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				Application.DoEvents();
 			}
 			SettingsNotSaved = false;
-			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, false, true, this);
 		}
 
 		public void OpenHelp()
@@ -453,8 +453,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
+		private void TrackOutput()
+		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabMultiSummary.Text, LocalSchedule.BusinessName, (decimal)LocalSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
+		}
+
 		public void PrintOutput()
 		{
+			TrackOutput();
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -505,7 +511,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+				using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
 				{
 					formPreview.Text = "Preview Multi-Publication Analysis";
 					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
 using NewBizWiz.Core.Common;
+using NewBizWiz.Core.Dashboard;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
@@ -38,6 +38,30 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 						return "Target";
 					case SlideType.SimpleSummary:
 						return "Closing";
+					default:
+						return String.Empty;
+				}
+			}
+		}
+
+		public string SelectedSlideName
+		{
+			get
+			{
+				switch (_selectedSlide)
+				{
+					case SlideType.Cleanslate:
+						return SlideCleanslate.SlideName;
+					case SlideType.Cover:
+						return SlideCover.SlideName;
+					case SlideType.LeadoffStatement:
+						return SlideLeadoff.SlideName;
+					case SlideType.ClientGoals:
+						return SlideClientGoals.SlideName;
+					case SlideType.TargetCustomers:
+						return SlideTargetCustomers.SlideName;
+					case SlideType.SimpleSummary:
+						return SlideSimpleSummary.SlideName;
 					default:
 						return String.Empty;
 				}
@@ -83,6 +107,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		public void UpdatePageAccordingToggledButton(SlideType selectedSlide)
 		{
 			_selectedSlide = selectedSlide;
+			AppManager.Instance.ActivityManager.AddActivity(new SectionActivity(SelectedSlideName));
 			switch (_selectedSlide)
 			{
 				case SlideType.Cleanslate:

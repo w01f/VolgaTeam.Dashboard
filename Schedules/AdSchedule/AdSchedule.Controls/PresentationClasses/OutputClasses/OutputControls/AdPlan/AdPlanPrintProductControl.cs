@@ -374,9 +374,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
-		public string Investment
+		public decimal? Investment
 		{
-			get { return checkEditInvestment.Checked && spinEditInvestment.EditValue != null ? spinEditInvestment.Value.ToString("$#,##0.00") : String.Empty; }
+			get { return checkEditInvestment.Checked && spinEditInvestment.EditValue != null ? spinEditInvestment.EditValue as Decimal? : null; }
+		}
+
+		public string InvestmentFormatted
+		{
+			get { return Investment.HasValue ? Investment.Value.ToString("$#,##0.00") : String.Empty; }
 		}
 
 		public bool NotOutput

@@ -177,7 +177,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		}
 	}
 
-	public class Schedule : ISchedule
+	public class Schedule : IDigitalSchedule
 	{
 		public Schedule(string fileName, Func<IEnumerable<BroadcastMonthTemplate>> getBroadcastMonthTemplates)
 		{
@@ -198,8 +198,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			Stations = new List<Station>();
 
 			ViewSettings = new OnlineSchedule.ScheduleBuilderViewSettings();
-
 			DigitalProducts = new List<DigitalProduct>();
+			DigitalProductSummary = new DigitalProductSummary();
 
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
@@ -225,7 +225,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		private FileInfo _scheduleFile { get; set; }
 		private readonly Func<IEnumerable<BroadcastMonthTemplate>> _getBroadcastMonthTemplates;
-		public bool IsNameNotAssigned { get; set; }
+		public bool IsNew { get; set; }
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
 		public string ClientType { get; set; }
@@ -247,12 +247,13 @@ namespace NewBizWiz.Core.MediaSchedule
 		public List<Station> Stations { get; private set; }
 
 		public OnlineSchedule.ScheduleBuilderViewSettings ViewSettings { get; set; }
-		public IScheduleViewSettings CommonViewSettings
+		public IScheduleViewSettings SharedViewSettings
 		{
 			get { return ViewSettings; }
 		}
 
 		public List<DigitalProduct> DigitalProducts { get; private set; }
+		public DigitalProductSummary DigitalProductSummary { get; private set; }
 
 		public BroadcastCalendar BroadcastCalendar { get; set; }
 
@@ -392,6 +393,12 @@ namespace NewBizWiz.Core.MediaSchedule
 					DigitalProducts.Add(product);
 				}
 			}
+
+			node = document.SelectSingleNode(@"/Schedule/DigitalProductSummary");
+			if (node != null)
+			{
+				DigitalProductSummary.Deserialize(node);
+			}
 		}
 
 		public void Save()
@@ -448,7 +455,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			xml.AppendLine(@"</DigitalProducts>");
 
 			xml.AppendLine(@"<BroadcastCalendar>" + BroadcastCalendar.Serialize() + @"</BroadcastCalendar>");
-
+			xml.AppendLine(@"<DigitalProductSummary>" + DigitalProductSummary.Serialize() + @"</DigitalProductSummary>");
 			xml.AppendLine(@"</Schedule>");
 
 			using (var sw = new StreamWriter(_scheduleFile.FullName, false))

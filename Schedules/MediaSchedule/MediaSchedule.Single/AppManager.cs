@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using NewBizWiz.CommonGUI;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
@@ -27,6 +28,7 @@ namespace NewBizWiz.MediaSchedule.Single
 
 		public void RunForm()
 		{
+			LicenseHelper.Register();
 			MediaSchedulePowerPointHelper.Instance.SetPresentationSettings();
 			AppConfig = NBWLink.CreateLink(new DirectoryInfo(Application.StartupPath));
 			Application.Run(FormMain.Instance);

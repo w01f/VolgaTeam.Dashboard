@@ -58,7 +58,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 
 		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)
 		{
-			if (localSchedule.IsNameNotAssigned) return;
+			if (localSchedule.IsNew) return;
 			localSchedule.Save();
 			_currentSchedule = localSchedule;
 			SettingsManager.Instance.LastOpenSchedule = _currentSchedule.Name;
@@ -121,11 +121,11 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 		}
 	}
 
-	public class Schedule : ISchedule
+	public class Schedule : IDigitalSchedule
 	{
 		public Schedule(string fileName)
 		{
-			IsNameNotAssigned = true;
+			IsNew = true;
 			DigitalProducts = new List<DigitalProduct>();
 			ViewSettings = new ScheduleBuilderViewSettings();
 			if (!String.IsNullOrEmpty(fileName))
@@ -134,13 +134,14 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 		}
 
 		private FileInfo _scheduleFile { get; set; }
-		public bool IsNameNotAssigned { get; set; }
+		public bool IsNew { get; set; }
 		public bool ApplySettingsForeAllProducts { get; set; }
 		public List<DigitalProduct> DigitalProducts { get; set; }
+		public DigitalProductSummary DigitalProductSummary { get; private set; }
 
 		public ScheduleBuilderViewSettings ViewSettings { get; set; }
 
-		public IScheduleViewSettings CommonViewSettings
+		public IScheduleViewSettings SharedViewSettings
 		{
 			get { return ViewSettings; }
 		}
@@ -196,72 +197,70 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 
 		private void Load()
 		{
-			if (_scheduleFile != null && _scheduleFile.Exists)
+			if (_scheduleFile == null || !_scheduleFile.Exists) return;
+			IsNew = false;
+
+			var document = new XmlDocument();
+			document.Load(_scheduleFile.FullName);
+
+			var node = document.SelectSingleNode(@"/Schedule/BusinessName");
+			if (node != null)
+				BusinessName = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/DecisionMaker");
+			if (node != null)
+				DecisionMaker = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/PresentationDate");
+			DateTime tempDateTime;
+			if (node != null)
 			{
-				IsNameNotAssigned = false;
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
+					PresentationDate = tempDateTime;
+			}
 
-				var document = new XmlDocument();
-				document.Load(_scheduleFile.FullName);
+			node = document.SelectSingleNode(@"/Schedule/FlightDateStart");
+			if (node != null)
+			{
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
+					FlightDateStart = tempDateTime;
+			}
 
-				var node = document.SelectSingleNode(@"/Schedule/BusinessName");
-				if (node != null)
-					BusinessName = node.InnerText;
+			node = document.SelectSingleNode(@"/Schedule/FlightDateEnd");
+			if (node != null)
+			{
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
+					FlightDateEnd = tempDateTime;
+			}
 
-				node = document.SelectSingleNode(@"/Schedule/DecisionMaker");
-				if (node != null)
-					DecisionMaker = node.InnerText;
+			node = document.SelectSingleNode(@"/Schedule/ApplySettingsForeAllProducts");
+			if (node != null)
+			{
+				bool tempBool;
+				bool.TryParse(node.InnerText, out tempBool);
+				ApplySettingsForeAllProducts = tempBool;
+			}
 
-				node = document.SelectSingleNode(@"/Schedule/PresentationDate");
-				DateTime tempDateTime;
-				if (node != null)
+			node = document.SelectSingleNode(@"/Schedule/ViewSettings");
+			if (node != null)
+			{
+				ViewSettings.Deserialize(node);
+			}
+
+			node = document.SelectSingleNode(@"/Schedule/ViewSettings");
+			if (node != null)
+			{
+				ViewSettings.Deserialize(node);
+			}
+
+			node = document.SelectSingleNode(@"/Schedule/Products");
+			if (node != null)
+			{
+				foreach (XmlNode productNode in node.ChildNodes)
 				{
-					if (DateTime.TryParse(node.InnerText, out tempDateTime))
-						PresentationDate = tempDateTime;
-				}
-
-				node = document.SelectSingleNode(@"/Schedule/FlightDateStart");
-				if (node != null)
-				{
-					if (DateTime.TryParse(node.InnerText, out tempDateTime))
-						FlightDateStart = tempDateTime;
-				}
-
-				node = document.SelectSingleNode(@"/Schedule/FlightDateEnd");
-				if (node != null)
-				{
-					if (DateTime.TryParse(node.InnerText, out tempDateTime))
-						FlightDateEnd = tempDateTime;
-				}
-
-				node = document.SelectSingleNode(@"/Schedule/ApplySettingsForeAllProducts");
-				if (node != null)
-				{
-					bool tempBool;
-					bool.TryParse(node.InnerText, out tempBool);
-					ApplySettingsForeAllProducts = tempBool;
-				}
-
-				node = document.SelectSingleNode(@"/Schedule/ViewSettings");
-				if (node != null)
-				{
-					ViewSettings.Deserialize(node);
-				}
-
-				node = document.SelectSingleNode(@"/Schedule/ViewSettings");
-				if (node != null)
-				{
-					ViewSettings.Deserialize(node);
-				}
-
-				node = document.SelectSingleNode(@"/Schedule/Products");
-				if (node != null)
-				{
-					foreach (XmlNode productNode in node.ChildNodes)
-					{
-						var product = new DigitalProduct(this);
-						product.Deserialize(productNode);
-						DigitalProducts.Add(product);
-					}
+					var product = new DigitalProduct(this);
+					product.Deserialize(productNode);
+					DigitalProducts.Add(product);
 				}
 			}
 		}
@@ -313,10 +312,20 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 				}
 		}
 
-		public void AddProduct(string categoryName)
+		public void AddDigital(string categoryName)
 		{
 			var product = new DigitalProduct(this) { Index = DigitalProducts.Count + 1, Category = categoryName };
 			DigitalProducts.Add(product);
+		}
+
+		public void UpDigital(int position)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DownDigital(int position)
+		{
+			throw new NotImplementedException();
 		}
 
 		public void RebuildDigitalProductIndexes()

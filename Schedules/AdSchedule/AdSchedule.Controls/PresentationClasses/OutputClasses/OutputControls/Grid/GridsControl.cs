@@ -51,15 +51,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void SaveSchedule(string newName = "")
 		{
-			if (_selectedOutput != null)
-			{
-				if (!string.IsNullOrEmpty(newName))
-					_selectedOutput.LocalSchedule.Name = newName;
-				_selectedOutput.SettingsNotSaved = false;
-				_selectedOutput.LocalSchedule.ViewSettings.SaveDefaultViewSettings(SettingsManager.Instance.ViewSettingsPath);
-				Controller.Instance.SaveSchedule(_selectedOutput.LocalSchedule, true, _selectedOutput as Control);
-				_selectedOutput.UpdateOutput(true);
-			}
+			if (_selectedOutput == null) return;
+			var nameChanged = !string.IsNullOrEmpty(newName);
+			if (nameChanged)
+				_selectedOutput.LocalSchedule.Name = newName;
+			_selectedOutput.SettingsNotSaved = false;
+			_selectedOutput.LocalSchedule.ViewSettings.SaveDefaultViewSettings(SettingsManager.Instance.ViewSettingsPath);
+			Controller.Instance.SaveSchedule(_selectedOutput.LocalSchedule, nameChanged, false, this);
+			_selectedOutput.UpdateOutput(true);
 		}
 
 		public void SelectGrid(GridType gridType)

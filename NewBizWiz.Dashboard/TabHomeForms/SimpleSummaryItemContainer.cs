@@ -17,8 +17,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			AppManager.Instance.SetClickEventHandler(this);
 		}
 
-		public SimpleSummaryOutputContainer OutputContainer { get; set; }
-
 		public int SelectedIndex
 		{
 			get { return _selectedIndex; }
@@ -42,8 +40,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public void LoadItems()
 		{
-			foreach (SimpleSummaryItemControl item in _itemsCollection)
-				OutputContainer.DeleteItem(item.OutputItem);
 			_itemsCollection.Clear();
 			pnMain.Controls.Clear();
 			if (ViewSettingsManager.Instance.SimpleSummaryState.ItemsState.Count > 0)
@@ -52,7 +48,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				{
 					var item = new SimpleSummaryItemControl(this);
 					item.ItemNumber = _itemsCollection.Count() + 1;
-					item.LoadSavedState();
+					item.LoadSavedState(itemState);
 					_itemsCollection.Add(item);
 					pnMain.Controls.Add(item);
 				}
@@ -80,13 +76,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				var itemState = new SimpleSummaryItemState();
 				itemState.Order = item.ItemNumber;
 				itemState.ShowValue = item.ShowValue;
-				itemState.ShowDescription = item.ShowDescriptionOutput;
-				itemState.ShowMonthly = item.ShowMonthlyOutput;
-				itemState.ShowTotal = item.ShowTotalOutput;
+				itemState.ShowDescription = item.ShowDescription;
+				itemState.ShowMonthly = item.ShowMonthly;
+				itemState.ShowTotal = item.ShowTotal;
 				itemState.Value = item.ItemTitle;
-				itemState.Description = item.ItemDetailOutput;
-				itemState.Monthly = item.MonthlyValue.HasValue ? item.MonthlyValue.Value : 0;
-				itemState.Total = item.TotalValue.HasValue ? item.TotalValue.Value : 0;
+				itemState.Description = item.ItemDetail;
+				itemState.Monthly = item.MonthlyValue;
+				itemState.Total = item.TotalValue;
 				ViewSettingsManager.Instance.SimpleSummaryState.ItemsState.Add(itemState);
 			}
 			ViewSettingsManager.Instance.SimpleSummaryState.ItemsState.Sort((x, y) => x.Order.CompareTo(y.Order));
@@ -100,74 +96,70 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			pnMain.Controls.Add(item);
 			RefreshItems();
 			pnMain.ScrollControlIntoView(item);
+			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
 		}
 
 		public void DeleteItem(int number)
 		{
-			int postion = number - 1;
+			var postion = number - 1;
+			if (postion < 0 || postion >= _itemsCollection.Count) return;
+			var item = _itemsCollection[postion];
+			postion = postion - 1;
 			if (postion >= 0 && postion < _itemsCollection.Count)
 			{
-				SimpleSummaryItemControl item = _itemsCollection[postion];
-				postion = postion - 1;
-				if (postion >= 0 && postion < _itemsCollection.Count)
-				{
-					SimpleSummaryItemControl previousItem = _itemsCollection[postion];
-					previousItem.Focus();
-					pnMain.ScrollControlIntoView(previousItem);
-				}
-				pnMain.Controls.Remove(item);
-				_itemsCollection.Remove(item);
-				_itemsCollection.Sort((x, y) => x.ItemNumber.CompareTo(y.ItemNumber));
-				item.Dispose();
-				RefreshItems();
-
-				UpdateItemsNumbers();
-				TabHomeMainPage.Instance.SlideSimpleSummary.buttonXAddItem.Enabled = true;
-				pnMain.Focus();
-				TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalItems();
-
-				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
+				var previousItem = _itemsCollection[postion];
+				previousItem.Focus();
+				pnMain.ScrollControlIntoView(previousItem);
 			}
+			pnMain.Controls.Remove(item);
+			_itemsCollection.Remove(item);
+			_itemsCollection.Sort((x, y) => x.ItemNumber.CompareTo(y.ItemNumber));
+			item.Dispose();
+			RefreshItems();
+
+			UpdateItemsNumbers();
+			TabHomeMainPage.Instance.SlideSimpleSummary.buttonXAddItem.Enabled = true;
+			pnMain.Focus();
+			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalItems();
+
+			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
+			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
 		}
 
 		public void UpItem(int number)
 		{
-			int postion = number - 1;
-			if (postion >= 1 && postion < _itemsCollection.Count)
-			{
-				SimpleSummaryItemControl currentItem = _itemsCollection[postion];
-				SimpleSummaryItemControl upperItem = _itemsCollection[postion - 1];
-				int ideaNumber = upperItem.ItemNumber;
-				upperItem.ItemNumber = currentItem.ItemNumber;
-				currentItem.ItemNumber = ideaNumber;
-				_itemsCollection.Sort((x, y) => x.ItemNumber.CompareTo(y.ItemNumber));
-				RefreshItems();
-				pnMain.ScrollControlIntoView(currentItem);
-				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
-			}
+			var postion = number - 1;
+			if (postion < 1 || postion >= _itemsCollection.Count) return;
+			var currentItem = _itemsCollection[postion];
+			var upperItem = _itemsCollection[postion - 1];
+			var ideaNumber = upperItem.ItemNumber;
+			upperItem.ItemNumber = currentItem.ItemNumber;
+			currentItem.ItemNumber = ideaNumber;
+			_itemsCollection.Sort((x, y) => x.ItemNumber.CompareTo(y.ItemNumber));
+			RefreshItems();
+			pnMain.ScrollControlIntoView(currentItem);
+			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		public void DownItem(int number)
 		{
-			int postion = number - 1;
-			if (postion >= 0 && postion < _itemsCollection.Count - 1)
-			{
-				SimpleSummaryItemControl currentItem = _itemsCollection[postion];
-				SimpleSummaryItemControl lowerItem = _itemsCollection[postion + 1];
-				int ideaNumber = lowerItem.ItemNumber;
-				lowerItem.ItemNumber = currentItem.ItemNumber;
-				currentItem.ItemNumber = ideaNumber;
-				_itemsCollection.Sort((x, y) => x.ItemNumber.CompareTo(y.ItemNumber));
-				RefreshItems();
-				pnMain.ScrollControlIntoView(currentItem);
-				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
-			}
+			var postion = number - 1;
+			if (postion < 0 || postion >= _itemsCollection.Count - 1) return;
+			var currentItem = _itemsCollection[postion];
+			var lowerItem = _itemsCollection[postion + 1];
+			var ideaNumber = lowerItem.ItemNumber;
+			lowerItem.ItemNumber = currentItem.ItemNumber;
+			currentItem.ItemNumber = ideaNumber;
+			_itemsCollection.Sort((x, y) => x.ItemNumber.CompareTo(y.ItemNumber));
+			RefreshItems();
+			pnMain.ScrollControlIntoView(currentItem);
+			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		private void UpdateItemsNumbers()
 		{
-			int postion = 1;
-			foreach (SimpleSummaryItemControl item in _itemsCollection)
+			var postion = 1;
+			foreach (var item in _itemsCollection)
 			{
 				item.ItemNumber = postion;
 				postion++;
@@ -176,29 +168,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public void RefreshItems()
 		{
-			int index = _itemsCollection.Count - 1;
-			foreach (SimpleSummaryItemControl item in _itemsCollection)
+			var index = _itemsCollection.Count - 1;
+			foreach (var item in _itemsCollection)
 			{
 				pnMain.Controls.SetChildIndex(item, index);
 				index--;
 			}
 		}
-
-		public void HideTotals()
-		{
-			foreach (SimpleSummaryItemControl item in _itemsCollection)
-			{
-				item.OutputItem.pnMonthly.Visible = TotalMonthlyValue.HasValue;
-				item.OutputItem.pnTotal.Visible = TotalTotalValue.HasValue;
-			}
-		}
-
-		public void HideDescription()
-		{
-			foreach (SimpleSummaryItemControl item in _itemsCollection)
-				item.OutputItem.Height = string.IsNullOrEmpty(item.ItemDetail) ? item.OutputItem.pnHeader.Height : (item.OutputItem.pnHeader.Height + item.OutputItem.pnDetails.Height);
-		}
-
 		#region Output Staff
 		public int ItemsCount
 		{
@@ -212,7 +188,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				var result = new List<string>();
 				foreach (var item in _itemsCollection)
 					if (!string.IsNullOrEmpty(item.ItemTitle))
-						result.Add(item.OutputItemTitle);
+						result.Add(item.ItemTitle);
 				return result.ToArray();
 			}
 		}
@@ -222,9 +198,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get
 			{
 				var result = new List<string>();
-				foreach (SimpleSummaryItemControl item in _itemsCollection)
+				foreach (var item in _itemsCollection)
 					if (!string.IsNullOrEmpty(item.ItemTitle))
-						result.Add(item.ItemDetailOutput.Replace(Environment.NewLine, "; "));
+						result.Add(item.ItemDetail.Replace(Environment.NewLine, "; "));
 				return result.ToArray();
 			}
 		}
@@ -234,9 +210,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get
 			{
 				var result = new List<string>();
-				foreach (SimpleSummaryItemControl item in _itemsCollection)
+				foreach (var item in _itemsCollection)
 					if (!string.IsNullOrEmpty(item.ItemTitle))
-						result.Add(item.OutputMonthlyValue.HasValue ? item.OutputMonthlyValue.Value.ToString("$#,##0.00") : string.Empty);
+						result.Add(item.MonthlyValue.HasValue && item.MonthlyValue.Value > 0 ? item.MonthlyValue.Value.ToString("$#,##0.00") : string.Empty);
 				return result.ToArray();
 			}
 		}
@@ -246,41 +222,31 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get
 			{
 				var result = new List<string>();
-				foreach (SimpleSummaryItemControl item in _itemsCollection)
+				foreach (var item in _itemsCollection)
 					if (!string.IsNullOrEmpty(item.ItemTitle))
-						result.Add(item.OutputTotalValue.HasValue ? item.OutputTotalValue.Value.ToString("$#,##0.00") : string.Empty);
+						result.Add(item.TotalValue.HasValue && item.TotalValue.Value > 0 ? item.TotalValue.Value.ToString("$#,##0.00") : string.Empty);
 				return result.ToArray();
 			}
 		}
 
 		public bool ShowMonthlyTotal
 		{
-			get { return _itemsCollection.Any(x => x.MonthlyValue.HasValue); }
+			get { return _itemsCollection.Any(x => x.MonthlyValue.HasValue && x.MonthlyValue.Value > 0); }
 		}
 
-		public double? TotalMonthlyValue
+		public decimal? TotalMonthlyValue
 		{
-			get { return _itemsCollection.Any(x => x.ShowMonthly) ? (_itemsCollection.Sum(x => !string.IsNullOrEmpty(x.ItemTitle) && x.ShowMonthly ? x.MonthlyValue : null)) : null; }
+			get { return _itemsCollection.Sum(x => x.MonthlyValue); }
 		}
 
 		public bool ShowTotalTotal
 		{
-			get { return _itemsCollection.Any(x => x.TotalValue.HasValue); }
+			get { return _itemsCollection.Any(x => x.TotalValue.HasValue && x.TotalValue.Value > 0); }
 		}
 
-		public double? TotalTotalValue
+		public decimal? TotalTotalValue
 		{
-			get { return _itemsCollection.Any(x => x.ShowTotal) ? (_itemsCollection.Sum(x => !string.IsNullOrEmpty(x.ItemTitle) && x.ShowTotal ? x.TotalValue : null)) : null; }
-		}
-
-		public double OutputTotalMonthlyValue
-		{
-			get { return _itemsCollection.Sum(x => !string.IsNullOrEmpty(x.OutputItemTitle) && x.OutputMonthlyValue.HasValue ? x.OutputMonthlyValue.Value : 0); }
-		}
-
-		public double OutputTotalTotalValue
-		{
-			get { return _itemsCollection.Sum(x => !string.IsNullOrEmpty(x.OutputItemTitle) && x.OutputTotalValue.HasValue ? x.OutputTotalValue.Value : 0); }
+			get { return _itemsCollection.Sum(x => x.TotalValue); }
 		}
 		#endregion
 	}

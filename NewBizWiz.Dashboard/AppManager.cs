@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using NewBizWiz.CommonGUI;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
@@ -22,11 +24,13 @@ namespace NewBizWiz.Dashboard
 
 		private static readonly AppManager _instance = new AppManager();
 		public HelpManager HelpManager { get; private set; }
+		public ActivityManager ActivityManager { get; private set; }
 		private readonly FloaterManager _floater = new FloaterManager();
 
 		private AppManager()
 		{
 			HelpManager = new HelpManager(Core.Dashboard.SettingsManager.Instance.HelpLinksPath);
+			ActivityManager = new ActivityManager("dashboard");
 		}
 
 		public static AppManager Instance
@@ -41,6 +45,7 @@ namespace NewBizWiz.Dashboard
 
 		public void RunForm()
 		{
+			LicenseHelper.Register();
 			using (var form = new FormLoadSplash())
 			{
 				form.TopMost = true;
@@ -54,7 +59,29 @@ namespace NewBizWiz.Dashboard
 			Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
 			FormMain.Instance.Init();
 			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+			ActivityManager.AddActivity(new UserActivity("Application started"));
 			Application.Run(FormMain.Instance);
+		}
+
+		public void SetCultureSettings()
+		{
+			switch (Core.Dashboard.SettingsManager.Instance.DashboardCode)
+			{
+				case "tv":
+				case "radio":
+				case "cable":
+					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
+					Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
+					Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
+					Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+					break;
+				default:
+					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
+					Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
+					Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
+					Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+					break;
+			}
 		}
 
 		public bool RunPowerPoint()

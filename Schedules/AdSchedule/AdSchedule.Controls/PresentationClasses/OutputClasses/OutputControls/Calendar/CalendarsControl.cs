@@ -49,10 +49,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			if (_selectedOutput != null)
 			{
-				if (!string.IsNullOrEmpty(newName))
+				var nameChanged = !string.IsNullOrEmpty(newName);
+				if (nameChanged)
 					_selectedOutput.LocalSchedule.Name = newName;
+				Controller.Instance.SaveSchedule(_selectedOutput.LocalSchedule, nameChanged, false, this);
 				_selectedOutput.SettingsNotSaved = false;
-				Controller.Instance.SaveSchedule(_selectedOutput.LocalSchedule, true, _selectedOutput as Control);
 				_selectedOutput.UpdateOutput(true);
 			}
 		}

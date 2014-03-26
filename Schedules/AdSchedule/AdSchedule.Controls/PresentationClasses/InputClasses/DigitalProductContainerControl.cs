@@ -28,9 +28,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			});
 		}
 
-		public Schedule LocalSchedule { get; set; }
-
-
 		public bool AllowToLeaveControl
 		{
 			get
@@ -81,6 +78,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				}
 				_tabPages.Sort((x, y) => x.Product.Index.CompareTo(y.Product.Index));
 				xtraTabControlProducts.TabPages.AddRange(_tabPages.ToArray());
+
+				var summaryControl = new DigitalSummaryControl(this);
+				summaryControl.UpdateControls(_tabPages.Select(tp => tp.SummaryControl));
+				xtraTabControlProducts.TabPages.Add(summaryControl);
+
 				Application.DoEvents();
 				xtraTabControlProducts.ResumeLayout();
 
@@ -116,9 +118,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		protected override bool SaveSchedule(string scheduleName = "")
 		{
 			base.SaveSchedule(scheduleName);
-			if (!string.IsNullOrEmpty(scheduleName))
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			if (nameChanged)
 				LocalSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule(LocalSchedule, false, this);
+			Controller.Instance.SaveSchedule((Schedule)LocalSchedule, nameChanged, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}
@@ -155,7 +158,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			BusinessWrapper.Instance.HelpManager.OpenHelpLink("digitalslides");
 		}
 
-		public override void OutputSlides(IEnumerable<DigitalProductControl> tabsForOutput)
+		protected override IEnumerable<UserActivity> TrackOutput(IEnumerable<DigitalProductControl> tabsForOutput)
+		{
+			var activities = base.TrackOutput(tabsForOutput);
+			foreach (var activity in activities)
+				BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+			return activities;
+		}
+
+		public override void OutputSlides(IEnumerable<IDigitalOutputControl> tabsForOutput)
 		{
 			using (var formProgress = new FormProgress())
 			{
@@ -171,9 +182,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			}
 		}
 
-		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups )
+		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackOutput))
 			{
 				formPreview.Text = "Preview Digital Product";
 				formPreview.LoadGroups(previewGroups);
@@ -190,6 +201,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public override HelpManager HelpManager
 		{
 			get { return BusinessWrapper.Instance.HelpManager; }
+		}
+
+		protected override string SlideName
+		{
+			get { return Controller.Instance.TabDigitalProduct.Text; }
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace NewBizWiz.Core.Common
 		public Image SmallImage { get; set; }
 		public Image TinyImage { get; set; }
 		public Image XtraTinyImage { get; set; }
+		public string Name { get; set; }
 
 		public bool ContainsData
 		{
@@ -41,17 +42,19 @@ namespace NewBizWiz.Core.Common
 			result.Append("<SmallImage>" + Convert.ToBase64String((byte[])converter.ConvertTo(SmallImage, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</SmallImage>");
 			result.Append("<TinyImage>" + Convert.ToBase64String((byte[])converter.ConvertTo(TinyImage, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</TinyImage>");
 			result.Append("<XtraTinyImage>" + Convert.ToBase64String((byte[])converter.ConvertTo(XtraTinyImage, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</XtraTinyImage>");
+			if(!String.IsNullOrEmpty(Name))
+				result.Append("<Name>" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</Name>");
 			return result.ToString();
 		}
 
 		public void Deserialize(XmlNode node)
 		{
-			bool tempBool;
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
 				switch (childNode.Name)
 				{
 					case "IsDefault":
+						bool tempBool;
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							IsDefault = tempBool;
 						break;
@@ -82,6 +85,9 @@ namespace NewBizWiz.Core.Common
 						else
 							XtraTinyImage = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
 						break;
+					case "Name":
+						Name = childNode.InnerText;
+						break;
 				}
 			}
 		}
@@ -94,6 +100,7 @@ namespace NewBizWiz.Core.Common
 			result.SmallImage = SmallImage;
 			result.TinyImage = TinyImage;
 			result.XtraTinyImage = XtraTinyImage;
+			result.Name = Name;
 			return result;
 		}
 	}

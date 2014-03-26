@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.Utils;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Layout;
 using NewBizWiz.Core.Common;
 
@@ -62,6 +64,28 @@ namespace NewBizWiz.CommonGUI.ToolForms
 			var hitInfo = layoutView.CalcHitInfo(layoutView.GridControl.PointToClient(MousePosition));
 			if (hitInfo.InField)
 				DialogResult = DialogResult.OK;
+		}
+
+		private void toolTipController_GetActiveObjectInfo(object sender, DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventArgs e)
+		{
+			if (e.SelectedControl != gridControlLogoGallery) return;
+			ToolTipControlInfo info = null;
+			try
+			{
+				var view = gridControlLogoGallery.GetViewAt(e.ControlMousePosition) as LayoutView;
+				if (view == null)
+					return;
+				var hi = view.CalcHitInfo(e.ControlMousePosition);
+				if (hi.InFieldValue)
+				{
+					var imageSource = view.GetRow(hi.RowHandle) as ImageSource;
+					info = new ToolTipControlInfo(new CellToolTipInfo(hi.RowHandle, hi.Column, "cell"), imageSource.Name);
+				}
+			}
+			finally
+			{
+				e.Info = info;
+			}
 		}
 	}
 }

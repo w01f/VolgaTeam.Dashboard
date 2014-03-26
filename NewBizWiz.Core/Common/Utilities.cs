@@ -299,4 +299,12 @@ namespace NewBizWiz.Core.Common
 		}
 		#endregion
 	}
+
+	public static class Extensions
+	{
+		public static Point GetCenter(this Rectangle control)
+		{
+			return new Point(control.X + (control.Width / 2), control.Y + (control.Height / 2));
+		}
+	}
 }

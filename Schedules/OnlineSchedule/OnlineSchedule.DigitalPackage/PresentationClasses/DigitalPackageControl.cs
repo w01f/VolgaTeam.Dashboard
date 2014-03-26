@@ -161,7 +161,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 
 		public void Add_Click(object sender, EventArgs e)
 		{
-			LocalSchedule.AddProduct(null);
+			LocalSchedule.AddDigital(null);
 			GridControl.DataSource = PackageRecords;
 			GridView.RefreshData();
 			SettingsNotSaved = true;
@@ -188,7 +188,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 
 		private void scheduleListControl_ScheduleChanged(object sender, ScheduleEventArgs e)
 		{
-			if (LocalSchedule.IsNameNotAssigned && SettingsNotSaved)
+			if (LocalSchedule.IsNew && SettingsNotSaved)
 				SaveAs_Click(this, EventArgs.Empty);
 			else if (SettingsNotSaved)
 				SaveSchedule();

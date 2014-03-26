@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.InteropClasses;
+using NewBizWiz.CommonGUI;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 
@@ -25,6 +26,7 @@ namespace NewBizWiz.Calendar.Single
 
 		public void RunForm()
 		{
+			LicenseHelper.Register();
 			BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
 			CalendarPowerPointHelper.Instance.SetPresentationSettings();
 			AppConfig = NBWLink.CreateLink(new DirectoryInfo(Application.StartupPath));

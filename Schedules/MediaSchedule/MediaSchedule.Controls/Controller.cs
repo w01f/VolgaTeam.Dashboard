@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Floater;
+using NewBizWiz.CommonGUI.Gallery;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
@@ -37,6 +36,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public RibbonTabItem TabDigitalProduct { get; set; }
 		public RibbonTabItem TabDigitalPackage { get; set; }
 		public RibbonTabItem TabCalendar { get; set; }
+		public RibbonTabItem TabGallery { get; set; }
 
 		public void Init()
 		{
@@ -57,9 +57,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			HomeFlightDatesEnd.EditValueChanged += HomeControl.CalcWeeksOnFlightDatesChange;
 			HomeFlightDatesStart.CloseUp += HomeControl.dateEditFlightDatesStart_CloseUp;
 			HomeFlightDatesEnd.CloseUp += HomeControl.dateEditFlightDatesEnd_CloseUp;
-			HomeOptions.CheckedChanged += HomeControl.Options_CheckedChaged;
 			HomeProductClone.Click += HomeControl.DigitalProductClone;
-			HomeProductDelete.Click += HomeControl.DigitalProductDelete;
 			HomeBusinessName.Enter += Utilities.Instance.Editor_Enter;
 			HomeBusinessName.MouseDown += Utilities.Instance.Editor_MouseDown;
 			HomeBusinessName.MouseUp += Utilities.Instance.Editor_MouseUp;
@@ -138,11 +136,20 @@ namespace NewBizWiz.MediaSchedule.Controls
 			CalendarHelp.Click += BroadcastCalendar.Help_Click;
 			#endregion
 
+			#region Gallery
+			Gallery = new MediaGalleryControl();
+			GalleryHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
+			#endregion
+
 			ConfigureTabPages();
 
 			UpdateOutputButtonsAccordingThemeStatus();
 
 			ConfigureSpecialButtons();
+
+			Ribbon_SelectedRibbonTabChanged(Ribbon, EventArgs.Empty);
+			Ribbon.SelectedRibbonTabChanged -= Ribbon_SelectedRibbonTabChanged;
+			Ribbon.SelectedRibbonTabChanged += Ribbon_SelectedRibbonTabChanged;
 		}
 
 		public void RemoveInstance()
@@ -153,6 +160,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			DigitalProductContainer.Dispose();
 			DigitalPackage.Dispose();
 			BroadcastCalendar.Dispose();
+			Gallery.Dispose();
 			FloaterRequested = null;
 		}
 
@@ -198,6 +206,10 @@ namespace NewBizWiz.MediaSchedule.Controls
 					case "Calendar":
 						TabCalendar.Text = tabPageConfig.Name;
 						tabPages.Add(TabCalendar);
+						break;
+					case "Gallery":
+						TabGallery.Text = tabPageConfig.Name;
+						tabPages.Add(TabGallery);
 						break;
 				}
 			}
@@ -289,50 +301,51 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		private void ConfigureSpecialButtons()
 		{
-			HomeSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-			DigitalProductSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-			DigitalPackageSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-			foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
+			if (Core.OnlineSchedule.ListManager.Instance.SpecialLinksEnable)
 			{
-				var toolTip = new SuperTooltipInfo(specialLinkButton.Name, "", specialLinkButton.Tooltip, null, null, eTooltipColor.Gray);
-				var clickAction = new Action(() =>
+				HomeSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+				DigitalProductSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+				DigitalPackageSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+				foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
 				{
-					try
+					var toolTip = new SuperTooltipInfo(specialLinkButton.Name, "", specialLinkButton.Tooltip, null, null, eTooltipColor.Gray);
+					var clickAction = new Action(() => { specialLinkButton.Open(); });
 					{
-						Process.Start(specialLinkButton.Paths.FirstOrDefault(p => File.Exists(p) || specialLinkButton.Type == "URL"));
+						var button = new ButtonItem();
+						button.Image = specialLinkButton.Logo;
+						button.Text = specialLinkButton.Name;
+						button.Tag = specialLinkButton;
+						Supertip.SetSuperTooltip(button, toolTip);
+						button.Click += (o, e) => clickAction();
+						HomeSpecialButtons.Items.Add(button);
 					}
-					catch { }
-				});
 
-				{
-					var button = new ButtonItem();
-					button.Image = specialLinkButton.Logo;
-					button.Text = specialLinkButton.Name;
-					button.Tag = specialLinkButton;
-					Supertip.SetSuperTooltip(button, toolTip);
-					button.Click += (o, e) => clickAction();
-					HomeSpecialButtons.Items.Add(button);
-				}
+					{
+						var button = new ButtonItem();
+						button.Image = specialLinkButton.Logo;
+						button.Text = specialLinkButton.Name;
+						button.Tag = specialLinkButton;
+						Supertip.SetSuperTooltip(button, toolTip);
+						button.Click += (o, e) => clickAction();
+						DigitalProductSpecialButtons.Items.Add(button);
+					}
 
-				{
-					var button = new ButtonItem();
-					button.Image = specialLinkButton.Logo;
-					button.Text = specialLinkButton.Name;
-					button.Tag = specialLinkButton;
-					Supertip.SetSuperTooltip(button, toolTip);
-					button.Click += (o, e) => clickAction();
-					DigitalProductSpecialButtons.Items.Add(button);
+					{
+						var button = new ButtonItem();
+						button.Image = specialLinkButton.Logo;
+						button.Text = specialLinkButton.Name;
+						button.Tag = specialLinkButton;
+						Supertip.SetSuperTooltip(button, toolTip);
+						button.Click += (o, e) => clickAction();
+						DigitalPackageSpecialButtons.Items.Add(button);
+					}
 				}
-
-				{
-					var button = new ButtonItem();
-					button.Image = specialLinkButton.Logo;
-					button.Text = specialLinkButton.Name;
-					button.Tag = specialLinkButton;
-					Supertip.SetSuperTooltip(button, toolTip);
-					button.Click += (o, e) => clickAction();
-					DigitalPackageSpecialButtons.Items.Add(button);
-				}
+			}
+			else
+			{
+				HomeSpecialButtons.Visible = false;
+				DigitalProductSpecialButtons.Visible = false;
+				DigitalPackageSpecialButtons.Visible = false;
 			}
 		}
 
@@ -343,6 +356,11 @@ namespace NewBizWiz.MediaSchedule.Controls
 				FloaterRequested(null, args);
 		}
 
+		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
+		{
+			if (Ribbon.SelectedRibbonTabItem == TabGallery)
+				Gallery.InitControl();
+		}
 		#region Command Controls
 
 		#region Home
@@ -352,8 +370,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem HomeSaveAs { get; set; }
 		public ButtonItem HomeProductAdd { get; set; }
 		public ButtonItem HomeProductClone { get; set; }
-		public ButtonItem HomeProductDelete { get; set; }
-		public ButtonItem HomeOptions { get; set; }
 		public ComboBoxEdit HomeBusinessName { get; set; }
 		public ComboBoxEdit HomeDecisionMaker { get; set; }
 		public ComboBoxEdit HomeClientType { get; set; }
@@ -428,6 +444,25 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem CalendarPowerPoint { get; set; }
 		#endregion
 
+		#region Gallery
+		public RibbonBar GalleryBrowseBar { get; set; }
+		public RibbonBar GalleryImageBar { get; set; }
+		public RibbonBar GalleryZoomBar { get; set; }
+		public RibbonBar GalleryCopyBar { get; set; }
+		public ButtonItem GalleryScreenshots { get; set; }
+		public ButtonItem GalleryAdSpecs { get; set; }
+		public ButtonItem GalleryView { get; set; }
+		public ButtonItem GalleryEdit { get; set; }
+		public ButtonItem GalleryImageSelect { get; set; }
+		public ButtonItem GalleryImageCrop { get; set; }
+		public ButtonItem GalleryZoomIn { get; set; }
+		public ButtonItem GalleryZoomOut { get; set; }
+		public ButtonItem GalleryCopy { get; set; }
+		public ButtonItem GalleryHelp { get; set; }
+		public ComboBoxEdit GallerySections { get; set; }
+		public ComboBoxEdit GalleryGroups { get; set; }
+		#endregion
+
 		#endregion
 
 		#region Forms
@@ -437,6 +472,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public DigitalProductContainerControl DigitalProductContainer { get; private set; }
 		public MediaWebPackageControl DigitalPackage { get; private set; }
 		public BroadcastCalendarControl BroadcastCalendar { get; private set; }
+		public GalleryControl Gallery { get; private set; }
 		#endregion
 	}
 }

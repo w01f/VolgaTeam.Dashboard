@@ -43,9 +43,6 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 										{
 											switch (shape.Tags.Name(i))
 											{
-												case "HEADER":
-													shape.TextFrame.TextRange.Text = Controller.Instance.Grids.MultiGrid.Header;
-													break;
 												case "SIGLINE":
 													if (!Controller.Instance.Grids.MultiGrid.ShowSignatureLine || hideAdSpecsOnSlide)
 														shape.Visible = MsoTriState.msoFalse;

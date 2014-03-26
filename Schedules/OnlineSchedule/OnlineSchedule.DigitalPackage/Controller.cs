@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Floater;
+using NewBizWiz.CommonGUI.RateCard;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses;
@@ -31,6 +32,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		public SuperTooltip Supertip { get; set; }
 		public RibbonControl Ribbon { get; set; }
 		public RibbonTabItem TabDigitalPackage { get; set; }
+		public RibbonTabItem TabRateCard { get; set; }
 
 		public void Init()
 		{
@@ -47,9 +49,19 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 			DigitalPackageOptions.CheckedChanged += DigitalPackage.TogledButton_CheckedChanged;
 			#endregion
 
+			#region Rate Card Events
+			RateCard = new RateCardControl(BusinessWrapper.Instance.RateCardManager, RateCardCombo);
+			RateCardHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("ratecard");
+			#endregion
+
 			UpdateOutputButtonsAccordingThemeStatus();
 
 			ConfigureSpecialButtons();
+
+			ConfigureTabPages();
+
+			Ribbon_SelectedRibbonTabChanged(Ribbon, EventArgs.Empty);
+			Ribbon.SelectedRibbonTabChanged += Ribbon_SelectedRibbonTabChanged;
 		}
 
 		public void RemoveInstance()
@@ -96,6 +108,27 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		{
 		}
 
+		private void ConfigureTabPages()
+		{
+			Ribbon.Items.Clear();
+			var tabPages = new List<BaseItem>();
+			foreach (var tabPageConfig in BusinessWrapper.Instance.TabPageManager.TabPageSettings)
+			{
+				switch (tabPageConfig.Id)
+				{
+					case "Schedule":
+						TabDigitalPackage.Text = tabPageConfig.Name;
+						tabPages.Add(TabDigitalPackage);
+						break;
+					case "Ratecard":
+						TabRateCard.Text = tabPageConfig.Name;
+						tabPages.Add(TabRateCard);
+						break;
+				}
+			}
+			Ribbon.Items.AddRange(tabPages.ToArray());
+		}
+
 		public void UpdateOutputButtonsAccordingThemeStatus()
 		{
 			if (!BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.None).Any())
@@ -124,29 +157,26 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 
 		private void ConfigureSpecialButtons()
 		{
-			DigitalPackageSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-			foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
+			if (Core.OnlineSchedule.ListManager.Instance.SpecialLinksEnable)
 			{
-				var toolTip = new SuperTooltipInfo(specialLinkButton.Name, "", specialLinkButton.Tooltip, null, null, eTooltipColor.Gray);
-				var clickAction = new Action(() =>
+				DigitalPackageSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+				foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
 				{
-					try
+					var toolTip = new SuperTooltipInfo(specialLinkButton.Name, "", specialLinkButton.Tooltip, null, null, eTooltipColor.Gray);
+					var clickAction = new Action(() => { specialLinkButton.Open(); });
 					{
-						Process.Start(specialLinkButton.Paths.FirstOrDefault(p => File.Exists(p) || specialLinkButton.Type == "URL"));
+						var button = new ButtonItem();
+						button.Image = specialLinkButton.Logo;
+						button.Text = specialLinkButton.Name;
+						button.Tag = specialLinkButton;
+						Supertip.SetSuperTooltip(button, toolTip);
+						button.Click += (o, e) => clickAction();
+						DigitalPackageSpecialButtons.Items.Add(button);
 					}
-					catch { }
-				});
-
-				{
-					var button = new ButtonItem();
-					button.Image = specialLinkButton.Logo;
-					button.Text = specialLinkButton.Name;
-					button.Tag = specialLinkButton;
-					Supertip.SetSuperTooltip(button, toolTip);
-					button.Click += (o, e) => clickAction();
-					DigitalPackageSpecialButtons.Items.Add(button);
 				}
 			}
+			else
+				DigitalPackageSpecialButtons.Visible = false;
 		}
 
 		public void ShowFloater(Action afterShow)
@@ -154,6 +184,12 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 			var args = new FloaterRequestedEventArgs { AfterShow = afterShow };
 			if (FloaterRequested != null)
 				FloaterRequested(null, args);
+		}
+
+		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
+		{
+			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
+				RateCard.LoadRateCards();
 		}
 
 		#region Command Controls
@@ -172,10 +208,16 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		public ButtonItem DigitalPackageOptions { get; set; }
 		#endregion
 
+		#region Rate Card
+		public ButtonItem RateCardHelp { get; set; }
+		public ComboBoxEdit RateCardCombo { get; set; }
+		#endregion
+
 		#endregion
 
 		#region Forms
 		public DigitalPackageControl DigitalPackage { get; private set; }
+		public RateCardControl RateCard { get; private set; }
 		#endregion
 	}
 

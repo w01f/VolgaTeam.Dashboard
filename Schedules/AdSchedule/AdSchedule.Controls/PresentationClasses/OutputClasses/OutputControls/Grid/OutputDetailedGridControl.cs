@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -357,7 +358,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			UpdateSlideBullets();
 			AllowToSave = true;
 			SettingsNotSaved = false;
-			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
+			Controller.Instance.SaveSchedule(LocalSchedule,false, true, this);
 		}
 
 		public void OpenHelp()
@@ -960,6 +961,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
+		private void TrackOutput(IEnumerable<PublicationDetailedGridControl> publications)
+		{
+			foreach (var publication in publications)
+				BusinessWrapper.Instance.ActivityManager.AddActivity(new PublicationOutputActivity(Controller.Instance.TabBasicOverview.Text, LocalSchedule.BusinessName, publication.PrintProduct.Name, (decimal)publication.PrintProduct.TotalFinalRate));
+		}
+
 		public void PrintOutput()
 		{
 			var tabPages = _tabPages;
@@ -987,6 +994,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			else
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
+			TrackOutput(selectedProducts);
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -1092,7 +1100,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				formProgress.Close();
 			}
 			if (!File.Exists(tempFileName)) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			var trackAction = new Action(() => TrackOutput(selectedProducts));
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
 			{
 				formPreview.Text = "Preview Detailed Advertising Grid";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

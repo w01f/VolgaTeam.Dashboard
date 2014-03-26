@@ -96,6 +96,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			gridControlPublication.RefreshDataSource();
 			advBandedGridViewPublication.FocusedRowHandle = currentRowHandle;
 			UpdateTotals();
+			UpdateFirstRowButtonsState();
 		}
 
 		public void AddInsert()
@@ -513,8 +514,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			if (e.Button.Index == 1)
 			{
 				advBandedGridViewPublication.CloseEditor();
-				double temp = 0;
-				object value = advBandedGridViewPublication.GetFocusedRowCellValue(advBandedGridViewPublication.FocusedColumn);
+				double temp;
+				var value = advBandedGridViewPublication.GetFocusedRowCellValue(advBandedGridViewPublication.FocusedColumn);
 				if (value == null) return;
 				if (double.TryParse(value.ToString(), out temp))
 				{
@@ -531,7 +532,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				case 1:
 					{
 						advBandedGridViewPublication.CloseEditor();
-						double temp = 0;
+						double temp;
 						var value = advBandedGridViewPublication.GetFocusedRowCellValue(advBandedGridViewPublication.FocusedColumn);
 						if (value == null) return;
 						if (!double.TryParse(value.ToString(), out temp)) return;
@@ -665,6 +666,26 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			laTotalColorPricingCalculatedValue.Text = PrintProduct.TotalColorPricingCalculated.ToString("$#,##0.00");
 			laAvgFinalRateValue.Text = PrintProduct.AvgFinalRate.ToString("$#,##0.00");
 			laTotalFinalRateValue.Text = PrintProduct.TotalFinalRate.ToString("$#,##0.00");
+		}
+
+		private void UpdateFirstRowButtonsState()
+		{
+			var enableFirstRow = PrintProduct.Inserts.Count > 1;
+			repositoryItemSpinEditADRateDisplayFirstRow.Buttons[1].Enabled = enableFirstRow;
+			repositoryItemSpinEditADRateDisplayNullFirstRow.Buttons[1].Enabled = enableFirstRow;
+			repositoryItemSpinEditADRateEditFirstRow.Buttons[1].Enabled = enableFirstRow;
+			repositoryItemSpinEditADRateEditNullFirstRow.Buttons[1].Enabled = enableFirstRow;
+			repositoryItemSpinEditColorPricingDisplayFirstRow.Buttons[1].Enabled = enableFirstRow;
+			repositoryItemSpinEditColorPricingEditFirstRow.Buttons[1].Enabled = enableFirstRow;
+			repositoryItemSpinEditDiscountsDisplayFirstRow.Buttons[1].Enabled = enableFirstRow;
+			repositoryItemSpinEditDiscountsEditFirstRow.Buttons[1].Enabled = enableFirstRow;
+			repositoryItemSpinEditPCIRateDisplayFirstRow.Buttons[1].Enabled = enableFirstRow;
+			repositoryItemSpinEditPCIRateEditFirstRow.Buttons[1].Enabled = enableFirstRow;
+		}
+
+		public void UpdateProductButtonsState()
+		{
+			Controller.Instance.PrintProductAdd.Enabled = PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage || PrintProduct.SizeOptions.Square > 0;
 		}
 
 		private void advBandedGridViewPublication_CellValueChanged(object sender, CellValueChangedEventArgs e)

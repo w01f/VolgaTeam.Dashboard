@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using Microsoft.Office.Core;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
@@ -159,7 +160,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		}
 	}
 
-	public class Schedule : ISchedule
+	public class Schedule : IDigitalSchedule
 	{
 		public Schedule(string fileName)
 		{
@@ -168,6 +169,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			Status = ListManager.Instance.Statuses.FirstOrDefault();
 			DigitalProducts = new List<DigitalProduct>();
 			ViewSettings = new ScheduleBuilderViewSettings();
+			DigitalProductSummary = new DigitalProductSummary();
 
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
@@ -193,10 +195,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public string AccountNumber { get; set; }
 		public bool ApplySettingsForeAllProducts { get; set; }
 		public List<DigitalProduct> DigitalProducts { get; set; }
+		public DigitalProductSummary DigitalProductSummary { get; private set; }
 
 		public ScheduleBuilderViewSettings ViewSettings { get; set; }
 
-		public IScheduleViewSettings CommonViewSettings
+		public IScheduleViewSettings SharedViewSettings
 		{
 			get { return ViewSettings; }
 		}
@@ -258,8 +261,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				bool result = false;
 				foreach (var product in DigitalProducts)
-					result = result | (product.MonthlyImpressions.HasValue || product.MonthlyInvestment.HasValue);
-				return result;
+					result = result | (product.MonthlyImpressions.HasValue || product.MonthlyInvestment.HasValue); return result;
 			}
 		}
 
@@ -286,7 +288,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		#region ISchedule Members
 
-		public bool IsNameNotAssigned { get; set; }
+		public bool IsNew { get; set; }
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
 		public DateTime? PresentationDate { get; set; }
@@ -383,6 +385,12 @@ namespace NewBizWiz.Core.OnlineSchedule
 					DigitalProducts.Add(product);
 				}
 			}
+
+			node = document.SelectSingleNode(@"/Schedule/DigitalProductSummary");
+			if (node != null)
+			{
+				DigitalProductSummary.Deserialize(node);
+			}
 		}
 
 		public void Save()
@@ -423,6 +431,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 				xml.AppendLine(product.Serialize());
 			}
 			xml.AppendLine(@"</Products>");
+			xml.AppendLine(@"<DigitalProductSummary>" + DigitalProductSummary.Serialize() + @"</DigitalProductSummary>");
 			xml.AppendLine(@"</Schedule>");
 			using (var sw = new StreamWriter(_scheduleFile.FullName, false))
 			{
@@ -431,13 +440,13 @@ namespace NewBizWiz.Core.OnlineSchedule
 			}
 		}
 
-		public void AddProduct(string categoryName)
+		public void AddDigital(string categoryName)
 		{
 			var product = new DigitalProduct(this) { Index = DigitalProducts.Count + 1, Category = categoryName };
 			DigitalProducts.Add(product);
 		}
 
-		public void UpProduct(int position)
+		public void UpDigital(int position)
 		{
 			if (position > 0)
 			{
@@ -447,7 +456,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			}
 		}
 
-		public void DownProduct(int position)
+		public void DownDigital(int position)
 		{
 			if (position < DigitalProducts.Count - 1)
 			{
@@ -464,12 +473,14 @@ namespace NewBizWiz.Core.OnlineSchedule
 		}
 	}
 
-	public class DigitalProduct
+	public class DigitalProduct : ISummaryProduct
 	{
 		private string _name;
+		private string _userDescription;
+		private string _userComment;
 
 		#region Basic Properties
-		public ISchedule Parent { get; set; }
+		public IDigitalSchedule Parent { get; set; }
 		public Guid UniqueID { get; set; }
 		public double Index { get; set; }
 		public string Category { get; set; }
@@ -478,8 +489,10 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public string Location { get; set; }
 		public int? Width { get; set; }
 		public int? Height { get; set; }
-		public string Description { get; set; }
-		public bool ShowDimensions { get; set; }
+		public bool EnableLocation { get; set; }
+		public bool EnableTarget { get; set; }
+		public bool EnableRichMedia { get; set; }
+		public List<ProductInfo> AddtionalInfo { get; private set; }
 		#endregion
 
 		#region Additional Properties
@@ -489,7 +502,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public int? DurationValue { get; set; }
 		public string Strength1 { get; set; }
 		public string Strength2 { get; set; }
-		public string Comment { get; set; }
 		public decimal? MonthlyInvestment { get; set; }
 		public decimal? MonthlyImpressions { get; set; }
 		public decimal? MonthlyCPM { get; set; }
@@ -499,6 +511,17 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public decimal? DefaultRate { get; set; }
 		public FormulaType Formula { get; set; }
 		public string InvestmentDetails { get; set; }
+
+		public bool DescriptionManualEdit { get; set; }
+		public bool ShowDimensions { get; set; }
+		public bool ShowDescriptionTargeting { get; set; }
+		public bool ShowDescriptionRichMedia { get; set; }
+		public string Description { get; set; }
+
+		public bool EnableComment { get; set; }
+		public bool CommentManualEdit { get; set; }
+		public bool ShowCommentTargeting { get; set; }
+		public bool ShowCommentRichMedia { get; set; }
 		#endregion
 
 		#region Show Properties
@@ -509,11 +532,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public bool ShowMonthlyImpressions { get; set; }
 		public bool ShowTotalInvestments { get; set; }
 		public bool ShowTotalImpressions { get; set; }
-		public bool ShowCategory { get; set; }
 		public bool ShowFlightDates { get; set; }
 
 		public ProductPackageRecord PackageRecord { get; private set; }
 		public DigitalProductAdPlanSettings AdPlanSettings { get; set; }
+		public SummaryItem SummaryItem { get; private set; }
 
 		#endregion
 
@@ -535,6 +558,72 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public string ExtendedName
 		{
 			get { return String.Format("{0}{1}", !String.IsNullOrEmpty(SubCategory) ? (SubCategory + " - ") : String.Empty, Name); }
+		}
+
+		public string FullName
+		{
+			get
+			{
+				return String.Format("{0} - {1}{2}",
+					Name,
+					Category,
+					!String.IsNullOrEmpty(SubCategory) ? String.Format(@" / {0}", SubCategory) : String.Empty);
+			}
+		}
+
+		private string CalculatedComment
+		{
+			get
+			{
+				var result = new List<string>();
+				if (ShowCommentTargeting && EnableTarget && AddtionalInfo.Any(pi => pi.Type == ProductInfoType.Targeting && pi.Selected))
+					result.AddRange(AddtionalInfo.Where(pi => pi.Type == ProductInfoType.Targeting && pi.Selected).Select(pi => pi.EditValue));
+				if (ShowCommentRichMedia && EnableRichMedia && AddtionalInfo.Any(pi => pi.Type == ProductInfoType.RichMedia && pi.Selected))
+					result.AddRange(AddtionalInfo.Where(pi => pi.Type == ProductInfoType.RichMedia && pi.Selected).Select(pi => pi.EditValue));
+				return String.Join(Environment.NewLine, result);
+			}
+		}
+
+		public string Comment
+		{
+			get
+			{
+				if (!String.IsNullOrEmpty(_userDescription) && CommentManualEdit)
+					return _userComment;
+				return CalculatedComment;
+			}
+			set
+			{
+				_userComment = value != CalculatedComment && CommentManualEdit ? value : null;
+			}
+		}
+
+		private string CalculatedDescription
+		{
+			get
+			{
+				var result = new List<string>();
+				if (Width.HasValue && Height.HasValue && ShowDimensions)
+					result.Add(String.Format("(Ad Dimensions: {0}{1})", Dimensions, !String.IsNullOrEmpty(Location) && !Location.Equals("N/A") ? String.Format(" Location - {0}", Location) : String.Empty));
+				if (ShowDescriptionTargeting && EnableTarget && AddtionalInfo.Any(pi => pi.Type == ProductInfoType.Targeting && pi.Selected))
+					result.AddRange(AddtionalInfo.Where(pi => pi.Type == ProductInfoType.Targeting && pi.Selected).Select(pi => pi.EditValue));
+				if (ShowDescriptionRichMedia && EnableRichMedia && AddtionalInfo.Any(pi => pi.Type == ProductInfoType.RichMedia && pi.Selected))
+					result.AddRange(AddtionalInfo.Where(pi => pi.Type == ProductInfoType.RichMedia && pi.Selected).Select(pi => pi.EditValue));
+				if (!String.IsNullOrEmpty(Description))
+					result.Add(String.Format("{1}{0}", Description, Environment.NewLine));
+				return String.Join(Environment.NewLine, result);
+			}
+		}
+
+		public string UserDescription
+		{
+			get
+			{
+				if (!String.IsNullOrEmpty(_userDescription) && DescriptionManualEdit)
+					return _userDescription;
+				return CalculatedDescription;
+			}
+			set { _userDescription = value != CalculatedDescription && DescriptionManualEdit ? value : null; }
 		}
 
 		public string Dimensions
@@ -649,17 +738,32 @@ namespace NewBizWiz.Core.OnlineSchedule
 				return String.Join(", ", result.ToArray());
 			}
 		}
+
+		public bool TargetingAvailable
+		{
+			get { return EnableTarget && AddtionalInfo.Any(productInfo => productInfo.Type == ProductInfoType.Targeting && productInfo.Selected); }
+		}
+
+		public bool RichMediaAvailable
+		{
+			get { return EnableRichMedia && AddtionalInfo.Any(productInfo => productInfo.Type == ProductInfoType.RichMedia && productInfo.Selected); }
+		}
 		#endregion
 
-		public DigitalProduct(ISchedule parent)
+		public DigitalProduct(IDigitalSchedule parent)
 		{
 			Parent = parent;
 			UniqueID = Guid.NewGuid();
 			Category = string.Empty;
 			Websites = new List<string>();
+			AddtionalInfo = new List<ProductInfo>();
 			PackageRecord = new ProductPackageRecord(this);
 			AdPlanSettings = new DigitalProductAdPlanSettings();
+			SummaryItem = new SummaryItem(this);
 			RateType = "CPM";
+			EnableLocation = true;
+			EnableTarget = true;
+			EnableRichMedia = true;
 
 			OutputData = new Output(this);
 
@@ -687,9 +791,9 @@ namespace NewBizWiz.Core.OnlineSchedule
 				xml.Append("Location = \"" + Location.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("Width = \"" + (Width.HasValue ? Width.Value.ToString() : string.Empty) + "\" ");
 			xml.Append("Height = \"" + (Height.HasValue ? Height.Value.ToString() : string.Empty) + "\" ");
-			if (!String.IsNullOrEmpty(Description))
-				xml.Append("Description = \"" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("ShowDimensions = \"" + ShowDimensions + "\" ");
+			xml.Append("EnableTarget = \"" + EnableTarget + "\" ");
+			xml.Append("EnableLocation = \"" + EnableLocation + "\" ");
+			xml.Append("EnableRichMedia = \"" + EnableRichMedia + "\" ");
 			#endregion
 
 			#region Additional Properties
@@ -698,7 +802,20 @@ namespace NewBizWiz.Core.OnlineSchedule
 			xml.Append("DurationValue = \"" + (DurationValue.HasValue ? DurationValue.Value.ToString() : string.Empty) + "\" ");
 			xml.Append("Strength1 = \"" + Strength1.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("Strength2 = \"" + Strength2.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("Comment = \"" + Comment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			xml.Append("EnableComment = \"" + EnableComment + "\" ");
+			xml.Append("CommentManualEdit = \"" + CommentManualEdit + "\" ");
+			xml.Append("ShowCommentTargeting = \"" + ShowCommentTargeting + "\" ");
+			xml.Append("ShowCommentRichMedia = \"" + ShowCommentRichMedia + "\" ");
+			if (!String.IsNullOrEmpty(_userComment))
+				xml.Append("Comment = \"" + _userComment.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			xml.Append("DescriptionManualEdit = \"" + DescriptionManualEdit + "\" ");
+			xml.Append("ShowDimensions = \"" + ShowDimensions + "\" ");
+			xml.Append("ShowDescriptionTargeting = \"" + ShowDescriptionTargeting + "\" ");
+			xml.Append("ShowDescriptionRichMedia = \"" + ShowDescriptionRichMedia + "\" ");
+			if (!String.IsNullOrEmpty(Description))
+				xml.Append("Description = \"" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+			if (!String.IsNullOrEmpty(_userDescription))
+				xml.Append("UserDescription = \"" + _userDescription.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			if (MonthlyInvestment.HasValue)
 				xml.Append("MonthlyInvestment = \"" + MonthlyInvestment.Value + "\" ");
 			if (MonthlyImpressions.HasValue)
@@ -718,7 +835,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 			#endregion
 
 			#region Show Properties
-			xml.Append("ShowCategory = \"" + ShowCategory + "\" ");
 			xml.Append("ShowFlightDates = \"" + ShowFlightDates + "\" ");
 			xml.Append("ShowDuration = \"" + ShowDuration + "\" ");
 			xml.Append("ShowAllPricingMonthly = \"" + ShowAllPricingMonthly + "\" ");
@@ -735,6 +851,10 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 			xml.AppendLine(@"<PackageRecord>" + PackageRecord.Serialize() + @"</PackageRecord>");
 			xml.AppendLine(@"<AdPlanSettings>" + AdPlanSettings.Serialize() + @"</AdPlanSettings>");
+			xml.AppendLine(@"<SummaryItem>" + SummaryItem.Serialize() + @"</SummaryItem>");
+
+			foreach (var productInfo in AddtionalInfo)
+				xml.AppendLine(@"<ProductInfo>" + productInfo.Serialize() + @"</ProductInfo>");
 
 			xml.AppendLine(@"</Product>");
 
@@ -795,14 +915,25 @@ namespace NewBizWiz.Core.OnlineSchedule
 						else
 							Height = null;
 						break;
-					case "Description":
-						Description = productAttribute.Value;
-						break;
-					case "ShowDimensions":
+					case "EnableTarget":
 						{
-							bool tempBool;
-							if (Boolean.TryParse(productAttribute.Value, out tempBool))
-								ShowDimensions = tempBool;
+							bool temp;
+							if (Boolean.TryParse(productAttribute.Value, out temp))
+								EnableTarget = temp;
+						}
+						break;
+					case "EnableLocation":
+						{
+							bool temp;
+							if (Boolean.TryParse(productAttribute.Value, out temp))
+								EnableLocation = temp;
+						}
+						break;
+					case "EnableRichMedia":
+						{
+							bool temp;
+							if (Boolean.TryParse(productAttribute.Value, out temp))
+								EnableRichMedia = temp;
 						}
 						break;
 					#endregion
@@ -825,9 +956,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 						break;
 					case "Strength2":
 						Strength2 = productAttribute.Value;
-						break;
-					case "Comment":
-						Comment = productAttribute.Value;
 						break;
 					case "MonthlyInvestment":
 						if (Decimal.TryParse(productAttribute.Value, out tempDecimal))
@@ -871,25 +999,82 @@ namespace NewBizWiz.Core.OnlineSchedule
 						else
 							DefaultRate = null;
 						break;
-
 					case "Formula":
 						if (int.TryParse(productAttribute.Value, out tempInt))
 							Formula = (FormulaType)tempInt;
 						break;
-
 					case "InvestmentDetails":
 						InvestmentDetails = productAttribute.Value;
+						break;
+
+					case "EnableComment":
+						{
+							bool tempBool;
+							if (bool.TryParse(productAttribute.Value, out tempBool))
+								EnableComment = tempBool;
+						}
+						break;
+					case "CommentManualEdit":
+						{
+							bool tempBool;
+							if (bool.TryParse(productAttribute.Value, out tempBool))
+								CommentManualEdit = tempBool;
+						}
+						break;
+					case "ShowCommentTargeting":
+						{
+							bool temp;
+							if (Boolean.TryParse(productAttribute.Value, out temp))
+								ShowCommentTargeting = temp;
+						}
+						break;
+					case "ShowCommentRichMedia":
+						{
+							bool temp;
+							if (Boolean.TryParse(productAttribute.Value, out temp))
+								ShowCommentRichMedia = temp;
+						}
+						break;
+					case "Comment":
+						_userComment = productAttribute.Value;
+						break;
+					case "DescriptionManualEdit":
+						{
+							bool tempBool;
+							if (bool.TryParse(productAttribute.Value, out tempBool))
+								DescriptionManualEdit = tempBool;
+						}
+						break;
+					case "ShowDimensions":
+						{
+							bool temp;
+							if (Boolean.TryParse(productAttribute.Value, out temp))
+								ShowDimensions = temp;
+						}
+						break;
+					case "ShowDescriptionTargeting":
+						{
+							bool temp;
+							if (Boolean.TryParse(productAttribute.Value, out temp))
+								ShowDescriptionTargeting = temp;
+						}
+						break;
+					case "ShowDescriptionRichMedia":
+						{
+							bool temp;
+							if (Boolean.TryParse(productAttribute.Value, out temp))
+								ShowDescriptionRichMedia = temp;
+						}
+						break;
+					case "Description":
+						Description = productAttribute.Value;
+						break;
+					case "UserDescription":
+						_userDescription = productAttribute.Value;
 						break;
 					#endregion
 
 					#region Show Properties
-					case "ShowCategory":
-						{
-							bool tempBool;
-							if (bool.TryParse(productAttribute.Value, out tempBool))
-								ShowCategory = tempBool;
-						}
-						break;
 					case "ShowFlightDates":
 						{
 							bool tempBool;
@@ -951,17 +1136,32 @@ namespace NewBizWiz.Core.OnlineSchedule
 			Websites.Clear();
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
-				if (childNode.Name.Equals("Website"))
-					Websites.Add(childNode.InnerText);
-				else if (childNode.Name.Equals("PackageRecord"))
-					PackageRecord.Deserialize(childNode);
-				else if (childNode.Name.Equals("AdPlanSettings"))
-					AdPlanSettings.Deserialize(childNode);
+				switch (childNode.Name)
+				{
+					case "Website":
+						Websites.Add(childNode.InnerText);
+						break;
+					case "PackageRecord":
+						PackageRecord.Deserialize(childNode);
+						break;
+					case "AdPlanSettings":
+						AdPlanSettings.Deserialize(childNode);
+						break;
+					case "SummaryItem":
+						SummaryItem.Deserialize(childNode);
+						break;
+					case "ProductInfo":
+						var productInfo = new ProductInfo();
+						productInfo.Deserialize(childNode);
+						AddtionalInfo.Add(productInfo);
+						break;
+				}
 			}
 			if (Websites.Count == 0 && ListManager.Instance.Websites.Any())
 				Websites.Add(ListManager.Instance.Websites.FirstOrDefault());
 			if (String.IsNullOrEmpty(UserDefinedName))
 				UserDefinedName = ExtendedName;
+			UpdateAdditionlaInfo();
 		}
 
 		public void ApplyDefaultValues()
@@ -972,7 +1172,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 			DefaultRate = source.Rate;
 			Width = source.Width;
 			Height = source.Height;
+			EnableTarget = source.EnableTarget;
+			EnableLocation = source.EnableLocation;
+			EnableRichMedia = source.EnableRichMedia;
 			Description = source.Overview;
+			UpdateAdditionlaInfo();
 		}
 
 		public void ApplyDefaultView()
@@ -980,32 +1184,81 @@ namespace NewBizWiz.Core.OnlineSchedule
 			UserDefinedName = ExtendedName;
 			Strength1 = String.Empty;
 			Strength2 = String.Empty;
-			Comment = String.Empty;
 			DurationType = String.Empty;
 			DurationValue = null;
 			MonthlyInvestment = null;
 			MonthlyImpressions = null;
 			TotalInvestment = null;
 			TotalImpressions = null;
-			ShowCategory = true;
-			ShowFlightDates = true;
-			ShowDuration = false;
-			ShowAllPricingMonthly = true;
-			ShowAllPricingTotal = false;
-			ShowMonthlyInvestments = false;
-			ShowMonthlyImpressions = false;
-			ShowTotalImpressions = false;
-			ShowTotalInvestments = false;
-			ShowDimensions = true;
 			Formula = ListManager.Instance.DefaultFormula;
 			InvestmentDetails = null;
 
+			DescriptionManualEdit = false;
+			ShowDimensions = true;
+			ShowDescriptionTargeting = false;
+			ShowDescriptionRichMedia = false;
+			_userDescription = null;
+			EnableComment = false;
+			CommentManualEdit = false;
+			ShowCommentTargeting = false;
+			ShowCommentRichMedia = false;
+			_userComment = null;
+
 			var source = ListManager.Instance.ProductSources.FirstOrDefault(x => x.Name.Equals(_name) && x.Category.Name.Equals(Category) && (x.SubCategory == SubCategory || String.IsNullOrEmpty(SubCategory)));
-			if (source == null) return;
-			Description = source.Overview;
-			DefaultRate = source.Rate;
-			MonthlyCPM = DefaultRate;
-			TotalCPM = DefaultRate;
+			if (source != null)
+			{
+				Description = source.Overview;
+				DefaultRate = source.Rate;
+				MonthlyCPM = DefaultRate;
+				TotalCPM = DefaultRate;
+			}
+
+			var defaultViewSettings = ListManager.Instance.DefaultDigitalProductSettings;
+			ShowFlightDates = defaultViewSettings.ShowFlightDates;
+			ShowDuration = defaultViewSettings.ShowDuration;
+			switch (defaultViewSettings.DefaultPricing)
+			{
+				case 1:
+					ShowAllPricingMonthly = true;
+					ShowAllPricingTotal = false;
+					ShowMonthlyImpressions = false;
+					ShowTotalImpressions = false;
+					ShowMonthlyInvestments = false;
+					ShowTotalInvestments = false;
+					break;
+				case 2:
+					ShowAllPricingMonthly = false;
+					ShowAllPricingTotal = true;
+					ShowMonthlyImpressions = false;
+					ShowTotalImpressions = false;
+					ShowMonthlyInvestments = false;
+					ShowTotalInvestments = false;
+					break;
+				case 3:
+					ShowAllPricingMonthly = false;
+					ShowAllPricingTotal = false;
+					ShowMonthlyImpressions = true;
+					ShowTotalImpressions = false;
+					ShowMonthlyInvestments = false;
+					ShowTotalInvestments = false;
+					break;
+				case 4:
+					ShowAllPricingMonthly = false;
+					ShowAllPricingTotal = false;
+					ShowMonthlyImpressions = false;
+					ShowTotalImpressions = false;
+					ShowMonthlyInvestments = true;
+					ShowTotalInvestments = false;
+					break;
+				default:
+					ShowAllPricingMonthly = false;
+					ShowAllPricingTotal = false;
+					ShowMonthlyInvestments = false;
+					ShowMonthlyImpressions = false;
+					ShowTotalImpressions = false;
+					ShowTotalInvestments = false;
+					break;
+			}
 		}
 
 		public DigitalProduct Clone()
@@ -1022,6 +1275,17 @@ namespace NewBizWiz.Core.OnlineSchedule
 			return result;
 		}
 
+		public void UpdateAdditionlaInfo()
+		{
+			var newAddtionalInfo = new List<ProductInfo>();
+			if (EnableTarget)
+				newAddtionalInfo.AddRange(ListManager.Instance.TargetingRecods.MergeSet(AddtionalInfo));
+			if (EnableRichMedia)
+				newAddtionalInfo.AddRange(ListManager.Instance.RichMediaRecods.MergeSet(AddtionalInfo));
+			AddtionalInfo.Clear();
+			AddtionalInfo.AddRange(newAddtionalInfo);
+		}
+
 		public class Output
 		{
 			private readonly DigitalProduct source;
@@ -1033,7 +1297,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 			public string Header
 			{
-				get { return source.ShowCategory && !String.IsNullOrEmpty(source.Category) ? String.Format("{0}: {1}", "{0}", source.Category) : "{0}"; }
+				get { return "{0}"; }
 			}
 
 			public string Websites
@@ -1086,11 +1350,62 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 			public string Description
 			{
+				get { return source.UserDescription; }
+			}
+
+			public decimal? Impressions
+			{
 				get
 				{
-					return source.ShowDimensions && !String.IsNullOrEmpty(source.Dimensions) ?
-					String.Format("(Ad Dimensions: {0}){1}{1}{2}", source.Dimensions, Environment.NewLine, source.Description) :
-						source.Description;
+					decimal? result = null;
+					if (source.ShowAllPricingTotal || source.ShowAllPricingMonthly || source.ShowMonthlyImpressions || source.ShowTotalImpressions)
+					{
+						if (source.ShowAllPricingMonthly && source.MonthlyImpressionsCalculated.HasValue && source.MonthlyImpressionsCalculated.Value > 0)
+							result = source.MonthlyImpressionsCalculated;
+						else if (source.ShowAllPricingTotal && source.TotalImpressionsCalculated.HasValue && source.TotalImpressionsCalculated.Value > 0)
+							result = source.TotalImpressionsCalculated;
+						else if (source.ShowMonthlyImpressions && source.MonthlyImpressions.HasValue && source.MonthlyImpressions.Value > 0)
+							result = source.MonthlyImpressions;
+						else if (source.ShowTotalImpressions && source.TotalImpressions.HasValue && source.TotalImpressions.Value > 0)
+							result = source.TotalImpressions;
+					}
+					return result;
+				}
+			}
+
+			public decimal? Investments
+			{
+				get
+				{
+					decimal? result = null;
+					if (source.ShowAllPricingTotal || source.ShowAllPricingMonthly || source.ShowMonthlyInvestments || source.ShowTotalInvestments)
+					{
+						if (source.ShowAllPricingMonthly && source.MonthlyInvestmentCalculated.HasValue && source.MonthlyInvestmentCalculated.Value > 0)
+							result = source.MonthlyInvestmentCalculated;
+						else if (source.ShowAllPricingTotal && source.TotalInvestmentCalculated.HasValue && source.TotalInvestmentCalculated.Value > 0)
+							result = source.TotalInvestmentCalculated;
+						else if (source.ShowMonthlyInvestments && source.MonthlyInvestment.HasValue && source.MonthlyInvestment.Value > 0)
+							result = source.MonthlyInvestment;
+						else if (source.ShowTotalInvestments && source.TotalInvestment.HasValue && source.TotalInvestment.Value > 0)
+							result = source.TotalInvestment;
+					}
+					return result;
+				}
+			}
+
+			public decimal? CPM
+			{
+				get
+				{
+					decimal? result = null;
+					if (source.ShowAllPricingTotal || source.ShowAllPricingMonthly)
+					{
+						if (source.ShowAllPricingMonthly && source.MonthlyCPMCalculated.HasValue && source.MonthlyCPMCalculated.Value > 0)
+							result = source.MonthlyCPMCalculated;
+						else if (source.ShowAllPricingTotal && source.TotalCPMCalculated.HasValue && source.TotalCPMCalculated.Value > 0)
+							result = source.TotalCPMCalculated;
+					}
+					return result;
 				}
 			}
 
@@ -1184,6 +1499,25 @@ namespace NewBizWiz.Core.OnlineSchedule
 						return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("total{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
 					return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("none{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
 				}
+			}
+		}
+
+		public string SummaryTitle
+		{
+			get { return String.Format("{0}{1}", Name, (!String.IsNullOrEmpty(Location) && Location != "N/A" ? String.Format(" ({0})", Location) : String.Empty)); }
+		}
+
+		public string SummaryInfo
+		{
+			get
+			{
+				var values = new List<string>();
+				values.Add(FullName);
+				if (!String.IsNullOrEmpty(OutputData.Websites))
+					values.Add(OutputData.Websites);
+				values.Add(String.Format("{0}", Parent.FlightDates));
+				values.Add(String.Format("{0}", UserDescription));
+				return String.Join(", ", values).Replace(Environment.NewLine, ", ");
 			}
 		}
 	}
@@ -1294,7 +1628,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		{
 			get
 			{
-				if (UseFormula && (Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowInvestment && Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowImpressions && Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowCPM) && Parent.Parent.CommonViewSettings.DigitalPackageSettings.Formula == FormulaType.Investment)
+				if (UseFormula && (Parent.Parent.SharedViewSettings.DigitalPackageSettings.ShowInvestment && Parent.Parent.SharedViewSettings.DigitalPackageSettings.ShowImpressions && Parent.Parent.SharedViewSettings.DigitalPackageSettings.ShowCPM) && Parent.Parent.SharedViewSettings.DigitalPackageSettings.Formula == FormulaType.Investment)
 					Investment = CPMCalculated.HasValue && ImpressionsCalculated.HasValue ? Math.Round(CPMCalculated.Value * (ImpressionsCalculated.Value / 1000), 2) : (decimal?)null;
 				return Investment;
 			}
@@ -1318,7 +1652,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		{
 			get
 			{
-				if (UseFormula && (Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowInvestment && Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowImpressions && Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowCPM) && Parent.Parent.CommonViewSettings.DigitalPackageSettings.Formula == FormulaType.Impressions)
+				if (UseFormula && (Parent.Parent.SharedViewSettings.DigitalPackageSettings.ShowInvestment && Parent.Parent.SharedViewSettings.DigitalPackageSettings.ShowImpressions && Parent.Parent.SharedViewSettings.DigitalPackageSettings.ShowCPM) && Parent.Parent.SharedViewSettings.DigitalPackageSettings.Formula == FormulaType.Impressions)
 					Impressions = InvestmentCalculated.HasValue && CPMCalculated.HasValue && CPMCalculated.Value != 0 ? Math.Round(((InvestmentCalculated.Value * 1000) / CPMCalculated.Value), 0) : (decimal?)null;
 				return Impressions;
 			}
@@ -1342,7 +1676,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		{
 			get
 			{
-				if (UseFormula && (Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowInvestment && Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowImpressions && Parent.Parent.CommonViewSettings.DigitalPackageSettings.ShowCPM) && Parent.Parent.CommonViewSettings.DigitalPackageSettings.Formula == FormulaType.CPM)
+				if (UseFormula && (Parent.Parent.SharedViewSettings.DigitalPackageSettings.ShowInvestment && Parent.Parent.SharedViewSettings.DigitalPackageSettings.ShowImpressions && Parent.Parent.SharedViewSettings.DigitalPackageSettings.ShowCPM) && Parent.Parent.SharedViewSettings.DigitalPackageSettings.Formula == FormulaType.CPM)
 					CPM = InvestmentCalculated.HasValue && ImpressionsCalculated.HasValue && ImpressionsCalculated.Value != 0 ? Math.Round((InvestmentCalculated.Value / (ImpressionsCalculated.Value / 1000)), 2) : (decimal?)null;
 				return CPM;
 			}
@@ -1454,6 +1788,9 @@ namespace NewBizWiz.Core.OnlineSchedule
 			SubCategory = string.Empty;
 			Overview = string.Empty;
 			RateType = "CPM";
+			EnableLocation = true;
+			EnableTarget = true;
+			EnableRichMedia = true;
 		}
 
 		public string Name { get; set; }
@@ -1463,6 +1800,9 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public Decimal? Rate { get; set; }
 		public int? Width { get; set; }
 		public int? Height { get; set; }
+		public bool EnableLocation { get; set; }
+		public bool EnableTarget { get; set; }
+		public bool EnableRichMedia { get; set; }
 		public string Overview { get; set; }
 	}
 
@@ -1472,21 +1812,5 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public Image Logo { get; set; }
 		public string TooltipTitle { get; set; }
 		public string TooltipValue { get; set; }
-	}
-
-	public class SpecialLinkButton
-	{
-		public string Name { get; set; }
-		public string Type { get; set; }
-		public string Tooltip { get; set; }
-		public Image Logo { get; set; }
-		public List<string> Paths { get; private set; }
-
-		public SpecialLinkButton()
-		{
-			Name = String.Empty;
-			Type = String.Empty;
-			Paths = new List<string>();
-		}
 	}
 }

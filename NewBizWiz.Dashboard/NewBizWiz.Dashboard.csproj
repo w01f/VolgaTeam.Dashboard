@@ -167,12 +167,6 @@
     <EmbeddedResource Include="TabHomeForms\SlideSimpleSummaryControl.resx">
       <DependentUpon>SlideSimpleSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabHomeForms\SimpleSummaryOutputControl.resx">
-      <DependentUpon>SimpleSummaryOutputControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabHomeForms\SimpleSummaryOutputContainer.resx">
-      <DependentUpon>SimpleSummaryOutputContainer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="TabHomeForms\SimpleSummaryItemControl.resx">
       <DependentUpon>SimpleSummaryItemControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,18 +295,6 @@
     </Compile>
     <Compile Include="TabHomeForms\SlideSimpleSummaryControl.Designer.cs">
       <DependentUpon>SlideSimpleSummaryControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabHomeForms\SimpleSummaryOutputControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabHomeForms\SimpleSummaryOutputControl.Designer.cs">
-      <DependentUpon>SimpleSummaryOutputControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabHomeForms\SimpleSummaryOutputContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabHomeForms\SimpleSummaryOutputContainer.Designer.cs">
-      <DependentUpon>SimpleSummaryOutputContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="TabHomeForms\SimpleSummaryItemControl.cs">
       <SubType>UserControl</SubType>
@@ -462,6 +444,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\CalcButton.png" />
     <None Include="Resources\DescriptionTargetCustomers.png" />
     <None Include="Resources\DescriptionSummary.png" />
     <None Include="Resources\DescriptionLeadoff.png" />

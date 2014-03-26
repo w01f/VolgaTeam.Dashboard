@@ -49,6 +49,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			LoadSavedState();
 		}
 
+		public override string SlideName
+		{
+			get { return "Target Audience"; }
+		}
+
 		public override SuperTooltipInfo Tooltip
 		{
 			get { return _toolTip; }

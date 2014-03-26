@@ -79,6 +79,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			LoadSavedState();
 		}
 
+		public override string SlideName
+		{
+			get { return "Needs Analysis"; }
+		}
+
 		public override SuperTooltipInfo Tooltip
 		{
 			get { return _toolTip; }

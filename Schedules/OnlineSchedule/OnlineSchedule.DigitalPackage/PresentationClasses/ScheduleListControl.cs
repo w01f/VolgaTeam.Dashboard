@@ -62,7 +62,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses
 			var schedules = ScheduleManager.GetShortScheduleList().ToList();
 			gridControlFiles.DataSource = schedules;
 			var selectedSchedule = schedules.FirstOrDefault(f => currentSchedule.ScheduleFile == null || f.FullFileName.ToLower().Equals(currentSchedule.ScheduleFile.FullName.ToLower()));
-			if (selectedSchedule != null && !currentSchedule.IsNameNotAssigned)
+			if (selectedSchedule != null && !currentSchedule.IsNew)
 			{
 				gridViewFiles.FocusedRowHandle = schedules.IndexOf(selectedSchedule);
 				gridViewFiles.OptionsSelection.EnableAppearanceFocusedRow = true;

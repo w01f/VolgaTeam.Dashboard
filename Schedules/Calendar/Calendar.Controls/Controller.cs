@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.PresentationClasses;
-using NewBizWiz.Calendar.Controls.ToolForms;
 using NewBizWiz.CommonGUI.Floater;
+using NewBizWiz.CommonGUI.Gallery;
+using NewBizWiz.CommonGUI.RateCard;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
 
@@ -31,6 +33,8 @@ namespace NewBizWiz.Calendar.Controls
 		public RibbonTabItem TabHome { get; set; }
 		public RibbonTabItem TabCalendar { get; set; }
 		public RibbonTabItem TabGrid { get; set; }
+		public RibbonTabItem TabRateCard { get; set; }
+		public RibbonTabItem TabGallery { get; set; }
 
 		public void Init()
 		{
@@ -84,13 +88,24 @@ namespace NewBizWiz.Calendar.Controls
 			GridEmail.Click += CalendarVisualizer.buttonItemCalendarEmail_Click;
 			GridHelp.Click += CalendarVisualizer.buttonItemCalendarHelp_Click;
 
+			RateCard = new RateCardControl(BusinessWrapper.Instance.RateCardManager, RateCardCombo);
+			RateCardHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("ratecard");
+
+			Gallery = new CalendarGalleryControl();
+			GalleryHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
+
 			ConfigureTabPages();
+
+			Ribbon_SelectedRibbonTabChanged(Ribbon, EventArgs.Empty);
+			Ribbon.SelectedRibbonTabChanged -= Ribbon_SelectedRibbonTabChanged;
+			Ribbon.SelectedRibbonTabChanged += Ribbon_SelectedRibbonTabChanged;
 		}
 
 		public void RemoveInstance()
 		{
 			HomeControl.Dispose();
 			CalendarVisualizer.RemoveInstance();
+			Gallery.Dispose();
 			FloaterRequested = null;
 		}
 
@@ -98,6 +113,9 @@ namespace NewBizWiz.Calendar.Controls
 		{
 			HomeControl.LoadCalendar(false);
 			CalendarVisualizer.LoadData();
+
+			BusinessWrapper.Instance.RateCardManager.LoadRateCards();
+			TabRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Any();
 		}
 
 		public void UpdateScheduleTabs(bool enable)
@@ -126,6 +144,14 @@ namespace NewBizWiz.Calendar.Controls
 						TabGrid.Text = tabPageConfig.Name;
 						tabPages.Add(TabGrid);
 						break;
+					case "Ratecard":
+						TabRateCard.Text = tabPageConfig.Name;
+						tabPages.Add(TabRateCard);
+						break;
+					case "Gallery":
+						TabGallery.Text = tabPageConfig.Name;
+						tabPages.Add(TabGallery);
+						break;
 				}
 			}
 			Ribbon.Items.AddRange(tabPages.ToArray());
@@ -153,6 +179,14 @@ namespace NewBizWiz.Calendar.Controls
 			var args = new FloaterRequestedEventArgs { AfterShow = afterShow };
 			if (FloaterRequested != null)
 				FloaterRequested(null, args);
+		}
+
+		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
+		{
+			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
+				RateCard.LoadRateCards();
+			else if (Ribbon.SelectedRibbonTabItem == TabGallery)
+				Gallery.InitControl();
 		}
 
 		#region Command Controls
@@ -200,11 +234,37 @@ namespace NewBizWiz.Calendar.Controls
 		public ButtonItem GridEmail { get; set; }
 		public ButtonItem GridPowerPoint { get; set; }
 		#endregion
+
+		#region Rate Card
+		public ButtonItem RateCardHelp { get; set; }
+		public ComboBoxEdit RateCardCombo { get; set; }
+		#endregion
+
+		#region Gallery
+		public RibbonBar GalleryBrowseBar { get; set; }
+		public RibbonBar GalleryImageBar { get; set; }
+		public RibbonBar GalleryZoomBar { get; set; }
+		public RibbonBar GalleryCopyBar { get; set; }
+		public ButtonItem GalleryScreenshots { get; set; }
+		public ButtonItem GalleryAdSpecs { get; set; }
+		public ButtonItem GalleryView { get; set; }
+		public ButtonItem GalleryEdit { get; set; }
+		public ButtonItem GalleryImageSelect { get; set; }
+		public ButtonItem GalleryImageCrop { get; set; }
+		public ButtonItem GalleryZoomIn { get; set; }
+		public ButtonItem GalleryZoomOut { get; set; }
+		public ButtonItem GalleryCopy { get; set; }
+		public ButtonItem GalleryHelp { get; set; }
+		public ComboBoxEdit GallerySections { get; set; }
+		public ComboBoxEdit GalleryGroups { get; set; }
+		#endregion
 		#endregion
 
 		#region Forms
 		public HomeControl HomeControl { get; set; }
 		public CalendarVisualizer CalendarVisualizer { get; set; }
+		public RateCardControl RateCard { get; private set; }
+		public GalleryControl Gallery { get; private set; }
 		#endregion
 	}
 }

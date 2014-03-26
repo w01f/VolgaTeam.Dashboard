@@ -203,6 +203,16 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap CalcButton {
+            get {
+                object obj = ResourceManager.GetObject("CalcButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Calendar {
             get {
                 object obj = ResourceManager.GetObject("Calendar", resourceCulture);
@@ -653,16 +663,6 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap RedWarning {
-            get {
-                object obj = ResourceManager.GetObject("RedWarning", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap Save {
             get {
                 object obj = ResourceManager.GetObject("Save", resourceCulture);
@@ -723,9 +723,19 @@ namespace NewBizWiz.AdSchedule.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap TargetButton {
+        public static System.Drawing.Bitmap SummaryDigital {
             get {
-                object obj = ResourceManager.GetObject("TargetButton", resourceCulture);
+                object obj = ResourceManager.GetObject("SummaryDigital", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap SummaryPrint {
+            get {
+                object obj = ResourceManager.GetObject("SummaryPrint", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -17,16 +17,18 @@ namespace NewBizWiz.CommonGUI.Preview
 		private readonly HelpManager _helpManager;
 		private readonly Form _parentForm;
 		private readonly Action<Action> _showFloater;
+		private readonly Action _trackOutput;
 
 		public List<PreviewGroupControl> GroupControls { get; private set; }
 
-		public FormPreview(Form parentForm, IPowerPointHelper powerPointHelper, HelpManager helpManager, Action<Action> showFloater)
+		public FormPreview(Form parentForm, IPowerPointHelper powerPointHelper, HelpManager helpManager, Action<Action> showFloater, Action trackOutput = null)
 		{
 			InitializeComponent();
 			_parentForm = parentForm;
 			_powerPointHelper = powerPointHelper;
 			_helpManager = helpManager;
 			_showFloater = showFloater;
+			_trackOutput = trackOutput;
 			GroupControls = new List<PreviewGroupControl>();
 		}
 
@@ -56,7 +58,8 @@ namespace NewBizWiz.CommonGUI.Preview
 
 			RegistryHelper.MaximizeMainForm = _parentForm.WindowState == FormWindowState.Maximized;
 			RegistryHelper.MainFormHandle = _parentForm.Handle;
-
+			if (_trackOutput != null)
+				_trackOutput();
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";

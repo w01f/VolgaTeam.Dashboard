@@ -724,7 +724,8 @@ namespace NewBizWiz.Core.Interop
 						var destinationFolder = fileName.Replace(Path.GetExtension(fileName), string.Empty);
 						if (!Directory.Exists(destinationFolder))
 							Directory.CreateDirectory(destinationFolder);
-						presentation.Export(destinationFolder, "PNG");
+						if (presentation.Slides.Count > 0)
+							presentation.Export(destinationFolder, "PNG");
 					}
 					presentation.Close();
 				});

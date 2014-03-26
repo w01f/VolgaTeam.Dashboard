@@ -56,9 +56,6 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 										case "DECISIONMAKER":
 											shape.TextFrame.TextRange.Text = outputControl.DecisionMaker;
 											break;
-										case "HEADER":
-											shape.TextFrame.TextRange.Text = outputControl.Header;
-											break;
 										case "FLTDT1":
 											shape.TextFrame.TextRange.Text = outputControl.FlightDates1.Trim();
 											break;

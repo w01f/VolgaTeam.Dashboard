@@ -125,26 +125,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			if (!quickLoad)
 			{
 				AllowToSave = false;
-				comboBoxEditSchedule.Properties.Items.Clear();
-				comboBoxEditSchedule.Properties.Items.AddRange(Core.AdSchedule.ListManager.Instance.OutputHeaders.ToArray());
-				if (string.IsNullOrEmpty(LocalSchedule.ViewSettings.MultiGridViewSettings.SlideHeader))
-				{
-					if (comboBoxEditSchedule.Properties.Items.Count > 0)
-						comboBoxEditSchedule.SelectedIndex = 0;
-				}
-				else
-				{
-					int index = comboBoxEditSchedule.Properties.Items.IndexOf(LocalSchedule.ViewSettings.MultiGridViewSettings.SlideHeader);
-					if (index >= 0)
-						comboBoxEditSchedule.SelectedIndex = index;
-					else
-						comboBoxEditSchedule.SelectedIndex = 0;
-				}
-
-				laDate.Text = LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy") : string.Empty;
-				laBusinessName.Text = " " + LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
-				laDecisionMaker.Text = LocalSchedule.DecisionMaker;
-				laFlightDates.Text = " " + LocalSchedule.FlightDates;
+				laBusinessName.Text = LocalSchedule.BusinessName + (!string.IsNullOrEmpty(LocalSchedule.AccountNumber) ? (" - " + LocalSchedule.AccountNumber) : string.Empty);
+				laFlightDates.Text = LocalSchedule.FlightDates;
 
 				PrepareInserts();
 				gridControlPublication.DataSource = _inserts;
@@ -168,7 +150,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			UpdateSlideBullets();
 			AllowToSave = true;
 			SettingsNotSaved = false;
-			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, false, true, this);
 		}
 
 		public void OpenHelp()
@@ -318,10 +300,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void SetSlideHeader()
 		{
-			comboBoxEditSchedule.Enabled = SlideHeaderState.ShowSlideHeader;
 			laBusinessName.Enabled = SlideHeaderState.ShowAdvertiser;
-			laDate.Enabled = SlideHeaderState.ShowPresentationDate;
-			laDecisionMaker.Enabled = SlideHeaderState.ShowDecisionMaker;
 			laFlightDates.Enabled = SlideHeaderState.ShowFlightDates;
 		}
 
@@ -588,15 +567,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		#endregion
 
 		#region Editor's Events
-		private void comboBoxEditSchedule_EditValueChanged(object sender, EventArgs e)
-		{
-			if (AllowToSave)
-			{
-				LocalSchedule.ViewSettings.MultiGridViewSettings.SlideHeader = comboBoxEditSchedule.EditValue != null ? comboBoxEditSchedule.EditValue.ToString() : string.Empty;
-				SettingsNotSaved = true;
-			}
-		}
-
 		private void textEditHeader_Leave(object sender, EventArgs e)
 		{
 			_activeCol.Caption = textEditHeader.Text;
@@ -802,25 +772,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintMultiGrid).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiGrid)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintMultiGrid))); }
 		}
 
-		public string Header
-		{
-			get
-			{
-				string result = string.Empty;
-				if (comboBoxEditSchedule.EditValue != null && SlideHeaderState.ShowSlideHeader)
-					result = comboBoxEditSchedule.EditValue.ToString();
-				return result;
-			}
-		}
-
 
 		public string PresentationDate
 		{
 			get
 			{
 				string result = string.Empty;
-				if (SlideHeaderState.ShowPresentationDate)
-					result = laDate.Text;
+				if (SlideHeaderState.ShowPresentationDate && LocalSchedule.PresentationDate.HasValue)
+					result = LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy");
 				return result;
 			}
 		}
@@ -842,7 +801,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				string result = string.Empty;
 				if (SlideHeaderState.ShowDecisionMaker)
-					result = laDecisionMaker.Text.Trim();
+					result = LocalSchedule.DecisionMaker;
 				return result;
 			}
 		}
@@ -1036,8 +995,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; set; }
 
+		private void TrackOutput()
+		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabMultiGrid.Text, LocalSchedule.BusinessName, (decimal)LocalSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
+		}
+
 		public void PrintOutput()
 		{
+			TrackOutput();
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -1091,7 +1056,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+				using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
 				{
 					formPreview.Text = "Preview Logo Grid";
 					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

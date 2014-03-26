@@ -28,18 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-			this.pnHeader = new System.Windows.Forms.Panel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.laFlightDates = new System.Windows.Forms.Label();
 			this.laBusinessName = new System.Windows.Forms.Label();
-			this.laDecisionMaker = new System.Windows.Forms.Label();
-			this.laDate = new System.Windows.Forms.Label();
 			this.textEditHeader = new DevExpress.XtraEditors.TextEdit();
-			this.comboBoxEditSchedule = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.pnLine = new System.Windows.Forms.Panel();
 			this.pnTopHeader = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.gridControlPublication = new DevExpress.XtraGrid.GridControl();
@@ -70,9 +64,7 @@
 			this.gridColumnImage = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repositoryItemPictureEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
 			this.gridColumnPercentOfPage = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.pnHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.textEditHeader.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSchedule.Properties)).BeginInit();
 			this.pnTopHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPublication)).BeginInit();
@@ -91,67 +83,31 @@
 			// 
 			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
 			// 
-			// pnHeader
-			// 
-			this.pnHeader.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pnHeader.Controls.Add(this.laFlightDates);
-			this.pnHeader.Controls.Add(this.laBusinessName);
-			this.pnHeader.Controls.Add(this.laDecisionMaker);
-			this.pnHeader.Controls.Add(this.laDate);
-			this.pnHeader.Controls.Add(this.textEditHeader);
-			this.pnHeader.Controls.Add(this.comboBoxEditSchedule);
-			this.pnHeader.Controls.Add(this.pnLine);
-			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnHeader.Location = new System.Drawing.Point(0, 30);
-			this.pnHeader.Name = "pnHeader";
-			this.pnHeader.Size = new System.Drawing.Size(792, 111);
-			this.pnHeader.TabIndex = 0;
-			// 
 			// laFlightDates
 			// 
-			this.laFlightDates.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic);
-			this.laFlightDates.Location = new System.Drawing.Point(3, 82);
+			this.laFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.laFlightDates.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laFlightDates.Location = new System.Drawing.Point(304, 5);
 			this.laFlightDates.Name = "laFlightDates";
-			this.laFlightDates.Size = new System.Drawing.Size(391, 20);
+			this.laFlightDates.Size = new System.Drawing.Size(185, 20);
 			this.laFlightDates.TabIndex = 50;
 			this.laFlightDates.Text = "Flight Dates Tag";
-			this.laFlightDates.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.laFlightDates.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// laBusinessName
 			// 
-			this.laBusinessName.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic);
-			this.laBusinessName.Location = new System.Drawing.Point(3, 55);
+			this.laBusinessName.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laBusinessName.Location = new System.Drawing.Point(5, 6);
 			this.laBusinessName.Name = "laBusinessName";
-			this.laBusinessName.Size = new System.Drawing.Size(391, 18);
+			this.laBusinessName.Size = new System.Drawing.Size(300, 18);
 			this.laBusinessName.TabIndex = 49;
 			this.laBusinessName.Text = "Business Name Tag";
 			this.laBusinessName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// laDecisionMaker
-			// 
-			this.laDecisionMaker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.laDecisionMaker.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic);
-			this.laDecisionMaker.Location = new System.Drawing.Point(537, 56);
-			this.laDecisionMaker.Name = "laDecisionMaker";
-			this.laDecisionMaker.Size = new System.Drawing.Size(248, 16);
-			this.laDecisionMaker.TabIndex = 48;
-			this.laDecisionMaker.Text = "Decision-Maker Tag";
-			this.laDecisionMaker.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// laDate
-			// 
-			this.laDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.laDate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic);
-			this.laDate.Location = new System.Drawing.Point(530, 17);
-			this.laDate.Name = "laDate";
-			this.laDate.Size = new System.Drawing.Size(255, 20);
-			this.laDate.TabIndex = 47;
-			this.laDate.Text = "Date Tag";
-			this.laDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
 			// textEditHeader
 			// 
-			this.textEditHeader.Location = new System.Drawing.Point(530, 67);
+			this.textEditHeader.Location = new System.Drawing.Point(615, 90);
 			this.textEditHeader.Name = "textEditHeader";
 			this.textEditHeader.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.textEditHeader.Properties.Appearance.Options.UseFont = true;
@@ -166,33 +122,12 @@
 			this.textEditHeader.TabIndex = 46;
 			this.textEditHeader.Leave += new System.EventHandler(this.textEditHeader_Leave);
 			// 
-			// comboBoxEditSchedule
-			// 
-			this.comboBoxEditSchedule.Location = new System.Drawing.Point(5, 9);
-			this.comboBoxEditSchedule.Name = "comboBoxEditSchedule";
-			this.comboBoxEditSchedule.Properties.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.comboBoxEditSchedule.Properties.Appearance.Options.UseFont = true;
-			this.comboBoxEditSchedule.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.comboBoxEditSchedule.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditSchedule.Size = new System.Drawing.Size(389, 28);
-			this.comboBoxEditSchedule.TabIndex = 43;
-			this.comboBoxEditSchedule.EditValueChanged += new System.EventHandler(this.comboBoxEditSchedule_EditValueChanged);
-			// 
-			// pnLine
-			// 
-			this.pnLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.pnLine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pnLine.Location = new System.Drawing.Point(2, 43);
-			this.pnLine.Name = "pnLine";
-			this.pnLine.Size = new System.Drawing.Size(785, 1);
-			this.pnLine.TabIndex = 12;
-			// 
 			// pnTopHeader
 			// 
 			this.pnTopHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnTopHeader.Controls.Add(this.laFlightDates);
 			this.pnTopHeader.Controls.Add(this.hyperLinkEditReset);
+			this.pnTopHeader.Controls.Add(this.laBusinessName);
 			this.pnTopHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTopHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnTopHeader.Name = "pnTopHeader";
@@ -224,7 +159,7 @@
 			// gridControlPublication
 			// 
 			this.gridControlPublication.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControlPublication.Location = new System.Drawing.Point(0, 141);
+			this.gridControlPublication.Location = new System.Drawing.Point(0, 30);
 			this.gridControlPublication.MainView = this.gridViewPublications;
 			this.gridControlPublication.Name = "gridControlPublication";
 			this.gridControlPublication.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -235,7 +170,7 @@
             this.repositoryItemDate,
             this.repositoryItemPictureEdit,
             this.repositoryItemTextEdit});
-			this.gridControlPublication.Size = new System.Drawing.Size(792, 289);
+			this.gridControlPublication.Size = new System.Drawing.Size(792, 400);
 			this.gridControlPublication.TabIndex = 5;
 			this.gridControlPublication.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPublications});
@@ -661,14 +596,12 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.AliceBlue;
 			this.Controls.Add(this.gridControlPublication);
-			this.Controls.Add(this.pnHeader);
+			this.Controls.Add(this.textEditHeader);
 			this.Controls.Add(this.pnTopHeader);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "OutputMultiGridControl";
 			this.Size = new System.Drawing.Size(792, 430);
-			this.pnHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.textEditHeader.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSchedule.Properties)).EndInit();
 			this.pnTopHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPublication)).EndInit();
@@ -687,10 +620,7 @@
 
         #endregion
 
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        private System.Windows.Forms.Panel pnHeader;
-        private System.Windows.Forms.Panel pnLine;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSchedule;
+		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		private System.Windows.Forms.Panel pnTopHeader;
         public DevExpress.XtraGrid.GridControl gridControlPublication;
         public DevExpress.XtraGrid.Views.Grid.GridView gridViewPublications;
@@ -720,9 +650,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnImage;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit;
         public DevExpress.XtraGrid.Columns.GridColumn gridColumnPercentOfPage;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit;
-        private System.Windows.Forms.Label laDate;
-        private System.Windows.Forms.Label laDecisionMaker;
+		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit;
         private System.Windows.Forms.Label laBusinessName;
         private System.Windows.Forms.Label laFlightDates;
 		private DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;

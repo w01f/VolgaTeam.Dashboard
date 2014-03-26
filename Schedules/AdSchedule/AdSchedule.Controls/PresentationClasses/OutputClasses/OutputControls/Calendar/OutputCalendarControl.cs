@@ -298,7 +298,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			_selectedMonth.RefreshData();
 			AllowToSave = true;
 			SettingsNotSaved = false;
-			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, false, true, this);
 		}
 
 		public void OpenHelp()
@@ -375,6 +375,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		}
 
 		#region Output Staff
+		private void TrackOutput()
+		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabCalendar.Text, LocalSchedule.BusinessName, (decimal)LocalSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
+		}
+
 		public void PrintOutput()
 		{
 			if (_selectedMonth == null) return;
@@ -402,6 +407,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			else
 				selectedMonths.AddRange(monthViews);
 			if (!selectedMonths.Any()) return;
+			TrackOutput();
 			using (var formProgress = new FormProgress())
 			{
 				Enabled = false;
@@ -518,7 +524,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
 			{
 				formPreview.Text = "Preview Advertising Calendar";
 				formPreview.LoadGroups(previewGroups);

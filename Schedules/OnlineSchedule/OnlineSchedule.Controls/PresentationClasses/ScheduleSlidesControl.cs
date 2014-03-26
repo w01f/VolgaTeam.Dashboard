@@ -27,25 +27,26 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			});
 		}
 
-		public Schedule LocalSchedule { get; set; }
-
 		public override HelpManager HelpManager
 		{
 			get { return BusinessWrapper.Instance.HelpManager; }
+		}
+
+		protected override string SlideName
+		{
+			get { return Controller.Instance.TabScheduleSlides.Text; }
 		}
 
 		public bool AllowToLeaveControl
 		{
 			get
 			{
-				bool result = false;
+				var result = false;
 				if (SettingsNotSaved)
 				{
-					if (Utilities.Instance.ShowWarningQuestion("Schedule settings have changed.\nDo you want to save changes?") == DialogResult.Yes)
-					{
-						if (SaveSchedule())
-							result = true;
-					}
+					if (Utilities.Instance.ShowWarningQuestion("Schedule settings have changed.\nDo you want to save changes?") != DialogResult.Yes) return result;
+					if (SaveSchedule())
+						result = true;
 				}
 				else
 					result = true;
@@ -93,6 +94,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				}
 				_tabPages.Sort((x, y) => x.Product.Index.CompareTo(y.Product.Index));
 				xtraTabControlProducts.TabPages.AddRange(_tabPages.ToArray());
+
+				var summaryControl = new DigitalSummaryControl(this);
+				summaryControl.UpdateControls(_tabPages.Select(tp => tp.SummaryControl));
+				xtraTabControlProducts.TabPages.Add(summaryControl);
+
 				Application.DoEvents();
 				xtraTabControlProducts.ResumeLayout();
 
@@ -126,9 +132,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		protected override bool SaveSchedule(string scheduleName = "")
 		{
 			base.SaveSchedule(scheduleName);
-			if (!string.IsNullOrEmpty(scheduleName))
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			if (nameChanged)
 				LocalSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
+			Controller.Instance.SaveSchedule((Schedule)LocalSchedule, nameChanged, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}
@@ -145,16 +152,14 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			{
 				from.Text = "Save Schedule";
 				from.laLogo.Text = "Please set a new name for your Schedule:";
-				if (from.ShowDialog() == DialogResult.OK)
+				if (@from.ShowDialog() != DialogResult.OK) return;
+				if (!string.IsNullOrEmpty(@from.ScheduleName))
 				{
-					if (!string.IsNullOrEmpty(from.ScheduleName))
-					{
-						if (SaveSchedule(from.ScheduleName))
-							Utilities.Instance.ShowInformation("Schedule was saved");
-					}
-					else
-						Utilities.Instance.ShowWarning("Schedule Name can't be empty");
+					if (SaveSchedule(@from.ScheduleName))
+						Utilities.Instance.ShowInformation("Schedule was saved");
 				}
+				else
+					Utilities.Instance.ShowWarning("Schedule Name can't be empty");
 			}
 		}
 
@@ -163,7 +168,15 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			BusinessWrapper.Instance.HelpManager.OpenHelpLink("Slides");
 		}
 
-		public override void OutputSlides(IEnumerable<DigitalProductControl> tabsForOutput)
+		protected override IEnumerable<UserActivity> TrackOutput(IEnumerable<DigitalProductControl> tabsForOutput)
+		{
+			var activities = base.TrackOutput(tabsForOutput);
+			foreach (var activity in activities)
+				BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+			return activities;
+		}
+
+		public override void OutputSlides(IEnumerable<IDigitalOutputControl> tabsForOutput)
 		{
 			using (var formProgress = new FormProgress())
 			{
@@ -179,15 +192,15 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 		}
 
-		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups)
+		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackOutput))
 			{
 				formPreview.Text = "Preview Digital Product";
 				formPreview.LoadGroups(previewGroups);
 				RegistryHelper.MainFormHandle = formPreview.Handle;
 				RegistryHelper.MaximizeMainForm = false;
-				DialogResult previewResult = formPreview.ShowDialog();
+				var previewResult = formPreview.ShowDialog();
 				RegistryHelper.MaximizeMainForm = _formContainer.WindowState == FormWindowState.Maximized;
 				RegistryHelper.MainFormHandle = _formContainer.Handle;
 				if (previewResult != DialogResult.OK)

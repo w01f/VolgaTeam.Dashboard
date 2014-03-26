@@ -50,6 +50,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get { return Controller.Instance.AdPlanTheme; }
 		}
 
+		public override RibbonBar SpecialButtonsGroup
+		{
+			get { return Controller.Instance.AdPlanSpecialButtons; }
+		}
+
 		public override void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
@@ -152,9 +157,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		protected override void SaveSchedule(string scheduleName = "")
 		{
-			if (!string.IsNullOrEmpty(scheduleName))
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			if (nameChanged)
 				LocalSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule(LocalSchedule, false, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, this);
 		}
 
 		public override Theme SelectedTheme
@@ -162,8 +168,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get { return ThemeManager.GetThemes(SlideType.PrintAdPlan).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintAdPlan)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintAdPlan))); }
 		}
 
+		private void TrackOutput()
+		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabAdPlan.Text, LocalSchedule.BusinessName, ProductPages.Select(p => p.Investment).Sum()));
+		}
+
 		protected override void OutputSlides()
 		{
+			TrackOutput();
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -179,7 +191,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		protected override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
 			{
 				formPreview.Text = "Preview AdPlan";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

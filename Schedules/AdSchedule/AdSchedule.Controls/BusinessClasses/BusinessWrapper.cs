@@ -1,8 +1,8 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using NewBizWiz.CommonGUI.RateCard;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 
@@ -18,9 +18,11 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 			ScheduleManager = new ScheduleManager();
 			HelpManager = new HelpManager(Core.AdSchedule.SettingsManager.Instance.HelpLinksPath);
 			OutputManager = new OutputManager();
-			RateCardManager = new RateCardManager(Core.AdSchedule.SettingsManager.Instance.RateCardPath);
+			RateCardManager = new RateCardManager(Core.Common.SettingsManager.Instance.RateCardPath);
 			TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "adsched_tab_names.xml"));
 			ThemeManager = new ThemeManager(Path.Combine(Core.Common.SettingsManager.Instance.ThemeCollectionPath, Core.Common.SettingsManager.Instance.SlideMasterFolder));
+			GalleryManager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery.xml"));
+			ActivityManager = new ActivityManager("ad_schedule");
 			_themeSaveHelper = new ThemeSaveHelper(ThemeManager);
 			LoadLocalSettings();
 		}
@@ -36,6 +38,8 @@ namespace NewBizWiz.AdSchedule.Controls.BusinessClasses
 		public RateCardManager RateCardManager { get; private set; }
 		public TabPageManager TabPageManager { get; private set; }
 		public ThemeManager ThemeManager { get; private set; }
+		public ActivityManager ActivityManager { get; private set; }
+		public GalleryManager GalleryManager { get; private set; }
 
 		public string GetSelectedTheme(SlideType slideType)
 		{

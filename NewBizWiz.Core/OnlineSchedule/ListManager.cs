@@ -26,6 +26,12 @@ namespace NewBizWiz.Core.OnlineSchedule
 			ColumnPositions = new List<string>();
 			SpecialLinksGroupName = String.Empty;
 			SpecialLinkButtons = new List<SpecialLinkButton>();
+			SpecialLinkBrowsers = new List<string>();
+			TargetingRecods = new List<ProductInfo>();
+			RichMediaRecods = new List<ProductInfo>();
+			DefaultHomeViewSettings = new HomeViewSettings();
+			DefaultDigitalProductSettings = new DigitalProductSettings();
+			DefaultDigitalPackageSettings = new DigitalPackageSettings();
 
 			string imageFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\DIGITAL\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			string folderPath = Path.Combine(imageFolderPath, "Big Logos");
@@ -55,18 +61,26 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public DirectoryInfo XtraTinyImageFolder { get; set; }
 		public List<ImageSource> Images { get; set; }
 
-		public List<string> SlideHeaders { get; set; }
-		public List<string> Websites { get; set; }
-		public List<string> Strengths { get; set; }
-		public List<string> PricingStrategies { get; set; }
-		public List<string> ColumnPositions { get; set; }
-		public List<Category> Categories { get; set; }
-		public List<ProductSource> ProductSources { get; set; }
-		public List<string> Statuses { get; set; }
+		public List<string> SlideHeaders { get; private set; }
+		public List<string> Websites { get; private set; }
+		public List<string> Strengths { get; private set; }
+		public List<string> PricingStrategies { get; private set; }
+		public List<string> ColumnPositions { get; private set; }
+		public List<Category> Categories { get; private set; }
+		public List<ProductSource> ProductSources { get; private set; }
+		public List<string> Statuses { get; private set; }
 		public FormulaType DefaultFormula { get; set; }
 		public bool LockedMode { get; set; }
+		public bool SpecialLinksEnable { get; set; }
 		public string SpecialLinksGroupName { get; set; }
-		public List<SpecialLinkButton> SpecialLinkButtons { get; set; }
+		public List<string> SpecialLinkBrowsers { get; private set; }
+		public List<SpecialLinkButton> SpecialLinkButtons { get; private set; }
+		public List<ProductInfo> TargetingRecods { get; set; }
+		public List<ProductInfo> RichMediaRecods { get; set; }
+
+		public HomeViewSettings DefaultHomeViewSettings { get; private set; }
+		public DigitalProductSettings DefaultDigitalProductSettings { get; private set; }
+		public DigitalPackageSettings DefaultDigitalPackageSettings { get; private set; }
 
 		public static ListManager Instance
 		{
@@ -79,22 +93,20 @@ namespace NewBizWiz.Core.OnlineSchedule
 			if (BigImageFolder == null || SmallImageFolder == null || TinyImageFolder == null || XtraTinyImageFolder == null) return;
 			foreach (var bigImageFile in BigImageFolder.GetFiles("*.png"))
 			{
-				string imageFileName = Path.GetFileNameWithoutExtension(bigImageFile.FullName);
-				string imageFileExtension = Path.GetExtension(bigImageFile.FullName);
+				var imageFileName = Path.GetFileNameWithoutExtension(bigImageFile.FullName);
+				var imageFileExtension = Path.GetExtension(bigImageFile.FullName);
 
-				string smallImageFilePath = Path.Combine(SmallImageFolder.FullName, string.Format("{0}2{1}", new[] { imageFileName, imageFileExtension }));
-				string tinyImageFilePath = Path.Combine(TinyImageFolder.FullName, string.Format("{0}3{1}", new[] { imageFileName, imageFileExtension }));
-				string xtraTinyImageFilePath = Path.Combine(XtraTinyImageFolder.FullName, string.Format("{0}4{1}", new[] { imageFileName, imageFileExtension }));
-				if (File.Exists(smallImageFilePath) && File.Exists(tinyImageFilePath) && File.Exists(xtraTinyImageFilePath))
-				{
-					var imageSource = new ImageSource();
-					imageSource.IsDefault = bigImageFile.Name.ToLower().Contains("default");
-					imageSource.BigImage = new Bitmap(bigImageFile.FullName);
-					imageSource.SmallImage = new Bitmap(smallImageFilePath);
-					imageSource.TinyImage = new Bitmap(tinyImageFilePath);
-					imageSource.XtraTinyImage = new Bitmap(xtraTinyImageFilePath);
-					Images.Add(imageSource);
-				}
+				var smallImageFilePath = Path.Combine(SmallImageFolder.FullName, string.Format("{0}2{1}", new[] { imageFileName, imageFileExtension }));
+				var tinyImageFilePath = Path.Combine(TinyImageFolder.FullName, string.Format("{0}3{1}", new[] { imageFileName, imageFileExtension }));
+				var xtraTinyImageFilePath = Path.Combine(XtraTinyImageFolder.FullName, string.Format("{0}4{1}", new[] { imageFileName, imageFileExtension }));
+				if (!File.Exists(smallImageFilePath) || !File.Exists(tinyImageFilePath) || !File.Exists(xtraTinyImageFilePath)) continue;
+				var imageSource = new ImageSource();
+				imageSource.IsDefault = bigImageFile.Name.ToLower().Contains("default");
+				imageSource.BigImage = new Bitmap(bigImageFile.FullName);
+				imageSource.SmallImage = new Bitmap(smallImageFilePath);
+				imageSource.TinyImage = new Bitmap(tinyImageFilePath);
+				imageSource.XtraTinyImage = new Bitmap(xtraTinyImageFilePath);
+				Images.Add(imageSource);
 			}
 		}
 
@@ -111,125 +123,156 @@ namespace NewBizWiz.Core.OnlineSchedule
 			document.Load(listPath);
 
 			var node = document.SelectSingleNode(@"/OnlineStrategy");
-			if (node != null)
+			if (node == null) return;
+			foreach (XmlNode childeNode in node.ChildNodes)
 			{
-				foreach (XmlNode childeNode in node.ChildNodes)
+				switch (childeNode.Name)
 				{
-					switch (childeNode.Name)
-					{
-						case "Header":
-							foreach (XmlAttribute attribute in childeNode.Attributes)
+					case "Header":
+						foreach (XmlAttribute attribute in childeNode.Attributes)
+						{
+							switch (attribute.Name)
 							{
-								switch (attribute.Name)
-								{
-									case "Value":
-										if (!string.IsNullOrEmpty(attribute.Value) && !SlideHeaders.Contains(attribute.Value))
-											SlideHeaders.Add(attribute.Value);
-										break;
-								}
-							}
-							break;
-						case "Site":
-							foreach (XmlAttribute attribute in childeNode.Attributes)
-							{
-								switch (attribute.Name)
-								{
-									case "Value":
-										if (!string.IsNullOrEmpty(attribute.Value) && !Websites.Contains(attribute.Value))
-											Websites.Add(attribute.Value);
-										break;
-								}
-							}
-							break;
-						case "Strength":
-							foreach (XmlAttribute attribute in childeNode.Attributes)
-							{
-								switch (attribute.Name)
-								{
-									case "Value":
-										if (!string.IsNullOrEmpty(attribute.Value) && !Strengths.Contains(attribute.Value))
-											Strengths.Add(attribute.Value);
-										break;
-								}
-							}
-							break;
-						case "PricingStrategy":
-							foreach (XmlAttribute attribute in childeNode.Attributes)
-							{
-								switch (attribute.Name)
-								{
-									case "Value":
-										if (!string.IsNullOrEmpty(attribute.Value) && !PricingStrategies.Contains(attribute.Value))
-											PricingStrategies.Add(attribute.Value);
-										break;
-								}
-							}
-							break;
-						case "PositionColumn":
-							foreach (XmlAttribute attribute in childeNode.Attributes)
-							{
-								switch (attribute.Name)
-								{
-									case "Value":
-										if (!string.IsNullOrEmpty(attribute.Value) && !ColumnPositions.Contains(attribute.Value))
-											ColumnPositions.Add(attribute.Value);
-										break;
-								}
-							}
-							break;
-						case "DefaultFormula":
-							switch (childeNode.InnerText.ToLower().Trim())
-							{
-								case "cpm":
-									DefaultFormula = FormulaType.CPM;
-									break;
-								case "investment":
-									DefaultFormula = FormulaType.Investment;
-									break;
-								case "impressions":
-									DefaultFormula = FormulaType.Impressions;
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value) && !SlideHeaders.Contains(attribute.Value))
+										SlideHeaders.Add(attribute.Value);
 									break;
 							}
-							break;
-						case "LockedMode":
+						}
+						break;
+					case "Site":
+						foreach (XmlAttribute attribute in childeNode.Attributes)
+						{
+							switch (attribute.Name)
 							{
-								bool temp;
-								if (Boolean.TryParse(childeNode.InnerText, out temp))
-									LockedMode = temp;
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value) && !Websites.Contains(attribute.Value))
+										Websites.Add(attribute.Value);
+									break;
 							}
-							break;
-						case "SpecialButtonsGroupName":
-							SpecialLinksGroupName = childeNode.InnerText;
-							break;
-						case "SpecialButton":
-							var specialLinkButton = new SpecialLinkButton();
-							GetSpecialButton(childeNode, ref specialLinkButton);
-							if (!String.IsNullOrEmpty(specialLinkButton.Name) && !String.IsNullOrEmpty(specialLinkButton.Type) && specialLinkButton.Paths.Any())
-								SpecialLinkButtons.Add(specialLinkButton);
-							break;
-						case "Category":
-							var category = new Category();
-							GetCategories(childeNode, ref category);
-							if (!string.IsNullOrEmpty(category.Name))
-								Categories.Add(category);
-							break;
-						case "Product":
-							var productSource = new ProductSource();
-							GetProductProperties(childeNode, ref productSource);
-							if (!string.IsNullOrEmpty(productSource.Name))
-								ProductSources.Add(productSource);
-							break;
-						case "Status":
-							foreach (XmlAttribute attribute in childeNode.Attributes)
-								switch (attribute.Name)
-								{
-									case "Value":
-										if (!Statuses.Contains(attribute.Value))
-											Statuses.Add(attribute.Value);
-										break;
-								}
-							break;
-					}
+						}
+						break;
+					case "Strength":
+						foreach (XmlAttribute attribute in childeNode.Attributes)
+						{
+							switch (attribute.Name)
+							{
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value) && !Strengths.Contains(attribute.Value))
+										Strengths.Add(attribute.Value);
+									break;
+							}
+						}
+						break;
+					case "PricingStrategy":
+						foreach (XmlAttribute attribute in childeNode.Attributes)
+						{
+							switch (attribute.Name)
+							{
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value) && !PricingStrategies.Contains(attribute.Value))
+										PricingStrategies.Add(attribute.Value);
+									break;
+							}
+						}
+						break;
+					case "PositionColumn":
+						foreach (XmlAttribute attribute in childeNode.Attributes)
+						{
+							switch (attribute.Name)
+							{
+								case "Value":
+									if (!string.IsNullOrEmpty(attribute.Value) && !ColumnPositions.Contains(attribute.Value))
+										ColumnPositions.Add(attribute.Value);
+									break;
+							}
+						}
+						break;
+					case "DefaultFormula":
+						switch (childeNode.InnerText.ToLower().Trim())
+						{
+							case "cpm":
+								DefaultFormula = FormulaType.CPM;
+								break;
+							case "investment":
+								DefaultFormula = FormulaType.Investment;
+								break;
+							case "impressions":
+								DefaultFormula = FormulaType.Impressions;
+								break;
+						}
+						break;
+					case "LockedMode":
+						{
+							bool temp;
+							if (Boolean.TryParse(childeNode.InnerText, out temp))
+								LockedMode = temp;
+						}
+						break;
+					case "SpecialLinksEnable":
+						{
+							bool temp;
+							if (Boolean.TryParse(childeNode.InnerText, out temp))
+								SpecialLinksEnable = temp;
+						}
+						break;
+					case "SpecialButtonsGroupName":
+						SpecialLinksGroupName = childeNode.InnerText;
+						break;
+					case "Browser":
+						SpecialLinkBrowsers.Add(childeNode.InnerText);
+						break;
+					case "SpecialButton":
+						var specialLinkButton = new SpecialLinkButton();
+						GetSpecialButton(childeNode, ref specialLinkButton);
+						if (!String.IsNullOrEmpty(specialLinkButton.Name) && !String.IsNullOrEmpty(specialLinkButton.Type) && specialLinkButton.Paths.Any())
+							SpecialLinkButtons.Add(specialLinkButton);
+						break;
+					case "Targeting":
+						{
+							var productInfo = new ProductInfo { Type = ProductInfoType.Targeting };
+							productInfo.Deserialize(childeNode);
+							TargetingRecods.Add(productInfo);
+						}
+						break;
+					case "RichMedia":
+						{
+							var productInfo = new ProductInfo { Type = ProductInfoType.RichMedia };
+							productInfo.Deserialize(childeNode);
+							RichMediaRecods.Add(productInfo);
+						}
+						break;
+					case "Category":
+						var category = new Category();
+						GetCategories(childeNode, ref category);
+						if (!string.IsNullOrEmpty(category.Name))
+							Categories.Add(category);
+						break;
+					case "Product":
+						var productSource = new ProductSource();
+						GetProductProperties(childeNode, ref productSource);
+						if (!string.IsNullOrEmpty(productSource.Name))
+							ProductSources.Add(productSource);
+						break;
+					case "Status":
+						foreach (XmlAttribute attribute in childeNode.Attributes)
+							switch (attribute.Name)
+							{
+								case "Value":
+									if (!Statuses.Contains(attribute.Value))
+										Statuses.Add(attribute.Value);
+									break;
+							}
+						break;
+					case "DefaultHomeViewSettings":
+						DefaultHomeViewSettings.Deserialize(childeNode);
+						break;
+					case "DefaultDigitalProductSettings":
+						DefaultDigitalProductSettings.Deserialize(childeNode);
+						break;
+					case "DefaultDigitalPackageSettings":
+						DefaultDigitalPackageSettings.Deserialize(childeNode);
+						break;
 				}
 			}
 		}
@@ -274,6 +317,27 @@ namespace NewBizWiz.Core.OnlineSchedule
 							productSource.Height = tempInt;
 						else
 							productSource.Height = null;
+						break;
+					case "EnableTarget":
+						{
+							bool temp;
+							if (Boolean.TryParse(attribute.Value, out temp))
+								productSource.EnableTarget = temp;
+						}
+						break;
+					case "EnableLocation":
+						{
+							bool temp;
+							if (Boolean.TryParse(attribute.Value, out temp))
+								productSource.EnableLocation = temp;
+						}
+						break;
+					case "EnableRichMedia":
+						{
+							bool temp;
+							if (Boolean.TryParse(attribute.Value, out temp))
+								productSource.EnableRichMedia = temp;
+						}
 						break;
 				}
 			}

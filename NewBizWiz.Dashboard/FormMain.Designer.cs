@@ -229,7 +229,6 @@ namespace NewBizWiz.Dashboard
 			this.ribbonControl.SystemText.QatRemoveItemText = "&Remove from Quick Access Toolbar";
 			this.ribbonControl.TabGroupHeight = 14;
 			this.ribbonControl.TabIndex = 5;
-			this.ribbonControl.SelectedRibbonTabChanged += new System.EventHandler(this.ribbonControl_SelectedRibbonTabChanged);
 			// 
 			// ribbonPanelHome
 			// 

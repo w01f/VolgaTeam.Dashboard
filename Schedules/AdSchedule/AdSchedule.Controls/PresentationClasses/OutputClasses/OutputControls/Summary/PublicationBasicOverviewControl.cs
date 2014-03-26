@@ -4,7 +4,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
@@ -119,11 +118,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditAvgPCIRate.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableAvgPCI;
 			checkEditTotalCost.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableInvestment;
 			checkEditTotalDiscounts.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableDiscounts;
-			checkEditInvestmentDetailsPicture.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowInvestmentDetails;
 			checkEditAvgADRate.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowAvgAdCost;
 			checkEditAvgPCIRate.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowAvgPCI;
 			checkEditTotalCost.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowInvestment;
 			checkEditTotalDiscounts.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowDiscounts && PrintProduct.TotalDiscountRate > 0;
+			checkEditInvestmentDetailsPicture.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowInvestmentDetails &&
+				(PrintProduct.ViewSettings.BasicOverviewSettings.ShowAvgAdCost ||
+				PrintProduct.ViewSettings.BasicOverviewSettings.ShowAvgPCI ||
+				PrintProduct.ViewSettings.BasicOverviewSettings.ShowInvestment ||
+				(PrintProduct.ViewSettings.BasicOverviewSettings.ShowDiscounts && PrintProduct.TotalDiscountRate > 0));
 
 			checkEditRunDatesComment.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableComments;
 			checkEditDates.Enabled = PrintProduct.ViewSettings.BasicOverviewSettings.EnableDates;
@@ -133,30 +136,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditDates.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowDates;
 			checkEditFlightDates2.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates2;
 
-			_allowToSave = true;
-		}
-
-		public void LoadExternalOption()
-		{
-			_allowToSave = false;
-			Controller.Instance.BasicOverviewBusinessNameCheck.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowAdvertiser;
-			Controller.Instance.BasicOverviewDecisionMakerCheck.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowDecisionMaker;
-			Controller.Instance.BasicOverviewPresentationDateCheck.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowPresentationDate;
-			Controller.Instance.BasicOverviewHeaderCheck.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowSlideHeader;
-			if (string.IsNullOrEmpty(PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader))
-			{
-				if (Controller.Instance.BasicOverviewHeaderText.Properties.Items.Count > 0)
-					Controller.Instance.BasicOverviewHeaderText.SelectedIndex = 0;
-			}
-			else
-			{
-				var index = Controller.Instance.BasicOverviewHeaderText.Properties.Items.IndexOf(PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader);
-				Controller.Instance.BasicOverviewHeaderText.SelectedIndex = index >= 0 ? index : 0;
-			}
-			PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader = Controller.Instance.BasicOverviewHeaderText.EditValue as String ?? String.Empty;
-			_parent.checkEditFlightDates.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates;
-			_parent.checkEditProductName.Text = PrintProduct.Name.Replace("&", "&&");
-			_parent.checkEditProductName.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowName;
 			_allowToSave = true;
 		}
 
@@ -173,12 +152,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		#region Check Event Handlers
 		public void OnOptionChanged(object sender)
 		{
-			if (sender == Controller.Instance.BasicOverviewHeaderCheck)
-				checkEditHeader_CheckedChanged();
-			else if (sender == Controller.Instance.BasicOverviewHeaderText)
-				comboBoxEditHeader_EditValueChanged();
-			else if (sender is CheckBoxItem)
-				checkEdit_CheckedChanged(sender, EventArgs.Empty);
+			checkEdit_CheckedChanged(sender, EventArgs.Empty);
 		}
 
 		private void checkEditTextEdit_CheckedChanged(object sender, EventArgs e)
@@ -199,7 +173,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowPageSize = checkEditPageSize.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowPercentOfPage = checkEditPercentOfPage.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowAdSizeDetails = checkEditAdSizePicture.Checked;
-			PrintProduct.ViewSettings.BasicOverviewSettings.ShowAdvertiser = Controller.Instance.BasicOverviewBusinessNameCheck.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowAvgAdCost = checkEditAvgADRate.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowAvgPCI = checkEditAvgPCIRate.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowColor = checkEditColor.Checked;
@@ -207,33 +180,19 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowComments = checkEditRunDatesComment.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowDateDetails = checkEditDatesPicture.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowDates = checkEditDates.Checked;
-			PrintProduct.ViewSettings.BasicOverviewSettings.ShowDecisionMaker = Controller.Instance.BasicOverviewDecisionMakerCheck.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowDiscounts = checkEditTotalDiscounts.Checked;
-			PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates = _parent.checkEditFlightDates.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates2 = checkEditFlightDates2.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowInvestment = checkEditTotalCost.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowInvestmentDetails = checkEditInvestmentDetailsPicture.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowLogo = checkEditLogo.Checked;
-			PrintProduct.ViewSettings.BasicOverviewSettings.ShowName = _parent.checkEditProductName.Checked;
-			PrintProduct.ViewSettings.BasicOverviewSettings.ShowPresentationDate = Controller.Instance.BasicOverviewPresentationDateCheck.Checked;
-			PrintProduct.ViewSettings.BasicOverviewSettings.ShowSlideHeader = Controller.Instance.BasicOverviewHeaderCheck.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowSquare = checkEditSquare.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowTotalDetails = checkEditTotalAdsPicture.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowTotalInserts = checkEditTotalAds.Checked;
 			PrintProduct.ViewSettings.BasicOverviewSettings.ShowTotalSquare = checkEditTotalSquare.Checked;
-			SettingsNotSaved = true;
-		}
 
-		private void checkEditHeader_CheckedChanged()
-		{
-			Controller.Instance.BasicOverviewHeaderText.Enabled = Controller.Instance.BasicOverviewHeaderCheck.Checked;
-			checkEdit_CheckedChanged(null, null);
-		}
+			if (!(checkEditAvgADRate.Checked || checkEditTotalDiscounts.Checked || checkEditAvgPCIRate.Checked || checkEditTotalCost.Checked))
+				checkEditInvestmentDetailsPicture.Checked = false;
 
-		private void comboBoxEditHeader_EditValueChanged()
-		{
-			if (!_allowToSave) return;
-			PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader = Controller.Instance.BasicOverviewHeaderText.EditValue as String ?? String.Empty;
 			SettingsNotSaved = true;
 		}
 
@@ -252,17 +211,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		}
 
 		#region Output Staff
-		public string Header
-		{
-			get
-			{
-				var result = string.Empty;
-				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowSlideHeader)
-					result = PrintProduct.ViewSettings.BasicOverviewSettings.SlideHeader;
-				return result;
-			}
-		}
-
 		public string LogoFile
 		{
 			get
@@ -280,7 +228,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get
 			{
 				var result = string.Empty;
-				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowName && checkEditLogo.Checked)
+				if (checkEditLogo.Checked)
 					result = Text;
 				return result.Replace("&&", "&");
 			}
@@ -291,8 +239,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get
 			{
 				var result = string.Empty;
-				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowPresentationDate && checkEditLogo.Checked)
-					result = Controller.Instance.BasicOverviewPresentationDateText.Text;
+				if (checkEditLogo.Checked && _parent.LocalSchedule.PresentationDate.HasValue)
+					result = _parent.LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy");
 				return result;
 			}
 		}
@@ -302,7 +250,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get
 			{
 				var result = string.Empty;
-				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowName && !checkEditLogo.Checked)
+				if (!checkEditLogo.Checked)
 					result = Text;
 				return result.Replace("&&", "&");
 			}
@@ -313,43 +261,25 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get
 			{
 				var result = string.Empty;
-				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowPresentationDate && !checkEditLogo.Checked)
-					result = Controller.Instance.BasicOverviewPresentationDateText.Text;
+				if (_parent.LocalSchedule.PresentationDate.HasValue)
+					result = _parent.LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy");
 				return result;
 			}
 		}
 
 		public string BusinessName
 		{
-			get
-			{
-				var result = string.Empty;
-				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowAdvertiser)
-					result = Controller.Instance.BasicOverviewBusinessNameText.Text;
-				return result;
-			}
+			get { return _parent.LocalSchedule.BusinessName; }
 		}
 
 		public string DecisionMaker
 		{
-			get
-			{
-				var result = string.Empty;
-				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowDecisionMaker)
-					result = Controller.Instance.BasicOverviewDecisionMakerText.Text;
-				return result;
-			}
+			get { return _parent.LocalSchedule.DecisionMaker; }
 		}
 
 		public string FlightDates1
 		{
-			get
-			{
-				var result = string.Empty;
-				if (PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates)
-					result = _parent.checkEditFlightDates.Text;
-				return result;
-			}
+			get { return _parent.laFlightDates.Text; }
 		}
 
 		public string FlightDates2

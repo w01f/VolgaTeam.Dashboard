@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
-using System.Threading;
+﻿using System.IO;
 using System.Windows.Forms;
 using NewBizWiz.AdSchedule.Controls;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
@@ -22,30 +19,25 @@ namespace NewBizWiz.AdSchedule.Internal
 
 		public static void NewSchedule()
 		{
-			using (var from = new FormNewSchedule())
+			using (var form = new FormNewSchedule())
 			{
-				if (from.ShowDialog() == DialogResult.OK)
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (!AdSchedulePowerPointHelper.Instance.Connect(false) || !OnlineSchedulePowerPointHelper.Instance.Connect(false)) return;
+				if (!string.IsNullOrEmpty(form.ScheduleName))
 				{
-					if (AdSchedulePowerPointHelper.Instance.Connect(false) && OnlineSchedulePowerPointHelper.Instance.Connect(false))
-					{
-						if (!string.IsNullOrEmpty(from.ScheduleName))
-						{
-							RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-							RegistryHelper.MaximizeMainForm = true;
-							SetCulture();
-							BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
-							BusinessWrapper.Instance.ScheduleManager.OpenSchedule(from.ScheduleName.Trim(), true);
-							FormMain.Instance.ShowDialog();
-							AdSchedulePowerPointHelper.Instance.Disconnect();
-							OnlineSchedulePowerPointHelper.Instance.Disconnect();
-							RestoreCulture();
-							RemoveInstances();
-						}
-						else
-						{
-							Utilities.Instance.ShowWarning("Schedule Name can't be empty");
-						}
-					}
+					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+					RegistryHelper.MaximizeMainForm = true;
+					BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
+					BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", form.ScheduleName.Trim()));
+					BusinessWrapper.Instance.ScheduleManager.OpenSchedule(form.ScheduleName.Trim(), true);
+					FormMain.Instance.ShowDialog();
+					AdSchedulePowerPointHelper.Instance.Disconnect();
+					OnlineSchedulePowerPointHelper.Instance.Disconnect();
+					RemoveInstances();
+				}
+				else
+				{
+					Utilities.Instance.ShowWarning("Schedule Name can't be empty");
 				}
 			}
 		}
@@ -57,41 +49,32 @@ namespace NewBizWiz.AdSchedule.Internal
 				dialog.InitialDirectory = SettingsManager.Instance.SaveFolder;
 				dialog.Title = "Select Schedule File";
 				dialog.Filter = "Schedule Files|*.xml";
-				if (dialog.ShowDialog() == DialogResult.OK)
-				{
-					if (AdSchedulePowerPointHelper.Instance.Connect(false) && OnlineSchedulePowerPointHelper.Instance.Connect(false))
-					{
-						RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-						RegistryHelper.MaximizeMainForm = true;
-						SetCulture();
-						SettingsManager.Instance.SaveFolder = new FileInfo(dialog.FileName).Directory.FullName;
-						BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
-						BusinessWrapper.Instance.ScheduleManager.OpenSchedule(dialog.FileName);
-						FormMain.Instance.ShowDialog();
-						AdSchedulePowerPointHelper.Instance.Disconnect();
-						OnlineSchedulePowerPointHelper.Instance.Disconnect();
-						RestoreCulture();
-						RemoveInstances();
-					}
-				}
+				if (dialog.ShowDialog() != DialogResult.OK) return;
+				if (!AdSchedulePowerPointHelper.Instance.Connect(false) || !OnlineSchedulePowerPointHelper.Instance.Connect(false)) return;
+				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+				RegistryHelper.MaximizeMainForm = true;
+				SettingsManager.Instance.SaveFolder = new FileInfo(dialog.FileName).Directory.FullName;
+				BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
+				BusinessWrapper.Instance.ScheduleManager.OpenSchedule(dialog.FileName);
+				FormMain.Instance.ShowDialog();
+				AdSchedulePowerPointHelper.Instance.Disconnect();
+				OnlineSchedulePowerPointHelper.Instance.Disconnect();
+				RemoveInstances();
 			}
 		}
 
 		public static void OpenSchedule(string fileName)
 		{
-			if (AdSchedulePowerPointHelper.Instance.Connect(false) && OnlineSchedulePowerPointHelper.Instance.Connect(false))
-			{
-				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-				RegistryHelper.MaximizeMainForm = true;
-				SetCulture();
-				BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
-				BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
-				FormMain.Instance.ShowDialog();
-				AdSchedulePowerPointHelper.Instance.Disconnect();
-				OnlineSchedulePowerPointHelper.Instance.Disconnect();
-				RestoreCulture();
-				RemoveInstances();
-			}
+			if (!AdSchedulePowerPointHelper.Instance.Connect(false) || !OnlineSchedulePowerPointHelper.Instance.Connect(false)) return;
+			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+			RegistryHelper.MaximizeMainForm = true;
+			BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Previous Opened", Path.GetFileNameWithoutExtension(fileName)));
+			BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
+			FormMain.Instance.ShowDialog();
+			AdSchedulePowerPointHelper.Instance.Disconnect();
+			OnlineSchedulePowerPointHelper.Instance.Disconnect();
+			RemoveInstances();
 		}
 
 		private static void RemoveInstances()
@@ -99,22 +82,6 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.RemoveInstance();
 			BusinessWrapper.Instance.ScheduleManager.RemoveInstance();
 			FormMain.RemoveInstance();
-		}
-
-		private static void SetCulture()
-		{
-			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-		}
-
-		private static void RestoreCulture()
-		{
-			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 		}
 	}
 }

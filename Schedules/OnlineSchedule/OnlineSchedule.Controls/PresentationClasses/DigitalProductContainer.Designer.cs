@@ -32,16 +32,15 @@
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.xtraTabControlProducts = new DevExpress.XtraTab.XtraTabControl();
 			this.pnHeader = new System.Windows.Forms.Panel();
-			this.checkEditShowCategory = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditShowFlightDates = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditWeeks = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditMonths = new DevExpress.XtraEditors.CheckEdit();
 			this.spinEditDuration = new DevExpress.XtraEditors.SpinEdit();
 			this.checkEditDuration = new DevExpress.XtraEditors.CheckEdit();
+			this.labelControlCategory = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlProducts)).BeginInit();
 			this.pnHeader.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditShowCategory.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowFlightDates.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditWeeks.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonths.Properties)).BeginInit();
@@ -85,7 +84,7 @@
 			// 
 			// pnHeader
 			// 
-			this.pnHeader.Controls.Add(this.checkEditShowCategory);
+			this.pnHeader.Controls.Add(this.labelControlCategory);
 			this.pnHeader.Controls.Add(this.checkEditShowFlightDates);
 			this.pnHeader.Controls.Add(this.checkEditWeeks);
 			this.pnHeader.Controls.Add(this.checkEditMonths);
@@ -98,28 +97,16 @@
 			this.pnHeader.Size = new System.Drawing.Size(1000, 41);
 			this.pnHeader.TabIndex = 4;
 			// 
-			// checkEditShowCategory
-			// 
-			this.checkEditShowCategory.Location = new System.Drawing.Point(13, 10);
-			this.checkEditShowCategory.Name = "checkEditShowCategory";
-			this.checkEditShowCategory.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditShowCategory.Properties.Appearance.Options.UseFont = true;
-			this.checkEditShowCategory.Properties.Caption = "Category";
-			this.checkEditShowCategory.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-			this.checkEditShowCategory.Size = new System.Drawing.Size(218, 21);
-			this.checkEditShowCategory.StyleController = this.styleController;
-			this.checkEditShowCategory.TabIndex = 26;
-			this.checkEditShowCategory.CheckedChanged += new System.EventHandler(this.checkEditProductTogle_CheckedChanged);
-			// 
 			// checkEditShowFlightDates
 			// 
 			this.checkEditShowFlightDates.Location = new System.Drawing.Point(397, 10);
 			this.checkEditShowFlightDates.Name = "checkEditShowFlightDates";
 			this.checkEditShowFlightDates.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditShowFlightDates.Properties.Appearance.Options.UseFont = true;
+			this.checkEditShowFlightDates.Properties.AutoWidth = true;
 			this.checkEditShowFlightDates.Properties.Caption = "Flight Dates";
 			this.checkEditShowFlightDates.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-			this.checkEditShowFlightDates.Size = new System.Drawing.Size(218, 21);
+			this.checkEditShowFlightDates.Size = new System.Drawing.Size(93, 21);
 			this.checkEditShowFlightDates.StyleController = this.styleController;
 			this.checkEditShowFlightDates.TabIndex = 25;
 			this.checkEditShowFlightDates.CheckedChanged += new System.EventHandler(this.checkEditProductTogle_CheckedChanged);
@@ -191,6 +178,15 @@
 			this.checkEditDuration.TabIndex = 21;
 			this.checkEditDuration.CheckedChanged += new System.EventHandler(this.ckDuration_CheckedChanged);
 			// 
+			// labelControlCategory
+			// 
+			this.labelControlCategory.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlCategory.Location = new System.Drawing.Point(13, 12);
+			this.labelControlCategory.Name = "labelControlCategory";
+			this.labelControlCategory.Size = new System.Drawing.Size(52, 16);
+			this.labelControlCategory.TabIndex = 27;
+			this.labelControlCategory.Text = "Category";
+			// 
 			// DigitalProductContainer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -200,10 +196,11 @@
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "DigitalProductContainer";
 			this.Size = new System.Drawing.Size(1000, 562);
+			this.Resize += new System.EventHandler(this.DigitalProductContainer_Resize);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlProducts)).EndInit();
 			this.pnHeader.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditShowCategory.Properties)).EndInit();
+			this.pnHeader.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowFlightDates.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditWeeks.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonths.Properties)).EndInit();
@@ -224,7 +221,7 @@
 		private DevExpress.XtraEditors.SpinEdit spinEditDuration;
 		private DevExpress.XtraEditors.CheckEdit checkEditDuration;
 		protected DevExpress.XtraEditors.CheckEdit checkEditShowFlightDates;
-		protected DevExpress.XtraEditors.CheckEdit checkEditShowCategory;
+		protected DevExpress.XtraEditors.LabelControl labelControlCategory;
 
     }
 }

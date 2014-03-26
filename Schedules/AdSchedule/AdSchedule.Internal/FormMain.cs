@@ -37,6 +37,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.TabCalendar = ribbonTabItemCalendars;
 			Controller.Instance.TabSummary = ribbonTabItemSummary;
 			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
+			Controller.Instance.TabGallery = ribbonTabItemGallery;
 
 			#region Command Controls
 
@@ -50,11 +51,9 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.HomeAdProduct = itemContainerHomePrintProduct;
 			Controller.Instance.HomeAdProductAdd = buttonItemHomePrintProductAdd;
 			Controller.Instance.HomeAdProductClone = buttonItemHomePrintProductClone;
-			Controller.Instance.HomeAdProductDelete = buttonItemHomePrintProductDelete;
 			Controller.Instance.HomeDigitalProduct = itemContainerHomeDigitalProduct;
 			Controller.Instance.HomeDigitalProductAdd = buttonItemHomeDigitalProductAdd;
 			Controller.Instance.HomeDigitalProductClone = buttonItemHomeDigitalProductClone;
-			Controller.Instance.HomeDigitalProductDelete = buttonItemHomeDigitalProductDelete;
 			Controller.Instance.HomeBusinessName = comboBoxEditBusinessName;
 			Controller.Instance.HomeDecisionMaker = comboBoxEditDecisionMaker;
 			Controller.Instance.HomeClientType = comboBoxEditClientType;
@@ -120,7 +119,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.DigitalPackageEmail = buttonItemDigitalPackageEmail;
 			Controller.Instance.DigitalPackagePowerPoint = buttonItemDigitalPackagePowerPoint;
 			Controller.Instance.DigitalPackageTheme = buttonItemDigitalPackageTheme;
-			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageOptions;
+			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageSettings;
 			#endregion
 
 			#region Basic Overview
@@ -132,14 +131,6 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.BasicOverviewPowerPoint = buttonItemOverviewPowerPoint;
 			Controller.Instance.BasicOverviewTheme = buttonItemOverviewTheme;
 			Controller.Instance.BasicOverviewDigitalLegend = buttonItemOverviewDigital;
-			Controller.Instance.BasicOverviewHeaderCheck = checkBoxItemOverviewHeader;
-			Controller.Instance.BasicOverviewHeaderText = comboBoxEditOverviewHeader;
-			Controller.Instance.BasicOverviewPresentationDateCheck = checkBoxItemOverviewPresentationDate;
-			Controller.Instance.BasicOverviewPresentationDateText = labelItemOverviewPresentationDate;
-			Controller.Instance.BasicOverviewBusinessNameCheck = checkBoxItemOverviewBusinessName;
-			Controller.Instance.BasicOverviewBusinessNameText = labelItemOverviewBusinessName;
-			Controller.Instance.BasicOverviewDecisionMakerCheck = checkBoxItemOverviewDecisionMaker;
-			Controller.Instance.BasicOverviewDecisionMakerText = labelItemOverviewDecisionMaker;
 			#endregion
 
 			#region Multi Summary
@@ -162,7 +153,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			#endregion
 
 			#region Snapshot
-			Controller.Instance.SnapshotOptions = buttonItemSnapshotOptions;
+			Controller.Instance.SnapshotOptions = buttonItemSnapshotSettings;
 			Controller.Instance.SnapshotHelp = buttonItemSnapshotHelp;
 			Controller.Instance.SnapshotSave = buttonItemSnapshotSave;
 			Controller.Instance.SnapshotSaveAs = buttonItemSnapshotSaveAs;
@@ -221,7 +212,6 @@ namespace NewBizWiz.AdSchedule.Internal
 			#endregion
 
 			#region Summary
-			Controller.Instance.SummaryAddItem = buttonItemSummaryAdd;
 			Controller.Instance.SummaryHelp = buttonItemSummaryHelp;
 			Controller.Instance.SummarySave = buttonItemSummarySave;
 			Controller.Instance.SummarySaveAs = buttonItemSummarySaveAs;
@@ -234,6 +224,25 @@ namespace NewBizWiz.AdSchedule.Internal
 			#region Rate Card
 			Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
 			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
+			#endregion
+
+			#region Gallery
+			Controller.Instance.GalleryBrowseBar = ribbonBarGalleryBrowse;
+			Controller.Instance.GalleryImageBar = ribbonBarGalleryImage;
+			Controller.Instance.GalleryZoomBar = ribbonBarGalleryZoom;
+			Controller.Instance.GalleryCopyBar = ribbonBarGalleryCopy;
+			Controller.Instance.GalleryScreenshots = buttonItemGalleryBrowseScreenshots;
+			Controller.Instance.GalleryAdSpecs = buttonItemGalleryBrowseAdSpecs;
+			Controller.Instance.GalleryView = buttonItemGalleryView;
+			Controller.Instance.GalleryEdit = buttonItemGalleryEdit;
+			Controller.Instance.GalleryImageSelect = buttonItemGalleryImageSelect;
+			Controller.Instance.GalleryImageCrop = buttonItemGalleryImageCrop;
+			Controller.Instance.GalleryZoomIn = buttonItemGalleryZoomIn;
+			Controller.Instance.GalleryZoomOut = buttonItemGalleryZoomOut;
+			Controller.Instance.GalleryCopy = buttonItemGalleryCopy;
+			Controller.Instance.GalleryHelp = buttonItemGalleryHelp;
+			Controller.Instance.GallerySections = comboBoxEditGallerySections;
+			Controller.Instance.GalleryGroups = comboBoxEditGalleryGroups;
 			#endregion
 
 			#endregion
@@ -269,7 +278,6 @@ namespace NewBizWiz.AdSchedule.Internal
 				dateEditFlightDatesEnd.Font = font;
 				dateEditFlightDatesStart.Font = font;
 				dateEditPresentationDate.Font = font;
-				comboBoxEditOverviewHeader.Font = font;
 				comboBoxEditMultiSummaryHeader.Font = font;
 
 				laRateCards.Font = new Font(laRateCards.Font.FontFamily, laRateCards.Font.Size - 3, laRateCards.Font.Style);
@@ -290,7 +298,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				ribbonBarPrintScheduleOptions.RecalcLayout();
 				ribbonBarSnapshotExit.RecalcLayout();
 				ribbonBarSnapshotPowerPoint.RecalcLayout();
-				ribbonBarSnapshotOptions.RecalcLayout();
+				ribbonBarSnapshotSettings.RecalcLayout();
 				ribbonPanelPrintSchedule.PerformLayout();
 				ribbonPanelScheduleSettings.PerformLayout();
 				ribbonPanelCalendars.PerformLayout();
@@ -326,6 +334,12 @@ namespace NewBizWiz.AdSchedule.Internal
 			if ((_currentControl == Controller.Instance.ScheduleSettings))
 			{
 				result = Controller.Instance.ScheduleSettings.AllowToLeaveControl;
+				if (!result)
+				{
+					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
+					ribbonControl.SelectedRibbonTabItem = ribbonTabItemScheduleSettings;
+					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+				}
 			}
 			else if ((_currentControl == Controller.Instance.PrintProductContainer))
 			{
@@ -390,7 +404,6 @@ namespace NewBizWiz.AdSchedule.Internal
 					Application.DoEvents();
 				form.Close();
 			}
-			ribbonTabItemRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Count > 0;
 			ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
 			ribbonControl.SelectedRibbonTabItem = ribbonTabItemScheduleSettings;
 			ribbonControl_SelectedRibbonTabChanged(null, null);
@@ -423,6 +436,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				}
 				else
 					_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemPrintSchedule)
 			{
@@ -443,6 +457,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				}
 				else
 					_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDigitalSchedule)
 			{
@@ -463,6 +478,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				}
 				else
 					_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDigitalPackage)
 			{
@@ -483,6 +499,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				}
 				else
 					_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemOverview)
 			{
@@ -504,6 +521,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				}
 				else
 					_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemMultiSummary)
 			{
@@ -525,6 +543,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				}
 				else
 					_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSnapshot)
 			{
@@ -546,6 +565,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				}
 				else
 					_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemAdPlan)
 			{
@@ -566,6 +586,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				}
 				else
 					_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemDetailedGrid)
 			{
@@ -587,6 +608,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				}
 				else
 					_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemMultiGrid)
 			{
@@ -608,6 +630,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				}
 				else
 					_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendars)
 			{
@@ -629,6 +652,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				}
 				else
 					_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSummary)
 			{
@@ -649,6 +673,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				}
 				else
 					_currentControl.BringToFront();
+				pnMain.BringToFront();
 			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRateCard)
 			{
@@ -659,7 +684,6 @@ namespace NewBizWiz.AdSchedule.Internal
 						Application.DoEvents();
 						pnEmpty.BringToFront();
 						Application.DoEvents();
-						Controller.Instance.RateCard.LoadRateCards();
 						pnMain.Controls.Add(Controller.Instance.RateCard);
 						Application.DoEvents();
 						pnMain.BringToFront();
@@ -670,6 +694,39 @@ namespace NewBizWiz.AdSchedule.Internal
 				}
 				else
 					_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGallery)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					if (!pnMain.Controls.Contains(Controller.Instance.Gallery))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(Controller.Instance.Gallery);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					Controller.Instance.Gallery.BringToFront();
+					_currentControl = Controller.Instance.Gallery;
+				}
+				else
+					_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
+			else
+			{
+				_currentControl = null;
+				pnEmpty.Visible = true;
+				pnEmpty.BringToFront();
+			}
+			if (WindowState == FormWindowState.Normal)
+			{
+				Width++;
+				Width--;
 			}
 		}
 

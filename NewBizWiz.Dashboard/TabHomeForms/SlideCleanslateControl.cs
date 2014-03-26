@@ -17,6 +17,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 	{
 		private readonly SuperTooltipInfo _toolTip = new SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, eTooltipColor.Gray);
 
+		public override string SlideName
+		{
+			get { return "Slide Header"; }
+		}
+
 		public override SuperTooltipInfo Tooltip
 		{
 			get { return _toolTip; }

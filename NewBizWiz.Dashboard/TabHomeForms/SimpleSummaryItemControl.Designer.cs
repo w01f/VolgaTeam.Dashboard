@@ -32,13 +32,13 @@
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.laNumber = new System.Windows.Forms.Label();
 			this.panelExMain = new DevComponents.DotNetBar.PanelEx();
+			this.textEditItem = new DevExpress.XtraEditors.TextEdit();
 			this.ckItem = new System.Windows.Forms.CheckBox();
 			this.laTotal = new System.Windows.Forms.Label();
 			this.ckDetails = new System.Windows.Forms.CheckBox();
 			this.ckTotal = new System.Windows.Forms.CheckBox();
 			this.laMonthly = new System.Windows.Forms.Label();
 			this.ckMonthly = new System.Windows.Forms.CheckBox();
-			this.comboBoxEditItem = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.memoEditDetails = new DevExpress.XtraEditors.MemoEdit();
 			this.spinEditMonthly = new DevExpress.XtraEditors.SpinEdit();
 			this.spinEditTotal = new DevExpress.XtraEditors.SpinEdit();
@@ -46,7 +46,7 @@
 			this.pbDown = new System.Windows.Forms.PictureBox();
 			this.pbDelete = new System.Windows.Forms.PictureBox();
 			this.panelExMain.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditItem.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEditItem.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDetails.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthly.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotal.Properties)).BeginInit();
@@ -72,13 +72,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panelExMain.CanvasColor = System.Drawing.SystemColors.Control;
 			this.panelExMain.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.panelExMain.Controls.Add(this.textEditItem);
 			this.panelExMain.Controls.Add(this.ckItem);
 			this.panelExMain.Controls.Add(this.laTotal);
 			this.panelExMain.Controls.Add(this.ckDetails);
 			this.panelExMain.Controls.Add(this.ckTotal);
 			this.panelExMain.Controls.Add(this.laMonthly);
 			this.panelExMain.Controls.Add(this.ckMonthly);
-			this.panelExMain.Controls.Add(this.comboBoxEditItem);
 			this.panelExMain.Controls.Add(this.memoEditDetails);
 			this.panelExMain.Controls.Add(this.spinEditMonthly);
 			this.panelExMain.Controls.Add(this.spinEditTotal);
@@ -93,6 +93,14 @@
 			this.panelExMain.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
 			this.panelExMain.Style.GradientAngle = 90;
 			this.panelExMain.TabIndex = 30;
+			// 
+			// textEditItem
+			// 
+			this.textEditItem.Location = new System.Drawing.Point(30, 8);
+			this.textEditItem.Name = "textEditItem";
+			this.textEditItem.Size = new System.Drawing.Size(264, 20);
+			this.textEditItem.TabIndex = 38;
+			this.textEditItem.EditValueChanged += new System.EventHandler(this.textEditItem_EditValueChanged);
 			// 
 			// ckItem
 			// 
@@ -118,8 +126,6 @@
 			// ckDetails
 			// 
 			this.ckDetails.AutoSize = true;
-			this.ckDetails.Checked = true;
-			this.ckDetails.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.ckDetails.Location = new System.Drawing.Point(300, 11);
 			this.ckDetails.Name = "ckDetails";
 			this.ckDetails.Size = new System.Drawing.Size(15, 14);
@@ -150,8 +156,6 @@
 			// ckMonthly
 			// 
 			this.ckMonthly.AutoSize = true;
-			this.ckMonthly.Checked = true;
-			this.ckMonthly.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.ckMonthly.Location = new System.Drawing.Point(9, 56);
 			this.ckMonthly.Name = "ckMonthly";
 			this.ckMonthly.Size = new System.Drawing.Size(15, 14);
@@ -160,32 +164,12 @@
 			this.ckMonthly.UseVisualStyleBackColor = true;
 			this.ckMonthly.CheckedChanged += new System.EventHandler(this.ckMonthly_CheckedChanged);
 			// 
-			// comboBoxEditItem
-			// 
-			this.comboBoxEditItem.Location = new System.Drawing.Point(30, 8);
-			this.comboBoxEditItem.Name = "comboBoxEditItem";
-			this.comboBoxEditItem.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
-			this.comboBoxEditItem.Properties.Appearance.Options.UseFont = true;
-			this.comboBoxEditItem.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9F);
-			this.comboBoxEditItem.Properties.AppearanceDisabled.Options.UseFont = true;
-			this.comboBoxEditItem.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Arial", 9F);
-			this.comboBoxEditItem.Properties.AppearanceDropDown.Options.UseFont = true;
-			this.comboBoxEditItem.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F);
-			this.comboBoxEditItem.Properties.AppearanceFocused.Options.UseFont = true;
-			this.comboBoxEditItem.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F);
-			this.comboBoxEditItem.Properties.AppearanceReadOnly.Options.UseFont = true;
-			this.comboBoxEditItem.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.comboBoxEditItem.Properties.NullText = "Type or Select";
-			this.comboBoxEditItem.Size = new System.Drawing.Size(264, 21);
-			this.comboBoxEditItem.TabIndex = 0;
-			this.comboBoxEditItem.EditValueChanged += new System.EventHandler(this.comboBoxEditItem_EditValueChanged);
-			// 
 			// memoEditDetails
 			// 
 			this.memoEditDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.memoEditDetails.Enabled = false;
 			this.memoEditDetails.Location = new System.Drawing.Point(321, 8);
 			this.memoEditDetails.Name = "memoEditDetails";
 			this.memoEditDetails.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
@@ -202,6 +186,7 @@
             0,
             0,
             0});
+			this.spinEditMonthly.Enabled = false;
 			this.spinEditMonthly.Location = new System.Drawing.Point(30, 52);
 			this.spinEditMonthly.Name = "spinEditMonthly";
 			this.spinEditMonthly.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
@@ -288,10 +273,9 @@
 			this.Controls.Add(this.laNumber);
 			this.Name = "SimpleSummaryItemControl";
 			this.Size = new System.Drawing.Size(595, 123);
-			this.Load += new System.EventHandler(this.SimpleSummaryItemControl_Load);
 			this.panelExMain.ResumeLayout(false);
 			this.panelExMain.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditItem.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.textEditItem.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDetails.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthly.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotal.Properties)).EndInit();
@@ -312,12 +296,12 @@
         private System.Windows.Forms.Label laTotal;
         private System.Windows.Forms.CheckBox ckTotal;
         private System.Windows.Forms.Label laMonthly;
-        private System.Windows.Forms.CheckBox ckMonthly;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditItem;
+		private System.Windows.Forms.CheckBox ckMonthly;
         private DevExpress.XtraEditors.SpinEdit spinEditMonthly;
         private DevExpress.XtraEditors.SpinEdit spinEditTotal;
         private DevExpress.XtraEditors.MemoEdit memoEditDetails;
         private System.Windows.Forms.CheckBox ckItem;
         public System.Windows.Forms.CheckBox ckDetails;
+		private DevExpress.XtraEditors.TextEdit textEditItem;
     }
 }

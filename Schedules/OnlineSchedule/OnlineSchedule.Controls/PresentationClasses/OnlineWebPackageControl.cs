@@ -86,14 +86,21 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		protected override bool SaveSchedule(string scheduleName = "")
 		{
-			if (!string.IsNullOrEmpty(scheduleName))
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			if (nameChanged)
 				LocalSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule(LocalSchedule, false, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, this);
 			return base.SaveSchedule(scheduleName);
+		}
+
+		private void TrackOutput()
+		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabDigitalPackage.Text, Schedule.BusinessName, PackageRecords.Sum(pr => pr.InvestmentCalculated)));
 		}
 
 		public override void OutputSlides()
 		{
+			TrackOutput();
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -109,7 +116,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, OnlineSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater,TrackOutput))
 			{
 				formPreview.Text = "Preview Digital Package";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

@@ -32,12 +32,12 @@ namespace NewBizWiz.OnlineSchedule.Internal
 						if (!string.IsNullOrEmpty(from.ScheduleName))
 						{
 							RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-							SetCulture();
-							string fileName = from.ScheduleName.Trim();
+							var fileName = from.ScheduleName.Trim();
+							BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", fileName));
+							SetCultureSettings();
 							BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName, true);
 							FormMain.Instance.ShowDialog();
 							OnlineSchedulePowerPointHelper.Instance.Disconnect();
-							RestoreCulture();
 							RemoveInstances();
 						}
 						else
@@ -61,13 +61,12 @@ namespace NewBizWiz.OnlineSchedule.Internal
 					if (OnlineSchedulePowerPointHelper.Instance.Connect())
 					{
 						RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-						SetCulture();
 						string fileName = dialog.FileName;
 						SettingsManager.Instance.SaveFolder = new FileInfo(fileName).Directory.FullName;
+						SetCultureSettings();
 						BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
 						FormMain.Instance.ShowDialog();
 						OnlineSchedulePowerPointHelper.Instance.Disconnect();
-						RestoreCulture();
 						RemoveInstances();
 					}
 				}
@@ -79,11 +78,11 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			if (OnlineSchedulePowerPointHelper.Instance.Connect())
 			{
 				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-				SetCulture();
+				BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Previous Opened", Path.GetFileNameWithoutExtension(fileName)));
+				SetCultureSettings();
 				BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
 				FormMain.Instance.ShowDialog();
 				OnlineSchedulePowerPointHelper.Instance.Disconnect();
-				RestoreCulture();
 				RemoveInstances();
 			}
 		}
@@ -93,14 +92,7 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			return ScheduleManager.GetShortScheduleList();
 		}
 
-		private static void RemoveInstances()
-		{
-			Controller.Instance.RemoveInstance();
-			FormMain.RemoveInstance();
-			BusinessWrapper.Instance.ScheduleManager.RemoveInstance();
-		}
-
-		private static void SetCulture()
+		private static void SetCultureSettings()
 		{
 			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
 			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
@@ -108,12 +100,11 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 		}
 
-		private static void RestoreCulture()
+		private static void RemoveInstances()
 		{
-			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+			Controller.Instance.RemoveInstance();
+			FormMain.RemoveInstance();
+			BusinessWrapper.Instance.ScheduleManager.RemoveInstance();
 		}
 	}
 }

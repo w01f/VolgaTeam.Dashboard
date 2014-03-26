@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
@@ -89,15 +88,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 				checkEditBusinessName.Checked = LocalSchedule.Summary.ShowAdvertiser;
 				checkEditPresentationDate.Checked = LocalSchedule.Summary.ShowPresentationDate;
 				checkEditFlightDates.Checked = LocalSchedule.Summary.ShowFlightDates;
-				checkEditEnableTotalEdit.Checked = LocalSchedule.Summary.EnableTotalsEdit;
-				checkEditMonthlyInvestmentOutput.Checked = LocalSchedule.Summary.ShowMonthly;
-				checkEditTotalInvestmentOutput.Checked = LocalSchedule.Summary.ShowTotal;
+				checkEditMonthlyInvestment.Checked = LocalSchedule.Summary.ShowMonthly;
+				checkEditTotalInvestment.Checked = LocalSchedule.Summary.ShowTotal;
 
 				_inputControls.Clear();
 				xtraScrollableControlInput.Controls.Clear();
-				foreach (var summaryItem in LocalSchedule.Summary.Items.OrderBy(it => it.Order))
+				foreach (var summaryItem in LocalSchedule.ProductSummaries)
 				{
-					AddItemToList(summaryItem);
+					AddItemToList(summaryItem.SummaryItem);
 					Application.DoEvents();
 				}
 				UpdateTotalItems();
@@ -106,172 +104,48 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			}
 			else
 			{
-				foreach (SummaryItem summaryItem in LocalSchedule.Summary.Items)
+				foreach (var summaryProduct in LocalSchedule.ProductSummaries)
 				{
-					SummaryInputItemControl inputControl = _inputControls.FirstOrDefault(ic => ic.Data.Identifier.Equals(summaryItem.Identifier));
+					var inputControl = _inputControls.FirstOrDefault(ic => ic.Data.Parent.UniqueID.Equals(summaryProduct.UniqueID));
 					if (inputControl != null)
-						inputControl.Data = summaryItem;
+						inputControl.Data = summaryProduct.SummaryItem;
 					Application.DoEvents();
 				}
 			}
-			xtraTabControl_SelectedPageChanged(xtraTabControl, new TabPageChangedEventArgs(xtraTabControl.SelectedTabPage, xtraTabControl.SelectedTabPage));
 			SettingsNotSaved = false;
 		}
 
 		private bool SaveSchedule(string scheduleName = "")
 		{
-			if (!string.IsNullOrEmpty(scheduleName))
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			if (nameChanged)
 				LocalSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule(LocalSchedule, true, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, this);
 			SettingsNotSaved = false;
 			return true;
-		}
-
-		public void AddItem(object sender, EventArgs e)
-		{
-			var item = new SummaryItem { Order = LocalSchedule.Summary.Items.Any() ? LocalSchedule.Summary.Items.Max(it => it.Order) + 1 : 0 };
-			LocalSchedule.Summary.Items.Add(item);
-			AddItemToList(item);
-			UpdateTotalItems();
-			SettingsNotSaved = true;
 		}
 
 		private void AddItemToList(SummaryItem summaryItem)
 		{
 			var item = new SummaryInputItemControl { Data = summaryItem };
 			item.LoadData();
-			item.ItemDeleted += (o, e) => DeleteItem(o as SummaryInputItemControl);
-			item.ItemUp += (o, e) => UpItem(o as SummaryInputItemControl);
-			item.ItemDown += (o, e) => DownItem(o as SummaryInputItemControl);
 			item.DataChanged += (o, e) => { SettingsNotSaved = true; };
 			item.InvestmentChanged += (o, e) => UpdateTotals();
 			SetClickEventHandler(item);
 			_inputControls.Add(item);
 			xtraScrollableControlInput.Controls.Add(item);
 			item.BringToFront();
-			xtraScrollableControlInput.ScrollControlIntoView(item);
-		}
-
-		private void DeleteItem(SummaryInputItemControl item)
-		{
-			xtraScrollableControlInput.Controls.Remove(item);
-			_inputControls.Remove(item);
-			LocalSchedule.Summary.Items.Remove(item.Data);
-			ReorderItemControls();
-			UpdateTotalItems();
-			UpdateTotals();
-			SettingsNotSaved = true;
-		}
-
-		private void UpItem(SummaryInputItemControl item)
-		{
-			int itemOrder = item.Data.Order;
-			if (itemOrder == 0) return;
-			LocalSchedule.Summary.ReorderItems(itemOrder - 1);
-			item.Data.Order = itemOrder - 1;
-			ReorderItemControls();
-			xtraScrollableControlInput.ScrollControlIntoView(item);
-			SettingsNotSaved = true;
-		}
-
-		private void DownItem(SummaryInputItemControl item)
-		{
-			int currentIndex = _inputControls.IndexOf(item);
-			if (!(currentIndex < (_inputControls.Count - 1))) return;
-			var nextItem = _inputControls[currentIndex + 1];
-			int itemOrder = nextItem.Data.Order;
-			LocalSchedule.Summary.ReorderItems(itemOrder - 1);
-			nextItem.Data.Order = itemOrder - 1;
-			ReorderItemControls();
-			xtraScrollableControlInput.ScrollControlIntoView(item);
-			SettingsNotSaved = true;
-		}
-
-		private void ReorderItemControls()
-		{
-			LocalSchedule.Summary.ReorderItems();
-			_inputControls.Sort((x, y) => x.Data.Order.CompareTo(y.Data.Order));
-			foreach (SummaryInputItemControl itemControl in _inputControls)
-			{
-				itemControl.UpdateItemNumber();
-				itemControl.BringToFront();
-			}
 		}
 
 		public void UpdateTotalItems()
 		{
-			laTotalItems.Text = string.Format("Total Items: {0}", LocalSchedule.Summary.Items.Count);
+			laTotalItems.Text = string.Format("Total Items: {0}", LocalSchedule.ProductSummaries.Count());
 		}
 
 		public void UpdateTotals()
 		{
-			laInputMonthlyInvestmentTag.Text = LocalSchedule.Summary.TotalMonthly.ToString("$#,##0.00");
-			laInputTotalInvestmentTag.Text = LocalSchedule.Summary.TotalTotal.ToString("$#,##0.00");
-			pnInputMonthlyInvestments.Visible = _inputControls.Any(ic => ic.ShowMonthly);
-			pnInputTotalInvestments.Visible = _inputControls.Any(ic => ic.ShowTotal);
-			spinEditMonthly.Value = LocalSchedule.Summary.EnableTotalsEdit ? LocalSchedule.Summary.MonthlyValue : LocalSchedule.Summary.TotalMonthly;
-			spinEditTotal.Value = LocalSchedule.Summary.EnableTotalsEdit ? LocalSchedule.Summary.TotalValue : LocalSchedule.Summary.TotalTotal;
-		}
-
-		public void UpdateOutputItems()
-		{
-			xtraScrollableControlOutput.Controls.Clear();
-			if (_inputControls.Count > 0 && _inputControls.All(it => it.Complited))
-			{
-				pnOutputBorder.Visible = true;
-				pnOutputHeader.Visible = true;
-				pnOutputSummary.Visible = true;
-				pnOutputWarning.Visible = false;
-
-				foreach (var inputControl in _inputControls.Where(it => it.Complited).OrderBy(it => it.Data.Order))
-				{
-					xtraScrollableControlOutput.Controls.Add(inputControl.OutputItem);
-					inputControl.OutputItem.BringToFront();
-					inputControl.UpdateOutputItem();
-
-				}
-				var monthlyHeaderVisible = _inputControls.Any(it => it.OutputItem.MonthlyVisible);
-				var totalHeaderVisible = _inputControls.Any(it => it.OutputItem.TotalVisible);
-				foreach (var inputControl in _inputControls.Where(it => it.Complited).OrderBy(it => it.Data.Order))
-				{
-					inputControl.OutputItem.TotalVisible = totalHeaderVisible;
-					inputControl.OutputItem.MonthlyVisible = monthlyHeaderVisible;
-				}
-				if (monthlyHeaderVisible && totalHeaderVisible)
-				{
-					laMonthly.Visible = true;
-					laMonthly.Width = 150;
-					laMonthly.Text = "Monthly$:";
-					laMonthly.TextAlign = ContentAlignment.MiddleLeft;
-					laTotal.Visible = true;
-					laTotal.Width = 150;
-					laTotal.Text = "Total$:";
-					laTotal.TextAlign = ContentAlignment.MiddleLeft;
-				}
-				else if (monthlyHeaderVisible)
-				{
-					laMonthly.Visible = true;
-					laMonthly.Width = 300;
-					laMonthly.Text = "Monthly Investment:";
-					laMonthly.TextAlign = ContentAlignment.MiddleRight;
-					laTotal.Visible = false;
-				}
-				else if (totalHeaderVisible)
-				{
-					laMonthly.Visible = false;
-					laTotal.Visible = true;
-					laTotal.Width = 300;
-					laTotal.Text = "Total Investment:";
-					laTotal.TextAlign = ContentAlignment.MiddleRight;
-				}
-			}
-			else
-			{
-				pnOutputBorder.Visible = false;
-				pnOutputHeader.Visible = false;
-				pnOutputSummary.Visible = false;
-				pnOutputWarning.Visible = true;
-			}
+			spinEditMonthly.Value = LocalSchedule.Summary.MonthlyValue.HasValue ? LocalSchedule.Summary.MonthlyValue.Value : LocalSchedule.Summary.TotalMonthly;
+			spinEditTotal.Value = LocalSchedule.Summary.TotalValue.HasValue ? LocalSchedule.Summary.TotalValue.Value : LocalSchedule.Summary.TotalTotal;
 		}
 
 		public void OpenHelp()
@@ -306,73 +180,49 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		private void checkEdit_CheckedChanged(object sender, EventArgs e)
 		{
+			checkEditMonthlyInvestment.ForeColor =
+				checkEditMonthlyInvestment.Properties.Appearance.ForeColor =
+				checkEditMonthlyInvestment.Properties.AppearanceFocused.ForeColor =
+				 checkEditMonthlyInvestment.Checked ? Color.Black : Color.Gray;
+			checkEditMonthlyInvestment.Refresh();
+			checkEditTotalInvestment.ForeColor =
+				checkEditTotalInvestment.Properties.Appearance.ForeColor =
+				checkEditTotalInvestment.Properties.AppearanceFocused.ForeColor =
+				 checkEditTotalInvestment.Checked ? Color.Black : Color.Gray;
+			checkEditTotalInvestment.Refresh();
+			spinEditMonthly.Enabled = checkEditMonthlyInvestment.Checked;
+			spinEditTotal.Enabled = checkEditTotalInvestment.Checked;
 			if (!_allowToSave) return;
 			LocalSchedule.Summary.ShowAdvertiser = checkEditBusinessName.Checked;
 			LocalSchedule.Summary.ShowPresentationDate = checkEditPresentationDate.Checked;
 			LocalSchedule.Summary.ShowFlightDates = checkEditFlightDates.Checked;
-			LocalSchedule.Summary.ShowMonthly = checkEditMonthlyInvestmentOutput.Checked;
-			LocalSchedule.Summary.ShowTotal = checkEditTotalInvestmentOutput.Checked;
+			LocalSchedule.Summary.ShowMonthly = checkEditMonthlyInvestment.Checked;
+			LocalSchedule.Summary.ShowTotal = checkEditTotalInvestment.Checked;
 			SettingsNotSaved = true;
-		}
-
-		private void checkEditEnableTotalEdit_CheckedChanged(object sender, EventArgs e)
-		{
-			spinEditMonthly.Enabled = checkEditEnableTotalEdit.Checked;
-			spinEditMonthly.Properties.ReadOnly = !checkEditEnableTotalEdit.Checked;
-			spinEditTotal.Enabled = checkEditEnableTotalEdit.Checked;
-			spinEditTotal.Properties.ReadOnly = !checkEditEnableTotalEdit.Checked;
-			if (!checkEditEnableTotalEdit.Checked)
-			{
-				spinEditMonthly.EditValue = LocalSchedule.Summary.TotalMonthly;
-				spinEditTotal.EditValue = LocalSchedule.Summary.TotalTotal;
-			}
-			if (_allowToSave)
-			{
-				LocalSchedule.Summary.EnableTotalsEdit = checkEditEnableTotalEdit.Checked;
-				if (LocalSchedule.Summary.EnableTotalsEdit)
-				{
-					LocalSchedule.Summary.MonthlyValue = LocalSchedule.Summary.TotalMonthly;
-					LocalSchedule.Summary.TotalValue = LocalSchedule.Summary.TotalValue;
-				}
-				SettingsNotSaved = true;
-			}
 		}
 
 		private void spinEditMonthly_EditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
-			LocalSchedule.Summary.MonthlyValue = LocalSchedule.Summary.EnableTotalsEdit ? spinEditMonthly.Value : 0;
+			LocalSchedule.Summary.MonthlyValue = LocalSchedule.Summary.TotalMonthly != spinEditMonthly.Value ? spinEditMonthly.Value : (decimal?)null;
 			SettingsNotSaved = true;
 		}
 
 		private void spinEditTotal_EditValueChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				LocalSchedule.Summary.TotalValue = LocalSchedule.Summary.EnableTotalsEdit ? spinEditTotal.Value : 0;
-				SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			LocalSchedule.Summary.TotalValue = LocalSchedule.Summary.TotalTotal != spinEditTotal.Value ? spinEditTotal.Value : (decimal?)null;
+			SettingsNotSaved = true;
 		}
 
-		private void xtraTabControl_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
+		private void spinEditMonthly_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
 		{
-			if (e.Page == xtraTabPageInput)
-			{
-				Controller.Instance.SummaryAddItem.Enabled = true;
-				Controller.Instance.SummaryPreview.Enabled = false;
-				Controller.Instance.SummaryEmail.Enabled = false;
-				Controller.Instance.SummaryPowerPoint.Enabled = false;
-				Controller.Instance.SummaryTheme.Enabled = false;
-			}
-			else if (e.Page == xtraTabPageOutput)
-			{
-				Controller.Instance.SummaryAddItem.Enabled = false;
-				Controller.Instance.SummaryPreview.Enabled = true;
-				Controller.Instance.SummaryEmail.Enabled = true;
-				Controller.Instance.SummaryPowerPoint.Enabled = true;
-				Controller.Instance.SummaryTheme.Enabled = true;
-				UpdateOutputItems();
-			}
+			spinEditMonthly.Value = LocalSchedule.Summary.TotalMonthly;
+		}
+
+		private void spinEditTotal_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+		{
+			spinEditTotal.Value = LocalSchedule.Summary.TotalTotal;
 		}
 
 		#region Output Stuff
@@ -461,12 +311,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 
 		public string TotalMonthlyValue
 		{
-			get { return checkEditMonthlyInvestmentOutput.Checked ? (LocalSchedule.Summary.EnableTotalsEdit ? LocalSchedule.Summary.MonthlyValue : LocalSchedule.Summary.TotalMonthly).ToString("$#,##0.00") : string.Empty; }
+			get { return checkEditMonthlyInvestment.Checked ? (LocalSchedule.Summary.MonthlyValue.HasValue ? LocalSchedule.Summary.MonthlyValue.Value : LocalSchedule.Summary.TotalMonthly).ToString("$#,##0.00") : string.Empty; }
 		}
 
 		public string TotalTotalValue
 		{
-			get { return checkEditTotalInvestmentOutput.Checked ? (LocalSchedule.Summary.EnableTotalsEdit ? LocalSchedule.Summary.TotalValue : LocalSchedule.Summary.TotalTotal).ToString("$#,##0.00") : string.Empty; }
+			get { return checkEditTotalInvestment.Checked ? (LocalSchedule.Summary.TotalValue.HasValue ? LocalSchedule.Summary.TotalValue.Value : LocalSchedule.Summary.TotalTotal).ToString("$#,##0.00") : string.Empty; }
 		}
 
 		public bool ShowMonthlyHeader
@@ -479,9 +329,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			get { return _inputControls.Where(it => it.Complited).Any(it => it.OutputTotalValue.HasValue); }
 		}
 
+		private void TrackOutput()
+		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabSummary.Text, LocalSchedule.BusinessName, null));
+		}
+
 		public void Output()
 		{
 			SaveSchedule();
+			TrackOutput();
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -534,7 +390,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+				using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
 				{
 					formPreview.Text = "Preview Summary";
 					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

@@ -19,6 +19,7 @@ namespace NewBizWiz.Core.AdSchedule
 			HomeViewSettings.ResetToDefault();
 
 			DigitalPackageSettings = new DigitalPackageSettings();
+			DigitalPackageSettings.ResetToDefault();
 
 			BasicOverviewViewSettings = new BasicOverviewViewSettings();
 			MultiSummaryViewSettings = new MultiSummaryViewSettings();
@@ -36,6 +37,10 @@ namespace NewBizWiz.Core.AdSchedule
 		}
 
 		public HomeViewSettings HomeViewSettings { get; set; }
+		public IHomeViewSettings SharedHomeViewSettings
+		{
+			get { return HomeViewSettings; }
+		}
 		public DigitalPackageSettings DigitalPackageSettings { get; private set; }
 
 		public BasicOverviewViewSettings BasicOverviewViewSettings { get; set; }
@@ -179,13 +184,7 @@ namespace NewBizWiz.Core.AdSchedule
 	{
 		public PublicationBasicOverviewSettings()
 		{
-			ShowName = true;
 			ShowLogo = true;
-			ShowFlightDates = true;
-			ShowSlideHeader = true;
-			ShowPresentationDate = true;
-			ShowAdvertiser = true;
-			ShowDecisionMaker = true;
 
 			EnableDimensions = true;
 			EnablePageSize = true;
@@ -224,16 +223,9 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowComments = false;
 
 			Comments = string.Empty;
-			SlideHeader = string.Empty;
 		}
 
-		public bool ShowName { get; set; }
 		public bool ShowLogo { get; set; }
-		public bool ShowFlightDates { get; set; }
-		public bool ShowSlideHeader { get; set; }
-		public bool ShowPresentationDate { get; set; }
-		public bool ShowAdvertiser { get; set; }
-		public bool ShowDecisionMaker { get; set; }
 
 		public bool EnableDimensions { get; set; }
 		public bool EnablePageSize { get; set; }
@@ -272,7 +264,6 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool ShowComments { get; set; }
 
 		public string Comments { get; set; }
-		public string SlideHeader { get; set; }
 
 		public void ResetToDefault()
 		{
@@ -285,14 +276,7 @@ namespace NewBizWiz.Core.AdSchedule
 		{
 			var result = new StringBuilder();
 
-			result.AppendLine(@"<ShowName>" + ShowName + @"</ShowName>");
 			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
-			result.AppendLine(@"<ShowFlightDates>" + ShowFlightDates + @"</ShowFlightDates>");
-			result.AppendLine(@"<ShowAdvertiser>" + ShowAdvertiser + @"</ShowAdvertiser>");
-			result.AppendLine(@"<ShowDecisionMaker>" + ShowDecisionMaker + @"</ShowDecisionMaker>");
-			result.AppendLine(@"<ShowPresentationDate>" + ShowPresentationDate + @"</ShowPresentationDate>");
-			result.AppendLine(@"<ShowSlideHeader>" + ShowSlideHeader + @"</ShowSlideHeader>");
-			result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
 
 			result.AppendLine(@"<EnableDimensions>" + EnableDimensions + @"</EnableDimensions>");
 			result.AppendLine(@"<EnablePageSize>" + EnablePageSize + @"</EnablePageSize>");
@@ -342,38 +326,10 @@ namespace NewBizWiz.Core.AdSchedule
 			{
 				switch (childNode.Name)
 				{
-					case "ShowName":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowName = tempBool;
-						break;
 					case "ShowLogo":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowLogo = tempBool;
 						break;
-					case "ShowFlightDates":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowFlightDates = tempBool;
-						break;
-					case "ShowAdvertiser":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowAdvertiser = tempBool;
-						break;
-					case "ShowDecisionMaker":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowDecisionMaker = tempBool;
-						break;
-					case "ShowPresentationDate":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowPresentationDate = tempBool;
-						break;
-					case "ShowSlideHeader":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowSlideHeader = tempBool;
-						break;
-					case "SlideHeader":
-						SlideHeader = childNode.InnerText;
-						break;
-
 					case "EnablePageSize":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							EnablePageSize = tempBool;
@@ -1257,7 +1213,7 @@ namespace NewBizWiz.Core.AdSchedule
 		}
 	}
 
-	public class HomeViewSettings
+	public class HomeViewSettings : IHomeViewSettings
 	{
 		public HomeViewSettings()
 		{
@@ -1269,6 +1225,8 @@ namespace NewBizWiz.Core.AdSchedule
 			EnableDigitalDimensions = true;
 			EnableDigitalStrategy = true;
 			EnableDigitalLocation = true;
+			EnableDigitalTargeting = true;
+			EnableDigitalRichMedia = true;
 
 			ShowAccountNumber = false;
 			ShowPrintDelivery = false;
@@ -1278,6 +1236,8 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowDigitalDimensions = true;
 			ShowDigitalStrategy = true;
 			ShowDigitalLocation = true;
+			ShowDigitalTargeting = true;
+			ShowDigitalRichMedia = true;
 		}
 
 		public bool EnableAccountNumber { get; set; }
@@ -1288,6 +1248,8 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool EnableDigitalDimensions { get; set; }
 		public bool EnableDigitalStrategy { get; set; }
 		public bool EnableDigitalLocation { get; set; }
+		public bool EnableDigitalTargeting { get; set; }
+		public bool EnableDigitalRichMedia { get; set; }
 
 		public bool ShowAccountNumber { get; set; }
 		public bool ShowPrintDelivery { get; set; }
@@ -1297,12 +1259,18 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool ShowDigitalDimensions { get; set; }
 		public bool ShowDigitalStrategy { get; set; }
 		public bool ShowDigitalLocation { get; set; }
+		public bool ShowDigitalTargeting { get; set; }
+		public bool ShowDigitalRichMedia { get; set; }
 
 		public void ResetToDefault()
 		{
-			var defaultSettings = new XmlDocument();
-			defaultSettings.LoadXml(@"<DefaultSettings>" + ListManager.Instance.DefaultHomeViewSettings.Serialize() + @"</DefaultSettings>");
-			Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
+			var defaultPrintSettings = new XmlDocument();
+			defaultPrintSettings.LoadXml(@"<DefaultSettings>" + ListManager.Instance.DefaultHomeViewSettings.Serialize() + @"</DefaultSettings>");
+			Deserialize(defaultPrintSettings.SelectSingleNode(@"/DefaultSettings"));
+
+			var defaultDigitalSettings = new XmlDocument();
+			defaultDigitalSettings.LoadXml(@"<DefaultSettings>" + OnlineSchedule.ListManager.Instance.DefaultHomeViewSettings.Serialize() + @"</DefaultSettings>");
+			Deserialize(defaultDigitalSettings.SelectSingleNode(@"/DefaultSettings"));
 		}
 
 		public string Serialize()
@@ -1316,6 +1284,9 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<EnableReadership>" + EnablePrintReadership + @"</EnableReadership>");
 			result.AppendLine(@"<EnableDigitalDimensions>" + EnableDigitalDimensions + @"</EnableDigitalDimensions>");
 			result.AppendLine(@"<EnableDigitalStrategy>" + EnableDigitalStrategy + @"</EnableDigitalStrategy>");
+			result.AppendLine(@"<EnableDigitalLocation>" + EnableDigitalLocation + @"</EnableDigitalLocation>");
+			result.AppendLine(@"<EnableDigitalTargeting>" + EnableDigitalTargeting + @"</EnableDigitalTargeting>");
+			result.AppendLine(@"<EnableDigitalRichMedia>" + EnableDigitalRichMedia + @"</EnableDigitalRichMedia>");
 
 			result.AppendLine(@"<ShowAccountNumber>" + ShowAccountNumber + @"</ShowAccountNumber>");
 			result.AppendLine(@"<ShowCode>" + ShowPrintCode + @"</ShowCode>");
@@ -1325,6 +1296,8 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<ShowDigitalDimensions>" + ShowDigitalDimensions + @"</ShowDigitalDimensions>");
 			result.AppendLine(@"<ShowDigitalStrategy>" + ShowDigitalStrategy + @"</ShowDigitalStrategy>");
 			result.AppendLine(@"<ShowDigitalLocation>" + ShowDigitalLocation + @"</ShowDigitalLocation>");
+			result.AppendLine(@"<ShowDigitalTargeting>" + ShowDigitalTargeting + @"</ShowDigitalTargeting>");
+			result.AppendLine(@"<ShowDigitalRichMedia>" + ShowDigitalRichMedia + @"</ShowDigitalRichMedia>");
 
 			return result.ToString();
 		}
@@ -1365,6 +1338,18 @@ namespace NewBizWiz.Core.AdSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							EnableDigitalStrategy = tempBool;
 						break;
+					case "EnableDigitalLocation":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							EnableDigitalLocation = tempBool;
+						break;
+					case "EnableDigitalTargeting":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							EnableDigitalTargeting = tempBool;
+						break;
+					case "EnableDigitalRichMedia":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							EnableDigitalRichMedia = tempBool;
+						break;
 
 					case "ShowAccountNumber":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -1398,6 +1383,14 @@ namespace NewBizWiz.Core.AdSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowDigitalLocation = tempBool;
 						break;
+					case "ShowDigitalTargeting":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowDigitalTargeting = tempBool;
+						break;
+					case "ShowDigitalRichMedia":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowDigitalRichMedia = tempBool;
+						break;
 				}
 			}
 
@@ -1409,6 +1402,8 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowDigitalDimensions &= EnableDigitalDimensions;
 			ShowDigitalStrategy &= EnableDigitalStrategy;
 			ShowDigitalLocation &= EnableDigitalLocation;
+			ShowDigitalTargeting &= EnableDigitalTargeting;
+			ShowDigitalRichMedia &= EnableDigitalRichMedia;
 		}
 	}
 
@@ -2167,8 +2162,6 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool ShowOptions { get; set; }
 		public int SelectedOptionChapterIndex { get; set; }
 
-		public string SlideHeader { get; set; }
-
 		public void ResetToDefault()
 		{
 			var defaultSettings = new XmlDocument();
@@ -2185,7 +2178,6 @@ namespace NewBizWiz.Core.AdSchedule
 			defaultSettings.LoadXml(@"<DefaultSettings>" + ListManager.Instance.DefaultMultiGridSlideHeaderState.Serialize() + @"</DefaultSettings>");
 			SlideHeaderState.Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
 
-			SlideHeader = string.Empty;
 			ShowOptions = true;
 			SelectedOptionChapterIndex = 0;
 		}
@@ -2200,7 +2192,6 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<SlideHeaderState>" + SlideHeaderState.Serialize() + @"</SlideHeaderState>");
 			result.AppendLine(@"<ShowOptions>" + ShowOptions.ToString() + @"</ShowOptions>");
 			result.AppendLine(@"<SelectedOptionChapterIndex>" + SelectedOptionChapterIndex.ToString() + @"</SelectedOptionChapterIndex>");
-			result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
 			result.AppendLine(@"<DigitalLegend>" + DigitalLegend.Serialize() + @"</DigitalLegend>");
 
 			return result.ToString();
@@ -2234,9 +2225,6 @@ namespace NewBizWiz.Core.AdSchedule
 					case "SelectedOptionChapterIndex":
 						if (int.TryParse(childNode.InnerText, out tempInt))
 							SelectedOptionChapterIndex = tempInt;
-						break;
-					case "SlideHeader":
-						SlideHeader = childNode.InnerText;
 						break;
 					case "DigitalLegend":
 						DigitalLegend.Deserialize(childNode);

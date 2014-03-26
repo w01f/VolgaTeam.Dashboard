@@ -69,6 +69,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control != Controller.Instance.HomeAccountNumberText
 				&& control != Controller.Instance.PrintProductRateCard
 				&& control != Controller.Instance.RateCardCombo
+				&& control != Controller.Instance.GallerySections
+				&& control != Controller.Instance.GalleryGroups
 				&& control != Controller.Instance.HomeFlightDatesEnd
 				&& control != Controller.Instance.HomeFlightDatesStart
 				&& control != Controller.Instance.HomePresentationDate
@@ -79,7 +81,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control != Controller.Instance.PrintProductPageSizeName
 				&& control != Controller.Instance.PrintProductColor
 				&& control != Controller.Instance.PrintProductSharePageSquare
-				&& control != Controller.Instance.BasicOverviewHeaderText
 				&& control != Controller.Instance.MultiSummaryHeaderText)
 			{
 				control.Click += CloseActiveEditorsonOutSideClick;
@@ -252,11 +253,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		private bool SaveSchedule(string scheduleName = "")
 		{
-			if (!string.IsNullOrEmpty(scheduleName))
-			{
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			if (nameChanged)
 				LocalSchedule.Name = scheduleName;
-			}
-			Controller.Instance.SaveSchedule(LocalSchedule, false, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, this);
 			LoadSchedule(true);
 			SettingsNotSaved = false;
 			return true;
@@ -662,6 +662,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					break;
 			}
 			FormatAccordingSizeOptions(printProductControl);
+			printProductControl.UpdateProductButtonsState();
 			_allowToSave = true;
 		}
 
@@ -706,6 +707,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			FormatAccordingSizeOptions(printProductControl);
 			printProductControl.LoadInserts();
 			printProductControl.UpdateTotals();
+			printProductControl.UpdateProductButtonsState();
 		}
 
 		private void FormatAccordingSizeOptions(PrintProductControl printProductControl)

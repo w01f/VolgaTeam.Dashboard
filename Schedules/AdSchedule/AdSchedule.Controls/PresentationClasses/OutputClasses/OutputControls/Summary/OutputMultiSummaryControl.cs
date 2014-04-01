@@ -108,6 +108,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SettingsNotSaved = false;
 		}
 
+		public void Save() { }
+
 		private void LoadSharedOptions()
 		{
 			Controller.Instance.MultiSummaryPresentationDateText.Text = LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yy") : string.Empty;

@@ -1157,8 +1157,6 @@ namespace NewBizWiz.Core.OnlineSchedule
 						break;
 				}
 			}
-			if (Websites.Count == 0 && ListManager.Instance.Websites.Any())
-				Websites.Add(ListManager.Instance.Websites.FirstOrDefault());
 			if (String.IsNullOrEmpty(UserDefinedName))
 				UserDefinedName = ExtendedName;
 			UpdateAdditionlaInfo();
@@ -1176,6 +1174,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			EnableLocation = source.EnableLocation;
 			EnableRichMedia = source.EnableRichMedia;
 			Description = source.Overview;
+			Websites.AddRange(ListManager.Instance.Websites.Where(s => s == source.DefaultWebsite));
 			UpdateAdditionlaInfo();
 		}
 
@@ -1804,6 +1803,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public bool EnableTarget { get; set; }
 		public bool EnableRichMedia { get; set; }
 		public string Overview { get; set; }
+		public string DefaultWebsite { get; set; }
 	}
 
 	public class Category

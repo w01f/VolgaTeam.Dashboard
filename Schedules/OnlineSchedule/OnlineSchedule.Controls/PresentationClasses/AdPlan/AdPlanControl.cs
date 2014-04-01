@@ -35,7 +35,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public abstract ThemeManager ThemeManager { get; }
 		public abstract HelpManager HelpManager { get; }
 		public abstract ButtonItem Theme { get; }
-		public abstract RibbonBar SpecialButtonsGroup { get; }
 
 		public List<IAdPlanItem> ProductPages { get; private set; }
 		public bool SettingsNotSaved { get; set; }
@@ -75,7 +74,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 			FillProducts(quickLoad);
 			UpdateSlidesNumberSelector();
-			xtraTabControlProducts_SelectedPageChanged(xtraTabControlProducts, new TabPageChangedEventArgs(null, xtraTabControlProducts.SelectedTabPage));
 			SettingsNotSaved = false;
 
 		}
@@ -88,11 +86,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			if (!_allowToSave) return;
 			Schedule.SharedViewSettings.AdPlanViewSettings.MoreSlides = checkEditMoreSlides.Checked;
 			SettingsNotSaved = true;
-		}
-
-		private void xtraTabControlProducts_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
-		{
-			SpecialButtonsGroup.Enabled = e.Page is AdPlanDigitalProductControl;
 		}
 
 		public void Preview_Click(object sender, EventArgs e)

@@ -19,7 +19,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private readonly SuperTooltipInfo _toolTip = new SuperTooltipInfo("HELP", "", "Help me with the Closing Summary Slide", null, null, eTooltipColor.Gray);
 
 		public SlideSimpleSummaryControl()
-			: base()
 		{
 			InitializeComponent();
 			Dock = DockStyle.Fill;
@@ -102,11 +101,17 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		public void ResetTab()
 		{
 			xtraTabControl.SelectedTabPage = xtraTabPageBasicInfo;
+			UpdateOutputState();
 		}
 
 		public void UpdateSavedFilesState()
 		{
 			SetLoadState(ViewSettingsManager.Instance.SimpleSummaryState.AllowToLoad());
+		}
+
+		public void UpdateOutputState()
+		{
+			SetOutputState(simpleSummaryItemContainer.ItemsComplited);
 		}
 
 		private void LoadSavedState()

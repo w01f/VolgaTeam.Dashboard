@@ -1571,7 +1571,7 @@ namespace NewBizWiz.Core.MediaSchedule
 	public class BroadcastCalendar : CalendarMondayBased
 	{
 		private readonly Func<IEnumerable<BroadcastMonthTemplate>> _getBroadcastMonthTemplates;
-		private Schedule _parentSchedule;
+		private readonly Schedule _parentSchedule;
 
 		public override bool AllowCustomNotes
 		{
@@ -1745,6 +1745,26 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			ApplyForAllCustomComment = false;
 			ShowLogo = false;
+		}
+
+		public override string TagA
+		{
+			get { return String.Empty; }
+		}
+
+		public override string TagB
+		{
+			get { return String.Empty; }
+		}
+
+		public override string TagC
+		{
+			get { return String.Empty; }
+		}
+
+		public override string TagD
+		{
+			get { return String.Empty; }
 		}
 	}
 

@@ -88,11 +88,13 @@ namespace NewBizWiz.OnlineSchedule.Single
 			#endregion
 
 			#region Rate Card
+			Controller.Instance.RateCardSpecialButtons = ribbonBarRateCardSpecialButtons;
 			Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
 			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
 			#endregion
 
 			#region Gallery
+			Controller.Instance.GallerySpecialButtons = ribbonBarGallerySpecialButtons;
 			Controller.Instance.GalleryBrowseBar = ribbonBarGalleryBrowse;
 			Controller.Instance.GalleryImageBar = ribbonBarGalleryImage;
 			Controller.Instance.GalleryZoomBar = ribbonBarGalleryZoom;

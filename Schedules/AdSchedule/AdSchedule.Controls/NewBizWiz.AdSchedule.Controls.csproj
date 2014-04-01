@@ -95,6 +95,7 @@
     <Compile Include="BusinessClasses\BusinessWrapper.cs" />
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="InteropClasses\BasicOverviewSummaryHelper.cs" />
     <Compile Include="InteropClasses\SummaryHelper.cs" />
     <Compile Include="PresentationClasses\InputClasses\AdNotesDaysSelector.cs">
       <SubType>UserControl</SubType>
@@ -120,17 +121,32 @@
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\AdPlan\PrintAdPlanControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\DigitalViewerControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\DigitalViewerControl.Designer.cs">
-      <DependentUpon>DigitalViewerControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\AdPlan\AdPlanPrintProductControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\AdPlan\AdPlanPrintProductControl.Designer.cs">
       <DependentUpon>AdPlanPrintProductControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\AdCalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SlideInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SlideInfoControl.Designer.cs">
+      <DependentUpon>SlideInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\BasicOverviewSummaryControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\BasicOverviewSummaryControl.Designer.cs">
+      <DependentUpon>BasicOverviewSummaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\PublicationSummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\PublicationSummaryControl.Designer.cs">
+      <DependentUpon>PublicationSummaryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\Summary\SummaryInputItemControl.cs">
       <SubType>UserControl</SubType>
@@ -146,58 +162,7 @@
     </Compile>
     <Compile Include="InteropClasses\CalendarHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
-    <Compile Include="PresentationClasses\OutputClasses\CalendarHelper.cs" />
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\CommentViewerControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\CommentViewerControl.Designer.cs">
-      <DependentUpon>CommentViewerControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\TitleViewerControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\TitleViewerControl.Designer.cs">
-      <DependentUpon>TitleViewerControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\LogoViewerControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\LogoViewerControl.Designer.cs">
-      <DependentUpon>LogoViewerControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\TextSettingsViewerControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\TextSettingsViewerControl.Designer.cs">
-      <DependentUpon>TextSettingsViewerControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\ICalendarSettingsViewer.cs" />
     <Compile Include="PresentationClasses\OutputClasses\ISettingsContainer.cs" />
-    <Compile Include="PresentationClasses\OutputClasses\NavigationPaneView.cs" />
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\CalendarsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\CalendarsControl.Designer.cs">
-      <DependentUpon>CalendarsControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\DayControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\DayControl.Designer.cs">
-      <DependentUpon>DayControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\CalendarRecordControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\CalendarRecordControl.Designer.cs">
-      <DependentUpon>CalendarRecordControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\LegendViewerControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\LegendViewerControl.Designer.cs">
-      <DependentUpon>LegendViewerControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\Grid\AdNotesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -228,23 +193,11 @@
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\Grid\GridsControl.Designer.cs">
       <DependentUpon>GridsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\MonthViewControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\MonthViewControl.Designer.cs">
-      <DependentUpon>MonthViewControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\OutputBasicOverviewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\OutputBasicOverviewControl.Designer.cs">
       <DependentUpon>OutputBasicOverviewControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\OutputCalendarControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\OutputCalendarControl.Designer.cs">
-      <DependentUpon>OutputCalendarControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\Grid\OutputDetailedGridControl.cs">
       <SubType>UserControl</SubType>
@@ -286,37 +239,7 @@
     <Compile Include="InteropClasses\MultiGridHelper.cs" />
     <Compile Include="InteropClasses\DetailedGridHelper.cs" />
     <Compile Include="InteropClasses\SnapshotHelper.cs" />
-    <Compile Include="InteropClasses\MultiSummaryHelper.cs" />
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\WeekControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\WeekControl.Designer.cs">
-      <DependentUpon>WeekControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\WeekEmptySpaceControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputControls\Calendar\WeekEmptySpaceControl.Designer.cs">
-      <DependentUpon>WeekEmptySpaceControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormCalendarToggleChange.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormCalendarToggleChange.Designer.cs">
-      <DependentUpon>FormCalendarToggleChange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormCalendarOutputOptions.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormCalendarOutputOptions.designer.cs">
-      <DependentUpon>FormCalendarOutputOptions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormDayView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\OutputClasses\OutputForms\FormDayView.Designer.cs">
-      <DependentUpon>FormDayView.cs</DependentUpon>
-    </Compile>
+    <Compile Include="PresentationClasses\OutputClasses\MultiSummaryHelper.cs" />
     <Compile Include="ToolForms\FormDateSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -429,38 +352,23 @@
     <EmbeddedResource Include="PresentationClasses\InputClasses\AdNotesDaysSelector.resx">
       <DependentUpon>AdNotesDaysSelector.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\DigitalViewerControl.resx">
-      <DependentUpon>DigitalViewerControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\AdPlan\AdPlanPrintProductControl.resx">
       <DependentUpon>AdPlanPrintProductControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SlideInfoControl.resx">
+      <DependentUpon>SlideInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Summary\BasicOverviewSummaryControl.resx">
+      <DependentUpon>BasicOverviewSummaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Summary\PublicationSummaryControl.resx">
+      <DependentUpon>PublicationSummaryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Summary\SummaryInputItemControl.resx">
       <DependentUpon>SummaryInputItemControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Summary\SummaryControl.resx">
       <DependentUpon>SummaryControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\CalendarsControl.resx">
-      <DependentUpon>CalendarsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\DayControl.resx">
-      <DependentUpon>DayControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\CommentViewerControl.resx">
-      <DependentUpon>CommentViewerControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\TitleViewerControl.resx">
-      <DependentUpon>TitleViewerControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\LogoViewerControl.resx">
-      <DependentUpon>LogoViewerControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\TextSettingsViewerControl.resx">
-      <DependentUpon>TextSettingsViewerControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\SettingsViewers\LegendViewerControl.resx">
-      <DependentUpon>LegendViewerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Grid\AdNotesControl.resx">
       <DependentUpon>AdNotesControl.cs</DependentUpon>
@@ -477,14 +385,8 @@
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Grid\GridsControl.resx">
       <DependentUpon>GridsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\MonthViewControl.resx">
-      <DependentUpon>MonthViewControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Summary\OutputBasicOverviewControl.resx">
       <DependentUpon>OutputBasicOverviewControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\OutputCalendarControl.resx">
-      <DependentUpon>OutputCalendarControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Grid\OutputDetailedGridControl.resx">
       <DependentUpon>OutputDetailedGridControl.cs</DependentUpon>
@@ -503,21 +405,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Summary\PublicationSnapshotControl.resx">
       <DependentUpon>PublicationSnapshotControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\WeekControl.resx">
-      <DependentUpon>WeekControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Calendar\WeekEmptySpaceControl.resx">
-      <DependentUpon>WeekEmptySpaceControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormCalendarToggleChange.resx">
-      <DependentUpon>FormCalendarToggleChange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormCalendarOutputOptions.resx">
-      <DependentUpon>FormCalendarOutputOptions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputForms\FormDayView.resx">
-      <DependentUpon>FormDayView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormDateSelector.resx">
       <DependentUpon>FormDateSelector.cs</DependentUpon>
@@ -805,6 +692,10 @@
       <Project>{898ECB12-D464-4514-AE2E-45FE430FE04E}</Project>
       <Name>MonthCalendar</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Calendar\Calendar.Controls\NewBizWiz.Calendar.Controls.csproj">
+      <Project>{167BC40B-C87E-4972-B8A2-903F6F160B6B}</Project>
+      <Name>NewBizWiz.Calendar.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\OnlineSchedule\OnlineSchedule.Controls\NewBizWiz.OnlineSchedule.Controls.csproj">
       <Project>{1C9B33CD-0FE1-431C-BBC4-88463568F891}</Project>
       <Name>NewBizWiz.OnlineSchedule.Controls</Name>
@@ -906,6 +797,7 @@
   <ItemGroup>
     <None Include="Resources\CalcButton.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rem "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe" sign /f d:\temp\NewBizWiz\NLDCertificate.pfx /t http://timestamp.verisign.com/scripts/timstamp.dll  /p bubbadude AdScheduleBuilder.dll</PostBuildEvent>

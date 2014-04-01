@@ -18,7 +18,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		private bool _isSelected;
 		private Color _colorLight = Color.White;
 		private Color _colorDark = Color.LightGray;
-		private List<ImageSource> _images = new List<ImageSource>();
+		private readonly List<ImageSource> _images = new List<ImageSource>();
 
 		public DayControl(CalendarDay day, IEnumerable<ImageSource> dayImages)
 		{
@@ -45,7 +45,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			labelControlData.Text = Day.Summary;
 			pbLogo.Image = Day.Logo.XtraTinyImage;
 			pbLogo.Visible = Day.Logo.XtraTinyImage != null;
-			memoEditSimpleComment.EditValue = Day.Comment1;
+			memoEditSimpleComment.EditValue = Day.Comment;
 			toolStripMenuItemEdit.Visible = true;
 			toolStripMenuItemEdit.Enabled = true;
 			toolStripMenuItemDelete.Enabled = Day.ContainsData;
@@ -229,7 +229,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		private void memoEditSimpleComment_EditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
-			Day.Comment1 = memoEditSimpleComment.EditValue != null ? memoEditSimpleComment.EditValue.ToString() : string.Empty;
+			Day.Comment = memoEditSimpleComment.EditValue as String;
 			RefreshData(_colorLight, _colorDark);
 			if (DataChanged != null)
 				DataChanged(sender, new EventArgs());

@@ -2776,24 +2776,14 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 			ShowPercentOfPage = false;
 			ShowBigDate = true;
 
-			EnableTitle = true;
 			EnableLogo = true;
-			EnableBusinessName = true;
-			EnableDecisionMaker = true;
 			EnableTotalCost = true;
-			EnableLegend = true;
-			EnableAvgCost = true;
 			EnableComments = true;
 			EnableTotalAds = true;
 			EnableActiveDays = true;
 
-			ShowTitle = true;
 			ShowLogo = true;
-			ShowBusinessName = true;
-			ShowDecisionMaker = true;
 			ShowTotalCost = false;
-			ShowLegend = false;
-			ShowAvgCost = false;
 			ShowComments = false;
 			ShowTotalAds = false;
 			ShowActiveDays = false;
@@ -2825,24 +2815,14 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 		public bool ShowPercentOfPage { get; set; }
 		public bool ShowBigDate { get; set; }
 
-		public bool EnableTitle { get; set; }
 		public bool EnableLogo { get; set; }
-		public bool EnableBusinessName { get; set; }
-		public bool EnableDecisionMaker { get; set; }
 		public bool EnableTotalCost { get; set; }
-		public bool EnableLegend { get; set; }
-		public bool EnableAvgCost { get; set; }
 		public bool EnableComments { get; set; }
 		public bool EnableTotalAds { get; set; }
 		public bool EnableActiveDays { get; set; }
 
-		public bool ShowTitle { get; set; }
 		public bool ShowLogo { get; set; }
-		public bool ShowBusinessName { get; set; }
-		public bool ShowDecisionMaker { get; set; }
 		public bool ShowTotalCost { get; set; }
-		public bool ShowLegend { get; set; }
-		public bool ShowAvgCost { get; set; }
 		public bool ShowComments { get; set; }
 		public bool ShowTotalAds { get; set; }
 		public bool ShowActiveDays { get; set; }
@@ -2876,24 +2856,14 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 			result.AppendLine(@"<ShowPercentOfPage>" + ShowPercentOfPage + @"</ShowPercentOfPage>");
 			result.AppendLine(@"<ShowBigDate>" + ShowBigDate + @"</ShowBigDate>");
 
-			result.AppendLine(@"<EnableTitle>" + EnableTitle + @"</EnableTitle>");
 			result.AppendLine(@"<EnableLogo>" + EnableLogo + @"</EnableLogo>");
-			result.AppendLine(@"<EnableBusinessName>" + EnableBusinessName + @"</EnableBusinessName>");
-			result.AppendLine(@"<EnableDecisionMaker>" + EnableDecisionMaker + @"</EnableDecisionMaker>");
 			result.AppendLine(@"<EnableTotalCost>" + EnableTotalCost + @"</EnableTotalCost>");
-			result.AppendLine(@"<EnableLegend>" + EnableLegend + @"</EnableLegend>");
-			result.AppendLine(@"<EnableAvgCost>" + EnableAvgCost + @"</EnableAvgCost>");
 			result.AppendLine(@"<EnableComments>" + EnableComments + @"</EnableComments>");
 			result.AppendLine(@"<EnableTotalAds>" + EnableTotalAds + @"</EnableTotalAds>");
 			result.AppendLine(@"<EnableActiveDays>" + EnableActiveDays + @"</EnableActiveDays>");
 
-			result.AppendLine(@"<ShowTitle>" + ShowTitle + @"</ShowTitle>");
 			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
-			result.AppendLine(@"<ShowBusinessName>" + ShowBusinessName + @"</ShowBusinessName>");
-			result.AppendLine(@"<ShowDecisionMaker>" + ShowDecisionMaker + @"</ShowDecisionMaker>");
 			result.AppendLine(@"<ShowTotalCost>" + ShowTotalCost + @"</ShowTotalCost>");
-			result.AppendLine(@"<ShowLegend>" + ShowLegend + @"</ShowLegend>");
-			result.AppendLine(@"<ShowAvgCost>" + ShowAvgCost + @"</ShowAvgCost>");
 			result.AppendLine(@"<ShowComments>" + ShowComments + @"</ShowComments>");
 			result.AppendLine(@"<ShowTotalAds>" + ShowTotalAds + @"</ShowTotalAds>");
 			result.AppendLine(@"<ShowActiveDays>" + ShowActiveDays + @"</ShowActiveDays>");
@@ -2911,11 +2881,9 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 
 		public void Deserialize(XmlNode node)
 		{
-			DateTime tempDate = DateTime.MinValue;
-			bool tempBool = false;
-
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
+				bool tempBool;
 				switch (childNode.Name)
 				{
 					case "EnableSection":
@@ -2984,33 +2952,13 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 							ShowBigDate = tempBool;
 						break;
 
-					case "EnableTitle":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableTitle = tempBool;
-						break;
 					case "EnableLogo":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							EnableLogo = tempBool;
 						break;
-					case "EnableBusinessName":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableBusinessName = tempBool;
-						break;
-					case "EnableDecisionMaker":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableDecisionMaker = tempBool;
-						break;
 					case "EnableTotalCost":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							EnableTotalCost = tempBool;
-						break;
-					case "EnableLegend":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableLegend = tempBool;
-						break;
-					case "EnableAvgCost":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableAvgCost = tempBool;
 						break;
 					case "EnableComments":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -3025,33 +2973,13 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 							EnableActiveDays = tempBool;
 						break;
 
-					case "ShowTitle":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTitle = tempBool;
-						break;
 					case "ShowLogo":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowLogo = tempBool;
 						break;
-					case "ShowBusinessName":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowBusinessName = tempBool;
-						break;
-					case "ShowDecisionMaker":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowDecisionMaker = tempBool;
-						break;
 					case "ShowTotalCost":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowTotalCost = tempBool;
-						break;
-					case "ShowLegend":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowLegend = tempBool;
-						break;
-					case "ShowAvgCost":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowAvgCost = tempBool;
 						break;
 					case "ShowComments":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -3105,13 +3033,8 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 			ShowPercentOfPage &= EnablePercentOfPage;
 			ShowBigDate &= EnableBigDate;
 
-			ShowTitle &= EnableTitle;
 			ShowLogo &= EnableLogo;
-			ShowBusinessName &= EnableBusinessName;
-			ShowDecisionMaker &= EnableDecisionMaker;
 			ShowTotalCost &= EnableTotalCost;
-			ShowLegend &= EnableLegend;
-			ShowAvgCost &= EnableAvgCost;
 			ShowComments &= EnableComments;
 			ShowTotalAds &= EnableTotalAds;
 			ShowActiveDays &= EnableActiveDays;

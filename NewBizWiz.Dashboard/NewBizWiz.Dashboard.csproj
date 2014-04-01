@@ -140,12 +140,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabCalendarForms\CalendarBuilderControl.resx">
-      <DependentUpon>CalendarBuilderControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabCalendarForms\TabCalendarMainPage.resx">
-      <DependentUpon>TabCalendarMainPage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="TabHomeForms\Dashboard\DashboardRadio.resx">
       <DependentUpon>DashboardRadio.cs</DependentUpon>
     </EmbeddedResource>
@@ -241,18 +235,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="TabCalendarForms\CalendarBuilderControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabCalendarForms\CalendarBuilderControl.Designer.cs">
-      <DependentUpon>CalendarBuilderControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TabCalendarForms\TabCalendarMainPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TabCalendarForms\TabCalendarMainPage.Designer.cs">
-      <DependentUpon>TabCalendarMainPage.cs</DependentUpon>
     </Compile>
     <Compile Include="TabHomeForms\Dashboard\DashboardRadio.cs">
       <SubType>UserControl</SubType>
@@ -456,7 +438,6 @@
     <None Include="Resources\SlideLeadoff.png" />
     <None Include="Resources\SlideCover.png" />
     <None Include="Resources\TitleCalendar.png" />
-    <None Include="Resources\LabelCalendar.png" />
     <None Include="Resources\TitleNewspaper.png" />
     <None Include="Resources\LabelNewspaper.png" />
     <None Include="Resources\TitleOnline.png" />
@@ -471,8 +452,6 @@
     <None Include="Resources\CableLittle.png" />
     <None Include="Resources\DeleteButton.png" />
     <None Include="Resources\Floater.png" />
-    <None Include="Resources\CalendarLittle.png" />
-    <None Include="Resources\HomeCalendar.png" />
     <None Include="Resources\RedWarning.png" />
     <None Include="Resources\SavedFiles.png" />
     <None Include="Resources\Help.png" />
@@ -543,10 +522,6 @@
     <ProjectReference Include="..\Schedules\Calendar\Calendar.Controls\NewBizWiz.Calendar.Controls.csproj">
       <Project>{167BC40B-C87E-4972-B8A2-903F6F160B6B}</Project>
       <Name>NewBizWiz.Calendar.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Schedules\Calendar\Calendar.Internal\NewBizWiz.Calendar.Internal.csproj">
-      <Project>{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC}</Project>
-      <Name>NewBizWiz.Calendar.Internal</Name>
     </ProjectReference>
     <ProjectReference Include="..\Schedules\MediaSchedule\MediaSchedule.Controls\NewBizWiz.MediaSchedule.Controls.csproj">
       <Project>{F3572A95-E99D-485F-B4F3-EF26F49C094B}</Project>

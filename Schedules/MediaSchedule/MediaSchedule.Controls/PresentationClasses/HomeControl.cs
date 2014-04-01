@@ -389,7 +389,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			Controller.Instance.HomeProductAdd.Enabled =
 			Controller.Instance.HomeProductClone.Enabled =
-			Controller.Instance.HomeSpecialButtons.Enabled =
 				e.Page == xtraTabPageDigital;
 			UpdateProductsCount();
 			splitContainerControl.PanelVisibility = e.Page == xtraTabPageDigital ? SplitPanelVisibility.Panel1 : SplitPanelVisibility.Both;

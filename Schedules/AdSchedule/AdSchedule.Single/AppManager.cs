@@ -28,7 +28,7 @@ namespace NewBizWiz.AdSchedule.Single
 		{
 			LicenseHelper.Register();
 			MasterWizardManager.Instance.SetMasterWizard();
-			Controls.BusinessClasses.BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
+			Controls.BusinessClasses.BusinessWrapper.Instance.OutputManager.TemplatesManager.LoadCalendarTemplates();
 			AdSchedulePowerPointHelper.Instance.SetPresentationSettings();
 			OnlineSchedulePowerPointHelper.Instance.SetPresentationSettings();
 			AppConfig = NBWLink.CreateLink(new DirectoryInfo(Application.StartupPath));

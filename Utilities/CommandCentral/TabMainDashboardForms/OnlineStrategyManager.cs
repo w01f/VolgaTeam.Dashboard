@@ -86,6 +86,7 @@ namespace CommandCentral.TabMainDashboard
 			var columnPositions = new List<string>();
 			var specialLinksEnable = false;
 			var specialLinksGroupName = String.Empty;
+			Image specialLinksGroupLogo = null;
 			var specialLinksBrowsers = new List<string>();
 			var specialLinkButtons = new List<SpecialLinkButton>();
 			var targetingRecords = new List<DigitalProductInfo>();
@@ -199,14 +200,6 @@ namespace CommandCentral.TabMainDashboard
 							if (!string.IsNullOrEmpty(site.Value))
 								sites.Add(site);
 						}
-
-					sites.Sort((x, y) =>
-					{
-						int result = y.IsDefault.CompareTo(x.IsDefault);
-						if (result == 0)
-							result = WinAPIHelper.StrCmpLogicalW(x.Value, y.Value);
-						return result;
-					});
 				}
 				catch
 				{
@@ -399,6 +392,9 @@ namespace CommandCentral.TabMainDashboard
 							if (!String.IsNullOrEmpty(rowValue))
 							{
 								specialLinksGroupName = rowValue;
+								var imageFilePath = Path.Combine(Application.StartupPath, SpecialButtonsImageSourceFolder, "!RibbonGroup.png");
+								if (File.Exists(imageFilePath))
+									specialLinksGroupLogo = new Bitmap(imageFilePath);
 								break;
 							}
 						}
@@ -441,7 +437,7 @@ namespace CommandCentral.TabMainDashboard
 				}
 
 				//Load Special Link Buttons
-				dataAdapter = new OleDbDataAdapter("SELECT * FROM [SpecialRBNLinks$A10:J20]", connection);
+				dataAdapter = new OleDbDataAdapter("SELECT * FROM [SpecialRBNLinks$A10:J30]", connection);
 				dataTable = new DataTable();
 				try
 				{
@@ -623,7 +619,7 @@ namespace CommandCentral.TabMainDashboard
 					try
 					{
 						dataAdapter.Fill(dataTable);
-						if (dataTable.Rows.Count > 0 && dataTable.Columns.Count >= 10)
+						if (dataTable.Rows.Count > 0 && dataTable.Columns.Count >= 11)
 							foreach (DataRow row in dataTable.Rows)
 							{
 								var product = new Product();
@@ -637,6 +633,7 @@ namespace CommandCentral.TabMainDashboard
 								product.EnableLocation = row[7].ToString().Trim().ToLower() == "e";
 								product.EnableRichMedia = row[8].ToString().Trim().ToLower() == "e";
 								product.Overview = row[9].ToString().Trim();
+								product.DefaultWebsite = row[10] != null ? row[10].ToString().Trim() : null;
 								product.Category = category;
 								if (!string.IsNullOrEmpty(product.Name))
 									products.Add(product);
@@ -945,6 +942,8 @@ namespace CommandCentral.TabMainDashboard
 			}
 			xml.AppendLine("<SpecialLinksEnable>" + specialLinksEnable + "</SpecialLinksEnable>");
 			xml.AppendLine("<SpecialButtonsGroupName>" + specialLinksGroupName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</SpecialButtonsGroupName>");
+			if (specialLinksGroupLogo != null)
+				xml.AppendLine("<SpecialButtonsGroupLogo>" + Convert.ToBase64String((byte[])converter.ConvertTo(specialLinksGroupLogo, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + "</SpecialButtonsGroupLogo>");
 			foreach (var browser in specialLinksBrowsers)
 				xml.AppendLine("<Browser>" + browser + "</Browser>");
 
@@ -990,6 +989,8 @@ namespace CommandCentral.TabMainDashboard
 				xml.Append("EnableLocation = \"" + product.EnableLocation + "\" ");
 				xml.Append("EnableRichMedia = \"" + product.EnableRichMedia + "\" ");
 				xml.Append("Overview = \"" + product.Overview.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
+				if (!String.IsNullOrEmpty(product.DefaultWebsite))
+					xml.Append("DefaultWebsite = \"" + product.DefaultWebsite.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 				xml.AppendLine(@"/>");
 			}
 

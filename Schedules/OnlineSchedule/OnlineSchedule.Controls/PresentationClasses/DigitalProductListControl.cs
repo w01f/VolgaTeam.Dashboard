@@ -98,7 +98,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public void AddProduct(Category category)
 		{
 			_schedule.AddDigital(category.Name);
-			_trackActivity(new PropertyEditActivity("Digital Category", category.Name, "Added"));
+			if (_trackActivity != null)
+				_trackActivity(new PropertyEditActivity("Digital Category", category.Name, "Added"));
 			RefreshDigitalAfterAddProduct();
 		}
 

@@ -27,7 +27,7 @@ namespace NewBizWiz.Calendar.Single
 		public void RunForm()
 		{
 			LicenseHelper.Register();
-			BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
+			BusinessWrapper.Instance.OutputManager.TemplatesManager.LoadCalendarTemplates();
 			CalendarPowerPointHelper.Instance.SetPresentationSettings();
 			AppConfig = NBWLink.CreateLink(new DirectoryInfo(Application.StartupPath));
 			Application.Run(FormMain.Instance);

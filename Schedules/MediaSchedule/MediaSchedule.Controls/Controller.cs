@@ -301,51 +301,40 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		private void ConfigureSpecialButtons()
 		{
-			if (Core.OnlineSchedule.ListManager.Instance.SpecialLinksEnable)
+			var specialLinkContainers = new[]
 			{
-				HomeSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-				DigitalProductSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-				DigitalPackageSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-				foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
+				HomeSpecialButtons,
+				WeeklyScheduleSpecialButtons,
+				MonthlyScheduleSpecialButtons,
+				DigitalProductSpecialButtons,
+				DigitalPackageSpecialButtons,
+				CalendarSpecialButtons,
+				GallerySpecialButtons
+			};
+			foreach (var ribbonBar in specialLinkContainers)
+			{
+				if (Core.OnlineSchedule.ListManager.Instance.SpecialLinksEnable)
 				{
-					var toolTip = new SuperTooltipInfo(specialLinkButton.Name, "", specialLinkButton.Tooltip, null, null, eTooltipColor.Gray);
-					var clickAction = new Action(() => { specialLinkButton.Open(); });
+					ribbonBar.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+					var containerButton = new ButtonItem();
+					containerButton.Image = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupLogo;
+					containerButton.AutoExpandOnClick = true;
+					ribbonBar.Items.Add(containerButton);
+					foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
 					{
+						var clickAction = new Action(() => { specialLinkButton.Open(); });
 						var button = new ButtonItem();
 						button.Image = specialLinkButton.Logo;
-						button.Text = specialLinkButton.Name;
+						button.Text = String.Format("<b>{0}</b><p>{1}</p>", specialLinkButton.Name, specialLinkButton.Tooltip);
 						button.Tag = specialLinkButton;
-						Supertip.SetSuperTooltip(button, toolTip);
 						button.Click += (o, e) => clickAction();
-						HomeSpecialButtons.Items.Add(button);
-					}
-
-					{
-						var button = new ButtonItem();
-						button.Image = specialLinkButton.Logo;
-						button.Text = specialLinkButton.Name;
-						button.Tag = specialLinkButton;
-						Supertip.SetSuperTooltip(button, toolTip);
-						button.Click += (o, e) => clickAction();
-						DigitalProductSpecialButtons.Items.Add(button);
-					}
-
-					{
-						var button = new ButtonItem();
-						button.Image = specialLinkButton.Logo;
-						button.Text = specialLinkButton.Name;
-						button.Tag = specialLinkButton;
-						Supertip.SetSuperTooltip(button, toolTip);
-						button.Click += (o, e) => clickAction();
-						DigitalPackageSpecialButtons.Items.Add(button);
+						containerButton.SubItems.Add(button);
 					}
 				}
-			}
-			else
-			{
-				HomeSpecialButtons.Visible = false;
-				DigitalProductSpecialButtons.Visible = false;
-				DigitalPackageSpecialButtons.Visible = false;
+				else
+				{
+					ribbonBar.Visible = false;
+				}
 			}
 		}
 
@@ -382,6 +371,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Weekly Schedule
+		public RibbonBar WeeklyScheduleSpecialButtons { get; set; }
 		public ButtonItem WeeklyScheduleProgramAdd { get; set; }
 		public ButtonItem WeeklyScheduleProgramDelete { get; set; }
 		public ButtonItem WeeklyScheduleOptions { get; set; }
@@ -395,6 +385,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Monthly Schedule
+		public RibbonBar MonthlyScheduleSpecialButtons { get; set; }
 		public ButtonItem MonthlyScheduleProgramAdd { get; set; }
 		public ButtonItem MonthlyScheduleProgramDelete { get; set; }
 		public ButtonItem MonthlyScheduleOptions { get; set; }
@@ -431,6 +422,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Calendar
+		public RibbonBar CalendarSpecialButtons { get; set; }
 		public ImageListBoxControl CalendarMonthsList { get; set; }
 		public ButtonItem CalendarSlideInfo { get; set; }
 		public ButtonItem CalendarCopy { get; set; }
@@ -445,6 +437,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#endregion
 
 		#region Gallery
+		public RibbonBar GallerySpecialButtons { get; set; }
 		public RibbonBar GalleryBrowseBar { get; set; }
 		public RibbonBar GalleryImageBar { get; set; }
 		public RibbonBar GalleryZoomBar { get; set; }

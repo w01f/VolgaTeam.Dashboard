@@ -172,17 +172,11 @@
   <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UpArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CalendarLittle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CalendarLittle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="TitleCalendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TitleCalendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TitleOnline" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TitleOnline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LabelCalendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LabelCalendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LableOnline" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LableOnline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -216,9 +210,6 @@
   </data>
   <data name="LableRadio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LableRadio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HomeCalendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HomeCalendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SalesQuotes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SalesQuotes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

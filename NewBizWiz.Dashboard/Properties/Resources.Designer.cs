@@ -103,16 +103,6 @@ namespace NewBizWiz.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CalendarLittle {
-            get {
-                object obj = ResourceManager.GetObject("CalendarLittle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Date {
             get {
                 object obj = ResourceManager.GetObject("Date", resourceCulture);
@@ -253,16 +243,6 @@ namespace NewBizWiz.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap HomeCalendar {
-            get {
-                object obj = ResourceManager.GetObject("HomeCalendar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap HomeNewspaper {
             get {
                 object obj = ResourceManager.GetObject("HomeNewspaper", resourceCulture);
@@ -296,16 +276,6 @@ namespace NewBizWiz.Dashboard.Properties {
         internal static System.Drawing.Bitmap HomeTV {
             get {
                 object obj = ResourceManager.GetObject("HomeTV", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap LabelCalendar {
-            get {
-                object obj = ResourceManager.GetObject("LabelCalendar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -45,6 +45,7 @@ namespace NewBizWiz.Dashboard
 
 		public void RunForm()
 		{
+			SetCultureSettings();
 			LicenseHelper.Register();
 			using (var form = new FormLoadSplash())
 			{

@@ -17,13 +17,14 @@ using SettingsManager = NewBizWiz.Core.Calendar.SettingsManager;
 
 namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 {
-	public class CommonCalendarControl : BaseCalendarControl
+	public sealed class CommonCalendarControl : BaseCalendarControl
 	{
-		protected Schedule _localSchedule = null;
+		private Schedule _localSchedule = null;
 
 		public CommonCalendarControl()
 			: base()
 		{
+			Dock = DockStyle.Fill;
 			InitSlideInfo<SlideInfoControl>();
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
 			{
@@ -136,6 +137,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		protected override void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
+			var commonOutputData = outputData.OfType<CommonCalendarOutputData>();
 			using (var formProgress = new FormProgress())
 			{
 				Controller.Instance.ShowFloater(() =>
@@ -144,7 +146,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 					formProgress.laProgress.Text = outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…";
 					formProgress.Show();
 					Enabled = false;
-					CalendarPowerPointHelper.Instance.AppendCalendar(outputData.ToArray());
+					CalendarPowerPointHelper.Instance.AppendCalendar(commonOutputData.ToArray());
 					Enabled = true;
 					formProgress.Close();
 				});
@@ -154,6 +156,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		protected override void EmailInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
+			var commonOutputData = outputData.OfType<CommonCalendarOutputData>();
 			var previewGroups = new List<PreviewGroup>();
 			using (var formProgress = new FormProgress())
 			{
@@ -161,7 +164,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 				formProgress.TopMost = true;
 				formProgress.Show();
 				Enabled = false;
-				foreach (var outputItem in outputData)
+				foreach (var outputItem in commonOutputData)
 				{
 					var previewGroup = new PreviewGroup
 					{
@@ -191,6 +194,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		protected override void PreviewInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
+			var commonOutputData = outputData.OfType<CommonCalendarOutputData>();
 			var previewGroups = new List<PreviewGroup>();
 			using (var formProgress = new FormProgress())
 			{
@@ -198,7 +202,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 				formProgress.TopMost = true;
 				formProgress.Show();
 				Enabled = false;
-				foreach (var outputItem in outputData)
+				foreach (var outputItem in commonOutputData)
 				{
 					var previewGroup = new PreviewGroup
 					{

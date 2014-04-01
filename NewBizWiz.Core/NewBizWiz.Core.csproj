@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdSchedule\Activities.cs" />
+    <Compile Include="Calendar\CalendarTemplatesManager.cs" />
     <Compile Include="Common\ActivityManager.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\GalleryManager.cs" />

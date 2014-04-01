@@ -27,7 +27,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				{
 					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 					RegistryHelper.MaximizeMainForm = true;
-					BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
+					BusinessWrapper.Instance.OutputManager.TemplatesManager.LoadCalendarTemplates();
 					BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", form.ScheduleName.Trim()));
 					BusinessWrapper.Instance.ScheduleManager.OpenSchedule(form.ScheduleName.Trim(), true);
 					FormMain.Instance.ShowDialog();
@@ -54,7 +54,7 @@ namespace NewBizWiz.AdSchedule.Internal
 				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 				RegistryHelper.MaximizeMainForm = true;
 				SettingsManager.Instance.SaveFolder = new FileInfo(dialog.FileName).Directory.FullName;
-				BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
+				BusinessWrapper.Instance.OutputManager.TemplatesManager.LoadCalendarTemplates();
 				BusinessWrapper.Instance.ScheduleManager.OpenSchedule(dialog.FileName);
 				FormMain.Instance.ShowDialog();
 				AdSchedulePowerPointHelper.Instance.Disconnect();
@@ -68,7 +68,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			if (!AdSchedulePowerPointHelper.Instance.Connect(false) || !OnlineSchedulePowerPointHelper.Instance.Connect(false)) return;
 			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 			RegistryHelper.MaximizeMainForm = true;
-			BusinessWrapper.Instance.OutputManager.LoadCalendarTemplates();
+			BusinessWrapper.Instance.OutputManager.TemplatesManager.LoadCalendarTemplates();
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Previous Opened", Path.GetFileNameWithoutExtension(fileName)));
 			BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
 			FormMain.Instance.ShowDialog();

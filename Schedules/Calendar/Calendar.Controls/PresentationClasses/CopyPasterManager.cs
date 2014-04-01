@@ -57,27 +57,23 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 
 		public void CloneDay(CalendarDay source, CalendarDay[] destination)
 		{
-			if (source != null && destination != null)
+			if (source == null || destination == null) return;
+			foreach (var day in destination)
 			{
-				foreach (CalendarDay day in destination)
-				{
-					day.Comment1 = source.Comment1;
-					day.Comment2 = source.Comment2;
-					day.Logo = source.Logo.Clone();
-				}
-				if (DayPasted != null)
-					DayPasted(null, null);
+				day.Comment = source.Comment;
+				day.Logo = source.Logo.Clone();
 			}
+			if (DayPasted != null)
+				DayPasted(null, null);
 		}
 
 		public void PasteDay(CalendarDay[] destination)
 		{
 			if (SourceDay != null && destination != null)
 			{
-				foreach (CalendarDay day in destination)
+				foreach (var day in destination)
 				{
-					day.Comment1 = SourceDay.Comment1;
-					day.Comment2 = SourceDay.Comment2;
+					day.Comment = SourceDay.Comment;
 					day.Logo = SourceDay.Logo.Clone();
 				}
 				if (DayPasted != null)

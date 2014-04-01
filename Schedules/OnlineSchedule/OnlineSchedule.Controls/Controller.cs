@@ -258,63 +258,38 @@ namespace NewBizWiz.OnlineSchedule.Controls
 
 		private void ConfigureSpecialButtons()
 		{
-			if (Core.OnlineSchedule.ListManager.Instance.SpecialLinksEnable)
+			var specialLinkContainers = new[]
 			{
-				HomeSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-				DigitalSlidesSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-				DigitalPackageSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-				AdPlanSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-				foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
+				HomeSpecialButtons,
+				DigitalPackageSpecialButtons,
+				AdPlanSpecialButtons,
+				RateCardSpecialButtons,
+				GallerySpecialButtons
+			};
+			foreach (var ribbonBar in specialLinkContainers)
+			{
+				if (Core.OnlineSchedule.ListManager.Instance.SpecialLinksEnable)
 				{
-					var toolTip = new SuperTooltipInfo(specialLinkButton.Name, "", specialLinkButton.Tooltip, null, null, eTooltipColor.Gray);
-					var clickAction = new Action(() => { specialLinkButton.Open(); });
+					ribbonBar.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+					var containerButton = new ButtonItem();
+					containerButton.Image = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupLogo;
+					containerButton.AutoExpandOnClick = true;
+					ribbonBar.Items.Add(containerButton);
+					foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
 					{
+						var clickAction = new Action(() => { specialLinkButton.Open(); });
 						var button = new ButtonItem();
 						button.Image = specialLinkButton.Logo;
-						button.Text = specialLinkButton.Name;
+						button.Text = String.Format("<b>{0}</b><p>{1}</p>", specialLinkButton.Name, specialLinkButton.Tooltip);
 						button.Tag = specialLinkButton;
-						Supertip.SetSuperTooltip(button, toolTip);
 						button.Click += (o, e) => clickAction();
-						HomeSpecialButtons.Items.Add(button);
-					}
-
-					{
-						var button = new ButtonItem();
-						button.Image = specialLinkButton.Logo;
-						button.Text = specialLinkButton.Name;
-						button.Tag = specialLinkButton;
-						Supertip.SetSuperTooltip(button, toolTip);
-						button.Click += (o, e) => clickAction();
-						DigitalSlidesSpecialButtons.Items.Add(button);
-					}
-
-					{
-						var button = new ButtonItem();
-						button.Image = specialLinkButton.Logo;
-						button.Text = specialLinkButton.Name;
-						button.Tag = specialLinkButton;
-						Supertip.SetSuperTooltip(button, toolTip);
-						button.Click += (o, e) => clickAction();
-						DigitalPackageSpecialButtons.Items.Add(button);
-					}
-
-					{
-						var button = new ButtonItem();
-						button.Image = specialLinkButton.Logo;
-						button.Text = specialLinkButton.Name;
-						button.Tag = specialLinkButton;
-						Supertip.SetSuperTooltip(button, toolTip);
-						button.Click += (o, e) => clickAction();
-						AdPlanSpecialButtons.Items.Add(button);
+						containerButton.SubItems.Add(button);
 					}
 				}
-			}
-			else
-			{
-				HomeSpecialButtons.Visible = false;
-				DigitalSlidesSpecialButtons.Visible = false;
-				DigitalPackageSpecialButtons.Visible = false;
-				AdPlanSpecialButtons.Visible = false;
+				else
+				{
+					ribbonBar.Visible = false;
+				}
 			}
 		}
 
@@ -389,11 +364,13 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		#endregion
 
 		#region Rate Card
+		public RibbonBar RateCardSpecialButtons { get; set; }
 		public ButtonItem RateCardHelp { get; set; }
 		public ComboBoxEdit RateCardCombo { get; set; }
 		#endregion
 
 		#region Gallery
+		public RibbonBar GallerySpecialButtons { get; set; }
 		public RibbonBar GalleryBrowseBar { get; set; }
 		public RibbonBar GalleryImageBar { get; set; }
 		public RibbonBar GalleryZoomBar { get; set; }

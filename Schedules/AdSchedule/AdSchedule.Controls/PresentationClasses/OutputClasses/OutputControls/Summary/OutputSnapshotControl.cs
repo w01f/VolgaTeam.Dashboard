@@ -100,6 +100,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SettingsNotSaved = false;
 		}
 
+		public void Save() { }
+
 		public void OnOptionChanged(object sender, EventArgs e)
 		{
 			throw new NotImplementedException();

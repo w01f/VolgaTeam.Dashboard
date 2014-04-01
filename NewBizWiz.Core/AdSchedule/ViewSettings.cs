@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Xml;
+using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.Core.Common;
 
@@ -22,6 +22,7 @@ namespace NewBizWiz.Core.AdSchedule
 			DigitalPackageSettings.ResetToDefault();
 
 			BasicOverviewViewSettings = new BasicOverviewViewSettings();
+			BasicOverviewSummaryViewSettings = new BasicOverviewSummaryViewSettings();
 			MultiSummaryViewSettings = new MultiSummaryViewSettings();
 
 			SnapshotViewSettings = new SnapshotViewSettings();
@@ -32,8 +33,7 @@ namespace NewBizWiz.Core.AdSchedule
 			DetailedGridViewSettings = new DetailedGridViewSettings();
 			MultiGridViewSettings = new MultiGridViewSettings();
 
-			CalendarViewSettings = new CalendarViewSettings();
-			CalendarViewSettings.ResetToDefault();
+			CalendarSettings = new CalendarSettings();
 		}
 
 		public HomeViewSettings HomeViewSettings { get; set; }
@@ -44,6 +44,7 @@ namespace NewBizWiz.Core.AdSchedule
 		public DigitalPackageSettings DigitalPackageSettings { get; private set; }
 
 		public BasicOverviewViewSettings BasicOverviewViewSettings { get; set; }
+		public BasicOverviewSummaryViewSettings BasicOverviewSummaryViewSettings { get; set; }
 		public MultiSummaryViewSettings MultiSummaryViewSettings { get; set; }
 		public SnapshotViewSettings SnapshotViewSettings { get; set; }
 		public AdPlanViewSettings AdPlanViewSettings { get; set; }
@@ -51,7 +52,7 @@ namespace NewBizWiz.Core.AdSchedule
 		public DetailedGridViewSettings DetailedGridViewSettings { get; set; }
 		public MultiGridViewSettings MultiGridViewSettings { get; set; }
 
-		public CalendarViewSettings CalendarViewSettings { get; set; }
+		public CalendarSettings CalendarSettings { get; set; }
 
 		public string Serialize()
 		{
@@ -62,6 +63,7 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<DigitalPackageSettings>" + DigitalPackageSettings.Serialize() + @"</DigitalPackageSettings>");
 
 			result.AppendLine(@"<BasicOverviewViewSettings>" + BasicOverviewViewSettings.Serialize() + @"</BasicOverviewViewSettings>");
+			result.AppendLine(@"<BasicOverviewSummaryViewSettings>" + BasicOverviewSummaryViewSettings.Serialize() + @"</BasicOverviewSummaryViewSettings>");
 			result.AppendLine(@"<MultiSummaryViewSettings>" + MultiSummaryViewSettings.Serialize() + @"</MultiSummaryViewSettings>");
 			result.AppendLine(@"<SnapshotViewSettings>" + SnapshotViewSettings.Serialize() + @"</SnapshotViewSettings>");
 			result.AppendLine(@"<AdPlanViewSettings>" + AdPlanViewSettings.Serialize() + @"</AdPlanViewSettings>");
@@ -69,7 +71,7 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<DetailedGridViewSettings>" + DetailedGridViewSettings.Serialize() + @"</DetailedGridViewSettings>");
 			result.AppendLine(@"<MultiGridViewSettings>" + MultiGridViewSettings.Serialize() + @"</MultiGridViewSettings>");
 
-			result.AppendLine(@"<CalendarViewSettings>" + CalendarViewSettings.Serialize() + @"</CalendarViewSettings>");
+			result.AppendLine(@"<CalendarSettings>" + CalendarSettings.Serialize() + @"</CalendarSettings>");
 			return result.ToString();
 		}
 
@@ -88,6 +90,9 @@ namespace NewBizWiz.Core.AdSchedule
 					case "BasicOverviewViewSettings":
 						BasicOverviewViewSettings.Deserialize(childNode);
 						break;
+					case "BasicOverviewSummaryViewSettings":
+						BasicOverviewSummaryViewSettings.Deserialize(childNode);
+						break;
 					case "MultiSummaryViewSettings":
 						MultiSummaryViewSettings.Deserialize(childNode);
 						break;
@@ -103,8 +108,8 @@ namespace NewBizWiz.Core.AdSchedule
 					case "MultiGridViewSettings":
 						MultiGridViewSettings.Deserialize(childNode);
 						break;
-					case "CalendarViewSettings":
-						CalendarViewSettings.Deserialize(childNode);
+					case "CalendarSettings":
+						CalendarSettings.Deserialize(childNode);
 						break;
 				}
 			}
@@ -1618,6 +1623,55 @@ namespace NewBizWiz.Core.AdSchedule
 					case "DigitalLegend":
 						DigitalLegend.Deserialize(childNode);
 						break;
+				}
+			}
+		}
+	}
+
+	public class BasicOverviewSummaryViewSettings
+	{
+		public string Statement { get; set; }
+		public decimal? MonthlyInvestment { get; set; }
+		public decimal? TotalInvestment { get; set; }
+
+		public string Serialize()
+		{
+			var result = new StringBuilder();
+
+			if (!String.IsNullOrEmpty(Statement))
+				result.AppendLine(@"<Statement>" + Statement.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Statement>");
+			if (MonthlyInvestment.HasValue)
+				result.AppendLine(@"<MonthlyInvestment>" + MonthlyInvestment.Value + @"</MonthlyInvestment>");
+			if (TotalInvestment.HasValue)
+				result.AppendLine(@"<TotalInvestment>" + TotalInvestment.Value + @"</TotalInvestment>");
+
+			return result.ToString();
+		}
+
+		public void Deserialize(XmlNode node)
+		{
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "Statement":
+						Statement = childNode.InnerText;
+						break;
+					case "MonthlyInvestment":
+						{
+							decimal temp;
+							if (Decimal.TryParse(childNode.InnerText, out temp))
+								MonthlyInvestment = temp;
+						}
+						break;
+					case "TotalInvestment":
+						{
+							decimal temp;
+							if (Decimal.TryParse(childNode.InnerText, out temp))
+								TotalInvestment = temp;
+						}
+						break;
+
 				}
 			}
 		}
@@ -3398,9 +3452,9 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public void Deserialize(XmlNode node)
 		{
-			bool tempBool = false;
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
+				bool tempBool;
 				switch (childNode.Name)
 				{
 					case "EnableSlideBullets":
@@ -3708,8 +3762,6 @@ namespace NewBizWiz.Core.AdSchedule
 	{
 		public CalendarViewSettings()
 		{
-			ShowOptions = true;
-
 			EnableSection = true;
 			EnableCost = true;
 			EnableColor = true;
@@ -3728,24 +3780,14 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowPercentOfPage = true;
 			ShowBigDate = true;
 
-			EnableTitle = true;
 			EnableLogo = true;
-			EnableBusinessName = true;
-			EnableDecisionMaker = true;
 			EnableTotalCost = true;
-			EnableLegend = true;
-			EnableAvgCost = true;
 			EnableComments = true;
 			EnableTotalAds = true;
 			EnableActiveDays = true;
 
-			ShowTitle = true;
 			ShowLogo = true;
-			ShowBusinessName = true;
-			ShowDecisionMaker = true;
 			ShowTotalCost = false;
-			ShowLegend = false;
-			ShowAvgCost = false;
 			ShowComments = false;
 			ShowTotalAds = false;
 			ShowActiveDays = false;
@@ -3757,13 +3799,7 @@ namespace NewBizWiz.Core.AdSchedule
 			EnableOrange = true;
 			EnableGreen = true;
 			SlideColor = "gray";
-
-			MonthCalendarViewSettingsList = new List<MonthCalendarViewSettings>();
-			DayCustomNotes = new List<CalendarDayInfo>();
-			DayDeadlines = new List<CalendarDayInfo>();
 		}
-
-		public bool ShowOptions { get; set; }
 
 		public bool EnableSection { get; set; }
 		public bool EnableCost { get; set; }
@@ -3783,24 +3819,14 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool ShowPercentOfPage { get; set; }
 		public bool ShowBigDate { get; set; }
 
-		public bool EnableTitle { get; set; }
 		public bool EnableLogo { get; set; }
-		public bool EnableBusinessName { get; set; }
-		public bool EnableDecisionMaker { get; set; }
 		public bool EnableTotalCost { get; set; }
-		public bool EnableLegend { get; set; }
-		public bool EnableAvgCost { get; set; }
 		public bool EnableComments { get; set; }
 		public bool EnableTotalAds { get; set; }
 		public bool EnableActiveDays { get; set; }
 
-		public bool ShowTitle { get; set; }
 		public bool ShowLogo { get; set; }
-		public bool ShowBusinessName { get; set; }
-		public bool ShowDecisionMaker { get; set; }
 		public bool ShowTotalCost { get; set; }
-		public bool ShowLegend { get; set; }
-		public bool ShowAvgCost { get; set; }
 		public bool ShowComments { get; set; }
 		public bool ShowTotalAds { get; set; }
 		public bool ShowActiveDays { get; set; }
@@ -3814,72 +3840,9 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool EnableGreen { get; set; }
 		public string SlideColor { get; set; }
 
-		public List<MonthCalendarViewSettings> MonthCalendarViewSettingsList { get; set; }
-		public List<CalendarDayInfo> DayCustomNotes { get; private set; }
-		public List<CalendarDayInfo> DayDeadlines { get; private set; }
-
-		public Color SlideColorLight
-		{
-			get
-			{
-				switch (SlideColor)
-				{
-					case "black":
-						return Color.White;
-					case "blue":
-						return Color.LightBlue;
-					case "gray":
-						return Color.LightGray;
-					case "green":
-						return Color.LightGreen;
-					case "orange":
-						return Color.FromArgb(255, 224, 192);
-					case "teal":
-						return Color.Cyan;
-					default:
-						return Color.White;
-				}
-			}
-		}
-
-		public Color SlideColorDark
-		{
-			get
-			{
-				switch (SlideColor)
-				{
-					case "black":
-						return Color.Black;
-					case "blue":
-						return Color.Blue;
-					case "gray":
-						return Color.Gray;
-					case "green":
-						return Color.Green;
-					case "orange":
-						return Color.Orange;
-					case "teal":
-						return Color.Teal;
-					default:
-						return Color.Black;
-				}
-			}
-		}
-
-		public void ResetToDefault()
-		{
-			var defaultSettings = new XmlDocument();
-			defaultSettings.LoadXml(@"<DefaultSettings>" + ListManager.Instance.DefaultCalendarViewSettings.Serialize() + @"</DefaultSettings>");
-			Deserialize(defaultSettings.SelectSingleNode(@"/DefaultSettings"));
-		}
-
 		public string Serialize()
 		{
 			var result = new StringBuilder();
-			TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
-
-			result.AppendLine(@"<ShowOptions>" + ShowOptions + @"</ShowOptions>");
-
 			result.AppendLine(@"<EnableSection>" + EnableSection + @"</EnableSection>");
 			result.AppendLine(@"<EnableCost>" + EnableCost + @"</EnableCost>");
 			result.AppendLine(@"<EnableColor>" + EnableColor + @"</EnableColor>");
@@ -3898,25 +3861,15 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<ShowPercentOfPage>" + ShowPercentOfPage + @"</ShowPercentOfPage>");
 			result.AppendLine(@"<ShowBigDate>" + ShowBigDate + @"</ShowBigDate>");
 
-			result.AppendLine(@"<EnableTitle>" + EnableTitle + @"</EnableTitle>");
 			result.AppendLine(@"<EnableLogo>" + EnableLogo + @"</EnableLogo>");
-			result.AppendLine(@"<EnableBusinessName>" + EnableBusinessName + @"</EnableBusinessName>");
-			result.AppendLine(@"<EnableDecisionMaker>" + EnableDecisionMaker + @"</EnableDecisionMaker>");
 			result.AppendLine(@"<EnableTotalCost>" + EnableTotalCost + @"</EnableTotalCost>");
-			result.AppendLine(@"<EnableLegend>" + EnableLegend + @"</EnableLegend>");
-			result.AppendLine(@"<EnableAvgCost>" + EnableAvgCost + @"</EnableAvgCost>");
 			result.AppendLine(@"<EnableComments>" + EnableComments + @"</EnableComments>");
 			result.AppendLine(@"<EnableTotalAds>" + EnableTotalAds + @"</EnableTotalAds>");
 			result.AppendLine(@"<EnableActiveDays>" + EnableActiveDays + @"</EnableActiveDays>");
 			result.AppendLine(@"<ShowDigital>" + ShowDigital + @"</ShowDigital>");
 
-			result.AppendLine(@"<ShowTitle>" + ShowTitle + @"</ShowTitle>");
 			result.AppendLine(@"<ShowLogo>" + ShowLogo + @"</ShowLogo>");
-			result.AppendLine(@"<ShowBusinessName>" + ShowBusinessName + @"</ShowBusinessName>");
-			result.AppendLine(@"<ShowDecisionMaker>" + ShowDecisionMaker + @"</ShowDecisionMaker>");
 			result.AppendLine(@"<ShowTotalCost>" + ShowTotalCost + @"</ShowTotalCost>");
-			result.AppendLine(@"<ShowLegend>" + ShowLegend + @"</ShowLegend>");
-			result.AppendLine(@"<ShowAvgCost>" + ShowAvgCost + @"</ShowAvgCost>");
 			result.AppendLine(@"<ShowComments>" + ShowComments + @"</ShowComments>");
 			result.AppendLine(@"<ShowTotalAds>" + ShowTotalAds + @"</ShowTotalAds>");
 			result.AppendLine(@"<ShowActiveDays>" + ShowActiveDays + @"</ShowActiveDays>");
@@ -3928,39 +3881,16 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<EnableOrange>" + EnableOrange + @"</EnableOrange>");
 			result.AppendLine(@"<EnableGreen>" + EnableGreen + @"</EnableGreen>");
 			result.AppendLine(@"<SlideColor>" + SlideColor.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideColor>");
-
-			result.AppendLine(@"<MonthCalendarViewSettings>");
-			foreach (MonthCalendarViewSettings calendarSettings in MonthCalendarViewSettingsList)
-			{
-				result.AppendLine(@"<MonthCalendar>" + calendarSettings.Serialize() + @"</MonthCalendar>");
-			}
-			result.AppendLine(@"</MonthCalendarViewSettings>");
-
-			result.AppendLine(@"<DayCustomNotes>");
-			foreach (CalendarDayInfo dayCustomNote in DayCustomNotes)
-				result.AppendLine(@"<DayCustomNote>" + dayCustomNote.Serialize() + @"</DayCustomNote>");
-			result.AppendLine(@"</DayCustomNotes>");
-			result.AppendLine(@"<DayDeadlines>");
-			foreach (CalendarDayInfo dayDeadline in DayDeadlines)
-				result.AppendLine(@"<DayDeadline>" + dayDeadline.Serialize() + @"</DayDeadline>");
-			result.AppendLine(@"</DayDeadlines>");
-
 			return result.ToString();
 		}
 
 		public void Deserialize(XmlNode node)
 		{
-			DateTime tempDate = DateTime.MinValue;
-			bool tempBool = false;
-
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
+				bool tempBool;
 				switch (childNode.Name)
 				{
-					case "ShowOptions":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowOptions = tempBool;
-						break;
 					case "EnableSection":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							EnableSection = tempBool;
@@ -4027,33 +3957,13 @@ namespace NewBizWiz.Core.AdSchedule
 							ShowBigDate = tempBool;
 						break;
 
-					case "EnableTitle":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableTitle = tempBool;
-						break;
 					case "EnableLogo":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							EnableLogo = tempBool;
 						break;
-					case "EnableBusinessName":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableBusinessName = tempBool;
-						break;
-					case "EnableDecisionMaker":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableDecisionMaker = tempBool;
-						break;
 					case "EnableTotalCost":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							EnableTotalCost = tempBool;
-						break;
-					case "EnableLegend":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableLegend = tempBool;
-						break;
-					case "EnableAvgCost":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							EnableAvgCost = tempBool;
 						break;
 					case "EnableComments":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -4068,33 +3978,13 @@ namespace NewBizWiz.Core.AdSchedule
 							EnableActiveDays = tempBool;
 						break;
 
-					case "ShowTitle":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTitle = tempBool;
-						break;
 					case "ShowLogo":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowLogo = tempBool;
 						break;
-					case "ShowBusinessName":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowBusinessName = tempBool;
-						break;
-					case "ShowDecisionMaker":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowDecisionMaker = tempBool;
-						break;
 					case "ShowTotalCost":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowTotalCost = tempBool;
-						break;
-					case "ShowLegend":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowLegend = tempBool;
-						break;
-					case "ShowAvgCost":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowAvgCost = tempBool;
 						break;
 					case "ShowComments":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -4140,39 +4030,6 @@ namespace NewBizWiz.Core.AdSchedule
 					case "SlideColor":
 						SlideColor = childNode.InnerText;
 						break;
-
-					case "MonthCalendarViewSettings":
-						MonthCalendarViewSettingsList.Clear();
-						foreach (XmlNode calendarNode in childNode.ChildNodes)
-						{
-							switch (calendarNode.Name)
-							{
-								case "MonthCalendar":
-									var calendarSettings = new MonthCalendarViewSettings(this);
-									calendarSettings.Deserialize(calendarNode);
-									MonthCalendarViewSettingsList.Add(calendarSettings);
-									break;
-							}
-						}
-						break;
-					case "DayCustomNotes":
-						DayCustomNotes.Clear();
-						foreach (XmlNode dayCustomNoteNode in childNode.ChildNodes)
-						{
-							var dayCustomNote = new CalendarDayInfo();
-							dayCustomNote.Deserialize(dayCustomNoteNode);
-							DayCustomNotes.Add(dayCustomNote);
-						}
-						break;
-					case "DayDeadlines":
-						DayDeadlines.Clear();
-						foreach (XmlNode dayDeadlineNode in childNode.ChildNodes)
-						{
-							var dayDeadline = new CalendarDayInfo();
-							dayDeadline.Deserialize(dayDeadlineNode);
-							DayDeadlines.Add(dayDeadline);
-						}
-						break;
 				}
 			}
 
@@ -4185,220 +4042,11 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowPercentOfPage &= EnablePercentOfPage;
 			ShowBigDate &= EnableBigDate;
 
-			ShowTitle &= EnableTitle;
 			ShowLogo &= EnableLogo;
-			ShowBusinessName &= EnableBusinessName;
-			ShowDecisionMaker &= EnableDecisionMaker;
 			ShowTotalCost &= EnableTotalCost;
-			ShowLegend &= EnableLegend;
-			ShowAvgCost &= EnableAvgCost;
 			ShowComments &= EnableComments;
 			ShowTotalAds &= EnableTotalAds;
 			ShowActiveDays &= EnableActiveDays;
-		}
-	}
-
-	public class MonthCalendarViewSettings
-	{
-		public MonthCalendarViewSettings(CalendarViewSettings parent)
-		{
-			Parent = parent;
-			Comments = string.Empty;
-			Legend = new List<CalendarLegend>();
-			DigitalLegend = new DigitalLegend();
-
-			Title = "Monthly Advertising Planner";
-			Comments = string.Empty;
-
-			string filePath = Path.Combine(ListManager.Instance.BigImageFolder.FullName, Common.ListManager.DefaultBigLogoFileName);
-			if (File.Exists(filePath))
-				Logo = new Bitmap(filePath);
-		}
-
-		public CalendarViewSettings Parent { get; private set; }
-		public DateTime Month { get; set; }
-		public string Title { get; set; }
-		public Image Logo { get; set; }
-		public string Comments { get; set; }
-
-		public List<CalendarLegend> Legend { get; private set; }
-		public DigitalLegend DigitalLegend { get; set; }
-
-		public string Serialize()
-		{
-			var result = new StringBuilder();
-			TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
-
-			result.AppendLine(@"<Title>" + Title.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Title>");
-			result.AppendLine(@"<Comments>" + Comments.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Comments>");
-			result.AppendLine(@"<Month>" + Month.ToString() + @"</Month>");
-			result.AppendLine(@"<Logo>" + Convert.ToBase64String((byte[])converter.ConvertTo(Logo, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
-			result.AppendLine(@"<Legends>");
-			foreach (CalendarLegend legend in Legend)
-				result.AppendLine(@"<Legend>" + legend.Serialize() + @"</Legend>");
-			result.AppendLine(@"</Legends>");
-			result.AppendLine(@"<DigitalLegend>" + DigitalLegend.Serialize() + @"</DigitalLegend>");
-			return result.ToString();
-		}
-
-		public void Deserialize(XmlNode node)
-		{
-			DateTime tempDate = DateTime.MinValue;
-
-			foreach (XmlNode childNode in node.ChildNodes)
-			{
-				switch (childNode.Name)
-				{
-					case "Title":
-						Title = childNode.InnerText;
-						break;
-					case "Comments":
-						Comments = childNode.InnerText;
-						break;
-					case "Logo":
-						if (string.IsNullOrEmpty(childNode.InnerText))
-							Logo = null;
-						else
-							Logo = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
-						break;
-					case "Month":
-						if (DateTime.TryParse(childNode.InnerText, out tempDate))
-							Month = tempDate;
-						break;
-					case "Legends":
-						Legend.Clear();
-						foreach (XmlNode legendNode in childNode.ChildNodes)
-						{
-							var legend = new CalendarLegend();
-							legend.Deserialize(legendNode);
-							Legend.Add(legend);
-						}
-						break;
-					case "DigitalLegend":
-						DigitalLegend.Deserialize(childNode);
-						break;
-				}
-			}
-		}
-
-		public MonthCalendarViewSettings Clone()
-		{
-			var result = new MonthCalendarViewSettings(Parent);
-			result.Comments = Comments;
-			result.Logo = Logo;
-			result.Month = Month;
-			result.Title = Title;
-			foreach (CalendarLegend legend in Legend)
-				result.Legend.Add(legend.Clone());
-			result.DigitalLegend = DigitalLegend.Clone();
-			return result;
-		}
-
-		public string GetLegendCodeByDescription(string description)
-		{
-			string result = string.Empty;
-			CalendarLegend legend = Legend.Where(x => x.Description.Equals(description)).FirstOrDefault();
-			if (legend != null)
-				result = legend.Code;
-			return result;
-		}
-	}
-
-	public class CalendarLegend
-	{
-		public CalendarLegend()
-		{
-			Code = string.Empty;
-			Description = string.Empty;
-			Visible = true;
-		}
-
-		public string Code { get; set; }
-		public string Description { get; set; }
-		public bool Visible { get; set; }
-
-		public string StringRepresentation
-		{
-			get { return Code + " = " + Description; }
-		}
-
-		public string Serialize()
-		{
-			var result = new StringBuilder();
-
-			result.AppendLine(@"<Code>" + Code.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Code>");
-			result.AppendLine(@"<Description>" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Description>");
-			result.AppendLine(@"<Visible>" + Visible.ToString() + @"</Visible>");
-			return result.ToString();
-		}
-
-		public void Deserialize(XmlNode node)
-		{
-			bool tempBool = false;
-
-			foreach (XmlNode childNode in node.ChildNodes)
-			{
-				switch (childNode.Name)
-				{
-					case "Code":
-						Code = childNode.InnerText;
-						break;
-					case "Description":
-						Description = childNode.InnerText;
-						break;
-					case "Visible":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							Visible = tempBool;
-						break;
-				}
-			}
-		}
-
-		public CalendarLegend Clone()
-		{
-			var result = new CalendarLegend();
-			result.Code = Code;
-			result.Description = Description;
-			result.Visible = Visible;
-			return result;
-		}
-	}
-
-	public class CalendarDayInfo
-	{
-		public CalendarDayInfo()
-		{
-			Info = string.Empty;
-		}
-
-		public DateTime Day { get; set; }
-		public string Info { get; set; }
-
-		public string Serialize()
-		{
-			var result = new StringBuilder();
-			result.AppendLine(@"<Day>" + Day.ToString() + @"</Day>");
-			result.AppendLine(@"<Info>" + Info.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Info>");
-			return result.ToString();
-		}
-
-		public void Deserialize(XmlNode node)
-		{
-			DateTime tempDate;
-
-			foreach (XmlNode childNode in node.ChildNodes)
-			{
-				switch (childNode.Name)
-				{
-					case "Info":
-						Info = childNode.InnerText;
-						break;
-					case "Day":
-						if (DateTime.TryParse(childNode.InnerText, out tempDate))
-							Day = tempDate;
-						break;
-				}
-			}
 		}
 	}
 

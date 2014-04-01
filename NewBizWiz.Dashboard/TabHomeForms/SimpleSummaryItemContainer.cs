@@ -44,7 +44,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			pnMain.Controls.Clear();
 			if (ViewSettingsManager.Instance.SimpleSummaryState.ItemsState.Count > 0)
 			{
-				foreach (SimpleSummaryItemState itemState in ViewSettingsManager.Instance.SimpleSummaryState.ItemsState)
+				foreach (var itemState in ViewSettingsManager.Instance.SimpleSummaryState.ItemsState)
 				{
 					var item = new SimpleSummaryItemControl(this);
 					item.ItemNumber = _itemsCollection.Count() + 1;
@@ -97,6 +97,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			RefreshItems();
 			pnMain.ScrollControlIntoView(item);
 			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
+			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateOutputState();
 		}
 
 		public void DeleteItem(int number)
@@ -124,6 +125,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
+			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateOutputState();
 		}
 
 		public void UpItem(int number)

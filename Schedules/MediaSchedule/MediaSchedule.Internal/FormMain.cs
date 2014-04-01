@@ -53,6 +53,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			#endregion
 
 			#region Weekly Schedule
+			Controller.Instance.WeeklyScheduleSpecialButtons = ribbonBarWeeklyScheduleSpecialButtons;
 			Controller.Instance.WeeklyScheduleHelp = buttonItemWeeklyScheduleHelp;
 			Controller.Instance.WeeklyScheduleSave = buttonItemWeeklyScheduleSave;
 			Controller.Instance.WeeklyScheduleSaveAs = buttonItemWeeklyScheduleSaveAs;
@@ -66,6 +67,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			#endregion
 
 			#region Monthly Schedule
+			Controller.Instance.MonthlyScheduleSpecialButtons = ribbonBarMonthlyScheduleSpecialButtons;
 			Controller.Instance.MonthlyScheduleHelp = buttonItemMonthlyScheduleHelp;
 			Controller.Instance.MonthlyScheduleSave = buttonItemMonthlyScheduleSave;
 			Controller.Instance.MonthlyScheduleSaveAs = buttonItemMonthlyScheduleSaveAs;
@@ -102,6 +104,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			#endregion
 
 			#region Calendar
+			Controller.Instance.CalendarSpecialButtons = ribbonBarCalendarSpecialButtons;
 			Controller.Instance.CalendarMonthsList = listBoxControlCalendar;
 			Controller.Instance.CalendarSlideInfo = buttonItemCalendarSlideInfo;
 			Controller.Instance.CalendarCopy = buttonItemCalendarCopy;
@@ -116,6 +119,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			#endregion
 
 			#region Gallery
+			Controller.Instance.GallerySpecialButtons = ribbonBarGallerySpecialButtons;
 			Controller.Instance.GalleryBrowseBar = ribbonBarGalleryBrowse;
 			Controller.Instance.GalleryImageBar = ribbonBarGalleryImage;
 			Controller.Instance.GalleryZoomBar = ribbonBarGalleryZoom;

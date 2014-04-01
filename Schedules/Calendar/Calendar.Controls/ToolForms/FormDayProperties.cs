@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -23,8 +24,8 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 
 		private void LoadData()
 		{
-			checkEditComment.Checked = !string.IsNullOrEmpty(_day.Comment1);
-			memoEditComment.EditValue = !string.IsNullOrEmpty(_day.Comment1) ? _day.Comment1 : null;
+			checkEditComment.Checked = !string.IsNullOrEmpty(_day.Comment);
+			memoEditComment.EditValue = !string.IsNullOrEmpty(_day.Comment) ? _day.Comment : null;
 		}
 
 		public void LoadImages(List<ImageSource> images)
@@ -43,7 +44,7 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 		{
 			var selectedLogo = layoutViewLogoGallery.GetFocusedRow() as ImageSource;
 			_day.Logo = selectedLogo ?? new ImageSource();
-			_day.Comment1 = checkEditComment.Checked && memoEditComment.EditValue != null && !string.IsNullOrEmpty(memoEditComment.EditValue.ToString()) ? memoEditComment.EditValue.ToString() : null;
+			_day.Comment = checkEditComment.Checked ? memoEditComment.EditValue as String : null;
 		}
 
 		private void layoutViewLogoGallery_CustomFieldValueStyle(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventArgs e)

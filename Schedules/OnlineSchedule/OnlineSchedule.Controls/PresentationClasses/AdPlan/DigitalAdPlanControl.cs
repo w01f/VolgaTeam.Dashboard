@@ -47,11 +47,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			get { return Controller.Instance.AdPlanTheme; }
 		}
 
-		public override RibbonBar SpecialButtonsGroup
-		{
-			get { return Controller.Instance.AdPlanSpecialButtons; }
-		}
-
 		public override void LoadSchedule(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();

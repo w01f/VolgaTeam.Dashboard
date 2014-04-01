@@ -677,6 +677,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			repositoryItemSpinEditADRateEditNullFirstRow.Buttons[1].Enabled = enableFirstRow;
 			repositoryItemSpinEditColorPricingDisplayFirstRow.Buttons[1].Enabled = enableFirstRow;
 			repositoryItemSpinEditColorPricingEditFirstRow.Buttons[1].Enabled = enableFirstRow;
+			repositoryItemSpinEditColorPCIDisplayFirtsRow.Buttons[1].Enabled = enableFirstRow;
+			repositoryItemSpinEditColorPCIEditFirtsRow.Buttons[1].Enabled = enableFirstRow;
 			repositoryItemSpinEditDiscountsDisplayFirstRow.Buttons[1].Enabled = enableFirstRow;
 			repositoryItemSpinEditDiscountsEditFirstRow.Buttons[1].Enabled = enableFirstRow;
 			repositoryItemSpinEditPCIRateDisplayFirstRow.Buttons[1].Enabled = enableFirstRow;
@@ -685,7 +687,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		public void UpdateProductButtonsState()
 		{
-			Controller.Instance.PrintProductAdd.Enabled = PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage || PrintProduct.SizeOptions.Square > 0;
+			if (PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage)
+			{
+				Controller.Instance.PrintProductAdd.Enabled = !String.IsNullOrEmpty(PrintProduct.SizeOptions.RateCard) && !String.IsNullOrEmpty(PrintProduct.SizeOptions.PercentOfPage);
+			}
+			else
+			{
+				Controller.Instance.PrintProductAdd.Enabled = (PrintProduct.AdPricingStrategy == AdPricingStrategies.FlatModular && !PrintProduct.SizeOptions.EnableSquare) ||
+															  PrintProduct.SizeOptions.Square > 0;
+			}
 		}
 
 		private void advBandedGridViewPublication_CellValueChanged(object sender, CellValueChangedEventArgs e)

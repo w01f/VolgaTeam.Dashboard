@@ -74,10 +74,10 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			Close();
 		}
 
-		private void OnThemeChanged(object sender, EventArgs e)
+		private void OnPropertyChanged(object sender, EventArgs e)
 		{
-			if (ThemeChanged != null)
-				ThemeChanged(this, EventArgs.Empty);
+			if (PropertyChanged != null)
+				PropertyChanged(this, EventArgs.Empty);
 		}
 		#endregion
 
@@ -87,7 +87,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 		{
 			_containedControl = (TControl)Activator.CreateInstance(typeof(TControl));
 			_containedControl.Closed += PropertiesClosed;
-			_containedControl.ThemeChanged += OnThemeChanged;
+			_containedControl.PropertyChanged += OnPropertyChanged;
 		}
 
 		public void LoadVisibilitySettings()
@@ -131,9 +131,10 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			_parentCalendar.SaveSettings();
 		}
 
-		public void LoadData(CalendarMonth month = null)
+		public void LoadData(CalendarMonth month = null, bool allowToSave = true)
 		{
-			SaveData();
+			if(allowToSave)
+				SaveData();
 			if (month == null)
 				_containedControl.LoadCurrentMonthData();
 			else
@@ -177,7 +178,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 
 		public event EventHandler<EventArgs> Shown;
 		public event EventHandler<EventArgs> Closed;
-		public event EventHandler<EventArgs> ThemeChanged;
+		public event EventHandler<EventArgs> PropertyChanged;
 	}
 
 	public interface ISlideInfoControl
@@ -191,7 +192,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 
 		[Browsable(true)]
 		[Category("Action")]
-		event EventHandler<EventArgs> ThemeChanged;
+		event EventHandler<EventArgs> PropertyChanged;
 
 		void LoadCurrentMonthData();
 		void LoadMonth(CalendarMonth month);

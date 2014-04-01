@@ -27,6 +27,7 @@ namespace NewBizWiz.Core.Common
 			ThemeCollectionPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides\SellerPointThemes", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			SlideMastersPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\slides\SlidesTab", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			RateCardPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\RateCard", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			HelpBrowserSettingsPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\!Help_Browser.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			SelectedWizard = String.Empty;
 			DashboardName = "Schedule APP";
 			SelectedWizard = String.Empty;
@@ -53,6 +54,7 @@ namespace NewBizWiz.Core.Common
 		public string SlideMastersPath { get; set; }
 		public string ActivityDataPath { get; set; }
 		public string RateCardPath { get; set; }
+		public string HelpBrowserSettingsPath { get; set; }
 
 		public Guid AppID { get; set; }
 

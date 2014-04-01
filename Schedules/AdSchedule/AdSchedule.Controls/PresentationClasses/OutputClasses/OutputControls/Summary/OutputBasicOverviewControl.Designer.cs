@@ -31,8 +31,8 @@
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.xtraTabControlPublications = new DevExpress.XtraTab.XtraTabControl();
 			this.pnHeader = new System.Windows.Forms.Panel();
-			this.laAdvertiser = new System.Windows.Forms.Label();
 			this.laFlightDates = new System.Windows.Forms.Label();
+			this.laAdvertiser = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPublications)).BeginInit();
 			this.pnHeader.SuspendLayout();
 			this.SuspendLayout();
@@ -54,6 +54,7 @@
 			this.xtraTabControlPublications.Name = "xtraTabControlPublications";
 			this.xtraTabControlPublications.Size = new System.Drawing.Size(737, 400);
 			this.xtraTabControlPublications.TabIndex = 3;
+			this.xtraTabControlPublications.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlPublications_SelectedPageChanged);
 			// 
 			// pnHeader
 			// 
@@ -65,15 +66,6 @@
 			this.pnHeader.Size = new System.Drawing.Size(737, 30);
 			this.pnHeader.TabIndex = 4;
 			// 
-			// laAdvertiser
-			// 
-			this.laAdvertiser.Location = new System.Drawing.Point(3, 5);
-			this.laAdvertiser.Name = "laAdvertiser";
-			this.laAdvertiser.Size = new System.Drawing.Size(315, 20);
-			this.laAdvertiser.TabIndex = 0;
-			this.laAdvertiser.Text = "label1";
-			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
 			// laFlightDates
 			// 
 			this.laFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -83,6 +75,15 @@
 			this.laFlightDates.TabIndex = 1;
 			this.laFlightDates.Text = "label1";
 			this.laFlightDates.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// laAdvertiser
+			// 
+			this.laAdvertiser.Location = new System.Drawing.Point(3, 5);
+			this.laAdvertiser.Name = "laAdvertiser";
+			this.laAdvertiser.Size = new System.Drawing.Size(315, 20);
+			this.laAdvertiser.TabIndex = 0;
+			this.laAdvertiser.Text = "label1";
+			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// OutputBasicOverviewControl
 			// 

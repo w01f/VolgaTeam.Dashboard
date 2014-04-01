@@ -96,9 +96,11 @@
 			// 
 			// textEditItem
 			// 
-			this.textEditItem.Location = new System.Drawing.Point(30, 8);
+			this.textEditItem.Location = new System.Drawing.Point(30, 7);
 			this.textEditItem.Name = "textEditItem";
-			this.textEditItem.Size = new System.Drawing.Size(264, 20);
+			this.textEditItem.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.textEditItem.Properties.Appearance.Options.UseFont = true;
+			this.textEditItem.Size = new System.Drawing.Size(264, 21);
 			this.textEditItem.TabIndex = 38;
 			this.textEditItem.EditValueChanged += new System.EventHandler(this.textEditItem_EditValueChanged);
 			// 

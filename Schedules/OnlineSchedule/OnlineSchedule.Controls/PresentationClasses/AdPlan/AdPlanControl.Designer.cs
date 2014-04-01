@@ -129,7 +129,6 @@
 			this.xtraTabControlProducts.Name = "xtraTabControlProducts";
 			this.xtraTabControlProducts.Size = new System.Drawing.Size(796, 400);
 			this.xtraTabControlProducts.TabIndex = 4;
-			this.xtraTabControlProducts.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlProducts_SelectedPageChanged);
 			// 
 			// AdPlanControl
 			// 

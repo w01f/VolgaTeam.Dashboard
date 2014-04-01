@@ -325,13 +325,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			{
 				Controller.Instance.HomeAdProduct.Visible = true;
 				Controller.Instance.HomeDigitalProduct.Visible = false;
-				Controller.Instance.HomeSpecialButtons.Enabled = false;
 			}
 			else
 			{
 				Controller.Instance.HomeAdProduct.Visible = false;
 				Controller.Instance.HomeDigitalProduct.Visible = true;
-				Controller.Instance.HomeSpecialButtons.Enabled = true;
 			}
 			Controller.Instance.HomeProduct.RecalcLayout();
 			Controller.Instance.HomePanel.PerformLayout();

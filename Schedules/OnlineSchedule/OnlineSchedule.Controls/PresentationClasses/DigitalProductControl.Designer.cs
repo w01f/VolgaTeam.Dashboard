@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -35,7 +36,7 @@
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.hyperLinkEditResetProductName = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.memoEditDescription = new DevExpress.XtraEditors.MemoEdit();
 			this.memoEditProductName = new DevExpress.XtraEditors.MemoEdit();
@@ -813,7 +814,6 @@
 			this.Controls.Add(this.labelControlDescription);
 			this.Controls.Add(this.pnPriceTypeContainer);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.Name = "DigitalProductControl";
 			this.Size = new System.Drawing.Size(940, 497);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditResetProductName.Properties)).EndInit();
@@ -837,6 +837,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditInvestmentDetails.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditInvestmentDetails.Properties)).EndInit();
 			this.pnPricyTypeAll.ResumeLayout(false);
+			this.pnPricyTypeAll.PerformLayout();
 			this.pnPriceTypeContainer.ResumeLayout(false);
 			this.pnPriceTypeImpressions.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.spinEditImpressionsOnly.Properties)).EndInit();

@@ -73,6 +73,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public bool LockedMode { get; set; }
 		public bool SpecialLinksEnable { get; set; }
 		public string SpecialLinksGroupName { get; set; }
+		public Image SpecialLinksGroupLogo { get; set; }
 		public List<string> SpecialLinkBrowsers { get; private set; }
 		public List<SpecialLinkButton> SpecialLinkButtons { get; private set; }
 		public List<ProductInfo> TargetingRecods { get; set; }
@@ -219,6 +220,12 @@ namespace NewBizWiz.Core.OnlineSchedule
 					case "SpecialButtonsGroupName":
 						SpecialLinksGroupName = childeNode.InnerText;
 						break;
+					case "SpecialButtonsGroupLogo":
+						if (string.IsNullOrEmpty(childeNode.InnerText))
+							SpecialLinksGroupLogo = null;
+						else
+							SpecialLinksGroupLogo = new Bitmap(new MemoryStream(Convert.FromBase64String(childeNode.InnerText)));
+						break;
 					case "Browser":
 						SpecialLinkBrowsers.Add(childeNode.InnerText);
 						break;
@@ -305,6 +312,9 @@ namespace NewBizWiz.Core.OnlineSchedule
 						break;
 					case "Overview":
 						productSource.Overview = attribute.Value;
+						break;
+					case "DefaultWebsite":
+						productSource.DefaultWebsite = attribute.Value;
 						break;
 					case "Width":
 						if (int.TryParse(attribute.Value, out tempInt))

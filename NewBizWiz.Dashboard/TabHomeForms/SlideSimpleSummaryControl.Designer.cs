@@ -511,7 +511,7 @@
 			this.xtraTabPagePaymentDetails.Controls.Add(this.simpleSummaryItemContainer);
 			this.xtraTabPagePaymentDetails.Name = "xtraTabPagePaymentDetails";
 			this.xtraTabPagePaymentDetails.Size = new System.Drawing.Size(818, 342);
-			this.xtraTabPagePaymentDetails.Text = "3. What are you Selling?";
+			this.xtraTabPagePaymentDetails.Text = "What are you Selling?";
 			// 
 			// checkEditTotalInvestment
 			// 

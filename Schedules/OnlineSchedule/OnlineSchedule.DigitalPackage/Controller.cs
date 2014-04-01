@@ -157,26 +157,36 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 
 		private void ConfigureSpecialButtons()
 		{
-			if (Core.OnlineSchedule.ListManager.Instance.SpecialLinksEnable)
+			var specialLinkContainers = new[]
 			{
-				DigitalPackageSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-				foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
+				DigitalPackageSpecialButtons,
+				RateCardSpecialButtons,
+			};
+			foreach (var ribbonBar in specialLinkContainers)
+			{
+				if (Core.OnlineSchedule.ListManager.Instance.SpecialLinksEnable)
 				{
-					var toolTip = new SuperTooltipInfo(specialLinkButton.Name, "", specialLinkButton.Tooltip, null, null, eTooltipColor.Gray);
-					var clickAction = new Action(() => { specialLinkButton.Open(); });
+					ribbonBar.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+					var containerButton = new ButtonItem();
+					containerButton.Image = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupLogo;
+					containerButton.AutoExpandOnClick = true;
+					ribbonBar.Items.Add(containerButton);
+					foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
 					{
+						var clickAction = new Action(() => { specialLinkButton.Open(); });
 						var button = new ButtonItem();
 						button.Image = specialLinkButton.Logo;
-						button.Text = specialLinkButton.Name;
+						button.Text = String.Format("<b>{0}</b><p>{1}</p>", specialLinkButton.Name, specialLinkButton.Tooltip);
 						button.Tag = specialLinkButton;
-						Supertip.SetSuperTooltip(button, toolTip);
 						button.Click += (o, e) => clickAction();
-						DigitalPackageSpecialButtons.Items.Add(button);
+						containerButton.SubItems.Add(button);
 					}
 				}
+				else
+				{
+					ribbonBar.Visible = false;
+				}
 			}
-			else
-				DigitalPackageSpecialButtons.Visible = false;
 		}
 
 		public void ShowFloater(Action afterShow)
@@ -209,6 +219,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		#endregion
 
 		#region Rate Card
+		public RibbonBar RateCardSpecialButtons { get; set; }
 		public ButtonItem RateCardHelp { get; set; }
 		public ComboBoxEdit RateCardCombo { get; set; }
 		#endregion

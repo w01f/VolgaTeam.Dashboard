@@ -85,6 +85,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				}
 				_tabPages.Sort((x, y) => x.PrintProduct.Index.CompareTo(y.PrintProduct.Index));
 				xtraTabControlPublications.TabPages.AddRange(_tabPages.ToArray());
+
+				var summaryControl = new BasicOverviewSummaryControl(this);
+				summaryControl.UpdateControls(_tabPages.Where(tp => tp.PageEnabled).Select(tp => tp.SummaryControl));
+				xtraTabControlPublications.TabPages.Add(summaryControl);
+
 				Application.DoEvents();
 				xtraTabControlPublications.ResumeLayout();
 			}
@@ -105,10 +110,22 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SettingsNotSaved = false;
 		}
 
+		public void Save()
+		{
+			xtraTabControlPublications.TabPages.OfType<BasicOverviewSummaryControl>().First().Save();
+		}
+
 		private void LoadSharedOptions()
 		{
 			laAdvertiser.Text = LocalSchedule.BusinessName;
 			laFlightDates.Text = String.Format("Campaign: {0}", LocalSchedule.FlightDates);
+		}
+
+		private void xtraTabControlPublications_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+		{
+			var page = e.Page as BasicOverviewSummaryControl;
+			if (page != null)
+				page.SetFocus();
 		}
 
 		public void OnOptionChanged(object sender, EventArgs e)
@@ -173,16 +190,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void PrintOutput()
 		{
-			var tabPages = _tabPages.Where(tabPage => tabPage.PageEnabled);
-			var selectedProducts = new List<PublicationBasicOverviewControl>();
+			Save();
+			var tabPages = xtraTabControlPublications.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<IBasicOverviewOutputControl>();
+			var selectedProducts = new List<IBasicOverviewOutputControl>();
 			if (tabPages.Count() > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Products";
-					var currentProduct = xtraTabControlPublications.SelectedTabPage as PublicationBasicOverviewControl;
+					var currentProduct = xtraTabControlPublications.SelectedTabPage as IBasicOverviewOutputControl;
 					foreach (var tabPage in tabPages)
 					{
-						var item = new CheckedListBoxItem(tabPage, tabPage.PrintProduct.Name);
+						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
 						if (tabPage == currentProduct)
 							form.buttonXSelectCurrent.Tag = item;
@@ -193,12 +211,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							OfType<CheckedListBoxItem>().
 							Where(ci => ci.CheckState == CheckState.Checked).
 							Select(ci => ci.Value).
-							OfType<PublicationBasicOverviewControl>());
+							OfType<IBasicOverviewOutputControl>());
 				}
 			else
 				selectedProducts.AddRange(tabPages);
 			if (!selectedProducts.Any()) return;
-			TrackOutput(selectedProducts);
+			TrackOutput(selectedProducts.OfType<PublicationBasicOverviewControl>());
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -207,7 +225,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				{
 					formProgress.Show();
 					foreach (var product in selectedProducts)
-						product.PrintOutput();
+						product.Output();
 					formProgress.Close();
 				});
 			}
@@ -215,16 +233,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void Email()
 		{
-			var tabPages = _tabPages.Where(tabPage => tabPage.PageEnabled);
-			var selectedProducts = new List<PublicationBasicOverviewControl>();
+			Save();
+			var tabPages = xtraTabControlPublications.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<IBasicOverviewOutputControl>();
+			var selectedProducts = new List<IBasicOverviewOutputControl>();
 			if (tabPages.Count() > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Products";
-					var currentProduct = xtraTabControlPublications.SelectedTabPage as PublicationBasicOverviewControl;
+					var currentProduct = xtraTabControlPublications.SelectedTabPage as IBasicOverviewOutputControl;
 					foreach (var tabPage in tabPages)
 					{
-						var item = new CheckedListBoxItem(tabPage, tabPage.PrintProduct.Name);
+						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
 						if (tabPage == currentProduct)
 							form.buttonXSelectCurrent.Tag = item;
@@ -235,7 +254,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							OfType<CheckedListBoxItem>().
 							Where(ci => ci.CheckState == CheckState.Checked).
 							Select(ci => ci.Value).
-							OfType<PublicationBasicOverviewControl>());
+							OfType<IBasicOverviewOutputControl>());
 				}
 			else
 				selectedProducts.AddRange(tabPages);
@@ -249,7 +268,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				foreach (var productControl in selectedProducts)
 				{
 					var previewGroup = productControl.GetPreviewGroup();
-					AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(previewGroup.PresentationSourcePath, new[] { productControl });
+					if (productControl is PublicationBasicOverviewControl)
+						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(previewGroup.PresentationSourcePath, new[] { (PublicationBasicOverviewControl)productControl });
+					else if (productControl is BasicOverviewSummaryControl)
+					{
+						var summaryControl = productControl as BasicOverviewSummaryControl;
+						summaryControl.PopulateReplacementsList();
+						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
+					}
 					previewGroups.Add(previewGroup);
 				}
 				formProgress.Close();
@@ -270,16 +296,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void Preview()
 		{
-			var tabPages = _tabPages.Where(tabPage => tabPage.PageEnabled);
-			var selectedProducts = new List<PublicationBasicOverviewControl>();
+			Save();
+			var tabPages = xtraTabControlPublications.TabPages.Where(tabPage => tabPage.PageEnabled).OfType<IBasicOverviewOutputControl>();
+			var selectedProducts = new List<IBasicOverviewOutputControl>();
 			if (tabPages.Count() > 1)
 				using (var form = new FormSelectOutputItems())
 				{
 					form.Text = "Select Products";
-					var currentProduct = xtraTabControlPublications.SelectedTabPage as PublicationBasicOverviewControl;
+					var currentProduct = xtraTabControlPublications.SelectedTabPage as IBasicOverviewOutputControl;
 					foreach (var tabPage in tabPages)
 					{
-						var item = new CheckedListBoxItem(tabPage, tabPage.PrintProduct.Name);
+						var item = new CheckedListBoxItem(tabPage, tabPage.SlideName);
 						form.checkedListBoxControlOutputItems.Items.Add(item);
 						if (tabPage == currentProduct)
 							form.buttonXSelectCurrent.Tag = item;
@@ -290,7 +317,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 							OfType<CheckedListBoxItem>().
 							Where(ci => ci.CheckState == CheckState.Checked).
 							Select(ci => ci.Value).
-							OfType<PublicationBasicOverviewControl>());
+							OfType<IBasicOverviewOutputControl>());
 				}
 			else
 				selectedProducts.AddRange(tabPages);
@@ -304,21 +331,28 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				foreach (var productControl in selectedProducts)
 				{
 					var previewGroup = productControl.GetPreviewGroup();
-					AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(previewGroup.PresentationSourcePath, new[] { productControl });
+					if (productControl is PublicationBasicOverviewControl)
+						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewEmail(previewGroup.PresentationSourcePath, new[] { (PublicationBasicOverviewControl)productControl });
+					else if (productControl is BasicOverviewSummaryControl)
+					{
+						var summaryControl = productControl as BasicOverviewSummaryControl;
+						summaryControl.PopulateReplacementsList();
+						AdSchedulePowerPointHelper.Instance.PrepareBasicOverviewSummaryEmail(previewGroup.PresentationSourcePath, summaryControl);
+					}
 					previewGroups.Add(previewGroup);
 				}
 				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			var trackAction = new Action(() => TrackOutput(selectedProducts));
+			var trackAction = new Action(() => TrackOutput(selectedProducts.OfType<PublicationBasicOverviewControl>()));
 			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackAction))
 			{
 				formPreview.Text = "Preview Basic Overview";
 				formPreview.LoadGroups(previewGroups);
 				RegistryHelper.MainFormHandle = formPreview.Handle;
 				RegistryHelper.MaximizeMainForm = false;
-				DialogResult previewResult = formPreview.ShowDialog();
+				var previewResult = formPreview.ShowDialog();
 				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
 				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 				if (previewResult != DialogResult.OK)
@@ -327,4 +361,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		}
 		#endregion
 	}
+
+	public interface IBasicOverviewOutputControl
+	{
+		string SlideName { get; }
+		PreviewGroup GetPreviewGroup();
+		void Output();
+	}
+
 }

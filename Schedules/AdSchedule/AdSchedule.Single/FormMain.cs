@@ -70,6 +70,7 @@ namespace NewBizWiz.AdSchedule.Single
 			#endregion
 
 			#region Print Product
+			Controller.Instance.PrintProductSpecialButtons = ribbonBarPrintScheduleSpecialButtons;
 			Controller.Instance.PrintProductHelp = buttonItemPrintScheduleHelp;
 			Controller.Instance.PrintProductSave = buttonItemPrintScheduleSave;
 			Controller.Instance.PrintProductSaveAs = buttonItemPrintScheduleSaveAs;
@@ -127,6 +128,7 @@ namespace NewBizWiz.AdSchedule.Single
 			#endregion
 
 			#region Basic Overview
+			Controller.Instance.BasicOverviewSpecialButtons = ribbonBarOverviewSpecialButtons;
 			Controller.Instance.BasicOverviewHelp = buttonItemOverviewHelp;
 			Controller.Instance.BasicOverviewSave = buttonItemOverviewSave;
 			Controller.Instance.BasicOverviewSaveAs = buttonItemOverviewSaveAs;
@@ -138,6 +140,7 @@ namespace NewBizWiz.AdSchedule.Single
 			#endregion
 
 			#region Multi Summary
+			Controller.Instance.MultiSummarySpecialButtons = ribbonBarMultiSummarySpecialButtons;
 			Controller.Instance.MultiSummaryHelp = buttonItemMultiSummaryHelp;
 			Controller.Instance.MultiSummarySave = buttonItemMultiSummarySave;
 			Controller.Instance.MultiSummarySaveAs = buttonItemMultiSummarySaveAs;
@@ -157,6 +160,7 @@ namespace NewBizWiz.AdSchedule.Single
 			#endregion
 
 			#region Snapshot
+			Controller.Instance.SnapshotSpecialButtons = ribbonBarSnapshotSpecialButtons;
 			Controller.Instance.SnapshotOptions = buttonItemSnapshotSettings;
 			Controller.Instance.SnapshotHelp = buttonItemSnapshotHelp;
 			Controller.Instance.SnapshotSave = buttonItemSnapshotSave;
@@ -180,6 +184,7 @@ namespace NewBizWiz.AdSchedule.Single
 			#endregion
 
 			#region Detailed Grid
+			Controller.Instance.DetailedGridSpecialButtons = ribbonBarDetailedGridSpecialButtons;
 			Controller.Instance.DetailedGridOptions = buttonItemDetailedGridDetails;
 			Controller.Instance.DetailedGridHelp = buttonItemDetailedGridHelp;
 			Controller.Instance.DetailedGridSave = buttonItemDetailedGridSave;
@@ -192,6 +197,7 @@ namespace NewBizWiz.AdSchedule.Single
 			#endregion
 
 			#region Multi Grid
+			Controller.Instance.MultiGridSpecialButtons = ribbonBarMultiGridSpecialButtons;
 			Controller.Instance.MultiGridOptions = buttonItemMultiGridDetails;
 			Controller.Instance.MultiGridHelp = buttonItemMultiGridHelp;
 			Controller.Instance.MultiGridSave = buttonItemMultiGridSave;
@@ -204,18 +210,23 @@ namespace NewBizWiz.AdSchedule.Single
 			#endregion
 
 			#region Calendar
-			Controller.Instance.CalendarOptions = buttonItemCalendarsDetails;
-			Controller.Instance.CalendarHelp = buttonItemCalendarsHelp;
-			Controller.Instance.CalendarSave = buttonItemCalendarsSave;
-			Controller.Instance.CalendarSaveAs = buttonItemCalendarsSaveAs;
-			Controller.Instance.CalendarPreview = buttonItemCalendarsPreview;
-			Controller.Instance.CalendarEmail = buttonItemCalendarsEmail;
-			Controller.Instance.CalendarPowerPoint = buttonItemCalendarsPowerPoint;
-			Controller.Instance.CalendarExport = buttonItemCalendarsExport;
-			Controller.Instance.CalendarMonthList = listBoxControlCalendar;
+			Controller.Instance.CalendarSpecialButtons = ribbonBarCalendarSpecialButtons;
+			Controller.Instance.CalendarSlideInfo = buttonItemCalendarSlideInfo;
+			Controller.Instance.CalendarCopy = buttonItemCalendarCopy;
+			Controller.Instance.CalendarPaste = buttonItemCalendarPaste;
+			Controller.Instance.CalendarClone = buttonItemCalendarClone;
+			Controller.Instance.CalendarHelp = buttonItemCalendarHelp;
+			Controller.Instance.CalendarSave = buttonItemCalendarSave;
+			Controller.Instance.CalendarSaveAs = buttonItemCalendarSaveAs;
+			Controller.Instance.CalendarPreview = buttonItemCalendarPreview;
+			Controller.Instance.CalendarEmail = buttonItemCalendarEmail;
+			Controller.Instance.CalendarPowerPoint = buttonItemCalendarPowerPoint;
+			Controller.Instance.CalendarExport = buttonItemCalendarExport;
+			Controller.Instance.CalendarMonthList = listBoxControlCalendarList;
 			#endregion
 
 			#region Summary
+			Controller.Instance.SummarySpecialButtons = ribbonBarSummarySpecialButtons;
 			Controller.Instance.SummaryHelp = buttonItemSummaryHelp;
 			Controller.Instance.SummarySave = buttonItemSummarySave;
 			Controller.Instance.SummarySaveAs = buttonItemSummarySaveAs;
@@ -226,11 +237,13 @@ namespace NewBizWiz.AdSchedule.Single
 			#endregion
 
 			#region Rate Card
+			Controller.Instance.RateCardSpecialButtons = ribbonBarRateCardSpecialButtons;
 			Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
 			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
 			#endregion
 
 			#region Gallery
+			Controller.Instance.GallerySpecialButtons = ribbonBarGallerySpecialButtons;
 			Controller.Instance.GalleryBrowseBar = ribbonBarGalleryBrowse;
 			Controller.Instance.GalleryImageBar = ribbonBarGalleryImage;
 			Controller.Instance.GalleryZoomBar = ribbonBarGalleryZoom;
@@ -289,7 +302,7 @@ namespace NewBizWiz.AdSchedule.Single
 				ribbonBarPrintScheduleStrategy.RecalcLayout();
 				ribbonBarPrintScheduleDimensions.RecalcLayout();
 				ribbonBarHomeBasicInfo.RecalcLayout();
-				ribbonBarCalendarsExit.RecalcLayout();
+				ribbonBarCalendarExit.RecalcLayout();
 				ribbonBarPrintScheduleColor.RecalcLayout();
 				ribbonBarHomeFlightDates.RecalcLayout();
 				ribbonBarHomeExit.RecalcLayout();
@@ -364,9 +377,9 @@ namespace NewBizWiz.AdSchedule.Single
 			{
 				result = Controller.Instance.Grids.AllowToLeaveControl;
 			}
-			else if ((_currentControl == Controller.Instance.Calendars))
+			else if ((_currentControl == Controller.Instance.Calendar))
 			{
-				result = Controller.Instance.Calendars.AllowToLeaveControl;
+				result = Controller.Instance.Calendar.AllowToLeaveControl;
 			}
 			else if ((_currentControl == Controller.Instance.AdPlan))
 			{
@@ -417,9 +430,9 @@ namespace NewBizWiz.AdSchedule.Single
 				Icon = new Icon(Core.AdSchedule.SettingsManager.Instance.IconPath);
 
 			if (SettingsManager.Instance.SizeWidth == 10 && SettingsManager.Instance.SizeHeght == 5.63)
-				buttonItemCalendarsPowerPoint.Enabled = false;
+				buttonItemCalendarPowerPoint.Enabled = false;
 			else
-				buttonItemCalendarsPowerPoint.Enabled = true;
+				buttonItemCalendarPowerPoint.Enabled = true;
 
 			Utilities.Instance.ActivatePowerPoint(AdSchedulePowerPointHelper.Instance.PowerPointObject);
 			AppManager.Instance.ActivateMainForm();
@@ -668,19 +681,19 @@ namespace NewBizWiz.AdSchedule.Single
 			{
 				if (AllowToLeaveCurrentControl() || _currentControl == null)
 				{
-					Controller.Instance.Calendars.UpdatePageAccordingToggledButton();
-					if (!pnMain.Controls.Contains(Controller.Instance.Calendars))
+					Controller.Instance.Calendar.ShowCalendar(false);
+					if (!pnMain.Controls.Contains(Controller.Instance.Calendar))
 					{
 						Application.DoEvents();
 						pnEmpty.BringToFront();
 						Application.DoEvents();
-						pnMain.Controls.Add(Controller.Instance.Calendars);
+						pnMain.Controls.Add(Controller.Instance.Calendar);
 						Application.DoEvents();
 						pnMain.BringToFront();
 						Application.DoEvents();
 					}
-					Controller.Instance.Calendars.BringToFront();
-					_currentControl = Controller.Instance.Calendars;
+					Controller.Instance.Calendar.BringToFront();
+					_currentControl = Controller.Instance.Calendar;
 				}
 				else
 					_currentControl.BringToFront();
@@ -777,8 +790,8 @@ namespace NewBizWiz.AdSchedule.Single
 				result = Controller.Instance.Summaries.AllowToLeaveControl;
 			else if (_currentControl != null && _currentControl == Controller.Instance.Grids)
 				result = Controller.Instance.Grids.AllowToLeaveControl;
-			else if (_currentControl != null && _currentControl == Controller.Instance.Calendars)
-				result = Controller.Instance.Calendars.AllowToLeaveControl;
+			else if (_currentControl != null && _currentControl == Controller.Instance.Calendar)
+				result = Controller.Instance.Calendar.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.AdPlan)
 				result = Controller.Instance.AdPlan.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.Summary)

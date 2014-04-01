@@ -10,11 +10,13 @@ namespace NewBizWiz.Core.Common
 	{
 		private readonly string _contentPath;
 		private readonly Dictionary<string, string> _helpLinks = new Dictionary<string, string>();
+		private readonly List<string> _browserOrder = new List<string>();
 
 		public HelpManager(string path)
 		{
 			_contentPath = path;
 			LoadHelpLinks();
+			LoadBrowserSettings();
 		}
 
 		private void LoadHelpLinks()
@@ -32,6 +34,17 @@ namespace NewBizWiz.Core.Common
 			}
 		}
 
+		private void LoadBrowserSettings()
+		{
+			_browserOrder.Clear();
+			var settingsPath = SettingsManager.Instance.HelpBrowserSettingsPath;
+			if (!File.Exists(settingsPath)) return;
+			var document = new XmlDocument();
+			document.Load(settingsPath);
+			foreach (var node in document.SelectNodes(@"/BrowserOrder/Browser").OfType<XmlNode>())
+				_browserOrder.Add(node.InnerText);
+		}
+
 		public void OpenHelpLink(string helpKey)
 		{
 			helpKey = helpKey.ToLower();
@@ -39,7 +52,23 @@ namespace NewBizWiz.Core.Common
 			{
 				try
 				{
-					Process.Start(_helpLinks[helpKey]);
+					var process = new Process();
+					process.StartInfo.Arguments = _helpLinks[helpKey];
+					process.StartInfo.FileName = "iexplore.exe";
+					foreach (var browser in _browserOrder)
+					{
+						if (browser == "Chrome" && Utilities.Instance.ChromeInstalled)
+						{
+							process.StartInfo.FileName = "chrome.exe";
+							break;
+						}
+						if (browser == "FF" && Utilities.Instance.FirefoxInstalled)
+						{
+							process.StartInfo.FileName = "firefox.exe";
+							break;
+						}
+					}
+					process.Start();
 				}
 				catch
 				{

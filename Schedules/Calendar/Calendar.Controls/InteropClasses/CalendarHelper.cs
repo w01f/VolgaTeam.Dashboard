@@ -15,12 +15,12 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 {
 	public partial class CalendarPowerPointHelper
 	{
-		public void AppendCalendar(CalendarOutputData[] monthOutputDatas, Presentation destinationPresentation = null)
+		public void AppendCalendar(CommonCalendarOutputData[] monthOutputDatas, Presentation destinationPresentation = null)
 		{
 			if (!Directory.Exists(BusinessWrapper.Instance.OutputManager.CalendarTemlatesFolderPath)) return;
 			foreach (var monthOutputData in monthOutputDatas)
 			{
-				var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.CalendarTemlatesFolderPath, BusinessWrapper.Instance.OutputManager.GetSlideName(monthOutputData));
+				var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.CalendarTemlatesFolderPath, BusinessWrapper.Instance.OutputManager.TemplatesManager.GetSlideName(monthOutputData));
 				if (!File.Exists(presentationTemplatePath)) return;
 				try
 				{
@@ -253,7 +253,7 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 						var backgroundFilePath = Path.Combine(BusinessWrapper.Instance.OutputManager.CalendarBackgroundFolderPath, String.Format(OutputManager.BackgroundFilePath, monthOutputData.SlideColor, monthOutputData.Parent.Date.ToString("yyyy")), monthOutputData.BackgroundFileName);
 						if (File.Exists(backgroundFilePath))
 							presentation.SlideMaster.Shapes.AddPicture(backgroundFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, 0, 0, presentation.SlideMaster.Width, presentation.SlideMaster.Height);
-						presentation.SlideMaster.Design.Name = BusinessWrapper.Instance.OutputManager.GetSlideMasterName(monthOutputData);
+						presentation.SlideMaster.Design.Name = BusinessWrapper.Instance.OutputManager.TemplatesManager.GetSlideMasterName(monthOutputData);
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
 					});
@@ -268,7 +268,7 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 			}
 		}
 
-		private void SetDayRecordTagValue(CalendarOutputData monthOutputData, Slide slide, Shape shape, int dayNumber)
+		private static void SetDayRecordTagValue(CommonCalendarOutputData monthOutputData, Slide slide, Shape shape, int dayNumber)
 		{
 			try
 			{
@@ -312,7 +312,7 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 			catch { }
 		}
 
-		public void PrepareCalendarEmail(string fileName, CalendarOutputData[] monthOutputData)
+		public void PrepareCalendarEmail(string fileName, CommonCalendarOutputData[] monthOutputData)
 		{
 			PreparePresentation(fileName, presentation => AppendCalendar(monthOutputData, presentation));
 		}

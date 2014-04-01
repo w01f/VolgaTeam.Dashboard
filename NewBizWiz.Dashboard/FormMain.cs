@@ -6,10 +6,8 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Dashboard;
 using NewBizWiz.Dashboard.InteropClasses;
 using NewBizWiz.Dashboard.Properties;
-using NewBizWiz.Dashboard.TabCalendarForms;
 using NewBizWiz.Dashboard.TabHomeForms;
 using NewBizWiz.Dashboard.TabNewspaperForms;
 using NewBizWiz.Dashboard.TabOnlineForms;
@@ -60,7 +58,6 @@ namespace NewBizWiz.Dashboard
 			ribbonBarNewspaperLogo.Text = SettingsManager.Instance.DashboardText;
 			ribbonBarTVLogo.Text = SettingsManager.Instance.DashboardText;
 			ribbonBarRadioLogo.Text = SettingsManager.Instance.DashboardText;
-			ribbonBarCalendarLogo.Text = SettingsManager.Instance.DashboardText;
 
 			var masterWizardLogo = MasterWizardManager.Instance.DefaultLogo;
 			buttonItemHomeOverview.Image = masterWizardLogo;
@@ -68,7 +65,6 @@ namespace NewBizWiz.Dashboard
 			buttonItemNewspaperLogo.Image = masterWizardLogo;
 			buttonItemTVLogo.Image = masterWizardLogo;
 			buttonItemRadioLogo.Image = masterWizardLogo;
-			buttonItemCalendarLogo.Image = masterWizardLogo;
 			ribbonBarHomeOverview.RecalcLayout();
 			ribbonPanelHome.PerformLayout();
 		}
@@ -82,8 +78,6 @@ namespace NewBizWiz.Dashboard
 					ribbonTabItemOnline.Visible = true;
 					ribbonTabItemRadio.Visible = false;
 					ribbonTabItemTV.Visible = false;
-					ribbonTabItemCalendar.Visible = true;
-					ribbonTabItemCalendar.Enabled = true;
 					break;
 				case "tv":
 					ribbonTabItemNewspaper.Visible = false;
@@ -92,7 +86,6 @@ namespace NewBizWiz.Dashboard
 					ribbonTabItemTV.Visible = true;
 					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
 					buttonItemTVScheduleBuilder.Image = Resources.TVLittle;
-					ribbonTabItemCalendar.Visible = false;
 					break;
 				case "radio":
 					ribbonTabItemNewspaper.Visible = false;
@@ -100,7 +93,6 @@ namespace NewBizWiz.Dashboard
 					ribbonTabItemRadio.Visible = true;
 					ribbonTabItemRadio.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.RadioScheduleSlideFolder).Length > 0;
 					ribbonTabItemTV.Visible = false;
-					ribbonTabItemCalendar.Visible = false;
 					break;
 				case "cable":
 					ribbonTabItemNewspaper.Visible = false;
@@ -109,7 +101,6 @@ namespace NewBizWiz.Dashboard
 					ribbonTabItemTV.Visible = true;
 					ribbonTabItemTV.Enabled = Directory.Exists(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder) && Directory.GetDirectories(MasterWizardManager.Instance.SelectedWizard.TVScheduleSlideFolder).Length > 0;
 					buttonItemTVScheduleBuilder.Image = Resources.CableLittle;
-					ribbonTabItemCalendar.Visible = false;
 					break;
 			}
 		}
@@ -152,9 +143,6 @@ namespace NewBizWiz.Dashboard
 			buttonItemTVNew.Click += TVScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
 			buttonItemTVOpen.Click += TVScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
 			buttonItemTVDelete.Click += TVScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
-			buttonItemCalendarNew.Click += CalendarBuilderControl.Instance.buttonXNewCalendar_Click;
-			buttonItemCalendarOpen.Click += CalendarBuilderControl.Instance.buttonXOpenCalendar_Click;
-			buttonItemCalendarDelete.Click += CalendarBuilderControl.Instance.buttonXDeleteCalendar_Click;
 			buttonItemRadioNew.Click += RadioScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
 			buttonItemRadioOpen.Click += RadioScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
 			buttonItemRadioDelete.Click += RadioScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
@@ -234,13 +222,6 @@ namespace NewBizWiz.Dashboard
 					pnMain.Controls.Add(TabRadioMainPage.Instance);
 				TabRadioMainPage.Instance.BringToFront();
 			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar)
-			{
-				TabCalendarMainPage.Instance.UpdatePageAccordingToggledButton();
-				if (!pnMain.Controls.Contains(TabCalendarMainPage.Instance))
-					pnMain.Controls.Add(TabCalendarMainPage.Instance);
-				TabCalendarMainPage.Instance.BringToFront();
-			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSlides)
 			{
 				if (!pnMain.Controls.Contains(TabSlidesMainPage.Instance))
@@ -313,8 +294,6 @@ namespace NewBizWiz.Dashboard
 				helpKey = "TV";
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRadio)
 				helpKey = "Radio";
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar)
-				helpKey = "Calendar";
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSlides)
 				helpKey = "Slides";
 
@@ -366,5 +345,10 @@ namespace NewBizWiz.Dashboard
 			enter = false;
 		}
 		#endregion
+
+		private void pnMain_Paint(object sender, PaintEventArgs e)
+		{
+
+		}
 	}
 }

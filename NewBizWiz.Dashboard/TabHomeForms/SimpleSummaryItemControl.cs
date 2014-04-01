@@ -96,8 +96,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void ckItem_CheckedChanged(object sender, EventArgs e)
 		{
 			textEditItem.Enabled = ckItem.Checked;
-			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
-				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
+			if (!TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave) return;
+			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateOutputState();
+			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		private void ckDetails_CheckedChanged(object sender, EventArgs e)
@@ -110,6 +111,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void textEditItem_EditValueChanged(object sender, EventArgs e)
 		{
 			if (!TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave) return;
+			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateOutputState();
 			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 

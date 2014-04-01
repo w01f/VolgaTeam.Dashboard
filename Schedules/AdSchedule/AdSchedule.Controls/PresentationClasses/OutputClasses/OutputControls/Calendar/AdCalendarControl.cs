@@ -5,29 +5,31 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
+using NewBizWiz.AdSchedule.Controls.BusinessClasses;
+using NewBizWiz.AdSchedule.Controls.InteropClasses;
+using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.ToolForms;
+using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
-using NewBizWiz.Core.MediaSchedule;
-using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using NewBizWiz.MediaSchedule.Controls.ToolForms;
-using Schedule = NewBizWiz.Core.MediaSchedule.Schedule;
-using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
+using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar
 {
-	public sealed class BroadcastCalendarControl : BaseCalendarControl
+	public sealed class AdCalendarControl : BaseCalendarControl
 	{
 		private Schedule _localSchedule = null;
 
-		public BroadcastCalendarControl()
+		public AdCalendarControl()
 			: base()
 		{
 			Dock = DockStyle.Fill;
-			InitSlideInfo<CalendarSlideInfoControl>();
+			InitSlideInfo<SlideInfoControl>();
+			laCalendarName.Visible = false;
+			hyperLinkEditReset.Visible = true;
+			hyperLinkEditReset.OpenLink += hyperLinkEditReset_OpenLink;
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
 			{
 				if (sender != this)
@@ -35,26 +37,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			});
 		}
 
-		public bool AllowToLeaveControl
-		{
-			get
-			{
-				bool result;
-				if (SettingsNotSaved || (SelectedView != null && SelectedView.SettingsNotSaved) || SlideInfo.SettingsNotSaved)
-				{
-					SaveCalendarData();
-					SlideInfo.Close(false);
-					result = true;
-				}
-				else
-					result = true;
-				return result;
-			}
-		}
-
 		public override List<ImageSource> DayImages
 		{
-			get { return MediaMetaData.Instance.ListManager.Images; }
+			get { return Core.AdSchedule.ListManager.Instance.Images; }
 		}
 
 		public override ISchedule Schedule
@@ -74,7 +59,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public override ImageListBoxControl MonthList
 		{
-			get { return Controller.Instance.CalendarMonthsList; }
+			get { return Controller.Instance.CalendarMonthList; }
 		}
 
 		public override ButtonItem SlideInfoButton
@@ -119,72 +104,74 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public override Core.Calendar.Calendar CalendarData
 		{
-			get
-			{
-				return _localSchedule.BroadcastCalendar;
-			}
+			get { return _localSchedule.Calendar; }
 		}
 
-		public override Core.Calendar.CalendarSettings CalendarSettings
+		public override CalendarSettings CalendarSettings
 		{
-			get
-			{
-				return MediaMetaData.Instance.SettingsManager.BroadcastCalendarSettings;
-			}
+			get { return _localSchedule.ViewSettings.CalendarSettings; }
 		}
 
 		public override void LoadCalendar(bool quickLoad)
 		{
 			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			if (!_localSchedule.WeeklySchedule.Programs.Any()) return;
 			base.LoadCalendar(quickLoad);
 		}
 
 		public override bool SaveCalendarData(string scheduleName = "")
 		{
 			var result = base.SaveCalendarData(scheduleName);
-			Controller.Instance.SaveSchedule(_localSchedule, true, this);
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, this);
 			return result;
 		}
 
 		public override void OpenHelp()
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("adcal");
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink("calendars");
 		}
 
 		public override void SaveSettings()
 		{
-			MediaMetaData.Instance.SettingsManager.SaveSettings();
+			SettingsNotSaved = true;
 		}
 
-		public override void UpdateOutputFunctions()
+		public bool AllowToLeaveControl
 		{
-			base.UpdateOutputFunctions();
-			var enable = _localSchedule.WeeklySchedule.Programs.Any();
-			MonthList.Enabled = enable;
-			SlideInfoButton.Enabled = enable;
-			pnTop.Visible = enable;
-			pnMain.Visible = enable;
-			if (!enable)
-				SlideInfo.Close();
-			pictureBoxNoData.Image = Properties.Resources.CalendarDisabled;
-			pictureBoxNoData.Visible = !enable;
-			pictureBoxNoData.BringToFront();
+			get
+			{
+				bool result;
+				if (SettingsNotSaved || (SelectedView != null && SelectedView.SettingsNotSaved) || SlideInfo.SettingsNotSaved)
+				{
+					SaveCalendarData();
+					SlideInfo.Close(false);
+					result = true;
+				}
+				else
+					result = true;
+				return result;
+			}
+		}
+
+		private void TrackOutput()
+		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new OutputActivity(Controller.Instance.TabCalendar.Text, _localSchedule.BusinessName, (decimal)_localSchedule.PrintProducts.Sum(p => p.TotalFinalRate)));
 		}
 
 		protected override void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
-			var broadcastCalendarOutputData = outputData.OfType<BroadcastCalendarOutputData>();
+			var commonOutputData = outputData.OfType<AdCalendarOutputData>();
+			TrackOutput();
 			using (var formProgress = new FormProgress())
 			{
 				Controller.Instance.ShowFloater(() =>
 				{
 					formProgress.TopMost = true;
-					formProgress.laProgress.Text = outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…";
+					formProgress.laProgress.Text = commonOutputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…";
 					formProgress.Show();
 					Enabled = false;
-					MediaSchedulePowerPointHelper.Instance.AppendCalendar(broadcastCalendarOutputData.ToArray());
+					AdSchedulePowerPointHelper.Instance.AppendCalendar(commonOutputData.ToArray());
 					Enabled = true;
 					formProgress.Close();
 				});
@@ -194,7 +181,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		protected override void EmailInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
-			var broadcastCalendarOutputData = outputData.OfType<BroadcastCalendarOutputData>();
+			var commonOutputData = outputData.OfType<AdCalendarOutputData>();
 			var previewGroups = new List<PreviewGroup>();
 			using (var formProgress = new FormProgress())
 			{
@@ -202,21 +189,21 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				formProgress.TopMost = true;
 				formProgress.Show();
 				Enabled = false;
-				foreach (var outputItem in broadcastCalendarOutputData)
+				foreach (var outputItem in commonOutputData)
 				{
 					var previewGroup = new PreviewGroup
 					{
 						Name = outputItem.MonthText,
-						PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+						PresentationSourcePath = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
 					};
-					MediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+					AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 					previewGroups.Add(previewGroup);
 				}
 				Enabled = true;
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Calendar";
 				formEmail.LoadGroups(previewGroups);
@@ -232,7 +219,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		protected override void PreviewInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
-			var broadcastCalendarOutputData = outputData.OfType<BroadcastCalendarOutputData>();
+			var commonOutputData = outputData.OfType<AdCalendarOutputData>();
 			var previewGroups = new List<PreviewGroup>();
 			using (var formProgress = new FormProgress())
 			{
@@ -240,14 +227,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				formProgress.TopMost = true;
 				formProgress.Show();
 				Enabled = false;
-				foreach (var outputItem in broadcastCalendarOutputData)
+				foreach (var outputItem in commonOutputData)
 				{
 					var previewGroup = new PreviewGroup
 					{
 						Name = outputItem.MonthText,
-						PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
+						PresentationSourcePath = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
 					};
-					MediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+					AdSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 					previewGroups.Add(previewGroup);
 				}
 				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
@@ -255,7 +242,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, AdSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackOutput))
 			{
 				formPreview.Text = "Preview this Calendar";
 				formPreview.LoadGroups(previewGroups);
@@ -267,6 +254,17 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				if (previewResult != DialogResult.OK)
 					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 			}
+		}
+
+		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		{
+			if (Utilities.Instance.ShowWarningQuestion("Are you sure want to reset data?") == DialogResult.Yes)
+			{
+				_localSchedule.Calendar.ResetToDefault();
+				MonthView.RefreshData();
+				SlideInfo.LoadData(allowToSave: false);
+			}
+			e.Handled = true;
 		}
 
 		#region Copy-Paste Methods and Event Handlers
@@ -334,6 +332,19 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				}
 				else
 					Utilities.Instance.ShowWarning("Schedule Name can't be empty");
+			}
+		}
+
+		public void Export_Click(object sender, EventArgs e)
+		{
+			using (var form = new FormExportSchedule())
+			{
+				form.Text = _localSchedule.Name;
+				form.ScheduleName = String.Format("Ninja-{0}", DateTime.Now.ToString("MMddyy-hhmmtt"));
+				if (form.ShowDialog() == DialogResult.OK)
+				{
+					Core.Calendar.ScheduleManager.ImportSchedule(_localSchedule.ScheduleFile.FullName, form.ScheduleName);
+				}
 			}
 		}
 

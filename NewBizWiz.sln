@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{6A3200CB-5F81-4E16-B5FB-32BF9395C98E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schedules", "Schedules", "{9AAA7A51-A9C1-4D90-8942-4464D345F4B4}"
@@ -34,8 +34,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBizWiz.OnlineSchedule.Controls", "Schedules\OnlineSchedule\OnlineSchedule.Controls\NewBizWiz.OnlineSchedule.Controls.csproj", "{1C9B33CD-0FE1-431C-BBC4-88463568F891}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBizWiz.OnlineSchedule.Internal", "Schedules\OnlineSchedule\OnlineSchedule.Internal\NewBizWiz.OnlineSchedule.Internal.csproj", "{14338B89-EEC4-45CC-A87F-2507FE32A32E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBizWiz.Calendar.Internal", "Schedules\Calendar\Calendar.Internal\NewBizWiz.Calendar.Internal.csproj", "{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBizWiz.Calendar.Single", "Schedules\Calendar\Calendar.Single\NewBizWiz.Calendar.Single.csproj", "{E3814D0C-6BA3-428E-A052-FBD374A6EEEB}"
 EndProject
@@ -212,16 +210,6 @@ Global
 		{14338B89-EEC4-45CC-A87F-2507FE32A32E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{14338B89-EEC4-45CC-A87F-2507FE32A32E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{14338B89-EEC4-45CC-A87F-2507FE32A32E}.Release|x86.ActiveCfg = Release|Any CPU
-		{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC}.Release|x86.ActiveCfg = Release|Any CPU
 		{E3814D0C-6BA3-428E-A052-FBD374A6EEEB}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{E3814D0C-6BA3-428E-A052-FBD374A6EEEB}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{E3814D0C-6BA3-428E-A052-FBD374A6EEEB}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -401,7 +389,6 @@ Global
 		{C4A3DF41-C6D7-4209-9EFB-07FA7DF86327} = {E900F195-9597-4D32-A963-E461E3416906}
 		{E9EC47A0-0791-4EEA-BADC-AF8615F553F3} = {E900F195-9597-4D32-A963-E461E3416906}
 		{167BC40B-C87E-4972-B8A2-903F6F160B6B} = {1D295FAE-1B42-44EE-89A8-503AF8A9BD94}
-		{BCC4274C-8F5A-4DFA-AE3E-7AA6CF3242AC} = {1D295FAE-1B42-44EE-89A8-503AF8A9BD94}
 		{E3814D0C-6BA3-428E-A052-FBD374A6EEEB} = {1D295FAE-1B42-44EE-89A8-503AF8A9BD94}
 		{1C9B33CD-0FE1-431C-BBC4-88463568F891} = {A74EFED6-90BD-4035-8F81-CE19F6CAEF09}
 		{14338B89-EEC4-45CC-A87F-2507FE32A32E} = {A74EFED6-90BD-4035-8F81-CE19F6CAEF09}

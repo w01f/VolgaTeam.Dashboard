@@ -68,11 +68,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		[Browsable(true)]
 		[Category("Action")]
-		public event EventHandler<EventArgs> ThemeChanged;
+		public event EventHandler<EventArgs> PropertyChanged;
 
 		public void OnThemeChanged(EventArgs e)
 		{
-			var handler = ThemeChanged;
+			var handler = PropertyChanged;
 			if (handler != null) handler(this, e);
 		}
 
@@ -166,10 +166,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				month.OutputData.ShowCustomComment = _month.OutputData.ShowCustomComment;
 				month.OutputData.CustomComment = _month.OutputData.CustomComment;
 			}
-
-			if (_month.OutputData.ApplyForAllCustomComment)
-			{
-			}
 			#endregion
 
 			#region Style
@@ -186,15 +182,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			else if (buttonXThemeColorTeal.Checked)
 				_month.OutputData.SlideColor = "teal";
 			_month.OutputData.ApplyForAllThemeColor = checkEditThemeColorApplyForAll.Checked;
-			if (_month.OutputData.ApplyForAllThemeColor)
-			{
-				foreach (var month in _month.Parent.Months.Where(month => month != _month))
-				{
-					month.OutputData.SlideColor = _month.OutputData.SlideColor;
-					month.OutputData.ApplyForAllThemeColor = _month.OutputData.ApplyForAllThemeColor;
-				}
-			}
 			_month.OutputData.ShowBigDate = buttonXStyleBigDate.Checked;
+			foreach (var month in _month.Parent.Months.Where(month => month != _month))
+			{
+				month.OutputData.ApplyForAllThemeColor = _month.OutputData.ApplyForAllThemeColor;
+				if (!_month.OutputData.ApplyForAllThemeColor) continue;
+				month.OutputData.SlideColor = _month.OutputData.SlideColor;
+				month.OutputData.ShowBigDate = _month.OutputData.ShowBigDate;
+			}
 			#endregion
 
 			#region Logo
@@ -211,7 +206,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				month.OutputData.Logo = _month.OutputData.Logo;
 				month.OutputData.EncodedLogo = null;
 			}
-
 			#endregion
 
 			SettingsNotSaved = false;

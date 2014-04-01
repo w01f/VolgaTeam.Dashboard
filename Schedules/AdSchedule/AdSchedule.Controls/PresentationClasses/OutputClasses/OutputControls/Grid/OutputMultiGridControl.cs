@@ -699,51 +699,44 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			var args = (e as DXMouseEventArgs);
 			var view = sender as GridView;
-			GridHitInfo hi = view.CalcHitInfo(args.Location);
-			if (hi.InColumn && e.Clicks == 2)
-			{
-				if (hi.Column != gridColumnDate && hi.Column != gridColumnPublication)
-				{
-					var ViewInfo = view.GetViewInfo() as GridViewInfo;
-					GridState prevState = view.State;
-					if ((e.Button & MouseButtons.Left) != 0)
-					{
-						if (ViewInfo.ColumnsInfo[hi.Column].CaptionRect.Contains(new Point(e.X, e.Y)))
-						{
-							ViewInfo.SelectionInfo.ClearPressedInfo();
-							args.Handled = true;
-						}
-					}
-				}
-			}
+			var hi = view.CalcHitInfo(args.Location);
+			if (!hi.InColumn || e.Clicks != 2) return;
+			if (hi.Column == gridColumnDate || hi.Column == gridColumnPublication) return;
+			var ViewInfo = view.GetViewInfo() as GridViewInfo;
+			if ((e.Button & MouseButtons.Left) == 0) return;
+			if (!ViewInfo.ColumnsInfo[hi.Column].CaptionRect.Contains(new Point(e.X, e.Y))) return;
+			ViewInfo.SelectionInfo.ClearPressedInfo();
+			args.Handled = true;
 		}
 
 		private void gridViewPublications_CalcPreviewText(object sender, CalcPreviewTextEventArgs e)
 		{
 			var previewText = new SortedDictionary<int, string>();
 			int maxNumber = 12;
+			var insert = gridViewPublications.GetRow(e.RowHandle) as Insert;
+			if (insert == null) return;
 			if (ShowCommentsInPreview && !string.IsNullOrEmpty(e.PreviewText))
 				previewText.Add(PositionCommentsInPreview > 0 && !previewText.Keys.Contains(PositionCommentsInPreview) ? PositionCommentsInPreview : ++maxNumber, e.PreviewText);
-			if (ShowSectionInPreview && !string.IsNullOrEmpty(gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnSection).ToString()))
-				previewText.Add(PositionSectionInPreview > 0 && !previewText.Keys.Contains(PositionSectionInPreview) ? PositionSectionInPreview : ++maxNumber, "Section: " + gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnSection));
-			if (ShowMechanicalsInPreview && !string.IsNullOrEmpty((string)gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnMechanicals)))
-				previewText.Add(PositionMechanicalsInPreview > 0 && !previewText.Keys.Contains(PositionMechanicalsInPreview) ? PositionMechanicalsInPreview : ++maxNumber, "Mech: " + gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnMechanicals));
-			if (ShowDeliveryInPreview && !string.IsNullOrEmpty(gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnDelivery).ToString()))
-				previewText.Add(PositionDeliveryInPreview > 0 && !previewText.Keys.Contains(PositionDeliveryInPreview) ? PositionDeliveryInPreview : ++maxNumber, "Delivery: " + gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnDelivery));
-			if (ShowPublicationInPreview && !string.IsNullOrEmpty(gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnPublication).ToString()))
-				previewText.Add(PositionPublicationInPreview > 0 && !previewText.Keys.Contains(PositionPublicationInPreview) ? PositionPublicationInPreview : ++maxNumber, "Publication: " + gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnPublication));
-			if (ShowPageSizeInPreview && !string.IsNullOrEmpty((string)gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnPageSize)))
-				previewText.Add(PositionPageSizeInPreview > 0 && !previewText.Keys.Contains(PositionPageSizeInPreview) ? PositionPageSizeInPreview : ++maxNumber, "Page Size: " + gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnPageSize));
-			if (ShowPercentOfPageInPreview && !string.IsNullOrEmpty((string)gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnPercentOfPage)))
-				previewText.Add(PositionPercentOfPageInPreview > 0 && !previewText.Keys.Contains(PositionPercentOfPageInPreview) ? PositionPercentOfPageInPreview : ++maxNumber, gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnPercentOfPage) + " Share of Page");
-			if (ShowDimensionsInPreview && !string.IsNullOrEmpty(gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnDimensions).ToString()))
-				previewText.Add(PositionDimensionsInPreview > 0 && !previewText.Keys.Contains(PositionDimensionsInPreview) ? PositionDimensionsInPreview : ++maxNumber, "Col. x Inches: " + gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnDimensions));
-			if (ShowColumnInchesInPreview && !string.IsNullOrEmpty(gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnColumnInches).ToString()))
-				previewText.Add(PositionColumnInchesInPreview > 0 && !previewText.Keys.Contains(PositionColumnInchesInPreview) ? PositionColumnInchesInPreview : ++maxNumber, "Total Col In: " + gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnColumnInches) + " col. in.");
-			if (ShowReadershipInPreview && !string.IsNullOrEmpty(gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnReadership).ToString()))
-				previewText.Add(PositionReadershipInPreview > 0 && !previewText.Keys.Contains(PositionReadershipInPreview) ? PositionReadershipInPreview : ++maxNumber, "Readership: " + gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnReadership));
-			if (ShowDeadlineInPreview && !string.IsNullOrEmpty(gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnDeadline).ToString()))
-				previewText.Add(PositionDeadlineInPreview > 0 && !previewText.Keys.Contains(PositionDeadlineInPreview) ? PositionDeadlineInPreview : ++maxNumber, "Deadline: " + gridViewPublications.GetRowCellValue(e.RowHandle, gridColumnDeadline));
+			if (ShowSectionInPreview && !string.IsNullOrEmpty(insert.FullSection))
+				previewText.Add(PositionSectionInPreview > 0 && !previewText.Keys.Contains(PositionSectionInPreview) ? PositionSectionInPreview : ++maxNumber, "Section: " + insert.FullSection);
+			if (ShowMechanicalsInPreview && !string.IsNullOrEmpty(insert.Mechanicals))
+				previewText.Add(PositionMechanicalsInPreview > 0 && !previewText.Keys.Contains(PositionMechanicalsInPreview) ? PositionMechanicalsInPreview : ++maxNumber, "Mech: " + insert.Mechanicals);
+			if (ShowDeliveryInPreview && !string.IsNullOrEmpty(insert.Delivery))
+				previewText.Add(PositionDeliveryInPreview > 0 && !previewText.Keys.Contains(PositionDeliveryInPreview) ? PositionDeliveryInPreview : ++maxNumber, "Delivery: " + insert.Delivery);
+			if (ShowPublicationInPreview && !string.IsNullOrEmpty(insert.Publication))
+				previewText.Add(PositionPublicationInPreview > 0 && !previewText.Keys.Contains(PositionPublicationInPreview) ? PositionPublicationInPreview : ++maxNumber, "Publication: " + insert.Publication);
+			if (ShowPageSizeInPreview && !string.IsNullOrEmpty(insert.PageSize))
+				previewText.Add(PositionPageSizeInPreview > 0 && !previewText.Keys.Contains(PositionPageSizeInPreview) ? PositionPageSizeInPreview : ++maxNumber, "Page Size: " + insert.PageSize);
+			if (ShowPercentOfPageInPreview && !string.IsNullOrEmpty(insert.PercentOfPage))
+				previewText.Add(PositionPercentOfPageInPreview > 0 && !previewText.Keys.Contains(PositionPercentOfPageInPreview) ? PositionPercentOfPageInPreview : ++maxNumber, insert.PercentOfPage + " Share of Page");
+			if (ShowDimensionsInPreview && !string.IsNullOrEmpty(insert.Dimensions))
+				previewText.Add(PositionDimensionsInPreview > 0 && !previewText.Keys.Contains(PositionDimensionsInPreview) ? PositionDimensionsInPreview : ++maxNumber, "Col. x Inches: " + insert.Dimensions);
+			if (ShowColumnInchesInPreview && !string.IsNullOrEmpty(insert.SquareStringFormatted))
+				previewText.Add(PositionColumnInchesInPreview > 0 && !previewText.Keys.Contains(PositionColumnInchesInPreview) ? PositionColumnInchesInPreview : ++maxNumber, "Total Col In: " + insert.SquareStringFormatted + " col. in.");
+			if (ShowReadershipInPreview && !string.IsNullOrEmpty(insert.Readership))
+				previewText.Add(PositionReadershipInPreview > 0 && !previewText.Keys.Contains(PositionReadershipInPreview) ? PositionReadershipInPreview : ++maxNumber, "Readership: " + insert.Readership);
+			if (ShowDeadlineInPreview && !string.IsNullOrEmpty(insert.Deadline))
+				previewText.Add(PositionDeadlineInPreview > 0 && !previewText.Keys.Contains(PositionDeadlineInPreview) ? PositionDeadlineInPreview : ++maxNumber, "Deadline: " + insert.Deadline);
 			e.PreviewText = string.Join(",   ", previewText.Values.ToArray());
 			if (string.IsNullOrEmpty(e.PreviewText))
 				e.PreviewText = "            ";

@@ -49,6 +49,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		private void SaveSchedule(string newName = "")
 		{
 			if (_selectedOutput == null) return;
+			_selectedOutput.Save();
 			var nameChanged = !string.IsNullOrEmpty(newName);
 			if (nameChanged)
 				_selectedOutput.LocalSchedule.Name = newName;
@@ -176,6 +177,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		bool SettingsNotSaved { get; set; }
 		SuperTooltipInfo HelpToolTip { get; }
 		void UpdateOutput(bool quickLoad);
+		void Save();
 		void OnOptionChanged(object sender, EventArgs e);
 		void EditDigitalLegend();
 		void PrintOutput();

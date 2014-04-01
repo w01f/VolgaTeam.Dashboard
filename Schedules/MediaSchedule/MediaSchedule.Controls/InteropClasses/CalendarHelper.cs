@@ -7,6 +7,7 @@ using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.VisualBasic;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Interop;
+using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
@@ -15,7 +16,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 {
 	public partial class MediaSchedulePowerPointHelper
 	{
-		public void AppendCalendar(CalendarOutputData[] monthOutputDatas, Presentation destinationPresentation = null)
+		public void AppendCalendar(BroadcastCalendarOutputData[] monthOutputDatas, Presentation destinationPresentation = null)
 		{
 			if (!Directory.Exists(BusinessWrapper.Instance.OutputManager.CalendarTemlatesFolderPath)) return;
 			foreach (var monthOutputData in monthOutputDatas)
@@ -286,12 +287,12 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 			}
 		}
 
-		private string GetSlideMasterName(CalendarOutputData monthOutputData)
+		private string GetSlideMasterName(BroadcastCalendarOutputData monthOutputData)
 		{
 			return String.Format("{0}{1}{2}", monthOutputData.Parent.Date.ToString("MMMyy").ToLower(), monthOutputData.SlideColor.ToLower(), monthOutputData.ShowBigDate ? "L" : "t");
 		}
 
-		private void SetDayRecordTagValue(CalendarOutputData monthOutputData, Slide slide, Shape shape, int dayNumber)
+		private void SetDayRecordTagValue(BroadcastCalendarOutputData monthOutputData, Slide slide, Shape shape, int dayNumber)
 		{
 			try
 			{
@@ -336,7 +337,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 			catch { }
 		}
 
-		public void PrepareCalendarEmail(string fileName, CalendarOutputData[] monthOutputData)
+		public void PrepareCalendarEmail(string fileName, BroadcastCalendarOutputData[] monthOutputData)
 		{
 			PreparePresentation(fileName, presentation => AppendCalendar(monthOutputData, presentation));
 		}

@@ -570,6 +570,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			}
 			else if (Controller.Instance.PrintProductAdPricingFlat.Checked || Controller.Instance.PrintProductAdPricingPagePercent.Checked)
 			{
+				var prevColorPricing = printProduct.ColorPricing;
 				if (Controller.Instance.PrintProductAdPricingFlat.Checked)
 				{
 					var prevStrategy = printProduct.AdPricingStrategy;
@@ -581,27 +582,27 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				}
 				else if (Controller.Instance.PrintProductAdPricingPagePercent.Checked)
 				{
-					var prevColorPricing = printProduct.ColorPricing;
+					
 					if (printProduct.AdPricingStrategy != AdPricingStrategies.SharePage)
 						printProduct.SizeOptions.ResetToDefaults(AdPricingStrategies.SharePage);
 					printProduct.AdPricingStrategy = AdPricingStrategies.SharePage;
-					if (prevColorPricing == ColorPricingType.CostPerInch)
+				}
+				if (prevColorPricing == ColorPricingType.CostPerInch)
+				{
+					switch (ListManager.Instance.DefaultColorPricing)
 					{
-						switch (ListManager.Instance.DefaultColorPricing)
-						{
-							case ColorPricingType.CostPerAd:
-								buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsCostPerAd, null);
-								break;
-							case ColorPricingType.PercentOfAdRate:
-								buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsPercentOfAd, null);
-								break;
-							case ColorPricingType.ColorIncluded:
-								buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsIncluded, null);
-								break;
-							case ColorPricingType.CostPerInch:
-								buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsPCI, null);
-								break;
-						}
+						case ColorPricingType.CostPerAd:
+							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsCostPerAd, null);
+							break;
+						case ColorPricingType.PercentOfAdRate:
+							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsPercentOfAd, null);
+							break;
+						case ColorPricingType.ColorIncluded:
+							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsIncluded, null);
+							break;
+						case ColorPricingType.CostPerInch:
+							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsPCI, null);
+							break;
 					}
 				}
 			}
@@ -757,8 +758,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 						case ColorPricingType.ColorIncluded:
 							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsIncluded, null);
 							break;
-						case ColorPricingType.CostPerInch:
-							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsPCI, null);
+						default:
+							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsCostPerAd, null);
 							break;
 					}
 				}

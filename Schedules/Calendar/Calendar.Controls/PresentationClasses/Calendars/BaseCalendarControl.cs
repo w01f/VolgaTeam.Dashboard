@@ -11,8 +11,6 @@ using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Views;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Views.GridView;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView;
-using NewBizWiz.Calendar.Controls.Properties;
-using NewBizWiz.Calendar.Controls.ToolForms;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
@@ -20,12 +18,11 @@ using NewBizWiz.Core.Common;
 namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 {
 	[ToolboxItem(false)]
-	public abstract partial class BaseCalendarControl : UserControl, ICalendarControl
+	public partial class BaseCalendarControl : UserControl, ICalendarControl
 	{
-		protected BaseCalendarControl()
+		public BaseCalendarControl()
 		{
 			InitializeComponent();
-			Dock = DockStyle.Fill;
 			pnEmpty.Dock = DockStyle.Fill;
 			pnMain.Dock = DockStyle.Fill;
 			pictureBoxNoData.Dock = DockStyle.Fill;
@@ -174,7 +171,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 				SlideInfoButton.Checked = false;
 				AllowToSave = temp;
 			};
-			SlideInfo.ThemeChanged += (sender, e) =>
+			SlideInfo.PropertyChanged += (sender, e) =>
 			{
 				MonthView.RefreshData();
 				SettingsNotSaved = true;
@@ -307,30 +304,86 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		public bool AllowToSave { get; set; }
 		public bool SettingsNotSaved { get; set; }
 
-		public abstract Core.Calendar.Calendar CalendarData { get; }
+		public virtual Core.Calendar.Calendar CalendarData
+		{
+			get { return null; }
+		}
 
-		public abstract CalendarSettings CalendarSettings { get; }
+		public virtual CalendarSettings CalendarSettings
+		{
+			get { return null; }
+		}
 
-		public abstract List<ImageSource> DayImages { get; }
+		public virtual List<ImageSource> DayImages
+		{
+			get { return null; }
+		}
 		#endregion
 
-		public abstract ISchedule Schedule { get; }
-		public abstract Form FormMain { get; }
-		public abstract RibbonControl Ribbon { get; }
-		public abstract ImageListBoxControl MonthList { get; }
-		public abstract ButtonItem SlideInfoButton { get; }
-		public abstract ButtonItem PreviewButton { get; }
-		public abstract ButtonItem EmailButton { get; }
-		public abstract ButtonItem PowerPointButton { get; }
-		public abstract ButtonItem ThemeButton { get; }
-		public abstract ButtonItem CopyButton { get; }
-		public abstract ButtonItem PasteButton { get; }
-		public abstract ButtonItem CloneButton { get; }
+		public virtual ISchedule Schedule
+		{
+			get { return null; }
+		}
 
-		public abstract void OpenHelp();
-		public abstract void SaveSettings();
-		protected abstract void PowerPointInternal(IEnumerable<CalendarOutputData> outputData);
-		protected abstract void EmailInternal(IEnumerable<CalendarOutputData> outputData);
-		protected abstract void PreviewInternal(IEnumerable<CalendarOutputData> outputData);
+		public virtual Form FormMain
+		{
+			get { return null; }
+		}
+
+		public virtual RibbonControl Ribbon
+		{
+			get { return null; }
+		}
+
+		public virtual ImageListBoxControl MonthList
+		{
+			get { return null; }
+		}
+
+		public virtual ButtonItem SlideInfoButton
+		{
+			get { return null; }
+		}
+
+		public virtual ButtonItem PreviewButton
+		{
+			get { return null; }
+		}
+
+		public virtual ButtonItem EmailButton
+		{
+			get { return null; }
+		}
+
+		public virtual ButtonItem PowerPointButton
+		{
+			get { return null; }
+		}
+
+		public virtual ButtonItem ThemeButton
+		{
+			get { return null; }
+		}
+
+		public virtual ButtonItem CopyButton
+		{
+			get { return null; }
+		}
+
+		public virtual ButtonItem PasteButton
+		{
+			get { return null; }
+		}
+
+		public virtual ButtonItem CloneButton
+		{
+			get { return null; }
+		}
+
+		public virtual void OpenHelp() { }
+		public virtual void SaveSettings() { }
+		protected virtual void PowerPointInternal(IEnumerable<CalendarOutputData> outputData) { }
+		protected virtual void EmailInternal(IEnumerable<CalendarOutputData> outputData) { }
+		protected virtual void PreviewInternal(IEnumerable<CalendarOutputData> outputData) { }
 	}
 }

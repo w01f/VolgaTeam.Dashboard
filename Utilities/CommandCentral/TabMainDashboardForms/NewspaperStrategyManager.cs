@@ -2484,14 +2484,6 @@ namespace CommandCentral.TabMainDashboard
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
 											defaultCalendarViewSettings.ShowSection = tempBool;
 									break;
-								case "Ad Cost":
-									if (row[1] != null)
-										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											defaultCalendarViewSettings.EnableAvgCost = tempBool;
-									if (row[2] != null)
-										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											defaultCalendarViewSettings.ShowAvgCost = tempBool;
-									break;
 								case "Color-BW":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
@@ -2540,14 +2532,6 @@ namespace CommandCentral.TabMainDashboard
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
 											defaultCalendarViewSettings.ShowBigDate = tempBool;
 									break;
-								case "Slide Title":
-									if (row[1] != null)
-										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											defaultCalendarViewSettings.EnableTitle = tempBool;
-									if (row[2] != null)
-										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											defaultCalendarViewSettings.ShowTitle = tempBool;
-									break;
 								case "Logo":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
@@ -2556,22 +2540,6 @@ namespace CommandCentral.TabMainDashboard
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
 											defaultCalendarViewSettings.ShowLogo = tempBool;
 									break;
-								case "Advertiser":
-									if (row[1] != null)
-										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											defaultCalendarViewSettings.EnableBusinessName = tempBool;
-									if (row[2] != null)
-										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											defaultCalendarViewSettings.ShowBusinessName = tempBool;
-									break;
-								case "Contact":
-									if (row[1] != null)
-										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											defaultCalendarViewSettings.EnableDecisionMaker = tempBool;
-									if (row[2] != null)
-										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											defaultCalendarViewSettings.ShowDecisionMaker = tempBool;
-									break;
 								case "Monthly $":
 									if (row[1] != null)
 										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
@@ -2579,22 +2547,6 @@ namespace CommandCentral.TabMainDashboard
 									if (row[2] != null)
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
 											defaultCalendarViewSettings.ShowCost = tempBool;
-									break;
-								case "Legend":
-									if (row[1] != null)
-										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											defaultCalendarViewSettings.EnableLegend = tempBool;
-									if (row[2] != null)
-										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											defaultCalendarViewSettings.ShowLegend = tempBool;
-									break;
-								case "Avg Rate":
-									if (row[1] != null)
-										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
-											defaultCalendarViewSettings.EnableAvgCost = tempBool;
-									if (row[2] != null)
-										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
-											defaultCalendarViewSettings.ShowAvgCost = tempBool;
 									break;
 								case "Comment":
 									if (row[1] != null)

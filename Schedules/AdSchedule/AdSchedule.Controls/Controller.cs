@@ -11,6 +11,7 @@ using NewBizWiz.AdSchedule.Controls.PresentationClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.AdPlan;
+using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.Gallery;
@@ -231,16 +232,19 @@ namespace NewBizWiz.AdSchedule.Controls
 			#endregion
 
 			#region Calendars
-			Calendars = new CalendarsControl();
-			CalendarOptions.CheckedChanged += Calendars.buttonItemCalendarsOptions_CheckedChanged;
-			CalendarHelp.Click += Calendars.buttonItemCalendarsHelp_Click;
-			CalendarSave.Click += Calendars.buttonItemCalendarSave_Click;
-			CalendarSaveAs.Click += Calendars.buttonItemCalendarSaveAs_Click;
-			CalendarPowerPoint.Click += Calendars.buttonItemCalendarsPowerPoint_Click;
-			CalendarEmail.Click += Calendars.buttonItemCalendarsEmail_Click;
-			CalendarPreview.Click += Calendars.buttonItemCalendarsPreview_Click;
-			CalendarExport.Click += Calendars.buttonItemCalendarsExport_Click;
-			CalendarMonthList.SelectedIndexChanged += Calendars.MonthList_SelectedIndexChanged;
+			Calendar = new AdCalendarControl();
+			CalendarMonthList.SelectedIndexChanged += Calendar.MonthList_SelectedIndexChanged;
+			CalendarSlideInfo.CheckedChanged += Calendar.SlideInfo_CheckedChanged;
+			CalendarCopy.Click += Calendar.CalendarCopy_Click;
+			CalendarPaste.Click += Calendar.CalendarPaste_Click;
+			CalendarClone.Click += Calendar.CalendarClone_Click;
+			CalendarSave.Click += Calendar.Save_Click;
+			CalendarSaveAs.Click += Calendar.SaveAs_Click;
+			CalendarPreview.Click += Calendar.Preview_Click;
+			CalendarPowerPoint.Click += Calendar.PowerPoint_Click;
+			CalendarEmail.Click += Calendar.Email_Click;
+			CalendarHelp.Click += Calendar.Help_Click;
+			CalendarExport.Click += Calendar.Export_Click;
 			#endregion
 
 			#region AdPlan
@@ -297,10 +301,9 @@ namespace NewBizWiz.AdSchedule.Controls
 			Grids.DetailedGrid.Dispose();
 			Grids.MultiGrid.Dispose();
 			Grids.Dispose();
-			Calendars.Calendar.Dispose();
-			Calendars.Dispose();
 			AdPlan.Dispose();
 			Summary.Dispose();
+			Calendar.Dispose();
 			RateCard.Dispose();
 			Gallery.Dispose();
 			FloaterRequested = null;
@@ -312,7 +315,6 @@ namespace NewBizWiz.AdSchedule.Controls
 			PrintProductContainer.LoadSchedule(false);
 			DigitalProductContainer.LoadSchedule(false);
 			DigitalPackage.LoadSchedule(false);
-			Calendars.Calendar.UpdateOutput(false);
 			Grids.DetailedGrid.UpdateOutput(false);
 			Grids.MultiGrid.UpdateOutput(false);
 			Summaries.BasicOverview.UpdateOutput(false);
@@ -320,6 +322,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			Summaries.Snapshot.UpdateOutput(false);
 			AdPlan.LoadSchedule(false);
 			Summary.UpdateOutput(false);
+			Calendar.LoadCalendar(false);
 
 			BusinessWrapper.Instance.RateCardManager.LoadRateCards();
 			TabRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Any();
@@ -339,7 +342,6 @@ namespace NewBizWiz.AdSchedule.Controls
 			SnapshotDigitalLegend.Enabled = enable;
 			DetailedGridDigitalLegend.Enabled = enable;
 			MultiGridDigitalLegend.Enabled = enable;
-			Calendars.buttonXMonthShowDigital.Enabled = enable;
 		}
 
 		public void UpdateOutputTabs(bool enable)
@@ -524,63 +526,47 @@ namespace NewBizWiz.AdSchedule.Controls
 
 		private void ConfigureSpecialButtons()
 		{
-			if (Core.OnlineSchedule.ListManager.Instance.SpecialLinksEnable)
+			var specialLinkContainers = new[]
 			{
-				HomeSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-				DigitalProductSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-				DigitalPackageSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-				AdPlanSpecialButtons.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
-				foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
+				HomeSpecialButtons,
+				PrintProductSpecialButtons,
+				DigitalProductSpecialButtons,
+				DigitalPackageSpecialButtons,
+				AdPlanSpecialButtons,
+				BasicOverviewSpecialButtons,
+				MultiSummarySpecialButtons,
+				SnapshotSpecialButtons,
+				DetailedGridSpecialButtons,
+				MultiGridSpecialButtons,
+				CalendarSpecialButtons,
+				SummarySpecialButtons,
+				RateCardSpecialButtons,
+				GallerySpecialButtons
+			};
+			foreach (var ribbonBar in specialLinkContainers)
+			{
+				if (Core.OnlineSchedule.ListManager.Instance.SpecialLinksEnable)
 				{
-					var toolTip = new SuperTooltipInfo(specialLinkButton.Name, "", specialLinkButton.Tooltip, null, null, eTooltipColor.Gray);
-					var clickAction = new Action(() => { specialLinkButton.Open(); });
+					ribbonBar.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+					var containerButton = new ButtonItem();
+					containerButton.Image = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupLogo;
+					containerButton.AutoExpandOnClick = true;
+					ribbonBar.Items.Add(containerButton);
+					foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
 					{
+						var clickAction = new Action(() => { specialLinkButton.Open(); });
 						var button = new ButtonItem();
 						button.Image = specialLinkButton.Logo;
-						button.Text = specialLinkButton.Name;
+						button.Text = String.Format("<b>{0}</b><p>{1}</p>", specialLinkButton.Name, specialLinkButton.Tooltip);
 						button.Tag = specialLinkButton;
-						Supertip.SetSuperTooltip(button, toolTip);
 						button.Click += (o, e) => clickAction();
-						HomeSpecialButtons.Items.Add(button);
-					}
-
-					{
-						var button = new ButtonItem();
-						button.Image = specialLinkButton.Logo;
-						button.Text = specialLinkButton.Name;
-						button.Tag = specialLinkButton;
-						Supertip.SetSuperTooltip(button, toolTip);
-						button.Click += (o, e) => clickAction();
-						DigitalProductSpecialButtons.Items.Add(button);
-					}
-
-					{
-						var button = new ButtonItem();
-						button.Image = specialLinkButton.Logo;
-						button.Text = specialLinkButton.Name;
-						button.Tag = specialLinkButton;
-						Supertip.SetSuperTooltip(button, toolTip);
-						button.Click += (o, e) => clickAction();
-						DigitalPackageSpecialButtons.Items.Add(button);
-					}
-
-					{
-						var button = new ButtonItem();
-						button.Image = specialLinkButton.Logo;
-						button.Text = specialLinkButton.Name;
-						button.Tag = specialLinkButton;
-						Supertip.SetSuperTooltip(button, toolTip);
-						button.Click += (o, e) => clickAction();
-						AdPlanSpecialButtons.Items.Add(button);
+						containerButton.SubItems.Add(button);
 					}
 				}
-			}
-			else
-			{
-				HomeSpecialButtons.Visible = false;
-				DigitalProductSpecialButtons.Visible = false;
-				DigitalPackageSpecialButtons.Visible = false;
-				AdPlanSpecialButtons.Visible = false;
+				else
+				{
+					ribbonBar.Visible = false;
+				}
 			}
 		}
 
@@ -659,6 +645,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ButtonItem PrintProductColorOptionsIncluded { get; set; }
 		public ButtonItem PrintProductColorOptionsPCI { get; set; }
 		public RibbonBar PrintProductStrategy { get; set; }
+		public RibbonBar PrintProductSpecialButtons { get; set; }
 		public ItemContainer PrintProductAdSizeStandart { get; set; }
 		public ItemContainer PrintProductAdSizeSharePage { get; set; }
 		public Label PrintProductStandardSquareValue { get; set; }
@@ -702,6 +689,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Basic Overview
+		public RibbonBar BasicOverviewSpecialButtons { get; set; }
 		public ButtonItem BasicOverviewHelp { get; set; }
 		public ButtonItem BasicOverviewSave { get; set; }
 		public ButtonItem BasicOverviewSaveAs { get; set; }
@@ -713,6 +701,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Multi Summary
+		public RibbonBar MultiSummarySpecialButtons { get; set; }
 		public ButtonItem MultiSummaryHelp { get; set; }
 		public ButtonItem MultiSummarySave { get; set; }
 		public ButtonItem MultiSummarySaveAs { get; set; }
@@ -732,6 +721,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Snapshot
+		public RibbonBar SnapshotSpecialButtons { get; set; }
 		public ButtonItem SnapshotOptions { get; set; }
 		public ButtonItem SnapshotHelp { get; set; }
 		public ButtonItem SnapshotSave { get; set; }
@@ -755,6 +745,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Detailed Grid
+		public RibbonBar DetailedGridSpecialButtons { get; set; }
 		public ButtonItem DetailedGridOptions { get; set; }
 		public ButtonItem DetailedGridHelp { get; set; }
 		public ButtonItem DetailedGridSave { get; set; }
@@ -767,6 +758,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Multi Grid
+		public RibbonBar MultiGridSpecialButtons { get; set; }
 		public ButtonItem MultiGridOptions { get; set; }
 		public ButtonItem MultiGridHelp { get; set; }
 		public ButtonItem MultiGridSave { get; set; }
@@ -779,18 +771,23 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Calendar
-		public ButtonItem CalendarOptions { get; set; }
-		public ButtonItem CalendarExport { get; set; }
+		public ImageListBoxControl CalendarMonthList { get; set; }
+		public ButtonItem CalendarSlideInfo { get; set; }
+		public ButtonItem CalendarCopy { get; set; }
+		public ButtonItem CalendarPaste { get; set; }
+		public ButtonItem CalendarClone { get; set; }
 		public ButtonItem CalendarHelp { get; set; }
 		public ButtonItem CalendarSave { get; set; }
 		public ButtonItem CalendarSaveAs { get; set; }
 		public ButtonItem CalendarPreview { get; set; }
 		public ButtonItem CalendarEmail { get; set; }
 		public ButtonItem CalendarPowerPoint { get; set; }
-		public ImageListBoxControl CalendarMonthList { get; set; }
+		public ButtonItem CalendarExport { get; set; }
+		public RibbonBar CalendarSpecialButtons { get; set; }
 		#endregion
 
 		#region Summary
+		public RibbonBar SummarySpecialButtons { get; set; }
 		public ButtonItem SummaryHelp { get; set; }
 		public ButtonItem SummarySave { get; set; }
 		public ButtonItem SummarySaveAs { get; set; }
@@ -801,11 +798,13 @@ namespace NewBizWiz.AdSchedule.Controls
 		#endregion
 
 		#region Rate Card
+		public RibbonBar RateCardSpecialButtons { get; set; }
 		public ButtonItem RateCardHelp { get; set; }
 		public ComboBoxEdit RateCardCombo { get; set; }
 		#endregion
 
 		#region Gallery
+		public RibbonBar GallerySpecialButtons { get; set; }
 		public RibbonBar GalleryBrowseBar { get; set; }
 		public RibbonBar GalleryImageBar { get; set; }
 		public RibbonBar GalleryZoomBar { get; set; }
@@ -833,9 +832,9 @@ namespace NewBizWiz.AdSchedule.Controls
 		public AdWebPackageControl DigitalPackage { get; private set; }
 		public SummariesControl Summaries { get; private set; }
 		public GridsControl Grids { get; private set; }
-		public CalendarsControl Calendars { get; private set; }
 		public SummaryControl Summary { get; private set; }
 		public PrintAdPlanControl AdPlan { get; private set; }
+		public AdCalendarControl Calendar { get; private set; }
 		public RateCardControl RateCard { get; private set; }
 		public GalleryControl Gallery { get; private set; }
 		#endregion

@@ -94,7 +94,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		public void ChangeMonth(DateTime date)
 		{
 			MonthControl month = null;
-			CalendarMonth calendarMonth = null;
 
 			SelectionManager.ClearSelection();
 			pnMain.Controls.Clear();
@@ -102,7 +101,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			foreach (var existedMonth in Months.Values)
 				existedMonth.RaiseEvents(false);
 
-			calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.Date.Equals(date));
+			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.Date.Equals(date));
 			if (Months.ContainsKey(date))
 			{
 				month = Months[date];

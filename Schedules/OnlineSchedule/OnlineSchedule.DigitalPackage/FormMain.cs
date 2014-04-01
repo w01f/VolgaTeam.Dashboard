@@ -58,6 +58,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 			#endregion
 
 			#region Rate Card
+			Controller.Instance.RateCardSpecialButtons = ribbonBarRateCardSpecialButtons;
 			Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
 			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
 			#endregion

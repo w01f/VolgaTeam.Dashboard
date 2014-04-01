@@ -18,7 +18,7 @@ using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
-	public partial class PublicationBasicOverviewControl : XtraTabPage
+	public partial class PublicationBasicOverviewControl : XtraTabPage, IBasicOverviewOutputControl
 	//public partial class PublicationBasicOverviewControl : System.Windows.Forms.UserControl
 	{
 		private bool _allowToSave;
@@ -46,9 +46,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				checkEditTotalDiscounts.Font = new Font(checkEditTotalDiscounts.Font.FontFamily, checkEditTotalDiscounts.Font.Size - 2, checkEditTotalDiscounts.Font.Style);
 				checkEditTotalSquare.Font = new Font(checkEditTotalSquare.Font.FontFamily, checkEditTotalSquare.Font.Size - 2, checkEditTotalSquare.Font.Style);
 			}
+
+			SummaryControl = new PublicationSummaryControl(this);
 		}
 
 		public PrintProduct PrintProduct { get; set; }
+		public PublicationSummaryControl SummaryControl { get; private set; }
 
 		public bool SettingsNotSaved
 		{
@@ -137,6 +140,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditFlightDates2.Checked = PrintProduct.ViewSettings.BasicOverviewSettings.ShowFlightDates2;
 
 			_allowToSave = true;
+
+			SummaryControl.UpdateControls();
 		}
 
 		private void checkEdit_MouseDown(object sender, MouseEventArgs e)
@@ -194,6 +199,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				checkEditInvestmentDetailsPicture.Checked = false;
 
 			SettingsNotSaved = true;
+
+			SummaryControl.UpdateControls();
 		}
 
 		private void textEditRunDatesComment_EditValueChanged(object sender, EventArgs e)
@@ -373,6 +380,17 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 		}
 
+		public string SummaryDescription
+		{
+			get
+			{
+				var result = new List<string>();
+				result.AddRange(AdSpecs);
+				result.AddRange(AdSummaries);
+				return String.Join(", ", result);
+			}
+		}
+
 		public string OutputFileIndex
 		{
 			get
@@ -464,6 +482,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintBasicOverview).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintBasicOverview)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintBasicOverview))); }
 		}
 
+		public string SlideName
+		{
+			get { return PrintProduct.Name; }
+		}
+
 		public PreviewGroup GetPreviewGroup()
 		{
 			return new PreviewGroup
@@ -473,7 +496,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			};
 		}
 
-		public void PrintOutput()
+		public void Output()
 		{
 			AdSchedulePowerPointHelper.Instance.AppendBasicOverview(new[] { this });
 		}

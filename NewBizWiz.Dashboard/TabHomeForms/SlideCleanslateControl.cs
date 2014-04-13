@@ -61,6 +61,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			pbVersion.Image = MasterWizardManager.Instance.Version;
 		}
 
+		public void UpdateSavedFilesState()
+		{
+			SetLoadState(false);
+		}
+
 		public void UpdateOutputState()
 		{
 			SetOutputState(true);

@@ -32,16 +32,17 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return null; }
 		}
 
+		public ButtonItem LoadButton
+		{
+			get { return FormMain.Instance.buttonItemHomeLoad; }
+		}
+
 		public event EventHandler<SlideEventArgs> SlideChanged;
 
 		protected SlideBaseControl()
 		{
 			InitializeComponent();
-			if ((CreateGraphics()).DpiX > 96)
-			{
-				laSlideHeader.Font = new Font(laSlideHeader.Font.FontFamily, laSlideHeader.Font.Size - 2, laSlideHeader.Font.Style);
-				buttonXSavedFiles.Font = new Font(buttonXSavedFiles.Font.FontFamily, buttonXSavedFiles.Font.Size - 2, buttonXSavedFiles.Font.Style);
-			}
+			if ((CreateGraphics()).DpiX > 96){}
 			comboBoxEditSlideHeader.MouseUp += FormMain.Instance.Editor_MouseUp;
 			comboBoxEditSlideHeader.MouseDown += FormMain.Instance.Editor_MouseDown;
 			comboBoxEditSlideHeader.Enter += FormMain.Instance.Editor_Enter;
@@ -49,7 +50,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		protected void SetLoadState(bool enable)
 		{
-			buttonXSavedFiles.Enabled = enable;
+			LoadButton.Enabled = enable;
 		}
 
 		protected void SetOutputState(bool enable)
@@ -83,10 +84,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			FormMain.Instance.ribbonBarPowerPoint.RecalcLayout();
 		}
 
-		protected virtual void SavedFiles_Click(object sender, EventArgs e)
-		{
-
-		}
+		public virtual void LoadClick() { }
 
 		public void SelectSlideType(SlideType slideType)
 		{

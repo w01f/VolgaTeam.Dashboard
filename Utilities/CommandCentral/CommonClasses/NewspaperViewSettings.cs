@@ -126,6 +126,7 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 			EnablePercentOfAd = true;
 			EnableColorIncluded = true;
 			EnableCostPerInch = true;
+			EnableMechanicals = true;
 
 			DefaultPCI = false;
 			DefaultFlat = false;
@@ -137,6 +138,8 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 			DefaultPercentOfAd = false;
 			DefaultColorIncluded = true;
 			DefaultCostPerInch = false;
+			DefaultMechanicals = true;
+			CalcDiscountBeforeColor = true;
 		}
 
 		public bool EnablePCI { get; set; }
@@ -149,6 +152,7 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 		public bool EnablePercentOfAd { get; set; }
 		public bool EnableColorIncluded { get; set; }
 		public bool EnableCostPerInch { get; set; }
+		public bool EnableMechanicals { get; set; }
 
 		public bool DefaultPCI { get; set; }
 		public bool DefaultFlat { get; set; }
@@ -160,8 +164,8 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 		public bool DefaultPercentOfAd { get; set; }
 		public bool DefaultColorIncluded { get; set; }
 		public bool DefaultCostPerInch { get; set; }
-
-		private void LoadDefaultSettings() { }
+		public bool DefaultMechanicals { get; set; }
+		public bool CalcDiscountBeforeColor { get; set; }
 
 		public string Serialize()
 		{
@@ -177,6 +181,7 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 			result.AppendLine(@"<EnablePercentOfAd>" + EnablePercentOfAd + @"</EnablePercentOfAd>");
 			result.AppendLine(@"<EnableColorIncluded>" + EnableColorIncluded + @"</EnableColorIncluded>");
 			result.AppendLine(@"<EnableCostPerInch>" + EnableCostPerInch + @"</EnableCostPerInch>");
+			result.AppendLine(@"<EnableMechanicals>" + EnableMechanicals + @"</EnableMechanicals>");
 
 			result.AppendLine(@"<DefaultPCI>" + DefaultPCI + @"</DefaultPCI>");
 			result.AppendLine(@"<DefaultFlat>" + DefaultFlat + @"</DefaultFlat>");
@@ -188,16 +193,17 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 			result.AppendLine(@"<DefaultPercentOfAd>" + DefaultPercentOfAd + @"</DefaultPercentOfAd>");
 			result.AppendLine(@"<DefaultColorIncluded>" + DefaultColorIncluded + @"</DefaultColorIncluded>");
 			result.AppendLine(@"<DefaultCostPerInch>" + DefaultCostPerInch + @"</DefaultCostPerInch>");
+			result.AppendLine(@"<DefaultMechanicals>" + DefaultMechanicals + @"</DefaultMechanicals>");
+			result.AppendLine(@"<CalcDiscountBeforeColor>" + CalcDiscountBeforeColor + @"</CalcDiscountBeforeColor>");
 
 			return result.ToString();
 		}
 
 		public void Deserialize(XmlNode node)
 		{
-			bool tempBool = false;
-
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
+				bool tempBool;
 				switch (childNode.Name)
 				{
 					case "EnablePCI":
@@ -240,6 +246,10 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							EnableCostPerInch = tempBool;
 						break;
+					case "EnableMechanicals":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							EnableMechanicals = tempBool;
+						break;
 
 					case "DefaultPCI":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -281,6 +291,14 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							DefaultCostPerInch = tempBool;
 						break;
+					case "DefaultMechanicals":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							DefaultMechanicals = tempBool;
+						break;
+					case "CalcDiscountBeforeColor":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							CalcDiscountBeforeColor = tempBool;
+						break;
 				}
 			}
 
@@ -294,6 +312,7 @@ namespace CommandCentral.CommonClasses.NewspaperViewSettings
 			DefaultPercentOfAd &= EnablePercentOfAd;
 			DefaultColorIncluded &= EnableColorIncluded;
 			DefaultCostPerInch &= EnableCostPerInch;
+			DefaultMechanicals &= EnableMechanicals;
 		}
 	}
 

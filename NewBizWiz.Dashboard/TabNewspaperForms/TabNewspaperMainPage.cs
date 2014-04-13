@@ -31,26 +31,9 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 			Control parent = Parent;
 			Parent = null;
 			Controls.Clear();
-			if (FormMain.Instance.buttonItemNewspaperScheduleBuilder != null && FormMain.Instance.buttonItemNewspaperScheduleBuilder.Checked)
-			{
-				PrintScheduleBuilderControl.Instance.LoadSchedules();
-				FormMain.Instance.OutsideClick = PrintScheduleBuilderControl.Instance.OutsideClick;
-				Controls.Add(PrintScheduleBuilderControl.Instance);
-			}
-			else
-			{
-				var borderedControl = new WhiteBorderControl();
-				Controls.Add(borderedControl);
-				Control parentSecond = borderedControl.panelExTop.Parent;
-				borderedControl.panelExTop.Parent = null;
-				borderedControl.panelExTop.Controls.Clear();
-				borderedControl.OutputClick = null;
-
-				//if (FormMain.Instance.buttonItemPrintScheduleBuilder != null && FormMain.Instance.buttonItemPrintScheduleBuilder.Checked)
-				//    borderedControl.panelExTop.Controls.Add(PrintScheduleBuilderControl.Instance);
-
-				borderedControl.panelExTop.Parent = parentSecond;
-			}
+			PrintScheduleBuilderControl.Instance.LoadSchedules();
+			FormMain.Instance.OutsideClick = PrintScheduleBuilderControl.Instance.OutsideClick;
+			Controls.Add(PrintScheduleBuilderControl.Instance);
 			Parent = parent;
 		}
 	}

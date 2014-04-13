@@ -99,10 +99,13 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\CalendarVisualizer.cs" />
+    <Compile Include="PresentationClasses\CalendarGallery2Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\CopyPasterManager.cs" />
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="PresentationClasses\Calendars\ICalendarControl.cs" />
-    <Compile Include="PresentationClasses\CalendarGalleryControl.cs">
+    <Compile Include="PresentationClasses\CalendarGallery1Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\SelectionManager.cs" />

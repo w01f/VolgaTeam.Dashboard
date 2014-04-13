@@ -35,6 +35,7 @@ namespace NewBizWiz.Dashboard
 
 		public AppManager.EmptyParametersDelegate OutputClick { get; set; }
 		public AppManager.EmptyParametersDelegate PreviewClick { get; set; }
+		public AppManager.EmptyParametersDelegate LoadClick { get; set; }
 		public AppManager.EmptyParametersDelegate OutsideClick { get; set; }
 		public bool IsDead { get; set; }
 
@@ -275,6 +276,12 @@ namespace NewBizWiz.Dashboard
 				PreviewClick();
 		}
 
+		private void buttonItemHomeLoad_Click(object sender, EventArgs e)
+		{
+			if (LoadClick != null)
+				LoadClick();
+		}
+
 		private void buttonItemHomeTheme_Click(object sender, EventArgs e)
 		{
 			if (!SettingsManager.Instance.ThemeManager.GetThemes(SlideType.None).Any())
@@ -345,10 +352,5 @@ namespace NewBizWiz.Dashboard
 			enter = false;
 		}
 		#endregion
-
-		private void pnMain_Paint(object sender, PaintEventArgs e)
-		{
-
-		}
 	}
 }

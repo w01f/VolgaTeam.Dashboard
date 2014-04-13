@@ -50,7 +50,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		public RibbonTabItem TabCalendar { get; set; }
 		public RibbonTabItem TabSummary { get; set; }
 		public RibbonTabItem TabRateCard { get; set; }
-		public RibbonTabItem TabGallery { get; set; }
+		public RibbonTabItem TabGallery1 { get; set; }
+		public RibbonTabItem TabGallery2 { get; set; }
 
 		public void Init()
 		{
@@ -117,6 +118,10 @@ namespace NewBizWiz.AdSchedule.Controls
 			PrintProductPageSizeGroup.EditValueChanged += PrintProductContainer.comboBoxEditSizeOptions_EditValueChanged;
 			PrintProductPageSizeGroup.EditValueChanged += PrintProductContainer.comboBoxEditPageSizeGroup_EditValueChanged;
 			PrintProductPageSizeName.EditValueChanged += PrintProductContainer.comboBoxEditSizeOptions_EditValueChanged;
+			PrintProductMechanicalsCheck.CheckedChanged += PrintProductContainer.checkBoxItemSizeOptions_CheckedChanged;
+			PrintProductMechanicalsCheck.CheckedChanged += PrintProductContainer.MechanicalsEditValueChanged;
+			PrintProductMechanicalsName.EditValueChanged += PrintProductContainer.comboBoxEditSizeOptions_EditValueChanged;
+			PrintProductMechanicalsName.EditValueChanged += PrintProductContainer.MechanicalsEditValueChanged;
 			PrintProductRateCard.EditValueChanged += PrintProductContainer.comboBoxEditRateCard_EditValueChanged;
 			PrintProductPercentOfPage.EditValueChanged += PrintProductContainer.comboBoxEditPercentOfPage_EditValueChanged;
 			PrintProductSharePageSquare.ItemCheck += PrintProductContainer.checkedListBoxControlSharePageSquare_ItemCheck;
@@ -141,6 +146,9 @@ namespace NewBizWiz.AdSchedule.Controls
 			PrintProductPageSizeName.Enter += Utilities.Instance.Editor_Enter;
 			PrintProductPageSizeName.MouseDown += Utilities.Instance.Editor_MouseDown;
 			PrintProductPageSizeName.MouseUp += Utilities.Instance.Editor_MouseUp;
+			PrintProductMechanicalsName.Enter += Utilities.Instance.Editor_Enter;
+			PrintProductMechanicalsName.MouseDown += Utilities.Instance.Editor_MouseDown;
+			PrintProductMechanicalsName.MouseUp += Utilities.Instance.Editor_MouseUp;
 			#endregion
 
 			#region Digital Product
@@ -272,9 +280,14 @@ namespace NewBizWiz.AdSchedule.Controls
 			RateCardHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("ratecard");
 			#endregion
 
-			#region Gallery
-			Gallery = new PrintGalleryControl();
-			GalleryHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
+			#region Gallery 1
+			Gallery1 = new PrintGallery1Control();
+			Gallery1Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
+			#endregion
+
+			#region Gallery 2
+			Gallery2 = new PrintGallery2Control();
+			Gallery2Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
 			#endregion
 
 			ConfigureTabPages();
@@ -305,7 +318,8 @@ namespace NewBizWiz.AdSchedule.Controls
 			Summary.Dispose();
 			Calendar.Dispose();
 			RateCard.Dispose();
-			Gallery.Dispose();
+			Gallery1.Dispose();
+			Gallery2.Dispose();
 			FloaterRequested = null;
 		}
 
@@ -511,9 +525,13 @@ namespace NewBizWiz.AdSchedule.Controls
 						TabSummary.Text = tabPageConfig.Name;
 						tabPages.Add(TabSummary);
 						break;
-					case "Gallery":
-						TabGallery.Text = tabPageConfig.Name;
-						tabPages.Add(TabGallery);
+					case "Gallery1":
+						TabGallery1.Text = tabPageConfig.Name;
+						tabPages.Add(TabGallery1);
+						break;
+					case "Gallery2":
+						TabGallery2.Text = tabPageConfig.Name;
+						tabPages.Add(TabGallery2);
 						break;
 					case "Rate Card":
 						TabRateCard.Text = tabPageConfig.Name;
@@ -541,7 +559,8 @@ namespace NewBizWiz.AdSchedule.Controls
 				CalendarSpecialButtons,
 				SummarySpecialButtons,
 				RateCardSpecialButtons,
-				GallerySpecialButtons
+				Gallery1SpecialButtons,
+				Gallery2SpecialButtons
 			};
 			foreach (var ribbonBar in specialLinkContainers)
 			{
@@ -601,8 +620,10 @@ namespace NewBizWiz.AdSchedule.Controls
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text));
 			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
 				RateCard.LoadRateCards();
-			else if (Ribbon.SelectedRibbonTabItem == TabGallery)
-				Gallery.InitControl();
+			else if (Ribbon.SelectedRibbonTabItem == TabGallery1)
+				Gallery1.InitControl();
+			else if (Ribbon.SelectedRibbonTabItem == TabGallery2)
+				Gallery2.InitControl();
 		}
 		#region Command Controls
 
@@ -657,6 +678,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ComboBoxEdit PrintProductPageSizeGroup { get; set; }
 		public ControlContainerItem PrintProductPageSizeGroupContainer { get; set; }
 		public ComboBoxEdit PrintProductPageSizeName { get; set; }
+		public CheckBoxItem PrintProductMechanicalsCheck { get; set; }
+		public ButtonEdit PrintProductMechanicalsName { get; set; }
 		public ComboBoxEdit PrintProductRateCard { get; set; }
 		public ComboBoxEdit PrintProductPercentOfPage { get; set; }
 		public ComboBoxEdit PrintProductColor { get; set; }
@@ -803,24 +826,44 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ComboBoxEdit RateCardCombo { get; set; }
 		#endregion
 
-		#region Gallery
-		public RibbonBar GallerySpecialButtons { get; set; }
-		public RibbonBar GalleryBrowseBar { get; set; }
-		public RibbonBar GalleryImageBar { get; set; }
-		public RibbonBar GalleryZoomBar { get; set; }
-		public RibbonBar GalleryCopyBar { get; set; }
-		public ButtonItem GalleryScreenshots { get; set; }
-		public ButtonItem GalleryAdSpecs { get; set; }
-		public ButtonItem GalleryView { get; set; }
-		public ButtonItem GalleryEdit { get; set; }
-		public ButtonItem GalleryImageSelect { get; set; }
-		public ButtonItem GalleryImageCrop { get; set; }
-		public ButtonItem GalleryZoomIn { get; set; }
-		public ButtonItem GalleryZoomOut { get; set; }
-		public ButtonItem GalleryCopy { get; set; }
-		public ButtonItem GalleryHelp { get; set; }
-		public ComboBoxEdit GallerySections { get; set; }
-		public ComboBoxEdit GalleryGroups { get; set; }
+		#region Gallery1
+		public RibbonPanel Gallery1Panel { get; set; }
+		public RibbonBar Gallery1SpecialButtons { get; set; }
+		public RibbonBar Gallery1BrowseBar { get; set; }
+		public RibbonBar Gallery1ImageBar { get; set; }
+		public RibbonBar Gallery1ZoomBar { get; set; }
+		public RibbonBar Gallery1CopyBar { get; set; }
+		public ItemContainer Gallery1BrowseModeContainer { get; set; }
+		public ButtonItem Gallery1View { get; set; }
+		public ButtonItem Gallery1Edit { get; set; }
+		public ButtonItem Gallery1ImageSelect { get; set; }
+		public ButtonItem Gallery1ImageCrop { get; set; }
+		public ButtonItem Gallery1ZoomIn { get; set; }
+		public ButtonItem Gallery1ZoomOut { get; set; }
+		public ButtonItem Gallery1Copy { get; set; }
+		public ButtonItem Gallery1Help { get; set; }
+		public ComboBoxEdit Gallery1Sections { get; set; }
+		public ComboBoxEdit Gallery1Groups { get; set; }
+		#endregion
+
+		#region Gallery2
+		public RibbonPanel Gallery2Panel { get; set; }
+		public RibbonBar Gallery2SpecialButtons { get; set; }
+		public RibbonBar Gallery2BrowseBar { get; set; }
+		public RibbonBar Gallery2ImageBar { get; set; }
+		public RibbonBar Gallery2ZoomBar { get; set; }
+		public RibbonBar Gallery2CopyBar { get; set; }
+		public ItemContainer Gallery2BrowseModeContainer { get; set; }
+		public ButtonItem Gallery2View { get; set; }
+		public ButtonItem Gallery2Edit { get; set; }
+		public ButtonItem Gallery2ImageSelect { get; set; }
+		public ButtonItem Gallery2ImageCrop { get; set; }
+		public ButtonItem Gallery2ZoomIn { get; set; }
+		public ButtonItem Gallery2ZoomOut { get; set; }
+		public ButtonItem Gallery2Copy { get; set; }
+		public ButtonItem Gallery2Help { get; set; }
+		public ComboBoxEdit Gallery2Sections { get; set; }
+		public ComboBoxEdit Gallery2Groups { get; set; }
 		#endregion
 
 		#endregion
@@ -836,7 +879,8 @@ namespace NewBizWiz.AdSchedule.Controls
 		public PrintAdPlanControl AdPlan { get; private set; }
 		public AdCalendarControl Calendar { get; private set; }
 		public RateCardControl RateCard { get; private set; }
-		public GalleryControl Gallery { get; private set; }
+		public GalleryControl Gallery1 { get; private set; }
+		public GalleryControl Gallery2 { get; private set; }
 		#endregion
 	}
 }

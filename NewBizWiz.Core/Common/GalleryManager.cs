@@ -12,14 +12,14 @@ namespace NewBizWiz.Core.Common
 {
 	public class GalleryManager
 	{
-		private string _urlScreenshots;
-		private string _urlAdSpecs;
 		private bool _isConfigured;
 
 		public bool AutoLoad { get; private set; }
+		public List<SourceUrl> SourceUrls { get; private set; }
 
 		public GalleryManager(string settingPath)
 		{
+			SourceUrls = new List<SourceUrl>();
 			Init(settingPath);
 		}
 
@@ -27,31 +27,23 @@ namespace NewBizWiz.Core.Common
 		{
 			if (!File.Exists(settingsPath)) return;
 			var settingsDoc = XDocument.Load(settingsPath);
-			var node = settingsDoc.Descendants("Screenshots").FirstOrDefault();
-			_urlScreenshots = node != null ? node.Value : null;
-			node = settingsDoc.Descendants("AdSpecs").FirstOrDefault();
-			_urlAdSpecs = node != null ? node.Value : null;
-			node = settingsDoc.Descendants("AutoLoad").FirstOrDefault();
+			foreach (var element in settingsDoc.Descendants("SourceUrl"))
+			{
+				var name = element.Attribute("Name") != null ? element.Attribute("Name").Value : String.Empty;
+				var url = element.Attribute("Url") != null ? element.Attribute("Url").Value : String.Empty;
+				if (!url.EndsWith("/")) url += "/";
+				var sourceUrl = new SourceUrl { Url = url, Name = name };
+				SourceUrls.Add(sourceUrl);
+			}
+			var node = settingsDoc.Descendants("AutoLoad").FirstOrDefault();
 			bool temp;
 			AutoLoad = node != null && Boolean.TryParse(node.Value, out temp) && temp;
 
-			if (String.IsNullOrEmpty(_urlScreenshots) || String.IsNullOrEmpty(_urlAdSpecs)) return;
+			if (!SourceUrls.Any()) return;
 			_isConfigured = true;
-			if (!_urlScreenshots.EndsWith("/")) _urlScreenshots += "/";
-			if (!_urlAdSpecs.EndsWith("/")) _urlAdSpecs += "/";
 		}
 
-		public IEnumerable<SnapshotCollection> GetSnapshots()
-		{
-			return GetSnapshots(_urlScreenshots);
-		}
-
-		public IEnumerable<SnapshotCollection> GetAdSpecs()
-		{
-			return GetSnapshots(_urlAdSpecs);
-		}
-
-		private IEnumerable<SnapshotCollection> GetSnapshots(string url)
+		public IEnumerable<SnapshotCollection> GetSnapshots(string url)
 		{
 			var result = new List<SnapshotCollection>();
 			if (!_isConfigured) return result;
@@ -87,6 +79,12 @@ namespace NewBizWiz.Core.Common
 				}
 			}
 			return result;
+		}
+
+		public class SourceUrl
+		{
+			public string Name { get; set; }
+			public string Url { get; set; }
 		}
 	}
 
@@ -124,4 +122,6 @@ namespace NewBizWiz.Core.Common
 			return Name;
 		}
 	}
+
+
 }

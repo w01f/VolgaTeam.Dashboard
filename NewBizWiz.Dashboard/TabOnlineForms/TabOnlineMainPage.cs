@@ -31,22 +31,9 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 			Control parent = Parent;
 			Parent = null;
 			Controls.Clear();
-			if (FormMain.Instance.buttonItemOnlineScheduleBuilder != null && FormMain.Instance.buttonItemOnlineScheduleBuilder.Checked)
-			{
-				OnlineScheduleBuilderControl.Instance.LoadSchedules();
-				FormMain.Instance.OutsideClick = OnlineScheduleBuilderControl.Instance.OutsideClick;
-				Controls.Add(OnlineScheduleBuilderControl.Instance);
-			}
-			else
-			{
-				var borderedControl = new WhiteBorderControl();
-				Controls.Add(borderedControl);
-				Control parentSecond = borderedControl.panelExTop.Parent;
-				borderedControl.panelExTop.Parent = null;
-				borderedControl.panelExTop.Controls.Clear();
-				borderedControl.OutputClick = null;
-				borderedControl.panelExTop.Parent = parentSecond;
-			}
+			OnlineScheduleBuilderControl.Instance.LoadSchedules();
+			FormMain.Instance.OutsideClick = OnlineScheduleBuilderControl.Instance.OutsideClick;
+			Controls.Add(OnlineScheduleBuilderControl.Instance);
 			Parent = parent;
 		}
 	}

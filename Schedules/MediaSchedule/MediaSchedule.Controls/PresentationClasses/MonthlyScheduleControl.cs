@@ -13,7 +13,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			_helpKey = "month";
 			laTotalPeriodsTitle.Text = "Total Months:";
 			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, "Months");
-			laScheduleName.Text = "Monthly Schedule";
 		}
 
 		public override ScheduleSection ScheduleSection
@@ -40,7 +39,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			get { return Controller.Instance.MonthlySchedulePreview; }
 		}
-
+		public override ButtonItem QuarterButton
+		{
+			get { return Controller.Instance.MonthlyScheduleQuarter; }
+		}
 		public override SlideType SlideType
 		{
 			get { return MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVMonthlySchedule : SlideType.RadioMonthlySchedule; }

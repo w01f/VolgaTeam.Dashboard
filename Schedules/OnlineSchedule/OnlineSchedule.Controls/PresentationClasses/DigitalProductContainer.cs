@@ -81,7 +81,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 			var product = productControl.Product;
 
-			labelControlCategory.Text = String.Format("Strategy: {0}", product.Category);
+			labelControlCategory.Text = product.Category;
 			checkEditShowFlightDates.Checked = product.ShowFlightDates;
 
 			checkEditDuration.Checked = product.ShowDuration;

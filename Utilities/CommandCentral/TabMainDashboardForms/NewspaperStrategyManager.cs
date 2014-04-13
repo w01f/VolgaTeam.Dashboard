@@ -682,6 +682,19 @@ namespace CommandCentral.TabMainDashboard
 										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
 											defaultPrintScheduleViewSettings.DefaultCostPerInch = tempBool;
 									break;
+								case "Textbox":
+									if (row[1] != null)
+										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
+											defaultPrintScheduleViewSettings.EnableMechanicals = tempBool;
+									if (row[2] != null)
+										if (bool.TryParse(row[2].ToString().Trim(), out tempBool))
+											defaultPrintScheduleViewSettings.DefaultMechanicals = tempBool;
+									break;
+								case "Before Color":
+									if (row[1] != null)
+										if (bool.TryParse(row[1].ToString().Trim(), out tempBool))
+											defaultPrintScheduleViewSettings.CalcDiscountBeforeColor = tempBool;
+									break;
 							}
 						}
 				}

@@ -27,7 +27,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			AppManager.Instance.SetClickEventHandler(this);
 			if ((CreateGraphics()).DpiX > 96)
 			{
-				laSlideHeader.Font = new Font(laSlideHeader.Font.FontFamily, laSlideHeader.Font.Size - 2, laSlideHeader.Font.Style);
 				ckA.Font = new Font(ckA.Font.FontFamily, ckA.Font.Size - 3, ckA.Font.Style);
 				ckB.Font = new Font(ckB.Font.FontFamily, ckB.Font.Size - 3, ckB.Font.Style);
 				ckC.Font = new Font(ckC.Font.FontFamily, ckC.Font.Size - 3, ckC.Font.Style);
@@ -48,6 +47,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 			comboBoxEditSlideHeader.Properties.Items.Clear();
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.LeadoffStatementLists.Headers);
+
+			checkEditSolutionNew.EditValueChanged += EditValueChanged;
+			checkEditSolutionOld.EditValueChanged += EditValueChanged;
 
 			FormMain.Instance.FormClosed += (sender1, e1) =>
 			{
@@ -88,6 +90,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void LoadSavedState()
 		{
 			_allowToSave = false;
+			checkEditSolutionNew.Checked = ViewSettingsManager.Instance.LeadoffStatementState.IsNewSolution;
+			checkEditSolutionOld.Checked = !ViewSettingsManager.Instance.LeadoffStatementState.IsNewSolution;
 			if (string.IsNullOrEmpty(ViewSettingsManager.Instance.LeadoffStatementState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
@@ -114,6 +118,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		private void SaveState()
 		{
+			ViewSettingsManager.Instance.LeadoffStatementState.IsNewSolution = checkEditSolutionNew.Checked;
 			ViewSettingsManager.Instance.LeadoffStatementState.SlideHeader = comboBoxEditSlideHeader.EditValue != null ? comboBoxEditSlideHeader.EditValue.ToString() : string.Empty;
 			ViewSettingsManager.Instance.LeadoffStatementState.ShowStatement1 = ckA.Checked;
 			ViewSettingsManager.Instance.LeadoffStatementState.ShowStatement2 = ckB.Checked;
@@ -124,7 +129,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SettingsNotSaved = false;
 		}
 
-		protected override void SavedFiles_Click(object sender, EventArgs e)
+		public override void LoadClick()
 		{
 			using (var form = new FormSavedLeadoffStatement())
 			{
@@ -142,7 +147,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				SettingsNotSaved = true;
 		}
 
-		private void memoEditC_EditValueChanged(object sender, EventArgs e)
+		private void EditValueChanged(object sender, EventArgs e)
 		{
 			if (_allowToSave)
 				SettingsNotSaved = true;
@@ -208,9 +213,17 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			UpdateSavedFilesState();
 		}
 
+		public void TrackOutput()
+		{
+			var otherOptions = new Dictionary<string, object>();
+			otherOptions.Add("IsNewSolution", ViewSettingsManager.Instance.LeadoffStatementState.IsNewSolution);
+			AppManager.Instance.ActivityManager.AddActivity(new OutputActivity(SlideName, null, null, otherOptions));
+		}
+
 		public void Output()
 		{
 			SaveChanges();
+			TrackOutput();
 			using (var form = new FormProgress())
 			{
 				form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -237,7 +250,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
+				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, TrackOutput))
 				{
 					formPreview.Text = "Preview Slides";
 					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

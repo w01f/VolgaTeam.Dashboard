@@ -115,10 +115,6 @@
 			this.pnMain.Controls.SetChildIndex(this.laSalesRepDetails, 0);
 			this.pnMain.Controls.SetChildIndex(this.checkEditUseEmptyCover, 0);
 			// 
-			// laSlideHeader
-			// 
-			this.laSlideHeader.Text = "1. Presentation Cover Slide:";
-			// 
 			// comboBoxEditSlideHeader
 			// 
 			this.comboBoxEditSlideHeader.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -131,7 +127,7 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceFocused.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
-			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.comboBoxEdit_EditValueChanged);
+			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// pbDescription
 			// 
@@ -181,7 +177,7 @@
 			this.comboBoxEditDecisionMaker.Properties.NullText = "Type or Select";
 			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(344, 22);
 			this.comboBoxEditDecisionMaker.TabIndex = 2;
-			this.comboBoxEditDecisionMaker.EditValueChanged += new System.EventHandler(this.comboBoxEdit_EditValueChanged);
+			this.comboBoxEditDecisionMaker.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// comboBoxEditAdvertiser
 			// 
@@ -202,7 +198,7 @@
 			this.comboBoxEditAdvertiser.Properties.NullText = "Type or Select";
 			this.comboBoxEditAdvertiser.Size = new System.Drawing.Size(344, 22);
 			this.comboBoxEditAdvertiser.TabIndex = 1;
-			this.comboBoxEditAdvertiser.EditValueChanged += new System.EventHandler(this.comboBoxEdit_EditValueChanged);
+			this.comboBoxEditAdvertiser.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// buttonXDeleteSalesQuote
 			// 
@@ -494,7 +490,6 @@
 			this.Name = "SlideCoverControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
-			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();

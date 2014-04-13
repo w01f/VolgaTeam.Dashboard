@@ -323,6 +323,16 @@ namespace NewBizWiz.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Load {
+            get {
+                object obj = ResourceManager.GetObject("Load", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MasterWizardLogo {
             get {
                 object obj = ResourceManager.GetObject("MasterWizardLogo", resourceCulture);
@@ -416,16 +426,6 @@ namespace NewBizWiz.Dashboard.Properties {
         internal static System.Drawing.Bitmap SalesRep {
             get {
                 object obj = ResourceManager.GetObject("SalesRep", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SavedFiles {
-            get {
-                object obj = ResourceManager.GetObject("SavedFiles", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

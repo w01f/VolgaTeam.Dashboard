@@ -7,6 +7,7 @@ using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.Gallery;
+using NewBizWiz.CommonGUI.RateCard;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
@@ -36,7 +37,11 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public RibbonTabItem TabDigitalProduct { get; set; }
 		public RibbonTabItem TabDigitalPackage { get; set; }
 		public RibbonTabItem TabCalendar { get; set; }
-		public RibbonTabItem TabGallery { get; set; }
+		public RibbonTabItem TabGallery1 { get; set; }
+		public RibbonTabItem TabGallery2 { get; set; }
+		public RibbonTabItem TabRateCard { get; set; }
+		public RibbonTabItem TabMarketing { get; set; }
+		public RibbonTabItem TabProduction { get; set; }
 
 		public void Init()
 		{
@@ -85,6 +90,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			WeeklyScheduleOptions.CheckedChanged += WeeklySchedule.Options_CheckedChaged;
 			WeeklyScheduleProgramAdd.Click += WeeklySchedule.AddProgram_Click;
 			WeeklyScheduleProgramDelete.Click += WeeklySchedule.DeleteProgram_Click;
+			WeeklyScheduleQuarter.CheckedChanged += WeeklySchedule.QuarterCheckedChanged;
 			#endregion
 
 			#region Monthly Schedule
@@ -98,6 +104,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			MonthlyScheduleOptions.CheckedChanged += MonthlySchedule.Options_CheckedChaged;
 			MonthlyScheduleProgramAdd.Click += MonthlySchedule.AddProgram_Click;
 			MonthlyScheduleProgramDelete.Click += MonthlySchedule.DeleteProgram_Click;
+			MonthlyScheduleQuarter.CheckedChanged += WeeklySchedule.QuarterCheckedChanged;
 			#endregion
 
 			#region Digital Product
@@ -136,9 +143,19 @@ namespace NewBizWiz.MediaSchedule.Controls
 			CalendarHelp.Click += BroadcastCalendar.Help_Click;
 			#endregion
 
-			#region Gallery
-			Gallery = new MediaGalleryControl();
-			GalleryHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
+			#region Rate Card Events
+			RateCard = new RateCardControl(BusinessWrapper.Instance.RateCardManager, RateCardCombo);
+			RateCardHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("ratecard");
+			#endregion
+
+			#region Gallery 1
+			Gallery1 = new MediaGallery1Control();
+			Gallery1Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
+			#endregion
+
+			#region Gallery 2
+			Gallery2 = new MediaGallery2Control();
+			Gallery2Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
 			#endregion
 
 			ConfigureTabPages();
@@ -160,7 +177,9 @@ namespace NewBizWiz.MediaSchedule.Controls
 			DigitalProductContainer.Dispose();
 			DigitalPackage.Dispose();
 			BroadcastCalendar.Dispose();
-			Gallery.Dispose();
+			Gallery1.Dispose();
+			Gallery2.Dispose();
+			RateCard.Dispose();
 			FloaterRequested = null;
 		}
 
@@ -173,6 +192,9 @@ namespace NewBizWiz.MediaSchedule.Controls
 			DigitalProductContainer.LoadSchedule(false);
 			DigitalPackage.LoadSchedule(false);
 			BroadcastCalendar.LoadCalendar(false);
+
+			BusinessWrapper.Instance.RateCardManager.LoadRateCards();
+			TabRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Any();
 		}
 
 		private void ConfigureTabPages()
@@ -207,9 +229,25 @@ namespace NewBizWiz.MediaSchedule.Controls
 						TabCalendar.Text = tabPageConfig.Name;
 						tabPages.Add(TabCalendar);
 						break;
-					case "Gallery":
-						TabGallery.Text = tabPageConfig.Name;
-						tabPages.Add(TabGallery);
+					case "Gallery1":
+						TabGallery1.Text = tabPageConfig.Name;
+						tabPages.Add(TabGallery1);
+						break;
+					case "Gallery2":
+						TabGallery2.Text = tabPageConfig.Name;
+						tabPages.Add(TabGallery2);
+						break;
+					case "Rate Card":
+						TabRateCard.Text = tabPageConfig.Name;
+						tabPages.Add(TabRateCard);
+						break;
+					case "Marketing":
+						TabMarketing.Text = tabPageConfig.Name;
+						tabPages.Add(TabMarketing);
+						break;
+					case "Production":
+						TabProduction.Text = tabPageConfig.Name;
+						tabPages.Add(TabProduction);
 						break;
 				}
 			}
@@ -309,7 +347,9 @@ namespace NewBizWiz.MediaSchedule.Controls
 				DigitalProductSpecialButtons,
 				DigitalPackageSpecialButtons,
 				CalendarSpecialButtons,
-				GallerySpecialButtons
+				RateCardSpecialButtons,
+				Gallery1SpecialButtons,
+				Gallery2SpecialButtons
 			};
 			foreach (var ribbonBar in specialLinkContainers)
 			{
@@ -347,8 +387,12 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
-			if (Ribbon.SelectedRibbonTabItem == TabGallery)
-				Gallery.InitControl();
+			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
+				RateCard.LoadRateCards();
+			if (Ribbon.SelectedRibbonTabItem == TabGallery1)
+				Gallery1.InitControl();
+			else if (Ribbon.SelectedRibbonTabItem == TabGallery2)
+				Gallery2.InitControl();
 		}
 		#region Command Controls
 
@@ -382,6 +426,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem WeeklyScheduleSave { get; set; }
 		public ButtonItem WeeklyScheduleSaveAs { get; set; }
 		public ButtonItem WeeklyScheduleHelp { get; set; }
+		public ButtonItem WeeklyScheduleQuarter { get; set; }
 		#endregion
 
 		#region Monthly Schedule
@@ -396,6 +441,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem MonthlyScheduleSave { get; set; }
 		public ButtonItem MonthlyScheduleSaveAs { get; set; }
 		public ButtonItem MonthlyScheduleHelp { get; set; }
+		public ButtonItem MonthlyScheduleQuarter { get; set; }
 		#endregion
 
 		#region Digital Product
@@ -436,24 +482,50 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem CalendarPowerPoint { get; set; }
 		#endregion
 
-		#region Gallery
-		public RibbonBar GallerySpecialButtons { get; set; }
-		public RibbonBar GalleryBrowseBar { get; set; }
-		public RibbonBar GalleryImageBar { get; set; }
-		public RibbonBar GalleryZoomBar { get; set; }
-		public RibbonBar GalleryCopyBar { get; set; }
-		public ButtonItem GalleryScreenshots { get; set; }
-		public ButtonItem GalleryAdSpecs { get; set; }
-		public ButtonItem GalleryView { get; set; }
-		public ButtonItem GalleryEdit { get; set; }
-		public ButtonItem GalleryImageSelect { get; set; }
-		public ButtonItem GalleryImageCrop { get; set; }
-		public ButtonItem GalleryZoomIn { get; set; }
-		public ButtonItem GalleryZoomOut { get; set; }
-		public ButtonItem GalleryCopy { get; set; }
-		public ButtonItem GalleryHelp { get; set; }
-		public ComboBoxEdit GallerySections { get; set; }
-		public ComboBoxEdit GalleryGroups { get; set; }
+		#region Rate Card
+		public RibbonBar RateCardSpecialButtons { get; set; }
+		public ButtonItem RateCardHelp { get; set; }
+		public ComboBoxEdit RateCardCombo { get; set; }
+		#endregion
+
+		#region Gallery1
+		public RibbonPanel Gallery1Panel { get; set; }
+		public RibbonBar Gallery1SpecialButtons { get; set; }
+		public RibbonBar Gallery1BrowseBar { get; set; }
+		public RibbonBar Gallery1ImageBar { get; set; }
+		public RibbonBar Gallery1ZoomBar { get; set; }
+		public RibbonBar Gallery1CopyBar { get; set; }
+		public ItemContainer Gallery1BrowseModeContainer { get; set; }
+		public ButtonItem Gallery1View { get; set; }
+		public ButtonItem Gallery1Edit { get; set; }
+		public ButtonItem Gallery1ImageSelect { get; set; }
+		public ButtonItem Gallery1ImageCrop { get; set; }
+		public ButtonItem Gallery1ZoomIn { get; set; }
+		public ButtonItem Gallery1ZoomOut { get; set; }
+		public ButtonItem Gallery1Copy { get; set; }
+		public ButtonItem Gallery1Help { get; set; }
+		public ComboBoxEdit Gallery1Sections { get; set; }
+		public ComboBoxEdit Gallery1Groups { get; set; }
+		#endregion
+
+		#region Gallery2
+		public RibbonPanel Gallery2Panel { get; set; }
+		public RibbonBar Gallery2SpecialButtons { get; set; }
+		public RibbonBar Gallery2BrowseBar { get; set; }
+		public RibbonBar Gallery2ImageBar { get; set; }
+		public RibbonBar Gallery2ZoomBar { get; set; }
+		public RibbonBar Gallery2CopyBar { get; set; }
+		public ItemContainer Gallery2BrowseModeContainer { get; set; }
+		public ButtonItem Gallery2View { get; set; }
+		public ButtonItem Gallery2Edit { get; set; }
+		public ButtonItem Gallery2ImageSelect { get; set; }
+		public ButtonItem Gallery2ImageCrop { get; set; }
+		public ButtonItem Gallery2ZoomIn { get; set; }
+		public ButtonItem Gallery2ZoomOut { get; set; }
+		public ButtonItem Gallery2Copy { get; set; }
+		public ButtonItem Gallery2Help { get; set; }
+		public ComboBoxEdit Gallery2Sections { get; set; }
+		public ComboBoxEdit Gallery2Groups { get; set; }
 		#endregion
 
 		#endregion
@@ -465,7 +537,9 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public DigitalProductContainerControl DigitalProductContainer { get; private set; }
 		public MediaWebPackageControl DigitalPackage { get; private set; }
 		public BroadcastCalendarControl BroadcastCalendar { get; private set; }
-		public GalleryControl Gallery { get; private set; }
+		public RateCardControl RateCard { get; private set; }
+		public GalleryControl Gallery1 { get; private set; }
+		public GalleryControl Gallery2 { get; private set; }
 		#endregion
 	}
 }

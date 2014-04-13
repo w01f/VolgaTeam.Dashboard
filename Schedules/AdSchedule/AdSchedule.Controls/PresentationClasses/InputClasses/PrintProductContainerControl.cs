@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.Utils;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
@@ -69,8 +70,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control != Controller.Instance.HomeAccountNumberText
 				&& control != Controller.Instance.PrintProductRateCard
 				&& control != Controller.Instance.RateCardCombo
-				&& control != Controller.Instance.GallerySections
-				&& control != Controller.Instance.GalleryGroups
+				&& control != Controller.Instance.Gallery1Sections
+				&& control != Controller.Instance.Gallery1Groups
+				&& control != Controller.Instance.Gallery2Sections
+				&& control != Controller.Instance.Gallery2Groups
 				&& control != Controller.Instance.HomeFlightDatesEnd
 				&& control != Controller.Instance.HomeFlightDatesStart
 				&& control != Controller.Instance.HomePresentationDate
@@ -79,6 +82,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control != Controller.Instance.PrintProductPercentOfPage
 				&& control != Controller.Instance.PrintProductPageSizeGroup
 				&& control != Controller.Instance.PrintProductPageSizeName
+				&& control != Controller.Instance.PrintProductMechanicalsName
 				&& control != Controller.Instance.PrintProductColor
 				&& control != Controller.Instance.PrintProductSharePageSquare
 				&& control != Controller.Instance.MultiSummaryHeaderText)
@@ -178,6 +182,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			Controller.Instance.PrintProductPageSizeGroup.Enabled = false;
 			Controller.Instance.PrintProductPageSizeName.Enabled = false;
 			Controller.Instance.PrintProductPageSizeName.EditValue = null;
+			Controller.Instance.PrintProductMechanicalsCheck.Checked = false;
+			Controller.Instance.PrintProductMechanicalsName.EditValue = null;
 
 			Controller.Instance.PrintProductAdSizeSharePage.Visible = false;
 			Controller.Instance.PrintProductRateCard.EditValue = null;
@@ -249,6 +255,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			LoadSizeOptions(publicationControl);
 			LoadColorOptions(publicationControl);
 			SettingsNotSaved = temSettingsNotSaved;
+			MechanicalsEditValueChanged(Controller.Instance.PrintProductMechanicalsName, EventArgs.Empty);
 		}
 
 		private bool SaveSchedule(string scheduleName = "")
@@ -582,7 +589,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				}
 				else if (Controller.Instance.PrintProductAdPricingPagePercent.Checked)
 				{
-					
+
 					if (printProduct.AdPricingStrategy != AdPricingStrategies.SharePage)
 						printProduct.SizeOptions.ResetToDefaults(AdPricingStrategies.SharePage);
 					printProduct.AdPricingStrategy = AdPricingStrategies.SharePage;
@@ -601,7 +608,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsIncluded, null);
 							break;
 						case ColorPricingType.CostPerInch:
-							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsPCI, null);
+							if(printProduct.SizeOptions.EnableSquare)
+								buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsPCI, null);
+							else
+								buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsCostPerAd, null);
 							break;
 					}
 				}
@@ -631,6 +641,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			Controller.Instance.PrintProductPageSizeName.Properties.Items.Clear();
 			Controller.Instance.PrintProductPageSizeName.Properties.Items.AddRange(ListManager.Instance.PageSizes.Where(ps => ps.Code.Equals(Controller.Instance.PrintProductPageSizeGroup.EditValue as String) || Controller.Instance.PrintProductPageSizeGroup.Properties.Items.Count <= 1).Select(ps => ps.Name).ToArray());
 			Controller.Instance.PrintProductPageSizeName.EditValue = sizeOptions.PageSize;
+			Controller.Instance.PrintProductMechanicalsCheck.Checked = sizeOptions.EnableMechanicals;
+			Controller.Instance.PrintProductMechanicalsName.EditValue = sizeOptions.Mechanicals;
 			Controller.Instance.PrintProductRateCard.Properties.Items.Clear();
 			Controller.Instance.PrintProductRateCard.Properties.Items.AddRange(ListManager.Instance.ShareUnits.Select(x => x.RateCard).Distinct().ToArray());
 
@@ -705,6 +717,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			sizeOptions.EnablePageSize = Controller.Instance.PrintProductPageSizeCheck.Checked;
 			sizeOptions.PageSizeGroup = sizeOptions.EnablePageSize ? Controller.Instance.PrintProductPageSizeGroup.EditValue as String : null;
 			sizeOptions.PageSize = sizeOptions.EnablePageSize ? Controller.Instance.PrintProductPageSizeName.EditValue as String : null;
+			sizeOptions.EnableMechanicals = Controller.Instance.PrintProductMechanicalsCheck.Checked;
+			sizeOptions.Mechanicals = sizeOptions.EnableMechanicals ? Controller.Instance.PrintProductMechanicalsName.EditValue as String : null;
 			FormatAccordingSizeOptions(printProductControl);
 			printProductControl.LoadInserts();
 			printProductControl.UpdateTotals();
@@ -720,6 +734,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			Controller.Instance.PrintProductStandardSquareValue.Text = sizeOptions.Square.HasValue ? sizeOptions.Square.Value.ToString("#,##0.00#") : string.Empty;
 			Controller.Instance.PrintProductPageSizeGroup.Enabled = sizeOptions.EnablePageSize;
 			Controller.Instance.PrintProductPageSizeName.Enabled = sizeOptions.EnablePageSize;
+			Controller.Instance.PrintProductMechanicalsName.Enabled = sizeOptions.EnableMechanicals;
 			if (sizeOptions.EnablePageSize)
 			{
 				if (Controller.Instance.PrintProductPageSizeGroup.EditValue == null && Controller.Instance.PrintProductPageSizeGroup.Properties.Items.Count > 0)
@@ -798,6 +813,22 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			if (publicationControl == null || !_allowToSave) return;
 			Controller.Instance.PrintProductPageSizeName.Properties.Items.Clear();
 			Controller.Instance.PrintProductPageSizeName.Properties.Items.AddRange(ListManager.Instance.PageSizes.Where(ps => ps.Code.Equals(Controller.Instance.PrintProductPageSizeGroup.EditValue as String)).Select(ps => ps.Name).ToArray());
+		}
+
+		public void MechanicalsEditValueChanged(object sender, EventArgs e)
+		{
+			var buttonEdit = sender as ButtonEdit;
+			if (buttonEdit == null) return;
+			if (buttonEdit.EditValue == null || !buttonEdit.Enabled)
+			{
+				buttonEdit.Font = new Font(buttonEdit.Font.Name, buttonEdit.Font.Size, FontStyle.Italic);
+				buttonEdit.ForeColor = Color.DarkGray;
+			}
+			else
+			{
+				buttonEdit.Font = new Font(buttonEdit.Font.Name, buttonEdit.Font.Size, FontStyle.Regular);
+				buttonEdit.ForeColor = Color.Black;
+			}
 		}
 
 		public void comboBoxEditRateCard_EditValueChanged(object sender, EventArgs e)
@@ -1008,7 +1039,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsIncluded, null);
 							break;
 						case ColorPricingType.CostPerInch:
-							buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsPCI, null);
+							if(printProduct.SizeOptions.EnableSquare)
+								buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsPCI, null);
+							else
+								buttonItemColorOptions_Click(Controller.Instance.PrintProductColorOptionsCostPerAd, null);
 							break;
 					}
 				}

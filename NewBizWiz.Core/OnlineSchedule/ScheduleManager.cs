@@ -492,6 +492,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public bool EnableLocation { get; set; }
 		public bool EnableTarget { get; set; }
 		public bool EnableRichMedia { get; set; }
+		public bool EnableRate { get; set; }
 		public List<ProductInfo> AddtionalInfo { get; private set; }
 		#endregion
 
@@ -1173,6 +1174,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			EnableTarget = source.EnableTarget;
 			EnableLocation = source.EnableLocation;
 			EnableRichMedia = source.EnableRichMedia;
+			EnableRate = source.EnableRate;
 			Description = source.Overview;
 			Websites.AddRange(ListManager.Instance.Websites.Where(s => s == source.DefaultWebsite));
 			UpdateAdditionlaInfo();
@@ -1790,6 +1792,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			EnableLocation = true;
 			EnableTarget = true;
 			EnableRichMedia = true;
+			EnableRate = true;
 		}
 
 		public string Name { get; set; }
@@ -1802,6 +1805,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public bool EnableLocation { get; set; }
 		public bool EnableTarget { get; set; }
 		public bool EnableRichMedia { get; set; }
+		public bool EnableRate { get; set; }
 		public string Overview { get; set; }
 		public string DefaultWebsite { get; set; }
 	}

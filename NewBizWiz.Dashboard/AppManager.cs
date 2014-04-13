@@ -71,13 +71,13 @@ namespace NewBizWiz.Dashboard
 				case "tv":
 				case "radio":
 				case "cable":
-					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
+					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 					Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
 					Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
 					Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 					break;
 				default:
-					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
+					Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 					Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
 					Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
 					Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;

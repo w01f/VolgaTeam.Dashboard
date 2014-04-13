@@ -16,6 +16,7 @@ namespace CommandCentral.TabMainDashboard
 	internal class RadioStrategyManager
 	{
 		private const string SourceFileName = @"Data\!Main_Dashboard\Radio Source\Radio Strategy.xls";
+		private const string TemplatesFilePath = @"Data\!Main_Dashboard\Radio Source\broadcast_legend.xls";
 		private const string DestinationFileName = @"Data\!Main_Dashboard\Radio XML\Radio Strategy.xml";
 		private const string ImageSourceFolder = @"Data\!Main_Dashboard\Radio Source\Radio Images";
 
@@ -73,6 +74,7 @@ namespace CommandCentral.TabMainDashboard
 			var customDemos = new List<string>();
 			var statuses = new List<SlideHeader>();
 			var stations = new List<Station>();
+			var broadcastTemplates = new List<BroadcastMonthTemplate>();
 
 			var connnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1"";", Path.Combine(Application.StartupPath, SourceFileName));
 			var connection = new OleDbConnection(connnectionString);
@@ -373,6 +375,8 @@ namespace CommandCentral.TabMainDashboard
 			}
 			connection.Close();
 
+			broadcastTemplates.AddRange(BroadcastMonthTemplate.Load(Path.Combine(Application.StartupPath, TemplatesFilePath)));
+
 			//Save XML
 			var xml = new StringBuilder();
 			xml.AppendLine("<RadioStrategy>");
@@ -448,6 +452,7 @@ namespace CommandCentral.TabMainDashboard
 				}
 				xml.AppendLine(@"</Program>");
 			}
+			broadcastTemplates.ForEach(bt => xml.AppendLine(bt.Serialize()));
 			xml.AppendLine(@"</RadioStrategy>");
 
 			string xmlPath = Path.Combine(Application.StartupPath, DestinationFileName);

@@ -31,22 +31,9 @@ namespace NewBizWiz.Dashboard.TabTVForms
 			Control parent = Parent;
 			Parent = null;
 			Controls.Clear();
-			if (FormMain.Instance.buttonItemTVScheduleBuilder != null && FormMain.Instance.buttonItemTVScheduleBuilder.Checked)
-			{
-				TVScheduleBuilderControl.Instance.LoadSchedules();
-				FormMain.Instance.OutsideClick = TVScheduleBuilderControl.Instance.OutsideClick;
-				Controls.Add(TVScheduleBuilderControl.Instance);
-			}
-			else
-			{
-				var borderedControl = new WhiteBorderControl();
-				Controls.Add(borderedControl);
-				Control parentSecond = borderedControl.panelExTop.Parent;
-				borderedControl.panelExTop.Parent = null;
-				borderedControl.panelExTop.Controls.Clear();
-				borderedControl.OutputClick = null;
-				borderedControl.panelExTop.Parent = parentSecond;
-			}
+			TVScheduleBuilderControl.Instance.LoadSchedules();
+			FormMain.Instance.OutsideClick = TVScheduleBuilderControl.Instance.OutsideClick;
+			Controls.Add(TVScheduleBuilderControl.Instance);
 			Parent = parent;
 		}
 	}

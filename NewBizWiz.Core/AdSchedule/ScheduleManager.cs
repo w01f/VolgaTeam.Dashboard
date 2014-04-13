@@ -1346,7 +1346,12 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public double DiscountRate
 		{
-			get { return ADRate * (Discounts / 100.00); }
+			get
+			{
+				if (ListManager.Instance.DefaultPrintScheduleViewSettings.CalcDiscountBeforeColor)
+					return ADRate * (Discounts / 100.00);
+				return (ADRate + ColorPricingCalculated) * (Discounts / 100.00);
+			}
 		}
 
 		public double FinalRate
@@ -1704,6 +1709,8 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool EnablePageSize { get; set; }
 		public string RateCard { get; set; }
 		public string PercentOfPage { get; set; }
+		public bool EnableMechanicals { get; set; }
+		public string Mechanicals { get; set; }
 
 		#region Calculated Options
 		public string ShortWidthMeasure
@@ -1770,7 +1777,8 @@ namespace NewBizWiz.Core.AdSchedule
 					String.Format("{0}{1}",
 						PageSize,
 						!String.IsNullOrEmpty(PageSizeGroup) && ListManager.Instance.PageSizes.Select(ps => ps.Code).Distinct().Count() > 1 ?
-							String.Format(" ({0})", PageSizeGroup) :
+						String.Format(" ({0}{1})", PageSizeGroup, EnableMechanicals && !String.IsNullOrEmpty(Mechanicals) ? String.Format("-{0}", Mechanicals) : String.Empty
+				) :
 							String.Empty) :
 					String.Empty;
 			}
@@ -1815,6 +1823,8 @@ namespace NewBizWiz.Core.AdSchedule
 			xml.Append("EnablePageSize = \"" + EnablePageSize + "\" ");
 			xml.Append("RateCard = \"" + (RateCard != null ? RateCard.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + "\" ");
 			xml.Append("PercentOfPage = \"" + (PercentOfPage != null ? PercentOfPage.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + "\" ");
+			xml.Append("EnableMechanicals = \"" + EnableMechanicals + "\" ");
+			xml.Append("Mechanicals = \"" + (!String.IsNullOrEmpty(Mechanicals) ? Mechanicals.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + "\" ");
 			xml.AppendLine(@"/>");
 
 			return xml.ToString();
@@ -1866,6 +1876,14 @@ namespace NewBizWiz.Core.AdSchedule
 						if (!string.IsNullOrEmpty(attribute.Value))
 							PercentOfPage = attribute.Value;
 						break;
+					case "EnableMechanicals":
+						if (bool.TryParse(attribute.Value, out tempBool))
+							EnableMechanicals = tempBool;
+						break;
+					case "Mechanicals":
+						if (!string.IsNullOrEmpty(attribute.Value))
+							Mechanicals = attribute.Value;
+						break;
 				}
 		}
 
@@ -1878,6 +1896,7 @@ namespace NewBizWiz.Core.AdSchedule
 			RateCard = null;
 			PercentOfPage = null;
 			EnablePageSize = true;
+			EnableMechanicals = ListManager.Instance.DefaultPrintScheduleViewSettings.DefaultMechanicals;
 			switch (pricing)
 			{
 				case AdPricingStrategies.StandartPCI:

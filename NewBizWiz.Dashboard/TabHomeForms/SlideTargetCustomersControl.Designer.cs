@@ -59,11 +59,6 @@
 			this.pnMain.Controls.SetChildIndex(this.pnTop, 0);
 			this.pnMain.Controls.SetChildIndex(this.xtraTabControl, 0);
 			// 
-			// laSlideHeader
-			// 
-			this.laSlideHeader.Size = new System.Drawing.Size(713, 22);
-			this.laSlideHeader.Text = "4. Target Audience Slide:";
-			// 
 			// comboBoxEditSlideHeader
 			// 
 			this.comboBoxEditSlideHeader.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -76,7 +71,7 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceFocused.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
-			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.comboBoxEditSlideHeader_EditValueChanged);
+			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// pbDescription
 			// 
@@ -181,7 +176,7 @@
 			this.checkedListBoxControlTargetDemo.Location = new System.Drawing.Point(0, 0);
 			this.checkedListBoxControlTargetDemo.Name = "checkedListBoxControlTargetDemo";
 			this.checkedListBoxControlTargetDemo.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxControlTargetDemo.Size = new System.Drawing.Size(818, 342);
+			this.checkedListBoxControlTargetDemo.Size = new System.Drawing.Size(818, 357);
 			this.checkedListBoxControlTargetDemo.TabIndex = 1;
 			this.checkedListBoxControlTargetDemo.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControl_ItemCheck);
 			// 
@@ -202,10 +197,10 @@
 			this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControl.Location = new System.Drawing.Point(0, 66);
+			this.xtraTabControl.Location = new System.Drawing.Point(0, 51);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageTargetDemo;
-			this.xtraTabControl.Size = new System.Drawing.Size(820, 368);
+			this.xtraTabControl.Size = new System.Drawing.Size(820, 383);
 			this.xtraTabControl.TabIndex = 29;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageTargetDemo,
@@ -216,7 +211,7 @@
 			// 
 			this.xtraTabPageTargetDemo.Controls.Add(this.checkedListBoxControlTargetDemo);
 			this.xtraTabPageTargetDemo.Name = "xtraTabPageTargetDemo";
-			this.xtraTabPageTargetDemo.Size = new System.Drawing.Size(818, 342);
+			this.xtraTabPageTargetDemo.Size = new System.Drawing.Size(818, 357);
 			this.xtraTabPageTargetDemo.Text = "Target Demo";
 			// 
 			// xtraTabPageHouseholdIncome
@@ -239,7 +234,6 @@
 			this.Name = "SlideTargetCustomersControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
-			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();

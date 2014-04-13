@@ -105,6 +105,9 @@
     <Compile Include="PresentationClasses\AdPlan\AdPlanDigitalProductControl.Designer.cs">
       <DependentUpon>AdPlanDigitalProductControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\DigitalGallery2Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\DigitalProductContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -131,7 +134,7 @@
     <Compile Include="PresentationClasses\DigitalProductInfoGroup.Designer.cs">
       <DependentUpon>DigitalProductInfoGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\DigitalGalleryControl.cs">
+    <Compile Include="PresentationClasses\DigitalGallery1Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\Summary\DigitalProductSummaryControl.cs">

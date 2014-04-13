@@ -35,6 +35,8 @@
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbVersion)).BeginInit();
 			this.SuspendLayout();
@@ -50,17 +52,10 @@
 			this.pnBottom.Location = new System.Drawing.Point(0, 437);
 			this.pnBottom.Size = new System.Drawing.Size(919, 75);
 			this.pnBottom.Controls.SetChildIndex(this.pbDescription, 0);
+			this.pnBottom.Controls.SetChildIndex(this.checkEditSolutionNew, 0);
+			this.pnBottom.Controls.SetChildIndex(this.checkEditSolutionOld, 0);
 			this.pnBottom.Controls.SetChildIndex(this.laUserName, 0);
 			this.pnBottom.Controls.SetChildIndex(this.pbVersion, 0);
-			this.pnBottom.Controls.SetChildIndex(this.buttonXSavedFiles, 0);
-			// 
-			// buttonXSavedFiles
-			// 
-			this.buttonXSavedFiles.Visible = false;
-			// 
-			// laSlideHeader
-			// 
-			this.laSlideHeader.Visible = false;
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -80,6 +75,22 @@
 			// 
 			this.pnTop.Visible = false;
 			// 
+			// checkEditSolutionNew
+			// 
+			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditSolutionNew.Visible = false;
+			// 
+			// checkEditSolutionOld
+			// 
+			this.checkEditSolutionOld.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSolutionOld.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditSolutionOld.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSolutionOld.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditSolutionOld.Visible = false;
+			// 
 			// pbDescription
 			// 
 			this.pbDescription.Visible = false;
@@ -96,7 +107,7 @@
 			this.laUserName.ForeColor = System.Drawing.Color.White;
 			this.laUserName.Location = new System.Drawing.Point(556, 9);
 			this.laUserName.Name = "laUserName";
-			this.laUserName.Size = new System.Drawing.Size(342, 52);
+			this.laUserName.Size = new System.Drawing.Size(353, 52);
 			this.laUserName.TabIndex = 0;
 			this.laUserName.Text = "label1";
 			this.laUserName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -116,9 +127,10 @@
 			this.Name = "SlideCleanslateControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
-			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbVersion)).EndInit();
 			this.ResumeLayout(false);

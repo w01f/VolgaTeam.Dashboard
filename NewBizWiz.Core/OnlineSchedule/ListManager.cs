@@ -24,6 +24,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			Statuses = new List<string>();
 			PricingStrategies = new List<string>();
 			ColumnPositions = new List<string>();
+			Placeholders = new List<string>();
 			SpecialLinksGroupName = String.Empty;
 			SpecialLinkButtons = new List<SpecialLinkButton>();
 			SpecialLinkBrowsers = new List<string>();
@@ -66,6 +67,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public List<string> Strengths { get; private set; }
 		public List<string> PricingStrategies { get; private set; }
 		public List<string> ColumnPositions { get; private set; }
+		public List<string> Placeholders { get; private set; }
 		public List<Category> Categories { get; private set; }
 		public List<ProductSource> ProductSources { get; private set; }
 		public List<string> Statuses { get; private set; }
@@ -235,6 +237,9 @@ namespace NewBizWiz.Core.OnlineSchedule
 						if (!String.IsNullOrEmpty(specialLinkButton.Name) && !String.IsNullOrEmpty(specialLinkButton.Type) && specialLinkButton.Paths.Any())
 							SpecialLinkButtons.Add(specialLinkButton);
 						break;
+					case "Placeholder":
+						Placeholders.Add(childeNode.InnerText);
+						break;
 					case "Targeting":
 						{
 							var productInfo = new ProductInfo { Type = ProductInfoType.Targeting };
@@ -347,6 +352,13 @@ namespace NewBizWiz.Core.OnlineSchedule
 							bool temp;
 							if (Boolean.TryParse(attribute.Value, out temp))
 								productSource.EnableRichMedia = temp;
+						}
+						break;
+					case "EnableRate":
+						{
+							bool temp;
+							if (Boolean.TryParse(attribute.Value, out temp))
+								productSource.EnableRate = temp;
 						}
 						break;
 				}

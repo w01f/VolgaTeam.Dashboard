@@ -38,6 +38,8 @@
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditC.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditB.Properties)).BeginInit();
@@ -60,10 +62,6 @@
 			this.pnMain.Controls.SetChildIndex(this.ckA, 0);
 			this.pnMain.Controls.SetChildIndex(this.ckC, 0);
 			// 
-			// laSlideHeader
-			// 
-			this.laSlideHeader.Text = "2. Introduction Slide:";
-			// 
 			// comboBoxEditSlideHeader
 			// 
 			this.comboBoxEditSlideHeader.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -76,12 +74,25 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceFocused.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
-			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.memoEditC_EditValueChanged);
+			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.EditValueChanged);
+			// 
+			// checkEditSolutionNew
+			// 
+			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
+			// 
+			// checkEditSolutionOld
+			// 
+			this.checkEditSolutionOld.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSolutionOld.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditSolutionOld.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSolutionOld.Properties.Appearance.Options.UseForeColor = true;
 			// 
 			// pbDescription
 			// 
 			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionLeadoff;
-			this.pbDescription.Size = new System.Drawing.Size(650, 28);
 			// 
 			// ckC
 			// 
@@ -137,7 +148,7 @@
 			this.memoEditC.Properties.Appearance.Options.UseFont = true;
 			this.memoEditC.Size = new System.Drawing.Size(700, 80);
 			this.memoEditC.TabIndex = 3;
-			this.memoEditC.EditValueChanged += new System.EventHandler(this.memoEditC_EditValueChanged);
+			this.memoEditC.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// memoEditB
 			// 
@@ -150,7 +161,7 @@
 			this.memoEditB.Properties.Appearance.Options.UseFont = true;
 			this.memoEditB.Size = new System.Drawing.Size(700, 81);
 			this.memoEditB.TabIndex = 2;
-			this.memoEditB.EditValueChanged += new System.EventHandler(this.memoEditC_EditValueChanged);
+			this.memoEditB.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// memoEditA
 			// 
@@ -163,7 +174,7 @@
 			this.memoEditA.Properties.Appearance.Options.UseFont = true;
 			this.memoEditA.Size = new System.Drawing.Size(700, 80);
 			this.memoEditA.TabIndex = 1;
-			this.memoEditA.EditValueChanged += new System.EventHandler(this.memoEditC_EditValueChanged);
+			this.memoEditA.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// SlideLeadoffStatementControl
 			// 
@@ -172,9 +183,10 @@
 			this.pnMain.ResumeLayout(false);
 			this.pnMain.PerformLayout();
 			this.pnBottom.ResumeLayout(false);
-			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditC.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditB.Properties)).EndInit();

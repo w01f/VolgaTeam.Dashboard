@@ -48,6 +48,7 @@ namespace CommandCentral.TabMainDashboard
 						"LockedMode",
 						"PricingStrategy",
 						"PositionColumn",
+						"Placeholder",
 						"SpecialRBNLinks",
 						"TGT_Popup",
 						"RM_Popup",						
@@ -91,6 +92,7 @@ namespace CommandCentral.TabMainDashboard
 			var specialLinkButtons = new List<SpecialLinkButton>();
 			var targetingRecords = new List<DigitalProductInfo>();
 			var richMediaRecords = new List<DigitalProductInfo>();
+			var placeholders = new List<string>();
 
 			var defaultHomeViewSettings = new HomeViewSettings();
 			var defaultDigitalProductSettings = new DigitalProductSettings();
@@ -485,6 +487,30 @@ namespace CommandCentral.TabMainDashboard
 					dataTable.Dispose();
 				}
 
+				//Load Placeholders
+				dataAdapter = new OleDbDataAdapter("SELECT * FROM [Placeholder$]", connection);
+				dataTable = new DataTable();
+				placeholders.Clear();
+				try
+				{
+					dataAdapter.Fill(dataTable);
+					if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
+						foreach (DataRow row in dataTable.Rows)
+						{
+							var placeholder = row[0].ToString().Trim();
+							if (!String.IsNullOrEmpty(placeholder))
+								placeholders.Add(placeholder);
+						}
+				}
+				catch
+				{
+				}
+				finally
+				{
+					dataAdapter.Dispose();
+					dataTable.Dispose();
+				}
+
 				//Load Targeting
 				dataAdapter = new OleDbDataAdapter("SELECT * FROM [TGT_Popup$]", connection);
 				dataTable = new DataTable();
@@ -619,7 +645,7 @@ namespace CommandCentral.TabMainDashboard
 					try
 					{
 						dataAdapter.Fill(dataTable);
-						if (dataTable.Rows.Count > 0 && dataTable.Columns.Count >= 11)
+						if (dataTable.Rows.Count > 0 && dataTable.Columns.Count >= 12)
 							foreach (DataRow row in dataTable.Rows)
 							{
 								var product = new Product();
@@ -634,6 +660,7 @@ namespace CommandCentral.TabMainDashboard
 								product.EnableRichMedia = row[8].ToString().Trim().ToLower() == "e";
 								product.Overview = row[9].ToString().Trim();
 								product.DefaultWebsite = row[10] != null ? row[10].ToString().Trim() : null;
+								product.EnableRate = row[11].ToString().Trim().ToLower() == "e";
 								product.Category = category;
 								if (!string.IsNullOrEmpty(product.Name))
 									products.Add(product);
@@ -960,6 +987,9 @@ namespace CommandCentral.TabMainDashboard
 				xml.AppendLine(@"</SpecialButton>");
 			}
 
+			foreach (var placeholder in placeholders)
+				xml.AppendLine(String.Format("<Placeholder>{0}</Placeholder>", placeholder.Replace(@"&", "&#38;").Replace("\"", "&quot;")));
+
 			foreach (var productInfo in targetingRecords)
 				xml.AppendLine(String.Format(@"<Targeting>{0}</Targeting>", productInfo.Serialize()));
 
@@ -988,6 +1018,7 @@ namespace CommandCentral.TabMainDashboard
 				xml.Append("EnableTarget = \"" + product.EnableTarget + "\" ");
 				xml.Append("EnableLocation = \"" + product.EnableLocation + "\" ");
 				xml.Append("EnableRichMedia = \"" + product.EnableRichMedia + "\" ");
+				xml.Append("EnableRate = \"" + product.EnableRate + "\" ");
 				xml.Append("Overview = \"" + product.Overview.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 				if (!String.IsNullOrEmpty(product.DefaultWebsite))
 					xml.Append("DefaultWebsite = \"" + product.DefaultWebsite.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");

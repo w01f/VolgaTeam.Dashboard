@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="AppManager.cs" />
     <Compile Include="CommonClasses\AdSize.cs" />
+    <Compile Include="CommonClasses\BroadcastMonthTemplate.cs" />
     <Compile Include="CommonClasses\Category.cs" />
     <Compile Include="CommonClasses\DigitalViewSettings.cs" />
     <Compile Include="CommonClasses\DigitalProductInfo.cs" />

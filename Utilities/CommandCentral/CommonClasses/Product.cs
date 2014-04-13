@@ -14,6 +14,7 @@
 			EnableLocation = true;
 			EnableTarget = true;
 			EnableRichMedia = true;
+			EnableRate = true;
 		}
 
 		public string Name { get; set; }
@@ -28,5 +29,6 @@
 		public bool EnableLocation { get; set; }
 		public bool EnableTarget { get; set; }
 		public bool EnableRichMedia { get; set; }
+		public bool EnableRate { get; set; }
 	}
 }

@@ -32,16 +32,10 @@ namespace NewBizWiz.Core.MediaSchedule
 	public class ScheduleManager
 	{
 		private Schedule _currentSchedule;
-		private readonly Func<IEnumerable<BroadcastMonthTemplate>> _getBroadcastMonthTemplates;
 
 		public bool ScheduleLoaded { get; set; }
 
 		public event EventHandler<ScheduleSaveEventArgs> SettingsSaved;
-
-		public ScheduleManager(Func<IEnumerable<BroadcastMonthTemplate>> getBroadcastMonthTemplates)
-		{
-			_getBroadcastMonthTemplates = getBroadcastMonthTemplates;
-		}
 
 		public void OpenSchedule(string scheduleName, bool create)
 		{
@@ -49,13 +43,13 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (create && File.Exists(scheduleFilePath))
 				if (Utilities.Instance.ShowWarningQuestion(string.Format("An older Schedule is already saved with this same file name.\nDo you want to replace this file with a newer schedule?", scheduleName)) == DialogResult.Yes)
 					File.Delete(scheduleFilePath);
-			_currentSchedule = new Schedule(scheduleFilePath, _getBroadcastMonthTemplates);
+			_currentSchedule = new Schedule(scheduleFilePath);
 			ScheduleLoaded = true;
 		}
 
 		public void OpenSchedule(string scheduleFilePath)
 		{
-			_currentSchedule = new Schedule(scheduleFilePath, _getBroadcastMonthTemplates);
+			_currentSchedule = new Schedule(scheduleFilePath);
 			ScheduleLoaded = true;
 		}
 
@@ -66,7 +60,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public Schedule GetLocalSchedule()
 		{
-			return new Schedule(_currentSchedule.ScheduleFile.FullName, _getBroadcastMonthTemplates);
+			return new Schedule(_currentSchedule.ScheduleFile.FullName);
 		}
 
 		public ShortSchedule GetShortSchedule()
@@ -179,10 +173,8 @@ namespace NewBizWiz.Core.MediaSchedule
 
 	public class Schedule : IDigitalSchedule
 	{
-		public Schedule(string fileName, Func<IEnumerable<BroadcastMonthTemplate>> getBroadcastMonthTemplates)
+		public Schedule(string fileName)
 		{
-			_getBroadcastMonthTemplates = getBroadcastMonthTemplates;
-
 			BusinessName = string.Empty;
 			DecisionMaker = string.Empty;
 			ClientType = string.Empty;
@@ -224,7 +216,6 @@ namespace NewBizWiz.Core.MediaSchedule
 		}
 
 		private FileInfo _scheduleFile { get; set; }
-		private readonly Func<IEnumerable<BroadcastMonthTemplate>> _getBroadcastMonthTemplates;
 		public bool IsNew { get; set; }
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
@@ -467,7 +458,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		private void LoadCalendars()
 		{
-			BroadcastCalendar = new BroadcastCalendar(this, _getBroadcastMonthTemplates);
+			BroadcastCalendar = new BroadcastCalendar(this);
 			if (!_scheduleFile.Exists) return;
 			var document = new XmlDocument();
 			document.Load(_scheduleFile.FullName);
@@ -621,6 +612,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			ShowNetRate = false;
 			ShowDiscount = false;
 
+			ShowSelectedQuarter = false;
+
 			#endregion
 		}
 
@@ -661,6 +654,9 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<ShowTotalRate>" + ShowTotalRate + @"</ShowTotalRate>");
 			result.AppendLine(@"<ShowTotalSpots>" + ShowTotalSpots + @"</ShowTotalSpots>");
 			result.AppendLine(@"<DigitalLegend>" + DigitalLegend.Serialize() + @"</DigitalLegend>");
+			result.AppendLine(@"<ShowSelectedQuarter>" + ShowSelectedQuarter + @"</ShowSelectedQuarter>");
+			if (SelectedQuarter.HasValue)
+				result.AppendLine(@"<SelectedQuarter>" + SelectedQuarter.Value + @"</SelectedQuarter>");
 
 			#endregion
 
@@ -758,6 +754,17 @@ namespace NewBizWiz.Core.MediaSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowTotalSpots = tempBool;
 						break;
+					case "ShowSelectedQuarter":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							ShowSelectedQuarter = tempBool;
+						break;
+					case "SelectedQuarter":
+						{
+							DateTime temp;
+							if (DateTime.TryParse(childNode.InnerText, out temp))
+								SelectedQuarter = temp;
+						}
+						break;
 					case "DigitalLegend":
 						DigitalLegend.Deserialize(childNode);
 						break;
@@ -803,14 +810,15 @@ namespace NewBizWiz.Core.MediaSchedule
 			table.Columns.Add(column);
 			var totalSpotsExpression = new List<string>();
 
-			if (Programs.FirstOrDefault() != null)
+			if (Programs.Any())
 			{
-				int spotIndex = 0;
-				foreach (Spot spot in Programs.FirstOrDefault().Spots)
+				var spotIndex = 0;
+				foreach (var spot in Programs.First().Spots)
 				{
 					var columnName = ProgramSpotDataColumnNamePrefix + spotIndex;
 					column = new DataColumn(columnName, typeof(int)) { Caption = spot.ColumnName };
 					totalSpotsExpression.Add(string.Format("ISNULL({0},0)", columnName));
+					column.ExtendedProperties.Add("Quarter", spot.Quarter);
 					table.Columns.Add(column);
 					spotIndex++;
 				}
@@ -862,7 +870,7 @@ namespace NewBizWiz.Core.MediaSchedule
 					row[ProgramRatingDataColumnName] = program.Rating;
 				else
 					row[ProgramRatingDataColumnName] = DBNull.Value;
-				for (int i = 0; i < program.Spots.Count; i++)
+				for (var i = 0; i < program.Spots.Count; i++)
 				{
 					if (program.Spots[i].Count.HasValue)
 						row[ProgramSpotDataColumnNamePrefix + i] = program.Spots[i].Count;
@@ -884,11 +892,10 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		private void UpdateProgramsFromDataSource(DataRow row)
 		{
-			int tempInt = 0;
-			string temp = string.Empty;
+			int tempInt;
 
-			int index = -1;
-			temp = row[ProgramIndexDataColumnName] != DBNull.Value ? row[ProgramIndexDataColumnName].ToString() : string.Empty;
+			var index = -1;
+			var temp = row[ProgramIndexDataColumnName] != DBNull.Value ? row[ProgramIndexDataColumnName].ToString() : string.Empty;
 			if (int.TryParse(temp, out tempInt))
 				index = tempInt;
 			var program = Programs.FirstOrDefault(x => x.Index == index);
@@ -907,7 +914,7 @@ namespace NewBizWiz.Core.MediaSchedule
 				temp = row[ProgramLengthDataColumnName] != DBNull.Value ? row[ProgramLengthDataColumnName].ToString() : string.Empty;
 				program.Length = temp;
 				temp = row[ProgramRateDataColumnName] != DBNull.Value ? row[ProgramRateDataColumnName].ToString() : string.Empty;
-				double tempDouble = 0;
+				double tempDouble;
 				if (double.TryParse(temp, out tempDouble))
 					program.Rate = tempDouble;
 				else
@@ -981,6 +988,9 @@ namespace NewBizWiz.Core.MediaSchedule
 		public bool ShowTotalRate { get; set; }
 		public bool ShowNetRate { get; set; }
 		public bool ShowDiscount { get; set; }
+
+		public bool ShowSelectedQuarter { get; set; }
+		public DateTime? SelectedQuarter { get; set; }
 
 		#endregion
 
@@ -1491,6 +1501,11 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 		}
 
+		public Quarter Quarter
+		{
+			get { return _parent.Parent.Parent.BroadcastCalendar.Quarters.FirstOrDefault(q => q.DateStart <= Date && q.DateEnd >= Date); }
+		}
+
 		public string Serialize()
 		{
 			var result = new StringBuilder();
@@ -1570,20 +1585,47 @@ namespace NewBizWiz.Core.MediaSchedule
 
 	public class BroadcastCalendar : CalendarMondayBased
 	{
-		private readonly Func<IEnumerable<BroadcastMonthTemplate>> _getBroadcastMonthTemplates;
 		private readonly Schedule _parentSchedule;
+
+		public List<Quarter> Quarters { get; private set; }
 
 		public override bool AllowCustomNotes
 		{
 			get { return false; }
 		}
 
-		public BroadcastCalendar(ISchedule parent,
-			Func<IEnumerable<BroadcastMonthTemplate>> getBroadcastMonthTemplates)
+		public BroadcastCalendar(ISchedule parent)
 			: base(parent)
 		{
 			_parentSchedule = parent as Schedule;
-			_getBroadcastMonthTemplates = getBroadcastMonthTemplates;
+			Quarters = new List<Quarter>();
+		}
+
+		private void UpdateQuarters()
+		{
+			Quarters.Clear();
+			if (!_parentSchedule.FlightDateStart.HasValue || !_parentSchedule.FlightDateEnd.HasValue) return;
+			if (!Months.Any()) return;
+			var startDate = _parentSchedule.FlightDateStart.Value;
+			if (startDate.Month >= 1 && startDate.Month <= 3)
+				startDate = new DateTime(startDate.Year, 1, 1);
+			else if (startDate.Month >= 4 && startDate.Month <= 6)
+				startDate = new DateTime(startDate.Year, 4, 1);
+			else if (startDate.Month >= 7 && startDate.Month <= 9)
+				startDate = new DateTime(startDate.Year, 7, 1);
+			else if (startDate.Month >= 10 && startDate.Month <= 12)
+				startDate = new DateTime(startDate.Year, 10, 1);
+			while (startDate <= _parentSchedule.FlightDateEnd.Value)
+			{
+				var endDate = startDate.AddMonths(3);
+				var quarter = new Quarter() { DateAnchor = startDate };
+				var quarterMonths = Months.Where(m => m.Date >= startDate && m.Date < endDate).OrderBy(m => m.Date);
+				if (!quarterMonths.Any()) continue;
+				quarter.DateStart = quarterMonths.First().DaysRangeBegin;
+				quarter.DateEnd = quarterMonths.Last().DaysRangeEnd;
+				Quarters.Add(quarter);
+				startDate = endDate;
+			}
 		}
 
 		public override void Deserialize(XmlNode node)
@@ -1600,7 +1642,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 			var months = new List<CalendarMonth>();
 			var startDate = Schedule.FlightDateStart.Value;
-			var monthTemplates = _getBroadcastMonthTemplates();
+			var monthTemplates = MediaMetaData.Instance.ListManager.MonthTemplates;
 			while (startDate <= Schedule.FlightDateEnd.Value)
 			{
 				var month = Months.FirstOrDefault(x => x.Date.Equals(startDate)) ?? new CalendarMonthBroadcast(this);
@@ -1617,6 +1659,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 			Months.Clear();
 			Months.AddRange(months);
+			UpdateQuarters();
 		}
 
 		public override void UpdateNotesCollection()
@@ -1773,5 +1816,64 @@ namespace NewBizWiz.Core.MediaSchedule
 		public DateTime? Month { get; set; }
 		public DateTime? StartDate { get; set; }
 		public DateTime? EndDate { get; set; }
+
+		public void Deserialize(XmlNode node)
+		{
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "Month":
+						{
+							DateTime tempDateTime;
+							if (DateTime.TryParse(childNode.InnerText, out tempDateTime))
+								Month = tempDateTime;
+						}
+						break;
+					case "StartDate":
+						{
+							DateTime tempDateTime;
+							if (DateTime.TryParse(childNode.InnerText, out tempDateTime))
+								StartDate = tempDateTime;
+						}
+						break;
+					case "EndDate":
+						{
+							DateTime tempDateTime;
+							if (DateTime.TryParse(childNode.InnerText, out tempDateTime))
+								EndDate = tempDateTime;
+						}
+						break;
+				}
+			}
+		}
+	}
+
+	public class Quarter
+	{
+		public DateTime DateAnchor { get; set; }
+		public DateTime DateStart { get; set; }
+		public DateTime DateEnd { get; set; }
+
+		public int QuarterNumber
+		{
+			get
+			{
+				if (DateAnchor.Month >= 1 && DateAnchor.Month <= 3)
+					return 1;
+				if (DateAnchor.Month >= 4 && DateAnchor.Month <= 6)
+					return 2;
+				if (DateAnchor.Month >= 7 && DateAnchor.Month <= 9)
+					return 3;
+				if (DateAnchor.Month >= 10 && DateAnchor.Month <= 12)
+					return 4;
+				return 0;
+			}
+		}
+
+		public override string ToString()
+		{
+			return String.Format("Q{0} {1}", QuarterNumber, DateAnchor.ToString("yy"));
+		}
 	}
 }

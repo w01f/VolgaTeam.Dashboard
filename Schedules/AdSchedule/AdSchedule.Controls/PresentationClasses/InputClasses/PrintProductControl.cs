@@ -187,16 +187,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		private void advBandedGridViewPublication_ShowingEditor(object sender, CancelEventArgs e)
 		{
+			e.Cancel = false;
+			if (advBandedGridViewPublication.FocusedColumn == gridColumnDate) return;
 			e.Cancel = true;
-			if (advBandedGridViewPublication.FocusedColumn != gridColumnDate)
-			{
-				if (advBandedGridViewPublication.GetRowCellValue(advBandedGridViewPublication.FocusedRowHandle, gridColumnDate) != null)
-					e.Cancel = false;
-			}
-			else
-			{
-				e.Cancel = false;
-			}
+			var insert = advBandedGridViewPublication.GetFocusedRow() as Insert;
+			if (insert == null) return;
+			e.Cancel = !insert.Date.HasValue;
 		}
 
 		private void repositoryItemDateEdit_DrawItem(object sender, CustomDrawDayNumberCellEventArgs e)
@@ -209,15 +205,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			else
 			{
 				e.Style.ForeColor = Color.Gray;
-				if (e.Date == DateTime.Today)
-				{
-					var rect = new RectangleF(e.Bounds.Location, e.Bounds.Size);
-					Color backColor = Color.White;
-					e.Graphics.FillRectangle(new SolidBrush(backColor), rect);
-					e.Graphics.DrawString(e.Date.Day.ToString(), e.Style.Font,
-										  new SolidBrush(e.Style.ForeColor), rect, e.Style.GetStringFormat());
-					e.Handled = true;
-				}
+				if (e.Date != DateTime.Today) return;
+				var rect = new RectangleF(e.Bounds.Location, e.Bounds.Size);
+				var backColor = Color.White;
+				e.Graphics.FillRectangle(new SolidBrush(backColor), rect);
+				e.Graphics.DrawString(e.Date.Day.ToString(), e.Style.Font,
+					new SolidBrush(e.Style.ForeColor), rect, e.Style.GetStringFormat());
+				e.Handled = true;
 			}
 		}
 		#endregion
@@ -358,6 +352,16 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		#endregion
 
 		#region Editors Customization
+		private void advBandedGridViewPublication_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
+		{
+			if (e.Column == gridColumnDate) return;
+			var insert = advBandedGridViewPublication.GetRow(e.RowHandle) as Insert;
+			if (insert == null) return;
+			if (insert.Date.HasValue) return;
+			e.DisplayText = String.Empty;
+
+		}
+
 		private void advBandedGridViewPublication_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
 		{
 			if (e.Column == gridColumnDate)
@@ -366,57 +370,65 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 					repositoryItemDateNull :
 					repositoryItemDateEditNull;
 			}
-			else if (e.Column == gridColumnPCIRate && PrintProduct.AdPricingStrategy == AdPricingStrategies.StandartPCI)
+			else
 			{
-				e.RepositoryItem = e.RowHandle == 0 ?
-					repositoryItemSpinEditPCIRateDisplayFirstRow :
-					repositoryItemSpinEditPCIRateDisplay;
-			}
-			else if (e.Column == gridColumnADRate)
-			{
-				if (e.RowHandle == GridControl.InvalidRowHandle) return;
-				if (string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullComment) &&
-					string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullSection) &&
-					string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Mechanicals) &&
-					string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Deadline))
+				var insert = advBandedGridViewPublication.GetRow(e.RowHandle) as Insert;
+				if (insert == null || !insert.Date.HasValue)
 				{
-					if (e.RowHandle == 0 && (PrintProduct.AdPricingStrategy == AdPricingStrategies.FlatModular || PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage))
-						e.RepositoryItem = repositoryItemSpinEditADRateDisplayNullFirstRow;
-					else
-						e.RepositoryItem = repositoryItemSpinEditADRateDisplayNull;
+					e.RepositoryItem = repositoryItemTextEditEmpty;
 				}
-				else
-				{
-					if (e.RowHandle == 0 && (PrintProduct.AdPricingStrategy == AdPricingStrategies.FlatModular || PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage))
-						e.RepositoryItem = repositoryItemSpinEditADRateDisplayFirstRow;
-					else
-						e.RepositoryItem = repositoryItemSpinEditADRateDisplay;
-				}
-			}
-			else if (e.Column == gridColumnDiscounts || e.Column == gridColumnColorPricingPercent)
-			{
-				e.RepositoryItem = e.RowHandle == 0 ?
-					repositoryItemSpinEditDiscountsDisplayFirstRow :
-					repositoryItemSpinEditDiscountsDisplay;
-			}
-			else if (e.Column == gridColumnColorPricing)
-			{
-				if (PrintProduct.ColorPricing == ColorPricingType.PercentOfAdRate)
-				{
-					e.RepositoryItem = repositoryItemSpinEditColorRate;
-				}
-				else
+				else if (e.Column == gridColumnPCIRate && PrintProduct.AdPricingStrategy == AdPricingStrategies.StandartPCI)
 				{
 					e.RepositoryItem = e.RowHandle == 0 ?
-						repositoryItemSpinEditColorPricingDisplayFirstRow :
-						repositoryItemSpinEditColorPricingDisplay;
+						repositoryItemSpinEditPCIRateDisplayFirstRow :
+						repositoryItemSpinEditPCIRateDisplay;
 				}
-			}
-			else if (e.Column == gridColumnColorPricingPCI)
-			{
-				e.RepositoryItem = e.RowHandle == 0 ?
-					repositoryItemSpinEditColorPCIDisplayFirtsRow :
-					repositoryItemSpinEditColorPCIDisplay;
+				else if (e.Column == gridColumnADRate)
+				{
+					if (e.RowHandle == GridControl.InvalidRowHandle) return;
+					if (string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullComment) &&
+						string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].FullSection) &&
+						string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Mechanicals) &&
+						string.IsNullOrEmpty(PrintProduct.Inserts[advBandedGridViewPublication.GetDataSourceRowIndex(e.RowHandle)].Deadline))
+					{
+						if (e.RowHandle == 0 && (PrintProduct.AdPricingStrategy == AdPricingStrategies.FlatModular || PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage))
+							e.RepositoryItem = repositoryItemSpinEditADRateDisplayNullFirstRow;
+						else
+							e.RepositoryItem = repositoryItemSpinEditADRateDisplayNull;
+					}
+					else
+					{
+						if (e.RowHandle == 0 && (PrintProduct.AdPricingStrategy == AdPricingStrategies.FlatModular || PrintProduct.AdPricingStrategy == AdPricingStrategies.SharePage))
+							e.RepositoryItem = repositoryItemSpinEditADRateDisplayFirstRow;
+						else
+							e.RepositoryItem = repositoryItemSpinEditADRateDisplay;
+					}
+				}
+				else if (e.Column == gridColumnDiscounts || e.Column == gridColumnColorPricingPercent)
+				{
+					e.RepositoryItem = e.RowHandle == 0 ?
+						repositoryItemSpinEditDiscountsDisplayFirstRow :
+						repositoryItemSpinEditDiscountsDisplay;
+				}
+				else if (e.Column == gridColumnColorPricing)
+				{
+					if (PrintProduct.ColorPricing == ColorPricingType.PercentOfAdRate)
+					{
+						e.RepositoryItem = repositoryItemSpinEditColorRate;
+					}
+					else
+					{
+						e.RepositoryItem = e.RowHandle == 0 ?
+							repositoryItemSpinEditColorPricingDisplayFirstRow :
+							repositoryItemSpinEditColorPricingDisplay;
+					}
+				}
+				else if (e.Column == gridColumnColorPricingPCI)
+				{
+					e.RepositoryItem = e.RowHandle == 0 ?
+						repositoryItemSpinEditColorPCIDisplayFirtsRow :
+						repositoryItemSpinEditColorPCIDisplay;
+				}
 			}
 		}
 
@@ -724,6 +736,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				!Controller.Instance.PrintProductRateCard.EditorContainsFocus &&
 				!Controller.Instance.PrintProductPageSizeGroup.EditorContainsFocus &&
 				!Controller.Instance.PrintProductPageSizeName.EditorContainsFocus &&
+				!Controller.Instance.PrintProductMechanicalsName.EditorContainsFocus &&
 				!Controller.Instance.PrintProductColor.EditorContainsFocus)
 				advBandedGridViewPublication.Focus();
 		}

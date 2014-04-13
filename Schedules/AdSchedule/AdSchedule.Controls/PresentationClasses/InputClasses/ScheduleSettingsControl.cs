@@ -71,8 +71,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control != Controller.Instance.HomeAccountNumberText
 				&& control != Controller.Instance.PrintProductRateCard
 				&& control != Controller.Instance.RateCardCombo
-				&& control != Controller.Instance.GallerySections
-				&& control != Controller.Instance.GalleryGroups
+				&& control != Controller.Instance.Gallery1Sections
+				&& control != Controller.Instance.Gallery1Groups
+				&& control != Controller.Instance.Gallery2Sections
+				&& control != Controller.Instance.Gallery2Groups
 				&& control != Controller.Instance.HomeFlightDatesEnd
 				&& control != Controller.Instance.HomeFlightDatesStart
 				&& control != Controller.Instance.HomePresentationDate
@@ -81,6 +83,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 				&& control != Controller.Instance.PrintProductPercentOfPage
 				&& control != Controller.Instance.PrintProductPageSizeGroup
 				&& control != Controller.Instance.PrintProductPageSizeName
+				&& control != Controller.Instance.PrintProductMechanicalsName
 				&& control != Controller.Instance.PrintProductColor
 				&& control != Controller.Instance.PrintProductSharePageSquare
 				&& control != Controller.Instance.MultiSummaryHeaderText)

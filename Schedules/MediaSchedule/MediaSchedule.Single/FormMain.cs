@@ -34,7 +34,11 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSlides;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
 			Controller.Instance.TabCalendar = ribbonTabItemCalendar;
-			Controller.Instance.TabGallery = ribbonTabItemGallery;
+			Controller.Instance.TabGallery1 = ribbonTabItemGallery1;
+			Controller.Instance.TabGallery2 = ribbonTabItemGallery2;
+			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
+			Controller.Instance.TabMarketing = ribbonTabItemMarketing;
+			Controller.Instance.TabProduction = ribbonTabItemProduction;
 
 			#region Command Controls
 
@@ -68,6 +72,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.WeeklyScheduleOptions = buttonItemWeeklyScheduleSettings;
 			Controller.Instance.WeeklyScheduleProgramAdd = buttonItemWeeklyScheduleProgramAdd;
 			Controller.Instance.WeeklyScheduleProgramDelete = buttonItemWeeklyScheduleProgramDelete;
+			Controller.Instance.WeeklyScheduleQuarter = buttonItemWeeklyScheduleQuarter;
 			#endregion
 
 			#region Monthly Schedule
@@ -82,6 +87,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.MonthlyScheduleOptions = buttonItemMonthlyScheduleSettings;
 			Controller.Instance.MonthlyScheduleProgramAdd = buttonItemMonthlyScheduleProgramAdd;
 			Controller.Instance.MonthlyScheduleProgramDelete = buttonItemMonthlyScheduleProgramDelete;
+			Controller.Instance.MonthlyScheduleQuarter = buttonItemMonthlyScheduleQuarter;
 			#endregion
 
 			#region Digital Product
@@ -122,24 +128,50 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.CalendarPowerPoint = buttonItemCalendarPowerPoint;
 			#endregion
 
-			#region Gallery
-			Controller.Instance.GallerySpecialButtons = ribbonBarGallerySpecialButtons;
-			Controller.Instance.GalleryBrowseBar = ribbonBarGalleryBrowse;
-			Controller.Instance.GalleryImageBar = ribbonBarGalleryImage;
-			Controller.Instance.GalleryZoomBar = ribbonBarGalleryZoom;
-			Controller.Instance.GalleryCopyBar = ribbonBarGalleryCopy;
-			Controller.Instance.GalleryScreenshots = buttonItemGalleryBrowseScreenshots;
-			Controller.Instance.GalleryAdSpecs = buttonItemGalleryBrowseAdSpecs;
-			Controller.Instance.GalleryView = buttonItemGalleryView;
-			Controller.Instance.GalleryEdit = buttonItemGalleryEdit;
-			Controller.Instance.GalleryImageSelect = buttonItemGalleryImageSelect;
-			Controller.Instance.GalleryImageCrop = buttonItemGalleryImageCrop;
-			Controller.Instance.GalleryZoomIn = buttonItemGalleryZoomIn;
-			Controller.Instance.GalleryZoomOut = buttonItemGalleryZoomOut;
-			Controller.Instance.GalleryCopy = buttonItemGalleryCopy;
-			Controller.Instance.GalleryHelp = buttonItemGalleryHelp;
-			Controller.Instance.GallerySections = comboBoxEditGallerySections;
-			Controller.Instance.GalleryGroups = comboBoxEditGalleryGroups;
+			#region Gallery 1
+			Controller.Instance.Gallery1Panel = ribbonPanelGallery1;
+			Controller.Instance.Gallery1SpecialButtons = ribbonBarGallery1SpecialButtons;
+			Controller.Instance.Gallery1BrowseBar = ribbonBarGallery1Browse;
+			Controller.Instance.Gallery1ImageBar = ribbonBarGallery1Image;
+			Controller.Instance.Gallery1ZoomBar = ribbonBarGallery1Zoom;
+			Controller.Instance.Gallery1CopyBar = ribbonBarGallery1Copy;
+			Controller.Instance.Gallery1BrowseModeContainer = itemContainerGallery1BrowseContentType;
+			Controller.Instance.Gallery1View = buttonItemGallery1View;
+			Controller.Instance.Gallery1Edit = buttonItemGallery1Edit;
+			Controller.Instance.Gallery1ImageSelect = buttonItemGallery1ImageSelect;
+			Controller.Instance.Gallery1ImageCrop = buttonItemGallery1ImageCrop;
+			Controller.Instance.Gallery1ZoomIn = buttonItemGallery1ZoomIn;
+			Controller.Instance.Gallery1ZoomOut = buttonItemGallery1ZoomOut;
+			Controller.Instance.Gallery1Copy = buttonItemGallery1Copy;
+			Controller.Instance.Gallery1Help = buttonItemGallery1Help;
+			Controller.Instance.Gallery1Sections = comboBoxEditGallery1Sections;
+			Controller.Instance.Gallery1Groups = comboBoxEditGallery1Groups;
+			#endregion
+
+			#region Gallery 2
+			Controller.Instance.Gallery2Panel = ribbonPanelGallery2;
+			Controller.Instance.Gallery2SpecialButtons = ribbonBarGallery2SpecialButtons;
+			Controller.Instance.Gallery2BrowseBar = ribbonBarGallery2Browse;
+			Controller.Instance.Gallery2ImageBar = ribbonBarGallery2Image;
+			Controller.Instance.Gallery2ZoomBar = ribbonBarGallery2Zoom;
+			Controller.Instance.Gallery2CopyBar = ribbonBarGallery2Copy;
+			Controller.Instance.Gallery2BrowseModeContainer = itemContainerGallery2BrowseContentType;
+			Controller.Instance.Gallery2View = buttonItemGallery2View;
+			Controller.Instance.Gallery2Edit = buttonItemGallery2Edit;
+			Controller.Instance.Gallery2ImageSelect = buttonItemGallery2ImageSelect;
+			Controller.Instance.Gallery2ImageCrop = buttonItemGallery2ImageCrop;
+			Controller.Instance.Gallery2ZoomIn = buttonItemGallery2ZoomIn;
+			Controller.Instance.Gallery2ZoomOut = buttonItemGallery2ZoomOut;
+			Controller.Instance.Gallery2Copy = buttonItemGallery2Copy;
+			Controller.Instance.Gallery2Help = buttonItemGallery2Help;
+			Controller.Instance.Gallery2Sections = comboBoxEditGallery2Sections;
+			Controller.Instance.Gallery2Groups = comboBoxEditGallery2Groups;
+			#endregion
+
+			#region Rate Card
+			Controller.Instance.RateCardSpecialButtons = ribbonBarRateCardSpecialButtons;
+			Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
+			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
 			#endregion
 
 			#endregion
@@ -401,11 +433,33 @@ namespace NewBizWiz.MediaSchedule.Single
 				_currentControl.BringToFront();
 				pnMain.BringToFront();
 			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGallery)
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGallery1)
 			{
 				if (AllowToLeaveCurrentControl())
 				{
-					_currentControl = Controller.Instance.Gallery;
+					_currentControl = Controller.Instance.Gallery1;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGallery2)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.Gallery2;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRateCard)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.RateCard;
 					if (!pnMain.Controls.Contains(_currentControl))
 						pnMain.Controls.Add(_currentControl);
 				}

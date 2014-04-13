@@ -42,6 +42,8 @@
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal5.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal4.Properties)).BeginInit();
@@ -74,10 +76,6 @@
 			this.pnMain.Controls.SetChildIndex(this.comboBoxEditGoal4, 0);
 			this.pnMain.Controls.SetChildIndex(this.comboBoxEditGoal5, 0);
 			// 
-			// laSlideHeader
-			// 
-			this.laSlideHeader.Text = "3. Needs Analysis  Slide:";
-			// 
 			// comboBoxEditSlideHeader
 			// 
 			this.comboBoxEditSlideHeader.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -90,7 +88,21 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceFocused.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
-			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.comboBoxEditGoal_EditValueChanged);
+			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.EditValueChanged);
+			// 
+			// checkEditSolutionNew
+			// 
+			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
+			// 
+			// checkEditSolutionOld
+			// 
+			this.checkEditSolutionOld.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSolutionOld.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditSolutionOld.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSolutionOld.Properties.Appearance.Options.UseForeColor = true;
 			// 
 			// pbDescription
 			// 
@@ -115,7 +127,7 @@
 			this.comboBoxEditGoal5.Properties.NullText = "Select or Type";
 			this.comboBoxEditGoal5.Size = new System.Drawing.Size(530, 22);
 			this.comboBoxEditGoal5.TabIndex = 5;
-			this.comboBoxEditGoal5.EditValueChanged += new System.EventHandler(this.comboBoxEditGoal_EditValueChanged);
+			this.comboBoxEditGoal5.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// comboBoxEditGoal4
 			// 
@@ -136,7 +148,7 @@
 			this.comboBoxEditGoal4.Properties.NullText = "Select or Type";
 			this.comboBoxEditGoal4.Size = new System.Drawing.Size(530, 22);
 			this.comboBoxEditGoal4.TabIndex = 4;
-			this.comboBoxEditGoal4.EditValueChanged += new System.EventHandler(this.comboBoxEditGoal_EditValueChanged);
+			this.comboBoxEditGoal4.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// comboBoxEditGoal3
 			// 
@@ -157,7 +169,7 @@
 			this.comboBoxEditGoal3.Properties.NullText = "Select or Type";
 			this.comboBoxEditGoal3.Size = new System.Drawing.Size(530, 22);
 			this.comboBoxEditGoal3.TabIndex = 3;
-			this.comboBoxEditGoal3.EditValueChanged += new System.EventHandler(this.comboBoxEditGoal_EditValueChanged);
+			this.comboBoxEditGoal3.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// comboBoxEditGoal2
 			// 
@@ -178,7 +190,7 @@
 			this.comboBoxEditGoal2.Properties.NullText = "Select or Type";
 			this.comboBoxEditGoal2.Size = new System.Drawing.Size(530, 22);
 			this.comboBoxEditGoal2.TabIndex = 2;
-			this.comboBoxEditGoal2.EditValueChanged += new System.EventHandler(this.comboBoxEditGoal_EditValueChanged);
+			this.comboBoxEditGoal2.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// comboBoxEditGoal1
 			// 
@@ -199,7 +211,7 @@
 			this.comboBoxEditGoal1.Properties.NullText = "Select or Type";
 			this.comboBoxEditGoal1.Size = new System.Drawing.Size(530, 22);
 			this.comboBoxEditGoal1.TabIndex = 1;
-			this.comboBoxEditGoal1.EditValueChanged += new System.EventHandler(this.comboBoxEditGoal_EditValueChanged);
+			this.comboBoxEditGoal1.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// laGoal5
 			// 
@@ -257,9 +269,10 @@
 			this.Name = "SlideClientGoalsControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
-			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal5.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal4.Properties)).EndInit();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -63,6 +64,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			comboBoxEditDecisionMaker.Properties.Items.Clear();
 			comboBoxEditDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers);
 
+			checkEditSolutionNew.EditValueChanged += EditValueChanged;
+			checkEditSolutionOld.EditValueChanged += EditValueChanged;
+
 			FormMain.Instance.FormClosed += (sender1, e1) =>
 			{
 				if (SettingsNotSaved)
@@ -117,7 +121,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void LoadSavedState()
 		{
 			AllowToSave = false;
-
+			checkEditSolutionNew.Checked = ViewSettingsManager.Instance.SimpleSummaryState.IsNewSolution;
+			checkEditSolutionOld.Checked = !ViewSettingsManager.Instance.SimpleSummaryState.IsNewSolution;
 			if (string.IsNullOrEmpty(ViewSettingsManager.Instance.SimpleSummaryState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
@@ -164,12 +169,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 			UpdateTotalItems();
 			UpdateSavedFilesState();
+			UpdateOutputState();
 		}
 
 		private void SaveState()
 		{
 			simpleSummaryItemContainer.SaveItems();
-
+			ViewSettingsManager.Instance.SimpleSummaryState.IsNewSolution = checkEditSolutionNew.Checked;
 			ViewSettingsManager.Instance.SimpleSummaryState.SlideHeader = comboBoxEditSlideHeader.EditValue != null ? comboBoxEditSlideHeader.EditValue.ToString() : null;
 			ViewSettingsManager.Instance.SimpleSummaryState.ShowAdvertiser = ckAdvertiser.Checked;
 			ViewSettingsManager.Instance.SimpleSummaryState.Advertiser = comboBoxEditAdvertiser.EditValue != null ? comboBoxEditAdvertiser.EditValue.ToString() : string.Empty;
@@ -199,7 +205,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			spinEditTotal.EditValue = ViewSettingsManager.Instance.SimpleSummaryState.TotalValue.HasValue ? ViewSettingsManager.Instance.SimpleSummaryState.TotalValue.Value : simpleSummaryItemContainer.TotalTotalValue;
 		}
 
-		protected override void SavedFiles_Click(object sender, EventArgs e)
+		public override void LoadClick()
 		{
 			using (var form = new FormSavedSimpleSummary())
 			{
@@ -272,7 +278,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				SettingsNotSaved = true;
 		}
 
-		private void edit_EditValueChanged(object sender, EventArgs e)
+		private void EditValueChanged(object sender, EventArgs e)
 		{
 			if (AllowToSave)
 				SettingsNotSaved = true;
@@ -419,9 +425,17 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 		}
 
+		public void TrackOutput()
+		{
+			var otherOptions = new Dictionary<string, object>();
+			otherOptions.Add("IsNewSolution", ViewSettingsManager.Instance.SimpleSummaryState.IsNewSolution);
+			AppManager.Instance.ActivityManager.AddActivity(new OutputActivity(SlideName, ViewSettingsManager.Instance.SimpleSummaryState.Advertiser, null, otherOptions));
+		}
+
 		public void Output()
 		{
 			SaveChanges();
+			TrackOutput();
 			using (var form = new FormProgress())
 			{
 				form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -448,7 +462,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
+				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, TrackOutput))
 				{
 					formPreview.Text = "Preview Slides";
 					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

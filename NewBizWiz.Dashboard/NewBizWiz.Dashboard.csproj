@@ -218,9 +218,6 @@
     <EmbeddedResource Include="ToolForms\FormLoadSplash.resx">
       <DependentUpon>FormLoadSplash.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\WhiteBorderControlPage.resx">
-      <DependentUpon>WhiteBorderControlPage.cs</DependentUpon>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -392,12 +389,6 @@
     <Compile Include="ToolForms\FormLoadSplash.designer.cs">
       <DependentUpon>FormLoadSplash.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\WhiteBorderControlPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ToolForms\WhiteBorderControlPage.Designer.cs">
-      <DependentUpon>WhiteBorderControlPage.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -426,12 +417,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
-    <None Include="Resources\CalcButton.png" />
+    <None Include="Resources\Load.png" />
     <None Include="Resources\DescriptionTargetCustomers.png" />
     <None Include="Resources\DescriptionSummary.png" />
     <None Include="Resources\DescriptionLeadoff.png" />
     <None Include="Resources\DescriptionCover.png" />
     <None Include="Resources\DescriptionClientGoals.png" />
+    <None Include="Resources\CalcButton.png" />
     <None Include="Resources\SlideSummary.png" />
     <None Include="Resources\SlideTargetCustomers.png" />
     <None Include="Resources\SlideClientGoals.png" />
@@ -453,7 +445,6 @@
     <None Include="Resources\DeleteButton.png" />
     <None Include="Resources\Floater.png" />
     <None Include="Resources\RedWarning.png" />
-    <None Include="Resources\SavedFiles.png" />
     <None Include="Resources\Help.png" />
     <None Include="Resources\RadioLittle.png" />
     <None Include="Resources\TVLittle.png" />

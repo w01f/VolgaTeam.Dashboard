@@ -437,7 +437,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				form.ShowOutputOnce = Controller.Instance.Summaries.MultiSummary.PublicationNames1.Length - OutputFileIndex > 0;
 				form.OutputOnlyFirstSlide = true;
-				form.ShowLogo = false;
 				form.RequestDefaultInfo += (o, e) =>
 				{
 					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);

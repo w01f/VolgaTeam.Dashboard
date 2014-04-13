@@ -41,22 +41,24 @@
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.laSlideHeader = new System.Windows.Forms.Label();
 			this.pnBottom = new System.Windows.Forms.Panel();
+			this.pbDescription = new System.Windows.Forms.PictureBox();
+			this.checkEditSolutionOld = new DevExpress.XtraEditors.CheckEdit();
+			this.checkEditSolutionNew = new DevExpress.XtraEditors.CheckEdit();
 			this.pnSlideSelector = new System.Windows.Forms.Panel();
 			this.simpleButtonSummary = new DevExpress.XtraEditors.SimpleButton();
 			this.simpleButtonTargetCustomers = new DevExpress.XtraEditors.SimpleButton();
 			this.simpleButtonClientGoals = new DevExpress.XtraEditors.SimpleButton();
 			this.simpleButtonLeadoff = new DevExpress.XtraEditors.SimpleButton();
 			this.simpleButtonCover = new DevExpress.XtraEditors.SimpleButton();
-			this.pbDescription = new System.Windows.Forms.PictureBox();
-			this.buttonXSavedFiles = new DevComponents.DotNetBar.ButtonX();
 			this.pnMain.SuspendLayout();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnBottom.SuspendLayout();
-			this.pnSlideSelector.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
+			this.pnSlideSelector.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pnMain
@@ -72,16 +74,15 @@
 			// pnTop
 			// 
 			this.pnTop.Controls.Add(this.comboBoxEditSlideHeader);
-			this.pnTop.Controls.Add(this.laSlideHeader);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(0, 0);
 			this.pnTop.Name = "pnTop";
-			this.pnTop.Size = new System.Drawing.Size(820, 66);
+			this.pnTop.Size = new System.Drawing.Size(820, 51);
 			this.pnTop.TabIndex = 29;
 			// 
 			// comboBoxEditSlideHeader
 			// 
-			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(11, 35);
+			this.comboBoxEditSlideHeader.Location = new System.Drawing.Point(11, 14);
 			this.comboBoxEditSlideHeader.Name = "comboBoxEditSlideHeader";
 			this.comboBoxEditSlideHeader.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditSlideHeader.Properties.Appearance.Options.UseFont = true;
@@ -98,28 +99,55 @@
 			this.comboBoxEditSlideHeader.Size = new System.Drawing.Size(311, 22);
 			this.comboBoxEditSlideHeader.TabIndex = 28;
 			// 
-			// laSlideHeader
-			// 
-			this.laSlideHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.laSlideHeader.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laSlideHeader.Location = new System.Drawing.Point(8, 10);
-			this.laSlideHeader.Name = "laSlideHeader";
-			this.laSlideHeader.Size = new System.Drawing.Size(808, 22);
-			this.laSlideHeader.TabIndex = 27;
-			this.laSlideHeader.Text = "Slide Header";
-			this.laSlideHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
 			// pnBottom
 			// 
 			this.pnBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnBottom.Controls.Add(this.pbDescription);
-			this.pnBottom.Controls.Add(this.buttonXSavedFiles);
+			this.pnBottom.Controls.Add(this.checkEditSolutionOld);
+			this.pnBottom.Controls.Add(this.checkEditSolutionNew);
 			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnBottom.Location = new System.Drawing.Point(0, 438);
 			this.pnBottom.Name = "pnBottom";
 			this.pnBottom.Size = new System.Drawing.Size(919, 74);
 			this.pnBottom.TabIndex = 1;
+			// 
+			// pbDescription
+			// 
+			this.pbDescription.Location = new System.Drawing.Point(11, 11);
+			this.pbDescription.Name = "pbDescription";
+			this.pbDescription.Size = new System.Drawing.Size(430, 48);
+			this.pbDescription.TabIndex = 107;
+			this.pbDescription.TabStop = false;
+			// 
+			// checkEditSolutionOld
+			// 
+			this.checkEditSolutionOld.Location = new System.Drawing.Point(679, 25);
+			this.checkEditSolutionOld.Name = "checkEditSolutionOld";
+			this.checkEditSolutionOld.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSolutionOld.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditSolutionOld.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSolutionOld.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditSolutionOld.Properties.Caption = "I am updating an old presentation";
+			this.checkEditSolutionOld.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
+			this.checkEditSolutionOld.Properties.RadioGroupIndex = 1;
+			this.checkEditSolutionOld.Size = new System.Drawing.Size(230, 21);
+			this.checkEditSolutionOld.TabIndex = 106;
+			this.checkEditSolutionOld.TabStop = false;
+			// 
+			// checkEditSolutionNew
+			// 
+			this.checkEditSolutionNew.Location = new System.Drawing.Point(443, 25);
+			this.checkEditSolutionNew.Name = "checkEditSolutionNew";
+			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditSolutionNew.Properties.Caption = "I am building a new client solution";
+			this.checkEditSolutionNew.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
+			this.checkEditSolutionNew.Properties.RadioGroupIndex = 1;
+			this.checkEditSolutionNew.Size = new System.Drawing.Size(230, 21);
+			this.checkEditSolutionNew.TabIndex = 105;
+			this.checkEditSolutionNew.TabStop = false;
 			// 
 			// pnSlideSelector
 			// 
@@ -210,31 +238,6 @@
 			this.simpleButtonCover.TabIndex = 0;
 			this.simpleButtonCover.Click += new System.EventHandler(this.SlideType_Click);
 			// 
-			// pbDescription
-			// 
-			this.pbDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbDescription.Location = new System.Drawing.Point(259, 21);
-			this.pbDescription.Name = "pbDescription";
-			this.pbDescription.Size = new System.Drawing.Size(650, 29);
-			this.pbDescription.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-			this.pbDescription.TabIndex = 105;
-			this.pbDescription.TabStop = false;
-			// 
-			// buttonXSavedFiles
-			// 
-			this.buttonXSavedFiles.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXSavedFiles.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSavedFiles.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXSavedFiles.Image = global::NewBizWiz.Dashboard.Properties.Resources.SavedFiles;
-			this.buttonXSavedFiles.Location = new System.Drawing.Point(11, 8);
-			this.buttonXSavedFiles.Name = "buttonXSavedFiles";
-			this.buttonXSavedFiles.Size = new System.Drawing.Size(165, 55);
-			this.buttonXSavedFiles.TabIndex = 104;
-			this.buttonXSavedFiles.TabStop = false;
-			this.buttonXSavedFiles.Text = "My Saved Files";
-			this.buttonXSavedFiles.TextColor = System.Drawing.Color.Black;
-			this.buttonXSavedFiles.Click += new System.EventHandler(this.SavedFiles_Click);
-			// 
 			// SlideBaseControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -252,9 +255,10 @@
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnBottom.ResumeLayout(false);
-			this.pnBottom.PerformLayout();
-			this.pnSlideSelector.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
+			this.pnSlideSelector.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -269,10 +273,10 @@
 		private DevExpress.XtraEditors.SimpleButton simpleButtonClientGoals;
 		protected System.Windows.Forms.Panel pnMain;
 		protected System.Windows.Forms.Panel pnBottom;
-		protected DevComponents.DotNetBar.ButtonX buttonXSavedFiles;
-		protected System.Windows.Forms.Label laSlideHeader;
 		protected DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSlideHeader;
 		protected System.Windows.Forms.Panel pnTop;
+		protected DevExpress.XtraEditors.CheckEdit checkEditSolutionNew;
+		protected DevExpress.XtraEditors.CheckEdit checkEditSolutionOld;
 		protected System.Windows.Forms.PictureBox pbDescription;
 	}
 }

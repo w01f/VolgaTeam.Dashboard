@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
@@ -39,6 +40,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			checkedListBoxControlGeographicResidence.Items.Clear();
 			checkedListBoxControlGeographicResidence.Items.AddRange(ListManager.Instance.TargetCustomersLists.Geographies.ToArray());
 
+			checkEditSolutionNew.EditValueChanged += EditValueChanged;
+			checkEditSolutionOld.EditValueChanged += EditValueChanged;
+
 			FormMain.Instance.FormClosed += (sender1, e1) =>
 			{
 				if (!SettingsNotSaved) return;
@@ -69,6 +73,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void LoadSavedState()
 		{
 			_allowToSave = false;
+			checkEditSolutionNew.Checked = ViewSettingsManager.Instance.TargetCustomersState.IsNewSolution;
+			checkEditSolutionOld.Checked = !ViewSettingsManager.Instance.TargetCustomersState.IsNewSolution;
 			if (string.IsNullOrEmpty(ViewSettingsManager.Instance.TargetCustomersState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
@@ -99,6 +105,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		private void SaveState()
 		{
+			ViewSettingsManager.Instance.TargetCustomersState.IsNewSolution = checkEditSolutionNew.Checked;
+
 			ViewSettingsManager.Instance.TargetCustomersState.SlideHeader = comboBoxEditSlideHeader.EditValue != null ? comboBoxEditSlideHeader.EditValue.ToString() : string.Empty;
 
 			ViewSettingsManager.Instance.TargetCustomersState.Demo.Clear();
@@ -116,7 +124,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SettingsNotSaved = false;
 		}
 
-		protected override void SavedFiles_Click(object sender, EventArgs e)
+		public override void LoadClick()
 		{
 			using (var form = new FormSavedTargetCustomers())
 			{
@@ -133,7 +141,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SettingsNotSaved = true;
 		}
 
-		private void comboBoxEditSlideHeader_EditValueChanged(object sender, EventArgs e)
+		private void EditValueChanged(object sender, EventArgs e)
 		{
 			if (_allowToSave)
 				SettingsNotSaved = true;
@@ -202,9 +210,17 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			UpdateSavedFilesState();
 		}
 
+		public void TrackOutput()
+		{
+			var otherOptions = new Dictionary<string, object>();
+			otherOptions.Add("IsNewSolution", ViewSettingsManager.Instance.TargetCustomersState.IsNewSolution);
+			AppManager.Instance.ActivityManager.AddActivity(new OutputActivity(SlideName, null, null, otherOptions));
+		}
+
 		public void Output()
 		{
 			SaveChanges();
+			TrackOutput();
 			using (var form = new FormProgress())
 			{
 				form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -231,7 +247,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
+				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, TrackOutput))
 				{
 					formPreview.Text = "Preview Slides";
 					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

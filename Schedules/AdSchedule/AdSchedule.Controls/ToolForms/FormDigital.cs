@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
-using DevExpress.Utils;
-using DevExpress.XtraGrid.Views.Layout;
+using DevExpress.Utils.Drawing;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.ViewInfo;
 using NewBizWiz.Core.AdSchedule;
-using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.AdSchedule.Controls.ToolForms
 {
@@ -14,7 +12,6 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 	{
 		private bool _loading;
 		private readonly DigitalLegend _digitalLegend;
-		private readonly List<ImageSource> _images = new List<ImageSource>();
 		public event EventHandler<RequestDigitalInfoEventArgs> RequestDefaultInfo;
 
 		public bool ShowOutputOnce
@@ -36,169 +33,133 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			}
 		}
 
-		public bool ShowLogo
-		{
-			set
-			{
-				xtraTabControlMain.ShowTabHeader = value ? DefaultBoolean.True : DefaultBoolean.False;
-			}
-		}
-
 		public FormDigital(DigitalLegend digitalLegend)
 		{
 			InitializeComponent();
 			_digitalLegend = digitalLegend;
-			_images.AddRange(Core.OnlineSchedule.ListManager.Instance.Images);
-			_images.AddRange(Core.AdSchedule.ListManager.Instance.Images);
-			gridControlLogoGallery.DataSource = _images;
-		}
-
-		private void UpdateWarning()
-		{
-			var togglesSelected = 0;
-			if (buttonXShowWebsites.Checked)
-				togglesSelected++;
-			if (buttonXShowProduct.Checked)
-				togglesSelected++;
-			if (buttonXShowDimensions.Checked)
-				togglesSelected++;
-			if (buttonXShowDates.Checked)
-				togglesSelected++;
-			if (buttonXShowImpressions.Checked)
-				togglesSelected++;
-			if (buttonXShowCPM.Checked)
-				togglesSelected++;
-			if (buttonXShowInvestment.Checked)
-				togglesSelected++;
-			labelControlWarning.Visible = togglesSelected > 3;
 		}
 
 		private void FormDigital_Load(object sender, EventArgs e)
 		{
 			_loading = true;
 			checkEditEnable.Checked = _digitalLegend.Enabled;
-			checkEditAllowEdit.Checked = _digitalLegend.AllowEdit;
+			checkEditAuto1.Checked = _digitalLegend.ShowWebsites && _digitalLegend.ShowProduct && !_digitalLegend.ShowDimensions && !_digitalLegend.ShowDates && !_digitalLegend.ShowImpressions && !_digitalLegend.ShowCPM && !_digitalLegend.ShowInvestment;
+			checkEditAuto2.Checked = _digitalLegend.ShowWebsites && _digitalLegend.ShowProduct && !_digitalLegend.ShowDimensions && _digitalLegend.ShowDates && _digitalLegend.ShowImpressions && !_digitalLegend.ShowCPM && !_digitalLegend.ShowInvestment;
+			checkEditAuto3.Checked = _digitalLegend.ShowWebsites && _digitalLegend.ShowProduct && _digitalLegend.ShowDimensions && _digitalLegend.ShowDates && _digitalLegend.ShowImpressions && _digitalLegend.ShowCPM && _digitalLegend.ShowInvestment;
+			checkEditManual.Checked = _digitalLegend.AllowEdit;
 			checkEditApplyAll.Checked = _digitalLegend.ApplyForAll;
 			checkEditOutputOnlyOnce.Checked = _digitalLegend.OutputOnlyOnce;
 
-			buttonXShowWebsites.Checked = _digitalLegend.ShowWebsites;
-			buttonXShowProduct.Checked = _digitalLegend.ShowProduct;
-			buttonXShowDimensions.Checked = _digitalLegend.ShowDimensions;
-			buttonXShowDates.Checked = _digitalLegend.ShowDates;
-			buttonXShowImpressions.Checked = _digitalLegend.ShowImpressions;
-			buttonXShowCPM.Checked = _digitalLegend.ShowCPM;
-			buttonXShowInvestment.Checked = _digitalLegend.ShowInvestment;
+
 			if (_digitalLegend.AllowEdit && !String.IsNullOrEmpty(_digitalLegend.Info))
-				memoEditInfo.EditValue = _digitalLegend.Info;
-			if (checkEditEnable.Checked && memoEditInfo.EditValue == null)
+				memoEditManual.EditValue = _digitalLegend.Info;
+			if (RequestDefaultInfo != null)
 			{
-				if (RequestDefaultInfo != null)
-					RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
+				RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditAuto1, true, true, false, false, false, false, false));
+				RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditAuto2, true, true, false, true, true, false, false));
+				RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditAuto3, true, true, true, true, true, true, true));
 			}
-
-			checkEditEnableLogo.Checked = _digitalLegend.Logo != null;
-			var selectedLogo = _images.FirstOrDefault(l => l.EncodedBigImage.Equals(_digitalLegend.EncodedLogo));
-			if (selectedLogo != null)
-			{
-				var index = _images.IndexOf(selectedLogo);
-				layoutViewLogoGallery.FocusedRowHandle = layoutViewLogoGallery.GetRowHandle(index);
-			}
-			else
-				layoutViewLogoGallery.FocusedRowHandle = 0;
-
+			memoEditManual_EditValueChanged(memoEditManual, EventArgs.Empty);
 			_loading = false;
 		}
 
 		private void FormDigital_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			if (DialogResult == DialogResult.OK)
+			if (DialogResult != DialogResult.OK) return;
+			_digitalLegend.Enabled = checkEditEnable.Checked;
+			if (checkEditAuto1.Checked)
 			{
-				_digitalLegend.Enabled = checkEditEnable.Checked;
-				_digitalLegend.AllowEdit = checkEditAllowEdit.Checked;
-				_digitalLegend.ApplyForAll = checkEditApplyAll.Checked;
-				_digitalLegend.OutputOnlyOnce = checkEditOutputOnlyOnce.Checked;
-
-				_digitalLegend.ShowWebsites = buttonXShowWebsites.Checked;
-				_digitalLegend.ShowProduct = buttonXShowProduct.Checked;
-				_digitalLegend.ShowDimensions = buttonXShowDimensions.Checked;
-				_digitalLegend.ShowDates = buttonXShowDates.Checked;
-				_digitalLegend.ShowImpressions = buttonXShowImpressions.Checked;
-				_digitalLegend.ShowCPM = buttonXShowCPM.Checked;
-				_digitalLegend.ShowInvestment = buttonXShowInvestment.Checked;
-				_digitalLegend.Info = checkEditAllowEdit.Checked && memoEditInfo.EditValue != null ? memoEditInfo.EditValue.ToString() : String.Empty;
-
-				var selecteImageSource = layoutViewLogoGallery.GetFocusedRow() as ImageSource;
-				_digitalLegend.Logo = checkEditEnableLogo.Checked && selecteImageSource != null ? selecteImageSource.BigImage : null;
-				_digitalLegend.EncodedLogo = null;
+				_digitalLegend.ShowWebsites = true;
+				_digitalLegend.ShowProduct = true;
+				_digitalLegend.ShowDimensions = false;
+				_digitalLegend.ShowDates = false;
+				_digitalLegend.ShowImpressions = false;
+				_digitalLegend.ShowCPM = false;
+				_digitalLegend.ShowInvestment = false;
 			}
+			else if (checkEditAuto2.Checked)
+			{
+				_digitalLegend.ShowWebsites = true;
+				_digitalLegend.ShowProduct = true;
+				_digitalLegend.ShowDimensions = false;
+				_digitalLegend.ShowDates = true;
+				_digitalLegend.ShowImpressions = true;
+				_digitalLegend.ShowCPM = false;
+				_digitalLegend.ShowInvestment = false;
+			}
+			else if (checkEditAuto3.Checked)
+			{
+				_digitalLegend.ShowWebsites = true;
+				_digitalLegend.ShowProduct = true;
+				_digitalLegend.ShowDimensions = true;
+				_digitalLegend.ShowDates = true;
+				_digitalLegend.ShowImpressions = true;
+				_digitalLegend.ShowCPM = true;
+				_digitalLegend.ShowInvestment = true;
+			}
+			else if (checkEditManual.Checked)
+			{
+				_digitalLegend.AllowEdit = true;
+			}
+			_digitalLegend.ApplyForAll = checkEditApplyAll.Checked;
+			_digitalLegend.OutputOnlyOnce = checkEditOutputOnlyOnce.Checked;
+			_digitalLegend.Info = memoEditManual.EditValue as String;
 		}
 
 		private void checkEditEnable_CheckedChanged(object sender, EventArgs e)
 		{
 			pnControls.Enabled = checkEditEnable.Checked;
-			hyperLinkEditReset.Enabled = checkEditEnable.Checked;
-			if (!_loading)
+			checkEditOutputOnlyOnce.Enabled = false;
+			checkEditApplyAll.Enabled = false;
+			if (_loading) return;
+			if (checkEditEnable.Checked) return;
+			memoEditManual.EditValue = null;
+			checkEditOutputOnlyOnce.Checked = false;
+			checkEditApplyAll.Checked = false;
+		}
+
+		private void checkEditCase_CheckedChanged(object sender, EventArgs e)
+		{
+			memoEditAuto1.Enabled = checkEditAuto1.Checked;
+			memoEditAuto2.Enabled = checkEditAuto2.Checked;
+			memoEditAuto3.Enabled = checkEditAuto3.Checked;
+			memoEditManual.Enabled = checkEditManual.Checked;
+			if (!checkEditManual.Checked)
+				memoEditManual.EditValue = null;
+		}
+
+		private void memoEditAuto_EditValueChanged(object sender, EventArgs e)
+		{
+			var memoEdit = sender as MemoEdit;
+			if (memoEdit == null) return;
+			var vi = (MemoEditViewInfo)memoEdit.GetViewInfo();
+			using (var g = memoEdit.CreateGraphics())
 			{
-				if (checkEditEnable.Checked)
+				using (var cache = new GraphicsCache(g))
 				{
-					if ((checkEditAllowEdit.Checked || memoEditInfo.EditValue == null) && RequestDefaultInfo != null)
-						RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
+					var h = ((IHeightAdaptable)vi).CalcHeight(cache, vi.MaskBoxRect.Width);
+					var width = (int)g.MeasureString(memoEdit.Text, vi.Appearance.Font, 0, vi.Appearance.GetStringFormat()).Width + 6;
+					var args = new ObjectInfoArgs(cache, new Rectangle(0, 0, width, h), ObjectState.Normal);
+					var rect = vi.BorderPainter.CalcBoundsByClientRectangle(args);
+					memoEdit.Properties.ScrollBars = rect.Height > memoEdit.Height ? ScrollBars.Vertical : ScrollBars.None;
 				}
-				else
-					memoEditInfo.EditValue = null;
 			}
 		}
 
-		private void checkEditAllowEdit_CheckedChanged(object sender, EventArgs e)
+		private void memoEditManual_EditValueChanged(object sender, EventArgs e)
 		{
-			buttonXShowWebsites.Enabled = !checkEditAllowEdit.Checked;
-			buttonXShowProduct.Enabled = !checkEditAllowEdit.Checked;
-			buttonXShowDimensions.Enabled = !checkEditAllowEdit.Checked;
-			buttonXShowDates.Enabled = !checkEditAllowEdit.Checked;
-			buttonXShowImpressions.Enabled = !checkEditAllowEdit.Checked;
-			buttonXShowCPM.Enabled = !checkEditAllowEdit.Checked;
-			buttonXShowInvestment.Enabled = !checkEditAllowEdit.Checked;
-			memoEditInfo.Properties.ReadOnly = !checkEditAllowEdit.Checked;
-
-			if (!_loading && !checkEditAllowEdit.Checked)
-				if (RequestDefaultInfo != null)
-					RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
-		}
-
-		private void buttonXShow_CheckedChanged(object sender, EventArgs e)
-		{
-			UpdateWarning();
-			if (!_loading)
+			var memoEdit = sender as MemoEdit;
+			if (memoEdit == null) return;
+			if (memoEdit.EditValue == null)
 			{
-				if (RequestDefaultInfo != null)
-					RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
+				memoEdit.Font = new Font(memoEdit.Font.Name, memoEdit.Font.Size, FontStyle.Italic);
+				memoEdit.ForeColor = Color.DarkGray;
 			}
-		}
-
-		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
-		{
-			if (Utilities.Instance.ShowWarningQuestion("All Digital Product Info will be Refreshed") == DialogResult.Yes)
+			else
 			{
-				checkEditAllowEdit.Checked = false;
-				if (RequestDefaultInfo != null)
-					RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
+				memoEdit.Font = new Font(memoEdit.Font.Name, memoEdit.Font.Size, FontStyle.Regular);
+				memoEdit.ForeColor = Color.Black;
 			}
-			e.Handled = true;
-		}
-
-		private void layoutViewLogoGallery_CustomFieldValueStyle(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventArgs e)
-		{
-			var view = sender as LayoutView;
-			if (view.FocusedRowHandle == e.RowHandle)
-			{
-				e.Appearance.BackColor = Color.Orange;
-				e.Appearance.BackColor2 = Color.Orange;
-			}
-		}
-
-		private void checkEditEnableLogo_CheckedChanged(object sender, EventArgs e)
-		{
-			gridControlLogoGallery.Enabled = checkEditEnableLogo.Checked;
 		}
 	}
 }

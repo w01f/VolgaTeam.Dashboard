@@ -32,7 +32,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			{
 				laAdvertiser.Font = new Font(laAdvertiser.Font.FontFamily, laAdvertiser.Font.Size - 2, laAdvertiser.Font.Style);
 				laDecisionMaker.Font = new Font(laDecisionMaker.Font.FontFamily, laDecisionMaker.Font.Size - 2, laDecisionMaker.Font.Style);
-				laSlideHeader.Font = new Font(laSlideHeader.Font.FontFamily, laSlideHeader.Font.Size - 2, laSlideHeader.Font.Style);
 				checkEditFirstSlide.Font = new Font(checkEditFirstSlide.Font.FontFamily, checkEditFirstSlide.Font.Size - 2, checkEditFirstSlide.Font.Style);
 				checkEditPresentationDate.Font = new Font(checkEditPresentationDate.Font.FontFamily, checkEditPresentationDate.Font.Size - 2, checkEditPresentationDate.Font.Style);
 				checkEditSalesRep.Font = new Font(checkEditSalesRep.Font.FontFamily, checkEditSalesRep.Font.Size - 2, checkEditSalesRep.Font.Style);
@@ -65,6 +64,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			comboBoxEditSalesRep.Properties.Items.Clear();
 			comboBoxEditSalesRep.Properties.Items.AddRange(_users.Select(it => it.FullName).ToArray());
 
+			checkEditSolutionNew.EditValueChanged += EditValueChanged;
+			checkEditSolutionOld.EditValueChanged += EditValueChanged;
+
 			FormMain.Instance.FormClosed += (sender1, e1) =>
 			{
 				if (!SettingsNotSaved) return;
@@ -95,7 +97,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void LoadSavedState()
 		{
 			_allowToSave = false;
-
+			checkEditSolutionNew.Checked = ViewSettingsManager.Instance.CoverState.IsNewSolution;
+			checkEditSolutionOld.Checked = !ViewSettingsManager.Instance.CoverState.IsNewSolution;
 			if (string.IsNullOrEmpty(ViewSettingsManager.Instance.CoverState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
@@ -153,6 +156,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		private void SaveState()
 		{
+			ViewSettingsManager.Instance.CoverState.IsNewSolution = checkEditSolutionNew.Checked;
 			ViewSettingsManager.Instance.CoverState.SlideHeader = (comboBoxEditSlideHeader.EditValue as String) ?? String.Empty;
 			ViewSettingsManager.Instance.CoverState.AddAsPageOne = checkEditFirstSlide.Checked;
 			ViewSettingsManager.Instance.CoverState.ShowPresentationDate = checkEditPresentationDate.Checked;
@@ -163,10 +167,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			ViewSettingsManager.Instance.CoverState.Advertiser = (comboBoxEditAdvertiser.EditValue as String) ?? String.Empty;
 			ViewSettingsManager.Instance.CoverState.DecisionMaker = (comboBoxEditDecisionMaker.EditValue as String) ?? String.Empty;
 			ViewSettingsManager.Instance.CoverState.SalesRep = (comboBoxEditSalesRep.EditValue as String) ?? String.Empty;
+			Core.Dashboard.SettingsManager.Instance.SaveDashboardSettings();
 			SettingsNotSaved = false;
 		}
 
-		private void comboBoxEdit_EditValueChanged(object sender, EventArgs e)
+		private void EditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
 			UpdateOutputState();
@@ -242,7 +247,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				SettingsNotSaved = true;
 		}
 
-		protected override void SavedFiles_Click(object sender, EventArgs e)
+		public override void LoadClick()
 		{
 			using (var form = new FormSavedCover())
 			{
@@ -326,17 +331,17 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				Core.Common.ListManager.Instance.SaveDecisionMakers();
 			}
 
-			if (SettingsNotSaved)
-			{
-				SaveState();
-				ViewSettingsManager.Instance.CoverState.Save();
-				UpdateSavedFilesState();
-			}
+			if (!SettingsNotSaved) return;
+			SaveState();
+			ViewSettingsManager.Instance.CoverState.Save();
+			UpdateSavedFilesState();
 		}
 
 		public void TrackOutput()
 		{
-			AppManager.Instance.ActivityManager.AddActivity(new OutputActivity("Cover", Advertiser, null));
+			var otherOptions = new Dictionary<string, object>();
+			otherOptions.Add("IsNewSolution", ViewSettingsManager.Instance.CoverState.IsNewSolution);
+			AppManager.Instance.ActivityManager.AddActivity(new OutputActivity(SlideName, Advertiser, null, otherOptions));
 		}
 
 		public void Output()

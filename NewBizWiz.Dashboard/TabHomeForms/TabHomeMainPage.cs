@@ -112,7 +112,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			{
 				case SlideType.Cleanslate:
 					SlideCleanslate.SelectSlideType(selectedSlide);
+					SlideCleanslate.UpdateSavedFilesState();
 					SlideCleanslate.UpdateOutputState();
+					FormMain.Instance.LoadClick = SlideCleanslate.LoadClick;
 					FormMain.Instance.OutputClick = SlideCleanslate.Output;
 					FormMain.Instance.PreviewClick = SlideCleanslate.Preview;
 					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideCleanslate.Tooltip);
@@ -124,6 +126,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					SlideCover.SelectSlideType(selectedSlide);
 					SlideCover.UpdateSavedFilesState();
 					SlideCover.UpdateOutputState();
+					FormMain.Instance.LoadClick = SlideCover.LoadClick;
 					FormMain.Instance.OutputClick = SlideCover.Output;
 					FormMain.Instance.PreviewClick = SlideCover.Preview;
 					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideCover.Tooltip);
@@ -135,6 +138,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					SlideLeadoff.SelectSlideType(selectedSlide);
 					SlideLeadoff.UpdateSavedFilesState();
 					SlideLeadoff.UpdateOutputState();
+					FormMain.Instance.LoadClick = SlideLeadoff.LoadClick;
 					FormMain.Instance.OutputClick = SlideLeadoff.Output;
 					FormMain.Instance.PreviewClick = SlideLeadoff.Preview;
 					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideLeadoff.Tooltip);
@@ -146,6 +150,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					SlideClientGoals.SelectSlideType(selectedSlide);
 					SlideClientGoals.UpdateSavedFilesState();
 					SlideClientGoals.UpdateOutputState();
+					FormMain.Instance.LoadClick = SlideClientGoals.LoadClick;
 					FormMain.Instance.OutputClick = SlideClientGoals.Output;
 					FormMain.Instance.PreviewClick = SlideClientGoals.Preview;
 					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideClientGoals.Tooltip);
@@ -157,6 +162,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					SlideTargetCustomers.SelectSlideType(selectedSlide);
 					SlideTargetCustomers.UpdateSavedFilesState();
 					SlideTargetCustomers.UpdateOutputState();
+					FormMain.Instance.LoadClick = SlideTargetCustomers.LoadClick;
 					FormMain.Instance.OutputClick = SlideTargetCustomers.Output;
 					FormMain.Instance.PreviewClick = SlideTargetCustomers.Preview;
 					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideTargetCustomers.Tooltip);
@@ -168,6 +174,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					SlideSimpleSummary.SelectSlideType(selectedSlide);
 					SlideSimpleSummary.UpdateSavedFilesState();
 					SlideSimpleSummary.ResetTab();
+					FormMain.Instance.LoadClick = SlideSimpleSummary.LoadClick;
 					FormMain.Instance.OutputClick = SlideSimpleSummary.Output;
 					FormMain.Instance.PreviewClick = SlideSimpleSummary.Preview;
 					FormMain.Instance.superTooltip.SetSuperTooltip(FormMain.Instance.buttonItemHomeHelp, SlideSimpleSummary.Tooltip);

@@ -89,7 +89,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			using (var form = new FormDigital(digitalLegend))
 			{
 				form.ShowOutputOnce = false;
-				form.ShowLogo = true;
 				form.RequestDefaultInfo += (o, e) =>
 				{
 					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
@@ -182,114 +181,112 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		#region View Methods
 		public void SaveView()
 		{
-			if (AllowToSave)
-			{
-				LocalSchedule.ViewSettings.MultiGridViewSettings.ShowOptions = ShowOptions;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.SelectedOptionChapterIndex = SelectedOptionChapterIndex;
+			if (!AllowToSave) return;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.ShowOptions = ShowOptions;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.SelectedOptionChapterIndex = SelectedOptionChapterIndex;
 
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IDPosition = PositionID;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IndexPosition = PositionIndex;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DatePosition = PositionDate;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PCIPosition = PositionPCI;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.CostPosition = PositionCost;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.FinalCostPosition = PositionFinalCost;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DiscountPosition = PositionDiscount;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ColorPosition = PositionColor;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PublicationPosition = PositionPublication;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.SquarePosition = PositionSquare;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PageSizePosition = PositionPageSize;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PercentOfPagePosition = PositionPercentOfPage;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DimensionsPosition = PositionDimensions;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.MechanicalsPosition = PositionMechanicals;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.SectionPosition = PositionSection;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DeliveryPosition = PositionDelivery;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ReadershipPosition = PositionReadership;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DeadlinePosition = PositionDeadline;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IDPosition = PositionID;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IndexPosition = PositionIndex;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DatePosition = PositionDate;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PCIPosition = PositionPCI;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.CostPosition = PositionCost;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.FinalCostPosition = PositionFinalCost;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DiscountPosition = PositionDiscount;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ColorPosition = PositionColor;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PublicationPosition = PositionPublication;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.SquarePosition = PositionSquare;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PageSizePosition = PositionPageSize;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PercentOfPagePosition = PositionPercentOfPage;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DimensionsPosition = PositionDimensions;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.MechanicalsPosition = PositionMechanicals;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.SectionPosition = PositionSection;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DeliveryPosition = PositionDelivery;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ReadershipPosition = PositionReadership;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DeadlinePosition = PositionDeadline;
 
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionSquare = PositionColumnInchesInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionComments = PositionCommentsInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionDeadline = PositionDeadlineInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionDelivery = PositionDeliveryInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionDimensions = PositionDimensionsInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionMechanicals = PositionMechanicalsInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionPageSize = PositionPageSizeInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionPercentOfPage = PositionPercentOfPageInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionPublication = PositionPublicationInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionReadership = PositionReadershipInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionSection = PositionSectionInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionSquare = PositionColumnInchesInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionComments = PositionCommentsInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionDeadline = PositionDeadlineInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionDelivery = PositionDeliveryInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionDimensions = PositionDimensionsInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionMechanicals = PositionMechanicalsInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionPageSize = PositionPageSizeInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionPercentOfPage = PositionPercentOfPageInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionPublication = PositionPublicationInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionReadership = PositionReadershipInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.PositionSection = PositionSectionInPreview;
 
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowColor = _showColorHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowAdNotes = _showCommentsHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowCost = _showCostHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowDate = _showDateHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowDeadline = _showDeadlineHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowDelivery = _showDeliveryHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowDimensions = _showDimensionsHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowDiscount = _showDiscountHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowFinalCost = _showFinalCostHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowID = _showIDHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowIndex = _showIndexHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowMechanicals = _showMechanicalsHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowPageSize = _showPageSizeHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowPercentOfPage = _showPercentOfPageHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowPCI = _showPCIHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowPublication = _showPublicationHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowReadership = _showReadershipHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowSection = _showSectionHeader;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowSquare = _showSquareHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowColor = _showColorHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowAdNotes = _showCommentsHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowCost = _showCostHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowDate = _showDateHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowDeadline = _showDeadlineHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowDelivery = _showDeliveryHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowDimensions = _showDimensionsHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowDiscount = _showDiscountHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowFinalCost = _showFinalCostHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowID = _showIDHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowIndex = _showIndexHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowMechanicals = _showMechanicalsHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowPageSize = _showPageSizeHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowPercentOfPage = _showPercentOfPageHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowPCI = _showPCIHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowPublication = _showPublicationHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowReadership = _showReadershipHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowSection = _showSectionHeader;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ShowSquare = _showSquareHeader;
 
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowSquare = ShowColumnInchesInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowComments = ShowCommentsInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowDeadline = ShowDeadlineInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowDelivery = ShowDeliveryInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowDimensions = ShowDimensionsInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowMechanicals = ShowMechanicalsInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowPageSize = ShowPageSizeInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowPercentOfPage = ShowPercentOfPageInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowPublication = ShowPublicationInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowReadership = ShowReadershipInPreview;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowSection = ShowSectionInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowSquare = ShowColumnInchesInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowComments = ShowCommentsInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowDeadline = ShowDeadlineInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowDelivery = ShowDeliveryInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowDimensions = ShowDimensionsInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowMechanicals = ShowMechanicalsInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowPageSize = ShowPageSizeInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowPercentOfPage = ShowPercentOfPageInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowPublication = ShowPublicationInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowReadership = ShowReadershipInPreview;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.AdNotesState.ShowSection = ShowSectionInPreview;
 
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IDWidth = WidthID;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IndexWidth = WidthIndex;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DateWidth = WidthDate;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PCIWidth = WidthPCI;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.CostWidth = WidthCost;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.FinalCostWidth = WidthFinalCost;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DiscountWidth = WidthDiscount;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ColorWidth = WidthColor;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PublicationWidth = WidthPublication;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.SquareWidth = WidthSquare;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PageSizeWidth = WidthPageSize;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PercentOfPageWidth = WidthPercentOfPage;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DimensionsWidth = WidthDimensions;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.MechanicalsWidth = WidthMechanicals;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.SectionWidth = WidthSection;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DeliveryWidth = WidthDelivery;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ReadershipWidth = WidthReadership;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DeadlineWidth = WidthDeadline;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IDWidth = WidthID;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IndexWidth = WidthIndex;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DateWidth = WidthDate;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PCIWidth = WidthPCI;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.CostWidth = WidthCost;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.FinalCostWidth = WidthFinalCost;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DiscountWidth = WidthDiscount;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ColorWidth = WidthColor;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PublicationWidth = WidthPublication;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.SquareWidth = WidthSquare;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PageSizeWidth = WidthPageSize;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PercentOfPageWidth = WidthPercentOfPage;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DimensionsWidth = WidthDimensions;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.MechanicalsWidth = WidthMechanicals;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.SectionWidth = WidthSection;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DeliveryWidth = WidthDelivery;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ReadershipWidth = WidthReadership;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DeadlineWidth = WidthDeadline;
 
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IDCaption = CaptionID;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IndexCaption = CaptionIndex;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DateCaption = CaptionDate;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PCICaption = CaptionPCI;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.CostCaption = CaptionCost;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.FinalCostCaption = CaptionFinalCost;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DiscountCaption = CaptionDiscount;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ColorCaption = CaptionColor;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PublicationCaption = CaptionPublication;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.SquareCaption = CaptionSquare;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PageSizeCaption = CaptionPageSize;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PercentOfPageCaption = CaptionPercentOfPage;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DimensionsCaption = CaptionDimensions;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.MechanicalsCaption = CaptionMechanicals;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.SectionCaption = CaptionSection;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DeliveryCaption = CaptionDelivery;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ReadershipCaption = CaptionReadership;
-				LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DeadlineCaption = CaptionDeadline;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IDCaption = CaptionID;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.IndexCaption = CaptionIndex;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DateCaption = CaptionDate;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PCICaption = CaptionPCI;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.CostCaption = CaptionCost;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.FinalCostCaption = CaptionFinalCost;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DiscountCaption = CaptionDiscount;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ColorCaption = CaptionColor;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PublicationCaption = CaptionPublication;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.SquareCaption = CaptionSquare;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PageSizeCaption = CaptionPageSize;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.PercentOfPageCaption = CaptionPercentOfPage;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DimensionsCaption = CaptionDimensions;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.MechanicalsCaption = CaptionMechanicals;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.SectionCaption = CaptionSection;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DeliveryCaption = CaptionDelivery;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.ReadershipCaption = CaptionReadership;
+			LocalSchedule.ViewSettings.MultiGridViewSettings.GridColumnsState.DeadlineCaption = CaptionDeadline;
 
-				SettingsNotSaved = true;
-			}
+			SettingsNotSaved = true;
 		}
 
 		public void SetPreviewState()
@@ -479,46 +476,39 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void SetColumnsState()
 		{
-			gridViewPublications.ColumnPositionChanged -= gridViewPublications_ColumnPositionChanged;
-			gridColumnColorPricing.VisibleIndex = PositionColor != -1 ? PositionColor + 1 : -1;
-			gridColumnColumnInches.VisibleIndex = PositionSquare != -1 ? PositionSquare + 1 : -1;
-			gridColumnDate.VisibleIndex = PositionDate != -1 ? PositionDate + 1 : -1;
-			gridColumnDeadline.VisibleIndex = PositionDeadline != -1 ? PositionDeadline + 1 : -1;
-			gridColumnDelivery.VisibleIndex = PositionDelivery != -1 ? PositionDelivery + 1 : -1;
-			gridColumnDiscountRate.VisibleIndex = PositionDiscount != -1 ? PositionDiscount + 1 : -1;
-			gridColumnFinalRate.VisibleIndex = PositionFinalCost != -1 ? PositionFinalCost + 1 : -1;
-			gridColumnID.VisibleIndex = PositionID != -1 ? PositionID + 1 : -1;
-			gridColumnIndex.VisibleIndex = PositionIndex != -1 ? PositionIndex + 1 : -1;
-			gridColumnMechanicals.VisibleIndex = PositionMechanicals != -1 ? PositionMechanicals + 1 : -1;
-			gridColumnPageSize.VisibleIndex = PositionPageSize != -1 ? PositionPageSize + 1 : -1;
-			gridColumnPercentOfPage.VisibleIndex = PositionPercentOfPage != -1 ? PositionPercentOfPage + 1 : -1;
-			gridColumnPCIRate.VisibleIndex = PositionPCI != -1 ? PositionPCI + 1 : -1;
-			gridColumnADRate.VisibleIndex = PositionCost != -1 ? PositionCost + 1 : -1;
-			gridColumnPublication.VisibleIndex = PositionPublication != -1 ? PositionPublication + 1 : -1;
-			gridColumnDimensions.VisibleIndex = PositionDimensions != -1 ? PositionDimensions + 1 : -1;
-			gridColumnReadership.VisibleIndex = PositionReadership != -1 ? PositionReadership + 1 : -1;
-			gridColumnSection.VisibleIndex = PositionSection != -1 ? PositionSection + 1 : -1;
-
-
+			gridViewPublications.BeginUpdate();
 			gridViewPublications.OptionsView.ShowPreview = _showCommentsHeader;
-			gridColumnColorPricing.Visible = _showColorHeader;
-			gridColumnColumnInches.Visible = _showSquareHeader;
-			gridColumnDate.Visible = _showDateHeader;
-			gridColumnDeadline.Visible = _showDeadlineHeader;
-			gridColumnDelivery.Visible = _showDeliveryHeader;
-			gridColumnDiscountRate.Visible = _showDiscountHeader;
-			gridColumnFinalRate.Visible = _showFinalCostHeader;
-			gridColumnID.Visible = _showIDHeader;
-			gridColumnIndex.Visible = _showIndexHeader;
-			gridColumnMechanicals.Visible = _showMechanicalsHeader;
-			gridColumnPageSize.Visible = _showPageSizeHeader;
-			gridColumnPercentOfPage.Visible = _showPercentOfPageHeader;
-			gridColumnPCIRate.Visible = _showPCIHeader;
-			gridColumnADRate.Visible = _showCostHeader;
-			gridColumnPublication.Visible = _showPublicationHeader;
-			gridColumnDimensions.Visible = _showDimensionsHeader;
-			gridColumnReadership.Visible = _showReadershipHeader;
-			gridColumnSection.Visible = _showSectionHeader;
+
+			gridViewPublications.ColumnPositionChanged -= gridViewPublications_ColumnPositionChanged;
+			var columns = new List<OrderedItem>();
+			columns.Add(new OrderedItem { Item = gridColumnColorPricing, Order = _showColorHeader && PositionColor != -1 ? PositionColor + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnColumnInches, Order = _showSquareHeader && PositionSquare != -1 ? PositionSquare + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnDate, Order = _showDateHeader && PositionDate != -1 ? PositionDate + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnDeadline, Order = _showDeadlineHeader && PositionDeadline != -1 ? PositionDeadline + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnDelivery, Order = _showDeliveryHeader && PositionDelivery != -1 ? PositionDelivery + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnDiscountRate, Order = _showDiscountHeader && PositionDiscount != -1 ? PositionDiscount + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnFinalRate, Order = _showFinalCostHeader && PositionFinalCost != -1 ? PositionFinalCost + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnID, Order = _showIDHeader && PositionID != -1 ? PositionID + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnIndex, Order = _showIndexHeader && PositionIndex != -1 ? PositionIndex + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnMechanicals, Order = _showMechanicalsHeader && PositionMechanicals != -1 ? PositionMechanicals + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnPageSize, Order = _showPageSizeHeader && PositionPageSize != -1 ? PositionPageSize + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnPercentOfPage, Order = _showPercentOfPageHeader && PositionPercentOfPage != -1 ? PositionPercentOfPage + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnPCIRate, Order = _showPCIHeader && PositionPCI != -1 ? PositionPCI + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnADRate, Order = _showCostHeader && PositionCost != -1 ? PositionCost + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnPublication, Order = _showPublicationHeader && PositionPublication != -1 ? PositionPublication + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnDimensions, Order = _showDimensionsHeader && PositionDimensions != -1 ? PositionDimensions + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnReadership, Order = _showReadershipHeader && PositionReadership != -1 ? PositionReadership + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnSection, Order = _showSectionHeader && PositionSection != -1 ? PositionSection + 1 : -1 });
+			var realPosition = 1;
+			foreach (var column in columns.Where(c => c.Order != -1).OrderBy(c => c.Order))
+			{
+				column.Order = realPosition;
+				realPosition++;
+			}
+			foreach (var column in columns)
+				((GridColumn)column.Item).VisibleIndex = -1;
+			foreach (var column in columns.OrderBy(c => c.Order))
+				((GridColumn)column.Item).VisibleIndex = column.Order;
 			gridViewPublications.ColumnPositionChanged += gridViewPublications_ColumnPositionChanged;
 
 			gridViewPublications.ColumnWidthChanged -= gridViewPublications_ColumnWidthChanged;
@@ -563,6 +553,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 			SetPreviewState();
 			gridViewPublications_ColumnPositionChanged(null, null);
+			gridViewPublications.EndUpdate();
 		}
 		#endregion
 
@@ -623,65 +614,61 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		#region Grid Events
 		private void gridViewPublications_ColumnPositionChanged(object sender, EventArgs e)
 		{
-			if (AllowToSave)
-			{
-				PositionCost = gridColumnADRate.VisibleIndex != -1 ? gridColumnADRate.VisibleIndex - 1 : -1;
-				PositionColor = gridColumnColorPricing.VisibleIndex != -1 ? gridColumnColorPricing.VisibleIndex - 1 : -1;
-				PositionSquare = gridColumnColumnInches.VisibleIndex != -1 ? gridColumnColumnInches.VisibleIndex - 1 : -1;
-				PositionDate = gridColumnDate.VisibleIndex != -1 ? gridColumnDate.VisibleIndex - 1 : -1;
-				PositionDeadline = gridColumnDeadline.VisibleIndex != -1 ? gridColumnDeadline.VisibleIndex - 1 : -1;
-				PositionDelivery = gridColumnDelivery.VisibleIndex != -1 ? gridColumnDelivery.VisibleIndex - 1 : -1;
-				PositionDimensions = gridColumnDimensions.VisibleIndex != -1 ? gridColumnDimensions.VisibleIndex - 1 : -1;
-				PositionDiscount = gridColumnDiscountRate.VisibleIndex != -1 ? gridColumnDiscountRate.VisibleIndex - 1 : -1;
-				PositionFinalCost = gridColumnFinalRate.VisibleIndex != -1 ? gridColumnFinalRate.VisibleIndex - 1 : -1;
-				PositionID = gridColumnID.VisibleIndex != -1 ? gridColumnID.VisibleIndex - 1 : -1;
-				PositionIndex = gridColumnIndex.VisibleIndex != -1 ? gridColumnIndex.VisibleIndex - 1 : -1;
-				PositionMechanicals = gridColumnMechanicals.VisibleIndex != -1 ? gridColumnMechanicals.VisibleIndex - 1 : -1;
-				PositionPageSize = gridColumnPageSize.VisibleIndex != -1 ? gridColumnPageSize.VisibleIndex - 1 : -1;
-				PositionPercentOfPage = gridColumnPercentOfPage.VisibleIndex != -1 ? gridColumnPercentOfPage.VisibleIndex - 1 : -1;
-				PositionPCI = gridColumnPCIRate.VisibleIndex != -1 ? gridColumnPCIRate.VisibleIndex - 1 : -1;
-				PositionPublication = gridColumnPublication.VisibleIndex != -1 ? gridColumnPublication.VisibleIndex - 1 : -1;
-				PositionReadership = gridColumnReadership.VisibleIndex != -1 ? gridColumnReadership.VisibleIndex - 1 : -1;
-				PositionSection = gridColumnSection.VisibleIndex != -1 ? gridColumnSection.VisibleIndex - 1 : -1;
-				SaveView();
-			}
+			if (!AllowToSave) return;
+			PositionCost = gridColumnADRate.VisibleIndex != -1 ? gridColumnADRate.VisibleIndex - 1 : -1;
+			PositionColor = gridColumnColorPricing.VisibleIndex != -1 ? gridColumnColorPricing.VisibleIndex - 1 : -1;
+			PositionSquare = gridColumnColumnInches.VisibleIndex != -1 ? gridColumnColumnInches.VisibleIndex - 1 : -1;
+			PositionDate = gridColumnDate.VisibleIndex != -1 ? gridColumnDate.VisibleIndex - 1 : -1;
+			PositionDeadline = gridColumnDeadline.VisibleIndex != -1 ? gridColumnDeadline.VisibleIndex - 1 : -1;
+			PositionDelivery = gridColumnDelivery.VisibleIndex != -1 ? gridColumnDelivery.VisibleIndex - 1 : -1;
+			PositionDimensions = gridColumnDimensions.VisibleIndex != -1 ? gridColumnDimensions.VisibleIndex - 1 : -1;
+			PositionDiscount = gridColumnDiscountRate.VisibleIndex != -1 ? gridColumnDiscountRate.VisibleIndex - 1 : -1;
+			PositionFinalCost = gridColumnFinalRate.VisibleIndex != -1 ? gridColumnFinalRate.VisibleIndex - 1 : -1;
+			PositionID = gridColumnID.VisibleIndex != -1 ? gridColumnID.VisibleIndex - 1 : -1;
+			PositionIndex = gridColumnIndex.VisibleIndex != -1 ? gridColumnIndex.VisibleIndex - 1 : -1;
+			PositionMechanicals = gridColumnMechanicals.VisibleIndex != -1 ? gridColumnMechanicals.VisibleIndex - 1 : -1;
+			PositionPageSize = gridColumnPageSize.VisibleIndex != -1 ? gridColumnPageSize.VisibleIndex - 1 : -1;
+			PositionPercentOfPage = gridColumnPercentOfPage.VisibleIndex != -1 ? gridColumnPercentOfPage.VisibleIndex - 1 : -1;
+			PositionPCI = gridColumnPCIRate.VisibleIndex != -1 ? gridColumnPCIRate.VisibleIndex - 1 : -1;
+			PositionPublication = gridColumnPublication.VisibleIndex != -1 ? gridColumnPublication.VisibleIndex - 1 : -1;
+			PositionReadership = gridColumnReadership.VisibleIndex != -1 ? gridColumnReadership.VisibleIndex - 1 : -1;
+			PositionSection = gridColumnSection.VisibleIndex != -1 ? gridColumnSection.VisibleIndex - 1 : -1;
+			SaveView();
 		}
 
 		private void gridViewPublications_ColumnWidthChanged(object sender, ColumnEventArgs e)
 		{
-			if (AllowToSave)
-			{
-				WidthCost = gridColumnADRate.Width;
-				WidthColor = gridColumnColorPricing.Width;
-				WidthSquare = gridColumnColumnInches.Width;
-				WidthDate = gridColumnDate.Width;
-				WidthDeadline = gridColumnDeadline.Width;
-				WidthDelivery = gridColumnDelivery.Width;
-				WidthDimensions = gridColumnDimensions.Width;
-				WidthDiscount = gridColumnDiscountRate.Width;
-				WidthFinalCost = gridColumnFinalRate.Width;
-				WidthID = gridColumnID.Width;
-				WidthIndex = gridColumnIndex.Width;
-				WidthMechanicals = gridColumnMechanicals.Width;
-				WidthPageSize = gridColumnPageSize.Width;
-				WidthPercentOfPage = gridColumnPercentOfPage.Width;
-				WidthPCI = gridColumnPCIRate.Width;
-				WidthPublication = gridColumnPublication.Width;
-				WidthReadership = gridColumnReadership.Width;
-				WidthSection = gridColumnSection.Width;
-				SaveView();
-			}
+			if (!AllowToSave) return;
+			WidthCost = gridColumnADRate.Width;
+			WidthColor = gridColumnColorPricing.Width;
+			WidthSquare = gridColumnColumnInches.Width;
+			WidthDate = gridColumnDate.Width;
+			WidthDeadline = gridColumnDeadline.Width;
+			WidthDelivery = gridColumnDelivery.Width;
+			WidthDimensions = gridColumnDimensions.Width;
+			WidthDiscount = gridColumnDiscountRate.Width;
+			WidthFinalCost = gridColumnFinalRate.Width;
+			WidthID = gridColumnID.Width;
+			WidthIndex = gridColumnIndex.Width;
+			WidthMechanicals = gridColumnMechanicals.Width;
+			WidthPageSize = gridColumnPageSize.Width;
+			WidthPercentOfPage = gridColumnPercentOfPage.Width;
+			WidthPCI = gridColumnPCIRate.Width;
+			WidthPublication = gridColumnPublication.Width;
+			WidthReadership = gridColumnReadership.Width;
+			WidthSection = gridColumnSection.Width;
+			SaveView();
 		}
 
 		private void gridViewPublication_DoubleClick(object sender, EventArgs e)
 		{
 			var args = (e as DXMouseEventArgs);
 			var view = sender as GridView;
-			GridHitInfo hi = view.CalcHitInfo(args.Location);
+			var hi = view.CalcHitInfo(args.Location);
 			if (hi.InColumn)
 			{
 				var vi = view.GetViewInfo() as GridViewInfo;
-				Rectangle bounds = vi.ColumnsInfo[hi.Column].Bounds;
+				var bounds = vi.ColumnsInfo[hi.Column].Bounds;
 				bounds.Width -= 10;
 				bounds.Height -= 3;
 				bounds.Y += 3;
@@ -850,11 +837,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public Image DigitalLegendLogo
 		{
-			get
-			{
-				if (!DigitalLegend.Enabled) return null;
-				return DigitalLegend.Logo;
-			}
+			get { return null; }
 		}
 
 		public string[] AdSpecs

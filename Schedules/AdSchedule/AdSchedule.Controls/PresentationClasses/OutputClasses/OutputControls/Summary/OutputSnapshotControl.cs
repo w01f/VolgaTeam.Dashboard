@@ -592,7 +592,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				form.ShowOutputOnce = LocalSchedule.PrintProducts.Count(x => x.Inserts.Any()) - RecordsPerSlide > 0;
 				form.OutputOnlyFirstSlide = true;
-				form.ShowLogo = false;
 				form.RequestDefaultInfo += (o, e) =>
 				{
 					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);

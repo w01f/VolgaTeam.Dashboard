@@ -69,6 +69,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			comboBoxEditGoal5.Properties.Items.Clear();
 			comboBoxEditGoal5.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Goals);
 
+			checkEditSolutionNew.EditValueChanged += EditValueChanged;
+			checkEditSolutionOld.EditValueChanged += EditValueChanged;
+
 			FormMain.Instance.FormClosed += (sender1, e1) =>
 			{
 				if (!SettingsNotSaved) return;
@@ -99,6 +102,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void LoadSavedState()
 		{
 			_allowToSave = false;
+			checkEditSolutionNew.Checked = ViewSettingsManager.Instance.ClientGoalsState.IsNewSolution;
+			checkEditSolutionOld.Checked = !ViewSettingsManager.Instance.ClientGoalsState.IsNewSolution;
 			if (string.IsNullOrEmpty(ViewSettingsManager.Instance.ClientGoalsState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)
@@ -123,6 +128,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		private void SaveState()
 		{
+			ViewSettingsManager.Instance.ClientGoalsState.IsNewSolution = checkEditSolutionNew.Checked;
 			ViewSettingsManager.Instance.ClientGoalsState.SlideHeader = comboBoxEditSlideHeader.EditValue != null ? comboBoxEditSlideHeader.EditValue.ToString() : string.Empty;
 			ViewSettingsManager.Instance.ClientGoalsState.Goal1 = comboBoxEditGoal1.EditValue != null ? comboBoxEditGoal1.EditValue.ToString() : string.Empty;
 			ViewSettingsManager.Instance.ClientGoalsState.Goal2 = comboBoxEditGoal2.EditValue != null ? comboBoxEditGoal2.EditValue.ToString() : string.Empty;
@@ -132,7 +138,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SettingsNotSaved = false;
 		}
 
-		protected override void SavedFiles_Click(object sender, EventArgs e)
+		public override void LoadClick()
 		{
 			using (var form = new FormSavedClentGoals())
 			{
@@ -142,7 +148,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 		}
 
-		private void comboBoxEditGoal_EditValueChanged(object sender, EventArgs e)
+		private void EditValueChanged(object sender, EventArgs e)
 		{
 			UpdateOutputState();
 			if (_allowToSave)
@@ -211,9 +217,17 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			UpdateSavedFilesState();
 		}
 
+		public void TrackOutput()
+		{
+			var otherOptions = new Dictionary<string, object>();
+			otherOptions.Add("IsNewSolution", ViewSettingsManager.Instance.ClientGoalsState.IsNewSolution);
+			AppManager.Instance.ActivityManager.AddActivity(new OutputActivity(SlideName, null, null, otherOptions));
+		}
+
 		public void Output()
 		{
 			SaveChanges();
+			TrackOutput();
 			using (var form = new FormProgress())
 			{
 				form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
@@ -240,7 +254,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater))
+				using (var formPreview = new FormPreview(FormMain.Instance, DashboardPowerPointHelper.Instance, AppManager.Instance.HelpManager, AppManager.Instance.ShowFloater, TrackOutput))
 				{
 					formPreview.Text = "Preview Slides";
 					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

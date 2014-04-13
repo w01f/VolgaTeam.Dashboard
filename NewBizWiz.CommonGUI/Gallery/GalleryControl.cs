@@ -26,6 +26,7 @@ namespace NewBizWiz.CommonGUI.Gallery
 		private int _idCommandDownload;
 		private int _idCommandEdit;
 		private int _zoomIndex;
+		private readonly List<ButtonItem> _browseModes = new List<ButtonItem>();
 
 		protected GalleryControl()
 		{
@@ -38,10 +39,6 @@ namespace NewBizWiz.CommonGUI.Gallery
 			ViewMode.CheckedChanged += ViewMode_CheckedChanged;
 			EditMode.Click += ViewMode_Click;
 			EditMode.CheckedChanged += ViewMode_CheckedChanged;
-			ScreenshotsMode.Click += BrowseMode_Click;
-			AdSpecsMode.Click += BrowseMode_Click;
-			ScreenshotsMode.CheckedChanged += BrowseMode_CheckedChanged;
-			AdSpecsMode.CheckedChanged += BrowseMode_CheckedChanged;
 			SectionsList.EditValueChanged += SectionChanged;
 			GroupsList.EditValueChanged += GroupChanged;
 			ImageSelect.Click += ImageSelect_Click;
@@ -53,12 +50,12 @@ namespace NewBizWiz.CommonGUI.Gallery
 
 		#region Controls
 		public abstract GalleryManager Manager { get; }
+		public abstract RibbonPanel Panel { get; }
 		public abstract RibbonBar BrowseBar { get; }
 		public abstract RibbonBar ImageBar { get; }
 		public abstract RibbonBar ZoomBar { get; }
 		public abstract RibbonBar CopyBar { get; }
-		public abstract ButtonItem ScreenshotsMode { get; }
-		public abstract ButtonItem AdSpecsMode { get; }
+		public abstract ItemContainer BrowseModeContainer { get; }
 		public abstract ButtonItem ViewMode { get; }
 		public abstract ButtonItem EditMode { get; }
 		public abstract ButtonItem ImageSelect { get; }
@@ -75,34 +72,52 @@ namespace NewBizWiz.CommonGUI.Gallery
 			if (_initialized) return;
 			_initialized = true;
 			ViewMode_CheckedChanged(null, EventArgs.Empty);
-			ScreenshotsMode.Checked = true;
-			AdSpecsMode.Checked = false;
+			InitBrowseMode();
 			ViewMode_Click(ViewMode, EventArgs.Empty);
+		}
+
+		private void InitBrowseMode()
+		{
+			_browseModes.Clear();
+			BrowseModeContainer.SubItems.Clear();
+			foreach (var sourceUrl in Manager.SourceUrls)
+			{
+				var button = new ButtonItem();
+				button.Text = sourceUrl.Name;
+				button.Tag = sourceUrl.Url;
+				button.Click += BrowseMode_Click;
+				button.CheckedChanged += BrowseMode_CheckedChanged;
+				_browseModes.Add(button);
+				BrowseModeContainer.SubItems.Add(button);
+			}
+			BrowseModeContainer.Visible = _browseModes.Count > 1;
+			if (_browseModes.Count > 2)
+				BrowseModeContainer.ItemSpacing = 1;
+			if (_browseModes.Any())
+				_browseModes.First().Checked = true;
+			BrowseBar.RecalcLayout();
+			Panel.PerformLayout();
 		}
 
 		private void UpdateBrowseMode()
 		{
 			Navigate(String.Empty);
 			LoadImage(null);
-			ScreenshotsMode.Enabled = false;
-			AdSpecsMode.Enabled = false;
+			_browseModes.ForEach(b => b.Enabled = false);
 			ShowProgress();
 			SectionsList.EditValue = null;
+			var selectedMode = _browseModes.FirstOrDefault(b => b.Checked);
 			var sections = new List<SnapshotCollection>();
 			var backWorker = new BackgroundWorker();
 			backWorker.DoWork += (o, e) =>
 			{
-				if (ScreenshotsMode.Checked)
-					sections.AddRange(Manager.GetSnapshots());
-				else if (AdSpecsMode.Checked)
-					sections.AddRange(Manager.GetAdSpecs());
+				sections.AddRange(Manager.GetSnapshots(selectedMode.Tag as String));
 			};
 			backWorker.RunWorkerCompleted += (o, e) =>
 			{
 				Application.DoEvents();
 				HideProgress();
-				ScreenshotsMode.Enabled = true;
-				AdSpecsMode.Enabled = true;
+				_browseModes.ForEach(b => b.Enabled = true);
 				SectionsList.Properties.Items.Clear();
 				SectionsList.Properties.Items.AddRange(sections);
 				SectionsList.Enabled = sections.Any();
@@ -223,8 +238,7 @@ namespace NewBizWiz.CommonGUI.Gallery
 			var button = sender as ButtonItem;
 			if (button == null) return;
 			if (button.Checked) return;
-			ScreenshotsMode.Checked = false;
-			AdSpecsMode.Checked = false;
+			_browseModes.ForEach(b => b.Checked = false);
 			button.Checked = true;
 		}
 

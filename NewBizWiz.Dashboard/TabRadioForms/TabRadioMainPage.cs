@@ -31,23 +31,9 @@ namespace NewBizWiz.Dashboard.TabRadioForms
 			Control parent = Parent;
 			Parent = null;
 			Controls.Clear();
-			if (FormMain.Instance.buttonItemRadioScheduleBuilder != null && FormMain.Instance.buttonItemRadioScheduleBuilder.Checked)
-			{
-				RadioScheduleBuilderControl.Instance.LoadSchedules();
-				FormMain.Instance.OutsideClick = RadioScheduleBuilderControl.Instance.OutsideClick;
-				Controls.Add(RadioScheduleBuilderControl.Instance);
-			}
-			else
-			{
-				var borderedControl = new WhiteBorderControl();
-				Controls.Add(borderedControl);
-				Control parentSecond = borderedControl.panelExTop.Parent;
-				borderedControl.panelExTop.Parent = null;
-				borderedControl.panelExTop.Controls.Clear();
-				borderedControl.OutputClick = null;
-
-				borderedControl.panelExTop.Parent = parentSecond;
-			}
+			RadioScheduleBuilderControl.Instance.LoadSchedules();
+			FormMain.Instance.OutsideClick = RadioScheduleBuilderControl.Instance.OutsideClick;
+			Controls.Add(RadioScheduleBuilderControl.Instance);
 			Parent = parent;
 		}
 	}

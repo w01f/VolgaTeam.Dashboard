@@ -23,7 +23,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 			ThemeManager = new ThemeManager(Path.Combine(Core.Common.SettingsManager.Instance.ThemeCollectionPath, Core.Common.SettingsManager.Instance.SlideMasterFolder));
 			_themeSaveHelper = new ThemeSaveHelper(ThemeManager);
 			ActivityManager = new ActivityManager("web_pro");
-			GalleryManager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery.xml"));
+			Gallery1Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery1.xml"));
+			Gallery2Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery2.xml"));
 			LoadLocalSettings();
 		}
 
@@ -39,7 +40,8 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 		public ThemeManager ThemeManager { get; private set; }
 		public ActivityManager ActivityManager { get; private set; }
 		public RateCardManager RateCardManager { get; private set; }
-		public GalleryManager GalleryManager { get; private set; }
+		public GalleryManager Gallery1Manager { get; private set; }
+		public GalleryManager Gallery2Manager { get; private set; }
 
 		public string GetSelectedTheme(SlideType slideType)
 		{

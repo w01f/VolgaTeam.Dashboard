@@ -32,9 +32,42 @@ namespace NewBizWiz.Core.Dashboard
 		}
 	}
 
-	public class CoverState
+	public abstract class BaseSlideState
+	{
+		public bool IsNewSolution { get; set; }
+
+		protected BaseSlideState()
+		{
+			IsNewSolution = true;
+		}
+
+		protected virtual string Serialize()
+		{
+			var result = new StringBuilder();
+			result.AppendLine(@"<IsNewSolution>" + IsNewSolution + @"</IsNewSolution>");
+			return result.ToString();
+		}
+
+		protected virtual void Deserialize(XmlNode node)
+		{
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "IsNewSolution":
+						bool tempBool;
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							IsNewSolution = tempBool;
+						break;
+				}
+			}
+		}
+	}
+
+	public class CoverState : BaseSlideState
 	{
 		public CoverState()
+			: base()
 		{
 			ShowSalesRep = false;
 			ShowPresentationDate = false;
@@ -54,7 +87,6 @@ namespace NewBizWiz.Core.Dashboard
 		public bool ShowSalesRep { get; set; }
 		public bool ShowPresentationDate { get; set; }
 
-
 		public string SlideHeader { get; set; }
 		public string Advertiser { get; set; }
 		public string DecisionMaker { get; set; }
@@ -62,10 +94,10 @@ namespace NewBizWiz.Core.Dashboard
 		public DateTime PresentationDate { get; set; }
 		public Quote Quote { get; set; }
 
-		private string Serialize()
+		protected override string Serialize()
 		{
 			var result = new StringBuilder();
-
+			result.AppendLine(base.Serialize());
 			result.AppendLine(@"<AddAsPageOne>" + AddAsPageOne + @"</AddAsPageOne>");
 			result.AppendLine(@"<UseGenericCover>" + UseGenericCover + @"</UseGenericCover>");
 			result.AppendLine(@"<ShowSalesRep>" + ShowSalesRep + @"</ShowSalesRep>");
@@ -80,15 +112,13 @@ namespace NewBizWiz.Core.Dashboard
 			return result.ToString();
 		}
 
-		private void Deserialize(XmlNode node)
+		protected override void Deserialize(XmlNode node)
 		{
-			bool tempBool = false;
-			DateTime tempDateTime = DateTime.Now;
-
+			base.Deserialize(node);
 			PresentationDate = DateTime.MinValue;
-
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
+				bool tempBool;
 				switch (childNode.Name)
 				{
 					case "AddAsPageOne":
@@ -120,6 +150,7 @@ namespace NewBizWiz.Core.Dashboard
 						SalesRep = childNode.InnerText;
 						break;
 					case "PresentationDate":
+						DateTime tempDateTime;
 						if (DateTime.TryParse(childNode.InnerText, out tempDateTime))
 							PresentationDate = tempDateTime;
 						break;
@@ -195,9 +226,10 @@ namespace NewBizWiz.Core.Dashboard
 		}
 	}
 
-	public class LeadoffStatementState
+	public class LeadoffStatementState : BaseSlideState
 	{
 		public LeadoffStatementState()
+			: base()
 		{
 			ShowStatement1 = true;
 			ShowStatement2 = false;
@@ -217,10 +249,10 @@ namespace NewBizWiz.Core.Dashboard
 		public string Statement3 { get; set; }
 
 
-		private string Serialize()
+		protected override string Serialize()
 		{
 			var result = new StringBuilder();
-
+			result.AppendLine(base.Serialize());
 			result.AppendLine(@"<ShowStatement1>" + ShowStatement1 + @"</ShowStatement1>");
 			result.AppendLine(@"<ShowStatement2>" + ShowStatement2 + @"</ShowStatement2>");
 			result.AppendLine(@"<ShowStatement3>" + ShowStatement3 + @"</ShowStatement3>");
@@ -228,15 +260,15 @@ namespace NewBizWiz.Core.Dashboard
 			result.AppendLine(@"<Statement1>" + Statement1.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Statement1>");
 			result.AppendLine(@"<Statement2>" + Statement2.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Statement2>");
 			result.AppendLine(@"<Statement3>" + Statement3.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Statement3>");
-
 			return result.ToString();
 		}
 
-		private void Deserialize(XmlNode node)
+		protected override void Deserialize(XmlNode node)
 		{
-			bool tempBool = false;
+			base.Deserialize(node);
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
+				bool tempBool;
 				switch (childNode.Name)
 				{
 					case "ShowStatement1":
@@ -303,9 +335,10 @@ namespace NewBizWiz.Core.Dashboard
 		}
 	}
 
-	public class ClientGoalsState
+	public class ClientGoalsState : BaseSlideState
 	{
 		public ClientGoalsState()
+			: base()
 		{
 			SlideHeader = string.Empty;
 			Goal1 = string.Empty;
@@ -323,22 +356,22 @@ namespace NewBizWiz.Core.Dashboard
 		public string Goal5 { get; set; }
 
 
-		private string Serialize()
+		protected override string Serialize()
 		{
 			var result = new StringBuilder();
-
+			result.AppendLine(base.Serialize());
 			result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
 			result.AppendLine(@"<Goal1>" + Goal1.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Goal1>");
 			result.AppendLine(@"<Goal2>" + Goal2.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Goal2>");
 			result.AppendLine(@"<Goal3>" + Goal3.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Goal3>");
 			result.AppendLine(@"<Goal4>" + Goal4.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Goal4>");
 			result.AppendLine(@"<Goal5>" + Goal5.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Goal5>");
-
 			return result.ToString();
 		}
 
-		private void Deserialize(XmlNode node)
+		protected override void Deserialize(XmlNode node)
 		{
+			base.Deserialize(node);
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
 				switch (childNode.Name)
@@ -367,12 +400,11 @@ namespace NewBizWiz.Core.Dashboard
 
 		public void Load(string filePath)
 		{
-			XmlNode node;
 			if (File.Exists(filePath))
 			{
 				var document = new XmlDocument();
 				document.Load(filePath);
-				node = document.SelectSingleNode(@"/ClientGoalsState");
+				var node = document.SelectSingleNode(@"/ClientGoalsState");
 				if (node != null)
 					Deserialize(node);
 			}
@@ -380,7 +412,7 @@ namespace NewBizWiz.Core.Dashboard
 
 		public void Save()
 		{
-			DateTime now = DateTime.Now;
+			var now = DateTime.Now;
 			if (!Directory.Exists(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals")))
 				Directory.CreateDirectory(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals"));
 			string fileName = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals", "needsgoals-" + now.ToString("MMddyy") + "-" + now.ToString("hmmsstt") + ".xml");
@@ -401,9 +433,10 @@ namespace NewBizWiz.Core.Dashboard
 		}
 	}
 
-	public class TargetCustomersState
+	public class TargetCustomersState : BaseSlideState
 	{
 		public TargetCustomersState()
+			: base()
 		{
 			SlideHeader = string.Empty;
 			Demo = new List<string>();
@@ -417,10 +450,10 @@ namespace NewBizWiz.Core.Dashboard
 		public List<string> Geographic { get; set; }
 
 
-		private string Serialize()
+		protected override string Serialize()
 		{
 			var result = new StringBuilder();
-
+			result.AppendLine(base.Serialize());
 			result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
 			result.AppendLine(@"<Demo>");
 			foreach (string demo in Demo)
@@ -434,12 +467,12 @@ namespace NewBizWiz.Core.Dashboard
 			foreach (string geographic in Geographic)
 				result.AppendLine(@"<Value>" + geographic.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Value>");
 			result.AppendLine(@"</Geographic>");
-
 			return result.ToString();
 		}
 
-		private void Deserialize(XmlNode node)
+		protected override void Deserialize(XmlNode node)
 		{
+			base.Deserialize(node);
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
 				switch (childNode.Name)
@@ -502,9 +535,10 @@ namespace NewBizWiz.Core.Dashboard
 		}
 	}
 
-	public class SimpleSummaryState
+	public class SimpleSummaryState : BaseSlideState
 	{
 		public SimpleSummaryState()
+			: base()
 		{
 			ShowAdvertiser = true;
 			ShowDecisionMaker = true;
@@ -541,10 +575,10 @@ namespace NewBizWiz.Core.Dashboard
 
 		public List<SimpleSummaryItemState> ItemsState { get; set; }
 
-		private string Serialize()
+		protected override string Serialize()
 		{
 			var result = new StringBuilder();
-
+			result.AppendLine(base.Serialize());
 			result.AppendLine(@"<ShowAdvertiser>" + ShowAdvertiser + @"</ShowAdvertiser>");
 			result.AppendLine(@"<ShowDecisionMaker>" + ShowDecisionMaker + @"</ShowDecisionMaker>");
 			result.AppendLine(@"<ShowPresentationDate>" + ShowPresentationDate + @"</ShowPresentationDate>");
@@ -567,12 +601,12 @@ namespace NewBizWiz.Core.Dashboard
 			foreach (SimpleSummaryItemState item in ItemsState)
 				result.AppendLine(@"<Item>" + item.Serialize() + @"</Item>");
 			result.AppendLine(@"</Items>");
-
 			return result.ToString();
 		}
 
-		private void Deserialize(XmlNode node)
+		protected override void Deserialize(XmlNode node)
 		{
+			base.Deserialize(node);
 			PresentationDate = DateTime.MinValue;
 			FlightDatesStart = DateTime.MinValue;
 			FlightDatesEnd = DateTime.MinValue;

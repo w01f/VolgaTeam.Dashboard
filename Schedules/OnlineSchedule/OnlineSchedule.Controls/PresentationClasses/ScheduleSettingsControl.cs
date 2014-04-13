@@ -75,8 +75,10 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				&& control != Controller.Instance.HomeFlightDatesStart
 				&& control != Controller.Instance.HomePresentationDate
 				&& control != Controller.Instance.RateCardCombo
-				&& control != Controller.Instance.GallerySections
-				&& control != Controller.Instance.GalleryGroups)
+				&& control != Controller.Instance.Gallery1Sections
+				&& control != Controller.Instance.Gallery1Groups
+				&& control != Controller.Instance.Gallery2Sections
+				&& control != Controller.Instance.Gallery2Groups)
 			{
 				control.Click += CloseActiveEditorsonOutSideClick;
 				foreach (Control childControl in control.Controls)

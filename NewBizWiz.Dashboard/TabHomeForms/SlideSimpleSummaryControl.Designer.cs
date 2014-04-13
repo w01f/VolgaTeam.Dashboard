@@ -60,10 +60,13 @@
 			this.xtraTabPagePaymentDetails = new DevExpress.XtraTab.XtraTabPage();
 			this.checkEditTotalInvestment = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditMonthlyInvestment = new DevExpress.XtraEditors.CheckEdit();
+			this.pnTotals = new System.Windows.Forms.Panel();
 			this.pnMain.SuspendLayout();
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditFligtDatesStart.Properties.VistaTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditFligtDatesStart.Properties)).BeginInit();
@@ -82,32 +85,16 @@
 			this.xtraTabPagePaymentDetails.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalInvestment.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyInvestment.Properties)).BeginInit();
+			this.pnTotals.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pnMain
 			// 
 			this.pnMain.Controls.Add(this.xtraTabControl);
+			this.pnMain.Controls.Add(this.pnTotals);
 			this.pnMain.Controls.SetChildIndex(this.pnTop, 0);
+			this.pnMain.Controls.SetChildIndex(this.pnTotals, 0);
 			this.pnMain.Controls.SetChildIndex(this.xtraTabControl, 0);
-			// 
-			// pnBottom
-			// 
-			this.pnBottom.Controls.Add(this.checkEditTotalInvestment);
-			this.pnBottom.Controls.Add(this.checkEditMonthlyInvestment);
-			this.pnBottom.Controls.Add(this.spinEditTotal);
-			this.pnBottom.Controls.Add(this.spinEditMonthly);
-			this.pnBottom.Controls.SetChildIndex(this.spinEditMonthly, 0);
-			this.pnBottom.Controls.SetChildIndex(this.spinEditTotal, 0);
-			this.pnBottom.Controls.SetChildIndex(this.checkEditMonthlyInvestment, 0);
-			this.pnBottom.Controls.SetChildIndex(this.buttonXSavedFiles, 0);
-			this.pnBottom.Controls.SetChildIndex(this.pbDescription, 0);
-			this.pnBottom.Controls.SetChildIndex(this.checkEditTotalInvestment, 0);
-			// 
-			// laSlideHeader
-			// 
-			this.laSlideHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-			this.laSlideHeader.Size = new System.Drawing.Size(314, 22);
-			this.laSlideHeader.Text = "5. Closing Summary Slide:";
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -121,7 +108,7 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceFocused.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
-			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.edit_EditValueChanged);
+			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// pnTop
 			// 
@@ -129,20 +116,31 @@
 			this.pnTop.Controls.Add(this.laTotalItems);
 			this.pnTop.Controls.SetChildIndex(this.laTotalItems, 0);
 			this.pnTop.Controls.SetChildIndex(this.buttonXAddItem, 0);
-			this.pnTop.Controls.SetChildIndex(this.laSlideHeader, 0);
 			this.pnTop.Controls.SetChildIndex(this.comboBoxEditSlideHeader, 0);
+			// 
+			// checkEditSolutionNew
+			// 
+			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
+			// 
+			// checkEditSolutionOld
+			// 
+			this.checkEditSolutionOld.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSolutionOld.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditSolutionOld.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSolutionOld.Properties.Appearance.Options.UseForeColor = true;
 			// 
 			// pbDescription
 			// 
-			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionSummary;
-			this.pbDescription.Location = new System.Drawing.Point(-328, 31);
-			this.pbDescription.Visible = false;
+			this.pbDescription.Image = ((System.Drawing.Image)(resources.GetObject("pbDescription.Image")));
 			// 
 			// dateEditFligtDatesStart
 			// 
 			this.dateEditFligtDatesStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateEditFligtDatesStart.EditValue = null;
-			this.dateEditFligtDatesStart.Location = new System.Drawing.Point(475, 181);
+			this.dateEditFligtDatesStart.Location = new System.Drawing.Point(326, 181);
 			this.dateEditFligtDatesStart.Name = "dateEditFligtDatesStart";
 			this.dateEditFligtDatesStart.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditFligtDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -172,7 +170,7 @@
 			this.ckFlightDates.Checked = true;
 			this.ckFlightDates.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.ckFlightDates.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ckFlightDates.Location = new System.Drawing.Point(457, 152);
+			this.ckFlightDates.Location = new System.Drawing.Point(308, 152);
 			this.ckFlightDates.Name = "ckFlightDates";
 			this.ckFlightDates.Size = new System.Drawing.Size(197, 22);
 			this.ckFlightDates.TabIndex = 73;
@@ -184,7 +182,7 @@
 			// 
 			this.dateEditFligtDatesEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateEditFligtDatesEnd.EditValue = null;
-			this.dateEditFligtDatesEnd.Location = new System.Drawing.Point(627, 181);
+			this.dateEditFligtDatesEnd.Location = new System.Drawing.Point(478, 181);
 			this.dateEditFligtDatesEnd.Name = "dateEditFligtDatesEnd";
 			this.dateEditFligtDatesEnd.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditFligtDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -204,14 +202,14 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditFligtDatesEnd.Size = new System.Drawing.Size(123, 22);
 			this.dateEditFligtDatesEnd.TabIndex = 75;
-			this.dateEditFligtDatesEnd.EditValueChanged += new System.EventHandler(this.edit_EditValueChanged);
+			this.dateEditFligtDatesEnd.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// laFlightDatesStart
 			// 
 			this.laFlightDatesStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.laFlightDatesStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.laFlightDatesStart.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laFlightDatesStart.Location = new System.Drawing.Point(475, 206);
+			this.laFlightDatesStart.Location = new System.Drawing.Point(326, 206);
 			this.laFlightDatesStart.Name = "laFlightDatesStart";
 			this.laFlightDatesStart.Size = new System.Drawing.Size(123, 21);
 			this.laFlightDatesStart.TabIndex = 73;
@@ -222,7 +220,7 @@
 			this.laFlightDatesEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.laFlightDatesEnd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.laFlightDatesEnd.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laFlightDatesEnd.Location = new System.Drawing.Point(627, 206);
+			this.laFlightDatesEnd.Location = new System.Drawing.Point(478, 206);
 			this.laFlightDatesEnd.Name = "laFlightDatesEnd";
 			this.laFlightDatesEnd.Size = new System.Drawing.Size(123, 21);
 			this.laFlightDatesEnd.TabIndex = 74;
@@ -236,7 +234,7 @@
 			// comboBoxEditDecisionMaker
 			// 
 			this.comboBoxEditDecisionMaker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(475, 51);
+			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(326, 51);
 			this.comboBoxEditDecisionMaker.Name = "comboBoxEditDecisionMaker";
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
@@ -253,7 +251,7 @@
 			this.comboBoxEditDecisionMaker.Properties.NullText = "Type or Select";
 			this.comboBoxEditDecisionMaker.Size = new System.Drawing.Size(257, 22);
 			this.comboBoxEditDecisionMaker.TabIndex = 1;
-			this.comboBoxEditDecisionMaker.EditValueChanged += new System.EventHandler(this.edit_EditValueChanged);
+			this.comboBoxEditDecisionMaker.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// comboBoxEditAdvertiser
 			// 
@@ -274,7 +272,7 @@
 			this.comboBoxEditAdvertiser.Properties.NullText = "Type or Select";
 			this.comboBoxEditAdvertiser.Size = new System.Drawing.Size(257, 22);
 			this.comboBoxEditAdvertiser.TabIndex = 0;
-			this.comboBoxEditAdvertiser.EditValueChanged += new System.EventHandler(this.edit_EditValueChanged);
+			this.comboBoxEditAdvertiser.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// dateEditDate
 			// 
@@ -299,7 +297,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditDate.Size = new System.Drawing.Size(120, 22);
 			this.dateEditDate.TabIndex = 2;
-			this.dateEditDate.EditValueChanged += new System.EventHandler(this.edit_EditValueChanged);
+			this.dateEditDate.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// ckDate
 			// 
@@ -322,7 +320,7 @@
 			this.ckDecisionMaker.Checked = true;
 			this.ckDecisionMaker.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.ckDecisionMaker.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ckDecisionMaker.Location = new System.Drawing.Point(457, 18);
+			this.ckDecisionMaker.Location = new System.Drawing.Point(308, 18);
 			this.ckDecisionMaker.Name = "ckDecisionMaker";
 			this.ckDecisionMaker.Size = new System.Drawing.Size(257, 27);
 			this.ckDecisionMaker.TabIndex = 41;
@@ -351,20 +349,19 @@
 			this.simpleSummaryItemContainer.Location = new System.Drawing.Point(0, 0);
 			this.simpleSummaryItemContainer.Name = "simpleSummaryItemContainer";
 			this.simpleSummaryItemContainer.SelectedIndex = -1;
-			this.simpleSummaryItemContainer.Size = new System.Drawing.Size(818, 342);
+			this.simpleSummaryItemContainer.Size = new System.Drawing.Size(669, 357);
 			this.simpleSummaryItemContainer.TabIndex = 37;
 			this.simpleSummaryItemContainer.TabStop = false;
 			// 
 			// spinEditTotal
 			// 
-			this.spinEditTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.spinEditTotal.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
 			this.spinEditTotal.Enabled = false;
-			this.spinEditTotal.Location = new System.Drawing.Point(785, 20);
+			this.spinEditTotal.Location = new System.Drawing.Point(13, 142);
 			this.spinEditTotal.Name = "spinEditTotal";
 			this.spinEditTotal.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.spinEditTotal.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -390,14 +387,13 @@
 			// 
 			// spinEditMonthly
 			// 
-			this.spinEditMonthly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.spinEditMonthly.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
 			this.spinEditMonthly.Enabled = false;
-			this.spinEditMonthly.Location = new System.Drawing.Point(487, 20);
+			this.spinEditMonthly.Location = new System.Drawing.Point(13, 50);
 			this.spinEditMonthly.Name = "spinEditMonthly";
 			this.spinEditMonthly.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.spinEditMonthly.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -427,9 +423,9 @@
 			this.buttonXAddItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAddItem.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXAddItem.Location = new System.Drawing.Point(688, 10);
+			this.buttonXAddItem.Location = new System.Drawing.Point(688, 5);
 			this.buttonXAddItem.Name = "buttonXAddItem";
-			this.buttonXAddItem.Size = new System.Drawing.Size(128, 47);
+			this.buttonXAddItem.Size = new System.Drawing.Size(128, 40);
 			this.buttonXAddItem.TabIndex = 54;
 			this.buttonXAddItem.TabStop = false;
 			this.buttonXAddItem.Text = "Add an Item";
@@ -440,9 +436,9 @@
 			// 
 			this.laTotalItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.laTotalItems.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTotalItems.Location = new System.Drawing.Point(455, 10);
+			this.laTotalItems.Location = new System.Drawing.Point(455, 5);
 			this.laTotalItems.Name = "laTotalItems";
-			this.laTotalItems.Size = new System.Drawing.Size(227, 47);
+			this.laTotalItems.Size = new System.Drawing.Size(227, 40);
 			this.laTotalItems.TabIndex = 69;
 			this.laTotalItems.Text = "Total Items: ";
 			this.laTotalItems.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -470,10 +466,10 @@
 			this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControl.Location = new System.Drawing.Point(0, 66);
+			this.xtraTabControl.Location = new System.Drawing.Point(0, 51);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageBasicInfo;
-			this.xtraTabControl.Size = new System.Drawing.Size(820, 368);
+			this.xtraTabControl.Size = new System.Drawing.Size(671, 383);
 			this.xtraTabControl.TabIndex = 75;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageBasicInfo,
@@ -483,7 +479,7 @@
 			// 
 			this.xtraTabPageBasicInfo.Controls.Add(this.pnBasicInfo);
 			this.xtraTabPageBasicInfo.Name = "xtraTabPageBasicInfo";
-			this.xtraTabPageBasicInfo.Size = new System.Drawing.Size(818, 342);
+			this.xtraTabPageBasicInfo.Size = new System.Drawing.Size(669, 357);
 			this.xtraTabPageBasicInfo.Text = "Basic Info";
 			// 
 			// pnBasicInfo
@@ -503,20 +499,19 @@
 			this.pnBasicInfo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnBasicInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnBasicInfo.Name = "pnBasicInfo";
-			this.pnBasicInfo.Size = new System.Drawing.Size(818, 342);
+			this.pnBasicInfo.Size = new System.Drawing.Size(669, 357);
 			this.pnBasicInfo.TabIndex = 0;
 			// 
 			// xtraTabPagePaymentDetails
 			// 
 			this.xtraTabPagePaymentDetails.Controls.Add(this.simpleSummaryItemContainer);
 			this.xtraTabPagePaymentDetails.Name = "xtraTabPagePaymentDetails";
-			this.xtraTabPagePaymentDetails.Size = new System.Drawing.Size(818, 342);
+			this.xtraTabPagePaymentDetails.Size = new System.Drawing.Size(669, 357);
 			this.xtraTabPagePaymentDetails.Text = "What are you Selling?";
 			// 
 			// checkEditTotalInvestment
 			// 
-			this.checkEditTotalInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditTotalInvestment.Location = new System.Drawing.Point(658, 25);
+			this.checkEditTotalInvestment.Location = new System.Drawing.Point(11, 115);
 			this.checkEditTotalInvestment.Name = "checkEditTotalInvestment";
 			this.checkEditTotalInvestment.Properties.AllowFocused = false;
 			this.checkEditTotalInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -524,15 +519,14 @@
 			this.checkEditTotalInvestment.Properties.Appearance.Options.UseFont = true;
 			this.checkEditTotalInvestment.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditTotalInvestment.Properties.AutoWidth = true;
-			this.checkEditTotalInvestment.Properties.Caption = "Total Investment:";
-			this.checkEditTotalInvestment.Size = new System.Drawing.Size(121, 21);
+			this.checkEditTotalInvestment.Properties.Caption = "Total:";
+			this.checkEditTotalInvestment.Size = new System.Drawing.Size(55, 21);
 			this.checkEditTotalInvestment.TabIndex = 119;
 			this.checkEditTotalInvestment.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
 			// checkEditMonthlyInvestment
 			// 
-			this.checkEditMonthlyInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(342, 25);
+			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(11, 23);
 			this.checkEditMonthlyInvestment.Name = "checkEditMonthlyInvestment";
 			this.checkEditMonthlyInvestment.Properties.AllowFocused = false;
 			this.checkEditMonthlyInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -540,10 +534,22 @@
 			this.checkEditMonthlyInvestment.Properties.Appearance.Options.UseFont = true;
 			this.checkEditMonthlyInvestment.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditMonthlyInvestment.Properties.AutoWidth = true;
-			this.checkEditMonthlyInvestment.Properties.Caption = "Monthly Investment:";
-			this.checkEditMonthlyInvestment.Size = new System.Drawing.Size(139, 21);
+			this.checkEditMonthlyInvestment.Properties.Caption = "Monthly:";
+			this.checkEditMonthlyInvestment.Size = new System.Drawing.Size(73, 21);
 			this.checkEditMonthlyInvestment.TabIndex = 118;
 			this.checkEditMonthlyInvestment.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
+			// 
+			// pnTotals
+			// 
+			this.pnTotals.Controls.Add(this.checkEditTotalInvestment);
+			this.pnTotals.Controls.Add(this.spinEditTotal);
+			this.pnTotals.Controls.Add(this.checkEditMonthlyInvestment);
+			this.pnTotals.Controls.Add(this.spinEditMonthly);
+			this.pnTotals.Dock = System.Windows.Forms.DockStyle.Right;
+			this.pnTotals.Location = new System.Drawing.Point(671, 51);
+			this.pnTotals.Name = "pnTotals";
+			this.pnTotals.Size = new System.Drawing.Size(149, 383);
+			this.pnTotals.TabIndex = 76;
 			// 
 			// SlideSimpleSummaryControl
 			// 
@@ -552,9 +558,10 @@
 			this.Name = "SlideSimpleSummaryControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
-			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditFligtDatesStart.Properties.VistaTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditFligtDatesStart.Properties)).EndInit();
@@ -574,6 +581,7 @@
 			this.xtraTabPagePaymentDetails.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalInvestment.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyInvestment.Properties)).EndInit();
+			this.pnTotals.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -604,6 +612,7 @@
 		private DevComponents.DotNetBar.TabItem tabItemCampaign;
 		private DevExpress.XtraEditors.CheckEdit checkEditTotalInvestment;
 		private DevExpress.XtraEditors.CheckEdit checkEditMonthlyInvestment;
+		private System.Windows.Forms.Panel pnTotals;
 
     }
 }

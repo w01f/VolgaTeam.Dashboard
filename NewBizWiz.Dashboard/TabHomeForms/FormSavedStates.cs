@@ -5,7 +5,8 @@ using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
-using NewBizWiz.Core.Dashboard;
+using NewBizWiz.Core.Common;
+using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
@@ -25,17 +26,12 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			get
 			{
-				if (gridViewFiles.FocusedRowHandle >= 0 && gridViewFiles.FocusedRowHandle < gridViewFiles.RowCount)
-				{
-					StateFile file = _stateFiles[gridViewFiles.GetDataSourceRowIndex(gridViewFiles.FocusedRowHandle)];
-					return file.FilePath;
-				}
-				else
-					return null;
+				var file = gridViewFiles.GetFocusedRow() as StateFile;
+				return file == null ? null : file.FilePath;
 			}
 		}
 
-		public virtual void InitForm() {}
+		public virtual void InitForm() { }
 
 		protected void LoadFiles()
 		{
@@ -51,24 +47,20 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				}
 			}
 			_stateFiles.Sort((x, y) => y.LastModified.CompareTo(x.LastModified));
-			gridControlFiles.DataSource = new BindingList<StateFile>(_stateFiles.ToArray());
+			gridControlFiles.DataSource = _stateFiles;
 		}
 
 		private void repositoryItemButtonEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
 		{
-			if (gridViewFiles.FocusedRowHandle >= 0 && gridViewFiles.FocusedRowHandle < gridViewFiles.RowCount)
+			var file = gridViewFiles.GetFocusedRow() as StateFile;
+			if (file == null) return;
+			if (Utilities.Instance.ShowWarningQuestion("Are you sure want to delete this file?") != DialogResult.Yes) return;
+			if (File.Exists(file.FilePath))
 			{
-				StateFile file = _stateFiles[gridViewFiles.GetDataSourceRowIndex(gridViewFiles.FocusedRowHandle)];
-				if (File.Exists(file.FilePath))
-				{
-					try
-					{
-						File.Delete(file.FilePath);
-						LoadFiles();
-					}
-					catch {}
-				}
+				try { File.Delete(file.FilePath); }
+				catch { }
 			}
+			gridViewFiles.DeleteSelectedRows();
 		}
 
 		private void gridViewFiles_RowClick(object sender, RowClickEventArgs e)

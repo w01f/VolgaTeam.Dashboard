@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 
@@ -115,22 +116,30 @@ namespace NewBizWiz.Core.Common
 		public string SlideName { get; private set; }
 		public string Advertiser { get; private set; }
 		public decimal? DollarValue { get; private set; }
+		public Dictionary<string, object> OtherOptions { get; private set; }
 
-		public OutputActivity(string slideName, string advertiser, decimal? dollarValue)
+		public OutputActivity(string slideName, string advertiser, decimal? dollarValue, Dictionary<string, object> otherOptions = null)
 			: base("Output")
 		{
 			SlideName = slideName;
 			Advertiser = advertiser;
 			DollarValue = dollarValue;
+			OtherOptions = new Dictionary<string, object>();
+			if (otherOptions != null)
+				foreach (var option in otherOptions)
+					OtherOptions.Add(option.Key, option.Value);
 		}
 
 		public override XElement Serialize()
 		{
 			var element = base.Serialize();
 			element.Add(new XAttribute("Slide", SlideName));
-			element.Add(new XAttribute("Advertiser", Advertiser));
+			if (!String.IsNullOrEmpty(Advertiser))
+				element.Add(new XAttribute("Advertiser", Advertiser));
 			if (DollarValue.HasValue)
 				element.Add(new XAttribute("Dollars", DollarValue));
+			foreach (var otherOption in OtherOptions)
+				element.Add(new XAttribute(otherOption.Key, otherOption.Value));
 			return element;
 		}
 	}

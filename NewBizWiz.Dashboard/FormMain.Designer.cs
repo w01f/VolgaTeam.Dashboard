@@ -36,9 +36,15 @@ namespace NewBizWiz.Dashboard
 			this.ribbonControl = new DevComponents.DotNetBar.RibbonControl();
 			this.ribbonPanelHome = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarHomeExit = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemHomeExit = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeFloater = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemHomeFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeHelp = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemHomeHelp = new DevComponents.DotNetBar.ButtonItem();
+			this.ribbonBarHomeLoad = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemHomeLoad = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarPowerPoint = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemPowerPoint = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemHomeThemeCleanslate = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemHomeThemeCover = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemHomeThemeLeadoff = new DevComponents.DotNetBar.ButtonItem();
@@ -46,50 +52,90 @@ namespace NewBizWiz.Dashboard
 			this.buttonItemHomeThemeTargetCustomers = new DevComponents.DotNetBar.ButtonItem();
 			this.buttonItemHomeThemeSimpleSummary = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarPreview = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemPreview = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarHomeOverview = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemHomeOverview = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonPanelNewspaper = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarNewspaperExit = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemNewspaperExit = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarNewspaperFloater = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemNewspaperFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarNewspaperHelp = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemNewspaperHelp = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarNewspaperDelete = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemNewspaperDelete = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarNewspaperOpen = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemNewspaperOpen = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarNewspaperNew = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemNewspaperNew = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarNewspaperScheduleBuilder = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemNewspaperScheduleBuilder = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarNewspaperLogo = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemNewspaperLogo = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonPanelSlides = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarSlidesExit = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemSlidesExit = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesFloater = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemSlidesFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesHelp = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemSlidesHelp = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesPowerPoint = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemSlidesPowerPoint = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesPreview = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemSlidesPreview = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarSlidesLogo = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemSlidesLogo = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonPanelOnline = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarOnlineExit = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemOnlineExit = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarOnlineFloater = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemOnlineFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarOnlineHelp = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemOnlineHelp = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarOnlineDelete = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemOnlineDelete = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarOnlineOpen = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemOnlineOpen = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarOnlineNew = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemOnlineNew = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarOnlineScheduleBuilder = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemOnlineScheduleBuilder = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarOnlineLogo = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemOnlineLogo = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonPanelRadio = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarRadioExit = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioExit = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarRadioFloater = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarRadioHelp = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioHelp = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarRadioDelete = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioDelete = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarRadioOpen = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioOpen = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarRadioNew = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioNew = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarRadioScheduleBuilder = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioScheduleBuilder = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarRadioLogo = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemRadioLogo = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonPanelTV = new DevComponents.DotNetBar.RibbonPanel();
 			this.ribbonBarTVExit = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemTVExit = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarTVFloater = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemTVFloater = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarTVHelp = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemTVHelp = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarTVDelete = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemTVDelete = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarTVOpen = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemTVOpen = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarTVNew = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemTVNew = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarTVScheduleBuilder = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemTVScheduleBuilder = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonBarTVLogo = new DevComponents.DotNetBar.RibbonBar();
+			this.buttonItemTVLogo = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonTabItemHome = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemNewspaper = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemTV = new DevComponents.DotNetBar.RibbonTabItem();
@@ -99,50 +145,6 @@ namespace NewBizWiz.Dashboard
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnMain = new System.Windows.Forms.Panel();
-			this.buttonItemHomeExit = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemHomeFloater = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemHomeHelp = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemPowerPoint = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemPreview = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemHomeOverview = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemNewspaperExit = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemNewspaperFloater = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemNewspaperHelp = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemNewspaperDelete = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemNewspaperOpen = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemNewspaperNew = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemNewspaperScheduleBuilder = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemNewspaperLogo = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSlidesExit = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSlidesFloater = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSlidesHelp = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSlidesPowerPoint = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSlidesPreview = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemSlidesLogo = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemOnlineExit = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemOnlineFloater = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemOnlineHelp = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemOnlineDelete = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemOnlineOpen = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemOnlineNew = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemOnlineScheduleBuilder = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemOnlineLogo = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemRadioExit = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemRadioFloater = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemRadioHelp = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemRadioDelete = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemRadioOpen = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemRadioNew = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemRadioScheduleBuilder = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemRadioLogo = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemTVExit = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemTVFloater = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemTVHelp = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemTVDelete = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemTVOpen = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemTVNew = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemTVScheduleBuilder = new DevComponents.DotNetBar.ButtonItem();
-			this.buttonItemTVLogo = new DevComponents.DotNetBar.ButtonItem();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelHome.SuspendLayout();
 			this.ribbonPanelNewspaper.SuspendLayout();
@@ -215,6 +217,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeExit);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeFloater);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeHelp);
+			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeLoad);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarPowerPoint);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarPreview);
 			this.ribbonPanelHome.Controls.Add(this.ribbonBarHomeOverview);
@@ -254,7 +257,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeExit.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeExit});
 			this.ribbonBarHomeExit.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeExit.Location = new System.Drawing.Point(587, 0);
+			this.ribbonBarHomeExit.Location = new System.Drawing.Point(681, 0);
 			this.ribbonBarHomeExit.Name = "ribbonBarHomeExit";
 			this.ribbonBarHomeExit.Size = new System.Drawing.Size(94, 128);
 			this.ribbonBarHomeExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -269,6 +272,15 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarHomeExit.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarHomeExit.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+			// 
+			// buttonItemHomeExit
+			// 
+			this.buttonItemHomeExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
+			this.buttonItemHomeExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemHomeExit.Name = "buttonItemHomeExit";
+			this.buttonItemHomeExit.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Default, true, false, new System.Drawing.Size(0, 0)));
+			this.buttonItemHomeExit.Click += new System.EventHandler(this.buttonItemExit_Click);
 			// 
 			// ribbonBarHomeFloater
 			// 
@@ -286,7 +298,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeFloater.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeFloater});
 			this.ribbonBarHomeFloater.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeFloater.Location = new System.Drawing.Point(499, 0);
+			this.ribbonBarHomeFloater.Location = new System.Drawing.Point(593, 0);
 			this.ribbonBarHomeFloater.Name = "ribbonBarHomeFloater";
 			this.ribbonBarHomeFloater.Size = new System.Drawing.Size(88, 128);
 			this.ribbonBarHomeFloater.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -300,6 +312,15 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarHomeFloater.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemHomeFloater
+			// 
+			this.buttonItemHomeFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
+			this.buttonItemHomeFloater.Name = "buttonItemHomeFloater";
+			this.buttonItemHomeFloater.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemHomeFloater.Text = "Floater";
+			this.buttonItemHomeFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
 			// 
 			// ribbonBarHomeHelp
 			// 
@@ -317,7 +338,7 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarHomeHelp.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemHomeHelp});
 			this.ribbonBarHomeHelp.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-			this.ribbonBarHomeHelp.Location = new System.Drawing.Point(423, 0);
+			this.ribbonBarHomeHelp.Location = new System.Drawing.Point(517, 0);
 			this.ribbonBarHomeHelp.Name = "ribbonBarHomeHelp";
 			this.ribbonBarHomeHelp.Size = new System.Drawing.Size(76, 128);
 			this.ribbonBarHomeHelp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -331,6 +352,54 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarHomeHelp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemHomeHelp
+			// 
+			this.buttonItemHomeHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
+			this.buttonItemHomeHelp.Name = "buttonItemHomeHelp";
+			this.buttonItemHomeHelp.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemHomeHelp.Text = "buttonItem1";
+			this.buttonItemHomeHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
+			// 
+			// ribbonBarHomeLoad
+			// 
+			this.ribbonBarHomeLoad.AutoOverflowEnabled = true;
+			// 
+			// 
+			// 
+			this.ribbonBarHomeLoad.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarHomeLoad.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.ribbonBarHomeLoad.ContainerControlProcessDialogKey = true;
+			this.ribbonBarHomeLoad.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarHomeLoad.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItemHomeLoad});
+			this.ribbonBarHomeLoad.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+			this.ribbonBarHomeLoad.Location = new System.Drawing.Point(423, 0);
+			this.ribbonBarHomeLoad.Name = "ribbonBarHomeLoad";
+			this.ribbonBarHomeLoad.Size = new System.Drawing.Size(94, 128);
+			this.ribbonBarHomeLoad.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.ribbonBarHomeLoad.TabIndex = 24;
+			this.ribbonBarHomeLoad.Text = "My Slides";
+			// 
+			// 
+			// 
+			this.ribbonBarHomeLoad.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// 
+			// 
+			this.ribbonBarHomeLoad.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemHomeLoad
+			// 
+			this.buttonItemHomeLoad.Image = global::NewBizWiz.Dashboard.Properties.Resources.Load;
+			this.buttonItemHomeLoad.Name = "buttonItemHomeLoad";
+			this.buttonItemHomeLoad.SubItemsExpandWidth = 14;
+			this.buttonItemHomeLoad.Text = "buttonItem1";
+			this.buttonItemHomeLoad.Click += new System.EventHandler(this.buttonItemHomeLoad_Click);
 			// 
 			// ribbonBarPowerPoint
 			// 
@@ -368,6 +437,14 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarPowerPoint.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemPowerPoint
+			// 
+			this.buttonItemPowerPoint.Image = global::NewBizWiz.Dashboard.Properties.Resources.Output;
+			this.buttonItemPowerPoint.Name = "buttonItemPowerPoint";
+			this.buttonItemPowerPoint.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to PowerPoiint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemPowerPoint.Click += new System.EventHandler(this.buttonItemPowerPoint_Click);
 			// 
 			// buttonItemHomeThemeCleanslate
 			// 
@@ -442,6 +519,14 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarPreview.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
+			// buttonItemPreview
+			// 
+			this.buttonItemPreview.Image = global::NewBizWiz.Dashboard.Properties.Resources.Preview;
+			this.buttonItemPreview.Name = "buttonItemPreview";
+			this.buttonItemPreview.SubItemsExpandWidth = 14;
+			this.buttonItemPreview.Text = "buttonItem1";
+			this.buttonItemPreview.Click += new System.EventHandler(this.buttonItemPreview_Click);
+			// 
 			// ribbonBarHomeOverview
 			// 
 			this.ribbonBarHomeOverview.AutoOverflowEnabled = true;
@@ -474,6 +559,15 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarHomeOverview.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarHomeOverview.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+			// 
+			// buttonItemHomeOverview
+			// 
+			this.buttonItemHomeOverview.Checked = true;
+			this.buttonItemHomeOverview.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
+			this.buttonItemHomeOverview.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemHomeOverview.Name = "buttonItemHomeOverview";
+			this.buttonItemHomeOverview.SubItemsExpandWidth = 14;
+			this.buttonItemHomeOverview.Click += new System.EventHandler(this.buttonItemHomeOverview_Click);
 			// 
 			// ribbonPanelNewspaper
 			// 
@@ -541,6 +635,15 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarNewspaperExit.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			this.ribbonBarNewspaperExit.Click += new System.EventHandler(this.Outside_Click);
 			// 
+			// buttonItemNewspaperExit
+			// 
+			this.buttonItemNewspaperExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
+			this.buttonItemNewspaperExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemNewspaperExit.Name = "buttonItemNewspaperExit";
+			this.buttonItemNewspaperExit.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemNewspaperExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemNewspaperExit.Click += new System.EventHandler(this.buttonItemExit_Click);
+			// 
 			// ribbonBarNewspaperFloater
 			// 
 			this.ribbonBarNewspaperFloater.AutoOverflowEnabled = true;
@@ -571,6 +674,15 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarNewspaperFloater.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemNewspaperFloater
+			// 
+			this.buttonItemNewspaperFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
+			this.buttonItemNewspaperFloater.Name = "buttonItemNewspaperFloater";
+			this.buttonItemNewspaperFloater.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemNewspaperFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemNewspaperFloater.Text = "Floater";
+			this.buttonItemNewspaperFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
 			// 
 			// ribbonBarNewspaperHelp
 			// 
@@ -603,6 +715,15 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarNewspaperHelp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
+			// buttonItemNewspaperHelp
+			// 
+			this.buttonItemNewspaperHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
+			this.buttonItemNewspaperHelp.Name = "buttonItemNewspaperHelp";
+			this.buttonItemNewspaperHelp.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemNewspaperHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me with Newspaper Advertising Schedules", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemNewspaperHelp.Text = "buttonItem1";
+			this.buttonItemNewspaperHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
+			// 
 			// ribbonBarNewspaperDelete
 			// 
 			this.ribbonBarNewspaperDelete.AutoOverflowEnabled = true;
@@ -633,6 +754,14 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarNewspaperDelete.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemNewspaperDelete
+			// 
+			this.buttonItemNewspaperDelete.Enabled = false;
+			this.buttonItemNewspaperDelete.Image = global::NewBizWiz.Dashboard.Properties.Resources.DeleteSchedule;
+			this.buttonItemNewspaperDelete.Name = "buttonItemNewspaperDelete";
+			this.buttonItemNewspaperDelete.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemNewspaperDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete Ad Schedule", "", "Delete the selected Ad Schedule below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarNewspaperOpen
 			// 
@@ -665,6 +794,14 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarNewspaperOpen.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
+			// buttonItemNewspaperOpen
+			// 
+			this.buttonItemNewspaperOpen.Enabled = false;
+			this.buttonItemNewspaperOpen.Image = global::NewBizWiz.Dashboard.Properties.Resources.OpenSchedule;
+			this.buttonItemNewspaperOpen.Name = "buttonItemNewspaperOpen";
+			this.buttonItemNewspaperOpen.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemNewspaperOpen, new DevComponents.DotNetBar.SuperTooltipInfo("Open Ad Schedule", "", "Open a schedule you already built", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			// 
 			// ribbonBarNewspaperNew
 			// 
 			this.ribbonBarNewspaperNew.AutoOverflowEnabled = true;
@@ -696,6 +833,13 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarNewspaperNew.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarNewspaperNew.Click += new System.EventHandler(this.Outside_Click);
+			// 
+			// buttonItemNewspaperNew
+			// 
+			this.buttonItemNewspaperNew.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewSchedule;
+			this.buttonItemNewspaperNew.Name = "buttonItemNewspaperNew";
+			this.buttonItemNewspaperNew.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemNewspaperNew, new DevComponents.DotNetBar.SuperTooltipInfo("New Ad Schedule", "", "Build a Quick Newspaper Schedule for your client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarNewspaperScheduleBuilder
 			// 
@@ -731,6 +875,16 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarNewspaperScheduleBuilder.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			this.ribbonBarNewspaperScheduleBuilder.Click += new System.EventHandler(this.Outside_Click);
 			// 
+			// buttonItemNewspaperScheduleBuilder
+			// 
+			this.buttonItemNewspaperScheduleBuilder.Checked = true;
+			this.buttonItemNewspaperScheduleBuilder.FixedSize = new System.Drawing.Size(100, 110);
+			this.buttonItemNewspaperScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewspaperLittle;
+			this.buttonItemNewspaperScheduleBuilder.ImageFixedSize = new System.Drawing.Size(64, 64);
+			this.buttonItemNewspaperScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemNewspaperScheduleBuilder.Name = "buttonItemNewspaperScheduleBuilder";
+			this.buttonItemNewspaperScheduleBuilder.SubItemsExpandWidth = 14;
+			// 
 			// ribbonBarNewspaperLogo
 			// 
 			this.ribbonBarNewspaperLogo.AutoOverflowEnabled = true;
@@ -763,6 +917,15 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarNewspaperLogo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarNewspaperLogo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			this.ribbonBarNewspaperLogo.Click += new System.EventHandler(this.Outside_Click);
+			// 
+			// buttonItemNewspaperLogo
+			// 
+			this.buttonItemNewspaperLogo.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
+			this.buttonItemNewspaperLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
+			this.buttonItemNewspaperLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemNewspaperLogo.Name = "buttonItemNewspaperLogo";
+			this.buttonItemNewspaperLogo.SubItemsExpandWidth = 14;
+			this.buttonItemNewspaperLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
 			// 
 			// ribbonPanelSlides
 			// 
@@ -826,6 +989,15 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarSlidesExit.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarSlidesExit.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			// 
+			// buttonItemSlidesExit
+			// 
+			this.buttonItemSlidesExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
+			this.buttonItemSlidesExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemSlidesExit.Name = "buttonItemSlidesExit";
+			this.buttonItemSlidesExit.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Default, true, false, new System.Drawing.Size(0, 0)));
+			this.buttonItemSlidesExit.Click += new System.EventHandler(this.buttonItemExit_Click);
+			// 
 			// ribbonBarSlidesFloater
 			// 
 			this.ribbonBarSlidesFloater.AutoOverflowEnabled = true;
@@ -856,6 +1028,15 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarSlidesFloater.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemSlidesFloater
+			// 
+			this.buttonItemSlidesFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
+			this.buttonItemSlidesFloater.Name = "buttonItemSlidesFloater";
+			this.buttonItemSlidesFloater.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemSlidesFloater.Text = "Floater";
+			this.buttonItemSlidesFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
 			// 
 			// ribbonBarSlidesHelp
 			// 
@@ -888,6 +1069,15 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarSlidesHelp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
+			// buttonItemSlidesHelp
+			// 
+			this.buttonItemSlidesHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
+			this.buttonItemSlidesHelp.Name = "buttonItemSlidesHelp";
+			this.buttonItemSlidesHelp.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemSlidesHelp.Text = "buttonItem1";
+			this.buttonItemSlidesHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
+			// 
 			// ribbonBarSlidesPowerPoint
 			// 
 			this.ribbonBarSlidesPowerPoint.AutoOverflowEnabled = true;
@@ -919,6 +1109,13 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarSlidesPowerPoint.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
+			// buttonItemSlidesPowerPoint
+			// 
+			this.buttonItemSlidesPowerPoint.Image = global::NewBizWiz.Dashboard.Properties.Resources.Output;
+			this.buttonItemSlidesPowerPoint.Name = "buttonItemSlidesPowerPoint";
+			this.buttonItemSlidesPowerPoint.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to PowerPoiint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			// 
 			// ribbonBarSlidesPreview
 			// 
 			this.ribbonBarSlidesPreview.AutoOverflowEnabled = true;
@@ -949,6 +1146,13 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarSlidesPreview.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemSlidesPreview
+			// 
+			this.buttonItemSlidesPreview.Image = global::NewBizWiz.Dashboard.Properties.Resources.Preview;
+			this.buttonItemSlidesPreview.Name = "buttonItemSlidesPreview";
+			this.buttonItemSlidesPreview.SubItemsExpandWidth = 14;
+			this.buttonItemSlidesPreview.Text = "buttonItem1";
 			// 
 			// ribbonBarSlidesLogo
 			// 
@@ -982,6 +1186,14 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarSlidesLogo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarSlidesLogo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
+			// 
+			// buttonItemSlidesLogo
+			// 
+			this.buttonItemSlidesLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
+			this.buttonItemSlidesLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemSlidesLogo.Name = "buttonItemSlidesLogo";
+			this.buttonItemSlidesLogo.SubItemsExpandWidth = 14;
+			this.buttonItemSlidesLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
 			// 
 			// ribbonPanelOnline
 			// 
@@ -1049,6 +1261,15 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarOnlineExit.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			this.ribbonBarOnlineExit.Click += new System.EventHandler(this.Outside_Click);
 			// 
+			// buttonItemOnlineExit
+			// 
+			this.buttonItemOnlineExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
+			this.buttonItemOnlineExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemOnlineExit.Name = "buttonItemOnlineExit";
+			this.buttonItemOnlineExit.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemOnlineExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemOnlineExit.Click += new System.EventHandler(this.buttonItemExit_Click);
+			// 
 			// ribbonBarOnlineFloater
 			// 
 			this.ribbonBarOnlineFloater.AutoOverflowEnabled = true;
@@ -1079,6 +1300,15 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarOnlineFloater.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemOnlineFloater
+			// 
+			this.buttonItemOnlineFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
+			this.buttonItemOnlineFloater.Name = "buttonItemOnlineFloater";
+			this.buttonItemOnlineFloater.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemOnlineFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemOnlineFloater.Text = "Floater";
+			this.buttonItemOnlineFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
 			// 
 			// ribbonBarOnlineHelp
 			// 
@@ -1111,6 +1341,15 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarOnlineHelp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
+			// buttonItemOnlineHelp
+			// 
+			this.buttonItemOnlineHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
+			this.buttonItemOnlineHelp.Name = "buttonItemOnlineHelp";
+			this.buttonItemOnlineHelp.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemOnlineHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me with Online Advertising Schedules", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemOnlineHelp.Text = "buttonItem1";
+			this.buttonItemOnlineHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
+			// 
 			// ribbonBarOnlineDelete
 			// 
 			this.ribbonBarOnlineDelete.AutoOverflowEnabled = true;
@@ -1141,6 +1380,14 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarOnlineDelete.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemOnlineDelete
+			// 
+			this.buttonItemOnlineDelete.Enabled = false;
+			this.buttonItemOnlineDelete.Image = global::NewBizWiz.Dashboard.Properties.Resources.DeleteSchedule;
+			this.buttonItemOnlineDelete.Name = "buttonItemOnlineDelete";
+			this.buttonItemOnlineDelete.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemOnlineDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete Online Schedule", "", "Delete the selected internet advertising schedule below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarOnlineOpen
 			// 
@@ -1173,6 +1420,14 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarOnlineOpen.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
+			// buttonItemOnlineOpen
+			// 
+			this.buttonItemOnlineOpen.Enabled = false;
+			this.buttonItemOnlineOpen.Image = global::NewBizWiz.Dashboard.Properties.Resources.OpenSchedule;
+			this.buttonItemOnlineOpen.Name = "buttonItemOnlineOpen";
+			this.buttonItemOnlineOpen.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemOnlineOpen, new DevComponents.DotNetBar.SuperTooltipInfo("Open Online Schedule", "", "Open the selected internet advertising schedule below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			// 
 			// ribbonBarOnlineNew
 			// 
 			this.ribbonBarOnlineNew.AutoOverflowEnabled = true;
@@ -1204,6 +1459,13 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarOnlineNew.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarOnlineNew.Click += new System.EventHandler(this.Outside_Click);
+			// 
+			// buttonItemOnlineNew
+			// 
+			this.buttonItemOnlineNew.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewSchedule;
+			this.buttonItemOnlineNew.Name = "buttonItemOnlineNew";
+			this.buttonItemOnlineNew.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemOnlineNew, new DevComponents.DotNetBar.SuperTooltipInfo("New Online Schedule", "", "Create a new internet advertising schedule for your presentation", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarOnlineScheduleBuilder
 			// 
@@ -1239,6 +1501,15 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarOnlineScheduleBuilder.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			this.ribbonBarOnlineScheduleBuilder.Click += new System.EventHandler(this.Outside_Click);
 			// 
+			// buttonItemOnlineScheduleBuilder
+			// 
+			this.buttonItemOnlineScheduleBuilder.Checked = true;
+			this.buttonItemOnlineScheduleBuilder.FixedSize = new System.Drawing.Size(100, 110);
+			this.buttonItemOnlineScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.WebLittle;
+			this.buttonItemOnlineScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemOnlineScheduleBuilder.Name = "buttonItemOnlineScheduleBuilder";
+			this.buttonItemOnlineScheduleBuilder.SubItemsExpandWidth = 14;
+			// 
 			// ribbonBarOnlineLogo
 			// 
 			this.ribbonBarOnlineLogo.AutoOverflowEnabled = true;
@@ -1271,6 +1542,15 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarOnlineLogo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarOnlineLogo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			this.ribbonBarOnlineLogo.Click += new System.EventHandler(this.Outside_Click);
+			// 
+			// buttonItemOnlineLogo
+			// 
+			this.buttonItemOnlineLogo.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
+			this.buttonItemOnlineLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
+			this.buttonItemOnlineLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemOnlineLogo.Name = "buttonItemOnlineLogo";
+			this.buttonItemOnlineLogo.SubItemsExpandWidth = 14;
+			this.buttonItemOnlineLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
 			// 
 			// ribbonPanelRadio
 			// 
@@ -1337,6 +1617,14 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarRadioExit.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			this.ribbonBarRadioExit.Click += new System.EventHandler(this.Outside_Click);
 			// 
+			// buttonItemRadioExit
+			// 
+			this.buttonItemRadioExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
+			this.buttonItemRadioExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemRadioExit.Name = "buttonItemRadioExit";
+			this.buttonItemRadioExit.SubItemsExpandWidth = 14;
+			this.buttonItemRadioExit.Click += new System.EventHandler(this.buttonItemExit_Click);
+			// 
 			// ribbonBarRadioFloater
 			// 
 			this.ribbonBarRadioFloater.AutoOverflowEnabled = true;
@@ -1367,6 +1655,15 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarRadioFloater.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemRadioFloater
+			// 
+			this.buttonItemRadioFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
+			this.buttonItemRadioFloater.Name = "buttonItemRadioFloater";
+			this.buttonItemRadioFloater.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemRadioFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemRadioFloater.Text = "Floater";
+			this.buttonItemRadioFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
 			// 
 			// ribbonBarRadioHelp
 			// 
@@ -1399,6 +1696,14 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarRadioHelp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
+			// buttonItemRadioHelp
+			// 
+			this.buttonItemRadioHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
+			this.buttonItemRadioHelp.Name = "buttonItemRadioHelp";
+			this.buttonItemRadioHelp.SubItemsExpandWidth = 14;
+			this.buttonItemRadioHelp.Text = "buttonItem1";
+			this.buttonItemRadioHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
+			// 
 			// ribbonBarRadioDelete
 			// 
 			this.ribbonBarRadioDelete.AutoOverflowEnabled = true;
@@ -1429,6 +1734,14 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarRadioDelete.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemRadioDelete
+			// 
+			this.buttonItemRadioDelete.Enabled = false;
+			this.buttonItemRadioDelete.Image = global::NewBizWiz.Dashboard.Properties.Resources.DeleteSchedule;
+			this.buttonItemRadioDelete.Name = "buttonItemRadioDelete";
+			this.buttonItemRadioDelete.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemRadioDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete Radio Schedule", "", "Delete the selected Radio Schedule below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarRadioOpen
 			// 
@@ -1461,6 +1774,14 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarRadioOpen.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
+			// buttonItemRadioOpen
+			// 
+			this.buttonItemRadioOpen.Enabled = false;
+			this.buttonItemRadioOpen.Image = global::NewBizWiz.Dashboard.Properties.Resources.OpenSchedule;
+			this.buttonItemRadioOpen.Name = "buttonItemRadioOpen";
+			this.buttonItemRadioOpen.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemRadioOpen, new DevComponents.DotNetBar.SuperTooltipInfo("Open Radio Schedule", "", "Open a Radio Schedule You already built", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			// 
 			// ribbonBarRadioNew
 			// 
 			this.ribbonBarRadioNew.AutoOverflowEnabled = true;
@@ -1491,6 +1812,13 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarRadioNew.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemRadioNew
+			// 
+			this.buttonItemRadioNew.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewSchedule;
+			this.buttonItemRadioNew.Name = "buttonItemRadioNew";
+			this.buttonItemRadioNew.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemRadioNew, new DevComponents.DotNetBar.SuperTooltipInfo("New Radio Schedule", "", "Build a Quick Radio Spot Schedule for your client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
 			// 
 			// ribbonBarRadioScheduleBuilder
 			// 
@@ -1526,6 +1854,15 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarRadioScheduleBuilder.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			this.ribbonBarRadioScheduleBuilder.Click += new System.EventHandler(this.Outside_Click);
 			// 
+			// buttonItemRadioScheduleBuilder
+			// 
+			this.buttonItemRadioScheduleBuilder.Checked = true;
+			this.buttonItemRadioScheduleBuilder.FixedSize = new System.Drawing.Size(100, 110);
+			this.buttonItemRadioScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.RadioLittle;
+			this.buttonItemRadioScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemRadioScheduleBuilder.Name = "buttonItemRadioScheduleBuilder";
+			this.buttonItemRadioScheduleBuilder.SubItemsExpandWidth = 14;
+			// 
 			// ribbonBarRadioLogo
 			// 
 			this.ribbonBarRadioLogo.AutoOverflowEnabled = true;
@@ -1558,6 +1895,15 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarRadioLogo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarRadioLogo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			this.ribbonBarRadioLogo.Click += new System.EventHandler(this.Outside_Click);
+			// 
+			// buttonItemRadioLogo
+			// 
+			this.buttonItemRadioLogo.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
+			this.buttonItemRadioLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
+			this.buttonItemRadioLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemRadioLogo.Name = "buttonItemRadioLogo";
+			this.buttonItemRadioLogo.SubItemsExpandWidth = 14;
+			this.buttonItemRadioLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
 			// 
 			// ribbonPanelTV
 			// 
@@ -1624,6 +1970,15 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarTVExit.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			this.ribbonBarTVExit.Click += new System.EventHandler(this.Outside_Click);
 			// 
+			// buttonItemTVExit
+			// 
+			this.buttonItemTVExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
+			this.buttonItemTVExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemTVExit.Name = "buttonItemTVExit";
+			this.buttonItemTVExit.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemTVExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemTVExit.Click += new System.EventHandler(this.buttonItemExit_Click);
+			// 
 			// ribbonBarTVFloater
 			// 
 			this.ribbonBarTVFloater.AutoOverflowEnabled = true;
@@ -1654,6 +2009,15 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarTVFloater.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemTVFloater
+			// 
+			this.buttonItemTVFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
+			this.buttonItemTVFloater.Name = "buttonItemTVFloater";
+			this.buttonItemTVFloater.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemTVFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemTVFloater.Text = "Floater";
+			this.buttonItemTVFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
 			// 
 			// ribbonBarTVHelp
 			// 
@@ -1686,6 +2050,15 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarTVHelp.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
+			// buttonItemTVHelp
+			// 
+			this.buttonItemTVHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
+			this.buttonItemTVHelp.Name = "buttonItemTVHelp";
+			this.buttonItemTVHelp.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemTVHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me with TV Schedules", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonItemTVHelp.Text = "buttonItem1";
+			this.buttonItemTVHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
+			// 
 			// ribbonBarTVDelete
 			// 
 			this.ribbonBarTVDelete.AutoOverflowEnabled = true;
@@ -1716,6 +2089,14 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarTVDelete.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemTVDelete
+			// 
+			this.buttonItemTVDelete.Enabled = false;
+			this.buttonItemTVDelete.Image = global::NewBizWiz.Dashboard.Properties.Resources.DeleteSchedule;
+			this.buttonItemTVDelete.Name = "buttonItemTVDelete";
+			this.buttonItemTVDelete.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemTVDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete TV Schedule", "", "Delete the selected TV Schedule below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			// 
 			// ribbonBarTVOpen
 			// 
@@ -1748,6 +2129,14 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonBarTVOpen.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
+			// buttonItemTVOpen
+			// 
+			this.buttonItemTVOpen.Enabled = false;
+			this.buttonItemTVOpen.Image = global::NewBizWiz.Dashboard.Properties.Resources.OpenSchedule;
+			this.buttonItemTVOpen.Name = "buttonItemTVOpen";
+			this.buttonItemTVOpen.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemTVOpen, new DevComponents.DotNetBar.SuperTooltipInfo("Open TV Schedule", "", "Open a TV Schedule You already built", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			// 
 			// ribbonBarTVNew
 			// 
 			this.ribbonBarTVNew.AutoOverflowEnabled = true;
@@ -1778,6 +2167,13 @@ namespace NewBizWiz.Dashboard
 			// 
 			// 
 			this.ribbonBarTVNew.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			// 
+			// buttonItemTVNew
+			// 
+			this.buttonItemTVNew.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewSchedule;
+			this.buttonItemTVNew.Name = "buttonItemTVNew";
+			this.buttonItemTVNew.SubItemsExpandWidth = 14;
+			this.superTooltip.SetSuperTooltip(this.buttonItemTVNew, new DevComponents.DotNetBar.SuperTooltipInfo("New TV Schedule", "", "Build a Quick TV Spot Schedule for your client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
 			// 
 			// ribbonBarTVScheduleBuilder
 			// 
@@ -1813,6 +2209,15 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarTVScheduleBuilder.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			this.ribbonBarTVScheduleBuilder.Click += new System.EventHandler(this.Outside_Click);
 			// 
+			// buttonItemTVScheduleBuilder
+			// 
+			this.buttonItemTVScheduleBuilder.Checked = true;
+			this.buttonItemTVScheduleBuilder.FixedSize = new System.Drawing.Size(100, 110);
+			this.buttonItemTVScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.TVLittle;
+			this.buttonItemTVScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemTVScheduleBuilder.Name = "buttonItemTVScheduleBuilder";
+			this.buttonItemTVScheduleBuilder.SubItemsExpandWidth = 14;
+			// 
 			// ribbonBarTVLogo
 			// 
 			this.ribbonBarTVLogo.AutoOverflowEnabled = true;
@@ -1845,6 +2250,15 @@ namespace NewBizWiz.Dashboard
 			this.ribbonBarTVLogo.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarTVLogo.VerticalItemAlignment = DevComponents.DotNetBar.eVerticalItemsAlignment.Middle;
 			this.ribbonBarTVLogo.Click += new System.EventHandler(this.Outside_Click);
+			// 
+			// buttonItemTVLogo
+			// 
+			this.buttonItemTVLogo.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
+			this.buttonItemTVLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
+			this.buttonItemTVLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+			this.buttonItemTVLogo.Name = "buttonItemTVLogo";
+			this.buttonItemTVLogo.SubItemsExpandWidth = 14;
+			this.buttonItemTVLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
 			// 
 			// ribbonTabItemHome
 			// 
@@ -1880,7 +2294,7 @@ namespace NewBizWiz.Dashboard
 			// 
 			this.ribbonTabItemOnline.Name = "ribbonTabItemOnline";
 			this.ribbonTabItemOnline.Panel = this.ribbonPanelOnline;
-			this.ribbonTabItemOnline.Text = "WebPRO";
+			this.ribbonTabItemOnline.Text = "WebPoint";
 			this.ribbonTabItemOnline.Visible = false;
 			this.ribbonTabItemOnline.Click += new System.EventHandler(this.Outside_Click);
 			// 
@@ -1905,379 +2319,6 @@ namespace NewBizWiz.Dashboard
 			this.pnMain.Name = "pnMain";
 			this.pnMain.Size = new System.Drawing.Size(919, 512);
 			this.pnMain.TabIndex = 6;
-			this.pnMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pnMain_Paint);
-			// 
-			// buttonItemHomeExit
-			// 
-			this.buttonItemHomeExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
-			this.buttonItemHomeExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemHomeExit.Name = "buttonItemHomeExit";
-			this.buttonItemHomeExit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Default, true, false, new System.Drawing.Size(0, 0)));
-			this.buttonItemHomeExit.Click += new System.EventHandler(this.buttonItemExit_Click);
-			// 
-			// buttonItemHomeFloater
-			// 
-			this.buttonItemHomeFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
-			this.buttonItemHomeFloater.Name = "buttonItemHomeFloater";
-			this.buttonItemHomeFloater.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemHomeFloater.Text = "Floater";
-			this.buttonItemHomeFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
-			// 
-			// buttonItemHomeHelp
-			// 
-			this.buttonItemHomeHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
-			this.buttonItemHomeHelp.Name = "buttonItemHomeHelp";
-			this.buttonItemHomeHelp.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemHomeHelp.Text = "buttonItem1";
-			this.buttonItemHomeHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
-			// 
-			// buttonItemPowerPoint
-			// 
-			this.buttonItemPowerPoint.Image = global::NewBizWiz.Dashboard.Properties.Resources.Output;
-			this.buttonItemPowerPoint.Name = "buttonItemPowerPoint";
-			this.buttonItemPowerPoint.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to PowerPoiint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemPowerPoint.Click += new System.EventHandler(this.buttonItemPowerPoint_Click);
-			// 
-			// buttonItemPreview
-			// 
-			this.buttonItemPreview.Image = global::NewBizWiz.Dashboard.Properties.Resources.Preview;
-			this.buttonItemPreview.Name = "buttonItemPreview";
-			this.buttonItemPreview.SubItemsExpandWidth = 14;
-			this.buttonItemPreview.Text = "buttonItem1";
-			this.buttonItemPreview.Click += new System.EventHandler(this.buttonItemPreview_Click);
-			// 
-			// buttonItemHomeOverview
-			// 
-			this.buttonItemHomeOverview.Checked = true;
-			this.buttonItemHomeOverview.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
-			this.buttonItemHomeOverview.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemHomeOverview.Name = "buttonItemHomeOverview";
-			this.buttonItemHomeOverview.SubItemsExpandWidth = 14;
-			this.buttonItemHomeOverview.Click += new System.EventHandler(this.buttonItemHomeOverview_Click);
-			// 
-			// buttonItemNewspaperExit
-			// 
-			this.buttonItemNewspaperExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
-			this.buttonItemNewspaperExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemNewspaperExit.Name = "buttonItemNewspaperExit";
-			this.buttonItemNewspaperExit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemNewspaperExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemNewspaperExit.Click += new System.EventHandler(this.buttonItemExit_Click);
-			// 
-			// buttonItemNewspaperFloater
-			// 
-			this.buttonItemNewspaperFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
-			this.buttonItemNewspaperFloater.Name = "buttonItemNewspaperFloater";
-			this.buttonItemNewspaperFloater.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemNewspaperFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemNewspaperFloater.Text = "Floater";
-			this.buttonItemNewspaperFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
-			// 
-			// buttonItemNewspaperHelp
-			// 
-			this.buttonItemNewspaperHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
-			this.buttonItemNewspaperHelp.Name = "buttonItemNewspaperHelp";
-			this.buttonItemNewspaperHelp.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemNewspaperHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me with Newspaper Advertising Schedules", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemNewspaperHelp.Text = "buttonItem1";
-			this.buttonItemNewspaperHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
-			// 
-			// buttonItemNewspaperDelete
-			// 
-			this.buttonItemNewspaperDelete.Enabled = false;
-			this.buttonItemNewspaperDelete.Image = global::NewBizWiz.Dashboard.Properties.Resources.DeleteSchedule;
-			this.buttonItemNewspaperDelete.Name = "buttonItemNewspaperDelete";
-			this.buttonItemNewspaperDelete.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemNewspaperDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete Ad Schedule", "", "Delete the selected Ad Schedule below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// buttonItemNewspaperOpen
-			// 
-			this.buttonItemNewspaperOpen.Enabled = false;
-			this.buttonItemNewspaperOpen.Image = global::NewBizWiz.Dashboard.Properties.Resources.OpenSchedule;
-			this.buttonItemNewspaperOpen.Name = "buttonItemNewspaperOpen";
-			this.buttonItemNewspaperOpen.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemNewspaperOpen, new DevComponents.DotNetBar.SuperTooltipInfo("Open Ad Schedule", "", "Open a schedule you already built", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// buttonItemNewspaperNew
-			// 
-			this.buttonItemNewspaperNew.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewSchedule;
-			this.buttonItemNewspaperNew.Name = "buttonItemNewspaperNew";
-			this.buttonItemNewspaperNew.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemNewspaperNew, new DevComponents.DotNetBar.SuperTooltipInfo("New Ad Schedule", "", "Build a Quick Newspaper Schedule for your client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// buttonItemNewspaperScheduleBuilder
-			// 
-			this.buttonItemNewspaperScheduleBuilder.Checked = true;
-			this.buttonItemNewspaperScheduleBuilder.FixedSize = new System.Drawing.Size(100, 110);
-			this.buttonItemNewspaperScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewspaperLittle;
-			this.buttonItemNewspaperScheduleBuilder.ImageFixedSize = new System.Drawing.Size(64, 64);
-			this.buttonItemNewspaperScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemNewspaperScheduleBuilder.Name = "buttonItemNewspaperScheduleBuilder";
-			this.buttonItemNewspaperScheduleBuilder.SubItemsExpandWidth = 14;
-			// 
-			// buttonItemNewspaperLogo
-			// 
-			this.buttonItemNewspaperLogo.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
-			this.buttonItemNewspaperLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
-			this.buttonItemNewspaperLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemNewspaperLogo.Name = "buttonItemNewspaperLogo";
-			this.buttonItemNewspaperLogo.SubItemsExpandWidth = 14;
-			this.buttonItemNewspaperLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
-			// 
-			// buttonItemSlidesExit
-			// 
-			this.buttonItemSlidesExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
-			this.buttonItemSlidesExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemSlidesExit.Name = "buttonItemSlidesExit";
-			this.buttonItemSlidesExit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Default, true, false, new System.Drawing.Size(0, 0)));
-			this.buttonItemSlidesExit.Click += new System.EventHandler(this.buttonItemExit_Click);
-			// 
-			// buttonItemSlidesFloater
-			// 
-			this.buttonItemSlidesFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
-			this.buttonItemSlidesFloater.Name = "buttonItemSlidesFloater";
-			this.buttonItemSlidesFloater.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemSlidesFloater.Text = "Floater";
-			this.buttonItemSlidesFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
-			// 
-			// buttonItemSlidesHelp
-			// 
-			this.buttonItemSlidesHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
-			this.buttonItemSlidesHelp.Name = "buttonItemSlidesHelp";
-			this.buttonItemSlidesHelp.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me use this Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemSlidesHelp.Text = "buttonItem1";
-			this.buttonItemSlidesHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
-			// 
-			// buttonItemSlidesPowerPoint
-			// 
-			this.buttonItemSlidesPowerPoint.Image = global::NewBizWiz.Dashboard.Properties.Resources.Output;
-			this.buttonItemSlidesPowerPoint.Name = "buttonItemSlidesPowerPoint";
-			this.buttonItemSlidesPowerPoint.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemSlidesPowerPoint, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Output", "", "Send this slide to PowerPoiint", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// buttonItemSlidesPreview
-			// 
-			this.buttonItemSlidesPreview.Image = global::NewBizWiz.Dashboard.Properties.Resources.Preview;
-			this.buttonItemSlidesPreview.Name = "buttonItemSlidesPreview";
-			this.buttonItemSlidesPreview.SubItemsExpandWidth = 14;
-			this.buttonItemSlidesPreview.Text = "buttonItem1";
-			// 
-			// buttonItemSlidesLogo
-			// 
-			this.buttonItemSlidesLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
-			this.buttonItemSlidesLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemSlidesLogo.Name = "buttonItemSlidesLogo";
-			this.buttonItemSlidesLogo.SubItemsExpandWidth = 14;
-			this.buttonItemSlidesLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
-			// 
-			// buttonItemOnlineExit
-			// 
-			this.buttonItemOnlineExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
-			this.buttonItemOnlineExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemOnlineExit.Name = "buttonItemOnlineExit";
-			this.buttonItemOnlineExit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemOnlineExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemOnlineExit.Click += new System.EventHandler(this.buttonItemExit_Click);
-			// 
-			// buttonItemOnlineFloater
-			// 
-			this.buttonItemOnlineFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
-			this.buttonItemOnlineFloater.Name = "buttonItemOnlineFloater";
-			this.buttonItemOnlineFloater.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemOnlineFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemOnlineFloater.Text = "Floater";
-			this.buttonItemOnlineFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
-			// 
-			// buttonItemOnlineHelp
-			// 
-			this.buttonItemOnlineHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
-			this.buttonItemOnlineHelp.Name = "buttonItemOnlineHelp";
-			this.buttonItemOnlineHelp.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemOnlineHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me with Online Advertising Schedules", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemOnlineHelp.Text = "buttonItem1";
-			this.buttonItemOnlineHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
-			// 
-			// buttonItemOnlineDelete
-			// 
-			this.buttonItemOnlineDelete.Enabled = false;
-			this.buttonItemOnlineDelete.Image = global::NewBizWiz.Dashboard.Properties.Resources.DeleteSchedule;
-			this.buttonItemOnlineDelete.Name = "buttonItemOnlineDelete";
-			this.buttonItemOnlineDelete.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemOnlineDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete Online Schedule", "", "Delete the selected internet advertising schedule below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// buttonItemOnlineOpen
-			// 
-			this.buttonItemOnlineOpen.Enabled = false;
-			this.buttonItemOnlineOpen.Image = global::NewBizWiz.Dashboard.Properties.Resources.OpenSchedule;
-			this.buttonItemOnlineOpen.Name = "buttonItemOnlineOpen";
-			this.buttonItemOnlineOpen.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemOnlineOpen, new DevComponents.DotNetBar.SuperTooltipInfo("Open Online Schedule", "", "Open the selected internet advertising schedule below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// buttonItemOnlineNew
-			// 
-			this.buttonItemOnlineNew.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewSchedule;
-			this.buttonItemOnlineNew.Name = "buttonItemOnlineNew";
-			this.buttonItemOnlineNew.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemOnlineNew, new DevComponents.DotNetBar.SuperTooltipInfo("New Online Schedule", "", "Create a new internet advertising schedule for your presentation", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// buttonItemOnlineScheduleBuilder
-			// 
-			this.buttonItemOnlineScheduleBuilder.Checked = true;
-			this.buttonItemOnlineScheduleBuilder.FixedSize = new System.Drawing.Size(100, 110);
-			this.buttonItemOnlineScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.WebLittle;
-			this.buttonItemOnlineScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemOnlineScheduleBuilder.Name = "buttonItemOnlineScheduleBuilder";
-			this.buttonItemOnlineScheduleBuilder.SubItemsExpandWidth = 14;
-			// 
-			// buttonItemOnlineLogo
-			// 
-			this.buttonItemOnlineLogo.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
-			this.buttonItemOnlineLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
-			this.buttonItemOnlineLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemOnlineLogo.Name = "buttonItemOnlineLogo";
-			this.buttonItemOnlineLogo.SubItemsExpandWidth = 14;
-			this.buttonItemOnlineLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
-			// 
-			// buttonItemRadioExit
-			// 
-			this.buttonItemRadioExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
-			this.buttonItemRadioExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemRadioExit.Name = "buttonItemRadioExit";
-			this.buttonItemRadioExit.SubItemsExpandWidth = 14;
-			this.buttonItemRadioExit.Click += new System.EventHandler(this.buttonItemExit_Click);
-			// 
-			// buttonItemRadioFloater
-			// 
-			this.buttonItemRadioFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
-			this.buttonItemRadioFloater.Name = "buttonItemRadioFloater";
-			this.buttonItemRadioFloater.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemRadioFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemRadioFloater.Text = "Floater";
-			this.buttonItemRadioFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
-			// 
-			// buttonItemRadioHelp
-			// 
-			this.buttonItemRadioHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
-			this.buttonItemRadioHelp.Name = "buttonItemRadioHelp";
-			this.buttonItemRadioHelp.SubItemsExpandWidth = 14;
-			this.buttonItemRadioHelp.Text = "buttonItem1";
-			this.buttonItemRadioHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
-			// 
-			// buttonItemRadioDelete
-			// 
-			this.buttonItemRadioDelete.Enabled = false;
-			this.buttonItemRadioDelete.Image = global::NewBizWiz.Dashboard.Properties.Resources.DeleteSchedule;
-			this.buttonItemRadioDelete.Name = "buttonItemRadioDelete";
-			this.buttonItemRadioDelete.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemRadioDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete Radio Schedule", "", "Delete the selected Radio Schedule below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// buttonItemRadioOpen
-			// 
-			this.buttonItemRadioOpen.Enabled = false;
-			this.buttonItemRadioOpen.Image = global::NewBizWiz.Dashboard.Properties.Resources.OpenSchedule;
-			this.buttonItemRadioOpen.Name = "buttonItemRadioOpen";
-			this.buttonItemRadioOpen.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemRadioOpen, new DevComponents.DotNetBar.SuperTooltipInfo("Open Radio Schedule", "", "Open a Radio Schedule You already built", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// buttonItemRadioNew
-			// 
-			this.buttonItemRadioNew.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewSchedule;
-			this.buttonItemRadioNew.Name = "buttonItemRadioNew";
-			this.buttonItemRadioNew.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemRadioNew, new DevComponents.DotNetBar.SuperTooltipInfo("New Radio Schedule", "", "Build a Quick Radio Spot Schedule for your client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
-			// 
-			// buttonItemRadioScheduleBuilder
-			// 
-			this.buttonItemRadioScheduleBuilder.Checked = true;
-			this.buttonItemRadioScheduleBuilder.FixedSize = new System.Drawing.Size(100, 110);
-			this.buttonItemRadioScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.RadioLittle;
-			this.buttonItemRadioScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemRadioScheduleBuilder.Name = "buttonItemRadioScheduleBuilder";
-			this.buttonItemRadioScheduleBuilder.SubItemsExpandWidth = 14;
-			// 
-			// buttonItemRadioLogo
-			// 
-			this.buttonItemRadioLogo.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
-			this.buttonItemRadioLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
-			this.buttonItemRadioLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemRadioLogo.Name = "buttonItemRadioLogo";
-			this.buttonItemRadioLogo.SubItemsExpandWidth = 14;
-			this.buttonItemRadioLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
-			// 
-			// buttonItemTVExit
-			// 
-			this.buttonItemTVExit.Image = global::NewBizWiz.Dashboard.Properties.Resources.Exit;
-			this.buttonItemTVExit.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemTVExit.Name = "buttonItemTVExit";
-			this.buttonItemTVExit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemTVExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Sales Dashboard", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemTVExit.Click += new System.EventHandler(this.buttonItemExit_Click);
-			// 
-			// buttonItemTVFloater
-			// 
-			this.buttonItemTVFloater.Image = global::NewBizWiz.Dashboard.Properties.Resources.Floater;
-			this.buttonItemTVFloater.Name = "buttonItemTVFloater";
-			this.buttonItemTVFloater.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemTVFloater, new DevComponents.DotNetBar.SuperTooltipInfo("Floater", "", "Send to floater toolbar", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemTVFloater.Text = "Floater";
-			this.buttonItemTVFloater.Click += new System.EventHandler(this.buttonItemFloater_Click);
-			// 
-			// buttonItemTVHelp
-			// 
-			this.buttonItemTVHelp.Image = global::NewBizWiz.Dashboard.Properties.Resources.Help;
-			this.buttonItemTVHelp.Name = "buttonItemTVHelp";
-			this.buttonItemTVHelp.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemTVHelp, new DevComponents.DotNetBar.SuperTooltipInfo("HELP", "", "Help me with TV Schedules", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.buttonItemTVHelp.Text = "buttonItem1";
-			this.buttonItemTVHelp.Click += new System.EventHandler(this.buttonItemHelp_Click);
-			// 
-			// buttonItemTVDelete
-			// 
-			this.buttonItemTVDelete.Enabled = false;
-			this.buttonItemTVDelete.Image = global::NewBizWiz.Dashboard.Properties.Resources.DeleteSchedule;
-			this.buttonItemTVDelete.Name = "buttonItemTVDelete";
-			this.buttonItemTVDelete.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemTVDelete, new DevComponents.DotNetBar.SuperTooltipInfo("Delete TV Schedule", "", "Delete the selected TV Schedule below", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// buttonItemTVOpen
-			// 
-			this.buttonItemTVOpen.Enabled = false;
-			this.buttonItemTVOpen.Image = global::NewBizWiz.Dashboard.Properties.Resources.OpenSchedule;
-			this.buttonItemTVOpen.Name = "buttonItemTVOpen";
-			this.buttonItemTVOpen.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemTVOpen, new DevComponents.DotNetBar.SuperTooltipInfo("Open TV Schedule", "", "Open a TV Schedule You already built", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			// 
-			// buttonItemTVNew
-			// 
-			this.buttonItemTVNew.Image = global::NewBizWiz.Dashboard.Properties.Resources.NewSchedule;
-			this.buttonItemTVNew.Name = "buttonItemTVNew";
-			this.buttonItemTVNew.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemTVNew, new DevComponents.DotNetBar.SuperTooltipInfo("New TV Schedule", "", "Build a Quick TV Spot Schedule for your client", null, null, DevComponents.DotNetBar.eTooltipColor.Gray, true, false, new System.Drawing.Size(0, 0)));
-			// 
-			// buttonItemTVScheduleBuilder
-			// 
-			this.buttonItemTVScheduleBuilder.Checked = true;
-			this.buttonItemTVScheduleBuilder.FixedSize = new System.Drawing.Size(100, 110);
-			this.buttonItemTVScheduleBuilder.Image = global::NewBizWiz.Dashboard.Properties.Resources.TVLittle;
-			this.buttonItemTVScheduleBuilder.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemTVScheduleBuilder.Name = "buttonItemTVScheduleBuilder";
-			this.buttonItemTVScheduleBuilder.SubItemsExpandWidth = 14;
-			// 
-			// buttonItemTVLogo
-			// 
-			this.buttonItemTVLogo.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
-			this.buttonItemTVLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.MasterWizardLogo;
-			this.buttonItemTVLogo.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-			this.buttonItemTVLogo.Name = "buttonItemTVLogo";
-			this.buttonItemTVLogo.SubItemsExpandWidth = 14;
-			this.buttonItemTVLogo.Click += new System.EventHandler(this.labelItemLogo_Click);
 			// 
 			// FormMain
 			// 
@@ -2425,6 +2466,8 @@ namespace NewBizWiz.Dashboard
 		public DevComponents.DotNetBar.ButtonItem buttonItemHomeThemeClientGoals;
 		public DevComponents.DotNetBar.ButtonItem buttonItemHomeThemeTargetCustomers;
 		public DevComponents.DotNetBar.ButtonItem buttonItemHomeThemeSimpleSummary;
+		private DevComponents.DotNetBar.RibbonBar ribbonBarHomeLoad;
+		public DevComponents.DotNetBar.ButtonItem buttonItemHomeLoad;
     }
 }
 

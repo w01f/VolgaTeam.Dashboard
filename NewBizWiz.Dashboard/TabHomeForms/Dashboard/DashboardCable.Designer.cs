@@ -46,7 +46,7 @@
 			this.pbOnline.Image = global::NewBizWiz.Dashboard.Properties.Resources.HomeOnline;
 			this.pbOnline.Location = new System.Drawing.Point(30, 296);
 			this.pbOnline.Name = "pbOnline";
-			this.pbOnline.Size = new System.Drawing.Size(419, 90);
+			this.pbOnline.Size = new System.Drawing.Size(498, 90);
 			this.pbOnline.TabIndex = 2;
 			this.pbOnline.TabStop = false;
 			this.pbOnline.Click += new System.EventHandler(this.pbOnline_Click);
@@ -59,7 +59,7 @@
 			this.pbSellerPoint.Image = global::NewBizWiz.Dashboard.Properties.Resources.HomeCable;
 			this.pbSellerPoint.Location = new System.Drawing.Point(30, 71);
 			this.pbSellerPoint.Name = "pbSellerPoint";
-			this.pbSellerPoint.Size = new System.Drawing.Size(382, 90);
+			this.pbSellerPoint.Size = new System.Drawing.Size(498, 90);
 			this.pbSellerPoint.TabIndex = 0;
 			this.pbSellerPoint.TabStop = false;
 			this.pbSellerPoint.Click += new System.EventHandler(this.pbSellerPoint_Click);

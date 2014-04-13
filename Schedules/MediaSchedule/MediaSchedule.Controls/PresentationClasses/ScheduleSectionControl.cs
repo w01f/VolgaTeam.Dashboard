@@ -33,7 +33,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 	public partial class ScheduleSectionControl : UserControl
 	{
 		private readonly List<BandedGridColumn> _spotColumns = new List<BandedGridColumn>();
-		private bool _allowTosave;
+		private bool _allowToSave;
 		protected Schedule _localSchedule;
 		protected string _helpKey;
 
@@ -101,6 +101,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			});
 			digitalInfoControl.RequestDefaultInfo += (o, args) => { args.Editor.EditValue = _localSchedule.GetDigitalInfo(args); };
 			digitalInfoControl.SettingsChanged += (o, args) => { SettingsNotSaved = true; };
+			quarterSelectorControl.QuarterSelected += QuarterCheckedChanged;
 		}
 
 		public bool SettingsNotSaved { get; set; }
@@ -130,7 +131,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			get { return null; }
 		}
-
+		public virtual ButtonItem QuarterButton
+		{
+			get { return null; }
+		}
 		public virtual SlideType SlideType
 		{
 			get { return SlideType.None; }
@@ -140,11 +144,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			get
 			{
-				bool result = false;
 				if (SettingsNotSaved)
 					SaveSchedule();
-				result = true;
-				return result;
+				return true;
 			}
 		}
 
@@ -267,6 +269,25 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				gridBandTotals2.Visible = false;
 		}
 
+		private void UpdateSpotsStatus()
+		{
+			if (ScheduleSection.ShowSpots)
+			{
+				gridBandSpots.Visible = true;
+				QuarterButton.Enabled = true;
+				quarterSelectorControl.Enabled = QuarterButton.Checked;
+				var selectedQuarter = quarterSelectorControl.SelectedQuarter;
+				foreach (var column in _spotColumns)
+					column.Visible = column.Tag == selectedQuarter || !QuarterButton.Checked;
+			}
+			else
+			{
+				gridBandSpots.Visible = false;
+				QuarterButton.Enabled = false;
+				quarterSelectorControl.Enabled = false;
+			}
+		}
+
 		private void UpdateTotalsValues()
 		{
 			if (ScheduleSection.Programs.Any())
@@ -325,6 +346,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				bandedGridColumn.Caption = column.Caption;
 				bandedGridColumn.ColumnEdit = repositoryItemSpinEditSpot;
 				bandedGridColumn.FieldName = column.ColumnName;
+				bandedGridColumn.Tag = column.ExtendedProperties["Quarter"];
 				bandedGridColumn.OptionsColumn.FixedWidth = true;
 				bandedGridColumn.RowCount = 2;
 				bandedGridColumn.Width = 45;
@@ -340,7 +362,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public void LoadSchedule(bool quickLoad)
 		{
-			_allowTosave = false;
+			_allowToSave = false;
 
 			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			ScheduleSection.DataChanged += ScheduleSection_DataChanged;
@@ -351,8 +373,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				SettingsNotSaved = true;
 			}));
 
-			laAdvertiser.Text = _localSchedule.BusinessName;
-			laScheduleWindow.Text = _localSchedule.FlightDateStart.HasValue && _localSchedule.FlightDateEnd.HasValue ? string.Format("{0} - {1}", new object[] { _localSchedule.FlightDateStart.Value.ToString("MM/dd/yy"), _localSchedule.FlightDateEnd.Value.ToString("MM/dd/yy") }) : string.Empty;
+			laScheduleInfo.Text = String.Format("{0}{2}{1}",
+				_localSchedule.BusinessName,
+				_localSchedule.FlightDateStart.HasValue && _localSchedule.FlightDateEnd.HasValue ? string.Format("{0} - {1}", new object[] { _localSchedule.FlightDateStart.Value.ToString("MM/dd/yy"), _localSchedule.FlightDateEnd.Value.ToString("MM/dd/yy") }) : string.Empty,
+				Environment.NewLine);
 			buttonXRating.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 			buttonXCPP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 			buttonXGRP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
@@ -360,7 +384,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			buttonXTotalGRP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 			buttonXRating.Text = _localSchedule.DemoType == DemoType.Rtg ? "Rtg" : "(000s)";
 			bandedGridColumnRating.Caption = String.Format("{0}{1}",
-				(!String.IsNullOrEmpty(_localSchedule.Demo) ? String.Format("{0} ",_localSchedule.Demo) : String.Empty),
+				(!String.IsNullOrEmpty(_localSchedule.Demo) ? String.Format("{0} ", _localSchedule.Demo) : String.Empty),
 				_localSchedule.DemoType == DemoType.Rtg ? "Rtg" : "(000)");
 			bandedGridColumnRating.ColumnEdit = _localSchedule.DemoType == DemoType.Rtg ? repositoryItemSpinEditRating : repositoryItemSpinEdit000s;
 			buttonXCPP.Text = _localSchedule.DemoType == DemoType.Rtg ? "CPP" : "CPM";
@@ -386,6 +410,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			buttonXSpots.Checked = ScheduleSection.ShowSpots;
 			checkEditEmptySports.Enabled = ScheduleSection.ShowSpots;
 			checkEditEmptySports.Checked = !ScheduleSection.ShowEmptySpots;
+
+			QuarterButton.Checked = ScheduleSection.ShowSelectedQuarter;
+			quarterSelectorControl.InitControls(ScheduleSection.Parent.BroadcastCalendar.Quarters, ScheduleSection.Parent.BroadcastCalendar.Quarters.FirstOrDefault(q => !ScheduleSection.SelectedQuarter.HasValue || q.DateAnchor == ScheduleSection.SelectedQuarter.Value));
 
 			buttonXTotalPeriods.Checked = ScheduleSection.ShowTotalPeriods;
 			buttonXTotalSpots.Checked = ScheduleSection.ShowTotalSpots;
@@ -422,7 +449,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 			bandedGridColumnStation.Visible = ScheduleSection.ShowStation;
 			bandedGridColumnDaypart.Visible = ScheduleSection.ShowDaypart;
-			gridBandSpots.Visible = _spotColumns.Count > 0 && ScheduleSection.ShowSpots;
 
 			UpdateColumnsAccordingScreenSize();
 
@@ -444,6 +470,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			}
 
 			UpdateGrid(quickLoad);
+			UpdateSpotsStatus();
 			UpdateTotalsValues();
 			UpdateOutputStatus(ScheduleSection.Programs.Any());
 
@@ -473,7 +500,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			}
 			buttonXUseSlideMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
 
-			_allowTosave = true;
+			_allowToSave = true;
 			SettingsNotSaved = false;
 		}
 
@@ -594,7 +621,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		private void button_CheckedChanged(object sender, EventArgs e)
 		{
-			if (!_allowTosave) return;
+			if (!_allowToSave) return;
 			ScheduleSection.ShowRate = buttonXRate.Checked;
 			ScheduleSection.ShowRating = buttonXRating.Checked;
 			ScheduleSection.ShowCost = buttonXCost.Checked;
@@ -619,6 +646,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			ScheduleSection.ShowTotalRate = buttonXTotalCost.Checked;
 			ScheduleSection.ShowNetRate = buttonXNetRate.Checked;
 			ScheduleSection.ShowDiscount = buttonXDiscount.Checked;
+
+			ScheduleSection.ShowSelectedQuarter = QuarterButton.Checked && buttonXSpots.Checked;
+			var selectedQuarter = quarterSelectorControl.SelectedQuarter;
+			ScheduleSection.SelectedQuarter = ScheduleSection.ShowSelectedQuarter && selectedQuarter != null ? selectedQuarter.DateAnchor : (DateTime?)null;
 
 			bandedGridColumnRate.Visible = ScheduleSection.ShowRate;
 			bandedGridColumnRating.Visible = ScheduleSection.ShowRating;
@@ -653,12 +684,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 			UpdateColumnsAccordingScreenSize();
 
+			UpdateSpotsStatus();
+
 			SettingsNotSaved = true;
 		}
 
 		private void buttonXUseSlideMaster_CheckedChanged(object sender, EventArgs e)
 		{
-			if (!_allowTosave) return;
+			if (!_allowToSave) return;
 			SettingsNotSaved = true;
 		}
 
@@ -673,7 +706,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		private void colorButton_CheckedChanged(object sender, EventArgs e)
 		{
-			if (!_allowTosave) return;
+			if (!_allowToSave) return;
 			SettingsNotSaved = true;
 		}
 
@@ -687,6 +720,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				BusinessWrapper.Instance.HelpManager.OpenHelpLink("navstyle");
 			else if (xtraTabControlOptions.SelectedTabPage == xtraTabPageOptionsTotals)
 				BusinessWrapper.Instance.HelpManager.OpenHelpLink("navinfo");
+		}
+
+		public void QuarterCheckedChanged(object sender, EventArgs e)
+		{
+			quarterSelectorControl.Enabled = QuarterButton.Checked;
+			button_CheckedChanged(sender, e);
 		}
 		#endregion
 

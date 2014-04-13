@@ -13,7 +13,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			_helpKey = "week";
 			laTotalPeriodsTitle.Text = "Total Weeks:";
 			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, "Weeks");
-			laScheduleName.Text = "Weekly Schedule";
 		}
 		public override ScheduleSection ScheduleSection
 		{
@@ -38,6 +37,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public override ButtonItem PreviewButton
 		{
 			get { return Controller.Instance.WeeklySchedulePreview; }
+		}
+		public override ButtonItem QuarterButton
+		{
+			get { return Controller.Instance.WeeklyScheduleQuarter; }
 		}
 		public override SlideType SlideType
 		{

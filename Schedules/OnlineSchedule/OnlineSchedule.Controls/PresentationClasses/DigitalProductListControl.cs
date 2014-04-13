@@ -33,6 +33,14 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public DigitalProductListControl()
 		{
 			InitializeComponent();
+
+			if (ListManager.Instance.Placeholders.Count > 0)
+				repositoryItemComboBoxProductType.NullText = ListManager.Instance.Placeholders[0];
+			if (ListManager.Instance.Placeholders.Count > 1)
+				repositoryItemComboBoxProductName.NullText = ListManager.Instance.Placeholders[1];
+			if (ListManager.Instance.Placeholders.Count > 2)
+				repositoryItemComboBoxLocation.NullText = ListManager.Instance.Placeholders[2];
+
 			repositoryItemComboBoxProductType.Enter += Utilities.Instance.Editor_Enter;
 			repositoryItemComboBoxProductType.MouseDown += Utilities.Instance.Editor_MouseDown;
 			repositoryItemComboBoxProductType.MouseUp += Utilities.Instance.Editor_MouseUp;
@@ -214,7 +222,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 			else if (advBandedGridView.FocusedColumn == gridColumnRate)
 			{
-				e.Cancel = digitalProduct.RateType == "Fixed" || digitalProduct.RateType == "CPM";
+				e.Cancel = !digitalProduct.EnableRate;
 			}
 			else if (advBandedGridView.FocusedColumn == gridColumnLocation)
 			{

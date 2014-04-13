@@ -81,7 +81,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -103,6 +106,9 @@
     <Compile Include="PresentationClasses\InputClasses\AdNotesDaysSelector.Designer.cs">
       <DependentUpon>AdNotesDaysSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\InputClasses\PrintGallery2Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\InputClasses\CustomDateEditCalendar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -115,7 +121,7 @@
     <Compile Include="PresentationClasses\InputClasses\AdWebPackageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\InputClasses\PrintGalleryControl.cs">
+    <Compile Include="PresentationClasses\InputClasses\PrintGallery1Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\AdPlan\PrintAdPlanControl.cs">

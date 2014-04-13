@@ -1426,6 +1426,7 @@ namespace NewBizWiz.Core.AdSchedule
 			EnablePercentOfAd = true;
 			EnableColorIncluded = true;
 			EnableCostPerInch = true;
+			EnableMechanicals = true;
 
 			DefaultPCI = false;
 			DefaultFlat = false;
@@ -1437,6 +1438,8 @@ namespace NewBizWiz.Core.AdSchedule
 			DefaultPercentOfAd = false;
 			DefaultColorIncluded = true;
 			DefaultCostPerInch = false;
+			DefaultMechanicals = true;
+			CalcDiscountBeforeColor = true;
 		}
 
 		public bool EnablePCI { get; set; }
@@ -1449,6 +1452,7 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool EnablePercentOfAd { get; set; }
 		public bool EnableColorIncluded { get; set; }
 		public bool EnableCostPerInch { get; set; }
+		public bool EnableMechanicals { get; set; }
 
 		public bool DefaultPCI { get; set; }
 		public bool DefaultFlat { get; set; }
@@ -1460,8 +1464,8 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool DefaultPercentOfAd { get; set; }
 		public bool DefaultColorIncluded { get; set; }
 		public bool DefaultCostPerInch { get; set; }
-
-		private void LoadDefaultSettings() { }
+		public bool DefaultMechanicals { get; set; }
+		public bool CalcDiscountBeforeColor { get; set; }
 
 		public string Serialize()
 		{
@@ -1477,6 +1481,7 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<EnablePercentOfAd>" + EnablePercentOfAd + @"</EnablePercentOfAd>");
 			result.AppendLine(@"<EnableColorIncluded>" + EnableColorIncluded + @"</EnableColorIncluded>");
 			result.AppendLine(@"<EnableCostPerInch>" + EnableCostPerInch + @"</EnableCostPerInch>");
+			result.AppendLine(@"<EnableMechanicals>" + EnableMechanicals + @"</EnableMechanicals>");
 
 			result.AppendLine(@"<DefaultPCI>" + DefaultPCI + @"</DefaultPCI>");
 			result.AppendLine(@"<DefaultFlat>" + DefaultFlat + @"</DefaultFlat>");
@@ -1488,16 +1493,17 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<DefaultPercentOfAd>" + DefaultPercentOfAd + @"</DefaultPercentOfAd>");
 			result.AppendLine(@"<DefaultColorIncluded>" + DefaultColorIncluded + @"</DefaultColorIncluded>");
 			result.AppendLine(@"<DefaultCostPerInch>" + DefaultCostPerInch + @"</DefaultCostPerInch>");
+			result.AppendLine(@"<DefaultMechanicals>" + DefaultMechanicals + @"</DefaultMechanicals>");
+			result.AppendLine(@"<CalcDiscountBeforeColor>" + CalcDiscountBeforeColor + @"</CalcDiscountBeforeColor>");
 
 			return result.ToString();
 		}
 
 		public void Deserialize(XmlNode node)
 		{
-			bool tempBool = false;
-
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
+				bool tempBool;
 				switch (childNode.Name)
 				{
 					case "EnablePCI":
@@ -1540,6 +1546,10 @@ namespace NewBizWiz.Core.AdSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							EnableCostPerInch = tempBool;
 						break;
+					case "EnableMechanicals":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							EnableMechanicals = tempBool;
+						break;
 
 					case "DefaultPCI":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
@@ -1581,6 +1591,14 @@ namespace NewBizWiz.Core.AdSchedule
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							DefaultCostPerInch = tempBool;
 						break;
+					case "DefaultMechanicals":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							DefaultMechanicals = tempBool;
+						break;
+					case "CalcDiscountBeforeColor":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							CalcDiscountBeforeColor = tempBool;
+						break;
 				}
 			}
 
@@ -1594,6 +1612,7 @@ namespace NewBizWiz.Core.AdSchedule
 			DefaultPercentOfAd &= EnablePercentOfAd;
 			DefaultColorIncluded &= EnableColorIncluded;
 			DefaultCostPerInch &= EnableCostPerInch;
+			DefaultMechanicals &= EnableMechanicals;
 		}
 	}
 
@@ -4058,11 +4077,10 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowWebsites = true;
 			ShowProduct = true;
 			ShowDimensions = false;
-			ShowDates = true;
+			ShowDates = false;
 			ShowImpressions = false;
 			ShowCPM = false;
 			ShowInvestment = false;
-			Info = string.Empty;
 		}
 
 		public bool Enabled { get; set; }
@@ -4078,26 +4096,12 @@ namespace NewBizWiz.Core.AdSchedule
 		public bool ShowCPM { get; set; }
 		public bool ShowInvestment { get; set; }
 		public string Info { get; set; }
-		public Image Logo { get; set; }
 		public decimal? Total { get; set; }
 		public decimal? Monthly { get; set; }
 
 		public RequestDigitalInfoEventArgs RequestOptions
 		{
 			get { return new RequestDigitalInfoEventArgs(null, ShowWebsites, ShowProduct, ShowDimensions, ShowDates, ShowImpressions, ShowCPM, ShowInvestment); }
-		}
-
-		private string _encodedLogo;
-		public string EncodedLogo
-		{
-			get
-			{
-				if (!String.IsNullOrEmpty(_encodedLogo)) return _encodedLogo;
-				var converter = TypeDescriptor.GetConverter(typeof(Bitmap));
-				_encodedLogo = Convert.ToBase64String((byte[])converter.ConvertTo(Logo, typeof(byte[]))).Trim();
-				return _encodedLogo;
-			}
-			set { _encodedLogo = value; }
 		}
 
 		public string Serialize()
@@ -4116,9 +4120,8 @@ namespace NewBizWiz.Core.AdSchedule
 			result.AppendLine(@"<ShowImpressions>" + ShowImpressions + @"</ShowImpressions>");
 			result.AppendLine(@"<ShowCPM>" + ShowCPM + @"</ShowCPM>");
 			result.AppendLine(@"<ShowInvestment>" + ShowInvestment + @"</ShowInvestment>");
-			result.AppendLine(@"<Info>" + Info.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Info>");
-			if (Logo != null)
-				result.AppendLine(@"<Logo>" + EncodedLogo.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
+			if (!String.IsNullOrEmpty(Info))
+				result.AppendLine(@"<Info>" + Info.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Info>");
 			if (Total.HasValue)
 				result.AppendLine(@"<Total>" + Total + @"</Total>");
 			if (Monthly.HasValue)
@@ -4181,13 +4184,6 @@ namespace NewBizWiz.Core.AdSchedule
 					case "Info":
 						Info = childNode.InnerText;
 						break;
-					case "Logo":
-						if (!String.IsNullOrEmpty(childNode.InnerText))
-						{
-							Logo = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
-							EncodedLogo = childNode.InnerText;
-						}
-						break;
 					case "Total":
 						decimal total;
 						if (Decimal.TryParse(childNode.InnerText, out total))
@@ -4221,7 +4217,6 @@ namespace NewBizWiz.Core.AdSchedule
 			result.Total = Total;
 			result.Monthly = Monthly;
 
-			result.Logo = Logo;
 			return result;
 		}
 

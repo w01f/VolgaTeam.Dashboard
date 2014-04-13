@@ -76,7 +76,10 @@
     <Compile Include="PresentationClasses\BroadcastCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\MediaGalleryControl.cs">
+    <Compile Include="PresentationClasses\MediaGallery2Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\MediaGallery1Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\DigitalInfoControl.cs">
@@ -111,6 +114,12 @@
     </Compile>
     <Compile Include="PresentationClasses\CalendarSlideInfoControl.Designer.cs">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\QuarterSelectorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\QuarterSelectorControl.Designer.cs">
+      <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\StationsControl.cs">
       <SubType>UserControl</SubType>
@@ -174,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\CalendarSlideInfoControl.resx">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\QuarterSelectorControl.resx">
+      <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\StationsControl.resx">
       <DependentUpon>StationsControl.cs</DependentUpon>
@@ -302,6 +314,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CalendarDisabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Quarter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

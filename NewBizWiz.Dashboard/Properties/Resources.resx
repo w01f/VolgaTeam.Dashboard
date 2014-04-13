@@ -121,6 +121,9 @@
   <data name="LabelNewspaper" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LabelNewspaper.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RedWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RedWarning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SlideClientGoals" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SlideClientGoals.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -133,11 +136,8 @@
   <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DescriptionTargetCustomers" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DescriptionTargetCustomers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SlideCover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SlideCover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CalcButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CalcButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RadioLittle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RadioLittle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,14 +166,11 @@
   <data name="SlideSummary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SlideSummary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DescriptionCover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DescriptionCover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UpArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TitleCalendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TitleCalendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TitleOnline" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TitleOnline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,35 +187,26 @@
   <data name="HomeTV" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeTV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SlideLeadoff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SlideLeadoff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WebLittle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WebLittle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SavedFiles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SavedFiles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="CableLittle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CableLittle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DescriptionClientGoals" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DescriptionClientGoals.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LableRadio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LableRadio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SalesQuotes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SalesQuotes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TitleCalendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TitleCalendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Date" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Date.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DescriptionLeadoff" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DescriptionLeadoff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DecisionMaker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DecisionMaker.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,17 +214,14 @@
   <data name="Advertiser" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Advertiser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SalesQuotes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SalesQuotes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="TitleNewspaper" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TitleNewspaper.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HomeNewspaper" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeNewspaper.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DescriptionSummary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DescriptionSummary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeleteButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -250,22 +235,37 @@
   <data name="TitleRadio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TitleRadio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="HomeOnline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HomeOnline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="OpenSchedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OpenSchedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LableTV" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LableTV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HomeOnline" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HomeOnline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SlideCover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SlideCover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MasterWizardLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MasterWizardLogo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CalcButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CalcButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Load" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Load.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RedWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RedWarning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DescriptionClientGoals" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DescriptionClientGoals.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DescriptionCover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DescriptionCover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DescriptionLeadoff" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DescriptionLeadoff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DescriptionSummary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DescriptionSummary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DescriptionTargetCustomers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DescriptionTargetCustomers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

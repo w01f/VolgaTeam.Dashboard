@@ -17,7 +17,8 @@ namespace NewBizWiz.Calendar.Controls.BusinessClasses
 			OutputManager = new OutputManager();
 			TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "cal_tab_names.xml"));
 			RateCardManager = new RateCardManager(Core.Common.SettingsManager.Instance.RateCardPath);
-			GalleryManager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery.xml"));
+			Gallery1Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery1.xml"));
+			Gallery2Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery2.xml"));
 		}
 
 		public static BusinessWrapper Instance
@@ -30,6 +31,7 @@ namespace NewBizWiz.Calendar.Controls.BusinessClasses
 		public OutputManager OutputManager { get; private set; }
 		public TabPageManager TabPageManager { get; private set; }
 		public RateCardManager RateCardManager { get; private set; }
-		public GalleryManager GalleryManager { get; private set; }
+		public GalleryManager Gallery1Manager { get; private set; }
+		public GalleryManager Gallery2Manager { get; private set; }
 	}
 }

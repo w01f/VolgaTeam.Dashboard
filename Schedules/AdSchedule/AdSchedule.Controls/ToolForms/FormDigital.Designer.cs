@@ -28,11 +28,12 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.memoEditManual = new DevExpress.XtraEditors.MemoEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.checkEditEnable = new DevExpress.XtraEditors.CheckEdit();
 			this.pnControls = new System.Windows.Forms.Panel();
 			this.memoEditAuto3 = new DevExpress.XtraEditors.MemoEdit();
@@ -331,6 +332,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyAll.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputOnlyOnce.Properties)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 

@@ -1491,7 +1491,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			{
 				var result = new List<string>();
 				if (!Count.HasValue) return String.Empty;
-				result.Add(_parent.Name);
+				result.Add(String.Format("{0} {1}", _parent.Station, _parent.Name));
 				if (!String.IsNullOrEmpty(_parent.Daypart))
 					result.Add(_parent.Daypart);
 				if (!String.IsNullOrEmpty(_parent.Time))
@@ -1618,8 +1618,10 @@ namespace NewBizWiz.Core.MediaSchedule
 			while (startDate <= _parentSchedule.FlightDateEnd.Value)
 			{
 				var endDate = startDate.AddMonths(3);
-				var quarter = new Quarter() { DateAnchor = startDate };
-				var quarterMonths = Months.Where(m => m.Date >= startDate && m.Date < endDate).OrderBy(m => m.Date);
+				var quarter = new Quarter { DateAnchor = startDate };
+				var quarterMonths = Months.Where(m => (m.DaysRangeBegin.Day < 15 && m.DaysRangeBegin >= startDate && m.DaysRangeBegin <= endDate) ||
+					(m.DaysRangeBegin.Day > 15 && m.DaysRangeEnd >= startDate && m.DaysRangeEnd <= endDate)
+					).OrderBy(m => m.Date);
 				if (!quarterMonths.Any()) continue;
 				quarter.DateStart = quarterMonths.First().DaysRangeBegin;
 				quarter.DateEnd = quarterMonths.Last().DaysRangeEnd;

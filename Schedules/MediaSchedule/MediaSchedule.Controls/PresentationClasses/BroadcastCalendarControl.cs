@@ -119,18 +119,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public override Core.Calendar.Calendar CalendarData
 		{
-			get
-			{
-				return _localSchedule.BroadcastCalendar;
-			}
+			get { return _localSchedule.BroadcastCalendar; }
 		}
 
-		public override Core.Calendar.CalendarSettings CalendarSettings
+		public override CalendarSettings CalendarSettings
 		{
-			get
-			{
-				return MediaMetaData.Instance.SettingsManager.BroadcastCalendarSettings;
-			}
+			get { return MediaMetaData.Instance.SettingsManager.BroadcastCalendarSettings; }
 		}
 
 		public override void LoadCalendar(bool quickLoad)

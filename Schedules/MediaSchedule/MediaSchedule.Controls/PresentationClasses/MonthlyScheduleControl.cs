@@ -10,9 +10,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public MonthlyScheduleControl()
 			: base()
 		{
-			_helpKey = "month";
-			laTotalPeriodsTitle.Text = "Total Months:";
-			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, "Months");
+			_helpKey = SpotTitle.ToLower();
+			laTotalPeriodsTitle.Text = String.Format("Total {0}s:", SpotTitle);
+			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, String.Format("{0}s:", SpotTitle));
+		}
+
+		protected override sealed string SpotTitle
+		{
+			get { return "Month"; }
 		}
 
 		public override ScheduleSection ScheduleSection
@@ -39,9 +44,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			get { return Controller.Instance.MonthlySchedulePreview; }
 		}
+		public override RibbonBar QuarterBar
+		{
+			get { return Controller.Instance.MonthlyScheduleQuarterBar; }
+		}
 		public override ButtonItem QuarterButton
 		{
-			get { return Controller.Instance.MonthlyScheduleQuarter; }
+			get { return Controller.Instance.MonthlyScheduleQuarterButton; }
 		}
 		public override SlideType SlideType
 		{

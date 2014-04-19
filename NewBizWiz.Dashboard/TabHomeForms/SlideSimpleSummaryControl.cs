@@ -227,6 +227,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void ckAdvertiser_CheckedChanged(object sender, EventArgs e)
 		{
 			comboBoxEditAdvertiser.Enabled = ckAdvertiser.Checked;
+			pbAdvertiser.Image = ckAdvertiser.Checked ? Properties.Resources.SummaryBusinessName : Utilities.Instance.MakeGrayscale(Properties.Resources.SummaryBusinessName);
+			laAdvertiser.ForeColor = ckAdvertiser.Checked ? Color.Black : Color.Gray;
 			if (AllowToSave)
 				SettingsNotSaved = true;
 		}
@@ -234,6 +236,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void ckDecisionMaker_CheckedChanged(object sender, EventArgs e)
 		{
 			comboBoxEditDecisionMaker.Enabled = ckDecisionMaker.Checked;
+			pbDecisionMaker.Image = ckDecisionMaker.Checked ? Properties.Resources.SummaryDecisionMaker : Utilities.Instance.MakeGrayscale(Properties.Resources.SummaryDecisionMaker);
+			laDecisionMaker.ForeColor = ckDecisionMaker.Checked ? Color.Black : Color.Gray;
 			if (AllowToSave)
 				SettingsNotSaved = true;
 		}
@@ -241,6 +245,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void ckDate_CheckedChanged(object sender, EventArgs e)
 		{
 			dateEditDate.Enabled = ckDate.Checked;
+			pbDate.Image = ckDate.Checked ? Properties.Resources.SummaryPresentationDate : Utilities.Instance.MakeGrayscale(Properties.Resources.SummaryPresentationDate);
+			pbDate.Enabled = ckDate.Checked;
+			laDate.ForeColor = ckDate.Checked ? Color.Black : Color.Gray;
 			if (AllowToSave)
 				SettingsNotSaved = true;
 		}
@@ -249,6 +256,10 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			dateEditFligtDatesStart.Enabled = ckFlightDates.Checked;
 			dateEditFligtDatesEnd.Enabled = ckFlightDates.Checked;
+			pbFlightDates.Image = ckFlightDates.Checked ? Properties.Resources.SummaryFlightDates : Utilities.Instance.MakeGrayscale(Properties.Resources.SummaryFlightDates);
+			laFlightDates.ForeColor = ckFlightDates.Checked ? Color.Black : Color.Gray;
+			laFlightDatesStart.ForeColor = ckFlightDates.Checked ? Color.Black : Color.Gray;
+			laFlightDatesEnd.ForeColor = ckFlightDates.Checked ? Color.Black : Color.Gray;
 			if (AllowToSave)
 				SettingsNotSaved = true;
 		}

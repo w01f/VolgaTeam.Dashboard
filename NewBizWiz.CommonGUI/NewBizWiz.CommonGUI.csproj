@@ -315,27 +315,6 @@
     <None Include="Resources\Email.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\DigitalInfoCPM.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoDates.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoDimensions.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoImpressions.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoInvestment.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoProduct.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DigitalInfoWebsites.png" />
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="AcroPDFLib">
       <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
       <VersionMajor>1</VersionMajor>

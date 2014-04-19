@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
+using DevExpress.Utils.Drawing;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.ViewInfo;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
@@ -16,34 +20,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public DigitalInfoControl()
 		{
 			InitializeComponent();
-			memoEditInfo.Enter += Utilities.Instance.Editor_Enter;
-			memoEditInfo.MouseDown += Utilities.Instance.Editor_MouseDown;
-			memoEditInfo.MouseUp += Utilities.Instance.Editor_MouseUp;
+			memoEditManual.Enter += Utilities.Instance.Editor_Enter;
+			memoEditManual.MouseDown += Utilities.Instance.Editor_MouseDown;
+			memoEditManual.MouseUp += Utilities.Instance.Editor_MouseUp;
 			spinEditMonthly.Enter += Utilities.Instance.Editor_Enter;
 			spinEditMonthly.MouseDown += Utilities.Instance.Editor_MouseDown;
 			spinEditMonthly.MouseUp += Utilities.Instance.Editor_MouseUp;
 			spinEditTotal.Enter += Utilities.Instance.Editor_Enter;
 			spinEditTotal.MouseDown += Utilities.Instance.Editor_MouseDown;
 			spinEditTotal.MouseUp += Utilities.Instance.Editor_MouseUp;
-		}
-
-		private void UpdateWarning()
-		{
-			var togglesSelected = 0;
-			if (buttonXShowWebsites.Checked)
-				togglesSelected++;
-			if (buttonXShowProduct.Checked)
-				togglesSelected++;
-			if (buttonXShowDimensions.Checked)
-				togglesSelected++;
-			if (buttonXShowDates.Checked)
-				togglesSelected++;
-			if (buttonXShowImpressions.Checked)
-				togglesSelected++;
-			if (buttonXShowCPM.Checked)
-				togglesSelected++;
-			if (buttonXShowInvestment.Checked)
-				togglesSelected++;
 		}
 
 		public void InitData(DigitalLegend digitalLegend)
@@ -56,42 +41,64 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			_loading = true;
 			checkEditEnable.Checked = _digitalLegend.Enabled;
-			checkEditAllowEdit.Checked = _digitalLegend.AllowEdit;
-
-			buttonXShowWebsites.Checked = _digitalLegend.ShowWebsites;
-			buttonXShowProduct.Checked = _digitalLegend.ShowProduct;
-			buttonXShowDimensions.Checked = _digitalLegend.ShowDimensions;
-			buttonXShowDates.Checked = _digitalLegend.ShowDates;
-			buttonXShowImpressions.Checked = _digitalLegend.ShowImpressions;
-			buttonXShowCPM.Checked = _digitalLegend.ShowCPM;
-			buttonXShowInvestment.Checked = _digitalLegend.ShowInvestment;
+			checkEditAuto1.Checked = _digitalLegend.ShowWebsites && _digitalLegend.ShowProduct && !_digitalLegend.ShowDimensions && !_digitalLegend.ShowDates && !_digitalLegend.ShowImpressions && !_digitalLegend.ShowCPM && !_digitalLegend.ShowInvestment;
+			checkEditAuto2.Checked = _digitalLegend.ShowWebsites && _digitalLegend.ShowProduct && !_digitalLegend.ShowDimensions && _digitalLegend.ShowDates && _digitalLegend.ShowImpressions && !_digitalLegend.ShowCPM && !_digitalLegend.ShowInvestment;
+			checkEditAuto3.Checked = _digitalLegend.ShowWebsites && _digitalLegend.ShowProduct && _digitalLegend.ShowDimensions && _digitalLegend.ShowDates && _digitalLegend.ShowImpressions && _digitalLegend.ShowCPM && _digitalLegend.ShowInvestment;
+			checkEditManual.Checked = _digitalLegend.AllowEdit;
 			if (_digitalLegend.AllowEdit && !String.IsNullOrEmpty(_digitalLegend.Info))
-				memoEditInfo.EditValue = _digitalLegend.Info;
+				memoEditManual.EditValue = _digitalLegend.Info;
+			if (RequestDefaultInfo != null)
+			{
+				RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditAuto1, true, true, false, false, false, false, false));
+				RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditAuto2, true, true, false, true, true, false, false));
+				RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditAuto3, true, true, true, true, true, true, true));
+			}
+			memoEditManual_EditValueChanged(memoEditManual, EventArgs.Empty);
 			checkEditTotal.Checked = _digitalLegend.Total.HasValue;
 			spinEditTotal.EditValue = _digitalLegend.Total;
 			checkEditMonthly.Checked = _digitalLegend.Monthly.HasValue;
 			spinEditMonthly.EditValue = _digitalLegend.Monthly;
-			if (checkEditEnable.Checked && memoEditInfo.EditValue == null)
-			{
-				if (RequestDefaultInfo != null)
-					RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
-			}
 			_loading = false;
 		}
 
 		public void SaveData()
 		{
 			_digitalLegend.Enabled = checkEditEnable.Checked;
-			_digitalLegend.AllowEdit = checkEditAllowEdit.Checked;
-
-			_digitalLegend.ShowWebsites = buttonXShowWebsites.Checked;
-			_digitalLegend.ShowProduct = buttonXShowProduct.Checked;
-			_digitalLegend.ShowDimensions = buttonXShowDimensions.Checked;
-			_digitalLegend.ShowDates = buttonXShowDates.Checked;
-			_digitalLegend.ShowImpressions = buttonXShowImpressions.Checked;
-			_digitalLegend.ShowCPM = buttonXShowCPM.Checked;
-			_digitalLegend.ShowInvestment = buttonXShowInvestment.Checked;
-			_digitalLegend.Info = checkEditAllowEdit.Checked && memoEditInfo.EditValue != null ? memoEditInfo.EditValue.ToString() : String.Empty;
+			if (checkEditAuto1.Checked)
+			{
+				_digitalLegend.ShowWebsites = true;
+				_digitalLegend.ShowProduct = true;
+				_digitalLegend.ShowDimensions = false;
+				_digitalLegend.ShowDates = false;
+				_digitalLegend.ShowImpressions = false;
+				_digitalLegend.ShowCPM = false;
+				_digitalLegend.ShowInvestment = false;
+			}
+			else if (checkEditAuto2.Checked)
+			{
+				_digitalLegend.ShowWebsites = true;
+				_digitalLegend.ShowProduct = true;
+				_digitalLegend.ShowDimensions = false;
+				_digitalLegend.ShowDates = true;
+				_digitalLegend.ShowImpressions = true;
+				_digitalLegend.ShowCPM = false;
+				_digitalLegend.ShowInvestment = false;
+			}
+			else if (checkEditAuto3.Checked)
+			{
+				_digitalLegend.ShowWebsites = true;
+				_digitalLegend.ShowProduct = true;
+				_digitalLegend.ShowDimensions = true;
+				_digitalLegend.ShowDates = true;
+				_digitalLegend.ShowImpressions = true;
+				_digitalLegend.ShowCPM = true;
+				_digitalLegend.ShowInvestment = true;
+			}
+			else if (checkEditManual.Checked)
+			{
+				_digitalLegend.AllowEdit = true;
+			}
+			_digitalLegend.Info = memoEditManual.EditValue as String;
 			_digitalLegend.Total = spinEditTotal.EditValue != null ? spinEditTotal.Value : (decimal?)null;
 			_digitalLegend.Monthly = spinEditMonthly.EditValue != null ? spinEditMonthly.Value : (decimal?)null;
 		}
@@ -99,73 +106,67 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		private void checkEditEnable_CheckedChanged(object sender, EventArgs e)
 		{
 			pnControls.Enabled = checkEditEnable.Checked;
-			hyperLinkEditReset.Enabled = checkEditEnable.Checked;
 			checkEditMonthly.Enabled = checkEditEnable.Checked;
 			checkEditTotal.Enabled = checkEditEnable.Checked;
 			if (_loading) return;
-			if (checkEditEnable.Checked)
+			if (checkEditEnable.Checked) return;
+			memoEditManual.EditValue = null;
+			checkEditMonthly.Checked = false;
+			checkEditTotal.Checked = false;
+			if (SettingsChanged != null)
+				SettingsChanged(this, EventArgs.Empty);
+		}
+
+		private void checkEditCase_CheckedChanged(object sender, EventArgs e)
+		{
+			memoEditAuto1.Enabled = checkEditAuto1.Checked;
+			memoEditAuto2.Enabled = checkEditAuto2.Checked;
+			memoEditAuto3.Enabled = checkEditAuto3.Checked;
+			memoEditManual.Enabled = checkEditManual.Checked;
+			if (!checkEditManual.Checked)
+				memoEditManual.EditValue = null;
+			if (_loading) return;
+			if (SettingsChanged != null)
+				SettingsChanged(this, EventArgs.Empty);
+		}
+
+		private void memoEditAuto_EditValueChanged(object sender, EventArgs e)
+		{
+			var memoEdit = sender as MemoEdit;
+			if (memoEdit == null) return;
+			var vi = (MemoEditViewInfo)memoEdit.GetViewInfo();
+			using (var g = memoEdit.CreateGraphics())
 			{
-				if ((checkEditAllowEdit.Checked || memoEditInfo.EditValue == null) && RequestDefaultInfo != null)
-					RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
+				using (var cache = new GraphicsCache(g))
+				{
+					var h = ((IHeightAdaptable)vi).CalcHeight(cache, vi.MaskBoxRect.Width);
+					var width = (int)g.MeasureString(memoEdit.Text, vi.Appearance.Font, 0, vi.Appearance.GetStringFormat()).Width + 6;
+					var args = new ObjectInfoArgs(cache, new Rectangle(0, 0, width, h), ObjectState.Normal);
+					var rect = vi.BorderPainter.CalcBoundsByClientRectangle(args);
+					memoEdit.Properties.ScrollBars = rect.Height > memoEdit.Height ? ScrollBars.Vertical : ScrollBars.None;
+				}
+			}
+		}
+
+		private void memoEditManual_EditValueChanged(object sender, EventArgs e)
+		{
+			var memoEdit = sender as MemoEdit;
+			if (memoEdit == null) return;
+			if (memoEdit.EditValue == null)
+			{
+				memoEdit.Font = new Font(memoEdit.Font.Name, memoEdit.Font.Size, FontStyle.Italic);
+				memoEdit.ForeColor = Color.DarkGray;
 			}
 			else
 			{
-				memoEditInfo.EditValue = null;
-				checkEditMonthly.Checked = false;
-				checkEditTotal.Checked = false;
+				memoEdit.Font = new Font(memoEdit.Font.Name, memoEdit.Font.Size, FontStyle.Regular);
+				memoEdit.ForeColor = Color.Black;
 			}
-			if (SettingsChanged != null)
-				SettingsChanged(this, EventArgs.Empty);
-		}
-
-		private void checkEditAllowEdit_CheckedChanged(object sender, EventArgs e)
-		{
-			buttonXShowWebsites.Enabled = !checkEditAllowEdit.Checked;
-			buttonXShowProduct.Enabled = !checkEditAllowEdit.Checked;
-			buttonXShowDimensions.Enabled = !checkEditAllowEdit.Checked;
-			buttonXShowDates.Enabled = !checkEditAllowEdit.Checked;
-			buttonXShowImpressions.Enabled = !checkEditAllowEdit.Checked;
-			buttonXShowCPM.Enabled = !checkEditAllowEdit.Checked;
-			buttonXShowInvestment.Enabled = !checkEditAllowEdit.Checked;
-			memoEditInfo.Properties.ReadOnly = !checkEditAllowEdit.Checked;
-
-			if (_loading || checkEditAllowEdit.Checked) return;
-			if (RequestDefaultInfo != null)
-				RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
-			if (SettingsChanged != null)
-				SettingsChanged(this, EventArgs.Empty);
-		}
-
-		private void buttonXShow_CheckedChanged(object sender, EventArgs e)
-		{
-			UpdateWarning();
-			if (_loading) return;
-			if (RequestDefaultInfo != null)
-				RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
-			if (SettingsChanged != null)
-				SettingsChanged(this, EventArgs.Empty);
-		}
-
-		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
-		{
-			if (Utilities.Instance.ShowWarningQuestion("All Digital Product Info will be Refreshed") == DialogResult.Yes)
-			{
-				checkEditAllowEdit.Checked = false;
-				if (RequestDefaultInfo != null)
-					RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditInfo, buttonXShowWebsites.Checked, buttonXShowProduct.Checked, buttonXShowDimensions.Checked, buttonXShowDates.Checked, buttonXShowImpressions.Checked, buttonXShowCPM.Checked, buttonXShowInvestment.Checked));
-				if (SettingsChanged != null)
-					SettingsChanged(this, EventArgs.Empty);
-			}
-			e.Handled = true;
-		}
-
-		private void memoEditInfo_EditValueChanged(object sender, EventArgs e)
-		{
 			if (_loading) return;
 			if (SettingsChanged != null)
 				SettingsChanged(this, EventArgs.Empty);
 		}
-
+	
 		private void checkEditMonthly_CheckedChanged(object sender, EventArgs e)
 		{
 			spinEditMonthly.Enabled = checkEditMonthly.Checked;
@@ -184,6 +185,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			if (_loading) return;
 			if (!checkEditTotal.Checked)
 				spinEditTotal.EditValue = null;
+			if (SettingsChanged != null)
+				SettingsChanged(this, EventArgs.Empty);
+		}
+
+		private void spinEdit_EditValueChanged(object sender, EventArgs e)
+		{
+			if (_loading) return;
 			if (SettingsChanged != null)
 				SettingsChanged(this, EventArgs.Empty);
 		}

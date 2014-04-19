@@ -272,6 +272,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			var specialLinkContainers = new[]
 			{
 				HomeSpecialButtons,
+				DigitalSlidesSpecialButtons,
 				DigitalPackageSpecialButtons,
 				AdPlanSpecialButtons,
 				RateCardSpecialButtons,

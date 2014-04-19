@@ -1773,13 +1773,16 @@ namespace NewBizWiz.Core.AdSchedule
 		{
 			get
 			{
+				var pageSizeGroupValues = new List<string>();
+				if (!String.IsNullOrEmpty(PageSizeGroup) && ListManager.Instance.PageSizes.Select(ps => ps.Code).Distinct().Count() > 1)
+					pageSizeGroupValues.Add(PageSizeGroup);
+				if (EnableMechanicals && !String.IsNullOrEmpty(Mechanicals))
+					pageSizeGroupValues.Add(Mechanicals);
 				return EnablePageSize && !String.IsNullOrEmpty(PageSize) ?
 					String.Format("{0}{1}",
 						PageSize,
-						!String.IsNullOrEmpty(PageSizeGroup) && ListManager.Instance.PageSizes.Select(ps => ps.Code).Distinct().Count() > 1 ?
-						String.Format(" ({0}{1})", PageSizeGroup, EnableMechanicals && !String.IsNullOrEmpty(Mechanicals) ? String.Format("-{0}", Mechanicals) : String.Empty
-				) :
-							String.Empty) :
+						pageSizeGroupValues.Any() ? String.Format(" ({0})", String.Join("-", pageSizeGroupValues)) : String.Empty
+						) :
 					String.Empty;
 			}
 		}

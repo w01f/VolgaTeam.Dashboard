@@ -483,6 +483,46 @@ namespace NewBizWiz.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SummaryBusinessName {
+            get {
+                object obj = ResourceManager.GetObject("SummaryBusinessName", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SummaryDecisionMaker {
+            get {
+                object obj = ResourceManager.GetObject("SummaryDecisionMaker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SummaryFlightDates {
+            get {
+                object obj = ResourceManager.GetObject("SummaryFlightDates", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SummaryPresentationDate {
+            get {
+                object obj = ResourceManager.GetObject("SummaryPresentationDate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TitleCalendar {
             get {
                 object obj = ResourceManager.GetObject("TitleCalendar", resourceCulture);

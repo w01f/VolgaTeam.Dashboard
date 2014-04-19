@@ -100,6 +100,8 @@ namespace NewBizWiz.Calendar.Controls
 
 			ConfigureTabPages();
 
+			ConfigureSpecialButtons();
+
 			Ribbon_SelectedRibbonTabChanged(Ribbon, EventArgs.Empty);
 			Ribbon.SelectedRibbonTabChanged -= Ribbon_SelectedRibbonTabChanged;
 			Ribbon.SelectedRibbonTabChanged += Ribbon_SelectedRibbonTabChanged;
@@ -166,6 +168,44 @@ namespace NewBizWiz.Calendar.Controls
 			Ribbon.Items.AddRange(tabPages.ToArray());
 		}
 
+		private void ConfigureSpecialButtons()
+		{
+			var specialLinkContainers = new[]
+			{
+				HomeSpecialButtons,
+				CalendarSpecialButtons,
+				GridSpecialButtons,
+				RateCardSpecialButtons,
+				Gallery1SpecialButtons,
+				Gallery2SpecialButtons
+			};
+			foreach (var ribbonBar in specialLinkContainers)
+			{
+				if (Core.OnlineSchedule.ListManager.Instance.SpecialLinksEnable)
+				{
+					ribbonBar.Text = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupName;
+					var containerButton = new ButtonItem();
+					containerButton.Image = Core.OnlineSchedule.ListManager.Instance.SpecialLinksGroupLogo;
+					containerButton.AutoExpandOnClick = true;
+					ribbonBar.Items.Add(containerButton);
+					foreach (var specialLinkButton in Core.OnlineSchedule.ListManager.Instance.SpecialLinkButtons)
+					{
+						var clickAction = new Action(() => { specialLinkButton.Open(); });
+						var button = new ButtonItem();
+						button.Image = specialLinkButton.Logo;
+						button.Text = String.Format("<b>{0}</b><p>{1}</p>", specialLinkButton.Name, specialLinkButton.Tooltip);
+						button.Tag = specialLinkButton;
+						button.Click += (o, e) => clickAction();
+						containerButton.SubItems.Add(button);
+					}
+				}
+				else
+				{
+					ribbonBar.Visible = false;
+				}
+			}
+		}
+
 		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)
 		{
 			using (var form = new FormProgress())
@@ -204,6 +244,7 @@ namespace NewBizWiz.Calendar.Controls
 
 		#region Home
 		public RibbonPanel HomePanel { get; set; }
+		public RibbonBar HomeSpecialButtons { get; set; }
 		public ButtonItem HomeHelp { get; set; }
 		public ButtonItem HomeSave { get; set; }
 		public ButtonItem HomeSaveAs { get; set; }
@@ -219,6 +260,7 @@ namespace NewBizWiz.Calendar.Controls
 		#endregion
 
 		#region Calendar
+		public RibbonBar CalendarSpecialButtons { get; set; }
 		public ImageListBoxControl CalendarMonthsList { get; set; }
 		public ButtonItem CalendarSlideInfo { get; set; }
 		public ButtonItem CalendarCopy { get; set; }
@@ -233,6 +275,7 @@ namespace NewBizWiz.Calendar.Controls
 		#endregion
 
 		#region Calendar
+		public RibbonBar GridSpecialButtons { get; set; }
 		public ImageListBoxControl GridMonthsList { get; set; }
 		public ButtonItem GridSlideInfo { get; set; }
 		public ButtonItem GridCopy { get; set; }
@@ -247,6 +290,7 @@ namespace NewBizWiz.Calendar.Controls
 		#endregion
 
 		#region Rate Card
+		public RibbonBar RateCardSpecialButtons { get; set; }
 		public ButtonItem RateCardHelp { get; set; }
 		public ComboBoxEdit RateCardCombo { get; set; }
 		#endregion

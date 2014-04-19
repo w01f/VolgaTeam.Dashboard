@@ -11,10 +11,12 @@ namespace NewBizWiz.Core.Common
 		private readonly string _appIDFile = string.Empty;
 		private readonly string _dashboardNamePath = string.Empty;
 		private readonly string _sharedSettingsFile = string.Empty;
+		private readonly string _dashboardCodeFilePath = String.Empty;
 
 		private SettingsManager()
 		{
 			_sharedSettingsFile = String.Format(@"{0}\newlocaldirect.com\xml\app\SharedSettings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			_dashboardCodeFilePath = String.Format(@"{0}\newlocaldirect.com\app\dashboard.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			_appIDFile = String.Format(@"{0}\newlocaldirect.com\xml\app\AppID.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			_dashboardNamePath = String.Format(@"{0}\newlocaldirect.com\app\Minibar\Tab2Name.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			TempPath = String.Format(@"{0}\newlocaldirect.com\Sync\Temp", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
@@ -29,7 +31,11 @@ namespace NewBizWiz.Core.Common
 			RateCardPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\RateCard", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			HelpBrowserSettingsPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\!Help_Browser.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			SelectedWizard = String.Empty;
+
 			DashboardName = "Schedule APP";
+			DashboardCode = String.Empty;
+			DashboardText = "GO GET YOUR BIZ!";
+	
 			SelectedWizard = String.Empty;
 
 			LoadSharedSettings();
@@ -62,7 +68,10 @@ namespace NewBizWiz.Core.Common
 		public double SizeHeght { get; set; }
 		public double SizeWidth { get; set; }
 		public string Orientation { get; set; }
+
 		public string DashboardName { get; set; }
+		public string DashboardCode { get; set; }
+		public string DashboardText { get; set; }
 
 		public string Size
 		{
@@ -187,6 +196,7 @@ namespace NewBizWiz.Core.Common
 			}
 			LoadAppID();
 			LoadDashboardName();
+			LoadDashdoardCode();
 			ActivityDataPath = String.Format(@"{0}\newlocaldirect.com\sync\outgoing\AppID-{1}\user_data", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), AppID);
 		}
 
@@ -325,5 +335,24 @@ namespace NewBizWiz.Core.Common
 			}
 			catch { }
 		}
+
+		private void LoadDashdoardCode()
+		{
+			if (!File.Exists(_dashboardCodeFilePath)) return;
+			var document = new XmlDocument();
+			document.Load(_dashboardCodeFilePath);
+
+			var node = document.SelectSingleNode(@"/Settings/dashboard/DashboardCode");
+			if (node != null)
+			{
+				DashboardCode = node.InnerText.Trim().ToLower();
+			}
+			node = document.SelectSingleNode(@"/Settings/dashboard/Group1");
+			if (node != null)
+			{
+				DashboardText = node.InnerText.Trim();
+			}
+		}
+
 	}
 }

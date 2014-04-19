@@ -54,11 +54,11 @@ namespace NewBizWiz.Dashboard
 		{
 			Text = AppManager.FormCaption;
 
-			ribbonBarHomeOverview.Text = SettingsManager.Instance.DashboardText;
-			ribbonBarOnlineLogo.Text = SettingsManager.Instance.DashboardText;
-			ribbonBarNewspaperLogo.Text = SettingsManager.Instance.DashboardText;
-			ribbonBarTVLogo.Text = SettingsManager.Instance.DashboardText;
-			ribbonBarRadioLogo.Text = SettingsManager.Instance.DashboardText;
+			ribbonBarHomeOverview.Text = Core.Common.SettingsManager.Instance.DashboardText;
+			ribbonBarOnlineLogo.Text = Core.Common.SettingsManager.Instance.DashboardText;
+			ribbonBarNewspaperLogo.Text = Core.Common.SettingsManager.Instance.DashboardText;
+			ribbonBarTVLogo.Text = Core.Common.SettingsManager.Instance.DashboardText;
+			ribbonBarRadioLogo.Text = Core.Common.SettingsManager.Instance.DashboardText;
 
 			var masterWizardLogo = MasterWizardManager.Instance.DefaultLogo;
 			buttonItemHomeOverview.Image = masterWizardLogo;
@@ -72,7 +72,7 @@ namespace NewBizWiz.Dashboard
 
 		private void SetDashboardCode()
 		{
-			switch (SettingsManager.Instance.DashboardCode)
+			switch (Core.Common.SettingsManager.Instance.DashboardCode)
 			{
 				case "newspaper":
 					ribbonTabItemNewspaper.Visible = true;

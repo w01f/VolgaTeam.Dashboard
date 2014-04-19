@@ -1,19 +1,26 @@
 ﻿using System;
+using System.Linq;
 using DevComponents.DotNetBar;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 {
-	public class WeeklyScheduleControl : ScheduleSectionControl
+	public sealed class WeeklyScheduleControl : ScheduleSectionControl
 	{
 		public WeeklyScheduleControl()
 			: base()
 		{
-			_helpKey = "week";
-			laTotalPeriodsTitle.Text = "Total Weeks:";
-			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, "Weeks");
+			_helpKey = SpotTitle.ToLower();
+			laTotalPeriodsTitle.Text = String.Format("Total {0}s:", SpotTitle);
+			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, String.Format("{0}s:", SpotTitle));
 		}
+
+		protected override string SpotTitle
+		{
+			get { return "Week"; }
+		}
+
 		public override ScheduleSection ScheduleSection
 		{
 			get { return _localSchedule.WeeklySchedule; }
@@ -38,13 +45,41 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			get { return Controller.Instance.WeeklySchedulePreview; }
 		}
+		public override RibbonBar QuarterBar
+		{
+			get { return Controller.Instance.WeeklyScheduleQuarterBar; }
+		}
 		public override ButtonItem QuarterButton
 		{
-			get { return Controller.Instance.WeeklyScheduleQuarter; }
+			get { return Controller.Instance.WeeklyScheduleQuarterButton; }
 		}
 		public override SlideType SlideType
 		{
 			get { return MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVWeeklySchedule : SlideType.RadioWeeklySchedule; }
+		}
+
+		public override void LoadSchedule(bool quickLoad)
+		{
+			base.LoadSchedule(quickLoad);
+			Controller.Instance.UpdateCalendarTab(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
+		}
+
+		public override void AddProgram_Click(object sender, EventArgs e)
+		{
+			base.AddProgram_Click(sender, e);
+			Controller.Instance.UpdateCalendarTab(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
+		}
+
+		public override void DeleteProgram_Click(object sender, EventArgs e)
+		{
+			base.DeleteProgram_Click(sender, e);
+			Controller.Instance.UpdateCalendarTab(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
+		}
+
+		protected override void ScheduleSection_DataChanged(object sender, EventArgs e)
+		{
+			base.ScheduleSection_DataChanged(sender, e);
+			Controller.Instance.UpdateCalendarTab(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
 		}
 	}
 }

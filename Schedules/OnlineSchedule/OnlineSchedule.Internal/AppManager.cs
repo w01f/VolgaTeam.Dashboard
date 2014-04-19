@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
-using System.Threading;
+﻿using System.IO;
 using System.Windows.Forms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
@@ -23,28 +20,23 @@ namespace NewBizWiz.OnlineSchedule.Internal
 
 		public static void NewSchedule()
 		{
-			using (var from = new FormNewSchedule())
+			using (var form = new FormNewSchedule())
 			{
-				if (from.ShowDialog() == DialogResult.OK)
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (!OnlineSchedulePowerPointHelper.Instance.Connect()) return;
+				if (!string.IsNullOrEmpty(form.ScheduleName))
 				{
-					if (OnlineSchedulePowerPointHelper.Instance.Connect())
-					{
-						if (!string.IsNullOrEmpty(from.ScheduleName))
-						{
-							RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-							var fileName = from.ScheduleName.Trim();
-							BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", fileName));
-							SetCultureSettings();
-							BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName, true);
-							FormMain.Instance.ShowDialog();
-							OnlineSchedulePowerPointHelper.Instance.Disconnect();
-							RemoveInstances();
-						}
-						else
-						{
-							Utilities.Instance.ShowWarning("Schedule Name can't be empty");
-						}
-					}
+					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+					var fileName = form.ScheduleName.Trim();
+					BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", fileName));
+					BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName, true);
+					FormMain.Instance.ShowDialog();
+					OnlineSchedulePowerPointHelper.Instance.Disconnect();
+					RemoveInstances();
+				}
+				else
+				{
+					Utilities.Instance.ShowWarning("Schedule Name can't be empty");
 				}
 			}
 		}
@@ -56,30 +48,11 @@ namespace NewBizWiz.OnlineSchedule.Internal
 				dialog.InitialDirectory = SettingsManager.Instance.SaveFolder;
 				dialog.Title = "Select Schedule File";
 				dialog.Filter = "Schedule Files|*.xml";
-				if (dialog.ShowDialog() == DialogResult.OK)
-				{
-					if (OnlineSchedulePowerPointHelper.Instance.Connect())
-					{
-						RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-						string fileName = dialog.FileName;
-						SettingsManager.Instance.SaveFolder = new FileInfo(fileName).Directory.FullName;
-						SetCultureSettings();
-						BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
-						FormMain.Instance.ShowDialog();
-						OnlineSchedulePowerPointHelper.Instance.Disconnect();
-						RemoveInstances();
-					}
-				}
-			}
-		}
-
-		public static void OpenSchedule(string fileName)
-		{
-			if (OnlineSchedulePowerPointHelper.Instance.Connect())
-			{
+				if (dialog.ShowDialog() != DialogResult.OK) return;
+				if (!OnlineSchedulePowerPointHelper.Instance.Connect()) return;
 				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-				BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Previous Opened", Path.GetFileNameWithoutExtension(fileName)));
-				SetCultureSettings();
+				var fileName = dialog.FileName;
+				SettingsManager.Instance.SaveFolder = new FileInfo(fileName).Directory.FullName;
 				BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
 				FormMain.Instance.ShowDialog();
 				OnlineSchedulePowerPointHelper.Instance.Disconnect();
@@ -87,17 +60,20 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			}
 		}
 
+		public static void OpenSchedule(string fileName)
+		{
+			if (!OnlineSchedulePowerPointHelper.Instance.Connect()) return;
+			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Previous Opened", Path.GetFileNameWithoutExtension(fileName)));
+			BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
+			FormMain.Instance.ShowDialog();
+			OnlineSchedulePowerPointHelper.Instance.Disconnect();
+			RemoveInstances();
+		}
+
 		public static ShortSchedule[] GetShortScheduleList()
 		{
 			return ScheduleManager.GetShortScheduleList();
-		}
-
-		private static void SetCultureSettings()
-		{
-			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
-			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 		}
 
 		private static void RemoveInstances()

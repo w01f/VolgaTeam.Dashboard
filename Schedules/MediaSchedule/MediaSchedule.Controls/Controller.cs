@@ -90,7 +90,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			WeeklyScheduleOptions.CheckedChanged += WeeklySchedule.Options_CheckedChaged;
 			WeeklyScheduleProgramAdd.Click += WeeklySchedule.AddProgram_Click;
 			WeeklyScheduleProgramDelete.Click += WeeklySchedule.DeleteProgram_Click;
-			WeeklyScheduleQuarter.CheckedChanged += WeeklySchedule.QuarterCheckedChanged;
+			WeeklyScheduleQuarterButton.CheckedChanged += WeeklySchedule.QuarterCheckedChanged;
 			#endregion
 
 			#region Monthly Schedule
@@ -104,7 +104,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			MonthlyScheduleOptions.CheckedChanged += MonthlySchedule.Options_CheckedChaged;
 			MonthlyScheduleProgramAdd.Click += MonthlySchedule.AddProgram_Click;
 			MonthlyScheduleProgramDelete.Click += MonthlySchedule.DeleteProgram_Click;
-			MonthlyScheduleQuarter.CheckedChanged += WeeklySchedule.QuarterCheckedChanged;
+			MonthlyScheduleQuarterButton.CheckedChanged += WeeklySchedule.QuarterCheckedChanged;
 			#endregion
 
 			#region Digital Product
@@ -275,6 +275,10 @@ namespace NewBizWiz.MediaSchedule.Controls
 		{
 			TabWeeklySchedule.Enabled = enable;
 			TabMonthlySchedule.Enabled = enable;
+		}
+
+		public void UpdateCalendarTab(bool enable)
+		{
 			TabCalendar.Enabled = enable;
 		}
 
@@ -426,7 +430,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem WeeklyScheduleSave { get; set; }
 		public ButtonItem WeeklyScheduleSaveAs { get; set; }
 		public ButtonItem WeeklyScheduleHelp { get; set; }
-		public ButtonItem WeeklyScheduleQuarter { get; set; }
+		public RibbonBar WeeklyScheduleQuarterBar { get; set; }
+		public ButtonItem WeeklyScheduleQuarterButton { get; set; }
 		#endregion
 
 		#region Monthly Schedule
@@ -441,7 +446,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem MonthlyScheduleSave { get; set; }
 		public ButtonItem MonthlyScheduleSaveAs { get; set; }
 		public ButtonItem MonthlyScheduleHelp { get; set; }
-		public ButtonItem MonthlyScheduleQuarter { get; set; }
+		public RibbonBar MonthlyScheduleQuarterBar { get; set; }
+		public ButtonItem MonthlyScheduleQuarterButton { get; set; }
 		#endregion
 
 		#region Digital Product

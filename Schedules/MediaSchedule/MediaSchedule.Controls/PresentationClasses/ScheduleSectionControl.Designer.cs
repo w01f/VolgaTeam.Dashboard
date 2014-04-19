@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -80,7 +81,7 @@
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.quarterSelectorControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.QuarterSelectorControl();
 			this.laScheduleInfo = new System.Windows.Forms.Label();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnBottom = new System.Windows.Forms.Panel();
 			this.pnAgencyDiscount = new System.Windows.Forms.Panel();
 			this.laAgencyDiscountValue = new System.Windows.Forms.Label();
@@ -106,7 +107,7 @@
 			this.pnTotalPeriods = new System.Windows.Forms.Panel();
 			this.laTotalPeriodsValue = new System.Windows.Forms.Label();
 			this.laTotalPeriodsTitle = new System.Windows.Forms.Label();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.pnPageTV = new System.Windows.Forms.Panel();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
@@ -344,6 +345,7 @@
 			this.advBandedGridViewSchedule.OptionsView.ShowIndicator = false;
 			this.advBandedGridViewSchedule.CustomDrawFooter += new DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventHandler(this.advBandedGridViewSchedule_CustomDrawFooter);
 			this.advBandedGridViewSchedule.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.advBandedGridViewSchedule_CustomRowCellEditForEditing);
+			this.advBandedGridViewSchedule.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.advBandedGridViewSchedule_PopupMenuShowing);
 			this.advBandedGridViewSchedule.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.advBandedGridViewSchedule_CellValueChanged);
 			this.advBandedGridViewSchedule.MouseDown += new System.Windows.Forms.MouseEventHandler(this.advBandedGridViewSchedule_MouseDown);
 			// 

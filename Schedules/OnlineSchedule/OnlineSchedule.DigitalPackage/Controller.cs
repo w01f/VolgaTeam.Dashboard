@@ -84,7 +84,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		public void OpenSchedule(string scheduleFilePath)
 		{
 			if (ScheduleChanging != null)
-				ScheduleChanging(this, new ScheduleEventArgs() { ScheduleFilePath = scheduleFilePath });
+				ScheduleChanging(this, new ScheduleEventArgs { ScheduleFilePath = scheduleFilePath });
 		}
 
 		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)

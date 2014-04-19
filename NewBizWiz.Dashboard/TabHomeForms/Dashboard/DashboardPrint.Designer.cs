@@ -43,7 +43,7 @@
 			// 
 			this.pbOnline.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pbOnline.Image = global::NewBizWiz.Dashboard.Properties.Resources.HomeOnline;
-			this.pbOnline.Location = new System.Drawing.Point(57, 287);
+			this.pbOnline.Location = new System.Drawing.Point(55, 271);
 			this.pbOnline.Name = "pbOnline";
 			this.pbOnline.Size = new System.Drawing.Size(452, 90);
 			this.pbOnline.TabIndex = 2;
@@ -56,7 +56,7 @@
 			// 
 			this.pbSellerPoint.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pbSellerPoint.Image = global::NewBizWiz.Dashboard.Properties.Resources.HomeNewspaper;
-			this.pbSellerPoint.Location = new System.Drawing.Point(57, 81);
+			this.pbSellerPoint.Location = new System.Drawing.Point(55, 71);
 			this.pbSellerPoint.Name = "pbSellerPoint";
 			this.pbSellerPoint.Size = new System.Drawing.Size(452, 90);
 			this.pbSellerPoint.TabIndex = 0;

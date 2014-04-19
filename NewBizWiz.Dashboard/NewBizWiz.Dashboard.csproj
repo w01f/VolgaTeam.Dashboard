@@ -417,6 +417,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\SummaryFlightDates.png" />
+    <None Include="Resources\SummaryPresentationDate.png" />
+    <None Include="Resources\SummaryDecisionMaker.png" />
+    <None Include="Resources\SummaryBusinessName.png" />
     <None Include="Resources\Load.png" />
     <None Include="Resources\DescriptionTargetCustomers.png" />
     <None Include="Resources\DescriptionSummary.png" />

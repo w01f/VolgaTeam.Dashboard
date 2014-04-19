@@ -7,7 +7,6 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.Dashboard.InteropClasses;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
@@ -97,7 +96,6 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.AppManager.NewSchedule();
-			AppManager.Instance.SetCultureSettings();
 			if (FormMain.Instance.IsDead) return;
 			FormMain.Instance.Opacity = 1;
 			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
@@ -116,7 +114,6 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			OnlineSchedule.Internal.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
-			AppManager.Instance.SetCultureSettings();
 			if (FormMain.Instance.IsDead) return;
 			FormMain.Instance.Opacity = 1;
 			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
@@ -166,7 +163,7 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 
 		private void gridViewSchedules_CellValueChanged(object sender, CellValueChangedEventArgs e)
 		{
-			ShortSchedule schedule = _scheduleList[gridViewSchedules.GetDataSourceRowIndex(e.RowHandle)];
+			var schedule = _scheduleList[gridViewSchedules.GetDataSourceRowIndex(e.RowHandle)];
 			schedule.Save();
 		}
 

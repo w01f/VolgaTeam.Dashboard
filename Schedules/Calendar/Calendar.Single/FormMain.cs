@@ -36,6 +36,7 @@ namespace NewBizWiz.Calendar.Single
 			#region Command Controls
 			#region Home
 			Controller.Instance.HomePanel = ribbonPanelHome;
+			Controller.Instance.HomeSpecialButtons = ribbonBarHomeSpecialButtons;
 			Controller.Instance.HomeHelp = buttonItemHomeHelp;
 			Controller.Instance.HomeSave = buttonItemHomeSave;
 			Controller.Instance.HomeSaveAs = buttonItemHomeSaveAs;
@@ -51,6 +52,7 @@ namespace NewBizWiz.Calendar.Single
 			#endregion
 
 			#region Calendar
+			Controller.Instance.CalendarSpecialButtons = ribbonBarCalendarSpecialButtons;
 			Controller.Instance.CalendarMonthsList = listBoxControlCalendar;
 			Controller.Instance.CalendarSlideInfo = buttonItemCalendarSlideInfo;
 			Controller.Instance.CalendarCopy = buttonItemCalendarCopy;
@@ -65,6 +67,7 @@ namespace NewBizWiz.Calendar.Single
 			#endregion
 
 			#region Grid
+			Controller.Instance.GridSpecialButtons = ribbonBarGridSpecialButtons;
 			Controller.Instance.GridMonthsList = listBoxControlGrid;
 			Controller.Instance.GridSlideInfo = buttonItemGridSlideInfo;
 			Controller.Instance.GridCopy = buttonItemGridCopy;
@@ -79,6 +82,7 @@ namespace NewBizWiz.Calendar.Single
 			#endregion
 
 			#region Rate Card
+			Controller.Instance.RateCardSpecialButtons = ribbonBarRateCardSpecialButtons;
 			Controller.Instance.RateCardHelp = buttonItemRateCardHelp;
 			Controller.Instance.RateCardCombo = comboBoxEditRateCards;
 			#endregion

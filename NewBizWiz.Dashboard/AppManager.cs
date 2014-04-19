@@ -66,7 +66,7 @@ namespace NewBizWiz.Dashboard
 
 		public void SetCultureSettings()
 		{
-			switch (Core.Dashboard.SettingsManager.Instance.DashboardCode)
+			switch (SettingsManager.Instance.DashboardCode)
 			{
 				case "tv":
 				case "radio":
@@ -152,7 +152,7 @@ namespace NewBizWiz.Dashboard
 
 		public void ShowFloater(Form sender, Action afterShow)
 		{
-			var defaultText = Core.Dashboard.SettingsManager.Instance.DashboardText;
+			var defaultText = SettingsManager.Instance.DashboardText;
 			var afterBack = new Action(ActivateMainForm);
 			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, MasterWizardManager.Instance.DefaultLogo, afterShow, null, afterBack);
 		}

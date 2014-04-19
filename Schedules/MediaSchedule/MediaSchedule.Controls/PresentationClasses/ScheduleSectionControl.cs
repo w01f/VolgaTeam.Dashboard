@@ -10,12 +10,14 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.Data;
 using DevExpress.Utils;
+using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.BandedGrid;
 using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
@@ -104,13 +106,17 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			quarterSelectorControl.QuarterSelected += QuarterCheckedChanged;
 		}
 
+		protected virtual string SpotTitle
+		{
+			get { return null; }
+		}
+
 		public bool SettingsNotSaved { get; set; }
 
 		public virtual ScheduleSection ScheduleSection
 		{
 			get { return _localSchedule.WeeklySchedule; }
 		}
-
 		public virtual ButtonItem OptionsButton
 		{
 			get { return null; }
@@ -128,6 +134,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			get { return null; }
 		}
 		public virtual ButtonItem PreviewButton
+		{
+			get { return null; }
+		}
+		public virtual RibbonBar QuarterBar
 		{
 			get { return null; }
 		}
@@ -324,6 +334,19 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			PreviewButton.Enabled = enabled;
 		}
 
+		private void CloneSpots(int rowHandle, object valueToClone, bool everyOthere)
+		{
+			var i = 0;
+			foreach (var column in _spotColumns.Where(c => c.Visible))
+			{
+				if (i == 0)
+					advBandedGridViewSchedule.SetRowCellValue(rowHandle, column, valueToClone);
+				i++;
+				if (!everyOthere || i > 1)
+					i = 0;
+			}
+		}
+
 		private void BuildSpotColumns()
 		{
 			foreach (var column in _spotColumns)
@@ -360,7 +383,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			gridBandSpots.Visible = _spotColumns.Count > 0 && ScheduleSection.ShowSpots;
 		}
 
-		public void LoadSchedule(bool quickLoad)
+		public virtual void LoadSchedule(bool quickLoad)
 		{
 			_allowToSave = false;
 
@@ -413,6 +436,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 			QuarterButton.Checked = ScheduleSection.ShowSelectedQuarter;
 			quarterSelectorControl.InitControls(ScheduleSection.Parent.BroadcastCalendar.Quarters, ScheduleSection.Parent.BroadcastCalendar.Quarters.FirstOrDefault(q => !ScheduleSection.SelectedQuarter.HasValue || q.DateAnchor == ScheduleSection.SelectedQuarter.Value));
+			QuarterBar.Enabled =
+			quarterSelectorControl.Visible =
+				ScheduleSection.Parent.BroadcastCalendar.Quarters.Count > 1;
 
 			buttonXTotalPeriods.Checked = ScheduleSection.ShowTotalPeriods;
 			buttonXTotalSpots.Checked = ScheduleSection.ShowTotalSpots;
@@ -504,7 +530,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			SettingsNotSaved = false;
 		}
 
-		private bool SaveSchedule(string scheduleName = "")
+		protected virtual bool SaveSchedule(string scheduleName = "")
 		{
 			if (!string.IsNullOrEmpty(scheduleName))
 				_localSchedule.Name = scheduleName;
@@ -521,7 +547,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			return true;
 		}
 
-		private void ScheduleSection_DataChanged(object sender, EventArgs e)
+		protected virtual void ScheduleSection_DataChanged(object sender, EventArgs e)
 		{
 			UpdateTotalsValues();
 		}
@@ -587,10 +613,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			}
 		}
 
-		public void AddProgram_Click(object sender, EventArgs e)
+		public virtual void AddProgram_Click(object sender, EventArgs e)
 		{
 			ScheduleSection.AddProgram();
 			UpdateGrid(false);
+			UpdateSpotsStatus();
 			UpdateTotalsValues();
 			UpdateOutputStatus(ScheduleSection.Programs.Any());
 			if (advBandedGridViewSchedule.RowCount > 0)
@@ -598,7 +625,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			SettingsNotSaved = true;
 		}
 
-		public void DeleteProgram_Click(object sender, EventArgs e)
+		public virtual void DeleteProgram_Click(object sender, EventArgs e)
 		{
 			var selectedProgramRow = advBandedGridViewSchedule.GetFocusedDataRow();
 			if (selectedProgramRow == null) return;
@@ -606,6 +633,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			if (Utilities.Instance.ShowWarningQuestion(String.Format("Delete Line ID {0}?", selectedProgramIndex)) != DialogResult.Yes) return;
 			ScheduleSection.DeleteProgram(advBandedGridViewSchedule.GetDataSourceRowIndex(advBandedGridViewSchedule.FocusedRowHandle));
 			UpdateGrid(false);
+			UpdateSpotsStatus();
 			UpdateTotalsValues();
 			UpdateOutputStatus(ScheduleSection.Programs.Any());
 			SettingsNotSaved = true;
@@ -767,7 +795,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			}
 		}
 
-		private void advBandedGridViewSchedule_CustomRowCellEditForEditing(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
+		private void advBandedGridViewSchedule_CustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e)
 		{
 			if (e.Column != bandedGridColumnName || advBandedGridViewSchedule.FocusedRowHandle == GridControl.InvalidRowHandle) return;
 			var station = advBandedGridViewSchedule.GetRowCellValue(advBandedGridViewSchedule.FocusedRowHandle, bandedGridColumnStation) as String;
@@ -839,6 +867,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				CloseActiveEditorsonOutSideClick(null, null);
 		}
 
+		private void advBandedGridViewSchedule_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+		{
+			if (!e.HitInfo.InRowCell) return;
+			if (e.HitInfo.Column != _spotColumns.First(sc => sc.Visible)) return;
+			var valueToClone = advBandedGridViewSchedule.GetRowCellValue(e.HitInfo.RowHandle, _spotColumns.FirstOrDefault(c => c.Visible));
+			e.Menu.Items.Add(new DXMenuItem(String.Format("Clone {0} 1 to All {0}s", SpotTitle), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, false)));
+			e.Menu.Items.Add(new DXMenuItem(String.Format("Clone every other {0}", SpotTitle), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, true)));
+			e.Menu.Items.Add(new DXMenuItem("Wipe all Spots on this line", (o, args) => CloneSpots(e.HitInfo.RowHandle, null, false)));
+		}
 		#endregion
 
 		#region Output Staff

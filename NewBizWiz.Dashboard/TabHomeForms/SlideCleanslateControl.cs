@@ -39,7 +39,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			Dock = DockStyle.Fill;
 			AppManager.Instance.SetClickEventHandler(this);
 			Control dashboard = null;
-			switch (SettingsManager.Instance.DashboardCode)
+			switch (Core.Common.SettingsManager.Instance.DashboardCode)
 			{
 				case "newspaper":
 					dashboard = new DashboardPrint();

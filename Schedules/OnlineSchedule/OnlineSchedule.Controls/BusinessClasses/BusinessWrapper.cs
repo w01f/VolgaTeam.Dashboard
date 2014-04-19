@@ -57,7 +57,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 		{
 			if (!File.Exists(Core.OnlineSchedule.SettingsManager.Instance.LocalSettingsPath)) return;
 			var document = new XmlDocument();
-			document.Load(Core.AdSchedule.SettingsManager.Instance.LocalSettingsPath);
+			document.Load(Core.OnlineSchedule.SettingsManager.Instance.LocalSettingsPath);
 			_themeSaveHelper.Deserialize(document.SelectNodes(@"//LocalSettings/SelectedTheme").OfType<XmlNode>());
 		}
 
@@ -67,7 +67,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.BusinessClasses
 			xml.AppendLine(@"<LocalSettings>");
 			xml.AppendLine(_themeSaveHelper.Serialize());
 			xml.AppendLine(@"</LocalSettings>");
-			string userConfigurationPath = Path.Combine(Core.OnlineSchedule.SettingsManager.Instance.LocalSettingsPath);
+			string userConfigurationPath = Core.OnlineSchedule.SettingsManager.Instance.LocalSettingsPath;
 			using (var sw = new StreamWriter(userConfigurationPath, false))
 			{
 				sw.Write(xml);

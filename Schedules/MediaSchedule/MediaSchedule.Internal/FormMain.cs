@@ -68,7 +68,8 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.WeeklyScheduleOptions = buttonItemWeeklyScheduleSettings;
 			Controller.Instance.WeeklyScheduleProgramAdd = buttonItemWeeklyScheduleProgramAdd;
 			Controller.Instance.WeeklyScheduleProgramDelete = buttonItemWeeklyScheduleProgramDelete;
-			Controller.Instance.WeeklyScheduleQuarter = buttonItemWeeklyScheduleQuarter;
+			Controller.Instance.WeeklyScheduleQuarterBar = ribbonBarWeeklyScheduleQuarter;
+			Controller.Instance.WeeklyScheduleQuarterButton = buttonItemWeeklyScheduleQuarter;
 			#endregion
 
 			#region Monthly Schedule
@@ -83,7 +84,8 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.MonthlyScheduleOptions = buttonItemMonthlyScheduleSettings;
 			Controller.Instance.MonthlyScheduleProgramAdd = buttonItemMonthlyScheduleProgramAdd;
 			Controller.Instance.MonthlyScheduleProgramDelete = buttonItemMonthlyScheduleProgramDelete;
-			Controller.Instance.MonthlyScheduleQuarter = buttonItemMonthlyScheduleQuarter;
+			Controller.Instance.MonthlyScheduleQuarterBar = ribbonBarWeeklyScheduleQuarter;
+			Controller.Instance.MonthlyScheduleQuarterButton = buttonItemMonthlyScheduleQuarter;
 			#endregion
 
 			#region Digital Product

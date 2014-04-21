@@ -89,9 +89,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		protected override bool SaveSchedule(string scheduleName = "")
 		{
-			if (!string.IsNullOrEmpty(scheduleName))
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			if (nameChanged)
 				LocalSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule(LocalSchedule, false, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, this);
 			return base.SaveSchedule(scheduleName);
 		}
 

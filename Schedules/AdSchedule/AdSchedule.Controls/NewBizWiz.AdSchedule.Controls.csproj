@@ -99,7 +99,6 @@
     <Compile Include="BusinessClasses\OutputManager.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="InteropClasses\BasicOverviewSummaryHelper.cs" />
-    <Compile Include="InteropClasses\SummaryHelper.cs" />
     <Compile Include="PresentationClasses\InputClasses\AdNotesDaysSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,18 +152,6 @@
     </Compile>
     <Compile Include="PresentationClasses\OutputClasses\OutputControls\Summary\PublicationSummaryControl.Designer.cs">
       <DependentUpon>PublicationSummaryControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\Summary\SummaryInputItemControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Summary\SummaryInputItemControl.Designer.cs">
-      <DependentUpon>SummaryInputItemControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationClasses\Summary\SummaryControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PresentationClasses\Summary\SummaryControl.Designer.cs">
-      <DependentUpon>SummaryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="InteropClasses\CalendarHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
@@ -246,6 +233,9 @@
     <Compile Include="InteropClasses\DetailedGridHelper.cs" />
     <Compile Include="InteropClasses\SnapshotHelper.cs" />
     <Compile Include="PresentationClasses\OutputClasses\MultiSummaryHelper.cs" />
+    <Compile Include="PresentationClasses\Summary\PrintSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ToolForms\FormDateSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -336,12 +326,6 @@
     <Compile Include="ToolForms\FormAdNotes.Designer.cs">
       <DependentUpon>FormAdNotes.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormNewSchedule.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormNewSchedule.Designer.cs">
-      <DependentUpon>FormNewSchedule.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PresentationClasses\InputClasses\PrintProductContainerControl.cs">
       <SubType>UserControl</SubType>
@@ -369,12 +353,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Summary\PublicationSummaryControl.resx">
       <DependentUpon>PublicationSummaryControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Summary\SummaryInputItemControl.resx">
-      <DependentUpon>SummaryInputItemControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\Summary\SummaryControl.resx">
-      <DependentUpon>SummaryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\OutputClasses\OutputControls\Grid\AdNotesControl.resx">
       <DependentUpon>AdNotesControl.cs</DependentUpon>
@@ -456,9 +434,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormAdNotes.resx">
       <DependentUpon>FormAdNotes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormNewSchedule.resx">
-      <DependentUpon>FormNewSchedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -751,9 +726,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CalendarMonth.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NewSchedule.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\NewScheduleRibbon.png" />

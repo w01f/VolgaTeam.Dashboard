@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using NewBizWiz.AdSchedule.Controls;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
-using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using SettingsManager = NewBizWiz.Core.AdSchedule.SettingsManager;

@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using System.Windows.Forms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
-using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
 using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
 using SettingsManager = NewBizWiz.Core.OnlineSchedule.SettingsManager;
 

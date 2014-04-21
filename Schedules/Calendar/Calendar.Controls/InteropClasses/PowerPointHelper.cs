@@ -1,6 +1,4 @@
-﻿using NewBizWiz.Core.Interop;
-
-namespace NewBizWiz.Calendar.Controls.InteropClasses
+﻿namespace NewBizWiz.Calendar.Controls.InteropClasses
 {
-	public partial class CalendarPowerPointHelper : PowerPointHelper<CalendarPowerPointHelper> {}
+	public partial class CalendarPowerPointHelper : CommonGUI.CommonPowerPointHelper<CalendarPowerPointHelper> { }
 }

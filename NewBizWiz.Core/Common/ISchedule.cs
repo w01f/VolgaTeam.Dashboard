@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.OnlineSchedule;
 
 namespace NewBizWiz.Core.Common
@@ -28,10 +27,5 @@ namespace NewBizWiz.Core.Common
 		void UpDigital(int position);
 		void DownDigital(int position);
 		void RebuildDigitalProductIndexes();
-	}
-
-	public interface ISummarySchedule
-	{
-		IEnumerable<ISummaryProduct> ProductSummaries { get; }
 	}
 }

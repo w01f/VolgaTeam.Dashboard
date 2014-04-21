@@ -30,6 +30,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.TabScheduleSlides = ribbonTabItemDigitalSlides;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
 			Controller.Instance.TabAdPlan = ribbonTabItemAdPlan;
+			Controller.Instance.TabSummary = ribbonTabItemSummary;
 			Controller.Instance.TabGallery1 = ribbonTabItemGallery1;
 			Controller.Instance.TabGallery2 = ribbonTabItemGallery2;
 			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
@@ -86,6 +87,17 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.AdPlanEmail = buttonItemAdPlanEmail;
 			Controller.Instance.AdPlanPowerPoint = buttonItemAdPlanPowerPoint;
 			Controller.Instance.AdPlanTheme = buttonItemAdPlanTheme;
+			#endregion
+			
+			#region Summary
+			Controller.Instance.SummarySpecialButtons = ribbonBarSummarySpecialButtons;
+			Controller.Instance.SummaryHelp = buttonItemSummaryHelp;
+			Controller.Instance.SummarySave = buttonItemSummarySave;
+			Controller.Instance.SummarySaveAs = buttonItemSummarySaveAs;
+			Controller.Instance.SummaryPreview = buttonItemSummaryPreview;
+			Controller.Instance.SummaryEmail = buttonItemSummaryEmail;
+			Controller.Instance.SummaryPowerPoint = buttonItemSummaryPowerPoint;
+			Controller.Instance.SummaryTheme = buttonItemSummaryTheme;
 			#endregion
 
 			#region Rate Card
@@ -267,6 +279,17 @@ namespace NewBizWiz.OnlineSchedule.Single
 					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 				}
 			}
+			else if ((_currentControl == Controller.Instance.Summary))
+			{
+				if (Controller.Instance.Summary.AllowToLeaveControl)
+					result = true;
+				else
+				{
+					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
+					ribbonControl.SelectedRibbonTabItem = ribbonTabItemSummary;
+					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+				}
+			}
 			else
 				result = true;
 			return result;
@@ -351,6 +374,17 @@ namespace NewBizWiz.OnlineSchedule.Single
 				_currentControl.BringToFront();
 				pnMain.BringToFront();
 			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSummary)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.Summary;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemRateCard)
 			{
 				if (AllowToLeaveCurrentControl())
@@ -408,6 +442,8 @@ namespace NewBizWiz.OnlineSchedule.Single
 				result = Controller.Instance.DigitalPackage.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.AdPlan)
 				result = Controller.Instance.AdPlan.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.Summary)
+				result = Controller.Instance.Summary.AllowToLeaveControl;
 			OnlineSchedulePowerPointHelper.Instance.Disconnect(false);
 		}
 

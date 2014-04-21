@@ -10,7 +10,6 @@ using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
-using FormNewSchedule = NewBizWiz.AdSchedule.Controls.ToolForms.FormNewSchedule;
 using Schedule = NewBizWiz.Core.AdSchedule.Schedule;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses

@@ -290,99 +290,97 @@ namespace NewBizWiz.Core.AdSchedule
 
 		private void Load()
 		{
-			if (_scheduleFile.Exists)
+			if (!_scheduleFile.Exists) return;
+			var document = new XmlDocument();
+			document.Load(_scheduleFile.FullName);
+
+			var node = document.SelectSingleNode(@"/Schedule/BusinessName");
+			if (node != null)
+				BusinessName = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/DecisionMaker");
+			if (node != null)
+				DecisionMaker = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/ClientType");
+			if (node != null)
+				ClientType = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/AccountNumber");
+			if (node != null)
+				AccountNumber = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/Status");
+			if (node != null)
+				Status = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/PresentationDate");
+			DateTime tempDateTime;
+			if (node != null)
 			{
-				var document = new XmlDocument();
-				document.Load(_scheduleFile.FullName);
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
+					PresentationDate = tempDateTime;
+			}
 
-				var node = document.SelectSingleNode(@"/Schedule/BusinessName");
-				if (node != null)
-					BusinessName = node.InnerText;
+			node = document.SelectSingleNode(@"/Schedule/FlightDateStart");
+			if (node != null)
+			{
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
+					FlightDateStart = tempDateTime;
+			}
 
-				node = document.SelectSingleNode(@"/Schedule/DecisionMaker");
-				if (node != null)
-					DecisionMaker = node.InnerText;
+			node = document.SelectSingleNode(@"/Schedule/FlightDateEnd");
+			if (node != null)
+			{
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
+					FlightDateEnd = tempDateTime;
+			}
+			node = document.SelectSingleNode(@"/Schedule/ViewSettings");
+			if (node != null)
+			{
+				ViewSettings.Deserialize(node);
+			}
+			node = document.SelectSingleNode(@"/Schedule/Summary");
+			if (node != null)
+			{
+				Summary.Deserialize(node);
+			}
+			node = document.SelectSingleNode(@"/Schedule/Publications");
+			if (node != null)
+			{
+				foreach (XmlNode publicationNode in node.ChildNodes)
+				{
+					var publication = new PrintProduct(this);
+					publication.Deserialize(publicationNode);
+					PrintProducts.Add(publication);
+				}
+			}
+			node = document.SelectSingleNode(@"/Schedule/DigitalProducts");
+			if (node != null)
+			{
+				foreach (XmlNode publicationNode in node.ChildNodes)
+				{
+					var digitalProduct = new DigitalProduct(this);
+					digitalProduct.Deserialize(publicationNode);
+					DigitalProducts.Add(digitalProduct);
+				}
+			}
+			node = document.SelectSingleNode(@"/Schedule/DigitalProductSummary");
+			if (node != null)
+			{
+				DigitalProductSummary.Deserialize(node);
+			}
 
-				node = document.SelectSingleNode(@"/Schedule/ClientType");
-				if (node != null)
-					ClientType = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/AccountNumber");
-				if (node != null)
-					AccountNumber = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/Status");
-				if (node != null)
-					Status = node.InnerText;
-
-				node = document.SelectSingleNode(@"/Schedule/PresentationDate");
-				DateTime tempDateTime;
-				if (node != null)
-				{
-					if (DateTime.TryParse(node.InnerText, out tempDateTime))
-						PresentationDate = tempDateTime;
-				}
-
-				node = document.SelectSingleNode(@"/Schedule/FlightDateStart");
-				if (node != null)
-				{
-					if (DateTime.TryParse(node.InnerText, out tempDateTime))
-						FlightDateStart = tempDateTime;
-				}
-
-				node = document.SelectSingleNode(@"/Schedule/FlightDateEnd");
-				if (node != null)
-				{
-					if (DateTime.TryParse(node.InnerText, out tempDateTime))
-						FlightDateEnd = tempDateTime;
-				}
-				node = document.SelectSingleNode(@"/Schedule/ViewSettings");
-				if (node != null)
-				{
-					ViewSettings.Deserialize(node);
-				}
-				node = document.SelectSingleNode(@"/Schedule/Summary");
-				if (node != null)
-				{
-					Summary.Deserialize(node);
-				}
-				node = document.SelectSingleNode(@"/Schedule/Publications");
-				if (node != null)
-				{
-					foreach (XmlNode publicationNode in node.ChildNodes)
-					{
-						var publication = new PrintProduct(this);
-						publication.Deserialize(publicationNode);
-						PrintProducts.Add(publication);
-					}
-				}
-				node = document.SelectSingleNode(@"/Schedule/DigitalProducts");
-				if (node != null)
-				{
-					foreach (XmlNode publicationNode in node.ChildNodes)
-					{
-						var digitalProduct = new DigitalProduct(this);
-						digitalProduct.Deserialize(publicationNode);
-						DigitalProducts.Add(digitalProduct);
-					}
-				}
-				node = document.SelectSingleNode(@"/Schedule/DigitalProductSummary");
-				if (node != null)
-				{
-					DigitalProductSummary.Deserialize(node);
-				}
-
-				node = document.SelectSingleNode(@"/Schedule/Calendar");
-				if (node != null)
-				{
-					Calendar.Deserialize(node);
-				}
-				else
-				{
-					Calendar.UpdateDaysCollection();
-					Calendar.UpdateMonthCollection();
-					Calendar.UpdateNotesCollection();
-				}
+			node = document.SelectSingleNode(@"/Schedule/Calendar");
+			if (node != null)
+			{
+				Calendar.Deserialize(node);
+			}
+			else
+			{
+				Calendar.UpdateDaysCollection();
+				Calendar.UpdateMonthCollection();
+				Calendar.UpdateNotesCollection();
 			}
 		}
 
@@ -782,7 +780,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 			xml.Append(@"<Publication ");
 			xml.Append("Name = \"" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
-			xml.Append("UniqueID = \"" + UniqueID.ToString() + "\" ");
+			xml.Append("UniqueID = \"" + UniqueID + "\" ");
 			xml.Append("Abbreviation = \"" + Abbreviation.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 			xml.Append("DailyDelivery = \"" + (DailyDelivery ?? 0) + "\" ");
 			xml.Append("DailyReadership = \"" + (DailyReadership ?? 0) + "\" ");
@@ -1964,219 +1962,6 @@ namespace NewBizWiz.Core.AdSchedule
 			return clone;
 		}
 		#endregion
-	}
-
-	public class SummarySettings
-	{
-		private readonly ISummarySchedule _parent;
-
-		public SummarySettings(ISummarySchedule parent)
-		{
-			_parent = parent;
-			ShowAdvertiser = true;
-			ShowDecisionMaker = true;
-			ShowPresentationDate = true;
-			ShowFlightDates = true;
-			ShowMonthly = false;
-			ShowTotal = false;
-			ShowSignature = true;
-
-			SlideHeader = string.Empty;
-		}
-
-		public bool ShowAdvertiser { get; set; }
-		public bool ShowDecisionMaker { get; set; }
-		public bool ShowPresentationDate { get; set; }
-		public bool ShowFlightDates { get; set; }
-		public bool ShowMonthly { get; set; }
-		public bool ShowTotal { get; set; }
-		public bool ShowSignature { get; set; }
-
-		public string SlideHeader { get; set; }
-		public decimal? MonthlyValue { get; set; }
-		public decimal? TotalValue { get; set; }
-
-		public decimal TotalMonthly
-		{
-			get
-			{
-				var items = _parent.ProductSummaries.Select(ps => ps.SummaryItem).Where(si => si.ShowMonthly);
-				return items.Any() ? items.Sum(it => it.Monthly) : 0;
-			}
-		}
-
-		public decimal TotalTotal
-		{
-			get
-			{
-				var items = _parent.ProductSummaries.Select(ps => ps.SummaryItem).Where(si => si.ShowTotal);
-				return items.Any() ? items.Sum(it => it.Total) : 0;
-			}
-		}
-
-		public string Serialize()
-		{
-			var result = new StringBuilder();
-
-			result.AppendLine(@"<ShowAdvertiser>" + ShowAdvertiser + @"</ShowAdvertiser>");
-			result.AppendLine(@"<ShowDecisionMaker>" + ShowDecisionMaker + @"</ShowDecisionMaker>");
-			result.AppendLine(@"<ShowPresentationDate>" + ShowPresentationDate + @"</ShowPresentationDate>");
-			result.AppendLine(@"<ShowFlightDates>" + ShowFlightDates + @"</ShowFlightDates>");
-			result.AppendLine(@"<ShowMonthly>" + ShowMonthly + @"</ShowMonthly>");
-			result.AppendLine(@"<ShowTotal>" + ShowTotal + @"</ShowTotal>");
-			result.AppendLine(@"<ShowSignature>" + ShowSignature + @"</ShowSignature>");
-
-			result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
-			result.AppendLine(@"<MonthlyValue>" + MonthlyValue + @"</MonthlyValue>");
-			result.AppendLine(@"<TotalValue>" + TotalValue + @"</TotalValue>");
-
-			return result.ToString();
-		}
-
-		public void Deserialize(XmlNode node)
-		{
-			foreach (XmlNode childNode in node.ChildNodes)
-			{
-				decimal tempDecimal;
-				bool tempBool;
-				switch (childNode.Name)
-				{
-					case "ShowAdvertiser":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowAdvertiser = tempBool;
-						break;
-					case "ShowDecisionMaker":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowDecisionMaker = tempBool;
-						break;
-					case "ShowPresentationDate":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowPresentationDate = tempBool;
-						break;
-					case "ShowFlightDates":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowFlightDates = tempBool;
-						break;
-					case "ShowMonthly":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowMonthly = tempBool;
-						break;
-					case "ShowTotal":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTotal = tempBool;
-						break;
-					case "ShowSignature":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowSignature = tempBool;
-						break;
-					case "SlideHeader":
-						SlideHeader = childNode.InnerText;
-						break;
-					case "MonthlyValue":
-						if (decimal.TryParse(childNode.InnerText, out tempDecimal) && tempDecimal > 0)
-							MonthlyValue = tempDecimal; break;
-					case "TotalValue":
-						if (decimal.TryParse(childNode.InnerText, out tempDecimal) && tempDecimal > 0)
-							TotalValue = tempDecimal;
-						break;
-				}
-			}
-		}
-	}
-
-	public interface ISummaryProduct
-	{
-		Guid UniqueID { get; }
-		string SummaryTitle { get; }
-		string SummaryInfo { get; }
-		SummaryItem SummaryItem { get; }
-	}
-
-	public class SummaryItem
-	{
-		public SummaryItem(ISummaryProduct parent)
-		{
-			Parent = parent;
-
-			ShowValue = true;
-			ShowDescription = false;
-			ShowMonthly = false;
-			ShowTotal = false;
-		}
-
-		public ISummaryProduct Parent { get; private set; }
-		public bool ShowValue { get; set; }
-		public bool ShowDescription { get; set; }
-		public bool ShowMonthly { get; set; }
-		public bool ShowTotal { get; set; }
-
-		private string _description;
-		public string Description
-		{
-			get { return !String.IsNullOrEmpty(_description) ? _description : Parent.SummaryInfo; }
-			set { _description = value != Parent.SummaryInfo ? value : null; }
-		}
-		public decimal Monthly { get; set; }
-		public decimal Total { get; set; }
-
-		public bool Commited { get; set; }
-
-		public string Serialize()
-		{
-			var result = new StringBuilder();
-
-			result.AppendLine(@"<ShowDescription>" + ShowDescription + @"</ShowDescription>");
-			result.AppendLine(@"<ShowMonthly>" + ShowMonthly + @"</ShowMonthly>");
-			result.AppendLine(@"<ShowTotal>" + ShowTotal + @"</ShowTotal>");
-			result.AppendLine(@"<ShowValue>" + ShowValue + @"</ShowValue>");
-
-			if (!String.IsNullOrEmpty(_description))
-				result.AppendLine(@"<Description>" + _description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Description>");
-			result.AppendLine(@"<Monthly>" + Monthly + @"</Monthly>");
-			result.AppendLine(@"<Total>" + Total + @"</Total>");
-
-			return result.ToString();
-		}
-
-		public void Deserialize(XmlNode node)
-		{
-			foreach (XmlNode childNode in node.ChildNodes)
-			{
-				bool tempBool;
-				decimal tempDecimal;
-				switch (childNode.Name)
-				{
-					case "ShowDescription":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowDescription = tempBool;
-						break;
-					case "ShowMonthly":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowMonthly = tempBool;
-						break;
-					case "ShowTotal":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowTotal = tempBool;
-						break;
-					case "ShowValue":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowValue = tempBool;
-						break;
-					case "Monthly":
-						if (decimal.TryParse(childNode.InnerText, out tempDecimal))
-							Monthly = tempDecimal;
-						break;
-					case "Total":
-						if (decimal.TryParse(childNode.InnerText, out tempDecimal))
-							Total = tempDecimal;
-						break;
-					case "Description":
-						_description = childNode.InnerText;
-						break;
-				}
-			}
-			Commited = true;
-		}
 	}
 
 	public class AdCalendar : CalendarSundayBased

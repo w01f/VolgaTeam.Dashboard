@@ -73,6 +73,7 @@
     <Compile Include="InteropClasses\CalendarHelper.cs" />
     <Compile Include="InteropClasses\OneSheetHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
+    <Compile Include="InteropClasses\SummaryHelper.cs" />
     <Compile Include="PresentationClasses\BroadcastCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -115,6 +116,9 @@
     <Compile Include="PresentationClasses\CalendarSlideInfoControl.Designer.cs">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\MediaSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\QuarterSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -141,12 +145,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="ToolForms\FormNewSchedule.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormNewSchedule.Designer.cs">
-      <DependentUpon>FormNewSchedule.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -199,12 +197,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormNewSchedule.resx">
-      <DependentUpon>FormNewSchedule.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NewSchedule.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\EmailBig.png" />

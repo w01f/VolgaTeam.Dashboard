@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 using SettingsManager = NewBizWiz.Core.AdSchedule.SettingsManager;

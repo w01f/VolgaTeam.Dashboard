@@ -5,14 +5,12 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraGrid;
-using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraTab;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.ToolForms;
 using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
 using Schedule = NewBizWiz.Core.MediaSchedule.Schedule;
 
@@ -66,12 +64,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			foreach (var category in ListManager.Instance.Categories)
 			{
-				var categoryButton = new ButtonItem();
-				categoryButton.Image = category.Logo;
-				categoryButton.Text = "<b>" + category.TooltipTitle + "</b><p>" + category.TooltipValue + "</p>";
-				categoryButton.ImagePaddingHorizontal = 8;
-				categoryButton.SubItemsExpandWidth = 14;
-				categoryButton.Tag = category;
+				var categoryButton = new ButtonItem
+				{
+					Image = category.Logo, 
+					Text = "<b>" + category.TooltipTitle + "</b><p>" + category.TooltipValue + "</p>", 
+					ImagePaddingHorizontal = 8, 
+					SubItemsExpandWidth = 14, 
+					Tag = category
+				};
 				categoryButton.Click += DigitalProductAdd;
 				Controller.Instance.HomeProductAdd.SubItems.Add(categoryButton);
 			}
@@ -87,7 +87,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			_allowToSave = false;
 			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			laTopTitle.Text = _localSchedule.Name;
-			digitalProductListControl.UpdateData(_localSchedule, 
+			digitalProductListControl.UpdateData(_localSchedule,
 				() =>
 				{
 					UpdateProductsCount();
@@ -95,7 +95,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 					if (_allowToSave)
 						SettingsNotSaved = true;
 				},
-				null
+				activity =>
+				{
+					var propertyEditActivity = activity as PropertyEditActivity;
+					if (propertyEditActivity != null)
+						propertyEditActivity.Advertiser = Controller.Instance.HomeBusinessName.EditValue as String;
+					BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+				}
 			);
 			if (!quickLoad)
 			{
@@ -230,18 +236,33 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			bool quickSave = true;
 			digitalProductListControl.CloseEditors();
-			if (!string.IsNullOrEmpty(scheduleName))
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			if (nameChanged)
 				_localSchedule.Name = scheduleName;
-			if (Controller.Instance.HomeBusinessName.EditValue != null)
-				_localSchedule.BusinessName = Controller.Instance.HomeBusinessName.EditValue.ToString();
+			var businessName = Controller.Instance.HomeBusinessName.EditValue as String;
+			if (!String.IsNullOrEmpty(businessName))
+			{
+				if (_localSchedule.BusinessName != businessName)
+				{
+					_localSchedule.BusinessName = businessName;
+					BusinessWrapper.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Business Name", businessName));
+				}
+			}
 			else
 			{
 				if (!quiet)
 					Utilities.Instance.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Business Name before you proceed.");
 				return false;
 			}
-			if (Controller.Instance.HomeDecisionMaker.EditValue != null)
-				_localSchedule.DecisionMaker = Controller.Instance.HomeDecisionMaker.EditValue.ToString();
+			var decisionMaker = Controller.Instance.HomeDecisionMaker.EditValue as String;
+			if (!String.IsNullOrEmpty(decisionMaker))
+			{
+				if (_localSchedule.DecisionMaker != decisionMaker)
+				{
+					_localSchedule.DecisionMaker = decisionMaker;
+					BusinessWrapper.Instance.ActivityManager.AddActivity(new PropertyEditActivity("Decision Maker", decisionMaker));
+				}
+			}
 			else
 			{
 				if (!quiet)
@@ -378,7 +399,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
 			Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers.ToArray());
 			UpdateScheduleControls();
-			Controller.Instance.SaveSchedule(_localSchedule, quickSave, this);
+			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, quickSave, this);
 			SettingsNotSaved = false;
 			stationsControl.HasChanged = false;
 			daypartsControl.HasChanged = false;
@@ -438,13 +459,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			Controller.Instance.HomeWeeks.Text = "";
 			Controller.Instance.HomeWeeks.Visible = false;
-			if (Controller.Instance.HomeFlightDatesStart.DateTime != null && Controller.Instance.HomeFlightDatesEnd.DateTime != null)
-			{
-				TimeSpan datesRange = Controller.Instance.HomeFlightDatesEnd.DateTime - Controller.Instance.HomeFlightDatesStart.DateTime;
-				int weeksCount = datesRange.Days / 7 + 1;
-				Controller.Instance.HomeWeeks.Text = weeksCount + (weeksCount > 1 ? " Weeks" : " Week");
-				Controller.Instance.HomeWeeks.Visible = true;
-			}
+			if (Controller.Instance.HomeFlightDatesStart.DateTime == null || Controller.Instance.HomeFlightDatesEnd.DateTime == null) return;
+			var datesRange = Controller.Instance.HomeFlightDatesEnd.DateTime - Controller.Instance.HomeFlightDatesStart.DateTime;
+			var weeksCount = datesRange.Days / 7 + 1;
+			Controller.Instance.HomeWeeks.Text = weeksCount + (weeksCount > 1 ? " Weeks" : " Week");
+			Controller.Instance.HomeWeeks.Visible = true;
 		}
 
 		public void dateEditFlightDatesStart_CloseUp(object sender, CloseUpEventArgs e)

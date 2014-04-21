@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonPowerPointHelper.cs" />
     <Compile Include="Floater\FloaterManager.cs" />
     <Compile Include="Floater\FloaterRequestedEventArgs.cs" />
     <Compile Include="Floater\FormFloater.cs">
@@ -161,6 +162,18 @@
     <Compile Include="Slides\SlidesContainerControl.Designer.cs">
       <DependentUpon>SlidesContainerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Summary\SummaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Summary\SummaryControl.Designer.cs">
+      <DependentUpon>SummaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Summary\SummaryInputItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Summary\SummaryInputItemControl.Designer.cs">
+      <DependentUpon>SummaryInputItemControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Themes\FormThemeSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +209,12 @@
     </Compile>
     <Compile Include="Preview\FormPreview.designer.cs">
       <DependentUpon>FormPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolForms\FormNewSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolForms\FormNewSchedule.Designer.cs">
+      <DependentUpon>FormNewSchedule.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolForms\FormProgress.cs">
       <SubType>Form</SubType>
@@ -256,6 +275,12 @@
     <EmbeddedResource Include="Slides\SlidesContainerControl.resx">
       <DependentUpon>SlidesContainerControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Summary\SummaryControl.resx">
+      <DependentUpon>SummaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Summary\SummaryInputItemControl.resx">
+      <DependentUpon>SummaryInputItemControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Themes\FormThemeSelector.resx">
       <DependentUpon>FormThemeSelector.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Preview\FormPreview.resx">
       <DependentUpon>FormPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolForms\FormNewSchedule.resx">
+      <DependentUpon>FormNewSchedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolForms\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
@@ -332,6 +360,35 @@
       <WrapperTool>aximp</WrapperTool>
       <Isolated>False</Isolated>
     </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.PowerPoint">
+      <Guid>{91493440-5A91-11CF-8700-00AA0060263B}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>10</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\GalleryCopy.png" />
@@ -353,6 +410,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\GallerySelect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryDigital.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryPrint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryRadio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SummaryTV.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

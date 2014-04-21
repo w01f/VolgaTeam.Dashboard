@@ -4,10 +4,10 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors.Controls;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
-using NewBizWiz.OnlineSchedule.Controls.PresentationClasses.ToolForms;
 using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
 using Schedule = NewBizWiz.Core.OnlineSchedule.Schedule;
 

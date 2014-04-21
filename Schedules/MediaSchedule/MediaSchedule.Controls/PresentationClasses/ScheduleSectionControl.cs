@@ -25,7 +25,6 @@ using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using FormNewSchedule = NewBizWiz.MediaSchedule.Controls.ToolForms.FormNewSchedule;
 using Schedule = NewBizWiz.Core.MediaSchedule.Schedule;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
@@ -96,13 +95,20 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			repositoryItemSpinEditSpot.Enter += Utilities.Instance.Editor_Enter;
 			repositoryItemSpinEditSpot.MouseDown += Utilities.Instance.Editor_MouseDown;
 			repositoryItemSpinEditSpot.MouseUp += Utilities.Instance.Editor_MouseUp;
+			spinEditOutputLimitPeriods.Enter += Utilities.Instance.Editor_Enter;
+			spinEditOutputLimitPeriods.MouseDown += Utilities.Instance.Editor_MouseDown;
+			spinEditOutputLimitPeriods.MouseUp += Utilities.Instance.Editor_MouseUp;
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
 			});
 			digitalInfoControl.RequestDefaultInfo += (o, args) => { args.Editor.EditValue = _localSchedule.GetDigitalInfo(args); };
-			digitalInfoControl.SettingsChanged += (o, args) => { SettingsNotSaved = true; };
+			digitalInfoControl.SettingsChanged += (o, args) =>
+			{
+				TrackOptionChanged();
+				SettingsNotSaved = true;
+			};
 			quarterSelectorControl.QuarterSelected += QuarterCheckedChanged;
 		}
 
@@ -189,10 +195,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			if (!quickLoad)
 				BuildSpotColumns();
 			if (ScheduleSection.Programs.Count > 0)
-			{
 				gridControlSchedule.DataSource = ScheduleSection.DataSource;
-				gridControlSchedule.DataMember = ScheduleSection.ProgramDataTableName;
-			}
 			advBandedGridViewSchedule.EndUpdate();
 			if (focussedRow >= 0 && focussedRow < advBandedGridViewSchedule.RowCount)
 				advBandedGridViewSchedule.FocusedRowHandle = focussedRow;
@@ -303,7 +306,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			if (ScheduleSection.Programs.Any())
 			{
 				pnBottom.Enabled = true;
-				laTotalPeriodsValue.Text = ScheduleSection.TotalPeriods.ToString("#,##0");
+				laTotalPeriodsValue.Text = ScheduleSection.TotalActivePeriods.ToString("#,##0");
 				laTotalSpotsValue.Text = ScheduleSection.TotalSpots.ToString("#,##0");
 				laTotalGRPValue.Text = ScheduleSection.TotalGRP.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0");
 				laTotalCPPValue.Text = ScheduleSection.TotalCPP.ToString("$#,###.00");
@@ -359,7 +362,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 			gridBandSpots.Visible = false;
 
-			foreach (DataColumn column in ScheduleSection.DataSource.Tables[ScheduleSection.ProgramDataTableName].Columns)
+			foreach (DataColumn column in ScheduleSection.DataSource.Columns)
 			{
 				if (!column.ColumnName.Contains(ScheduleSection.ProgramSpotDataColumnNamePrefix)) continue;
 				var bandedGridColumn = new BandedGridColumn();
@@ -396,9 +399,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				SettingsNotSaved = true;
 			}));
 
-			laScheduleInfo.Text = String.Format("{0}{2}{1}",
+			laScheduleInfo.Text = String.Format("{0}{3}{1} ({2})",
 				_localSchedule.BusinessName,
 				_localSchedule.FlightDateStart.HasValue && _localSchedule.FlightDateEnd.HasValue ? string.Format("{0} - {1}", new object[] { _localSchedule.FlightDateStart.Value.ToString("MM/dd/yy"), _localSchedule.FlightDateEnd.Value.ToString("MM/dd/yy") }) : string.Empty,
+				String.Format("{0} {1}s", ScheduleSection.TotalPeriods, SpotTitle),
 				Environment.NewLine);
 			buttonXRating.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 			buttonXCPP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
@@ -430,6 +434,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			buttonXLength.Checked = ScheduleSection.ShowLenght;
 			buttonXStation.Checked = ScheduleSection.ShowStation;
 			buttonXTime.Checked = ScheduleSection.ShowTime;
+			buttonXSpots.Text = String.Format("{0}s", SpotTitle);
 			buttonXSpots.Checked = ScheduleSection.ShowSpots;
 			checkEditEmptySports.Enabled = ScheduleSection.ShowSpots;
 			checkEditEmptySports.Checked = !ScheduleSection.ShowEmptySpots;
@@ -438,7 +443,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			quarterSelectorControl.InitControls(ScheduleSection.Parent.BroadcastCalendar.Quarters, ScheduleSection.Parent.BroadcastCalendar.Quarters.FirstOrDefault(q => !ScheduleSection.SelectedQuarter.HasValue || q.DateAnchor == ScheduleSection.SelectedQuarter.Value));
 			QuarterBar.Enabled =
 			quarterSelectorControl.Visible =
+			checkEditOutputLimitQuarters.Visible =
 				ScheduleSection.Parent.BroadcastCalendar.Quarters.Count > 1;
+
+			checkEditOutputLimitQuarters.Checked = ScheduleSection.OutputPerQuater;
+			checkEditOutputLimitPeriods.Checked = ScheduleSection.OutputMaxPeriods.HasValue;
+			spinEditOutputLimitPeriods.EditValue = ScheduleSection.OutputMaxPeriods;
+			checkEditOutputLimitPeriods.Text = String.Format("Max {0}s Per PPT Slide", SpotTitle);
 
 			buttonXTotalPeriods.Checked = ScheduleSection.ShowTotalPeriods;
 			buttonXTotalSpots.Checked = ScheduleSection.ShowTotalSpots;
@@ -532,7 +543,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		protected virtual bool SaveSchedule(string scheduleName = "")
 		{
-			if (!string.IsNullOrEmpty(scheduleName))
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			if (nameChanged)
 				_localSchedule.Name = scheduleName;
 			advBandedGridViewSchedule.CloseEditor();
 			digitalInfoControl.SaveData();
@@ -542,7 +554,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			MediaMetaData.Instance.SettingsManager.UseSlideMaster = buttonXUseSlideMaster.Checked;
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
 
-			Controller.Instance.SaveSchedule(_localSchedule, false, this);
+			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}
@@ -559,7 +571,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				&& control != Controller.Instance.HomeDecisionMaker
 				&& control != Controller.Instance.HomeFlightDatesEnd
 				&& control != Controller.Instance.HomeFlightDatesStart
-				&& control != Controller.Instance.HomePresentationDate)
+				&& control != Controller.Instance.HomePresentationDate
+				&& control.GetType() != typeof(CheckEdit)
+				&& control.GetType() != typeof(SpinEdit))
 			{
 				control.Click += CloseActiveEditorsonOutSideClick;
 				foreach (Control childControl in control.Controls)
@@ -569,7 +583,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		private void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
 		{
-			Focus();
+			laScheduleInfo.Focus();
 			advBandedGridViewSchedule.CloseEditor();
 			advBandedGridViewSchedule.FocusedColumn = null;
 		}
@@ -581,6 +595,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			AssignCloseActiveEditorsonOutSideClick(Controller.Instance.Ribbon);
 			AssignCloseActiveEditorsonOutSideClick(pnBottom);
 			AssignCloseActiveEditorsonOutSideClick(pnTop);
+			AssignCloseActiveEditorsonOutSideClick(xtraTabControlOptions);
+			AssignCloseActiveEditorsonOutSideClick(pnOptionsLine);
 		}
 
 		#region Ribbon Operations Events
@@ -622,6 +638,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			UpdateOutputStatus(ScheduleSection.Programs.Any());
 			if (advBandedGridViewSchedule.RowCount > 0)
 				advBandedGridViewSchedule.FocusedRowHandle = advBandedGridViewSchedule.RowCount - 1;
+			var options = new Dictionary<string, object>();
+			options.Add("Advertiser", ScheduleSection.Parent.BusinessName);
+			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), ScheduleSection.TotalSpots);
+			options.Add(String.Format("{0}lyAverageRate", SpotTitle), ScheduleSection.AvgRate);
+			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), ScheduleSection.TotalCost);
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("New Program Added", options));
 			SettingsNotSaved = true;
 		}
 
@@ -646,6 +668,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		#endregion
 
 		#region Options Events
+		private void TrackOptionChanged()
+		{
+			var options = new Dictionary<string, object>();
+			options.Add("Advertiser", ScheduleSection.Parent.BusinessName);
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Navbar Schedule Cleanup", options));
+		}
 
 		private void button_CheckedChanged(object sender, EventArgs e)
 		{
@@ -714,12 +742,38 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 			UpdateSpotsStatus();
 
+			TrackOptionChanged();
+
+			SettingsNotSaved = true;
+		}
+
+		private void checkEditOutputLimitQuarters_CheckedChanged(object sender, EventArgs e)
+		{
+			if (!_allowToSave) return;
+			ScheduleSection.OutputPerQuater = checkEditOutputLimitQuarters.Checked;
+			TrackOptionChanged();
+			SettingsNotSaved = true;
+		}
+
+		private void checkEditOutputLimitPeriods_CheckedChanged(object sender, EventArgs e)
+		{
+			spinEditOutputLimitPeriods.Enabled = checkEditOutputLimitPeriods.Checked;
+			if (!checkEditOutputLimitPeriods.Checked)
+				spinEditOutputLimitPeriods.EditValue = null;
+		}
+
+		private void spinEditOutputLimitPeriods_EditValueChanged(object sender, EventArgs e)
+		{
+			if (!_allowToSave) return;
+			TrackOptionChanged();
+			ScheduleSection.OutputMaxPeriods = spinEditOutputLimitPeriods.EditValue != null ? (Int32?)spinEditOutputLimitPeriods.Value : null;
 			SettingsNotSaved = true;
 		}
 
 		private void buttonXUseSlideMaster_CheckedChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
+			TrackOptionChanged();
 			SettingsNotSaved = true;
 		}
 
@@ -735,6 +789,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		private void colorButton_CheckedChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
+			TrackOptionChanged();
 			SettingsNotSaved = true;
 		}
 
@@ -763,6 +818,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			advBandedGridViewSchedule.CloseEditor();
 			advBandedGridViewSchedule.UpdateCurrentRow();
+			var options = new Dictionary<string, object>();
+			options.Add("Advertiser", ScheduleSection.Parent.BusinessName);
+			options.Add("Program", advBandedGridViewSchedule.GetRowCellValue(e.RowHandle, bandedGridColumnName));
+			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), ScheduleSection.TotalSpots);
+			options.Add(String.Format("{0}lyAverageRate", SpotTitle), ScheduleSection.AvgRate);
+			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), ScheduleSection.TotalCost);
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Program Line Updated", options));
 			SettingsNotSaved = true;
 		}
 
@@ -910,130 +972,139 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		private IEnumerable<OutputScheduleGridBased> PrepareOutputTableBased()
 		{
 			var outputPages = new List<OutputScheduleGridBased>();
-
 			if (_localSchedule == null) return outputPages;
+			var defaultProgram = ScheduleSection.Programs.FirstOrDefault();
+			if (defaultProgram == null) return outputPages;
+			var defaultSpotsNotEmpy = defaultProgram.SpotsNotEmpty;
 			var programsPerSlide = 12;
 			programsPerSlide = ScheduleSection.Programs.Count > programsPerSlide ? programsPerSlide : ScheduleSection.Programs.Count;
-
 			var totalSpotsCount = 0;
 			if (buttonXSpots.Checked)
-			{
-				var defaultProgram = ScheduleSection.Programs.FirstOrDefault();
-				if (defaultProgram != null)
-					totalSpotsCount = ScheduleSection.ShowEmptySpots ? defaultProgram.Spots.Count : defaultProgram.SpotsNotEmpty.Length;
-			}
-			var spotsPerSlide = 26;
-			spotsPerSlide = totalSpotsCount == 0 || totalSpotsCount > spotsPerSlide ? spotsPerSlide : totalSpotsCount;
+				totalSpotsCount = ScheduleSection.ShowEmptySpots ? defaultProgram.Spots.Count : defaultProgram.SpotsNotEmpty.Length;
 			var spotsIteratorLimit = totalSpotsCount == 0 ? 1 : totalSpotsCount;
-			for (var i = 0; i < ScheduleSection.Programs.Count; i += programsPerSlide)
+			var spotsPerSlide = ScheduleSection.OutputMaxPeriods.HasValue ? ScheduleSection.OutputMaxPeriods.Value : 26;
+			spotsPerSlide = totalSpotsCount == 0 || totalSpotsCount > spotsPerSlide ? spotsPerSlide : totalSpotsCount;
+			var spotIntervals = new List<SpotInterval>();
+			if (ScheduleSection.OutputPerQuater)
 			{
-				for (var k = 0; k < spotsIteratorLimit; k += spotsPerSlide)
+				var spots = ScheduleSection.ShowEmptySpots ? defaultProgram.Spots.ToArray() : defaultProgram.SpotsNotEmpty;
+				foreach (var quarter in _localSchedule.BroadcastCalendar.Quarters)
 				{
-					var outputPage = new OutputScheduleGridBased(ScheduleSection);
-
-					outputPage.Advertiser = _localSchedule.BusinessName;
-					outputPage.DecisionMaker = _localSchedule.DecisionMaker;
-					outputPage.Demo = _localSchedule.Demo + (!string.IsNullOrEmpty(_localSchedule.Source) ? (" (" + _localSchedule.Source + ")") : string.Empty);
-					outputPage.DigitalInfo = !ScheduleSection.DigitalLegend.OutputOnlyOnce ||
-								((i + programsPerSlide) >= ScheduleSection.Programs.Count &&
-									(k + spotsPerSlide) >= spotsIteratorLimit) ?
-						DigitalLegend :
-						String.Empty;
-					outputPage.Color = MediaMetaData.Instance.SettingsManager.SelectedColor;
-
-					outputPage.ProgramsPerSlide = programsPerSlide;
-					outputPage.SpotsPerSlide = totalSpotsCount > 0 ? spotsPerSlide : 0;
-					outputPage.ShowRates = buttonXRate.Checked;
-					outputPage.ShowRating = buttonXRating.Checked;
-					outputPage.ShowCPP = buttonXCPP.Checked;
-					outputPage.ShowGRP = buttonXGRP.Checked;
-					outputPage.ShowCost = buttonXCost.Checked;
-					outputPage.ShowStation = buttonXStation.Checked;
-					outputPage.ShowDay = buttonXDay.Checked;
-					outputPage.ShowTime = buttonXTime.Checked;
-					outputPage.ShowLength = buttonXLength.Checked;
-					outputPage.ShowTotalSpots = buttonXTotalSpots.Checked;
-					outputPage.ShowSpots = buttonXSpots.Checked;
-
-					#region Set Totals
-
-					if (buttonXTotalPeriods.Checked)
-						outputPage.Totals.Add(laTotalPeriodsTitle.Text, laTotalPeriodsValue.Text);
-					if (buttonXTotalSpots.Checked)
-						outputPage.Totals.Add(laTotalSpotsTitle.Text, laTotalSpotsValue.Text);
-					if (buttonXTotalGRP.Checked)
-						outputPage.Totals.Add(laTotalGRPTitle.Text, laTotalGRPValue.Text);
-					if (buttonXTotalCPP.Checked)
-						outputPage.Totals.Add(laTotalCPPTitle.Text, laTotalCPPValue.Text);
-					if (buttonXAvgRate.Checked)
-						outputPage.Totals.Add(laAvgRateTitle.Text, laAvgRateValue.Text);
-					if (buttonXTotalCost.Checked)
-						outputPage.Totals.Add(laTotalCostTitle.Text, laTotalCostValue.Text);
-					if (buttonXNetRate.Checked)
-						outputPage.Totals.Add(laNetRateTitle.Text, laNetRateValue.Text);
-					if (buttonXDiscount.Checked)
-						outputPage.Totals.Add(laAgencyDiscountTitle.Text, laAgencyDiscountValue.Text);
-
-					#endregion
-
-					#region Set OutputProgram Values
-
-					for (var j = 0; j < programsPerSlide; j++)
+					var spotInterval = new SpotInterval();
+					spotInterval.Start = spotInterval.End = spotIntervals.Any() ? spotIntervals.Last().End : 0;
+					spotInterval.End += spots.Count(s => s.Quarter == quarter);
+					if (spotInterval.Start == spotInterval.End) continue;
+					spotIntervals.Add(spotInterval);
+				}
+			}
+			else
+				spotIntervals.Add(new SpotInterval { Start = 0, End = spotsIteratorLimit });
+			foreach (var spotInterval in spotIntervals)
+			{
+				for (var i = 0; i < ScheduleSection.Programs.Count; i += programsPerSlide)
+				{
+					for (var k = spotInterval.Start; k < spotInterval.End; k += spotsPerSlide)
 					{
-						if ((i + j) < ScheduleSection.Programs.Count)
+						var outputPage = new OutputScheduleGridBased(ScheduleSection);
+
+						outputPage.Advertiser = _localSchedule.BusinessName;
+						outputPage.DecisionMaker = _localSchedule.DecisionMaker;
+						outputPage.Demo = _localSchedule.Demo + (!string.IsNullOrEmpty(_localSchedule.Source) ? (" (" + _localSchedule.Source + ")") : string.Empty);
+						outputPage.DigitalInfo = !ScheduleSection.DigitalLegend.OutputOnlyOnce ||
+												 ((i + programsPerSlide) >= ScheduleSection.Programs.Count &&
+												  (k + spotsPerSlide) >= totalSpotsCount) ?
+							DigitalLegend :
+							String.Empty;
+						outputPage.Color = MediaMetaData.Instance.SettingsManager.SelectedColor;
+
+						outputPage.ProgramsPerSlide = programsPerSlide;
+						outputPage.SpotsPerSlide = totalSpotsCount > 0 ? spotsPerSlide : 0;
+						outputPage.ShowRates = buttonXRate.Checked;
+						outputPage.ShowRating = buttonXRating.Checked;
+						outputPage.ShowCPP = buttonXCPP.Checked;
+						outputPage.ShowGRP = buttonXGRP.Checked;
+						outputPage.ShowCost = buttonXCost.Checked;
+						outputPage.ShowStation = buttonXStation.Checked;
+						outputPage.ShowDay = buttonXDay.Checked;
+						outputPage.ShowTime = buttonXTime.Checked;
+						outputPage.ShowLength = buttonXLength.Checked;
+						outputPage.ShowTotalSpots = buttonXTotalSpots.Checked;
+						outputPage.ShowSpots = buttonXSpots.Checked;
+
+						#region Set Totals
+
+						if (buttonXTotalPeriods.Checked)
+							outputPage.Totals.Add(laTotalPeriodsTitle.Text, laTotalPeriodsValue.Text);
+						if (buttonXTotalSpots.Checked)
+							outputPage.Totals.Add(laTotalSpotsTitle.Text, laTotalSpotsValue.Text);
+						if (buttonXTotalGRP.Checked)
+							outputPage.Totals.Add(laTotalGRPTitle.Text, laTotalGRPValue.Text);
+						if (buttonXTotalCPP.Checked)
+							outputPage.Totals.Add(laTotalCPPTitle.Text, laTotalCPPValue.Text);
+						if (buttonXAvgRate.Checked)
+							outputPage.Totals.Add(laAvgRateTitle.Text, laAvgRateValue.Text);
+						if (buttonXTotalCost.Checked)
+							outputPage.Totals.Add(laTotalCostTitle.Text, laTotalCostValue.Text);
+						if (buttonXNetRate.Checked)
+							outputPage.Totals.Add(laNetRateTitle.Text, laNetRateValue.Text);
+						if (buttonXDiscount.Checked)
+							outputPage.Totals.Add(laAgencyDiscountTitle.Text, laAgencyDiscountValue.Text);
+
+						#endregion
+
+						#region Set OutputProgram Values
+
+						for (var j = 0; j < programsPerSlide; j++)
 						{
-							var program = ScheduleSection.Programs[i + j];
-							var outputProgram = new OutputProgramGridBased(outputPage);
-							outputProgram.Name = program.Name + (buttonXDaypart.Checked ? ("-" + program.Daypart) : string.Empty);
-							outputProgram.LineID = program.Index.ToString("00");
-							outputProgram.Station = program.Station;
-							outputProgram.Days = program.Day;
-							outputProgram.Time = program.Time;
-							outputProgram.Length = program.Length;
-							outputProgram.Rate = buttonXRate.Checked && program.Rate.HasValue ? program.Rate.Value.ToString("$#,##0") : string.Empty;
-							outputProgram.Rating = buttonXRating.Checked && program.Rating.HasValue ? program.Rating.Value.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0") : string.Empty;
-							outputProgram.CPP = buttonXCPP.Checked ? program.CPP.ToString("$#,###.00") : string.Empty;
-							outputProgram.GRP = buttonXGRP.Checked ? program.GRP.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0") : string.Empty;
-							outputProgram.TotalRate = buttonXCost.Checked ? program.Cost.ToString("$#,##0") : String.Empty;
-							outputProgram.TotalSpots = program.TotalSpots.ToString("#,##0");
-
-							#region Set Spots Values
-
-							var spotsNotEmpy = program.SpotsNotEmpty;
-							for (var l = 0; l < spotsPerSlide; l++)
+							if ((i + j) < ScheduleSection.Programs.Count)
 							{
-								if ((k + l) < totalSpotsCount)
+								var program = ScheduleSection.Programs[i + j];
+								var outputProgram = new OutputProgramGridBased(outputPage);
+								outputProgram.Name = program.Name + (buttonXDaypart.Checked ? ("-" + program.Daypart) : string.Empty);
+								outputProgram.LineID = program.Index.ToString("00");
+								outputProgram.Station = program.Station;
+								outputProgram.Days = program.Day;
+								outputProgram.Time = program.Time;
+								outputProgram.Length = program.Length;
+								outputProgram.Rate = buttonXRate.Checked && program.Rate.HasValue ? program.Rate.Value.ToString("$#,##0") : string.Empty;
+								outputProgram.Rating = buttonXRating.Checked && program.Rating.HasValue ? program.Rating.Value.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0") : string.Empty;
+								outputProgram.CPP = buttonXCPP.Checked ? program.CPP.ToString("$#,###.00") : string.Empty;
+								outputProgram.GRP = buttonXGRP.Checked ? program.GRP.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0") : string.Empty;
+								outputProgram.TotalRate = buttonXCost.Checked ? program.Cost.ToString("$#,##0") : String.Empty;
+								outputProgram.TotalSpots = program.TotalSpots.ToString("#,##0");
+
+								#region Set Spots Values
+
+								var spotsNotEmpy = program.SpotsNotEmpty;
+								for (var l = 0; l < spotsPerSlide; l++)
 								{
-									var value = !program.Parent.ShowEmptySpots ?
-										(spotsNotEmpy[k + l].Count > 0 ? spotsNotEmpy[k + l].Count.ToString() : "-") :
-										(program.Spots[k + l].Count > 0 ? program.Spots[k + l].Count.ToString() : "-");
-									outputProgram.Spots.Add(value);
+									if ((k + l) < spotInterval.End)
+									{
+										var value = !program.Parent.ShowEmptySpots ?
+											(spotsNotEmpy[k + l].Count > 0 ? spotsNotEmpy[k + l].Count.ToString() : "-") :
+											(program.Spots[k + l].Count > 0 ? program.Spots[k + l].Count.ToString() : "-");
+										outputProgram.Spots.Add(value);
+									}
+									else
+										break;
+									Application.DoEvents();
 								}
-								else
-									break;
+
+								#endregion
+
+								outputPage.Programs.Add(outputProgram);
 								Application.DoEvents();
 							}
-
-							#endregion
-
-							outputPage.Programs.Add(outputProgram);
-							Application.DoEvents();
+							else
+								break;
 						}
-						else
-							break;
-					}
 
-					#endregion
+						#endregion
 
-					#region Set Total Values
-
-					var defaultProgram = ScheduleSection.Programs.FirstOrDefault();
-					if (defaultProgram != null)
-					{
-						var defaultSpotsNotEmpy = defaultProgram.SpotsNotEmpty;
+						#region Set Total Values
 						for (var l = 0; l < spotsPerSlide; l++)
 						{
-							if ((k + l) < totalSpotsCount)
+							if ((k + l) < spotInterval.End)
 							{
 								var outputTotalSpot = new OutputTotalSpot();
 								outputTotalSpot.Day = !defaultProgram.Parent.ShowEmptySpots ? (defaultSpotsNotEmpy[k + l].Date.Day.ToString()) : (defaultProgram.Spots[k + l].Date.Day.ToString());
@@ -1051,22 +1122,32 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 								break;
 							Application.DoEvents();
 						}
+
+						outputPage.TotalCost = ScheduleSection.TotalCost.ToString("$#,##0");
+						outputPage.TotalSpot = ScheduleSection.TotalSpots.ToString("#,##0");
+						outputPage.TotalCPP = ScheduleSection.TotalCPP.ToString("$#,###.00");
+						outputPage.TotalGRP = ScheduleSection.TotalGRP.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0");
+
+						#endregion
+
+						outputPage.PopulateScheduleReplacementsList();
+
+						outputPages.Add(outputPage);
 					}
-
-					outputPage.TotalCost = ScheduleSection.TotalCost.ToString("$#,##0");
-					outputPage.TotalSpot = ScheduleSection.TotalSpots.ToString("#,##0");
-					outputPage.TotalCPP = ScheduleSection.TotalCPP.ToString("$#,###.00");
-					outputPage.TotalGRP = ScheduleSection.TotalGRP.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0");
-
-					#endregion
-
-					outputPage.PopulateScheduleReplacementsList();
-
-					outputPages.Add(outputPage);
 				}
 			}
-
 			return outputPages;
+		}
+
+		private void TrackOutput()
+		{
+			var options = new Dictionary<string, object>();
+			options.Add("Slide", String.Format("{0}ly Schedule", SpotTitle));
+			options.Add("Advertiser", ScheduleSection.Parent.BusinessName);
+			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), ScheduleSection.TotalSpots);
+			options.Add(String.Format("{0}lyAverageRate", SpotTitle), ScheduleSection.AvgRate);
+			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), ScheduleSection.TotalCost);
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
 		}
 
 		public void PowerPoint_Click(object sender, EventArgs e)
@@ -1086,10 +1167,22 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 					thread.Start();
 					while (thread.IsAlive)
 						Application.DoEvents();
+					TrackOutput();
 					MediaSchedulePowerPointHelper.Instance.AppendOneSheetTableBased(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 					formProgress.Close();
 				});
 			}
+		}
+
+		private void TrackPreview()
+		{
+			var options = new Dictionary<string, object>();
+			options.Add("Slide", String.Format("{0}ly Schedule", SlideType));
+			options.Add("Advertiser", ScheduleSection.Parent.BusinessName);
+			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), ScheduleSection.TotalSpots);
+			options.Add(String.Format("{0}lyAverageRate", SpotTitle), ScheduleSection.AvgRate);
+			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), ScheduleSection.TotalCost);
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
 		}
 
 		public void Preview_Click(object sender, EventArgs e)
@@ -1113,7 +1206,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+				using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
 				{
 					formPreview.Text = "Preview Schedule";
 					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

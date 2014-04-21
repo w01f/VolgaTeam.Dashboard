@@ -36,6 +36,7 @@
 		TVDigitalProduct = 302,
 		TVMonthlySchedule = 303,
 		TVWeeklySchedule = 304,
+		TVSummary = 305,
 		#endregion
 
 		#region Radio Schedule
@@ -43,6 +44,7 @@
 		RadioDigitalProduct = 402,
 		RadioMonthlySchedule = 403,
 		RadioWeeklySchedule = 404,
+		RadioSummary = 405,
 		#endregion
 
 		WebQuick = 501

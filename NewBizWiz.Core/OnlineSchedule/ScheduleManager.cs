@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using Microsoft.Office.Core;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
@@ -160,7 +159,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		}
 	}
 
-	public class Schedule : IDigitalSchedule
+	public class Schedule : IDigitalSchedule, ISummarySchedule
 	{
 		public Schedule(string fileName)
 		{
@@ -170,6 +169,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			DigitalProducts = new List<DigitalProduct>();
 			ViewSettings = new ScheduleBuilderViewSettings();
 			DigitalProductSummary = new DigitalProductSummary();
+			Summary = new SummarySettings(this);
 
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
@@ -198,6 +198,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public DigitalProductSummary DigitalProductSummary { get; private set; }
 
 		public ScheduleBuilderViewSettings ViewSettings { get; set; }
+		public SummarySettings Summary { get; private set; }
 
 		public IScheduleViewSettings SharedViewSettings
 		{
@@ -261,7 +262,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				bool result = false;
 				foreach (var product in DigitalProducts)
-					result = result | (product.MonthlyImpressions.HasValue || product.MonthlyInvestment.HasValue); return result;
+					result = result | (product.MonthlyImpressions.HasValue || product.MonthlyInvestment.HasValue); 
+				return result;
 			}
 		}
 
@@ -286,6 +288,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 			}
 		}
 
+		public IEnumerable<ISummaryProduct> ProductSummaries
+		{
+			get { return DigitalProducts; }
+		}
+
 		#region ISchedule Members
 
 		public bool IsNew { get; set; }
@@ -298,8 +305,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				if (FlightDateStart.HasValue && FlightDateEnd.HasValue)
 					return FlightDateStart.Value.ToString("MM/dd/yy") + " - " + FlightDateEnd.Value.ToString("MM/dd/yy");
-				else
-					return string.Empty;
+				return string.Empty;
 			}
 		}
 
@@ -391,6 +397,12 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				DigitalProductSummary.Deserialize(node);
 			}
+
+			node = document.SelectSingleNode(@"/Schedule/Summary");
+			if (node != null)
+			{
+				Summary.Deserialize(node);
+			}
 		}
 
 		public void Save()
@@ -424,6 +436,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			xml.AppendLine(@"<ApplySettingsForeAllProducts>" + ApplySettingsForeAllProducts.ToString() + @"</ApplySettingsForeAllProducts>");
 
 			xml.AppendLine(@"<ViewSettings>" + ViewSettings.Serialize() + @"</ViewSettings>");
+			xml.AppendLine(@"<Summary>" + Summary.Serialize() + @"</Summary>");
 
 			xml.AppendLine(@"<Products>");
 			foreach (DigitalProduct product in DigitalProducts)

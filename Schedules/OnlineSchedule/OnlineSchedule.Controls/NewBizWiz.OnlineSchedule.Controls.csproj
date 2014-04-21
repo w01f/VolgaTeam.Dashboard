@@ -137,6 +137,9 @@
     <Compile Include="PresentationClasses\DigitalGallery1Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\DigitalSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\Summary\DigitalProductSummaryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -184,12 +187,6 @@
     <Compile Include="ToolForms\FormGridType.Designer.cs">
       <DependentUpon>FormGridType.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolForms\FormNewSchedule.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolForms\FormNewSchedule.Designer.cs">
-      <DependentUpon>FormNewSchedule.cs</DependentUpon>
-    </Compile>
     <Compile Include="ToolForms\FormProductInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,9 +224,6 @@
     <EmbeddedResource Include="ToolForms\FormGridType.resx">
       <DependentUpon>FormGridType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolForms\FormNewSchedule.resx">
-      <DependentUpon>FormNewSchedule.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\DigitalProductContainer.resx">
       <DependentUpon>DigitalProductContainer.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,9 +253,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NewSchedule.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\NudgeUp.png" />

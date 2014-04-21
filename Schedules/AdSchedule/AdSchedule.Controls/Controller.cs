@@ -266,7 +266,7 @@ namespace NewBizWiz.AdSchedule.Controls
 			#endregion
 
 			#region Summary
-			Summary = new SummaryControl();
+			Summary = new PrintSummary();
 			SummarySave.Click += Summary.Save_Click;
 			SummarySaveAs.Click += Summary.SaveAs_Click;
 			SummaryHelp.Click += (o, e) => Summary.OpenHelp();
@@ -875,7 +875,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public AdWebPackageControl DigitalPackage { get; private set; }
 		public SummariesControl Summaries { get; private set; }
 		public GridsControl Grids { get; private set; }
-		public SummaryControl Summary { get; private set; }
+		public PrintSummary Summary { get; private set; }
 		public PrintAdPlanControl AdPlan { get; private set; }
 		public AdCalendarControl Calendar { get; private set; }
 		public RateCardControl RateCard { get; private set; }

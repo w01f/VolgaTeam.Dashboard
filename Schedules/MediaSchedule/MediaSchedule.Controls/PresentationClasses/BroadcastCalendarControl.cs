@@ -13,7 +13,6 @@ using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using NewBizWiz.MediaSchedule.Controls.ToolForms;
 using Schedule = NewBizWiz.Core.MediaSchedule.Schedule;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
@@ -137,7 +136,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public override bool SaveCalendarData(string scheduleName = "")
 		{
 			var result = base.SaveCalendarData(scheduleName);
-			Controller.Instance.SaveSchedule(_localSchedule, true, this);
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, this);
 			return result;
 		}
 
@@ -166,10 +166,31 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			pictureBoxNoData.BringToFront();
 		}
 
+		private void TrackOutput()
+		{
+			var options = new Dictionary<string, object>();
+			options.Add("Slide", Controller.Instance.TabCalendar.Text);
+			options.Add("Advertiser", _localSchedule.BusinessName);
+			if (_localSchedule.WeeklySchedule.Programs.Any())
+			{
+				options.Add("WeeklyTotalSpots", _localSchedule.WeeklySchedule.TotalSpots);
+				options.Add("WeeklyAverageRate", _localSchedule.WeeklySchedule.AvgRate);
+				options.Add("WeeklyGrossInvestment", _localSchedule.WeeklySchedule.TotalCost);
+			}
+			if (_localSchedule.MonthlySchedule.Programs.Any())
+			{
+				options.Add("MonthlyTotalSpots", _localSchedule.MonthlySchedule.TotalSpots);
+				options.Add("MonthlyAverageRate", _localSchedule.MonthlySchedule.AvgRate);
+				options.Add("MonthlyGrossInvestment", _localSchedule.MonthlySchedule.TotalCost);
+			}
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
+		}
+
 		protected override void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
 			var broadcastCalendarOutputData = outputData.OfType<BroadcastCalendarOutputData>();
+			TrackOutput();
 			using (var formProgress = new FormProgress())
 			{
 				Controller.Instance.ShowFloater(() =>
@@ -223,6 +244,26 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			}
 		}
 
+		private void TrackPreview()
+		{
+			var options = new Dictionary<string, object>();
+			options.Add("Slide", Controller.Instance.TabCalendar.Text);
+			options.Add("Advertiser", _localSchedule.BusinessName);
+			if (_localSchedule.WeeklySchedule.Programs.Any())
+			{
+				options.Add("WeeklyTotalSpots", _localSchedule.WeeklySchedule.TotalSpots);
+				options.Add("WeeklyAverageRate", _localSchedule.WeeklySchedule.AvgRate);
+				options.Add("WeeklyGrossInvestment", _localSchedule.WeeklySchedule.TotalCost);
+			}
+			if (_localSchedule.MonthlySchedule.Programs.Any())
+			{
+				options.Add("MonthlyTotalSpots", _localSchedule.MonthlySchedule.TotalSpots);
+				options.Add("MonthlyAverageRate", _localSchedule.MonthlySchedule.AvgRate);
+				options.Add("MonthlyGrossInvestment", _localSchedule.MonthlySchedule.TotalCost);
+			}
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
+		}
+
 		protected override void PreviewInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
@@ -249,7 +290,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
 			{
 				formPreview.Text = "Preview this Calendar";
 				formPreview.LoadGroups(previewGroups);

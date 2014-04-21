@@ -13,6 +13,7 @@ using DevExpress.XtraTab.ViewInfo;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;

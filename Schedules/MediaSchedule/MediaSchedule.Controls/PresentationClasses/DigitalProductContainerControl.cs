@@ -10,7 +10,6 @@ using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using NewBizWiz.MediaSchedule.Controls.ToolForms;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
@@ -118,9 +117,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		protected override bool SaveSchedule(string scheduleName = "")
 		{
 			base.SaveSchedule(scheduleName);
-			if (!string.IsNullOrEmpty(scheduleName))
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			if (nameChanged)
 				LocalSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule((Schedule)LocalSchedule, false, this);
+			Controller.Instance.SaveSchedule((Schedule)LocalSchedule, nameChanged, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}
@@ -155,6 +155,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public void Help_Click(object sender, EventArgs e)
 		{
 			BusinessWrapper.Instance.HelpManager.OpenHelpLink("digital");
+		}
+
+		protected override IEnumerable<UserActivity> TrackOutput(IEnumerable<DigitalProductControl> tabsForOutput)
+		{
+			var activities = base.TrackOutput(tabsForOutput);
+			foreach (var activity in activities)
+				BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+			return activities;
 		}
 
 		public override void OutputSlides(IEnumerable<IDigitalOutputControl> tabsForOutput)

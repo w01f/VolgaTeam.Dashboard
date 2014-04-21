@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using System.Windows.Forms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using NewBizWiz.MediaSchedule.Controls.ToolForms;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 
 namespace NewBizWiz.MediaSchedule.Internal
@@ -27,6 +27,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 				{
 					RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 					string fileName = form.ScheduleName.Trim();
+					BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", form.ScheduleName.Trim()));
 					BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName, true);
 					FormMain.Instance.ShowDialog();
 					MediaSchedulePowerPointHelper.Instance.Disconnect();
@@ -52,6 +53,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 				RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 				string fileName = dialog.FileName;
 				MediaMetaData.Instance.SettingsManager.SaveFolder = new FileInfo(fileName).Directory.FullName;
+				BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Previous Opened", Path.GetFileNameWithoutExtension(fileName)));
 				BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
 				FormMain.Instance.ShowDialog();
 				MediaSchedulePowerPointHelper.Instance.Disconnect();

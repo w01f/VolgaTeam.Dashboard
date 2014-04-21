@@ -183,6 +183,16 @@ namespace NewBizWiz.CommonGUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap NewSchedule {
+            get {
+                object obj = ResourceManager.GetObject("NewSchedule", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap OutputDisabled {
             get {
                 object obj = ResourceManager.GetObject("OutputDisabled", resourceCulture);
@@ -216,6 +226,46 @@ namespace NewBizWiz.CommonGUI.Properties {
         public static System.Drawing.Bitmap RegularEmail {
             get {
                 object obj = ResourceManager.GetObject("RegularEmail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap SummaryDigital {
+            get {
+                object obj = ResourceManager.GetObject("SummaryDigital", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap SummaryPrint {
+            get {
+                object obj = ResourceManager.GetObject("SummaryPrint", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap SummaryRadio {
+            get {
+                object obj = ResourceManager.GetObject("SummaryRadio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap SummaryTV {
+            get {
+                object obj = ResourceManager.GetObject("SummaryTV", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

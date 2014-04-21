@@ -82,6 +82,7 @@
     <Compile Include="Common\ScheduleSaveEventArgs.cs" />
     <Compile Include="Common\SlideManager.cs" />
     <Compile Include="Common\SpecialLinkButton.cs" />
+    <Compile Include="Common\Summary.cs" />
     <Compile Include="Common\TabbedControls.cs">
       <SubType>Component</SubType>
     </Compile>

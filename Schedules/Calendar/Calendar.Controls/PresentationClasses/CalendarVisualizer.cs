@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
-using NewBizWiz.Calendar.Controls.ToolForms;
+using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Calendar.Controls.PresentationClasses
@@ -134,7 +134,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 
 		public void buttonItemCalendarSaveAs_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewCalendar())
+			using (var from = new FormNewSchedule())
 			{
 				from.Text = "Save Calendar";
 				from.laLogo.Text = "Please set a new name for your Calendar:";

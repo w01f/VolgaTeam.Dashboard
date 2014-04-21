@@ -9,8 +9,6 @@ namespace NewBizWiz.AdSchedule.Single
 {
 	internal static class Program
 	{
-		private static Mutex mutex; //Used to determine if the application is already open
-
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -19,7 +17,7 @@ namespace NewBizWiz.AdSchedule.Single
 		{
 			bool firstInstance;
 			string uniqueIdentifier = "Local\\AdSellerApplication";
-			mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
+			new Mutex(false, uniqueIdentifier, out firstInstance);
 			if (firstInstance)
 			{
 				Application.EnableVisualStyles();

@@ -154,6 +154,9 @@
   <data name="LockedEmail" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LockedEmail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="NewSchedule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NewSchedule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="OutputDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OutputDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -165,5 +168,17 @@
   </data>
   <data name="RegularEmail" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RegularEmail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SummaryDigital" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SummaryDigital.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SummaryPrint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SummaryPrint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SummaryRadio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SummaryRadio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SummaryTV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SummaryTV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

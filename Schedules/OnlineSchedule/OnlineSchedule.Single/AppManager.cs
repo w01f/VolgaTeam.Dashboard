@@ -27,6 +27,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 		public void RunForm()
 		{
 			LicenseHelper.Register();
+			MasterWizardManager.Instance.SetMasterWizard();
 			OnlineSchedulePowerPointHelper.Instance.SetPresentationSettings();
 			AppConfig = NBWLink.CreateLink(new DirectoryInfo(Application.StartupPath));
 			Application.Run(FormMain.Instance);

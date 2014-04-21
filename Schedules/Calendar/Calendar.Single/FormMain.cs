@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using NewBizWiz.Calendar.Controls;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.InteropClasses;
-using NewBizWiz.Calendar.Controls.ToolForms;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
@@ -370,7 +369,7 @@ namespace NewBizWiz.Calendar.Single
 
 		private void buttonItemHomeNewSchedule_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewCalendar())
+			using (var from = new FormNewSchedule())
 			{
 				if (from.ShowDialog() == DialogResult.OK)
 				{

@@ -33,6 +33,7 @@
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleSectionControl));
 			this.gridControlSchedule = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridViewSchedule = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
@@ -113,6 +114,9 @@
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageOptionsLine = new DevExpress.XtraTab.XtraTabPage();
 			this.pnOptionsLine = new System.Windows.Forms.Panel();
+			this.spinEditOutputLimitPeriods = new DevExpress.XtraEditors.SpinEdit();
+			this.checkEditOutputLimitPeriods = new DevExpress.XtraEditors.CheckEdit();
+			this.checkEditOutputLimitQuarters = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditEmptySports = new DevExpress.XtraEditors.CheckEdit();
 			this.buttonXTime = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXSpots = new DevComponents.DotNetBar.ButtonX();
@@ -188,6 +192,9 @@
 			this.xtraTabControlOptions.SuspendLayout();
 			this.xtraTabPageOptionsLine.SuspendLayout();
 			this.pnOptionsLine.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditOutputLimitPeriods.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitPeriods.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitQuarters.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsLineHelp)).BeginInit();
 			this.xtraTabPageOptionsDigital.SuspendLayout();
@@ -1461,6 +1468,9 @@
 			// pnOptionsLine
 			// 
 			this.pnOptionsLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnOptionsLine.Controls.Add(this.spinEditOutputLimitPeriods);
+			this.pnOptionsLine.Controls.Add(this.checkEditOutputLimitPeriods);
+			this.pnOptionsLine.Controls.Add(this.checkEditOutputLimitQuarters);
 			this.pnOptionsLine.Controls.Add(this.checkEditEmptySports);
 			this.pnOptionsLine.Controls.Add(this.buttonXTime);
 			this.pnOptionsLine.Controls.Add(this.buttonXSpots);
@@ -1480,6 +1490,59 @@
 			this.pnOptionsLine.Name = "pnOptionsLine";
 			this.pnOptionsLine.Size = new System.Drawing.Size(268, 479);
 			this.pnOptionsLine.TabIndex = 0;
+			// 
+			// spinEditOutputLimitPeriods
+			// 
+			this.spinEditOutputLimitPeriods.EditValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.spinEditOutputLimitPeriods.Enabled = false;
+			this.spinEditOutputLimitPeriods.Location = new System.Drawing.Point(190, 375);
+			this.spinEditOutputLimitPeriods.Name = "spinEditOutputLimitPeriods";
+			this.spinEditOutputLimitPeriods.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+			this.spinEditOutputLimitPeriods.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
+			this.spinEditOutputLimitPeriods.Properties.IsFloatValue = false;
+			this.spinEditOutputLimitPeriods.Properties.Mask.EditMask = "N00";
+			this.spinEditOutputLimitPeriods.Properties.MaxValue = new decimal(new int[] {
+            26,
+            0,
+            0,
+            0});
+			this.spinEditOutputLimitPeriods.Properties.MinValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.spinEditOutputLimitPeriods.Size = new System.Drawing.Size(55, 22);
+			this.spinEditOutputLimitPeriods.StyleController = this.styleController;
+			this.spinEditOutputLimitPeriods.TabIndex = 113;
+			this.spinEditOutputLimitPeriods.EditValueChanged += new System.EventHandler(this.spinEditOutputLimitPeriods_EditValueChanged);
+			// 
+			// checkEditOutputLimitPeriods
+			// 
+			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(5, 375);
+			this.checkEditOutputLimitPeriods.Name = "checkEditOutputLimitPeriods";
+			this.checkEditOutputLimitPeriods.Properties.AutoWidth = true;
+			this.checkEditOutputLimitPeriods.Properties.Caption = "Max Weeks Per PPT Slide";
+			this.checkEditOutputLimitPeriods.Size = new System.Drawing.Size(179, 21);
+			this.checkEditOutputLimitPeriods.StyleController = this.styleController;
+			this.checkEditOutputLimitPeriods.TabIndex = 112;
+			this.checkEditOutputLimitPeriods.CheckedChanged += new System.EventHandler(this.checkEditOutputLimitPeriods_CheckedChanged);
+			// 
+			// checkEditOutputLimitQuarters
+			// 
+			this.checkEditOutputLimitQuarters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditOutputLimitQuarters.Location = new System.Drawing.Point(5, 446);
+			this.checkEditOutputLimitQuarters.Name = "checkEditOutputLimitQuarters";
+			this.checkEditOutputLimitQuarters.Properties.Caption = "Output each Quarter on a Slide";
+			this.checkEditOutputLimitQuarters.Size = new System.Drawing.Size(258, 21);
+			this.checkEditOutputLimitQuarters.StyleController = this.styleController;
+			this.checkEditOutputLimitQuarters.TabIndex = 111;
+			this.checkEditOutputLimitQuarters.CheckedChanged += new System.EventHandler(this.checkEditOutputLimitQuarters_CheckedChanged);
 			// 
 			// checkEditEmptySports
 			// 
@@ -2063,6 +2126,10 @@
 			this.xtraTabControlOptions.ResumeLayout(false);
 			this.xtraTabPageOptionsLine.ResumeLayout(false);
 			this.pnOptionsLine.ResumeLayout(false);
+			this.pnOptionsLine.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.spinEditOutputLimitPeriods.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitPeriods.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitQuarters.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsLineHelp)).EndInit();
 			this.xtraTabPageOptionsDigital.ResumeLayout(false);
@@ -2201,5 +2268,8 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandTotals1;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandTotals2;
 		private QuarterSelectorControl quarterSelectorControl;
+		private DevExpress.XtraEditors.SpinEdit spinEditOutputLimitPeriods;
+		private DevExpress.XtraEditors.CheckEdit checkEditOutputLimitPeriods;
+		private DevExpress.XtraEditors.CheckEdit checkEditOutputLimitQuarters;
     }
 }

@@ -37,6 +37,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public RibbonTabItem TabDigitalProduct { get; set; }
 		public RibbonTabItem TabDigitalPackage { get; set; }
 		public RibbonTabItem TabCalendar { get; set; }
+		public RibbonTabItem TabSummary { get; set; }
 		public RibbonTabItem TabGallery1 { get; set; }
 		public RibbonTabItem TabGallery2 { get; set; }
 		public RibbonTabItem TabRateCard { get; set; }
@@ -45,6 +46,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		public void Init()
 		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
+
 			#region Schedule Settings
 			HomeControl = new HomeControl();
 			HomeHelp.Click += HomeControl.Help_Click;
@@ -104,7 +107,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			MonthlyScheduleOptions.CheckedChanged += MonthlySchedule.Options_CheckedChaged;
 			MonthlyScheduleProgramAdd.Click += MonthlySchedule.AddProgram_Click;
 			MonthlyScheduleProgramDelete.Click += MonthlySchedule.DeleteProgram_Click;
-			MonthlyScheduleQuarterButton.CheckedChanged += WeeklySchedule.QuarterCheckedChanged;
+			MonthlyScheduleQuarterButton.CheckedChanged += MonthlySchedule.QuarterCheckedChanged;
 			#endregion
 
 			#region Digital Product
@@ -143,6 +146,16 @@ namespace NewBizWiz.MediaSchedule.Controls
 			CalendarHelp.Click += BroadcastCalendar.Help_Click;
 			#endregion
 
+			#region Summary
+			Summary = new MediaSummary();
+			SummarySave.Click += Summary.Save_Click;
+			SummarySaveAs.Click += Summary.SaveAs_Click;
+			SummaryHelp.Click += (o, e) => Summary.OpenHelp();
+			SummaryPowerPoint.Click += (o, e) => Summary.Output();
+			SummaryEmail.Click += (o, e) => Summary.Email();
+			SummaryPreview.Click += (o, e) => Summary.Preview();
+			#endregion
+
 			#region Rate Card Events
 			RateCard = new RateCardControl(BusinessWrapper.Instance.RateCardManager, RateCardCombo);
 			RateCardHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("ratecard");
@@ -177,6 +190,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			DigitalProductContainer.Dispose();
 			DigitalPackage.Dispose();
 			BroadcastCalendar.Dispose();
+			Summary.Dispose();
 			Gallery1.Dispose();
 			Gallery2.Dispose();
 			RateCard.Dispose();
@@ -192,6 +206,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			DigitalProductContainer.LoadSchedule(false);
 			DigitalPackage.LoadSchedule(false);
 			BroadcastCalendar.LoadCalendar(false);
+			Summary.UpdateOutput(false);
 
 			BusinessWrapper.Instance.RateCardManager.LoadRateCards();
 			TabRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Any();
@@ -249,12 +264,16 @@ namespace NewBizWiz.MediaSchedule.Controls
 						TabProduction.Text = tabPageConfig.Name;
 						tabPages.Add(TabProduction);
 						break;
+					case "Summary":
+						TabSummary.Text = tabPageConfig.Name;
+						tabPages.Add(TabSummary);
+						break;
 				}
 			}
 			Ribbon.Items.AddRange(tabPages.ToArray());
 		}
 
-		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)
+		public void SaveSchedule(Schedule localSchedule, bool nameChanged, bool quickSave, Control sender)
 		{
 			using (var form = new FormProgress())
 			{
@@ -267,6 +286,24 @@ namespace NewBizWiz.MediaSchedule.Controls
 					Application.DoEvents();
 				form.Close();
 			}
+			if (nameChanged)
+			{
+				var options = new Dictionary<string, object>();
+				options.Add("Advertiser", localSchedule.BusinessName);
+				if (localSchedule.WeeklySchedule.Programs.Any())
+				{
+					options.Add("WeeklyTotalSpots", localSchedule.WeeklySchedule.TotalSpots);
+					options.Add("WeeklyAverageRate", localSchedule.WeeklySchedule.AvgRate);
+					options.Add("WeeklyGrossInvestment", localSchedule.WeeklySchedule.TotalCost);
+				}
+				if (localSchedule.MonthlySchedule.Programs.Any())
+				{
+					options.Add("MonthlyTotalSpots", localSchedule.MonthlySchedule.TotalSpots);
+					options.Add("MonthlyAverageRate", localSchedule.MonthlySchedule.AvgRate);
+					options.Add("MonthlyGrossInvestment", localSchedule.MonthlySchedule.TotalCost);
+				}
+				BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name));
+			}
 			if (ScheduleChanged != null)
 				ScheduleChanged(this, EventArgs.Empty);
 		}
@@ -275,6 +312,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		{
 			TabWeeklySchedule.Enabled = enable;
 			TabMonthlySchedule.Enabled = enable;
+			TabSummary.Enabled = enable;
 		}
 
 		public void UpdateCalendarTab(bool enable)
@@ -322,6 +360,13 @@ namespace NewBizWiz.MediaSchedule.Controls
 				(DigitalPackagePreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
 				DigitalPackageTheme.Click += (o, e) => themesDisabledHandler();
+
+				SummaryPowerPoint.Visible = false;
+				(SummaryPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(SummaryEmail.ContainerControl as RibbonBar).Visible = false;
+				(SummaryPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(SummaryTheme, selectorToolTip);
+				SummaryTheme.Click += (o, e) => themesDisabledHandler();
 			}
 			else
 			{
@@ -330,6 +375,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 				Supertip.SetSuperTooltip(MonthlyScheduleTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(DigitalProductTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(SummaryTheme, selectorToolTip);
 			}
 
 			Ribbon.SelectedRibbonTabChanged += (o, e) =>
@@ -338,6 +384,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 				(MonthlySchedulePowerPoint.ContainerControl as RibbonBar).Text = (MonthlyScheduleTheme.Tag as Theme).Name;
 				(DigitalProductPowerPoint.ContainerControl as RibbonBar).Text = (DigitalProductTheme.Tag as Theme).Name;
 				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = (DigitalPackageTheme.Tag as Theme).Name;
+				(SummaryPowerPoint.ContainerControl as RibbonBar).Text = (SummaryTheme.Tag as Theme).Name;
 			};
 		}
 
@@ -351,6 +398,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 				DigitalProductSpecialButtons,
 				DigitalPackageSpecialButtons,
 				CalendarSpecialButtons,
+				SummarySpecialButtons,
 				RateCardSpecialButtons,
 				Gallery1SpecialButtons,
 				Gallery2SpecialButtons
@@ -391,6 +439,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text));
 			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
 				RateCard.LoadRateCards();
 			if (Ribbon.SelectedRibbonTabItem == TabGallery1)
@@ -488,6 +537,17 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem CalendarPowerPoint { get; set; }
 		#endregion
 
+		#region Summary
+		public RibbonBar SummarySpecialButtons { get; set; }
+		public ButtonItem SummaryHelp { get; set; }
+		public ButtonItem SummarySave { get; set; }
+		public ButtonItem SummarySaveAs { get; set; }
+		public ButtonItem SummaryPreview { get; set; }
+		public ButtonItem SummaryEmail { get; set; }
+		public ButtonItem SummaryPowerPoint { get; set; }
+		public ButtonItem SummaryTheme { get; set; }
+		#endregion
+
 		#region Rate Card
 		public RibbonBar RateCardSpecialButtons { get; set; }
 		public ButtonItem RateCardHelp { get; set; }
@@ -543,6 +603,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public DigitalProductContainerControl DigitalProductContainer { get; private set; }
 		public MediaWebPackageControl DigitalPackage { get; private set; }
 		public BroadcastCalendarControl BroadcastCalendar { get; private set; }
+		public MediaSummary Summary { get; private set; }
 		public RateCardControl RateCard { get; private set; }
 		public GalleryControl Gallery1 { get; private set; }
 		public GalleryControl Gallery2 { get; private set; }

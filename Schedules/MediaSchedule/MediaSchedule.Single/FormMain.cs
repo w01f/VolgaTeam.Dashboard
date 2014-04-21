@@ -10,7 +10,6 @@ using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using NewBizWiz.MediaSchedule.Controls.ToolForms;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 
 namespace NewBizWiz.MediaSchedule.Single
@@ -34,6 +33,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSlides;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
 			Controller.Instance.TabCalendar = ribbonTabItemCalendar;
+			Controller.Instance.TabSummary = ribbonTabItemSummary;
 			Controller.Instance.TabGallery1 = ribbonTabItemGallery1;
 			Controller.Instance.TabGallery2 = ribbonTabItemGallery2;
 			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
@@ -128,6 +128,17 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.CalendarPreview = buttonItemCalendarPreview;
 			Controller.Instance.CalendarEmail = buttonItemCalendarEmail;
 			Controller.Instance.CalendarPowerPoint = buttonItemCalendarPowerPoint;
+			#endregion
+
+			#region Summary
+			Controller.Instance.SummarySpecialButtons = ribbonBarSummarySpecialButtons;
+			Controller.Instance.SummaryHelp = buttonItemSummaryHelp;
+			Controller.Instance.SummarySave = buttonItemSummarySave;
+			Controller.Instance.SummarySaveAs = buttonItemSummarySaveAs;
+			Controller.Instance.SummaryPreview = buttonItemSummaryPreview;
+			Controller.Instance.SummaryEmail = buttonItemSummaryEmail;
+			Controller.Instance.SummaryPowerPoint = buttonItemSummaryPowerPoint;
+			Controller.Instance.SummaryTheme = buttonItemSummaryTheme;
 			#endregion
 
 			#region Gallery 1
@@ -329,6 +340,17 @@ namespace NewBizWiz.MediaSchedule.Single
 					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 				}
 			}
+			else if ((_currentControl == Controller.Instance.Summary))
+			{
+				if (Controller.Instance.Summary.AllowToLeaveControl)
+					result = true;
+				else
+				{
+					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
+					ribbonControl.SelectedRibbonTabItem = ribbonTabItemSummary;
+					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+				}
+			}
 			else
 				result = true;
 			return result;
@@ -435,6 +457,17 @@ namespace NewBizWiz.MediaSchedule.Single
 				_currentControl.BringToFront();
 				pnMain.BringToFront();
 			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSummary)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.Summary;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGallery1)
 			{
 				if (AllowToLeaveCurrentControl())
@@ -496,6 +529,8 @@ namespace NewBizWiz.MediaSchedule.Single
 				result = Controller.Instance.DigitalPackage.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.BroadcastCalendar)
 				result = Controller.Instance.BroadcastCalendar.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.Summary)
+				result = Controller.Instance.Summary.AllowToLeaveControl;
 			MediaSchedulePowerPointHelper.Instance.Disconnect(false);
 			OnlineSchedulePowerPointHelper.Instance.Disconnect(false);
 		}
@@ -509,6 +544,7 @@ namespace NewBizWiz.MediaSchedule.Single
 					if (!string.IsNullOrEmpty(from.ScheduleName))
 					{
 						var fileName = BusinessWrapper.Instance.ScheduleManager.GetScheduleFileName(from.ScheduleName.Trim());
+						BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", from.ScheduleName.Trim()));
 						BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName);
 						LoadData();
 					}
@@ -531,6 +567,7 @@ namespace NewBizWiz.MediaSchedule.Single
 					if (!string.IsNullOrEmpty(from.ScheduleName))
 					{
 						var fileName = from.ScheduleName.Trim();
+						BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Previous Opened", Path.GetFileNameWithoutExtension(fileName)));
 						BusinessWrapper.Instance.ScheduleManager.OpenSchedule(fileName, false);
 						LoadData();
 					}

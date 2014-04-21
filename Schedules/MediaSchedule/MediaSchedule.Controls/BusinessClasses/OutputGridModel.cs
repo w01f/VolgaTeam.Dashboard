@@ -568,4 +568,10 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 			get { return Month + (!string.IsNullOrEmpty(Day) ? (((char)13) + Day) : string.Empty); }
 		}
 	}
+
+	public class SpotInterval
+	{
+		public int Start { get; set; }
+		public int End { get; set; }
+	}
 }

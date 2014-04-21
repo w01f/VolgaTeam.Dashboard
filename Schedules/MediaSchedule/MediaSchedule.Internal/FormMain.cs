@@ -30,6 +30,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSlides;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
 			Controller.Instance.TabCalendar = ribbonTabItemCalendar;
+			Controller.Instance.TabSummary = ribbonTabItemSummary;
 			Controller.Instance.TabGallery1 = ribbonTabItemGallery1;
 			Controller.Instance.TabGallery2 = ribbonTabItemGallery2;
 			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
@@ -124,6 +125,17 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.CalendarPreview = buttonItemCalendarPreview;
 			Controller.Instance.CalendarEmail = buttonItemCalendarEmail;
 			Controller.Instance.CalendarPowerPoint = buttonItemCalendarPowerPoint;
+			#endregion
+
+			#region Summary
+			Controller.Instance.SummarySpecialButtons = ribbonBarSummarySpecialButtons;
+			Controller.Instance.SummaryHelp = buttonItemSummaryHelp;
+			Controller.Instance.SummarySave = buttonItemSummarySave;
+			Controller.Instance.SummarySaveAs = buttonItemSummarySaveAs;
+			Controller.Instance.SummaryPreview = buttonItemSummaryPreview;
+			Controller.Instance.SummaryEmail = buttonItemSummaryEmail;
+			Controller.Instance.SummaryPowerPoint = buttonItemSummaryPowerPoint;
+			Controller.Instance.SummaryTheme = buttonItemSummaryTheme;
 			#endregion
 
 			#region Gallery 1
@@ -302,6 +314,17 @@ namespace NewBizWiz.MediaSchedule.Internal
 					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 				}
 			}
+			else if ((_currentControl == Controller.Instance.Summary))
+			{
+				if (Controller.Instance.Summary.AllowToLeaveControl)
+					result = true;
+				else
+				{
+					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
+					ribbonControl.SelectedRibbonTabItem = ribbonTabItemSummary;
+					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+				}
+			}
 			else
 				result = true;
 			return result;
@@ -404,6 +427,17 @@ namespace NewBizWiz.MediaSchedule.Internal
 				_currentControl.BringToFront();
 				pnMain.BringToFront();
 			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSummary)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.Summary;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGallery1)
 			{
 				if (AllowToLeaveCurrentControl())
@@ -465,6 +499,8 @@ namespace NewBizWiz.MediaSchedule.Internal
 				result = Controller.Instance.DigitalPackage.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.BroadcastCalendar)
 				result = Controller.Instance.BroadcastCalendar.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.Summary)
+				result = Controller.Instance.Summary.AllowToLeaveControl;
 		}
 
 		private void buttonItemFloater_Click(object sender, EventArgs e)

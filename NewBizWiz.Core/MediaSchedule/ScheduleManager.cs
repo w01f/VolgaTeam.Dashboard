@@ -171,7 +171,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		}
 	}
 
-	public class Schedule : IDigitalSchedule
+	public class Schedule : IDigitalSchedule, ISummarySchedule
 	{
 		public Schedule(string fileName)
 		{
@@ -192,6 +192,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			ViewSettings = new OnlineSchedule.ScheduleBuilderViewSettings();
 			DigitalProducts = new List<DigitalProduct>();
 			DigitalProductSummary = new DigitalProductSummary();
+
+			Summary = new SummarySettings(this);
 
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
@@ -248,6 +250,8 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public BroadcastCalendar BroadcastCalendar { get; set; }
 
+		public SummarySettings Summary { get; private set; }
+
 		public string Name
 		{
 			get { return _scheduleFile.Name.Replace(_scheduleFile.Extension, ""); }
@@ -266,6 +270,18 @@ namespace NewBizWiz.Core.MediaSchedule
 				if (FlightDateStart.HasValue && FlightDateEnd.HasValue)
 					return FlightDateStart.Value.ToString("MM/dd/yy") + " - " + FlightDateEnd.Value.ToString("MM/dd/yy");
 				return string.Empty;
+			}
+		}
+
+		public IEnumerable<ISummaryProduct> ProductSummaries
+		{
+			get
+			{
+				var result = new List<ISummaryProduct>();
+				result.AddRange(WeeklySchedule.Programs);
+				result.AddRange(MonthlySchedule.Programs);
+				result.AddRange(DigitalProducts);
+				return result;
 			}
 		}
 
@@ -390,6 +406,12 @@ namespace NewBizWiz.Core.MediaSchedule
 			{
 				DigitalProductSummary.Deserialize(node);
 			}
+
+			node = document.SelectSingleNode(@"/Schedule/Summary");
+			if (node != null)
+			{
+				Summary.Deserialize(node);
+			}
 		}
 
 		public void Save()
@@ -447,6 +469,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 			xml.AppendLine(@"<BroadcastCalendar>" + BroadcastCalendar.Serialize() + @"</BroadcastCalendar>");
 			xml.AppendLine(@"<DigitalProductSummary>" + DigitalProductSummary.Serialize() + @"</DigitalProductSummary>");
+			xml.AppendLine(@"<Summary>" + Summary.Serialize() + @"</Summary>");
 			xml.AppendLine(@"</Schedule>");
 
 			using (var sw = new StreamWriter(_scheduleFile.FullName, false))
@@ -562,9 +585,8 @@ namespace NewBizWiz.Core.MediaSchedule
 		}
 	}
 
-	public class ScheduleSection
+	public abstract class ScheduleSection
 	{
-		public const string ProgramDatasetName = "Schedule";
 		public const string ProgramDataTableName = "Programs";
 		public const string ProgramIndexDataColumnName = "Index";
 		public const string ProgramStationDataColumnName = "Station";
@@ -582,7 +604,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public const string ProgramCostDataColumnName = "Cost";
 		public const string ProgramTotalCPPDataColumnName = "TotalCPP";
 
-		public ScheduleSection(Schedule parent)
+		protected ScheduleSection(Schedule parent)
 		{
 			Parent = parent;
 			Programs = new List<Program>();
@@ -621,7 +643,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public List<Program> Programs { get; set; }
 		public SpotType SpotType { get; set; }
 
-		public DataSet DataSource { get; private set; }
+		public DataTable DataSource { get; private set; }
 
 		public DigitalLegend DigitalLegend { get; set; }
 
@@ -657,6 +679,9 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<ShowSelectedQuarter>" + ShowSelectedQuarter + @"</ShowSelectedQuarter>");
 			if (SelectedQuarter.HasValue)
 				result.AppendLine(@"<SelectedQuarter>" + SelectedQuarter.Value + @"</SelectedQuarter>");
+			result.AppendLine(@"<OutputPerQuater>" + OutputPerQuater + @"</OutputPerQuater>");
+			if (OutputMaxPeriods.HasValue)
+				result.AppendLine(@"<OutputMaxPeriods>" + OutputMaxPeriods.Value + @"</OutputMaxPeriods>");
 
 			#endregion
 
@@ -765,6 +790,17 @@ namespace NewBizWiz.Core.MediaSchedule
 								SelectedQuarter = temp;
 						}
 						break;
+					case "OutputPerQuater":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							OutputPerQuater = tempBool;
+						break;
+					case "OutputMaxPeriods":
+						{
+							int temp;
+							if (Int32.TryParse(childNode.InnerText, out temp))
+								OutputMaxPeriods = temp;
+						}
+						break;
 					case "DigitalLegend":
 						DigitalLegend.Deserialize(childNode);
 						break;
@@ -784,11 +820,12 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (DataSource != null)
 				DataSource.Dispose();
 
-			DataSource = new DataSet(ProgramDatasetName);
 
 			#region Generate Programs Table
 
-			var table = new DataTable(ProgramDataTableName);
+			DataSource = new DataTable(ProgramDataTableName);
+			var table = DataSource;
+
 
 			var column = new DataColumn(ProgramIndexDataColumnName, typeof(int));
 			table.Columns.Add(column);
@@ -884,9 +921,6 @@ namespace NewBizWiz.Core.MediaSchedule
 			#endregion
 
 			table.RowChanged += (sender, e) => UpdateProgramsFromDataSource(e.Row);
-
-			DataSource.Tables.Add(table);
-
 			#endregion
 		}
 
@@ -991,19 +1025,22 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public bool ShowSelectedQuarter { get; set; }
 		public DateTime? SelectedQuarter { get; set; }
+		public bool OutputPerQuater { get; set; }
 
+		public int? OutputMaxPeriods { get; set; }
 		#endregion
 
 		#region Calculated Properies
+		public abstract int TotalPeriods { get; }
 
-		public int TotalPeriods
+		public int TotalActivePeriods
 		{
 			get
 			{
-				Program defaultprogram = Programs.FirstOrDefault();
+				var defaultprogram = Programs.FirstOrDefault();
 				if (defaultprogram != null)
 				{
-					return ShowEmptySpots ? defaultprogram.Spots.Count : defaultprogram.SpotsNotEmpty.Length;
+					return ShowEmptySpots ? TotalPeriods : defaultprogram.SpotsNotEmpty.Length;
 				}
 				return 0;
 			}
@@ -1054,6 +1091,15 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			SpotType = SpotType.Week;
 		}
+
+		public override int TotalPeriods
+		{
+			get
+			{
+				var datesRange = Parent.FlightDateEnd - Parent.FlightDateStart;
+				return datesRange.HasValue ? datesRange.Value.Days / 7 + 1 : 0;
+			}
+		}
 	}
 
 	public class MonthlySection : ScheduleSection
@@ -1063,9 +1109,18 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			SpotType = SpotType.Month;
 		}
+
+		public override int TotalPeriods
+		{
+			get
+			{
+				if (!Parent.FlightDateEnd.HasValue || !Parent.FlightDateStart.HasValue) return 0;
+				return Math.Abs((Parent.FlightDateEnd.Value.Month - Parent.FlightDateStart.Value.Month) + 12 * (Parent.FlightDateEnd.Value.Year - Parent.FlightDateStart.Value.Year));
+			}
+		}
 	}
 
-	public class Program
+	public class Program : ISummaryProduct
 	{
 		private string _name;
 		private string _day;
@@ -1073,6 +1128,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		#region Basic Properties
 
 		public ScheduleSection Parent { get; set; }
+		public Guid UniqueID { get; set; }
 		public int Index { get; set; }
 		public string Station { get; set; }
 		public string Daypart { get; set; }
@@ -1081,6 +1137,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public double? Rate { get; set; }
 		public double? Rating { get; set; }
 		public List<Spot> Spots { get; set; }
+		public SummaryItem SummaryItem { get; private set; }
 
 		#endregion
 
@@ -1180,6 +1237,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public Program(ScheduleSection parent)
 		{
 			Parent = parent;
+			UniqueID = Guid.NewGuid();
 			Index = Parent.Programs.Count + 1;
 			Station = Parent.Parent.Stations.Count(x => x.Available) == 1 ? Parent.Parent.Stations.Where(x => x.Available).Select(x => x.Name).FirstOrDefault() : string.Empty;
 			Daypart = string.Empty;
@@ -1187,6 +1245,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			Time = string.Empty;
 			Length = string.Empty;
 			Spots = new List<Spot>();
+			SummaryItem = new SummaryItem(this);
 		}
 
 		public string Serialize()
@@ -1195,6 +1254,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (!string.IsNullOrEmpty(_name))
 			{
 				result.Append(@"<Program ");
+				result.Append("UniqueID = \"" + UniqueID + "\" ");
 				result.Append("Name = \"" + _name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 				result.Append("Station = \"" + Station.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 				result.Append("Daypart = \"" + Daypart.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
@@ -1211,7 +1271,7 @@ namespace NewBizWiz.Core.MediaSchedule
 				foreach (Spot spot in Spots)
 					result.AppendLine(@"<Spot>" + spot.Serialize() + @"</Spot>");
 				result.AppendLine(@"</Spots>");
-
+				result.AppendLine(@"<SummaryItem>" + SummaryItem.Serialize() + @"</SummaryItem>");
 				result.AppendLine(@"</Program>");
 			}
 			return result.ToString();
@@ -1220,12 +1280,17 @@ namespace NewBizWiz.Core.MediaSchedule
 		public void Deserialize(XmlNode node)
 		{
 			double tempDouble;
+			Guid tempGuid;
 
 			foreach (XmlAttribute programAttribute in node.Attributes)
 				switch (programAttribute.Name)
 				{
 					case "Name":
 						_name = programAttribute.Value;
+						break;
+					case "UniqueID":
+						if (Guid.TryParse(programAttribute.Value, out tempGuid))
+							UniqueID = tempGuid;
 						break;
 					case "Station":
 						Station = programAttribute.Value;
@@ -1262,6 +1327,9 @@ namespace NewBizWiz.Core.MediaSchedule
 							Spots.Add(spot);
 						}
 						break;
+					case "SummaryItem":
+						SummaryItem.Deserialize(childNode);
+						break;
 				}
 		}
 
@@ -1285,6 +1353,25 @@ namespace NewBizWiz.Core.MediaSchedule
 				var spot = new Spot(this) { Date = spotDate };
 				spotDate = Parent.SpotType == SpotType.Week ? spotDate.AddDays(7) : new DateTime(spotDate.AddMonths(1).Year, spotDate.AddMonths(1).Month, 1);
 				Spots.Add(spot);
+			}
+		}
+
+		public string SummaryTitle
+		{
+			get { return String.Format("{0}  -  {1}", Station, Name); }
+		}
+
+		public string SummaryInfo
+		{
+			get
+			{
+				var result = new List<string>();
+				if (!String.IsNullOrEmpty(Daypart))
+					result.Add(Daypart);
+				if (!String.IsNullOrEmpty(Time))
+					result.Add(Time);
+				result.Add(String.Format("{0}x", Spots.Sum(sp => sp.Count)));
+				return String.Join(", ", result);
 			}
 		}
 	}
@@ -1491,7 +1578,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			{
 				var result = new List<string>();
 				if (!Count.HasValue) return String.Empty;
-				result.Add(String.Format("{0} {1}", _parent.Station, _parent.Name));
+				result.Add(String.Format("{0}  -  {1}", _parent.Station, _parent.Name));
 				if (!String.IsNullOrEmpty(_parent.Daypart))
 					result.Add(_parent.Daypart);
 				if (!String.IsNullOrEmpty(_parent.Time))

@@ -29,6 +29,7 @@
 		OnlineWebPackage = 201,
 		OnlineDigitalProduct = 202,
 		OnlineAdPlan = 203,
+		DigitalSummary = 204,
 		#endregion
 
 		#region TV Schedule

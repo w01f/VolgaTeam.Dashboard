@@ -18,7 +18,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			Dock = DockStyle.Top;
 			AppManager.Instance.SetClickEventHandler(this);
 			_parent = parent;
-			if ((base.CreateGraphics()).DpiX > 96)
+			if ((CreateGraphics()).DpiX > 96)
 			{
 				laTotal.Font = new Font(laTotal.Font.FontFamily, laTotal.Font.Size - 2, laTotal.Font.Style);
 			}

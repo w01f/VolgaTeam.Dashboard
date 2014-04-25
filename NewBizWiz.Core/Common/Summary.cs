@@ -8,17 +8,15 @@ namespace NewBizWiz.Core.Common
 {
 	public interface ISummarySchedule : ISchedule
 	{
-		SummarySettings Summary { get; }
+		BaseSummarySettings ProductSummary { get; }
+		CustomSummarySettings CustomSummary { get; }
 		IEnumerable<ISummaryProduct> ProductSummaries { get; }
 	}
 
-	public class SummarySettings
+	public class BaseSummarySettings
 	{
-		private readonly ISummarySchedule _parent;
-
-		public SummarySettings(ISummarySchedule parent)
+		public BaseSummarySettings()
 		{
-			_parent = parent;
 			ShowAdvertiser = true;
 			ShowDecisionMaker = true;
 			ShowPresentationDate = true;
@@ -42,25 +40,7 @@ namespace NewBizWiz.Core.Common
 		public decimal? MonthlyValue { get; set; }
 		public decimal? TotalValue { get; set; }
 
-		public decimal TotalMonthly
-		{
-			get
-			{
-				var items = _parent.ProductSummaries.Select(ps => ps.SummaryItem).Where(si => si.ShowMonthly);
-				return items.Any() ? items.Sum(it => it.Monthly) : 0;
-			}
-		}
-
-		public decimal TotalTotal
-		{
-			get
-			{
-				var items = _parent.ProductSummaries.Select(ps => ps.SummaryItem).Where(si => si.ShowTotal);
-				return items.Any() ? items.Sum(it => it.Total) : 0;
-			}
-		}
-
-		public string Serialize()
+		public virtual string Serialize()
 		{
 			var result = new StringBuilder();
 
@@ -73,13 +53,15 @@ namespace NewBizWiz.Core.Common
 			result.AppendLine(@"<ShowSignature>" + ShowSignature + @"</ShowSignature>");
 
 			result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
-			result.AppendLine(@"<MonthlyValue>" + MonthlyValue + @"</MonthlyValue>");
-			result.AppendLine(@"<TotalValue>" + TotalValue + @"</TotalValue>");
+			if (MonthlyValue.HasValue)
+				result.AppendLine(@"<MonthlyValue>" + MonthlyValue + @"</MonthlyValue>");
+			if (TotalValue.HasValue)
+				result.AppendLine(@"<TotalValue>" + TotalValue + @"</TotalValue>");
 
 			return result.ToString();
 		}
 
-		public void Deserialize(XmlNode node)
+		public virtual void Deserialize(XmlNode node)
 		{
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
@@ -130,40 +112,121 @@ namespace NewBizWiz.Core.Common
 		}
 	}
 
+	public class CustomSummarySettings : BaseSummarySettings
+	{
+		public List<CustomSummaryItem> Items { get; private set; }
+
+		public decimal? TotalMonthly
+		{
+			get { return Items.Where(it => it.ShowMonthly && it.Monthly.HasValue).Sum(it => it.Monthly); }
+		}
+
+		public decimal? TotalTotal
+		{
+			get { return Items.Where(it => it.ShowTotal && it.Total.HasValue).Sum(it => it.Total); }
+		}
+
+		public CustomSummarySettings()
+		{
+			Items = new List<CustomSummaryItem>();
+			AddItem();
+			AddItem();
+		}
+
+		public override string Serialize()
+		{
+			var result = new StringBuilder();
+			result.AppendLine(base.Serialize());
+			foreach (var item in Items)
+				result.AppendLine(@"<SummaryItem>" + item.Serialize() + @"</SummaryItem>");
+			return result.ToString();
+		}
+
+		public override void Deserialize(XmlNode node)
+		{
+			base.Deserialize(node);
+			Items.Clear();
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "SummaryItem":
+						var item = new CustomSummaryItem();
+						item.Deserialize(childNode);
+						Items.Add(item);
+						break;
+				}
+			}
+			ReorderItems();
+		}
+
+		public CustomSummaryItem AddItem()
+		{
+			var item = new CustomSummaryItem();
+			item.Order = Items.Any() ? Items.Max(it => it.Order) + 1 : 0;
+			Items.Add(item);
+			return item;
+		}
+
+		public void DeleteItem(CustomSummaryItem item)
+		{
+			Items.Remove(item);
+			ReorderItems();
+		}
+
+		public void ReorderItems()
+		{
+			var i = 0;
+			foreach (var item in Items.OrderBy(it => it.Order))
+			{
+				item.Order = i;
+				i++;
+			}
+		}
+	}
+
 	public interface ISummaryProduct
 	{
 		Guid UniqueID { get; }
+		decimal SummaryOrder { get; }
 		string SummaryTitle { get; }
 		string SummaryInfo { get; }
-		SummaryItem SummaryItem { get; }
+		CustomSummaryItem SummaryItem { get; }
 	}
 
-	public class SummaryItem
+	public class CustomSummaryItem
 	{
-		public SummaryItem(ISummaryProduct parent)
+		public CustomSummaryItem()
 		{
-			Parent = parent;
-
+			_id = Guid.NewGuid();
 			ShowValue = true;
 			ShowDescription = false;
 			ShowMonthly = false;
 			ShowTotal = false;
 		}
 
-		public ISummaryProduct Parent { get; private set; }
+		public decimal Order { get; set; }
+
 		public bool ShowValue { get; set; }
 		public bool ShowDescription { get; set; }
 		public bool ShowMonthly { get; set; }
 		public bool ShowTotal { get; set; }
 
-		private string _description;
-		public string Description
+		protected Guid _id;
+		public virtual Guid Id
 		{
-			get { return !String.IsNullOrEmpty(_description) ? _description : Parent.SummaryInfo; }
-			set { _description = value != Parent.SummaryInfo ? value : null; }
+			get { return _id; }
 		}
-		public decimal Monthly { get; set; }
-		public decimal Total { get; set; }
+
+		public string Value { get; set; }
+		protected string _description;
+		public virtual string Description
+		{
+			get { return _description; }
+			set { _description = value; }
+		}
+		public decimal? Monthly { get; set; }
+		public decimal? Total { get; set; }
 
 		public bool Commited { get; set; }
 
@@ -171,15 +234,21 @@ namespace NewBizWiz.Core.Common
 		{
 			var result = new StringBuilder();
 
+			result.AppendLine(@"<Id>" + _id + @"</Id>");
+			result.AppendLine(@"<Order>" + Order + @"</Order>");
 			result.AppendLine(@"<ShowDescription>" + ShowDescription + @"</ShowDescription>");
 			result.AppendLine(@"<ShowMonthly>" + ShowMonthly + @"</ShowMonthly>");
 			result.AppendLine(@"<ShowTotal>" + ShowTotal + @"</ShowTotal>");
 			result.AppendLine(@"<ShowValue>" + ShowValue + @"</ShowValue>");
 
+			if (!String.IsNullOrEmpty(Value))
+				result.AppendLine(@"<Value>" + Value.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Value>");
 			if (!String.IsNullOrEmpty(_description))
 				result.AppendLine(@"<Description>" + _description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Description>");
-			result.AppendLine(@"<Monthly>" + Monthly + @"</Monthly>");
-			result.AppendLine(@"<Total>" + Total + @"</Total>");
+			if (Monthly.HasValue)
+				result.AppendLine(@"<Monthly>" + Monthly + @"</Monthly>");
+			if (Total.HasValue)
+				result.AppendLine(@"<Total>" + Total + @"</Total>");
 
 			return result.ToString();
 		}
@@ -192,6 +261,15 @@ namespace NewBizWiz.Core.Common
 				decimal tempDecimal;
 				switch (childNode.Name)
 				{
+					case "Id":
+						Guid tempGuid;
+						if (Guid.TryParse(childNode.InnerText, out tempGuid))
+							_id = tempGuid;
+						break;
+					case "Order":
+						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
+							Order = tempDecimal;
+						break;
 					case "ShowDescription":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowDescription = tempBool;
@@ -209,12 +287,15 @@ namespace NewBizWiz.Core.Common
 							ShowValue = tempBool;
 						break;
 					case "Monthly":
-						if (decimal.TryParse(childNode.InnerText, out tempDecimal))
+						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
 							Monthly = tempDecimal;
 						break;
 					case "Total":
-						if (decimal.TryParse(childNode.InnerText, out tempDecimal))
+						if (Decimal.TryParse(childNode.InnerText, out tempDecimal))
 							Total = tempDecimal;
+						break;
+					case "Value":
+						Value = childNode.InnerText;
 						break;
 					case "Description":
 						_description = childNode.InnerText;
@@ -222,6 +303,28 @@ namespace NewBizWiz.Core.Common
 				}
 			}
 			Commited = true;
+		}
+	}
+
+	public class ProductSummaryItem : CustomSummaryItem
+	{
+		public ISummaryProduct Parent { get; private set; }
+
+		public override Guid Id
+		{
+			get { return Parent.UniqueID; }
+		}
+
+		public override string Description
+		{
+			get { return !String.IsNullOrEmpty(_description) ? _description : Parent.SummaryInfo; }
+			set { _description = value != Parent.SummaryInfo ? value : null; }
+		}
+
+		public ProductSummaryItem(ISummaryProduct parent)
+		{
+			Parent = parent;
+			Order = Parent.SummaryOrder;
 		}
 	}
 }

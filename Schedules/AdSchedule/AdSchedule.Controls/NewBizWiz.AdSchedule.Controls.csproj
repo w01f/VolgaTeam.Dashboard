@@ -233,7 +233,10 @@
     <Compile Include="InteropClasses\DetailedGridHelper.cs" />
     <Compile Include="InteropClasses\SnapshotHelper.cs" />
     <Compile Include="PresentationClasses\OutputClasses\MultiSummaryHelper.cs" />
-    <Compile Include="PresentationClasses\Summary\PrintSummary.cs">
+    <Compile Include="PresentationClasses\Summary\PrintSummaryFull.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Summary\PrintSummaryLight.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ToolForms\FormDateSelector.cs">
@@ -435,7 +438,6 @@
     <EmbeddedResource Include="ToolForms\FormAdNotes.resx">
       <DependentUpon>FormAdNotes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

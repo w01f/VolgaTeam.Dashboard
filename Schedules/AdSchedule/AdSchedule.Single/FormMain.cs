@@ -39,7 +39,8 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.TabDetailedGrid = ribbonTabItemDetailedGrid;
 			Controller.Instance.TabMultiGrid = ribbonTabItemMultiGrid;
 			Controller.Instance.TabCalendar = ribbonTabItemCalendars;
-			Controller.Instance.TabSummary = ribbonTabItemSummary;
+			Controller.Instance.TabSummaryLight = ribbonTabItemSummaryLight;
+			Controller.Instance.TabSummaryFull = ribbonTabItemSummaryFull;
 			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
 			Controller.Instance.TabGallery1 = ribbonTabItemGallery1;
 			Controller.Instance.TabGallery2 = ribbonTabItemGallery2;
@@ -228,15 +229,26 @@ namespace NewBizWiz.AdSchedule.Single
 			Controller.Instance.CalendarMonthList = listBoxControlCalendarList;
 			#endregion
 
-			#region Summary
-			Controller.Instance.SummarySpecialButtons = ribbonBarSummarySpecialButtons;
-			Controller.Instance.SummaryHelp = buttonItemSummaryHelp;
-			Controller.Instance.SummarySave = buttonItemSummarySave;
-			Controller.Instance.SummarySaveAs = buttonItemSummarySaveAs;
-			Controller.Instance.SummaryPreview = buttonItemSummaryPreview;
-			Controller.Instance.SummaryEmail = buttonItemSummaryEmail;
-			Controller.Instance.SummaryPowerPoint = buttonItemSummaryPowerPoint;
-			Controller.Instance.SummaryTheme = buttonItemSummaryTheme;
+			#region Summary Light
+			Controller.Instance.SummaryLightSpecialButtons = ribbonBarSummaryLightSpecialButtons;
+			Controller.Instance.SummaryLightHelp = buttonItemSummaryLightHelp;
+			Controller.Instance.SummaryLightSave = buttonItemSummaryLightSave;
+			Controller.Instance.SummaryLightSaveAs = buttonItemSummaryLightSaveAs;
+			Controller.Instance.SummaryLightPreview = buttonItemSummaryLightPreview;
+			Controller.Instance.SummaryLightEmail = buttonItemSummaryLightEmail;
+			Controller.Instance.SummaryLightPowerPoint = buttonItemSummaryLightPowerPoint;
+			Controller.Instance.SummaryLightTheme = buttonItemSummaryLightTheme;
+			#endregion
+
+			#region Summary Full
+			Controller.Instance.SummaryFullSpecialButtons = ribbonBarSummaryFullSpecialButtons;
+			Controller.Instance.SummaryFullHelp = buttonItemSummaryFullHelp;
+			Controller.Instance.SummaryFullSave = buttonItemSummaryFullSave;
+			Controller.Instance.SummaryFullSaveAs = buttonItemSummaryFullSaveAs;
+			Controller.Instance.SummaryFullPreview = buttonItemSummaryFullPreview;
+			Controller.Instance.SummaryFullEmail = buttonItemSummaryFullEmail;
+			Controller.Instance.SummaryFullPowerPoint = buttonItemSummaryFullPowerPoint;
+			Controller.Instance.SummaryFullTheme = buttonItemSummaryFullTheme;
 			#endregion
 
 			#region Rate Card
@@ -409,9 +421,13 @@ namespace NewBizWiz.AdSchedule.Single
 			{
 				result = Controller.Instance.AdPlan.AllowToLeaveControl;
 			}
-			else if ((_currentControl == Controller.Instance.Summary))
+			else if ((_currentControl == Controller.Instance.SummaryLight))
 			{
-				result = Controller.Instance.Summary.AllowToLeaveControl;
+				result = Controller.Instance.SummaryLight.AllowToLeaveControl;
+			}
+			else if ((_currentControl == Controller.Instance.SummaryFull))
+			{
+				result = Controller.Instance.SummaryFull.AllowToLeaveControl;
 			}
 			else
 				result = true;
@@ -723,22 +739,43 @@ namespace NewBizWiz.AdSchedule.Single
 					_currentControl.BringToFront();
 				pnMain.BringToFront();
 			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSummary)
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSummaryLight)
 			{
 				if (AllowToLeaveCurrentControl() || _currentControl == null)
 				{
-					if (!pnMain.Controls.Contains(Controller.Instance.Summary))
+					if (!pnMain.Controls.Contains(Controller.Instance.SummaryLight))
 					{
 						Application.DoEvents();
 						pnEmpty.BringToFront();
 						Application.DoEvents();
-						pnMain.Controls.Add(Controller.Instance.Summary);
+						pnMain.Controls.Add(Controller.Instance.SummaryLight);
 						Application.DoEvents();
 						pnMain.BringToFront();
 						Application.DoEvents();
 					}
-					Controller.Instance.Summary.BringToFront();
-					_currentControl = Controller.Instance.Summary;
+					Controller.Instance.SummaryLight.BringToFront();
+					_currentControl = Controller.Instance.SummaryLight;
+				}
+				else
+					_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemSummaryFull)
+			{
+				if (AllowToLeaveCurrentControl() || _currentControl == null)
+				{
+					if (!pnMain.Controls.Contains(Controller.Instance.SummaryFull))
+					{
+						Application.DoEvents();
+						pnEmpty.BringToFront();
+						Application.DoEvents();
+						pnMain.Controls.Add(Controller.Instance.SummaryFull);
+						Application.DoEvents();
+						pnMain.BringToFront();
+						Application.DoEvents();
+					}
+					Controller.Instance.SummaryFull.BringToFront();
+					_currentControl = Controller.Instance.SummaryFull;
 				}
 				else
 					_currentControl.BringToFront();
@@ -839,8 +876,10 @@ namespace NewBizWiz.AdSchedule.Single
 				result = Controller.Instance.Calendar.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.AdPlan)
 				result = Controller.Instance.AdPlan.AllowToLeaveControl;
-			else if (_currentControl == Controller.Instance.Summary)
-				result = Controller.Instance.Summary.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.SummaryLight)
+				result = Controller.Instance.SummaryLight.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.SummaryFull)
+				result = Controller.Instance.SummaryFull.AllowToLeaveControl;
 			AdSchedulePowerPointHelper.Instance.Disconnect(false);
 			OnlineSchedulePowerPointHelper.Instance.Disconnect(false);
 		}
@@ -900,11 +939,6 @@ namespace NewBizWiz.AdSchedule.Single
 		{
 			var formSender = sender as Form;
 			AppManager.Instance.ShowFloater(formSender ?? this, null);
-		}
-
-		private void buttonItemPrintScheduleColorOptionsPercentOfAd_Click(object sender, EventArgs e)
-		{
-
 		}
 	}
 }

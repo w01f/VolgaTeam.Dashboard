@@ -750,6 +750,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		private void checkEditOutputLimitQuarters_CheckedChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
+			if (checkEditOutputLimitQuarters.Checked)
+				checkEditOutputLimitPeriods.Checked = false;
 			ScheduleSection.OutputPerQuater = checkEditOutputLimitQuarters.Checked;
 			TrackOptionChanged();
 			SettingsNotSaved = true;
@@ -760,6 +762,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			spinEditOutputLimitPeriods.Enabled = checkEditOutputLimitPeriods.Checked;
 			if (!checkEditOutputLimitPeriods.Checked)
 				spinEditOutputLimitPeriods.EditValue = null;
+			else
+				checkEditOutputLimitQuarters.Checked = false;
 		}
 
 		private void spinEditOutputLimitPeriods_EditValueChanged(object sender, EventArgs e)

@@ -193,7 +193,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			DigitalProducts = new List<DigitalProduct>();
 			DigitalProductSummary = new DigitalProductSummary();
 
-			Summary = new SummarySettings(this);
+			ProductSummary = new BaseSummarySettings();
+			CustomSummary = new CustomSummarySettings();
 
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
@@ -250,7 +251,8 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public BroadcastCalendar BroadcastCalendar { get; set; }
 
-		public SummarySettings Summary { get; private set; }
+		public BaseSummarySettings ProductSummary { get; private set; }
+		public CustomSummarySettings CustomSummary { get; private set; }
 
 		public string Name
 		{
@@ -407,10 +409,16 @@ namespace NewBizWiz.Core.MediaSchedule
 				DigitalProductSummary.Deserialize(node);
 			}
 
-			node = document.SelectSingleNode(@"/Schedule/Summary");
+			node = document.SelectSingleNode(@"/Schedule/ProductSummary");
 			if (node != null)
 			{
-				Summary.Deserialize(node);
+				ProductSummary.Deserialize(node);
+			}
+
+			node = document.SelectSingleNode(@"/Schedule/CustomSummary");
+			if (node != null)
+			{
+				CustomSummary.Deserialize(node);
 			}
 		}
 
@@ -469,7 +477,8 @@ namespace NewBizWiz.Core.MediaSchedule
 
 			xml.AppendLine(@"<BroadcastCalendar>" + BroadcastCalendar.Serialize() + @"</BroadcastCalendar>");
 			xml.AppendLine(@"<DigitalProductSummary>" + DigitalProductSummary.Serialize() + @"</DigitalProductSummary>");
-			xml.AppendLine(@"<Summary>" + Summary.Serialize() + @"</Summary>");
+			xml.AppendLine(@"<ProductSummary>" + ProductSummary.Serialize() + @"</ProductSummary>");
+			xml.AppendLine(@"<CustomSummary>" + CustomSummary.Serialize() + @"</CustomSummary>");
 			xml.AppendLine(@"</Schedule>");
 
 			using (var sw = new StreamWriter(_scheduleFile.FullName, false))
@@ -506,22 +515,18 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public void UpDigital(int position)
 		{
-			if (position > 0)
-			{
-				DigitalProducts[position].Index--;
-				DigitalProducts[position - 1].Index++;
-				DigitalProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
-			}
+			if (position <= 0) return;
+			DigitalProducts[position].Index--;
+			DigitalProducts[position - 1].Index++;
+			DigitalProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
 		}
 
 		public void DownDigital(int position)
 		{
-			if (position < DigitalProducts.Count - 1)
-			{
-				DigitalProducts[position].Index++;
-				DigitalProducts[position + 1].Index--;
-				DigitalProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
-			}
+			if (position >= DigitalProducts.Count - 1) return;
+			DigitalProducts[position].Index++;
+			DigitalProducts[position + 1].Index--;
+			DigitalProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
 		}
 
 		public void RebuildDigitalProductIndexes()
@@ -1137,7 +1142,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public double? Rate { get; set; }
 		public double? Rating { get; set; }
 		public List<Spot> Spots { get; set; }
-		public SummaryItem SummaryItem { get; private set; }
+		public CustomSummaryItem SummaryItem { get; private set; }
 
 		#endregion
 
@@ -1245,7 +1250,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			Time = string.Empty;
 			Length = string.Empty;
 			Spots = new List<Spot>();
-			SummaryItem = new SummaryItem(this);
+			SummaryItem = new ProductSummaryItem(this);
 		}
 
 		public string Serialize()
@@ -1354,6 +1359,11 @@ namespace NewBizWiz.Core.MediaSchedule
 				spotDate = Parent.SpotType == SpotType.Week ? spotDate.AddDays(7) : new DateTime(spotDate.AddMonths(1).Year, spotDate.AddMonths(1).Month, 1);
 				Spots.Add(spot);
 			}
+		}
+
+		public decimal SummaryOrder
+		{
+			get { return Index; }
 		}
 
 		public string SummaryTitle

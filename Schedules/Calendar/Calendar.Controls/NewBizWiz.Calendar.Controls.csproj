@@ -243,7 +243,6 @@
     <EmbeddedResource Include="ToolForms\FormImageGallery.resx">
       <DependentUpon>FormImageGallery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

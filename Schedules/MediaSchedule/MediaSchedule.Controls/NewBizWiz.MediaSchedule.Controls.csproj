@@ -73,8 +73,10 @@
     <Compile Include="InteropClasses\CalendarHelper.cs" />
     <Compile Include="InteropClasses\OneSheetHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
-    <Compile Include="InteropClasses\SummaryHelper.cs" />
     <Compile Include="PresentationClasses\BroadcastCalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\MediaSummaryFull.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\MediaGallery2Control.cs">
@@ -116,7 +118,7 @@
     <Compile Include="PresentationClasses\CalendarSlideInfoControl.Designer.cs">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\MediaSummary.cs">
+    <Compile Include="PresentationClasses\MediaSummaryLight.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\QuarterSelectorControl.cs">

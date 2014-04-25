@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.Preview;
+using NewBizWiz.CommonGUI.Summary;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Dashboard;
@@ -15,7 +16,7 @@ using ListManager = NewBizWiz.Core.Dashboard.ListManager;
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
 	[ToolboxItem(false)]
-	public sealed partial class SlideSimpleSummaryControl : SlideBaseControl
+	public sealed partial class SlideSimpleSummaryControl : SlideBaseControl, ISummaryControl
 	{
 		private readonly SuperTooltipInfo _toolTip = new SuperTooltipInfo("HELP", "", "Help me with the Closing Summary Slide", null, null, eTooltipColor.Gray);
 
@@ -312,6 +313,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			spinEditTotal.EditValue = simpleSummaryItemContainer.TotalTotalValue;
 		}
+
 		#region Output Staff
 		public int ItemsCount
 		{
@@ -414,6 +416,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return simpleSummaryItemContainer.ShowTotalTotal; }
 		}
 
+		public Theme SelectedTheme
+		{
+			get { return Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.SimpleSummary); }
+		}
+
 		private void SaveChanges()
 		{
 			if (!Core.Common.ListManager.Instance.Advertisers.Contains(Advertiser) && !string.IsNullOrEmpty(Advertiser))
@@ -454,7 +461,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				form.Show();
 				AppManager.Instance.ShowFloater(null, () =>
 				{
-					DashboardPowerPointHelper.Instance.AppendSimpleSummary();
+					DashboardPowerPointHelper.Instance.AppendSummary(this);
 					form.Close();
 				});
 			}
@@ -469,7 +476,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				formProgress.TopMost = true;
 				formProgress.Show();
 				string tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
-				DashboardPowerPointHelper.Instance.PrepareSimpleSummary(tempFileName);
+				DashboardPowerPointHelper.Instance.PrepareSummaryEmail(tempFileName, this);
 				Utilities.Instance.ActivateForm(FormMain.Instance.Handle, false, false);
 				formProgress.Close();
 				if (!File.Exists(tempFileName)) return;

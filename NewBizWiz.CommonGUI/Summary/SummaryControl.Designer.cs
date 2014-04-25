@@ -1,38 +1,38 @@
 ﻿namespace NewBizWiz.CommonGUI.Summary
 {
-    partial class SummaryControl
-    {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class SummaryControl
+	{
+		/// <summary> 
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary> 
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Component Designer generated code
+		#region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SummaryControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+		/// <summary> 
+		/// Required method for Designer support - do not modify 
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SummaryControl));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.labelControlTitle = new DevExpress.XtraEditors.LabelControl();
 			this.checkEditBusinessName = new DevExpress.XtraEditors.CheckEdit();
@@ -41,6 +41,7 @@
 			this.pnInputBorder = new System.Windows.Forms.Panel();
 			this.xtraScrollableControlInput = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.pnInputSummary = new System.Windows.Forms.Panel();
+			this.buttonXAddItem = new DevComponents.DotNetBar.ButtonX();
 			this.laFlightDates = new System.Windows.Forms.Label();
 			this.laPresentationDate = new System.Windows.Forms.Label();
 			this.checkEditTotalInvestment = new DevExpress.XtraEditors.CheckEdit();
@@ -91,7 +92,6 @@
 			this.checkEditBusinessName.Properties.Caption = "Business Name: ";
 			this.checkEditBusinessName.Size = new System.Drawing.Size(123, 21);
 			this.checkEditBusinessName.TabIndex = 1;
-			this.checkEditBusinessName.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
 			// xtraTabControl
 			// 
@@ -146,6 +146,7 @@
 			// pnInputSummary
 			// 
 			this.pnInputSummary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnInputSummary.Controls.Add(this.buttonXAddItem);
 			this.pnInputSummary.Controls.Add(this.laFlightDates);
 			this.pnInputSummary.Controls.Add(this.laPresentationDate);
 			this.pnInputSummary.Controls.Add(this.checkEditTotalInvestment);
@@ -160,6 +161,21 @@
 			this.pnInputSummary.Size = new System.Drawing.Size(230, 380);
 			this.pnInputSummary.TabIndex = 1;
 			// 
+			// buttonXAddItem
+			// 
+			this.buttonXAddItem.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXAddItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXAddItem.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.buttonXAddItem.Location = new System.Drawing.Point(8, 340);
+			this.buttonXAddItem.Name = "buttonXAddItem";
+			this.buttonXAddItem.Size = new System.Drawing.Size(215, 40);
+			this.buttonXAddItem.TabIndex = 120;
+			this.buttonXAddItem.TabStop = false;
+			this.buttonXAddItem.Text = "Add an Item";
+			this.buttonXAddItem.TextColor = System.Drawing.Color.Black;
+			// 
 			// laFlightDates
 			// 
 			this.laFlightDates.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -172,7 +188,7 @@
 			// laPresentationDate
 			// 
 			this.laPresentationDate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laPresentationDate.Location = new System.Drawing.Point(24, 104);
+			this.laPresentationDate.Location = new System.Drawing.Point(24, 95);
 			this.laPresentationDate.Name = "laPresentationDate";
 			this.laPresentationDate.Size = new System.Drawing.Size(134, 22);
 			this.laPresentationDate.TabIndex = 119;
@@ -181,7 +197,7 @@
 			// 
 			// checkEditTotalInvestment
 			// 
-			this.checkEditTotalInvestment.Location = new System.Drawing.Point(6, 237);
+			this.checkEditTotalInvestment.Location = new System.Drawing.Point(6, 223);
 			this.checkEditTotalInvestment.Name = "checkEditTotalInvestment";
 			this.checkEditTotalInvestment.Properties.AllowFocused = false;
 			this.checkEditTotalInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -192,7 +208,6 @@
 			this.checkEditTotalInvestment.Properties.Caption = "Total Investment:";
 			this.checkEditTotalInvestment.Size = new System.Drawing.Size(121, 21);
 			this.checkEditTotalInvestment.TabIndex = 117;
-			this.checkEditTotalInvestment.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
 			// spinEditTotal
 			// 
@@ -202,7 +217,7 @@
             0,
             0});
 			this.spinEditTotal.Enabled = false;
-			this.spinEditTotal.Location = new System.Drawing.Point(28, 264);
+			this.spinEditTotal.Location = new System.Drawing.Point(28, 250);
 			this.spinEditTotal.Name = "spinEditTotal";
 			this.spinEditTotal.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.spinEditTotal.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -215,20 +230,18 @@
 			this.spinEditTotal.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.spinEditTotal.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.spinEditTotal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditTotal.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditTotal.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.spinEditTotal.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditTotal.Properties.EditFormat.FormatString = "$#,###.00";
 			this.spinEditTotal.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditTotal.Size = new System.Drawing.Size(136, 30);
 			this.spinEditTotal.TabIndex = 116;
-			this.spinEditTotal.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.spinEditTotal_ButtonClick);
-			this.spinEditTotal.EditValueChanged += new System.EventHandler(this.spinEditTotal_EditValueChanged);
 			// 
 			// checkEditPresentationDate
 			// 
-			this.checkEditPresentationDate.Location = new System.Drawing.Point(6, 80);
+			this.checkEditPresentationDate.Location = new System.Drawing.Point(6, 71);
 			this.checkEditPresentationDate.Name = "checkEditPresentationDate";
 			this.checkEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditPresentationDate.Properties.Appearance.Options.UseFont = true;
@@ -236,7 +249,6 @@
 			this.checkEditPresentationDate.Properties.Caption = "Presentation Date: ";
 			this.checkEditPresentationDate.Size = new System.Drawing.Size(135, 21);
 			this.checkEditPresentationDate.TabIndex = 111;
-			this.checkEditPresentationDate.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
 			// checkEditFlightDates
 			// 
@@ -248,7 +260,6 @@
 			this.checkEditFlightDates.Properties.Caption = "Campaign Dates: ";
 			this.checkEditFlightDates.Size = new System.Drawing.Size(127, 21);
 			this.checkEditFlightDates.TabIndex = 112;
-			this.checkEditFlightDates.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
 			// spinEditMonthly
 			// 
@@ -258,7 +269,7 @@
             0,
             0});
 			this.spinEditMonthly.Enabled = false;
-			this.spinEditMonthly.Location = new System.Drawing.Point(28, 185);
+			this.spinEditMonthly.Location = new System.Drawing.Point(28, 171);
 			this.spinEditMonthly.Name = "spinEditMonthly";
 			this.spinEditMonthly.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F);
 			this.spinEditMonthly.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -271,20 +282,18 @@
 			this.spinEditMonthly.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.spinEditMonthly.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.spinEditMonthly.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditMonthly.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditMonthly.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
 			this.spinEditMonthly.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditMonthly.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditMonthly.Properties.EditFormat.FormatString = "$#,###.00";
 			this.spinEditMonthly.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditMonthly.Size = new System.Drawing.Size(136, 30);
 			this.spinEditMonthly.TabIndex = 115;
-			this.spinEditMonthly.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.spinEditMonthly_ButtonClick);
-			this.spinEditMonthly.EditValueChanged += new System.EventHandler(this.spinEditMonthly_EditValueChanged);
 			// 
 			// checkEditMonthlyInvestment
 			// 
-			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(6, 158);
+			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(6, 144);
 			this.checkEditMonthlyInvestment.Name = "checkEditMonthlyInvestment";
 			this.checkEditMonthlyInvestment.Properties.AllowFocused = false;
 			this.checkEditMonthlyInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -295,7 +304,6 @@
 			this.checkEditMonthlyInvestment.Properties.Caption = "Monthly Investment:";
 			this.checkEditMonthlyInvestment.Size = new System.Drawing.Size(139, 21);
 			this.checkEditMonthlyInvestment.TabIndex = 114;
-			this.checkEditMonthlyInvestment.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
 			// pnInputHeader
 			// 
@@ -354,7 +362,6 @@
 			this.xtraTabPageInput.ResumeLayout(false);
 			this.pnInputBorder.ResumeLayout(false);
 			this.pnInputSummary.ResumeLayout(false);
-			this.pnInputSummary.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalInvestment.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spinEditTotal.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).EndInit();
@@ -366,30 +373,31 @@
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
 		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		private DevExpress.XtraEditors.LabelControl labelControlTitle;
-	    protected DevExpress.XtraEditors.CheckEdit checkEditBusinessName;
+		protected DevExpress.XtraEditors.CheckEdit checkEditBusinessName;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageInput;
 		private System.Windows.Forms.Panel pnInputSummary;
 		private System.Windows.Forms.Panel pnInputHeader;
 		private System.Windows.Forms.Panel pnInputBorder;
-		private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControlInput;
+		protected DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControlInput;
 		private DevExpress.XtraEditors.LabelControl labelControlInputTitle;
 		private System.Windows.Forms.Panel pnInputFooter;
-		private System.Windows.Forms.Label laTotalItems;
-	    protected System.Windows.Forms.Label laFlightDates;
-	    protected System.Windows.Forms.Label laPresentationDate;
-		private DevExpress.XtraEditors.CheckEdit checkEditTotalInvestment;
-		private DevExpress.XtraEditors.SpinEdit spinEditTotal;
-		private DevExpress.XtraEditors.CheckEdit checkEditPresentationDate;
-		private DevExpress.XtraEditors.CheckEdit checkEditFlightDates;
-		private DevExpress.XtraEditors.SpinEdit spinEditMonthly;
-		private DevExpress.XtraEditors.CheckEdit checkEditMonthlyInvestment;
+		protected System.Windows.Forms.Label laTotalItems;
+		protected System.Windows.Forms.Label laFlightDates;
+		protected System.Windows.Forms.Label laPresentationDate;
+		protected DevExpress.XtraEditors.CheckEdit checkEditTotalInvestment;
+		protected DevExpress.XtraEditors.SpinEdit spinEditTotal;
+		protected DevExpress.XtraEditors.CheckEdit checkEditPresentationDate;
+		protected DevExpress.XtraEditors.CheckEdit checkEditFlightDates;
+		protected DevExpress.XtraEditors.SpinEdit spinEditMonthly;
+		protected DevExpress.XtraEditors.CheckEdit checkEditMonthlyInvestment;
+		protected DevComponents.DotNetBar.ButtonX buttonXAddItem;
 
-    }
+	}
 }

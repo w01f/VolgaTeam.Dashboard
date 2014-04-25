@@ -190,7 +190,8 @@ namespace NewBizWiz.Core.AdSchedule
 			Status = ListManager.Instance.Statuses.FirstOrDefault();
 			PrintProducts = new List<PrintProduct>();
 			DigitalProducts = new List<DigitalProduct>();
-			Summary = new SummarySettings(this);
+			ProductSummary = new BaseSummarySettings();
+			CustomSummary = new CustomSummarySettings();
 			ViewSettings = new ScheduleBuilderViewSettings();
 			DigitalProductSummary = new DigitalProductSummary();
 			Calendar = new AdCalendar(this);
@@ -238,7 +239,8 @@ namespace NewBizWiz.Core.AdSchedule
 			get { return ViewSettings; }
 		}
 
-		public SummarySettings Summary { get; set; }
+		public BaseSummarySettings ProductSummary { get; private set; }
+		public CustomSummarySettings CustomSummary { get; private set; }
 
 		public string Name
 		{
@@ -340,10 +342,15 @@ namespace NewBizWiz.Core.AdSchedule
 			{
 				ViewSettings.Deserialize(node);
 			}
-			node = document.SelectSingleNode(@"/Schedule/Summary");
+			node = document.SelectSingleNode(@"/Schedule/ProductSummary");
 			if (node != null)
 			{
-				Summary.Deserialize(node);
+				ProductSummary.Deserialize(node);
+			}
+			node = document.SelectSingleNode(@"/Schedule/CustomSummary");
+			if (node != null)
+			{
+				CustomSummary.Deserialize(node);
 			}
 			node = document.SelectSingleNode(@"/Schedule/Publications");
 			if (node != null)
@@ -415,7 +422,8 @@ namespace NewBizWiz.Core.AdSchedule
 				xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd + @"</FlightDateEnd>");
 
 			xml.AppendLine(@"<ViewSettings>" + ViewSettings.Serialize() + @"</ViewSettings>");
-			xml.AppendLine(@"<Summary>" + Summary.Serialize() + @"</Summary>");
+			xml.AppendLine(@"<ProductSummary>" + ProductSummary.Serialize() + @"</ProductSummary>");
+			xml.AppendLine(@"<CustomSummary>" + CustomSummary.Serialize() + @"</CustomSummary>");
 
 			xml.AppendLine(@"<Publications>");
 			foreach (PrintProduct publication in PrintProducts)
@@ -573,7 +581,7 @@ namespace NewBizWiz.Core.AdSchedule
 			Note = string.Empty;
 			ViewSettings = new PublicationViewSettings();
 			SizeOptions = new SizeOptions();
-			SummaryItem = new SummaryItem(this);
+			SummaryItem = new ProductSummaryItem(this);
 
 			ColorOption = ListManager.Instance.DefaultColor;
 			AdPricingStrategy = ListManager.Instance.DefaultPricingStrategy;
@@ -608,7 +616,7 @@ namespace NewBizWiz.Core.AdSchedule
 		public SizeOptions SizeOptions { get; set; }
 
 		public PublicationViewSettings ViewSettings { get; set; }
-		public SummaryItem SummaryItem { get; private set; }
+		public CustomSummaryItem SummaryItem { get; private set; }
 
 		public string Name
 		{
@@ -1162,6 +1170,11 @@ namespace NewBizWiz.Core.AdSchedule
 			Parent.PrintProducts.Sort((x, y) => x.Index.CompareTo(y.Index));
 			Parent.RebuildPublicationIndexes();
 			return result;
+		}
+
+		public decimal SummaryOrder
+		{
+			get { return (Decimal)Index; }
 		}
 
 		public string SummaryTitle

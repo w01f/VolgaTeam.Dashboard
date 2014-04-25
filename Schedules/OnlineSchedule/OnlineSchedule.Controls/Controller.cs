@@ -35,7 +35,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		public RibbonTabItem TabScheduleSlides { get; set; }
 		public RibbonTabItem TabDigitalPackage { get; set; }
 		public RibbonTabItem TabAdPlan { get; set; }
-		public RibbonTabItem TabSummary { get; set; }
+		public RibbonTabItem TabSummaryLight { get; set; }
+		public RibbonTabItem TabSummaryFull { get; set; }
 		public RibbonTabItem TabGallery1 { get; set; }
 		public RibbonTabItem TabGallery2 { get; set; }
 		public RibbonTabItem TabRateCard { get; set; }
@@ -109,14 +110,24 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			AdPlanPowerPoint.Click += AdPlan.PowerPoint_Click;
 			#endregion
 
-			#region Summary
-			Summary = new DigitalSummary();
-			SummarySave.Click += Summary.Save_Click;
-			SummarySaveAs.Click += Summary.SaveAs_Click;
-			SummaryHelp.Click += (o, e) => Summary.OpenHelp();
-			SummaryPowerPoint.Click += (o, e) => Summary.Output();
-			SummaryEmail.Click += (o, e) => Summary.Email();
-			SummaryPreview.Click += (o, e) => Summary.Preview();
+			#region Summary Light
+			SummaryLight = new DigitalSummaryLight();
+			SummaryLightSave.Click += SummaryLight.Save_Click;
+			SummaryLightSaveAs.Click += SummaryLight.SaveAs_Click;
+			SummaryLightHelp.Click += (o, e) => SummaryLight.OpenHelp();
+			SummaryLightPowerPoint.Click += (o, e) => SummaryLight.Output();
+			SummaryLightEmail.Click += (o, e) => SummaryLight.Email();
+			SummaryLightPreview.Click += (o, e) => SummaryLight.Preview();
+			#endregion
+
+			#region Summary Full
+			SummaryFull = new DigitalSummaryFull();
+			SummaryFullSave.Click += SummaryFull.Save_Click;
+			SummaryFullSaveAs.Click += SummaryFull.SaveAs_Click;
+			SummaryFullHelp.Click += (o, e) => SummaryFull.OpenHelp();
+			SummaryFullPowerPoint.Click += (o, e) => SummaryFull.Output();
+			SummaryFullEmail.Click += (o, e) => SummaryFull.Email();
+			SummaryFullPreview.Click += (o, e) => SummaryFull.Preview();
 			#endregion
 
 			#region Rate Card Events
@@ -151,7 +162,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			ScheduleSlides.Dispose();
 			DigitalPackage.Dispose();
 			AdPlan.Dispose();
-			Summary.Dispose();
+			SummaryLight.Dispose();
+			SummaryFull.Dispose();
 			Gallery1.Dispose();
 			Gallery2.Dispose();
 			FloaterRequested = null;
@@ -163,7 +175,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			ScheduleSlides.LoadSchedule(false);
 			DigitalPackage.LoadSchedule(false);
 			AdPlan.LoadSchedule(false);
-			Summary.UpdateOutput(false);
+			SummaryLight.UpdateOutput(false);
+			SummaryFull.UpdateOutput(false);
 
 			BusinessWrapper.Instance.RateCardManager.LoadRateCards();
 			TabRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Any();
@@ -193,9 +206,13 @@ namespace NewBizWiz.OnlineSchedule.Controls
 						TabAdPlan.Text = tabPageConfig.Name;
 						tabPages.Add(TabAdPlan);
 						break;
-					case "Summary":
-						TabSummary.Text = tabPageConfig.Name;
-						tabPages.Add(TabSummary);
+					case "Summary1":
+						TabSummaryLight.Text = tabPageConfig.Name;
+						tabPages.Add(TabSummaryLight);
+						break;
+					case "Summary2":
+						TabSummaryFull.Text = tabPageConfig.Name;
+						tabPages.Add(TabSummaryFull);
 						break;
 					case "Gallery1":
 						TabGallery1.Text = tabPageConfig.Name;
@@ -238,7 +255,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 			TabScheduleSlides.Enabled = enable;
 			TabDigitalPackage.Enabled = enable && DigitalPackage.SlidesAvailable;
 			TabAdPlan.Enabled = enable;
-			TabSummary.Enabled = enable;
+			TabSummaryLight.Enabled = enable;
 		}
 
 		public void UpdateOutputButtonsAccordingThemeStatus()
@@ -269,12 +286,19 @@ namespace NewBizWiz.OnlineSchedule.Controls
 				Supertip.SetSuperTooltip(AdPlanTheme, selectorToolTip);
 				AdPlanTheme.Click += (o, e) => themesDisabledHandler();
 
-				SummaryPowerPoint.Visible = false;
-				(SummaryPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
-				(SummaryEmail.ContainerControl as RibbonBar).Visible = false;
-				(SummaryPreview.ContainerControl as RibbonBar).Visible = false;
-				Supertip.SetSuperTooltip(SummaryTheme, selectorToolTip);
-				SummaryTheme.Click += (o, e) => themesDisabledHandler();
+				SummaryLightPowerPoint.Visible = false;
+				(SummaryLightPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(SummaryLightEmail.ContainerControl as RibbonBar).Visible = false;
+				(SummaryLightPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(SummaryLightTheme, selectorToolTip);
+				SummaryLightTheme.Click += (o, e) => themesDisabledHandler();
+
+				SummaryFullPowerPoint.Visible = false;
+				(SummaryFullPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(SummaryFullEmail.ContainerControl as RibbonBar).Visible = false;
+				(SummaryFullPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(SummaryFullTheme, selectorToolTip);
+				SummaryFullTheme.Click += (o, e) => themesDisabledHandler();
 			}
 			else
 			{
@@ -282,7 +306,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 				Supertip.SetSuperTooltip(DigitalSlidesTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(AdPlanTheme, selectorToolTip);
-				Supertip.SetSuperTooltip(SummaryTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(SummaryLightTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(SummaryFullTheme, selectorToolTip);
 			}
 
 			Ribbon.SelectedRibbonTabChanged += (o, e) =>
@@ -290,7 +315,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 				(DigitalSlidesPowerPoint.ContainerControl as RibbonBar).Text = (DigitalSlidesTheme.Tag as Theme).Name;
 				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = (DigitalPackageTheme.Tag as Theme).Name;
 				(AdPlanPowerPoint.ContainerControl as RibbonBar).Text = (AdPlanTheme.Tag as Theme).Name;
-				(SummaryPowerPoint.ContainerControl as RibbonBar).Text = (SummaryTheme.Tag as Theme).Name;
+				(SummaryLightPowerPoint.ContainerControl as RibbonBar).Text = (SummaryLightTheme.Tag as Theme).Name;
+				(SummaryFullPowerPoint.ContainerControl as RibbonBar).Text = (SummaryFullTheme.Tag as Theme).Name;
 			};
 		}
 
@@ -302,7 +328,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 				DigitalSlidesSpecialButtons,
 				DigitalPackageSpecialButtons,
 				AdPlanSpecialButtons,
-				SummarySpecialButtons,
+				SummaryLightSpecialButtons,
+				SummaryFullSpecialButtons,
 				RateCardSpecialButtons,
 				Gallery1SpecialButtons,
 				Gallery2SpecialButtons
@@ -406,15 +433,26 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		public ButtonItem AdPlanTheme { get; set; }
 		#endregion
 
-		#region Summary
-		public RibbonBar SummarySpecialButtons { get; set; }
-		public ButtonItem SummaryHelp { get; set; }
-		public ButtonItem SummarySave { get; set; }
-		public ButtonItem SummarySaveAs { get; set; }
-		public ButtonItem SummaryPreview { get; set; }
-		public ButtonItem SummaryEmail { get; set; }
-		public ButtonItem SummaryPowerPoint { get; set; }
-		public ButtonItem SummaryTheme { get; set; }
+		#region Summary Light
+		public RibbonBar SummaryLightSpecialButtons { get; set; }
+		public ButtonItem SummaryLightHelp { get; set; }
+		public ButtonItem SummaryLightSave { get; set; }
+		public ButtonItem SummaryLightSaveAs { get; set; }
+		public ButtonItem SummaryLightPreview { get; set; }
+		public ButtonItem SummaryLightEmail { get; set; }
+		public ButtonItem SummaryLightPowerPoint { get; set; }
+		public ButtonItem SummaryLightTheme { get; set; }
+		#endregion
+
+		#region Summary Full
+		public RibbonBar SummaryFullSpecialButtons { get; set; }
+		public ButtonItem SummaryFullHelp { get; set; }
+		public ButtonItem SummaryFullSave { get; set; }
+		public ButtonItem SummaryFullSaveAs { get; set; }
+		public ButtonItem SummaryFullPreview { get; set; }
+		public ButtonItem SummaryFullEmail { get; set; }
+		public ButtonItem SummaryFullPowerPoint { get; set; }
+		public ButtonItem SummaryFullTheme { get; set; }
 		#endregion
 
 		#region Rate Card
@@ -469,7 +507,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		public ScheduleSlidesControl ScheduleSlides { get; private set; }
 		public OnlineWebPackageControl DigitalPackage { get; private set; }
 		public DigitalAdPlanControl AdPlan { get; private set; }
-		public DigitalSummary Summary { get; private set; }
+		public DigitalSummaryLight SummaryLight { get; private set; }
+		public DigitalSummaryFull SummaryFull { get; private set; }
 		public RateCardControl RateCard { get; private set; }
 		public GalleryControl Gallery1 { get; private set; }
 		public GalleryControl Gallery2 { get; private set; }

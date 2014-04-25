@@ -1,6 +1,8 @@
-﻿namespace NewBizWiz.Dashboard.InteropClasses
+﻿using NewBizWiz.CommonGUI.Interop;
+
+namespace NewBizWiz.Dashboard.InteropClasses
 {
-	public partial class DashboardPowerPointHelper : Core.Interop.PowerPointHelper<DashboardPowerPointHelper>
+	public partial class DashboardPowerPointHelper : CommonPowerPointHelper<DashboardPowerPointHelper>
 	{
 	}
 }

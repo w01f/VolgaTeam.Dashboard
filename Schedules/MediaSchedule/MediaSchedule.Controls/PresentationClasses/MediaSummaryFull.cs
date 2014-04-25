@@ -1,0 +1,201 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using NewBizWiz.CommonGUI.Preview;
+using NewBizWiz.CommonGUI.Summary;
+using NewBizWiz.CommonGUI.Themes;
+using NewBizWiz.CommonGUI.ToolForms;
+using NewBizWiz.Core.Common;
+using NewBizWiz.Core.MediaSchedule;
+using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
+using NewBizWiz.MediaSchedule.Controls.InteropClasses;
+
+namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+{
+	public class MediaSummaryFull : SummaryFullControl
+	{
+		public Schedule LocalSchedule { get; set; }
+
+		public MediaSummaryFull()
+		{
+			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
+			{
+				if (sender != this)
+					UpdateOutput(e.QuickSave);
+			});
+		}
+
+		private void TrackOutput()
+		{
+			var options = new Dictionary<string, object>();
+			options.Add("Slide", Controller.Instance.TabSummaryFull.Text);
+			options.Add("Advertiser", LocalSchedule.BusinessName);
+			if (LocalSchedule.WeeklySchedule.Programs.Any())
+			{
+				options.Add("WeeklyTotalSpots", LocalSchedule.WeeklySchedule.TotalSpots);
+				options.Add("WeeklyAverageRate", LocalSchedule.WeeklySchedule.AvgRate);
+				options.Add("WeeklyGrossInvestment", LocalSchedule.WeeklySchedule.TotalCost);
+			}
+			if (LocalSchedule.MonthlySchedule.Programs.Any())
+			{
+				options.Add("MonthlyTotalSpots", LocalSchedule.MonthlySchedule.TotalSpots);
+				options.Add("MonthlyAverageRate", LocalSchedule.MonthlySchedule.AvgRate);
+				options.Add("MonthlyGrossInvestment", LocalSchedule.MonthlySchedule.TotalCost);
+			}
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
+		}
+
+		public override ISummarySchedule Schedule
+		{
+			get { return LocalSchedule; }
+		}
+
+		public override BaseSummarySettings Settings
+		{
+			get { return LocalSchedule.CustomSummary; }
+		}
+
+		public override List<CustomSummaryItem> Items
+		{
+			get { return Schedule.CustomSummary.Items; }
+		}
+
+		public override HelpManager HelpManager
+		{
+			get { return BusinessWrapper.Instance.HelpManager; }
+		}
+
+		public override void UpdateOutput(bool quickLoad)
+		{
+			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			checkEditBusinessName.Text = string.Format("Business Name: {0}", LocalSchedule.BusinessName);
+			laPresentationDate.Text = String.Format("{0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
+			laFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
+			FormThemeSelector.Link(Controller.Instance.SummaryFullTheme,
+				BusinessWrapper.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVSummary : SlideType.RadioSummary),
+				MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVSummary : SlideType.RadioSummary),
+				(t =>
+			{
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVSummary : SlideType.RadioSummary, t.Name);
+				MediaMetaData.Instance.SettingsManager.SaveSettings();
+				SettingsNotSaved = true;
+			}));
+			base.UpdateOutput(quickLoad);
+		}
+
+		protected override bool SaveSchedule(string scheduleName = "")
+		{
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			if (nameChanged)
+				LocalSchedule.Name = scheduleName;
+			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, this);
+			SettingsNotSaved = false;
+			return true;
+		}
+
+		public void Save_Click(object sender, EventArgs e)
+		{
+			SaveSchedule();
+			Utilities.Instance.ShowInformation("Schedule Saved");
+		}
+
+		public void SaveAs_Click(object sender, EventArgs e)
+		{
+			using (var form = new FormNewSchedule())
+			{
+				form.Text = "Save Schedule";
+				form.laLogo.Text = "Please set a new name for your Schedule:";
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (!string.IsNullOrEmpty(form.ScheduleName))
+				{
+					if (SaveSchedule(form.ScheduleName))
+						Utilities.Instance.ShowInformation("Schedule was saved");
+				}
+				else
+				{
+					Utilities.Instance.ShowWarning("Schedule Name can't be empty");
+				}
+			}
+		}
+
+		public override Theme SelectedTheme
+		{
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVSummary : SlideType.RadioSummary).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVSummary : SlideType.RadioSummary) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVSummary : SlideType.RadioSummary))); }
+		}
+
+		public override void Output()
+		{
+			SaveSchedule();
+			TrackOutput();
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				Controller.Instance.ShowFloater(() =>
+				{
+					formProgress.Show();
+					MediaSchedulePowerPointHelper.Instance.AppendSummary(this);
+					formProgress.Close();
+				});
+			}
+		}
+
+		protected override void PreparePreview(string tempFileName)
+		{
+			MediaSchedulePowerPointHelper.Instance.PrepareSummaryEmail(tempFileName, this);
+		}
+
+		protected override void ShowEmail(string tempFileName)
+		{
+			using (var formEmail = new FormEmail(MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			{
+				formEmail.Text = "Email this Summary";
+				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+				RegistryHelper.MainFormHandle = formEmail.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				formEmail.ShowDialog();
+				RegistryHelper.MaximizeMainForm = true;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+			}
+		}
+
+		private void TrackPreview()
+		{
+			var options = new Dictionary<string, object>();
+			options.Add("Slide", Controller.Instance.TabSummaryFull.Text);
+			options.Add("Advertiser", LocalSchedule.BusinessName);
+			if (LocalSchedule.WeeklySchedule.Programs.Any())
+			{
+				options.Add("WeeklyTotalSpots", LocalSchedule.WeeklySchedule.TotalSpots);
+				options.Add("WeeklyAverageRate", LocalSchedule.WeeklySchedule.AvgRate);
+				options.Add("WeeklyGrossInvestment", LocalSchedule.WeeklySchedule.TotalCost);
+			}
+			if (LocalSchedule.MonthlySchedule.Programs.Any())
+			{
+				options.Add("MonthlyTotalSpots", LocalSchedule.MonthlySchedule.TotalSpots);
+				options.Add("MonthlyAverageRate", LocalSchedule.MonthlySchedule.AvgRate);
+				options.Add("MonthlyGrossInvestment", LocalSchedule.MonthlySchedule.TotalCost);
+			}
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
+		}
+
+		protected override void ShowPreview(string tempFileName)
+		{
+			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
+			{
+				formPreview.Text = "Preview Summary";
+				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
+				RegistryHelper.MainFormHandle = formPreview.Handle;
+				RegistryHelper.MaximizeMainForm = false;
+				DialogResult previewResult = formPreview.ShowDialog();
+				RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
+				RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
+				if (previewResult != DialogResult.OK)
+					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+			}
+		}
+	}
+}

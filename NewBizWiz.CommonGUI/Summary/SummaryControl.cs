@@ -14,17 +14,39 @@ namespace NewBizWiz.CommonGUI.Summary
 	[ToolboxItem(false)]
 	public abstract partial class SummaryControl : UserControl
 	{
-		private readonly List<SummaryInputItemControl> _inputControls = new List<SummaryInputItemControl>();
-		private bool _allowToSave;
-
-		public abstract ISummarySchedule Schedule { get; }
-		public abstract HelpManager HelpManager { get; }
-
 		protected SummaryControl()
 		{
 			InitializeComponent();
-			SetClickEventHandler(this);
 			Dock = DockStyle.Fill;
+		}
+	}
+
+	[ToolboxItem(false)]
+	public abstract class SummaryBaseControl<TItemControl> : SummaryControl, ISummaryControl where TItemControl : ISummaryItemControl
+	{
+		protected readonly List<TItemControl> _inputControls = new List<TItemControl>();
+		protected bool _allowToSave;
+
+		public abstract ISummarySchedule Schedule { get; }
+		public abstract BaseSummarySettings Settings { get; }
+		public abstract List<CustomSummaryItem> Items { get; }
+		public abstract HelpManager HelpManager { get; }
+
+		protected abstract bool CustomOrder { get; }
+
+		protected IEnumerable<TItemControl> OrderedItems
+		{
+			get { return CustomOrder ? _inputControls.OrderBy(it => it.Data.Order).ToList() : _inputControls; }
+		}
+
+		protected SummaryBaseControl()
+		{
+			SetClickEventHandler(this);
+			checkEditBusinessName.CheckedChanged += checkEdit_CheckedChanged;
+			checkEditTotalInvestment.CheckedChanged += checkEdit_CheckedChanged;
+			checkEditPresentationDate.CheckedChanged += checkEdit_CheckedChanged;
+			checkEditFlightDates.CheckedChanged += checkEdit_CheckedChanged;
+			checkEditMonthlyInvestment.CheckedChanged += checkEdit_CheckedChanged;
 		}
 
 		public bool AllowToLeaveControl
@@ -69,63 +91,84 @@ namespace NewBizWiz.CommonGUI.Summary
 
 		public virtual void UpdateOutput(bool quickLoad)
 		{
+			_allowToSave = false;
 			if (!quickLoad)
 			{
-				_allowToSave = false;
-				checkEditBusinessName.Checked = Schedule.Summary.ShowAdvertiser;
-				checkEditPresentationDate.Checked = Schedule.Summary.ShowPresentationDate;
-				checkEditFlightDates.Checked = Schedule.Summary.ShowFlightDates;
-				checkEditMonthlyInvestment.Checked = Schedule.Summary.ShowMonthly;
-				checkEditTotalInvestment.Checked = Schedule.Summary.ShowTotal;
+				checkEditBusinessName.Checked = Settings.ShowAdvertiser;
+				checkEditPresentationDate.Checked = Settings.ShowPresentationDate;
+				checkEditFlightDates.Checked = Settings.ShowFlightDates;
+				checkEditMonthlyInvestment.Checked = Settings.ShowMonthly;
+				checkEditTotalInvestment.Checked = Settings.ShowTotal;
 
-				_inputControls.Clear();
-				xtraScrollableControlInput.Controls.Clear();
-				foreach (var summaryItem in Schedule.ProductSummaries)
-				{
-					AddItemToList(summaryItem.SummaryItem);
-					Application.DoEvents();
-				}
-				UpdateTotalItems();
-				UpdateTotals();
-				_allowToSave = true;
 			}
-			else
-			{
-				foreach (var summaryProduct in Schedule.ProductSummaries)
-				{
-					var inputControl = _inputControls.FirstOrDefault(ic => ic.Data.Parent.UniqueID.Equals(summaryProduct.UniqueID));
-					if (inputControl != null)
-						inputControl.Data = summaryProduct.SummaryItem;
-					Application.DoEvents();
-				}
-			}
+			LoadItems(quickLoad);
+			UpdateTotalItems();
+			UpdateTotals();
+			_allowToSave = true;
 			SettingsNotSaved = false;
 		}
 
 		protected abstract bool SaveSchedule(string scheduleName = "");
 
-		private void AddItemToList(SummaryItem summaryItem)
+		protected virtual void LoadItems(bool quickLoad)
 		{
-			var item = new SummaryInputItemControl { Data = summaryItem };
+			if (!quickLoad)
+			{
+				_inputControls.Clear();
+				foreach (var summaryItem in Items)
+				{
+					AddItemToList(summaryItem);
+					Application.DoEvents();
+				}
+			}
+			else
+			{
+				foreach (var summaryItem in Items)
+				{
+					var inputControl = _inputControls.FirstOrDefault(ic => ic.Data.Id.Equals(summaryItem.Id));
+					if (inputControl != null)
+						inputControl.Data = summaryItem;
+					Application.DoEvents();
+				}
+			}
+		}
+
+		protected TItemControl AddItemToList(CustomSummaryItem summaryItem)
+		{
+			var item = Activator.CreateInstance<TItemControl>();
+			item.Data = summaryItem;
+			InitItem(item);
+			_inputControls.Add(item);
+			var control = item as Control;
+			if (control == null) return item;
+			SetClickEventHandler(control);
+			return item;
+		}
+
+		protected virtual void InitItem(TItemControl item)
+		{
 			item.LoadData();
 			item.DataChanged += (o, e) => { SettingsNotSaved = true; };
 			item.InvestmentChanged += (o, e) => UpdateTotals();
-			SetClickEventHandler(item);
-			_inputControls.Add(item);
-			xtraScrollableControlInput.Controls.Add(item);
-			item.BringToFront();
 		}
 
-		public void UpdateTotalItems()
+		protected void UpdateControlsInList(Control focussed)
 		{
-			laTotalItems.Text = string.Format("Total Items: {0}", Schedule.ProductSummaries.Count());
+			xtraScrollableControlInput.SuspendLayout();
+			xtraScrollableControlInput.Controls.Clear();
+			var items = OrderedItems.OfType<Control>().Reverse().ToArray();
+			xtraScrollableControlInput.Controls.AddRange(items);
+			xtraScrollableControlInput.ResumeLayout(true);
+			if (focussed != null)
+				xtraScrollableControlInput.ScrollControlIntoView(focussed);
 		}
 
-		public void UpdateTotals()
+		protected void UpdateTotalItems()
 		{
-			spinEditMonthly.Value = Schedule.Summary.MonthlyValue.HasValue ? Schedule.Summary.MonthlyValue.Value : Schedule.Summary.TotalMonthly;
-			spinEditTotal.Value = Schedule.Summary.TotalValue.HasValue ? Schedule.Summary.TotalValue.Value : Schedule.Summary.TotalTotal;
+			laTotalItems.Text = string.Format("Total Items: {0}", _inputControls.Count());
 		}
+
+		protected abstract void UpdateTotals();
 
 		public void OpenHelp()
 		{
@@ -147,36 +190,12 @@ namespace NewBizWiz.CommonGUI.Summary
 			spinEditMonthly.Enabled = checkEditMonthlyInvestment.Checked;
 			spinEditTotal.Enabled = checkEditTotalInvestment.Checked;
 			if (!_allowToSave) return;
-			Schedule.Summary.ShowAdvertiser = checkEditBusinessName.Checked;
-			Schedule.Summary.ShowPresentationDate = checkEditPresentationDate.Checked;
-			Schedule.Summary.ShowFlightDates = checkEditFlightDates.Checked;
-			Schedule.Summary.ShowMonthly = checkEditMonthlyInvestment.Checked;
-			Schedule.Summary.ShowTotal = checkEditTotalInvestment.Checked;
+			Settings.ShowAdvertiser = checkEditBusinessName.Checked;
+			Settings.ShowPresentationDate = checkEditPresentationDate.Checked;
+			Settings.ShowFlightDates = checkEditFlightDates.Checked;
+			Settings.ShowMonthly = checkEditMonthlyInvestment.Checked;
+			Settings.ShowTotal = checkEditTotalInvestment.Checked;
 			SettingsNotSaved = true;
-		}
-
-		private void spinEditMonthly_EditValueChanged(object sender, EventArgs e)
-		{
-			if (!_allowToSave) return;
-			Schedule.Summary.MonthlyValue = Schedule.Summary.TotalMonthly != spinEditMonthly.Value ? spinEditMonthly.Value : (decimal?)null;
-			SettingsNotSaved = true;
-		}
-
-		private void spinEditTotal_EditValueChanged(object sender, EventArgs e)
-		{
-			if (!_allowToSave) return;
-			Schedule.Summary.TotalValue = Schedule.Summary.TotalTotal != spinEditTotal.Value ? spinEditTotal.Value : (decimal?)null;
-			SettingsNotSaved = true;
-		}
-
-		private void spinEditMonthly_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-		{
-			spinEditMonthly.Value = Schedule.Summary.TotalMonthly;
-		}
-
-		private void spinEditTotal_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-		{
-			spinEditTotal.Value = Schedule.Summary.TotalTotal;
 		}
 
 		#region Output Stuff
@@ -236,12 +255,12 @@ namespace NewBizWiz.CommonGUI.Summary
 
 		public string[] ItemTitles
 		{
-			get { return _inputControls.Where(it => it.Complited).Select(it => it.OutputItemTitle).ToArray(); }
+			get { return OrderedItems.Where(it => it.Complited).Select(it => it.OutputItemTitle).ToArray(); }
 		}
 
 		public string[] ItemDetails
 		{
-			get { return _inputControls.Where(it => it.Complited).Select(it => it.ItemDetailOutput).ToArray(); }
+			get { return OrderedItems.Where(it => it.Complited).Select(it => it.ItemDetailOutput).ToArray(); }
 		}
 
 		public string[] MonthlyValues
@@ -249,7 +268,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			get
 			{
 				if (ShowMonthlyHeader && ShowTotalHeader)
-					return _inputControls.Where(it => it.Complited).Select(it => it.OutputMonthlyValue.HasValue ? it.OutputMonthlyValue.Value.ToString("$#,##0") : String.Empty).ToArray();
+					return OrderedItems.Where(it => it.Complited).Select(it => it.OutputMonthlyValue.HasValue ? it.OutputMonthlyValue.Value.ToString("$#,##0") : String.Empty).ToArray();
 				return null;
 			}
 		}
@@ -259,29 +278,23 @@ namespace NewBizWiz.CommonGUI.Summary
 			get
 			{
 				if (ShowMonthlyHeader && !ShowTotalHeader)
-					return _inputControls.Where(it => it.Complited).Select(it => it.OutputMonthlyValue.HasValue ? it.OutputMonthlyValue.Value.ToString("$#,##0") : String.Empty).ToArray();
-				return _inputControls.Where(it => it.Complited).Select(it => it.OutputTotalValue.HasValue ? it.OutputTotalValue.Value.ToString("$#,##0") : String.Empty).ToArray();
+					return OrderedItems.Where(it => it.Complited).Select(it => it.OutputMonthlyValue.HasValue ? it.OutputMonthlyValue.Value.ToString("$#,##0") : String.Empty).ToArray();
+				return OrderedItems.Where(it => it.Complited).Select(it => it.OutputTotalValue.HasValue ? it.OutputTotalValue.Value.ToString("$#,##0") : String.Empty).ToArray();
 			}
 		}
 
-		public string TotalMonthlyValue
-		{
-			get { return checkEditMonthlyInvestment.Checked ? (Schedule.Summary.MonthlyValue.HasValue ? Schedule.Summary.MonthlyValue.Value : Schedule.Summary.TotalMonthly).ToString("$#,##0.00") : string.Empty; }
-		}
+		public abstract string TotalMonthlyValue { get; }
 
-		public string TotalTotalValue
-		{
-			get { return checkEditTotalInvestment.Checked ? (Schedule.Summary.TotalValue.HasValue ? Schedule.Summary.TotalValue.Value : Schedule.Summary.TotalTotal).ToString("$#,##0.00") : string.Empty; }
-		}
+		public abstract string TotalTotalValue { get; }
 
 		public bool ShowMonthlyHeader
 		{
-			get { return _inputControls.Where(it => it.Complited).Any(it => it.OutputMonthlyValue.HasValue); }
+			get { return OrderedItems.Where(it => it.Complited).Any(it => it.OutputMonthlyValue.HasValue); }
 		}
 
 		public bool ShowTotalHeader
 		{
-			get { return _inputControls.Where(it => it.Complited).Any(it => it.OutputTotalValue.HasValue); }
+			get { return OrderedItems.Where(it => it.Complited).Any(it => it.OutputTotalValue.HasValue); }
 		}
 
 		public void Email()

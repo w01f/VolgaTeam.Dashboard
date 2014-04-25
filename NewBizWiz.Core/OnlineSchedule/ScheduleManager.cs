@@ -169,7 +169,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 			DigitalProducts = new List<DigitalProduct>();
 			ViewSettings = new ScheduleBuilderViewSettings();
 			DigitalProductSummary = new DigitalProductSummary();
-			Summary = new SummarySettings(this);
+			ProductSummary = new BaseSummarySettings();
+			CustomSummary = new CustomSummarySettings();
 
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
@@ -198,7 +199,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 		public DigitalProductSummary DigitalProductSummary { get; private set; }
 
 		public ScheduleBuilderViewSettings ViewSettings { get; set; }
-		public SummarySettings Summary { get; private set; }
+		public BaseSummarySettings ProductSummary { get; private set; }
+		public CustomSummarySettings CustomSummary { get; private set; }
 
 		public IScheduleViewSettings SharedViewSettings
 		{
@@ -262,7 +264,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			{
 				bool result = false;
 				foreach (var product in DigitalProducts)
-					result = result | (product.MonthlyImpressions.HasValue || product.MonthlyInvestment.HasValue); 
+					result = result | (product.MonthlyImpressions.HasValue || product.MonthlyInvestment.HasValue);
 				return result;
 			}
 		}
@@ -398,10 +400,16 @@ namespace NewBizWiz.Core.OnlineSchedule
 				DigitalProductSummary.Deserialize(node);
 			}
 
-			node = document.SelectSingleNode(@"/Schedule/Summary");
+			node = document.SelectSingleNode(@"/Schedule/ProductSummary");
 			if (node != null)
 			{
-				Summary.Deserialize(node);
+				ProductSummary.Deserialize(node);
+			}
+
+			node = document.SelectSingleNode(@"/Schedule/CustomSummary");
+			if (node != null)
+			{
+				CustomSummary.Deserialize(node);
 			}
 		}
 
@@ -436,7 +444,8 @@ namespace NewBizWiz.Core.OnlineSchedule
 			xml.AppendLine(@"<ApplySettingsForeAllProducts>" + ApplySettingsForeAllProducts.ToString() + @"</ApplySettingsForeAllProducts>");
 
 			xml.AppendLine(@"<ViewSettings>" + ViewSettings.Serialize() + @"</ViewSettings>");
-			xml.AppendLine(@"<Summary>" + Summary.Serialize() + @"</Summary>");
+			xml.AppendLine(@"<ProductSummary>" + ProductSummary.Serialize() + @"</ProductSummary>");
+			xml.AppendLine(@"<CustomSummary>" + CustomSummary.Serialize() + @"</CustomSummary>");
 
 			xml.AppendLine(@"<Products>");
 			foreach (DigitalProduct product in DigitalProducts)
@@ -550,7 +559,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 
 		public ProductPackageRecord PackageRecord { get; private set; }
 		public DigitalProductAdPlanSettings AdPlanSettings { get; set; }
-		public SummaryItem SummaryItem { get; private set; }
+		public CustomSummaryItem SummaryItem { get; private set; }
 
 		#endregion
 
@@ -773,7 +782,7 @@ namespace NewBizWiz.Core.OnlineSchedule
 			AddtionalInfo = new List<ProductInfo>();
 			PackageRecord = new ProductPackageRecord(this);
 			AdPlanSettings = new DigitalProductAdPlanSettings();
-			SummaryItem = new SummaryItem(this);
+			SummaryItem = new ProductSummaryItem(this);
 			RateType = "CPM";
 			EnableLocation = true;
 			EnableTarget = true;
@@ -1514,6 +1523,11 @@ namespace NewBizWiz.Core.OnlineSchedule
 					return Path.Combine(outputTemplateFolderPath, "no_comments", String.Format("none{0}.ppt", !String.IsNullOrEmpty(InvestmentDetails) ? "_inv" : String.Empty));
 				}
 			}
+		}
+
+		public decimal SummaryOrder
+		{
+			get { return (Decimal)Index; }
 		}
 
 		public string SummaryTitle

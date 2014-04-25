@@ -72,7 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonPowerPointHelper.cs" />
+    <Compile Include="Interop\CommonPowerPointHelper.cs" />
     <Compile Include="Floater\FloaterManager.cs" />
     <Compile Include="Floater\FloaterRequestedEventArgs.cs" />
     <Compile Include="Floater\FormFloater.cs">
@@ -87,6 +87,7 @@
     <Compile Include="Gallery\GalleryControl.Designer.cs">
       <DependentUpon>GalleryControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interop\SummaryHelper.cs" />
     <Compile Include="Preview\PreviewGroup.cs" />
     <Compile Include="Preview\PreviewGroupControl.cs">
       <SubType>Component</SubType>
@@ -162,17 +163,31 @@
     <Compile Include="Slides\SlidesContainerControl.Designer.cs">
       <DependentUpon>SlidesContainerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Summary\SummaryCustomItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Summary\SummaryCustomItemControl.Designer.cs">
+      <DependentUpon>SummaryCustomItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Summary\SummaryFullControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Summary\ISummaryControl.cs" />
+    <Compile Include="Summary\ISummaryItemControl.cs" />
     <Compile Include="Summary\SummaryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Summary\SummaryControl.Designer.cs">
       <DependentUpon>SummaryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Summary\SummaryInputItemControl.cs">
+    <Compile Include="Summary\SummaryLightControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Summary\SummaryInputItemControl.Designer.cs">
-      <DependentUpon>SummaryInputItemControl.cs</DependentUpon>
+    <Compile Include="Summary\SummaryProductItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Summary\SummaryProductItemControl.Designer.cs">
+      <DependentUpon>SummaryProductItemControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Themes\FormThemeSelector.cs">
       <SubType>Form</SubType>
@@ -239,7 +254,6 @@
     <EmbeddedResource Include="Preview\PreviewGroupControl.resx">
       <DependentUpon>PreviewGroupControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -275,11 +289,14 @@
     <EmbeddedResource Include="Slides\SlidesContainerControl.resx">
       <DependentUpon>SlidesContainerControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Summary\SummaryCustomItemControl.resx">
+      <DependentUpon>SummaryCustomItemControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Summary\SummaryControl.resx">
       <DependentUpon>SummaryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Summary\SummaryInputItemControl.resx">
-      <DependentUpon>SummaryInputItemControl.cs</DependentUpon>
+    <EmbeddedResource Include="Summary\SummaryProductItemControl.resx">
+      <DependentUpon>SummaryProductItemControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Themes\FormThemeSelector.resx">
       <DependentUpon>FormThemeSelector.cs</DependentUpon>
@@ -425,6 +442,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SummaryTV.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DownArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UpArrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

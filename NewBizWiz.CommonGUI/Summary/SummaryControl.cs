@@ -53,7 +53,7 @@ namespace NewBizWiz.CommonGUI.Summary
 		{
 			get
 			{
-				bool result = false;
+				bool result;
 				if (SettingsNotSaved)
 				{
 					SaveSchedule();

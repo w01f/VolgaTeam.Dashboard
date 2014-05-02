@@ -59,7 +59,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			spinEditTotal.EditValue = Schedule.CustomSummary.TotalValue.HasValue ? Schedule.CustomSummary.TotalValue.Value : Schedule.CustomSummary.TotalTotal;
 		}
 
-		private void OnAddItem(object sender, EventArgs e)
+		protected virtual void OnAddItem(object sender, EventArgs e)
 		{
 			var newItemData = Schedule.CustomSummary.AddItem();
 			var focussed = AddItemToList(newItemData);
@@ -67,7 +67,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			SettingsNotSaved = true;
 		}
 
-		private void ItemOnItemDeleted(object sender, SummaryItemEventArgs e)
+		protected virtual void ItemOnItemDeleted(object sender, SummaryItemEventArgs e)
 		{
 			Schedule.CustomSummary.DeleteItem(e.SummaryItem.Data);
 			_inputControls.Remove(e.SummaryItem as SummaryCustomItemControl);
@@ -79,7 +79,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			SettingsNotSaved = true;
 		}
 
-		private void ItemOnItemPositionChanged(object sender, SummaryItemEventArgs e)
+		protected virtual void ItemOnItemPositionChanged(object sender, SummaryItemEventArgs e)
 		{
 			Schedule.CustomSummary.ReorderItems();
 			UpdateNumbers();

@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeControl));
 			this.stationsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.StationsControl();
-			this.pbMonthlySchedule = new System.Windows.Forms.PictureBox();
-			this.pbWeeklySchedule = new System.Windows.Forms.PictureBox();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageMedia = new DevExpress.XtraTab.XtraTabPage();
 			this.pnTV = new System.Windows.Forms.Panel();
-			this.pbLogo = new System.Windows.Forms.PictureBox();
+			this.buttonXWideOrbitSchedule = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXMonthlySchedule = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXWeeklySchedule = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
 			this.digitalProductListControl = new NewBizWiz.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
 			this.daypartsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.DaypartsControl();
@@ -52,7 +53,7 @@
 			this.laDemosInfo = new System.Windows.Forms.Label();
 			this.pnSelectDemo = new System.Windows.Forms.Panel();
 			this.comboBoxEditDemos = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnSelectSource = new System.Windows.Forms.Panel();
 			this.comboBoxEditSource = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.pnDemosType = new System.Windows.Forms.Panel();
@@ -67,13 +68,10 @@
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.laTopTitle = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize)(this.pbMonthlySchedule)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbWeeklySchedule)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).BeginInit();
 			this.xtraTabControlMain.SuspendLayout();
 			this.xtraTabPageMedia.SuspendLayout();
 			this.pnTV.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
 			this.xtraTabPageDigital.SuspendLayout();
 			this.pnRightTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsHelp)).BeginInit();
@@ -109,30 +107,6 @@
 			this.stationsControl.Padding = new System.Windows.Forms.Padding(3);
 			this.stationsControl.Size = new System.Drawing.Size(344, 491);
 			this.stationsControl.TabIndex = 0;
-			// 
-			// pbMonthlySchedule
-			// 
-			this.pbMonthlySchedule.Image = ((System.Drawing.Image)(resources.GetObject("pbMonthlySchedule.Image")));
-			this.pbMonthlySchedule.Location = new System.Drawing.Point(27, 316);
-			this.pbMonthlySchedule.Name = "pbMonthlySchedule";
-			this.pbMonthlySchedule.Size = new System.Drawing.Size(595, 96);
-			this.pbMonthlySchedule.TabIndex = 16;
-			this.pbMonthlySchedule.TabStop = false;
-			this.pbMonthlySchedule.Click += new System.EventHandler(this.pbMonthlySchedule_Click);
-			this.pbMonthlySchedule.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbMonthlySchedule.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
-			// pbWeeklySchedule
-			// 
-			this.pbWeeklySchedule.Image = ((System.Drawing.Image)(resources.GetObject("pbWeeklySchedule.Image")));
-			this.pbWeeklySchedule.Location = new System.Drawing.Point(27, 150);
-			this.pbWeeklySchedule.Name = "pbWeeklySchedule";
-			this.pbWeeklySchedule.Size = new System.Drawing.Size(595, 96);
-			this.pbWeeklySchedule.TabIndex = 15;
-			this.pbWeeklySchedule.TabStop = false;
-			this.pbWeeklySchedule.Click += new System.EventHandler(this.pbWeeklySchedule_Click);
-			this.pbWeeklySchedule.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbWeeklySchedule.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
 			// defaultLookAndFeel
 			// 
@@ -176,23 +150,57 @@
 			// pnTV
 			// 
 			this.pnTV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnTV.Controls.Add(this.pbLogo);
-			this.pnTV.Controls.Add(this.pbMonthlySchedule);
-			this.pnTV.Controls.Add(this.pbWeeklySchedule);
+			this.pnTV.Controls.Add(this.buttonXWideOrbitSchedule);
+			this.pnTV.Controls.Add(this.buttonXMonthlySchedule);
+			this.pnTV.Controls.Add(this.buttonXWeeklySchedule);
 			this.pnTV.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnTV.Location = new System.Drawing.Point(0, 0);
 			this.pnTV.Name = "pnTV";
 			this.pnTV.Size = new System.Drawing.Size(658, 491);
 			this.pnTV.TabIndex = 0;
 			// 
-			// pbLogo
+			// buttonXWideOrbitSchedule
 			// 
-			this.pbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbLogo.Image")));
-			this.pbLogo.Location = new System.Drawing.Point(27, 44);
-			this.pbLogo.Name = "pbLogo";
-			this.pbLogo.Size = new System.Drawing.Size(595, 46);
-			this.pbLogo.TabIndex = 17;
-			this.pbLogo.TabStop = false;
+			this.buttonXWideOrbitSchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXWideOrbitSchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXWideOrbitSchedule.Enabled = false;
+			this.buttonXWideOrbitSchedule.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.WideOrbitSchedule;
+			this.buttonXWideOrbitSchedule.Location = new System.Drawing.Point(27, 354);
+			this.buttonXWideOrbitSchedule.Name = "buttonXWideOrbitSchedule";
+			this.buttonXWideOrbitSchedule.Size = new System.Drawing.Size(509, 113);
+			this.buttonXWideOrbitSchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXWideOrbitSchedule.TabIndex = 19;
+			this.buttonXWideOrbitSchedule.TextColor = System.Drawing.Color.Black;
+			this.buttonXWideOrbitSchedule.CheckedChanged += new System.EventHandler(this.buttonXScheduleType_CheckedChanged);
+			this.buttonXWideOrbitSchedule.Click += new System.EventHandler(this.buttonXScheduleType_Click);
+			// 
+			// buttonXMonthlySchedule
+			// 
+			this.buttonXMonthlySchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXMonthlySchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXMonthlySchedule.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.MonthlySchedule;
+			this.buttonXMonthlySchedule.Location = new System.Drawing.Point(27, 189);
+			this.buttonXMonthlySchedule.Name = "buttonXMonthlySchedule";
+			this.buttonXMonthlySchedule.Size = new System.Drawing.Size(509, 113);
+			this.buttonXMonthlySchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXMonthlySchedule.TabIndex = 18;
+			this.buttonXMonthlySchedule.TextColor = System.Drawing.Color.Black;
+			this.buttonXMonthlySchedule.CheckedChanged += new System.EventHandler(this.buttonXScheduleType_CheckedChanged);
+			this.buttonXMonthlySchedule.Click += new System.EventHandler(this.buttonXScheduleType_Click);
+			// 
+			// buttonXWeeklySchedule
+			// 
+			this.buttonXWeeklySchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXWeeklySchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXWeeklySchedule.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.WeeklySchedule;
+			this.buttonXWeeklySchedule.Location = new System.Drawing.Point(27, 24);
+			this.buttonXWeeklySchedule.Name = "buttonXWeeklySchedule";
+			this.buttonXWeeklySchedule.Size = new System.Drawing.Size(509, 113);
+			this.buttonXWeeklySchedule.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXWeeklySchedule.TabIndex = 17;
+			this.buttonXWeeklySchedule.TextColor = System.Drawing.Color.Black;
+			this.buttonXWeeklySchedule.CheckedChanged += new System.EventHandler(this.buttonXScheduleType_CheckedChanged);
+			this.buttonXWeeklySchedule.Click += new System.EventHandler(this.buttonXScheduleType_Click);
 			// 
 			// xtraTabPageDigital
 			// 
@@ -576,13 +584,10 @@
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "HomeControl";
 			this.Size = new System.Drawing.Size(1020, 563);
-			((System.ComponentModel.ISupportInitialize)(this.pbMonthlySchedule)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbWeeklySchedule)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).EndInit();
 			this.xtraTabControlMain.ResumeLayout(false);
 			this.xtraTabPageMedia.ResumeLayout(false);
 			this.pnTV.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			this.xtraTabPageDigital.ResumeLayout(false);
 			this.pnRightTop.ResumeLayout(false);
 			this.pnRightTop.PerformLayout();
@@ -613,9 +618,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pbWeeklySchedule;
-        private System.Windows.Forms.PictureBox pbMonthlySchedule;
-        private StationsControl stationsControl;
+		private StationsControl stationsControl;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlMain;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageMedia;
@@ -641,7 +644,6 @@
         private System.Windows.Forms.Panel pnTop;
 		private System.Windows.Forms.Label laTopTitle;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageDigital;
-		private System.Windows.Forms.PictureBox pbLogo;
 		private System.Windows.Forms.Panel pnDemosImport;
 		private System.Windows.Forms.Panel pnDemosCustom;
 		private System.Windows.Forms.Panel pnUseDemos;
@@ -651,6 +653,9 @@
 		private System.Windows.Forms.Panel pnDemosInfo;
 		private System.Windows.Forms.Label laDemosInfo;
 		private OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl digitalProductListControl;
+		private DevComponents.DotNetBar.ButtonX buttonXWideOrbitSchedule;
+		private DevComponents.DotNetBar.ButtonX buttonXMonthlySchedule;
+		private DevComponents.DotNetBar.ButtonX buttonXWeeklySchedule;
 
     }
 }

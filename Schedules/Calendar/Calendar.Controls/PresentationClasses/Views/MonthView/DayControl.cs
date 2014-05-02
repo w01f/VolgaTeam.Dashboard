@@ -196,7 +196,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 				if (form.ShowDialog() != DialogResult.OK) return;
 				RefreshData(_colorLight, _colorDark);
 				if (DataChanged != null)
-					DataChanged(sender, new EventArgs());
+					DataChanged(this, new EventArgs());
 			}
 		}
 
@@ -232,7 +232,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			Day.Comment = memoEditSimpleComment.EditValue as String;
 			RefreshData(_colorLight, _colorDark);
 			if (DataChanged != null)
-				DataChanged(sender, new EventArgs());
+				DataChanged(this, new EventArgs());
 		}
 
 		private void memoEditSimpleComment_Leave(object sender, EventArgs e)

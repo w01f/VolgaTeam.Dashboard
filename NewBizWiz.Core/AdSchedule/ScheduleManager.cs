@@ -1194,7 +1194,7 @@ namespace NewBizWiz.Core.AdSchedule
 				if (!String.IsNullOrEmpty(SizeOptions.PercentOfPage))
 					values.Add(String.Format("{0}", SizeOptions.PercentOfPage));
 				if (TotalInserts > 0)
-					values.Add(String.Format("{0} Ads ({1})", TotalInserts, Parent.FlightDates));
+					values.Add(String.Format("{0} Ads", TotalInserts));
 				values.Add(String.Format("{0}", Parent.FlightDates));
 				return String.Join(", ", values).Replace(Environment.NewLine, ", ");
 			}

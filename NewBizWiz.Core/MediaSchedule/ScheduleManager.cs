@@ -37,6 +37,11 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public event EventHandler<ScheduleSaveEventArgs> SettingsSaved;
 
+		public string CurrentAdvertiser
+		{
+			get { return _currentSchedule != null ? _currentSchedule.BusinessName : null; }
+		}
+
 		public void OpenSchedule(string scheduleName, bool create)
 		{
 			string scheduleFilePath = GetScheduleFileName(scheduleName);
@@ -68,12 +73,12 @@ namespace NewBizWiz.Core.MediaSchedule
 			return _currentSchedule != null ? new ShortSchedule(_currentSchedule.ScheduleFile) : null;
 		}
 
-		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)
+		public void SaveSchedule(Schedule localSchedule, bool quickSave, bool updateDigital, Control sender)
 		{
 			localSchedule.Save();
 			_currentSchedule = localSchedule;
 			if (SettingsSaved != null)
-				SettingsSaved(sender, new ScheduleSaveEventArgs(quickSave));
+				SettingsSaved(sender, new ScheduleSaveEventArgs(quickSave, updateDigital));
 		}
 
 		public static ShortSchedule[] GetShortScheduleList()
@@ -194,7 +199,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			DigitalProductSummary = new DigitalProductSummary();
 
 			ProductSummary = new BaseSummarySettings();
-			CustomSummary = new CustomSummarySettings();
+			CustomSummary = new MediaFullSummarySettings(this);
 
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
@@ -234,6 +239,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public string Source { get; set; }
 		public DemoType DemoType { get; set; }
 
+		public SpotType SelectedSpotType { get; set; }
 		public WeeklySection WeeklySchedule { get; set; }
 		public MonthlySection MonthlySchedule { get; set; }
 
@@ -272,6 +278,22 @@ namespace NewBizWiz.Core.MediaSchedule
 				if (FlightDateStart.HasValue && FlightDateEnd.HasValue)
 					return FlightDateStart.Value.ToString("MM/dd/yy") + " - " + FlightDateEnd.Value.ToString("MM/dd/yy");
 				return string.Empty;
+			}
+		}
+
+		public ScheduleSection SelectedSection
+		{
+			get
+			{
+				switch (SelectedSpotType)
+				{
+					case SpotType.Week:
+						return WeeklySchedule;
+					case SpotType.Month:
+						return MonthlySchedule;
+					default:
+						return null;
+				}
 			}
 		}
 
@@ -353,6 +375,11 @@ namespace NewBizWiz.Core.MediaSchedule
 			node = document.SelectSingleNode(@"/Schedule/Source");
 			if (node != null)
 				Source = node.InnerText;
+
+			node = document.SelectSingleNode(@"/Schedule/SelectedSpotType");
+			if (node != null)
+				if (int.TryParse(node.InnerText, out tempInt))
+					SelectedSpotType = (SpotType)tempInt;
 
 			node = document.SelectSingleNode(@"/Schedule/WeeklySection");
 			if (node != null)
@@ -455,6 +482,7 @@ namespace NewBizWiz.Core.MediaSchedule
 				xml.AppendLine(@"<Demo>" + Demo.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Demo>");
 			if (!String.IsNullOrEmpty(Source))
 				xml.AppendLine(@"<Source>" + Source.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Source>");
+			xml.AppendLine(@"<SelectedSpotType>" + (Int32)SelectedSpotType + @"</SelectedSpotType>");
 			xml.AppendLine(@"<WeeklySection>" + WeeklySchedule.Serialize() + @"</WeeklySection>");
 			xml.AppendLine(@"<MonthlySection>" + MonthlySchedule.Serialize() + @"</MonthlySection>");
 
@@ -1973,6 +2001,82 @@ namespace NewBizWiz.Core.MediaSchedule
 		public override string ToString()
 		{
 			return String.Format("Q{0} {1}", QuarterNumber, DateAnchor.ToString("yy"));
+		}
+	}
+
+	public class MediaFullSummarySettings : CustomSummarySettings
+	{
+		private readonly Schedule _parent;
+		public bool IsDefaultSate { get; set; }
+
+		public MediaFullSummarySettings(Schedule parent)
+		{
+			_parent = parent;
+			IsDefaultSate = true;
+		}
+
+		public override string Serialize()
+		{
+			var result = new StringBuilder();
+			result.AppendLine(base.Serialize());
+			result.AppendLine(@"<IsDefaultSate>" + IsDefaultSate + @"</IsDefaultSate>");
+			return result.ToString();
+		}
+
+		public override void Deserialize(XmlNode node)
+		{
+			base.Deserialize(node);
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "IsDefaultSate":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								IsDefaultSate = temp;
+						}
+						break;
+				}
+			}
+		}
+
+		public void UpdateItems()
+		{
+			if (!IsDefaultSate) return;
+			if (Items.Count != 2) return;
+			{
+				var mediaSummaryItem = Items[0];
+				mediaSummaryItem.ShowValue = true;
+				mediaSummaryItem.Value = String.Format("Local {0} Campaign", MediaMetaData.Instance.DataTypeString);
+				var description = new List<string>();
+				description.Add(String.Format("Stations: {0}", String.Join(", ", _parent.SelectedSection.Programs.Select(p => p.Station).Distinct())));
+				description.Add(String.Format("Dayparts: {0}", String.Join(", ", _parent.SelectedSection.Programs.Select(p => p.Daypart).Distinct())));
+				description.Add(String.Format("Total Spots: {0}x", _parent.SelectedSection.Programs.Sum(p => p.Spots.Sum(sp => sp.Count))));
+				if (_parent.SelectedSection.Programs.Any())
+					description.Add(String.Format("Avg Rate: {0}", _parent.SelectedSection.Programs.Where(p => p.Rate.HasValue).Average(p => p.Rate.Value).ToString("$#,##0")));
+				mediaSummaryItem.Description = String.Join("  ", description);
+				mediaSummaryItem.ShowDescription = true;
+				mediaSummaryItem.ShowMonthly = false;
+				mediaSummaryItem.Monthly = null;
+				mediaSummaryItem.ShowTotal = false;
+				mediaSummaryItem.Total = null;
+			}
+			{
+				var digitalSummaryItem = Items[1];
+				digitalSummaryItem.ShowValue = true;
+				digitalSummaryItem.Value = "Digital Campaign";
+				digitalSummaryItem.Description = String.Join(", ", _parent.DigitalProducts.Select(dp =>
+					String.Format("({0}){1} - {2}",
+					dp.Category,
+					!String.IsNullOrEmpty(dp.SubCategory) ? (String.Format(" {0}", dp.SubCategory)) : String.Empty,
+					dp.Name)));
+				digitalSummaryItem.ShowDescription = true;
+				digitalSummaryItem.ShowMonthly = false;
+				digitalSummaryItem.Monthly = null;
+				digitalSummaryItem.ShowTotal = false;
+				digitalSummaryItem.Total = null;
+			}
 		}
 	}
 }

@@ -341,6 +341,10 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.GridView
 		public CopyPasteManager CopyPasteManager { get; private set; }
 
 		public bool SettingsNotSaved { get; set; }
+		public string Title
+		{
+			get { return "Grid"; }
+		}
 		public event EventHandler<EventArgs> DataSaved;
 		#endregion
 	}

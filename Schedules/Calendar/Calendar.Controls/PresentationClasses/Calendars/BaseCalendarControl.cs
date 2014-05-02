@@ -82,7 +82,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		public void LeaveCalendar()
 		{
 			if (SettingsNotSaved || (SelectedView != null && SelectedView.SettingsNotSaved) || SlideInfo.SettingsNotSaved)
-				SaveCalendarData();
+				SaveCalendarData(false);
 			SlideInfo.Close(false);
 		}
 
@@ -127,7 +127,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			AllowToSave = true;
 		}
 
-		public virtual bool SaveCalendarData(string scheduleName = "")
+		public virtual bool SaveCalendarData(bool byUser, string scheduleName = "")
 		{
 			SelectedView.Save();
 			SlideInfo.SaveData();
@@ -382,6 +382,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 
 		public virtual void OpenHelp() { }
 		public virtual void SaveSettings() { }
+		public virtual void TrackActivity(UserActivity activity) { }
 		protected virtual void PowerPointInternal(IEnumerable<CalendarOutputData> outputData) { }
 		protected virtual void EmailInternal(IEnumerable<CalendarOutputData> outputData) { }
 		protected virtual void PreviewInternal(IEnumerable<CalendarOutputData> outputData) { }

@@ -76,7 +76,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			if (!_allowToSave) return;
 			CalendarNote.Note = memoEdit.EditValue != null ? memoEdit.EditValue.ToString() : string.Empty;
 			if (NoteChanged != null)
-				NoteChanged(sender, new EventArgs());
+				NoteChanged(this, new EventArgs());
 		}
 
 		private void memoEdit_EditValueChanging(object sender, ChangingEventArgs e)

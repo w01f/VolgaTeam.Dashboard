@@ -118,9 +118,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			base.LoadCalendar(quickLoad);
 		}
 
-		public override bool SaveCalendarData(string scheduleName = "")
+		public override bool SaveCalendarData(bool byUser, string scheduleName = "")
 		{
-			var result = base.SaveCalendarData(scheduleName);
+			var result = base.SaveCalendarData(byUser, scheduleName);
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
 			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, this);
 			return result;
@@ -136,6 +136,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SettingsNotSaved = true;
 		}
 
+		public override void TrackActivity(UserActivity activity)
+		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+		}
+
 		public bool AllowToLeaveControl
 		{
 			get
@@ -143,7 +148,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				bool result;
 				if (SettingsNotSaved || (SelectedView != null && SelectedView.SettingsNotSaved) || SlideInfo.SettingsNotSaved)
 				{
-					SaveCalendarData();
+					SaveCalendarData(false);
 					SlideInfo.Close(false);
 					result = true;
 				}
@@ -314,7 +319,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void Save_Click(object sender, EventArgs e)
 		{
-			if (SaveCalendarData())
+			if (SaveCalendarData(true))
 				Utilities.Instance.ShowInformation("Calendar Saved");
 		}
 
@@ -327,7 +332,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (!string.IsNullOrEmpty(form.ScheduleName))
 				{
-					if (SaveCalendarData(form.ScheduleName))
+					if (SaveCalendarData(true, form.ScheduleName))
 						Utilities.Instance.ShowInformation("Schedule was saved");
 				}
 				else
@@ -350,19 +355,19 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void Preview_Click(object sender, EventArgs e)
 		{
-			SaveCalendarData();
+			SaveCalendarData(false);
 			Preview();
 		}
 
 		public void PowerPoint_Click(object sender, EventArgs e)
 		{
-			SaveCalendarData();
+			SaveCalendarData(false);
 			Print();
 		}
 
 		public void Email_Click(object sender, EventArgs e)
 		{
-			SaveCalendarData();
+			SaveCalendarData(false);
 			Email();
 		}
 

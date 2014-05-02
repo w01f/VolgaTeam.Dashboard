@@ -117,10 +117,11 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			base.LoadCalendar(quickLoad);
 		}
 
-		public override bool SaveCalendarData(string scheduleName = "")
+		public override bool SaveCalendarData(bool byUser, string scheduleName = "")
 		{
-			var result = base.SaveCalendarData(scheduleName);
-			Controller.Instance.SaveSchedule(_localSchedule, true, this);
+			var result = base.SaveCalendarData(byUser, scheduleName);
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			Controller.Instance.SaveSchedule(_localSchedule, byUser, nameChanged, true, this);
 			return result;
 		}
 
@@ -134,10 +135,24 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			SettingsManager.Instance.ViewSettings.Save();
 		}
 
+		public override void TrackActivity(UserActivity activity)
+		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
+		}
+
+		private void TrackOutput()
+		{
+			var options = new Dictionary<string, object>();
+			options.Add("Slide", SelectedView.Title);
+			options.Add("Advertiser", _localSchedule.BusinessName);
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
+		}
+
 		protected override void PowerPointInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
 			var commonOutputData = outputData.OfType<CommonCalendarOutputData>();
+			TrackOutput();
 			using (var formProgress = new FormProgress())
 			{
 				Controller.Instance.ShowFloater(() =>
@@ -191,6 +206,14 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			}
 		}
 
+		private void TrackPreview()
+		{
+			var options = new Dictionary<string, object>();
+			options.Add("Slide", SelectedView.Title);
+			options.Add("Advertiser", _localSchedule.BusinessName);
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
+		}
+
 		protected override void PreviewInternal(IEnumerable<CalendarOutputData> outputData)
 		{
 			if (outputData == null) return;
@@ -217,7 +240,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, CalendarPowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, CalendarPowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
 			{
 				formPreview.Text = "Preview this Calendar";
 				formPreview.LoadGroups(previewGroups);

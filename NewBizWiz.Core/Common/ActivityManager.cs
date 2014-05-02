@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
@@ -73,7 +74,16 @@ namespace NewBizWiz.Core.Common
 			activityElement.Add(new XAttribute("ActivityType", ActivityType));
 			activityElement.Add(new XAttribute("ActivityTime", ActivityTime));
 			foreach (var otherOption in OtherOptions)
-				activityElement.Add(new XAttribute(otherOption.Key, otherOption.Value));
+			{
+				var list = otherOption.Value as IEnumerable;
+				if (list != null && !(otherOption.Value is String))
+				{
+					foreach (var item in list)
+						activityElement.Add(new XElement(otherOption.Key, item));
+				}
+				else
+					activityElement.Add(new XAttribute(otherOption.Key, otherOption.Value));
+			}
 			return activityElement;
 		}
 	}
@@ -81,17 +91,21 @@ namespace NewBizWiz.Core.Common
 	public class TabActivity : UserActivity
 	{
 		public string TabName { get; private set; }
+		public string Advertiser { get; private set; }
 
-		public TabActivity(string tabName)
+		public TabActivity(string tabName, string advertiser = "")
 			: base("Tab Selected")
 		{
 			TabName = tabName;
+			Advertiser = advertiser;
 		}
 
 		public override XElement Serialize()
 		{
 			var element = base.Serialize();
 			element.Add(new XAttribute("Tab", TabName));
+			if (!String.IsNullOrEmpty(Advertiser))
+				element.Add(new XAttribute("Advertiser", Advertiser));
 			return element;
 		}
 	}

@@ -17,12 +17,17 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 	{
 		public Schedule LocalSchedule { get; set; }
 
+		public MediaFullSummarySettings MediaFullSummary
+		{
+			get { return (MediaFullSummarySettings)Schedule.CustomSummary; }
+		}
+
 		public MediaSummaryFull()
 		{
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
-					UpdateOutput(e.QuickSave);
+					UpdateOutput(e.QuickSave && !e.UpdateDigital);
 			});
 		}
 
@@ -81,6 +86,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
 				SettingsNotSaved = true;
 			}));
+			if (!quickLoad)
+				MediaFullSummary.UpdateItems();
 			base.UpdateOutput(quickLoad);
 		}
 
@@ -89,9 +96,33 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
 			if (nameChanged)
 				LocalSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, false, this);
 			SettingsNotSaved = false;
 			return true;
+		}
+
+		protected override void InitItem(SummaryCustomItemControl item)
+		{
+			base.InitItem(item);
+			item.DataChanged += (o, e) => { MediaFullSummary.IsDefaultSate = false; };
+		}
+
+		protected override void OnAddItem(object sender, EventArgs e)
+		{
+			base.OnAddItem(sender, e);
+			MediaFullSummary.IsDefaultSate = false;
+		}
+
+		protected override void ItemOnItemDeleted(object sender, SummaryItemEventArgs e)
+		{
+			base.ItemOnItemDeleted(sender, e);
+			MediaFullSummary.IsDefaultSate = false;
+		}
+
+		protected override void ItemOnItemPositionChanged(object sender, SummaryItemEventArgs e)
+		{
+			base.ItemOnItemPositionChanged(sender, e);
+			MediaFullSummary.IsDefaultSate = false;
 		}
 
 		public void Save_Click(object sender, EventArgs e)

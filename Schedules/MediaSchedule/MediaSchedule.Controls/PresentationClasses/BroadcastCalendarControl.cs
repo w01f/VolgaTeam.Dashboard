@@ -20,17 +20,16 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 {
 	public sealed class BroadcastCalendarControl : BaseCalendarControl
 	{
-		private Schedule _localSchedule = null;
+		private Schedule _localSchedule;
 
 		public BroadcastCalendarControl()
-			: base()
 		{
 			Dock = DockStyle.Fill;
 			InitSlideInfo<CalendarSlideInfoControl>();
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
 			{
 				if (sender != this)
-					LoadCalendar(e.QuickSave);
+					LoadCalendar(e.QuickSave && !e.UpdateDigital);
 			});
 		}
 
@@ -41,7 +40,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				bool result;
 				if (SettingsNotSaved || (SelectedView != null && SelectedView.SettingsNotSaved) || SlideInfo.SettingsNotSaved)
 				{
-					SaveCalendarData();
+					SaveCalendarData(false);
 					SlideInfo.Close(false);
 					result = true;
 				}
@@ -133,11 +132,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			base.LoadCalendar(quickLoad);
 		}
 
-		public override bool SaveCalendarData(string scheduleName = "")
+		public override bool SaveCalendarData(bool byUser, string scheduleName = "")
 		{
-			var result = base.SaveCalendarData(scheduleName);
+			var result = base.SaveCalendarData(byUser, scheduleName);
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
-			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, this);
+			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, false, this);
 			return result;
 		}
 
@@ -149,6 +148,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public override void SaveSettings()
 		{
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
+		}
+
+		public override void TrackActivity(UserActivity activity)
+		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(activity);
 		}
 
 		public override void UpdateOutputFunctions()
@@ -351,7 +355,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public void Save_Click(object sender, EventArgs e)
 		{
-			if (SaveCalendarData())
+			if (SaveCalendarData(true))
 				Utilities.Instance.ShowInformation("Calendar Saved");
 		}
 
@@ -364,7 +368,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (!string.IsNullOrEmpty(form.ScheduleName))
 				{
-					if (SaveCalendarData(form.ScheduleName))
+					if (SaveCalendarData(true, form.ScheduleName))
 						Utilities.Instance.ShowInformation("Schedule was saved");
 				}
 				else
@@ -374,19 +378,19 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public void Preview_Click(object sender, EventArgs e)
 		{
-			SaveCalendarData();
+			SaveCalendarData(false);
 			Preview();
 		}
 
 		public void PowerPoint_Click(object sender, EventArgs e)
 		{
-			SaveCalendarData();
+			SaveCalendarData(false);
 			Print();
 		}
 
 		public void Email_Click(object sender, EventArgs e)
 		{
-			SaveCalendarData();
+			SaveCalendarData(false);
 			Email();
 		}
 

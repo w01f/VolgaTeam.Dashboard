@@ -12,6 +12,7 @@ using NewBizWiz.CommonGUI.Gallery;
 using NewBizWiz.CommonGUI.RateCard;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Calendar.Controls
 {
@@ -39,6 +40,8 @@ namespace NewBizWiz.Calendar.Controls
 
 		public void Init()
 		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
+
 			HomeControl = new HomeControl();
 			HomeHelp.Click += HomeControl.HomeHelp_Click;
 			HomeSave.Click += HomeControl.HomeSave_Click;
@@ -206,19 +209,25 @@ namespace NewBizWiz.Calendar.Controls
 			}
 		}
 
-		public void SaveSchedule(Schedule localSchedule, bool quickSave, Control sender)
+		public void SaveSchedule(Schedule localSchedule, bool byUser, bool nameChanged, bool quickSave, Control sender)
 		{
 			using (var form = new FormProgress())
 			{
 				form.laProgress.Text = "Chill-Out for a few seconds...\nSaving settings...";
 				form.TopMost = true;
-				var thread = new Thread(delegate() { BusinessWrapper.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, sender); });
+				var thread = new Thread(() => BusinessWrapper.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, sender));
 				form.Show();
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
 				form.Close();
 			}
+			var options = new Dictionary<string, object>();
+			options.Add("Advertiser", localSchedule.BusinessName);
+			if (nameChanged)
+				BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name, options));
+			else if (byUser)
+				BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved", localSchedule.Name, options));
 			if (ScheduleChanged != null)
 				ScheduleChanged(this, EventArgs.Empty);
 		}
@@ -232,6 +241,7 @@ namespace NewBizWiz.Calendar.Controls
 
 		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text, BusinessWrapper.Instance.ScheduleManager.CurrentAdvertiser));
 			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
 				RateCard.LoadRateCards();
 			else if (Ribbon.SelectedRibbonTabItem == TabGallery1)

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Views;
 using NewBizWiz.Core.Calendar;
 
@@ -48,14 +50,12 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 		public void CopyDay(CalendarDay source)
 		{
 			SourceDay = source;
-			if (SourceDay != null)
-			{
-				if (DayCopied != null)
-					DayCopied(null, null);
-			}
+			if (SourceDay == null) return;
+			if (DayCopied != null)
+				DayCopied(null, null);
 		}
 
-		public void CloneDay(CalendarDay source, CalendarDay[] destination)
+		public void CloneDay(CalendarDay source, IEnumerable<CalendarDay> destination)
 		{
 			if (source == null || destination == null) return;
 			foreach (var day in destination)
@@ -69,26 +69,22 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 
 		public void PasteDay(CalendarDay[] destination)
 		{
-			if (SourceDay != null && destination != null)
+			if (SourceDay == null || destination == null) return;
+			foreach (var day in destination)
 			{
-				foreach (var day in destination)
-				{
-					day.Comment = SourceDay.Comment;
-					day.Logo = SourceDay.Logo.Clone();
-				}
-				if (DayPasted != null)
-					DayPasted(null, null);
+				day.Comment = SourceDay.Comment;
+				day.Logo = SourceDay.Logo.Clone();
 			}
+			if (DayPasted != null)
+				DayPasted(null, null);
 		}
 
 		public void CopyNote(CalendarNote source)
 		{
 			SourceNote = source;
-			if (SourceNote != null)
-			{
-				if (NoteCopied != null)
-					NoteCopied(null, null);
-			}
+			if (SourceNote == null) return;
+			if (NoteCopied != null)
+				NoteCopied(null, null);
 		}
 	}
 }

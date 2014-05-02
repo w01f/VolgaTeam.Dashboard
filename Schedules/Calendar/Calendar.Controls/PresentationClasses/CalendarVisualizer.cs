@@ -128,7 +128,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 
 		public void buttonItemCalendarSave_Click(object sender, EventArgs e)
 		{
-			if (SelectedCalendarControl.SaveCalendarData())
+			if (SelectedCalendarControl.SaveCalendarData(true))
 				Utilities.Instance.ShowInformation("Calendar Saved");
 		}
 
@@ -142,7 +142,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 				{
 					if (!string.IsNullOrEmpty(from.ScheduleName))
 					{
-						if (SelectedCalendarControl.SaveCalendarData(from.ScheduleName))
+						if (SelectedCalendarControl.SaveCalendarData(true, from.ScheduleName))
 							Utilities.Instance.ShowInformation("Calendar was saved");
 					}
 					else
@@ -155,19 +155,19 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 
 		public void buttonItemCalendarPreview_Click(object sender, EventArgs e)
 		{
-			SelectedCalendarControl.SaveCalendarData();
+			SelectedCalendarControl.SaveCalendarData(false);
 			SelectedCalendarControl.Preview();
 		}
 
 		public void buttonItemCalendarPowerPoint_Click(object sender, EventArgs e)
 		{
-			SelectedCalendarControl.SaveCalendarData();
+			SelectedCalendarControl.SaveCalendarData(false);
 			SelectedCalendarControl.Print();
 		}
 
 		public void buttonItemCalendarEmail_Click(object sender, EventArgs e)
 		{
-			SelectedCalendarControl.SaveCalendarData();
+			SelectedCalendarControl.SaveCalendarData(false);
 			SelectedCalendarControl.Email();
 		}
 

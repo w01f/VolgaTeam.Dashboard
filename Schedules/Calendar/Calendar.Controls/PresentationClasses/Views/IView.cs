@@ -9,6 +9,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views
 		ICalendarControl Calendar { get; }
 		CopyPasteManager CopyPasteManager { get; }
 		bool SettingsNotSaved { get; set; }
+		string Title { get; }
 
 		event EventHandler<EventArgs> DataSaved;
 

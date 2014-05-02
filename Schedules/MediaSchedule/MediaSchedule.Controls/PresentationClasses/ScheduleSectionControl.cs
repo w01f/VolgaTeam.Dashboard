@@ -554,7 +554,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			MediaMetaData.Instance.SettingsManager.UseSlideMaster = buttonXUseSlideMaster.Checked;
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
 
-			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, false, this);
+			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, false, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}
@@ -997,6 +997,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 					var spotInterval = new SpotInterval();
 					spotInterval.Start = spotInterval.End = spotIntervals.Any() ? spotIntervals.Last().End : 0;
 					spotInterval.End += spots.Count(s => s.Quarter == quarter);
+					spotInterval.Name = String.Format("Q{0}", quarter.QuarterNumber);
 					if (spotInterval.Start == spotInterval.End) continue;
 					spotIntervals.Add(spotInterval);
 				}
@@ -1020,6 +1021,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 							DigitalLegend :
 							String.Empty;
 						outputPage.Color = MediaMetaData.Instance.SettingsManager.SelectedColor;
+						outputPage.Quarter = spotInterval.Name;
 
 						outputPage.ProgramsPerSlide = programsPerSlide;
 						outputPage.SpotsPerSlide = totalSpotsCount > 0 ? spotsPerSlide : 0;

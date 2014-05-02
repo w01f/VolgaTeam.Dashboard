@@ -8,6 +8,7 @@ using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
 using NewBizWiz.Calendar.Controls.ToolForms;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 {
@@ -134,7 +135,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 										dayControl.DayCloned += (sender, e) => CloneDay();
 										dayControl.DayDataDeleted += (sender, e) =>
 										{
-											foreach (CalendarDay day in SelectionManager.SelectedDays)
+											foreach (var day in SelectionManager.SelectedDays)
 											{
 												day.ClearData();
 												RefreshData();
@@ -146,8 +147,15 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 										};
 										dayControl.DataChanged += (sender, e) =>
 										{
+											var day = sender as DayControl;
+											if (day == null) return;
 											Calendar.UpdateOutputFunctions();
 											Calendar.SettingsNotSaved = true;
+											var options = new Dictionary<string, object>();
+											options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
+											options.Add("Day", day.Day.Date);
+											options.Add("Text", day.Day.Summary);
+											Calendar.TrackActivity(new UserActivity("Edit Data", options));
 										};
 
 										dayControl.SelectionStateRequested += (sender, e) => SelectionManager.ProcessSelectionStateRequest();
@@ -239,29 +247,49 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		public void CopyDay()
 		{
 			var selectedDay = SelectionManager.SelectedDays.FirstOrDefault();
-			if (selectedDay != null)
-				CopyPasteManager.CopyDay(selectedDay);
+			if (selectedDay == null) return;
+			CopyPasteManager.CopyDay(selectedDay);
+			var options = new Dictionary<string, object>();
+			options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
+			options.Add("Day", CopyPasteManager.SourceDay.Date);
+			options.Add("Text", selectedDay.Summary);
+			Calendar.TrackActivity(new UserActivity("Copy Data", options));
 		}
 
 		public void PasteDay()
 		{
 			var selectedDays = SelectionManager.SelectedDays.ToArray();
-			if (selectedDays != null)
-				CopyPasteManager.PasteDay(selectedDays);
+			CopyPasteManager.PasteDay(selectedDays);
+			if (CopyPasteManager.SourceDay == null) return;
+			foreach (var day in selectedDays)
+			{
+				var options = new Dictionary<string, object>();
+				options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
+				options.Add("Day", day.Date);
+				options.Add("Text", CopyPasteManager.SourceDay.Summary);
+				Calendar.TrackActivity(new UserActivity("Paste Data", options));
+			}
 		}
 
 		public void CloneDay()
 		{
-			CalendarDay[] clonedDays = null;
 			var selectedDay = SelectionManager.SelectedDays.FirstOrDefault();
 			if (selectedDay == null) return;
 			using (var form = new FormCloneDay(selectedDay, Calendar.CalendarData.Schedule.FlightDateStart.Value, Calendar.CalendarData.Schedule.FlightDateEnd.Value))
 			{
 				if (form.ShowDialog() == DialogResult.OK)
-					clonedDays = Calendar.CalendarData.Days.Where(x => form.SelectedDates.Contains(x.Date)).ToArray();
+				{
+					var clonedDays = Calendar.CalendarData.Days.Where(x => form.SelectedDates.Contains(x.Date)).ToList();
+					CopyPasteManager.CloneDay(selectedDay, clonedDays);
+
+					var options = new Dictionary<string, object>();
+					options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
+					options.Add("SourceDay", selectedDay.Date);
+					options.Add("DestinationDay", clonedDays.Select(cd => cd.Date));
+					options.Add("Text", selectedDay.Summary);
+					Calendar.TrackActivity(new UserActivity("Clone Data", options));
+				}
 			}
-			if (clonedDays != null)
-				CopyPasteManager.CloneDay(selectedDay, clonedDays);
 		}
 		#endregion
 
@@ -280,7 +308,19 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 					var note = Calendar.CalendarData.Notes.FirstOrDefault(x => weekDay.Equals(x.StartDay));
 					if (note == null) continue;
 					var noteControl = new CalendarNoteControl(note);
-					noteControl.NoteChanged += (sender, e) => { Calendar.SettingsNotSaved = true; };
+					noteControl.NoteChanged += (sender, e) =>
+					{
+						var targetNoteControl = sender as CalendarNoteControl;
+						if (targetNoteControl == null) return;
+						Calendar.SettingsNotSaved = true;
+
+						var options = new Dictionary<string, object>();
+						options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
+						options.Add("StartDay", targetNoteControl.CalendarNote.StartDay);
+						options.Add("EndDay", targetNoteControl.CalendarNote.FinishDay);
+						options.Add("Text", targetNoteControl.CalendarNote.Note);
+						Calendar.TrackActivity(new UserActivity("Edit Note", options));
+					};
 					noteControl.NoteDeleted += (sender, e) =>
 					{
 						DeleteNote(note);
@@ -332,6 +372,14 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.Date.Equals(new DateTime(noteRange.FinishDate.Year, noteRange.FinishDate.Month, 1)));
 			if (calendarMonth != null)
 				Months[calendarMonth.Date].AddNotes(GetNotesByWeeeks(calendarMonth));
+
+			var options = new Dictionary<string, object>();
+			options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
+			options.Add("StartDay", noteRange.StartDate);
+			options.Add("EndDay", noteRange.FinishDate);
+			if (!String.IsNullOrEmpty(noteText))
+				options.Add("Text", noteText);
+			Calendar.TrackActivity(new UserActivity("Add Note", options));
 		}
 
 		private void PasteNote()
@@ -368,6 +416,10 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		public CopyPasteManager CopyPasteManager { get; private set; }
 
 		public bool SettingsNotSaved { get; set; }
+		public string Title
+		{
+			get { return "Calemdar"; }
+		}
 		public event EventHandler<EventArgs> DataSaved;
 		#endregion
 	}

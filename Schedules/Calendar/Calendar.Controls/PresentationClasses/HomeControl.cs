@@ -37,7 +37,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 				bool result = false;
 				if (SettingsNotSaved)
 				{
-					if (SaveCalendar())
+					if (SaveCalendar(false))
 						result = true;
 				}
 				else
@@ -85,12 +85,10 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 			SettingsNotSaved = false;
 		}
 
-		private bool SaveCalendar(string scheduleName = "")
+		private bool SaveCalendar(bool byUser, string scheduleName = "")
 		{
 			bool quickSave = true;
 
-			if (!string.IsNullOrEmpty(scheduleName))
-				_localCalendar.Name = scheduleName;
 			if (Controller.Instance.HomeBusinessName.EditValue != null)
 				_localCalendar.BusinessName = Controller.Instance.HomeBusinessName.EditValue.ToString();
 			else
@@ -162,7 +160,10 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 												   Controller.Instance.HomePresentationDate.EditValue != null &
 												   Controller.Instance.HomeFlightDatesStart.EditValue != null &
 												   Controller.Instance.HomeFlightDatesEnd.EditValue != null);
-			Controller.Instance.SaveSchedule(_localCalendar, quickSave, this);
+			var nameChanged = !string.IsNullOrEmpty(scheduleName);
+			if (nameChanged)
+				_localCalendar.Name = scheduleName;
+			Controller.Instance.SaveSchedule(_localCalendar, byUser, nameChanged, quickSave, this);
 			LoadCalendar(true);
 			return true;
 		}
@@ -280,7 +281,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 
 		public void HomeSave_Click(object sender, EventArgs e)
 		{
-			if (SaveCalendar())
+			if (SaveCalendar(true))
 				Utilities.Instance.ShowInformation("Calendar Saved");
 		}
 
@@ -294,7 +295,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 				{
 					if (!string.IsNullOrEmpty(from.ScheduleName))
 					{
-						if (SaveCalendar(from.ScheduleName))
+						if (SaveCalendar(true, from.ScheduleName))
 							Utilities.Instance.ShowInformation("Calendar was saved");
 					}
 					else

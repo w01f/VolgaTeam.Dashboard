@@ -376,6 +376,7 @@ namespace NewBizWiz.Calendar.Single
 					if (!string.IsNullOrEmpty(from.ScheduleName))
 					{
 						string fileName = from.ScheduleName.Trim();
+						BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("New Created", from.ScheduleName.Trim()));
 						BusinessWrapper.Instance.ScheduleManager.CreateSchedule(fileName);
 						LoadData();
 					}
@@ -396,6 +397,7 @@ namespace NewBizWiz.Calendar.Single
 				if (from.ShowDialog() == DialogResult.OK)
 				{
 					BusinessWrapper.Instance.ScheduleManager.OpenSchedule(from.ScheduleFilePath);
+					BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Previous Opened", Path.GetFileNameWithoutExtension(from.ScheduleFilePath)));
 					LoadData();
 				}
 				else if (!BusinessWrapper.Instance.ScheduleManager.CalendarLoaded)

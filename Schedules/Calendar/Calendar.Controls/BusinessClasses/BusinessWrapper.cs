@@ -16,6 +16,7 @@ namespace NewBizWiz.Calendar.Controls.BusinessClasses
 			HelpManager = new HelpManager(SettingsManager.Instance.HelpLinksPath);
 			OutputManager = new OutputManager();
 			TabPageManager = new TabPageManager(Path.Combine(Path.GetDirectoryName(typeof(TabPageManager).Assembly.Location), "cal_tab_names.xml"));
+			ActivityManager = new ActivityManager("calendar");
 			RateCardManager = new RateCardManager(Core.Common.SettingsManager.Instance.RateCardPath);
 			Gallery1Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery1.xml"));
 			Gallery2Manager = new GalleryManager(Path.Combine(Path.GetDirectoryName(typeof(GalleryManager).Assembly.Location), "Gallery2.xml"));
@@ -27,6 +28,7 @@ namespace NewBizWiz.Calendar.Controls.BusinessClasses
 		}
 
 		public ScheduleManager ScheduleManager { get; private set; }
+		public ActivityManager ActivityManager { get; private set; }
 		public HelpManager HelpManager { get; private set; }
 		public OutputManager OutputManager { get; private set; }
 		public TabPageManager TabPageManager { get; private set; }

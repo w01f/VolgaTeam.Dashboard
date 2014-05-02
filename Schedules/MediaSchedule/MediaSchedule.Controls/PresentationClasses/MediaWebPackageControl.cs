@@ -25,7 +25,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
 			{
 				if (sender != this)
-					LoadSchedule(e.QuickSave);
+					LoadSchedule(e.QuickSave && !e.UpdateDigital);
 			});
 		}
 
@@ -92,7 +92,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
 			if (nameChanged)
 				LocalSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, this);
+			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, false, this);
 			return base.SaveSchedule(scheduleName);
 		}
 

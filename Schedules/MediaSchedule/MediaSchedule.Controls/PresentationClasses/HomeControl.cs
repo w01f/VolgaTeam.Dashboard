@@ -20,6 +20,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 	public partial class HomeControl : UserControl
 	{
 		private bool _allowToSave;
+		private bool _digitalChanged;
 		private Schedule _localSchedule;
 
 		public HomeControl()
@@ -56,8 +57,26 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 								   Controller.Instance.HomeFlightDatesStart.EditValue != null &
 								   Controller.Instance.HomeFlightDatesEnd.EditValue != null;
 			Controller.Instance.UpdateScheduleTabs(enableSchedules);
-			pbWeeklySchedule.Enabled = enableSchedules;
-			pbMonthlySchedule.Enabled = enableSchedules;
+			buttonXWeeklySchedule.Enabled = enableSchedules;
+			buttonXMonthlySchedule.Enabled = enableSchedules;
+		}
+
+		private void UpdateScheduleType(SpotType selectedScheduleType)
+		{
+			switch (selectedScheduleType)
+			{
+				case SpotType.Week:
+					Controller.Instance.TabWeeklySchedule.Visible = true;
+					Controller.Instance.TabMonthlySchedule.Visible = false;
+					break;
+				case SpotType.Month:
+					Controller.Instance.TabWeeklySchedule.Visible = false;
+					Controller.Instance.TabMonthlySchedule.Visible = true;
+					break;
+			}
+			Controller.Instance.Ribbon.Refresh();
+			Controller.Instance.Ribbon.RecalcLayout();
+			Controller.Instance.Ribbon.PerformLayout();
 		}
 
 		private void LoadDigitalCategories()
@@ -66,10 +85,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			{
 				var categoryButton = new ButtonItem
 				{
-					Image = category.Logo, 
-					Text = "<b>" + category.TooltipTitle + "</b><p>" + category.TooltipValue + "</p>", 
-					ImagePaddingHorizontal = 8, 
-					SubItemsExpandWidth = 14, 
+					Image = category.Logo,
+					Text = "<b>" + category.TooltipTitle + "</b><p>" + category.TooltipValue + "</p>",
+					ImagePaddingHorizontal = 8,
+					SubItemsExpandWidth = 14,
 					Tag = category
 				};
 				categoryButton.Click += DigitalProductAdd;
@@ -87,11 +106,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			_allowToSave = false;
 			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			laTopTitle.Text = _localSchedule.Name;
+			_digitalChanged = false;
 			digitalProductListControl.UpdateData(_localSchedule,
 				() =>
 				{
 					UpdateProductsCount();
 					Controller.Instance.UpdateDigitalProductTab(_localSchedule.DigitalProducts.Any(p => !String.IsNullOrEmpty(p.Name)));
+					_digitalChanged = true;
 					if (_allowToSave)
 						SettingsNotSaved = true;
 				},
@@ -127,6 +148,18 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				Controller.Instance.HomePresentationDate.EditValue = _localSchedule.PresentationDate;
 				Controller.Instance.HomeFlightDatesStart.EditValue = _localSchedule.FlightDateStart;
 				Controller.Instance.HomeFlightDatesEnd.EditValue = _localSchedule.FlightDateEnd;
+
+				switch (_localSchedule.SelectedSpotType)
+				{
+					case SpotType.Week:
+						buttonXWeeklySchedule.Checked = true;
+						buttonXMonthlySchedule.Checked = false;
+						break;
+					case SpotType.Month:
+						buttonXWeeklySchedule.Checked = false;
+						buttonXMonthlySchedule.Checked = true;
+						break;
+				}
 
 				var importedDemos = MediaMetaData.Instance.ListManager.SourcePrograms.SelectMany(sp => sp.Demos);
 				if (!importedDemos.Any())
@@ -227,6 +260,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				xtraTabControlProducts_SelectedPageChanged(this, new TabPageChangedEventArgs(null, xtraTabControlMain.SelectedTabPage));
 				#endregion
 			}
+			UpdateScheduleType(_localSchedule.SelectedSpotType);
 			UpdateScheduleControls();
 			SettingsNotSaved = false;
 			_allowToSave = true;
@@ -385,7 +419,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				_localSchedule.Dayparts.AddRange(daypartsControl.GetData());
 			}
 
-			if (_localSchedule.DigitalProducts.Any(publication => string.IsNullOrEmpty(publication.Name)))
+			if (_localSchedule.DigitalProducts.Any(product => String.IsNullOrEmpty(product.Name)))
 			{
 				if (!quiet)
 					Utilities.Instance.ShowWarning("Your schedule is missing important information!\nPlease make sure you have a Web Product in each line before you proceed.");
@@ -399,7 +433,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
 			Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers.ToArray());
 			UpdateScheduleControls();
-			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, quickSave, this);
+			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, quickSave, _digitalChanged, this);
 			SettingsNotSaved = false;
 			stationsControl.HasChanged = false;
 			daypartsControl.HasChanged = false;
@@ -631,15 +665,28 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		#endregion
 
 		#region Buttons Clicks Events
-
-		private void pbWeeklySchedule_Click(object sender, EventArgs e)
+		private void buttonXScheduleType_Click(object sender, EventArgs e)
 		{
-			Controller.Instance.TabWeeklySchedule.Select();
+			var button = sender as ButtonX;
+			if (button == null) return;
+			if (button.Checked) return;
+			buttonXWeeklySchedule.Checked = false;
+			buttonXMonthlySchedule.Checked = false;
+			buttonXWideOrbitSchedule.Checked = false;
+			button.Checked = true;
 		}
 
-		private void pbMonthlySchedule_Click(object sender, EventArgs e)
+		private void buttonXScheduleType_CheckedChanged(object sender, EventArgs e)
 		{
-			Controller.Instance.TabMonthlySchedule.Select();
+			var button = sender as ButtonX;
+			if (button == null) return;
+			if (!button.Checked) return;
+			if (!_allowToSave) return;
+			if (buttonXWeeklySchedule.Checked)
+				_localSchedule.SelectedSpotType = SpotType.Week;
+			else if (buttonXMonthlySchedule.Checked)
+				_localSchedule.SelectedSpotType = SpotType.Month;
+			UpdateScheduleType(_localSchedule.SelectedSpotType);
 		}
 
 		private void pbOptionsHelp_Click(object sender, EventArgs e)
@@ -686,9 +733,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		#endregion
 
 		#region Picture Box Clicks Habdlers
-
 		/// <summary>
-		///     Buttonize the PictureBox
+		/// Buttonize the PictureBox 
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -703,7 +749,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			var pic = (PictureBox)(sender);
 			pic.Top -= 1;
 		}
-
 		#endregion
 	}
 }

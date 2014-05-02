@@ -26,7 +26,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		void AssignCloseActiveEditorsonOutSideClick(Control control);
 		void LeaveCalendar();
 		void ShowCalendar(bool gridView);
-		bool SaveCalendarData(string scheduleName = "");
+		bool SaveCalendarData(bool byUser, string scheduleName = "");
 		void UpdateOutputFunctions();
 		void Preview();
 		void Print();
@@ -34,5 +34,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		void OpenHelp();
 		void Splash(bool show);
 		void SaveSettings();
+		void TrackActivity(UserActivity activity);
 	}
 }

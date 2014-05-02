@@ -28,6 +28,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		public string Demo { get; set; }
 		public string DigitalInfo { get; set; }
 		public string Color { get; set; }
+		public string Quarter { get; set; }
 
 		public int ProgramsPerSlide { get; set; }
 		public int SpotsPerSlide { get; set; }
@@ -133,6 +134,13 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 			value = String.Format("{0}  -  {1}", Advertiser, DecisionMaker);
 			if (!ReplacementsList.Keys.Contains(key))
 				ReplacementsList.Add(key, value);
+			if (!String.IsNullOrEmpty(Quarter))
+			{
+				key = "Program";
+				value = String.Format("Program  ({0})", Quarter);
+				if (!ReplacementsList.Keys.Contains(key))
+					ReplacementsList.Add(key, value);
+			}
 			if (!ShowLength && SpotsPerSlide < 24)
 			{
 				key = "Length";
@@ -573,5 +581,6 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 	{
 		public int Start { get; set; }
 		public int End { get; set; }
+		public string Name { get; set; }
 	}
 }

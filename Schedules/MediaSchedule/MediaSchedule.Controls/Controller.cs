@@ -290,13 +290,13 @@ namespace NewBizWiz.MediaSchedule.Controls
 			Ribbon.Items.AddRange(tabPages.ToArray());
 		}
 
-		public void SaveSchedule(Schedule localSchedule, bool nameChanged, bool quickSave, Control sender)
+		public void SaveSchedule(Schedule localSchedule, bool nameChanged, bool quickSave, bool updateDigital, Control sender)
 		{
 			using (var form = new FormProgress())
 			{
 				form.laProgress.Text = "Chill-Out for a few seconds...\nSaving settings...";
 				form.TopMost = true;
-				var thread = new Thread(delegate() { BusinessWrapper.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, sender); });
+				var thread = new Thread(() => BusinessWrapper.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, updateDigital, sender));
 				form.Show();
 				thread.Start();
 				while (thread.IsAlive)
@@ -329,12 +329,13 @@ namespace NewBizWiz.MediaSchedule.Controls
 		{
 			TabWeeklySchedule.Enabled = enable;
 			TabMonthlySchedule.Enabled = enable;
-			TabSummaryLight.Enabled = enable;
 		}
 
 		public void UpdateCalendarTab(bool enable)
 		{
 			TabCalendar.Enabled = enable;
+			TabSummaryLight.Enabled = enable;
+			TabSummaryFull.Enabled = enable;
 		}
 
 		public void UpdateDigitalProductTab(bool enable)
@@ -466,7 +467,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text));
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text,BusinessWrapper.Instance.ScheduleManager.CurrentAdvertiser));
 			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
 				RateCard.LoadRateCards();
 			if (Ribbon.SelectedRibbonTabItem == TabGallery1)

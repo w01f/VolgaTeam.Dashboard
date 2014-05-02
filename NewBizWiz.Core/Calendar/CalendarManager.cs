@@ -28,6 +28,11 @@ namespace NewBizWiz.Core.Calendar
 		public bool CalendarLoaded { get; set; }
 		public event EventHandler<ScheduleSaveEventArgs> SettingsSaved;
 
+		public string CurrentAdvertiser
+		{
+			get { return _currentSchedule != null ? _currentSchedule.BusinessName : null; }
+		}
+
 		public static ShortSchedule[] GetShortScheduleExtendedList()
 		{
 			var schedules = new List<ShortSchedule>();

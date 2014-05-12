@@ -201,6 +201,11 @@ namespace NewBizWiz.CommonGUI.Summary
 			get { return !String.IsNullOrEmpty(Data.Value) && Data.ShowValue ? Data.Value : String.Empty; }
 		}
 
+		public string ItemIcon
+		{
+			get { return String.Empty; }
+		}
+
 		public string OutputItemTitle
 		{
 			get { return !String.IsNullOrEmpty(ItemTitle) && ShowValueOutput ? ItemTitle : String.Empty; }

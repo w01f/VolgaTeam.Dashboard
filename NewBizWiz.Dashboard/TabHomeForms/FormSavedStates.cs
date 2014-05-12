@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
@@ -12,8 +11,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 {
 	public partial class FormSavedStates : Form
 	{
-		protected string _rootFolderPath = string.Empty;
-		protected List<StateFile> _stateFiles = new List<StateFile>();
+		protected string SavedFilesPath = string.Empty;
+		protected string SavedTemplatesPath = string.Empty;
 
 		public FormSavedStates()
 		{
@@ -26,31 +25,52 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			get
 			{
-				var file = gridViewFiles.GetFocusedRow() as StateFile;
+				StateFile file = null;
+				if (xtraTabControl.SelectedTabPage == xtraTabPageFiles)
+					file = gridViewFiles.GetFocusedRow() as StateFile;
+				else if (xtraTabControl.SelectedTabPage == xtraTabPageTemplates)
+					file = gridViewTemplates.GetFocusedRow() as StateFile;
 				return file == null ? null : file.FilePath;
 			}
 		}
 
-		public virtual void InitForm() { }
+		public virtual void InitForm()
+		{
+			SavedTemplatesPath = Path.Combine(SavedFilesPath, "templates");
+		}
 
-		protected void LoadFiles()
+		private void LoadFiles()
 		{
 			gridControlFiles.DataSource = null;
-			_stateFiles.Clear();
-			if (Directory.Exists(_rootFolderPath))
+			var files = new List<StateFile>();
+			if (Directory.Exists(SavedFilesPath))
 			{
-				foreach (string filePath in Directory.GetFiles(_rootFolderPath, "*.xml"))
+				foreach (var filePath in Directory.GetFiles(SavedFilesPath, "*.xml"))
 				{
 					var file = new StateFile();
 					file.FilePath = filePath;
-					_stateFiles.Add(file);
+					files.Add(file);
 				}
 			}
-			_stateFiles.Sort((x, y) => y.LastModified.CompareTo(x.LastModified));
-			gridControlFiles.DataSource = _stateFiles;
+			files.Sort((x, y) => y.LastModified.CompareTo(x.LastModified));
+			gridControlFiles.DataSource = files;
+
+			gridControlTemplates.DataSource = null;
+			var templates = new List<StateFile>();
+			if (Directory.Exists(SavedTemplatesPath))
+			{
+				foreach (var filePath in Directory.GetFiles(SavedTemplatesPath, "*.xml"))
+				{
+					var file = new StateFile();
+					file.FilePath = filePath;
+					templates.Add(file);
+				}
+			}
+			templates.Sort((x, y) => y.LastModified.CompareTo(x.LastModified));
+			gridControlTemplates.DataSource = templates;
 		}
 
-		private void repositoryItemButtonEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+		private void repositoryItemButtonEditFiles_ButtonClick(object sender, ButtonPressedEventArgs e)
 		{
 			var file = gridViewFiles.GetFocusedRow() as StateFile;
 			if (file == null) return;
@@ -63,14 +83,27 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			gridViewFiles.DeleteSelectedRows();
 		}
 
-		private void gridViewFiles_RowClick(object sender, RowClickEventArgs e)
+		private void repositoryItemButtonEditTemplates_ButtonClick(object sender, ButtonPressedEventArgs e)
 		{
-			if (e.Clicks == 2)
+			var file = gridViewTemplates.GetFocusedRow() as StateFile;
+			if (file == null) return;
+			if (Utilities.Instance.ShowWarningQuestion("Are you sure want to delete this file?") != DialogResult.Yes) return;
+			if (File.Exists(file.FilePath))
 			{
-				gridViewFiles.FocusedRowHandle = e.RowHandle;
-				DialogResult = DialogResult.OK;
-				Close();
+				try { File.Delete(file.FilePath); }
+				catch { }
 			}
+			gridViewTemplates.DeleteSelectedRows();
+		}
+
+		private void gridView_RowClick(object sender, RowClickEventArgs e)
+		{
+			if (e.Clicks != 2) return;
+			var view = sender as GridView;
+			if (view == null) return;
+			view.FocusedRowHandle = e.RowHandle;
+			DialogResult = DialogResult.OK;
+			Close();
 		}
 	}
 
@@ -80,7 +113,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			Text = "Needs Analysis Slides";
 			laTitle.Text = "Select the Needs Analysis Slide you want to open..";
-			_rootFolderPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals");
+			SavedFilesPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals");
+			base.InitForm();
 		}
 	}
 
@@ -90,7 +124,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			Text = "Cover Slides";
 			laTitle.Text = "Select the Cover Slide you want to open...";
-			_rootFolderPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "cover");
+			SavedFilesPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "cover");
+			base.InitForm();
 		}
 	}
 
@@ -100,7 +135,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			Text = "Intro Slides";
 			laTitle.Text = "Select the Intro Slide you want to open...";
-			_rootFolderPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "intro");
+			SavedFilesPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "intro");
+			base.InitForm();
 		}
 	}
 
@@ -110,7 +146,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			Text = "Closing Summary Slide";
 			laTitle.Text = "Select the Closing Summary Slide you want to open...";
-			_rootFolderPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "summary");
+			SavedFilesPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "summary");
+			base.InitForm();
 		}
 	}
 
@@ -120,7 +157,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			Text = "Target Customer Slide";
 			laTitle.Text = "Select the Target Customer Slide you want to open...";
-			_rootFolderPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "target");
+			SavedFilesPath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "target");
+			base.InitForm();
 		}
 	}
 

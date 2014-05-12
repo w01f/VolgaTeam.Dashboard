@@ -33,6 +33,11 @@ namespace NewBizWiz.CommonGUI.Summary
 			get { return checkEditTotalInvestment.Checked && (Schedule.CustomSummary.TotalValue.HasValue || Schedule.CustomSummary.TotalTotal.HasValue) ? (Schedule.CustomSummary.TotalValue.HasValue ? Schedule.CustomSummary.TotalValue.Value : Schedule.CustomSummary.TotalTotal).Value.ToString("$#,##0.00") : string.Empty; }
 		}
 
+		public override bool ShowIcons
+		{
+			get { return false; }
+		}
+
 		protected override void LoadItems(bool quickLoad)
 		{
 			base.LoadItems(quickLoad);
@@ -64,6 +69,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			var newItemData = Schedule.CustomSummary.AddItem();
 			var focussed = AddItemToList(newItemData);
 			UpdateControlsInList(focussed);
+			UpdateTotalItems();
 			SettingsNotSaved = true;
 		}
 

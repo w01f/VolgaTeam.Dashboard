@@ -43,10 +43,13 @@ namespace NewBizWiz.CommonGUI.Summary
 		{
 			SetClickEventHandler(this);
 			checkEditBusinessName.CheckedChanged += checkEdit_CheckedChanged;
+			checkEditDecisionMaker.CheckedChanged += checkEdit_CheckedChanged;
 			checkEditTotalInvestment.CheckedChanged += checkEdit_CheckedChanged;
 			checkEditPresentationDate.CheckedChanged += checkEdit_CheckedChanged;
 			checkEditFlightDates.CheckedChanged += checkEdit_CheckedChanged;
 			checkEditMonthlyInvestment.CheckedChanged += checkEdit_CheckedChanged;
+			checkEditTableOutput.CheckedChanged += checkEdit_CheckedChanged;
+			comboBoxEditHeader.EditValueChanged += checkEdit_CheckedChanged;
 		}
 
 		public bool AllowToLeaveControl
@@ -94,12 +97,25 @@ namespace NewBizWiz.CommonGUI.Summary
 			_allowToSave = false;
 			if (!quickLoad)
 			{
+				comboBoxEditHeader.Properties.Items.Clear();
+				comboBoxEditHeader.Properties.Items.AddRange(Core.Dashboard.ListManager.Instance.SimpleSummaryLists.Headers);
 				checkEditBusinessName.Checked = Settings.ShowAdvertiser;
+				checkEditDecisionMaker.Checked = Settings.ShowDecisionMaker;
 				checkEditPresentationDate.Checked = Settings.ShowPresentationDate;
 				checkEditFlightDates.Checked = Settings.ShowFlightDates;
 				checkEditMonthlyInvestment.Checked = Settings.ShowMonthly;
 				checkEditTotalInvestment.Checked = Settings.ShowTotal;
-
+				checkEditTableOutput.Checked = Settings.TableOutput;
+				if (String.IsNullOrEmpty(Settings.SlideHeader))
+				{
+					if (comboBoxEditHeader.Properties.Items.Count > 0)
+						comboBoxEditHeader.SelectedIndex = 0;
+				}
+				else
+				{
+					var index = comboBoxEditHeader.Properties.Items.IndexOf(Settings.SlideHeader);
+					comboBoxEditHeader.SelectedIndex = index >= 0 ? index : 0;
+				}
 			}
 			LoadItems(quickLoad);
 			UpdateTotalItems();
@@ -148,7 +164,11 @@ namespace NewBizWiz.CommonGUI.Summary
 		protected virtual void InitItem(TItemControl item)
 		{
 			item.LoadData();
-			item.DataChanged += (o, e) => { SettingsNotSaved = true; };
+			item.DataChanged += (o, e) =>
+			{
+				SettingsNotSaved = true;
+				UpdateTotalItems();
+			};
 			item.InvestmentChanged += (o, e) => UpdateTotals();
 		}
 
@@ -165,7 +185,14 @@ namespace NewBizWiz.CommonGUI.Summary
 
 		protected void UpdateTotalItems()
 		{
-			laTotalItems.Text = string.Format("Total Items: {0}", _inputControls.Count());
+			laTotalItems.Text = String.Format("Total Items: {0}", _inputControls.Count());
+			if (SlidesCount > 0)
+			{
+				laSlideCount.Visible = true;
+				laSlideCount.Text = String.Format("Estimated Slide Count: {0}", SlidesCount);
+			}
+			else
+				laSlideCount.Visible = false;
 		}
 
 		protected abstract void UpdateTotals();
@@ -191,10 +218,14 @@ namespace NewBizWiz.CommonGUI.Summary
 			spinEditTotal.Enabled = checkEditTotalInvestment.Checked;
 			if (!_allowToSave) return;
 			Settings.ShowAdvertiser = checkEditBusinessName.Checked;
+			Settings.ShowDecisionMaker = checkEditDecisionMaker.Checked;
 			Settings.ShowPresentationDate = checkEditPresentationDate.Checked;
 			Settings.ShowFlightDates = checkEditFlightDates.Checked;
 			Settings.ShowMonthly = checkEditMonthlyInvestment.Checked;
 			Settings.ShowTotal = checkEditTotalInvestment.Checked;
+			Settings.TableOutput = checkEditTableOutput.Checked;
+			Settings.SlideHeader = comboBoxEditHeader.EditValue as String;
+			UpdateTotalItems();
 			SettingsNotSaved = true;
 		}
 
@@ -210,9 +241,49 @@ namespace NewBizWiz.CommonGUI.Summary
 			get { return _inputControls.Count(it => it.Complited); }
 		}
 
+		public int SlidesCount
+		{
+			get
+			{
+				if (!TableOutput)
+				{
+					var main = ItemsCount / 5;
+					var rest = ItemsCount % 5;
+					return main + (rest > 0 ? 1 : 0);
+				}
+				else
+				{
+					var main = ItemsCount / 18;
+					var rest = ItemsCount % 18;
+					return main + (rest > 0 ? 1 : 0);
+				}
+			}
+		}
+
 		public string Title
 		{
-			get { return "Summary"; }
+			get { return (comboBoxEditHeader.EditValue as String) ?? String.Empty; }
+		}
+
+		public string SummaryData
+		{
+			get
+			{
+				var values = new List<string>();
+				if (!String.IsNullOrEmpty(PresentationDate))
+					values.Add(PresentationDate);
+				if (!String.IsNullOrEmpty(Advertiser))
+					values.Add(Advertiser);
+				if (!String.IsNullOrEmpty(DecisionMaker))
+					values.Add(DecisionMaker);
+				if (!String.IsNullOrEmpty(CampaignDates))
+					values.Add(CampaignDates);
+				if (!String.IsNullOrEmpty(TotalMonthlyValue))
+					values.Add(String.Format("Monthly Investment: {0}", TotalMonthlyValue));
+				if (!String.IsNullOrEmpty(TotalTotalValue))
+					values.Add(String.Format("Total Investment: {0}", TotalTotalValue));
+				return String.Join("   |   ", values);
+			}
 		}
 
 		public string Advertiser
@@ -229,7 +300,9 @@ namespace NewBizWiz.CommonGUI.Summary
 		{
 			get
 			{
-				return Schedule.DecisionMaker;
+				if (checkEditDecisionMaker.Checked)
+					return Schedule.DecisionMaker;
+				return String.Empty;
 			}
 		}
 
@@ -295,6 +368,61 @@ namespace NewBizWiz.CommonGUI.Summary
 		public bool ShowTotalHeader
 		{
 			get { return OrderedItems.Where(it => it.Complited).Any(it => it.OutputTotalValue.HasValue); }
+		}
+
+		public bool TableOutput
+		{
+			get { return checkEditTableOutput.Checked; }
+		}
+
+		public int ItemsPerTable
+		{
+			get { return ItemsCount > 18 ? 18 : ItemsCount; }
+		}
+
+		public abstract bool ShowIcons { get; }
+
+		public string[] TableIcons
+		{
+			get { return OrderedItems.Where(it => it.Complited).Select(it => it.ItemIcon).ToArray(); }
+		}
+
+		public List<Dictionary<string, string>> OutputReplacementsLists { get; private set; }
+
+		public void PopulateReplacementsList()
+		{
+			if (OutputReplacementsLists == null)
+				OutputReplacementsLists = new List<Dictionary<string, string>>();
+			OutputReplacementsLists.Clear();
+			var recordsCount = ItemsCount;
+			OutputReplacementsLists = new List<Dictionary<string, string>>();
+			var monthlyValues = OrderedItems.Where(it => it.Complited).Select(it => it.OutputMonthlyValue.HasValue ? it.OutputMonthlyValue.Value.ToString("$#,##0") : String.Empty).ToArray();
+			var totalValues = OrderedItems.Where(it => it.Complited).Select(it => it.OutputTotalValue.HasValue ? it.OutputTotalValue.Value.ToString("$#,##0") : String.Empty).ToArray();
+			for (var i = 0; i < recordsCount; i += ItemsPerTable)
+			{
+				var slideRows = new Dictionary<string, string>();
+				for (var j = 0; j < ItemsPerTable; j++)
+				{
+					if ((i + j) < recordsCount)
+					{
+						slideRows.Add(String.Format("Product{0}", j + 1), ItemTitles[i + j]);
+						var details = new List<string>();
+						if (!String.IsNullOrEmpty(ItemDetails[i + j]))
+							details.Add(ItemDetails[i + j]);
+						if (monthlyValues.Any() && !String.IsNullOrEmpty(monthlyValues[i + j]))
+							details.Add(String.Format("({0}/mo)", monthlyValues[i + j]));
+						if (totalValues.Any() && !String.IsNullOrEmpty(totalValues[i + j]))
+							details.Add(String.Format("({0} inv)", totalValues[i + j]));
+						slideRows.Add(String.Format("Details{0}", j + 1), String.Join(" ", details));
+					}
+					else
+					{
+						slideRows.Add(String.Format("Product{0}", j + 1), "DeleteRow");
+						slideRows.Add(String.Format("Details{0}", j + 1), "DeleteRow");
+					}
+				}
+				OutputReplacementsLists.Add(slideRows);
+			}
 		}
 
 		public void Email()

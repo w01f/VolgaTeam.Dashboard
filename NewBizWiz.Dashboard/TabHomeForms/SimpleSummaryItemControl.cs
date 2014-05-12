@@ -111,19 +111,22 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void textEditItem_EditValueChanged(object sender, EventArgs e)
 		{
 			if (!TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave) return;
+			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalItems();
 			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateOutputState();
 			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		private void memoEditDetails_EditValueChanged(object sender, EventArgs e)
 		{
-			if (TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave)
-				TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
+			if (!TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave) return;
+			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalItems();
+			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
 
 		private void spinEditMonthly_EditValueChanged(object sender, EventArgs e)
 		{
 			if (!TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave) return;
+			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalItems();
 			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
 			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}
@@ -131,6 +134,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		private void spinEditTotal_EditValueChanged(object sender, EventArgs e)
 		{
 			if (!TabHomeMainPage.Instance.SlideSimpleSummary.AllowToSave) return;
+			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalItems();
 			TabHomeMainPage.Instance.SlideSimpleSummary.UpdateTotalValues();
 			TabHomeMainPage.Instance.SlideSimpleSummary.SettingsNotSaved = true;
 		}

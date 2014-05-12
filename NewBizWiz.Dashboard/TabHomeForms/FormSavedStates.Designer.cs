@@ -1,6 +1,6 @@
 ﻿namespace NewBizWiz.Dashboard.TabHomeForms
 {
-    partial class FormSavedStates
+	partial class FormSavedStates
     {
         /// <summary>
         /// Required designer variable.
@@ -30,17 +30,33 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSavedStates));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.laTitle = new System.Windows.Forms.Label();
 			this.buttonXLoad = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.gridControlFiles = new DevExpress.XtraGrid.GridControl();
 			this.gridViewFiles = new DevExpress.XtraGrid.Views.Grid.GridView();
-			this.gridColumnName = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.gridColumnButtons = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.repositoryItemButtonEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+			this.gridColumnFilesName = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumnFilesButtons = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repositoryItemButtonEditFiles = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
+			this.xtraTabPageFiles = new DevExpress.XtraTab.XtraTabPage();
+			this.xtraTabPageTemplates = new DevExpress.XtraTab.XtraTabPage();
+			this.gridControlTemplates = new DevExpress.XtraGrid.GridControl();
+			this.gridViewTemplates = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.gridColumnTemplatesName = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.gridColumnTemplatesButtons = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repositoryItemButtonEditTemplates = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlFiles)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewFiles)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditFiles)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
+			this.xtraTabControl.SuspendLayout();
+			this.xtraTabPageFiles.SuspendLayout();
+			this.xtraTabPageTemplates.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.gridControlTemplates)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewTemplates)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditTemplates)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// laTitle
@@ -84,15 +100,13 @@
 			// 
 			// gridControlFiles
 			// 
-			this.gridControlFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.gridControlFiles.Location = new System.Drawing.Point(12, 77);
+			this.gridControlFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gridControlFiles.Location = new System.Drawing.Point(0, 0);
 			this.gridControlFiles.MainView = this.gridViewFiles;
 			this.gridControlFiles.Name = "gridControlFiles";
 			this.gridControlFiles.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemButtonEdit});
-			this.gridControlFiles.Size = new System.Drawing.Size(599, 340);
+            this.repositoryItemButtonEditFiles});
+			this.gridControlFiles.Size = new System.Drawing.Size(597, 329);
 			this.gridControlFiles.TabIndex = 18;
 			this.gridControlFiles.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewFiles});
@@ -108,8 +122,8 @@
 			this.gridViewFiles.Appearance.Row.Options.UseTextOptions = true;
 			this.gridViewFiles.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.gridViewFiles.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumnName,
-            this.gridColumnButtons});
+            this.gridColumnFilesName,
+            this.gridColumnFilesButtons});
 			this.gridViewFiles.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
 			this.gridViewFiles.GridControl = this.gridControlFiles;
 			this.gridViewFiles.Name = "gridViewFiles";
@@ -133,55 +147,184 @@
 			this.gridViewFiles.OptionsView.ShowGroupPanel = false;
 			this.gridViewFiles.OptionsView.ShowIndicator = false;
 			this.gridViewFiles.RowHeight = 40;
-			this.gridViewFiles.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewFiles_RowClick);
+			this.gridViewFiles.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView_RowClick);
 			// 
-			// gridColumnName
+			// gridColumnFilesName
 			// 
-			this.gridColumnName.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-			this.gridColumnName.Caption = "Name";
-			this.gridColumnName.FieldName = "Name";
-			this.gridColumnName.Name = "gridColumnName";
-			this.gridColumnName.OptionsColumn.AllowEdit = false;
-			this.gridColumnName.OptionsColumn.ReadOnly = true;
-			this.gridColumnName.Visible = true;
-			this.gridColumnName.VisibleIndex = 0;
-			this.gridColumnName.Width = 471;
+			this.gridColumnFilesName.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumnFilesName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.gridColumnFilesName.Caption = "Name";
+			this.gridColumnFilesName.FieldName = "Name";
+			this.gridColumnFilesName.Name = "gridColumnFilesName";
+			this.gridColumnFilesName.OptionsColumn.AllowEdit = false;
+			this.gridColumnFilesName.OptionsColumn.ReadOnly = true;
+			this.gridColumnFilesName.Visible = true;
+			this.gridColumnFilesName.VisibleIndex = 0;
+			this.gridColumnFilesName.Width = 471;
 			// 
-			// gridColumnButtons
+			// gridColumnFilesButtons
 			// 
-			this.gridColumnButtons.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.gridColumnButtons.AppearanceCell.Options.UseFont = true;
-			this.gridColumnButtons.AppearanceCell.Options.UseTextOptions = true;
-			this.gridColumnButtons.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-			this.gridColumnButtons.Caption = "Buttons";
-			this.gridColumnButtons.ColumnEdit = this.repositoryItemButtonEdit;
-			this.gridColumnButtons.FieldName = "Status";
-			this.gridColumnButtons.Name = "gridColumnButtons";
-			this.gridColumnButtons.OptionsColumn.FixedWidth = true;
-			this.gridColumnButtons.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-			this.gridColumnButtons.Visible = true;
-			this.gridColumnButtons.VisibleIndex = 1;
-			this.gridColumnButtons.Width = 45;
+			this.gridColumnFilesButtons.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.gridColumnFilesButtons.AppearanceCell.Options.UseFont = true;
+			this.gridColumnFilesButtons.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumnFilesButtons.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumnFilesButtons.Caption = "Buttons";
+			this.gridColumnFilesButtons.ColumnEdit = this.repositoryItemButtonEditFiles;
+			this.gridColumnFilesButtons.FieldName = "Status";
+			this.gridColumnFilesButtons.Name = "gridColumnFilesButtons";
+			this.gridColumnFilesButtons.OptionsColumn.FixedWidth = true;
+			this.gridColumnFilesButtons.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+			this.gridColumnFilesButtons.Visible = true;
+			this.gridColumnFilesButtons.VisibleIndex = 1;
+			this.gridColumnFilesButtons.Width = 45;
 			// 
-			// repositoryItemButtonEdit
+			// repositoryItemButtonEditFiles
 			// 
-			this.repositoryItemButtonEdit.AutoHeight = false;
-			this.repositoryItemButtonEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-			this.repositoryItemButtonEdit.Name = "repositoryItemButtonEdit";
-			this.repositoryItemButtonEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-			this.repositoryItemButtonEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit_ButtonClick);
+			this.repositoryItemButtonEditFiles.AutoHeight = false;
+			this.repositoryItemButtonEditFiles.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditFiles.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+			this.repositoryItemButtonEditFiles.Name = "repositoryItemButtonEditFiles";
+			this.repositoryItemButtonEditFiles.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+			this.repositoryItemButtonEditFiles.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditFiles_ButtonClick);
+			// 
+			// xtraTabControl
+			// 
+			this.xtraTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.xtraTabControl.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.xtraTabControl.Appearance.Options.UseFont = true;
+			this.xtraTabControl.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControl.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControl.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControl.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControl.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControl.AppearancePage.HeaderDisabled.Options.UseFont = true;
+			this.xtraTabControl.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControl.AppearancePage.HeaderHotTracked.Options.UseFont = true;
+			this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
+			this.xtraTabControl.Location = new System.Drawing.Point(12, 67);
+			this.xtraTabControl.Name = "xtraTabControl";
+			this.xtraTabControl.SelectedTabPage = this.xtraTabPageFiles;
+			this.xtraTabControl.Size = new System.Drawing.Size(599, 355);
+			this.xtraTabControl.TabIndex = 19;
+			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPageFiles,
+            this.xtraTabPageTemplates});
+			// 
+			// xtraTabPageFiles
+			// 
+			this.xtraTabPageFiles.Controls.Add(this.gridControlFiles);
+			this.xtraTabPageFiles.Name = "xtraTabPageFiles";
+			this.xtraTabPageFiles.Size = new System.Drawing.Size(597, 329);
+			this.xtraTabPageFiles.Text = "My Files";
+			// 
+			// xtraTabPageTemplates
+			// 
+			this.xtraTabPageTemplates.Controls.Add(this.gridControlTemplates);
+			this.xtraTabPageTemplates.Name = "xtraTabPageTemplates";
+			this.xtraTabPageTemplates.Size = new System.Drawing.Size(597, 329);
+			this.xtraTabPageTemplates.Text = "My Templates";
+			// 
+			// gridControlTemplates
+			// 
+			this.gridControlTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gridControlTemplates.Location = new System.Drawing.Point(0, 0);
+			this.gridControlTemplates.MainView = this.gridViewTemplates;
+			this.gridControlTemplates.Name = "gridControlTemplates";
+			this.gridControlTemplates.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemButtonEditTemplates});
+			this.gridControlTemplates.Size = new System.Drawing.Size(597, 329);
+			this.gridControlTemplates.TabIndex = 19;
+			this.gridControlTemplates.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewTemplates});
+			// 
+			// gridViewTemplates
+			// 
+			this.gridViewTemplates.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+			this.gridViewTemplates.Appearance.HeaderPanel.Options.UseFont = true;
+			this.gridViewTemplates.Appearance.HeaderPanel.Options.UseTextOptions = true;
+			this.gridViewTemplates.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridViewTemplates.Appearance.Row.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.gridViewTemplates.Appearance.Row.Options.UseFont = true;
+			this.gridViewTemplates.Appearance.Row.Options.UseTextOptions = true;
+			this.gridViewTemplates.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.gridViewTemplates.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumnTemplatesName,
+            this.gridColumnTemplatesButtons});
+			this.gridViewTemplates.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+			this.gridViewTemplates.GridControl = this.gridControlTemplates;
+			this.gridViewTemplates.Name = "gridViewTemplates";
+			this.gridViewTemplates.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+			this.gridViewTemplates.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+			this.gridViewTemplates.OptionsCustomization.AllowColumnMoving = false;
+			this.gridViewTemplates.OptionsCustomization.AllowFilter = false;
+			this.gridViewTemplates.OptionsCustomization.AllowGroup = false;
+			this.gridViewTemplates.OptionsCustomization.AllowQuickHideColumns = false;
+			this.gridViewTemplates.OptionsFilter.AllowColumnMRUFilterList = false;
+			this.gridViewTemplates.OptionsMenu.EnableColumnMenu = false;
+			this.gridViewTemplates.OptionsMenu.EnableFooterMenu = false;
+			this.gridViewTemplates.OptionsMenu.EnableGroupPanelMenu = false;
+			this.gridViewTemplates.OptionsMenu.ShowDateTimeGroupIntervalItems = false;
+			this.gridViewTemplates.OptionsMenu.ShowGroupSortSummaryItems = false;
+			this.gridViewTemplates.OptionsSelection.EnableAppearanceFocusedCell = false;
+			this.gridViewTemplates.OptionsSelection.EnableAppearanceHideSelection = false;
+			this.gridViewTemplates.OptionsView.ShowColumnHeaders = false;
+			this.gridViewTemplates.OptionsView.ShowDetailButtons = false;
+			this.gridViewTemplates.OptionsView.ShowGroupExpandCollapseButtons = false;
+			this.gridViewTemplates.OptionsView.ShowGroupPanel = false;
+			this.gridViewTemplates.OptionsView.ShowIndicator = false;
+			this.gridViewTemplates.RowHeight = 40;
+			this.gridViewTemplates.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView_RowClick);
+			// 
+			// gridColumnTemplatesName
+			// 
+			this.gridColumnTemplatesName.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumnTemplatesName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+			this.gridColumnTemplatesName.Caption = "Name";
+			this.gridColumnTemplatesName.FieldName = "Name";
+			this.gridColumnTemplatesName.Name = "gridColumnTemplatesName";
+			this.gridColumnTemplatesName.OptionsColumn.AllowEdit = false;
+			this.gridColumnTemplatesName.OptionsColumn.ReadOnly = true;
+			this.gridColumnTemplatesName.Visible = true;
+			this.gridColumnTemplatesName.VisibleIndex = 0;
+			this.gridColumnTemplatesName.Width = 471;
+			// 
+			// gridColumnTemplatesButtons
+			// 
+			this.gridColumnTemplatesButtons.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.gridColumnTemplatesButtons.AppearanceCell.Options.UseFont = true;
+			this.gridColumnTemplatesButtons.AppearanceCell.Options.UseTextOptions = true;
+			this.gridColumnTemplatesButtons.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.gridColumnTemplatesButtons.Caption = "Buttons";
+			this.gridColumnTemplatesButtons.ColumnEdit = this.repositoryItemButtonEditTemplates;
+			this.gridColumnTemplatesButtons.FieldName = "Status";
+			this.gridColumnTemplatesButtons.Name = "gridColumnTemplatesButtons";
+			this.gridColumnTemplatesButtons.OptionsColumn.FixedWidth = true;
+			this.gridColumnTemplatesButtons.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+			this.gridColumnTemplatesButtons.Visible = true;
+			this.gridColumnTemplatesButtons.VisibleIndex = 1;
+			this.gridColumnTemplatesButtons.Width = 45;
+			// 
+			// repositoryItemButtonEditTemplates
+			// 
+			this.repositoryItemButtonEditTemplates.AutoHeight = false;
+			this.repositoryItemButtonEditTemplates.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditTemplates.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+			this.repositoryItemButtonEditTemplates.Name = "repositoryItemButtonEditTemplates";
+			this.repositoryItemButtonEditTemplates.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+			this.repositoryItemButtonEditTemplates.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditTemplates_ButtonClick);
 			// 
 			// FormSavedStates
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.ClientSize = new System.Drawing.Size(623, 478);
-			this.Controls.Add(this.gridControlFiles);
 			this.Controls.Add(this.buttonXCancel);
 			this.Controls.Add(this.buttonXLoad);
 			this.Controls.Add(this.laTitle);
+			this.Controls.Add(this.xtraTabControl);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
@@ -192,7 +335,14 @@
 			this.Text = "Select Saved State";
 			((System.ComponentModel.ISupportInitialize)(this.gridControlFiles)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewFiles)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditFiles)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
+			this.xtraTabControl.ResumeLayout(false);
+			this.xtraTabPageFiles.ResumeLayout(false);
+			this.xtraTabPageTemplates.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.gridControlTemplates)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridViewTemplates)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditTemplates)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -203,9 +353,17 @@
         private DevComponents.DotNetBar.ButtonX buttonXCancel;
         private DevExpress.XtraGrid.GridControl gridControlFiles;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewFiles;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnName;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnButtons;
-        protected System.Windows.Forms.Label laTitle;
-		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnFilesName;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnFilesButtons;
+		protected System.Windows.Forms.Label laTitle;
+		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditFiles;
+		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageFiles;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageTemplates;
+		private DevExpress.XtraGrid.GridControl gridControlTemplates;
+		private DevExpress.XtraGrid.Views.Grid.GridView gridViewTemplates;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumnTemplatesName;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumnTemplatesButtons;
+		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditTemplates;
     }
 }

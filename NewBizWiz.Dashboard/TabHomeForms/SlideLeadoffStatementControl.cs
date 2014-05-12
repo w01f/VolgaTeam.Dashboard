@@ -63,8 +63,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			LoadSavedState();
 		}
 
-		public bool SettingsNotSaved { get; set; }
-
 		public override string SlideName
 		{
 			get { return "Introduction"; }
@@ -133,10 +131,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			using (var form = new FormSavedLeadoffStatement())
 			{
-				if (form.ShowDialog() != DialogResult.OK || string.IsNullOrEmpty(form.SelectedFile)) return;
-				ViewSettingsManager.Instance.LeadoffStatementState.Load(form.SelectedFile);
-				LoadSavedState();
+				if (form.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(form.SelectedFile))
+				{
+					ViewSettingsManager.Instance.LeadoffStatementState.Load(form.SelectedFile);
+					LoadSavedState();
+				}
 			}
+			base.LoadClick();
 		}
 
 		private void checkBoxes_CheckedChanged(object sender, EventArgs e)
@@ -200,16 +201,16 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SetOutputState(ckA.Checked || ckB.Checked || ckC.Checked);
 		}
 
-		public void UpdateSavedFilesState()
+		protected override void UpdateSavedFilesState()
 		{
 			SetLoadState(ViewSettingsManager.Instance.LeadoffStatementState.AllowToLoad());
 		}
 
-		private void SaveChanges()
+		protected override void SaveChanges(string fileName = "")
 		{
 			if (!SettingsNotSaved) return;
 			SaveState();
-			ViewSettingsManager.Instance.LeadoffStatementState.Save();
+			ViewSettingsManager.Instance.LeadoffStatementState.Save(fileName);
 			UpdateSavedFilesState();
 		}
 

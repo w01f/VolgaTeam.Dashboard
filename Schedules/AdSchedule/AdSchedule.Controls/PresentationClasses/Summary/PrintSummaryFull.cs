@@ -17,6 +17,11 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 	{
 		public Schedule LocalSchedule { get; set; }
 
+		public AdFullSummarySettings AdFullSummary
+		{
+			get { return (AdFullSummarySettings)Schedule.CustomSummary; }
+		}
+
 		public PrintSummaryFull()
 		{
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
@@ -54,7 +59,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 		public override void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			checkEditBusinessName.Text = string.Format("Business Name: {0}", LocalSchedule.BusinessName);
+			checkEditBusinessName.Text = String.Format("{0}", LocalSchedule.BusinessName);
+			checkEditDecisionMaker.Text = String.Format("{0}", LocalSchedule.DecisionMaker);
 			laPresentationDate.Text = String.Format("{0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
 			laFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
 			FormThemeSelector.Link(Controller.Instance.SummaryFullTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.PrintSimpleSummary), BusinessWrapper.Instance.GetSelectedTheme(SlideType.PrintSimpleSummary), (t =>
@@ -63,6 +69,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 				BusinessWrapper.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
+			if (!quickLoad)
+				AdFullSummary.UpdateItems();
 			base.UpdateOutput(quickLoad);
 		}
 
@@ -74,6 +82,30 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary
 			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, this);
 			SettingsNotSaved = false;
 			return true;
+		}
+
+		protected override void InitItem(SummaryCustomItemControl item)
+		{
+			base.InitItem(item);
+			item.DataChanged += (o, e) => { AdFullSummary.IsDefaultSate = false; };
+		}
+
+		protected override void OnAddItem(object sender, EventArgs e)
+		{
+			base.OnAddItem(sender, e);
+			AdFullSummary.IsDefaultSate = false;
+		}
+
+		protected override void ItemOnItemDeleted(object sender, SummaryItemEventArgs e)
+		{
+			base.ItemOnItemDeleted(sender, e);
+			AdFullSummary.IsDefaultSate = false;
+		}
+
+		protected override void ItemOnItemPositionChanged(object sender, SummaryItemEventArgs e)
+		{
+			base.ItemOnItemPositionChanged(sender, e);
+			AdFullSummary.IsDefaultSate = false;
 		}
 
 		public void Save_Click(object sender, EventArgs e)

@@ -97,8 +97,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return FormMain.Instance.buttonItemHomeThemeClientGoals; }
 		}
 
-		public bool SettingsNotSaved { get; set; }
-
 		private void LoadSavedState()
 		{
 			_allowToSave = false;
@@ -142,10 +140,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			using (var form = new FormSavedClentGoals())
 			{
-				if (form.ShowDialog() != DialogResult.OK || string.IsNullOrEmpty(form.SelectedFile)) return;
-				ViewSettingsManager.Instance.ClientGoalsState.Load(form.SelectedFile);
-				LoadSavedState();
+				if (form.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(form.SelectedFile))
+				{
+					ViewSettingsManager.Instance.ClientGoalsState.Load(form.SelectedFile);
+					LoadSavedState();
+				}
 			}
+			base.LoadClick();
 		}
 
 		private void EditValueChanged(object sender, EventArgs e)
@@ -209,11 +210,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			}
 		}
 
-		private void SaveChanges()
+		protected override void SaveChanges(string fileName = "")
 		{
 			if (!SettingsNotSaved) return;
 			SaveState();
-			ViewSettingsManager.Instance.ClientGoalsState.Save();
+			ViewSettingsManager.Instance.ClientGoalsState.Save(fileName);
 			UpdateSavedFilesState();
 		}
 
@@ -300,7 +301,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SetOutputState(result);
 		}
 
-		public void UpdateSavedFilesState()
+		protected override void UpdateSavedFilesState()
 		{
 			SetLoadState(ViewSettingsManager.Instance.ClientGoalsState.AllowToLoad());
 		}

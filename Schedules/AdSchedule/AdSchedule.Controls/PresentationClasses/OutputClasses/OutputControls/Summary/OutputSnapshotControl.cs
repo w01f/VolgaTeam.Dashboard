@@ -67,7 +67,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			{
 				_allowToSave = false;
 				comboBoxEditSchedule.Properties.Items.Clear();
-				comboBoxEditSchedule.Properties.Items.AddRange(Core.AdSchedule.ListManager.Instance.OutputHeaders.ToArray());
+				comboBoxEditSchedule.Properties.Items.AddRange(Core.AdSchedule.ListManager.Instance.OutputHeaders);
 				if (string.IsNullOrEmpty(LocalSchedule.ViewSettings.SnapshotViewSettings.SlideHeader))
 				{
 					if (comboBoxEditSchedule.Properties.Items.Count > 0)

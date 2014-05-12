@@ -1,11 +1,14 @@
-﻿using NewBizWiz.Core.Common;
+﻿using System.Collections.Generic;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.CommonGUI.Summary
 {
 	public interface ISummaryControl
 	{
 		int ItemsCount { get; }
+		int SlidesCount { get; }
 		string Title { get; }
+		string SummaryData { get; }
 		string Advertiser { get; }
 		string DecisionMaker { get; }
 		string PresentationDate { get; }
@@ -19,5 +22,12 @@ namespace NewBizWiz.CommonGUI.Summary
 		bool ShowMonthlyHeader { get; }
 		bool ShowTotalHeader { get; }
 		Theme SelectedTheme { get; }
+
+		bool TableOutput { get; }
+		int ItemsPerTable { get; }
+		bool ShowIcons { get; }
+		string[] TableIcons { get; }
+		List<Dictionary<string, string>> OutputReplacementsLists { get; }
+		void PopulateReplacementsList();
 	}
 }

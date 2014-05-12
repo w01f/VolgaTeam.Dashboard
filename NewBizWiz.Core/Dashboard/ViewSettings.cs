@@ -193,23 +193,30 @@ namespace NewBizWiz.Core.Dashboard
 		public void Load(string filePath)
 		{
 			XmlNode node;
-			if (File.Exists(filePath))
-			{
-				var document = new XmlDocument();
-				document.Load(filePath);
-				node = document.SelectSingleNode(@"/CoverState");
-				if (node != null)
-					Deserialize(node);
-			}
+			if (!File.Exists(filePath)) return;
+			var document = new XmlDocument();
+			document.Load(filePath);
+			node = document.SelectSingleNode(@"/CoverState");
+			if (node != null)
+				Deserialize(node);
 		}
 
-		public void Save()
+		public void Save(string fileName = "")
 		{
-			DateTime now = DateTime.Now;
-			if (!Directory.Exists(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "cover")))
-				Directory.CreateDirectory(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "cover"));
-			string fileName = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "cover", "cover-" + now.ToString("MMddyy") + "-" + now.ToString("hmmsstt") + ".xml");
-			using (var sw = new StreamWriter(fileName, false))
+			string filePath;
+			if (!Directory.Exists(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "cover", "templates")))
+				Directory.CreateDirectory(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "cover", "templates"));
+			if (String.IsNullOrEmpty(fileName))
+			{
+				var now = DateTime.Now;
+				fileName = "cover-" + now.ToString("MMddyy") + "-" + now.ToString("hmmsstt");
+				filePath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "cover", fileName + ".xml");
+			}
+			else
+			{
+				filePath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "cover", "templates", fileName + ".xml");
+			}
+			using (var sw = new StreamWriter(filePath, false))
 			{
 				sw.Write("<CoverState>" + Serialize() + " </CoverState>");
 				sw.Flush();
@@ -218,10 +225,13 @@ namespace NewBizWiz.Core.Dashboard
 
 		public bool AllowToLoad()
 		{
-			bool result = false;
-			var saveFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "cover"));
-			if (saveFolder.Exists)
-				result = saveFolder.GetFiles("*.xml").Length > 0;
+			var result = false;
+			var filesFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "cover"));
+			if (filesFolder.Exists)
+				result = filesFolder.GetFiles("*.xml").Length > 0;
+			var templatesFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "cover", "templates"));
+			if (templatesFolder.Exists)
+				result |= templatesFolder.GetFiles("*.xml").Length > 0;
 			return result;
 		}
 	}
@@ -312,13 +322,22 @@ namespace NewBizWiz.Core.Dashboard
 			}
 		}
 
-		public void Save()
+		public void Save(string fileName = "")
 		{
-			DateTime now = DateTime.Now;
-			if (!Directory.Exists(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "intro")))
-				Directory.CreateDirectory(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "intro"));
-			string fileName = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "intro", "intro-" + now.ToString("MMddyy") + "-" + now.ToString("hmmsstt") + ".xml");
-			using (var sw = new StreamWriter(fileName, false))
+			string filePath;
+			if (!Directory.Exists(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "intro", "templates")))
+				Directory.CreateDirectory(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "intro", "templates"));
+			if (String.IsNullOrEmpty(fileName))
+			{
+				var now = DateTime.Now;
+				fileName = "intro-" + now.ToString("MMddyy") + "-" + now.ToString("hmmsstt");
+				filePath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "intro", fileName + ".xml");
+			}
+			else
+			{
+				filePath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "intro", "templates", fileName + ".xml");
+			}
+			using (var sw = new StreamWriter(filePath, false))
 			{
 				sw.Write("<LeadoffStatementState>" + Serialize() + " </LeadoffStatementState> ");
 				sw.Flush();
@@ -327,10 +346,13 @@ namespace NewBizWiz.Core.Dashboard
 
 		public bool AllowToLoad()
 		{
-			bool result = false;
-			var saveFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "intro"));
-			if (saveFolder.Exists)
-				result = saveFolder.GetFiles("*.xml").Length > 0;
+			var result = false;
+			var filesFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "intro"));
+			if (filesFolder.Exists)
+				result = filesFolder.GetFiles("*.xml").Length > 0;
+			var templatesFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "intro", "templates"));
+			if (templatesFolder.Exists)
+				result |= templatesFolder.GetFiles("*.xml").Length > 0;
 			return result;
 		}
 	}
@@ -410,13 +432,22 @@ namespace NewBizWiz.Core.Dashboard
 			}
 		}
 
-		public void Save()
+		public void Save(string fileName = "")
 		{
-			var now = DateTime.Now;
-			if (!Directory.Exists(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals")))
-				Directory.CreateDirectory(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals"));
-			string fileName = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals", "needsgoals-" + now.ToString("MMddyy") + "-" + now.ToString("hmmsstt") + ".xml");
-			using (var sw = new StreamWriter(fileName, false))
+			string filePath;
+			if (!Directory.Exists(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals", "templates")))
+				Directory.CreateDirectory(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals", "templates"));
+			if (String.IsNullOrEmpty(fileName))
+			{
+				var now = DateTime.Now;
+				fileName = "needsgoals-" + now.ToString("MMddyy") + "-" + now.ToString("hmmsstt");
+				filePath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals", fileName + ".xml");
+			}
+			else
+			{
+				filePath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals", "templates", fileName + ".xml");
+			}
+			using (var sw = new StreamWriter(filePath, false))
 			{
 				sw.Write("<ClientGoalsState>" + Serialize() + " </ClientGoalsState> ");
 				sw.Flush();
@@ -425,10 +456,13 @@ namespace NewBizWiz.Core.Dashboard
 
 		public bool AllowToLoad()
 		{
-			bool result = false;
-			var saveFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals"));
-			if (saveFolder.Exists)
-				result = saveFolder.GetFiles("*.xml").Length > 0;
+			var result = false;
+			var filesFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals"));
+			if (filesFolder.Exists)
+				result = filesFolder.GetFiles("*.xml").Length > 0;
+			var templatesFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "needsgoals", "templates"));
+			if (templatesFolder.Exists)
+				result |= templatesFolder.GetFiles("*.xml").Length > 0;
 			return result;
 		}
 	}
@@ -512,13 +546,22 @@ namespace NewBizWiz.Core.Dashboard
 			}
 		}
 
-		public void Save()
+		public void Save(string fileName = "")
 		{
-			DateTime now = DateTime.Now;
-			if (!Directory.Exists(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "target")))
-				Directory.CreateDirectory(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "target"));
-			string fileName = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "target", "target-" + now.ToString("MMddyy") + "-" + now.ToString("hmmsstt") + ".xml");
-			using (var sw = new StreamWriter(fileName, false))
+			string filePath;
+			if (!Directory.Exists(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "target", "templates")))
+				Directory.CreateDirectory(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "target", "templates"));
+			if (String.IsNullOrEmpty(fileName))
+			{
+				var now = DateTime.Now;
+				fileName = "target-" + now.ToString("MMddyy") + "-" + now.ToString("hmmsstt");
+				filePath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "target", fileName + ".xml");
+			}
+			else
+			{
+				filePath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "target", "templates", fileName + ".xml");
+			}
+			using (var sw = new StreamWriter(filePath, false))
 			{
 				sw.Write("<TargetCustomersState>" + Serialize() + " </TargetCustomersState> ");
 				sw.Flush();
@@ -527,10 +570,13 @@ namespace NewBizWiz.Core.Dashboard
 
 		public bool AllowToLoad()
 		{
-			bool result = false;
-			var saveFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "target"));
-			if (saveFolder.Exists)
-				result = saveFolder.GetFiles("*.xml").Length > 0;
+			var result = false;
+			var filesFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "target"));
+			if (filesFolder.Exists)
+				result = filesFolder.GetFiles("*.xml").Length > 0;
+			var templatesFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "target", "templates"));
+			if (templatesFolder.Exists)
+				result |= templatesFolder.GetFiles("*.xml").Length > 0;
 			return result;
 		}
 	}
@@ -563,6 +609,7 @@ namespace NewBizWiz.Core.Dashboard
 		public bool ShowFlightDates { get; set; }
 		public bool ShowMonthly { get; set; }
 		public bool ShowTotal { get; set; }
+		public bool TableOutput { get; set; }
 
 		public string SlideHeader { get; set; }
 		public string Advertiser { get; set; }
@@ -585,6 +632,7 @@ namespace NewBizWiz.Core.Dashboard
 			result.AppendLine(@"<ShowFlightDates>" + ShowFlightDates + @"</ShowFlightDates>");
 			result.AppendLine(@"<ShowMonthly>" + ShowMonthly + @"</ShowMonthly>");
 			result.AppendLine(@"<ShowTotal>" + ShowTotal + @"</ShowTotal>");
+			result.AppendLine(@"<TableOutput>" + TableOutput + @"</TableOutput>");
 
 			result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
 			result.AppendLine(@"<Advertiser>" + Advertiser.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Advertiser>");
@@ -642,6 +690,10 @@ namespace NewBizWiz.Core.Dashboard
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowTotal = tempBool;
 						break;
+					case "TableOutput":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							TableOutput = tempBool;
+						break;
 					case "SlideHeader":
 						SlideHeader = childNode.InnerText;
 						break;
@@ -698,13 +750,22 @@ namespace NewBizWiz.Core.Dashboard
 			}
 		}
 
-		public void Save()
+		public void Save(string fileName = "")
 		{
-			DateTime now = DateTime.Now;
-			if (!Directory.Exists(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "summary")))
-				Directory.CreateDirectory(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "summary"));
-			string fileName = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "summary", "summary-" + now.ToString("MMddyy") + "-" + now.ToString("hmmsstt") + ".xml");
-			using (var sw = new StreamWriter(fileName, false))
+			string filePath;
+			if (!Directory.Exists(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "summary", "templates")))
+				Directory.CreateDirectory(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "summary", "templates"));
+			if (String.IsNullOrEmpty(fileName))
+			{
+				var now = DateTime.Now;
+				fileName = "summary-" + now.ToString("MMddyy") + "-" + now.ToString("hmmsstt");
+				filePath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "summary", fileName + ".xml");
+			}
+			else
+			{
+				filePath = Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "summary", "templates", fileName + ".xml");
+			}
+			using (var sw = new StreamWriter(filePath, false))
 			{
 				sw.Write("<SimpleSummaryState>" + Serialize() + " </SimpleSummaryState>");
 				sw.Flush();
@@ -713,10 +774,13 @@ namespace NewBizWiz.Core.Dashboard
 
 		public bool AllowToLoad()
 		{
-			bool result = false;
-			var saveFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "summary"));
-			if (saveFolder.Exists)
-				result = saveFolder.GetFiles("*.xml").Length > 0;
+			var result = false;
+			var filesFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "summary"));
+			if (filesFolder.Exists)
+				result = filesFolder.GetFiles("*.xml").Length > 0;
+			var templatesFolder = new DirectoryInfo(Path.Combine(SettingsManager.Instance.DashboardSaveFolder, "summary", "templates"));
+			if (templatesFolder.Exists)
+				result |= templatesFolder.GetFiles("*.xml").Length > 0;
 			return result;
 		}
 	}

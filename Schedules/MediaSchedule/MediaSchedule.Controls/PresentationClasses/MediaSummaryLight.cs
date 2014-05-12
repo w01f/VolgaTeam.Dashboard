@@ -69,7 +69,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public override void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			checkEditBusinessName.Text = string.Format("Business Name: {0}", LocalSchedule.BusinessName);
+			checkEditBusinessName.Text = String.Format("{0}", LocalSchedule.BusinessName);
+			checkEditDecisionMaker.Text = String.Format("{0}", LocalSchedule.DecisionMaker);
 			laPresentationDate.Text = String.Format("{0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
 			laFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
 			FormThemeSelector.Link(Controller.Instance.SummaryLightTheme,

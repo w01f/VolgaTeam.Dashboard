@@ -23,7 +23,6 @@ namespace NewBizWiz.Core.Common
 			ShowFlightDates = true;
 			ShowMonthly = false;
 			ShowTotal = false;
-			ShowSignature = true;
 
 			SlideHeader = string.Empty;
 		}
@@ -34,7 +33,7 @@ namespace NewBizWiz.Core.Common
 		public bool ShowFlightDates { get; set; }
 		public bool ShowMonthly { get; set; }
 		public bool ShowTotal { get; set; }
-		public bool ShowSignature { get; set; }
+		public bool TableOutput { get; set; }
 
 		public string SlideHeader { get; set; }
 		public decimal? MonthlyValue { get; set; }
@@ -50,9 +49,10 @@ namespace NewBizWiz.Core.Common
 			result.AppendLine(@"<ShowFlightDates>" + ShowFlightDates + @"</ShowFlightDates>");
 			result.AppendLine(@"<ShowMonthly>" + ShowMonthly + @"</ShowMonthly>");
 			result.AppendLine(@"<ShowTotal>" + ShowTotal + @"</ShowTotal>");
-			result.AppendLine(@"<ShowSignature>" + ShowSignature + @"</ShowSignature>");
+			result.AppendLine(@"<TableOutput>" + TableOutput + @"</TableOutput>");
 
-			result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
+			if (!String.IsNullOrEmpty(SlideHeader))
+				result.AppendLine(@"<SlideHeader>" + SlideHeader.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</SlideHeader>");
 			if (MonthlyValue.HasValue)
 				result.AppendLine(@"<MonthlyValue>" + MonthlyValue + @"</MonthlyValue>");
 			if (TotalValue.HasValue)
@@ -93,9 +93,9 @@ namespace NewBizWiz.Core.Common
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							ShowTotal = tempBool;
 						break;
-					case "ShowSignature":
+					case "TableOutput":
 						if (bool.TryParse(childNode.InnerText, out tempBool))
-							ShowSignature = tempBool;
+							TableOutput = tempBool;
 						break;
 					case "SlideHeader":
 						SlideHeader = childNode.InnerText;

@@ -191,7 +191,7 @@ namespace NewBizWiz.Core.AdSchedule
 			PrintProducts = new List<PrintProduct>();
 			DigitalProducts = new List<DigitalProduct>();
 			ProductSummary = new BaseSummarySettings();
-			CustomSummary = new CustomSummarySettings();
+			CustomSummary = new AdFullSummarySettings(this);
 			ViewSettings = new ScheduleBuilderViewSettings();
 			DigitalProductSummary = new DigitalProductSummary();
 			Calendar = new AdCalendar(this);
@@ -2335,6 +2335,80 @@ namespace NewBizWiz.Core.AdSchedule
 			ShowLogo = ListManager.Instance.DefaultCalendarViewSettings.ShowLogo;
 
 			SlideColor = ListManager.Instance.DefaultCalendarViewSettings.SlideColor;
+		}
+	}
+
+	public class AdFullSummarySettings : CustomSummarySettings
+	{
+		private readonly Schedule _parent;
+		public bool IsDefaultSate { get; set; }
+
+		public AdFullSummarySettings(Schedule parent)
+		{
+			_parent = parent;
+			IsDefaultSate = true;
+		}
+
+		public override string Serialize()
+		{
+			var result = new StringBuilder();
+			result.AppendLine(base.Serialize());
+			result.AppendLine(@"<IsDefaultSate>" + IsDefaultSate + @"</IsDefaultSate>");
+			return result.ToString();
+		}
+
+		public override void Deserialize(XmlNode node)
+		{
+			base.Deserialize(node);
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "IsDefaultSate":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								IsDefaultSate = temp;
+						}
+						break;
+				}
+			}
+		}
+
+		public void UpdateItems()
+		{
+			if (!IsDefaultSate) return;
+			if (Items.Count != 2) return;
+			{
+				var adSummaryItem = Items[0];
+				adSummaryItem.ShowValue = true;
+				adSummaryItem.Value = "Publishing & Community Papers";
+				adSummaryItem.Description = String.Join(", ", _parent.PrintProducts.Select(printProduct =>
+					String.Format("{0} - {1} - {2}x",
+					printProduct.Name,
+					printProduct.SizeOptions.PageSizeAndGroup,
+					printProduct.Inserts.Count)));
+				adSummaryItem.ShowDescription = true;
+				adSummaryItem.ShowMonthly = false;
+				adSummaryItem.Monthly = null;
+				adSummaryItem.ShowTotal = false;
+				adSummaryItem.Total = null;
+			}
+			{
+				var digitalSummaryItem = Items[1];
+				digitalSummaryItem.ShowValue = true;
+				digitalSummaryItem.Value = "Digital Marketing Strategy";
+				digitalSummaryItem.Description = String.Join(", ", _parent.DigitalProducts.Select(dp =>
+					String.Format("({0}){1} - {2}",
+					dp.Category,
+					!String.IsNullOrEmpty(dp.SubCategory) ? (String.Format(" {0}", dp.SubCategory)) : String.Empty,
+					dp.Name)));
+				digitalSummaryItem.ShowDescription = true;
+				digitalSummaryItem.ShowMonthly = false;
+				digitalSummaryItem.Monthly = null;
+				digitalSummaryItem.ShowTotal = false;
+				digitalSummaryItem.Total = null;
+			}
 		}
 	}
 }

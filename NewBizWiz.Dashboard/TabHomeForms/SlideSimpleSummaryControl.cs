@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.Preview;
@@ -40,6 +41,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				laFlightDatesEnd.Font = new Font(laFlightDatesEnd.Font.FontFamily, laFlightDatesEnd.Font.Size - 2, laFlightDatesEnd.Font.Style);
 				checkEditMonthlyInvestment.Font = new Font(checkEditMonthlyInvestment.Font.FontFamily, checkEditMonthlyInvestment.Font.Size - 2, checkEditMonthlyInvestment.Font.Style);
 				checkEditTotalInvestment.Font = new Font(checkEditTotalInvestment.Font.FontFamily, checkEditTotalInvestment.Font.Size - 2, checkEditTotalInvestment.Font.Style);
+				checkEditTableOutput.Font = new Font(checkEditTableOutput.Font.FontFamily, checkEditTableOutput.Font.Size - 2, checkEditTableOutput.Font.Style);
 			}
 			comboBoxEditAdvertiser.MouseUp += FormMain.Instance.Editor_MouseUp;
 			comboBoxEditAdvertiser.MouseDown += FormMain.Instance.Editor_MouseDown;
@@ -81,7 +83,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		}
 
 		public bool AllowToSave { get; set; }
-		public bool SettingsNotSaved { get; set; }
 
 		public override string SlideName
 		{
@@ -100,7 +101,15 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public void UpdateTotalItems()
 		{
-			laTotalItems.Text = string.Format("Total Items: {0}", simpleSummaryItemContainer.ItemsCount);
+			laTotalItems.Text = String.Format("Total Items: {0}", simpleSummaryItemContainer.ItemsCount);
+			if (SlidesCount > 0)
+			{
+				laSlidesCount.Visible = true;
+				laSlidesCount.Text = String.Format("Slide Count: {0}", SlidesCount);
+			}
+			else
+				laSlidesCount.Visible = false;
+
 		}
 
 		public void ResetTab()
@@ -109,7 +118,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			UpdateOutputState();
 		}
 
-		public void UpdateSavedFilesState()
+		protected override void UpdateSavedFilesState()
 		{
 			SetLoadState(ViewSettingsManager.Instance.SimpleSummaryState.AllowToLoad());
 		}
@@ -163,6 +172,9 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 			checkEditMonthlyInvestment.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ShowMonthly;
 			checkEditTotalInvestment.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ShowTotal;
+
+			checkEditTableOutput.Checked = ViewSettingsManager.Instance.SimpleSummaryState.TableOutput;
+
 			UpdateTotalValues();
 
 			AllowToSave = true;
@@ -183,7 +195,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 			ViewSettingsManager.Instance.SimpleSummaryState.ShowDecisionMaker = ckDecisionMaker.Checked;
 			ViewSettingsManager.Instance.SimpleSummaryState.DecisionMaker = comboBoxEditDecisionMaker.EditValue != null ? comboBoxEditDecisionMaker.EditValue.ToString() : string.Empty;
-			ckDate.Checked = ViewSettingsManager.Instance.SimpleSummaryState.ShowPresentationDate;
+			ViewSettingsManager.Instance.SimpleSummaryState.ShowPresentationDate = ckDate.Checked;
 
 			ViewSettingsManager.Instance.SimpleSummaryState.ShowPresentationDate = ckDate.Checked;
 			ViewSettingsManager.Instance.SimpleSummaryState.PresentationDate = dateEditDate.EditValue != null ? dateEditDate.DateTime : DateTime.MinValue;
@@ -194,6 +206,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 			ViewSettingsManager.Instance.SimpleSummaryState.ShowMonthly = checkEditMonthlyInvestment.Checked;
 			ViewSettingsManager.Instance.SimpleSummaryState.ShowTotal = checkEditTotalInvestment.Checked;
+
+			ViewSettingsManager.Instance.SimpleSummaryState.TableOutput = checkEditTableOutput.Checked;
 			UpdateTotalValues();
 
 			AllowToSave = true;
@@ -210,10 +224,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			using (var form = new FormSavedSimpleSummary())
 			{
-				if (form.ShowDialog() != DialogResult.OK || string.IsNullOrEmpty(form.SelectedFile)) return;
-				ViewSettingsManager.Instance.SimpleSummaryState.Load(form.SelectedFile);
-				LoadSavedState();
+				if (form.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(form.SelectedFile))
+				{
+					ViewSettingsManager.Instance.SimpleSummaryState.Load(form.SelectedFile);
+					LoadSavedState();
+				}
 			}
+			base.LoadClick();
 		}
 
 		private void buttonXAddItem_Click(object sender, EventArgs e)
@@ -286,6 +303,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			checkEditTotalInvestment.Refresh();
 			spinEditMonthly.Enabled = checkEditMonthlyInvestment.Checked;
 			spinEditTotal.Enabled = checkEditTotalInvestment.Checked;
+			UpdateTotalItems();
 			if (AllowToSave)
 				SettingsNotSaved = true;
 		}
@@ -320,9 +338,49 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return simpleSummaryItemContainer.ItemTitles.Length; }
 		}
 
+		public int SlidesCount
+		{
+			get
+			{
+				if (!TableOutput)
+				{
+					var main = ItemsCount / 5;
+					var rest = ItemsCount % 5;
+					return main + (rest > 0 ? 1 : 0);
+				}
+				else
+				{
+					var main = ItemsCount / 18;
+					var rest = ItemsCount % 18;
+					return main + (rest > 0 ? 1 : 0);
+				}
+			}
+		}
+
 		public string Title
 		{
 			get { return comboBoxEditSlideHeader.EditValue == null ? string.Empty : comboBoxEditSlideHeader.EditValue.ToString(); }
+		}
+
+		public string SummaryData
+		{
+			get
+			{
+				var values = new List<string>();
+				if (!String.IsNullOrEmpty(PresentationDate))
+					values.Add(PresentationDate);
+				if (!String.IsNullOrEmpty(Advertiser))
+					values.Add(Advertiser);
+				if (!String.IsNullOrEmpty(DecisionMaker))
+					values.Add(DecisionMaker);
+				if (!String.IsNullOrEmpty(CampaignDates))
+					values.Add(CampaignDates);
+				if (!String.IsNullOrEmpty(TotalMonthlyValue))
+					values.Add(String.Format("Monthly Investment: {0}", TotalMonthlyValue));
+				if (!String.IsNullOrEmpty(TotalTotalValue))
+					values.Add(String.Format("Total Investment: {0}", TotalTotalValue));
+				return String.Join("   |   ", values);
+			}
 		}
 
 		public string Advertiser
@@ -421,7 +479,65 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return Core.Dashboard.SettingsManager.Instance.GetSelectedTheme(SlideType.SimpleSummary); }
 		}
 
-		private void SaveChanges()
+		public bool TableOutput
+		{
+			get { return checkEditTableOutput.Checked; }
+		}
+
+		public int ItemsPerTable
+		{
+			get { return ItemsCount > 18 ? 18 : ItemsCount; }
+		}
+
+		public bool ShowIcons
+		{
+			get { return false; }
+		}
+
+		public string[] TableIcons
+		{
+			get { return null; }
+		}
+
+		public List<Dictionary<string, string>> OutputReplacementsLists { get; private set; }
+
+		public void PopulateReplacementsList()
+		{
+			if (OutputReplacementsLists == null)
+				OutputReplacementsLists = new List<Dictionary<string, string>>();
+			OutputReplacementsLists.Clear();
+			var recordsCount = ItemsCount;
+			OutputReplacementsLists = new List<Dictionary<string, string>>();
+			var monthlyValues = simpleSummaryItemContainer.OutputMonthlyValues;
+			var totalValues = simpleSummaryItemContainer.OutputTotalValues;
+			for (var i = 0; i < recordsCount; i += ItemsPerTable)
+			{
+				var slideRows = new Dictionary<string, string>();
+				for (var j = 0; j < ItemsPerTable; j++)
+				{
+					if ((i + j) < recordsCount)
+					{
+						slideRows.Add(String.Format("Product{0}", j + 1), ItemTitles[i + j]);
+						var details = new List<string>();
+						if (!String.IsNullOrEmpty(ItemDetails[i + j]))
+							details.Add(ItemDetails[i + j]);
+						if (monthlyValues.Any() && !String.IsNullOrEmpty(monthlyValues[i + j]))
+							details.Add(String.Format("({0}/mo)", monthlyValues[i + j]));
+						if (totalValues.Any() && !String.IsNullOrEmpty(totalValues[i + j]))
+							details.Add(String.Format("({0} inv)", totalValues[i + j]));
+						slideRows.Add(String.Format("Details{0}", j + 1), String.Join(" ", details));
+					}
+					else
+					{
+						slideRows.Add(String.Format("Product{0}", j + 1), "DeleteRow");
+						slideRows.Add(String.Format("Details{0}", j + 1), "DeleteRow");
+					}
+				}
+				OutputReplacementsLists.Add(slideRows);
+			}
+		}
+
+		protected override void SaveChanges(string fileName = "")
 		{
 			if (!Core.Common.ListManager.Instance.Advertisers.Contains(Advertiser) && !string.IsNullOrEmpty(Advertiser))
 			{
@@ -438,7 +554,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			if (SettingsNotSaved)
 			{
 				SaveState();
-				ViewSettingsManager.Instance.SimpleSummaryState.Save();
+				ViewSettingsManager.Instance.SimpleSummaryState.Save(fileName);
 				UpdateSavedFilesState();
 			}
 		}

@@ -8,7 +8,6 @@ using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
 using NewBizWiz.Dashboard.TabHomeForms.Dashboard;
-using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
@@ -61,7 +60,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			pbVersion.Image = MasterWizardManager.Instance.Version;
 		}
 
-		public void UpdateSavedFilesState()
+		protected override void UpdateSavedFilesState()
 		{
 			SetLoadState(false);
 		}

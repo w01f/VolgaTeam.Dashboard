@@ -28,8 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
@@ -38,11 +36,14 @@
 			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.pnBottom = new System.Windows.Forms.Panel();
-			this.pbDescription = new System.Windows.Forms.PictureBox();
 			this.checkEditSolutionOld = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditSolutionNew = new DevExpress.XtraEditors.CheckEdit();
 			this.pnSlideSelector = new System.Windows.Forms.Panel();
@@ -51,14 +52,17 @@
 			this.simpleButtonClientGoals = new DevExpress.XtraEditors.SimpleButton();
 			this.simpleButtonLeadoff = new DevExpress.XtraEditors.SimpleButton();
 			this.simpleButtonCover = new DevExpress.XtraEditors.SimpleButton();
+			this.pbDescription = new System.Windows.Forms.PictureBox();
+			this.pictureEditSaveTemplate = new DevExpress.XtraEditors.PictureEdit();
 			this.pnMain.SuspendLayout();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnBottom.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
 			this.pnSlideSelector.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditSaveTemplate.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pnMain
@@ -73,6 +77,7 @@
 			// 
 			// pnTop
 			// 
+			this.pnTop.Controls.Add(this.pictureEditSaveTemplate);
 			this.pnTop.Controls.Add(this.comboBoxEditSlideHeader);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(0, 0);
@@ -110,14 +115,6 @@
 			this.pnBottom.Name = "pnBottom";
 			this.pnBottom.Size = new System.Drawing.Size(919, 74);
 			this.pnBottom.TabIndex = 1;
-			// 
-			// pbDescription
-			// 
-			this.pbDescription.Location = new System.Drawing.Point(11, 11);
-			this.pbDescription.Name = "pbDescription";
-			this.pbDescription.Size = new System.Drawing.Size(430, 48);
-			this.pbDescription.TabIndex = 107;
-			this.pbDescription.TabStop = false;
 			// 
 			// checkEditSolutionOld
 			// 
@@ -172,9 +169,9 @@
 			this.simpleButtonSummary.Location = new System.Drawing.Point(5, 357);
 			this.simpleButtonSummary.Name = "simpleButtonSummary";
 			this.simpleButtonSummary.Size = new System.Drawing.Size(81, 72);
-			toolTipItem1.Text = "Wrap up with a Summary Slide";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.simpleButtonSummary.SuperTip = superToolTip1;
+			toolTipItem2.Text = "Wrap up with a Summary Slide";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.simpleButtonSummary.SuperTip = superToolTip2;
 			this.simpleButtonSummary.TabIndex = 4;
 			this.simpleButtonSummary.Click += new System.EventHandler(this.SlideType_Click);
 			// 
@@ -187,9 +184,9 @@
 			this.simpleButtonTargetCustomers.Location = new System.Drawing.Point(5, 270);
 			this.simpleButtonTargetCustomers.Name = "simpleButtonTargetCustomers";
 			this.simpleButtonTargetCustomers.Size = new System.Drawing.Size(81, 72);
-			toolTipItem2.Text = "Who is your client’s target audience?";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.simpleButtonTargetCustomers.SuperTip = superToolTip2;
+			toolTipItem3.Text = "Who is your client’s target audience?";
+			superToolTip3.Items.Add(toolTipItem3);
+			this.simpleButtonTargetCustomers.SuperTip = superToolTip3;
 			this.simpleButtonTargetCustomers.TabIndex = 3;
 			this.simpleButtonTargetCustomers.Click += new System.EventHandler(this.SlideType_Click);
 			// 
@@ -202,9 +199,9 @@
 			this.simpleButtonClientGoals.Location = new System.Drawing.Point(4, 183);
 			this.simpleButtonClientGoals.Name = "simpleButtonClientGoals";
 			this.simpleButtonClientGoals.Size = new System.Drawing.Size(81, 72);
-			toolTipItem3.Text = "What are your Client’s Needs and Goals?";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.simpleButtonClientGoals.SuperTip = superToolTip3;
+			toolTipItem4.Text = "What are your Client’s Needs and Goals?";
+			superToolTip4.Items.Add(toolTipItem4);
+			this.simpleButtonClientGoals.SuperTip = superToolTip4;
 			this.simpleButtonClientGoals.TabIndex = 2;
 			this.simpleButtonClientGoals.Click += new System.EventHandler(this.SlideType_Click);
 			// 
@@ -217,9 +214,9 @@
 			this.simpleButtonLeadoff.Location = new System.Drawing.Point(4, 96);
 			this.simpleButtonLeadoff.Name = "simpleButtonLeadoff";
 			this.simpleButtonLeadoff.Size = new System.Drawing.Size(81, 72);
-			toolTipItem4.Text = "Set the Tone with an Intro Slide";
-			superToolTip4.Items.Add(toolTipItem4);
-			this.simpleButtonLeadoff.SuperTip = superToolTip4;
+			toolTipItem5.Text = "Set the Tone with an Intro Slide";
+			superToolTip5.Items.Add(toolTipItem5);
+			this.simpleButtonLeadoff.SuperTip = superToolTip5;
 			this.simpleButtonLeadoff.TabIndex = 1;
 			this.simpleButtonLeadoff.Click += new System.EventHandler(this.SlideType_Click);
 			// 
@@ -232,11 +229,36 @@
 			this.simpleButtonCover.Location = new System.Drawing.Point(5, 9);
 			this.simpleButtonCover.Name = "simpleButtonCover";
 			this.simpleButtonCover.Size = new System.Drawing.Size(81, 72);
-			toolTipItem5.Text = "Start with a Simple Cover Slide";
-			superToolTip5.Items.Add(toolTipItem5);
-			this.simpleButtonCover.SuperTip = superToolTip5;
+			toolTipItem6.Text = "Start with a Simple Cover Slide";
+			superToolTip6.Items.Add(toolTipItem6);
+			this.simpleButtonCover.SuperTip = superToolTip6;
 			this.simpleButtonCover.TabIndex = 0;
 			this.simpleButtonCover.Click += new System.EventHandler(this.SlideType_Click);
+			// 
+			// pbDescription
+			// 
+			this.pbDescription.Location = new System.Drawing.Point(11, 11);
+			this.pbDescription.Name = "pbDescription";
+			this.pbDescription.Size = new System.Drawing.Size(430, 48);
+			this.pbDescription.TabIndex = 107;
+			this.pbDescription.TabStop = false;
+			// 
+			// pictureEditSaveTemplate
+			// 
+			this.pictureEditSaveTemplate.EditValue = global::NewBizWiz.Dashboard.Properties.Resources.SaveTemplate;
+			this.pictureEditSaveTemplate.Location = new System.Drawing.Point(641, 9);
+			this.pictureEditSaveTemplate.Name = "pictureEditSaveTemplate";
+			this.pictureEditSaveTemplate.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.pictureEditSaveTemplate.Properties.Appearance.Options.UseBackColor = true;
+			this.pictureEditSaveTemplate.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.pictureEditSaveTemplate.Size = new System.Drawing.Size(175, 32);
+			toolTipItem1.Text = "Save this template for future  presentations…";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.pictureEditSaveTemplate.SuperTip = superToolTip1;
+			this.pictureEditSaveTemplate.TabIndex = 30;
+			this.pictureEditSaveTemplate.Click += new System.EventHandler(this.pictureEditSaveTemplate_Click);
+			this.pictureEditSaveTemplate.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+			this.pictureEditSaveTemplate.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
 			// SlideBaseControl
 			// 
@@ -255,10 +277,11 @@
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnBottom.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
 			this.pnSlideSelector.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureEditSaveTemplate.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -278,5 +301,6 @@
 		protected DevExpress.XtraEditors.CheckEdit checkEditSolutionNew;
 		protected DevExpress.XtraEditors.CheckEdit checkEditSolutionOld;
 		protected System.Windows.Forms.PictureBox pbDescription;
+		private DevExpress.XtraEditors.PictureEdit pictureEditSaveTemplate;
 	}
 }

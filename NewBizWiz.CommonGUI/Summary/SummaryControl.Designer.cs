@@ -34,7 +34,6 @@
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-			this.labelControlTitle = new DevExpress.XtraEditors.LabelControl();
 			this.checkEditBusinessName = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageInput = new DevExpress.XtraTab.XtraTabPage();
@@ -51,9 +50,13 @@
 			this.spinEditMonthly = new DevExpress.XtraEditors.SpinEdit();
 			this.checkEditMonthlyInvestment = new DevExpress.XtraEditors.CheckEdit();
 			this.pnInputHeader = new System.Windows.Forms.Panel();
-			this.labelControlInputTitle = new DevExpress.XtraEditors.LabelControl();
-			this.pnInputFooter = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
+			this.comboBoxEditHeader = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.laTotalItems = new System.Windows.Forms.Label();
+			this.pnInputFooter = new System.Windows.Forms.Panel();
+			this.checkEditDecisionMaker = new DevExpress.XtraEditors.CheckEdit();
+			this.laSlideCount = new System.Windows.Forms.Label();
+			this.checkEditTableOutput = new DevExpress.XtraEditors.CheckEdit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditBusinessName.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			this.xtraTabControl.SuspendLayout();
@@ -67,24 +70,18 @@
 			((System.ComponentModel.ISupportInitialize)(this.spinEditMonthly.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyInvestment.Properties)).BeginInit();
 			this.pnInputHeader.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditHeader.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditDecisionMaker.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditTableOutput.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// defaultLookAndFeel
 			// 
 			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
 			// 
-			// labelControlTitle
-			// 
-			this.labelControlTitle.Appearance.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelControlTitle.Location = new System.Drawing.Point(9, 9);
-			this.labelControlTitle.Name = "labelControlTitle";
-			this.labelControlTitle.Size = new System.Drawing.Size(533, 24);
-			this.labelControlTitle.TabIndex = 0;
-			this.labelControlTitle.Text = "Create a Simple Closing Summary Slide for your Presentation…";
-			// 
 			// checkEditBusinessName
 			// 
-			this.checkEditBusinessName.Location = new System.Drawing.Point(7, 48);
+			this.checkEditBusinessName.Location = new System.Drawing.Point(7, 16);
 			this.checkEditBusinessName.Name = "checkEditBusinessName";
 			this.checkEditBusinessName.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditBusinessName.Properties.Appearance.Options.UseFont = true;
@@ -104,10 +101,10 @@
 			this.xtraTabControl.AppearancePage.Header.Options.UseFont = true;
 			this.xtraTabControl.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControl.AppearancePage.HeaderActive.Options.UseFont = true;
-			this.xtraTabControl.Location = new System.Drawing.Point(0, 75);
+			this.xtraTabControl.Location = new System.Drawing.Point(0, 50);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageInput;
-			this.xtraTabControl.Size = new System.Drawing.Size(737, 482);
+			this.xtraTabControl.Size = new System.Drawing.Size(737, 507);
 			this.xtraTabControl.TabIndex = 5;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageInput});
@@ -119,7 +116,7 @@
 			this.xtraTabPageInput.Controls.Add(this.pnInputHeader);
 			this.xtraTabPageInput.Controls.Add(this.pnInputFooter);
 			this.xtraTabPageInput.Name = "xtraTabPageInput";
-			this.xtraTabPageInput.Size = new System.Drawing.Size(735, 456);
+			this.xtraTabPageInput.Size = new System.Drawing.Size(735, 481);
 			this.xtraTabPageInput.Text = "What Are you Selling?";
 			// 
 			// pnInputBorder
@@ -130,7 +127,7 @@
 			this.pnInputBorder.Location = new System.Drawing.Point(0, 50);
 			this.pnInputBorder.Name = "pnInputBorder";
 			this.pnInputBorder.Padding = new System.Windows.Forms.Padding(2);
-			this.pnInputBorder.Size = new System.Drawing.Size(505, 380);
+			this.pnInputBorder.Size = new System.Drawing.Size(505, 405);
 			this.pnInputBorder.TabIndex = 2;
 			// 
 			// xtraScrollableControlInput
@@ -140,7 +137,7 @@
 			this.xtraScrollableControlInput.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControlInput.Location = new System.Drawing.Point(2, 2);
 			this.xtraScrollableControlInput.Name = "xtraScrollableControlInput";
-			this.xtraScrollableControlInput.Size = new System.Drawing.Size(501, 376);
+			this.xtraScrollableControlInput.Size = new System.Drawing.Size(501, 401);
 			this.xtraScrollableControlInput.TabIndex = 0;
 			// 
 			// pnInputSummary
@@ -158,7 +155,7 @@
 			this.pnInputSummary.Dock = System.Windows.Forms.DockStyle.Right;
 			this.pnInputSummary.Location = new System.Drawing.Point(505, 50);
 			this.pnInputSummary.Name = "pnInputSummary";
-			this.pnInputSummary.Size = new System.Drawing.Size(230, 380);
+			this.pnInputSummary.Size = new System.Drawing.Size(230, 405);
 			this.pnInputSummary.TabIndex = 1;
 			// 
 			// buttonXAddItem
@@ -168,7 +165,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAddItem.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXAddItem.Location = new System.Drawing.Point(8, 340);
+			this.buttonXAddItem.Location = new System.Drawing.Point(8, 365);
 			this.buttonXAddItem.Name = "buttonXAddItem";
 			this.buttonXAddItem.Size = new System.Drawing.Size(215, 40);
 			this.buttonXAddItem.TabIndex = 120;
@@ -308,51 +305,101 @@
 			// pnInputHeader
 			// 
 			this.pnInputHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnInputHeader.Controls.Add(this.labelControlInputTitle);
+			this.pnInputHeader.Controls.Add(this.label1);
+			this.pnInputHeader.Controls.Add(this.comboBoxEditHeader);
+			this.pnInputHeader.Controls.Add(this.laTotalItems);
 			this.pnInputHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnInputHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnInputHeader.Name = "pnInputHeader";
 			this.pnInputHeader.Size = new System.Drawing.Size(735, 50);
 			this.pnInputHeader.TabIndex = 0;
 			// 
-			// labelControlInputTitle
+			// label1
 			// 
-			this.labelControlInputTitle.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.labelControlInputTitle.Location = new System.Drawing.Point(8, 17);
-			this.labelControlInputTitle.Name = "labelControlInputTitle";
-			this.labelControlInputTitle.Size = new System.Drawing.Size(497, 16);
-			this.labelControlInputTitle.TabIndex = 0;
-			this.labelControlInputTitle.Text = "This slide can help you summarize the different media components of this campaign" +
-    "...";
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.Color.White;
+			this.label1.Location = new System.Drawing.Point(315, 17);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(73, 16);
+			this.label1.TabIndex = 72;
+			this.label1.Text = "(Slide Title)";
 			// 
-			// pnInputFooter
+			// comboBoxEditHeader
 			// 
-			this.pnInputFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnInputFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnInputFooter.Location = new System.Drawing.Point(0, 430);
-			this.pnInputFooter.Name = "pnInputFooter";
-			this.pnInputFooter.Size = new System.Drawing.Size(735, 26);
-			this.pnInputFooter.TabIndex = 3;
+			this.comboBoxEditHeader.Location = new System.Drawing.Point(8, 14);
+			this.comboBoxEditHeader.Name = "comboBoxEditHeader";
+			this.comboBoxEditHeader.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.comboBoxEditHeader.Properties.Appearance.Options.UseFont = true;
+			this.comboBoxEditHeader.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.comboBoxEditHeader.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+			this.comboBoxEditHeader.Size = new System.Drawing.Size(301, 22);
+			this.comboBoxEditHeader.TabIndex = 71;
 			// 
 			// laTotalItems
 			// 
 			this.laTotalItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.laTotalItems.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTotalItems.Location = new System.Drawing.Point(530, 47);
+			this.laTotalItems.Location = new System.Drawing.Point(513, 13);
 			this.laTotalItems.Name = "laTotalItems";
-			this.laTotalItems.Size = new System.Drawing.Size(200, 22);
+			this.laTotalItems.Size = new System.Drawing.Size(215, 22);
 			this.laTotalItems.TabIndex = 70;
 			this.laTotalItems.Text = "Total Items: ";
 			this.laTotalItems.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// pnInputFooter
+			// 
+			this.pnInputFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnInputFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnInputFooter.Location = new System.Drawing.Point(0, 455);
+			this.pnInputFooter.Name = "pnInputFooter";
+			this.pnInputFooter.Size = new System.Drawing.Size(735, 26);
+			this.pnInputFooter.TabIndex = 3;
+			// 
+			// checkEditDecisionMaker
+			// 
+			this.checkEditDecisionMaker.Location = new System.Drawing.Point(189, 16);
+			this.checkEditDecisionMaker.Name = "checkEditDecisionMaker";
+			this.checkEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
+			this.checkEditDecisionMaker.Properties.AutoWidth = true;
+			this.checkEditDecisionMaker.Properties.Caption = "Decision Maker: ";
+			this.checkEditDecisionMaker.Size = new System.Drawing.Size(121, 21);
+			this.checkEditDecisionMaker.TabIndex = 6;
+			// 
+			// laSlideCount
+			// 
+			this.laSlideCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.laSlideCount.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laSlideCount.Location = new System.Drawing.Point(511, 5);
+			this.laSlideCount.Name = "laSlideCount";
+			this.laSlideCount.Size = new System.Drawing.Size(223, 21);
+			this.laSlideCount.TabIndex = 119;
+			this.laSlideCount.Text = "Estimated Slide Count:";
+			this.laSlideCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// checkEditTableOutput
+			// 
+			this.checkEditTableOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditTableOutput.Location = new System.Drawing.Point(560, 29);
+			this.checkEditTableOutput.Name = "checkEditTableOutput";
+			this.checkEditTableOutput.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditTableOutput.Properties.Appearance.Options.UseFont = true;
+			this.checkEditTableOutput.Properties.AutoWidth = true;
+			this.checkEditTableOutput.Properties.Caption = "Output 1 Slide Table Grid";
+			this.checkEditTableOutput.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.checkEditTableOutput.Size = new System.Drawing.Size(169, 21);
+			this.checkEditTableOutput.TabIndex = 120;
 			// 
 			// SummaryControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.Controls.Add(this.laTotalItems);
+			this.Controls.Add(this.checkEditTableOutput);
+			this.Controls.Add(this.laSlideCount);
+			this.Controls.Add(this.checkEditDecisionMaker);
 			this.Controls.Add(this.xtraTabControl);
 			this.Controls.Add(this.checkEditBusinessName);
-			this.Controls.Add(this.labelControlTitle);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "SummaryControl";
 			this.Size = new System.Drawing.Size(737, 557);
@@ -370,15 +417,16 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditMonthlyInvestment.Properties)).EndInit();
 			this.pnInputHeader.ResumeLayout(false);
 			this.pnInputHeader.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditHeader.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditDecisionMaker.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditTableOutput.Properties)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
 		#endregion
 
 		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-		private DevExpress.XtraEditors.LabelControl labelControlTitle;
 		protected DevExpress.XtraEditors.CheckEdit checkEditBusinessName;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageInput;
@@ -386,7 +434,6 @@
 		private System.Windows.Forms.Panel pnInputHeader;
 		private System.Windows.Forms.Panel pnInputBorder;
 		protected DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControlInput;
-		private DevExpress.XtraEditors.LabelControl labelControlInputTitle;
 		private System.Windows.Forms.Panel pnInputFooter;
 		protected System.Windows.Forms.Label laTotalItems;
 		protected System.Windows.Forms.Label laFlightDates;
@@ -398,6 +445,11 @@
 		protected DevExpress.XtraEditors.SpinEdit spinEditMonthly;
 		protected DevExpress.XtraEditors.CheckEdit checkEditMonthlyInvestment;
 		protected DevComponents.DotNetBar.ButtonX buttonXAddItem;
+		protected DevExpress.XtraEditors.CheckEdit checkEditDecisionMaker;
+		protected System.Windows.Forms.Label laSlideCount;
+		protected DevExpress.XtraEditors.ComboBoxEdit comboBoxEditHeader;
+		private System.Windows.Forms.Label label1;
+		protected DevExpress.XtraEditors.CheckEdit checkEditTableOutput;
 
 	}
 }

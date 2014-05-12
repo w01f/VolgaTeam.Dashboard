@@ -112,7 +112,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			{
 				case SlideType.Cleanslate:
 					SlideCleanslate.SelectSlideType(selectedSlide);
-					SlideCleanslate.UpdateSavedFilesState();
 					SlideCleanslate.UpdateOutputState();
 					FormMain.Instance.LoadClick = SlideCleanslate.LoadClick;
 					FormMain.Instance.OutputClick = SlideCleanslate.Output;
@@ -124,7 +123,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					break;
 				case SlideType.Cover:
 					SlideCover.SelectSlideType(selectedSlide);
-					SlideCover.UpdateSavedFilesState();
 					SlideCover.UpdateOutputState();
 					FormMain.Instance.LoadClick = SlideCover.LoadClick;
 					FormMain.Instance.OutputClick = SlideCover.Output;
@@ -136,7 +134,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					break;
 				case SlideType.LeadoffStatement:
 					SlideLeadoff.SelectSlideType(selectedSlide);
-					SlideLeadoff.UpdateSavedFilesState();
 					SlideLeadoff.UpdateOutputState();
 					FormMain.Instance.LoadClick = SlideLeadoff.LoadClick;
 					FormMain.Instance.OutputClick = SlideLeadoff.Output;
@@ -148,7 +145,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					break;
 				case SlideType.ClientGoals:
 					SlideClientGoals.SelectSlideType(selectedSlide);
-					SlideClientGoals.UpdateSavedFilesState();
 					SlideClientGoals.UpdateOutputState();
 					FormMain.Instance.LoadClick = SlideClientGoals.LoadClick;
 					FormMain.Instance.OutputClick = SlideClientGoals.Output;
@@ -160,7 +156,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					break;
 				case SlideType.TargetCustomers:
 					SlideTargetCustomers.SelectSlideType(selectedSlide);
-					SlideTargetCustomers.UpdateSavedFilesState();
 					SlideTargetCustomers.UpdateOutputState();
 					FormMain.Instance.LoadClick = SlideTargetCustomers.LoadClick;
 					FormMain.Instance.OutputClick = SlideTargetCustomers.Output;
@@ -172,7 +167,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					break;
 				case SlideType.SimpleSummary:
 					SlideSimpleSummary.SelectSlideType(selectedSlide);
-					SlideSimpleSummary.UpdateSavedFilesState();
 					SlideSimpleSummary.ResetTab();
 					FormMain.Instance.LoadClick = SlideSimpleSummary.LoadClick;
 					FormMain.Instance.OutputClick = SlideSimpleSummary.Output;

@@ -1621,7 +1621,7 @@ namespace NewBizWiz.Core.MediaSchedule
 					result.Add(_parent.Daypart);
 				if (!String.IsNullOrEmpty(_parent.Time))
 					result.Add(_parent.Time);
-				result.Add(String.Format("{0}x", Count.Value));
+				result.Add(String.Format("{0}x {1}", Count.Value, _parent.Day));
 				return String.Format("[{0}]", String.Join(", ", result));
 			}
 		}
@@ -1822,53 +1822,38 @@ namespace NewBizWiz.Core.MediaSchedule
 						if ((intersectedNote.StartDay >= calendarNote.StartDay && intersectedNote.StartDay <= calendarNote.FinishDay) &&
 							(intersectedNote.FinishDay >= calendarNote.StartDay && intersectedNote.FinishDay <= calendarNote.FinishDay))
 						{
-							if (intersectedNote.StartDay > calendarNote.StartDay)
-								splittedNotes.Add(new CalendarNote(this)
-								{
-									StartDay = calendarNote.StartDay,
-									FinishDay = intersectedNote.StartDay.AddDays(-1),
-									Note = calendarNote.Note,
-									ReadOnly = true
-								});
-							if (intersectedNote.FinishDay < calendarNote.FinishDay)
-								splittedNotes.Add(new CalendarNote(this)
-								{
-									StartDay = intersectedNote.FinishDay.AddDays(1),
-									FinishDay = calendarNote.FinishDay,
-									Note = calendarNote.Note,
-									ReadOnly = true
-								});
-							intersectedNote.Note = String.Format("{0}{1}{2}", calendarNote.Note, noteSeparator, intersectedNote.Note);
-							splittedNotes.Remove(calendarNote);
+							calendarNote.Note = String.Format("{0}{1}{2}", calendarNote.Note, noteSeparator, intersectedNote.Note);
+							splittedNotes.Remove(intersectedNote);
 						}
 						else if (intersectedNote.StartDay >= calendarNote.StartDay && intersectedNote.StartDay <= calendarNote.FinishDay)
 						{
 							splittedNotes.Add(new CalendarNote(this)
 							{
 								StartDay = calendarNote.StartDay,
-								FinishDay = intersectedNote.StartDay.AddDays(-1),
-								Note = calendarNote.Note,
+								FinishDay = intersectedNote.FinishDay,
+								Note = String.Format("{0}{1}{2}", calendarNote.Note, noteSeparator, intersectedNote.Note),
 								ReadOnly = true
 							});
-							intersectedNote.Note = String.Format("{0}{1}{2}", calendarNote.Note, noteSeparator, intersectedNote.Note);
 							splittedNotes.Remove(calendarNote);
+							splittedNotes.Remove(intersectedNote);
 						}
 						else if (intersectedNote.FinishDay >= calendarNote.StartDay && intersectedNote.FinishDay <= calendarNote.FinishDay)
 						{
 							splittedNotes.Add(new CalendarNote(this)
 							{
-								StartDay = intersectedNote.FinishDay.AddDays(1),
+								StartDay = intersectedNote.StartDay,
 								FinishDay = calendarNote.FinishDay,
-								Note = calendarNote.Note,
+								Note = String.Format("{0}{1}{2}", calendarNote.Note, noteSeparator, intersectedNote.Note),
 								ReadOnly = true
 							});
-							intersectedNote.Note = String.Format("{0}{1}{2}", calendarNote.Note, noteSeparator, intersectedNote.Note);
 							splittedNotes.Remove(calendarNote);
+							splittedNotes.Remove(intersectedNote);
 						}
 					}
 					notes.Clear();
 					notes.AddRange(splittedNotes);
-				} while (needToSplit);
+				}
+				while (needToSplit);
 
 				if (Notes.Any(n => n.BackgroundColor != CalendarNote.DefaultBackgroundColor))
 				{

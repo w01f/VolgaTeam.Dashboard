@@ -45,6 +45,7 @@ namespace NewBizWiz.Core.Common
 
 		public const string SimpleSummaryTemlatesFolder = @"{0}\Basic Slides\closing summary";
 		public const string SimpleSummarySlideTemplate = @"closing-{0}.ppt";
+		public const string SimpleSummaryTableTemplate = @"product_table_{0}.ppt";
 		#endregion
 
 		private MasterWizardManager()
@@ -195,6 +196,16 @@ namespace NewBizWiz.Core.Common
 		public string SimpleSummaryFolder
 		{
 			get { return Path.Combine(Folder.FullName, string.Format(MasterWizardManager.SimpleSummaryTemlatesFolder, SettingsManager.Instance.SlideFolder)); }
+		}
+
+		public string SimpleSummaryTableFolder
+		{
+			get { return Path.Combine(SimpleSummaryFolder, "tables"); }
+		}
+
+		public string SimpleSummaryTableIconFolder
+		{
+			get { return Path.Combine(SimpleSummaryTableFolder, "icons"); }
 		}
 		#endregion
 

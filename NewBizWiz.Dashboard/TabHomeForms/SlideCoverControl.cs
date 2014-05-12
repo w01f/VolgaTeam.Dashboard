@@ -77,8 +77,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			LoadSavedState();
 		}
 
-		public bool SettingsNotSaved { get; set; }
-
 		public override string SlideName
 		{
 			get { return "Cover"; }
@@ -251,12 +249,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			using (var form = new FormSavedCover())
 			{
-				if (form.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(form.SelectedFile))
+				if (form.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(form.SelectedFile))
 				{
 					ViewSettingsManager.Instance.CoverState.Load(form.SelectedFile);
 					LoadSavedState();
 				}
 			}
+			base.LoadClick();
 		}
 
 		#region Output Staff
@@ -312,12 +311,12 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SetOutputState(result);
 		}
 
-		public void UpdateSavedFilesState()
+		protected override void UpdateSavedFilesState()
 		{
 			SetLoadState(ViewSettingsManager.Instance.CoverState.AllowToLoad());
 		}
 
-		private void SaveChanges()
+		protected override void SaveChanges(string fileName = "")
 		{
 			if (!Core.Common.ListManager.Instance.Advertisers.Contains(Advertiser) && !string.IsNullOrEmpty(Advertiser))
 			{
@@ -333,7 +332,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 			if (!SettingsNotSaved) return;
 			SaveState();
-			ViewSettingsManager.Instance.CoverState.Save();
+			ViewSettingsManager.Instance.CoverState.Save(fileName);
 			UpdateSavedFilesState();
 		}
 

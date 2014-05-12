@@ -96,7 +96,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		}
 
 		#region Output
-		public int RowsPerSlide
+		protected int RowsPerSlide
 		{
 			get { return 7; }
 		}

@@ -68,8 +68,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			get { return FormMain.Instance.buttonItemHomeThemeTargetCustomers; }
 		}
 
-		public bool SettingsNotSaved { get; set; }
-
 		private void LoadSavedState()
 		{
 			_allowToSave = false;
@@ -86,12 +84,15 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				comboBoxEditSlideHeader.SelectedIndex = index >= 0 ? index : 0;
 			}
 
+			checkedListBoxControlTargetDemo.UnCheckAll();
 			foreach (CheckedListBoxItem item in checkedListBoxControlTargetDemo.Items)
 				if (ViewSettingsManager.Instance.TargetCustomersState.Demo.Contains(item.Value.ToString()))
 					item.CheckState = CheckState.Checked;
+			checkedListBoxControlHouseholdIncome.UnCheckAll();
 			foreach (CheckedListBoxItem item in checkedListBoxControlHouseholdIncome.Items)
 				if (ViewSettingsManager.Instance.TargetCustomersState.Income.Contains(item.Value.ToString()))
 					item.CheckState = CheckState.Checked;
+			checkedListBoxControlGeographicResidence.UnCheckAll();
 			foreach (CheckedListBoxItem item in checkedListBoxControlGeographicResidence.Items)
 				if (ViewSettingsManager.Instance.TargetCustomersState.Geographic.Contains(item.Value.ToString()))
 					item.CheckState = CheckState.Checked;
@@ -128,10 +129,13 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			using (var form = new FormSavedTargetCustomers())
 			{
-				if (form.ShowDialog() != DialogResult.OK || string.IsNullOrEmpty(form.SelectedFile)) return;
-				ViewSettingsManager.Instance.TargetCustomersState.Load(form.SelectedFile);
-				LoadSavedState();
+				if (form.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(form.SelectedFile))
+				{
+					ViewSettingsManager.Instance.TargetCustomersState.Load(form.SelectedFile);
+					LoadSavedState();
+				}
 			}
+			base.LoadClick();
 		}
 
 		private void checkedListBoxControl_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -197,16 +201,16 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SetOutputState(checkedListBoxControlGeographicResidence.CheckedItems.Count > 0 && checkedListBoxControlHouseholdIncome.CheckedItems.Count > 0 && checkedListBoxControlTargetDemo.CheckedItems.Count > 0);
 		}
 
-		public void UpdateSavedFilesState()
+		protected override void UpdateSavedFilesState()
 		{
 			SetLoadState(ViewSettingsManager.Instance.TargetCustomersState.AllowToLoad());
 		}
 
-		private void SaveChanges()
+		protected override void SaveChanges(string fileName = "")
 		{
 			if (!SettingsNotSaved) return;
 			SaveState();
-			ViewSettingsManager.Instance.TargetCustomersState.Save();
+			ViewSettingsManager.Instance.TargetCustomersState.Save(fileName);
 			UpdateSavedFilesState();
 		}
 

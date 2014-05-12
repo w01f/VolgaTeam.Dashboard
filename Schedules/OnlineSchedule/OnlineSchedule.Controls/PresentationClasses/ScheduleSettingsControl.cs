@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors.Controls;
@@ -101,7 +102,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			_allowToSave = false;
 			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			digitalProductListControl.UpdateData(_localSchedule, 
+			digitalProductListControl.UpdateData(_localSchedule,
 				() =>
 				{
 					UpdateProductsCount();
@@ -207,12 +208,17 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 				Utilities.Instance.ShowWarning("You must set Presentation Date before save");
 				return false;
 			}
+
+			var firstDayOfWeek = Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+			var lastDayOfWeek = DayOfWeek.Saturday;
+			if (firstDayOfWeek == DayOfWeek.Monday)
+				lastDayOfWeek = DayOfWeek.Sunday;
 			if (Controller.Instance.HomeFlightDatesStart.EditValue != null)
 			{
 				_localSchedule.FlightDateStart = Controller.Instance.HomeFlightDatesStart.DateTime;
-				if (_localSchedule.FlightDateStart.Value.DayOfWeek != DayOfWeek.Sunday)
+				if (_localSchedule.FlightDateStart.Value.DayOfWeek != firstDayOfWeek)
 				{
-					Utilities.Instance.ShowWarning("Flight Start Date must be Sunday\nFlight End Date must be Saturday\nFlight Start Date must be less then Flight End Date.");
+					Utilities.Instance.ShowWarning(String.Format("Flight Start Date must be {0}\nFlight End Date must be {1}\nFlight Start Date must be less then Flight End Date.", firstDayOfWeek, lastDayOfWeek));
 					return false;
 				}
 			}
@@ -224,9 +230,9 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			if (Controller.Instance.HomeFlightDatesEnd.EditValue != null)
 			{
 				_localSchedule.FlightDateEnd = Controller.Instance.HomeFlightDatesEnd.DateTime;
-				if (_localSchedule.FlightDateEnd.Value.DayOfWeek != DayOfWeek.Saturday || _localSchedule.FlightDateEnd < _localSchedule.FlightDateStart)
+				if (_localSchedule.FlightDateEnd.Value.DayOfWeek != lastDayOfWeek || _localSchedule.FlightDateEnd < _localSchedule.FlightDateStart)
 				{
-					Utilities.Instance.ShowWarning("Flight Start Date must be Sunday\nFlight End Date must be Saturday\nFlight Start Date must be less then Flight End Date.");
+					Utilities.Instance.ShowWarning(String.Format("Flight Start Date must be {0}\nFlight End Date must be {1}\nFlight Start Date must be less then Flight End Date.", firstDayOfWeek, lastDayOfWeek));
 					return false;
 				}
 			}
@@ -260,8 +266,6 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		#region Schedule Event Handlers
 		private void ScheduleSettingsControl_Load(object sender, EventArgs e)
 		{
-
-
 			AssignCloseActiveEditorsonOutSideClick(Controller.Instance.Ribbon);
 		}
 
@@ -273,21 +277,19 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void ScheduleSettingsSaveAs_Click(object sender, EventArgs e)
 		{
-			using (var from = new FormNewSchedule())
+			using (var form = new FormNewSchedule())
 			{
-				from.Text = "Save Schedule";
-				from.laLogo.Text = "Please set a new name for your Schedule:";
-				if (from.ShowDialog() == DialogResult.OK)
+				form.Text = "Save Schedule";
+				form.laLogo.Text = "Please set a new name for your Schedule:";
+				if (form.ShowDialog() != DialogResult.OK) return;
+				if (!string.IsNullOrEmpty(form.ScheduleName))
 				{
-					if (!string.IsNullOrEmpty(from.ScheduleName))
-					{
-						if (SaveSchedule(from.ScheduleName))
-							Utilities.Instance.ShowInformation("Schedule was saved");
-					}
-					else
-					{
-						Utilities.Instance.ShowWarning("Schedule Name can't be empty");
-					}
+					if (SaveSchedule(form.ScheduleName))
+						Utilities.Instance.ShowInformation("Schedule was saved");
+				}
+				else
+				{
+					Utilities.Instance.ShowWarning("Schedule Name can't be empty");
 				}
 			}
 		}
@@ -307,13 +309,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			Controller.Instance.HomeWeeks.Text = "";
 			Controller.Instance.HomeWeeks.Visible = false;
-			if (Controller.Instance.HomeFlightDatesStart.EditValue != null && Controller.Instance.HomeFlightDatesEnd.EditValue != null)
-			{
-				TimeSpan datesRange = Controller.Instance.HomeFlightDatesEnd.DateTime - Controller.Instance.HomeFlightDatesStart.DateTime;
-				int weeksCount = datesRange.Days / 7 + 1;
-				Controller.Instance.HomeWeeks.Text = weeksCount + (weeksCount > 1 ? " Weeks" : " Week");
-				Controller.Instance.HomeWeeks.Visible = true;
-			}
+			if (Controller.Instance.HomeFlightDatesStart.EditValue == null || Controller.Instance.HomeFlightDatesEnd.EditValue == null) return;
+			var datesRange = Controller.Instance.HomeFlightDatesEnd.DateTime - Controller.Instance.HomeFlightDatesStart.DateTime;
+			var weeksCount = datesRange.Days / 7 + 1;
+			Controller.Instance.HomeWeeks.Text = weeksCount + (weeksCount > 1 ? " Weeks" : " Week");
+			Controller.Instance.HomeWeeks.Visible = true;
 		}
 
 		public void checkBoxItemAccountNumber_CheckedChanged(object sender, CheckBoxChangeEventArgs e)
@@ -332,30 +332,25 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void dateEditFlightDatesStart_CloseUp(object sender, CloseUpEventArgs e)
 		{
-			if (e.Value != null)
-			{
-				DateTime temp = DateTime.MinValue;
-				if (DateTime.TryParse(e.Value.ToString(), out temp))
-				{
-					while (temp.DayOfWeek != DayOfWeek.Sunday)
-						temp = temp.AddDays(-1);
-					e.Value = temp;
-				}
-			}
+			if (e.Value == null) return;
+			var temp = DateTime.MinValue;
+			if (!DateTime.TryParse(e.Value.ToString(), out temp)) return;
+			while (temp.DayOfWeek != Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek)
+				temp = temp.AddDays(-1);
+			e.Value = temp;
 		}
 
 		public void dateEditFlightDatesEnd_CloseUp(object sender, CloseUpEventArgs e)
 		{
-			if (e.Value != null)
-			{
-				DateTime temp = DateTime.MinValue;
-				if (DateTime.TryParse(e.Value.ToString(), out temp))
-				{
-					while (temp.DayOfWeek != DayOfWeek.Saturday)
-						temp = temp.AddDays(1);
-					e.Value = temp;
-				}
-			}
+			if (e.Value == null) return;
+			var temp = DateTime.MinValue;
+			if (!DateTime.TryParse(e.Value.ToString(), out temp)) return;
+			var lastDayOfWeek = DayOfWeek.Saturday;
+			if (Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek == DayOfWeek.Monday)
+				lastDayOfWeek = DayOfWeek.Sunday;
+			while (temp.DayOfWeek != lastDayOfWeek)
+				temp = temp.AddDays(1);
+			e.Value = temp;
 		}
 
 		public void SchedulePropertiesEditor_KeyDown(object sender, KeyEventArgs e)

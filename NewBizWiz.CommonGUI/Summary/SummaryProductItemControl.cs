@@ -124,6 +124,31 @@ namespace NewBizWiz.CommonGUI.Summary
 			get { return Product.SummaryTitle; }
 		}
 
+		public string ItemIcon
+		{
+			get
+			{
+				if (!String.IsNullOrEmpty(ItemTitle) && ShowValueOutput)
+				{
+					if (Product is PrintProduct)
+						return "print.png";
+					if (Product is DigitalProduct)
+						return "digital.png";
+					if (Product is Program)
+					{
+						switch (MediaMetaData.Instance.DataType)
+						{
+							case MediaDataType.TV:
+								return "tv.png";
+							case MediaDataType.Radio:
+								return "radio.png";
+						}
+					}
+				}
+				return String.Empty;
+			}
+		}
+
 		public string OutputItemTitle
 		{
 			get { return !String.IsNullOrEmpty(ItemTitle) && ShowValueOutput ? ItemTitle : String.Empty; }

@@ -14,6 +14,17 @@ namespace NewBizWiz.CommonGUI.Interop
 	{
 		public void AppendSummary(ISummaryControl summary, Presentation destinationPresentation = null)
 		{
+			if (summary.TableOutput)
+			{
+				summary.PopulateReplacementsList();
+				AppendTableSummary(summary, destinationPresentation);
+			}
+			else
+				AppendSlideSummary(summary, destinationPresentation);
+		}
+
+		private void AppendSlideSummary(ISummaryControl summary, Presentation destinationPresentation = null)
+		{
 			if (!Directory.Exists(MasterWizardManager.Instance.SelectedWizard.SimpleSummaryFolder)) return;
 			var itemsCount = summary.ItemsCount;
 			var mainFileTemplateIndex = itemsCount >= 5 ? 5 : itemsCount;
@@ -48,32 +59,8 @@ namespace NewBizWiz.CommonGUI.Interop
 										case "HEADER":
 											shape.TextFrame.TextRange.Text = summary.Title;
 											break;
-										case "CAMPAIGN":
-											shape.Visible = !string.IsNullOrEmpty(summary.CampaignDates) ?
-												MsoTriState.msoTrue :
-												MsoTriState.msoFalse;
-											break;
-										case "STARTENDDATE":
-											shape.TextFrame.TextRange.Text = summary.CampaignDates;
-											break;
-										case "PREPAREDFOR":
-											shape.Visible = !string.IsNullOrEmpty(summary.Advertiser) ?
-												MsoTriState.msoTrue :
-												MsoTriState.msoFalse;
-											break;
-										case "ADVERTISER":
-											shape.TextFrame.TextRange.Text = summary.Advertiser;
-											break;
-										case "LINECLIENT":
-											shape.Visible = !string.IsNullOrEmpty(summary.DecisionMaker) ?
-												MsoTriState.msoTrue :
-												MsoTriState.msoFalse;
-											break;
-										case "DECISIONMAKER":
-											shape.TextFrame.TextRange.Text = summary.DecisionMaker;
-											break;
-										case "DATE_FORMAT":
-											shape.TextFrame.TextRange.Text = summary.PresentationDate;
+										case "SUMMARYDATA":
+											shape.TextFrame.TextRange.Text = summary.SummaryData;
 											break;
 										case "MNTHLY1":
 											shape.Visible = summary.ShowMonthlyHeader && summary.ShowTotalHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
@@ -86,22 +73,6 @@ namespace NewBizWiz.CommonGUI.Interop
 												shape.TextFrame.TextRange.Text = "Monthly Investment";
 											else
 												shape.Visible = MsoTriState.msoFalse;
-											break;
-										case "MWH":
-											shape.Visible = !string.IsNullOrEmpty(summary.TotalMonthlyValue) ?
-												MsoTriState.msoTrue :
-												MsoTriState.msoFalse;
-											break;
-										case "TOTALMW":
-											shape.TextFrame.TextRange.Text = summary.TotalMonthlyValue;
-											break;
-										case "MWT":
-											shape.Visible = !string.IsNullOrEmpty(summary.TotalTotalValue) ?
-												MsoTriState.msoTrue :
-												MsoTriState.msoFalse;
-											break;
-										case "TOTALINVEST":
-											shape.TextFrame.TextRange.Text = summary.TotalTotalValue;
 											break;
 										default:
 											for (int k = 0; k < mainFileTemplateIndex; k++)
@@ -187,29 +158,8 @@ namespace NewBizWiz.CommonGUI.Interop
 									case "HEADER":
 										shape.TextFrame.TextRange.Text = summary.Title;
 										break;
-									case "CAMPAIGN":
-										shape.Visible = !string.IsNullOrEmpty(summary.CampaignDates) ?
-											MsoTriState.msoTrue :
-											MsoTriState.msoFalse;
-										break;
-									case "STARTENDDATE":
-										shape.TextFrame.TextRange.Text = summary.CampaignDates;
-										break;
-									case "PREPAREDFOR":
-										shape.Visible = !string.IsNullOrEmpty(summary.Advertiser) ?
-											MsoTriState.msoTrue :
-											MsoTriState.msoFalse;
-										break;
-									case "ADVERTISER":
-										shape.TextFrame.TextRange.Text = summary.Advertiser;
-										break;
-									case "LINECLIENT":
-										shape.Visible = !string.IsNullOrEmpty(summary.DecisionMaker) ?
-											MsoTriState.msoTrue :
-											MsoTriState.msoFalse;
-										break;
-									case "DECISIONMAKER":
-										shape.TextFrame.TextRange.Text = summary.DecisionMaker;
+									case "SUMMARYDATA":
+										shape.TextFrame.TextRange.Text = summary.SummaryData;
 										break;
 									case "MNTHLY1":
 										shape.Visible = summary.ShowMonthlyHeader && summary.ShowTotalHeader ? MsoTriState.msoTrue : MsoTriState.msoFalse;
@@ -222,25 +172,6 @@ namespace NewBizWiz.CommonGUI.Interop
 											shape.TextFrame.TextRange.Text = "Monthly Investment";
 										else
 											shape.Visible = MsoTriState.msoFalse;
-										break;
-									case "DATE_FORMAT":
-										shape.TextFrame.TextRange.Text = summary.PresentationDate;
-										break;
-									case "MWH":
-										shape.Visible = !string.IsNullOrEmpty(summary.TotalMonthlyValue) ?
-											MsoTriState.msoTrue :
-											MsoTriState.msoFalse;
-										break;
-									case "TOTALMW":
-										shape.TextFrame.TextRange.Text = summary.TotalMonthlyValue;
-										break;
-									case "MWT":
-										shape.Visible = !string.IsNullOrEmpty(summary.TotalTotalValue) ?
-											MsoTriState.msoTrue :
-											MsoTriState.msoFalse;
-										break;
-									case "TOTALINVEST":
-										shape.TextFrame.TextRange.Text = summary.TotalTotalValue;
 										break;
 									default:
 										int j = mainFileTemplateIndex * mainFilesCount;
@@ -303,6 +234,117 @@ namespace NewBizWiz.CommonGUI.Interop
 				while (thread.IsAlive)
 					System.Windows.Forms.Application.DoEvents();
 			}
+			finally
+			{
+				MessageFilter.Revoke();
+			}
+		}
+
+		private void AppendTableSummary(ISummaryControl summary, Presentation destinationPresentation = null)
+		{
+			if (!Directory.Exists(MasterWizardManager.Instance.SelectedWizard.SimpleSummaryTableFolder)) return;
+			try
+			{
+				var thread = new Thread(delegate()
+				{
+					MessageFilter.Register();
+					var slidesCount = summary.OutputReplacementsLists.Count;
+					for (var k = 0; k < slidesCount; k++)
+					{
+						var presentationTemplatePath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.SimpleSummaryTableFolder, String.Format(MasterWizardManager.SimpleSummaryTableTemplate, summary.ItemsPerTable));
+						if (!File.Exists(presentationTemplatePath)) continue;
+						var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
+						foreach (Slide slide in presentation.Slides)
+						{
+							foreach (Shape shape in slide.Shapes)
+							{
+								for (var i = 1; i <= shape.Tags.Count; i++)
+								{
+									switch (shape.Tags.Name(i))
+									{
+										case "HEADER":
+											shape.TextFrame.TextRange.Text = summary.Title;
+											break;
+										case "SUMMARYDATA":
+											shape.TextFrame.TextRange.Text = summary.SummaryData;
+											break;
+										default:
+											var startIndex = k * summary.ItemsPerTable;
+											for (var j = 0; j < summary.ItemsPerTable; j++)
+											{
+												if (shape.Tags.Name(i).Equals(String.Format("ICON{0}", j + 1)))
+												{
+													if (summary.ShowIcons &&
+														(j + startIndex) < summary.ItemsCount &&
+														!String.IsNullOrEmpty(summary.TableIcons[j + startIndex]))
+													{
+														var filePath = Path.Combine(MasterWizardManager.Instance.SelectedWizard.SimpleSummaryTableIconFolder, summary.TableIcons[j + startIndex]);
+														slide.Shapes.AddPicture(filePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
+													}
+													shape.Visible = MsoTriState.msoFalse;
+												}
+											}
+											break;
+									}
+								}
+								if (shape.HasTable != MsoTriState.msoTrue) continue;
+								var table = shape.Table;
+								var tableRowsCount = table.Rows.Count;
+								var tableColumnsCount = table.Columns.Count;
+								for (var i = 1; i <= tableRowsCount; i++)
+								{
+									for (var j = 1; j <= tableColumnsCount; j++)
+									{
+										if (j > table.Columns.Count) continue;
+										var tableShape = table.Cell(i, j).Shape;
+										if (tableShape.HasTextFrame != MsoTriState.msoTrue) continue;
+										var cellText = tableShape.TextFrame.TextRange.Text.Trim();
+										if (!cellText.Contains("Product") || summary.ShowIcons) continue;
+										var prevColumnIndex = j - 1;
+										if (prevColumnIndex < 1) continue;
+										table.Cell(i, j).Merge(table.Cell(i, prevColumnIndex));
+									}
+								}
+
+								tableRowsCount = table.Rows.Count;
+								tableColumnsCount = table.Columns.Count;
+								for (var i = 1; i <= tableRowsCount; i++)
+								{
+									for (var j = 1; j <= tableColumnsCount; j++)
+									{
+										var tableShape = table.Cell(i, j).Shape;
+										if (tableShape.HasTextFrame != MsoTriState.msoTrue) continue;
+										var cellText = tableShape.TextFrame.TextRange.Text.Trim();
+										if (!summary.OutputReplacementsLists[k].ContainsKey(cellText)) continue;
+										tableShape.TextFrame.TextRange.Text = summary.OutputReplacementsLists[k][cellText];
+										summary.OutputReplacementsLists[k].Remove(cellText);
+									}
+								}
+
+								for (var i = tableRowsCount; i >= 1; i--)
+								{
+									var tableShape = table.Cell(i, 1).Shape;
+									if (tableShape.HasTextFrame != MsoTriState.msoTrue) continue;
+									var cellText = tableShape.TextFrame.TextRange.Text.Trim();
+									if (!cellText.Equals("DeleteRow")) continue;
+									try { table.Rows[i].Delete(); }
+									catch { shape.Visible = MsoTriState.msoFalse; }
+								}
+							}
+						}
+						var selectedTheme = summary.SelectedTheme;
+						if (selectedTheme != null)
+							presentation.ApplyTheme(selectedTheme.ThemeFilePath);
+						AppendSlide(presentation, -1, destinationPresentation);
+						presentation.Close();
+					}
+				});
+				thread.Start();
+
+				while (thread.IsAlive)
+					System.Windows.Forms.Application.DoEvents();
+			}
+			catch { }
 			finally
 			{
 				MessageFilter.Revoke();

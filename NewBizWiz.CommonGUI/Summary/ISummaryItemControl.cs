@@ -13,6 +13,7 @@ namespace NewBizWiz.CommonGUI.Summary
 		bool ShowMonthlyOutput { get; }
 		bool ShowTotalOutput { get; }
 		string ItemTitle { get; }
+		string ItemIcon { get; }
 		string OutputItemTitle { get; }
 		string ItemDetailOutput { get; }
 		decimal? MonthlyValue { get; }

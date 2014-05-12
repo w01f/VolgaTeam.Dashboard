@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Windows.Forms;
 
 namespace NewBizWiz.CommonGUI.Summary
 {
@@ -28,6 +26,11 @@ namespace NewBizWiz.CommonGUI.Summary
 		public override string TotalTotalValue
 		{
 			get { return checkEditTotalInvestment.Checked && Schedule.ProductSummary.TotalValue.HasValue ? Schedule.ProductSummary.TotalValue.Value.ToString("$#,##0.00") : string.Empty; }
+		}
+
+		public override bool ShowIcons
+		{
+			get { return true; }
 		}
 
 		protected override void LoadItems(bool quickLoad)

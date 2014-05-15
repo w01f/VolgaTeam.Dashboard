@@ -92,6 +92,11 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 		{
 			FormMain.Instance.Opacity = 0;
 			RegistryHelper.MaximizeMainForm = true;
+			AdSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Normal;
+			AdSchedule.Internal.FormMain.Instance.StartPosition = FormStartPosition.Manual;
+			AdSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).Bounds.Location;
+			AdSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Maximized;
+			
 			AdSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
 			AdSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
@@ -109,6 +114,11 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 		{
 			FormMain.Instance.Opacity = 0;
 			RegistryHelper.MaximizeMainForm = true;
+			AdSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Normal;
+			AdSchedule.Internal.FormMain.Instance.StartPosition = FormStartPosition.Manual;
+			AdSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).Bounds.Location;
+			AdSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Maximized;
+
 			AdSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
 			AdSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;

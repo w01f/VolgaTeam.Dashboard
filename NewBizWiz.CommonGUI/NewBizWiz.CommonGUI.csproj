@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormStateHelper.cs" />
     <Compile Include="Interop\CommonPowerPointHelper.cs" />
     <Compile Include="Floater\FloaterManager.cs" />
     <Compile Include="Floater\FloaterRequestedEventArgs.cs" />

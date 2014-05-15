@@ -7,7 +7,7 @@ using NewBizWiz.AdSchedule.Controls;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
-using NewBizWiz.AdSchedule.Controls.ToolForms;
+using NewBizWiz.CommonGUI;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
@@ -24,6 +24,8 @@ namespace NewBizWiz.AdSchedule.Single
 		private FormMain()
 		{
 			InitializeComponent();
+
+			FormStateHelper.Init(this, Path.GetDirectoryName(typeof(FormMain).Assembly.Location), true);
 
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;
@@ -443,7 +445,7 @@ namespace NewBizWiz.AdSchedule.Single
 				form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Ad Schedule...";
 				form.TopMost = true;
 				form.Show();
-				var thread = new Thread(() => Invoke((MethodInvoker) (() => Controller.Instance.LoadData())));
+				var thread = new Thread(() => Invoke((MethodInvoker)(() => Controller.Instance.LoadData())));
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();

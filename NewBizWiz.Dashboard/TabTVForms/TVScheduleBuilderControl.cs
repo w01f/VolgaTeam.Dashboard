@@ -89,6 +89,10 @@ namespace NewBizWiz.Dashboard.TabTVForms
 		{
 			FormMain.Instance.Opacity = 0;
 			RegistryHelper.MaximizeMainForm = true;
+			MediaSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Normal;
+			MediaSchedule.Internal.FormMain.Instance.StartPosition = FormStartPosition.Manual;
+			MediaSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).Bounds.Location;
+			MediaSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Maximized;
 			MediaSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
 			MediaSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
 			MediaSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
@@ -106,6 +110,10 @@ namespace NewBizWiz.Dashboard.TabTVForms
 		{
 			FormMain.Instance.Opacity = 0;
 			RegistryHelper.MaximizeMainForm = true;
+			MediaSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Normal;
+			MediaSchedule.Internal.FormMain.Instance.StartPosition = FormStartPosition.Manual;
+			MediaSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).Bounds.Location;
+			MediaSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Maximized;
 			MediaSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
 			MediaSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
 			MediaSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;

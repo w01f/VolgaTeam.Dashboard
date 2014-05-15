@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using NewBizWiz.CommonGUI;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
@@ -31,6 +32,7 @@ namespace NewBizWiz.Dashboard
 			{
 				ribbonControl.Font = new Font(ribbonControl.Font.FontFamily, ribbonControl.Font.Size - 1, ribbonControl.Font.Style);
 			}
+			FormStateHelper.Init(this, Path.GetDirectoryName(typeof(FormMain).Assembly.Location), false);
 		}
 
 		public AppManager.EmptyParametersDelegate OutputClick { get; set; }

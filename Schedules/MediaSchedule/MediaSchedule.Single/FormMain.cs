@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using NewBizWiz.CommonGUI;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
@@ -19,10 +20,12 @@ namespace NewBizWiz.MediaSchedule.Single
 		private static FormMain _instance;
 		private Control _currentControl;
 		public event EventHandler<FloaterRequestedEventArgs> FloaterRequested;
-
+		
 		private FormMain()
 		{
 			InitializeComponent();
+
+			FormStateHelper.Init(this, Path.GetDirectoryName(typeof(FormMain).Assembly.Location), true);
 
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;

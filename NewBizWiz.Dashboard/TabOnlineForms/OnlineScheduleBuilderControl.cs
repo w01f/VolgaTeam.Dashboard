@@ -91,6 +91,10 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 		{
 			FormMain.Instance.Opacity = 0;
 			RegistryHelper.MaximizeMainForm = true;
+			OnlineSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Normal;
+			OnlineSchedule.Internal.FormMain.Instance.StartPosition = FormStartPosition.Manual;
+			OnlineSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).Bounds.Location;
+			OnlineSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Maximized;
 			OnlineSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
 			OnlineSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
@@ -109,6 +113,10 @@ namespace NewBizWiz.Dashboard.TabOnlineForms
 			FormMain.Instance.Opacity = 0;
 			FormMain.Instance.SuspendLayout();
 			RegistryHelper.MaximizeMainForm = true;
+			OnlineSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Normal;
+			OnlineSchedule.Internal.FormMain.Instance.StartPosition = FormStartPosition.Manual;
+			OnlineSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).Bounds.Location;
+			OnlineSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Maximized;
 			OnlineSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
 			OnlineSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
 			OnlineSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;

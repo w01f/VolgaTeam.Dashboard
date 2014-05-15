@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using NewBizWiz.Calendar.Controls;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.InteropClasses;
+using NewBizWiz.CommonGUI;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
@@ -21,6 +22,8 @@ namespace NewBizWiz.Calendar.Single
 		private FormMain()
 		{
 			InitializeComponent();
+
+			FormStateHelper.Init(this, Path.GetDirectoryName(typeof(FormMain).Assembly.Location), true);
 
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;

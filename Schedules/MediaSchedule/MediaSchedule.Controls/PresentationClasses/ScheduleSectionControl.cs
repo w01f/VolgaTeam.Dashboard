@@ -573,7 +573,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				&& control != Controller.Instance.HomeFlightDatesStart
 				&& control != Controller.Instance.HomePresentationDate
 				&& control.GetType() != typeof(CheckEdit)
-				&& control.GetType() != typeof(SpinEdit))
+				&& control.GetType() != typeof(SpinEdit)
+				&& control.GetType() != typeof(ComboBoxEdit))
 			{
 				control.Click += CloseActiveEditorsonOutSideClick;
 				foreach (Control childControl in control.Controls)

@@ -73,6 +73,7 @@
     <Compile Include="InteropClasses\CalendarHelper.cs" />
     <Compile Include="InteropClasses\OneSheetHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
+    <Compile Include="InteropClasses\StrategyHelper.cs" />
     <Compile Include="PresentationClasses\BroadcastCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -120,6 +121,12 @@
     </Compile>
     <Compile Include="PresentationClasses\MediaSummaryLight.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ProgramStrategyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ProgramStrategyControl.Designer.cs">
+      <DependentUpon>ProgramStrategyControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\QuarterSelectorControl.cs">
       <SubType>UserControl</SubType>
@@ -183,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\CalendarSlideInfoControl.resx">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ProgramStrategyControl.resx">
+      <DependentUpon>ProgramStrategyControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\QuarterSelectorControl.resx">
       <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
@@ -314,6 +324,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\WideOrbitSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Favorites.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

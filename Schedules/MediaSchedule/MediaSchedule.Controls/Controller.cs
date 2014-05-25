@@ -44,6 +44,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public RibbonTabItem TabRateCard { get; set; }
 		public RibbonTabItem TabMarketing { get; set; }
 		public RibbonTabItem TabProduction { get; set; }
+		public RibbonTabItem TabStrategy { get; set; }
 
 		public void Init()
 		{
@@ -167,6 +168,17 @@ namespace NewBizWiz.MediaSchedule.Controls
 			SummaryFullPreview.Click += (o, e) => SummaryFull.Preview();
 			#endregion
 
+			#region Strategy
+			Strategy = new ProgramStrategyControl();
+			StrategySave.Click += Strategy.Save_Click;
+			StrategySaveAs.Click += Strategy.SaveAs_Click;
+			StrategyHelp.Click += Strategy.Help_Click;
+			StrategyPowerPoint.Click += Strategy.PowerPoint_Click;
+			StrategyEmail.Click += Strategy.Email_Click;
+			StrategyPreview.Click += Strategy.Preview_Click;
+			StrategyFavorites.CheckedChanged += Strategy.Favorites_ChackedChanged;
+			#endregion
+
 			#region Rate Card Events
 			RateCard = new RateCardControl(BusinessWrapper.Instance.RateCardManager, RateCardCombo);
 			RateCardHelp.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("ratecard");
@@ -203,6 +215,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			BroadcastCalendar.Dispose();
 			SummaryLight.Dispose();
 			SummaryFull.Dispose();
+			Strategy.Dispose();
 			Gallery1.Dispose();
 			Gallery2.Dispose();
 			RateCard.Dispose();
@@ -220,6 +233,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			BroadcastCalendar.LoadCalendar(false);
 			SummaryLight.UpdateOutput(false);
 			SummaryFull.UpdateOutput(false);
+			Strategy.LoadSchedule(false);
 
 			BusinessWrapper.Instance.RateCardManager.LoadRateCards();
 			TabRateCard.Enabled = BusinessWrapper.Instance.RateCardManager.RateCardFolders.Any();
@@ -285,6 +299,10 @@ namespace NewBizWiz.MediaSchedule.Controls
 						TabSummaryFull.Text = tabPageConfig.Name;
 						tabPages.Add(TabSummaryFull);
 						break;
+					case "Strategy":
+						TabStrategy.Text = tabPageConfig.Name;
+						tabPages.Add(TabStrategy);
+						break;
 				}
 			}
 			Ribbon.Items.AddRange(tabPages.ToArray());
@@ -331,11 +349,12 @@ namespace NewBizWiz.MediaSchedule.Controls
 			TabMonthlySchedule.Enabled = enable;
 		}
 
-		public void UpdateCalendarTab(bool enable)
+		public void UpdateOutputTabs(bool enable)
 		{
 			TabCalendar.Enabled = enable;
 			TabSummaryLight.Enabled = enable;
 			TabSummaryFull.Enabled = enable;
+			TabStrategy.Enabled = enable;
 		}
 
 		public void UpdateDigitalProductTab(bool enable)
@@ -392,6 +411,13 @@ namespace NewBizWiz.MediaSchedule.Controls
 				(SummaryFullPreview.ContainerControl as RibbonBar).Visible = false;
 				Supertip.SetSuperTooltip(SummaryFullTheme, selectorToolTip);
 				SummaryFullTheme.Click += (o, e) => themesDisabledHandler();
+
+				StrategyPowerPoint.Visible = false;
+				(StrategyPowerPoint.ContainerControl as RibbonBar).Text = "Important Info";
+				(StrategyEmail.ContainerControl as RibbonBar).Visible = false;
+				(StrategyPreview.ContainerControl as RibbonBar).Visible = false;
+				Supertip.SetSuperTooltip(StrategyTheme, selectorToolTip);
+				StrategyTheme.Click += (o, e) => themesDisabledHandler();
 			}
 			else
 			{
@@ -402,6 +428,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 				Supertip.SetSuperTooltip(DigitalPackageTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(SummaryLightTheme, selectorToolTip);
 				Supertip.SetSuperTooltip(SummaryFullTheme, selectorToolTip);
+				Supertip.SetSuperTooltip(StrategyTheme, selectorToolTip);
 			}
 
 			Ribbon.SelectedRibbonTabChanged += (o, e) =>
@@ -412,6 +439,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 				(DigitalPackagePowerPoint.ContainerControl as RibbonBar).Text = (DigitalPackageTheme.Tag as Theme).Name;
 				(SummaryLightPowerPoint.ContainerControl as RibbonBar).Text = (SummaryLightTheme.Tag as Theme).Name;
 				(SummaryFullPowerPoint.ContainerControl as RibbonBar).Text = (SummaryFullTheme.Tag as Theme).Name;
+				(StrategyPowerPoint.ContainerControl as RibbonBar).Text = (StrategyTheme.Tag as Theme).Name;
 			};
 		}
 
@@ -427,6 +455,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 				CalendarSpecialButtons,
 				SummaryLightSpecialButtons,
 				SummaryFullSpecialButtons,
+				StrategySpecialButtons,
 				RateCardSpecialButtons,
 				Gallery1SpecialButtons,
 				Gallery2SpecialButtons
@@ -467,7 +496,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		private void Ribbon_SelectedRibbonTabChanged(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text,BusinessWrapper.Instance.ScheduleManager.CurrentAdvertiser));
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new TabActivity(Ribbon.SelectedRibbonTabItem.Text, BusinessWrapper.Instance.ScheduleManager.CurrentAdvertiser));
 			if (Ribbon.SelectedRibbonTabItem == TabRateCard)
 				RateCard.LoadRateCards();
 			if (Ribbon.SelectedRibbonTabItem == TabGallery1)
@@ -587,6 +616,18 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem SummaryFullTheme { get; set; }
 		#endregion
 
+		#region Strategy
+		public RibbonBar StrategySpecialButtons { get; set; }
+		public ButtonItem StrategyHelp { get; set; }
+		public ButtonItem StrategySave { get; set; }
+		public ButtonItem StrategySaveAs { get; set; }
+		public ButtonItem StrategyPreview { get; set; }
+		public ButtonItem StrategyEmail { get; set; }
+		public ButtonItem StrategyPowerPoint { get; set; }
+		public ButtonItem StrategyTheme { get; set; }
+		public ButtonItem StrategyFavorites { get; set; }
+		#endregion
+
 		#region Rate Card
 		public RibbonBar RateCardSpecialButtons { get; set; }
 		public ButtonItem RateCardHelp { get; set; }
@@ -644,6 +685,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public BroadcastCalendarControl BroadcastCalendar { get; private set; }
 		public MediaSummaryLight SummaryLight { get; private set; }
 		public MediaSummaryFull SummaryFull { get; private set; }
+		public ProgramStrategyControl Strategy { get; private set; }
 		public RateCardControl RateCard { get; private set; }
 		public GalleryControl Gallery1 { get; private set; }
 		public GalleryControl Gallery2 { get; private set; }

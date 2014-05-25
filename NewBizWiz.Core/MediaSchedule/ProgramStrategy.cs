@@ -1,0 +1,212 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Xml;
+
+namespace NewBizWiz.Core.MediaSchedule
+{
+	public class ProgramStrategy
+	{
+		private readonly Schedule _parent;
+
+		public bool ShowFavorites { get; set; }
+		public List<ProgramStrategyItem> Items { get; private set; }
+
+		public IEnumerable<ProgramStrategyItem> EnabledItems
+		{
+			get { return Items.Where(i => i.Enabled).OrderBy(i => i.Order); }
+		}
+
+		public ProgramStrategy(Schedule parent)
+		{
+			_parent = parent;
+			Items = new List<ProgramStrategyItem>();
+			ShowFavorites = true;
+		}
+
+		public string Serialize()
+		{
+			var result = new StringBuilder();
+			result.AppendLine(@"<ShowFavorites>" + ShowFavorites + @"</ShowFavorites>");
+			foreach (var strategyItem in Items)
+				result.AppendLine(@"<Item>" + strategyItem.Serialize() + @"</Item>");
+			return result.ToString();
+		}
+
+		public void Deserialize(XmlNode node)
+		{
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "ShowFavorites":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								ShowFavorites = temp;
+							break;
+						}
+					case "Item":
+						{
+							var item = new ProgramStrategyItem();
+							item.Deserialize(childNode);
+							Items.Add(item);
+							break;
+						}
+				}
+			}
+			UpdateItems();
+		}
+
+		private void UpdateItems()
+		{
+			var sourceCollection = _parent.SelectedSpotType == SpotType.Week ? _parent.WeeklySchedule.Programs : _parent.MonthlySchedule.Programs;
+			var maxOrder = Items.Any() ? Items.Max(i => i.Order) : 0;
+			var groupedPrograms = sourceCollection.GroupBy(p => p.Name, (key, g) => new { Name = key, Spots = g.SelectMany(i => i.Spots).Sum(s => s.Count) });
+			foreach (var program in groupedPrograms)
+			{
+				var strategyItem = Items.FirstOrDefault(si => si.Name == program.Name);
+				if (strategyItem == null)
+				{
+					strategyItem = new ProgramStrategyItem()
+					{
+						Enabled = true,
+						Name = program.Name,
+						Order = maxOrder
+					};
+					Items.Add(strategyItem);
+					maxOrder++;
+				}
+				strategyItem.Description = String.Format("{0}x", program.Spots);
+			}
+			Items.RemoveAll(i => !groupedPrograms.Any(gp => gp.Name == i.Name));
+			ReorderItems();
+		}
+
+		private void ReorderItems()
+		{
+			var index = 0;
+			foreach (var item in Items.OrderBy(i => i.Order).ToList())
+			{
+				item.Order = index;
+				index++;
+			}
+			Items.Sort((x, y) => x.Order.CompareTo(y.Order));
+		}
+
+		public void ChangeItemsOrder(int sourceRowOrder, int targetRowOrder)
+		{
+			if (!(sourceRowOrder >= 0 && sourceRowOrder < Items.Count)) return;
+			var item = Items[sourceRowOrder];
+			item.Order = targetRowOrder - (Decimal)0.5;
+			ReorderItems();
+		}
+	}
+
+	public class ProgramStrategyItem
+	{
+		public bool Enabled { get; set; }
+		public string Name { get; set; }
+		public string Description { get; set; }
+		public decimal Order { get; set; }
+
+		private Image _logo;
+		public Image Logo
+		{
+			get
+			{
+				if (!Enabled)
+					return DisabledLogo;
+				return _logo ?? MediaMetaData.Instance.ListManager.DefaultStrategyLogo;
+			}
+			set
+			{
+				if (!Enabled) return;
+				_logo = value != null ? value.Clone() as Image : null;
+				_disabledLogo = null;
+			}
+		}
+
+		private Image _disabledLogo;
+		private Image DisabledLogo
+		{
+			get
+			{
+				if (_disabledLogo != null) return _disabledLogo;
+				var sourceLogo = (_logo ?? MediaMetaData.Instance.ListManager.DefaultStrategyLogo).Clone() as Image;
+				if (sourceLogo == null) return null;
+				_disabledLogo = new Bitmap(sourceLogo);
+				using (var gr = Graphics.FromImage(_disabledLogo))
+				using (var attributes = new ImageAttributes())
+				{
+					var matrix = new ColorMatrix();
+					matrix.Matrix33 = 0.4f;
+					attributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+					gr.Clear(Color.FromKnownColor(KnownColor.ButtonFace));
+					gr.DrawImage(sourceLogo, new Rectangle(0, 0, _disabledLogo.Width, _disabledLogo.Height), 0, 0, _disabledLogo.Width, _disabledLogo.Height, GraphicsUnit.Pixel, attributes);
+					return _disabledLogo;
+				}
+			}
+		}
+
+		public bool IsDefaultLogo
+		{
+			get { return _logo == null; }
+		}
+
+		public string Serialize()
+		{
+			var result = new StringBuilder();
+			var converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+
+			result.AppendLine(@"<Enabled>" + Enabled + @"</Enabled>");
+			if (!String.IsNullOrEmpty(Name))
+				result.AppendLine(@"<Name>" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Name>");
+			if (!String.IsNullOrEmpty(Description))
+				result.AppendLine(@"<Description>" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Description>");
+			result.AppendLine(@"<Order>" + Order + @"</Order>");
+			if (_logo != null)
+				result.AppendLine(@"<Logo>" + Convert.ToBase64String((byte[])converter.ConvertTo(_logo, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
+
+			return result.ToString();
+		}
+
+		public void Deserialize(XmlNode node)
+		{
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "Enabled":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								Enabled = temp;
+							break;
+						}
+					case "Name":
+						Name = childNode.InnerText;
+						break;
+					case "Description":
+						Description = childNode.InnerText;
+						break;
+					case "Order":
+						{
+							decimal temp;
+							if (Decimal.TryParse(childNode.InnerText, out temp))
+								Order = temp;
+							break;
+						}
+					case "Logo":
+						_logo = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
+						break;
+				}
+			}
+		}
+	}
+}

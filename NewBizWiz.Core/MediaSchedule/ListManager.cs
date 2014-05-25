@@ -13,6 +13,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		protected abstract string StrategyFileName { get; }
 		protected abstract string XmlRootPrefix { get; }
 		protected abstract string ImageFolderPath { get; }
+		protected abstract string ProgramStrategyDefaultLogoPath { get; }
 
 		protected MediaListManager()
 		{
@@ -68,6 +69,8 @@ namespace NewBizWiz.Core.MediaSchedule
 		public List<string> Statuses { get; set; }
 		public List<BroadcastMonthTemplate> MonthTemplates { get; set; }
 
+		public Image DefaultStrategyLogo { get; set; }
+
 		private void LoadStrategy()
 		{
 			SlideHeaders.Clear();
@@ -78,7 +81,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			CustomDemos.Clear();
 			Dayparts.Clear();
 			Times.Clear();
-			var listPath = Path.Combine(Common.SettingsManager.Instance.SharedListFolder, StrategyFileName);
+			var listPath = Path.Combine(SettingsManager.Instance.SharedListFolder, StrategyFileName);
 			if (File.Exists(listPath))
 			{
 				var document = new XmlDocument();
@@ -223,6 +226,8 @@ namespace NewBizWiz.Core.MediaSchedule
 				imageSource.XtraTinyImage = new Bitmap(xtraTinyImageFilePath);
 				Images.Add(imageSource);
 			}
+
+			DefaultStrategyLogo = File.Exists(ProgramStrategyDefaultLogoPath) ? new Bitmap(ProgramStrategyDefaultLogoPath) : null;
 		}
 
 		private void GetProgramProperties(XmlNode node, ref SourceProgram sourceProgram)
@@ -301,6 +306,11 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\TV\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
 		}
+
+		protected override string ProgramStrategyDefaultLogoPath
+		{
+			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\TV\DefaultStrategyImage.png", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
+		}
 	}
 
 	public class RadioListManager : MediaListManager
@@ -318,6 +328,11 @@ namespace NewBizWiz.Core.MediaSchedule
 		protected override string ImageFolderPath
 		{
 			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\Radio\", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
+		}
+
+		protected override string ProgramStrategyDefaultLogoPath
+		{
+			get { return String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Artwork\Radio\DefaultStrategyImage.png", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
 		}
 	}
 }

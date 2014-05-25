@@ -61,25 +61,25 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public override void LoadSchedule(bool quickLoad)
 		{
 			base.LoadSchedule(quickLoad);
-			Controller.Instance.UpdateCalendarTab(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
+			Controller.Instance.UpdateOutputTabs(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
 		}
 
 		public override void AddProgram_Click(object sender, EventArgs e)
 		{
 			base.AddProgram_Click(sender, e);
-			Controller.Instance.UpdateCalendarTab(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
+			Controller.Instance.UpdateOutputTabs(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
 		}
 
 		public override void DeleteProgram_Click(object sender, EventArgs e)
 		{
 			base.DeleteProgram_Click(sender, e);
-			Controller.Instance.UpdateCalendarTab(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
+			Controller.Instance.UpdateOutputTabs(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
 		}
 
 		protected override void ScheduleSection_DataChanged(object sender, EventArgs e)
 		{
 			base.ScheduleSection_DataChanged(sender, e);
-			Controller.Instance.UpdateCalendarTab(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
+			Controller.Instance.UpdateOutputTabs(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
 		}
 	}
 }

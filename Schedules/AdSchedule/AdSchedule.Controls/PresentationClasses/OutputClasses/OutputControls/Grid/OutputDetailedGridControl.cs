@@ -800,7 +800,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void SetColumnsState()
 		{
-			foreach (PublicationDetailedGridControl publicationControl in _tabPages)
+			foreach (var publicationControl in _tabPages)
 			{
 				publicationControl.gridColumnColorPricing.VisibleIndex = PositionColor;
 				publicationControl.gridColumnColumnInches.VisibleIndex = PositionSquare;

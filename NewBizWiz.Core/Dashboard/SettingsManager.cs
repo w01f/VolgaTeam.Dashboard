@@ -85,7 +85,7 @@ namespace NewBizWiz.Core.Dashboard
 
 		private void InitDashboardSaveFolder()
 		{
-			DashboardSaveFolder = Path.Combine(string.Format(@"{0}\newlocaldirect.com\sync\Outgoing\AppID-" + Common.SettingsManager.Instance.AppID.ToString(), Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)), "saved_dashboard");
+			DashboardSaveFolder = Path.Combine(Common.SettingsManager.Instance.OutgoingFolderPath, "saved_dashboard");
 			if (!Directory.Exists(DashboardSaveFolder))
 				Directory.CreateDirectory(DashboardSaveFolder);
 		}

@@ -10,9 +10,12 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 {
 	public class OutputManager
 	{
+		public static string MasterWizardsRootFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\ScheduleBuilders", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 		private const string OneSheetsTableBasedTemplatesFolderName = @"{0}\{1} Slides\tables";
 		public const string OneSheetTableBasedTemplateFileName = @"{0}\{1}_programs\{1}-{2}.ppt";
-		public static string MasterWizardsRootFolderPath = String.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\ScheduleBuilders", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+
+		private const string StrategyTemplatesFolderName = @"{0}\{1} Slides\strategy";
+		public const string StrategyTemplateFileName = @"strategy_{0}.ppt";
 
 		private const string CalendarTemlatesFolderName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\broadcast_cal\broadcast_slides";
 		public const string CalendarSlideTemplate = @"Broadcast_{0}_{1}_{2}.pptx";
@@ -23,6 +26,11 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		public string OneSheetTableBasedTemplatesFolderPath
 		{
 			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(OneSheetsTableBasedTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
+		}
+
+		public string StrategyTemplatesFolderPath
+		{
+			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(StrategyTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
 		}
 
 		public string CalendarTemlatesFolderPath

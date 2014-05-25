@@ -9,7 +9,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 		private SettingsManager()
 		{
-			var defaultSaveFolderPath = Path.Combine(String.Format(@"{0}\newlocaldirect.com\sync\Outgoing", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)), "AppID-" + Common.SettingsManager.Instance.AppID.ToString(), @"Saved_Schedules\Ad Schedule Builder");
+			var defaultSaveFolderPath = Path.Combine(Common.SettingsManager.Instance.OutgoingFolderPath, @"Saved_Schedules\Ad Schedule Builder");
 			if (!Directory.Exists(defaultSaveFolderPath))
 				Directory.CreateDirectory(defaultSaveFolderPath);
 			SaveFolder = defaultSaveFolderPath;

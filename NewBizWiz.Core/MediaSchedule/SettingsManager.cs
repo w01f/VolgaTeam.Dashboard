@@ -102,7 +102,7 @@ namespace NewBizWiz.Core.MediaSchedule
 	{
 		public TVSettingsManager()
 		{
-			var defaultSaveFolderPath = Path.Combine(String.Format(@"{0}\newlocaldirect.com\sync\Outgoing", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)), "AppID-" + Common.SettingsManager.Instance.AppID, @"Saved_Schedules\TV Schedule Builder");
+			var defaultSaveFolderPath = Path.Combine(Common.SettingsManager.Instance.OutgoingFolderPath, @"Saved_Schedules\TV Schedule Builder");
 			if (!Directory.Exists(defaultSaveFolderPath))
 				Directory.CreateDirectory(defaultSaveFolderPath);
 			SaveFolder = defaultSaveFolderPath;
@@ -121,7 +121,7 @@ namespace NewBizWiz.Core.MediaSchedule
 	{
 		public RadioSettingsManager()
 		{
-			var defaultSaveFolderPath = Path.Combine(String.Format(@"{0}\newlocaldirect.com\sync\Outgoing", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)), "AppID-" + Common.SettingsManager.Instance.AppID, @"Saved_Schedules\Radio Schedule Builder");
+			var defaultSaveFolderPath = Path.Combine(Common.SettingsManager.Instance.OutgoingFolderPath, @"Saved_Schedules\Radio Schedule Builder");
 			if (!Directory.Exists(defaultSaveFolderPath))
 				Directory.CreateDirectory(defaultSaveFolderPath);
 			SaveFolder = defaultSaveFolderPath;

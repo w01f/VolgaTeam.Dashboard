@@ -201,6 +201,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			ProductSummary = new BaseSummarySettings();
 			CustomSummary = new MediaFullSummarySettings(this);
 
+			ProgramStrategy = new ProgramStrategy(this);
+
 			_scheduleFile = new FileInfo(fileName);
 			if (!File.Exists(fileName))
 			{
@@ -259,6 +261,8 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public BaseSummarySettings ProductSummary { get; private set; }
 		public CustomSummarySettings CustomSummary { get; private set; }
+
+		public ProgramStrategy ProgramStrategy { get; private set; }
 
 		public string Name
 		{
@@ -447,6 +451,12 @@ namespace NewBizWiz.Core.MediaSchedule
 			{
 				CustomSummary.Deserialize(node);
 			}
+
+			node = document.SelectSingleNode(@"/Schedule/ProgramStrategy");
+			if (node != null)
+			{
+				ProgramStrategy.Deserialize(node);
+			}
 		}
 
 		public void Save()
@@ -507,6 +517,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			xml.AppendLine(@"<DigitalProductSummary>" + DigitalProductSummary.Serialize() + @"</DigitalProductSummary>");
 			xml.AppendLine(@"<ProductSummary>" + ProductSummary.Serialize() + @"</ProductSummary>");
 			xml.AppendLine(@"<CustomSummary>" + CustomSummary.Serialize() + @"</CustomSummary>");
+			xml.AppendLine(@"<ProgramStrategy>" + ProgramStrategy.Serialize() + @"</ProgramStrategy>");
 			xml.AppendLine(@"</Schedule>");
 
 			using (var sw = new StreamWriter(_scheduleFile.FullName, false))
@@ -1746,12 +1757,12 @@ namespace NewBizWiz.Core.MediaSchedule
 				var quarter = new Quarter { DateAnchor = startDate };
 				var quarterMonths = Months.Where(m => (m.DaysRangeBegin.Day < 15 && m.DaysRangeBegin >= startDate && m.DaysRangeBegin <= endDate) ||
 					(m.DaysRangeBegin.Day > 15 && m.DaysRangeEnd >= startDate && m.DaysRangeEnd <= endDate)
-					).OrderBy(m => m.Date);
+					).OrderBy(m => m.Date).ToList();
+				startDate = endDate;
 				if (!quarterMonths.Any()) continue;
 				quarter.DateStart = quarterMonths.First().DaysRangeBegin;
 				quarter.DateEnd = quarterMonths.Last().DaysRangeEnd;
 				Quarters.Add(quarter);
-				startDate = endDate;
 			}
 		}
 
@@ -2038,7 +2049,7 @@ namespace NewBizWiz.Core.MediaSchedule
 				description.Add(String.Format("Stations: {0}", String.Join(", ", _parent.SelectedSection.Programs.Select(p => p.Station).Distinct())));
 				description.Add(String.Format("Dayparts: {0}", String.Join(", ", _parent.SelectedSection.Programs.Select(p => p.Daypart).Distinct())));
 				description.Add(String.Format("Total Spots: {0}x", _parent.SelectedSection.Programs.Sum(p => p.Spots.Sum(sp => sp.Count))));
-				if (_parent.SelectedSection.Programs.Any())
+				if (_parent.SelectedSection.Programs.Any(p => p.Rate.HasValue))
 					description.Add(String.Format("Avg Rate: {0}", _parent.SelectedSection.Programs.Where(p => p.Rate.HasValue).Average(p => p.Rate.Value).ToString("$#,##0")));
 				mediaSummaryItem.Description = String.Join("  ", description);
 				mediaSummaryItem.ShowDescription = true;

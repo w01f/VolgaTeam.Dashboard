@@ -38,6 +38,7 @@
 		TVMonthlySchedule = 303,
 		TVWeeklySchedule = 304,
 		TVSummary = 305,
+		TVStrategy = 306,
 		#endregion
 
 		#region Radio Schedule
@@ -46,6 +47,7 @@
 		RadioMonthlySchedule = 403,
 		RadioWeeklySchedule = 404,
 		RadioSummary = 405,
+		RadioStrategy = 406,
 		#endregion
 
 		WebQuick = 501

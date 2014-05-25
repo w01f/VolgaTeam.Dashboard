@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace NewBizWiz.CommonGUI
+namespace NewBizWiz.CommonGUI.Common
 {
 	public class FormStateHelper
 	{

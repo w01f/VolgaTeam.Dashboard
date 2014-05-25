@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.laFlightDates = new System.Windows.Forms.Label();
 			this.laBusinessName = new System.Windows.Forms.Label();
 			this.textEditHeader = new DevExpress.XtraEditors.TextEdit();
@@ -302,6 +303,8 @@
 			this.gridColumnDimensions.Name = "gridColumnDimensions";
 			this.gridColumnDimensions.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
 			this.gridColumnDimensions.OptionsColumn.FixedWidth = true;
+			this.gridColumnDimensions.Visible = true;
+			this.gridColumnDimensions.VisibleIndex = 9;
 			this.gridColumnDimensions.Width = 110;
 			// 
 			// repositoryItemTextEdit
@@ -471,6 +474,8 @@
 			this.gridColumnColumnInches.Name = "gridColumnColumnInches";
 			this.gridColumnColumnInches.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
 			this.gridColumnColumnInches.OptionsColumn.FixedWidth = true;
+			this.gridColumnColumnInches.Visible = true;
+			this.gridColumnColumnInches.VisibleIndex = 10;
 			this.gridColumnColumnInches.Width = 110;
 			// 
 			// gridColumnPageSize
@@ -483,6 +488,8 @@
 			this.gridColumnPageSize.Name = "gridColumnPageSize";
 			this.gridColumnPageSize.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
 			this.gridColumnPageSize.OptionsColumn.FixedWidth = true;
+			this.gridColumnPageSize.Visible = true;
+			this.gridColumnPageSize.VisibleIndex = 11;
 			this.gridColumnPageSize.Width = 110;
 			// 
 			// gridColumnMechanicals
@@ -495,6 +502,8 @@
 			this.gridColumnMechanicals.Name = "gridColumnMechanicals";
 			this.gridColumnMechanicals.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
 			this.gridColumnMechanicals.OptionsColumn.FixedWidth = true;
+			this.gridColumnMechanicals.Visible = true;
+			this.gridColumnMechanicals.VisibleIndex = 12;
 			this.gridColumnMechanicals.Width = 110;
 			// 
 			// gridColumnPublication
@@ -506,6 +515,8 @@
 			this.gridColumnPublication.Name = "gridColumnPublication";
 			this.gridColumnPublication.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
 			this.gridColumnPublication.OptionsColumn.FixedWidth = true;
+			this.gridColumnPublication.Visible = true;
+			this.gridColumnPublication.VisibleIndex = 13;
 			this.gridColumnPublication.Width = 110;
 			// 
 			// gridColumnSection
@@ -517,6 +528,8 @@
 			this.gridColumnSection.Name = "gridColumnSection";
 			this.gridColumnSection.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
 			this.gridColumnSection.OptionsColumn.FixedWidth = true;
+			this.gridColumnSection.Visible = true;
+			this.gridColumnSection.VisibleIndex = 14;
 			this.gridColumnSection.Width = 110;
 			// 
 			// gridColumnDelivery
@@ -528,6 +541,8 @@
 			this.gridColumnDelivery.Name = "gridColumnDelivery";
 			this.gridColumnDelivery.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
 			this.gridColumnDelivery.OptionsColumn.FixedWidth = true;
+			this.gridColumnDelivery.Visible = true;
+			this.gridColumnDelivery.VisibleIndex = 15;
 			this.gridColumnDelivery.Width = 110;
 			// 
 			// gridColumnDeadline
@@ -539,6 +554,8 @@
 			this.gridColumnDeadline.Name = "gridColumnDeadline";
 			this.gridColumnDeadline.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
 			this.gridColumnDeadline.OptionsColumn.FixedWidth = true;
+			this.gridColumnDeadline.Visible = true;
+			this.gridColumnDeadline.VisibleIndex = 16;
 			this.gridColumnDeadline.Width = 110;
 			// 
 			// gridColumnReadership
@@ -550,6 +567,8 @@
 			this.gridColumnReadership.Name = "gridColumnReadership";
 			this.gridColumnReadership.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
 			this.gridColumnReadership.OptionsColumn.FixedWidth = true;
+			this.gridColumnReadership.Visible = true;
+			this.gridColumnReadership.VisibleIndex = 17;
 			this.gridColumnReadership.Width = 110;
 			// 
 			// gridColumnImage
@@ -589,6 +608,8 @@
 			this.gridColumnPercentOfPage.Name = "gridColumnPercentOfPage";
 			this.gridColumnPercentOfPage.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
 			this.gridColumnPercentOfPage.OptionsColumn.FixedWidth = true;
+			this.gridColumnPercentOfPage.Visible = true;
+			this.gridColumnPercentOfPage.VisibleIndex = 18;
 			this.gridColumnPercentOfPage.Width = 110;
 			// 
 			// OutputMultiGridControl

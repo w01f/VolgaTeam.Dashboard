@@ -395,7 +395,6 @@ namespace NewBizWiz.CommonGUI.Summary
 				OutputReplacementsLists = new List<Dictionary<string, string>>();
 			OutputReplacementsLists.Clear();
 			var recordsCount = ItemsCount;
-			OutputReplacementsLists = new List<Dictionary<string, string>>();
 			var monthlyValues = OrderedItems.Where(it => it.Complited).Select(it => it.OutputMonthlyValue.HasValue ? it.OutputMonthlyValue.Value.ToString("$#,##0") : String.Empty).ToArray();
 			var totalValues = OrderedItems.Where(it => it.Complited).Select(it => it.OutputTotalValue.HasValue ? it.OutputTotalValue.Value.ToString("$#,##0") : String.Empty).ToArray();
 			for (var i = 0; i < recordsCount; i += ItemsPerTable)

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.InteropClasses;
-using NewBizWiz.CommonGUI;
+using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 

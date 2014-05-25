@@ -481,24 +481,24 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 			gridViewPublications.ColumnPositionChanged -= gridViewPublications_ColumnPositionChanged;
 			var columns = new List<OrderedItem>();
-			columns.Add(new OrderedItem { Item = gridColumnColorPricing, Order = _showColorHeader && PositionColor != -1 ? PositionColor + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnColumnInches, Order = _showSquareHeader && PositionSquare != -1 ? PositionSquare + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnDate, Order = _showDateHeader && PositionDate != -1 ? PositionDate + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnDeadline, Order = _showDeadlineHeader && PositionDeadline != -1 ? PositionDeadline + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnDelivery, Order = _showDeliveryHeader && PositionDelivery != -1 ? PositionDelivery + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnDiscountRate, Order = _showDiscountHeader && PositionDiscount != -1 ? PositionDiscount + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnFinalRate, Order = _showFinalCostHeader && PositionFinalCost != -1 ? PositionFinalCost + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnID, Order = _showIDHeader && PositionID != -1 ? PositionID + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnIndex, Order = _showIndexHeader && PositionIndex != -1 ? PositionIndex + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnMechanicals, Order = _showMechanicalsHeader && PositionMechanicals != -1 ? PositionMechanicals + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnPageSize, Order = _showPageSizeHeader && PositionPageSize != -1 ? PositionPageSize + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnPercentOfPage, Order = _showPercentOfPageHeader && PositionPercentOfPage != -1 ? PositionPercentOfPage + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnPCIRate, Order = _showPCIHeader && PositionPCI != -1 ? PositionPCI + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnADRate, Order = _showCostHeader && PositionCost != -1 ? PositionCost + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnPublication, Order = _showPublicationHeader && PositionPublication != -1 ? PositionPublication + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnDimensions, Order = _showDimensionsHeader && PositionDimensions != -1 ? PositionDimensions + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnReadership, Order = _showReadershipHeader && PositionReadership != -1 ? PositionReadership + 1 : -1 });
-			columns.Add(new OrderedItem { Item = gridColumnSection, Order = _showSectionHeader && PositionSection != -1 ? PositionSection + 1 : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnColorPricing, Order = _showColorHeader ? (PositionColor != -1 ? PositionColor + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnColumnInches, Order = _showSquareHeader ? (PositionSquare != -1 ? PositionSquare + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnDate, Order = _showDateHeader ? (PositionDate != -1 ? PositionDate + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnDeadline, Order = _showDeadlineHeader ? (PositionDeadline != -1 ? PositionDeadline + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnDelivery, Order = _showDeliveryHeader ? (PositionDelivery != -1 ? PositionDelivery + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnDiscountRate, Order = _showDiscountHeader ? (PositionDiscount != -1 ? PositionDiscount + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnFinalRate, Order = _showFinalCostHeader ? (PositionFinalCost != -1 ? PositionFinalCost + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnID, Order = _showIDHeader ? (PositionID != -1 ? PositionID + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnIndex, Order = _showIndexHeader ? (PositionIndex != -1 ? PositionIndex + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnMechanicals, Order = _showMechanicalsHeader ? (PositionMechanicals != -1 ? PositionMechanicals + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnPageSize, Order = _showPageSizeHeader ? (PositionPageSize != -1 ? PositionPageSize + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnPercentOfPage, Order = _showPercentOfPageHeader ? (PositionPercentOfPage != -1 ? PositionPercentOfPage + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnPCIRate, Order = _showPCIHeader ? (PositionPCI != -1 ? PositionPCI + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnADRate, Order = _showCostHeader ? (PositionCost != -1 ? PositionCost + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnPublication, Order = _showPublicationHeader ? (PositionPublication != -1 ? PositionPublication + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnDimensions, Order = _showDimensionsHeader ? (PositionDimensions != -1 ? PositionDimensions + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnReadership, Order = _showReadershipHeader ? (PositionReadership != -1 ? PositionReadership + 1 : 999) : -1 });
+			columns.Add(new OrderedItem { Item = gridColumnSection, Order = _showSectionHeader ? (PositionSection != -1 ? PositionSection + 1 : 999) : -1 });
 			var realPosition = 1;
 			foreach (var column in columns.Where(c => c.Order != -1).OrderBy(c => c.Order))
 			{

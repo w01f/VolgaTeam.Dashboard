@@ -72,7 +72,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormStateHelper.cs" />
+    <Compile Include="Common\FormStateHelper.cs" />
+    <Compile Include="Common\GridDragDropHelper.cs" />
+    <Compile Include="FavoriteImages\FavoriteImagesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FavoriteImages\FavoriteImagesControl.Designer.cs">
+      <DependentUpon>FavoriteImagesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FavoriteImages\FormAddFavoriteImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FavoriteImages\FormAddFavoriteImage.Designer.cs">
+      <DependentUpon>FormAddFavoriteImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interop\CommonPowerPointHelper.cs" />
     <Compile Include="Floater\FloaterManager.cs" />
     <Compile Include="Floater\FloaterRequestedEventArgs.cs" />
@@ -145,7 +158,7 @@
     <Compile Include="RateCard\WordViewer.Designer.cs">
       <DependentUpon>WordViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="LicenseHelper.cs" />
+    <Compile Include="Common\LicenseHelper.cs" />
     <Compile Include="Slides\FormSlideSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +259,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FavoriteImages\FavoriteImagesControl.resx">
+      <DependentUpon>FavoriteImagesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FavoriteImages\FormAddFavoriteImage.resx">
+      <DependentUpon>FormAddFavoriteImage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Floater\FormFloater.resx">
       <DependentUpon>FormFloater.cs</DependentUpon>
     </EmbeddedResource>
@@ -454,6 +473,7 @@
   <ItemGroup>
     <None Include="Resources\UpArrow.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

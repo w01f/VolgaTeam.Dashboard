@@ -15,6 +15,7 @@ namespace NewBizWiz.Core.Common
 		public Image TinyImage { get; set; }
 		public Image XtraTinyImage { get; set; }
 		public string Name { get; set; }
+		public string FileName { get; set; }
 
 		public bool ContainsData
 		{

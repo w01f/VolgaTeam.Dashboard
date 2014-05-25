@@ -1,0 +1,79 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+
+namespace NewBizWiz.Core.Common
+{
+	public class FavoriteImagesManager
+	{
+		private readonly string _storageFolderPath;
+
+		public List<ImageSource> Images { get; private set; }
+		public event EventHandler<EventArgs> CollectionChanged;
+
+		public FavoriteImagesManager()
+		{
+			_storageFolderPath = Path.Combine(SettingsManager.Instance.OutgoingFolderPath, "image_favorites");
+			if (!Directory.Exists(_storageFolderPath))
+				Directory.CreateDirectory(_storageFolderPath);
+			Images = new List<ImageSource>();
+			LoadImages();
+		}
+
+		protected void OnCollectionChanged()
+		{
+			var handler = CollectionChanged;
+			if (handler != null) handler(this, EventArgs.Empty);
+		}
+
+		private void LoadImages()
+		{
+			Images.Clear();
+			foreach (var file in Directory.GetFiles(_storageFolderPath, "*.png"))
+			{
+				using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
+				{
+					Images.Add(new ImageSource
+					{
+						Name = Path.GetFileNameWithoutExtension(file),
+						FileName = file,
+						BigImage = Image.FromStream(fs)
+					});
+					fs.Close();
+				}
+			}
+		}
+
+		public void DeleteImage(ImageSource image)
+		{
+			if (image == null) return;
+			if (!File.Exists(image.FileName)) return;
+			try
+			{
+				if (image.BigImage != null)
+				{
+					image.BigImage.Dispose();
+					image.BigImage = null;
+				}
+				File.Delete(image.FileName);
+				LoadImages();
+				OnCollectionChanged();
+
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+
+		}
+
+		public void SaveImage(Image image, string fileName)
+		{
+			if (image == null) return;
+			image.Save(Path.Combine(_storageFolderPath, String.Format("{0}.png", fileName)));
+			LoadImages();
+			OnCollectionChanged();
+		}
+	}
+}

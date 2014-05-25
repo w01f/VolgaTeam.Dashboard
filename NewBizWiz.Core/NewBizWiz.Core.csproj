@@ -79,6 +79,7 @@
     <Compile Include="Calendar\CalendarTemplatesManager.cs" />
     <Compile Include="Common\ActivityManager.cs" />
     <Compile Include="Common\Enums.cs" />
+    <Compile Include="Common\FavoriteImagesManager.cs" />
     <Compile Include="Common\GalleryManager.cs" />
     <Compile Include="Common\NBWLink.cs" />
     <Compile Include="Common\OrderedItem.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Interop\WordHelper.cs" />
     <Compile Include="MediaSchedule\ListManager.cs" />
     <Compile Include="MediaSchedule\MediaMetaData.cs" />
+    <Compile Include="MediaSchedule\ProgramStrategy.cs" />
     <Compile Include="MediaSchedule\ScheduleManager.cs" />
     <Compile Include="MediaSchedule\ScheduleSaveEventArgs.cs" />
     <Compile Include="MediaSchedule\SettingsManager.cs" />

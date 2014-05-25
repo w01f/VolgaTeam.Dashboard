@@ -35,7 +35,7 @@ namespace NewBizWiz.Core.Common
 			DashboardName = "Schedule APP";
 			DashboardCode = String.Empty;
 			DashboardText = "GO GET YOUR BIZ!";
-	
+
 			SelectedWizard = String.Empty;
 
 			LoadSharedSettings();
@@ -61,6 +61,7 @@ namespace NewBizWiz.Core.Common
 		public string ActivityDataPath { get; set; }
 		public string RateCardPath { get; set; }
 		public string HelpBrowserSettingsPath { get; set; }
+		public string OutgoingFolderPath { get; set; }
 
 		public Guid AppID { get; set; }
 
@@ -197,7 +198,7 @@ namespace NewBizWiz.Core.Common
 			LoadAppID();
 			LoadDashboardName();
 			LoadDashdoardCode();
-			ActivityDataPath = String.Format(@"{0}\newlocaldirect.com\sync\outgoing\AppID-{1}\user_data", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), AppID);
+			ActivityDataPath = Path.Combine(OutgoingFolderPath, "user_data");
 		}
 
 		public void SaveSharedSettings()
@@ -243,7 +244,7 @@ namespace NewBizWiz.Core.Common
 		{
 			var xml = new StringBuilder();
 
-			xml.AppendLine(@"<AppID>" + AppID.ToString() + @"</AppID>");
+			xml.AppendLine(@"<AppID>" + AppID + @"</AppID>");
 			if (!Directory.Exists(Path.GetDirectoryName(_appIDFile)))
 				Directory.CreateDirectory(Path.GetDirectoryName(_appIDFile));
 			using (var sw = new StreamWriter(_appIDFile, false))
@@ -318,20 +319,20 @@ namespace NewBizWiz.Core.Common
 		{
 			try
 			{
-				string appIDFolder = string.Format(@"{0}\newlocaldirect.com\sync\Outgoing\AppID-" + AppID.ToString(), Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-				if (!Directory.Exists(appIDFolder))
-					Directory.CreateDirectory(appIDFolder);
+				OutgoingFolderPath = string.Format(@"{0}\newlocaldirect.com\sync\Outgoing\AppID-" + AppID, Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+				if (!Directory.Exists(OutgoingFolderPath))
+					Directory.CreateDirectory(OutgoingFolderPath);
 
-				string appIDFile = string.Format(@"{0}\newlocaldirect.com\sync\Outgoing\AppID-" + AppID.ToString() + ".xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+				string appIDFile = string.Format(@"{0}\newlocaldirect.com\sync\Outgoing\AppID-" + AppID + ".xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 				if (!File.Exists(appIDFile))
 					File.Create(appIDFile);
 
-				if (!Directory.Exists(Path.Combine(appIDFolder, "power_points")))
-					Directory.CreateDirectory(Path.Combine(appIDFolder, "power_points"));
-				if (!Directory.Exists(Path.Combine(appIDFolder, "saved_schedules")))
-					Directory.CreateDirectory(Path.Combine(appIDFolder, "saved_schedules"));
-				if (!Directory.Exists(Path.Combine(appIDFolder, "user_data")))
-					Directory.CreateDirectory(Path.Combine(appIDFolder, "user_data"));
+				if (!Directory.Exists(Path.Combine(OutgoingFolderPath, "power_points")))
+					Directory.CreateDirectory(Path.Combine(OutgoingFolderPath, "power_points"));
+				if (!Directory.Exists(Path.Combine(OutgoingFolderPath, "saved_schedules")))
+					Directory.CreateDirectory(Path.Combine(OutgoingFolderPath, "saved_schedules"));
+				if (!Directory.Exists(Path.Combine(OutgoingFolderPath, "user_data")))
+					Directory.CreateDirectory(Path.Combine(OutgoingFolderPath, "user_data"));
 			}
 			catch { }
 		}

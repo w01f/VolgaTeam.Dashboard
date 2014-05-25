@@ -89,6 +89,9 @@ namespace NewBizWiz.Core.Common
 					case "OnlineAdPlan":
 						slideType = SlideType.OnlineAdPlan;
 						break;
+					case "DigitalSummary":
+						slideType = SlideType.DigitalSummary;
+						break;
 					#endregion
 
 					#region TV Schedule
@@ -104,6 +107,12 @@ namespace NewBizWiz.Core.Common
 					case "TVMonthlySchedule":
 						slideType = SlideType.TVMonthlySchedule;
 						break;
+					case "TVSummary":
+						slideType = SlideType.TVSummary;
+						break;
+					case "TVStrategy":
+						slideType = SlideType.TVStrategy;
+						break;
 					#endregion
 
 					#region Radio Schedule
@@ -118,6 +127,12 @@ namespace NewBizWiz.Core.Common
 						break;
 					case "RadioMonthlySchedule":
 						slideType = SlideType.RadioMonthlySchedule;
+						break;
+					case "RadioSummary":
+						slideType = SlideType.RadioSummary;
+						break;
+					case "RadioStrategy":
+						slideType = SlideType.RadioStrategy;
 						break;
 					#endregion
 

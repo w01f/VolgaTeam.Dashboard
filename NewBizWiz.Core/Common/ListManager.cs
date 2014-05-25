@@ -21,7 +21,7 @@ namespace NewBizWiz.Core.Common
 			Advertisers = new List<string>();
 			DecisionMakers = new List<string>();
 
-			LocalListFolder = Path.Combine(String.Format(@"{0}\newlocaldirect.com\sync\Outgoing", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)), "AppID-" + SettingsManager.Instance.AppID.ToString(), @"User_lists");
+			LocalListFolder = Path.Combine(SettingsManager.Instance.OutgoingFolderPath, @"User_lists");
 			if (!Directory.Exists(LocalListFolder))
 				Directory.CreateDirectory(LocalListFolder);
 

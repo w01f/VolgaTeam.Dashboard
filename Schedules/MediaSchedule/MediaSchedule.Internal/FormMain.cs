@@ -32,6 +32,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.TabCalendar = ribbonTabItemCalendar;
 			Controller.Instance.TabSummaryLight = ribbonTabItemSummaryLight;
 			Controller.Instance.TabSummaryFull = ribbonTabItemSummaryFull;
+			Controller.Instance.TabStrategy = ribbonTabItemStrategy;
 			Controller.Instance.TabGallery1 = ribbonTabItemGallery1;
 			Controller.Instance.TabGallery2 = ribbonTabItemGallery2;
 			Controller.Instance.TabRateCard = ribbonTabItemRateCard;
@@ -148,6 +149,18 @@ namespace NewBizWiz.MediaSchedule.Internal
 			Controller.Instance.SummaryFullEmail = buttonItemSummaryFullEmail;
 			Controller.Instance.SummaryFullPowerPoint = buttonItemSummaryFullPowerPoint;
 			Controller.Instance.SummaryFullTheme = buttonItemSummaryFullTheme;
+			#endregion
+
+			#region Strategy
+			Controller.Instance.StrategySpecialButtons = ribbonBarStrategySpecialButtons;
+			Controller.Instance.StrategyHelp = buttonItemStrategyHelp;
+			Controller.Instance.StrategySave = buttonItemStrategySave;
+			Controller.Instance.StrategySaveAs = buttonItemStrategySaveAs;
+			Controller.Instance.StrategyPreview = buttonItemStrategyPreview;
+			Controller.Instance.StrategyEmail = buttonItemStrategyEmail;
+			Controller.Instance.StrategyPowerPoint = buttonItemStrategyPowerPoint;
+			Controller.Instance.StrategyTheme = buttonItemStrategyTheme;
+			Controller.Instance.StrategyFavorites = buttonItemStrategyFavorites;
 			#endregion
 
 			#region Gallery 1
@@ -348,6 +361,17 @@ namespace NewBizWiz.MediaSchedule.Internal
 					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 				}
 			}
+			else if ((_currentControl == Controller.Instance.Strategy))
+			{
+				if (Controller.Instance.Strategy.AllowToLeaveControl)
+					result = true;
+				else
+				{
+					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
+					ribbonControl.SelectedRibbonTabItem = ribbonTabItemStrategy;
+					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+				}
+			}
 			else
 				result = true;
 			return result;
@@ -472,6 +496,17 @@ namespace NewBizWiz.MediaSchedule.Internal
 				_currentControl.BringToFront();
 				pnMain.BringToFront();
 			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemStrategy)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = Controller.Instance.Strategy;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
 			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemGallery1)
 			{
 				if (AllowToLeaveCurrentControl())
@@ -537,6 +572,8 @@ namespace NewBizWiz.MediaSchedule.Internal
 				result = Controller.Instance.SummaryLight.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.SummaryFull)
 				result = Controller.Instance.SummaryFull.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.Strategy)
+				result = Controller.Instance.Strategy.AllowToLeaveControl;
 		}
 
 		private void buttonItemFloater_Click(object sender, EventArgs e)

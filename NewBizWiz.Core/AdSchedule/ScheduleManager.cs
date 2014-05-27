@@ -1983,7 +1983,7 @@ namespace NewBizWiz.Core.AdSchedule
 
 		public override void Deserialize(XmlNode node)
 		{
-			Deserialize<AdCalendarMonth, AdCalendarDay>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
+			Deserialize<AdCalendarMonth, AdCalendarDay,CalendarNote>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
 		}
 
 		public override void UpdateMonthCollection()

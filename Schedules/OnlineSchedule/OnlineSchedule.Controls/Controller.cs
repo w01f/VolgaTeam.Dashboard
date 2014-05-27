@@ -442,6 +442,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		public ButtonItem SummaryLightEmail { get; set; }
 		public ButtonItem SummaryLightPowerPoint { get; set; }
 		public ButtonItem SummaryLightTheme { get; set; }
+		public CheckEdit SummaryLightSlideOutputToggle { get; set; }
+		public CheckEdit SummaryLightTableOutputToggle { get; set; }
 		#endregion
 
 		#region Summary Full
@@ -453,6 +455,8 @@ namespace NewBizWiz.OnlineSchedule.Controls
 		public ButtonItem SummaryFullEmail { get; set; }
 		public ButtonItem SummaryFullPowerPoint { get; set; }
 		public ButtonItem SummaryFullTheme { get; set; }
+		public CheckEdit SummaryFullSlideOutputToggle { get; set; }
+		public CheckEdit SummaryFullTableOutputToggle { get; set; }
 		#endregion
 
 		#region Rate Card

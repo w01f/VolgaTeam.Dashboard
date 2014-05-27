@@ -11,6 +11,7 @@ using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using EO.WebBrowser;
 using EO.WebBrowser.WinForm;
+using NewBizWiz.CommonGUI.FavoriteImages;
 using NewBizWiz.Core.Common;
 using Vintasoft.Imaging;
 using Vintasoft.Imaging.VisualTools;
@@ -25,6 +26,7 @@ namespace NewBizWiz.CommonGUI.Gallery
 		private ImageViewer _imageContainer;
 		private int _idCommandDownload;
 		private int _idCommandEdit;
+		private int _idCommandAddToFavorites;
 		private int _zoomIndex;
 		private readonly List<ButtonItem> _browseModes = new List<ButtonItem>();
 
@@ -132,15 +134,18 @@ namespace NewBizWiz.CommonGUI.Gallery
 			_imageContainer = new ImageViewer();
 			Controls.Add(_imageContainer);
 			_imageContainer.Dock = DockStyle.Fill;
-			var m = new System.Windows.Forms.MenuItem("Copy to Clipboard");
-			m.Click += Copy_Click;
-			_imageContainer.ContextMenu = new System.Windows.Forms.ContextMenu(new[] { m });
+			var menuItemCopy = new System.Windows.Forms.MenuItem("Copy to Clipboard");
+			menuItemCopy.Click += Copy_Click;
+			var menuItemFavorites = new System.Windows.Forms.MenuItem("Save to my Favorites");
+			menuItemFavorites.Click += Favorites_Click;
+			_imageContainer.ContextMenu = new System.Windows.Forms.ContextMenu(new[] { menuItemCopy, menuItemFavorites });
 		}
 
 		private void InitBrowser()
 		{
 			_idCommandDownload = CommandIds.RegisterUserCommand("DownloadImage");
 			_idCommandEdit = CommandIds.RegisterUserCommand("EditImage");
+			_idCommandAddToFavorites = CommandIds.RegisterUserCommand("AddToFavorites");
 			_browser = new WebControl();
 			Controls.Add(_browser);
 			_browser.WebView = new WebView();
@@ -280,13 +285,34 @@ namespace NewBizWiz.CommonGUI.Gallery
 		{
 			e.Menu.Items.Clear();
 			if (e.MenuInfo.MediaType != ContextMenuMediaType.Image) return;
-			e.Menu.Items.Add(new EO.WebBrowser.MenuItem("Copy Page to Clipboard", _idCommandDownload));
-			e.Menu.Items.Add(new EO.WebBrowser.MenuItem("Edit this Page first", _idCommandEdit));
+			e.Menu.Items.Add(new EO.WebBrowser.MenuItem("Copy Image to Clipboard", _idCommandDownload));
+			e.Menu.Items.Add(new EO.WebBrowser.MenuItem("Edit this Image first", _idCommandEdit));
+			e.Menu.Items.Add(new EO.WebBrowser.MenuItem("Save to my Favorites", _idCommandAddToFavorites));
 		}
 
 		void WebView_Command(object sender, CommandEventArgs e)
 		{
-			LoadImage(e.MenuInfo.SourceUrl, e.CommandId == _idCommandEdit);
+			if (e.CommandId == _idCommandAddToFavorites)
+			{
+				LoadImage(e.MenuInfo.SourceUrl, false);
+				var image = Clipboard.GetImage();
+				if (image != null)
+					AddToFavorites(image);
+			}
+			else
+				LoadImage(e.MenuInfo.SourceUrl, e.CommandId == _idCommandEdit);
+		}
+
+		private void AddToFavorites(Image image)
+		{
+			using (var form = new FormAddFavoriteImage(image, FavoriteImagesManager.Instance.Images.Select(i => i.Name.ToLower())))
+			{
+				form.Text = "Add Image to Favorites";
+				form.laTitle.Text = "Save this Image in your Favorites folder for future presentations";
+				if (form.ShowDialog() != DialogResult.OK) return;
+				FavoriteImagesManager.Instance.SaveImage(image, form.ImageName);
+				Utilities.Instance.ShowInformation("Image successfully added to Favorites");
+			}
 		}
 
 		private void ShowProgress()
@@ -326,6 +352,14 @@ namespace NewBizWiz.CommonGUI.Gallery
 		private void Copy_Click(object sender, EventArgs e)
 		{
 			_imageContainer.DoCopy();
+		}
+
+		private void Favorites_Click(object sender, EventArgs e)
+		{
+			_imageContainer.DoCopy();
+			var image = Clipboard.GetImage();
+			if (image != null)
+				AddToFavorites(image);
 		}
 
 		private void GalleryControl_Resize(object sender, EventArgs e)

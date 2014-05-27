@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Summary;
 using NewBizWiz.CommonGUI.Themes;
@@ -51,6 +52,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			get { return BusinessWrapper.Instance.HelpManager; }
 		}
 
+		public override CheckEdit TableOutputToggle
+		{
+			get { return Controller.Instance.SummaryFullTableOutputToggle; }
+		}
+
 		public override void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
@@ -58,9 +64,9 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			checkEditDecisionMaker.Text = String.Format("{0}", LocalSchedule.DecisionMaker);
 			laPresentationDate.Text = String.Format("{0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
 			laFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
-			FormThemeSelector.Link(Controller.Instance.SummaryFullTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.DigitalSummary), BusinessWrapper.Instance.GetSelectedTheme(SlideType.DigitalSummary), (t =>
+			FormThemeSelector.Link(Controller.Instance.SummaryFullTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary2), BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary2), (t =>
 			{
-				BusinessWrapper.Instance.SetSelectedTheme(SlideType.DigitalSummary, t.Name);
+				BusinessWrapper.Instance.SetSelectedTheme(SlideType.Summary2, t.Name);
 				BusinessWrapper.Instance.SaveLocalSettings();
 				SettingsNotSaved = true;
 			}));
@@ -104,7 +110,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.DigitalSummary).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.DigitalSummary)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.DigitalSummary))); }
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary2).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary2)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary2))); }
 		}
 
 		public override void Output()

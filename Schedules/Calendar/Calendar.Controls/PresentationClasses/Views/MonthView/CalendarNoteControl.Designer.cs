@@ -37,6 +37,7 @@
 			this.toolStripMenuItemColor = new System.Windows.Forms.ToolStripMenuItem();
 			this.textBox = new System.Windows.Forms.TextBox();
 			this.pbClose = new System.Windows.Forms.PictureBox();
+			this.labelControl = new DevExpress.XtraEditors.LabelControl();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEdit.Properties)).BeginInit();
 			this.contextMenuStrip.SuspendLayout();
@@ -67,7 +68,7 @@
 			this.memoEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.memoEdit.EditValue = "";
+			this.memoEdit.EditValue = "test";
 			this.memoEdit.Location = new System.Drawing.Point(4, 4);
 			this.memoEdit.Name = "memoEdit";
 			this.memoEdit.Properties.Appearance.BackColor = System.Drawing.Color.LemonChiffon;
@@ -77,8 +78,10 @@
 			this.memoEdit.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.memoEdit.Size = new System.Drawing.Size(463, 27);
 			this.memoEdit.TabIndex = 3;
+			this.memoEdit.Visible = false;
 			this.memoEdit.EditValueChanged += new System.EventHandler(this.memoEdit_EditValueChanged);
 			this.memoEdit.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.memoEdit_EditValueChanging);
+			this.memoEdit.Leave += new System.EventHandler(this.memoEdit_Leave);
 			// 
 			// contextMenuStrip
 			// 
@@ -87,7 +90,7 @@
             this.toolStripMenuItemClone,
             this.toolStripMenuItemColor});
 			this.contextMenuStrip.Name = "contextMenuStrip";
-			this.contextMenuStrip.Size = new System.Drawing.Size(171, 146);
+			this.contextMenuStrip.Size = new System.Drawing.Size(170, 124);
 			// 
 			// toolStripMenuItemCopy
 			// 
@@ -95,7 +98,7 @@
 			this.toolStripMenuItemCopy.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CopySmall;
 			this.toolStripMenuItemCopy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
-			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(170, 40);
+			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(169, 40);
 			this.toolStripMenuItemCopy.Text = "Copy Note";
 			this.toolStripMenuItemCopy.Click += new System.EventHandler(this.toolStripMenuItemCopy_Click);
 			// 
@@ -105,7 +108,7 @@
 			this.toolStripMenuItemClone.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CloneSmall;
 			this.toolStripMenuItemClone.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemClone.Name = "toolStripMenuItemClone";
-			this.toolStripMenuItemClone.Size = new System.Drawing.Size(170, 40);
+			this.toolStripMenuItemClone.Size = new System.Drawing.Size(169, 40);
 			this.toolStripMenuItemClone.Text = "Clone Note...";
 			this.toolStripMenuItemClone.Click += new System.EventHandler(this.toolStripMenuItemClone_Click);
 			// 
@@ -115,7 +118,7 @@
 			this.toolStripMenuItemColor.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.Color;
 			this.toolStripMenuItemColor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemColor.Name = "toolStripMenuItemColor";
-			this.toolStripMenuItemColor.Size = new System.Drawing.Size(170, 40);
+			this.toolStripMenuItemColor.Size = new System.Drawing.Size(169, 40);
 			this.toolStripMenuItemColor.Text = "Color...";
 			this.toolStripMenuItemColor.Click += new System.EventHandler(this.toolStripMenuItemColor_Click);
 			// 
@@ -146,12 +149,30 @@
 			this.pbClose.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
 			this.pbClose.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
+			// labelControl
+			// 
+			this.labelControl.AllowHtmlString = true;
+			this.labelControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControl.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.labelControl.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
+			this.labelControl.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+			this.labelControl.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+			this.labelControl.Location = new System.Drawing.Point(4, 4);
+			this.labelControl.Name = "labelControl";
+			this.labelControl.Size = new System.Drawing.Size(463, 27);
+			this.labelControl.TabIndex = 5;
+			this.labelControl.Text = "test";
+			this.labelControl.Click += new System.EventHandler(this.labelControl_Click);
+			// 
 			// CalendarNoteControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.LemonChiffon;
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.ContextMenuStrip = this.contextMenuStrip;
+			this.Controls.Add(this.labelControl);
 			this.Controls.Add(this.pbClose);
 			this.Controls.Add(this.memoEdit);
 			this.Controls.Add(this.textBox);
@@ -169,14 +190,15 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pbClose;
+	    protected System.Windows.Forms.PictureBox pbClose;
         private DevExpress.XtraEditors.StyleController styleController;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        private DevExpress.XtraEditors.MemoEdit memoEdit;
-        private System.Windows.Forms.TextBox textBox;
+	    protected DevExpress.XtraEditors.MemoEdit memoEdit;
+	    protected System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopy;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemClone;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemColor;
+		protected DevExpress.XtraEditors.LabelControl labelControl;
     }
 }

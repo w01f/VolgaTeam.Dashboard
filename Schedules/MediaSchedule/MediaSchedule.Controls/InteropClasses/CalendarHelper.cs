@@ -257,7 +257,6 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 								noteShape.Line.Visible = MsoTriState.msoTrue;
 								noteShape.Line.ForeColor.SchemeColor = PpColorSchemeIndex.ppForeground;
 								noteShape.Line.BackColor.RGB = Information.RGB(0, 0, 0);
-								;
 
 								noteShape.Shadow.Visible = MsoTriState.msoTrue;
 								noteShape.Shadow.Type = MsoShadowType.msoShadow14;
@@ -265,7 +264,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 								noteShape.TextFrame.TextRange.Font.Color.RGB = Information.RGB(note.ForeColor.R, note.ForeColor.G, note.ForeColor.B);
 								noteShape.TextFrame.TextRange.Font.Name = "Calibri";
 								noteShape.TextFrame.TextRange.Font.Size = 8;
-								noteShape.TextFrame.TextRange.Text = note.Note;
+								note.Note.AddTextRange(noteShape.TextFrame.TextRange);
 							}
 						}
 

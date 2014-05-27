@@ -10,6 +10,7 @@ using NewBizWiz.Core.Interop;
 namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 {
 	[ToolboxItem(false)]
+	[IntendForClass(typeof(CommonCalendarNote))]
 	public partial class CalendarNoteControl : UserControl
 	{
 		private readonly bool _allowToSave;
@@ -20,20 +21,11 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			CalendarNote = calendarNote;
 
 			_allowToSave = false;
-			memoEdit.EditValue = CalendarNote.Note;
+			labelControl.Text = CalendarNote.Note.FormattedText;
+			memoEdit.EditValue = CalendarNote.Note.SimpleText;
 			_allowToSave = true;
 
 			RefreshColor();
-
-			if (CalendarNote.ReadOnly)
-			{
-				memoEdit.Properties.HideSelection = true;
-				memoEdit.Properties.AllowFocused = false;
-				memoEdit.Width += pbClose.Width;
-				pbClose.Visible = false;
-				toolStripMenuItemClone.Visible = false;
-				toolStripMenuItemCopy.Visible = false;
-			}
 
 			memoEdit.Enter += Utilities.Instance.Editor_Enter;
 			memoEdit.MouseDown += Utilities.Instance.Editor_MouseDown;
@@ -69,12 +61,16 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			BackColor = CalendarNote.BackgroundColor;
 			memoEdit.BackColor = CalendarNote.BackgroundColor;
 			memoEdit.ForeColor = CalendarNote.ForeColor;
+			labelControl.BackColor = CalendarNote.BackgroundColor;
+			labelControl.ForeColor = CalendarNote.ForeColor;
 		}
 
 		private void memoEdit_EditValueChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
-			CalendarNote.Note = memoEdit.EditValue != null ? memoEdit.EditValue.ToString() : string.Empty;
+			var newText = memoEdit.EditValue != null ? memoEdit.EditValue.ToString() : null;
+			if (CalendarNote.Note.SimpleText != newText)
+				CalendarNote.Note = !String.IsNullOrEmpty(newText) ? new TextItem(newText, false) : null;
 			if (NoteChanged != null)
 				NoteChanged(this, new EventArgs());
 		}
@@ -83,10 +79,24 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		{
 			textBox.Text = e.NewValue != null ? e.NewValue.ToString() : string.Empty;
 			if (!_allowToSave) return;
-			int linesCount = WinAPIHelper.SendMessage(textBox.Handle, 0x00BA, IntPtr.Zero, IntPtr.Zero);
+			var linesCount = WinAPIHelper.SendMessage(textBox.Handle, 0x00BA, IntPtr.Zero, IntPtr.Zero);
 			if (linesCount <= 2) return;
 			textBox.Text = e.OldValue != null ? e.OldValue.ToString() : string.Empty;
 			e.Cancel = true;
+		}
+
+		private void memoEdit_Leave(object sender, EventArgs e)
+		{
+			memoEdit.Visible = false;
+			labelControl.Text = CalendarNote.Note.FormattedText;
+			labelControl.Visible = true;
+		}
+
+		private void labelControl_Click(object sender, EventArgs e)
+		{
+			memoEdit.Visible = true;
+			memoEdit.Focus();
+			labelControl.Visible = false;
 		}
 
 		private void pbClose_Click(object sender, EventArgs e)

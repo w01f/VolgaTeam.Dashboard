@@ -34,6 +34,8 @@ namespace NewBizWiz.CommonGUI.Summary
 
 		protected abstract bool CustomOrder { get; }
 
+		public abstract CheckEdit TableOutputToggle { get; }
+
 		protected IEnumerable<TItemControl> OrderedItems
 		{
 			get { return CustomOrder ? _inputControls.OrderBy(it => it.Data.Order).ToList() : _inputControls; }
@@ -48,7 +50,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			checkEditPresentationDate.CheckedChanged += checkEdit_CheckedChanged;
 			checkEditFlightDates.CheckedChanged += checkEdit_CheckedChanged;
 			checkEditMonthlyInvestment.CheckedChanged += checkEdit_CheckedChanged;
-			checkEditTableOutput.CheckedChanged += checkEdit_CheckedChanged;
+			TableOutputToggle.CheckedChanged += checkEdit_CheckedChanged;
 			comboBoxEditHeader.EditValueChanged += checkEdit_CheckedChanged;
 		}
 
@@ -105,7 +107,7 @@ namespace NewBizWiz.CommonGUI.Summary
 				checkEditFlightDates.Checked = Settings.ShowFlightDates;
 				checkEditMonthlyInvestment.Checked = Settings.ShowMonthly;
 				checkEditTotalInvestment.Checked = Settings.ShowTotal;
-				checkEditTableOutput.Checked = Settings.TableOutput;
+				TableOutputToggle.Checked = Settings.TableOutput;
 				if (String.IsNullOrEmpty(Settings.SlideHeader))
 				{
 					if (comboBoxEditHeader.Properties.Items.Count > 0)
@@ -223,7 +225,7 @@ namespace NewBizWiz.CommonGUI.Summary
 			Settings.ShowFlightDates = checkEditFlightDates.Checked;
 			Settings.ShowMonthly = checkEditMonthlyInvestment.Checked;
 			Settings.ShowTotal = checkEditTotalInvestment.Checked;
-			Settings.TableOutput = checkEditTableOutput.Checked;
+			Settings.TableOutput = TableOutputToggle.Checked;
 			Settings.SlideHeader = comboBoxEditHeader.EditValue as String;
 			UpdateTotalItems();
 			SettingsNotSaved = true;
@@ -372,7 +374,7 @@ namespace NewBizWiz.CommonGUI.Summary
 
 		public bool TableOutput
 		{
-			get { return checkEditTableOutput.Checked; }
+			get { return TableOutputToggle.Checked; }
 		}
 
 		public int ItemsPerTable

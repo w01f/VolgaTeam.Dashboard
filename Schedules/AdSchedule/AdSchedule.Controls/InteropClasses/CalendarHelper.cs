@@ -243,7 +243,7 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 								noteShape.TextFrame.TextRange.Font.Color.RGB = Information.RGB(note.ForeColor.R, note.ForeColor.G, note.ForeColor.B);
 								noteShape.TextFrame.TextRange.Font.Name = "Calibri";
 								noteShape.TextFrame.TextRange.Font.Size = 8;
-								noteShape.TextFrame.TextRange.Text = note.Note;
+								noteShape.TextFrame.TextRange.Text = note.Note.SimpleText;
 							}
 						}
 

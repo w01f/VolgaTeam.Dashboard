@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using NewBizWiz.Core.Calendar;
+using NewBizWiz.Core.Common;
+using NewBizWiz.Core.MediaSchedule;
 
 namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 {
@@ -126,14 +129,18 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		}
 	}
 
+	[IntendForClass(typeof(CalendarMonthSundayBased))]
 	public class MonthControlSundayBased : MonthControl
 	{
-		public MonthControlSundayBased() : base()
+		public MonthControlSundayBased()
+			: base()
 		{
 			_weekSundayStarted = true;
 		}
 	}
 
+	[IntendForClass(typeof(CalendarMonthMondayBased))]
+	[IntendForClass(typeof(CalendarMonthBroadcast))]
 	public class MonthControlMondayBased : MonthControl
 	{
 		public MonthControlMondayBased()

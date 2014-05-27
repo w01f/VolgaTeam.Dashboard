@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Summary;
 using NewBizWiz.CommonGUI.Themes;
@@ -71,6 +72,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			get { return BusinessWrapper.Instance.HelpManager; }
 		}
 
+		public override CheckEdit TableOutputToggle
+		{
+			get { return Controller.Instance.SummaryFullTableOutputToggle; }
+		}
+
 		public override void UpdateOutput(bool quickLoad)
 		{
 			LocalSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
@@ -79,11 +85,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			laPresentationDate.Text = String.Format("{0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
 			laFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
 			FormThemeSelector.Link(Controller.Instance.SummaryFullTheme,
-				BusinessWrapper.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVSummary : SlideType.RadioSummary),
-				MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVSummary : SlideType.RadioSummary),
+				BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary2),
+				MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary2),
 				(t =>
 			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVSummary : SlideType.RadioSummary, t.Name);
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType.Summary2, t.Name);
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
 				SettingsNotSaved = true;
 			}));
@@ -153,7 +159,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVSummary : SlideType.RadioSummary).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVSummary : SlideType.RadioSummary) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVSummary : SlideType.RadioSummary))); }
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary2).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary2)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary2))); }
 		}
 
 		public override void Output()

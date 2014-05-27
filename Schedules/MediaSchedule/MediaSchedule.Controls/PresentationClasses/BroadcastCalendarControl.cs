@@ -26,6 +26,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			Dock = DockStyle.Fill;
 			InitSlideInfo<CalendarSlideInfoControl>();
+			var slideInfoControl = (CalendarSlideInfoControl)SlideInfo.ContainedControl;
+			slideInfoControl.Reset += OnReset;
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
 			{
 				if (sender != this)
@@ -129,6 +131,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			if (!_localSchedule.WeeklySchedule.Programs.Any()) return;
+			if (!quickLoad)
+				_localSchedule.BroadcastCalendar.UpdateNotesCollection();
 			base.LoadCalendar(quickLoad);
 		}
 
@@ -148,6 +152,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		public override void SaveSettings()
 		{
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
+		}
+
+		private void OnReset(object sender, EventArgs e)
+		{
+			_localSchedule.BroadcastCalendar.Reset();
+			base.LoadCalendar(false);
+			MonthList_SelectedIndexChanged(MonthList, EventArgs.Empty);
+			SettingsNotSaved = true;
 		}
 
 		public override void TrackActivity(UserActivity activity)

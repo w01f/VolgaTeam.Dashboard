@@ -28,10 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.gridControlItems = new DevExpress.XtraGrid.GridControl();
-			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository(this.components);
+			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository();
 			this.repositoryItemCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
 			this.repositoryItemPictureEdit = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
 			this.advBandedGridViewItems = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
@@ -206,7 +205,7 @@
 			this.bandedGridColumnItemsName.AppearanceCell.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.bandedGridColumnItemsName.AppearanceCell.Options.UseFont = true;
 			this.bandedGridColumnItemsName.Caption = "Name";
-			this.bandedGridColumnItemsName.FieldName = "Name";
+			this.bandedGridColumnItemsName.FieldName = "CompiledName";
 			this.bandedGridColumnItemsName.Name = "bandedGridColumnItemsName";
 			this.bandedGridColumnItemsName.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnItemsName.OptionsColumn.AllowFocus = false;

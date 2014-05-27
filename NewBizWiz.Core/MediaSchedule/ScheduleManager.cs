@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -1621,19 +1622,27 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 		}
 
-		public string DisplayString
+		public TextGroup FormattedString
 		{
 			get
 			{
-				var result = new List<string>();
-				if (!Count.HasValue) return String.Empty;
-				result.Add(String.Format("{0}  -  {1}", _parent.Station, _parent.Name));
+				var textGroup = new TextGroup(", ", "[", "]");
+				if (!Count.HasValue) return textGroup;
+
+				var programNameGroup = new TextGroup("  -  ");
+				programNameGroup.Items.Add(new TextItem(_parent.Station, true));
+				programNameGroup.Items.Add(new TextItem(_parent.Name, false));
+				textGroup.Items.Add(programNameGroup);
+
 				if (!String.IsNullOrEmpty(_parent.Daypart))
-					result.Add(_parent.Daypart);
+					textGroup.Items.Add(new TextItem(_parent.Daypart, false));
+
 				if (!String.IsNullOrEmpty(_parent.Time))
-					result.Add(_parent.Time);
-				result.Add(String.Format("{0}x {1}", Count.Value, _parent.Day));
-				return String.Format("[{0}]", String.Join(", ", result));
+					textGroup.Items.Add(new TextItem(_parent.Time, false));
+
+				textGroup.Items.Add(new TextItem(String.Format("{0}x {1}", Count.Value, _parent.Day), false));
+
+				return textGroup;
 			}
 		}
 
@@ -1768,7 +1777,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public override void Deserialize(XmlNode node)
 		{
-			Deserialize<CalendarMonthBroadcast, CalendarDayMondayBased>(node, DayOfWeek.Monday, DayOfWeek.Sunday);
+			Deserialize<CalendarMonthBroadcast, CalendarDayMondayBased, MediaDataNote>(node, DayOfWeek.Monday, DayOfWeek.Sunday);
 		}
 
 		public override void UpdateMonthCollection()
@@ -1803,23 +1812,20 @@ namespace NewBizWiz.Core.MediaSchedule
 		public override void UpdateNotesCollection()
 		{
 			const string noteSeparator = "   ";
-			var notes = new List<CalendarNote>();
+			var notes = new List<MediaDataNote>();
 			if (Schedule.FlightDateStart.HasValue && Schedule.FlightDateEnd.HasValue)
 			{
-				notes.AddRange(_parentSchedule.WeeklySchedule.Programs
-					.SelectMany(p => p.Spots)
-					.Where(s => s.Count > 0 && s.StartDate.HasValue && s.EndDate.HasValue)
-					.GroupBy(g => new { g.StartDate, g.EndDate })
-					.Select(g => new CalendarNote(this)
-					{
-						StartDay = g.Key.StartDate.Value,
-						FinishDay = g.Key.EndDate.Value,
-						Note = String.Join(noteSeparator, g.Select(sp => sp.DisplayString)),
-						ReadOnly = true
-					}));
-
+				notes.AddRange(_parentSchedule.WeeklySchedule.Programs.SelectMany(p => p.Spots)
+				.Where(s => s.Count > 0 && s.StartDate.HasValue && s.EndDate.HasValue)
+				.GroupBy(g => new { g.StartDate, g.EndDate })
+				.Select(g => new MediaDataNote(this)
+				{
+					StartDay = g.Key.StartDate.Value,
+					FinishDay = g.Key.EndDate.Value,
+					MediaData = g.Select(sp => sp.FormattedString).Join()
+				}));
 				bool needToSplit;
-				var splittedNotes = new List<CalendarNote>(notes);
+				var splittedNotes = new List<MediaDataNote>(notes);
 				do
 				{
 					needToSplit = false;
@@ -1833,29 +1839,27 @@ namespace NewBizWiz.Core.MediaSchedule
 						if ((intersectedNote.StartDay >= calendarNote.StartDay && intersectedNote.StartDay <= calendarNote.FinishDay) &&
 							(intersectedNote.FinishDay >= calendarNote.StartDay && intersectedNote.FinishDay <= calendarNote.FinishDay))
 						{
-							calendarNote.Note = String.Format("{0}{1}{2}", calendarNote.Note, noteSeparator, intersectedNote.Note);
+							calendarNote.MediaData = new[] { calendarNote.MediaData, intersectedNote.MediaData }.Join(noteSeparator);
 							splittedNotes.Remove(intersectedNote);
 						}
 						else if (intersectedNote.StartDay >= calendarNote.StartDay && intersectedNote.StartDay <= calendarNote.FinishDay)
 						{
-							splittedNotes.Add(new CalendarNote(this)
+							splittedNotes.Add(new MediaDataNote(this)
 							{
 								StartDay = calendarNote.StartDay,
 								FinishDay = intersectedNote.FinishDay,
-								Note = String.Format("{0}{1}{2}", calendarNote.Note, noteSeparator, intersectedNote.Note),
-								ReadOnly = true
+								MediaData = new[] { calendarNote.MediaData, intersectedNote.MediaData }.Join(noteSeparator)
 							});
 							splittedNotes.Remove(calendarNote);
 							splittedNotes.Remove(intersectedNote);
 						}
 						else if (intersectedNote.FinishDay >= calendarNote.StartDay && intersectedNote.FinishDay <= calendarNote.FinishDay)
 						{
-							splittedNotes.Add(new CalendarNote(this)
+							splittedNotes.Add(new MediaDataNote(this)
 							{
 								StartDay = intersectedNote.StartDay,
 								FinishDay = calendarNote.FinishDay,
-								Note = String.Format("{0}{1}{2}", calendarNote.Note, noteSeparator, intersectedNote.Note),
-								ReadOnly = true
+								MediaData = new[] { calendarNote.MediaData, intersectedNote.MediaData }.Join(noteSeparator)
 							});
 							splittedNotes.Remove(calendarNote);
 							splittedNotes.Remove(intersectedNote);
@@ -1866,26 +1870,28 @@ namespace NewBizWiz.Core.MediaSchedule
 				}
 				while (needToSplit);
 
-				if (Notes.Any(n => n.BackgroundColor != CalendarNote.DefaultBackgroundColor))
+				foreach (var calendarNote in Notes.OfType<MediaDataNote>().Where(n => n.EditedByUser))
 				{
-					if (Notes.All(n => n.BackgroundColor == Notes.First().BackgroundColor))
+					notes.Where(n => n.StartDay.Date == calendarNote.StartDay.Date && n.FinishDay.Date == calendarNote.FinishDay.Date).ToList().ForEach(n =>
 					{
-						notes.ForEach(note => note.BackgroundColor = Notes.First().BackgroundColor);
-					}
-					else
-					{
-						foreach (var note in notes)
-						{
-							var existedNote = Notes.FirstOrDefault(n => n.StartDay == note.StartDay && n.FinishDay == note.FinishDay);
-							if (existedNote != null)
-								note.BackgroundColor = existedNote.BackgroundColor;
-						}
-					}
+						n.Note = calendarNote.Note;
+						n.BackgroundColor = calendarNote.BackgroundColor;
+					});
 				}
 			}
 			Notes.Clear();
 			Notes.AddRange(notes);
 			UpdateDayAndNoteLinks();
+		}
+
+		public override void Reset()
+		{
+			Days.Clear();
+			Months.Clear();
+			Notes.Clear();
+			UpdateDaysCollection();
+			UpdateMonthCollection();
+			UpdateNotesCollection();
 		}
 	}
 
@@ -1969,6 +1975,69 @@ namespace NewBizWiz.Core.MediaSchedule
 						break;
 				}
 			}
+		}
+	}
+
+	public class MediaDataNote : CalendarNote
+	{
+		public TextGroup MediaData { get; set; }
+		public bool EditedByUser { get; private set; }
+
+		public override ITextItem Note
+		{
+			get { return _note ?? MediaData; }
+			set
+			{
+				if (!MediaData.IsEqual(value))
+					_note = value;
+				EditedByUser = EditedByUser || _note != null;
+			}
+		}
+
+		public override Color BackgroundColor
+		{
+			get { return _backgroundColor; }
+			set
+			{
+				_backgroundColor = value;
+				EditedByUser = EditedByUser || _backgroundColor != DefaultBackgroundColor;
+			}
+		}
+
+		public MediaDataNote(BroadcastCalendar parent) : base(parent) { }
+
+		public override string Serialize()
+		{
+			var result = new StringBuilder();
+
+			result.AppendLine(base.Serialize());
+			result.AppendLine(@"<EditedByUser>" + EditedByUser + @"</EditedByUser>");
+			return result.ToString();
+		}
+
+		public override void Deserialize(XmlNode node)
+		{
+			base.Deserialize(node);
+			foreach (XmlNode childNode in node.ChildNodes)
+			{
+				switch (childNode.Name)
+				{
+					case "EditedByUser":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								EditedByUser = temp;
+						}
+						break;
+				}
+			}
+		}
+
+		public void Reset()
+		{
+			_note = null;
+			_backgroundColor = DefaultBackgroundColor;
+			EditedByUser = false;
 		}
 	}
 

@@ -144,6 +144,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.SummaryLightEmail = buttonItemSummaryLightEmail;
 			Controller.Instance.SummaryLightPowerPoint = buttonItemSummaryLightPowerPoint;
 			Controller.Instance.SummaryLightTheme = buttonItemSummaryLightTheme;
+			Controller.Instance.SummaryLightSlideOutputToggle = checkEditSummaryLightOutputSlide;
+			Controller.Instance.SummaryLightTableOutputToggle = checkEditSummaryLightOutputTable;
 			#endregion
 
 			#region Summary Full
@@ -155,6 +157,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.SummaryFullEmail = buttonItemSummaryFullEmail;
 			Controller.Instance.SummaryFullPowerPoint = buttonItemSummaryFullPowerPoint;
 			Controller.Instance.SummaryFullTheme = buttonItemSummaryFullTheme;
+			Controller.Instance.SummaryFullSlideOutputToggle = checkEditSummaryFullOutputSlide;
+			Controller.Instance.SummaryFullTableOutputToggle = checkEditSummaryFullOutputTable;
 			#endregion
 
 			#region Strategy
@@ -167,6 +171,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.StrategyPowerPoint = buttonItemStrategyPowerPoint;
 			Controller.Instance.StrategyTheme = buttonItemStrategyTheme;
 			Controller.Instance.StrategyFavorites = buttonItemStrategyFavorites;
+			Controller.Instance.StrategyShowStationToggle = checkEditStrategyShowStation;
+			Controller.Instance.StrategyShowDescriptionToggle = checkEditStrategyShowDescription;
 			#endregion
 
 			#region Gallery 1

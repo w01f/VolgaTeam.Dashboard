@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.Utils;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
@@ -65,28 +66,15 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 
 		private void AssignCloseActiveEditorsonOutSideClick(Control control)
 		{
-			if (control != Controller.Instance.HomeBusinessName
-				&& control != Controller.Instance.HomeClientType
-				&& control != Controller.Instance.HomeDecisionMaker
-				&& control != Controller.Instance.HomeAccountNumberText
-				&& control != Controller.Instance.PrintProductRateCard
-				&& control != Controller.Instance.RateCardCombo
-				&& control != Controller.Instance.Gallery1Sections
-				&& control != Controller.Instance.Gallery1Groups
-				&& control != Controller.Instance.Gallery2Sections
-				&& control != Controller.Instance.Gallery2Groups
-				&& control != Controller.Instance.HomeFlightDatesEnd
-				&& control != Controller.Instance.HomeFlightDatesStart
-				&& control != Controller.Instance.HomePresentationDate
-				&& control != Controller.Instance.PrintProductStandartHeight
-				&& control != Controller.Instance.PrintProductStandartWidth
-				&& control != Controller.Instance.PrintProductPercentOfPage
-				&& control != Controller.Instance.PrintProductPageSizeGroup
-				&& control != Controller.Instance.PrintProductPageSizeName
-				&& control != Controller.Instance.PrintProductMechanicalsName
-				&& control != Controller.Instance.PrintProductColor
-				&& control != Controller.Instance.PrintProductSharePageSquare
-				&& control != Controller.Instance.MultiSummaryHeaderText)
+			if (control.GetType() != typeof(CheckEdit)
+				&& control.GetType() != typeof(SpinEdit)
+				&& control.GetType() != typeof(DateEdit)
+				&& control.GetType() != typeof(TextEdit)
+				&& control.GetType() != typeof(ImageListBoxControl)
+				&& control.GetType() != typeof(CheckedListBoxControl)
+				&& control.GetType() != typeof(ComboBoxEdit)
+				&& control.GetType() != typeof(TabbedDateEdit)
+				&& control.GetType() != typeof(TabbedCombobox))
 			{
 				control.Click += CloseActiveEditorsonOutSideClick;
 				foreach (Control childControl in control.Controls)

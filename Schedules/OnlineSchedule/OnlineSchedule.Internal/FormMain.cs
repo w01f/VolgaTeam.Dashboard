@@ -96,6 +96,8 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			Controller.Instance.SummaryLightEmail = buttonItemSummaryLightEmail;
 			Controller.Instance.SummaryLightPowerPoint = buttonItemSummaryLightPowerPoint;
 			Controller.Instance.SummaryLightTheme = buttonItemSummaryLightTheme;
+			Controller.Instance.SummaryLightSlideOutputToggle = checkEditSummaryLightOutputSlide;
+			Controller.Instance.SummaryLightTableOutputToggle = checkEditSummaryLightOutputTable;
 			#endregion
 
 			#region Summary Full
@@ -107,6 +109,8 @@ namespace NewBizWiz.OnlineSchedule.Internal
 			Controller.Instance.SummaryFullEmail = buttonItemSummaryFullEmail;
 			Controller.Instance.SummaryFullPowerPoint = buttonItemSummaryFullPowerPoint;
 			Controller.Instance.SummaryFullTheme = buttonItemSummaryFullTheme;
+			Controller.Instance.SummaryFullSlideOutputToggle = checkEditSummaryFullOutputSlide;
+			Controller.Instance.SummaryFullTableOutputToggle = checkEditSummaryFullOutputTable;
 			#endregion
 
 			#region Rate Card

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using Microsoft.VisualBasic;
@@ -399,6 +400,8 @@ namespace NewBizWiz.Core.Calendar
 
 		public abstract DateTime[][] GetDaysByWeek(DateTime start, DateTime end);
 
+		public virtual void Reset() { }
+
 		public virtual void UpdateNotesCollection()
 		{
 			if (Schedule.FlightDateStart.HasValue && Schedule.FlightDateEnd.HasValue)
@@ -431,7 +434,13 @@ namespace NewBizWiz.Core.Calendar
 
 		public void AddNote(DateRange range, string noteText = "")
 		{
-			var newNote = new CalendarNote(this);
+			var note = new TextItem(noteText, false);
+			AddNote(range, note);
+		}
+
+		public void AddNote(DateRange range, ITextItem noteText)
+		{
+			var newNote = new CommonCalendarNote(this);
 			newNote.StartDay = range.StartDate;
 			newNote.FinishDay = range.FinishDate;
 			newNote.Note = noteText;
@@ -469,9 +478,10 @@ namespace NewBizWiz.Core.Calendar
 			}
 		}
 
-		protected void Deserialize<TMonth, TDay>(XmlNode node, DayOfWeek startDay, DayOfWeek endDay)
+		protected void Deserialize<TMonth, TDay, TNote>(XmlNode node, DayOfWeek startDay, DayOfWeek endDay)
 			where TMonth : CalendarMonth
 			where TDay : CalendarDay
+			where TNote : CalendarNote
 		{
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
@@ -499,7 +509,7 @@ namespace NewBizWiz.Core.Calendar
 						Notes.Clear();
 						foreach (XmlNode noteNode in childNode.ChildNodes)
 						{
-							var note = new CalendarNote(this);
+							var note = (TNote)Activator.CreateInstance(typeof(TNote), this);
 							note.Deserialize(noteNode);
 							if (note.StartDay != DateTime.MinValue && note.FinishDay != DateTime.MinValue)
 								Notes.Add(note);
@@ -650,7 +660,7 @@ namespace NewBizWiz.Core.Calendar
 
 		public override void Deserialize(XmlNode node)
 		{
-			Deserialize<CalendarMonthSundayBased, CalendarDaySundayBased>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
+			Deserialize<CalendarMonthSundayBased, CalendarDaySundayBased, CalendarNote>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
 		}
 
 		public override void UpdateDaysCollection()
@@ -686,7 +696,7 @@ namespace NewBizWiz.Core.Calendar
 
 		public override void Deserialize(XmlNode node)
 		{
-			Deserialize<CalendarMonthMondayBased, CalendarDayMondayBased>(node, DayOfWeek.Monday, DayOfWeek.Sunday);
+			Deserialize<CalendarMonthMondayBased, CalendarDayMondayBased, CalendarNote>(node, DayOfWeek.Monday, DayOfWeek.Sunday);
 		}
 
 		public override void UpdateDaysCollection()
@@ -973,15 +983,17 @@ namespace NewBizWiz.Core.Calendar
 		}
 	}
 
-	public class CalendarNote
+	public abstract class CalendarNote
 	{
 		public static Color DefaultBackgroundColor = Color.LemonChiffon;
 
-		public CalendarNote(Calendar parent)
+		protected ITextItem _note;
+		protected Color _backgroundColor;
+
+		protected CalendarNote(Calendar parent)
 		{
 			Parent = parent;
-			BackgroundColor = DefaultBackgroundColor;
-			Note = string.Empty;
+			_backgroundColor = DefaultBackgroundColor;
 
 			Height = 25f;
 		}
@@ -989,9 +1001,18 @@ namespace NewBizWiz.Core.Calendar
 		public Calendar Parent { get; private set; }
 		public DateTime StartDay { get; set; }
 		public DateTime FinishDay { get; set; }
-		public Color BackgroundColor { get; set; }
-		public string Note { get; set; }
-		public bool ReadOnly { get; set; }
+
+		public virtual ITextItem Note
+		{
+			get { return _note; }
+			set { _note = value; }
+		}
+
+		public virtual Color BackgroundColor
+		{
+			get { return _backgroundColor; }
+			set { _backgroundColor = value; }
+		}
 
 		public int Length
 		{
@@ -1018,18 +1039,21 @@ namespace NewBizWiz.Core.Calendar
 
 		#endregion
 
-		public string Serialize()
+		public virtual string Serialize()
 		{
 			var result = new StringBuilder();
 
 			result.AppendLine(@"<StartDay>" + StartDay + @"</StartDay>");
 			result.AppendLine(@"<FinishDay>" + FinishDay + @"</FinishDay>");
-			result.AppendLine(@"<BackgroundColor>" + BackgroundColor.ToArgb() + @"</BackgroundColor>");
-			result.AppendLine(@"<Note>" + Note.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Note>");
+			result.AppendLine(@"<BackgroundColor>" + _backgroundColor.ToArgb() + @"</BackgroundColor>");
+			if (_note is TextItem)
+				result.AppendLine(@"<TextItem>" + _note.Serialize() + @"</TextItem>");
+			else if (_note is TextGroup)
+				result.AppendLine(@"<TextGroup>" + _note.Serialize() + @"</TextGroup>");
 			return result.ToString();
 		}
 
-		public void Deserialize(XmlNode node)
+		public virtual void Deserialize(XmlNode node)
 		{
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
@@ -1046,15 +1070,29 @@ namespace NewBizWiz.Core.Calendar
 						break;
 					case "BackgroundColor":
 						int tempInt;
-						if (int.TryParse(childNode.InnerText, out tempInt))
-							BackgroundColor = Color.FromArgb(tempInt);
+						if (Int32.TryParse(childNode.InnerText, out tempInt))
+							_backgroundColor = Color.FromArgb(tempInt);
 						break;
-					case "Note":
-						Note = childNode.InnerText;
+					case "TextItem":
+						{
+							_note = new TextItem();
+							_note.Deserialize(childNode);
+						}
+						break;
+					case "TextGroup":
+						{
+							_note = new TextGroup();
+							_note.Deserialize(childNode);
+						}
 						break;
 				}
 			}
 		}
+	}
+
+	public class CommonCalendarNote : CalendarNote
+	{
+		public CommonCalendarNote(Calendar parent) : base(parent) { }
 	}
 
 	public class DateRange

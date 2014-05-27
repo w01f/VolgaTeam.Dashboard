@@ -45,7 +45,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			buttonXThemeColorOrange.CheckedChanged += propertiesControl_PropertiesChanged;
 			buttonXThemeColorTeal.CheckedChanged += propertiesControl_PropertiesChanged;
 			checkEditThemeColorApplyForAll.CheckedChanged += propertiesControl_PropertiesChanged;
-			buttonXStyleBigDate.CheckedChanged += propertiesControl_PropertiesChanged;
+			checkEditStyleBigDate.CheckedChanged += propertiesControl_PropertiesChanged;
 			#endregion
 
 			#region Logo
@@ -69,6 +69,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		[Browsable(true)]
 		[Category("Action")]
 		public event EventHandler<EventArgs> PropertyChanged;
+
+		[Browsable(true)]
+		[Category("Action")]
+		public event EventHandler<EventArgs> Reset;
 
 		public void OnThemeChanged(EventArgs e)
 		{
@@ -131,7 +135,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			checkEditThemeColorApplyForAll.Checked = _month.OutputData.ApplyForAllThemeColor;
 
 
-			buttonXStyleBigDate.Checked = _month.OutputData.ShowBigDate;
+			checkEditStyleBigDate.Checked = _month.OutputData.ShowBigDate;
 			#endregion
 
 			#region Logo
@@ -182,7 +186,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			else if (buttonXThemeColorTeal.Checked)
 				_month.OutputData.SlideColor = "teal";
 			_month.OutputData.ApplyForAllThemeColor = checkEditThemeColorApplyForAll.Checked;
-			_month.OutputData.ShowBigDate = buttonXStyleBigDate.Checked;
+			_month.OutputData.ShowBigDate = checkEditStyleBigDate.Checked;
 			foreach (var month in _month.Parent.Months.Where(month => month != _month))
 			{
 				month.OutputData.ApplyForAllThemeColor = _month.OutputData.ApplyForAllThemeColor;
@@ -274,6 +278,16 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			else if (buttonXThemeColorTeal.Checked)
 				_month.OutputData.SlideColor = "teal";
 			OnThemeChanged(EventArgs.Empty);
+		}
+
+		private void hyperLinkEditReset_OpenLink(object sender, DevExpress.XtraEditors.Controls.OpenLinkEventArgs e)
+		{
+			if (Utilities.Instance.ShowWarningQuestion("Are you SURE you want to RESET your calendar to the default Information?") == DialogResult.Yes)
+			{
+				if (Reset != null)
+					Reset(this, EventArgs.Empty);
+			}
+			e.Handled = true;
 		}
 		#endregion
 

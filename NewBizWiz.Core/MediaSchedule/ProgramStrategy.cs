@@ -15,6 +15,10 @@ namespace NewBizWiz.Core.MediaSchedule
 		private readonly Schedule _parent;
 
 		public bool ShowFavorites { get; set; }
+
+		public bool ShowStation { get; set; }
+		public bool ShowDescription { get; set; }
+
 		public List<ProgramStrategyItem> Items { get; private set; }
 
 		public IEnumerable<ProgramStrategyItem> EnabledItems
@@ -26,13 +30,21 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			_parent = parent;
 			Items = new List<ProgramStrategyItem>();
+
 			ShowFavorites = true;
+
+			ShowStation = true;
+			ShowDescription = true;
 		}
 
 		public string Serialize()
 		{
 			var result = new StringBuilder();
 			result.AppendLine(@"<ShowFavorites>" + ShowFavorites + @"</ShowFavorites>");
+
+			result.AppendLine(@"<ShowStation>" + ShowStation + @"</ShowStation>");
+			result.AppendLine(@"<ShowDescription>" + ShowDescription + @"</ShowDescription>");
+
 			foreach (var strategyItem in Items)
 				result.AppendLine(@"<Item>" + strategyItem.Serialize() + @"</Item>");
 			return result.ToString();
@@ -51,9 +63,23 @@ namespace NewBizWiz.Core.MediaSchedule
 								ShowFavorites = temp;
 							break;
 						}
+					case "ShowStation":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								ShowStation = temp;
+							break;
+						}
+					case "ShowDescription":
+						{
+							bool temp;
+							if (Boolean.TryParse(childNode.InnerText, out temp))
+								ShowDescription = temp;
+							break;
+						}
 					case "Item":
 						{
-							var item = new ProgramStrategyItem();
+							var item = new ProgramStrategyItem(this);
 							item.Deserialize(childNode);
 							Items.Add(item);
 							break;
@@ -67,13 +93,13 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			var sourceCollection = _parent.SelectedSpotType == SpotType.Week ? _parent.WeeklySchedule.Programs : _parent.MonthlySchedule.Programs;
 			var maxOrder = Items.Any() ? Items.Max(i => i.Order) : 0;
-			var groupedPrograms = sourceCollection.GroupBy(p => p.Name, (key, g) => new { Name = key, Spots = g.SelectMany(i => i.Spots).Sum(s => s.Count) });
+			var groupedPrograms = sourceCollection.GroupBy(p => p.Name, (key, g) => new { Name = key, Station = String.Join(", ", g.Select(i => i.Station)), Spots = g.SelectMany(i => i.Spots).Sum(s => s.Count) });
 			foreach (var program in groupedPrograms)
 			{
 				var strategyItem = Items.FirstOrDefault(si => si.Name == program.Name);
 				if (strategyItem == null)
 				{
-					strategyItem = new ProgramStrategyItem()
+					strategyItem = new ProgramStrategyItem(this)
 					{
 						Enabled = true,
 						Name = program.Name,
@@ -82,6 +108,7 @@ namespace NewBizWiz.Core.MediaSchedule
 					Items.Add(strategyItem);
 					maxOrder++;
 				}
+				strategyItem.Station = program.Station;
 				strategyItem.Description = String.Format("{0}x", program.Spots);
 			}
 			Items.RemoveAll(i => !groupedPrograms.Any(gp => gp.Name == i.Name));
@@ -110,8 +137,11 @@ namespace NewBizWiz.Core.MediaSchedule
 
 	public class ProgramStrategyItem
 	{
+		private readonly ProgramStrategy _parent;
+
 		public bool Enabled { get; set; }
 		public string Name { get; set; }
+		public string Station { get; set; }
 		public string Description { get; set; }
 		public decimal Order { get; set; }
 
@@ -133,6 +163,12 @@ namespace NewBizWiz.Core.MediaSchedule
 		}
 
 		private Image _disabledLogo;
+
+		public ProgramStrategyItem(ProgramStrategy programStrategy)
+		{
+			_parent = programStrategy;
+		}
+
 		private Image DisabledLogo
 		{
 			get
@@ -159,6 +195,11 @@ namespace NewBizWiz.Core.MediaSchedule
 			get { return _logo == null; }
 		}
 
+		public string CompiledName
+		{
+			get { return _parent.ShowStation ? String.Format("{0}{2}({1})", Name, Station, Environment.NewLine) : Name; }
+		}
+
 		public string Serialize()
 		{
 			var result = new StringBuilder();
@@ -167,11 +208,13 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<Enabled>" + Enabled + @"</Enabled>");
 			if (!String.IsNullOrEmpty(Name))
 				result.AppendLine(@"<Name>" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Name>");
+			if (!String.IsNullOrEmpty(Station))
+				result.AppendLine(@"<Station>" + Station.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Station>");
 			if (!String.IsNullOrEmpty(Description))
 				result.AppendLine(@"<Description>" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Description>");
 			result.AppendLine(@"<Order>" + Order + @"</Order>");
 			if (_logo != null)
-				result.AppendLine(@"<Logo>" + Convert.ToBase64String((byte[])converter.ConvertTo(_logo, typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
+				result.AppendLine(@"<Logo>" + Convert.ToBase64String((byte[])converter.ConvertTo(_logo.Clone(), typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
 
 			return result.ToString();
 		}
@@ -191,6 +234,9 @@ namespace NewBizWiz.Core.MediaSchedule
 						}
 					case "Name":
 						Name = childNode.InnerText;
+						break;
+					case "Station":
+						Station = childNode.InnerText;
 						break;
 					case "Description":
 						Description = childNode.InnerText;

@@ -36,7 +36,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			_images.AddRange(dayImages);
 		}
 
-		#region Coomon Methods
+		#region Common Methods
 		public void RefreshData(Color colorLight, Color colorDark)
 		{
 			_allowToSave = false;
@@ -161,7 +161,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		}
 		#endregion
 
-		#region Popupp Menu Event Handlers
+		#region Popup Menu Event Handlers
 		private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
 		{
 			if (!Day.BelongsToSchedules)

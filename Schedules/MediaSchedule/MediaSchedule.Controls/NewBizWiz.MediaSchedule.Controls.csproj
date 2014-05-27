@@ -77,6 +77,9 @@
     <Compile Include="PresentationClasses\BroadcastCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\MediaDataNoteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\MediaSummaryFull.cs">
       <SubType>UserControl</SubType>
     </Compile>

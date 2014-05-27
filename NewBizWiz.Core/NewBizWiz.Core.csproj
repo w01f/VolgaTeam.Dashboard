@@ -90,6 +90,7 @@
     <Compile Include="Common\TabbedControls.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Common\TextItem.cs" />
     <Compile Include="Common\ThemeManager.cs" />
     <Compile Include="Dashboard\Activities.cs" />
     <Compile Include="Interop\FileIcon.cs" />

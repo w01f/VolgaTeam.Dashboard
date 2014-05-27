@@ -24,7 +24,7 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 
 		public void Init()
 		{
-			_manager = new FavoriteImagesManager();
+			_manager = FavoriteImagesManager.Instance;
 			_manager.CollectionChanged += (o, e) =>
 			{
 				gridControlLogoGallery.DataSource = _manager.Images;

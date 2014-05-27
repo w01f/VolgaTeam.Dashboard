@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Core.Interop;
 using Application = Microsoft.Office.Interop.PowerPoint.Application;
+using Point = System.Drawing.Point;
 
 namespace NewBizWiz.Core.Common
 {
@@ -298,6 +303,37 @@ namespace NewBizWiz.Core.Common
 			}
 		}
 		#endregion
+
+		#region Reflection Support
+		private static readonly Dictionary<string, Type> _sTypesDictionary = new Dictionary<string, Type>();
+
+		private object FindControlInTypes(Type baseType, Type intendedClass, IEnumerable<Type> assemblyTypes, object[] parameters)
+		{
+			var lKey = baseType.FullName + intendedClass.FullName;
+			if (_sTypesDictionary.ContainsKey(lKey))
+				return Activator.CreateInstance(_sTypesDictionary[lKey], parameters);
+
+			foreach (var type in assemblyTypes)
+			{
+				if (type != baseType && !type.IsSubclassOf(baseType) && (!baseType.IsInterface || type.GetInterface(baseType.Name) == null)) continue;
+				var attrs = type.GetCustomAttributes(typeof(IntendForClassAttribute), false);
+				foreach (IntendForClassAttribute attr in attrs)
+				{
+					if (attr.BusinessObjectClass != intendedClass && !intendedClass.IsSubclassOf(attr.BusinessObjectClass)) continue;
+					_sTypesDictionary.Add(lKey, type);
+					return Activator.CreateInstance(type, parameters);
+				}
+			}
+			return null;
+		}
+
+		public object GetControlInstance(Type baseType, Type intendedClass, params object[] parameters)
+		{
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			return assemblies.Select(assembly =>
+				FindControlInTypes(baseType, intendedClass, assembly.GetTypes(), parameters)).FirstOrDefault(control => control != null);
+		}
+		#endregion
 	}
 
 	public static class Extensions
@@ -305,6 +341,24 @@ namespace NewBizWiz.Core.Common
 		public static Point GetCenter(this Rectangle control)
 		{
 			return new Point(control.X + (control.Width / 2), control.Y + (control.Height / 2));
+		}
+
+		public static TextGroup Join(this IEnumerable<ITextItem> textItems, string separator = "", string borderLeft = "", string borderRight = "")
+		{
+			var textGroup = new TextGroup(separator, borderLeft, borderRight);
+			textGroup.Items.AddRange(textItems);
+			return textGroup;
+		}
+	}
+
+	[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
+	public sealed class IntendForClassAttribute : Attribute
+	{
+		public Type BusinessObjectClass { get; private set; }
+
+		public IntendForClassAttribute(Type businessObjectClass)
+		{
+			BusinessObjectClass = businessObjectClass;
 		}
 	}
 }

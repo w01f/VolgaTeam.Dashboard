@@ -74,9 +74,6 @@ namespace NewBizWiz.Core.Common
 					case "PrintAdPlan":
 						slideType = SlideType.PrintAdPlan;
 						break;
-					case "PrintSimpleSummary":
-						slideType = SlideType.PrintSimpleSummary;
-						break;
 					#endregion
 
 					#region Online Schedule
@@ -88,9 +85,6 @@ namespace NewBizWiz.Core.Common
 						break;
 					case "OnlineAdPlan":
 						slideType = SlideType.OnlineAdPlan;
-						break;
-					case "DigitalSummary":
-						slideType = SlideType.DigitalSummary;
 						break;
 					#endregion
 
@@ -107,12 +101,6 @@ namespace NewBizWiz.Core.Common
 					case "TVMonthlySchedule":
 						slideType = SlideType.TVMonthlySchedule;
 						break;
-					case "TVSummary":
-						slideType = SlideType.TVSummary;
-						break;
-					case "TVStrategy":
-						slideType = SlideType.TVStrategy;
-						break;
 					#endregion
 
 					#region Radio Schedule
@@ -128,17 +116,23 @@ namespace NewBizWiz.Core.Common
 					case "RadioMonthlySchedule":
 						slideType = SlideType.RadioMonthlySchedule;
 						break;
-					case "RadioSummary":
-						slideType = SlideType.RadioSummary;
-						break;
-					case "RadioStrategy":
-						slideType = SlideType.RadioStrategy;
-						break;
 					#endregion
 
 					case "WebQuick":
 						slideType = SlideType.WebQuick;
 						break;
+
+					#region Common
+					case "Summary1":
+						slideType = SlideType.Summary1;
+						break;
+					case "Summary2":
+						slideType = SlideType.Summary2;
+						break;
+					case "Strategy":
+						slideType = SlideType.Strategy;
+						break;
+					#endregion
 				}
 				if (slideType == SlideType.None) continue;
 				foreach (var themeNode in slideNode.SelectNodes("Theme").OfType<XmlNode>())

@@ -7,12 +7,18 @@ namespace NewBizWiz.Core.Common
 {
 	public class FavoriteImagesManager
 	{
+		private static readonly FavoriteImagesManager _instance = new FavoriteImagesManager();
 		private readonly string _storageFolderPath;
 
 		public List<ImageSource> Images { get; private set; }
 		public event EventHandler<EventArgs> CollectionChanged;
 
-		public FavoriteImagesManager()
+		public static FavoriteImagesManager Instance
+		{
+			get { return _instance; }
+		}
+
+		private FavoriteImagesManager()
 		{
 			_storageFolderPath = Path.Combine(SettingsManager.Instance.OutgoingFolderPath, "image_favorites");
 			if (!Directory.Exists(_storageFolderPath))
@@ -61,10 +67,7 @@ namespace NewBizWiz.Core.Common
 				OnCollectionChanged();
 
 			}
-			catch (Exception ex)
-			{
-				throw ex;
-			}
+			catch {}
 
 		}
 

@@ -22,14 +22,12 @@
 		PrintDetailedGrid = 106,
 		PrintMultiGrid = 107,
 		PrintAdPlan = 108,
-		PrintSimpleSummary = 109,
 		#endregion
 
 		#region Online Schedule
 		OnlineWebPackage = 201,
 		OnlineDigitalProduct = 202,
 		OnlineAdPlan = 203,
-		DigitalSummary = 204,
 		#endregion
 
 		#region TV Schedule
@@ -37,8 +35,6 @@
 		TVDigitalProduct = 302,
 		TVMonthlySchedule = 303,
 		TVWeeklySchedule = 304,
-		TVSummary = 305,
-		TVStrategy = 306,
 		#endregion
 
 		#region Radio Schedule
@@ -46,11 +42,16 @@
 		RadioDigitalProduct = 402,
 		RadioMonthlySchedule = 403,
 		RadioWeeklySchedule = 404,
-		RadioSummary = 405,
-		RadioStrategy = 406,
 		#endregion
 
-		WebQuick = 501
+		WebQuick = 501,
+
+		#region Common
+		Summary1 = 901,
+		Summary2 = 902,
+		Strategy = 903,
+		#endregion
+
 	}
 
 

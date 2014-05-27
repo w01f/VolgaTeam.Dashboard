@@ -27,7 +27,7 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 			_flightDateStart = flightDateStart;
 			_flightDateEnd = flightDateEnd;
 			labelControlFlightDates.Text = string.Format(labelControlFlightDates.Text, string.Format("{0} - {1}", new object[] { _flightDateStart.ToString("M/d/yy"), _flightDateEnd.ToString("M/d/yy") }));
-			laClonedNote.Text = _sourceNote.Note;
+			laClonedNote.Text = _sourceNote.Note.SimpleText;
 			monthCalendarClone.ActiveMonth.Month = _sourceNote.StartDay.Month;
 			monthCalendarClone.ActiveMonth.Year = _sourceNote.StartDay.Year;
 			monthCalendarClone.Header.TextColor = Color.Black;

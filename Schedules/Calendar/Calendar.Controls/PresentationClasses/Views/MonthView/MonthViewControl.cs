@@ -57,7 +57,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 				ClearContainer();
 				foreach (var monthData in Calendar.CalendarData.Months)
 				{
-					var month = Calendar.CalendarData is CalendarSundayBased ? (MonthControl)new MonthControlSundayBased() : new MonthControlMondayBased();
+					var month = (MonthControl)Utilities.Instance.GetControlInstance(typeof(MonthControl), monthData.GetType());
 					Months.Add(monthData.Date, month);
 				}
 			}
@@ -307,7 +307,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 				{
 					var note = Calendar.CalendarData.Notes.FirstOrDefault(x => weekDay.Equals(x.StartDay));
 					if (note == null) continue;
-					var noteControl = new CalendarNoteControl(note);
+					var noteControl = (CalendarNoteControl)Utilities.Instance.GetControlInstance(typeof(CalendarNoteControl), note.GetType(), note);
 					noteControl.NoteChanged += (sender, e) =>
 					{
 						var targetNoteControl = sender as CalendarNoteControl;
@@ -337,7 +337,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 						{
 							if (form.ShowDialog() != DialogResult.OK) return;
 							foreach (var range in form.SelectedRanges)
-								AddNote(range, note.Note);
+								AddNote(range, note.Note.Clone());
 						}
 						Calendar.SettingsNotSaved = true;
 					};
@@ -382,11 +382,30 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			Calendar.TrackActivity(new UserActivity("Add Note", options));
 		}
 
+		private void AddNote(DateRange noteRange, ITextItem note)
+		{
+			if (noteRange == null) return;
+			Calendar.CalendarData.AddNote(noteRange, note);
+			Calendar.SettingsNotSaved = true;
+
+			var calendarMonth = Calendar.CalendarData.Months.FirstOrDefault(x => x.Date.Equals(new DateTime(noteRange.FinishDate.Year, noteRange.FinishDate.Month, 1)));
+			if (calendarMonth != null)
+				Months[calendarMonth.Date].AddNotes(GetNotesByWeeeks(calendarMonth));
+
+			var options = new Dictionary<string, object>();
+			options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
+			options.Add("StartDay", noteRange.StartDate);
+			options.Add("EndDay", noteRange.FinishDate);
+			if (!String.IsNullOrEmpty(note.SimpleText))
+				options.Add("Text", note.SimpleText);
+			Calendar.TrackActivity(new UserActivity("Add Note", options));
+		}
+
 		private void PasteNote()
 		{
 			if (CopyPasteManager.SourceNote == null) return;
 			var noteDateRange = Calendar.CalendarData.CalculateDateRange(SelectionManager.SelectedDays.Select(x => x.Date).ToArray()).LastOrDefault();
-			AddNote(noteDateRange, CopyPasteManager.SourceNote.Note);
+			AddNote(noteDateRange, CopyPasteManager.SourceNote.Note.Clone());
 		}
 
 		private void DeleteNote(CalendarNote note)

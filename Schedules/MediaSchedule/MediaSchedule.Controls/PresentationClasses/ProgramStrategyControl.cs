@@ -5,10 +5,13 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.Utils;
 using DevExpress.Utils.Menu;
+using DevExpress.Utils.Paint;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using NewBizWiz.CommonGUI.Common;
@@ -39,12 +42,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				_dragDropHelper = new GridDragDropHelper(advBandedGridViewItems, true);
 				_dragDropHelper.AfterDrop += gridControlItems_DragDrop;
 				favoriteImagesControl.Init();
+				new ProgramStrategyItemNameFormatHelper(advBandedGridViewItems);
 			};
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
 			});
+			Controller.Instance.StrategyShowStationToggle.CheckStateChanged += UpdateRows;
+			Controller.Instance.StrategyShowDescriptionToggle.CheckStateChanged += UpdateRows;
 		}
 
 		#region Methods
@@ -63,9 +69,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			_allowToSave = false;
 
 			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			FormThemeSelector.Link(Controller.Instance.StrategyTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVStrategy : SlideType.RadioStrategy), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVStrategy : SlideType.RadioStrategy), (t =>
+			FormThemeSelector.Link(Controller.Instance.StrategyTheme, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Strategy), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Strategy), (t =>
 			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVStrategy : SlideType.RadioStrategy, t.Name);
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType.Strategy, t.Name);
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
 				SettingsNotSaved = true;
 			}));
@@ -73,6 +79,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			if (!quickLoad)
 			{
 				Controller.Instance.StrategyFavorites.Checked = _localSchedule.ProgramStrategy.ShowFavorites;
+				Controller.Instance.StrategyShowStationToggle.Checked = _localSchedule.ProgramStrategy.ShowStation;
+				Controller.Instance.StrategyShowDescriptionToggle.Checked = _localSchedule.ProgramStrategy.ShowDescription;
 			}
 			_allowToSave = true;
 			SettingsNotSaved = false;
@@ -97,6 +105,27 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		private void AddLogoToFavorites(Image logo)
 		{
 			favoriteImagesControl.AddToFavorites(logo);
+		}
+
+		private void UpdateRows(object sender, EventArgs e)
+		{
+			if (_allowToSave)
+			{
+				_localSchedule.ProgramStrategy.ShowStation = Controller.Instance.StrategyShowStationToggle.Checked;
+				_localSchedule.ProgramStrategy.ShowDescription = Controller.Instance.StrategyShowDescriptionToggle.Checked;
+				SettingsNotSaved = true;
+			}
+			if (_localSchedule.ProgramStrategy.ShowDescription)
+			{
+				bandedGridColumnItemsName.RowCount = 2;
+				bandedGridColumnItemsDescription.Visible = true;
+			}
+			else
+			{
+				bandedGridColumnItemsName.RowCount = 4;
+				bandedGridColumnItemsDescription.Visible = false;
+			}
+			advBandedGridViewItems.RefreshData();
 		}
 		#endregion
 
@@ -156,7 +185,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		#endregion
 
 		#region Items Grid Events
-		private void advBandedGridViewItems_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+		private void advBandedGridViewItems_CellValueChanged(object sender, CellValueChangedEventArgs e)
 		{
 			if (!_allowToSave) return;
 			SettingsNotSaved = true;
@@ -189,8 +218,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			var downHitInfo = e.Data.GetData(typeof(BandedGridHitInfo)) as BandedGridHitInfo;
 			if (downHitInfo != null)
 			{
-				int sourceRow = downHitInfo.RowHandle;
-				int targetRow = hitInfo.HitTest == GridHitTest.EmptyRow ? view.DataRowCount : hitInfo.RowHandle;
+				var sourceRow = downHitInfo.RowHandle;
+				var targetRow = hitInfo.HitTest == GridHitTest.EmptyRow ? view.DataRowCount : hitInfo.RowHandle;
 				_localSchedule.ProgramStrategy.ChangeItemsOrder(sourceRow, targetRow);
 				SetDataSource();
 				view.RefreshData();
@@ -250,6 +279,60 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		{
 			advBandedGridViewItems.CloseEditor();
 		}
+
+		internal class ProgramStrategyItemNameFormatHelper
+		{
+			private readonly GridView _view;
+			private readonly XPaint _paint = new XPaint();
+
+			public ProgramStrategyItemNameFormatHelper(GridView view)
+			{
+				_view = view;
+				_view.CustomDrawCell += View_CustomDrawCell;
+			}
+
+			private void View_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
+			{
+				if (e.Column.FieldName != "CompiledName") return;
+				var format = e.Appearance.Clone() as AppearanceObject;
+				if (format == null) return;
+				e.Handled = true;
+
+				e.Appearance.FillRectangle(e.Cache, e.Bounds);
+				var rows = e.DisplayText.Split(new[] { '\n' });
+
+				var totalHeight = rows.Sum(row => e.Graphics.MeasureString(row, format.Font).Height);
+				var startHeight = 0;
+				if (e.Bounds.Height > totalHeight)
+					startHeight = (e.Bounds.Height - (int)totalHeight) / 2;
+				var stationFont = new Font(format.Font.Name, 10, format.Font.Style);
+				var rowCount = rows.Length;
+				for (var i = 0; i < rowCount; i++)
+				{
+					var lst = new List<CharacterRangeWithFormat>();
+
+					switch (i)
+					{
+						case 0:
+							lst.Add(new CharacterRangeWithFormat(0, rows[i].Length, format.ForeColor, format.BackColor));
+							break;
+						case 1:
+							lst.Add(new CharacterRangeWithFormat(0, rows[i].Length, format.ForeColor == Color.Black ? Color.Gray : format.ForeColor, format.BackColor));
+							format.Font = stationFont;
+							break;
+					}
+					var args = new MultiColorDrawStringParams(format);
+					var rowRect = e.Bounds;
+					rowRect.Y += startHeight;
+					rowRect.Height = (int)e.Graphics.MeasureString(rows[i], args.Appearance.Font).Height;
+					startHeight += rowRect.Height;
+					args.Ranges = lst.ToArray();
+					args.Bounds = rowRect;
+					args.Text = rows[i];
+					_paint.MultiColorDrawString(e.Cache, args);
+				}
+			}
+		}
 		#endregion
 
 		#region Output Stuff
@@ -258,7 +341,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVStrategy : SlideType.RadioStrategy).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVStrategy : SlideType.RadioStrategy) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVStrategy : SlideType.RadioStrategy))); }
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Strategy).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Strategy)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Strategy))); }
 		}
 
 		public int ItemsCount
@@ -285,8 +368,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				{
 					if ((i + j) < recordsCount)
 					{
-						slideRows.Add(String.Format("Product{0}", j + 1), items[i + j].Name);
-						slideRows.Add(String.Format("Details{0}", j + 1), items[i + j].Description);
+						slideRows.Add(String.Format("Product{0}", j + 1), String.Format("{0}{1}", items[i + j].Name, _localSchedule.ProgramStrategy.ShowStation ? String.Format("   ({0})", items[i + j].Station) : String.Empty));
+						slideRows.Add(String.Format("Details{0}", j + 1), _localSchedule.ProgramStrategy.ShowDescription ? items[i + j].Description : String.Empty);
 					}
 					else
 					{

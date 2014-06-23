@@ -21,7 +21,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		ButtonItem CopyButton { get; }
 		ButtonItem PasteButton { get; }
 		ButtonItem CloneButton { get; }
-		List<ImageSource> DayImages { get; }
 
 		void AssignCloseActiveEditorsonOutSideClick(Control control);
 		void LeaveCalendar();

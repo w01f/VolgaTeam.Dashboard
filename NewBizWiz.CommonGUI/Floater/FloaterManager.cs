@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using NewBizWiz.Core.Common;
-using NewBizWiz.Core.Interop;
 
 namespace NewBizWiz.CommonGUI.Floater
 {

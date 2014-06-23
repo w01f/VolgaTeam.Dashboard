@@ -12,13 +12,18 @@ using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 {
-	public class MediaSummaryLight : SummaryLightControl
+	public class MediaSummaryFull : SummaryFullControl
 	{
 		public Schedule LocalSchedule { get; set; }
 
-		public MediaSummaryLight()
+		public MediaFullSummarySettings MediaFullSummary
+		{
+			get { return (MediaFullSummarySettings)Schedule.CustomSummary; }
+		}
+
+		public MediaSummaryFull()
 		{
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate()
 			{
@@ -30,7 +35,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		private void TrackOutput()
 		{
 			var options = new Dictionary<string, object>();
-			options.Add("Slide", Controller.Instance.TabSummaryLight.Text);
+			options.Add("Slide", Controller.Instance.TabSummaryFull.Text);
 			options.Add("Advertiser", LocalSchedule.BusinessName);
 			if (LocalSchedule.WeeklySchedule.Programs.Any())
 			{
@@ -54,12 +59,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public override BaseSummarySettings Settings
 		{
-			get { return LocalSchedule.ProductSummary; }
+			get { return LocalSchedule.CustomSummary; }
 		}
 
 		public override List<CustomSummaryItem> Items
 		{
-			get { return Schedule.ProductSummaries.Select(ps => ps.SummaryItem).ToList(); }
+			get { return Schedule.CustomSummary.Items; }
 		}
 
 		public override HelpManager HelpManager
@@ -69,7 +74,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public override CheckEdit TableOutputToggle
 		{
-			get { return Controller.Instance.SummaryLightTableOutputToggle; }
+			get { return Controller.Instance.SummaryFullTableOutputToggle; }
 		}
 
 		public override void UpdateOutput(bool quickLoad)
@@ -79,15 +84,17 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			checkEditDecisionMaker.Text = String.Format("{0}", LocalSchedule.DecisionMaker);
 			laPresentationDate.Text = String.Format("{0}", LocalSchedule.PresentationDate.HasValue ? LocalSchedule.PresentationDate.Value.ToString("MM/dd/yyyy") : String.Empty);
 			laFlightDates.Text = String.Format("{0}", LocalSchedule.FlightDates);
-			FormThemeSelector.Link(Controller.Instance.SummaryLightTheme,
-				BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary1),
-				MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary1),
+			FormThemeSelector.Link(Controller.Instance.SummaryFullTheme,
+				BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary2),
+				MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary2),
 				(t =>
 			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType.Summary1, t.Name);
+				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType.Summary2, t.Name);
 				MediaMetaData.Instance.SettingsManager.SaveSettings();
 				SettingsNotSaved = true;
 			}));
+			if (!quickLoad)
+				MediaFullSummary.UpdateItems();
 			base.UpdateOutput(quickLoad);
 		}
 
@@ -99,6 +106,30 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, false, this);
 			SettingsNotSaved = false;
 			return true;
+		}
+
+		protected override void InitItem(SummaryCustomItemControl item)
+		{
+			base.InitItem(item);
+			item.DataChanged += (o, e) => { MediaFullSummary.IsDefaultSate = false; };
+		}
+
+		protected override void OnAddItem(object sender, EventArgs e)
+		{
+			base.OnAddItem(sender, e);
+			MediaFullSummary.IsDefaultSate = false;
+		}
+
+		protected override void ItemOnItemDeleted(object sender, SummaryItemEventArgs e)
+		{
+			base.ItemOnItemDeleted(sender, e);
+			MediaFullSummary.IsDefaultSate = false;
+		}
+
+		protected override void ItemOnItemPositionChanged(object sender, SummaryItemEventArgs e)
+		{
+			base.ItemOnItemPositionChanged(sender, e);
+			MediaFullSummary.IsDefaultSate = false;
 		}
 
 		public void Save_Click(object sender, EventArgs e)
@@ -128,7 +159,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public override Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary1).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary1)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary1))); }
+			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary2).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary2)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary2))); }
 		}
 
 		public override void Output()
@@ -171,7 +202,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 		private void TrackPreview()
 		{
 			var options = new Dictionary<string, object>();
-			options.Add("Slide", Controller.Instance.TabSummaryLight.Text);
+			options.Add("Slide", Controller.Instance.TabSummaryFull.Text);
 			options.Add("Advertiser", LocalSchedule.BusinessName);
 			if (LocalSchedule.WeeklySchedule.Programs.Any())
 			{

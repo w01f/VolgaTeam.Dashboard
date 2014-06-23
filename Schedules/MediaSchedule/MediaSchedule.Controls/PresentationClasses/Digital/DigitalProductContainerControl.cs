@@ -12,7 +12,7 @@ using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 {
 	[ToolboxItem(false)]
 	public class DigitalProductContainerControl : DigitalProductContainer

@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+﻿namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 {
 	sealed partial class ProgramStrategyControl
 	{
@@ -184,7 +184,7 @@
 			// 
 			this.bandedGridColumnItemsLogo.Caption = "Logo";
 			this.bandedGridColumnItemsLogo.ColumnEdit = this.repositoryItemPictureEdit;
-			this.bandedGridColumnItemsLogo.FieldName = "Logo";
+			this.bandedGridColumnItemsLogo.FieldName = "Logo.BigImage";
 			this.bandedGridColumnItemsLogo.Name = "bandedGridColumnItemsLogo";
 			this.bandedGridColumnItemsLogo.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnItemsLogo.OptionsColumn.ReadOnly = true;

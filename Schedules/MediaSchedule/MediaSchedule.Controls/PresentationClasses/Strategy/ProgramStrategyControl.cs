@@ -23,7 +23,7 @@ using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 {
 	[ToolboxItem(false)]
 	public sealed partial class ProgramStrategyControl : UserControl
@@ -233,7 +233,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				var targetItem = view.GetRow(hitInfo.RowHandle) as ProgramStrategyItem;
 				if (targetItem != null)
 				{
-					targetItem.Logo = imageSource.BigImage;
+					targetItem.Logo = imageSource.Clone();
 					advBandedGridViewItems.RefreshRow(hitInfo.RowHandle);
 					SettingsNotSaved = true;
 				}
@@ -246,11 +246,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			if (e.HitInfo.Column != bandedGridColumnItemsLogo) return;
 			var sourceItem = advBandedGridViewItems.GetRow(e.HitInfo.RowHandle) as ProgramStrategyItem;
 			if (sourceItem == null || !sourceItem.Enabled) return;
-			var clipboardImage = Clipboard.GetImage();
+			var clipboardImage = ImageSource.FromImage(Clipboard.GetImage());
 
 			e.Menu.Items.Add(new DXMenuItem("Paste Image", (o, ea) =>
 			{
-				sourceItem.Logo = clipboardImage;
+				sourceItem.Logo = clipboardImage.Clone();
 				advBandedGridViewItems.UpdateCurrentRow();
 				SettingsNotSaved = true;
 			})
@@ -258,14 +258,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 				Enabled = clipboardImage != null
 			});
 
-			e.Menu.Items.Add(new DXMenuItem("Add Image to Favorites...", (o, args) => AddLogoToFavorites(sourceItem.Logo.Clone() as Image))
+			e.Menu.Items.Add(new DXMenuItem("Add Image to Favorites...", (o, args) => AddLogoToFavorites(sourceItem.Logo.BigImage.Clone() as Image))
 			{
 				Enabled = !sourceItem.IsDefaultLogo
 			});
 
 			e.Menu.Items.Add(new DXMenuItem("Reset Image", (o, ea) =>
 			{
-				sourceItem.Logo = null;
+				sourceItem.Logo = new ImageSource();
 				advBandedGridViewItems.UpdateCurrentRow();
 				SettingsNotSaved = true;
 			})
@@ -337,7 +337,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		#region Output Stuff
 		public List<Dictionary<string, string>> OutputReplacementsLists { get; private set; }
-		public List<string> ItemLogos { get; private set; }
+		public List<ImageSource> ItemLogos { get; private set; }
 
 		public Theme SelectedTheme
 		{
@@ -381,13 +381,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			}
 
 			if (ItemLogos == null)
-				ItemLogos = new List<string>();
+				ItemLogos = new List<ImageSource>();
 			ItemLogos.Clear();
 			foreach (var strategyItem in items)
 			{
-				var tempFileName = Path.GetTempFileName();
-				strategyItem.Logo.Save(tempFileName);
-				ItemLogos.Add(tempFileName);
+				strategyItem.Logo.PrepareOutputFile();
+				ItemLogos.Add(strategyItem.Logo);
 			}
 		}
 

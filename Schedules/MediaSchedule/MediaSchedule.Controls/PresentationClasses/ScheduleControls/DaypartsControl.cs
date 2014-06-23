@@ -5,13 +5,13 @@ using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Base;
 using NewBizWiz.Core.MediaSchedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
-	public partial class StationsControl : UserControl
+	public partial class DaypartsControl : UserControl
 	{
-		private readonly List<Station> _stations = new List<Station>();
+		private readonly List<Daypart> dayparts = new List<Daypart>();
 
-		public StationsControl()
+		public DaypartsControl()
 		{
 			InitializeComponent();
 		}
@@ -20,15 +20,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 
 		public void LoadData(Schedule schedule)
 		{
-			_stations.Clear();
-			_stations.AddRange(schedule.Stations);
-			gridControlItems.DataSource = new BindingList<Station>(_stations);
+			dayparts.Clear();
+			dayparts.AddRange(schedule.Dayparts);
+			gridControlItems.DataSource = new BindingList<Daypart>(dayparts);
 			HasChanged = false;
 		}
 
-		public Station[] GetData()
+		public Daypart[] GetData()
 		{
-			return _stations.ToArray();
+			return dayparts.ToArray();
 		}
 
 		private void gridViewItems_CellValueChanged(object sender, CellValueChangedEventArgs e)

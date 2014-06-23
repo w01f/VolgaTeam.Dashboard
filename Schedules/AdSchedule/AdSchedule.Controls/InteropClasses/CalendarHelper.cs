@@ -281,17 +281,18 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 					note.Right = shape.Left + shape.Width - 10;
 				}
 
-				var midleNote = monthOutputData.Notes.FirstOrDefault(x => x.StartDay.Day < dayNumber && x.FinishDay.Day >= dayNumber);
-				if (midleNote != null)
+				var middleNote = monthOutputData.Notes.FirstOrDefault(x => x.StartDay.Day < dayNumber && x.FinishDay.Day >= dayNumber);
+				if (middleNote != null)
 				{
-					shape.Top += (midleNote.Height + 15);
-					shape.Height -= (midleNote.Height + 15);
+					shape.Top += (middleNote.Height + 15);
+					shape.Height -= (middleNote.Height + 15);
 				}
 
 				Shape imageShape = null;
-				if (!string.IsNullOrEmpty(monthOutputData.DayLogoPaths[dayNumber - 1]))
+				var dayLogo = monthOutputData.DayLogoPaths[dayNumber - 1];
+				if (dayLogo.ContainsData)
 				{
-					imageShape = slide.Shapes.AddPicture(monthOutputData.DayLogoPaths[dayNumber - 1], MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left + 3, shape.Top + 3);
+					imageShape = slide.Shapes.AddPicture(dayLogo.OutputFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left + (shape.Width - dayLogo.XtraTinyImage.Width) / 2, shape.Top + 3, dayLogo.XtraTinyImage.Width, dayLogo.XtraTinyImage.Height);
 				}
 				if (!string.IsNullOrEmpty(monthOutputData.DayOutput[dayNumber - 1]))
 				{

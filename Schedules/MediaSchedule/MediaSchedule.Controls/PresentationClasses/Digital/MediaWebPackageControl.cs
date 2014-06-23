@@ -15,7 +15,7 @@ using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 using Schedule = NewBizWiz.Core.MediaSchedule.Schedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 {
 	public class MediaWebPackageControl : WebPackageControl
 	{

@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+﻿namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
     partial class HomeControl
     {
@@ -30,7 +30,7 @@
         {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeControl));
-			this.stationsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.StationsControl();
+			this.stationsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls.StationsControl();
 			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageMedia = new DevExpress.XtraTab.XtraTabPage();
@@ -40,7 +40,7 @@
 			this.buttonXWeeklySchedule = new DevComponents.DotNetBar.ButtonX();
 			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
 			this.digitalProductListControl = new NewBizWiz.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
-			this.daypartsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.DaypartsControl();
+			this.daypartsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls.DaypartsControl();
 			this.pnRightTop = new System.Windows.Forms.Panel();
 			this.laRightTopTitle = new System.Windows.Forms.Label();
 			this.pbOptionsHelp = new System.Windows.Forms.PictureBox();

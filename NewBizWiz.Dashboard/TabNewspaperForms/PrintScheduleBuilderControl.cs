@@ -94,18 +94,17 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 			RegistryHelper.MaximizeMainForm = true;
 			AdSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Normal;
 			AdSchedule.Internal.FormMain.Instance.StartPosition = FormStartPosition.Manual;
-			AdSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).Bounds.Location;
+			AdSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).WorkingArea.Location.GetOffset(20, 20);
 			AdSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Maximized;
 			
 			AdSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
 			AdSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
+			AdSchedule.Internal.FormMain.Instance.Closed -= FormMain.Instance.FormScheduleClosed;
+			AdSchedule.Internal.FormMain.Instance.Closed += FormMain.Instance.FormScheduleClosed;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.AppManager.NewSchedule();
 			if (FormMain.Instance.IsDead) return;
-			FormMain.Instance.Opacity = 1;
-			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-			RegistryHelper.MaximizeMainForm = false;
 			LoadSchedules();
 			DashboardPowerPointHelper.Instance.Connect();
 		}
@@ -116,18 +115,17 @@ namespace NewBizWiz.Dashboard.TabNewspaperForms
 			RegistryHelper.MaximizeMainForm = true;
 			AdSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Normal;
 			AdSchedule.Internal.FormMain.Instance.StartPosition = FormStartPosition.Manual;
-			AdSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).Bounds.Location;
+			AdSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).WorkingArea.Location.GetOffset(20, 20);
 			AdSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Maximized;
 
 			AdSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
 			AdSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
+			AdSchedule.Internal.FormMain.Instance.Closed -= FormMain.Instance.FormScheduleClosed;
+			AdSchedule.Internal.FormMain.Instance.Closed += FormMain.Instance.FormScheduleClosed;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			AdSchedule.Internal.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
 			if (FormMain.Instance.IsDead) return;
-			FormMain.Instance.Opacity = 1;
-			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-			RegistryHelper.MaximizeMainForm = false;
 			LoadSchedules();
 			DashboardPowerPointHelper.Instance.Connect();
 		}

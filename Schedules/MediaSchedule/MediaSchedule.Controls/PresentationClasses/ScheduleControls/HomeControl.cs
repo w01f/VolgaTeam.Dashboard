@@ -14,7 +14,7 @@ using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
 using Schedule = NewBizWiz.Core.MediaSchedule.Schedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	[ToolboxItem(false)]
 	public partial class HomeControl : UserControl

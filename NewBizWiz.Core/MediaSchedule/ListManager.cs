@@ -69,7 +69,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public List<string> Statuses { get; set; }
 		public List<BroadcastMonthTemplate> MonthTemplates { get; set; }
 
-		public Image DefaultStrategyLogo { get; set; }
+		public ImageSource DefaultStrategyLogo { get; set; }
 
 		private void LoadStrategy()
 		{
@@ -227,7 +227,7 @@ namespace NewBizWiz.Core.MediaSchedule
 				Images.Add(imageSource);
 			}
 
-			DefaultStrategyLogo = File.Exists(ProgramStrategyDefaultLogoPath) ? new Bitmap(ProgramStrategyDefaultLogoPath) : null;
+			DefaultStrategyLogo = ImageSource.FromImage(File.Exists(ProgramStrategyDefaultLogoPath) ? new Bitmap(ProgramStrategyDefaultLogoPath) : null);
 		}
 
 		private void GetProgramProperties(XmlNode node, ref SourceProgram sourceProgram)

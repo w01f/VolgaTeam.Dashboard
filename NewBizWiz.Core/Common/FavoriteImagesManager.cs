@@ -40,12 +40,10 @@ namespace NewBizWiz.Core.Common
 			{
 				using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
 				{
-					Images.Add(new ImageSource
-					{
-						Name = Path.GetFileNameWithoutExtension(file),
-						FileName = file,
-						BigImage = Image.FromStream(fs)
-					});
+					var imageSource = ImageSource.FromImage(Image.FromStream(fs));
+					imageSource.Name = Path.GetFileNameWithoutExtension(file);
+					imageSource.FileName = file;
+					Images.Add(imageSource);
 					fs.Close();
 				}
 			}
@@ -57,17 +55,12 @@ namespace NewBizWiz.Core.Common
 			if (!File.Exists(image.FileName)) return;
 			try
 			{
-				if (image.BigImage != null)
-				{
-					image.BigImage.Dispose();
-					image.BigImage = null;
-				}
+				image.Dispose();
 				File.Delete(image.FileName);
 				LoadImages();
 				OnCollectionChanged();
-
 			}
-			catch {}
+			catch { }
 
 		}
 

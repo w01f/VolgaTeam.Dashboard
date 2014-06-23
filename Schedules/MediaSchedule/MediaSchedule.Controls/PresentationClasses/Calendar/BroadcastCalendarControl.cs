@@ -52,11 +52,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			}
 		}
 
-		public override List<ImageSource> DayImages
-		{
-			get { return MediaMetaData.Instance.ListManager.Images; }
-		}
-
 		public override ISchedule Schedule
 		{
 			get { return _localSchedule; }

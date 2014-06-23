@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 using DevExpress.XtraEditors;
-using Microsoft.Office.Interop.PowerPoint;
 using NewBizWiz.Core.Interop;
 using Application = Microsoft.Office.Interop.PowerPoint.Application;
 using Point = System.Drawing.Point;
@@ -343,11 +343,44 @@ namespace NewBizWiz.Core.Common
 			return new Point(control.X + (control.Width / 2), control.Y + (control.Height / 2));
 		}
 
+		public static Point GetOffset(this Point point, int x, int y)
+		{
+			return new Point(point.X + x, point.Y + y);
+		}
+
 		public static TextGroup Join(this IEnumerable<ITextItem> textItems, string separator = "", string borderLeft = "", string borderRight = "")
 		{
 			var textGroup = new TextGroup(separator, borderLeft, borderRight);
 			textGroup.Items.AddRange(textItems);
 			return textGroup;
+		}
+
+		public static Image Resize(this Image image, Size size)
+		{
+			var originalWidth = image.Width;
+			var originalHeight = image.Height;
+			var percentWidth = (float)size.Width / originalWidth;
+			var percentHeight = (float)size.Height / originalHeight;
+			var percent = percentHeight < percentWidth ? percentHeight : percentWidth;
+			var newWidth = (int)(originalWidth * percent);
+			var newHeight = (int)(originalHeight * percent);
+			Image newImage = new Bitmap(newWidth, newHeight);
+			using (var graphicsHandle = Graphics.FromImage(newImage))
+			{
+				graphicsHandle.InterpolationMode = InterpolationMode.HighQualityBicubic;
+				graphicsHandle.DrawImage(image, 0, 0, newWidth, newHeight);
+			}
+			return newImage;
+		}
+
+		public static XmlNode GetXmlNode(this XElement element)
+		{
+			using (var xmlReader = element.CreateReader())
+			{
+				var xmlDoc = new XmlDocument();
+				xmlDoc.Load(xmlReader);
+				return xmlDoc;
+			}
 		}
 	}
 

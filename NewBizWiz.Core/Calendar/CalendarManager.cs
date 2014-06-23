@@ -5,7 +5,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using Microsoft.VisualBasic;
@@ -1108,7 +1107,7 @@ namespace NewBizWiz.Core.Calendar
 
 	public abstract class CalendarOutputData
 	{
-		protected readonly List<string> _dayLogosPaths = new List<string>();
+		protected readonly List<ImageSource> _dayLogosPaths = new List<ImageSource>();
 		protected string _encodedLogo;
 
 		protected CalendarOutputData(CalendarMonth parent)
@@ -1316,9 +1315,9 @@ namespace NewBizWiz.Core.Calendar
 			get { return Parent.Days.Select(x => x.Summary).ToArray(); }
 		}
 
-		public string[] DayLogoPaths
+		public List<ImageSource> DayLogoPaths
 		{
-			get { return _dayLogosPaths.ToArray(); }
+			get { return _dayLogosPaths; }
 		}
 
 		public float FontSize
@@ -1457,14 +1456,13 @@ namespace NewBizWiz.Core.Calendar
 			_dayLogosPaths.Clear();
 			foreach (var day in Parent.Days)
 			{
-				if (day.Logo.TinyImage != null)
+				if (day.Logo.ContainsData)
 				{
-					var filePath = Path.GetTempFileName();
-					day.Logo.TinyImage.Save(filePath);
-					_dayLogosPaths.Add(filePath);
+					day.Logo.PrepareOutputFile();
+					_dayLogosPaths.Add(day.Logo);
 				}
 				else
-					_dayLogosPaths.Add(string.Empty);
+					_dayLogosPaths.Add(new ImageSource());
 			}
 		}
 

@@ -8,7 +8,7 @@ using NewBizWiz.Core.AdSchedule;
 using NewBizWiz.Core.Common;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 {
 	public partial class DigitalInfoControl : UserControl
 	{

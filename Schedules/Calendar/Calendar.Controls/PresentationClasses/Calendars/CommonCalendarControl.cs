@@ -33,11 +33,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			});
 		}
 
-		public override List<ImageSource> DayImages
-		{
-			get { return Core.AdSchedule.ListManager.Instance.Images; }
-		}
-
 		public override ISchedule Schedule
 		{
 			get { return _localSchedule; }

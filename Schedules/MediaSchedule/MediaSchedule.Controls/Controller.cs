@@ -13,6 +13,11 @@ using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses;
+using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital;
+using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Gallery;
+using NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls;
+using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy;
+using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary;
 
 namespace NewBizWiz.MediaSchedule.Controls
 {

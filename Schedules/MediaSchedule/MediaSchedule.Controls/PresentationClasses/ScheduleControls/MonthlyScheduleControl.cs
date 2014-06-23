@@ -3,7 +3,7 @@ using DevComponents.DotNetBar;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	public class MonthlyScheduleControl : ScheduleSectionControl
 	{

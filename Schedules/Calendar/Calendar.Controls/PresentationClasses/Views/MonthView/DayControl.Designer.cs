@@ -28,24 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.laSmallDayCaption = new System.Windows.Forms.Label();
-			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemPaste = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemEdit = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripMenuItemCopyImage = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemPasteImage = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItemDeleteImage = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripMenuItemAddNote = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemPasteNote = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnData = new System.Windows.Forms.Panel();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.memoEditSimpleComment = new DevExpress.XtraEditors.MemoEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.labelControlData = new DevExpress.XtraEditors.LabelControl();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.pnCalendarNoteArea = new System.Windows.Forms.Panel();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.contextMenuStrip.SuspendLayout();
 			this.pnData.SuspendLayout();
 			this.xtraScrollableControl.SuspendLayout();
@@ -72,99 +77,129 @@
 			// 
 			// contextMenuStrip
 			// 
+			this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemCopy,
             this.toolStripMenuItemPaste,
             this.toolStripMenuItemClone,
             this.toolStripMenuItemEdit,
             this.toolStripMenuItemDelete,
+            this.toolStripSeparator2,
+            this.toolStripMenuItemCopyImage,
+            this.toolStripMenuItemPasteImage,
+            this.toolStripMenuItemDeleteImage,
             this.toolStripSeparator1,
             this.toolStripMenuItemAddNote,
             this.toolStripMenuItemPasteNote});
 			this.contextMenuStrip.Name = "contextMenuStrip";
-			this.contextMenuStrip.Size = new System.Drawing.Size(163, 276);
+			this.contextMenuStrip.Size = new System.Drawing.Size(152, 316);
 			this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
 			this.contextMenuStrip.Opened += new System.EventHandler(this.contextMenuStrip_Opened);
 			// 
 			// toolStripMenuItemCopy
 			// 
 			this.toolStripMenuItemCopy.Enabled = false;
-			this.toolStripMenuItemCopy.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.toolStripMenuItemCopy.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.toolStripMenuItemCopy.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CopySmall;
-			this.toolStripMenuItemCopy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
-			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(162, 38);
+			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemCopy.Text = "Copy Data";
 			this.toolStripMenuItemCopy.Click += new System.EventHandler(this.toolStripMenuItemCopy_Click);
 			// 
 			// toolStripMenuItemPaste
 			// 
 			this.toolStripMenuItemPaste.Enabled = false;
-			this.toolStripMenuItemPaste.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.toolStripMenuItemPaste.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.toolStripMenuItemPaste.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.PasteSmall;
-			this.toolStripMenuItemPaste.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemPaste.Name = "toolStripMenuItemPaste";
-			this.toolStripMenuItemPaste.Size = new System.Drawing.Size(162, 38);
+			this.toolStripMenuItemPaste.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemPaste.Text = "Paste Data";
 			this.toolStripMenuItemPaste.Click += new System.EventHandler(this.toolStripMenuItemPaste_Click);
 			// 
 			// toolStripMenuItemClone
 			// 
 			this.toolStripMenuItemClone.Enabled = false;
-			this.toolStripMenuItemClone.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.toolStripMenuItemClone.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.toolStripMenuItemClone.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CloneSmall;
-			this.toolStripMenuItemClone.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemClone.Name = "toolStripMenuItemClone";
-			this.toolStripMenuItemClone.Size = new System.Drawing.Size(162, 38);
+			this.toolStripMenuItemClone.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemClone.Text = "Clone Day...";
 			this.toolStripMenuItemClone.Click += new System.EventHandler(this.toolStripMenuItemClone_Click);
 			// 
 			// toolStripMenuItemEdit
 			// 
 			this.toolStripMenuItemEdit.Enabled = false;
-			this.toolStripMenuItemEdit.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.toolStripMenuItemEdit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.toolStripMenuItemEdit.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.EditData;
-			this.toolStripMenuItemEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemEdit.Name = "toolStripMenuItemEdit";
-			this.toolStripMenuItemEdit.Size = new System.Drawing.Size(162, 38);
+			this.toolStripMenuItemEdit.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemEdit.Text = "Edit Data...";
 			this.toolStripMenuItemEdit.Click += new System.EventHandler(this.toolStripMenuItemEdit_Click);
 			// 
 			// toolStripMenuItemDelete
 			// 
 			this.toolStripMenuItemDelete.Enabled = false;
-			this.toolStripMenuItemDelete.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.toolStripMenuItemDelete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.toolStripMenuItemDelete.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.DeleteData;
-			this.toolStripMenuItemDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
-			this.toolStripMenuItemDelete.Size = new System.Drawing.Size(162, 38);
+			this.toolStripMenuItemDelete.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemDelete.Text = "Delete Data";
 			this.toolStripMenuItemDelete.Click += new System.EventHandler(this.toolStripMenuItemDelete_Click);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(148, 6);
+			// 
+			// toolStripMenuItemCopyImage
+			// 
+			this.toolStripMenuItemCopyImage.Enabled = false;
+			this.toolStripMenuItemCopyImage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.toolStripMenuItemCopyImage.Name = "toolStripMenuItemCopyImage";
+			this.toolStripMenuItemCopyImage.Size = new System.Drawing.Size(151, 30);
+			this.toolStripMenuItemCopyImage.Text = "Copy Image";
+			this.toolStripMenuItemCopyImage.Click += new System.EventHandler(this.toolStripMenuItemCopyImage_Click);
+			// 
+			// toolStripMenuItemPasteImage
+			// 
+			this.toolStripMenuItemPasteImage.Enabled = false;
+			this.toolStripMenuItemPasteImage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.toolStripMenuItemPasteImage.Name = "toolStripMenuItemPasteImage";
+			this.toolStripMenuItemPasteImage.Size = new System.Drawing.Size(151, 30);
+			this.toolStripMenuItemPasteImage.Text = "Paste Image";
+			this.toolStripMenuItemPasteImage.Click += new System.EventHandler(this.toolStripMenuItemPasteImage_Click);
+			// 
+			// toolStripMenuItemDeleteImage
+			// 
+			this.toolStripMenuItemDeleteImage.Enabled = false;
+			this.toolStripMenuItemDeleteImage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.toolStripMenuItemDeleteImage.Name = "toolStripMenuItemDeleteImage";
+			this.toolStripMenuItemDeleteImage.Size = new System.Drawing.Size(151, 30);
+			this.toolStripMenuItemDeleteImage.Text = "Delete Image";
+			this.toolStripMenuItemDeleteImage.Click += new System.EventHandler(this.toolStripMenuItemDeleteImage_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(159, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(148, 6);
 			// 
 			// toolStripMenuItemAddNote
 			// 
 			this.toolStripMenuItemAddNote.Enabled = false;
-			this.toolStripMenuItemAddNote.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.toolStripMenuItemAddNote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.toolStripMenuItemAddNote.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.FloaterNote;
-			this.toolStripMenuItemAddNote.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemAddNote.Name = "toolStripMenuItemAddNote";
-			this.toolStripMenuItemAddNote.Size = new System.Drawing.Size(162, 38);
+			this.toolStripMenuItemAddNote.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemAddNote.Text = "Add Note";
 			this.toolStripMenuItemAddNote.Click += new System.EventHandler(this.toolStripMenuItemAddNote_Click);
 			// 
 			// toolStripMenuItemPasteNote
 			// 
 			this.toolStripMenuItemPasteNote.Enabled = false;
-			this.toolStripMenuItemPasteNote.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.toolStripMenuItemPasteNote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.toolStripMenuItemPasteNote.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.PasteSmall;
-			this.toolStripMenuItemPasteNote.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemPasteNote.Name = "toolStripMenuItemPasteNote";
-			this.toolStripMenuItemPasteNote.Size = new System.Drawing.Size(162, 38);
+			this.toolStripMenuItemPasteNote.Size = new System.Drawing.Size(151, 30);
 			this.toolStripMenuItemPasteNote.Text = "Paste Note";
 			this.toolStripMenuItemPasteNote.Click += new System.EventHandler(this.toolStripMenuItemPasteNote_Click);
 			// 
@@ -252,6 +287,7 @@
 			this.pbLogo.Location = new System.Drawing.Point(3, 3);
 			this.pbLogo.Name = "pbLogo";
 			this.pbLogo.Size = new System.Drawing.Size(268, 41);
+			this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pbLogo.TabIndex = 1;
 			this.pbLogo.TabStop = false;
 			this.pbLogo.DoubleClick += new System.EventHandler(this.Control_DoubleClick);
@@ -276,6 +312,7 @@
 			// 
 			// DayControl
 			// 
+			this.AllowDrop = true;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.DarkGray;
 			this.Controls.Add(this.pnData);
@@ -285,6 +322,8 @@
 			this.Name = "DayControl";
 			this.Padding = new System.Windows.Forms.Padding(1);
 			this.Size = new System.Drawing.Size(276, 247);
+			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.DayControl_DragDrop);
+			this.DragOver += new System.Windows.Forms.DragEventHandler(this.DayControl_DragOver);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseDown);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			this.contextMenuStrip.ResumeLayout(false);
@@ -317,5 +356,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPasteNote;
 		public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEdit;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopyImage;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPasteImage;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteImage;
     }
 }

@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using NewBizWiz.Core.MediaSchedule;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	public partial class QuarterSelectorControl : UserControl
 	{

@@ -180,6 +180,13 @@ namespace NewBizWiz.Dashboard
 			f.Opacity = f.WindowState == FormWindowState.Minimized ? 0 : 1;
 		}
 
+		public void FormScheduleClosed(object sender, EventArgs e)
+		{
+			Opacity = 1;
+			RegistryHelper.MainFormHandle = Handle;
+			RegistryHelper.MaximizeMainForm = false;
+		}
+
 		private void timer_Tick(object sender, EventArgs e)
 		{
 			if (!DashboardPowerPointHelper.Instance.IsActive)

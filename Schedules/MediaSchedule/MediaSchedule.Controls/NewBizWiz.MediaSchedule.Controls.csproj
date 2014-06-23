@@ -74,82 +74,82 @@
     <Compile Include="InteropClasses\OneSheetHelper.cs" />
     <Compile Include="InteropClasses\PowerPointHelper.cs" />
     <Compile Include="InteropClasses\StrategyHelper.cs" />
-    <Compile Include="PresentationClasses\BroadcastCalendarControl.cs">
+    <Compile Include="PresentationClasses\Calendar\BroadcastCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\MediaDataNoteControl.cs">
+    <Compile Include="PresentationClasses\Calendar\MediaDataNoteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\MediaSummaryFull.cs">
+    <Compile Include="PresentationClasses\Summary\MediaSummaryFull.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\MediaGallery2Control.cs">
+    <Compile Include="PresentationClasses\Gallery\MediaGallery2Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\MediaGallery1Control.cs">
+    <Compile Include="PresentationClasses\Gallery\MediaGallery1Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\DigitalInfoControl.cs">
+    <Compile Include="PresentationClasses\Digital\DigitalInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\DigitalInfoControl.Designer.cs">
+    <Compile Include="PresentationClasses\Digital\DigitalInfoControl.Designer.cs">
       <DependentUpon>DigitalInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\MonthlyScheduleControl.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\MonthlyScheduleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\MediaWebPackageControl.cs">
+    <Compile Include="PresentationClasses\Digital\MediaWebPackageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\DaypartsControl.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\DaypartsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\DaypartsControl.Designer.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\DaypartsControl.Designer.cs">
       <DependentUpon>DaypartsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\DigitalProductContainerControl.cs">
+    <Compile Include="PresentationClasses\Digital\DigitalProductContainerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\HomeControl.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\HomeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\HomeControl.Designer.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\HomeControl.Designer.cs">
       <DependentUpon>HomeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\CalendarSlideInfoControl.cs">
+    <Compile Include="PresentationClasses\Calendar\CalendarSlideInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\CalendarSlideInfoControl.Designer.cs">
+    <Compile Include="PresentationClasses\Calendar\CalendarSlideInfoControl.Designer.cs">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\MediaSummaryLight.cs">
+    <Compile Include="PresentationClasses\Summary\MediaSummaryLight.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ProgramStrategyControl.cs">
+    <Compile Include="PresentationClasses\Strategy\ProgramStrategyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ProgramStrategyControl.Designer.cs">
+    <Compile Include="PresentationClasses\Strategy\ProgramStrategyControl.Designer.cs">
       <DependentUpon>ProgramStrategyControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\QuarterSelectorControl.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\QuarterSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\QuarterSelectorControl.Designer.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\QuarterSelectorControl.Designer.cs">
       <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\StationsControl.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\StationsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\StationsControl.Designer.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\StationsControl.Designer.cs">
       <DependentUpon>StationsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleSectionControl.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\ScheduleSectionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PresentationClasses\ScheduleSectionControl.Designer.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\ScheduleSectionControl.Designer.cs">
       <DependentUpon>ScheduleSectionControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationClasses\WeeklyScheduleControl.cs">
+    <Compile Include="PresentationClasses\ScheduleControls\WeeklyScheduleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -182,28 +182,28 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="PresentationClasses\DaypartsControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\DaypartsControl.resx">
       <DependentUpon>DaypartsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\DigitalInfoControl.resx">
+    <EmbeddedResource Include="PresentationClasses\Digital\DigitalInfoControl.resx">
       <DependentUpon>DigitalInfoControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\HomeControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\HomeControl.resx">
       <DependentUpon>HomeControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\CalendarSlideInfoControl.resx">
+    <EmbeddedResource Include="PresentationClasses\Calendar\CalendarSlideInfoControl.resx">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ProgramStrategyControl.resx">
+    <EmbeddedResource Include="PresentationClasses\Strategy\ProgramStrategyControl.resx">
       <DependentUpon>ProgramStrategyControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\QuarterSelectorControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\QuarterSelectorControl.resx">
       <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\StationsControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\StationsControl.resx">
       <DependentUpon>StationsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationClasses\ScheduleSectionControl.resx">
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\ScheduleSectionControl.resx">
       <DependentUpon>ScheduleSectionControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

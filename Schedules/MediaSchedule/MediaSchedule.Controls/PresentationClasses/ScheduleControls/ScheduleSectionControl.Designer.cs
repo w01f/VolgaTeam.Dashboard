@@ -1,4 +1,4 @@
-﻿namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+﻿namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
     partial class ScheduleSectionControl
     {
@@ -80,7 +80,7 @@
 			this.repositoryItemSpinEdit000s = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemTextEditProgram = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.pnTop = new System.Windows.Forms.Panel();
-			this.quarterSelectorControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.QuarterSelectorControl();
+			this.quarterSelectorControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls.QuarterSelectorControl();
 			this.laScheduleInfo = new System.Windows.Forms.Label();
 			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnBottom = new System.Windows.Forms.Panel();
@@ -132,7 +132,7 @@
 			this.pbOptionsLineHelp = new System.Windows.Forms.PictureBox();
 			this.laOptionsLineTitle = new System.Windows.Forms.Label();
 			this.xtraTabPageOptionsDigital = new DevExpress.XtraTab.XtraTabPage();
-			this.digitalInfoControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.DigitalInfoControl();
+			this.digitalInfoControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital.DigitalInfoControl();
 			this.xtraTabPageOptionsTotals = new DevExpress.XtraTab.XtraTabPage();
 			this.pnOptionsTotals = new System.Windows.Forms.Panel();
 			this.buttonXDiscount = new DevComponents.DotNetBar.ButtonX();
@@ -2243,7 +2243,7 @@
 		private System.Windows.Forms.PictureBox pbOptionsTotalsHelp;
 		private System.Windows.Forms.Label laOptionsTotalsTitle;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsDigital;
-		private DigitalInfoControl digitalInfoControl;
+		private NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital.DigitalInfoControl digitalInfoControl;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsStyle;
 		private System.Windows.Forms.Panel pnStyle;
 		private System.Windows.Forms.PictureBox pbOptionsSyleHelp;

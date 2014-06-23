@@ -313,11 +313,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		{
 			get { return null; }
 		}
-
-		public virtual List<ImageSource> DayImages
-		{
-			get { return null; }
-		}
 		#endregion
 
 		public virtual ISchedule Schedule

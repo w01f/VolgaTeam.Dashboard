@@ -28,7 +28,7 @@ using NewBizWiz.MediaSchedule.Controls.InteropClasses;
 using Schedule = NewBizWiz.Core.MediaSchedule.Schedule;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	[ToolboxItem(false)]
 	public partial class ScheduleSectionControl : UserControl

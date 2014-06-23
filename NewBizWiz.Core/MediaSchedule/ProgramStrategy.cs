@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Core.MediaSchedule
 {
@@ -145,46 +146,49 @@ namespace NewBizWiz.Core.MediaSchedule
 		public string Description { get; set; }
 		public decimal Order { get; set; }
 
-		private Image _logo;
-		public Image Logo
+		private ImageSource _logo;
+		public ImageSource Logo
 		{
 			get
 			{
 				if (!Enabled)
 					return DisabledLogo;
-				return _logo ?? MediaMetaData.Instance.ListManager.DefaultStrategyLogo;
+				return _logo.ContainsData ? _logo : MediaMetaData.Instance.ListManager.DefaultStrategyLogo;
 			}
 			set
 			{
 				if (!Enabled) return;
-				_logo = value != null ? value.Clone() as Image : null;
+				_logo = value;
 				_disabledLogo = null;
 			}
 		}
 
-		private Image _disabledLogo;
+		private ImageSource _disabledLogo;
 
 		public ProgramStrategyItem(ProgramStrategy programStrategy)
 		{
 			_parent = programStrategy;
+			_logo = new ImageSource();
 		}
 
-		private Image DisabledLogo
+		private ImageSource DisabledLogo
 		{
 			get
 			{
 				if (_disabledLogo != null) return _disabledLogo;
-				var sourceLogo = (_logo ?? MediaMetaData.Instance.ListManager.DefaultStrategyLogo).Clone() as Image;
+
+				var sourceLogo = (_logo.BigImage ?? MediaMetaData.Instance.ListManager.DefaultStrategyLogo.BigImage).Clone() as Image;
 				if (sourceLogo == null) return null;
-				_disabledLogo = new Bitmap(sourceLogo);
-				using (var gr = Graphics.FromImage(_disabledLogo))
+				var disabledImage = new Bitmap(sourceLogo);
+				using (var gr = Graphics.FromImage(disabledImage))
 				using (var attributes = new ImageAttributes())
 				{
 					var matrix = new ColorMatrix();
 					matrix.Matrix33 = 0.4f;
 					attributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
 					gr.Clear(Color.FromKnownColor(KnownColor.ButtonFace));
-					gr.DrawImage(sourceLogo, new Rectangle(0, 0, _disabledLogo.Width, _disabledLogo.Height), 0, 0, _disabledLogo.Width, _disabledLogo.Height, GraphicsUnit.Pixel, attributes);
+					gr.DrawImage(sourceLogo, new Rectangle(0, 0, disabledImage.Width, disabledImage.Height), 0, 0, disabledImage.Width, disabledImage.Height, GraphicsUnit.Pixel, attributes);
+					_disabledLogo = ImageSource.FromImage(disabledImage);
 					return _disabledLogo;
 				}
 			}
@@ -203,8 +207,6 @@ namespace NewBizWiz.Core.MediaSchedule
 		public string Serialize()
 		{
 			var result = new StringBuilder();
-			var converter = TypeDescriptor.GetConverter(typeof(Bitmap));
-
 			result.AppendLine(@"<Enabled>" + Enabled + @"</Enabled>");
 			if (!String.IsNullOrEmpty(Name))
 				result.AppendLine(@"<Name>" + Name.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Name>");
@@ -213,8 +215,8 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (!String.IsNullOrEmpty(Description))
 				result.AppendLine(@"<Description>" + Description.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Description>");
 			result.AppendLine(@"<Order>" + Order + @"</Order>");
-			if (_logo != null)
-				result.AppendLine(@"<Logo>" + Convert.ToBase64String((byte[])converter.ConvertTo(_logo.Clone(), typeof(byte[]))).Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Logo>");
+			if (_logo.ContainsData)
+				result.AppendLine(@"<Logo>" + _logo.Serialize() + @"</Logo>");
 
 			return result.ToString();
 		}
@@ -249,7 +251,7 @@ namespace NewBizWiz.Core.MediaSchedule
 							break;
 						}
 					case "Logo":
-						_logo = new Bitmap(new MemoryStream(Convert.FromBase64String(childNode.InnerText)));
+						_logo.Deserialize(childNode);
 						break;
 				}
 			}

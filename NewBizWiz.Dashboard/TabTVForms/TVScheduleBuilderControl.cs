@@ -59,7 +59,7 @@ namespace NewBizWiz.Dashboard.TabTVForms
 				FormMain.Instance.buttonItemTVNew.Enabled = false;
 				gridControlSchedules.Visible = false;
 				pnNoSlidesWarning.Visible = true;
-				laNoSlidesWarningText2.Text = string.Format("{0} {1}", new object[] {MasterWizardManager.Instance.SelectedWizard.Name, SettingsManager.Instance.Size});
+				laNoSlidesWarningText2.Text = string.Format("{0} {1}", new object[] { MasterWizardManager.Instance.SelectedWizard.Name, SettingsManager.Instance.Size });
 				pnNoDataWarning.Visible = false;
 				gridControlSchedules.DataSource = null;
 			}
@@ -91,17 +91,16 @@ namespace NewBizWiz.Dashboard.TabTVForms
 			RegistryHelper.MaximizeMainForm = true;
 			MediaSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Normal;
 			MediaSchedule.Internal.FormMain.Instance.StartPosition = FormStartPosition.Manual;
-			MediaSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).Bounds.Location;
+			MediaSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).WorkingArea.Location.GetOffset(20, 20);
 			MediaSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Maximized;
 			MediaSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
 			MediaSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
+			MediaSchedule.Internal.FormMain.Instance.Closed -= FormMain.Instance.FormScheduleClosed;
+			MediaSchedule.Internal.FormMain.Instance.Closed += FormMain.Instance.FormScheduleClosed;
 			MediaSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			MediaSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			MediaSchedule.Internal.AppManager.NewSchedule();
 			if (FormMain.Instance.IsDead) return;
-			FormMain.Instance.Opacity = 1;
-			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-			RegistryHelper.MaximizeMainForm = false;
 			LoadSchedules();
 			DashboardPowerPointHelper.Instance.Connect();
 		}
@@ -112,17 +111,17 @@ namespace NewBizWiz.Dashboard.TabTVForms
 			RegistryHelper.MaximizeMainForm = true;
 			MediaSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Normal;
 			MediaSchedule.Internal.FormMain.Instance.StartPosition = FormStartPosition.Manual;
-			MediaSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).Bounds.Location;
+			MediaSchedule.Internal.FormMain.Instance.Location = Screen.FromControl(FormMain.Instance).WorkingArea.Location.GetOffset(20, 20);
+			MediaSchedule.Internal.FormMain.Instance.Size = MediaSchedule.Internal.FormMain.Instance.MinimumSize;
 			MediaSchedule.Internal.FormMain.Instance.WindowState = FormWindowState.Maximized;
 			MediaSchedule.Internal.FormMain.Instance.Resize -= FormMain.Instance.FormScheduleResize;
 			MediaSchedule.Internal.FormMain.Instance.Resize += FormMain.Instance.FormScheduleResize;
+			MediaSchedule.Internal.FormMain.Instance.Closed -= FormMain.Instance.FormScheduleClosed;
+			MediaSchedule.Internal.FormMain.Instance.Closed += FormMain.Instance.FormScheduleClosed;
 			MediaSchedule.Internal.FormMain.Instance.FloaterRequested -= FormMain.Instance.buttonItemFloater_Click;
 			MediaSchedule.Internal.FormMain.Instance.FloaterRequested += FormMain.Instance.buttonItemFloater_Click;
 			MediaSchedule.Internal.AppManager.OpenSchedule(_scheduleList[gridViewSchedules.GetFocusedDataSourceRowIndex()].FullFileName);
 			if (FormMain.Instance.IsDead) return;
-			FormMain.Instance.Opacity = 1;
-			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
-			RegistryHelper.MaximizeMainForm = false;
 			LoadSchedules();
 			DashboardPowerPointHelper.Instance.Connect();
 		}

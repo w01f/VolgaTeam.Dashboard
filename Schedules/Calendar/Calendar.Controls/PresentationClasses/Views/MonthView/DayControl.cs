@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -18,9 +17,8 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		private bool _isSelected;
 		private Color _colorLight = Color.White;
 		private Color _colorDark = Color.LightGray;
-		private readonly List<ImageSource> _images = new List<ImageSource>();
 
-		public DayControl(CalendarDay day, IEnumerable<ImageSource> dayImages)
+		public DayControl(CalendarDay day)
 		{
 			InitializeComponent();
 			Day = day;
@@ -32,8 +30,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			memoEditSimpleComment.MouseUp += Utilities.Instance.Editor_MouseUp;
 
 			toolStripMenuItemAddNote.Visible = toolStripMenuItemPasteNote.Visible = toolStripSeparator1.Visible = Day.Parent.AllowCustomNotes;
-
-			_images.AddRange(dayImages);
 		}
 
 		#region Common Methods
@@ -44,7 +40,8 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			_colorDark = colorDark;
 			labelControlData.Text = Day.Summary;
 			pbLogo.Image = Day.Logo.XtraTinyImage;
-			pbLogo.Visible = Day.Logo.XtraTinyImage != null;
+			pbLogo.Visible = Day.Logo.ContainsData;
+			pbLogo.Height = Day.Logo.ContainsData ? Day.Logo.XtraTinyImage.Height : 0;
 			memoEditSimpleComment.EditValue = Day.Comment;
 			toolStripMenuItemEdit.Visible = true;
 			toolStripMenuItemEdit.Enabled = true;
@@ -159,6 +156,24 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			memoEditSimpleComment.Focus();
 			memoEditSimpleComment.SelectAll();
 		}
+
+		private void DayControl_DragOver(object sender, DragEventArgs e)
+		{
+			if (!Day.BelongsToSchedules)
+				e.Effect = DragDropEffects.None;
+			else
+				e.Effect = DragDropEffects.Copy;
+		}
+
+		private void DayControl_DragDrop(object sender, DragEventArgs e)
+		{
+			var imageSource = e.Data.GetData(typeof(ImageSource)) as ImageSource;
+			if (imageSource == null) return;
+			Day.Logo = imageSource.Clone();
+			RefreshData(_colorLight, _colorDark);
+			if (DataChanged != null)
+				DataChanged(this, new EventArgs());
+		}
 		#endregion
 
 		#region Popup Menu Event Handlers
@@ -168,6 +183,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 				e.Cancel = true;
 			else if (SelectionStateRequested != null)
 				SelectionStateRequested(sender, new EventArgs());
+			toolStripMenuItemCopyImage.Enabled = Day.Logo.ContainsData;
+			toolStripMenuItemPasteImage.Enabled = Clipboard.ContainsImage() || Clipboard.ContainsText(TextDataFormat.Html);
+			toolStripMenuItemDeleteImage.Enabled = Day.Logo.ContainsData;
 		}
 
 		private void contextMenuStrip_Opened(object sender, EventArgs e)
@@ -192,7 +210,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		{
 			using (var form = new FormDayProperties(Day))
 			{
-				form.LoadImages(_images);
 				if (form.ShowDialog() != DialogResult.OK) return;
 				RefreshData(_colorLight, _colorDark);
 				if (DataChanged != null)
@@ -222,6 +239,24 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 		{
 			if (NotePasted != null)
 				NotePasted(sender, new EventArgs());
+		}
+
+		private void toolStripMenuItemCopyImage_Click(object sender, EventArgs e)
+		{
+			if (ImageCopied != null)
+				ImageCopied(this, new EventArgs());
+		}
+
+		private void toolStripMenuItemPasteImage_Click(object sender, EventArgs e)
+		{
+			if (ImagePasted != null)
+				ImagePasted(this, new EventArgs());
+		}
+
+		private void toolStripMenuItemDeleteImage_Click(object sender, EventArgs e)
+		{
+			if (ImageDeleted != null)
+				ImageDeleted(this, new EventArgs());
 		}
 		#endregion
 
@@ -260,6 +295,10 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 
 		public event EventHandler<EventArgs> NoteAdded;
 		public event EventHandler<EventArgs> NotePasted;
+
+		public event EventHandler<EventArgs> ImageCopied;
+		public event EventHandler<EventArgs> ImagePasted;
+		public event EventHandler<EventArgs> ImageDeleted;
 	}
 
 	public class SelectDayEventArgs : EventArgs

@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
 using NewBizWiz.Calendar.Controls.ToolForms;
 using NewBizWiz.CommonGUI.ToolForms;
@@ -123,7 +125,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 								{
 									if (calendarDay != null)
 									{
-										var dayControl = new DayControl(calendarDay, Calendar.DayImages);
+										var dayControl = new DayControl(calendarDay);
 										dayControl.AllowToPasteNote = CopyPasteManager.SourceNote != null;
 										dayControl.DaySelected += (sender, e) =>
 										{
@@ -176,6 +178,38 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 										{
 											PasteNote();
 											RefreshData();
+										};
+										dayControl.ImageCopied += (sender, e) => CopyImage();
+										dayControl.ImagePasted += (sender, e) =>
+										{
+											ImageSource imageSource = null;
+											if (Clipboard.ContainsImage())
+												imageSource = ImageSource.FromImage(Clipboard.GetImage());
+											else if (Clipboard.ContainsText(TextDataFormat.Html))
+											{
+												var textContent = Clipboard.GetText(TextDataFormat.Html);
+												try
+												{
+													var doc = new XmlDocument();
+													doc.LoadXml(textContent);
+													imageSource = new ImageSource();
+													imageSource.Deserialize(doc.FirstChild);
+												}
+												catch { }
+											}
+											PasteImage(imageSource);
+
+										};
+										dayControl.ImageDeleted += (sender, e) =>
+										{
+											foreach (var day in SelectionManager.SelectedDays)
+											{
+												day.Logo = new ImageSource();
+												RefreshData();
+											}
+											Calendar.SettingsNotSaved = true;
+											Calendar.SelectedView.RefreshData();
+											Calendar.UpdateOutputFunctions();
 										};
 
 										SelectionManager.SelectionStateResponse += (sender, e) => dayControl.UpdateNoteMenuAccordingSelection(SelectionManager.SelectedDays.OrderBy(x => x.Date).ToArray());
@@ -268,6 +302,33 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 				options.Add("Day", day.Date);
 				options.Add("Text", CopyPasteManager.SourceDay.Summary);
 				Calendar.TrackActivity(new UserActivity("Paste Data", options));
+			}
+		}
+
+		public void CopyImage()
+		{
+			var selectedDay = SelectionManager.SelectedDays.FirstOrDefault();
+			if (selectedDay == null || !selectedDay.Logo.ContainsData) return;
+			Clipboard.SetText(String.Format("<ImageSource>{0}</ImageSource>", selectedDay.Logo.Serialize()), TextDataFormat.Html);
+			var options = new Dictionary<string, object>();
+			options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
+			options.Add("Day", selectedDay.Date);
+			options.Add("Text", selectedDay.Summary);
+			Calendar.TrackActivity(new UserActivity("Copy Image", options));
+		}
+
+		public void PasteImage(ImageSource imageSource)
+		{
+			var selectedDays = SelectionManager.SelectedDays.ToArray();
+			CopyPasteManager.PasteImage(selectedDays, imageSource);
+			if (CopyPasteManager.SourceDay == null || imageSource == null) return;
+			foreach (var day in selectedDays)
+			{
+				var options = new Dictionary<string, object>();
+				options.Add("Advertiser", Calendar.CalendarData.Schedule.BusinessName);
+				options.Add("Day", day.Date);
+				options.Add("Text", CopyPasteManager.SourceDay.Summary);
+				Calendar.TrackActivity(new UserActivity("Paste Image", options));
 			}
 		}
 

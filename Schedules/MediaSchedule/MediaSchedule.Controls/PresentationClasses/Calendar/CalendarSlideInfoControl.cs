@@ -26,6 +26,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 
+			favoriteImagesControl.Init();
+
 			#region Assign Properties Changed Event To Controls
 
 			#region Comment

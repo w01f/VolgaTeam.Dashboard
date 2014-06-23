@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Views;
 using NewBizWiz.Core.Calendar;
+using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Calendar.Controls.PresentationClasses
 {
@@ -75,6 +76,15 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 				day.Comment = SourceDay.Comment;
 				day.Logo = SourceDay.Logo.Clone();
 			}
+			if (DayPasted != null)
+				DayPasted(null, null);
+		}
+
+		public void PasteImage(CalendarDay[] destination, ImageSource imageSource)
+		{
+			if (destination == null || imageSource == null) return;
+			foreach (var day in destination)
+				day.Logo = imageSource.Clone();
 			if (DayPasted != null)
 				DayPasted(null, null);
 		}

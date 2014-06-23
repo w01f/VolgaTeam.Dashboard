@@ -4,7 +4,7 @@ using NewBizWiz.CommonGUI.Gallery;
 using NewBizWiz.Core.Common;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 
-namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
+namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Gallery
 {
 	public class MediaGallery2Control : GalleryControl
 	{

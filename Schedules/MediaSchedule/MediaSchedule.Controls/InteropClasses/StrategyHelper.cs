@@ -3,9 +3,10 @@ using System.IO;
 using System.Threading;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
+using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.PresentationClasses;
+using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
@@ -44,10 +45,18 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 												if (shape.Tags.Name(i).Equals(String.Format("STRATLOGO{0}", j + 1)))
 												{
 													if ((j + startIndex) < strategy.ItemsCount &&
-														!String.IsNullOrEmpty(strategy.ItemLogos[j + startIndex]))
+														strategy.ItemLogos[j + startIndex].ContainsData)
 													{
-														var filePath = strategy.ItemLogos[j + startIndex];
-														slide.Shapes.AddPicture(filePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shape.Width, shape.Height);
+														var itemLogo = strategy.ItemLogos[j + startIndex];
+
+														var originalWidth = itemLogo.BigImage.Width;
+														var originalHeight = itemLogo.BigImage.Height;
+														var percentWidth = shape.Width / originalWidth;
+														var percentHeight = shape.Height / originalHeight;
+														var percent = percentHeight < percentWidth ? percentHeight : percentWidth;
+														var shapeWidth = originalWidth * percent;
+														var shapeHeight = originalHeight * percent;
+														slide.Shapes.AddPicture(itemLogo.OutputFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left, shape.Top, shapeWidth, shapeHeight);
 													}
 													shape.Visible = MsoTriState.msoFalse;
 												}

@@ -7,7 +7,6 @@ using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.VisualBasic;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Interop;
-using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using Application = System.Windows.Forms.Application;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
@@ -16,17 +15,16 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 {
 	public partial class MediaSchedulePowerPointHelper
 	{
-		public void AppendCalendar(BroadcastCalendarOutputData[] monthOutputDatas, Presentation destinationPresentation = null)
+		public void AppendCalendar(CalendarOutputData[] monthOutputDatas, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(BusinessWrapper.Instance.OutputManager.CalendarTemlatesFolderPath)) return;
 			foreach (var monthOutputData in monthOutputDatas)
 			{
-				var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.CalendarTemlatesFolderPath,
-					String.Format(OutputManager.CalendarSlideTemplate,
-					monthOutputData.ShowLogo ? "logo" : "no_logo",
-					monthOutputData.DayOutput.Length,
-					Core.Common.SettingsManager.Instance.SlideFolder.Replace("Slides", "")));
-				if (!File.Exists(presentationTemplatePath)) return;
+				var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.BroadcastCalendarTemlatesFolderPath,
+						String.Format(OutputManager.CalendarSlideTemplate,
+							monthOutputData.ShowLogo ? "logo" : "no_logo",
+							monthOutputData.DayOutput.Length,
+							Core.Common.SettingsManager.Instance.SlideFolder.Replace("Slides", "")));
+				if (String.IsNullOrEmpty(presentationTemplatePath) || !File.Exists(presentationTemplatePath)) return;
 				try
 				{
 					var thread = new Thread(delegate()
@@ -104,126 +102,157 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 											shape.TextFrame.TextRange.Text = monthOutputData.TagD;
 											break;
 										case "DAY1":
+										case "1-1":
 											if (daysCount > 0)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 1);
 											break;
 										case "DAY2":
+										case "2-1":
 											if (daysCount > 1)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 2);
 											break;
 										case "DAY3":
+										case "3-1":
 											if (daysCount > 2)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 3);
 											break;
 										case "DAY4":
+										case "4-1":
 											if (daysCount > 3)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 4);
 											break;
 										case "DAY5":
+										case "5-1":
 											if (daysCount > 4)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 5);
 											break;
 										case "DAY6":
+										case "6-1":
 											if (daysCount > 5)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 6);
 											break;
 										case "DAY7":
+										case "7-1":
 											if (daysCount > 6)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 7);
 											break;
 										case "DAY8":
+										case "8-1":
 											if (daysCount > 7)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 8);
 											break;
 										case "DAY9":
+										case "9-1":
 											if (daysCount > 8)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 9);
 											break;
 										case "DAY10":
+										case "10-1":
 											if (daysCount > 9)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 10);
 											break;
 										case "DAY11":
+										case "11-1":
 											if (daysCount > 10)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 11);
 											break;
 										case "DAY12":
+										case "12-1":
 											if (daysCount > 11)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 12);
 											break;
 										case "DAY13":
+										case "13-1":
 											if (daysCount > 12)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 13);
 											break;
 										case "DAY14":
+										case "14-1":
 											if (daysCount > 13)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 14);
 											break;
 										case "DAY15":
+										case "15-1":
 											if (daysCount > 14)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 15);
 											break;
 										case "DAY16":
+										case "16-1":
 											if (daysCount > 15)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 16);
 											break;
 										case "DAY17":
+										case "17-1":
 											if (daysCount > 16)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 17);
 											break;
 										case "DAY18":
+										case "18-1":
 											if (daysCount > 17)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 18);
 											break;
 										case "DAY19":
+										case "19-1":
 											if (daysCount > 18)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 19);
 											break;
 										case "DAY20":
+										case "20-1":
 											if (daysCount > 19)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 20);
 											break;
 										case "DAY21":
+										case "21-1":
 											if (daysCount > 20)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 21);
 											break;
 										case "DAY22":
+										case "22-1":
 											if (daysCount > 21)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 22);
 											break;
 										case "DAY23":
+										case "23-1":
 											if (daysCount > 22)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 23);
 											break;
 										case "DAY24":
+										case "24-1":
 											if (daysCount > 23)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 24);
 											break;
 										case "DAY25":
+										case "25-1":
 											if (daysCount > 24)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 25);
 											break;
 										case "DAY26":
+										case "26-1":
 											if (daysCount > 25)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 26);
 											break;
 										case "DAY27":
+										case "27-1":
 											if (daysCount > 26)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 27);
 											break;
 										case "DAY28":
+										case "28-1":
 											if (daysCount > 27)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 28);
 											break;
 										case "DAY29":
+										case "29-1":
 											if (daysCount > 28)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 29);
 											break;
 										case "DAY30":
+										case "30-1":
 											if (daysCount > 29)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 30);
 											break;
 										case "DAY31":
+										case "31-1":
 											if (daysCount > 30)
 												SetDayRecordTagValue(monthOutputData, slide, shape, 31);
 											break;
@@ -269,7 +298,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 						}
 
 						var backgroundFilePath = Path.Combine(BusinessWrapper.Instance.OutputManager.CalendarBackgroundFolderPath, String.Format(OutputManager.BackgroundFilePath, monthOutputData.SlideColor, monthOutputData.Parent.Date.ToString("yyyy")), monthOutputData.BackgroundFileName);
-						if (File.Exists(backgroundFilePath))
+						if (!String.IsNullOrEmpty(backgroundFilePath) && File.Exists(backgroundFilePath))
 							presentation.SlideMaster.Shapes.AddPicture(backgroundFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, 0, 0, presentation.SlideMaster.Width, presentation.SlideMaster.Height);
 						presentation.SlideMaster.Design.Name = GetSlideMasterName(monthOutputData);
 						AppendSlide(presentation, -1, destinationPresentation);
@@ -286,22 +315,25 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 			}
 		}
 
-		private string GetSlideMasterName(BroadcastCalendarOutputData monthOutputData)
+		private string GetSlideMasterName(CalendarOutputData monthOutputData)
 		{
 			return String.Format("{0}{1}{2}", monthOutputData.Parent.Date.ToString("MMMyy").ToLower(), monthOutputData.SlideColor.ToLower(), monthOutputData.ShowBigDate ? "L" : "t");
 		}
 
-		private void SetDayRecordTagValue(BroadcastCalendarOutputData monthOutputData, Slide slide, Shape shape, int dayNumber)
+		private static void SetDayRecordTagValue(CalendarOutputData monthOutputData, Slide slide, Shape shape, int dayNumber)
 		{
 			try
 			{
 				var day = monthOutputData.Parent.Days[dayNumber - 1];
+				var hasNote = false;
+				shape.TextFrame.TextRange.Font.Size = monthOutputData.FontSize;
 				foreach (var note in monthOutputData.Notes.Where(x => x.StartDay.Date == day.Date.Date))
 				{
-					note.Left = shape.Left + 10;
-					note.Top = shape.Top + 10;
-					shape.Top += (note.Height + 15);
-					shape.Height -= (note.Height + 15);
+					note.Left = shape.Left + 5;
+					note.Top = shape.Top + 5;
+					shape.Top += (note.Height + 5);
+					shape.Height -= (note.Height + 5);
+					hasNote = true;
 				}
 				foreach (var note in monthOutputData.Notes.Where(x => x.FinishDay.Date == day.Date.Date))
 				{
@@ -311,20 +343,22 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 				var middleNote = monthOutputData.Notes.FirstOrDefault(x => x.StartDay.Date < day.Date.Date && x.FinishDay.Date >= day.Date.Date);
 				if (middleNote != null)
 				{
-					shape.Top += (middleNote.Height + 15);
-					shape.Height -= (middleNote.Height + 15);
+					shape.Top += (middleNote.Height + 10);
+					shape.Height -= (middleNote.Height + 10);
+					hasNote = true;
 				}
 
 				Shape imageShape = null;
+				var dayText = monthOutputData.DayOutput[dayNumber - 1];
 				var dayLogo = monthOutputData.DayLogoPaths[dayNumber - 1];
 				if (dayLogo.ContainsData)
 				{
-					imageShape = slide.Shapes.AddPicture(dayLogo.OutputFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left + (shape.Width - dayLogo.XtraTinyImage.Width) / 2, shape.Top + 3, dayLogo.XtraTinyImage.Width, dayLogo.XtraTinyImage.Height);
+					var heightOffset = ((!String.IsNullOrEmpty(dayText) || hasNote) ? 0 : ((shape.Height - dayLogo.XtraTinyImage.Height)) / 2) + 5;
+					imageShape = slide.Shapes.AddPicture(dayLogo.OutputFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, shape.Left + (shape.Width - dayLogo.XtraTinyImage.Width) / 2, shape.Top + heightOffset, dayLogo.XtraTinyImage.Width, dayLogo.XtraTinyImage.Height);
 				}
-				if (!string.IsNullOrEmpty(monthOutputData.DayOutput[dayNumber - 1]))
+				if (!String.IsNullOrEmpty(dayText))
 				{
-					shape.TextFrame.TextRange.Text = monthOutputData.DayOutput[dayNumber - 1];
-					shape.TextFrame.TextRange.Font.Size = monthOutputData.FontSize;
+					shape.TextFrame.TextRange.Text = dayText;
 					if (imageShape != null)
 					{
 						shape.Top = imageShape.Top + imageShape.Height;
@@ -337,7 +371,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 			catch { }
 		}
 
-		public void PrepareCalendarEmail(string fileName, BroadcastCalendarOutputData[] monthOutputData)
+		public void PrepareCalendarEmail(string fileName, CalendarOutputData[] monthOutputData)
 		{
 			PreparePresentation(fileName, presentation => AppendCalendar(monthOutputData, presentation));
 		}

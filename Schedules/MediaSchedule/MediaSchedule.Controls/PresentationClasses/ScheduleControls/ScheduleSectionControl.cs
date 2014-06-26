@@ -440,11 +440,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			checkEditEmptySports.Checked = !ScheduleSection.ShowEmptySpots;
 
 			QuarterButton.Checked = ScheduleSection.ShowSelectedQuarter;
-			quarterSelectorControl.InitControls(ScheduleSection.Parent.BroadcastCalendar.Quarters, ScheduleSection.Parent.BroadcastCalendar.Quarters.FirstOrDefault(q => !ScheduleSection.SelectedQuarter.HasValue || q.DateAnchor == ScheduleSection.SelectedQuarter.Value));
+			quarterSelectorControl.InitControls(ScheduleSection.Parent.Quarters, ScheduleSection.Parent.Quarters.FirstOrDefault(q => !ScheduleSection.SelectedQuarter.HasValue || q.DateAnchor == ScheduleSection.SelectedQuarter.Value));
 			QuarterBar.Enabled =
 			quarterSelectorControl.Visible =
 			checkEditOutputLimitQuarters.Visible =
-				ScheduleSection.Parent.BroadcastCalendar.Quarters.Count > 1;
+				ScheduleSection.Parent.Quarters.Count > 1;
 
 			checkEditOutputLimitQuarters.Checked = ScheduleSection.OutputPerQuater;
 			checkEditOutputLimitPeriods.Checked = ScheduleSection.OutputMaxPeriods.HasValue;
@@ -993,7 +993,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (ScheduleSection.OutputPerQuater)
 			{
 				var spots = ScheduleSection.ShowEmptySpots ? defaultProgram.Spots.ToArray() : defaultProgram.SpotsNotEmpty;
-				foreach (var quarter in _localSchedule.BroadcastCalendar.Quarters)
+				foreach (var quarter in _localSchedule.Quarters)
 				{
 					var spotInterval = new SpotInterval();
 					spotInterval.Start = spotInterval.End = spotIntervals.Any() ? spotIntervals.Last().End : 0;

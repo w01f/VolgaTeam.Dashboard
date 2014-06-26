@@ -35,7 +35,8 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.TabMonthlySchedule = ribbonTabItemMonthlySchedule;
 			Controller.Instance.TabDigitalProduct = ribbonTabItemDigitalSlides;
 			Controller.Instance.TabDigitalPackage = ribbonTabItemDigitalPackage;
-			Controller.Instance.TabCalendar = ribbonTabItemCalendar;
+			Controller.Instance.TabCalendar1 = ribbonTabItemCalendar1;
+			Controller.Instance.TabCalendar2 = ribbonTabItemCalendar2;
 			Controller.Instance.TabSummaryLight = ribbonTabItemSummaryLight;
 			Controller.Instance.TabSummaryFull = ribbonTabItemSummaryFull;
 			Controller.Instance.TabStrategy = ribbonTabItemStrategy;
@@ -120,19 +121,34 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.DigitalPackageOptions = buttonItemDigitalPackageSettings;
 			#endregion
 
-			#region Calendar
-			Controller.Instance.CalendarSpecialButtons = ribbonBarCalendarSpecialButtons;
-			Controller.Instance.CalendarMonthsList = listBoxControlCalendar;
-			Controller.Instance.CalendarSlideInfo = buttonItemCalendarSlideInfo;
-			Controller.Instance.CalendarCopy = buttonItemCalendarCopy;
-			Controller.Instance.CalendarPaste = buttonItemCalendarPaste;
-			Controller.Instance.CalendarClone = buttonItemCalendarClone;
-			Controller.Instance.CalendarHelp = buttonItemCalendarHelp;
-			Controller.Instance.CalendarSave = buttonItemCalendarSave;
-			Controller.Instance.CalendarSaveAs = buttonItemCalendarSaveAs;
-			Controller.Instance.CalendarPreview = buttonItemCalendarPreview;
-			Controller.Instance.CalendarEmail = buttonItemCalendarEmail;
-			Controller.Instance.CalendarPowerPoint = buttonItemCalendarPowerPoint;
+			#region Calendar 1
+			Controller.Instance.Calendar1SpecialButtons = ribbonBarCalendar1SpecialButtons;
+			Controller.Instance.Calendar1MonthsList = listBoxControlCalendar1;
+			Controller.Instance.Calendar1SlideInfo = buttonItemCalendar1SlideInfo;
+			Controller.Instance.Calendar1Copy = buttonItemCalendar1Copy;
+			Controller.Instance.Calendar1Paste = buttonItemCalendar1Paste;
+			Controller.Instance.Calendar1Clone = buttonItemCalendar1Clone;
+			Controller.Instance.Calendar1Help = buttonItemCalendar1Help;
+			Controller.Instance.Calendar1Save = buttonItemCalendar1Save;
+			Controller.Instance.Calendar1SaveAs = buttonItemCalendar1SaveAs;
+			Controller.Instance.Calendar1Preview = buttonItemCalendar1Preview;
+			Controller.Instance.Calendar1Email = buttonItemCalendar1Email;
+			Controller.Instance.Calendar1PowerPoint = buttonItemCalendar1PowerPoint;
+			#endregion
+
+			#region Calendar 2
+			Controller.Instance.Calendar2SpecialButtons = ribbonBarCalendar2SpecialButtons;
+			Controller.Instance.Calendar2MonthsList = listBoxControlCalendar2;
+			Controller.Instance.Calendar2SlideInfo = buttonItemCalendar2SlideInfo;
+			Controller.Instance.Calendar2Copy = buttonItemCalendar2Copy;
+			Controller.Instance.Calendar2Paste = buttonItemCalendar2Paste;
+			Controller.Instance.Calendar2Clone = buttonItemCalendar2Clone;
+			Controller.Instance.Calendar2Help = buttonItemCalendar2Help;
+			Controller.Instance.Calendar2Save = buttonItemCalendar2Save;
+			Controller.Instance.Calendar2SaveAs = buttonItemCalendar2SaveAs;
+			Controller.Instance.Calendar2Preview = buttonItemCalendar2Preview;
+			Controller.Instance.Calendar2Email = buttonItemCalendar2Email;
+			Controller.Instance.Calendar2PowerPoint = buttonItemCalendar2PowerPoint;
 			#endregion
 
 			#region Summary Light
@@ -370,7 +386,18 @@ namespace NewBizWiz.MediaSchedule.Single
 				else
 				{
 					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
-					ribbonControl.SelectedRibbonTabItem = ribbonTabItemDigitalPackage;
+					ribbonControl.SelectedRibbonTabItem = ribbonTabItemCalendar1;
+					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+				}
+			}
+			else if ((_currentControl == Controller.Instance.CustomCalendar))
+			{
+				if (Controller.Instance.CustomCalendar.AllowToLeaveControl)
+					result = true;
+				else
+				{
+					ribbonControl.SelectedRibbonTabChanged -= ribbonControl_SelectedRibbonTabChanged;
+					ribbonControl.SelectedRibbonTabItem = ribbonTabItemCalendar2;
 					ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
 				}
 			}
@@ -501,12 +528,24 @@ namespace NewBizWiz.MediaSchedule.Single
 				_currentControl.BringToFront();
 				pnMain.BringToFront();
 			}
-			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar)
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar1)
 			{
 				if (AllowToLeaveCurrentControl())
 				{
 					Controller.Instance.BroadcastCalendar.ShowCalendar(false);
 					_currentControl = Controller.Instance.BroadcastCalendar;
+					if (!pnMain.Controls.Contains(_currentControl))
+						pnMain.Controls.Add(_currentControl);
+				}
+				_currentControl.BringToFront();
+				pnMain.BringToFront();
+			}
+			else if (ribbonControl.SelectedRibbonTabItem == ribbonTabItemCalendar2)
+			{
+				if (AllowToLeaveCurrentControl())
+				{
+					Controller.Instance.CustomCalendar.ShowCalendar(false);
+					_currentControl = Controller.Instance.CustomCalendar;
 					if (!pnMain.Controls.Contains(_currentControl))
 						pnMain.Controls.Add(_currentControl);
 				}
@@ -607,6 +646,8 @@ namespace NewBizWiz.MediaSchedule.Single
 				result = Controller.Instance.DigitalPackage.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.BroadcastCalendar)
 				result = Controller.Instance.BroadcastCalendar.AllowToLeaveControl;
+			else if (_currentControl == Controller.Instance.CustomCalendar)
+				result = Controller.Instance.CustomCalendar.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.SummaryLight)
 				result = Controller.Instance.SummaryLight.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.SummaryFull)

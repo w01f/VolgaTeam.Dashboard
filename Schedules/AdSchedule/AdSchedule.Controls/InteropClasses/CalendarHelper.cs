@@ -17,7 +17,6 @@ namespace NewBizWiz.AdSchedule.Controls.InteropClasses
 	{
 		public void AppendCalendar(AdCalendarOutputData[] monthOutputDatas, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(BusinessWrapper.Instance.OutputManager.CalendarTemlatesFolderPath)) return;
 			foreach (var monthOutputData in monthOutputDatas)
 			{
 				var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.CalendarTemlatesFolderPath, BusinessWrapper.Instance.OutputManager.TemplatesManager.GetSlideName(monthOutputData));

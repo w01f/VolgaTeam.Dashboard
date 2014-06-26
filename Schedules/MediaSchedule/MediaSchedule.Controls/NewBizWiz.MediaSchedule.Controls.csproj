@@ -77,6 +77,12 @@
     <Compile Include="PresentationClasses\Calendar\BroadcastCalendarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\Calendar\CustomCalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\Calendar\MediaCalendarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\Calendar\MediaDataNoteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -206,7 +212,6 @@
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ScheduleSectionControl.resx">
       <DependentUpon>ScheduleSectionControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

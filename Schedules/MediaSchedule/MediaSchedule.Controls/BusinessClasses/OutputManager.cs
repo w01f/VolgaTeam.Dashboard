@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.MediaSchedule;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
@@ -20,8 +21,8 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		private const string CalendarTemlatesFolderName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\broadcast_cal\broadcast_slides";
 		public const string CalendarSlideTemplate = @"Broadcast_{0}_{1}_{2}.pptx";
 		public const string CalendarBackgroundFolderName = @"{0}\newlocaldirect.com\sync\Incoming\Slides\Calendar\broadcast_cal\broadcast_images";
-		public const string BackgroundFilePath = @"{0}\{1}";
 
+		public const string BackgroundFilePath = @"{0}\{1}";
 
 		public string OneSheetTableBasedTemplatesFolderPath
 		{
@@ -33,7 +34,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 			get { return Path.Combine(MasterWizardsRootFolderPath, String.Format(StrategyTemplatesFolderName, SettingsManager.Instance.SlideFolder, MediaMetaData.Instance.DataTypeString)); }
 		}
 
-		public string CalendarTemlatesFolderPath
+		public string BroadcastCalendarTemlatesFolderPath
 		{
 			get { return string.Format(CalendarTemlatesFolderName, Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
 		}

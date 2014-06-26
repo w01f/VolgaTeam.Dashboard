@@ -25,6 +25,8 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			InitializeComponent();
 			Dock = DockStyle.Fill;
 
+			favoriteImagesControl.Init();
+
 			#region Assign Properties Changed Event To Controls
 
 			#region Basic

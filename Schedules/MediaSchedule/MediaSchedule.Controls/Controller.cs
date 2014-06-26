@@ -12,7 +12,7 @@ using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.PresentationClasses;
+using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.Gallery;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls;
@@ -41,7 +41,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public RibbonTabItem TabMonthlySchedule { get; set; }
 		public RibbonTabItem TabDigitalProduct { get; set; }
 		public RibbonTabItem TabDigitalPackage { get; set; }
-		public RibbonTabItem TabCalendar { get; set; }
+		public RibbonTabItem TabCalendar1 { get; set; }
+		public RibbonTabItem TabCalendar2 { get; set; }
 		public RibbonTabItem TabSummaryLight { get; set; }
 		public RibbonTabItem TabSummaryFull { get; set; }
 		public RibbonTabItem TabGallery1 { get; set; }
@@ -138,19 +139,34 @@ namespace NewBizWiz.MediaSchedule.Controls
 			DigitalPackageOptions.CheckedChanged += DigitalPackage.TogledButton_CheckedChanged;
 			#endregion
 
-			#region Calendar
+			#region Calendar1
 			BroadcastCalendar = new BroadcastCalendarControl();
-			CalendarMonthsList.SelectedIndexChanged += BroadcastCalendar.MonthList_SelectedIndexChanged;
-			CalendarSlideInfo.CheckedChanged += BroadcastCalendar.SlideInfo_CheckedChanged;
-			CalendarCopy.Click += BroadcastCalendar.CalendarCopy_Click;
-			CalendarPaste.Click += BroadcastCalendar.CalendarPaste_Click;
-			CalendarClone.Click += BroadcastCalendar.CalendarClone_Click;
-			CalendarSave.Click += BroadcastCalendar.Save_Click;
-			CalendarSaveAs.Click += BroadcastCalendar.SaveAs_Click;
-			CalendarPreview.Click += BroadcastCalendar.Preview_Click;
-			CalendarPowerPoint.Click += BroadcastCalendar.PowerPoint_Click;
-			CalendarEmail.Click += BroadcastCalendar.Email_Click;
-			CalendarHelp.Click += BroadcastCalendar.Help_Click;
+			Calendar1MonthsList.SelectedIndexChanged += BroadcastCalendar.MonthList_SelectedIndexChanged;
+			Calendar1SlideInfo.CheckedChanged += BroadcastCalendar.SlideInfo_CheckedChanged;
+			Calendar1Copy.Click += BroadcastCalendar.CalendarCopy_Click;
+			Calendar1Paste.Click += BroadcastCalendar.CalendarPaste_Click;
+			Calendar1Clone.Click += BroadcastCalendar.CalendarClone_Click;
+			Calendar1Save.Click += BroadcastCalendar.Save_Click;
+			Calendar1SaveAs.Click += BroadcastCalendar.SaveAs_Click;
+			Calendar1Preview.Click += BroadcastCalendar.Preview_Click;
+			Calendar1PowerPoint.Click += BroadcastCalendar.PowerPoint_Click;
+			Calendar1Email.Click += BroadcastCalendar.Email_Click;
+			Calendar1Help.Click += BroadcastCalendar.Help_Click;
+			#endregion
+
+			#region Calendar2
+			CustomCalendar = new CustomCalendarControl();
+			Calendar2MonthsList.SelectedIndexChanged += CustomCalendar.MonthList_SelectedIndexChanged;
+			Calendar2SlideInfo.CheckedChanged += CustomCalendar.SlideInfo_CheckedChanged;
+			Calendar2Copy.Click += CustomCalendar.CalendarCopy_Click;
+			Calendar2Paste.Click += CustomCalendar.CalendarPaste_Click;
+			Calendar2Clone.Click += CustomCalendar.CalendarClone_Click;
+			Calendar2Save.Click += CustomCalendar.Save_Click;
+			Calendar2SaveAs.Click += CustomCalendar.SaveAs_Click;
+			Calendar2Preview.Click += CustomCalendar.Preview_Click;
+			Calendar2PowerPoint.Click += CustomCalendar.PowerPoint_Click;
+			Calendar2Email.Click += CustomCalendar.Email_Click;
+			Calendar2Help.Click += CustomCalendar.Help_Click;
 			#endregion
 
 			#region Summary Light
@@ -218,6 +234,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			DigitalProductContainer.Dispose();
 			DigitalPackage.Dispose();
 			BroadcastCalendar.Dispose();
+			CustomCalendar.Dispose();
 			SummaryLight.Dispose();
 			SummaryFull.Dispose();
 			Strategy.Dispose();
@@ -236,6 +253,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			DigitalProductContainer.LoadSchedule(false);
 			DigitalPackage.LoadSchedule(false);
 			BroadcastCalendar.LoadCalendar(false);
+			CustomCalendar.LoadCalendar(false);
 			SummaryLight.UpdateOutput(false);
 			SummaryFull.UpdateOutput(false);
 			Strategy.LoadSchedule(false);
@@ -273,8 +291,12 @@ namespace NewBizWiz.MediaSchedule.Controls
 						tabPages.Add(TabDigitalPackage);
 						break;
 					case "Calendar":
-						TabCalendar.Text = tabPageConfig.Name;
-						tabPages.Add(TabCalendar);
+						TabCalendar1.Text = tabPageConfig.Name;
+						tabPages.Add(TabCalendar1);
+						break;
+					case "Calendar2":
+						TabCalendar2.Text = tabPageConfig.Name;
+						tabPages.Add(TabCalendar2);
 						break;
 					case "Gallery1":
 						TabGallery1.Text = tabPageConfig.Name;
@@ -356,7 +378,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		public void UpdateOutputTabs(bool enable)
 		{
-			TabCalendar.Enabled = enable;
+			TabCalendar1.Enabled = enable;
+			TabCalendar2.Enabled = enable;
 			TabSummaryLight.Enabled = enable;
 			TabSummaryFull.Enabled = enable;
 			TabStrategy.Enabled = enable;
@@ -457,7 +480,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 				MonthlyScheduleSpecialButtons,
 				DigitalProductSpecialButtons,
 				DigitalPackageSpecialButtons,
-				CalendarSpecialButtons,
+				Calendar1SpecialButtons,
+				Calendar2SpecialButtons,
 				SummaryLightSpecialButtons,
 				SummaryFullSpecialButtons,
 				StrategySpecialButtons,
@@ -584,19 +608,34 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem DigitalPackageOptions { get; set; }
 		#endregion
 
-		#region Calendar
-		public RibbonBar CalendarSpecialButtons { get; set; }
-		public ImageListBoxControl CalendarMonthsList { get; set; }
-		public ButtonItem CalendarSlideInfo { get; set; }
-		public ButtonItem CalendarCopy { get; set; }
-		public ButtonItem CalendarPaste { get; set; }
-		public ButtonItem CalendarClone { get; set; }
-		public ButtonItem CalendarHelp { get; set; }
-		public ButtonItem CalendarSave { get; set; }
-		public ButtonItem CalendarSaveAs { get; set; }
-		public ButtonItem CalendarPreview { get; set; }
-		public ButtonItem CalendarEmail { get; set; }
-		public ButtonItem CalendarPowerPoint { get; set; }
+		#region Calendar 1
+		public RibbonBar Calendar1SpecialButtons { get; set; }
+		public ImageListBoxControl Calendar1MonthsList { get; set; }
+		public ButtonItem Calendar1SlideInfo { get; set; }
+		public ButtonItem Calendar1Copy { get; set; }
+		public ButtonItem Calendar1Paste { get; set; }
+		public ButtonItem Calendar1Clone { get; set; }
+		public ButtonItem Calendar1Help { get; set; }
+		public ButtonItem Calendar1Save { get; set; }
+		public ButtonItem Calendar1SaveAs { get; set; }
+		public ButtonItem Calendar1Preview { get; set; }
+		public ButtonItem Calendar1Email { get; set; }
+		public ButtonItem Calendar1PowerPoint { get; set; }
+		#endregion
+
+		#region Calendar 2
+		public RibbonBar Calendar2SpecialButtons { get; set; }
+		public ImageListBoxControl Calendar2MonthsList { get; set; }
+		public ButtonItem Calendar2SlideInfo { get; set; }
+		public ButtonItem Calendar2Copy { get; set; }
+		public ButtonItem Calendar2Paste { get; set; }
+		public ButtonItem Calendar2Clone { get; set; }
+		public ButtonItem Calendar2Help { get; set; }
+		public ButtonItem Calendar2Save { get; set; }
+		public ButtonItem Calendar2SaveAs { get; set; }
+		public ButtonItem Calendar2Preview { get; set; }
+		public ButtonItem Calendar2Email { get; set; }
+		public ButtonItem Calendar2PowerPoint { get; set; }
 		#endregion
 
 		#region Summary Light
@@ -694,6 +733,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public DigitalProductContainerControl DigitalProductContainer { get; private set; }
 		public MediaWebPackageControl DigitalPackage { get; private set; }
 		public BroadcastCalendarControl BroadcastCalendar { get; private set; }
+		public CustomCalendarControl CustomCalendar { get; private set; }
 		public MediaSummaryLight SummaryLight { get; private set; }
 		public MediaSummaryFull SummaryFull { get; private set; }
 		public ProgramStrategyControl Strategy { get; private set; }

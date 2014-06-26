@@ -659,7 +659,7 @@ namespace NewBizWiz.Core.Calendar
 
 		public override void Deserialize(XmlNode node)
 		{
-			Deserialize<CalendarMonthSundayBased, CalendarDaySundayBased, CalendarNote>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
+			Deserialize<CalendarMonthSundayBased, CalendarDaySundayBased, CommonCalendarNote>(node, DayOfWeek.Sunday, DayOfWeek.Saturday);
 		}
 
 		public override void UpdateDaysCollection()

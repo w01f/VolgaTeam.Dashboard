@@ -15,9 +15,8 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 {
 	public partial class CalendarPowerPointHelper
 	{
-		public void AppendCalendar(CommonCalendarOutputData[] monthOutputDatas, Presentation destinationPresentation = null)
+		public void AppendCalendar(CalendarOutputData[] monthOutputDatas, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(BusinessWrapper.Instance.OutputManager.CalendarTemlatesFolderPath)) return;
 			foreach (var monthOutputData in monthOutputDatas)
 			{
 				var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.CalendarTemlatesFolderPath, BusinessWrapper.Instance.OutputManager.TemplatesManager.GetSlideName(monthOutputData));
@@ -42,7 +41,8 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 
 								for (int i = 1; i <= shape.Tags.Count; i++)
 								{
-									switch (shape.Tags.Name(i))
+									var shapeName = shape.Tags.Name(i).Trim();
+									switch (shapeName)
 									{
 										case "LOGO":
 											if (!string.IsNullOrEmpty(monthOutputData.LogoFile))
@@ -238,22 +238,21 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 								noteShape.Line.Visible = MsoTriState.msoTrue;
 								noteShape.Line.ForeColor.SchemeColor = PpColorSchemeIndex.ppForeground;
 								noteShape.Line.BackColor.RGB = Information.RGB(0, 0, 0);
-								;
-
+								
 								noteShape.Shadow.Visible = MsoTriState.msoTrue;
 								noteShape.Shadow.Type = MsoShadowType.msoShadow14;
 
 								noteShape.TextFrame.TextRange.Font.Color.RGB = Information.RGB(note.ForeColor.R, note.ForeColor.G, note.ForeColor.B);
 								noteShape.TextFrame.TextRange.Font.Name = "Calibri";
 								noteShape.TextFrame.TextRange.Font.Size = 8;
-								noteShape.TextFrame.TextRange.Text = note.Note.SimpleText;
+								note.Note.AddTextRange(noteShape.TextFrame.TextRange);
 							}
 						}
 
 						var backgroundFilePath = Path.Combine(BusinessWrapper.Instance.OutputManager.CalendarBackgroundFolderPath, String.Format(OutputManager.BackgroundFilePath, monthOutputData.SlideColor, monthOutputData.Parent.Date.ToString("yyyy")), monthOutputData.BackgroundFileName);
 						if (File.Exists(backgroundFilePath))
 							presentation.SlideMaster.Shapes.AddPicture(backgroundFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, 0, 0, presentation.SlideMaster.Width, presentation.SlideMaster.Height);
-						presentation.SlideMaster.Design.Name = BusinessWrapper.Instance.OutputManager.TemplatesManager.GetSlideMasterName(monthOutputData);
+						presentation.SlideMaster.Design.Name = GetSlideMasterName(monthOutputData);
 						AppendSlide(presentation, -1, destinationPresentation);
 						presentation.Close();
 					});
@@ -268,23 +267,29 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 			}
 		}
 
-		private static void SetDayRecordTagValue(CommonCalendarOutputData monthOutputData, Slide slide, Shape shape, int dayNumber)
+		private string GetSlideMasterName(CalendarOutputData monthOutputData)
+		{
+			return BusinessWrapper.Instance.OutputManager.TemplatesManager.GetSlideMasterName(monthOutputData);
+		}
+
+		private static void SetDayRecordTagValue(CalendarOutputData monthOutputData, Slide slide, Shape shape, int dayNumber)
 		{
 			try
 			{
-				foreach (var note in monthOutputData.Notes.Where(x => x.StartDay.Day == dayNumber))
+				var day = monthOutputData.Parent.Days[dayNumber - 1];
+				foreach (var note in monthOutputData.Notes.Where(x => x.StartDay.Date == day.Date.Date))
 				{
 					note.Left = shape.Left + 10;
 					note.Top = shape.Top + 10;
 					shape.Top += (note.Height + 15);
 					shape.Height -= (note.Height + 15);
 				}
-				foreach (var note in monthOutputData.Notes.Where(x => x.FinishDay.Day == dayNumber))
+				foreach (var note in monthOutputData.Notes.Where(x => x.FinishDay.Date == day.Date.Date))
 				{
 					note.Right = shape.Left + shape.Width - 10;
 				}
 
-				var middleNote = monthOutputData.Notes.FirstOrDefault(x => x.StartDay.Day < dayNumber && x.FinishDay.Day >= dayNumber);
+				var middleNote = monthOutputData.Notes.FirstOrDefault(x => x.StartDay.Date < day.Date.Date && x.FinishDay.Date >= day.Date.Date);
 				if (middleNote != null)
 				{
 					shape.Top += (middleNote.Height + 15);
@@ -313,7 +318,7 @@ namespace NewBizWiz.Calendar.Controls.InteropClasses
 			catch { }
 		}
 
-		public void PrepareCalendarEmail(string fileName, CommonCalendarOutputData[] monthOutputData)
+		public void PrepareCalendarEmail(string fileName, CalendarOutputData[] monthOutputData)
 		{
 			PreparePresentation(fileName, presentation => AppendCalendar(monthOutputData, presentation));
 		}

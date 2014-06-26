@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -221,6 +220,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			else
 				Load();
 			LoadCalendars();
+			LoadQuarters();
 
 			Dayparts.AddRange(MediaMetaData.Instance.ListManager.Dayparts.Where(x => !Dayparts.Select(y => y.Name).Contains(x.Name)));
 			Stations.AddRange(MediaMetaData.Instance.ListManager.Stations.Where(x => !Stations.Select(y => y.Name).Contains(x.Name)));
@@ -258,7 +258,9 @@ namespace NewBizWiz.Core.MediaSchedule
 		public List<DigitalProduct> DigitalProducts { get; private set; }
 		public DigitalProductSummary DigitalProductSummary { get; private set; }
 
+		public List<Quarter> Quarters { get; private set; }
 		public BroadcastCalendar BroadcastCalendar { get; set; }
+		public CustomCalendar CustomCalendar { get; set; }
 
 		public BaseSummarySettings ProductSummary { get; private set; }
 		public CustomSummarySettings CustomSummary { get; private set; }
@@ -515,6 +517,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			xml.AppendLine(@"</DigitalProducts>");
 
 			xml.AppendLine(@"<BroadcastCalendar>" + BroadcastCalendar.Serialize() + @"</BroadcastCalendar>");
+			xml.AppendLine(@"<CustomCalendar>" + CustomCalendar.Serialize() + @"</CustomCalendar>");
 			xml.AppendLine(@"<DigitalProductSummary>" + DigitalProductSummary.Serialize() + @"</DigitalProductSummary>");
 			xml.AppendLine(@"<ProductSummary>" + ProductSummary.Serialize() + @"</ProductSummary>");
 			xml.AppendLine(@"<CustomSummary>" + CustomSummary.Serialize() + @"</CustomSummary>");
@@ -531,6 +534,8 @@ namespace NewBizWiz.Core.MediaSchedule
 		private void LoadCalendars()
 		{
 			BroadcastCalendar = new BroadcastCalendar(this);
+			CustomCalendar = new CustomCalendar(this);
+
 			if (!_scheduleFile.Exists) return;
 			var document = new XmlDocument();
 			document.Load(_scheduleFile.FullName);
@@ -545,6 +550,48 @@ namespace NewBizWiz.Core.MediaSchedule
 				BroadcastCalendar.UpdateDaysCollection();
 				BroadcastCalendar.UpdateMonthCollection();
 				BroadcastCalendar.UpdateNotesCollection();
+			}
+
+			node = document.SelectSingleNode(@"/Schedule/CustomCalendar");
+			if (node != null)
+			{
+				CustomCalendar.Deserialize(node);
+			}
+			else
+			{
+				CustomCalendar.UpdateDaysCollection();
+				CustomCalendar.UpdateMonthCollection();
+				CustomCalendar.UpdateNotesCollection();
+			}
+		}
+
+		private void LoadQuarters()
+		{
+			Quarters = new List<Quarter>();
+			if (!FlightDateStart.HasValue || !FlightDateEnd.HasValue) return;
+			var targetMonths = MediaMetaData.Instance.ListManager.MonthTemplates.Where(m => m.StartDate >= FlightDateStart && m.EndDate <= FlightDateEnd).ToList();
+			if (!targetMonths.Any()) return;
+			var startDate = FlightDateStart.Value;
+			if (startDate.Month >= 1 && startDate.Month <= 3)
+				startDate = new DateTime(startDate.Year, 1, 1);
+			else if (startDate.Month >= 4 && startDate.Month <= 6)
+				startDate = new DateTime(startDate.Year, 4, 1);
+			else if (startDate.Month >= 7 && startDate.Month <= 9)
+				startDate = new DateTime(startDate.Year, 7, 1);
+			else if (startDate.Month >= 10 && startDate.Month <= 12)
+				startDate = new DateTime(startDate.Year, 10, 1);
+			while (startDate <= FlightDateEnd.Value)
+			{
+				var endDate = startDate.AddMonths(3);
+				var quarter = new Quarter { DateAnchor = startDate };
+				var quarterMonths = targetMonths.Where(m => (m.StartDate.Value.Day < 15 && m.StartDate.Value >= startDate && m.StartDate <= endDate) ||
+					(m.StartDate.Value.Day > 15 && m.EndDate >= startDate && m.EndDate <= endDate)
+					).OrderBy(m => m.Month).ToList();
+				startDate = endDate;
+				if (!quarterMonths.Any()) continue;
+				quarter.DateStart = quarterMonths.First().StartDate.Value;
+				quarter.DateEnd = quarterMonths.Last().EndDate.Value;
+				Quarters.Add(quarter);
 			}
 		}
 
@@ -1648,7 +1695,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public Quarter Quarter
 		{
-			get { return _parent.Parent.Parent.BroadcastCalendar.Quarters.FirstOrDefault(q => q.DateStart <= Date && q.DateEnd >= Date); }
+			get { return _parent.Parent.Parent.Quarters.FirstOrDefault(q => q.DateStart <= Date && q.DateEnd >= Date); }
 		}
 
 		public string Serialize()
@@ -1728,56 +1775,14 @@ namespace NewBizWiz.Core.MediaSchedule
 		}
 	}
 
-	public class BroadcastCalendar : CalendarMondayBased
+	public abstract class MediaCalendar : CalendarMondayBased
 	{
-		private readonly Schedule _parentSchedule;
+		protected readonly Schedule _parentSchedule;
 
-		public List<Quarter> Quarters { get; private set; }
-
-		public override bool AllowCustomNotes
-		{
-			get { return false; }
-		}
-
-		public BroadcastCalendar(ISchedule parent)
+		public MediaCalendar(ISchedule parent)
 			: base(parent)
 		{
 			_parentSchedule = parent as Schedule;
-			Quarters = new List<Quarter>();
-		}
-
-		private void UpdateQuarters()
-		{
-			Quarters.Clear();
-			if (!_parentSchedule.FlightDateStart.HasValue || !_parentSchedule.FlightDateEnd.HasValue) return;
-			if (!Months.Any()) return;
-			var startDate = _parentSchedule.FlightDateStart.Value;
-			if (startDate.Month >= 1 && startDate.Month <= 3)
-				startDate = new DateTime(startDate.Year, 1, 1);
-			else if (startDate.Month >= 4 && startDate.Month <= 6)
-				startDate = new DateTime(startDate.Year, 4, 1);
-			else if (startDate.Month >= 7 && startDate.Month <= 9)
-				startDate = new DateTime(startDate.Year, 7, 1);
-			else if (startDate.Month >= 10 && startDate.Month <= 12)
-				startDate = new DateTime(startDate.Year, 10, 1);
-			while (startDate <= _parentSchedule.FlightDateEnd.Value)
-			{
-				var endDate = startDate.AddMonths(3);
-				var quarter = new Quarter { DateAnchor = startDate };
-				var quarterMonths = Months.Where(m => (m.DaysRangeBegin.Day < 15 && m.DaysRangeBegin >= startDate && m.DaysRangeBegin <= endDate) ||
-					(m.DaysRangeBegin.Day > 15 && m.DaysRangeEnd >= startDate && m.DaysRangeEnd <= endDate)
-					).OrderBy(m => m.Date).ToList();
-				startDate = endDate;
-				if (!quarterMonths.Any()) continue;
-				quarter.DateStart = quarterMonths.First().DaysRangeBegin;
-				quarter.DateEnd = quarterMonths.Last().DaysRangeEnd;
-				Quarters.Add(quarter);
-			}
-		}
-
-		public override void Deserialize(XmlNode node)
-		{
-			Deserialize<CalendarMonthBroadcast, CalendarDayMondayBased, MediaDataNote>(node, DayOfWeek.Monday, DayOfWeek.Sunday);
 		}
 
 		public override void UpdateMonthCollection()
@@ -1806,16 +1811,41 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 			Months.Clear();
 			Months.AddRange(months);
-			UpdateQuarters();
+		}
+
+		public override void Reset()
+		{
+			Days.Clear();
+			Months.Clear();
+			Notes.Clear();
+			UpdateDaysCollection();
+			UpdateMonthCollection();
+			UpdateNotesCollection();
+		}
+	}
+
+	public class BroadcastCalendar : MediaCalendar
+	{
+		public BroadcastCalendar(ISchedule parent) : base(parent) { }
+
+		public override bool AllowCustomNotes
+		{
+			get { return false; }
+		}
+
+		public override void Deserialize(XmlNode node)
+		{
+			Deserialize<CalendarMonthBroadcast, CalendarDayMondayBased, MediaDataNote>(node, DayOfWeek.Monday, DayOfWeek.Sunday);
 		}
 
 		public override void UpdateNotesCollection()
 		{
 			const string noteSeparator = "   ";
 			var notes = new List<MediaDataNote>();
+			var scheduleSection = _parentSchedule.SelectedSpotType == SpotType.Month ? (ScheduleSection)_parentSchedule.MonthlySchedule : _parentSchedule.WeeklySchedule;
 			if (Schedule.FlightDateStart.HasValue && Schedule.FlightDateEnd.HasValue)
 			{
-				notes.AddRange(_parentSchedule.WeeklySchedule.Programs.SelectMany(p => p.Spots)
+				notes.AddRange(scheduleSection.Programs.SelectMany(p => p.Spots)
 				.Where(s => s.Count > 0 && s.StartDate.HasValue && s.EndDate.HasValue)
 				.GroupBy(g => new { g.StartDate, g.EndDate })
 				.Select(g => new MediaDataNote(this)
@@ -1883,15 +1913,15 @@ namespace NewBizWiz.Core.MediaSchedule
 			Notes.AddRange(notes);
 			UpdateDayAndNoteLinks();
 		}
+	}
 
-		public override void Reset()
+	public class CustomCalendar : MediaCalendar
+	{
+		public CustomCalendar(ISchedule parent) : base(parent) { }
+
+		public override void Deserialize(XmlNode node)
 		{
-			Days.Clear();
-			Months.Clear();
-			Notes.Clear();
-			UpdateDaysCollection();
-			UpdateMonthCollection();
-			UpdateNotesCollection();
+			Deserialize<CalendarMonthBroadcast, CalendarDayMondayBased, CommonCalendarNote>(node, DayOfWeek.Monday, DayOfWeek.Sunday);
 		}
 	}
 

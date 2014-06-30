@@ -28,17 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageBasic = new DevExpress.XtraTab.XtraTabPage();
 			this.pnBasicTop = new System.Windows.Forms.Panel();
 			this.xtraScrollableControlBasic = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.labelControlDecisionMaker = new DevExpress.XtraEditors.LabelControl();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.labelControlAdvertiser = new DevExpress.XtraEditors.LabelControl();
 			this.checkEditNotesCustomCommentApplyFoAll = new DevExpress.XtraEditors.CheckEdit();
 			this.buttonXBasicDecisionMaker = new DevComponents.DotNetBar.ButtonX();
@@ -90,8 +89,10 @@
 			this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
 			this.buttonXLogo = new DevComponents.DotNetBar.ButtonX();
 			this.checkEditLogoApplyForAll = new DevExpress.XtraEditors.CheckEdit();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+			this.xtraTabPageFavorites = new DevExpress.XtraTab.XtraTabPage();
+			this.favoriteImagesControl = new NewBizWiz.CommonGUI.FavoriteImages.FavoriteImagesControl();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+			this.barManager = new DevExpress.XtraBars.BarManager();
 			this.barToolbar = new DevExpress.XtraBars.Bar();
 			this.barLargeButtonItemHelp = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemClose = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -99,8 +100,6 @@
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-			this.xtraTabPageFavorites = new DevExpress.XtraTab.XtraTabPage();
-			this.favoriteImagesControl = new NewBizWiz.CommonGUI.FavoriteImages.FavoriteImagesControl();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			this.xtraTabControl.SuspendLayout();
 			this.xtraTabPageBasic.SuspendLayout();
@@ -137,8 +136,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumnLogoGallery)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogoApplyForAll.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
 			this.xtraTabPageFavorites.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// xtraTabControl
@@ -954,6 +953,7 @@
 			this.layoutViewLogoGallery.OptionsItemText.TextToControlDistance = 1;
 			this.layoutViewLogoGallery.OptionsMultiRecordMode.MultiColumnScrollBarOrientation = DevExpress.XtraGrid.Views.Layout.ScrollBarOrientation.Vertical;
 			this.layoutViewLogoGallery.OptionsMultiRecordMode.MultiRowScrollBarOrientation = DevExpress.XtraGrid.Views.Layout.ScrollBarOrientation.Vertical;
+			this.layoutViewLogoGallery.OptionsView.ContentAlignment = System.Drawing.ContentAlignment.TopCenter;
 			this.layoutViewLogoGallery.OptionsView.ShowCardBorderIfCaptionHidden = false;
 			this.layoutViewLogoGallery.OptionsView.ShowCardCaption = false;
 			this.layoutViewLogoGallery.OptionsView.ShowCardExpandButton = false;
@@ -964,6 +964,7 @@
 			this.layoutViewLogoGallery.OptionsView.ViewMode = DevExpress.XtraGrid.Views.Layout.LayoutViewMode.MultiRow;
 			this.layoutViewLogoGallery.TemplateCard = this.layoutViewCard1;
 			this.layoutViewLogoGallery.CustomFieldValueStyle += new DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventHandler(this.layoutViewLogoGallery_CustomFieldValueStyle);
+			this.layoutViewLogoGallery.MouseMove += new System.Windows.Forms.MouseEventHandler(this.layoutViewLogoGallery_MouseMove);
 			// 
 			// gridColumnLogoGallery
 			// 
@@ -1031,6 +1032,22 @@
 			this.checkEditLogoApplyForAll.StyleController = this.styleController;
 			this.checkEditLogoApplyForAll.TabIndex = 8;
 			// 
+			// xtraTabPageFavorites
+			// 
+			this.xtraTabPageFavorites.Controls.Add(this.favoriteImagesControl);
+			this.xtraTabPageFavorites.Name = "xtraTabPageFavorites";
+			this.xtraTabPageFavorites.Size = new System.Drawing.Size(298, 453);
+			this.xtraTabPageFavorites.Text = "Favorites";
+			// 
+			// favoriteImagesControl
+			// 
+			this.favoriteImagesControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.favoriteImagesControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.favoriteImagesControl.Location = new System.Drawing.Point(0, 0);
+			this.favoriteImagesControl.Name = "favoriteImagesControl";
+			this.favoriteImagesControl.Size = new System.Drawing.Size(298, 453);
+			this.favoriteImagesControl.TabIndex = 1;
+			// 
 			// defaultLookAndFeel
 			// 
 			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
@@ -1075,9 +1092,9 @@
 			this.barLargeButtonItemHelp.Glyph = global::NewBizWiz.Calendar.Controls.Properties.Resources.HelpSmall;
 			this.barLargeButtonItemHelp.Id = 10;
 			this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
-			toolTipItem4.Text = "Help";
-			superToolTip4.Items.Add(toolTipItem4);
-			this.barLargeButtonItemHelp.SuperTip = superToolTip4;
+			toolTipItem1.Text = "Help";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.barLargeButtonItemHelp.SuperTip = superToolTip1;
 			this.barLargeButtonItemHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemHelp_ItemClick);
 			// 
 			// barLargeButtonItemClose
@@ -1087,9 +1104,9 @@
 			this.barLargeButtonItemClose.Glyph = global::NewBizWiz.Calendar.Controls.Properties.Resources.CloseSlideInfo;
 			this.barLargeButtonItemClose.Id = 9;
 			this.barLargeButtonItemClose.Name = "barLargeButtonItemClose";
-			toolTipItem3.Text = "Exit";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.barLargeButtonItemClose.SuperTip = superToolTip3;
+			toolTipItem2.Text = "Exit";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.barLargeButtonItemClose.SuperTip = superToolTip2;
 			this.barLargeButtonItemClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemClose_ItemClick);
 			// 
 			// barDockControlTop
@@ -1119,22 +1136,6 @@
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
 			this.barDockControlRight.Location = new System.Drawing.Point(300, 42);
 			this.barDockControlRight.Size = new System.Drawing.Size(0, 479);
-			// 
-			// xtraTabPageFavorites
-			// 
-			this.xtraTabPageFavorites.Controls.Add(this.favoriteImagesControl);
-			this.xtraTabPageFavorites.Name = "xtraTabPageFavorites";
-			this.xtraTabPageFavorites.Size = new System.Drawing.Size(298, 453);
-			this.xtraTabPageFavorites.Text = "Favorites";
-			// 
-			// favoriteImagesControl
-			// 
-			this.favoriteImagesControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.favoriteImagesControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.favoriteImagesControl.Location = new System.Drawing.Point(0, 0);
-			this.favoriteImagesControl.Name = "favoriteImagesControl";
-			this.favoriteImagesControl.Size = new System.Drawing.Size(298, 453);
-			this.favoriteImagesControl.TabIndex = 1;
 			// 
 			// SlideInfoControl
 			// 
@@ -1189,8 +1190,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumnLogoGallery)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogoApplyForAll.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
 			this.xtraTabPageFavorites.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
 			this.ResumeLayout(false);
 
         }

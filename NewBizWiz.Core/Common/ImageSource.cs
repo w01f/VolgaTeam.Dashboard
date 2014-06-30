@@ -107,10 +107,13 @@ namespace NewBizWiz.Core.Common
 		{
 			var result = new ImageSource();
 			result.IsDefault = IsDefault;
-			result.BigImage = BigImage.Clone() as Image;
-			result.SmallImage = SmallImage.Clone() as Image;
-			result.TinyImage = TinyImage.Clone() as Image;
-			result.XtraTinyImage = XtraTinyImage.Clone() as Image;
+			if (BigImage != null && SmallImage != null && TinyImage != null && XtraTinyImage != null)
+			{
+				result.BigImage = BigImage.Clone() as Image;
+				result.SmallImage = SmallImage.Clone() as Image;
+				result.TinyImage = TinyImage.Clone() as Image;
+				result.XtraTinyImage = XtraTinyImage.Clone() as Image;
+			}
 			result.Name = Name;
 			return result;
 		}

@@ -111,6 +111,7 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 		{
 			var view = sender as LayoutView;
 			if (view == null) return;
+			view.Focus();
 			if (e.Button != MouseButtons.Left || _downHitInfo == null) return;
 			var sourceItem = view.GetRow(_downHitInfo.RowHandle) as ImageSource;
 			if (sourceItem == null) return;
@@ -133,6 +134,13 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 			if (_downHitInfo == null) return;
 			e.UseDefaultCursors = false;
 			Cursor.Current = _dragRowCursor;
+		}
+
+		private void toolStripMenuItemCopy_Click(object sender, EventArgs e)
+		{
+			var imageSource = layoutViewLogoGallery.GetRow(_menuHitInfo.RowHandle) as ImageSource;
+			if (imageSource == null || !imageSource.ContainsData) return;
+			Clipboard.SetText(String.Format("<ImageSource>{0}</ImageSource>", imageSource.Serialize()), TextDataFormat.Html);
 		}
 
 		private void toolStripMenuItemRename_Click(object sender, EventArgs e)

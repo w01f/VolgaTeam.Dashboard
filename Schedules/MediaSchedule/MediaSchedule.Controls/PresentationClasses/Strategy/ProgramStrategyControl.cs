@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Xml;
 using DevExpress.Utils;
 using DevExpress.Utils.Menu;
 using DevExpress.Utils.Paint;
@@ -246,8 +247,21 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			if (e.HitInfo.Column != bandedGridColumnItemsLogo) return;
 			var sourceItem = advBandedGridViewItems.GetRow(e.HitInfo.RowHandle) as ProgramStrategyItem;
 			if (sourceItem == null || !sourceItem.Enabled) return;
-			var clipboardImage = ImageSource.FromImage(Clipboard.GetImage());
-
+			ImageSource clipboardImage = null;
+			if (Clipboard.ContainsImage())
+				clipboardImage = ImageSource.FromImage(Clipboard.GetImage());
+			else if (Clipboard.ContainsText(TextDataFormat.Html))
+			{
+				var textContent = Clipboard.GetText(TextDataFormat.Html);
+				try
+				{
+					var doc = new XmlDocument();
+					doc.LoadXml(textContent);
+					clipboardImage = new ImageSource();
+					clipboardImage.Deserialize(doc.FirstChild);
+				}
+				catch { }
+			}
 			e.Menu.Items.Add(new DXMenuItem("Paste Image", (o, ea) =>
 			{
 				sourceItem.Logo = clipboardImage.Clone();

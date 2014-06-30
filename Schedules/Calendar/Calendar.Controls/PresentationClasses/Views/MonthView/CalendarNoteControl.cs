@@ -21,8 +21,11 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			CalendarNote = calendarNote;
 
 			_allowToSave = false;
-			labelControl.Text = CalendarNote.Note.FormattedText;
-			memoEdit.EditValue = CalendarNote.Note.SimpleText;
+			if (CalendarNote.Note != null)
+			{
+				labelControl.Text = CalendarNote.Note.FormattedText;
+				memoEdit.EditValue = CalendarNote.Note.SimpleText;
+			}
 			_allowToSave = true;
 
 			RefreshColor();

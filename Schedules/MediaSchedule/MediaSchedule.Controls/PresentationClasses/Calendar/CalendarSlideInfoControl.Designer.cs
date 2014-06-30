@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-			DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalendarSlideInfoControl));
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageComments = new DevExpress.XtraTab.XtraTabPage();
 			this.pnComment = new System.Windows.Forms.Panel();
 			this.memoEditComment = new DevExpress.XtraEditors.MemoEdit();
-			this.barManager = new DevExpress.XtraBars.BarManager();
+			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
 			this.barToolbar = new DevExpress.XtraBars.Bar();
 			this.barLargeButtonItemHelp = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemClose = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -47,7 +48,7 @@
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.laCommentMonth = new System.Windows.Forms.Label();
 			this.checkEditCommentApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.buttonXComment = new DevComponents.DotNetBar.ButtonX();
@@ -72,10 +73,10 @@
 			this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
 			this.buttonXLogo = new DevComponents.DotNetBar.ButtonX();
 			this.checkEditLogoApplyForAll = new DevExpress.XtraEditors.CheckEdit();
-			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.xtraTabPageFavorites = new DevExpress.XtraTab.XtraTabPage();
 			this.favoriteImagesControl = new NewBizWiz.CommonGUI.FavoriteImages.FavoriteImagesControl();
+			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
+			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			this.xtraTabControl.SuspendLayout();
 			this.xtraTabPageComments.SuspendLayout();
@@ -96,8 +97,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumnLogoGallery_1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogoApplyForAll.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			this.xtraTabPageFavorites.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// xtraTabControl
@@ -201,9 +202,9 @@
 			this.barLargeButtonItemHelp.Glyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItemHelp.Glyph")));
 			this.barLargeButtonItemHelp.Id = 10;
 			this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
-			toolTipItem5.Text = "Help";
-			superToolTip5.Items.Add(toolTipItem5);
-			this.barLargeButtonItemHelp.SuperTip = superToolTip5;
+			toolTipItem1.Text = "Help";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.barLargeButtonItemHelp.SuperTip = superToolTip1;
 			this.barLargeButtonItemHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemHelp_ItemClick);
 			// 
 			// barLargeButtonItemClose
@@ -213,9 +214,9 @@
 			this.barLargeButtonItemClose.Glyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItemClose.Glyph")));
 			this.barLargeButtonItemClose.Id = 9;
 			this.barLargeButtonItemClose.Name = "barLargeButtonItemClose";
-			toolTipItem3.Text = "Exit";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.barLargeButtonItemClose.SuperTip = superToolTip3;
+			toolTipItem2.Text = "Exit";
+			superToolTip2.Items.Add(toolTipItem2);
+			this.barLargeButtonItemClose.SuperTip = superToolTip2;
 			this.barLargeButtonItemClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemClose_ItemClick);
 			// 
 			// barDockControlTop
@@ -499,7 +500,6 @@
 			this.layoutViewLogoGallery.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
 			this.layoutViewLogoGallery.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
 			this.layoutViewLogoGallery.OptionsBehavior.AllowExpandCollapse = false;
-			this.layoutViewLogoGallery.OptionsBehavior.AllowRuntimeCustomization = false;
 			this.layoutViewLogoGallery.OptionsBehavior.AutoSelectAllInEditor = false;
 			this.layoutViewLogoGallery.OptionsBehavior.Editable = false;
 			this.layoutViewLogoGallery.OptionsBehavior.ReadOnly = true;
@@ -548,6 +548,7 @@
 			this.layoutViewLogoGallery.OptionsView.ViewMode = DevExpress.XtraGrid.Views.Layout.LayoutViewMode.MultiRow;
 			this.layoutViewLogoGallery.TemplateCard = this.layoutViewCard1;
 			this.layoutViewLogoGallery.CustomFieldValueStyle += new DevExpress.XtraGrid.Views.Layout.Events.LayoutViewFieldValueStyleEventHandler(this.layoutViewLogoGallery_CustomFieldValueStyle);
+			this.layoutViewLogoGallery.MouseMove += new System.Windows.Forms.MouseEventHandler(this.layoutViewLogoGallery_MouseMove);
 			// 
 			// gridColumnLogoGallery
 			// 
@@ -568,7 +569,7 @@
 			this.layoutViewField_gridColumnLogoGallery_1.EditorPreferredWidth = 232;
 			this.layoutViewField_gridColumnLogoGallery_1.Location = new System.Drawing.Point(0, 0);
 			this.layoutViewField_gridColumnLogoGallery_1.Name = "layoutViewField_gridColumnLogoGallery_1";
-			this.layoutViewField_gridColumnLogoGallery_1.Size = new System.Drawing.Size(238, 70);
+			this.layoutViewField_gridColumnLogoGallery_1.Size = new System.Drawing.Size(238, 28);
 			this.layoutViewField_gridColumnLogoGallery_1.Spacing = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
 			this.layoutViewField_gridColumnLogoGallery_1.TextSize = new System.Drawing.Size(0, 0);
 			this.layoutViewField_gridColumnLogoGallery_1.TextToControlDistance = 0;
@@ -581,7 +582,7 @@
 			this.layoutViewCard1.GroupBordersVisible = false;
 			this.layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutViewField_gridColumnLogoGallery_1});
-			this.layoutViewCard1.Name = "layoutViewCard1";
+			this.layoutViewCard1.Name = "layoutViewTemplateCard";
 			this.layoutViewCard1.OptionsItemText.TextToControlDistance = 1;
 			this.layoutViewCard1.Text = "TemplateCard";
 			// 
@@ -614,6 +615,22 @@
 			this.checkEditLogoApplyForAll.StyleController = this.styleController;
 			this.checkEditLogoApplyForAll.TabIndex = 8;
 			// 
+			// xtraTabPageFavorites
+			// 
+			this.xtraTabPageFavorites.Controls.Add(this.favoriteImagesControl);
+			this.xtraTabPageFavorites.Name = "xtraTabPageFavorites";
+			this.xtraTabPageFavorites.Size = new System.Drawing.Size(298, 421);
+			this.xtraTabPageFavorites.Text = "Favorites";
+			// 
+			// favoriteImagesControl
+			// 
+			this.favoriteImagesControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.favoriteImagesControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.favoriteImagesControl.Location = new System.Drawing.Point(0, 0);
+			this.favoriteImagesControl.Name = "favoriteImagesControl";
+			this.favoriteImagesControl.Size = new System.Drawing.Size(298, 421);
+			this.favoriteImagesControl.TabIndex = 0;
+			// 
 			// hyperLinkEditReset
 			// 
 			this.hyperLinkEditReset.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -631,31 +648,15 @@
 			this.hyperLinkEditReset.Properties.AutoHeight = false;
 			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditReset.Size = new System.Drawing.Size(300, 32);
-			toolTipItem4.Text = "Reset original default data";
-			superToolTip4.Items.Add(toolTipItem4);
-			this.hyperLinkEditReset.SuperTip = superToolTip4;
+			toolTipItem3.Text = "Reset original default data";
+			superToolTip3.Items.Add(toolTipItem3);
+			this.hyperLinkEditReset.SuperTip = superToolTip3;
 			this.hyperLinkEditReset.TabIndex = 105;
 			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 
 			// defaultLookAndFeel
 			// 
 			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
-			// xtraTabPageFavorites
-			// 
-			this.xtraTabPageFavorites.Controls.Add(this.favoriteImagesControl);
-			this.xtraTabPageFavorites.Name = "xtraTabPageFavorites";
-			this.xtraTabPageFavorites.Size = new System.Drawing.Size(298, 421);
-			this.xtraTabPageFavorites.Text = "Favorites";
-			// 
-			// favoriteImagesControl
-			// 
-			this.favoriteImagesControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.favoriteImagesControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.favoriteImagesControl.Location = new System.Drawing.Point(0, 0);
-			this.favoriteImagesControl.Name = "favoriteImagesControl";
-			this.favoriteImagesControl.Size = new System.Drawing.Size(298, 421);
-			this.favoriteImagesControl.TabIndex = 0;
 			// 
 			// CalendarSlideInfoControl
 			// 
@@ -692,8 +693,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewField_gridColumnLogoGallery_1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLogoApplyForAll.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			this.xtraTabPageFavorites.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			this.ResumeLayout(false);
 
         }

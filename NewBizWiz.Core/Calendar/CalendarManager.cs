@@ -1137,7 +1137,7 @@ namespace NewBizWiz.Core.Calendar
 				Logo = new Bitmap(defaultLogoPath);
 			ApplyForAllLogo = true;
 
-			ShowBigDate = true;
+			ShowBigDate = false;
 
 			#endregion
 		}

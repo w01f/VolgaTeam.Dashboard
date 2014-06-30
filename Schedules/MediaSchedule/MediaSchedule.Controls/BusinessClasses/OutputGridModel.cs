@@ -318,9 +318,9 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 							key = String.Format("day{0}     time{0}     rtg{0}     pts{0}     cpp{0}", i + 1);
 							temp.Clear();
 							if (ShowDay)
-								temp.Add(String.Format("Day: {0}", program.Days));
+								temp.Add(String.Format("{0}", program.Days));
 							if (ShowTime)
-								temp.Add(String.Format("Time: {0}", program.Time));
+								temp.Add(String.Format("{0}", program.Time));
 							if (ShowRating)
 								temp.Add(String.Format("{0}: {1}", RtgHeaderTitle.Replace(((char)13).ToString(), " "), program.Rating));
 							if (ShowGRP)

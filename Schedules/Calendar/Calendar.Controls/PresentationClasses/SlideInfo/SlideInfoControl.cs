@@ -507,8 +507,11 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 				e.Appearance.BackColor2 = Color.Orange;
 			}
 		}
+
+		private void layoutViewLogoGallery_MouseMove(object sender, MouseEventArgs e)
+		{
+			layoutViewLogoGallery.Focus();
+		}
 		#endregion
-
-
 	}
 }

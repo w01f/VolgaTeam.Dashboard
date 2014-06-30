@@ -4,8 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using DevExpress.Utils;
 using DevExpress.XtraBars;
 using DevExpress.XtraGrid.Views.Layout;
+using DevExpress.XtraGrid.Views.Layout.ViewInfo;
 using DevExpress.XtraTab;
 using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
 using NewBizWiz.Core.Calendar;
@@ -305,6 +307,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses
 			if (view.FocusedRowHandle != e.RowHandle) return;
 			e.Appearance.BackColor = Color.Orange;
 			e.Appearance.BackColor2 = Color.Orange;
+		}
+
+		private void layoutViewLogoGallery_MouseMove(object sender, MouseEventArgs e)
+		{
+			layoutViewLogoGallery.Focus();
 		}
 		#endregion
 	}

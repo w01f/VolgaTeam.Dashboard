@@ -331,8 +331,8 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 				{
 					note.Left = shape.Left + 5;
 					note.Top = shape.Top + 5;
-					shape.Top += (note.Height + 5);
-					shape.Height -= (note.Height + 5);
+					shape.Top += (note.Height + 10);
+					shape.Height -= (note.Height + 10);
 					hasNote = true;
 				}
 				foreach (var note in monthOutputData.Notes.Where(x => x.FinishDay.Date == day.Date.Date))

@@ -37,6 +37,7 @@
 			this.layoutViewField_gridColumnName_1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
 			this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
 			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+			this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemRename = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -182,12 +183,20 @@
 			// contextMenuStrip
 			// 
 			this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemCopy,
             this.toolStripMenuItemRename,
             this.toolStripSeparator1,
             this.toolStripMenuItemDelete});
 			this.contextMenuStrip.Name = "contextMenuStrip";
 			this.contextMenuStrip.ShowImageMargin = false;
-			this.contextMenuStrip.Size = new System.Drawing.Size(128, 76);
+			this.contextMenuStrip.Size = new System.Drawing.Size(128, 98);
+			// 
+			// toolStripMenuItemCopy
+			// 
+			this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
+			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(127, 22);
+			this.toolStripMenuItemCopy.Text = "Copy";
+			this.toolStripMenuItemCopy.Click += new System.EventHandler(this.toolStripMenuItemCopy_Click);
 			// 
 			// toolStripMenuItemRename
 			// 
@@ -200,7 +209,7 @@
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(89, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(124, 6);
 			// 
 			// toolStripMenuItemDelete
 			// 
@@ -241,5 +250,6 @@
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRename;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDelete;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopy;
 	}
 }

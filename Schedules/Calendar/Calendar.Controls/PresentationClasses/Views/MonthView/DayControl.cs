@@ -39,9 +39,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			_colorLight = colorLight;
 			_colorDark = colorDark;
 			labelControlData.Text = Day.Summary;
-			pbLogo.Image = Day.Logo.XtraTinyImage;
+			pbLogo.Image = Day.Logo.TinyImage;
 			pbLogo.Visible = Day.Logo.ContainsData;
-			pbLogo.Height = Day.Logo.ContainsData ? Day.Logo.XtraTinyImage.Height : 0;
+			pbLogo.Height = Day.Logo.ContainsData ? Day.Logo.TinyImage.Height : 0;
 			memoEditSimpleComment.EditValue = Day.Comment;
 			toolStripMenuItemEdit.Visible = true;
 			toolStripMenuItemEdit.Enabled = true;

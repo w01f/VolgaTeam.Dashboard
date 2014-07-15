@@ -31,8 +31,9 @@ namespace NewBizWiz.Core.Common
 			{
 				var name = element.Attribute("Name") != null ? element.Attribute("Name").Value : String.Empty;
 				var url = element.Attribute("Url") != null ? element.Attribute("Url").Value : String.Empty;
+				var groupId = element.Attribute("GroupId") != null ? element.Attribute("GroupId").Value : String.Empty;
 				if (!url.EndsWith("/")) url += "/";
-				var sourceUrl = new SourceUrl { Url = url, Name = name };
+				var sourceUrl = new SourceUrl { Url = url, Name = name, GroupId = groupId };
 				SourceUrls.Add(sourceUrl);
 			}
 			var node = settingsDoc.Descendants("AutoLoad").FirstOrDefault();
@@ -43,11 +44,14 @@ namespace NewBizWiz.Core.Common
 			_isConfigured = true;
 		}
 
-		public IEnumerable<SnapshotCollection> GetSnapshots(string url)
+		public IEnumerable<SnapshotCollection> GetSnapshots(SourceUrl sourceUrl)
 		{
 			var result = new List<SnapshotCollection>();
 			if (!_isConfigured) return result;
-			foreach (var item in (IEnumerable)JsonConvert.DeserializeObject(new WebClient().DownloadString(url + "contents.php")))
+			foreach (var item in (IEnumerable)JsonConvert.DeserializeObject(new WebClient().DownloadString(String.Format("{0}{1}{2}",
+				sourceUrl.Url,
+				"contents.php",
+				!String.IsNullOrEmpty(sourceUrl.GroupId) ? String.Format("?gid={0}", sourceUrl.GroupId) : String.Empty))))
 			{
 				var i = 0;
 				JProperty tmp = null;
@@ -60,13 +64,13 @@ namespace NewBizWiz.Core.Common
 							break;
 
 						case 1:
-							var s = new SnapshotCollection(tmp != null ? (String)tmp.Value : String.Empty);
-
+							var snapshotName = tmp != null ? (String)tmp.Value : String.Empty;
+							var s = new SnapshotCollection(snapshotName);
 							if (m != null)
 								foreach (var property in ((IEnumerable)m).OfType<JArray>())
 								{
 									foreach (var ss in property.Select(prop => (String)prop).Where(ss => !String.IsNullOrEmpty(ss)))
-										s.Screenshots.Add(new SnapshotItem(ss.Replace(s.Name, String.Empty), String.Format("{0}{1}/{2}/", url, s.Name, ss)));
+										s.Screenshots.Add(new SnapshotItem(ss.Replace(s.Name, String.Empty), String.Format("{0}{1}/{2}/", sourceUrl.Url, s.Name, ss)));
 									break;
 								}
 
@@ -85,6 +89,7 @@ namespace NewBizWiz.Core.Common
 		{
 			public string Name { get; set; }
 			public string Url { get; set; }
+			public string GroupId { get; set; }
 		}
 	}
 

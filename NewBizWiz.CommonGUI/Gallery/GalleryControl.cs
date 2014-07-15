@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading;
+using System.Web;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
@@ -86,7 +87,7 @@ namespace NewBizWiz.CommonGUI.Gallery
 			{
 				var button = new ButtonItem();
 				button.Text = sourceUrl.Name;
-				button.Tag = sourceUrl.Url;
+				button.Tag = sourceUrl;
 				button.Click += BrowseMode_Click;
 				button.CheckedChanged += BrowseMode_CheckedChanged;
 				_browseModes.Add(button);
@@ -113,7 +114,7 @@ namespace NewBizWiz.CommonGUI.Gallery
 			var backWorker = new BackgroundWorker();
 			backWorker.DoWork += (o, e) =>
 			{
-				sections.AddRange(Manager.GetSnapshots(selectedMode.Tag as String));
+				sections.AddRange(Manager.GetSnapshots(selectedMode.Tag as GalleryManager.SourceUrl));
 			};
 			backWorker.RunWorkerCompleted += (o, e) =>
 			{
@@ -294,18 +295,19 @@ namespace NewBizWiz.CommonGUI.Gallery
 		{
 			if (e.CommandId == _idCommandAddToFavorites)
 			{
+				var uri = new Uri(e.MenuInfo.SourceUrl, true);
 				LoadImage(e.MenuInfo.SourceUrl, false);
 				var image = Clipboard.GetImage();
 				if (image != null)
-					AddToFavorites(image);
+					AddToFavorites(image, Path.GetFileNameWithoutExtension(HttpUtility.UrlDecode(uri.Segments[uri.Segments.Length - 1])));
 			}
 			else
 				LoadImage(e.MenuInfo.SourceUrl, e.CommandId == _idCommandEdit);
 		}
 
-		private void AddToFavorites(Image image)
+		private void AddToFavorites(Image image, string defaultName)
 		{
-			using (var form = new FormAddFavoriteImage(image, FavoriteImagesManager.Instance.Images.Select(i => i.Name.ToLower())))
+			using (var form = new FormAddFavoriteImage(image, defaultName, FavoriteImagesManager.Instance.Images.Select(i => i.Name.ToLower())))
 			{
 				form.Text = "Add Image to Favorites";
 				form.laTitle.Text = "Save this Image in your Favorites folder for future presentations";
@@ -359,7 +361,7 @@ namespace NewBizWiz.CommonGUI.Gallery
 			_imageContainer.DoCopy();
 			var image = Clipboard.GetImage();
 			if (image != null)
-				AddToFavorites(image);
+				AddToFavorites(image, null);
 		}
 
 		private void GalleryControl_Resize(object sender, EventArgs e)

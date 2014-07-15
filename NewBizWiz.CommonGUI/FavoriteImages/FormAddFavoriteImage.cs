@@ -10,9 +10,10 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 	{
 		private readonly List<string> _existedNames = new List<string>();
 
-		public FormAddFavoriteImage(Image targetImage, IEnumerable<string> existedNames)
+		public FormAddFavoriteImage(Image targetImage, string defaultName, IEnumerable<string> existedNames)
 		{
 			InitializeComponent();
+			textEditImageName.EditValue = defaultName;
 			pictureBoxImage.Image = targetImage;
 			_existedNames.AddRange(existedNames);
 		}

@@ -103,9 +103,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			gridControlItems.RefreshDataSource();
 		}
 
-		private void AddLogoToFavorites(Image logo)
+		private void AddLogoToFavorites(Image logo, string defaultName)
 		{
-			favoriteImagesControl.AddToFavorites(logo);
+			favoriteImagesControl.AddToFavorites(logo, defaultName);
 		}
 
 		private void UpdateRows(object sender, EventArgs e)
@@ -142,7 +142,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			using (var form = new FormNewSchedule())
 			{
 				form.Text = "Save Schedule";
-				form.laLogo.Text = "Please set a new name for your Schedule:";
+				form.laLogo.Text = "Please set a new defaultName for your Schedule:";
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (!string.IsNullOrEmpty(form.ScheduleName))
 				{
@@ -272,7 +272,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 				Enabled = clipboardImage != null
 			});
 
-			e.Menu.Items.Add(new DXMenuItem("Add Image to Favorites...", (o, args) => AddLogoToFavorites(sourceItem.Logo.BigImage.Clone() as Image))
+			e.Menu.Items.Add(new DXMenuItem("Add Image to Favorites...", (o, args) => AddLogoToFavorites(sourceItem.Logo.BigImage.Clone() as Image, sourceItem.Name))
 			{
 				Enabled = !sourceItem.IsDefaultLogo
 			});

@@ -33,9 +33,9 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 			gridControlLogoGallery.DataSource = _manager.Images;
 		}
 
-		public void AddToFavorites(Image image)
+		public void AddToFavorites(Image image, string defaultName)
 		{
-			using (var form = new FormAddFavoriteImage(image, _manager.Images.Select(i => i.Name.ToLower())))
+			using (var form = new FormAddFavoriteImage(image, defaultName, _manager.Images.Select(i => i.Name.ToLower())))
 			{
 				form.Text = "Add Image to Favorites";
 				form.laTitle.Text = "Save this Image in your Favorites folder for future presentations";
@@ -148,7 +148,7 @@ namespace NewBizWiz.CommonGUI.FavoriteImages
 			var imageSource = layoutViewLogoGallery.GetRow(_menuHitInfo.RowHandle) as ImageSource;
 			if (imageSource == null) return;
 			var image = imageSource.BigImage.Clone() as Image;
-			using (var form = new FormAddFavoriteImage(image, _manager.Images.Select(i => i.Name.ToLower())))
+			using (var form = new FormAddFavoriteImage(image, null, _manager.Images.Select(i => i.Name.ToLower())))
 			{
 				form.Text = "Rename Favorite Image";
 				form.laTitle.Text = "Set new name for your Favorite Image";

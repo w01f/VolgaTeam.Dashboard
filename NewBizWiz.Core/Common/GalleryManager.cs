@@ -127,6 +127,4 @@ namespace NewBizWiz.Core.Common
 			return Name;
 		}
 	}
-
-
 }

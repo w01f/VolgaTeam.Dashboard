@@ -58,6 +58,13 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			_onDataChanged = onDataChanged;
 			_trackActivity = trackActivity;
 			gridControl.DataSource = new BindingList<DigitalProduct>(_schedule.DigitalProducts);
+
+			if (ListManager.Instance.ProductSources.All(productSource => String.IsNullOrEmpty(productSource.SubCategory)))
+			{
+				gridColumnCategory.RowCount = 2;
+				gridColumnSubCategory.Visible = false;
+			}
+
 			if (ListManager.Instance.LockedMode)
 			{
 				gridColumnWidth.OptionsColumn.ReadOnly = true;

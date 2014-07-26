@@ -1207,7 +1207,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			get
 			{
 				if (!Parent.FlightDateEnd.HasValue || !Parent.FlightDateStart.HasValue) return 0;
-				return Math.Abs((Parent.FlightDateEnd.Value.Month - Parent.FlightDateStart.Value.Month) + 12 * (Parent.FlightDateEnd.Value.Year - Parent.FlightDateStart.Value.Year));
+				return Math.Abs((Parent.FlightDateEnd.Value.Month - Parent.FlightDateStart.Value.Month) + 12 * (Parent.FlightDateEnd.Value.Year - Parent.FlightDateStart.Value.Year)) + 1;
 			}
 		}
 	}

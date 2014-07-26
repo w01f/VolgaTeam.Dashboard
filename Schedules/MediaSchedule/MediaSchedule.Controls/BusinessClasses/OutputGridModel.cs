@@ -248,7 +248,10 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 				key = string.Format("MO {0}", (i + 1).ToString("00"));
 				if (i < totalSpotsCount && ShowSpots)
 				{
-					value = TotalSpots[i].Month + (char)13 + TotalSpots[i].Day;
+					if (_parent.SpotType == SpotType.Week)
+						value = TotalSpots[i].Month + (char)13 + TotalSpots[i].Day;
+					else if (_parent.SpotType == SpotType.Month)
+						value = TotalSpots[i].Month;
 					if (!ReplacementsList.Keys.Contains(key))
 						ReplacementsList.Add(key, value);
 

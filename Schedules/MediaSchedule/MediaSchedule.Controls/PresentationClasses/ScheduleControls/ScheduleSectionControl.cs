@@ -985,14 +985,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			programsPerSlide = ScheduleSection.Programs.Count > programsPerSlide ? programsPerSlide : ScheduleSection.Programs.Count;
 			var totalSpotsCount = 0;
 			if (buttonXSpots.Checked)
-				totalSpotsCount = ScheduleSection.ShowEmptySpots ? defaultProgram.Spots.Count : defaultProgram.SpotsNotEmpty.Length;
-			var spotsIteratorLimit = totalSpotsCount == 0 ? 1 : totalSpotsCount;
+				totalSpotsCount = ScheduleSection.ShowEmptySpots ? defaultProgram.Spots.Count : defaultSpotsNotEmpy.Length;
+			var spotsIteratorLimit = totalSpotsCount;
 			var spotsPerSlide = ScheduleSection.OutputMaxPeriods.HasValue ? ScheduleSection.OutputMaxPeriods.Value : 26;
 			spotsPerSlide = totalSpotsCount == 0 || totalSpotsCount > spotsPerSlide ? spotsPerSlide : totalSpotsCount;
 			var spotIntervals = new List<SpotInterval>();
 			if (ScheduleSection.OutputPerQuater)
 			{
-				var spots = ScheduleSection.ShowEmptySpots ? defaultProgram.Spots.ToArray() : defaultProgram.SpotsNotEmpty;
+				var spots = ScheduleSection.ShowEmptySpots ? defaultProgram.Spots.ToArray() : defaultSpotsNotEmpy;
 				foreach (var quarter in _localSchedule.Quarters)
 				{
 					var spotInterval = new SpotInterval();
@@ -1009,7 +1009,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			{
 				for (var i = 0; i < ScheduleSection.Programs.Count; i += programsPerSlide)
 				{
-					for (var k = spotInterval.Start; k < spotInterval.End; k += spotsPerSlide)
+					for (var k = spotInterval.Start; k < (spotInterval.End == 0 ? 1 : spotInterval.End); k += spotsPerSlide)
 					{
 						var outputPage = new OutputScheduleGridBased(ScheduleSection);
 

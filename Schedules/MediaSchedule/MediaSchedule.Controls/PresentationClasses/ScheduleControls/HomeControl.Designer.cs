@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeControl));
 			this.stationsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls.StationsControl();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.xtraTabControlMain = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageMedia = new DevExpress.XtraTab.XtraTabPage();
 			this.pnTV = new System.Windows.Forms.Panel();
@@ -41,9 +39,6 @@
 			this.xtraTabPageDigital = new DevExpress.XtraTab.XtraTabPage();
 			this.digitalProductListControl = new NewBizWiz.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
 			this.daypartsControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls.DaypartsControl();
-			this.pnRightTop = new System.Windows.Forms.Panel();
-			this.laRightTopTitle = new System.Windows.Forms.Label();
-			this.pbOptionsHelp = new System.Windows.Forms.PictureBox();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageStations = new DevExpress.XtraTab.XtraTabPage();
 			this.xtraTabPageDayparts = new DevExpress.XtraTab.XtraTabPage();
@@ -53,7 +48,7 @@
 			this.laDemosInfo = new System.Windows.Forms.Label();
 			this.pnSelectDemo = new System.Windows.Forms.Panel();
 			this.comboBoxEditDemos = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.pnSelectSource = new System.Windows.Forms.Panel();
 			this.comboBoxEditSource = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.pnDemosType = new System.Windows.Forms.Panel();
@@ -66,15 +61,11 @@
 			this.pnUseDemos = new System.Windows.Forms.Panel();
 			this.buttonXUseDemos = new DevComponents.DotNetBar.ButtonX();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
-			this.pnTop = new System.Windows.Forms.Panel();
-			this.laTopTitle = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMain)).BeginInit();
 			this.xtraTabControlMain.SuspendLayout();
 			this.xtraTabPageMedia.SuspendLayout();
 			this.pnTV.SuspendLayout();
 			this.xtraTabPageDigital.SuspendLayout();
-			this.pnRightTop.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbOptionsHelp)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).BeginInit();
 			this.xtraTabControlOptions.SuspendLayout();
 			this.xtraTabPageStations.SuspendLayout();
@@ -93,24 +84,18 @@
 			this.pnUseDemos.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
 			this.splitContainerControl.SuspendLayout();
-			this.pnTop.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// stationsControl
 			// 
-			this.stationsControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.stationsControl.BackColor = System.Drawing.Color.White;
 			this.stationsControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.stationsControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.stationsControl.HasChanged = false;
 			this.stationsControl.Location = new System.Drawing.Point(0, 0);
 			this.stationsControl.Name = "stationsControl";
-			this.stationsControl.Padding = new System.Windows.Forms.Padding(3);
-			this.stationsControl.Size = new System.Drawing.Size(344, 491);
+			this.stationsControl.Size = new System.Drawing.Size(348, 535);
 			this.stationsControl.TabIndex = 0;
-			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
 			// 
 			// xtraTabControlMain
 			// 
@@ -126,12 +111,11 @@
 			this.xtraTabControlMain.AppearancePage.HeaderHotTracked.Options.UseFont = true;
 			this.xtraTabControlMain.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlMain.AppearancePage.PageClient.Options.UseFont = true;
-			this.xtraTabControlMain.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
 			this.xtraTabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControlMain.Location = new System.Drawing.Point(0, 42);
+			this.xtraTabControlMain.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControlMain.Name = "xtraTabControlMain";
 			this.xtraTabControlMain.SelectedTabPage = this.xtraTabPageMedia;
-			this.xtraTabControlMain.Size = new System.Drawing.Size(664, 521);
+			this.xtraTabControlMain.Size = new System.Drawing.Size(658, 563);
 			this.xtraTabControlMain.TabIndex = 18;
 			this.xtraTabControlMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageMedia,
@@ -144,19 +128,19 @@
 			this.xtraTabPageMedia.Appearance.PageClient.Options.UseBackColor = true;
 			this.xtraTabPageMedia.Controls.Add(this.pnTV);
 			this.xtraTabPageMedia.Name = "xtraTabPageMedia";
-			this.xtraTabPageMedia.Size = new System.Drawing.Size(658, 491);
+			this.xtraTabPageMedia.Size = new System.Drawing.Size(656, 535);
 			this.xtraTabPageMedia.Text = "Television Strategy";
 			// 
 			// pnTV
 			// 
-			this.pnTV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnTV.BackColor = System.Drawing.Color.Transparent;
 			this.pnTV.Controls.Add(this.buttonXWideOrbitSchedule);
 			this.pnTV.Controls.Add(this.buttonXMonthlySchedule);
 			this.pnTV.Controls.Add(this.buttonXWeeklySchedule);
 			this.pnTV.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnTV.Location = new System.Drawing.Point(0, 0);
 			this.pnTV.Name = "pnTV";
-			this.pnTV.Size = new System.Drawing.Size(658, 491);
+			this.pnTV.Size = new System.Drawing.Size(656, 535);
 			this.pnTV.TabIndex = 0;
 			// 
 			// buttonXWideOrbitSchedule
@@ -164,7 +148,7 @@
 			this.buttonXWideOrbitSchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXWideOrbitSchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXWideOrbitSchedule.Enabled = false;
-			this.buttonXWideOrbitSchedule.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.WideOrbitSchedule;
+			this.buttonXWideOrbitSchedule.Image = ((System.Drawing.Image)(resources.GetObject("buttonXWideOrbitSchedule.Image")));
 			this.buttonXWideOrbitSchedule.Location = new System.Drawing.Point(27, 354);
 			this.buttonXWideOrbitSchedule.Name = "buttonXWideOrbitSchedule";
 			this.buttonXWideOrbitSchedule.Size = new System.Drawing.Size(509, 113);
@@ -178,7 +162,7 @@
 			// 
 			this.buttonXMonthlySchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXMonthlySchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXMonthlySchedule.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.MonthlySchedule;
+			this.buttonXMonthlySchedule.Image = ((System.Drawing.Image)(resources.GetObject("buttonXMonthlySchedule.Image")));
 			this.buttonXMonthlySchedule.Location = new System.Drawing.Point(27, 189);
 			this.buttonXMonthlySchedule.Name = "buttonXMonthlySchedule";
 			this.buttonXMonthlySchedule.Size = new System.Drawing.Size(509, 113);
@@ -192,7 +176,7 @@
 			// 
 			this.buttonXWeeklySchedule.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXWeeklySchedule.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXWeeklySchedule.Image = global::NewBizWiz.MediaSchedule.Controls.Properties.Resources.WeeklySchedule;
+			this.buttonXWeeklySchedule.Image = ((System.Drawing.Image)(resources.GetObject("buttonXWeeklySchedule.Image")));
 			this.buttonXWeeklySchedule.Location = new System.Drawing.Point(27, 24);
 			this.buttonXWeeklySchedule.Name = "buttonXWeeklySchedule";
 			this.buttonXWeeklySchedule.Size = new System.Drawing.Size(509, 113);
@@ -206,7 +190,7 @@
 			// 
 			this.xtraTabPageDigital.Controls.Add(this.digitalProductListControl);
 			this.xtraTabPageDigital.Name = "xtraTabPageDigital";
-			this.xtraTabPageDigital.Size = new System.Drawing.Size(658, 491);
+			this.xtraTabPageDigital.Size = new System.Drawing.Size(656, 493);
 			this.xtraTabPageDigital.Text = "Digital Strategy";
 			// 
 			// digitalProductListControl
@@ -217,56 +201,19 @@
 			this.digitalProductListControl.Location = new System.Drawing.Point(0, 0);
 			this.digitalProductListControl.Logo = null;
 			this.digitalProductListControl.Name = "digitalProductListControl";
-			this.digitalProductListControl.Size = new System.Drawing.Size(658, 491);
+			this.digitalProductListControl.Size = new System.Drawing.Size(656, 493);
 			this.digitalProductListControl.TabIndex = 0;
 			// 
 			// daypartsControl
 			// 
-			this.daypartsControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.daypartsControl.BackColor = System.Drawing.Color.White;
 			this.daypartsControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.daypartsControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.daypartsControl.HasChanged = false;
 			this.daypartsControl.Location = new System.Drawing.Point(0, 0);
 			this.daypartsControl.Name = "daypartsControl";
-			this.daypartsControl.Padding = new System.Windows.Forms.Padding(3);
-			this.daypartsControl.Size = new System.Drawing.Size(344, 491);
+			this.daypartsControl.Size = new System.Drawing.Size(348, 493);
 			this.daypartsControl.TabIndex = 17;
-			// 
-			// pnRightTop
-			// 
-			this.pnRightTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pnRightTop.Controls.Add(this.laRightTopTitle);
-			this.pnRightTop.Controls.Add(this.pbOptionsHelp);
-			this.pnRightTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnRightTop.Location = new System.Drawing.Point(0, 0);
-			this.pnRightTop.Name = "pnRightTop";
-			this.pnRightTop.Size = new System.Drawing.Size(350, 42);
-			this.pnRightTop.TabIndex = 0;
-			// 
-			// laRightTopTitle
-			// 
-			this.laRightTopTitle.AutoSize = true;
-			this.laRightTopTitle.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laRightTopTitle.ForeColor = System.Drawing.Color.White;
-			this.laRightTopTitle.Location = new System.Drawing.Point(3, 6);
-			this.laRightTopTitle.Name = "laRightTopTitle";
-			this.laRightTopTitle.Size = new System.Drawing.Size(168, 27);
-			this.laRightTopTitle.TabIndex = 27;
-			this.laRightTopTitle.Text = "Schedule Info:";
-			// 
-			// pbOptionsHelp
-			// 
-			this.pbOptionsHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbOptionsHelp.Image = ((System.Drawing.Image)(resources.GetObject("pbOptionsHelp.Image")));
-			this.pbOptionsHelp.Location = new System.Drawing.Point(311, 3);
-			this.pbOptionsHelp.Name = "pbOptionsHelp";
-			this.pbOptionsHelp.Size = new System.Drawing.Size(32, 32);
-			this.pbOptionsHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbOptionsHelp.TabIndex = 26;
-			this.pbOptionsHelp.TabStop = false;
-			this.pbOptionsHelp.Click += new System.EventHandler(this.pbOptionsHelp_Click);
-			this.pbOptionsHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbOptionsHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
 			// xtraTabControlOptions
 			// 
@@ -282,12 +229,11 @@
 			this.xtraTabControlOptions.AppearancePage.HeaderHotTracked.Options.UseFont = true;
 			this.xtraTabControlOptions.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlOptions.AppearancePage.PageClient.Options.UseFont = true;
-			this.xtraTabControlOptions.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
 			this.xtraTabControlOptions.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControlOptions.Location = new System.Drawing.Point(0, 42);
+			this.xtraTabControlOptions.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControlOptions.Name = "xtraTabControlOptions";
 			this.xtraTabControlOptions.SelectedTabPage = this.xtraTabPageStations;
-			this.xtraTabControlOptions.Size = new System.Drawing.Size(350, 521);
+			this.xtraTabControlOptions.Size = new System.Drawing.Size(350, 563);
 			this.xtraTabControlOptions.TabIndex = 1;
 			this.xtraTabControlOptions.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageStations,
@@ -298,26 +244,26 @@
 			// 
 			this.xtraTabPageStations.Controls.Add(this.stationsControl);
 			this.xtraTabPageStations.Name = "xtraTabPageStations";
-			this.xtraTabPageStations.Size = new System.Drawing.Size(344, 491);
+			this.xtraTabPageStations.Size = new System.Drawing.Size(348, 535);
 			this.xtraTabPageStations.Text = "Stations";
 			// 
 			// xtraTabPageDayparts
 			// 
 			this.xtraTabPageDayparts.Controls.Add(this.daypartsControl);
 			this.xtraTabPageDayparts.Name = "xtraTabPageDayparts";
-			this.xtraTabPageDayparts.Size = new System.Drawing.Size(344, 491);
+			this.xtraTabPageDayparts.Size = new System.Drawing.Size(348, 493);
 			this.xtraTabPageDayparts.Text = "Dayparts";
 			// 
 			// xtraTabPageDemos
 			// 
 			this.xtraTabPageDemos.Controls.Add(this.pnDemos);
 			this.xtraTabPageDemos.Name = "xtraTabPageDemos";
-			this.xtraTabPageDemos.Size = new System.Drawing.Size(344, 491);
+			this.xtraTabPageDemos.Size = new System.Drawing.Size(348, 493);
 			this.xtraTabPageDemos.Text = "Demos";
 			// 
 			// pnDemos
 			// 
-			this.pnDemos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnDemos.BackColor = System.Drawing.Color.Transparent;
 			this.pnDemos.Controls.Add(this.pnDemosInfo);
 			this.pnDemos.Controls.Add(this.pnSelectDemo);
 			this.pnDemos.Controls.Add(this.pnSelectSource);
@@ -328,7 +274,7 @@
 			this.pnDemos.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnDemos.Location = new System.Drawing.Point(0, 0);
 			this.pnDemos.Name = "pnDemos";
-			this.pnDemos.Size = new System.Drawing.Size(344, 491);
+			this.pnDemos.Size = new System.Drawing.Size(348, 493);
 			this.pnDemos.TabIndex = 0;
 			// 
 			// pnDemosInfo
@@ -337,7 +283,7 @@
 			this.pnDemosInfo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnDemosInfo.Location = new System.Drawing.Point(0, 365);
 			this.pnDemosInfo.Name = "pnDemosInfo";
-			this.pnDemosInfo.Size = new System.Drawing.Size(344, 126);
+			this.pnDemosInfo.Size = new System.Drawing.Size(348, 128);
 			this.pnDemosInfo.TabIndex = 12;
 			this.pnDemosInfo.Visible = false;
 			// 
@@ -349,7 +295,7 @@
 			this.laDemosInfo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laDemosInfo.Location = new System.Drawing.Point(10, 12);
 			this.laDemosInfo.Name = "laDemosInfo";
-			this.laDemosInfo.Size = new System.Drawing.Size(322, 102);
+			this.laDemosInfo.Size = new System.Drawing.Size(326, 104);
 			this.laDemosInfo.TabIndex = 0;
 			this.laDemosInfo.Text = resources.GetString("laDemosInfo.Text");
 			// 
@@ -359,7 +305,7 @@
 			this.pnSelectDemo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnSelectDemo.Location = new System.Drawing.Point(0, 330);
 			this.pnSelectDemo.Name = "pnSelectDemo";
-			this.pnSelectDemo.Size = new System.Drawing.Size(344, 35);
+			this.pnSelectDemo.Size = new System.Drawing.Size(348, 35);
 			this.pnSelectDemo.TabIndex = 11;
 			// 
 			// comboBoxEditDemos
@@ -373,7 +319,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditDemos.Properties.NullText = "Select Demo";
 			this.comboBoxEditDemos.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditDemos.Size = new System.Drawing.Size(319, 22);
+			this.comboBoxEditDemos.Size = new System.Drawing.Size(323, 22);
 			this.comboBoxEditDemos.StyleController = this.styleController;
 			this.comboBoxEditDemos.TabIndex = 1;
 			this.comboBoxEditDemos.EditValueChanged += new System.EventHandler(this.comboBoxEditDemos_EditValueChanged);
@@ -399,7 +345,7 @@
 			this.pnSelectSource.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnSelectSource.Location = new System.Drawing.Point(0, 295);
 			this.pnSelectSource.Name = "pnSelectSource";
-			this.pnSelectSource.Size = new System.Drawing.Size(344, 35);
+			this.pnSelectSource.Size = new System.Drawing.Size(348, 35);
 			this.pnSelectSource.TabIndex = 10;
 			// 
 			// comboBoxEditSource
@@ -413,7 +359,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditSource.Properties.NullText = "Select Source";
 			this.comboBoxEditSource.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.comboBoxEditSource.Size = new System.Drawing.Size(319, 22);
+			this.comboBoxEditSource.Size = new System.Drawing.Size(323, 22);
 			this.comboBoxEditSource.StyleController = this.styleController;
 			this.comboBoxEditSource.TabIndex = 5;
 			this.comboBoxEditSource.EditValueChanged += new System.EventHandler(this.comboBoxEditSource_EditValueChanged);
@@ -425,7 +371,7 @@
 			this.pnDemosType.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnDemosType.Location = new System.Drawing.Point(0, 210);
 			this.pnDemosType.Name = "pnDemosType";
-			this.pnDemosType.Size = new System.Drawing.Size(344, 85);
+			this.pnDemosType.Size = new System.Drawing.Size(348, 85);
 			this.pnDemosType.TabIndex = 9;
 			// 
 			// buttonXDemosRtg
@@ -449,7 +395,7 @@
 			this.buttonXDemosImps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDemosImps.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDemosImps.Enabled = false;
-			this.buttonXDemosImps.Location = new System.Drawing.Point(189, 13);
+			this.buttonXDemosImps.Location = new System.Drawing.Point(193, 13);
 			this.buttonXDemosImps.Name = "buttonXDemosImps";
 			this.buttonXDemosImps.Size = new System.Drawing.Size(143, 45);
 			this.buttonXDemosImps.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -465,7 +411,7 @@
 			this.pnDemosImport.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnDemosImport.Location = new System.Drawing.Point(0, 140);
 			this.pnDemosImport.Name = "pnDemosImport";
-			this.pnDemosImport.Size = new System.Drawing.Size(344, 70);
+			this.pnDemosImport.Size = new System.Drawing.Size(348, 70);
 			this.pnDemosImport.TabIndex = 8;
 			// 
 			// buttonXDemosImport
@@ -477,7 +423,7 @@
 			this.buttonXDemosImport.Enabled = false;
 			this.buttonXDemosImport.Location = new System.Drawing.Point(13, 13);
 			this.buttonXDemosImport.Name = "buttonXDemosImport";
-			this.buttonXDemosImport.Size = new System.Drawing.Size(319, 45);
+			this.buttonXDemosImport.Size = new System.Drawing.Size(323, 45);
 			this.buttonXDemosImport.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXDemosImport.TabIndex = 2;
 			this.buttonXDemosImport.Text = "Use Imported Estimates?";
@@ -491,7 +437,7 @@
 			this.pnDemosCustom.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnDemosCustom.Location = new System.Drawing.Point(0, 70);
 			this.pnDemosCustom.Name = "pnDemosCustom";
-			this.pnDemosCustom.Size = new System.Drawing.Size(344, 70);
+			this.pnDemosCustom.Size = new System.Drawing.Size(348, 70);
 			this.pnDemosCustom.TabIndex = 7;
 			// 
 			// buttonXDemosCustom
@@ -503,7 +449,7 @@
 			this.buttonXDemosCustom.Enabled = false;
 			this.buttonXDemosCustom.Location = new System.Drawing.Point(13, 13);
 			this.buttonXDemosCustom.Name = "buttonXDemosCustom";
-			this.buttonXDemosCustom.Size = new System.Drawing.Size(319, 45);
+			this.buttonXDemosCustom.Size = new System.Drawing.Size(323, 45);
 			this.buttonXDemosCustom.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXDemosCustom.TabIndex = 1;
 			this.buttonXDemosCustom.Text = "Use your Own Estimates?";
@@ -517,7 +463,7 @@
 			this.pnUseDemos.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnUseDemos.Location = new System.Drawing.Point(0, 0);
 			this.pnUseDemos.Name = "pnUseDemos";
-			this.pnUseDemos.Size = new System.Drawing.Size(344, 70);
+			this.pnUseDemos.Size = new System.Drawing.Size(348, 70);
 			this.pnUseDemos.TabIndex = 6;
 			// 
 			// buttonXUseDemos
@@ -529,7 +475,7 @@
 			this.buttonXUseDemos.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXUseDemos.Location = new System.Drawing.Point(13, 13);
 			this.buttonXUseDemos.Name = "buttonXUseDemos";
-			this.buttonXUseDemos.Size = new System.Drawing.Size(319, 45);
+			this.buttonXUseDemos.Size = new System.Drawing.Size(323, 45);
 			this.buttonXUseDemos.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXUseDemos.TabIndex = 0;
 			this.buttonXUseDemos.Text = "Show Ratings and CPP Info?";
@@ -543,10 +489,8 @@
 			this.splitContainerControl.Location = new System.Drawing.Point(0, 0);
 			this.splitContainerControl.Name = "splitContainerControl";
 			this.splitContainerControl.Panel1.Controls.Add(this.xtraTabControlMain);
-			this.splitContainerControl.Panel1.Controls.Add(this.pnTop);
 			this.splitContainerControl.Panel1.Text = "Panel1";
 			this.splitContainerControl.Panel2.Controls.Add(this.xtraTabControlOptions);
-			this.splitContainerControl.Panel2.Controls.Add(this.pnRightTop);
 			this.splitContainerControl.Panel2.MinSize = 350;
 			this.splitContainerControl.Panel2.Text = "Panel2";
 			this.splitContainerControl.Size = new System.Drawing.Size(1020, 563);
@@ -554,32 +498,10 @@
 			this.splitContainerControl.TabIndex = 19;
 			this.splitContainerControl.Text = "splitContainerControl1";
 			// 
-			// pnTop
-			// 
-			this.pnTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pnTop.Controls.Add(this.laTopTitle);
-			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnTop.Location = new System.Drawing.Point(0, 0);
-			this.pnTop.Name = "pnTop";
-			this.pnTop.Size = new System.Drawing.Size(664, 42);
-			this.pnTop.TabIndex = 19;
-			// 
-			// laTopTitle
-			// 
-			this.laTopTitle.AutoSize = true;
-			this.laTopTitle.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTopTitle.ForeColor = System.Drawing.Color.White;
-			this.laTopTitle.Location = new System.Drawing.Point(3, 6);
-			this.laTopTitle.Name = "laTopTitle";
-			this.laTopTitle.Size = new System.Drawing.Size(168, 27);
-			this.laTopTitle.TabIndex = 27;
-			this.laTopTitle.Text = "Schedule Info:";
-			this.laTopTitle.UseMnemonic = false;
-			// 
 			// HomeControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.splitContainerControl);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "HomeControl";
@@ -589,9 +511,6 @@
 			this.xtraTabPageMedia.ResumeLayout(false);
 			this.pnTV.ResumeLayout(false);
 			this.xtraTabPageDigital.ResumeLayout(false);
-			this.pnRightTop.ResumeLayout(false);
-			this.pnRightTop.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbOptionsHelp)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).EndInit();
 			this.xtraTabControlOptions.ResumeLayout(false);
 			this.xtraTabPageStations.ResumeLayout(false);
@@ -610,8 +529,6 @@
 			this.pnUseDemos.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
 			this.splitContainerControl.ResumeLayout(false);
-			this.pnTop.ResumeLayout(false);
-			this.pnTop.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -619,18 +536,14 @@
         #endregion
 
 		private StationsControl stationsControl;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlMain;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageMedia;
 		private System.Windows.Forms.Panel pnTV;
-        private DaypartsControl daypartsControl;
-        private System.Windows.Forms.Panel pnRightTop;
+		private DaypartsControl daypartsControl;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlOptions;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageStations;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageDayparts;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
-        private System.Windows.Forms.PictureBox pbOptionsHelp;
-        private System.Windows.Forms.Label laRightTopTitle;
+		private DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageDemos;
 		private System.Windows.Forms.Panel pnDemos;
         private DevComponents.DotNetBar.ButtonX buttonXDemosImps;
@@ -641,8 +554,6 @@
         private DevExpress.XtraEditors.StyleController styleController;
 		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditDemos;
 		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSource;
-        private System.Windows.Forms.Panel pnTop;
-		private System.Windows.Forms.Label laTopTitle;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageDigital;
 		private System.Windows.Forms.Panel pnDemosImport;
 		private System.Windows.Forms.Panel pnDemosCustom;

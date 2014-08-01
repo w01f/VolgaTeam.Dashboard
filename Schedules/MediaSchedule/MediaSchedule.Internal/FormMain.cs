@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
@@ -11,7 +12,7 @@ using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 
 namespace NewBizWiz.MediaSchedule.Internal
 {
-	public partial class FormMain : Form
+	public partial class FormMain : RibbonForm
 	{
 		private static FormMain _instance;
 		private Control _currentControl;
@@ -422,10 +423,10 @@ namespace NewBizWiz.MediaSchedule.Internal
 			ribbonControl.Enabled = false;
 			using (var form = new FormProgress())
 			{
-				form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Online Schedule...";
+				form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Schedule...";
 				form.TopMost = true;
 				form.Show();
-				var thread = new Thread(delegate() { Invoke((MethodInvoker)delegate { Controller.Instance.LoadData(); }); });
+				var thread = new Thread(() => Invoke((MethodInvoker)(() => Controller.Instance.LoadData())));
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.xtraTabControlProducts = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageDigitalProducts = new DevExpress.XtraTab.XtraTabPage();
 			this.digitalProductListControl = new NewBizWiz.OnlineSchedule.Controls.PresentationClasses.DigitalProductListControl();
@@ -36,10 +35,6 @@
 			this.xtraTabControlProducts.SuspendLayout();
 			this.xtraTabPageDigitalProducts.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
 			// 
 			// xtraTabControlProducts
 			// 
@@ -68,24 +63,23 @@
 			// 
 			this.xtraTabPageDigitalProducts.Controls.Add(this.digitalProductListControl);
 			this.xtraTabPageDigitalProducts.Name = "xtraTabPageDigitalProducts";
-			this.xtraTabPageDigitalProducts.Size = new System.Drawing.Size(826, 404);
+			this.xtraTabPageDigitalProducts.Size = new System.Drawing.Size(822, 399);
 			this.xtraTabPageDigitalProducts.Text = "Digital Products";
 			// 
 			// digitalProductListControl
 			// 
-			this.digitalProductListControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.digitalProductListControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.digitalProductListControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.digitalProductListControl.Location = new System.Drawing.Point(0, 0);
 			this.digitalProductListControl.Logo = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.AppLogo;
 			this.digitalProductListControl.Name = "digitalProductListControl";
-			this.digitalProductListControl.Size = new System.Drawing.Size(826, 404);
+			this.digitalProductListControl.Size = new System.Drawing.Size(822, 399);
 			this.digitalProductListControl.TabIndex = 0;
 			// 
 			// ScheduleSettingsControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.xtraTabControlProducts);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "ScheduleSettingsControl";
@@ -100,7 +94,6 @@
 
         #endregion
 
-		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControlProducts;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageDigitalProducts;
 		private DigitalProductListControl digitalProductListControl;

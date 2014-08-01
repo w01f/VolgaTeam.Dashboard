@@ -100,12 +100,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			xtraTabPageDigital.Text = String.Format("Digital Strategy({0})", _localSchedule.DigitalProducts.Count);
 		}
-
 		public void LoadSchedule(bool quickLoad)
 		{
 			_allowToSave = false;
 			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
-			laTopTitle.Text = _localSchedule.Name;
 			_digitalChanged = false;
 			digitalProductListControl.UpdateData(_localSchedule,
 				() =>

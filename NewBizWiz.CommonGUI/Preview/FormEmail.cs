@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using DevExpress.Utils;
 using DevExpress.XtraBars;
 using NewBizWiz.CommonGUI.ToolForms;
@@ -11,7 +12,7 @@ using NewBizWiz.Core.Interop;
 
 namespace NewBizWiz.CommonGUI.Preview
 {
-	public partial class FormEmail : Form
+	public partial class FormEmail : MetroForm
 	{
 		private readonly IPowerPointHelper _powerPointHelper;
 		private readonly HelpManager _helpManager;
@@ -64,6 +65,11 @@ namespace NewBizWiz.CommonGUI.Preview
 
 
 		#region Form GUI Event Habdlers
+		private void FormEmail_Shown(object sender, System.EventArgs e)
+		{
+			GroupControls.ForEach(gc => gc.Load());
+		}
+
 		private void FormQuickView_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			foreach (var groupControl in GroupControls)

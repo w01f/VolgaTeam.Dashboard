@@ -61,6 +61,7 @@
 			// 
 			// laTitle
 			// 
+			this.laTitle.BackColor = System.Drawing.Color.White;
 			this.laTitle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laTitle.ForeColor = System.Drawing.Color.Black;
 			this.laTitle.Location = new System.Drawing.Point(12, 9);
@@ -101,12 +102,16 @@
 			// gridControlFiles
 			// 
 			this.gridControlFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gridControlFiles.EmbeddedNavigator.Appearance.BackColor = System.Drawing.Color.White;
+			this.gridControlFiles.EmbeddedNavigator.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.gridControlFiles.EmbeddedNavigator.Appearance.Options.UseBackColor = true;
+			this.gridControlFiles.EmbeddedNavigator.Appearance.Options.UseForeColor = true;
 			this.gridControlFiles.Location = new System.Drawing.Point(0, 0);
 			this.gridControlFiles.MainView = this.gridViewFiles;
 			this.gridControlFiles.Name = "gridControlFiles";
 			this.gridControlFiles.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEditFiles});
-			this.gridControlFiles.Size = new System.Drawing.Size(597, 329);
+			this.gridControlFiles.Size = new System.Drawing.Size(597, 327);
 			this.gridControlFiles.TabIndex = 18;
 			this.gridControlFiles.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewFiles});
@@ -121,6 +126,7 @@
 			this.gridViewFiles.Appearance.Row.Options.UseFont = true;
 			this.gridViewFiles.Appearance.Row.Options.UseTextOptions = true;
 			this.gridViewFiles.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.gridViewFiles.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.gridViewFiles.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnFilesName,
             this.gridColumnFilesButtons});
@@ -192,8 +198,12 @@
 			this.xtraTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.xtraTabControl.Appearance.BackColor = System.Drawing.Color.White;
 			this.xtraTabControl.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.xtraTabControl.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.xtraTabControl.Appearance.Options.UseBackColor = true;
 			this.xtraTabControl.Appearance.Options.UseFont = true;
+			this.xtraTabControl.Appearance.Options.UseForeColor = true;
 			this.xtraTabControl.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControl.AppearancePage.Header.Options.UseFont = true;
 			this.xtraTabControl.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -215,27 +225,35 @@
 			// 
 			// xtraTabPageFiles
 			// 
+			this.xtraTabPageFiles.Appearance.PageClient.ForeColor = System.Drawing.Color.Black;
+			this.xtraTabPageFiles.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageFiles.Controls.Add(this.gridControlFiles);
 			this.xtraTabPageFiles.Name = "xtraTabPageFiles";
-			this.xtraTabPageFiles.Size = new System.Drawing.Size(597, 329);
+			this.xtraTabPageFiles.Size = new System.Drawing.Size(597, 327);
 			this.xtraTabPageFiles.Text = "My Files";
 			// 
 			// xtraTabPageTemplates
 			// 
+			this.xtraTabPageTemplates.Appearance.PageClient.ForeColor = System.Drawing.Color.Black;
+			this.xtraTabPageTemplates.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageTemplates.Controls.Add(this.gridControlTemplates);
 			this.xtraTabPageTemplates.Name = "xtraTabPageTemplates";
-			this.xtraTabPageTemplates.Size = new System.Drawing.Size(597, 329);
+			this.xtraTabPageTemplates.Size = new System.Drawing.Size(597, 327);
 			this.xtraTabPageTemplates.Text = "My Templates";
 			// 
 			// gridControlTemplates
 			// 
 			this.gridControlTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gridControlTemplates.EmbeddedNavigator.Appearance.BackColor = System.Drawing.Color.White;
+			this.gridControlTemplates.EmbeddedNavigator.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.gridControlTemplates.EmbeddedNavigator.Appearance.Options.UseBackColor = true;
+			this.gridControlTemplates.EmbeddedNavigator.Appearance.Options.UseForeColor = true;
 			this.gridControlTemplates.Location = new System.Drawing.Point(0, 0);
 			this.gridControlTemplates.MainView = this.gridViewTemplates;
 			this.gridControlTemplates.Name = "gridControlTemplates";
 			this.gridControlTemplates.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEditTemplates});
-			this.gridControlTemplates.Size = new System.Drawing.Size(597, 329);
+			this.gridControlTemplates.Size = new System.Drawing.Size(597, 327);
 			this.gridControlTemplates.TabIndex = 19;
 			this.gridControlTemplates.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewTemplates});
@@ -250,6 +268,7 @@
 			this.gridViewTemplates.Appearance.Row.Options.UseFont = true;
 			this.gridViewTemplates.Appearance.Row.Options.UseTextOptions = true;
 			this.gridViewTemplates.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.gridViewTemplates.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.gridViewTemplates.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnTemplatesName,
             this.gridColumnTemplatesButtons});
@@ -319,12 +338,13 @@
 			// FormSavedStates
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(623, 478);
 			this.Controls.Add(this.buttonXCancel);
 			this.Controls.Add(this.buttonXLoad);
 			this.Controls.Add(this.laTitle);
 			this.Controls.Add(this.xtraTabControl);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;

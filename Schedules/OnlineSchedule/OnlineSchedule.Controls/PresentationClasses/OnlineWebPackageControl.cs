@@ -134,5 +134,53 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		{
 			HelpManager.OpenHelpLink("pkg");
 		}
+
+		private void InitializeComponent()
+		{
+			this.pnHeader.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
+			this.splitContainerControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbDisabledOutput)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbFormualHelp)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// pnHeader
+			// 
+			this.pnHeader.Size = new System.Drawing.Size(794, 30);
+			// 
+			// hyperLinkEditReset
+			// 
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(727, 4);
+			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.hyperLinkEditReset.Properties.Appearance.ForeColor = System.Drawing.Color.DarkBlue;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseBackColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseFont = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseForeColor = true;
+			this.hyperLinkEditReset.Properties.Appearance.Options.UseTextOptions = true;
+			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+			// 
+			// splitContainerControl
+			// 
+			this.splitContainerControl.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.splitContainerControl.Appearance.Options.UseBackColor = true;
+			// 
+			// pbDisabledOutput
+			// 
+			this.pbDisabledOutput.Size = new System.Drawing.Size(794, 553);
+			// 
+			// OnlineWebPackageControl
+			// 
+			this.Name = "OnlineWebPackageControl";
+			this.pnHeader.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
+			this.splitContainerControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pbDisabledOutput)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbFormualHelp)).EndInit();
+			this.ResumeLayout(false);
+
+		}
 	}
 }

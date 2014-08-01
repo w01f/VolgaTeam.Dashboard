@@ -56,7 +56,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			if (dashboard != null)
 				pnMain.Controls.Add(dashboard);
 
-			laUserName.Text = Environment.UserName;
 			pbVersion.Image = MasterWizardManager.Instance.Version;
 		}
 

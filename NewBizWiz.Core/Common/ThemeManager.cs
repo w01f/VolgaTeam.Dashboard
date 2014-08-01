@@ -195,7 +195,8 @@ namespace NewBizWiz.Core.Common
 			{
 				Logo = new Bitmap(bigLogoPath);
 				BrowseLogo = Logo.GetThumbnailImage((Logo.Width * 144) / Logo.Height, 144, null, IntPtr.Zero);
-				RibbonLogo = Logo.GetThumbnailImage((Logo.Width * 72) / Logo.Height, 72, null, IntPtr.Zero);
+				var borderedLogo = Logo.DrawBorder();
+				RibbonLogo = borderedLogo.GetThumbnailImage((borderedLogo.Width * 72) / borderedLogo.Height, 72, null, IntPtr.Zero);
 			}
 			PotFilePath = Directory.GetFiles(rootPath, "*.pot").FirstOrDefault();
 			ThemeFilePath = Directory.GetFiles(rootPath, "*.thmx").FirstOrDefault();

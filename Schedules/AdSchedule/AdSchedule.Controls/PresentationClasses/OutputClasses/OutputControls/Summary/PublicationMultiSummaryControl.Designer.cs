@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
@@ -51,7 +52,7 @@
 			this.laAdItems = new System.Windows.Forms.Label();
 			this.checkEditComments = new DevExpress.XtraEditors.CheckEdit();
 			this.memoEditComments = new DevExpress.XtraEditors.MemoEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.checkEditDates = new DevExpress.XtraEditors.CheckEdit();
 			this.memoEditDates = new DevExpress.XtraEditors.MemoEdit();
 			this.laInvestment = new System.Windows.Forms.Label();
@@ -111,7 +112,7 @@
 			this.checkEditFlightDates.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFlightDates.Properties.AutoWidth = true;
 			this.checkEditFlightDates.Properties.Caption = "";
-			this.checkEditFlightDates.Size = new System.Drawing.Size(23, 21);
+			this.checkEditFlightDates.Size = new System.Drawing.Size(19, 19);
 			this.checkEditFlightDates.TabIndex = 52;
 			this.checkEditFlightDates.CheckedChanged += new System.EventHandler(this.checkEditFlightDates_CheckedChanged);
 			this.checkEditFlightDates.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -124,7 +125,7 @@
 			this.pnItems.Controls.Add(this.xtraScrollableControl);
 			this.pnItems.Location = new System.Drawing.Point(31, 128);
 			this.pnItems.Name = "pnItems";
-			this.pnItems.Size = new System.Drawing.Size(261, 255);
+			this.pnItems.Size = new System.Drawing.Size(261, 259);
 			this.pnItems.TabIndex = 51;
 			// 
 			// xtraScrollableControl
@@ -147,7 +148,7 @@
 			this.xtraScrollableControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControl.Location = new System.Drawing.Point(0, 0);
 			this.xtraScrollableControl.Name = "xtraScrollableControl";
-			this.xtraScrollableControl.Size = new System.Drawing.Size(259, 253);
+			this.xtraScrollableControl.Size = new System.Drawing.Size(259, 257);
 			this.xtraScrollableControl.TabIndex = 47;
 			// 
 			// pnSections
@@ -414,9 +415,10 @@
 			this.memoEditComments.Location = new System.Drawing.Point(338, 247);
 			this.memoEditComments.Name = "memoEditComments";
 			this.memoEditComments.Properties.NullText = "Type Comments Here";
-			this.memoEditComments.Size = new System.Drawing.Size(602, 62);
+			this.memoEditComments.Size = new System.Drawing.Size(606, 62);
 			this.memoEditComments.StyleController = this.styleController;
 			this.memoEditComments.TabIndex = 41;
+			this.memoEditComments.UseOptimizedRendering = true;
 			this.memoEditComments.EditValueChanged += new System.EventHandler(this.memoEditComments_EditValueChanged);
 			// 
 			// styleController
@@ -456,16 +458,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.memoEditDates.Location = new System.Drawing.Point(338, 64);
 			this.memoEditDates.Name = "memoEditDates";
-			this.memoEditDates.Size = new System.Drawing.Size(602, 62);
+			this.memoEditDates.Size = new System.Drawing.Size(606, 62);
 			this.memoEditDates.StyleController = this.styleController;
 			this.memoEditDates.TabIndex = 39;
+			this.memoEditDates.UseOptimizedRendering = true;
 			// 
 			// laInvestment
 			// 
 			this.laInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.laInvestment.AutoSize = true;
 			this.laInvestment.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laInvestment.Location = new System.Drawing.Point(412, 362);
+			this.laInvestment.Location = new System.Drawing.Point(412, 366);
 			this.laInvestment.Name = "laInvestment";
 			this.laInvestment.Size = new System.Drawing.Size(123, 18);
 			this.laInvestment.TabIndex = 38;
@@ -475,7 +478,7 @@
 			// 
 			this.comboBoxEditInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.comboBoxEditInvestment.EditValue = "Total";
-			this.comboBoxEditInvestment.Location = new System.Drawing.Point(338, 361);
+			this.comboBoxEditInvestment.Location = new System.Drawing.Point(338, 365);
 			this.comboBoxEditInvestment.Name = "comboBoxEditInvestment";
 			this.comboBoxEditInvestment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -493,7 +496,7 @@
 			this.checkEditInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.checkEditInvestment.AutoSizeInLayoutControl = true;
 			this.checkEditInvestment.EditValue = true;
-			this.checkEditInvestment.Location = new System.Drawing.Point(313, 363);
+			this.checkEditInvestment.Location = new System.Drawing.Point(313, 367);
 			this.checkEditInvestment.Name = "checkEditInvestment";
 			this.checkEditInvestment.Properties.Caption = "";
 			this.checkEditInvestment.Size = new System.Drawing.Size(19, 19);
@@ -535,7 +538,6 @@
 			// 
 			// pnMain
 			// 
-			this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnMain.Controls.Add(this.laFlightDates);
 			this.pnMain.Controls.Add(this.checkEditTwoPerSlide);
 			this.pnMain.Controls.Add(this.hyperLinkEditReset);
@@ -574,7 +576,7 @@
 			// checkEditTwoPerSlide
 			// 
 			this.checkEditTwoPerSlide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditTwoPerSlide.Location = new System.Drawing.Point(754, 362);
+			this.checkEditTwoPerSlide.Location = new System.Drawing.Point(758, 366);
 			this.checkEditTwoPerSlide.Name = "checkEditTwoPerSlide";
 			this.checkEditTwoPerSlide.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditTwoPerSlide.Properties.Appearance.Options.UseFont = true;
@@ -582,7 +584,7 @@
 			this.checkEditTwoPerSlide.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.checkEditTwoPerSlide.Properties.AutoWidth = true;
 			this.checkEditTwoPerSlide.Properties.Caption = "Output 2 Products Per Slide";
-			this.checkEditTwoPerSlide.Size = new System.Drawing.Size(186, 21);
+			this.checkEditTwoPerSlide.Size = new System.Drawing.Size(185, 20);
 			this.checkEditTwoPerSlide.TabIndex = 105;
 			this.checkEditTwoPerSlide.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditTwoPerSlide.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -591,7 +593,7 @@
 			// 
 			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.hyperLinkEditReset.EditValue = "Reset Defaults";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(8, 393);
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(8, 397);
 			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
 			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));

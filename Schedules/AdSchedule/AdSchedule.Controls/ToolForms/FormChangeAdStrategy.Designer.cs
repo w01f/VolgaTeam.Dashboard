@@ -49,7 +49,9 @@
 			// 
 			this.laHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.laHeader.BackColor = System.Drawing.Color.White;
 			this.laHeader.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laHeader.ForeColor = System.Drawing.Color.Black;
 			this.laHeader.Location = new System.Drawing.Point(80, 0);
 			this.laHeader.Name = "laHeader";
 			this.laHeader.Size = new System.Drawing.Size(401, 31);
@@ -61,7 +63,9 @@
 			// 
 			this.laPublication.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.laPublication.BackColor = System.Drawing.Color.White;
 			this.laPublication.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laPublication.ForeColor = System.Drawing.Color.Black;
 			this.laPublication.Location = new System.Drawing.Point(83, 31);
 			this.laPublication.Name = "laPublication";
 			this.laPublication.Size = new System.Drawing.Size(398, 28);
@@ -71,41 +75,48 @@
 			// rbSave
 			// 
 			this.rbSave.AutoSize = true;
+			this.rbSave.BackColor = System.Drawing.Color.White;
 			this.rbSave.Checked = true;
+			this.rbSave.ForeColor = System.Drawing.Color.Black;
 			this.rbSave.Location = new System.Drawing.Point(12, 62);
 			this.rbSave.Name = "rbSave";
 			this.rbSave.Size = new System.Drawing.Size(329, 20);
 			this.rbSave.TabIndex = 2;
 			this.rbSave.TabStop = true;
 			this.rbSave.Text = "Keep All Current Lines and Rates for this Publication";
-			this.rbSave.UseVisualStyleBackColor = true;
+			this.rbSave.UseVisualStyleBackColor = false;
 			this.rbSave.CheckedChanged += new System.EventHandler(this.rbSave_CheckedChanged);
 			// 
 			// rbReset
 			// 
 			this.rbReset.AutoSize = true;
+			this.rbReset.BackColor = System.Drawing.Color.White;
+			this.rbReset.ForeColor = System.Drawing.Color.Black;
 			this.rbReset.Location = new System.Drawing.Point(12, 97);
 			this.rbReset.Name = "rbReset";
 			this.rbReset.Size = new System.Drawing.Size(290, 20);
 			this.rbReset.TabIndex = 3;
 			this.rbReset.Text = "Keep All Lines and Reset Rates to ZERO ($0)";
-			this.rbReset.UseVisualStyleBackColor = true;
+			this.rbReset.UseVisualStyleBackColor = false;
 			this.rbReset.CheckedChanged += new System.EventHandler(this.rbSave_CheckedChanged);
 			// 
 			// rbDelete
 			// 
 			this.rbDelete.AutoSize = true;
+			this.rbDelete.BackColor = System.Drawing.Color.White;
+			this.rbDelete.ForeColor = System.Drawing.Color.Black;
 			this.rbDelete.Location = new System.Drawing.Point(12, 182);
 			this.rbDelete.Name = "rbDelete";
 			this.rbDelete.Size = new System.Drawing.Size(230, 20);
 			this.rbDelete.TabIndex = 4;
 			this.rbDelete.Text = "Delete all Lines  for this Publication";
-			this.rbDelete.UseVisualStyleBackColor = true;
+			this.rbDelete.UseVisualStyleBackColor = false;
 			this.rbDelete.CheckedChanged += new System.EventHandler(this.rbSave_CheckedChanged);
 			// 
 			// ckDeleteAllAdNotes
 			// 
 			this.ckDeleteAllAdNotes.AutoSize = true;
+			this.ckDeleteAllAdNotes.BackColor = System.Drawing.Color.White;
 			this.ckDeleteAllAdNotes.ForeColor = System.Drawing.Color.Black;
 			this.ckDeleteAllAdNotes.Location = new System.Drawing.Point(29, 208);
 			this.ckDeleteAllAdNotes.Name = "ckDeleteAllAdNotes";
@@ -123,6 +134,7 @@
 			this.buttonXOK.Location = new System.Drawing.Point(132, 252);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(141, 43);
+			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOK.TabIndex = 7;
 			this.buttonXOK.Text = "Continue";
 			this.buttonXOK.TextColor = System.Drawing.Color.Black;
@@ -136,6 +148,7 @@
 			this.buttonXCancel.Location = new System.Drawing.Point(303, 252);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(141, 43);
+			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCancel.TabIndex = 8;
 			this.buttonXCancel.Text = "Cancel";
 			this.buttonXCancel.TextColor = System.Drawing.Color.Black;
@@ -143,6 +156,7 @@
 			// ckDeleteAllDiscounts
 			// 
 			this.ckDeleteAllDiscounts.AutoSize = true;
+			this.ckDeleteAllDiscounts.BackColor = System.Drawing.Color.White;
 			this.ckDeleteAllDiscounts.Enabled = false;
 			this.ckDeleteAllDiscounts.ForeColor = System.Drawing.Color.Black;
 			this.ckDeleteAllDiscounts.Location = new System.Drawing.Point(29, 123);
@@ -155,6 +169,7 @@
 			// ckDeleteAllColorRates
 			// 
 			this.ckDeleteAllColorRates.AutoSize = true;
+			this.ckDeleteAllColorRates.BackColor = System.Drawing.Color.White;
 			this.ckDeleteAllColorRates.Enabled = false;
 			this.ckDeleteAllColorRates.ForeColor = System.Drawing.Color.Black;
 			this.ckDeleteAllColorRates.Location = new System.Drawing.Point(29, 149);
@@ -166,6 +181,8 @@
 			// 
 			// pictureBoxImage
 			// 
+			this.pictureBoxImage.BackColor = System.Drawing.Color.White;
+			this.pictureBoxImage.ForeColor = System.Drawing.Color.Black;
 			this.pictureBoxImage.Location = new System.Drawing.Point(12, 6);
 			this.pictureBoxImage.Name = "pictureBoxImage";
 			this.pictureBoxImage.Size = new System.Drawing.Size(50, 50);
@@ -175,6 +192,8 @@
 			// pbHelp
 			// 
 			this.pbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pbHelp.BackColor = System.Drawing.Color.White;
+			this.pbHelp.ForeColor = System.Drawing.Color.Black;
 			this.pbHelp.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.HelpSmall;
 			this.pbHelp.Location = new System.Drawing.Point(544, 6);
 			this.pbHelp.Name = "pbHelp";
@@ -189,12 +208,13 @@
 			// 
 			// superTooltip
 			// 
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
 			// FormChangeAdStrategy
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(577, 303);
 			this.Controls.Add(this.pbHelp);
 			this.Controls.Add(this.pictureBoxImage);
@@ -208,6 +228,7 @@
 			this.Controls.Add(this.rbSave);
 			this.Controls.Add(this.laPublication);
 			this.Controls.Add(this.laHeader);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

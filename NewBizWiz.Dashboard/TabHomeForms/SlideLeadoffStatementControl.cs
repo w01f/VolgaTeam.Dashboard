@@ -49,7 +49,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			comboBoxEditSlideHeader.Properties.Items.AddRange(ListManager.Instance.LeadoffStatementLists.Headers);
 
 			checkEditSolutionNew.EditValueChanged += EditValueChanged;
-			checkEditSolutionOld.EditValueChanged += EditValueChanged;
 
 			FormMain.Instance.FormClosed += (sender1, e1) =>
 			{
@@ -89,7 +88,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			_allowToSave = false;
 			checkEditSolutionNew.Checked = ViewSettingsManager.Instance.LeadoffStatementState.IsNewSolution;
-			checkEditSolutionOld.Checked = !ViewSettingsManager.Instance.LeadoffStatementState.IsNewSolution;
 			if (string.IsNullOrEmpty(ViewSettingsManager.Instance.LeadoffStatementState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)

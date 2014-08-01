@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
@@ -47,8 +46,7 @@
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.pnButtons = new System.Windows.Forms.Panel();
 			this.buttonXCategory = new DevComponents.DotNetBar.ButtonX();
@@ -96,7 +94,7 @@
 			this.gridBandFormula = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnFormula = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemCheckEditFormula = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.pbDisabledOutput = new System.Windows.Forms.PictureBox();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
@@ -141,22 +139,20 @@
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// splitContainerControl
 			// 
-			this.splitContainerControl.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.splitContainerControl.Appearance.BackColor = System.Drawing.Color.White;
 			this.splitContainerControl.Appearance.Options.UseBackColor = true;
 			this.splitContainerControl.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
 			this.splitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.splitContainerControl.Location = new System.Drawing.Point(0, 0);
 			this.splitContainerControl.Name = "splitContainerControl";
+			this.splitContainerControl.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
 			this.splitContainerControl.Panel1.Controls.Add(this.pnButtons);
 			this.splitContainerControl.Panel1.Controls.Add(this.pnFormula);
 			this.splitContainerControl.Panel1.MinSize = 230;
 			this.splitContainerControl.Panel1.Text = "Panel1";
+			this.splitContainerControl.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
 			this.splitContainerControl.Panel2.Controls.Add(this.pnData);
 			this.splitContainerControl.Panel2.Controls.Add(this.pnHeader);
 			this.splitContainerControl.Panel2.Text = "Panel2";
@@ -180,7 +176,7 @@
 			this.pnButtons.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnButtons.Location = new System.Drawing.Point(0, 0);
 			this.pnButtons.Name = "pnButtons";
-			this.pnButtons.Size = new System.Drawing.Size(230, 250);
+			this.pnButtons.Size = new System.Drawing.Size(226, 250);
 			this.pnButtons.TabIndex = 55;
 			// 
 			// buttonXCategory
@@ -203,7 +199,7 @@
 			this.buttonXInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXInfo.AutoCheckOnClick = true;
 			this.buttonXInfo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXInfo.Location = new System.Drawing.Point(126, 155);
+			this.buttonXInfo.Location = new System.Drawing.Point(122, 155);
 			this.buttonXInfo.Name = "buttonXInfo";
 			this.buttonXInfo.Size = new System.Drawing.Size(95, 27);
 			this.buttonXInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -218,7 +214,7 @@
 			this.buttonXGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXGroup.AutoCheckOnClick = true;
 			this.buttonXGroup.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXGroup.Location = new System.Drawing.Point(126, 8);
+			this.buttonXGroup.Location = new System.Drawing.Point(122, 8);
 			this.buttonXGroup.Name = "buttonXGroup";
 			this.buttonXGroup.Size = new System.Drawing.Size(95, 27);
 			this.buttonXGroup.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -261,7 +257,7 @@
 			this.buttonXScreenshot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXScreenshot.AutoCheckOnClick = true;
 			this.buttonXScreenshot.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXScreenshot.Location = new System.Drawing.Point(126, 204);
+			this.buttonXScreenshot.Location = new System.Drawing.Point(122, 204);
 			this.buttonXScreenshot.Name = "buttonXScreenshot";
 			this.buttonXScreenshot.Size = new System.Drawing.Size(95, 27);
 			this.buttonXScreenshot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -276,7 +272,7 @@
 			this.buttonXImpressions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXImpressions.AutoCheckOnClick = true;
 			this.buttonXImpressions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXImpressions.Location = new System.Drawing.Point(126, 57);
+			this.buttonXImpressions.Location = new System.Drawing.Point(122, 57);
 			this.buttonXImpressions.Name = "buttonXImpressions";
 			this.buttonXImpressions.Size = new System.Drawing.Size(95, 27);
 			this.buttonXImpressions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -319,7 +315,7 @@
 			this.buttonXRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXRate.AutoCheckOnClick = true;
 			this.buttonXRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXRate.Location = new System.Drawing.Point(126, 106);
+			this.buttonXRate.Location = new System.Drawing.Point(122, 106);
 			this.buttonXRate.Name = "buttonXRate";
 			this.buttonXRate.Size = new System.Drawing.Size(95, 27);
 			this.buttonXRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -337,9 +333,9 @@
 			this.pnFormula.Controls.Add(this.checkEditFormulaInvestment);
 			this.pnFormula.Controls.Add(this.checkEditFormulaImpressions);
 			this.pnFormula.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnFormula.Location = new System.Drawing.Point(0, 336);
+			this.pnFormula.Location = new System.Drawing.Point(0, 334);
 			this.pnFormula.Name = "pnFormula";
-			this.pnFormula.Size = new System.Drawing.Size(230, 245);
+			this.pnFormula.Size = new System.Drawing.Size(226, 245);
 			this.pnFormula.TabIndex = 54;
 			// 
 			// pbFormualHelp
@@ -387,7 +383,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditFormulaCPM.Location = new System.Drawing.Point(10, 63);
 			this.checkEditFormulaCPM.Name = "checkEditFormulaCPM";
-			this.checkEditFormulaCPM.Properties.AllowHtmlString = true;
+			this.checkEditFormulaCPM.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditFormulaCPM.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFormulaCPM.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFormulaCPM.Properties.Appearance.Options.UseTextOptions = true;
@@ -407,7 +403,7 @@
 			this.checkEditFormulaCPM.Properties.Caption = "<b>CPM</b><br>Investment / (Impressions / 10)";
 			this.checkEditFormulaCPM.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaCPM.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaCPM.Size = new System.Drawing.Size(211, 36);
+			this.checkEditFormulaCPM.Size = new System.Drawing.Size(207, 36);
 			toolTipItem4.Text = "Type Impressions and Investment";
 			superToolTip4.Items.Add(toolTipItem4);
 			this.checkEditFormulaCPM.SuperTip = superToolTip4;
@@ -421,7 +417,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditFormulaInvestment.Location = new System.Drawing.Point(10, 122);
 			this.checkEditFormulaInvestment.Name = "checkEditFormulaInvestment";
-			this.checkEditFormulaInvestment.Properties.AllowHtmlString = true;
+			this.checkEditFormulaInvestment.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditFormulaInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFormulaInvestment.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFormulaInvestment.Properties.Appearance.Options.UseTextOptions = true;
@@ -441,7 +437,7 @@
 			this.checkEditFormulaInvestment.Properties.Caption = "<b>Investment</b><br>(Impressions  x 10%) / CPM";
 			this.checkEditFormulaInvestment.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaInvestment.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(211, 36);
+			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(207, 36);
 			toolTipItem5.Text = "Type Impressions and CPM";
 			superToolTip5.Items.Add(toolTipItem5);
 			this.checkEditFormulaInvestment.SuperTip = superToolTip5;
@@ -455,7 +451,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditFormulaImpressions.Location = new System.Drawing.Point(10, 182);
 			this.checkEditFormulaImpressions.Name = "checkEditFormulaImpressions";
-			this.checkEditFormulaImpressions.Properties.AllowHtmlString = true;
+			this.checkEditFormulaImpressions.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditFormulaImpressions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFormulaImpressions.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFormulaImpressions.Properties.Appearance.Options.UseTextOptions = true;
@@ -475,7 +471,7 @@
 			this.checkEditFormulaImpressions.Properties.Caption = "<b>Impressions</b><br>(CPM x Investment x 10)";
 			this.checkEditFormulaImpressions.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaImpressions.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(211, 36);
+			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(207, 36);
 			toolTipItem6.Text = "Type CPM and Investment";
 			superToolTip6.Items.Add(toolTipItem6);
 			this.checkEditFormulaImpressions.SuperTip = superToolTip6;
@@ -491,7 +487,7 @@
 			this.pnData.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnData.Location = new System.Drawing.Point(0, 30);
 			this.pnData.Name = "pnData";
-			this.pnData.Size = new System.Drawing.Size(791, 551);
+			this.pnData.Size = new System.Drawing.Size(783, 549);
 			this.pnData.TabIndex = 5;
 			// 
 			// gridControl
@@ -508,7 +504,7 @@
             this.repositoryItemComboBoxCategory,
             this.repositoryItemComboBoxGroup,
             this.repositoryItemComboBoxProduct});
-			this.gridControl.Size = new System.Drawing.Size(791, 551);
+			this.gridControl.Size = new System.Drawing.Size(783, 549);
 			this.gridControl.TabIndex = 4;
 			this.gridControl.ToolTipController = this.toolTipController;
 			this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -592,6 +588,7 @@
 			this.gridBandId.Columns.Add(this.bandedGridColumnId);
 			this.gridBandId.Name = "gridBandId";
 			this.gridBandId.OptionsBand.FixedWidth = true;
+			this.gridBandId.VisibleIndex = 0;
 			this.gridBandId.Width = 53;
 			// 
 			// bandedGridColumnId
@@ -614,6 +611,7 @@
 			this.gridBandProduct.Columns.Add(this.bandedGridColumnGroup);
 			this.gridBandProduct.Columns.Add(this.bandedGridColumnProduct);
 			this.gridBandProduct.Name = "gridBandProduct";
+			this.gridBandProduct.VisibleIndex = 1;
 			this.gridBandProduct.Width = 171;
 			// 
 			// bandedGridColumnCategory
@@ -708,6 +706,7 @@
 			this.gridBandInfo.Caption = "Info";
 			this.gridBandInfo.Columns.Add(this.bandedGridColumnInfo);
 			this.gridBandInfo.Name = "gridBandInfo";
+			this.gridBandInfo.VisibleIndex = 2;
 			this.gridBandInfo.Width = 128;
 			// 
 			// bandedGridColumnInfo
@@ -733,6 +732,7 @@
 			this.gridBandComments.Caption = "Comments";
 			this.gridBandComments.Columns.Add(this.bandedGridColumnComments);
 			this.gridBandComments.Name = "gridBandComments";
+			this.gridBandComments.VisibleIndex = 3;
 			this.gridBandComments.Width = 123;
 			// 
 			// bandedGridColumnComments
@@ -753,6 +753,7 @@
 			this.gridBandRate.Columns.Add(this.bandedGridColumnRate);
 			this.gridBandRate.Name = "gridBandRate";
 			this.gridBandRate.OptionsBand.FixedWidth = true;
+			this.gridBandRate.VisibleIndex = 4;
 			this.gridBandRate.Width = 131;
 			// 
 			// bandedGridColumnImpressions
@@ -829,6 +830,7 @@
 			this.gridBandInvestment.Columns.Add(this.bandedGridColumnInvestment);
 			this.gridBandInvestment.Name = "gridBandInvestment";
 			this.gridBandInvestment.OptionsBand.FixedWidth = true;
+			this.gridBandInvestment.VisibleIndex = 5;
 			this.gridBandInvestment.Width = 109;
 			// 
 			// bandedGridColumnInvestment
@@ -847,6 +849,7 @@
 			this.gridBandFormula.Columns.Add(this.bandedGridColumnFormula);
 			this.gridBandFormula.Name = "gridBandFormula";
 			this.gridBandFormula.OptionsBand.FixedWidth = true;
+			this.gridBandFormula.VisibleIndex = 6;
 			this.gridBandFormula.Width = 65;
 			// 
 			// bandedGridColumnFormula
@@ -865,6 +868,7 @@
 			// repositoryItemCheckEditFormula
 			// 
 			this.repositoryItemCheckEditFormula.AutoHeight = false;
+			this.repositoryItemCheckEditFormula.Caption = "Check";
 			this.repositoryItemCheckEditFormula.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined;
 			this.repositoryItemCheckEditFormula.Name = "repositoryItemCheckEditFormula";
 			this.repositoryItemCheckEditFormula.PictureChecked = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.FormulaLogo;
@@ -884,7 +888,7 @@
 			this.pbDisabledOutput.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.DigitalPackageDisabled;
 			this.pbDisabledOutput.Location = new System.Drawing.Point(0, 0);
 			this.pbDisabledOutput.Name = "pbDisabledOutput";
-			this.pbDisabledOutput.Size = new System.Drawing.Size(791, 551);
+			this.pbDisabledOutput.Size = new System.Drawing.Size(783, 549);
 			this.pbDisabledOutput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pbDisabledOutput.TabIndex = 5;
 			this.pbDisabledOutput.TabStop = false;
@@ -899,14 +903,14 @@
 			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnHeader.Name = "pnHeader";
-			this.pnHeader.Size = new System.Drawing.Size(791, 30);
+			this.pnHeader.Size = new System.Drawing.Size(783, 30);
 			this.pnHeader.TabIndex = 3;
 			// 
 			// hyperLinkEditReset
 			// 
 			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.hyperLinkEditReset.EditValue = "Reset";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(724, 4);
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(713, 4);
 			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
 			this.hyperLinkEditReset.Properties.AllowFocused = false;
 			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -937,7 +941,7 @@
 			// WebPackageControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.splitContainerControl);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "WebPackageControl";
@@ -972,7 +976,6 @@
 
         #endregion
 
-		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		private DevExpress.XtraEditors.StyleController styleController;
 		private DevComponents.DotNetBar.ButtonX buttonXInfo;
 		private DevComponents.DotNetBar.ButtonX buttonXCPM;

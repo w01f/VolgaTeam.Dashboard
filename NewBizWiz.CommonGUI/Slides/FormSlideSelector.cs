@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.CommonGUI.Slides
 {
-	public partial class FormSlideSelector : Form
+	public partial class FormSlideSelector : MetroForm
 	{
 		private SlidesContainerControl _slideContainer;
 

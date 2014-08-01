@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using DevExpress.Utils;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Layout;
@@ -11,7 +12,7 @@ using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.CommonGUI.ToolForms
 {
-	public partial class FormImageGallery : Form
+	public partial class FormImageGallery : MetroForm
 	{
 		private readonly List<ImageSource> _images = new List<ImageSource>();
 
@@ -66,7 +67,7 @@ namespace NewBizWiz.CommonGUI.ToolForms
 				DialogResult = DialogResult.OK;
 		}
 
-		private void toolTipController_GetActiveObjectInfo(object sender, DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventArgs e)
+		private void toolTipController_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
 		{
 			if (e.SelectedControl != gridControlLogoGallery) return;
 			ToolTipControlInfo info = null;

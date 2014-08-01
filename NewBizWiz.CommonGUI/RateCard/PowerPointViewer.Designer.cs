@@ -44,7 +44,6 @@
 			// 
 			// pnNavigationArea
 			// 
-			this.pnNavigationArea.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnNavigationArea.Controls.Add(this.laSlideSize);
 			this.pnNavigationArea.Controls.Add(this.laFileInfo);
 			this.pnNavigationArea.Controls.Add(this.laSlideNumber);
@@ -59,8 +58,8 @@
 			// 
 			this.laSlideSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.laSlideSize.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laSlideSize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(73)))), ((int)(((byte)(125)))));
-			this.laSlideSize.Location = new System.Drawing.Point(456, 0);
+			this.laSlideSize.ForeColor = System.Drawing.Color.Black;
+			this.laSlideSize.Location = new System.Drawing.Point(460, 0);
 			this.laSlideSize.Name = "laSlideSize";
 			this.laSlideSize.Size = new System.Drawing.Size(242, 31);
 			this.laSlideSize.TabIndex = 8;
@@ -71,10 +70,10 @@
 			// 
 			this.laFileInfo.Dock = System.Windows.Forms.DockStyle.Left;
 			this.laFileInfo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laFileInfo.ForeColor = System.Drawing.Color.White;
+			this.laFileInfo.ForeColor = System.Drawing.Color.Black;
 			this.laFileInfo.Location = new System.Drawing.Point(0, 0);
 			this.laFileInfo.Name = "laFileInfo";
-			this.laFileInfo.Size = new System.Drawing.Size(244, 63);
+			this.laFileInfo.Size = new System.Drawing.Size(244, 67);
 			this.laFileInfo.TabIndex = 7;
 			this.laFileInfo.Text = "label1";
 			this.laFileInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -83,8 +82,8 @@
 			// 
 			this.laSlideNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.laSlideNumber.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laSlideNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(73)))), ((int)(((byte)(125)))));
-			this.laSlideNumber.Location = new System.Drawing.Point(456, 32);
+			this.laSlideNumber.ForeColor = System.Drawing.Color.Black;
+			this.laSlideNumber.Location = new System.Drawing.Point(460, 36);
 			this.laSlideNumber.Name = "laSlideNumber";
 			this.laSlideNumber.Size = new System.Drawing.Size(242, 31);
 			this.laSlideNumber.TabIndex = 6;
@@ -116,7 +115,7 @@
 			// 
 			// pictureBoxPreview
 			// 
-			this.pictureBoxPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pictureBoxPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pictureBoxPreview.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pictureBoxPreview.Location = new System.Drawing.Point(0, 0);
 			this.pictureBoxPreview.Name = "pictureBoxPreview";
@@ -128,7 +127,7 @@
 			// PowerPointViewer
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pictureBoxPreview);
 			this.Controls.Add(this.pnNavigationArea);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));

@@ -205,7 +205,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			if (view == null || view.ActiveEditor == null) return;
 			var viewInfo = view.GetViewInfo() as GridViewInfo;
 			if (viewInfo == null) return;
-			var cellInfo = viewInfo.GetGridCellInfo(view.FocusedRowHandle, view.FocusedColumn.AbsoluteIndex);
+			var cellInfo = viewInfo.GetGridCellInfo(view.FocusedRowHandle, view.FocusedColumn);
 			if (cellInfo == null) return;
 			view.ActiveEditor.Properties.Appearance.Assign(cellInfo.Appearance);
 		}

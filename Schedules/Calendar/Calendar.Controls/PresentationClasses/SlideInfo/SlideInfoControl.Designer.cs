@@ -91,7 +91,6 @@
 			this.checkEditLogoApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabPageFavorites = new DevExpress.XtraTab.XtraTabPage();
 			this.favoriteImagesControl = new NewBizWiz.CommonGUI.FavoriteImages.FavoriteImagesControl();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.barManager = new DevExpress.XtraBars.BarManager();
 			this.barToolbar = new DevExpress.XtraBars.Bar();
 			this.barLargeButtonItemHelp = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -155,11 +154,11 @@
 			this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControl.Location = new System.Drawing.Point(0, 42);
+			this.xtraTabControl.Location = new System.Drawing.Point(0, 44);
 			this.xtraTabControl.MultiLine = DevExpress.Utils.DefaultBoolean.True;
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageBasic;
-			this.xtraTabControl.Size = new System.Drawing.Size(300, 479);
+			this.xtraTabControl.Size = new System.Drawing.Size(300, 497);
 			this.xtraTabControl.TabIndex = 10;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageBasic,
@@ -175,23 +174,22 @@
 			this.xtraTabPageBasic.Controls.Add(this.pnBasicTop);
 			this.xtraTabPageBasic.Controls.Add(this.pnBasicBottom);
 			this.xtraTabPageBasic.Name = "xtraTabPageBasic";
-			this.xtraTabPageBasic.Size = new System.Drawing.Size(298, 453);
+			this.xtraTabPageBasic.Size = new System.Drawing.Size(298, 443);
 			this.xtraTabPageBasic.Text = "Info";
 			// 
 			// pnBasicTop
 			// 
-			this.pnBasicTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnBasicTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnBasicTop.BackColor = System.Drawing.Color.White;
 			this.pnBasicTop.Controls.Add(this.xtraScrollableControlBasic);
 			this.pnBasicTop.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnBasicTop.Location = new System.Drawing.Point(0, 0);
 			this.pnBasicTop.Name = "pnBasicTop";
-			this.pnBasicTop.Size = new System.Drawing.Size(298, 416);
+			this.pnBasicTop.Size = new System.Drawing.Size(298, 406);
 			this.pnBasicTop.TabIndex = 3;
 			// 
 			// xtraScrollableControlBasic
 			// 
-			this.xtraScrollableControlBasic.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.xtraScrollableControlBasic.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.xtraScrollableControlBasic.Appearance.Options.UseBackColor = true;
 			this.xtraScrollableControlBasic.Controls.Add(this.labelControlDecisionMaker);
 			this.xtraScrollableControlBasic.Controls.Add(this.labelControlAdvertiser);
@@ -205,7 +203,7 @@
 			this.xtraScrollableControlBasic.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControlBasic.Location = new System.Drawing.Point(0, 0);
 			this.xtraScrollableControlBasic.Name = "xtraScrollableControlBasic";
-			this.xtraScrollableControlBasic.Size = new System.Drawing.Size(294, 412);
+			this.xtraScrollableControlBasic.Size = new System.Drawing.Size(298, 406);
 			this.xtraScrollableControlBasic.TabIndex = 2;
 			// 
 			// labelControlDecisionMaker
@@ -252,7 +250,7 @@
 			this.checkEditNotesCustomCommentApplyFoAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditNotesCustomCommentApplyFoAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditNotesCustomCommentApplyFoAll.Properties.Caption = "Show this Comment on all slides";
-			this.checkEditNotesCustomCommentApplyFoAll.Size = new System.Drawing.Size(273, 21);
+			this.checkEditNotesCustomCommentApplyFoAll.Size = new System.Drawing.Size(277, 19);
 			this.checkEditNotesCustomCommentApplyFoAll.StyleController = this.styleController;
 			this.checkEditNotesCustomCommentApplyFoAll.TabIndex = 8;
 			// 
@@ -265,7 +263,8 @@
 			this.buttonXBasicDecisionMaker.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXBasicDecisionMaker.Location = new System.Drawing.Point(12, 188);
 			this.buttonXBasicDecisionMaker.Name = "buttonXBasicDecisionMaker";
-			this.buttonXBasicDecisionMaker.Size = new System.Drawing.Size(271, 29);
+			this.buttonXBasicDecisionMaker.Size = new System.Drawing.Size(275, 29);
+			this.buttonXBasicDecisionMaker.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXBasicDecisionMaker.TabIndex = 6;
 			this.buttonXBasicDecisionMaker.Text = "   Decision Maker";
 			this.buttonXBasicDecisionMaker.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -281,7 +280,8 @@
 			this.buttonXNotesCustomComment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXNotesCustomComment.Location = new System.Drawing.Point(12, 275);
 			this.buttonXNotesCustomComment.Name = "buttonXNotesCustomComment";
-			this.buttonXNotesCustomComment.Size = new System.Drawing.Size(271, 29);
+			this.buttonXNotesCustomComment.Size = new System.Drawing.Size(275, 29);
+			this.buttonXNotesCustomComment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXNotesCustomComment.TabIndex = 0;
 			this.buttonXNotesCustomComment.Text = "   Comment";
 			this.buttonXNotesCustomComment.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -295,9 +295,10 @@
 			this.memoEditNotesCustomComment.Enabled = false;
 			this.memoEditNotesCustomComment.Location = new System.Drawing.Point(34, 310);
 			this.memoEditNotesCustomComment.Name = "memoEditNotesCustomComment";
-			this.memoEditNotesCustomComment.Size = new System.Drawing.Size(249, 55);
+			this.memoEditNotesCustomComment.Size = new System.Drawing.Size(253, 55);
 			this.memoEditNotesCustomComment.StyleController = this.styleController;
 			this.memoEditNotesCustomComment.TabIndex = 1;
+			this.memoEditNotesCustomComment.UseOptimizedRendering = true;
 			// 
 			// buttonXBasicBusinessName
 			// 
@@ -308,7 +309,8 @@
 			this.buttonXBasicBusinessName.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXBasicBusinessName.Location = new System.Drawing.Point(12, 105);
 			this.buttonXBasicBusinessName.Name = "buttonXBasicBusinessName";
-			this.buttonXBasicBusinessName.Size = new System.Drawing.Size(271, 29);
+			this.buttonXBasicBusinessName.Size = new System.Drawing.Size(275, 29);
+			this.buttonXBasicBusinessName.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXBasicBusinessName.TabIndex = 4;
 			this.buttonXBasicBusinessName.Text = "   Advertiser";
 			this.buttonXBasicBusinessName.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -325,7 +327,7 @@
 			this.comboBoxEditBasicSlideTitle.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditBasicSlideTitle.Properties.NullText = "Monthly Advertising Planner";
-			this.comboBoxEditBasicSlideTitle.Size = new System.Drawing.Size(240, 22);
+			this.comboBoxEditBasicSlideTitle.Size = new System.Drawing.Size(244, 22);
 			this.comboBoxEditBasicSlideTitle.StyleController = this.styleController;
 			this.comboBoxEditBasicSlideTitle.TabIndex = 3;
 			// 
@@ -338,7 +340,8 @@
 			this.buttonXBasicSlideTitle.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXBasicSlideTitle.Location = new System.Drawing.Point(12, 16);
 			this.buttonXBasicSlideTitle.Name = "buttonXBasicSlideTitle";
-			this.buttonXBasicSlideTitle.Size = new System.Drawing.Size(271, 29);
+			this.buttonXBasicSlideTitle.Size = new System.Drawing.Size(275, 29);
+			this.buttonXBasicSlideTitle.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXBasicSlideTitle.TabIndex = 2;
 			this.buttonXBasicSlideTitle.Text = "   Slide Header Title";
 			this.buttonXBasicSlideTitle.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -347,11 +350,11 @@
 			// 
 			// pnBasicBottom
 			// 
-			this.pnBasicBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnBasicBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnBasicBottom.BackColor = System.Drawing.Color.White;
+			this.pnBasicBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pnBasicBottom.Controls.Add(this.checkEditBasicApplyForAll);
 			this.pnBasicBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnBasicBottom.Location = new System.Drawing.Point(0, 416);
+			this.pnBasicBottom.Location = new System.Drawing.Point(0, 406);
 			this.pnBasicBottom.Name = "pnBasicBottom";
 			this.pnBasicBottom.Size = new System.Drawing.Size(298, 37);
 			this.pnBasicBottom.TabIndex = 4;
@@ -362,7 +365,7 @@
 			this.checkEditBasicApplyForAll.Name = "checkEditBasicApplyForAll";
 			this.checkEditBasicApplyForAll.Properties.AutoWidth = true;
 			this.checkEditBasicApplyForAll.Properties.Caption = "Show on ALL Slides";
-			this.checkEditBasicApplyForAll.Size = new System.Drawing.Size(140, 21);
+			this.checkEditBasicApplyForAll.Size = new System.Drawing.Size(139, 20);
 			this.checkEditBasicApplyForAll.StyleController = this.styleController;
 			this.checkEditBasicApplyForAll.TabIndex = 8;
 			// 
@@ -371,23 +374,22 @@
 			this.xtraTabPageCost.Controls.Add(this.pnCostTop);
 			this.xtraTabPageCost.Controls.Add(this.pnCostBottom);
 			this.xtraTabPageCost.Name = "xtraTabPageCost";
-			this.xtraTabPageCost.Size = new System.Drawing.Size(298, 453);
+			this.xtraTabPageCost.Size = new System.Drawing.Size(298, 443);
 			this.xtraTabPageCost.Text = "Cost";
 			// 
 			// pnCostTop
 			// 
-			this.pnCostTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnCostTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnCostTop.BackColor = System.Drawing.Color.White;
 			this.pnCostTop.Controls.Add(this.xtraScrollableControlCost);
 			this.pnCostTop.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnCostTop.Location = new System.Drawing.Point(0, 0);
 			this.pnCostTop.Name = "pnCostTop";
-			this.pnCostTop.Size = new System.Drawing.Size(298, 416);
+			this.pnCostTop.Size = new System.Drawing.Size(298, 406);
 			this.pnCostTop.TabIndex = 6;
 			// 
 			// xtraScrollableControlCost
 			// 
-			this.xtraScrollableControlCost.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.xtraScrollableControlCost.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.xtraScrollableControlCost.Appearance.Options.UseBackColor = true;
 			this.xtraScrollableControlCost.Controls.Add(this.spinEditCostDigital);
 			this.xtraScrollableControlCost.Controls.Add(this.spinEditCostNewspaper);
@@ -396,7 +398,7 @@
 			this.xtraScrollableControlCost.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControlCost.Location = new System.Drawing.Point(0, 0);
 			this.xtraScrollableControlCost.Name = "xtraScrollableControlCost";
-			this.xtraScrollableControlCost.Size = new System.Drawing.Size(294, 412);
+			this.xtraScrollableControlCost.Size = new System.Drawing.Size(298, 406);
 			this.xtraScrollableControlCost.TabIndex = 2;
 			// 
 			// spinEditCostDigital
@@ -460,7 +462,8 @@
 			this.buttonXCostDigital.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCostDigital.Location = new System.Drawing.Point(12, 195);
 			this.buttonXCostDigital.Name = "buttonXCostDigital";
-			this.buttonXCostDigital.Size = new System.Drawing.Size(271, 29);
+			this.buttonXCostDigital.Size = new System.Drawing.Size(275, 29);
+			this.buttonXCostDigital.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCostDigital.TabIndex = 4;
 			this.buttonXCostDigital.Text = "   Digital Investment";
 			this.buttonXCostDigital.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -476,7 +479,8 @@
 			this.buttonXCostNewspaperManual.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCostNewspaperManual.Location = new System.Drawing.Point(12, 47);
 			this.buttonXCostNewspaperManual.Name = "buttonXCostNewspaperManual";
-			this.buttonXCostNewspaperManual.Size = new System.Drawing.Size(271, 29);
+			this.buttonXCostNewspaperManual.Size = new System.Drawing.Size(275, 29);
+			this.buttonXCostNewspaperManual.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCostNewspaperManual.TabIndex = 2;
 			this.buttonXCostNewspaperManual.Text = "   Newspaper Investment";
 			this.buttonXCostNewspaperManual.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -485,11 +489,11 @@
 			// 
 			// pnCostBottom
 			// 
-			this.pnCostBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnCostBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnCostBottom.BackColor = System.Drawing.Color.White;
+			this.pnCostBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pnCostBottom.Controls.Add(this.checkEditCostApplyForAll);
 			this.pnCostBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnCostBottom.Location = new System.Drawing.Point(0, 416);
+			this.pnCostBottom.Location = new System.Drawing.Point(0, 406);
 			this.pnCostBottom.Name = "pnCostBottom";
 			this.pnCostBottom.Size = new System.Drawing.Size(298, 37);
 			this.pnCostBottom.TabIndex = 5;
@@ -500,7 +504,7 @@
 			this.checkEditCostApplyForAll.Name = "checkEditCostApplyForAll";
 			this.checkEditCostApplyForAll.Properties.AutoWidth = true;
 			this.checkEditCostApplyForAll.Properties.Caption = "Show on ALL Slides";
-			this.checkEditCostApplyForAll.Size = new System.Drawing.Size(140, 21);
+			this.checkEditCostApplyForAll.Size = new System.Drawing.Size(139, 20);
 			this.checkEditCostApplyForAll.StyleController = this.styleController;
 			this.checkEditCostApplyForAll.TabIndex = 8;
 			// 
@@ -508,12 +512,12 @@
 			// 
 			this.xtraTabPageStyle.Controls.Add(this.pnStyleTop);
 			this.xtraTabPageStyle.Name = "xtraTabPageStyle";
-			this.xtraTabPageStyle.Size = new System.Drawing.Size(298, 453);
+			this.xtraTabPageStyle.Size = new System.Drawing.Size(298, 443);
 			this.xtraTabPageStyle.Text = "Style";
 			// 
 			// pnStyleTop
 			// 
-			this.pnStyleTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnStyleTop.BackColor = System.Drawing.Color.White;
 			this.pnStyleTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnStyleTop.Controls.Add(this.buttonXStyleBigDate);
 			this.pnStyleTop.Controls.Add(this.laThemeColor);
@@ -527,7 +531,7 @@
 			this.pnStyleTop.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnStyleTop.Location = new System.Drawing.Point(0, 0);
 			this.pnStyleTop.Name = "pnStyleTop";
-			this.pnStyleTop.Size = new System.Drawing.Size(298, 453);
+			this.pnStyleTop.Size = new System.Drawing.Size(298, 443);
 			this.pnStyleTop.TabIndex = 12;
 			// 
 			// buttonXStyleBigDate
@@ -540,6 +544,7 @@
 			this.buttonXStyleBigDate.Location = new System.Drawing.Point(12, 347);
 			this.buttonXStyleBigDate.Name = "buttonXStyleBigDate";
 			this.buttonXStyleBigDate.Size = new System.Drawing.Size(271, 29);
+			this.buttonXStyleBigDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXStyleBigDate.TabIndex = 8;
 			this.buttonXStyleBigDate.Text = "   Show Large Date Numbers";
 			this.buttonXStyleBigDate.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -549,9 +554,9 @@
 			// 
 			this.laThemeColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.laThemeColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.laThemeColor.BackColor = System.Drawing.Color.White;
 			this.laThemeColor.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laThemeColor.ForeColor = System.Drawing.Color.White;
+			this.laThemeColor.ForeColor = System.Drawing.Color.Black;
 			this.laThemeColor.Location = new System.Drawing.Point(9, 8);
 			this.laThemeColor.Name = "laThemeColor";
 			this.laThemeColor.Size = new System.Drawing.Size(267, 23);
@@ -568,7 +573,7 @@
 			this.checkEditThemeColorApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditThemeColorApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditThemeColorApplyForAll.Properties.Caption = "Use this Color on all calendar slides";
-			this.checkEditThemeColorApplyForAll.Size = new System.Drawing.Size(281, 21);
+			this.checkEditThemeColorApplyForAll.Size = new System.Drawing.Size(281, 19);
 			this.checkEditThemeColorApplyForAll.StyleController = this.styleController;
 			this.checkEditThemeColorApplyForAll.TabIndex = 8;
 			// 
@@ -581,6 +586,7 @@
 			this.buttonXThemeColorGreen.Location = new System.Drawing.Point(181, 180);
 			this.buttonXThemeColorGreen.Name = "buttonXThemeColorGreen";
 			this.buttonXThemeColorGreen.Size = new System.Drawing.Size(102, 35);
+			this.buttonXThemeColorGreen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXThemeColorGreen.TabIndex = 5;
 			this.buttonXThemeColorGreen.Text = "Green";
 			this.buttonXThemeColorGreen.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -596,6 +602,7 @@
 			this.buttonXThemeColorOrange.Location = new System.Drawing.Point(181, 112);
 			this.buttonXThemeColorOrange.Name = "buttonXThemeColorOrange";
 			this.buttonXThemeColorOrange.Size = new System.Drawing.Size(102, 35);
+			this.buttonXThemeColorOrange.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXThemeColorOrange.TabIndex = 4;
 			this.buttonXThemeColorOrange.Text = "Orange";
 			this.buttonXThemeColorOrange.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -611,6 +618,7 @@
 			this.buttonXThemeColorTeal.Location = new System.Drawing.Point(181, 46);
 			this.buttonXThemeColorTeal.Name = "buttonXThemeColorTeal";
 			this.buttonXThemeColorTeal.Size = new System.Drawing.Size(102, 35);
+			this.buttonXThemeColorTeal.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXThemeColorTeal.TabIndex = 3;
 			this.buttonXThemeColorTeal.Text = "Teal";
 			this.buttonXThemeColorTeal.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -625,6 +633,7 @@
 			this.buttonXThemeColorBlue.Location = new System.Drawing.Point(12, 180);
 			this.buttonXThemeColorBlue.Name = "buttonXThemeColorBlue";
 			this.buttonXThemeColorBlue.Size = new System.Drawing.Size(102, 35);
+			this.buttonXThemeColorBlue.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXThemeColorBlue.TabIndex = 2;
 			this.buttonXThemeColorBlue.Text = "Blue";
 			this.buttonXThemeColorBlue.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -639,6 +648,7 @@
 			this.buttonXThemeColorBlack.Location = new System.Drawing.Point(12, 112);
 			this.buttonXThemeColorBlack.Name = "buttonXThemeColorBlack";
 			this.buttonXThemeColorBlack.Size = new System.Drawing.Size(102, 35);
+			this.buttonXThemeColorBlack.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXThemeColorBlack.TabIndex = 1;
 			this.buttonXThemeColorBlack.Text = "Black";
 			this.buttonXThemeColorBlack.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -653,6 +663,7 @@
 			this.buttonXThemeColorGray.Location = new System.Drawing.Point(12, 46);
 			this.buttonXThemeColorGray.Name = "buttonXThemeColorGray";
 			this.buttonXThemeColorGray.Size = new System.Drawing.Size(102, 35);
+			this.buttonXThemeColorGray.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXThemeColorGray.TabIndex = 0;
 			this.buttonXThemeColorGray.Text = "Gray";
 			this.buttonXThemeColorGray.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -663,12 +674,12 @@
 			// 
 			this.xtraTabPageNotes.Controls.Add(this.pnNotesTop);
 			this.xtraTabPageNotes.Name = "xtraTabPageNotes";
-			this.xtraTabPageNotes.Size = new System.Drawing.Size(298, 453);
+			this.xtraTabPageNotes.Size = new System.Drawing.Size(298, 443);
 			this.xtraTabPageNotes.Text = "Notes";
 			// 
 			// pnNotesTop
 			// 
-			this.pnNotesTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnNotesTop.BackColor = System.Drawing.Color.White;
 			this.pnNotesTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnNotesTop.Controls.Add(this.checkEditOtherNumbersApplyForAll);
 			this.pnNotesTop.Controls.Add(this.spinEditOtherNumbersActiveDays);
@@ -682,7 +693,7 @@
 			this.pnNotesTop.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnNotesTop.Location = new System.Drawing.Point(0, 0);
 			this.pnNotesTop.Name = "pnNotesTop";
-			this.pnNotesTop.Size = new System.Drawing.Size(298, 453);
+			this.pnNotesTop.Size = new System.Drawing.Size(298, 443);
 			this.pnNotesTop.TabIndex = 8;
 			// 
 			// checkEditOtherNumbersApplyForAll
@@ -691,7 +702,7 @@
 			this.checkEditOtherNumbersApplyForAll.Name = "checkEditOtherNumbersApplyForAll";
 			this.checkEditOtherNumbersApplyForAll.Properties.AutoWidth = true;
 			this.checkEditOtherNumbersApplyForAll.Properties.Caption = "Show on ALL Slides";
-			this.checkEditOtherNumbersApplyForAll.Size = new System.Drawing.Size(140, 21);
+			this.checkEditOtherNumbersApplyForAll.Size = new System.Drawing.Size(139, 20);
 			this.checkEditOtherNumbersApplyForAll.StyleController = this.styleController;
 			this.checkEditOtherNumbersApplyForAll.TabIndex = 8;
 			// 
@@ -759,6 +770,7 @@
 			this.buttonXOtherNumbersActiveDays.Location = new System.Drawing.Point(12, 16);
 			this.buttonXOtherNumbersActiveDays.Name = "buttonXOtherNumbersActiveDays";
 			this.buttonXOtherNumbersActiveDays.Size = new System.Drawing.Size(271, 29);
+			this.buttonXOtherNumbersActiveDays.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOtherNumbersActiveDays.TabIndex = 0;
 			this.buttonXOtherNumbersActiveDays.Text = "   # of Active Days";
 			this.buttonXOtherNumbersActiveDays.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -775,6 +787,7 @@
 			this.buttonXOtherNumbersDigitalCPM.Location = new System.Drawing.Point(12, 321);
 			this.buttonXOtherNumbersDigitalCPM.Name = "buttonXOtherNumbersDigitalCPM";
 			this.buttonXOtherNumbersDigitalCPM.Size = new System.Drawing.Size(271, 29);
+			this.buttonXOtherNumbersDigitalCPM.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOtherNumbersDigitalCPM.TabIndex = 6;
 			this.buttonXOtherNumbersDigitalCPM.Text = "   Digital CPM";
 			this.buttonXOtherNumbersDigitalCPM.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -817,6 +830,7 @@
 			this.buttonXOtherNumbersImpressions.Location = new System.Drawing.Point(12, 217);
 			this.buttonXOtherNumbersImpressions.Name = "buttonXOtherNumbersImpressions";
 			this.buttonXOtherNumbersImpressions.Size = new System.Drawing.Size(271, 29);
+			this.buttonXOtherNumbersImpressions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOtherNumbersImpressions.TabIndex = 4;
 			this.buttonXOtherNumbersImpressions.Text = "   Monthly Digital Impressions";
 			this.buttonXOtherNumbersImpressions.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -833,6 +847,7 @@
 			this.buttonXOtherNumbersNewspaperAdsNumber.Location = new System.Drawing.Point(12, 115);
 			this.buttonXOtherNumbersNewspaperAdsNumber.Name = "buttonXOtherNumbersNewspaperAdsNumber";
 			this.buttonXOtherNumbersNewspaperAdsNumber.Size = new System.Drawing.Size(271, 29);
+			this.buttonXOtherNumbersNewspaperAdsNumber.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOtherNumbersNewspaperAdsNumber.TabIndex = 2;
 			this.buttonXOtherNumbersNewspaperAdsNumber.Text = "   # of Newspaper Ads";
 			this.buttonXOtherNumbersNewspaperAdsNumber.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -871,19 +886,19 @@
 			// 
 			this.xtraTabPageLogo.Controls.Add(this.pnLogoTop);
 			this.xtraTabPageLogo.Name = "xtraTabPageLogo";
-			this.xtraTabPageLogo.Size = new System.Drawing.Size(298, 453);
+			this.xtraTabPageLogo.Size = new System.Drawing.Size(298, 443);
 			this.xtraTabPageLogo.Text = "Logo";
 			// 
 			// pnLogoTop
 			// 
-			this.pnLogoTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnLogoTop.BackColor = System.Drawing.Color.White;
 			this.pnLogoTop.Controls.Add(this.gridControlLogoGallery);
 			this.pnLogoTop.Controls.Add(this.buttonXLogo);
 			this.pnLogoTop.Controls.Add(this.checkEditLogoApplyForAll);
 			this.pnLogoTop.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnLogoTop.Location = new System.Drawing.Point(0, 0);
 			this.pnLogoTop.Name = "pnLogoTop";
-			this.pnLogoTop.Size = new System.Drawing.Size(298, 453);
+			this.pnLogoTop.Size = new System.Drawing.Size(298, 443);
 			this.pnLogoTop.TabIndex = 0;
 			// 
 			// gridControlLogoGallery
@@ -897,7 +912,7 @@
 			this.gridControlLogoGallery.Name = "gridControlLogoGallery";
 			this.gridControlLogoGallery.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit});
-			this.gridControlLogoGallery.Size = new System.Drawing.Size(298, 353);
+			this.gridControlLogoGallery.Size = new System.Drawing.Size(298, 343);
 			this.gridControlLogoGallery.TabIndex = 37;
 			this.gridControlLogoGallery.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.layoutViewLogoGallery});
@@ -1013,6 +1028,7 @@
 			this.buttonXLogo.Location = new System.Drawing.Point(14, 18);
 			this.buttonXLogo.Name = "buttonXLogo";
 			this.buttonXLogo.Size = new System.Drawing.Size(271, 29);
+			this.buttonXLogo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXLogo.TabIndex = 0;
 			this.buttonXLogo.Text = "   Show a logo on the slide";
 			this.buttonXLogo.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
@@ -1023,12 +1039,12 @@
 			// 
 			this.checkEditLogoApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditLogoApplyForAll.Location = new System.Drawing.Point(12, 412);
+			this.checkEditLogoApplyForAll.Location = new System.Drawing.Point(12, 402);
 			this.checkEditLogoApplyForAll.Name = "checkEditLogoApplyForAll";
 			this.checkEditLogoApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditLogoApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditLogoApplyForAll.Properties.Caption = "Show this LOGO on all calendar slides";
-			this.checkEditLogoApplyForAll.Size = new System.Drawing.Size(273, 21);
+			this.checkEditLogoApplyForAll.Size = new System.Drawing.Size(273, 20);
 			this.checkEditLogoApplyForAll.StyleController = this.styleController;
 			this.checkEditLogoApplyForAll.TabIndex = 8;
 			// 
@@ -1036,21 +1052,18 @@
 			// 
 			this.xtraTabPageFavorites.Controls.Add(this.favoriteImagesControl);
 			this.xtraTabPageFavorites.Name = "xtraTabPageFavorites";
-			this.xtraTabPageFavorites.Size = new System.Drawing.Size(298, 453);
+			this.xtraTabPageFavorites.Size = new System.Drawing.Size(298, 443);
 			this.xtraTabPageFavorites.Text = "Favorites";
 			// 
 			// favoriteImagesControl
 			// 
+			this.favoriteImagesControl.BackColor = System.Drawing.Color.White;
 			this.favoriteImagesControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.favoriteImagesControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.favoriteImagesControl.Location = new System.Drawing.Point(0, 0);
 			this.favoriteImagesControl.Name = "favoriteImagesControl";
-			this.favoriteImagesControl.Size = new System.Drawing.Size(298, 453);
+			this.favoriteImagesControl.Size = new System.Drawing.Size(298, 443);
 			this.favoriteImagesControl.TabIndex = 1;
-			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
 			// 
 			// barManager
 			// 
@@ -1114,33 +1127,33 @@
 			this.barDockControlTop.CausesValidation = false;
 			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-			this.barDockControlTop.Size = new System.Drawing.Size(300, 42);
+			this.barDockControlTop.Size = new System.Drawing.Size(300, 44);
 			// 
 			// barDockControlBottom
 			// 
 			this.barDockControlBottom.CausesValidation = false;
 			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.barDockControlBottom.Location = new System.Drawing.Point(0, 521);
+			this.barDockControlBottom.Location = new System.Drawing.Point(0, 541);
 			this.barDockControlBottom.Size = new System.Drawing.Size(300, 0);
 			// 
 			// barDockControlLeft
 			// 
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 42);
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 479);
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 44);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 497);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.barDockControlRight.Location = new System.Drawing.Point(300, 42);
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 479);
+			this.barDockControlRight.Location = new System.Drawing.Point(300, 44);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 497);
 			// 
 			// SlideInfoControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.Controls.Add(this.xtraTabControl);
 			this.Controls.Add(this.barDockControlLeft);
@@ -1149,7 +1162,7 @@
 			this.Controls.Add(this.barDockControlTop);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "SlideInfoControl";
-			this.Size = new System.Drawing.Size(300, 521);
+			this.Size = new System.Drawing.Size(300, 541);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			this.xtraTabControl.ResumeLayout(false);
 			this.xtraTabPageBasic.ResumeLayout(false);
@@ -1198,7 +1211,6 @@
 
         #endregion
 
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		private DevExpress.XtraEditors.StyleController styleController;
 		private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControlBasic;
         private DevComponents.DotNetBar.ButtonX buttonXBasicSlideTitle;

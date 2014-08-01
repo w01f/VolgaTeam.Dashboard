@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.Core.Common;
@@ -9,7 +10,7 @@ using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
-	public partial class FormSavedStates : Form
+	public partial class FormSavedStates : MetroForm
 	{
 		protected string SavedFilesPath = string.Empty;
 		protected string SavedTemplatesPath = string.Empty;

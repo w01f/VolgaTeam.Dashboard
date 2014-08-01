@@ -14,6 +14,7 @@ namespace AdBAR
     {
         public ApplicationStructure(string tabsDefinitionFile)
         {
+            Tracker = new ActivityTracker("ad_bar");
             var f = Utilities.GetTextFromFile(tabsDefinitionFile);
             Tabs = new List<TabDetails>();
 
@@ -31,11 +32,13 @@ namespace AdBAR
 
                 if(Directory.Exists(tab.Id))
                     foreach (var p in Directory.GetDirectories(tab.Id))
-                        tab.Groups.Add(new TabGroup(p));
+                        tab.Groups.Add(new TabGroup(p, Tracker));
 
                 Tabs.Add(tab);
             }
         }
+
+        public ActivityTracker Tracker { get; private set; }
 
         public List<WatchedProcess> WatchedProcesses { get; set; }
         public List<TabDetails> Tabs { get; set; }
@@ -55,7 +58,7 @@ namespace AdBAR
 
     internal class TabGroup
     {
-        public TabGroup(string path)
+        public TabGroup(string path, ActivityTracker tracker)
         {
             Type = TabGroupType.CustomControls;
             Items = new List<TabGroupItem>();
@@ -81,6 +84,14 @@ namespace AdBAR
                         case "browsertoggle":
                             Type = TabGroupType.BrowserPanel;
                             break;
+
+                        case "syncsettings":
+                            Type = TabGroupType.SyncPanel;
+                            break;
+
+                        case "syncbutton":
+                            Type = TabGroupType.SyncButton;
+                            break; 
                     }
 
                     Name = Utilities.GetValueRegex("<groupname>(.*)</groupname>", tx);
@@ -91,7 +102,7 @@ namespace AdBAR
                     var tx = Utilities.GetTextFromFile(f);
                     var type = Utilities.GetValueRegex("<type>(.*)</type>", tx);
                     var t = new TabGroupItem(Utilities.GetValuesRegex("<path>(.*)</path>", tx),
-                                              type == "url" ? LinkType.Url : (type == "exe" ? LinkType.Exe : LinkType.Any), f);
+                                              type == "url" ? LinkType.Url : (type == "exe" ? LinkType.Exe : LinkType.Any), f, tracker);
 
                     t.Tooltip = Utilities.GetValueRegex("<tooltip>(.*?)</tooltip>", tx);
                     t.Title = Utilities.GetValueRegex("<title>(.*?)</title>", tx);
@@ -133,12 +144,14 @@ namespace AdBAR
     {
         private readonly List<string> _paths;
         private readonly LinkType _type;
+        private readonly ActivityTracker _tracker;
         private readonly string _imgPath;
 
-        public TabGroupItem(List<String> paths, LinkType type, string imgPath)
+        public TabGroupItem(List<string> paths, LinkType type, string imgPath, ActivityTracker tracker)
         {
             _paths = paths;
             _type = type;
+            _tracker = tracker;
             SuggestedBrowser = String.Empty;
             AllowedUsers = new List<string>();
 
@@ -147,13 +160,20 @@ namespace AdBAR
 
         public void Open()
         {
+            var p = String.Empty;
+            if (_paths != null && _paths.Count > 0)
+                p = _paths[0];
+
+            if (String.IsNullOrEmpty(p))
+                return;
+
             switch (_type)
             {
                 case LinkType.Url:
                     if (String.IsNullOrEmpty(SuggestedBrowser) && File.Exists(SuggestedBrowser))
-                        Start(_paths[0],"",true);
+                        Start(p,"",true);
                     else
-                        Start(SuggestedBrowser, _paths[0]);
+                        Start(SuggestedBrowser, p);
                     break;
 
                 case LinkType.Exe:
@@ -162,13 +182,15 @@ namespace AdBAR
                     const string programFiles = "\\program files", programFiles86 = programFiles+" (x86)";
                     foreach (var path in _paths)
                     {
+                        p = path;
                         var t = path.ToLower();
 
-                        if (File.Exists(t) || _type == LinkType.Any) // Do not test program files thing with this LinkType
-                        {
-                            Start(path, "", _type == LinkType.Any);
-                            break;
-                        }
+                        if (_type == LinkType.Any)
+                            if (File.Exists(t) || Directory.Exists(t)) // Do not test program files thing with this LinkType
+                            {
+                                Start(path, "", _type == LinkType.Any);
+                                break;
+                            }
 
                         // Should make this more pretty, last minute hack
                         // Find program files, hardcoded ugly version. 
@@ -189,6 +211,8 @@ namespace AdBAR
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            _tracker.WriteEvent(Activities.ApplicationOpenLink, p + " (" + _type + ")");
         }
 
         private static void Start(string path, string args = "", bool useShellExecute = false)
@@ -221,7 +245,9 @@ namespace AdBAR
 
     internal enum TabGroupType
     {
-        ShortButton, LongButton, CustomControls,BrowserPanel
+        ShortButton, LongButton, CustomControls, BrowserPanel,
+        SyncPanel,
+        SyncButton
     }
 
     internal class TabDetails

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrintProductControl));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject54 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -111,7 +110,7 @@
 			this.gridColumnFinalRate = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.gridBandIndex = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.gridColumnIndex = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.imageList = new System.Windows.Forms.ImageList(this.components);
+			this.imageList = new System.Windows.Forms.ImageList();
 			this.repositoryItemDateEdit = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
 			this.repositoryItemSpinEditPCIRateEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemSpinEditADRateDisplayNull = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
@@ -134,7 +133,8 @@
 			this.repositoryItemSpinEditColorPCIDisplay = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemSpinEditColorPCIEditFirtsRow = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
 			this.repositoryItemSpinEditColorPCIEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.repositoryItemTextEditEmpty = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			this.panelBottom = new System.Windows.Forms.Panel();
 			this.layoutControl = new DevExpress.XtraLayout.LayoutControl();
 			this.layoutControlGroupRoot = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -162,12 +162,10 @@
 			this.layoutControlGroup9 = new DevExpress.XtraLayout.LayoutControlGroup();
 			this.laAvgFinalRate = new DevExpress.XtraLayout.SimpleLabelItem();
 			this.laTotalFinalRate = new DevExpress.XtraLayout.SimpleLabelItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-			this.repositoryItemTextEditEmpty = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPublication)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewPublication)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateNull)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateNull.VistaTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateNull.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditPCIRateDisplay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRateDisplay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsDisplay)).BeginInit();
@@ -175,7 +173,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingDisplay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit.VistaTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditPCIRateEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRateDisplayNull)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRateEdit)).BeginInit();
@@ -185,7 +183,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingDisplayFirstRow)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditNull)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditNull.VistaTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditNull.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsEditFirstRow)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingEditFirstRow)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditPCIRateEditFirstRow)).BeginInit();
@@ -198,6 +196,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIDisplay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIEditFirtsRow)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIEdit)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditEmpty)).BeginInit();
 			this.panelBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).BeginInit();
@@ -225,11 +224,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup9)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.laAvgFinalRate)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.laTotalFinalRate)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditEmpty)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gridControlPublication
 			// 
+			this.gridControlPublication.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControlPublication.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridControlPublication.Location = new System.Drawing.Point(0, 0);
 			this.gridControlPublication.MainView = this.advBandedGridViewPublication;
@@ -338,7 +337,7 @@
 			this.advBandedGridViewPublication.OptionsView.ShowGroupExpandCollapseButtons = false;
 			this.advBandedGridViewPublication.OptionsView.ShowGroupPanel = false;
 			this.advBandedGridViewPublication.OptionsView.ShowIndicator = false;
-			this.advBandedGridViewPublication.OptionsView.ShowVertLines = false;
+			this.advBandedGridViewPublication.OptionsView.ShowVerticalLines = DevExpress.Utils.DefaultBoolean.False;
 			this.advBandedGridViewPublication.CustomDrawBandHeader += new DevExpress.XtraGrid.Views.BandedGrid.BandHeaderCustomDrawEventHandler(this.advBandedGridViewPublication_CustomDrawBandHeader);
 			this.advBandedGridViewPublication.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.advBandedGridViewPublication_CustomRowCellEdit);
 			this.advBandedGridViewPublication.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.advBandedGridViewPublication_CustomRowCellEditForEditing);
@@ -354,6 +353,7 @@
 			this.gridBandID.Columns.Add(this.gridColumnID);
 			this.gridBandID.Name = "gridBandID";
 			this.gridBandID.OptionsBand.FixedWidth = true;
+			this.gridBandID.VisibleIndex = 0;
 			this.gridBandID.Width = 50;
 			// 
 			// gridColumnID
@@ -374,6 +374,7 @@
 			this.gridBandDate.Caption = "Day/Date";
 			this.gridBandDate.Columns.Add(this.gridColumnDate);
 			this.gridBandDate.Name = "gridBandDate";
+			this.gridBandDate.VisibleIndex = 1;
 			this.gridBandDate.Width = 180;
 			// 
 			// gridColumnDate
@@ -399,6 +400,8 @@
 			this.repositoryItemDateNull.AutoHeight = false;
 			this.repositoryItemDateNull.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemDateNull.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject54, "What day will your Ad run?", null, null, true)});
+			this.repositoryItemDateNull.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.repositoryItemDateNull.DisplayFormat.FormatString = "ddd, MM/dd/yy";
 			this.repositoryItemDateNull.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemDateNull.EditFormat.FormatString = "ddd, MM/dd/yy";
@@ -408,8 +411,6 @@
 			this.repositoryItemDateNull.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
 			this.repositoryItemDateNull.ShowToday = false;
 			this.repositoryItemDateNull.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.repositoryItemDateNull.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.repositoryItemDateNull.DrawItem += new DevExpress.XtraEditors.Calendar.CustomDrawDayNumberCellEventHandler(this.repositoryItemDateEdit_DrawItem);
 			this.repositoryItemDateNull.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this.repositoryItemDateEditNull_CloseUp);
 			this.repositoryItemDateNull.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemDateEditNull_Closed);
@@ -419,6 +420,7 @@
 			this.gridBandPCIRate.Caption = "PCI";
 			this.gridBandPCIRate.Columns.Add(this.gridColumnPCIRate);
 			this.gridBandPCIRate.Name = "gridBandPCIRate";
+			this.gridBandPCIRate.VisibleIndex = 2;
 			this.gridBandPCIRate.Width = 110;
 			// 
 			// gridColumnPCIRate
@@ -462,6 +464,7 @@
 			this.gridBandADRate.Caption = "Cost (B&W)";
 			this.gridBandADRate.Columns.Add(this.gridColumnADRate);
 			this.gridBandADRate.Name = "gridBandADRate";
+			this.gridBandADRate.VisibleIndex = 3;
 			this.gridBandADRate.Width = 160;
 			// 
 			// gridColumnADRate
@@ -511,6 +514,7 @@
 			this.gridBandDiscounts.Columns.Add(this.gridColumnDiscounts);
 			this.gridBandDiscounts.Columns.Add(this.gridColumnDiscountRate);
 			this.gridBandDiscounts.Name = "gridBandDiscounts";
+			this.gridBandDiscounts.VisibleIndex = 4;
 			this.gridBandDiscounts.Width = 170;
 			// 
 			// gridColumnDiscounts
@@ -577,6 +581,7 @@
 			this.gridBandColorPricing.Columns.Add(this.gridColumnColorPricingPercent);
 			this.gridBandColorPricing.Columns.Add(this.gridColumnColorPricing);
 			this.gridBandColorPricing.Name = "gridBandColorPricing";
+			this.gridBandColorPricing.VisibleIndex = 5;
 			this.gridBandColorPricing.Width = 270;
 			// 
 			// gridColumnColorPricingPCI
@@ -653,6 +658,7 @@
 			this.gridBandFinalRate.Caption = "Total Cost";
 			this.gridBandFinalRate.Columns.Add(this.gridColumnFinalRate);
 			this.gridBandFinalRate.Name = "gridBandFinalRate";
+			this.gridBandFinalRate.VisibleIndex = 6;
 			this.gridBandFinalRate.Width = 80;
 			// 
 			// gridColumnFinalRate
@@ -674,6 +680,7 @@
 			this.gridBandIndex.Caption = "INS #";
 			this.gridBandIndex.Columns.Add(this.gridColumnIndex);
 			this.gridBandIndex.Name = "gridBandIndex";
+			this.gridBandIndex.VisibleIndex = 7;
 			this.gridBandIndex.Width = 50;
 			// 
 			// gridColumnIndex
@@ -703,6 +710,8 @@
 			// 
 			this.repositoryItemDateEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemDateEdit.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject62, "What day will your Ad run?", null, null, true)});
+			this.repositoryItemDateEdit.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.repositoryItemDateEdit.DisplayFormat.FormatString = "ddd, MM/dd/yy";
 			this.repositoryItemDateEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemDateEdit.EditFormat.FormatString = "ddd, MM/dd/yy";
@@ -712,8 +721,6 @@
 			this.repositoryItemDateEdit.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
 			this.repositoryItemDateEdit.ShowToday = false;
 			this.repositoryItemDateEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.repositoryItemDateEdit.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.repositoryItemDateEdit.DrawItem += new DevExpress.XtraEditors.Calendar.CustomDrawDayNumberCellEventHandler(this.repositoryItemDateEdit_DrawItem);
 			// 
 			// repositoryItemSpinEditPCIRateEdit
@@ -893,6 +900,8 @@
 			this.repositoryItemDateEditNull.AutoHeight = false;
 			this.repositoryItemDateEditNull.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemDateEditNull.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject78, "What day will your Ad run?", null, null, true)});
+			this.repositoryItemDateEditNull.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.repositoryItemDateEditNull.DisplayFormat.FormatString = "ddd, MM/dd/yy";
 			this.repositoryItemDateEditNull.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemDateEditNull.EditFormat.FormatString = "ddd, MM/dd/yy";
@@ -902,8 +911,6 @@
 			this.repositoryItemDateEditNull.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
 			this.repositoryItemDateEditNull.ShowToday = false;
 			this.repositoryItemDateEditNull.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.repositoryItemDateEditNull.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.repositoryItemDateEditNull.DrawItem += new DevExpress.XtraEditors.Calendar.CustomDrawDayNumberCellEventHandler(this.repositoryItemDateEdit_DrawItem);
 			this.repositoryItemDateEditNull.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this.repositoryItemDateEditNull_CloseUp);
 			this.repositoryItemDateEditNull.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.repositoryItemDateEditNull_Closed);
@@ -1174,6 +1181,39 @@
             0});
 			this.repositoryItemSpinEditColorPCIEdit.Name = "repositoryItemSpinEditColorPCIEdit";
 			// 
+			// repositoryItemTextEditEmpty
+			// 
+			this.repositoryItemTextEditEmpty.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.Appearance.BackColor2 = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.Appearance.BorderColor = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.Appearance.ForeColor = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.Appearance.Options.UseBackColor = true;
+			this.repositoryItemTextEditEmpty.Appearance.Options.UseBorderColor = true;
+			this.repositoryItemTextEditEmpty.Appearance.Options.UseForeColor = true;
+			this.repositoryItemTextEditEmpty.AppearanceDisabled.BackColor = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.AppearanceDisabled.BackColor2 = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.AppearanceDisabled.BorderColor = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.AppearanceDisabled.ForeColor = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.AppearanceDisabled.Options.UseBackColor = true;
+			this.repositoryItemTextEditEmpty.AppearanceDisabled.Options.UseBorderColor = true;
+			this.repositoryItemTextEditEmpty.AppearanceDisabled.Options.UseForeColor = true;
+			this.repositoryItemTextEditEmpty.AppearanceFocused.BackColor = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.AppearanceFocused.BackColor2 = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.AppearanceFocused.BorderColor = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.AppearanceFocused.ForeColor = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.AppearanceFocused.Options.UseBackColor = true;
+			this.repositoryItemTextEditEmpty.AppearanceFocused.Options.UseBorderColor = true;
+			this.repositoryItemTextEditEmpty.AppearanceFocused.Options.UseForeColor = true;
+			this.repositoryItemTextEditEmpty.AppearanceReadOnly.BackColor = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.AppearanceReadOnly.BackColor2 = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.AppearanceReadOnly.BorderColor = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.AppearanceReadOnly.ForeColor = System.Drawing.Color.Transparent;
+			this.repositoryItemTextEditEmpty.AppearanceReadOnly.Options.UseBackColor = true;
+			this.repositoryItemTextEditEmpty.AppearanceReadOnly.Options.UseBorderColor = true;
+			this.repositoryItemTextEditEmpty.AppearanceReadOnly.Options.UseForeColor = true;
+			this.repositoryItemTextEditEmpty.AutoHeight = false;
+			this.repositoryItemTextEditEmpty.Name = "repositoryItemTextEditEmpty";
+			// 
 			// toolTipController
 			// 
 			this.toolTipController.Rounded = true;
@@ -1182,7 +1222,7 @@
 			// 
 			// panelBottom
 			// 
-			this.panelBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.panelBottom.BackColor = System.Drawing.Color.White;
 			this.panelBottom.Controls.Add(this.layoutControl);
 			this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panelBottom.Location = new System.Drawing.Point(0, 295);
@@ -1218,7 +1258,6 @@
 			this.layoutControlGroupRoot.Name = "layoutControlGroupRoot";
 			this.layoutControlGroupRoot.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
 			this.layoutControlGroupRoot.Size = new System.Drawing.Size(986, 57);
-			this.layoutControlGroupRoot.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
 			this.layoutControlGroupRoot.Text = "layoutControlGroupRoot";
 			// 
 			// layoutControlGroup1
@@ -1235,6 +1274,7 @@
 			// 
 			// laTotalInserts
 			// 
+			this.laTotalInserts.AllowHotTrack = false;
 			this.laTotalInserts.AppearanceItemCaption.BorderColor = System.Drawing.Color.Transparent;
 			this.laTotalInserts.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.laTotalInserts.AppearanceItemCaption.Options.UseBorderColor = true;
@@ -1251,6 +1291,7 @@
 			// 
 			// laTotalSquare
 			// 
+			this.laTotalSquare.AllowHotTrack = false;
 			this.laTotalSquare.AppearanceItemCaption.BorderColor = System.Drawing.Color.Transparent;
 			this.laTotalSquare.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laTotalSquare.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black;
@@ -1281,6 +1322,7 @@
 			// 
 			// laAvgPCIRate
 			// 
+			this.laAvgPCIRate.AllowHotTrack = false;
 			this.laAvgPCIRate.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.laAvgPCIRate.AppearanceItemCaption.Options.UseFont = true;
 			this.laAvgPCIRate.CustomizationFormText = "Avg PCI:";
@@ -1295,6 +1337,7 @@
 			// 
 			// laAvgADRate
 			// 
+			this.laAvgADRate.AllowHotTrack = false;
 			this.laAvgADRate.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.laAvgADRate.AppearanceItemCaption.Options.UseFont = true;
 			this.laAvgADRate.CustomizationFormText = "Avg Ad Cost:";
@@ -1321,6 +1364,7 @@
 			// 
 			// laTotalFinalRateValue
 			// 
+			this.laTotalFinalRateValue.AllowHotTrack = false;
 			this.laTotalFinalRateValue.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
 			this.laTotalFinalRateValue.AppearanceItemCaption.Options.UseFont = true;
 			this.laTotalFinalRateValue.CustomizationFormText = "1";
@@ -1335,6 +1379,7 @@
 			// 
 			// laAvgFinalRateValue
 			// 
+			this.laAvgFinalRateValue.AllowHotTrack = false;
 			this.laAvgFinalRateValue.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
 			this.laAvgFinalRateValue.AppearanceItemCaption.Options.UseFont = true;
 			this.laAvgFinalRateValue.CustomizationFormText = "1";
@@ -1362,6 +1407,7 @@
 			// 
 			// laTotalInsertsValue
 			// 
+			this.laTotalInsertsValue.AllowHotTrack = false;
 			this.laTotalInsertsValue.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laTotalInsertsValue.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black;
 			this.laTotalInsertsValue.AppearanceItemCaption.Options.UseFont = true;
@@ -1379,6 +1425,7 @@
 			// 
 			// laTotalSquareValue
 			// 
+			this.laTotalSquareValue.AllowHotTrack = false;
 			this.laTotalSquareValue.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laTotalSquareValue.AppearanceItemCaption.Options.UseFont = true;
 			this.laTotalSquareValue.CustomizationFormText = "1";
@@ -1406,6 +1453,7 @@
 			// 
 			// laAvgPCIRateValue
 			// 
+			this.laAvgPCIRateValue.AllowHotTrack = false;
 			this.laAvgPCIRateValue.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
 			this.laAvgPCIRateValue.AppearanceItemCaption.Options.UseFont = true;
 			this.laAvgPCIRateValue.CustomizationFormText = "1";
@@ -1420,6 +1468,7 @@
 			// 
 			// laAvgADRateValue
 			// 
+			this.laAvgADRateValue.AllowHotTrack = false;
 			this.laAvgADRateValue.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
 			this.laAvgADRateValue.AppearanceItemCaption.Options.UseFont = true;
 			this.laAvgADRateValue.CustomizationFormText = "1";
@@ -1446,6 +1495,7 @@
 			// 
 			// laTotalDiscountRate
 			// 
+			this.laTotalDiscountRate.AllowHotTrack = false;
 			this.laTotalDiscountRate.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.laTotalDiscountRate.AppearanceItemCaption.Options.UseFont = true;
 			this.laTotalDiscountRate.CustomizationFormText = "Total Discounts:";
@@ -1460,6 +1510,7 @@
 			// 
 			// laTotalColorPricingCalculated
 			// 
+			this.laTotalColorPricingCalculated.AllowHotTrack = false;
 			this.laTotalColorPricingCalculated.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.laTotalColorPricingCalculated.AppearanceItemCaption.Options.UseFont = true;
 			this.laTotalColorPricingCalculated.CustomizationFormText = "Total Color:";
@@ -1487,6 +1538,7 @@
 			// 
 			// laTotalDiscountRateValue
 			// 
+			this.laTotalDiscountRateValue.AllowHotTrack = false;
 			this.laTotalDiscountRateValue.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
 			this.laTotalDiscountRateValue.AppearanceItemCaption.Options.UseFont = true;
 			this.laTotalDiscountRateValue.CustomizationFormText = "1";
@@ -1501,6 +1553,7 @@
 			// 
 			// laTotalColorPricingCalculatedValue
 			// 
+			this.laTotalColorPricingCalculatedValue.AllowHotTrack = false;
 			this.laTotalColorPricingCalculatedValue.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
 			this.laTotalColorPricingCalculatedValue.AppearanceItemCaption.Options.UseFont = true;
 			this.laTotalColorPricingCalculatedValue.CustomizationFormText = "1";
@@ -1527,6 +1580,7 @@
 			// 
 			// laAvgFinalRate
 			// 
+			this.laAvgFinalRate.AllowHotTrack = false;
 			this.laAvgFinalRate.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.laAvgFinalRate.AppearanceItemCaption.Options.UseFont = true;
 			this.laAvgFinalRate.CustomizationFormText = "*FINAL Avg Ad Cost:";
@@ -1541,6 +1595,7 @@
 			// 
 			// laTotalFinalRate
 			// 
+			this.laTotalFinalRate.AllowHotTrack = false;
 			this.laTotalFinalRate.AppearanceItemCaption.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laTotalFinalRate.AppearanceItemCaption.Options.UseFont = true;
 			this.laTotalFinalRate.CustomizationFormText = "*TOTAL INVESTMENT:";
@@ -1553,51 +1608,15 @@
 			this.laTotalFinalRate.Text = "*TOTAL INVESTMENT:";
 			this.laTotalFinalRate.TextSize = new System.Drawing.Size(135, 16);
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
-			// repositoryItemTextEditEmpty
-			// 
-			this.repositoryItemTextEditEmpty.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.Appearance.BackColor2 = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.Appearance.BorderColor = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.Appearance.ForeColor = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.Appearance.Options.UseBackColor = true;
-			this.repositoryItemTextEditEmpty.Appearance.Options.UseBorderColor = true;
-			this.repositoryItemTextEditEmpty.Appearance.Options.UseForeColor = true;
-			this.repositoryItemTextEditEmpty.AppearanceDisabled.BackColor = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.AppearanceDisabled.BackColor2 = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.AppearanceDisabled.BorderColor = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.AppearanceDisabled.ForeColor = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.AppearanceDisabled.Options.UseBackColor = true;
-			this.repositoryItemTextEditEmpty.AppearanceDisabled.Options.UseBorderColor = true;
-			this.repositoryItemTextEditEmpty.AppearanceDisabled.Options.UseForeColor = true;
-			this.repositoryItemTextEditEmpty.AppearanceFocused.BackColor = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.AppearanceFocused.BackColor2 = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.AppearanceFocused.BorderColor = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.AppearanceFocused.ForeColor = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.AppearanceFocused.Options.UseBackColor = true;
-			this.repositoryItemTextEditEmpty.AppearanceFocused.Options.UseBorderColor = true;
-			this.repositoryItemTextEditEmpty.AppearanceFocused.Options.UseForeColor = true;
-			this.repositoryItemTextEditEmpty.AppearanceReadOnly.BackColor = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.AppearanceReadOnly.BackColor2 = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.AppearanceReadOnly.BorderColor = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.AppearanceReadOnly.ForeColor = System.Drawing.Color.Transparent;
-			this.repositoryItemTextEditEmpty.AppearanceReadOnly.Options.UseBackColor = true;
-			this.repositoryItemTextEditEmpty.AppearanceReadOnly.Options.UseBorderColor = true;
-			this.repositoryItemTextEditEmpty.AppearanceReadOnly.Options.UseForeColor = true;
-			this.repositoryItemTextEditEmpty.AutoHeight = false;
-			this.repositoryItemTextEditEmpty.Name = "repositoryItemTextEditEmpty";
-			// 
 			// PrintProductControl
 			// 
 			this.Controls.Add(this.gridControlPublication);
 			this.Controls.Add(this.panelBottom);
+			this.Name = "PrintProductControl";
 			this.Size = new System.Drawing.Size(986, 352);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPublication)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewPublication)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateNull.VistaTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateNull.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateNull)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditPCIRateDisplay)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRateDisplay)).EndInit();
@@ -1605,7 +1624,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountRate)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingDisplay)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit.VistaTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditPCIRateEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRateDisplayNull)).EndInit();
@@ -1615,7 +1634,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsDisplayFirstRow)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingDisplayFirstRow)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditNull.VistaTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditNull.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditNull)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDiscountsEditFirstRow)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPricingEditFirstRow)).EndInit();
@@ -1629,6 +1648,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIDisplay)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIEditFirtsRow)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColorPCIEdit)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditEmpty)).EndInit();
 			this.panelBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupRoot)).EndInit();
@@ -1656,7 +1676,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup9)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.laAvgFinalRate)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.laTotalFinalRate)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditEmpty)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -1722,7 +1741,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEditNull;
         private DevExpress.Utils.ToolTipController toolTipController;
 		private System.Windows.Forms.ImageList imageList;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
         public DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditPCIRateEditFirstRow;
         public DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditPCIRateDisplay;
         public DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditPCIRateDisplayFirstRow;

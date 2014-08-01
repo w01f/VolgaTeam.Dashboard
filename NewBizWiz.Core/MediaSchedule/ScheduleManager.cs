@@ -1079,6 +1079,14 @@ namespace NewBizWiz.Core.MediaSchedule
 			RebuildProgramIndexes();
 		}
 
+		public void CloneProgram(int programIndex, bool fullClone)
+		{
+			if (programIndex < 0 || programIndex >= Programs.Count) return;
+			var program = Programs[programIndex];
+			Programs.Add(program.Clone(fullClone));
+			RebuildProgramIndexes();
+		}
+
 		private void RebuildProgramIndexes()
 		{
 			for (int i = 0; i < Programs.Count; i++)
@@ -1448,6 +1456,21 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 		}
 
+		public Program Clone(bool fullClone)
+		{
+			var clone = new Program(Parent);
+			clone.Name = Name;
+			clone.Station = Station;
+			clone.Daypart = Daypart;
+			clone.Day = Day;
+			clone.Time = Time;
+			clone.Length = Length;
+			clone.Rate = Rate;
+			clone.Rating = Rating;
+			clone.Spots.AddRange(Spots.Select(s => s.Clone(clone, fullClone)));
+			return clone;
+		}
+
 		public decimal SummaryOrder
 		{
 			get { return Index; }
@@ -1772,6 +1795,11 @@ namespace NewBizWiz.Core.MediaSchedule
 					break;
 			}
 			return result;
+		}
+
+		public Spot Clone(Program parent, bool fullClone)
+		{
+			return new Spot(parent) { Date = Date, Count = fullClone ? Count : null };
 		}
 	}
 

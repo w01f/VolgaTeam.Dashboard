@@ -28,12 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
 			this.memoEditManual = new DevExpress.XtraEditors.MemoEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.checkEditEnable = new DevExpress.XtraEditors.CheckEdit();
 			this.pnControls = new System.Windows.Forms.Panel();
 			this.memoEditAuto3 = new DevExpress.XtraEditors.MemoEdit();
@@ -70,6 +68,7 @@
 			this.buttonXCancel.Location = new System.Drawing.Point(479, 481);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(107, 36);
+			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCancel.TabIndex = 8;
 			this.buttonXCancel.Text = "Cancel";
 			this.buttonXCancel.TextColor = System.Drawing.Color.Black;
@@ -83,6 +82,7 @@
 			this.buttonXOK.Location = new System.Drawing.Point(360, 481);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(107, 36);
+			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOK.TabIndex = 7;
 			this.buttonXOK.Text = "OK";
 			this.buttonXOK.TextColor = System.Drawing.Color.Black;
@@ -94,11 +94,16 @@
 			this.memoEditManual.Enabled = false;
 			this.memoEditManual.Location = new System.Drawing.Point(36, 290);
 			this.memoEditManual.Name = "memoEditManual";
+			this.memoEditManual.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.memoEditManual.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.memoEditManual.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.memoEditManual.Properties.Appearance.Options.UseBackColor = true;
 			this.memoEditManual.Properties.Appearance.Options.UseFont = true;
+			this.memoEditManual.Properties.Appearance.Options.UseForeColor = true;
 			this.memoEditManual.Properties.NullText = "Type your own info here...";
 			this.memoEditManual.Size = new System.Drawing.Size(551, 134);
 			this.memoEditManual.TabIndex = 4;
+			this.memoEditManual.UseOptimizedRendering = true;
 			this.memoEditManual.EditValueChanged += new System.EventHandler(this.memoEditManual_EditValueChanged);
 			// 
 			// styleController
@@ -116,10 +121,6 @@
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// checkEditEnable
 			// 
 			this.checkEditEnable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -127,17 +128,19 @@
 			this.checkEditEnable.Location = new System.Drawing.Point(9, 7);
 			this.checkEditEnable.Name = "checkEditEnable";
 			this.checkEditEnable.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F);
+			this.checkEditEnable.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditEnable.Properties.Appearance.Options.UseFont = true;
+			this.checkEditEnable.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditEnable.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditEnable.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditEnable.Properties.Caption = "Show Digital Product Info on this PowerPoint Slide:";
-			this.checkEditEnable.Size = new System.Drawing.Size(570, 23);
+			this.checkEditEnable.Size = new System.Drawing.Size(570, 19);
 			this.checkEditEnable.TabIndex = 10;
 			this.checkEditEnable.CheckedChanged += new System.EventHandler(this.checkEditEnable_CheckedChanged);
 			// 
 			// pnControls
 			// 
-			this.pnControls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnControls.BackColor = System.Drawing.Color.Transparent;
 			this.pnControls.Controls.Add(this.memoEditAuto3);
 			this.pnControls.Controls.Add(this.memoEditAuto2);
 			this.pnControls.Controls.Add(this.memoEditAuto1);
@@ -147,6 +150,7 @@
 			this.pnControls.Controls.Add(this.checkEditAuto2);
 			this.pnControls.Controls.Add(this.checkEditAuto1);
 			this.pnControls.Enabled = false;
+			this.pnControls.ForeColor = System.Drawing.Color.Black;
 			this.pnControls.Location = new System.Drawing.Point(-1, 36);
 			this.pnControls.Name = "pnControls";
 			this.pnControls.Size = new System.Drawing.Size(595, 427);
@@ -160,14 +164,16 @@
 			this.memoEditAuto3.Location = new System.Drawing.Point(36, 199);
 			this.memoEditAuto3.Name = "memoEditAuto3";
 			this.memoEditAuto3.Properties.AllowFocused = false;
-			this.memoEditAuto3.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.memoEditAuto3.Properties.Appearance.BackColor = System.Drawing.Color.White;
+			this.memoEditAuto3.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.memoEditAuto3.Properties.Appearance.Options.UseBackColor = true;
-			this.memoEditAuto3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.memoEditAuto3.Properties.Appearance.Options.UseForeColor = true;
 			this.memoEditAuto3.Properties.ReadOnly = true;
 			this.memoEditAuto3.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.memoEditAuto3.Size = new System.Drawing.Size(551, 85);
 			this.memoEditAuto3.StyleController = this.styleController;
 			this.memoEditAuto3.TabIndex = 7;
+			this.memoEditAuto3.UseOptimizedRendering = true;
 			this.memoEditAuto3.EditValueChanged += new System.EventHandler(this.memoEditAuto_EditValueChanged);
 			// 
 			// memoEditAuto2
@@ -178,14 +184,16 @@
 			this.memoEditAuto2.Location = new System.Drawing.Point(36, 108);
 			this.memoEditAuto2.Name = "memoEditAuto2";
 			this.memoEditAuto2.Properties.AllowFocused = false;
-			this.memoEditAuto2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.memoEditAuto2.Properties.Appearance.BackColor = System.Drawing.Color.White;
+			this.memoEditAuto2.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.memoEditAuto2.Properties.Appearance.Options.UseBackColor = true;
-			this.memoEditAuto2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.memoEditAuto2.Properties.Appearance.Options.UseForeColor = true;
 			this.memoEditAuto2.Properties.ReadOnly = true;
 			this.memoEditAuto2.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.memoEditAuto2.Size = new System.Drawing.Size(551, 85);
 			this.memoEditAuto2.StyleController = this.styleController;
 			this.memoEditAuto2.TabIndex = 6;
+			this.memoEditAuto2.UseOptimizedRendering = true;
 			this.memoEditAuto2.EditValueChanged += new System.EventHandler(this.memoEditAuto_EditValueChanged);
 			// 
 			// memoEditAuto1
@@ -196,24 +204,28 @@
 			this.memoEditAuto1.Location = new System.Drawing.Point(36, 17);
 			this.memoEditAuto1.Name = "memoEditAuto1";
 			this.memoEditAuto1.Properties.AllowFocused = false;
-			this.memoEditAuto1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.memoEditAuto1.Properties.Appearance.BackColor = System.Drawing.Color.White;
+			this.memoEditAuto1.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.memoEditAuto1.Properties.Appearance.Options.UseBackColor = true;
-			this.memoEditAuto1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.memoEditAuto1.Properties.Appearance.Options.UseForeColor = true;
 			this.memoEditAuto1.Properties.ReadOnly = true;
 			this.memoEditAuto1.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.memoEditAuto1.Size = new System.Drawing.Size(551, 85);
 			this.memoEditAuto1.StyleController = this.styleController;
 			this.memoEditAuto1.TabIndex = 5;
+			this.memoEditAuto1.UseOptimizedRendering = true;
 			this.memoEditAuto1.EditValueChanged += new System.EventHandler(this.memoEditAuto_EditValueChanged);
 			// 
 			// checkEditManual
 			// 
 			this.checkEditManual.Location = new System.Drawing.Point(10, 290);
 			this.checkEditManual.Name = "checkEditManual";
+			this.checkEditManual.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditManual.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditManual.Properties.Caption = "checkEdit1";
 			this.checkEditManual.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditManual.Properties.RadioGroupIndex = 1;
-			this.checkEditManual.Size = new System.Drawing.Size(20, 21);
+			this.checkEditManual.Size = new System.Drawing.Size(17, 20);
 			this.checkEditManual.StyleController = this.styleController;
 			this.checkEditManual.TabIndex = 3;
 			this.checkEditManual.TabStop = false;
@@ -223,10 +235,12 @@
 			// 
 			this.checkEditAuto3.Location = new System.Drawing.Point(10, 197);
 			this.checkEditAuto3.Name = "checkEditAuto3";
+			this.checkEditAuto3.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditAuto3.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditAuto3.Properties.Caption = "checkEdit1";
 			this.checkEditAuto3.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditAuto3.Properties.RadioGroupIndex = 1;
-			this.checkEditAuto3.Size = new System.Drawing.Size(20, 21);
+			this.checkEditAuto3.Size = new System.Drawing.Size(17, 20);
 			this.checkEditAuto3.StyleController = this.styleController;
 			this.checkEditAuto3.TabIndex = 2;
 			this.checkEditAuto3.TabStop = false;
@@ -236,10 +250,12 @@
 			// 
 			this.checkEditAuto2.Location = new System.Drawing.Point(10, 106);
 			this.checkEditAuto2.Name = "checkEditAuto2";
+			this.checkEditAuto2.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditAuto2.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditAuto2.Properties.Caption = "checkEdit1";
 			this.checkEditAuto2.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditAuto2.Properties.RadioGroupIndex = 1;
-			this.checkEditAuto2.Size = new System.Drawing.Size(20, 21);
+			this.checkEditAuto2.Size = new System.Drawing.Size(17, 20);
 			this.checkEditAuto2.StyleController = this.styleController;
 			this.checkEditAuto2.TabIndex = 1;
 			this.checkEditAuto2.TabStop = false;
@@ -249,10 +265,12 @@
 			// 
 			this.checkEditAuto1.Location = new System.Drawing.Point(10, 15);
 			this.checkEditAuto1.Name = "checkEditAuto1";
+			this.checkEditAuto1.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditAuto1.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditAuto1.Properties.Caption = "checkEdit1";
 			this.checkEditAuto1.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditAuto1.Properties.RadioGroupIndex = 1;
-			this.checkEditAuto1.Size = new System.Drawing.Size(20, 21);
+			this.checkEditAuto1.Size = new System.Drawing.Size(17, 20);
 			this.checkEditAuto1.StyleController = this.styleController;
 			this.checkEditAuto1.TabIndex = 0;
 			this.checkEditAuto1.TabStop = false;
@@ -265,14 +283,14 @@
 			this.checkEditApplyAll.Location = new System.Drawing.Point(9, 496);
 			this.checkEditApplyAll.Name = "checkEditApplyAll";
 			this.checkEditApplyAll.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditApplyAll.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditApplyAll.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditApplyAll.Properties.Appearance.Options.UseFont = true;
 			this.checkEditApplyAll.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditApplyAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditApplyAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditApplyAll.Properties.AutoWidth = true;
 			this.checkEditApplyAll.Properties.Caption = "Apply this digital info to all schedule types";
-			this.checkEditApplyAll.Size = new System.Drawing.Size(292, 22);
+			this.checkEditApplyAll.Size = new System.Drawing.Size(291, 19);
 			this.checkEditApplyAll.TabIndex = 104;
 			// 
 			// checkEditOutputOnlyOnce
@@ -282,24 +300,25 @@
 			this.checkEditOutputOnlyOnce.Location = new System.Drawing.Point(9, 469);
 			this.checkEditOutputOnlyOnce.Name = "checkEditOutputOnlyOnce";
 			this.checkEditOutputOnlyOnce.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditOutputOnlyOnce.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditOutputOnlyOnce.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditOutputOnlyOnce.Properties.Appearance.Options.UseFont = true;
 			this.checkEditOutputOnlyOnce.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditOutputOnlyOnce.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditOutputOnlyOnce.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditOutputOnlyOnce.Properties.AutoWidth = true;
 			this.checkEditOutputOnlyOnce.Properties.Caption = "Show digital info only on the 1st slide";
-			this.checkEditOutputOnlyOnce.Size = new System.Drawing.Size(259, 22);
+			this.checkEditOutputOnlyOnce.Size = new System.Drawing.Size(258, 19);
 			this.checkEditOutputOnlyOnce.TabIndex = 106;
 			// 
 			// superTooltip
 			// 
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
 			// FormDigital
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(593, 524);
 			this.Controls.Add(this.pnControls);
 			this.Controls.Add(this.checkEditOutputOnlyOnce);
@@ -307,6 +326,7 @@
 			this.Controls.Add(this.checkEditEnable);
 			this.Controls.Add(this.buttonXCancel);
 			this.Controls.Add(this.buttonXOK);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -332,7 +352,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditApplyAll.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputOnlyOnce.Properties)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
@@ -340,7 +359,6 @@
 
 		private DevComponents.DotNetBar.ButtonX buttonXCancel;
 		private DevComponents.DotNetBar.ButtonX buttonXOK;
-		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		private DevExpress.XtraEditors.StyleController styleController;
 		private DevExpress.XtraEditors.MemoEdit memoEditManual;
 		private DevExpress.XtraEditors.CheckEdit checkEditEnable;

@@ -4,12 +4,13 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using DevComponents.DotNetBar.Metro;
 using NewBizWiz.CommonGUI.Properties;
 using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.CommonGUI.Themes
 {
-	public partial class FormThemeSelector : Form
+	public partial class FormThemeSelector : MetroForm
 	{
 		private ThemeContainerControl _themeContainer;
 
@@ -52,7 +53,6 @@ namespace NewBizWiz.CommonGUI.Themes
 			var themesExisted = themes.Any();
 			selectorButton.ForeColor = Color.Black;
 			selectorButton.ImagePosition = eImagePosition.Left;
-			selectorButton.BeginGroup = themesExisted;
 			selectorButton.Text = String.Empty;
 			selectorButton.AutoExpandOnClick = false;
 			if (themesExisted)

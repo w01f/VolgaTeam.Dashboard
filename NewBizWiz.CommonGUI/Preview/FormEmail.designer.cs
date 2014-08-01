@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem6 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip9 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem9 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem9 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip10 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem10 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem10 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem7 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip8 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem8 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem8 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem3 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem4 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
+			DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
 			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
 			this.barOperations = new DevExpress.XtraBars.Bar();
 			this.barLargeButtonItemRegularEmail = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -110,12 +110,12 @@
 			this.barLargeButtonItemRegularEmail.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.RegularEmail;
 			this.barLargeButtonItemRegularEmail.Id = 4;
 			this.barLargeButtonItemRegularEmail.Name = "barLargeButtonItemRegularEmail";
-			toolTipTitleItem6.Text = "Email PowerPoint file";
-			toolTipItem6.LeftIndent = 6;
-			toolTipItem6.Text = "Send this Online Schedule as a PowerPoint email attachment";
-			superToolTip6.Items.Add(toolTipTitleItem6);
-			superToolTip6.Items.Add(toolTipItem6);
-			this.barLargeButtonItemRegularEmail.SuperTip = superToolTip6;
+			toolTipTitleItem1.Text = "Email PowerPoint file";
+			toolTipItem1.LeftIndent = 6;
+			toolTipItem1.Text = "Send this Online Schedule as a PowerPoint email attachment";
+			superToolTip1.Items.Add(toolTipTitleItem1);
+			superToolTip1.Items.Add(toolTipItem1);
+			this.barLargeButtonItemRegularEmail.SuperTip = superToolTip1;
 			this.barLargeButtonItemRegularEmail.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemRegularEmail_ItemClick);
 			// 
 			// barLargeButtonItemLockedEmail
@@ -126,12 +126,12 @@
 			this.barLargeButtonItemLockedEmail.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.LockedEmail;
 			this.barLargeButtonItemLockedEmail.Id = 13;
 			this.barLargeButtonItemLockedEmail.Name = "barLargeButtonItemLockedEmail";
-			toolTipTitleItem9.Text = "Email Locked PowerPoint";
-			toolTipItem9.LeftIndent = 6;
-			toolTipItem9.Text = "Send this Online Schedule as a PowerPoint Image File that is locked for editing";
-			superToolTip9.Items.Add(toolTipTitleItem9);
-			superToolTip9.Items.Add(toolTipItem9);
-			this.barLargeButtonItemLockedEmail.SuperTip = superToolTip9;
+			toolTipTitleItem2.Text = "Email Locked PowerPoint";
+			toolTipItem2.LeftIndent = 6;
+			toolTipItem2.Text = "Send this Online Schedule as a PowerPoint Image File that is locked for editing";
+			superToolTip2.Items.Add(toolTipTitleItem2);
+			superToolTip2.Items.Add(toolTipItem2);
+			this.barLargeButtonItemLockedEmail.SuperTip = superToolTip2;
 			this.barLargeButtonItemLockedEmail.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemLockedEmail_ItemClick);
 			// 
 			// barLargeButtonItemPDFEmail
@@ -142,12 +142,12 @@
 			this.barLargeButtonItemPDFEmail.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.PDFEmail;
 			this.barLargeButtonItemPDFEmail.Id = 14;
 			this.barLargeButtonItemPDFEmail.Name = "barLargeButtonItemPDFEmail";
-			toolTipTitleItem10.Text = "Email as PDF";
-			toolTipItem10.LeftIndent = 6;
-			toolTipItem10.Text = "Send this Online Schedule as a PDF file email attachment";
-			superToolTip10.Items.Add(toolTipTitleItem10);
-			superToolTip10.Items.Add(toolTipItem10);
-			this.barLargeButtonItemPDFEmail.SuperTip = superToolTip10;
+			toolTipTitleItem3.Text = "Email as PDF";
+			toolTipItem3.LeftIndent = 6;
+			toolTipItem3.Text = "Send this Online Schedule as a PDF file email attachment";
+			superToolTip3.Items.Add(toolTipTitleItem3);
+			superToolTip3.Items.Add(toolTipItem3);
+			this.barLargeButtonItemPDFEmail.SuperTip = superToolTip3;
 			this.barLargeButtonItemPDFEmail.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemPDFEmail_ItemClick);
 			// 
 			// barLargeButtonItemHelp
@@ -157,12 +157,12 @@
 			this.barLargeButtonItemHelp.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.Help;
 			this.barLargeButtonItemHelp.Id = 6;
 			this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
-			toolTipTitleItem7.Text = "HELP";
-			toolTipItem7.LeftIndent = 6;
-			toolTipItem7.Text = "Help me understand how to Email my Schedules";
-			superToolTip7.Items.Add(toolTipTitleItem7);
-			superToolTip7.Items.Add(toolTipItem7);
-			this.barLargeButtonItemHelp.SuperTip = superToolTip7;
+			toolTipTitleItem4.Text = "HELP";
+			toolTipItem4.LeftIndent = 6;
+			toolTipItem4.Text = "Help me understand how to Email my Schedules";
+			superToolTip4.Items.Add(toolTipTitleItem4);
+			superToolTip4.Items.Add(toolTipItem4);
+			this.barLargeButtonItemHelp.SuperTip = superToolTip4;
 			this.barLargeButtonItemHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemHelp_ItemClick);
 			// 
 			// barLargeButtonItemExit
@@ -172,25 +172,27 @@
 			this.barLargeButtonItemExit.Glyph = global::NewBizWiz.CommonGUI.Properties.Resources.Exit;
 			this.barLargeButtonItemExit.Id = 7;
 			this.barLargeButtonItemExit.Name = "barLargeButtonItemExit";
-			toolTipTitleItem8.Text = "EXIT";
-			toolTipItem8.LeftIndent = 6;
-			toolTipItem8.Text = "Close this Window ";
-			superToolTip8.Items.Add(toolTipTitleItem8);
-			superToolTip8.Items.Add(toolTipItem8);
-			this.barLargeButtonItemExit.SuperTip = superToolTip8;
+			toolTipTitleItem5.Text = "EXIT";
+			toolTipItem5.LeftIndent = 6;
+			toolTipItem5.Text = "Close this Window ";
+			superToolTip5.Items.Add(toolTipTitleItem5);
+			superToolTip5.Items.Add(toolTipItem5);
+			this.barLargeButtonItemExit.SuperTip = superToolTip5;
 			this.barLargeButtonItemExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemExit_ItemClick);
 			// 
 			// barDockControlTop
 			// 
 			this.barDockControlTop.CausesValidation = false;
 			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.barDockControlTop.ForeColor = System.Drawing.Color.Black;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-			this.barDockControlTop.Size = new System.Drawing.Size(934, 86);
+			this.barDockControlTop.Size = new System.Drawing.Size(934, 91);
 			// 
 			// barDockControlBottom
 			// 
 			this.barDockControlBottom.CausesValidation = false;
 			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.barDockControlBottom.ForeColor = System.Drawing.Color.Black;
 			this.barDockControlBottom.Location = new System.Drawing.Point(0, 562);
 			this.barDockControlBottom.Size = new System.Drawing.Size(934, 0);
 			// 
@@ -198,20 +200,26 @@
 			// 
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 86);
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 476);
+			this.barDockControlLeft.ForeColor = System.Drawing.Color.Black;
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 91);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 471);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.barDockControlRight.Location = new System.Drawing.Point(934, 86);
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 476);
+			this.barDockControlRight.ForeColor = System.Drawing.Color.Black;
+			this.barDockControlRight.Location = new System.Drawing.Point(934, 91);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 471);
 			// 
 			// xtraTabControlGroups
 			// 
+			this.xtraTabControlGroups.Appearance.BackColor = System.Drawing.Color.White;
 			this.xtraTabControlGroups.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlGroups.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.xtraTabControlGroups.Appearance.Options.UseBackColor = true;
 			this.xtraTabControlGroups.Appearance.Options.UseFont = true;
+			this.xtraTabControlGroups.Appearance.Options.UseForeColor = true;
 			this.xtraTabControlGroups.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlGroups.AppearancePage.Header.Options.UseFont = true;
 			this.xtraTabControlGroups.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -223,21 +231,22 @@
 			this.xtraTabControlGroups.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControlGroups.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControlGroups.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControlGroups.Location = new System.Drawing.Point(0, 86);
+			this.xtraTabControlGroups.Location = new System.Drawing.Point(0, 91);
 			this.xtraTabControlGroups.Name = "xtraTabControlGroups";
-			this.xtraTabControlGroups.Size = new System.Drawing.Size(934, 476);
+			this.xtraTabControlGroups.Size = new System.Drawing.Size(934, 471);
 			this.xtraTabControlGroups.TabIndex = 11;
 			// 
 			// FormEmail
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(934, 562);
 			this.Controls.Add(this.xtraTabControlGroups);
 			this.Controls.Add(this.barDockControlLeft);
 			this.Controls.Add(this.barDockControlRight);
 			this.Controls.Add(this.barDockControlBottom);
 			this.Controls.Add(this.barDockControlTop);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "FormEmail";
 			this.ShowIcon = false;
@@ -245,6 +254,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Email this Basic Overview";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormQuickView_FormClosed);
+			this.Shown += new System.EventHandler(this.FormEmail_Shown);
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlGroups)).EndInit();
 			this.ResumeLayout(false);

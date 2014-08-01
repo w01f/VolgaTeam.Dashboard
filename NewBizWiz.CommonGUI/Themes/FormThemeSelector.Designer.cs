@@ -41,7 +41,9 @@
 			// 
 			// pnMain
 			// 
+			this.pnMain.BackColor = System.Drawing.Color.Transparent;
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnMain.ForeColor = System.Drawing.Color.Black;
 			this.pnMain.Location = new System.Drawing.Point(0, 40);
 			this.pnMain.Name = "pnMain";
 			this.pnMain.Size = new System.Drawing.Size(894, 408);
@@ -49,9 +51,11 @@
 			// 
 			// pnButtons
 			// 
+			this.pnButtons.BackColor = System.Drawing.Color.Transparent;
 			this.pnButtons.Controls.Add(this.buttonXOK);
 			this.pnButtons.Controls.Add(this.buttonXCancel);
 			this.pnButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnButtons.ForeColor = System.Drawing.Color.Black;
 			this.pnButtons.Location = new System.Drawing.Point(0, 448);
 			this.pnButtons.Name = "pnButtons";
 			this.pnButtons.Size = new System.Drawing.Size(894, 46);
@@ -66,6 +70,7 @@
 			this.buttonXOK.Location = new System.Drawing.Point(613, 7);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(122, 32);
+			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOK.TabIndex = 4;
 			this.buttonXOK.Text = "Select";
 			this.buttonXOK.TextColor = System.Drawing.Color.Black;
@@ -79,15 +84,18 @@
 			this.buttonXCancel.Location = new System.Drawing.Point(760, 7);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(122, 32);
+			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCancel.TabIndex = 5;
 			this.buttonXCancel.Text = "Cancel";
 			this.buttonXCancel.TextColor = System.Drawing.Color.Black;
 			// 
 			// pnHeader
 			// 
+			this.pnHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
 			this.pnHeader.Controls.Add(this.laThemeName);
 			this.pnHeader.Controls.Add(this.laSlideSize);
 			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnHeader.ForeColor = System.Drawing.Color.Black;
 			this.pnHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnHeader.Name = "pnHeader";
 			this.pnHeader.Size = new System.Drawing.Size(894, 40);
@@ -95,9 +103,10 @@
 			// 
 			// laThemeName
 			// 
+			this.laThemeName.BackColor = System.Drawing.Color.White;
 			this.laThemeName.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.laThemeName.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laThemeName.ForeColor = System.Drawing.Color.White;
+			this.laThemeName.ForeColor = System.Drawing.Color.Black;
 			this.laThemeName.Location = new System.Drawing.Point(333, 0);
 			this.laThemeName.Name = "laThemeName";
 			this.laThemeName.Size = new System.Drawing.Size(561, 40);
@@ -107,9 +116,10 @@
 			// 
 			// laSlideSize
 			// 
+			this.laSlideSize.BackColor = System.Drawing.Color.White;
 			this.laSlideSize.Dock = System.Windows.Forms.DockStyle.Left;
 			this.laSlideSize.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laSlideSize.ForeColor = System.Drawing.Color.White;
+			this.laSlideSize.ForeColor = System.Drawing.Color.Black;
 			this.laSlideSize.Location = new System.Drawing.Point(0, 0);
 			this.laSlideSize.Name = "laSlideSize";
 			this.laSlideSize.Size = new System.Drawing.Size(333, 40);
@@ -120,11 +130,12 @@
 			// FormThemeSelector
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(894, 494);
 			this.Controls.Add(this.pnMain);
 			this.Controls.Add(this.pnHeader);
 			this.Controls.Add(this.pnButtons);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;

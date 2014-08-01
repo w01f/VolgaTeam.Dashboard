@@ -291,7 +291,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				quarterSelectorControl.Enabled = QuarterButton.Checked;
 				var selectedQuarter = quarterSelectorControl.SelectedQuarter;
 				foreach (var column in _spotColumns)
-					column.Visible = column.Tag == selectedQuarter || !QuarterButton.Checked;
+				{
+					var quarter = column.Tag as Quarter;
+					column.Visible = (quarter != null && selectedQuarter != null && quarter.ToString() == selectedQuarter.ToString()) || !QuarterButton.Checked;
+				}
 			}
 			else
 			{
@@ -559,6 +562,24 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			return true;
 		}
 
+		public virtual void CloneProgram(int sourceIndex, bool fullClone)
+		{
+			ScheduleSection.CloneProgram(sourceIndex, fullClone);
+			UpdateGrid(false);
+			UpdateSpotsStatus();
+			UpdateTotalsValues();
+			UpdateOutputStatus(ScheduleSection.Programs.Any());
+			if (advBandedGridViewSchedule.RowCount > 0)
+				advBandedGridViewSchedule.FocusedRowHandle = advBandedGridViewSchedule.RowCount - 1;
+			var options = new Dictionary<string, object>();
+			options.Add("Advertiser", ScheduleSection.Parent.BusinessName);
+			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), ScheduleSection.TotalSpots);
+			options.Add(String.Format("{0}lyAverageRate", SpotTitle), ScheduleSection.AvgRate);
+			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), ScheduleSection.TotalCost);
+			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("New Program Added", options));
+			SettingsNotSaved = true;
+		}
+
 		protected virtual void ScheduleSection_DataChanged(object sender, EventArgs e)
 		{
 			UpdateTotalsValues();
@@ -800,14 +821,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		private void pbOptionsHelp_Click(object sender, EventArgs e)
 		{
-			if (xtraTabControlOptions.SelectedTabPage == xtraTabPageOptionsLine)
-				BusinessWrapper.Instance.HelpManager.OpenHelpLink(String.Format("nav{0}", MediaMetaData.Instance.DataTypeString));
-			else if (xtraTabControlOptions.SelectedTabPage == xtraTabPageOptionsSecurity)
+			if (xtraTabControlOptions.SelectedTabPage == xtraTabPageOptionsSecurity)
 				BusinessWrapper.Instance.HelpManager.OpenHelpLink("navsecurity");
-			else if (xtraTabControlOptions.SelectedTabPage == xtraTabPageOptionsStyle)
-				BusinessWrapper.Instance.HelpManager.OpenHelpLink("navstyle");
-			else if (xtraTabControlOptions.SelectedTabPage == xtraTabPageOptionsTotals)
-				BusinessWrapper.Instance.HelpManager.OpenHelpLink("navinfo");
 		}
 
 		public void QuarterCheckedChanged(object sender, EventArgs e)
@@ -937,11 +952,22 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private void advBandedGridViewSchedule_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
 		{
 			if (!e.HitInfo.InRowCell) return;
-			if (e.HitInfo.Column != _spotColumns.First(sc => sc.Visible)) return;
-			var valueToClone = advBandedGridViewSchedule.GetRowCellValue(e.HitInfo.RowHandle, _spotColumns.FirstOrDefault(c => c.Visible));
-			e.Menu.Items.Add(new DXMenuItem(String.Format("Clone {0} 1 to All {0}s", SpotTitle), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, false)));
-			e.Menu.Items.Add(new DXMenuItem(String.Format("Clone every other {0}", SpotTitle), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, true)));
-			e.Menu.Items.Add(new DXMenuItem("Wipe all Spots on this line", (o, args) => CloneSpots(e.HitInfo.RowHandle, null, false)));
+			if (e.HitInfo.Column == _spotColumns.First(sc => sc.Visible))
+			{
+				var valueToClone = advBandedGridViewSchedule.GetRowCellValue(e.HitInfo.RowHandle, _spotColumns.FirstOrDefault(c => c.Visible));
+				e.Menu.Items.Add(new DXMenuItem(String.Format("Clone {0} 1 to All {0}s", SpotTitle), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, false)));
+				e.Menu.Items.Add(new DXMenuItem(String.Format("Clone every other {0}", SpotTitle), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, true)));
+				e.Menu.Items.Add(new DXMenuItem("Wipe all Spots on this line", (o, args) => CloneSpots(e.HitInfo.RowHandle, null, false)));
+			}
+			else if (e.HitInfo.Column == bandedGridColumnIndex ||
+					 e.HitInfo.Column == bandedGridColumnStation ||
+					 e.HitInfo.Column == bandedGridColumnDaypart ||
+					 e.HitInfo.Column == bandedGridColumnName)
+			{
+				var sourceIndex = advBandedGridViewSchedule.GetDataSourceRowIndex(e.HitInfo.RowHandle);
+				e.Menu.Items.Add(new DXMenuItem("Clone this Entire Line", (o, args) => CloneProgram(sourceIndex, true)));
+				e.Menu.Items.Add(new DXMenuItem("Clone Just this Program", (o, args) => CloneProgram(sourceIndex, false)));
+			}
 		}
 		#endregion
 

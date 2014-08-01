@@ -33,7 +33,6 @@
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.checkEditBusinessName = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageInput = new DevExpress.XtraTab.XtraTabPage();
@@ -73,10 +72,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDecisionMaker.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// checkEditBusinessName
 			// 
 			this.checkEditBusinessName.Location = new System.Drawing.Point(7, 7);
@@ -85,7 +80,7 @@
 			this.checkEditBusinessName.Properties.Appearance.Options.UseFont = true;
 			this.checkEditBusinessName.Properties.AutoWidth = true;
 			this.checkEditBusinessName.Properties.Caption = "Business Name: ";
-			this.checkEditBusinessName.Size = new System.Drawing.Size(123, 21);
+			this.checkEditBusinessName.Size = new System.Drawing.Size(122, 20);
 			this.checkEditBusinessName.TabIndex = 1;
 			// 
 			// xtraTabControl
@@ -93,12 +88,16 @@
 			this.xtraTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.xtraTabControl.Appearance.BackColor = System.Drawing.Color.White;
 			this.xtraTabControl.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControl.Appearance.Options.UseBackColor = true;
 			this.xtraTabControl.Appearance.Options.UseFont = true;
 			this.xtraTabControl.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControl.AppearancePage.Header.Options.UseFont = true;
 			this.xtraTabControl.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControl.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControl.AppearancePage.PageClient.BackColor = System.Drawing.Color.White;
+			this.xtraTabControl.AppearancePage.PageClient.Options.UseBackColor = true;
 			this.xtraTabControl.Location = new System.Drawing.Point(0, 34);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageInput;
@@ -114,33 +113,32 @@
 			this.xtraTabPageInput.Controls.Add(this.pnInputHeader);
 			this.xtraTabPageInput.Controls.Add(this.pnInputFooter);
 			this.xtraTabPageInput.Name = "xtraTabPageInput";
-			this.xtraTabPageInput.Size = new System.Drawing.Size(735, 497);
+			this.xtraTabPageInput.Size = new System.Drawing.Size(735, 495);
 			this.xtraTabPageInput.Text = "What Are you Selling?";
 			// 
 			// pnInputBorder
 			// 
-			this.pnInputBorder.BackColor = System.Drawing.Color.White;
+			this.pnInputBorder.BackColor = System.Drawing.Color.LightGray;
 			this.pnInputBorder.Controls.Add(this.xtraScrollableControlInput);
 			this.pnInputBorder.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnInputBorder.Location = new System.Drawing.Point(0, 50);
 			this.pnInputBorder.Name = "pnInputBorder";
 			this.pnInputBorder.Padding = new System.Windows.Forms.Padding(2);
-			this.pnInputBorder.Size = new System.Drawing.Size(505, 421);
+			this.pnInputBorder.Size = new System.Drawing.Size(505, 419);
 			this.pnInputBorder.TabIndex = 2;
 			// 
 			// xtraScrollableControlInput
 			// 
-			this.xtraScrollableControlInput.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.xtraScrollableControlInput.Appearance.BackColor = System.Drawing.Color.White;
 			this.xtraScrollableControlInput.Appearance.Options.UseBackColor = true;
 			this.xtraScrollableControlInput.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControlInput.Location = new System.Drawing.Point(2, 2);
 			this.xtraScrollableControlInput.Name = "xtraScrollableControlInput";
-			this.xtraScrollableControlInput.Size = new System.Drawing.Size(501, 417);
+			this.xtraScrollableControlInput.Size = new System.Drawing.Size(501, 415);
 			this.xtraScrollableControlInput.TabIndex = 0;
 			// 
 			// pnInputSummary
 			// 
-			this.pnInputSummary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.pnInputSummary.Controls.Add(this.buttonXAddItem);
 			this.pnInputSummary.Controls.Add(this.laFlightDates);
 			this.pnInputSummary.Controls.Add(this.laPresentationDate);
@@ -153,7 +151,7 @@
 			this.pnInputSummary.Dock = System.Windows.Forms.DockStyle.Right;
 			this.pnInputSummary.Location = new System.Drawing.Point(505, 50);
 			this.pnInputSummary.Name = "pnInputSummary";
-			this.pnInputSummary.Size = new System.Drawing.Size(230, 421);
+			this.pnInputSummary.Size = new System.Drawing.Size(230, 419);
 			this.pnInputSummary.TabIndex = 1;
 			// 
 			// buttonXAddItem
@@ -163,9 +161,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAddItem.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXAddItem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXAddItem.Location = new System.Drawing.Point(8, 381);
+			this.buttonXAddItem.Location = new System.Drawing.Point(8, 379);
 			this.buttonXAddItem.Name = "buttonXAddItem";
 			this.buttonXAddItem.Size = new System.Drawing.Size(215, 40);
+			this.buttonXAddItem.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXAddItem.TabIndex = 120;
 			this.buttonXAddItem.TabStop = false;
 			this.buttonXAddItem.Text = "Add an Item";
@@ -201,7 +200,7 @@
 			this.checkEditTotalInvestment.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditTotalInvestment.Properties.AutoWidth = true;
 			this.checkEditTotalInvestment.Properties.Caption = "Total Investment:";
-			this.checkEditTotalInvestment.Size = new System.Drawing.Size(121, 21);
+			this.checkEditTotalInvestment.Size = new System.Drawing.Size(120, 20);
 			this.checkEditTotalInvestment.TabIndex = 117;
 			// 
 			// spinEditTotal
@@ -242,7 +241,7 @@
 			this.checkEditPresentationDate.Properties.Appearance.Options.UseFont = true;
 			this.checkEditPresentationDate.Properties.AutoWidth = true;
 			this.checkEditPresentationDate.Properties.Caption = "Presentation Date: ";
-			this.checkEditPresentationDate.Size = new System.Drawing.Size(135, 21);
+			this.checkEditPresentationDate.Size = new System.Drawing.Size(134, 20);
 			this.checkEditPresentationDate.TabIndex = 111;
 			// 
 			// checkEditFlightDates
@@ -253,7 +252,7 @@
 			this.checkEditFlightDates.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFlightDates.Properties.AutoWidth = true;
 			this.checkEditFlightDates.Properties.Caption = "Campaign Dates: ";
-			this.checkEditFlightDates.Size = new System.Drawing.Size(127, 21);
+			this.checkEditFlightDates.Size = new System.Drawing.Size(126, 20);
 			this.checkEditFlightDates.TabIndex = 112;
 			// 
 			// spinEditMonthly
@@ -297,12 +296,11 @@
 			this.checkEditMonthlyInvestment.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditMonthlyInvestment.Properties.AutoWidth = true;
 			this.checkEditMonthlyInvestment.Properties.Caption = "Monthly Investment:";
-			this.checkEditMonthlyInvestment.Size = new System.Drawing.Size(139, 21);
+			this.checkEditMonthlyInvestment.Size = new System.Drawing.Size(138, 20);
 			this.checkEditMonthlyInvestment.TabIndex = 114;
 			// 
 			// pnInputHeader
 			// 
-			this.pnInputHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.pnInputHeader.Controls.Add(this.label1);
 			this.pnInputHeader.Controls.Add(this.comboBoxEditHeader);
 			this.pnInputHeader.Controls.Add(this.laTotalItems);
@@ -315,7 +313,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.ForeColor = System.Drawing.Color.White;
+			this.label1.ForeColor = System.Drawing.Color.Black;
 			this.label1.Location = new System.Drawing.Point(315, 17);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(73, 16);
@@ -347,9 +345,8 @@
 			// 
 			// pnInputFooter
 			// 
-			this.pnInputFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.pnInputFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnInputFooter.Location = new System.Drawing.Point(0, 471);
+			this.pnInputFooter.Location = new System.Drawing.Point(0, 469);
 			this.pnInputFooter.Name = "pnInputFooter";
 			this.pnInputFooter.Size = new System.Drawing.Size(735, 26);
 			this.pnInputFooter.TabIndex = 3;
@@ -362,7 +359,7 @@
 			this.checkEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
 			this.checkEditDecisionMaker.Properties.AutoWidth = true;
 			this.checkEditDecisionMaker.Properties.Caption = "Decision Maker: ";
-			this.checkEditDecisionMaker.Size = new System.Drawing.Size(121, 21);
+			this.checkEditDecisionMaker.Size = new System.Drawing.Size(120, 20);
 			this.checkEditDecisionMaker.TabIndex = 6;
 			// 
 			// laSlideCount
@@ -379,7 +376,7 @@
 			// SummaryControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.laSlideCount);
 			this.Controls.Add(this.checkEditDecisionMaker);
 			this.Controls.Add(this.xtraTabControl);
@@ -409,7 +406,6 @@
 
 		#endregion
 
-		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		protected DevExpress.XtraEditors.CheckEdit checkEditBusinessName;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageInput;

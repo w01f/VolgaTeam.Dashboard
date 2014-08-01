@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.CommonGUI.FavoriteImages
 {
-	public partial class FormAddFavoriteImage : Form
+	public partial class FormAddFavoriteImage : MetroForm
 	{
 		private readonly List<string> _existedNames = new List<string>();
 

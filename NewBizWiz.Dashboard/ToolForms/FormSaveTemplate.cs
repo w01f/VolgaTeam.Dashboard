@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.Dashboard.ToolForms
 {
-	public partial class FormSaveTemplate : Form
+	public partial class FormSaveTemplate : MetroForm
 	{
 		public FormSaveTemplate()
 		{

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.xtraTabControlPublications = new DevExpress.XtraTab.XtraTabControl();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.laFlightDates = new System.Windows.Forms.Label();
@@ -36,10 +35,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPublications)).BeginInit();
 			this.pnHeader.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
 			// 
 			// xtraTabControlPublications
 			// 
@@ -88,7 +83,7 @@
 			// OutputBasicOverviewControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.xtraTabControlPublications);
 			this.Controls.Add(this.pnHeader);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -102,8 +97,7 @@
 
         #endregion
 
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControlPublications;
+		private DevExpress.XtraTab.XtraTabControl xtraTabControlPublications;
 		private System.Windows.Forms.Panel pnHeader;
 	    public System.Windows.Forms.Label laFlightDates;
 		private System.Windows.Forms.Label laAdvertiser;

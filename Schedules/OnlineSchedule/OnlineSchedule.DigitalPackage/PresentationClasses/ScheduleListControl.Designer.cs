@@ -28,16 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip8 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem8 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip9 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem9 = new DevExpress.Utils.ToolTipItem();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
+			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.barManager = new DevExpress.XtraBars.BarManager();
 			this.barToolbar = new DevExpress.XtraBars.Bar();
 			this.barLargeButtonItemAdd = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemClone = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -50,7 +48,7 @@
 			this.gridControlFiles = new DevExpress.XtraGrid.GridControl();
 			this.gridViewFiles = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.gridColumnName = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.toolTipController = new DevExpress.Utils.ToolTipController();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlFiles)).BeginInit();
@@ -71,10 +69,6 @@
 			this.styleController.AppearanceFocused.Options.UseFont = true;
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
-			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
 			// 
 			// barManager
 			// 
@@ -120,9 +114,9 @@
 			this.barLargeButtonItemAdd.Glyph = global::NewBizWiz.OnlineSchedule.DigitalPackage.Properties.Resources.AddSchedule;
 			this.barLargeButtonItemAdd.Id = 10;
 			this.barLargeButtonItemAdd.Name = "barLargeButtonItemAdd";
-			toolTipItem7.Text = "Create Schedule";
-			superToolTip7.Items.Add(toolTipItem7);
-			this.barLargeButtonItemAdd.SuperTip = superToolTip7;
+			toolTipItem4.Text = "Create Schedule";
+			superToolTip4.Items.Add(toolTipItem4);
+			this.barLargeButtonItemAdd.SuperTip = superToolTip4;
 			this.barLargeButtonItemAdd.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemAdd_ItemClick);
 			// 
 			// barLargeButtonItemClone
@@ -131,9 +125,9 @@
 			this.barLargeButtonItemClone.Glyph = global::NewBizWiz.OnlineSchedule.DigitalPackage.Properties.Resources.CloneSchedule;
 			this.barLargeButtonItemClone.Id = 11;
 			this.barLargeButtonItemClone.Name = "barLargeButtonItemClone";
-			toolTipItem8.Text = "Clone Schedule";
-			superToolTip8.Items.Add(toolTipItem8);
-			this.barLargeButtonItemClone.SuperTip = superToolTip8;
+			toolTipItem5.Text = "Clone Schedule";
+			superToolTip5.Items.Add(toolTipItem5);
+			this.barLargeButtonItemClone.SuperTip = superToolTip5;
 			this.barLargeButtonItemClone.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemClone_ItemClick);
 			// 
 			// barLargeButtonItemDelete
@@ -142,9 +136,9 @@
 			this.barLargeButtonItemDelete.Glyph = global::NewBizWiz.OnlineSchedule.DigitalPackage.Properties.Resources.DeleteSchedule;
 			this.barLargeButtonItemDelete.Id = 12;
 			this.barLargeButtonItemDelete.Name = "barLargeButtonItemDelete";
-			toolTipItem9.Text = "Delete Schedule";
-			superToolTip9.Items.Add(toolTipItem9);
-			this.barLargeButtonItemDelete.SuperTip = superToolTip9;
+			toolTipItem6.Text = "Delete Schedule";
+			superToolTip6.Items.Add(toolTipItem6);
+			this.barLargeButtonItemDelete.SuperTip = superToolTip6;
 			this.barLargeButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemDelete_ItemClick);
 			// 
 			// barLargeButtonItemHelp
@@ -161,7 +155,7 @@
 			this.barDockControlTop.CausesValidation = false;
 			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-			this.barDockControlTop.Size = new System.Drawing.Size(300, 43);
+			this.barDockControlTop.Size = new System.Drawing.Size(300, 48);
 			// 
 			// barDockControlBottom
 			// 
@@ -174,23 +168,24 @@
 			// 
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 43);
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 478);
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 48);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 473);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.barDockControlRight.Location = new System.Drawing.Point(300, 43);
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 478);
+			this.barDockControlRight.Location = new System.Drawing.Point(300, 48);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 473);
 			// 
 			// gridControlFiles
 			// 
+			this.gridControlFiles.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControlFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControlFiles.Location = new System.Drawing.Point(0, 43);
+			this.gridControlFiles.Location = new System.Drawing.Point(0, 48);
 			this.gridControlFiles.MainView = this.gridViewFiles;
 			this.gridControlFiles.Name = "gridControlFiles";
-			this.gridControlFiles.Size = new System.Drawing.Size(300, 478);
+			this.gridControlFiles.Size = new System.Drawing.Size(300, 473);
 			this.gridControlFiles.TabIndex = 50;
 			this.gridControlFiles.ToolTipController = this.toolTipController;
 			this.gridControlFiles.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -251,7 +246,7 @@
 			// ScheduleListControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.Controls.Add(this.gridControlFiles);
 			this.Controls.Add(this.barDockControlLeft);
@@ -271,7 +266,6 @@
 
         #endregion
 
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		private DevExpress.XtraEditors.StyleController styleController;
         private DevExpress.XtraBars.BarManager barManager;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;

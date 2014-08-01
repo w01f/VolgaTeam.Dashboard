@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using NewBizWiz.AdSchedule.Controls;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
@@ -16,7 +17,7 @@ using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.AdSchedule.Single
 {
-	public partial class FormMain : Form
+	public partial class FormMain : RibbonForm
 	{
 		private static FormMain _instance;
 		private Control _currentControl;

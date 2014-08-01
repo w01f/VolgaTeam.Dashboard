@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.Core.Common;
 using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
 namespace NewBizWiz.Calendar.Controls.ToolForms
 {
-	public partial class FormImageGallery : Form
+	public partial class FormImageGallery : MetroForm
 	{
 		private readonly List<ImageSource> _imageSources = new List<ImageSource>();
 

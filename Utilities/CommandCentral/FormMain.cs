@@ -4,10 +4,11 @@ using CommandCentral.TabMainDashboard;
 using CommandCentral.TabMarketProForms;
 using CommandCentral.TabSalesDepotForms;
 using CommandCentral.TabSalesProForms;
+using DevComponents.DotNetBar;
 
 namespace CommandCentral
 {
-	public partial class FormMain : Form
+	public partial class FormMain : RibbonForm
 	{
 		private static FormMain _instance;
 

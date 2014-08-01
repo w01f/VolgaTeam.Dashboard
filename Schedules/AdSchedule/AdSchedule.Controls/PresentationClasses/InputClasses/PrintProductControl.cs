@@ -355,11 +355,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		private void advBandedGridViewPublication_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
 		{
 			if (e.Column == gridColumnDate) return;
-			var insert = advBandedGridViewPublication.GetRow(e.RowHandle) as Insert;
+			var insert = advBandedGridViewPublication.GetRow(e.ListSourceRowIndex) as Insert;
 			if (insert == null) return;
 			if (insert.Date.HasValue) return;
 			e.DisplayText = String.Empty;
-
 		}
 
 		private void advBandedGridViewPublication_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)

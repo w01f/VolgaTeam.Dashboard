@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using NewBizWiz.Core.Dashboard;
@@ -8,7 +9,7 @@ using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
 {
-	public partial class FormQuotes : Form
+	public partial class FormQuotes : MetroForm
 	{
 		public FormQuotes()
 		{

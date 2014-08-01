@@ -30,7 +30,6 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCloneInsert));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.laOriginalDate = new System.Windows.Forms.Label();
 			this.checkEditPCIRate = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditDiscount = new DevExpress.XtraEditors.CheckEdit();
@@ -86,16 +85,14 @@
 			this.pnBottom.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// laOriginalDate
 			// 
 			this.laOriginalDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.laOriginalDate.AutoSize = true;
+			this.laOriginalDate.BackColor = System.Drawing.Color.White;
 			this.laOriginalDate.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laOriginalDate.ForeColor = System.Drawing.Color.Black;
 			this.laOriginalDate.Location = new System.Drawing.Point(96, 23);
 			this.laOriginalDate.Name = "laOriginalDate";
 			this.laOriginalDate.Size = new System.Drawing.Size(92, 39);
@@ -109,9 +106,11 @@
 			this.checkEditPCIRate.Location = new System.Drawing.Point(21, 38);
 			this.checkEditPCIRate.Name = "checkEditPCIRate";
 			this.checkEditPCIRate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditPCIRate.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditPCIRate.Properties.Appearance.Options.UseFont = true;
+			this.checkEditPCIRate.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditPCIRate.Properties.Caption = "PCI Rate";
-			this.checkEditPCIRate.Size = new System.Drawing.Size(121, 21);
+			this.checkEditPCIRate.Size = new System.Drawing.Size(121, 20);
 			this.checkEditPCIRate.TabIndex = 5;
 			this.checkEditPCIRate.CheckedChanged += new System.EventHandler(this.checkEditPCIRate_CheckedChanged);
 			// 
@@ -121,9 +120,11 @@
 			this.checkEditDiscount.Location = new System.Drawing.Point(21, 73);
 			this.checkEditDiscount.Name = "checkEditDiscount";
 			this.checkEditDiscount.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditDiscount.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditDiscount.Properties.Appearance.Options.UseFont = true;
+			this.checkEditDiscount.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditDiscount.Properties.Caption = "Discount";
-			this.checkEditDiscount.Size = new System.Drawing.Size(93, 21);
+			this.checkEditDiscount.Size = new System.Drawing.Size(93, 20);
 			this.checkEditDiscount.TabIndex = 6;
 			// 
 			// checkEditColorRate
@@ -132,9 +133,11 @@
 			this.checkEditColorRate.Location = new System.Drawing.Point(21, 144);
 			this.checkEditColorRate.Name = "checkEditColorRate";
 			this.checkEditColorRate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditColorRate.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditColorRate.Properties.Appearance.Options.UseFont = true;
+			this.checkEditColorRate.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditColorRate.Properties.Caption = "Color Rate";
-			this.checkEditColorRate.Size = new System.Drawing.Size(99, 21);
+			this.checkEditColorRate.Size = new System.Drawing.Size(99, 20);
 			this.checkEditColorRate.TabIndex = 7;
 			// 
 			// buttonXCancel
@@ -143,9 +146,10 @@
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(495, 11);
+			this.buttonXCancel.Location = new System.Drawing.Point(499, 11);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(98, 35);
+			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCancel.TabIndex = 9;
 			this.buttonXCancel.Text = "Cancel";
 			this.buttonXCancel.TextColor = System.Drawing.Color.Black;
@@ -156,9 +160,10 @@
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(383, 11);
+			this.buttonXOK.Location = new System.Drawing.Point(387, 11);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(98, 35);
+			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOK.TabIndex = 8;
 			this.buttonXOK.Text = "OK";
 			this.buttonXOK.TextColor = System.Drawing.Color.Black;
@@ -169,9 +174,11 @@
 			this.checkEditComment.Location = new System.Drawing.Point(21, 108);
 			this.checkEditComment.Name = "checkEditComment";
 			this.checkEditComment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditComment.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditComment.Properties.Appearance.Options.UseFont = true;
+			this.checkEditComment.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditComment.Properties.Caption = "Comments";
-			this.checkEditComment.Size = new System.Drawing.Size(88, 21);
+			this.checkEditComment.Size = new System.Drawing.Size(88, 20);
 			this.checkEditComment.TabIndex = 10;
 			// 
 			// buttonXClearAll
@@ -179,9 +186,10 @@
 			this.buttonXClearAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXClearAll.Location = new System.Drawing.Point(262, 70);
+			this.buttonXClearAll.Location = new System.Drawing.Point(264, 70);
 			this.buttonXClearAll.Name = "buttonXClearAll";
 			this.buttonXClearAll.Size = new System.Drawing.Size(157, 33);
+			this.buttonXClearAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXClearAll.TabIndex = 12;
 			this.buttonXClearAll.Text = "Clear All";
 			this.buttonXClearAll.TextColor = System.Drawing.Color.Black;
@@ -193,9 +201,11 @@
 			this.checkEditSections.Location = new System.Drawing.Point(148, 38);
 			this.checkEditSections.Name = "checkEditSections";
 			this.checkEditSections.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSections.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditSections.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSections.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditSections.Properties.Caption = "Sections";
-			this.checkEditSections.Size = new System.Drawing.Size(88, 21);
+			this.checkEditSections.Size = new System.Drawing.Size(88, 20);
 			this.checkEditSections.TabIndex = 13;
 			// 
 			// checkEditDeadline
@@ -204,9 +214,11 @@
 			this.checkEditDeadline.Location = new System.Drawing.Point(148, 73);
 			this.checkEditDeadline.Name = "checkEditDeadline";
 			this.checkEditDeadline.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditDeadline.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditDeadline.Properties.Appearance.Options.UseFont = true;
+			this.checkEditDeadline.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditDeadline.Properties.Caption = "Deadline";
-			this.checkEditDeadline.Size = new System.Drawing.Size(88, 21);
+			this.checkEditDeadline.Size = new System.Drawing.Size(88, 20);
 			this.checkEditDeadline.TabIndex = 14;
 			// 
 			// checkEditMechanicals
@@ -215,19 +227,22 @@
 			this.checkEditMechanicals.Location = new System.Drawing.Point(148, 108);
 			this.checkEditMechanicals.Name = "checkEditMechanicals";
 			this.checkEditMechanicals.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditMechanicals.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditMechanicals.Properties.Appearance.Options.UseFont = true;
+			this.checkEditMechanicals.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditMechanicals.Properties.Caption = "Mechanicals";
-			this.checkEditMechanicals.Size = new System.Drawing.Size(148, 21);
+			this.checkEditMechanicals.Size = new System.Drawing.Size(148, 20);
 			this.checkEditMechanicals.TabIndex = 15;
 			// 
 			// pnTop
 			// 
-			this.pnTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnTop.BackColor = System.Drawing.Color.Transparent;
 			this.pnTop.Controls.Add(this.pbHelp);
 			this.pnTop.Controls.Add(this.pbLogo);
 			this.pnTop.Controls.Add(this.laOriginalRate);
 			this.pnTop.Controls.Add(this.laOriginalDate);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnTop.ForeColor = System.Drawing.Color.Black;
 			this.pnTop.Location = new System.Drawing.Point(0, 0);
 			this.pnTop.Name = "pnTop";
 			this.pnTop.Size = new System.Drawing.Size(605, 88);
@@ -235,6 +250,8 @@
 			// 
 			// pbHelp
 			// 
+			this.pbHelp.BackColor = System.Drawing.Color.White;
+			this.pbHelp.ForeColor = System.Drawing.Color.Black;
 			this.pbHelp.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.HelpSmall;
 			this.pbHelp.Location = new System.Drawing.Point(568, 3);
 			this.pbHelp.Name = "pbHelp";
@@ -249,6 +266,8 @@
 			// 
 			// pbLogo
 			// 
+			this.pbLogo.BackColor = System.Drawing.Color.White;
+			this.pbLogo.ForeColor = System.Drawing.Color.Black;
 			this.pbLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.CloneProductBig;
 			this.pbLogo.Location = new System.Drawing.Point(3, 3);
 			this.pbLogo.Name = "pbLogo";
@@ -260,21 +279,25 @@
 			// 
 			this.laOriginalRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.laOriginalRate.BackColor = System.Drawing.Color.White;
 			this.laOriginalRate.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laOriginalRate.ForeColor = System.Drawing.Color.Black;
 			this.laOriginalRate.Location = new System.Drawing.Point(364, 17);
 			this.laOriginalRate.Name = "laOriginalRate";
-			this.laOriginalRate.Size = new System.Drawing.Size(155, 51);
+			this.laOriginalRate.Size = new System.Drawing.Size(159, 51);
 			this.laOriginalRate.TabIndex = 4;
 			this.laOriginalRate.Text = "Rate";
 			this.laOriginalRate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// pnMain
 			// 
-			this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnMain.BackColor = System.Drawing.Color.Transparent;
+			this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pnMain.Controls.Add(this.xtraTabControlClone);
 			this.pnMain.Controls.Add(this.labelControlFlightDates);
 			this.pnMain.Controls.Add(this.gridControlDays);
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnMain.ForeColor = System.Drawing.Color.Black;
 			this.pnMain.Location = new System.Drawing.Point(0, 88);
 			this.pnMain.Name = "pnMain";
 			this.pnMain.Size = new System.Drawing.Size(605, 285);
@@ -282,6 +305,10 @@
 			// 
 			// xtraTabControlClone
 			// 
+			this.xtraTabControlClone.Appearance.BackColor = System.Drawing.Color.White;
+			this.xtraTabControlClone.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.xtraTabControlClone.Appearance.Options.UseBackColor = true;
+			this.xtraTabControlClone.Appearance.Options.UseForeColor = true;
 			this.xtraTabControlClone.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlClone.AppearancePage.Header.Options.UseFont = true;
 			this.xtraTabControlClone.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -296,7 +323,7 @@
 			this.xtraTabControlClone.Location = new System.Drawing.Point(171, 33);
 			this.xtraTabControlClone.Name = "xtraTabControlClone";
 			this.xtraTabControlClone.SelectedTabPage = this.xtraTabPageDays;
-			this.xtraTabControlClone.Size = new System.Drawing.Size(430, 248);
+			this.xtraTabControlClone.Size = new System.Drawing.Size(432, 250);
 			this.xtraTabControlClone.TabIndex = 5;
 			this.xtraTabControlClone.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageDays,
@@ -304,24 +331,28 @@
 			// 
 			// xtraTabPageDays
 			// 
+			this.xtraTabPageDays.Appearance.PageClient.ForeColor = System.Drawing.Color.Black;
+			this.xtraTabPageDays.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageDays.Controls.Add(this.labelControlDayTitle);
 			this.xtraTabPageDays.Controls.Add(this.buttonXAddAllWeekdays);
 			this.xtraTabPageDays.Controls.Add(this.checkEditHighlightWeekdays);
 			this.xtraTabPageDays.Controls.Add(this.monthCalendarClone);
 			this.xtraTabPageDays.Controls.Add(this.buttonXClearAll);
 			this.xtraTabPageDays.Name = "xtraTabPageDays";
-			this.xtraTabPageDays.Size = new System.Drawing.Size(428, 222);
+			this.xtraTabPageDays.Size = new System.Drawing.Size(430, 222);
 			this.xtraTabPageDays.Text = "Days";
 			// 
 			// labelControlDayTitle
 			// 
 			this.labelControlDayTitle.AllowHtmlString = true;
+			this.labelControlDayTitle.Appearance.BackColor = System.Drawing.Color.White;
 			this.labelControlDayTitle.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlDayTitle.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlDayTitle.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlDayTitle.Dock = System.Windows.Forms.DockStyle.Top;
 			this.labelControlDayTitle.Location = new System.Drawing.Point(0, 0);
 			this.labelControlDayTitle.Name = "labelControlDayTitle";
-			this.labelControlDayTitle.Size = new System.Drawing.Size(428, 28);
+			this.labelControlDayTitle.Size = new System.Drawing.Size(430, 28);
 			this.labelControlDayTitle.TabIndex = 19;
 			this.labelControlDayTitle.Text = "  <b>DOUBLE-CLICK</b> the DAY you want to Add:";
 			// 
@@ -330,9 +361,10 @@
 			this.buttonXAddAllWeekdays.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXAddAllWeekdays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAddAllWeekdays.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXAddAllWeekdays.Location = new System.Drawing.Point(262, 31);
+			this.buttonXAddAllWeekdays.Location = new System.Drawing.Point(264, 31);
 			this.buttonXAddAllWeekdays.Name = "buttonXAddAllWeekdays";
 			this.buttonXAddAllWeekdays.Size = new System.Drawing.Size(159, 33);
+			this.buttonXAddAllWeekdays.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXAddAllWeekdays.TabIndex = 18;
 			this.buttonXAddAllWeekdays.Text = "Add All {0}s";
 			this.buttonXAddAllWeekdays.TextColor = System.Drawing.Color.Black;
@@ -344,10 +376,12 @@
 			this.checkEditHighlightWeekdays.Location = new System.Drawing.Point(5, 197);
 			this.checkEditHighlightWeekdays.Name = "checkEditHighlightWeekdays";
 			this.checkEditHighlightWeekdays.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditHighlightWeekdays.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditHighlightWeekdays.Properties.Appearance.Options.UseFont = true;
+			this.checkEditHighlightWeekdays.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditHighlightWeekdays.Properties.AutoWidth = true;
 			this.checkEditHighlightWeekdays.Properties.Caption = "Highlight all {0}s";
-			this.checkEditHighlightWeekdays.Size = new System.Drawing.Size(116, 21);
+			this.checkEditHighlightWeekdays.Size = new System.Drawing.Size(115, 20);
 			this.checkEditHighlightWeekdays.TabIndex = 16;
 			this.checkEditHighlightWeekdays.CheckedChanged += new System.EventHandler(this.checkEditHighlightWeekdays_CheckedChanged);
 			// 
@@ -396,6 +430,8 @@
 			// 
 			// xtraTabPageOptions
 			// 
+			this.xtraTabPageOptions.Appearance.PageClient.ForeColor = System.Drawing.Color.Black;
+			this.xtraTabPageOptions.Appearance.PageClient.Options.UseForeColor = true;
 			this.xtraTabPageOptions.Controls.Add(this.laOptionsTitle);
 			this.xtraTabPageOptions.Controls.Add(this.checkEditPCIRate);
 			this.xtraTabPageOptions.Controls.Add(this.checkEditDiscount);
@@ -405,15 +441,16 @@
 			this.xtraTabPageOptions.Controls.Add(this.checkEditComment);
 			this.xtraTabPageOptions.Controls.Add(this.checkEditSections);
 			this.xtraTabPageOptions.Name = "xtraTabPageOptions";
-			this.xtraTabPageOptions.Size = new System.Drawing.Size(428, 222);
+			this.xtraTabPageOptions.Size = new System.Drawing.Size(430, 222);
 			this.xtraTabPageOptions.Text = "Options";
 			// 
 			// laOptionsTitle
 			// 
 			this.laOptionsTitle.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laOptionsTitle.ForeColor = System.Drawing.Color.Black;
 			this.laOptionsTitle.Location = new System.Drawing.Point(0, 0);
 			this.laOptionsTitle.Name = "laOptionsTitle";
-			this.laOptionsTitle.Size = new System.Drawing.Size(428, 31);
+			this.laOptionsTitle.Size = new System.Drawing.Size(430, 31);
 			this.laOptionsTitle.TabIndex = 0;
 			this.laOptionsTitle.Text = "  Do you want to Exclude any of these items in the Cloned Ad?";
 			this.laOptionsTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -421,12 +458,14 @@
 			// labelControlFlightDates
 			// 
 			this.labelControlFlightDates.AllowHtmlString = true;
+			this.labelControlFlightDates.Appearance.BackColor = System.Drawing.Color.White;
 			this.labelControlFlightDates.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlFlightDates.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlFlightDates.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlFlightDates.Dock = System.Windows.Forms.DockStyle.Top;
 			this.labelControlFlightDates.Location = new System.Drawing.Point(171, 0);
 			this.labelControlFlightDates.Name = "labelControlFlightDates";
-			this.labelControlFlightDates.Size = new System.Drawing.Size(430, 33);
+			this.labelControlFlightDates.Size = new System.Drawing.Size(432, 33);
 			this.labelControlFlightDates.TabIndex = 6;
 			this.labelControlFlightDates.Text = "  Your Available Schedule Window: <b>{0}</b>";
 			// 
@@ -434,12 +473,16 @@
 			// 
 			this.gridControlDays.AllowDrop = true;
 			this.gridControlDays.Dock = System.Windows.Forms.DockStyle.Left;
+			this.gridControlDays.EmbeddedNavigator.Appearance.BackColor = System.Drawing.Color.White;
+			this.gridControlDays.EmbeddedNavigator.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.gridControlDays.EmbeddedNavigator.Appearance.Options.UseBackColor = true;
+			this.gridControlDays.EmbeddedNavigator.Appearance.Options.UseForeColor = true;
 			this.gridControlDays.Location = new System.Drawing.Point(0, 0);
 			this.gridControlDays.MainView = this.gridViewDays;
 			this.gridControlDays.Name = "gridControlDays";
 			this.gridControlDays.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit});
-			this.gridControlDays.Size = new System.Drawing.Size(171, 281);
+			this.gridControlDays.Size = new System.Drawing.Size(171, 283);
 			this.gridControlDays.TabIndex = 4;
 			this.gridControlDays.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDays});
@@ -496,12 +539,13 @@
 			// 
 			// pnBottom
 			// 
-			this.pnBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnBottom.BackColor = System.Drawing.Color.Transparent;
 			this.pnBottom.Controls.Add(this.labelControlClonedRate);
 			this.pnBottom.Controls.Add(this.labelControlClonedNumber);
 			this.pnBottom.Controls.Add(this.buttonXOK);
 			this.pnBottom.Controls.Add(this.buttonXCancel);
 			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnBottom.ForeColor = System.Drawing.Color.Black;
 			this.pnBottom.Location = new System.Drawing.Point(0, 373);
 			this.pnBottom.Name = "pnBottom";
 			this.pnBottom.Size = new System.Drawing.Size(605, 60);
@@ -510,7 +554,9 @@
 			// labelControlClonedRate
 			// 
 			this.labelControlClonedRate.AllowHtmlString = true;
+			this.labelControlClonedRate.Appearance.BackColor = System.Drawing.Color.White;
 			this.labelControlClonedRate.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlClonedRate.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlClonedRate.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlClonedRate.Location = new System.Drawing.Point(3, 32);
 			this.labelControlClonedRate.Name = "labelControlClonedRate";
@@ -521,7 +567,9 @@
 			// labelControlClonedNumber
 			// 
 			this.labelControlClonedNumber.AllowHtmlString = true;
+			this.labelControlClonedNumber.Appearance.BackColor = System.Drawing.Color.White;
 			this.labelControlClonedNumber.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlClonedNumber.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlClonedNumber.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlClonedNumber.Location = new System.Drawing.Point(3, 3);
 			this.labelControlClonedNumber.Name = "labelControlClonedNumber";
@@ -531,16 +579,18 @@
 			// 
 			// superTooltip
 			// 
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
 			// FormCloneInsert
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(605, 433);
 			this.Controls.Add(this.pnMain);
 			this.Controls.Add(this.pnBottom);
 			this.Controls.Add(this.pnTop);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
@@ -576,8 +626,7 @@
 
         #endregion
 
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        public System.Windows.Forms.Label laOriginalDate;
+		public System.Windows.Forms.Label laOriginalDate;
         public DevExpress.XtraEditors.CheckEdit checkEditPCIRate;
         public DevExpress.XtraEditors.CheckEdit checkEditDiscount;
         public DevExpress.XtraEditors.CheckEdit checkEditColorRate;

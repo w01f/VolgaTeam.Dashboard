@@ -99,7 +99,7 @@
 			// 
 			// pnMainExt
 			// 
-			this.pnMainExt.BackColor = System.Drawing.Color.White;
+			this.pnMainExt.BackColor = System.Drawing.Color.LightGray;
 			this.pnMainExt.Controls.Add(this.pnBody);
 			this.pnMainExt.Controls.Add(this.pnFooter);
 			this.pnMainExt.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -126,14 +126,16 @@
 			this.memoEditDescription.Location = new System.Drawing.Point(418, 0);
 			this.memoEditDescription.Name = "memoEditDescription";
 			this.memoEditDescription.Properties.AllowFocused = false;
-			this.memoEditDescription.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.memoEditDescription.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.memoEditDescription.Properties.Appearance.Options.UseBackColor = true;
+			this.memoEditDescription.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.memoEditDescription.Properties.ReadOnly = true;
 			this.memoEditDescription.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.memoEditDescription.Properties.WordWrap = false;
 			this.memoEditDescription.Size = new System.Drawing.Size(351, 93);
 			this.memoEditDescription.StyleController = this.styleController;
 			this.memoEditDescription.TabIndex = 1;
+			this.memoEditDescription.UseOptimizedRendering = true;
 			this.memoEditDescription.EditValueChanged += new System.EventHandler(this.memoEditDescription_EditValueChanged);
 			// 
 			// pnLeft
@@ -150,7 +152,7 @@
 			// labelControlSites
 			// 
 			this.labelControlSites.AllowHtmlString = true;
-			this.labelControlSites.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.labelControlSites.Appearance.BackColor = System.Drawing.Color.White;
 			this.labelControlSites.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlSites.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlSites.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
@@ -178,7 +180,7 @@
 			// labelControlTitle
 			// 
 			this.labelControlTitle.AllowHtmlString = true;
-			this.labelControlTitle.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.labelControlTitle.Appearance.BackColor = System.Drawing.Color.White;
 			this.labelControlTitle.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlTitle.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlTitle.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
@@ -194,7 +196,7 @@
 			// 
 			// pnFooter
 			// 
-			this.pnFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnFooter.BackColor = System.Drawing.Color.White;
 			this.pnFooter.Controls.Add(this.checkEditInvDetails);
 			this.pnFooter.Controls.Add(this.checkEditCPM);
 			this.pnFooter.Controls.Add(this.checkEditInvestments);
@@ -211,7 +213,7 @@
 			this.checkEditInvDetails.Location = new System.Drawing.Point(548, 0);
 			this.checkEditInvDetails.Name = "checkEditInvDetails";
 			this.checkEditInvDetails.Properties.AllowFocused = false;
-			this.checkEditInvDetails.Properties.AllowHtmlString = true;
+			this.checkEditInvDetails.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditInvDetails.Properties.Appearance.ForeColor = System.Drawing.Color.Gray;
 			this.checkEditInvDetails.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditInvDetails.Properties.AutoHeight = false;
@@ -227,7 +229,7 @@
 			this.checkEditCPM.Location = new System.Drawing.Point(384, 0);
 			this.checkEditCPM.Name = "checkEditCPM";
 			this.checkEditCPM.Properties.AllowFocused = false;
-			this.checkEditCPM.Properties.AllowHtmlString = true;
+			this.checkEditCPM.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditCPM.Properties.Appearance.ForeColor = System.Drawing.Color.Gray;
 			this.checkEditCPM.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditCPM.Properties.AutoHeight = false;
@@ -243,7 +245,7 @@
 			this.checkEditInvestments.Location = new System.Drawing.Point(192, 0);
 			this.checkEditInvestments.Name = "checkEditInvestments";
 			this.checkEditInvestments.Properties.AllowFocused = false;
-			this.checkEditInvestments.Properties.AllowHtmlString = true;
+			this.checkEditInvestments.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditInvestments.Properties.Appearance.ForeColor = System.Drawing.Color.Gray;
 			this.checkEditInvestments.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditInvestments.Properties.AutoHeight = false;
@@ -259,7 +261,7 @@
 			this.checkEditImpressions.Location = new System.Drawing.Point(0, 0);
 			this.checkEditImpressions.Name = "checkEditImpressions";
 			this.checkEditImpressions.Properties.AllowFocused = false;
-			this.checkEditImpressions.Properties.AllowHtmlString = true;
+			this.checkEditImpressions.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditImpressions.Properties.Appearance.ForeColor = System.Drawing.Color.Gray;
 			this.checkEditImpressions.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditImpressions.Properties.AutoHeight = false;
@@ -273,7 +275,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pnMainExt);
 			this.Controls.Add(this.labelControlNumber);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));

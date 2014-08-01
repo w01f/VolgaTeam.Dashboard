@@ -42,6 +42,7 @@
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlGeographicResidence)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlHouseholdIncome)).BeginInit();
@@ -56,8 +57,7 @@
 			// pnMain
 			// 
 			this.pnMain.Controls.Add(this.xtraTabControl);
-			this.pnMain.Controls.SetChildIndex(this.pnTop, 0);
-			this.pnMain.Controls.SetChildIndex(this.xtraTabControl, 0);
+			this.pnMain.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -73,6 +73,14 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
+			// checkEditSolutionNew
+			// 
+			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditSolutionNew.Size = new System.Drawing.Size(146, 20);
+			// 
 			// pbDescription
 			// 
 			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionTargetCustomers;
@@ -80,6 +88,7 @@
 			// tabControlPanelGeographicResidence
 			// 
 			this.tabControlPanelGeographicResidence.Cursor = System.Windows.Forms.Cursors.Default;
+			this.tabControlPanelGeographicResidence.DisabledBackColor = System.Drawing.Color.Empty;
 			this.tabControlPanelGeographicResidence.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControlPanelGeographicResidence.Location = new System.Drawing.Point(0, 24);
 			this.tabControlPanelGeographicResidence.Name = "tabControlPanelGeographicResidence";
@@ -88,7 +97,7 @@
 			this.tabControlPanelGeographicResidence.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.tabControlPanelGeographicResidence.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.tabControlPanelGeographicResidence.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-			this.tabControlPanelGeographicResidence.Style.BorderColor.Color = System.Drawing.Color.White;
+			this.tabControlPanelGeographicResidence.Style.BorderColor.Color = System.Drawing.Color.LightGray;
 			this.tabControlPanelGeographicResidence.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
             | DevComponents.DotNetBar.eBorderSide.Bottom)));
 			this.tabControlPanelGeographicResidence.Style.GradientAngle = 90;
@@ -96,7 +105,7 @@
 			// 
 			// checkedListBoxControlGeographicResidence
 			// 
-			this.checkedListBoxControlGeographicResidence.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.checkedListBoxControlGeographicResidence.Appearance.BackColor = System.Drawing.Color.White;
 			this.checkedListBoxControlGeographicResidence.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkedListBoxControlGeographicResidence.Appearance.Options.UseBackColor = true;
 			this.checkedListBoxControlGeographicResidence.Appearance.Options.UseFont = true;
@@ -107,13 +116,14 @@
 			this.checkedListBoxControlGeographicResidence.Location = new System.Drawing.Point(0, 0);
 			this.checkedListBoxControlGeographicResidence.Name = "checkedListBoxControlGeographicResidence";
 			this.checkedListBoxControlGeographicResidence.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxControlGeographicResidence.Size = new System.Drawing.Size(818, 342);
+			this.checkedListBoxControlGeographicResidence.Size = new System.Drawing.Size(757, 359);
 			this.checkedListBoxControlGeographicResidence.TabIndex = 2;
 			this.checkedListBoxControlGeographicResidence.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControl_ItemCheck);
 			// 
 			// tabControlPanelHouseholdIncome
 			// 
 			this.tabControlPanelHouseholdIncome.Cursor = System.Windows.Forms.Cursors.Default;
+			this.tabControlPanelHouseholdIncome.DisabledBackColor = System.Drawing.Color.Empty;
 			this.tabControlPanelHouseholdIncome.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControlPanelHouseholdIncome.Location = new System.Drawing.Point(0, 24);
 			this.tabControlPanelHouseholdIncome.Name = "tabControlPanelHouseholdIncome";
@@ -122,7 +132,7 @@
 			this.tabControlPanelHouseholdIncome.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.tabControlPanelHouseholdIncome.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.tabControlPanelHouseholdIncome.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-			this.tabControlPanelHouseholdIncome.Style.BorderColor.Color = System.Drawing.Color.White;
+			this.tabControlPanelHouseholdIncome.Style.BorderColor.Color = System.Drawing.Color.LightGray;
 			this.tabControlPanelHouseholdIncome.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
             | DevComponents.DotNetBar.eBorderSide.Bottom)));
 			this.tabControlPanelHouseholdIncome.Style.GradientAngle = 90;
@@ -130,7 +140,7 @@
 			// 
 			// checkedListBoxControlHouseholdIncome
 			// 
-			this.checkedListBoxControlHouseholdIncome.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.checkedListBoxControlHouseholdIncome.Appearance.BackColor = System.Drawing.Color.White;
 			this.checkedListBoxControlHouseholdIncome.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkedListBoxControlHouseholdIncome.Appearance.Options.UseBackColor = true;
 			this.checkedListBoxControlHouseholdIncome.Appearance.Options.UseFont = true;
@@ -141,7 +151,7 @@
 			this.checkedListBoxControlHouseholdIncome.Location = new System.Drawing.Point(0, 0);
 			this.checkedListBoxControlHouseholdIncome.Name = "checkedListBoxControlHouseholdIncome";
 			this.checkedListBoxControlHouseholdIncome.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxControlHouseholdIncome.Size = new System.Drawing.Size(818, 342);
+			this.checkedListBoxControlHouseholdIncome.Size = new System.Drawing.Size(757, 359);
 			this.checkedListBoxControlHouseholdIncome.TabIndex = 2;
 			this.checkedListBoxControlHouseholdIncome.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControl_ItemCheck);
 			// 
@@ -149,6 +159,7 @@
 			// 
 			this.tabControlPanelTargetDemo.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
 			this.tabControlPanelTargetDemo.Cursor = System.Windows.Forms.Cursors.Default;
+			this.tabControlPanelTargetDemo.DisabledBackColor = System.Drawing.Color.Empty;
 			this.tabControlPanelTargetDemo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControlPanelTargetDemo.Location = new System.Drawing.Point(0, 24);
 			this.tabControlPanelTargetDemo.Name = "tabControlPanelTargetDemo";
@@ -157,7 +168,7 @@
 			this.tabControlPanelTargetDemo.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.tabControlPanelTargetDemo.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
 			this.tabControlPanelTargetDemo.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-			this.tabControlPanelTargetDemo.Style.BorderColor.Color = System.Drawing.Color.White;
+			this.tabControlPanelTargetDemo.Style.BorderColor.Color = System.Drawing.Color.LightGray;
 			this.tabControlPanelTargetDemo.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
             | DevComponents.DotNetBar.eBorderSide.Bottom)));
 			this.tabControlPanelTargetDemo.Style.GradientAngle = 90;
@@ -165,7 +176,7 @@
 			// 
 			// checkedListBoxControlTargetDemo
 			// 
-			this.checkedListBoxControlTargetDemo.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.checkedListBoxControlTargetDemo.Appearance.BackColor = System.Drawing.Color.White;
 			this.checkedListBoxControlTargetDemo.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkedListBoxControlTargetDemo.Appearance.Options.UseBackColor = true;
 			this.checkedListBoxControlTargetDemo.Appearance.Options.UseFont = true;
@@ -176,7 +187,7 @@
 			this.checkedListBoxControlTargetDemo.Location = new System.Drawing.Point(0, 0);
 			this.checkedListBoxControlTargetDemo.Name = "checkedListBoxControlTargetDemo";
 			this.checkedListBoxControlTargetDemo.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.checkedListBoxControlTargetDemo.Size = new System.Drawing.Size(818, 357);
+			this.checkedListBoxControlTargetDemo.Size = new System.Drawing.Size(758, 359);
 			this.checkedListBoxControlTargetDemo.TabIndex = 1;
 			this.checkedListBoxControlTargetDemo.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControl_ItemCheck);
 			// 
@@ -197,10 +208,10 @@
 			this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControl.Location = new System.Drawing.Point(0, 51);
+			this.xtraTabControl.Location = new System.Drawing.Point(10, 0);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageTargetDemo;
-			this.xtraTabControl.Size = new System.Drawing.Size(820, 383);
+			this.xtraTabControl.Size = new System.Drawing.Size(760, 387);
 			this.xtraTabControl.TabIndex = 29;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageTargetDemo,
@@ -211,21 +222,21 @@
 			// 
 			this.xtraTabPageTargetDemo.Controls.Add(this.checkedListBoxControlTargetDemo);
 			this.xtraTabPageTargetDemo.Name = "xtraTabPageTargetDemo";
-			this.xtraTabPageTargetDemo.Size = new System.Drawing.Size(818, 357);
+			this.xtraTabPageTargetDemo.Size = new System.Drawing.Size(758, 359);
 			this.xtraTabPageTargetDemo.Text = "Target Demo";
 			// 
 			// xtraTabPageHouseholdIncome
 			// 
 			this.xtraTabPageHouseholdIncome.Controls.Add(this.checkedListBoxControlHouseholdIncome);
 			this.xtraTabPageHouseholdIncome.Name = "xtraTabPageHouseholdIncome";
-			this.xtraTabPageHouseholdIncome.Size = new System.Drawing.Size(818, 342);
+			this.xtraTabPageHouseholdIncome.Size = new System.Drawing.Size(757, 359);
 			this.xtraTabPageHouseholdIncome.Text = "Household Income";
 			// 
 			// xtraTabPageGeographicResidence
 			// 
 			this.xtraTabPageGeographicResidence.Controls.Add(this.checkedListBoxControlGeographicResidence);
 			this.xtraTabPageGeographicResidence.Name = "xtraTabPageGeographicResidence";
-			this.xtraTabPageGeographicResidence.Size = new System.Drawing.Size(818, 342);
+			this.xtraTabPageGeographicResidence.Size = new System.Drawing.Size(757, 359);
 			this.xtraTabPageGeographicResidence.Text = "Geographic Residence";
 			// 
 			// SlideTargetCustomersControl
@@ -236,6 +247,7 @@
 			this.pnBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlGeographicResidence)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlHouseholdIncome)).EndInit();

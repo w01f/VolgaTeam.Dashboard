@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.checkEditReadership = new DevExpress.XtraEditors.CheckEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.checkEditDelivery = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditTotalDiscounts = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditTotalColor = new DevExpress.XtraEditors.CheckEdit();
@@ -81,13 +79,9 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSignature.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// pnMain
 			// 
-			this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pnMain.Controls.Add(this.xtraScrollableControl);
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnMain.Location = new System.Drawing.Point(0, 67);
@@ -118,7 +112,7 @@
 			this.xtraScrollableControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControl.Location = new System.Drawing.Point(0, 0);
 			this.xtraScrollableControl.Name = "xtraScrollableControl";
-			this.xtraScrollableControl.Size = new System.Drawing.Size(278, 443);
+			this.xtraScrollableControl.Size = new System.Drawing.Size(280, 445);
 			this.xtraScrollableControl.TabIndex = 48;
 			// 
 			// checkEditReadership
@@ -126,7 +120,7 @@
 			this.checkEditReadership.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditReadership.Location = new System.Drawing.Point(0, 377);
 			this.checkEditReadership.Name = "checkEditReadership";
-			this.checkEditReadership.Properties.AllowHtmlString = true;
+			this.checkEditReadership.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditReadership.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditReadership.Properties.Appearance.Options.UseFont = true;
 			this.checkEditReadership.Properties.AutoHeight = false;
@@ -162,7 +156,7 @@
 			this.checkEditDelivery.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditDelivery.Location = new System.Drawing.Point(0, 348);
 			this.checkEditDelivery.Name = "checkEditDelivery";
-			this.checkEditDelivery.Properties.AllowHtmlString = true;
+			this.checkEditDelivery.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditDelivery.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditDelivery.Properties.Appearance.Options.UseFont = true;
 			this.checkEditDelivery.Properties.AutoHeight = false;
@@ -179,7 +173,7 @@
 			this.checkEditTotalDiscounts.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditTotalDiscounts.Location = new System.Drawing.Point(0, 319);
 			this.checkEditTotalDiscounts.Name = "checkEditTotalDiscounts";
-			this.checkEditTotalDiscounts.Properties.AllowHtmlString = true;
+			this.checkEditTotalDiscounts.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditTotalDiscounts.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditTotalDiscounts.Properties.Appearance.Options.UseFont = true;
 			this.checkEditTotalDiscounts.Properties.AutoHeight = false;
@@ -196,7 +190,7 @@
 			this.checkEditTotalColor.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditTotalColor.Location = new System.Drawing.Point(0, 290);
 			this.checkEditTotalColor.Name = "checkEditTotalColor";
-			this.checkEditTotalColor.Properties.AllowHtmlString = true;
+			this.checkEditTotalColor.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditTotalColor.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditTotalColor.Properties.Appearance.Options.UseFont = true;
 			this.checkEditTotalColor.Properties.AutoHeight = false;
@@ -213,7 +207,7 @@
 			this.checkEditAvgPCI.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditAvgPCI.Location = new System.Drawing.Point(0, 261);
 			this.checkEditAvgPCI.Name = "checkEditAvgPCI";
-			this.checkEditAvgPCI.Properties.AllowHtmlString = true;
+			this.checkEditAvgPCI.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditAvgPCI.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditAvgPCI.Properties.Appearance.Options.UseFont = true;
 			this.checkEditAvgPCI.Properties.AutoHeight = false;
@@ -230,7 +224,7 @@
 			this.checkEditAvgFinalCost.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditAvgFinalCost.Location = new System.Drawing.Point(0, 232);
 			this.checkEditAvgFinalCost.Name = "checkEditAvgFinalCost";
-			this.checkEditAvgFinalCost.Properties.AllowHtmlString = true;
+			this.checkEditAvgFinalCost.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditAvgFinalCost.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditAvgFinalCost.Properties.Appearance.Options.UseFont = true;
 			this.checkEditAvgFinalCost.Properties.AutoHeight = false;
@@ -247,7 +241,7 @@
 			this.checkEditAvgAdCost.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditAvgAdCost.Location = new System.Drawing.Point(0, 203);
 			this.checkEditAvgAdCost.Name = "checkEditAvgAdCost";
-			this.checkEditAvgAdCost.Properties.AllowHtmlString = true;
+			this.checkEditAvgAdCost.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditAvgAdCost.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditAvgAdCost.Properties.Appearance.Options.UseFont = true;
 			this.checkEditAvgAdCost.Properties.Appearance.Options.UseTextOptions = true;
@@ -272,7 +266,7 @@
 			this.checkEditTotalSquare.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditTotalSquare.Location = new System.Drawing.Point(0, 174);
 			this.checkEditTotalSquare.Name = "checkEditTotalSquare";
-			this.checkEditTotalSquare.Properties.AllowHtmlString = true;
+			this.checkEditTotalSquare.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditTotalSquare.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditTotalSquare.Properties.Appearance.Options.UseFont = true;
 			this.checkEditTotalSquare.Properties.AutoHeight = false;
@@ -289,7 +283,7 @@
 			this.checkEditColumnInches.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditColumnInches.Location = new System.Drawing.Point(0, 145);
 			this.checkEditColumnInches.Name = "checkEditColumnInches";
-			this.checkEditColumnInches.Properties.AllowHtmlString = true;
+			this.checkEditColumnInches.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditColumnInches.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditColumnInches.Properties.Appearance.Options.UseFont = true;
 			this.checkEditColumnInches.Properties.AutoHeight = false;
@@ -306,7 +300,7 @@
 			this.checkEditPercentOfPage.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditPercentOfPage.Location = new System.Drawing.Point(0, 116);
 			this.checkEditPercentOfPage.Name = "checkEditPercentOfPage";
-			this.checkEditPercentOfPage.Properties.AllowHtmlString = true;
+			this.checkEditPercentOfPage.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditPercentOfPage.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditPercentOfPage.Properties.Appearance.Options.UseFont = true;
 			this.checkEditPercentOfPage.Properties.AutoHeight = false;
@@ -323,7 +317,7 @@
 			this.checkEditDimensions.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditDimensions.Location = new System.Drawing.Point(0, 87);
 			this.checkEditDimensions.Name = "checkEditDimensions";
-			this.checkEditDimensions.Properties.AllowHtmlString = true;
+			this.checkEditDimensions.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditDimensions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditDimensions.Properties.Appearance.Options.UseFont = true;
 			this.checkEditDimensions.Properties.AutoHeight = false;
@@ -340,7 +334,7 @@
 			this.checkEditPageSize.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditPageSize.Location = new System.Drawing.Point(0, 58);
 			this.checkEditPageSize.Name = "checkEditPageSize";
-			this.checkEditPageSize.Properties.AllowHtmlString = true;
+			this.checkEditPageSize.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditPageSize.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditPageSize.Properties.Appearance.Options.UseFont = true;
 			this.checkEditPageSize.Properties.AutoHeight = false;
@@ -358,7 +352,7 @@
 			this.checkEditTotalFinalCost.EditValue = true;
 			this.checkEditTotalFinalCost.Location = new System.Drawing.Point(0, 29);
 			this.checkEditTotalFinalCost.Name = "checkEditTotalFinalCost";
-			this.checkEditTotalFinalCost.Properties.AllowHtmlString = true;
+			this.checkEditTotalFinalCost.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditTotalFinalCost.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditTotalFinalCost.Properties.Appearance.Options.UseFont = true;
 			this.checkEditTotalFinalCost.Properties.AutoHeight = false;
@@ -376,7 +370,7 @@
 			this.checkEditTotalInserts.EditValue = true;
 			this.checkEditTotalInserts.Location = new System.Drawing.Point(0, 0);
 			this.checkEditTotalInserts.Name = "checkEditTotalInserts";
-			this.checkEditTotalInserts.Properties.AllowHtmlString = true;
+			this.checkEditTotalInserts.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditTotalInserts.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditTotalInserts.Properties.Appearance.Options.UseFont = true;
 			this.checkEditTotalInserts.Properties.AutoHeight = false;
@@ -390,7 +384,6 @@
 			// 
 			// pnSlideOptions
 			// 
-			this.pnSlideOptions.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnSlideOptions.Controls.Add(this.pbHelp);
 			this.pnSlideOptions.Controls.Add(this.checkEditAllSlides);
 			this.pnSlideOptions.Controls.Add(this.checkEditLastSlide);
@@ -405,7 +398,7 @@
 			// 
 			this.pbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbHelp.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.HelpSmall;
-			this.pbHelp.Location = new System.Drawing.Point(242, 3);
+			this.pbHelp.Location = new System.Drawing.Point(246, 3);
 			this.pbHelp.Name = "pbHelp";
 			this.pbHelp.Size = new System.Drawing.Size(30, 30);
 			this.pbHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -427,7 +420,7 @@
 			this.checkEditAllSlides.Properties.Caption = "All slides";
 			this.checkEditAllSlides.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditAllSlides.Properties.RadioGroupIndex = 1;
-			this.checkEditAllSlides.Size = new System.Drawing.Size(76, 21);
+			this.checkEditAllSlides.Size = new System.Drawing.Size(75, 20);
 			this.checkEditAllSlides.StyleController = this.styleController;
 			this.checkEditAllSlides.TabIndex = 26;
 			this.checkEditAllSlides.TabStop = false;
@@ -443,7 +436,7 @@
 			this.checkEditLastSlide.Properties.Caption = "Last Slide";
 			this.checkEditLastSlide.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditLastSlide.Properties.RadioGroupIndex = 1;
-			this.checkEditLastSlide.Size = new System.Drawing.Size(81, 21);
+			this.checkEditLastSlide.Size = new System.Drawing.Size(80, 20);
 			this.checkEditLastSlide.StyleController = this.styleController;
 			this.checkEditLastSlide.TabIndex = 25;
 			this.checkEditLastSlide.TabStop = false;
@@ -457,13 +450,12 @@
 			this.checkEditEnableSlideBullets.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
 			this.checkEditEnableSlideBullets.Properties.Appearance.Options.UseFont = true;
 			this.checkEditEnableSlideBullets.Properties.Caption = "Show Slide Totals";
-			this.checkEditEnableSlideBullets.Size = new System.Drawing.Size(188, 24);
+			this.checkEditEnableSlideBullets.Size = new System.Drawing.Size(188, 23);
 			this.checkEditEnableSlideBullets.TabIndex = 24;
 			this.checkEditEnableSlideBullets.CheckedChanged += new System.EventHandler(this.checkEditEnableSlideBullets_CheckedChanged);
 			// 
 			// pnSignature
 			// 
-			this.pnSignature.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnSignature.Controls.Add(this.checkEditSignature);
 			this.pnSignature.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnSignature.Location = new System.Drawing.Point(0, 514);
@@ -480,19 +472,20 @@
 			this.checkEditSignature.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSignature.Properties.AutoWidth = true;
 			this.checkEditSignature.Properties.Caption = "Show Signature";
-			this.checkEditSignature.Size = new System.Drawing.Size(114, 21);
+			this.checkEditSignature.Size = new System.Drawing.Size(113, 20);
 			this.checkEditSignature.StyleController = this.styleController;
 			this.checkEditSignature.TabIndex = 44;
 			this.checkEditSignature.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
 			// superTooltip
 			// 
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
 			// SlideBulletsControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pnMain);
 			this.Controls.Add(this.pnSlideOptions);
 			this.Controls.Add(this.pnSignature);
@@ -532,8 +525,7 @@
 
         #endregion
 
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        private System.Windows.Forms.Panel pnMain;
+		private System.Windows.Forms.Panel pnMain;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl;
         public DevExpress.XtraEditors.CheckEdit checkEditPercentOfPage;
         public DevExpress.XtraEditors.CheckEdit checkEditReadership;

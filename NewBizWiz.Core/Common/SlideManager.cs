@@ -75,8 +75,11 @@ namespace NewBizWiz.Core.Common
 			{
 				Logo = new Bitmap(logoPath);
 				BrowseLogo = Logo.GetThumbnailImage((Logo.Width * 144) / Logo.Height, 144, null, IntPtr.Zero);
-				RibbonLogo = Logo.GetThumbnailImage((Logo.Width * 72) / Logo.Height, 72, null, IntPtr.Zero);
-				AdBarLogo = Logo.GetThumbnailImage((Logo.Width * 86) / Logo.Height, 86, null, IntPtr.Zero);
+
+				var borderedLogo = Logo.DrawBorder();
+
+				RibbonLogo = borderedLogo.GetThumbnailImage((borderedLogo.Width * 72) / borderedLogo.Height, 72, null, IntPtr.Zero);
+				AdBarLogo = borderedLogo.GetThumbnailImage((borderedLogo.Width * 86) / borderedLogo.Height, 86, null, IntPtr.Zero);
 			}
 			MasterPath = Directory.GetFiles(rootPath, "*.ppt").FirstOrDefault();
 		}

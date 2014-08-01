@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.panelExMain = new DevComponents.DotNetBar.PanelEx();
 			this.laTitle = new System.Windows.Forms.Label();
 			this.ckItem = new System.Windows.Forms.CheckBox();
 			this.ckDetails = new System.Windows.Forms.CheckBox();
 			this.memoEditDetails = new DevExpress.XtraEditors.MemoEdit();
-			this.toolTipController = new DevExpress.Utils.ToolTipController();
+			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
 			this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
 			this.panelExMain.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditDetails.Properties)).BeginInit();
@@ -51,14 +52,13 @@
 			this.panelExMain.Controls.Add(this.ckItem);
 			this.panelExMain.Controls.Add(this.ckDetails);
 			this.panelExMain.Controls.Add(this.memoEditDetails);
+			this.panelExMain.DisabledBackColor = System.Drawing.Color.Empty;
 			this.panelExMain.Location = new System.Drawing.Point(45, 21);
 			this.panelExMain.Name = "panelExMain";
 			this.panelExMain.Size = new System.Drawing.Size(543, 99);
 			this.panelExMain.Style.Alignment = System.Drawing.StringAlignment.Center;
-			this.panelExMain.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-			this.panelExMain.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-			this.panelExMain.Style.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-			this.panelExMain.Style.BorderColor.Color = System.Drawing.Color.White;
+			this.panelExMain.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+			this.panelExMain.Style.BorderColor.Color = System.Drawing.Color.LightGray;
 			this.panelExMain.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
 			this.panelExMain.Style.GradientAngle = 90;
 			this.panelExMain.TabIndex = 30;
@@ -110,6 +110,7 @@
 			this.memoEditDetails.Properties.NullText = "Brief Overview...";
 			this.memoEditDetails.Size = new System.Drawing.Size(504, 54);
 			this.memoEditDetails.TabIndex = 3;
+			this.memoEditDetails.UseOptimizedRendering = true;
 			this.memoEditDetails.EditValueChanged += new System.EventHandler(this.memoEditDetails_EditValueChanged);
 			// 
 			// toolTipController
@@ -129,7 +130,7 @@
 			// SummaryProductItemControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pictureBoxLogo);
 			this.Controls.Add(this.panelExMain);
 			this.Name = "SummaryProductItemControl";

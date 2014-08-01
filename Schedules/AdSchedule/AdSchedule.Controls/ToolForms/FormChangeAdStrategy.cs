@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 
 namespace NewBizWiz.AdSchedule.Controls.ToolForms
 {
-	public partial class FormChangeAdStrategy : Form
+	public partial class FormChangeAdStrategy : MetroForm
 	{
 		public FormChangeAdStrategy()
 		{

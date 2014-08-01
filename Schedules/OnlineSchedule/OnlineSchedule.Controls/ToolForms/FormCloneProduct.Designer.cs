@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.laHeader = new System.Windows.Forms.Label();
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXOK = new DevComponents.DotNetBar.ButtonX();
@@ -36,15 +35,13 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// laHeader
 			// 
 			this.laHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.laHeader.BackColor = System.Drawing.Color.White;
 			this.laHeader.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laHeader.ForeColor = System.Drawing.Color.Black;
 			this.laHeader.Location = new System.Drawing.Point(106, 2);
 			this.laHeader.Name = "laHeader";
 			this.laHeader.Size = new System.Drawing.Size(251, 76);
@@ -61,6 +58,7 @@
 			this.buttonXCancel.Location = new System.Drawing.Point(195, 83);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(99, 32);
+			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCancel.TabIndex = 9;
 			this.buttonXCancel.Text = "No";
 			this.buttonXCancel.TextColor = System.Drawing.Color.Black;
@@ -74,12 +72,15 @@
 			this.buttonXOK.Location = new System.Drawing.Point(75, 83);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(99, 32);
+			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOK.TabIndex = 8;
 			this.buttonXOK.Text = "Yes";
 			this.buttonXOK.TextColor = System.Drawing.Color.Black;
 			// 
 			// pbLogo
 			// 
+			this.pbLogo.BackColor = System.Drawing.Color.White;
+			this.pbLogo.ForeColor = System.Drawing.Color.Black;
 			this.pbLogo.Image = global::NewBizWiz.OnlineSchedule.Controls.Properties.Resources.CloneProductBig;
 			this.pbLogo.Location = new System.Drawing.Point(3, 2);
 			this.pbLogo.Name = "pbLogo";
@@ -91,12 +92,13 @@
 			// FormCloneProduct
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(369, 120);
 			this.Controls.Add(this.buttonXCancel);
 			this.Controls.Add(this.buttonXOK);
 			this.Controls.Add(this.laHeader);
 			this.Controls.Add(this.pbLogo);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
@@ -112,8 +114,7 @@
 
         #endregion
 
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        private System.Windows.Forms.PictureBox pbLogo;
+		private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Label laHeader;
         private DevComponents.DotNetBar.ButtonX buttonXCancel;
         private DevComponents.DotNetBar.ButtonX buttonXOK;

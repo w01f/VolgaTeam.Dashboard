@@ -56,7 +56,6 @@
 			// 
 			// pnTopButtons
 			// 
-			this.pnTopButtons.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnTopButtons.Controls.Add(this.buttonXClearAll);
 			this.pnTopButtons.Controls.Add(this.buttonXSelectAll);
 			this.pnTopButtons.Dock = System.Windows.Forms.DockStyle.Top;
@@ -70,9 +69,10 @@
 			this.buttonXClearAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXClearAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXClearAll.Location = new System.Drawing.Point(234, 10);
+			this.buttonXClearAll.Location = new System.Drawing.Point(238, 10);
 			this.buttonXClearAll.Name = "buttonXClearAll";
 			this.buttonXClearAll.Size = new System.Drawing.Size(107, 33);
+			this.buttonXClearAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXClearAll.TabIndex = 9;
 			this.buttonXClearAll.Text = "Clear All";
 			this.buttonXClearAll.TextColor = System.Drawing.Color.Black;
@@ -85,6 +85,7 @@
 			this.buttonXSelectAll.Location = new System.Drawing.Point(12, 10);
 			this.buttonXSelectAll.Name = "buttonXSelectAll";
 			this.buttonXSelectAll.Size = new System.Drawing.Size(107, 33);
+			this.buttonXSelectAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXSelectAll.TabIndex = 8;
 			this.buttonXSelectAll.Text = "Select All";
 			this.buttonXSelectAll.TextColor = System.Drawing.Color.Black;
@@ -92,7 +93,6 @@
 			// 
 			// pnBottomButtons
 			// 
-			this.pnBottomButtons.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnBottomButtons.Controls.Add(this.buttonXCancel);
 			this.pnBottomButtons.Controls.Add(this.buttonXOK);
 			this.pnBottomButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -107,9 +107,10 @@
 			this.buttonXCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonXCancel.Location = new System.Drawing.Point(234, 6);
+			this.buttonXCancel.Location = new System.Drawing.Point(238, 10);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(107, 36);
+			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCancel.TabIndex = 8;
 			this.buttonXCancel.Text = "Cancel";
 			this.buttonXCancel.TextColor = System.Drawing.Color.Black;
@@ -120,20 +121,21 @@
 			this.buttonXOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonXOK.Location = new System.Drawing.Point(98, 6);
+			this.buttonXOK.Location = new System.Drawing.Point(102, 10);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(107, 36);
+			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOK.TabIndex = 7;
 			this.buttonXOK.Text = "OK";
 			this.buttonXOK.TextColor = System.Drawing.Color.Black;
 			// 
 			// checkedListBoxControlDates
 			// 
-			this.checkedListBoxControlDates.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.checkedListBoxControlDates.Appearance.BackColor = System.Drawing.Color.White;
 			this.checkedListBoxControlDates.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkedListBoxControlDates.Appearance.Options.UseBackColor = true;
 			this.checkedListBoxControlDates.Appearance.Options.UseFont = true;
-			this.checkedListBoxControlDates.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
+			this.checkedListBoxControlDates.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
 			this.checkedListBoxControlDates.CheckOnClick = true;
 			this.checkedListBoxControlDates.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.checkedListBoxControlDates.ItemHeight = 25;
@@ -146,15 +148,18 @@
 			// FormDateSelector
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(357, 444);
 			this.Controls.Add(this.checkedListBoxControlDates);
 			this.Controls.Add(this.pnBottomButtons);
 			this.Controls.Add(this.pnTopButtons);
 			this.Controls.Add(this.laTitle);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "FormDateSelector";
+			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "FormDateSelector";
 			this.TopMost = true;

@@ -696,8 +696,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Presentation for Email...";
 				formProgress.TopMost = true;
-				formProgress.Show();
-				var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
+				formProgress.Show();var tempFileName = Path.Combine(Core.Common.SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				OnlineSchedulePowerPointHelper.Instance.PrepareWebPackageEmail(this, tempFileName);
 				formProgress.Close();
 				if (File.Exists(tempFileName))
@@ -705,7 +704,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 					{
 						formEmail.Text = "Email this Online Schedule";
 						formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-						Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
+						Utilities.Instance.ActivateForm(_formContainer.Handle, true, false);
 						RegistryHelper.MainFormHandle = formEmail.Handle;
 						RegistryHelper.MaximizeMainForm = false;
 						formEmail.ShowDialog();

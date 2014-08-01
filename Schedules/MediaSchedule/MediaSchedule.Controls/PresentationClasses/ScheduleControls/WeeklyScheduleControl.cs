@@ -64,6 +64,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			Controller.Instance.UpdateOutputTabs(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
 		}
 
+		public override void CloneProgram(int sourceIndex, bool fullClone)
+		{
+			base.CloneProgram(sourceIndex, fullClone);
+			Controller.Instance.UpdateOutputTabs(_localSchedule.WeeklySchedule.Programs.Any(p => p.TotalSpots > 0));
+		}
+
 		public override void AddProgram_Click(object sender, EventArgs e)
 		{
 			base.AddProgram_Click(sender, e);

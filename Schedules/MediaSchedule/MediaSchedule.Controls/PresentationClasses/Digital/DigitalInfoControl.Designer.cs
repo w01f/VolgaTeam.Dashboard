@@ -30,7 +30,6 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DigitalInfoControl));
 			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.checkEditEnable = new DevExpress.XtraEditors.CheckEdit();
 			this.pnControls = new System.Windows.Forms.Panel();
 			this.memoEditAuto3 = new DevExpress.XtraEditors.MemoEdit();
@@ -82,10 +81,6 @@
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// checkEditEnable
 			// 
 			this.checkEditEnable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -107,7 +102,7 @@
 			this.pnControls.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.pnControls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnControls.BackColor = System.Drawing.Color.Transparent;
 			this.pnControls.Controls.Add(this.memoEditAuto3);
 			this.pnControls.Controls.Add(this.memoEditAuto2);
 			this.pnControls.Controls.Add(this.memoEditAuto1);
@@ -130,14 +125,14 @@
 			this.memoEditAuto3.Location = new System.Drawing.Point(29, 187);
 			this.memoEditAuto3.Name = "memoEditAuto3";
 			this.memoEditAuto3.Properties.AllowFocused = false;
-			this.memoEditAuto3.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.memoEditAuto3.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.memoEditAuto3.Properties.Appearance.Options.UseBackColor = true;
-			this.memoEditAuto3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.memoEditAuto3.Properties.ReadOnly = true;
 			this.memoEditAuto3.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.memoEditAuto3.Size = new System.Drawing.Size(232, 85);
 			this.memoEditAuto3.StyleController = this.styleController;
 			this.memoEditAuto3.TabIndex = 15;
+			this.memoEditAuto3.UseOptimizedRendering = true;
 			this.memoEditAuto3.EditValueChanged += new System.EventHandler(this.memoEditAuto_EditValueChanged);
 			// 
 			// memoEditAuto2
@@ -148,14 +143,14 @@
 			this.memoEditAuto2.Location = new System.Drawing.Point(29, 96);
 			this.memoEditAuto2.Name = "memoEditAuto2";
 			this.memoEditAuto2.Properties.AllowFocused = false;
-			this.memoEditAuto2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.memoEditAuto2.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.memoEditAuto2.Properties.Appearance.Options.UseBackColor = true;
-			this.memoEditAuto2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.memoEditAuto2.Properties.ReadOnly = true;
 			this.memoEditAuto2.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.memoEditAuto2.Size = new System.Drawing.Size(232, 85);
 			this.memoEditAuto2.StyleController = this.styleController;
 			this.memoEditAuto2.TabIndex = 14;
+			this.memoEditAuto2.UseOptimizedRendering = true;
 			this.memoEditAuto2.EditValueChanged += new System.EventHandler(this.memoEditAuto_EditValueChanged);
 			// 
 			// memoEditAuto1
@@ -166,14 +161,14 @@
 			this.memoEditAuto1.Location = new System.Drawing.Point(29, 5);
 			this.memoEditAuto1.Name = "memoEditAuto1";
 			this.memoEditAuto1.Properties.AllowFocused = false;
-			this.memoEditAuto1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.memoEditAuto1.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.memoEditAuto1.Properties.Appearance.Options.UseBackColor = true;
-			this.memoEditAuto1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.memoEditAuto1.Properties.ReadOnly = true;
 			this.memoEditAuto1.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.memoEditAuto1.Size = new System.Drawing.Size(232, 85);
 			this.memoEditAuto1.StyleController = this.styleController;
 			this.memoEditAuto1.TabIndex = 13;
+			this.memoEditAuto1.UseOptimizedRendering = true;
 			this.memoEditAuto1.EditValueChanged += new System.EventHandler(this.memoEditAuto_EditValueChanged);
 			// 
 			// checkEditManual
@@ -183,7 +178,7 @@
 			this.checkEditManual.Properties.Caption = "checkEdit1";
 			this.checkEditManual.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditManual.Properties.RadioGroupIndex = 1;
-			this.checkEditManual.Size = new System.Drawing.Size(20, 21);
+			this.checkEditManual.Size = new System.Drawing.Size(15, 20);
 			this.checkEditManual.StyleController = this.styleController;
 			this.checkEditManual.TabIndex = 11;
 			this.checkEditManual.TabStop = false;
@@ -202,6 +197,7 @@
 			this.memoEditManual.Properties.NullText = "Type your own info here...";
 			this.memoEditManual.Size = new System.Drawing.Size(232, 134);
 			this.memoEditManual.TabIndex = 12;
+			this.memoEditManual.UseOptimizedRendering = true;
 			this.memoEditManual.EditValueChanged += new System.EventHandler(this.memoEditManual_EditValueChanged);
 			// 
 			// checkEditAuto3
@@ -211,7 +207,7 @@
 			this.checkEditAuto3.Properties.Caption = "checkEdit1";
 			this.checkEditAuto3.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditAuto3.Properties.RadioGroupIndex = 1;
-			this.checkEditAuto3.Size = new System.Drawing.Size(20, 21);
+			this.checkEditAuto3.Size = new System.Drawing.Size(15, 20);
 			this.checkEditAuto3.StyleController = this.styleController;
 			this.checkEditAuto3.TabIndex = 10;
 			this.checkEditAuto3.TabStop = false;
@@ -224,7 +220,7 @@
 			this.checkEditAuto2.Properties.Caption = "checkEdit1";
 			this.checkEditAuto2.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditAuto2.Properties.RadioGroupIndex = 1;
-			this.checkEditAuto2.Size = new System.Drawing.Size(20, 21);
+			this.checkEditAuto2.Size = new System.Drawing.Size(15, 20);
 			this.checkEditAuto2.StyleController = this.styleController;
 			this.checkEditAuto2.TabIndex = 9;
 			this.checkEditAuto2.TabStop = false;
@@ -237,7 +233,7 @@
 			this.checkEditAuto1.Properties.Caption = "checkEdit1";
 			this.checkEditAuto1.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditAuto1.Properties.RadioGroupIndex = 1;
-			this.checkEditAuto1.Size = new System.Drawing.Size(20, 21);
+			this.checkEditAuto1.Size = new System.Drawing.Size(15, 20);
 			this.checkEditAuto1.StyleController = this.styleController;
 			this.checkEditAuto1.TabIndex = 8;
 			this.checkEditAuto1.TabStop = false;
@@ -245,6 +241,7 @@
 			// 
 			// superTooltip
 			// 
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
 			// pbHelp
@@ -309,7 +306,7 @@
 			this.checkEditTotal.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditTotal.Properties.AutoWidth = true;
 			this.checkEditTotal.Properties.Caption = "";
-			this.checkEditTotal.Size = new System.Drawing.Size(23, 19);
+			this.checkEditTotal.Size = new System.Drawing.Size(19, 19);
 			this.checkEditTotal.TabIndex = 109;
 			this.checkEditTotal.CheckedChanged += new System.EventHandler(this.checkEditTotal_CheckedChanged);
 			// 
@@ -350,7 +347,7 @@
 			this.checkEditMonthly.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditMonthly.Properties.AutoWidth = true;
 			this.checkEditMonthly.Properties.Caption = "";
-			this.checkEditMonthly.Size = new System.Drawing.Size(23, 19);
+			this.checkEditMonthly.Size = new System.Drawing.Size(19, 19);
 			this.checkEditMonthly.TabIndex = 112;
 			this.checkEditMonthly.CheckedChanged += new System.EventHandler(this.checkEditMonthly_CheckedChanged);
 			// 
@@ -392,7 +389,7 @@
 			// DigitalInfoControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.labelControlMonthly);
 			this.Controls.Add(this.spinEditMonthly);
 			this.Controls.Add(this.labelControlTotal);
@@ -428,7 +425,6 @@
 
 		#endregion
 
-		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		private DevExpress.XtraEditors.StyleController styleController;
 		private System.Windows.Forms.Panel pnControls;
 		private DevComponents.DotNetBar.SuperTooltip superTooltip;

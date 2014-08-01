@@ -36,13 +36,13 @@
 			this.buttonXCancel = new DevComponents.DotNetBar.ButtonX();
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.laSlideName = new System.Windows.Forms.Label();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.pnButtons.SuspendLayout();
 			this.pnHeader.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// laSlideSize
 			// 
+			this.laSlideSize.BackColor = System.Drawing.Color.White;
 			this.laSlideSize.Dock = System.Windows.Forms.DockStyle.Left;
 			this.laSlideSize.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laSlideSize.ForeColor = System.Drawing.Color.Black;
@@ -55,7 +55,9 @@
 			// 
 			// pnMain
 			// 
+			this.pnMain.BackColor = System.Drawing.Color.Transparent;
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnMain.ForeColor = System.Drawing.Color.Black;
 			this.pnMain.Location = new System.Drawing.Point(0, 40);
 			this.pnMain.Name = "pnMain";
 			this.pnMain.Size = new System.Drawing.Size(919, 436);
@@ -63,10 +65,12 @@
 			// 
 			// pnButtons
 			// 
+			this.pnButtons.BackColor = System.Drawing.Color.Transparent;
 			this.pnButtons.Controls.Add(this.buttonXAddSlide);
 			this.pnButtons.Controls.Add(this.buttonXOK);
 			this.pnButtons.Controls.Add(this.buttonXCancel);
 			this.pnButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnButtons.ForeColor = System.Drawing.Color.Black;
 			this.pnButtons.Location = new System.Drawing.Point(0, 476);
 			this.pnButtons.Name = "pnButtons";
 			this.pnButtons.Size = new System.Drawing.Size(919, 46);
@@ -79,6 +83,7 @@
 			this.buttonXAddSlide.Location = new System.Drawing.Point(12, 7);
 			this.buttonXAddSlide.Name = "buttonXAddSlide";
 			this.buttonXAddSlide.Size = new System.Drawing.Size(122, 32);
+			this.buttonXAddSlide.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXAddSlide.TabIndex = 6;
 			this.buttonXAddSlide.Text = "Add Slide";
 			this.buttonXAddSlide.TextColor = System.Drawing.Color.Black;
@@ -93,6 +98,7 @@
 			this.buttonXOK.Location = new System.Drawing.Point(638, 7);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(122, 32);
+			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOK.TabIndex = 4;
 			this.buttonXOK.Text = "Select";
 			this.buttonXOK.TextColor = System.Drawing.Color.Black;
@@ -106,15 +112,18 @@
 			this.buttonXCancel.Location = new System.Drawing.Point(785, 7);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(122, 32);
+			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCancel.TabIndex = 5;
 			this.buttonXCancel.Text = "Cancel";
 			this.buttonXCancel.TextColor = System.Drawing.Color.Black;
 			// 
 			// pnHeader
 			// 
+			this.pnHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
 			this.pnHeader.Controls.Add(this.laSlideName);
 			this.pnHeader.Controls.Add(this.laSlideSize);
 			this.pnHeader.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnHeader.ForeColor = System.Drawing.Color.Black;
 			this.pnHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnHeader.Name = "pnHeader";
 			this.pnHeader.Size = new System.Drawing.Size(919, 40);
@@ -122,6 +131,7 @@
 			// 
 			// laSlideName
 			// 
+			this.laSlideName.BackColor = System.Drawing.Color.White;
 			this.laSlideName.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.laSlideName.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laSlideName.ForeColor = System.Drawing.Color.Black;
@@ -135,11 +145,12 @@
 			// FormSlideSelector
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.SystemColors.Control;
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(919, 522);
 			this.Controls.Add(this.pnMain);
 			this.Controls.Add(this.pnHeader);
 			this.Controls.Add(this.pnButtons);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
@@ -165,6 +176,5 @@
 		private DevComponents.DotNetBar.ButtonX buttonXAddSlide;
 		private System.Windows.Forms.Panel pnHeader;
 		private System.Windows.Forms.Label laSlideName;
-		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 	}
 }

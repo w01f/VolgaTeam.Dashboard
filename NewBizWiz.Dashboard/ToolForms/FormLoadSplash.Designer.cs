@@ -39,8 +39,9 @@
 			// 
 			this.laTopCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.laTopCaption.BackColor = System.Drawing.Color.White;
 			this.laTopCaption.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTopCaption.ForeColor = System.Drawing.Color.White;
+			this.laTopCaption.ForeColor = System.Drawing.Color.Black;
 			this.laTopCaption.Location = new System.Drawing.Point(113, 12);
 			this.laTopCaption.Name = "laTopCaption";
 			this.laTopCaption.Size = new System.Drawing.Size(256, 60);
@@ -51,8 +52,9 @@
 			// 
 			this.laBottomCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.laBottomCaption.BackColor = System.Drawing.Color.White;
 			this.laBottomCaption.Font = new System.Drawing.Font("Arial", 8F);
-			this.laBottomCaption.ForeColor = System.Drawing.Color.White;
+			this.laBottomCaption.ForeColor = System.Drawing.Color.Black;
 			this.laBottomCaption.Location = new System.Drawing.Point(114, 72);
 			this.laBottomCaption.Name = "laBottomCaption";
 			this.laBottomCaption.Size = new System.Drawing.Size(255, 35);
@@ -61,7 +63,9 @@
 			// 
 			// pbLogo
 			// 
+			this.pbLogo.BackColor = System.Drawing.Color.White;
 			this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pbLogo.ForeColor = System.Drawing.Color.Black;
 			this.pbLogo.Image = global::NewBizWiz.Dashboard.Properties.Resources.Output;
 			this.pbLogo.Location = new System.Drawing.Point(12, 23);
 			this.pbLogo.Name = "pbLogo";
@@ -71,6 +75,7 @@
 			// 
 			// circularProgress1
 			// 
+			this.circularProgress1.BackColor = System.Drawing.Color.White;
 			// 
 			// 
 			// 
@@ -87,19 +92,19 @@
 			// FormLoadSplash
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(466, 119);
 			this.ControlBox = false;
 			this.Controls.Add(this.circularProgress1);
 			this.Controls.Add(this.pbLogo);
 			this.Controls.Add(this.laTopCaption);
 			this.Controls.Add(this.laBottomCaption);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.DoubleBuffered = true;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "FormLoadSplash";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "ProgressForm";
 			this.TopMost = true;
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			this.ResumeLayout(false);

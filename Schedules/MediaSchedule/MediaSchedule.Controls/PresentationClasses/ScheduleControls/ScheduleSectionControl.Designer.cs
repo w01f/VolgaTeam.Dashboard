@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -82,7 +81,7 @@
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.quarterSelectorControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls.QuarterSelectorControl();
 			this.laScheduleInfo = new System.Windows.Forms.Label();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.pnBottom = new System.Windows.Forms.Panel();
 			this.pnAgencyDiscount = new System.Windows.Forms.Panel();
 			this.laAgencyDiscountValue = new System.Windows.Forms.Label();
@@ -108,7 +107,6 @@
 			this.pnTotalPeriods = new System.Windows.Forms.Panel();
 			this.laTotalPeriodsValue = new System.Windows.Forms.Label();
 			this.laTotalPeriodsTitle = new System.Windows.Forms.Label();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.pnPageTV = new System.Windows.Forms.Panel();
 			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
@@ -129,8 +127,6 @@
 			this.buttonXCPP = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXLength = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXStation = new DevComponents.DotNetBar.ButtonX();
-			this.pbOptionsLineHelp = new System.Windows.Forms.PictureBox();
-			this.laOptionsLineTitle = new System.Windows.Forms.Label();
 			this.xtraTabPageOptionsDigital = new DevExpress.XtraTab.XtraTabPage();
 			this.digitalInfoControl = new NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital.DigitalInfoControl();
 			this.xtraTabPageOptionsTotals = new DevExpress.XtraTab.XtraTabPage();
@@ -143,14 +139,10 @@
 			this.buttonXTotalSpots = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXAvgRate = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXTotalPeriods = new DevComponents.DotNetBar.ButtonX();
-			this.pbOptionsTotalsHelp = new System.Windows.Forms.PictureBox();
-			this.laOptionsTotalsTitle = new System.Windows.Forms.Label();
 			this.xtraTabPageOptionsStyle = new DevExpress.XtraTab.XtraTabPage();
 			this.pnStyle = new System.Windows.Forms.Panel();
 			this.pnColors = new System.Windows.Forms.Panel();
 			this.xtraScrollableControlColors = new DevExpress.XtraEditors.XtraScrollableControl();
-			this.pbOptionsSyleHelp = new System.Windows.Forms.PictureBox();
-			this.laOptionsStyleTitle = new System.Windows.Forms.Label();
 			this.xtraTabPageOptionsSecurity = new DevExpress.XtraTab.XtraTabPage();
 			this.pnSecurity = new System.Windows.Forms.Panel();
 			this.laOptionsSecurityDescription = new DevExpress.XtraEditors.LabelControl();
@@ -196,15 +188,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitPeriods.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitQuarters.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbOptionsLineHelp)).BeginInit();
 			this.xtraTabPageOptionsDigital.SuspendLayout();
 			this.xtraTabPageOptionsTotals.SuspendLayout();
 			this.pnOptionsTotals.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbOptionsTotalsHelp)).BeginInit();
 			this.xtraTabPageOptionsStyle.SuspendLayout();
 			this.pnStyle.SuspendLayout();
 			this.pnColors.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbOptionsSyleHelp)).BeginInit();
 			this.xtraTabPageOptionsSecurity.SuspendLayout();
 			this.pnSecurity.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsSecurityHelp)).BeginInit();
@@ -228,7 +217,7 @@
             this.repositoryItemComboBoxDayparts,
             this.repositoryItemPopupContainerEditProgram,
             this.repositoryItemTextEditProgram});
-			this.gridControlSchedule.Size = new System.Drawing.Size(850, 465);
+			this.gridControlSchedule.Size = new System.Drawing.Size(816, 467);
 			this.gridControlSchedule.TabIndex = 0;
 			this.gridControlSchedule.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridViewSchedule});
@@ -363,6 +352,7 @@
 			this.gridBandId.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
 			this.gridBandId.Name = "gridBandId";
 			this.gridBandId.OptionsBand.FixedWidth = true;
+			this.gridBandId.VisibleIndex = 0;
 			this.gridBandId.Width = 35;
 			// 
 			// bandedGridColumnIndex
@@ -392,6 +382,7 @@
 			this.gridBandProgram.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
 			this.gridBandProgram.MinWidth = 238;
 			this.gridBandProgram.Name = "gridBandProgram";
+			this.gridBandProgram.VisibleIndex = 1;
 			this.gridBandProgram.Width = 350;
 			// 
 			// bandedGridColumnStation
@@ -648,6 +639,7 @@
 			this.gridBandLength.MinWidth = 20;
 			this.gridBandLength.Name = "gridBandLength";
 			this.gridBandLength.OptionsBand.FixedWidth = true;
+			this.gridBandLength.VisibleIndex = 2;
 			this.gridBandLength.Width = 60;
 			// 
 			// bandedGridColumnLength
@@ -701,6 +693,7 @@
 			this.gridBandDate.MinWidth = 20;
 			this.gridBandDate.Name = "gridBandDate";
 			this.gridBandDate.OptionsBand.FixedWidth = true;
+			this.gridBandDate.VisibleIndex = 3;
 			this.gridBandDate.Width = 90;
 			// 
 			// bandedGridColumnDay
@@ -795,6 +788,7 @@
 			this.gridBandRate.MinWidth = 20;
 			this.gridBandRate.Name = "gridBandRate";
 			this.gridBandRate.OptionsBand.FixedWidth = true;
+			this.gridBandRate.VisibleIndex = 4;
 			this.gridBandRate.Width = 100;
 			// 
 			// bandedGridColumnRate
@@ -891,6 +885,7 @@
 			this.gridBandSpots.Caption = "Spots";
 			this.gridBandSpots.MinWidth = 20;
 			this.gridBandSpots.Name = "gridBandSpots";
+			this.gridBandSpots.VisibleIndex = 5;
 			this.gridBandSpots.Width = 793;
 			// 
 			// gridBandTotals1
@@ -903,6 +898,7 @@
 			this.gridBandTotals1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
 			this.gridBandTotals1.Name = "gridBandTotals1";
 			this.gridBandTotals1.OptionsBand.FixedWidth = true;
+			this.gridBandTotals1.VisibleIndex = 6;
 			this.gridBandTotals1.Width = 268;
 			// 
 			// bandedGridColumnTotalSpots
@@ -923,8 +919,8 @@
 			this.bandedGridColumnTotalSpots.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnTotalSpots.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnTotalSpots.OptionsColumn.ReadOnly = true;
-			this.bandedGridColumnTotalSpots.SummaryItem.DisplayFormat = "{0:n0}";
-			this.bandedGridColumnTotalSpots.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+			this.bandedGridColumnTotalSpots.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSpots", "{0:n0}")});
 			this.bandedGridColumnTotalSpots.Visible = true;
 			this.bandedGridColumnTotalSpots.Width = 69;
 			// 
@@ -942,7 +938,8 @@
 			this.bandedGridColumnGRP.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnGRP.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnGRP.OptionsColumn.ReadOnly = true;
-			this.bandedGridColumnGRP.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+			this.bandedGridColumnGRP.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)});
 			this.bandedGridColumnGRP.Visible = true;
 			this.bandedGridColumnGRP.Width = 63;
 			// 
@@ -964,8 +961,8 @@
 			this.bandedGridColumnCost.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnCost.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnCost.OptionsColumn.ReadOnly = true;
-			this.bandedGridColumnCost.SummaryItem.DisplayFormat = "{0:c0}";
-			this.bandedGridColumnCost.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+			this.bandedGridColumnCost.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalCost", "{0:c0}")});
 			this.bandedGridColumnCost.Visible = true;
 			this.bandedGridColumnCost.Width = 71;
 			// 
@@ -984,8 +981,8 @@
 			this.bandedGridColumnCPP.OptionsColumn.AllowEdit = false;
 			this.bandedGridColumnCPP.OptionsColumn.FixedWidth = true;
 			this.bandedGridColumnCPP.OptionsColumn.ReadOnly = true;
-			this.bandedGridColumnCPP.SummaryItem.DisplayFormat = "{0:c2}";
-			this.bandedGridColumnCPP.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Max;
+			this.bandedGridColumnCPP.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Max, "CPP", "{0:c2}")});
 			this.bandedGridColumnCPP.Visible = true;
 			this.bandedGridColumnCPP.Width = 65;
 			// 
@@ -995,6 +992,7 @@
 			this.gridBandTotals2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
 			this.gridBandTotals2.Name = "gridBandTotals2";
 			this.gridBandTotals2.OptionsBand.FixedWidth = true;
+			this.gridBandTotals2.VisibleIndex = 7;
 			this.gridBandTotals2.Width = 134;
 			// 
 			// repositoryItemSpinEditSpot
@@ -1083,7 +1081,7 @@
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(0, 0);
 			this.pnTop.Name = "pnTop";
-			this.pnTop.Size = new System.Drawing.Size(850, 40);
+			this.pnTop.Size = new System.Drawing.Size(816, 40);
 			this.pnTop.TabIndex = 1;
 			// 
 			// quarterSelectorControl
@@ -1094,7 +1092,7 @@
 			this.quarterSelectorControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.quarterSelectorControl.Location = new System.Drawing.Point(248, 0);
 			this.quarterSelectorControl.Name = "quarterSelectorControl";
-			this.quarterSelectorControl.Size = new System.Drawing.Size(602, 40);
+			this.quarterSelectorControl.Size = new System.Drawing.Size(568, 40);
 			this.quarterSelectorControl.TabIndex = 51;
 			// 
 			// laScheduleInfo
@@ -1123,7 +1121,6 @@
 			// 
 			// pnBottom
 			// 
-			this.pnBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnBottom.Controls.Add(this.pnAgencyDiscount);
 			this.pnBottom.Controls.Add(this.pnNetRate);
 			this.pnBottom.Controls.Add(this.pnTotalCost);
@@ -1145,7 +1142,7 @@
 			this.pnAgencyDiscount.Dock = System.Windows.Forms.DockStyle.Left;
 			this.pnAgencyDiscount.Location = new System.Drawing.Point(860, 0);
 			this.pnAgencyDiscount.Name = "pnAgencyDiscount";
-			this.pnAgencyDiscount.Size = new System.Drawing.Size(145, 39);
+			this.pnAgencyDiscount.Size = new System.Drawing.Size(145, 43);
 			this.pnAgencyDiscount.TabIndex = 6;
 			// 
 			// laAgencyDiscountValue
@@ -1177,7 +1174,7 @@
 			this.pnNetRate.Dock = System.Windows.Forms.DockStyle.Left;
 			this.pnNetRate.Location = new System.Drawing.Point(720, 0);
 			this.pnNetRate.Name = "pnNetRate";
-			this.pnNetRate.Size = new System.Drawing.Size(140, 39);
+			this.pnNetRate.Size = new System.Drawing.Size(140, 43);
 			this.pnNetRate.TabIndex = 5;
 			// 
 			// laNetRateValue
@@ -1209,7 +1206,7 @@
 			this.pnTotalCost.Dock = System.Windows.Forms.DockStyle.Left;
 			this.pnTotalCost.Location = new System.Drawing.Point(575, 0);
 			this.pnTotalCost.Name = "pnTotalCost";
-			this.pnTotalCost.Size = new System.Drawing.Size(145, 39);
+			this.pnTotalCost.Size = new System.Drawing.Size(145, 43);
 			this.pnTotalCost.TabIndex = 4;
 			// 
 			// laTotalCostValue
@@ -1241,7 +1238,7 @@
 			this.pnAvgRate.Dock = System.Windows.Forms.DockStyle.Left;
 			this.pnAvgRate.Location = new System.Drawing.Point(460, 0);
 			this.pnAvgRate.Name = "pnAvgRate";
-			this.pnAvgRate.Size = new System.Drawing.Size(115, 39);
+			this.pnAvgRate.Size = new System.Drawing.Size(115, 43);
 			this.pnAvgRate.TabIndex = 3;
 			// 
 			// laAvgRateValue
@@ -1273,7 +1270,7 @@
 			this.pnTotalCPP.Dock = System.Windows.Forms.DockStyle.Left;
 			this.pnTotalCPP.Location = new System.Drawing.Point(345, 0);
 			this.pnTotalCPP.Name = "pnTotalCPP";
-			this.pnTotalCPP.Size = new System.Drawing.Size(115, 39);
+			this.pnTotalCPP.Size = new System.Drawing.Size(115, 43);
 			this.pnTotalCPP.TabIndex = 2;
 			// 
 			// laTotalCPPValue
@@ -1305,7 +1302,7 @@
 			this.pnTotalGRP.Dock = System.Windows.Forms.DockStyle.Left;
 			this.pnTotalGRP.Location = new System.Drawing.Point(230, 0);
 			this.pnTotalGRP.Name = "pnTotalGRP";
-			this.pnTotalGRP.Size = new System.Drawing.Size(115, 39);
+			this.pnTotalGRP.Size = new System.Drawing.Size(115, 43);
 			this.pnTotalGRP.TabIndex = 1;
 			// 
 			// laTotalGRPValue
@@ -1337,7 +1334,7 @@
 			this.pnTotalSpots.Dock = System.Windows.Forms.DockStyle.Left;
 			this.pnTotalSpots.Location = new System.Drawing.Point(115, 0);
 			this.pnTotalSpots.Name = "pnTotalSpots";
-			this.pnTotalSpots.Size = new System.Drawing.Size(115, 39);
+			this.pnTotalSpots.Size = new System.Drawing.Size(115, 43);
 			this.pnTotalSpots.TabIndex = 7;
 			// 
 			// laTotalSpotsValue
@@ -1369,7 +1366,7 @@
 			this.pnTotalPeriods.Dock = System.Windows.Forms.DockStyle.Left;
 			this.pnTotalPeriods.Location = new System.Drawing.Point(0, 0);
 			this.pnTotalPeriods.Name = "pnTotalPeriods";
-			this.pnTotalPeriods.Size = new System.Drawing.Size(115, 39);
+			this.pnTotalPeriods.Size = new System.Drawing.Size(115, 43);
 			this.pnTotalPeriods.TabIndex = 0;
 			// 
 			// laTotalPeriodsValue
@@ -1394,10 +1391,6 @@
 			this.laTotalPeriodsTitle.Text = "Total Weeks:";
 			this.laTotalPeriodsTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// pnPageTV
 			// 
 			this.pnPageTV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
@@ -1405,19 +1398,19 @@
 			this.pnPageTV.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnPageTV.Location = new System.Drawing.Point(0, 40);
 			this.pnPageTV.Name = "pnPageTV";
-			this.pnPageTV.Size = new System.Drawing.Size(850, 465);
+			this.pnPageTV.Size = new System.Drawing.Size(816, 467);
 			this.pnPageTV.TabIndex = 0;
 			// 
 			// splitContainerControl
 			// 
-			this.splitContainerControl.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.splitContainerControl.Appearance.BackColor = System.Drawing.Color.White;
 			this.splitContainerControl.Appearance.Options.UseBackColor = true;
 			this.splitContainerControl.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
 			this.splitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.splitContainerControl.Location = new System.Drawing.Point(0, 0);
 			this.splitContainerControl.Name = "splitContainerControl";
 			this.splitContainerControl.Panel1.Controls.Add(this.xtraTabControlOptions);
-			this.splitContainerControl.Panel1.MinSize = 270;
+			this.splitContainerControl.Panel1.MinSize = 300;
 			this.splitContainerControl.Panel1.Text = "Panel1";
 			this.splitContainerControl.Panel2.Controls.Add(this.pnPageTV);
 			this.splitContainerControl.Panel2.Controls.Add(this.pnTop);
@@ -1447,7 +1440,7 @@
 			this.xtraTabControlOptions.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControlOptions.Name = "xtraTabControlOptions";
 			this.xtraTabControlOptions.SelectedTabPage = this.xtraTabPageOptionsLine;
-			this.xtraTabControlOptions.Size = new System.Drawing.Size(270, 505);
+			this.xtraTabControlOptions.Size = new System.Drawing.Size(300, 507);
 			this.xtraTabControlOptions.TabIndex = 0;
 			this.xtraTabControlOptions.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageOptionsLine,
@@ -1462,12 +1455,12 @@
 			this.xtraTabPageOptionsLine.Appearance.PageClient.Options.UseBackColor = true;
 			this.xtraTabPageOptionsLine.Controls.Add(this.pnOptionsLine);
 			this.xtraTabPageOptionsLine.Name = "xtraTabPageOptionsLine";
-			this.xtraTabPageOptionsLine.Size = new System.Drawing.Size(268, 479);
+			this.xtraTabPageOptionsLine.Size = new System.Drawing.Size(298, 479);
 			this.xtraTabPageOptionsLine.Text = "Radio";
 			// 
 			// pnOptionsLine
 			// 
-			this.pnOptionsLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnOptionsLine.BackColor = System.Drawing.Color.Transparent;
 			this.pnOptionsLine.Controls.Add(this.spinEditOutputLimitPeriods);
 			this.pnOptionsLine.Controls.Add(this.checkEditOutputLimitPeriods);
 			this.pnOptionsLine.Controls.Add(this.checkEditOutputLimitQuarters);
@@ -1483,23 +1476,22 @@
 			this.pnOptionsLine.Controls.Add(this.buttonXCPP);
 			this.pnOptionsLine.Controls.Add(this.buttonXLength);
 			this.pnOptionsLine.Controls.Add(this.buttonXStation);
-			this.pnOptionsLine.Controls.Add(this.pbOptionsLineHelp);
-			this.pnOptionsLine.Controls.Add(this.laOptionsLineTitle);
 			this.pnOptionsLine.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOptionsLine.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionsLine.Name = "pnOptionsLine";
-			this.pnOptionsLine.Size = new System.Drawing.Size(268, 479);
+			this.pnOptionsLine.Size = new System.Drawing.Size(298, 479);
 			this.pnOptionsLine.TabIndex = 0;
 			// 
 			// spinEditOutputLimitPeriods
 			// 
+			this.spinEditOutputLimitPeriods.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.spinEditOutputLimitPeriods.EditValue = new decimal(new int[] {
             1,
             0,
             0,
             0});
 			this.spinEditOutputLimitPeriods.Enabled = false;
-			this.spinEditOutputLimitPeriods.Location = new System.Drawing.Point(190, 375);
+			this.spinEditOutputLimitPeriods.Location = new System.Drawing.Point(190, 411);
 			this.spinEditOutputLimitPeriods.Name = "spinEditOutputLimitPeriods";
 			this.spinEditOutputLimitPeriods.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.spinEditOutputLimitPeriods.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1523,11 +1515,12 @@
 			// 
 			// checkEditOutputLimitPeriods
 			// 
-			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(5, 375);
+			this.checkEditOutputLimitPeriods.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(5, 411);
 			this.checkEditOutputLimitPeriods.Name = "checkEditOutputLimitPeriods";
 			this.checkEditOutputLimitPeriods.Properties.AutoWidth = true;
 			this.checkEditOutputLimitPeriods.Properties.Caption = "Max Weeks Per PPT Slide";
-			this.checkEditOutputLimitPeriods.Size = new System.Drawing.Size(179, 21);
+			this.checkEditOutputLimitPeriods.Size = new System.Drawing.Size(178, 20);
 			this.checkEditOutputLimitPeriods.StyleController = this.styleController;
 			this.checkEditOutputLimitPeriods.TabIndex = 112;
 			this.checkEditOutputLimitPeriods.CheckedChanged += new System.EventHandler(this.checkEditOutputLimitPeriods_CheckedChanged);
@@ -1539,18 +1532,17 @@
 			this.checkEditOutputLimitQuarters.Location = new System.Drawing.Point(5, 446);
 			this.checkEditOutputLimitQuarters.Name = "checkEditOutputLimitQuarters";
 			this.checkEditOutputLimitQuarters.Properties.Caption = "Output each Quarter on a Slide";
-			this.checkEditOutputLimitQuarters.Size = new System.Drawing.Size(258, 21);
+			this.checkEditOutputLimitQuarters.Size = new System.Drawing.Size(288, 19);
 			this.checkEditOutputLimitQuarters.StyleController = this.styleController;
 			this.checkEditOutputLimitQuarters.TabIndex = 111;
 			this.checkEditOutputLimitQuarters.CheckedChanged += new System.EventHandler(this.checkEditOutputLimitQuarters_CheckedChanged);
 			// 
 			// checkEditEmptySports
 			// 
-			this.checkEditEmptySports.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditEmptySports.Location = new System.Drawing.Point(5, 338);
+			this.checkEditEmptySports.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.checkEditEmptySports.Location = new System.Drawing.Point(5, 374);
 			this.checkEditEmptySports.Name = "checkEditEmptySports";
-			this.checkEditEmptySports.Properties.AllowHtmlString = true;
+			this.checkEditEmptySports.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditEmptySports.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditEmptySports.Properties.Appearance.Options.UseFont = true;
 			this.checkEditEmptySports.Properties.Appearance.Options.UseTextOptions = true;
@@ -1558,7 +1550,7 @@
 			this.checkEditEmptySports.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditEmptySports.Properties.AutoHeight = false;
 			this.checkEditEmptySports.Properties.Caption = "<b>DO NOT SHOW</b> Hiatus {0}";
-			this.checkEditEmptySports.Size = new System.Drawing.Size(258, 19);
+			this.checkEditEmptySports.Size = new System.Drawing.Size(288, 19);
 			this.checkEditEmptySports.TabIndex = 110;
 			this.checkEditEmptySports.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
 			// 
@@ -1568,7 +1560,7 @@
 			this.buttonXTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTime.AutoCheckOnClick = true;
 			this.buttonXTime.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTime.Location = new System.Drawing.Point(150, 194);
+			this.buttonXTime.Location = new System.Drawing.Point(165, 194);
 			this.buttonXTime.Name = "buttonXTime";
 			this.buttonXTime.Size = new System.Drawing.Size(113, 27);
 			this.buttonXTime.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1582,7 +1574,7 @@
 			this.buttonXSpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSpots.AutoCheckOnClick = true;
 			this.buttonXSpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSpots.Location = new System.Drawing.Point(5, 145);
+			this.buttonXSpots.Location = new System.Drawing.Point(21, 145);
 			this.buttonXSpots.Name = "buttonXSpots";
 			this.buttonXSpots.Size = new System.Drawing.Size(113, 27);
 			this.buttonXSpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1597,7 +1589,7 @@
 			this.buttonXCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCost.AutoCheckOnClick = true;
 			this.buttonXCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXCost.Location = new System.Drawing.Point(150, 243);
+			this.buttonXCost.Location = new System.Drawing.Point(165, 243);
 			this.buttonXCost.Name = "buttonXCost";
 			this.buttonXCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1611,7 +1603,7 @@
 			this.buttonXRate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXRate.AutoCheckOnClick = true;
 			this.buttonXRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXRate.Location = new System.Drawing.Point(5, 243);
+			this.buttonXRate.Location = new System.Drawing.Point(21, 243);
 			this.buttonXRate.Name = "buttonXRate";
 			this.buttonXRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1625,7 +1617,7 @@
 			this.buttonXGRP.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXGRP.AutoCheckOnClick = true;
 			this.buttonXGRP.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXGRP.Location = new System.Drawing.Point(5, 292);
+			this.buttonXGRP.Location = new System.Drawing.Point(21, 292);
 			this.buttonXGRP.Name = "buttonXGRP";
 			this.buttonXGRP.Size = new System.Drawing.Size(113, 27);
 			this.buttonXGRP.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1640,7 +1632,7 @@
 			this.buttonXRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXRating.AutoCheckOnClick = true;
 			this.buttonXRating.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXRating.Location = new System.Drawing.Point(150, 145);
+			this.buttonXRating.Location = new System.Drawing.Point(165, 145);
 			this.buttonXRating.Name = "buttonXRating";
 			this.buttonXRating.Size = new System.Drawing.Size(113, 27);
 			this.buttonXRating.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1654,7 +1646,7 @@
 			this.buttonXDay.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXDay.AutoCheckOnClick = true;
 			this.buttonXDay.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDay.Location = new System.Drawing.Point(5, 194);
+			this.buttonXDay.Location = new System.Drawing.Point(21, 194);
 			this.buttonXDay.Name = "buttonXDay";
 			this.buttonXDay.Size = new System.Drawing.Size(113, 27);
 			this.buttonXDay.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1669,7 +1661,7 @@
 			this.buttonXDaypart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDaypart.AutoCheckOnClick = true;
 			this.buttonXDaypart.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDaypart.Location = new System.Drawing.Point(150, 96);
+			this.buttonXDaypart.Location = new System.Drawing.Point(165, 96);
 			this.buttonXDaypart.Name = "buttonXDaypart";
 			this.buttonXDaypart.Size = new System.Drawing.Size(113, 27);
 			this.buttonXDaypart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1683,7 +1675,7 @@
 			this.buttonXCPP.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXCPP.AutoCheckOnClick = true;
 			this.buttonXCPP.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXCPP.Location = new System.Drawing.Point(5, 96);
+			this.buttonXCPP.Location = new System.Drawing.Point(21, 96);
 			this.buttonXCPP.Name = "buttonXCPP";
 			this.buttonXCPP.Size = new System.Drawing.Size(113, 27);
 			this.buttonXCPP.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1698,7 +1690,7 @@
 			this.buttonXLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXLength.AutoCheckOnClick = true;
 			this.buttonXLength.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXLength.Location = new System.Drawing.Point(150, 47);
+			this.buttonXLength.Location = new System.Drawing.Point(165, 47);
 			this.buttonXLength.Name = "buttonXLength";
 			this.buttonXLength.Size = new System.Drawing.Size(113, 27);
 			this.buttonXLength.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1712,7 +1704,7 @@
 			this.buttonXStation.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXStation.AutoCheckOnClick = true;
 			this.buttonXStation.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXStation.Location = new System.Drawing.Point(5, 47);
+			this.buttonXStation.Location = new System.Drawing.Point(21, 47);
 			this.buttonXStation.Name = "buttonXStation";
 			this.buttonXStation.Size = new System.Drawing.Size(113, 27);
 			this.buttonXStation.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1721,61 +1713,34 @@
 			this.buttonXStation.TextColor = System.Drawing.Color.Black;
 			this.buttonXStation.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
 			// 
-			// pbOptionsLineHelp
-			// 
-			this.pbOptionsLineHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbOptionsLineHelp.Image = ((System.Drawing.Image)(resources.GetObject("pbOptionsLineHelp.Image")));
-			this.pbOptionsLineHelp.Location = new System.Drawing.Point(233, 5);
-			this.pbOptionsLineHelp.Name = "pbOptionsLineHelp";
-			this.pbOptionsLineHelp.Size = new System.Drawing.Size(30, 30);
-			this.pbOptionsLineHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbOptionsLineHelp.TabIndex = 38;
-			this.pbOptionsLineHelp.TabStop = false;
-			this.pbOptionsLineHelp.Click += new System.EventHandler(this.pbOptionsHelp_Click);
-			this.pbOptionsLineHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbOptionsLineHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
-			// laOptionsLineTitle
-			// 
-			this.laOptionsLineTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.laOptionsLineTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laOptionsLineTitle.ForeColor = System.Drawing.Color.Black;
-			this.laOptionsLineTitle.Location = new System.Drawing.Point(1, 2);
-			this.laOptionsLineTitle.Name = "laOptionsLineTitle";
-			this.laOptionsLineTitle.Size = new System.Drawing.Size(212, 33);
-			this.laOptionsLineTitle.TabIndex = 37;
-			this.laOptionsLineTitle.Text = "Select from below:";
-			this.laOptionsLineTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
 			// xtraTabPageOptionsDigital
 			// 
 			this.xtraTabPageOptionsDigital.Controls.Add(this.digitalInfoControl);
 			this.xtraTabPageOptionsDigital.Name = "xtraTabPageOptionsDigital";
-			this.xtraTabPageOptionsDigital.Size = new System.Drawing.Size(268, 479);
+			this.xtraTabPageOptionsDigital.Size = new System.Drawing.Size(298, 479);
 			this.xtraTabPageOptionsDigital.Text = "Digital";
 			// 
 			// digitalInfoControl
 			// 
-			this.digitalInfoControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.digitalInfoControl.BackColor = System.Drawing.Color.White;
 			this.digitalInfoControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.digitalInfoControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.digitalInfoControl.Location = new System.Drawing.Point(0, 0);
 			this.digitalInfoControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.digitalInfoControl.Name = "digitalInfoControl";
-			this.digitalInfoControl.Size = new System.Drawing.Size(268, 479);
+			this.digitalInfoControl.Size = new System.Drawing.Size(298, 479);
 			this.digitalInfoControl.TabIndex = 0;
 			// 
 			// xtraTabPageOptionsTotals
 			// 
 			this.xtraTabPageOptionsTotals.Controls.Add(this.pnOptionsTotals);
 			this.xtraTabPageOptionsTotals.Name = "xtraTabPageOptionsTotals";
-			this.xtraTabPageOptionsTotals.Size = new System.Drawing.Size(268, 479);
+			this.xtraTabPageOptionsTotals.Size = new System.Drawing.Size(298, 479);
 			this.xtraTabPageOptionsTotals.Text = "Info";
 			// 
 			// pnOptionsTotals
 			// 
-			this.pnOptionsTotals.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnOptionsTotals.BackColor = System.Drawing.Color.Transparent;
 			this.pnOptionsTotals.Controls.Add(this.buttonXDiscount);
 			this.pnOptionsTotals.Controls.Add(this.buttonXTotalGRP);
 			this.pnOptionsTotals.Controls.Add(this.buttonXNetRate);
@@ -1784,12 +1749,10 @@
 			this.pnOptionsTotals.Controls.Add(this.buttonXTotalSpots);
 			this.pnOptionsTotals.Controls.Add(this.buttonXAvgRate);
 			this.pnOptionsTotals.Controls.Add(this.buttonXTotalPeriods);
-			this.pnOptionsTotals.Controls.Add(this.pbOptionsTotalsHelp);
-			this.pnOptionsTotals.Controls.Add(this.laOptionsTotalsTitle);
 			this.pnOptionsTotals.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnOptionsTotals.Location = new System.Drawing.Point(0, 0);
 			this.pnOptionsTotals.Name = "pnOptionsTotals";
-			this.pnOptionsTotals.Size = new System.Drawing.Size(268, 479);
+			this.pnOptionsTotals.Size = new System.Drawing.Size(298, 479);
 			this.pnOptionsTotals.TabIndex = 1;
 			// 
 			// buttonXDiscount
@@ -1798,7 +1761,7 @@
 			this.buttonXDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDiscount.AutoCheckOnClick = true;
 			this.buttonXDiscount.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDiscount.Location = new System.Drawing.Point(150, 194);
+			this.buttonXDiscount.Location = new System.Drawing.Point(166, 194);
 			this.buttonXDiscount.Name = "buttonXDiscount";
 			this.buttonXDiscount.Size = new System.Drawing.Size(113, 27);
 			this.buttonXDiscount.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1812,7 +1775,7 @@
 			this.buttonXTotalGRP.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTotalGRP.AutoCheckOnClick = true;
 			this.buttonXTotalGRP.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTotalGRP.Location = new System.Drawing.Point(5, 145);
+			this.buttonXTotalGRP.Location = new System.Drawing.Point(20, 145);
 			this.buttonXTotalGRP.Name = "buttonXTotalGRP";
 			this.buttonXTotalGRP.Size = new System.Drawing.Size(113, 27);
 			this.buttonXTotalGRP.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1827,7 +1790,7 @@
 			this.buttonXNetRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXNetRate.AutoCheckOnClick = true;
 			this.buttonXNetRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXNetRate.Location = new System.Drawing.Point(150, 145);
+			this.buttonXNetRate.Location = new System.Drawing.Point(166, 145);
 			this.buttonXNetRate.Name = "buttonXNetRate";
 			this.buttonXNetRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXNetRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1841,7 +1804,7 @@
 			this.buttonXTotalCPP.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTotalCPP.AutoCheckOnClick = true;
 			this.buttonXTotalCPP.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTotalCPP.Location = new System.Drawing.Point(5, 194);
+			this.buttonXTotalCPP.Location = new System.Drawing.Point(20, 194);
 			this.buttonXTotalCPP.Name = "buttonXTotalCPP";
 			this.buttonXTotalCPP.Size = new System.Drawing.Size(113, 27);
 			this.buttonXTotalCPP.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1856,7 +1819,7 @@
 			this.buttonXTotalCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTotalCost.AutoCheckOnClick = true;
 			this.buttonXTotalCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTotalCost.Location = new System.Drawing.Point(150, 96);
+			this.buttonXTotalCost.Location = new System.Drawing.Point(166, 96);
 			this.buttonXTotalCost.Name = "buttonXTotalCost";
 			this.buttonXTotalCost.Size = new System.Drawing.Size(113, 27);
 			this.buttonXTotalCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1870,7 +1833,7 @@
 			this.buttonXTotalSpots.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTotalSpots.AutoCheckOnClick = true;
 			this.buttonXTotalSpots.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTotalSpots.Location = new System.Drawing.Point(5, 96);
+			this.buttonXTotalSpots.Location = new System.Drawing.Point(20, 96);
 			this.buttonXTotalSpots.Name = "buttonXTotalSpots";
 			this.buttonXTotalSpots.Size = new System.Drawing.Size(113, 27);
 			this.buttonXTotalSpots.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1885,7 +1848,7 @@
 			this.buttonXAvgRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAvgRate.AutoCheckOnClick = true;
 			this.buttonXAvgRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXAvgRate.Location = new System.Drawing.Point(150, 47);
+			this.buttonXAvgRate.Location = new System.Drawing.Point(166, 47);
 			this.buttonXAvgRate.Name = "buttonXAvgRate";
 			this.buttonXAvgRate.Size = new System.Drawing.Size(113, 27);
 			this.buttonXAvgRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1899,7 +1862,7 @@
 			this.buttonXTotalPeriods.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTotalPeriods.AutoCheckOnClick = true;
 			this.buttonXTotalPeriods.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTotalPeriods.Location = new System.Drawing.Point(5, 47);
+			this.buttonXTotalPeriods.Location = new System.Drawing.Point(20, 47);
 			this.buttonXTotalPeriods.Name = "buttonXTotalPeriods";
 			this.buttonXTotalPeriods.Size = new System.Drawing.Size(113, 27);
 			this.buttonXTotalPeriods.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1908,50 +1871,21 @@
 			this.buttonXTotalPeriods.TextColor = System.Drawing.Color.Black;
 			this.buttonXTotalPeriods.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
 			// 
-			// pbOptionsTotalsHelp
-			// 
-			this.pbOptionsTotalsHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbOptionsTotalsHelp.Image = ((System.Drawing.Image)(resources.GetObject("pbOptionsTotalsHelp.Image")));
-			this.pbOptionsTotalsHelp.Location = new System.Drawing.Point(233, 5);
-			this.pbOptionsTotalsHelp.Name = "pbOptionsTotalsHelp";
-			this.pbOptionsTotalsHelp.Size = new System.Drawing.Size(30, 30);
-			this.pbOptionsTotalsHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbOptionsTotalsHelp.TabIndex = 52;
-			this.pbOptionsTotalsHelp.TabStop = false;
-			this.pbOptionsTotalsHelp.Click += new System.EventHandler(this.pbOptionsHelp_Click);
-			this.pbOptionsTotalsHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbOptionsTotalsHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
-			// laOptionsTotalsTitle
-			// 
-			this.laOptionsTotalsTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.laOptionsTotalsTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laOptionsTotalsTitle.ForeColor = System.Drawing.Color.Black;
-			this.laOptionsTotalsTitle.Location = new System.Drawing.Point(1, 2);
-			this.laOptionsTotalsTitle.Name = "laOptionsTotalsTitle";
-			this.laOptionsTotalsTitle.Size = new System.Drawing.Size(212, 33);
-			this.laOptionsTotalsTitle.TabIndex = 51;
-			this.laOptionsTotalsTitle.Text = "Select from below:";
-			this.laOptionsTotalsTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
 			// xtraTabPageOptionsStyle
 			// 
 			this.xtraTabPageOptionsStyle.Controls.Add(this.pnStyle);
 			this.xtraTabPageOptionsStyle.Name = "xtraTabPageOptionsStyle";
-			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(268, 479);
+			this.xtraTabPageOptionsStyle.Size = new System.Drawing.Size(298, 479);
 			this.xtraTabPageOptionsStyle.Text = "Style";
 			// 
 			// pnStyle
 			// 
-			this.pnStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnStyle.BackColor = System.Drawing.Color.Transparent;
 			this.pnStyle.Controls.Add(this.pnColors);
-			this.pnStyle.Controls.Add(this.pbOptionsSyleHelp);
-			this.pnStyle.Controls.Add(this.laOptionsStyleTitle);
 			this.pnStyle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnStyle.Location = new System.Drawing.Point(0, 0);
 			this.pnStyle.Name = "pnStyle";
-			this.pnStyle.Size = new System.Drawing.Size(268, 479);
+			this.pnStyle.Size = new System.Drawing.Size(298, 479);
 			this.pnStyle.TabIndex = 0;
 			// 
 			// pnColors
@@ -1959,58 +1893,32 @@
 			this.pnColors.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.pnColors.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pnColors.Controls.Add(this.xtraScrollableControlColors);
 			this.pnColors.Location = new System.Drawing.Point(5, 41);
 			this.pnColors.Name = "pnColors";
-			this.pnColors.Size = new System.Drawing.Size(258, 435);
+			this.pnColors.Size = new System.Drawing.Size(288, 435);
 			this.pnColors.TabIndex = 46;
 			// 
 			// xtraScrollableControlColors
 			// 
+			this.xtraScrollableControlColors.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.xtraScrollableControlColors.Appearance.Options.UseBackColor = true;
 			this.xtraScrollableControlColors.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControlColors.Location = new System.Drawing.Point(0, 0);
 			this.xtraScrollableControlColors.Name = "xtraScrollableControlColors";
-			this.xtraScrollableControlColors.Size = new System.Drawing.Size(254, 431);
+			this.xtraScrollableControlColors.Size = new System.Drawing.Size(288, 435);
 			this.xtraScrollableControlColors.TabIndex = 45;
-			// 
-			// pbOptionsSyleHelp
-			// 
-			this.pbOptionsSyleHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbOptionsSyleHelp.Image = ((System.Drawing.Image)(resources.GetObject("pbOptionsSyleHelp.Image")));
-			this.pbOptionsSyleHelp.Location = new System.Drawing.Point(233, 5);
-			this.pbOptionsSyleHelp.Name = "pbOptionsSyleHelp";
-			this.pbOptionsSyleHelp.Size = new System.Drawing.Size(30, 30);
-			this.pbOptionsSyleHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbOptionsSyleHelp.TabIndex = 40;
-			this.pbOptionsSyleHelp.TabStop = false;
-			this.pbOptionsSyleHelp.Click += new System.EventHandler(this.pbOptionsHelp_Click);
-			this.pbOptionsSyleHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbOptionsSyleHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
-			// laOptionsStyleTitle
-			// 
-			this.laOptionsStyleTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.laOptionsStyleTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laOptionsStyleTitle.ForeColor = System.Drawing.Color.Black;
-			this.laOptionsStyleTitle.Location = new System.Drawing.Point(1, 2);
-			this.laOptionsStyleTitle.Name = "laOptionsStyleTitle";
-			this.laOptionsStyleTitle.Size = new System.Drawing.Size(212, 33);
-			this.laOptionsStyleTitle.TabIndex = 39;
-			this.laOptionsStyleTitle.Text = "Select style below:";
-			this.laOptionsStyleTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// xtraTabPageOptionsSecurity
 			// 
 			this.xtraTabPageOptionsSecurity.Controls.Add(this.pnSecurity);
 			this.xtraTabPageOptionsSecurity.Name = "xtraTabPageOptionsSecurity";
-			this.xtraTabPageOptionsSecurity.Size = new System.Drawing.Size(268, 479);
+			this.xtraTabPageOptionsSecurity.Size = new System.Drawing.Size(298, 479);
 			this.xtraTabPageOptionsSecurity.Text = "Security";
 			// 
 			// pnSecurity
 			// 
-			this.pnSecurity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnSecurity.BackColor = System.Drawing.Color.Transparent;
 			this.pnSecurity.Controls.Add(this.laOptionsSecurityDescription);
 			this.pnSecurity.Controls.Add(this.pbOptionsSecurityHelp);
 			this.pnSecurity.Controls.Add(this.laOptionsSecurityTitle);
@@ -2018,7 +1926,7 @@
 			this.pnSecurity.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnSecurity.Location = new System.Drawing.Point(0, 0);
 			this.pnSecurity.Name = "pnSecurity";
-			this.pnSecurity.Size = new System.Drawing.Size(268, 479);
+			this.pnSecurity.Size = new System.Drawing.Size(298, 479);
 			this.pnSecurity.TabIndex = 0;
 			// 
 			// laOptionsSecurityDescription
@@ -2032,7 +1940,7 @@
 			this.laOptionsSecurityDescription.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.laOptionsSecurityDescription.Location = new System.Drawing.Point(11, 49);
 			this.laOptionsSecurityDescription.Name = "laOptionsSecurityDescription";
-			this.laOptionsSecurityDescription.Size = new System.Drawing.Size(247, 206);
+			this.laOptionsSecurityDescription.Size = new System.Drawing.Size(277, 206);
 			this.laOptionsSecurityDescription.TabIndex = 47;
 			this.laOptionsSecurityDescription.Text = resources.GetString("laOptionsSecurityDescription.Text");
 			// 
@@ -2040,7 +1948,7 @@
 			// 
 			this.pbOptionsSecurityHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbOptionsSecurityHelp.Image = ((System.Drawing.Image)(resources.GetObject("pbOptionsSecurityHelp.Image")));
-			this.pbOptionsSecurityHelp.Location = new System.Drawing.Point(233, 5);
+			this.pbOptionsSecurityHelp.Location = new System.Drawing.Point(263, 5);
 			this.pbOptionsSecurityHelp.Name = "pbOptionsSecurityHelp";
 			this.pbOptionsSecurityHelp.Size = new System.Drawing.Size(30, 30);
 			this.pbOptionsSecurityHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -2058,7 +1966,7 @@
 			this.laOptionsSecurityTitle.ForeColor = System.Drawing.Color.Black;
 			this.laOptionsSecurityTitle.Location = new System.Drawing.Point(1, 2);
 			this.laOptionsSecurityTitle.Name = "laOptionsSecurityTitle";
-			this.laOptionsSecurityTitle.Size = new System.Drawing.Size(212, 33);
+			this.laOptionsSecurityTitle.Size = new System.Drawing.Size(242, 33);
 			this.laOptionsSecurityTitle.TabIndex = 45;
 			this.laOptionsSecurityTitle.Text = "Slide Security:";
 			this.laOptionsSecurityTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2073,7 +1981,7 @@
 			this.buttonXUseSlideMaster.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.buttonXUseSlideMaster.Location = new System.Drawing.Point(11, 261);
 			this.buttonXUseSlideMaster.Name = "buttonXUseSlideMaster";
-			this.buttonXUseSlideMaster.Size = new System.Drawing.Size(247, 36);
+			this.buttonXUseSlideMaster.Size = new System.Drawing.Size(277, 36);
 			this.buttonXUseSlideMaster.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXUseSlideMaster.TabIndex = 44;
 			this.buttonXUseSlideMaster.Text = "LOCK to MASTER";
@@ -2083,7 +1991,7 @@
 			// ScheduleSectionControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.splitContainerControl);
 			this.Controls.Add(this.pnBottom);
 			this.Controls.Add(this.popupContainerControlProgramSource);
@@ -2131,15 +2039,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitPeriods.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditOutputLimitQuarters.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEmptySports.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbOptionsLineHelp)).EndInit();
 			this.xtraTabPageOptionsDigital.ResumeLayout(false);
 			this.xtraTabPageOptionsTotals.ResumeLayout(false);
 			this.pnOptionsTotals.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pbOptionsTotalsHelp)).EndInit();
 			this.xtraTabPageOptionsStyle.ResumeLayout(false);
 			this.pnStyle.ResumeLayout(false);
 			this.pnColors.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pbOptionsSyleHelp)).EndInit();
 			this.xtraTabPageOptionsSecurity.ResumeLayout(false);
 			this.pnSecurity.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbOptionsSecurityHelp)).EndInit();
@@ -2162,8 +2067,7 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnRating;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnCPP;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnGRP;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnDay;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
+		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnDay;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxStations;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxDays;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxTimes;
@@ -2219,8 +2123,6 @@
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsTotals;
 		private System.Windows.Forms.Panel pnOptionsLine;
 		private System.Windows.Forms.Panel pnOptionsTotals;
-		private System.Windows.Forms.PictureBox pbOptionsLineHelp;
-		private System.Windows.Forms.Label laOptionsLineTitle;
 		private DevComponents.DotNetBar.ButtonX buttonXTime;
 		private DevComponents.DotNetBar.ButtonX buttonXSpots;
 		private DevComponents.DotNetBar.ButtonX buttonXCost;
@@ -2240,14 +2142,10 @@
 		private DevComponents.DotNetBar.ButtonX buttonXTotalSpots;
 		private DevComponents.DotNetBar.ButtonX buttonXAvgRate;
 		private DevComponents.DotNetBar.ButtonX buttonXTotalPeriods;
-		private System.Windows.Forms.PictureBox pbOptionsTotalsHelp;
-		private System.Windows.Forms.Label laOptionsTotalsTitle;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsDigital;
 		private NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital.DigitalInfoControl digitalInfoControl;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsStyle;
 		private System.Windows.Forms.Panel pnStyle;
-		private System.Windows.Forms.PictureBox pbOptionsSyleHelp;
-		private System.Windows.Forms.Label laOptionsStyleTitle;
 		private DevComponents.DotNetBar.ButtonX buttonXUseSlideMaster;
 		private System.Windows.Forms.Panel pnColors;
 		private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControlColors;

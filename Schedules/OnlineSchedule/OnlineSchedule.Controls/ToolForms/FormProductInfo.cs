@@ -1,12 +1,13 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
 using NewBizWiz.OnlineSchedule.Controls.Properties;
 
 namespace NewBizWiz.OnlineSchedule.Controls.ToolForms
 {
-	public partial class FormProductInfo : Form
+	public partial class FormProductInfo : MetroForm
 	{
 		private readonly ProductInfoType _type;
 		private readonly DigitalProduct _product;

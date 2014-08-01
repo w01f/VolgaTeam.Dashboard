@@ -66,16 +66,14 @@ namespace AdBAR
             return l;
         }
 
-        public static IEnumerable<ButtonItem> GetButtonItems(SubItemsCollection s)
+        public static IEnumerable<T> GetItems<T>(SubItemsCollection s)
         {
-            var items = new List<ButtonItem>();
+            var items = new List<T>();
             foreach (var i in s)
             {
-                var btn = i as ButtonItem;
-
-                if (btn != null && btn.Tag != null)
+                if (i is T && i.GetType().GetProperty("Tag") != null)
                 {
-                    items.Add(btn);
+                    items.Add((T) i);
                 }
                 else
                 {
@@ -83,7 +81,7 @@ namespace AdBAR
 
                     if (sub != null)
                         if (sub.SubItems.Count > 0)
-                            items.AddRange(GetButtonItems(sub.SubItems));
+                            items.AddRange(GetItems<T>(sub.SubItems));
 
                 }
             }
@@ -159,8 +157,8 @@ namespace AdBAR
 
         public static void OpenLink(TabGroupItem item, IWin32Window owner)
         {
-            if(!String.IsNullOrEmpty(FormBar._currentBrowser))
-                item.SuggestedBrowser = FormBar._browsersPaths[FormBar._currentBrowser];
+            if(!String.IsNullOrEmpty(FormBar.CurrentBrowser))
+                item.SuggestedBrowser = FormBar.BrowsersPaths[FormBar.CurrentBrowser];
 
             var isAllowed = item.IsCurrentUserAllowed();
 
@@ -236,6 +234,12 @@ namespace AdBAR
         public static List<WatchedProcess> FilterWatchedProcessesList(List<WatchedProcess> originalList, List<WatchedProcessBehaviour> include)
         {
             return originalList.Where(i => include.Any(b => i.Behaviour == b)).ToList();
+        }
+
+        public static Point GetCenterLocation(Size size, Control control)
+        {
+            var m = control.PointToScreen(new Point(control.Width/2, control.Height/2));
+            return new Point(m.X - (size.Width / 2), m.Y - (size.Height / 2));
         }
     }
 

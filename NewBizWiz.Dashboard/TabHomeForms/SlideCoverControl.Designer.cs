@@ -47,13 +47,13 @@
 			this.checkEditSalesRep = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditFirstSlide = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditUseEmptyCover = new DevExpress.XtraEditors.CheckEdit();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.comboBoxEditSalesRep = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.laSalesRepDetails = new System.Windows.Forms.Label();
 			this.pnMain.SuspendLayout();
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbSalesQuotes)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).BeginInit();
@@ -62,7 +62,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.memoEditSalesQuote.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditSalesQuoteAuthor.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbSalesRep)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties.VistaTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbPresentationDate)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDecisionMaker)).BeginInit();
@@ -75,9 +75,7 @@
 			// 
 			// pnMain
 			// 
-			this.pnMain.Controls.Add(this.checkEditUseEmptyCover);
 			this.pnMain.Controls.Add(this.laSalesRepDetails);
-			this.pnMain.Controls.Add(this.checkEditFirstSlide);
 			this.pnMain.Controls.Add(this.comboBoxEditSalesRep);
 			this.pnMain.Controls.Add(this.pbSalesQuotes);
 			this.pnMain.Controls.Add(this.pbAdvertiser);
@@ -94,26 +92,15 @@
 			this.pnMain.Controls.Add(this.laAdvertiser);
 			this.pnMain.Controls.Add(this.memoEditSalesQuote);
 			this.pnMain.Controls.Add(this.textEditSalesQuoteAuthor);
-			this.pnMain.Controls.SetChildIndex(this.pnTop, 0);
-			this.pnMain.Controls.SetChildIndex(this.textEditSalesQuoteAuthor, 0);
-			this.pnMain.Controls.SetChildIndex(this.memoEditSalesQuote, 0);
-			this.pnMain.Controls.SetChildIndex(this.laAdvertiser, 0);
-			this.pnMain.Controls.SetChildIndex(this.buttonXDeleteSalesQuote, 0);
-			this.pnMain.Controls.SetChildIndex(this.pbSalesRep, 0);
-			this.pnMain.Controls.SetChildIndex(this.comboBoxEditAdvertiser, 0);
-			this.pnMain.Controls.SetChildIndex(this.dateEditPresentationDate, 0);
-			this.pnMain.Controls.SetChildIndex(this.comboBoxEditDecisionMaker, 0);
-			this.pnMain.Controls.SetChildIndex(this.laDecisionMaker, 0);
-			this.pnMain.Controls.SetChildIndex(this.pbPresentationDate, 0);
-			this.pnMain.Controls.SetChildIndex(this.pbDecisionMaker, 0);
-			this.pnMain.Controls.SetChildIndex(this.checkEditPresentationDate, 0);
-			this.pnMain.Controls.SetChildIndex(this.checkEditSalesRep, 0);
-			this.pnMain.Controls.SetChildIndex(this.pbAdvertiser, 0);
-			this.pnMain.Controls.SetChildIndex(this.pbSalesQuotes, 0);
-			this.pnMain.Controls.SetChildIndex(this.comboBoxEditSalesRep, 0);
-			this.pnMain.Controls.SetChildIndex(this.checkEditFirstSlide, 0);
-			this.pnMain.Controls.SetChildIndex(this.laSalesRepDetails, 0);
-			this.pnMain.Controls.SetChildIndex(this.checkEditUseEmptyCover, 0);
+			// 
+			// pnBottom
+			// 
+			this.pnBottom.Controls.Add(this.checkEditUseEmptyCover);
+			this.pnBottom.Controls.Add(this.checkEditFirstSlide);
+			this.pnBottom.Controls.SetChildIndex(this.checkEditSolutionNew, 0);
+			this.pnBottom.Controls.SetChildIndex(this.pbDescription, 0);
+			this.pnBottom.Controls.SetChildIndex(this.checkEditFirstSlide, 0);
+			this.pnBottom.Controls.SetChildIndex(this.checkEditUseEmptyCover, 0);
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -129,14 +116,22 @@
 			this.comboBoxEditSlideHeader.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.comboBoxEditSlideHeader.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
+			// checkEditSolutionNew
+			// 
+			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
+			// 
 			// pbDescription
 			// 
 			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionCover;
+			this.pbDescription.Size = new System.Drawing.Size(255, 48);
 			// 
 			// pbSalesQuotes
 			// 
 			this.pbSalesQuotes.Image = global::NewBizWiz.Dashboard.Properties.Resources.SalesQuotes;
-			this.pbSalesQuotes.Location = new System.Drawing.Point(11, 285);
+			this.pbSalesQuotes.Location = new System.Drawing.Point(11, 259);
 			this.pbSalesQuotes.Name = "pbSalesQuotes";
 			this.pbSalesQuotes.Size = new System.Drawing.Size(72, 72);
 			this.pbSalesQuotes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -149,18 +144,18 @@
 			// checkEditPresentationDate
 			// 
 			this.checkEditPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditPresentationDate.Location = new System.Drawing.Point(501, 193);
+			this.checkEditPresentationDate.Location = new System.Drawing.Point(501, 148);
 			this.checkEditPresentationDate.Name = "checkEditPresentationDate";
 			this.checkEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F);
 			this.checkEditPresentationDate.Properties.Appearance.Options.UseFont = true;
 			this.checkEditPresentationDate.Properties.Caption = "Presentation Date?";
-			this.checkEditPresentationDate.Size = new System.Drawing.Size(227, 23);
+			this.checkEditPresentationDate.Size = new System.Drawing.Size(227, 19);
 			this.checkEditPresentationDate.TabIndex = 94;
 			this.checkEditPresentationDate.CheckedChanged += new System.EventHandler(this.ckPresentationDate_CheckedChanged);
 			// 
 			// comboBoxEditDecisionMaker
 			// 
-			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(70, 224);
+			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(70, 179);
 			this.comboBoxEditDecisionMaker.Name = "comboBoxEditDecisionMaker";
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
@@ -181,7 +176,7 @@
 			// 
 			// comboBoxEditAdvertiser
 			// 
-			this.comboBoxEditAdvertiser.Location = new System.Drawing.Point(70, 118);
+			this.comboBoxEditAdvertiser.Location = new System.Drawing.Point(70, 61);
 			this.comboBoxEditAdvertiser.Name = "comboBoxEditAdvertiser";
 			this.comboBoxEditAdvertiser.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditAdvertiser.Properties.Appearance.Options.UseFont = true;
@@ -205,9 +200,10 @@
 			this.buttonXDeleteSalesQuote.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXDeleteSalesQuote.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXDeleteSalesQuote.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXDeleteSalesQuote.Location = new System.Drawing.Point(11, 363);
+			this.buttonXDeleteSalesQuote.Location = new System.Drawing.Point(11, 337);
 			this.buttonXDeleteSalesQuote.Name = "buttonXDeleteSalesQuote";
-			this.buttonXDeleteSalesQuote.Size = new System.Drawing.Size(68, 29);
+			this.buttonXDeleteSalesQuote.Size = new System.Drawing.Size(72, 29);
+			this.buttonXDeleteSalesQuote.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXDeleteSalesQuote.TabIndex = 91;
 			this.buttonXDeleteSalesQuote.TabStop = false;
 			this.buttonXDeleteSalesQuote.Text = "Remove";
@@ -220,23 +216,23 @@
 			this.memoEditSalesQuote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.memoEditSalesQuote.Enabled = false;
-			this.memoEditSalesQuote.Location = new System.Drawing.Point(89, 315);
+			this.memoEditSalesQuote.Location = new System.Drawing.Point(89, 289);
 			this.memoEditSalesQuote.Name = "memoEditSalesQuote";
-			this.memoEditSalesQuote.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.memoEditSalesQuote.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.memoEditSalesQuote.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
 			this.memoEditSalesQuote.Properties.Appearance.ForeColor = System.Drawing.Color.Gray;
 			this.memoEditSalesQuote.Properties.Appearance.Options.UseBackColor = true;
 			this.memoEditSalesQuote.Properties.Appearance.Options.UseFont = true;
 			this.memoEditSalesQuote.Properties.Appearance.Options.UseForeColor = true;
-			this.memoEditSalesQuote.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.memoEditSalesQuote.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
 			this.memoEditSalesQuote.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Gray;
 			this.memoEditSalesQuote.Properties.AppearanceDisabled.Options.UseBackColor = true;
 			this.memoEditSalesQuote.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.memoEditSalesQuote.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.memoEditSalesQuote.Properties.AppearanceFocused.BackColor = System.Drawing.Color.White;
 			this.memoEditSalesQuote.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Gray;
 			this.memoEditSalesQuote.Properties.AppearanceFocused.Options.UseBackColor = true;
 			this.memoEditSalesQuote.Properties.AppearanceFocused.Options.UseForeColor = true;
-			this.memoEditSalesQuote.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.memoEditSalesQuote.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White;
 			this.memoEditSalesQuote.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Gray;
 			this.memoEditSalesQuote.Properties.AppearanceReadOnly.Options.UseBackColor = true;
 			this.memoEditSalesQuote.Properties.AppearanceReadOnly.Options.UseForeColor = true;
@@ -245,43 +241,44 @@
     "reat first impression with your client…";
 			this.memoEditSalesQuote.Properties.ReadOnly = true;
 			this.memoEditSalesQuote.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
-			this.memoEditSalesQuote.Size = new System.Drawing.Size(709, 77);
+			this.memoEditSalesQuote.Size = new System.Drawing.Size(673, 77);
 			this.memoEditSalesQuote.TabIndex = 90;
 			this.memoEditSalesQuote.TabStop = false;
+			this.memoEditSalesQuote.UseOptimizedRendering = true;
 			// 
 			// textEditSalesQuoteAuthor
 			// 
 			this.textEditSalesQuoteAuthor.Enabled = false;
-			this.textEditSalesQuoteAuthor.Location = new System.Drawing.Point(89, 283);
+			this.textEditSalesQuoteAuthor.Location = new System.Drawing.Point(89, 257);
 			this.textEditSalesQuoteAuthor.Name = "textEditSalesQuoteAuthor";
-			this.textEditSalesQuoteAuthor.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.textEditSalesQuoteAuthor.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.textEditSalesQuoteAuthor.Properties.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.textEditSalesQuoteAuthor.Properties.Appearance.Options.UseBackColor = true;
 			this.textEditSalesQuoteAuthor.Properties.Appearance.Options.UseFont = true;
-			this.textEditSalesQuoteAuthor.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.textEditSalesQuoteAuthor.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
 			this.textEditSalesQuoteAuthor.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
 			this.textEditSalesQuoteAuthor.Properties.AppearanceDisabled.Options.UseBackColor = true;
 			this.textEditSalesQuoteAuthor.Properties.AppearanceDisabled.Options.UseForeColor = true;
-			this.textEditSalesQuoteAuthor.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.textEditSalesQuoteAuthor.Properties.AppearanceFocused.BackColor = System.Drawing.Color.White;
 			this.textEditSalesQuoteAuthor.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Black;
 			this.textEditSalesQuoteAuthor.Properties.AppearanceFocused.Options.UseBackColor = true;
 			this.textEditSalesQuoteAuthor.Properties.AppearanceFocused.Options.UseForeColor = true;
-			this.textEditSalesQuoteAuthor.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.textEditSalesQuoteAuthor.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White;
 			this.textEditSalesQuoteAuthor.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.textEditSalesQuoteAuthor.Properties.AppearanceReadOnly.Options.UseBackColor = true;
 			this.textEditSalesQuoteAuthor.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.textEditSalesQuoteAuthor.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.textEditSalesQuoteAuthor.Properties.NullText = "Sales Quotes";
 			this.textEditSalesQuoteAuthor.Properties.ReadOnly = true;
-			this.textEditSalesQuoteAuthor.Size = new System.Drawing.Size(709, 26);
+			this.textEditSalesQuoteAuthor.Size = new System.Drawing.Size(673, 26);
 			this.textEditSalesQuoteAuthor.TabIndex = 89;
 			this.textEditSalesQuoteAuthor.TabStop = false;
 			// 
 			// laAdvertiser
 			// 
-			this.laAdvertiser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.laAdvertiser.BackColor = System.Drawing.Color.White;
 			this.laAdvertiser.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laAdvertiser.Location = new System.Drawing.Point(67, 84);
+			this.laAdvertiser.Location = new System.Drawing.Point(67, 27);
 			this.laAdvertiser.Name = "laAdvertiser";
 			this.laAdvertiser.Size = new System.Drawing.Size(261, 27);
 			this.laAdvertiser.TabIndex = 83;
@@ -290,9 +287,9 @@
 			// pbSalesRep
 			// 
 			this.pbSalesRep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbSalesRep.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pbSalesRep.BackColor = System.Drawing.Color.White;
 			this.pbSalesRep.Image = global::NewBizWiz.Dashboard.Properties.Resources.SalesRep;
-			this.pbSalesRep.Location = new System.Drawing.Point(443, 87);
+			this.pbSalesRep.Location = new System.Drawing.Point(443, 30);
 			this.pbSalesRep.Name = "pbSalesRep";
 			this.pbSalesRep.Size = new System.Drawing.Size(50, 51);
 			this.pbSalesRep.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -304,13 +301,15 @@
 			this.dateEditPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateEditPresentationDate.EditValue = null;
 			this.dateEditPresentationDate.Enabled = false;
-			this.dateEditPresentationDate.Location = new System.Drawing.Point(502, 225);
+			this.dateEditPresentationDate.Location = new System.Drawing.Point(502, 180);
 			this.dateEditPresentationDate.Name = "dateEditPresentationDate";
 			this.dateEditPresentationDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditPresentationDate.Properties.Appearance.Options.UseFont = true;
 			this.dateEditPresentationDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditPresentationDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+			this.dateEditPresentationDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditPresentationDate.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
 			this.dateEditPresentationDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.dateEditPresentationDate.Properties.EditFormat.FormatString = "MM/dd/yyyy";
@@ -320,17 +319,14 @@
 			this.dateEditPresentationDate.Properties.ShowPopupShadow = false;
 			this.dateEditPresentationDate.Properties.ShowToday = false;
 			this.dateEditPresentationDate.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.dateEditPresentationDate.Properties.UseParentBackground = true;
-			this.dateEditPresentationDate.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.dateEditPresentationDate.Size = new System.Drawing.Size(120, 22);
+			this.dateEditPresentationDate.Size = new System.Drawing.Size(120, 20);
 			this.dateEditPresentationDate.TabIndex = 4;
 			// 
 			// laDecisionMaker
 			// 
-			this.laDecisionMaker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.laDecisionMaker.BackColor = System.Drawing.Color.White;
 			this.laDecisionMaker.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laDecisionMaker.Location = new System.Drawing.Point(67, 195);
+			this.laDecisionMaker.Location = new System.Drawing.Point(67, 150);
 			this.laDecisionMaker.Name = "laDecisionMaker";
 			this.laDecisionMaker.Size = new System.Drawing.Size(261, 27);
 			this.laDecisionMaker.TabIndex = 74;
@@ -339,9 +335,9 @@
 			// pbPresentationDate
 			// 
 			this.pbPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbPresentationDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pbPresentationDate.BackColor = System.Drawing.Color.White;
 			this.pbPresentationDate.Image = global::NewBizWiz.Dashboard.Properties.Resources.Date;
-			this.pbPresentationDate.Location = new System.Drawing.Point(443, 195);
+			this.pbPresentationDate.Location = new System.Drawing.Point(443, 150);
 			this.pbPresentationDate.Name = "pbPresentationDate";
 			this.pbPresentationDate.Size = new System.Drawing.Size(50, 51);
 			this.pbPresentationDate.TabIndex = 77;
@@ -349,9 +345,9 @@
 			// 
 			// pbDecisionMaker
 			// 
-			this.pbDecisionMaker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pbDecisionMaker.BackColor = System.Drawing.Color.White;
 			this.pbDecisionMaker.Image = global::NewBizWiz.Dashboard.Properties.Resources.DecisionMaker;
-			this.pbDecisionMaker.Location = new System.Drawing.Point(11, 195);
+			this.pbDecisionMaker.Location = new System.Drawing.Point(11, 150);
 			this.pbDecisionMaker.Name = "pbDecisionMaker";
 			this.pbDecisionMaker.Size = new System.Drawing.Size(50, 51);
 			this.pbDecisionMaker.TabIndex = 75;
@@ -359,9 +355,9 @@
 			// 
 			// pbAdvertiser
 			// 
-			this.pbAdvertiser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pbAdvertiser.BackColor = System.Drawing.Color.White;
 			this.pbAdvertiser.Image = global::NewBizWiz.Dashboard.Properties.Resources.Advertiser;
-			this.pbAdvertiser.Location = new System.Drawing.Point(11, 87);
+			this.pbAdvertiser.Location = new System.Drawing.Point(11, 30);
 			this.pbAdvertiser.Name = "pbAdvertiser";
 			this.pbAdvertiser.Size = new System.Drawing.Size(50, 51);
 			this.pbAdvertiser.TabIndex = 72;
@@ -370,92 +366,90 @@
 			// checkEditSalesRep
 			// 
 			this.checkEditSalesRep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditSalesRep.Location = new System.Drawing.Point(500, 85);
+			this.checkEditSalesRep.Location = new System.Drawing.Point(500, 28);
 			this.checkEditSalesRep.Name = "checkEditSalesRep";
 			this.checkEditSalesRep.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F);
 			this.checkEditSalesRep.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSalesRep.Properties.Caption = "Sales Rep:";
-			this.checkEditSalesRep.Size = new System.Drawing.Size(227, 23);
+			this.checkEditSalesRep.Size = new System.Drawing.Size(227, 19);
 			this.checkEditSalesRep.TabIndex = 95;
 			this.checkEditSalesRep.CheckedChanged += new System.EventHandler(this.checkEditSalesRep_CheckedChanged);
 			// 
 			// checkEditFirstSlide
 			// 
-			this.checkEditFirstSlide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.checkEditFirstSlide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditFirstSlide.EditValue = true;
-			this.checkEditFirstSlide.Location = new System.Drawing.Point(9, 406);
+			this.checkEditFirstSlide.Location = new System.Drawing.Point(272, 27);
 			this.checkEditFirstSlide.Name = "checkEditFirstSlide";
-			this.checkEditFirstSlide.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditFirstSlide.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditFirstSlide.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditFirstSlide.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditFirstSlide.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFirstSlide.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditFirstSlide.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditFirstSlide.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditFirstSlide.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditFirstSlide.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.White;
+			this.checkEditFirstSlide.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
 			this.checkEditFirstSlide.Properties.AppearanceDisabled.Options.UseFont = true;
 			this.checkEditFirstSlide.Properties.AppearanceDisabled.Options.UseForeColor = true;
 			this.checkEditFirstSlide.Properties.AppearanceDisabled.Options.UseTextOptions = true;
 			this.checkEditFirstSlide.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditFirstSlide.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditFirstSlide.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.White;
+			this.checkEditFirstSlide.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Black;
 			this.checkEditFirstSlide.Properties.AppearanceFocused.Options.UseFont = true;
 			this.checkEditFirstSlide.Properties.AppearanceFocused.Options.UseForeColor = true;
 			this.checkEditFirstSlide.Properties.AppearanceFocused.Options.UseTextOptions = true;
 			this.checkEditFirstSlide.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditFirstSlide.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditFirstSlide.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.White;
+			this.checkEditFirstSlide.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.checkEditFirstSlide.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.checkEditFirstSlide.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.checkEditFirstSlide.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
 			this.checkEditFirstSlide.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditFirstSlide.Properties.Caption = "Page 1";
-			this.checkEditFirstSlide.Size = new System.Drawing.Size(125, 23);
+			this.checkEditFirstSlide.Properties.AutoWidth = true;
+			this.checkEditFirstSlide.Properties.Caption = "Cover Page 1";
+			this.checkEditFirstSlide.Size = new System.Drawing.Size(99, 19);
 			this.checkEditFirstSlide.TabIndex = 93;
 			this.checkEditFirstSlide.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
 			// checkEditUseEmptyCover
 			// 
-			this.checkEditUseEmptyCover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditUseEmptyCover.Location = new System.Drawing.Point(140, 406);
+			this.checkEditUseEmptyCover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditUseEmptyCover.Location = new System.Drawing.Point(400, 27);
 			this.checkEditUseEmptyCover.Name = "checkEditUseEmptyCover";
-			this.checkEditUseEmptyCover.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditUseEmptyCover.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditUseEmptyCover.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditUseEmptyCover.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditUseEmptyCover.Properties.Appearance.Options.UseFont = true;
 			this.checkEditUseEmptyCover.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditUseEmptyCover.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditUseEmptyCover.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditUseEmptyCover.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditUseEmptyCover.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.White;
+			this.checkEditUseEmptyCover.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
 			this.checkEditUseEmptyCover.Properties.AppearanceDisabled.Options.UseFont = true;
 			this.checkEditUseEmptyCover.Properties.AppearanceDisabled.Options.UseForeColor = true;
 			this.checkEditUseEmptyCover.Properties.AppearanceDisabled.Options.UseTextOptions = true;
 			this.checkEditUseEmptyCover.Properties.AppearanceDisabled.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditUseEmptyCover.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditUseEmptyCover.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.White;
+			this.checkEditUseEmptyCover.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Black;
 			this.checkEditUseEmptyCover.Properties.AppearanceFocused.Options.UseFont = true;
 			this.checkEditUseEmptyCover.Properties.AppearanceFocused.Options.UseForeColor = true;
 			this.checkEditUseEmptyCover.Properties.AppearanceFocused.Options.UseTextOptions = true;
 			this.checkEditUseEmptyCover.Properties.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 12F);
-			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.White;
+			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.Options.UseFont = true;
 			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.Options.UseTextOptions = true;
 			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-			this.checkEditUseEmptyCover.Properties.Caption = "No Data";
-			this.checkEditUseEmptyCover.Size = new System.Drawing.Size(188, 23);
+			this.checkEditUseEmptyCover.Properties.AutoWidth = true;
+			this.checkEditUseEmptyCover.Properties.Caption = "Empty Cover";
+			this.checkEditUseEmptyCover.Size = new System.Drawing.Size(97, 20);
 			this.checkEditUseEmptyCover.TabIndex = 92;
 			this.checkEditUseEmptyCover.CheckedChanged += new System.EventHandler(this.checkEditUseEmptyCover_CheckedChanged);
-			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
 			// 
 			// comboBoxEditSalesRep
 			// 
 			this.comboBoxEditSalesRep.Enabled = false;
-			this.comboBoxEditSalesRep.Location = new System.Drawing.Point(502, 118);
+			this.comboBoxEditSalesRep.Location = new System.Drawing.Point(502, 61);
 			this.comboBoxEditSalesRep.Name = "comboBoxEditSalesRep";
 			this.comboBoxEditSalesRep.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditSalesRep.Properties.Appearance.Options.UseFont = true;
@@ -470,28 +464,29 @@
 			this.comboBoxEditSalesRep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditSalesRep.Properties.NullText = "Type or Select";
-			this.comboBoxEditSalesRep.Size = new System.Drawing.Size(298, 22);
+			this.comboBoxEditSalesRep.Size = new System.Drawing.Size(260, 22);
 			this.comboBoxEditSalesRep.TabIndex = 99;
 			this.comboBoxEditSalesRep.EditValueChanged += new System.EventHandler(this.comboBoxEditSalesRep_EditValueChanged);
 			// 
 			// laSalesRepDetails
 			// 
-			this.laSalesRepDetails.ForeColor = System.Drawing.Color.White;
-			this.laSalesRepDetails.Location = new System.Drawing.Point(505, 143);
+			this.laSalesRepDetails.ForeColor = System.Drawing.Color.Black;
+			this.laSalesRepDetails.Location = new System.Drawing.Point(505, 86);
 			this.laSalesRepDetails.Name = "laSalesRepDetails";
-			this.laSalesRepDetails.Size = new System.Drawing.Size(295, 47);
+			this.laSalesRepDetails.Size = new System.Drawing.Size(257, 47);
 			this.laSalesRepDetails.TabIndex = 100;
 			this.laSalesRepDetails.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// SlideCoverControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Name = "SlideCoverControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbSalesQuotes)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).EndInit();
@@ -500,7 +495,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.memoEditSalesQuote.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditSalesQuoteAuthor.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbSalesRep)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties.VistaTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dateEditPresentationDate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbPresentationDate)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDecisionMaker)).EndInit();
@@ -526,8 +521,7 @@
         private DevComponents.DotNetBar.ButtonX buttonXDeleteSalesQuote;
         private DevExpress.XtraEditors.MemoEdit memoEditSalesQuote;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditDecisionMaker;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditAdvertiser;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
+		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditAdvertiser;
         private DevExpress.XtraEditors.CheckEdit checkEditFirstSlide;
 		private DevExpress.XtraEditors.CheckEdit checkEditUseEmptyCover;
         private DevExpress.XtraEditors.CheckEdit checkEditPresentationDate;

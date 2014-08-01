@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
-using NewBizWiz.Dashboard.ToolForms;
 
 namespace NewBizWiz.Dashboard.TabNewspaperForms
 {

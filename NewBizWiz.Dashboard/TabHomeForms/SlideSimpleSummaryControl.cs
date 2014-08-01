@@ -68,7 +68,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			comboBoxEditDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers);
 
 			checkEditSolutionNew.EditValueChanged += EditValueChanged;
-			checkEditSolutionOld.EditValueChanged += EditValueChanged;
 
 			FormMain.Instance.FormClosed += (sender1, e1) =>
 			{
@@ -101,15 +100,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public void UpdateTotalItems()
 		{
-			laTotalItems.Text = String.Format("Total Items: {0}", simpleSummaryItemContainer.ItemsCount);
-			if (SlidesCount > 0)
-			{
-				laSlidesCount.Visible = true;
-				laSlidesCount.Text = String.Format("Slide Count: {0}", SlidesCount);
-			}
-			else
-				laSlidesCount.Visible = false;
-
+			buttonXAddItem.Text = String.Format("Add Item{0}", simpleSummaryItemContainer.ItemsCount > 0 ? String.Format(" ({0})", simpleSummaryItemContainer.ItemsCount) : String.Empty);
 		}
 
 		public void ResetTab()
@@ -132,7 +123,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			AllowToSave = false;
 			checkEditSolutionNew.Checked = ViewSettingsManager.Instance.SimpleSummaryState.IsNewSolution;
-			checkEditSolutionOld.Checked = !ViewSettingsManager.Instance.SimpleSummaryState.IsNewSolution;
 			if (string.IsNullOrEmpty(ViewSettingsManager.Instance.SimpleSummaryState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)

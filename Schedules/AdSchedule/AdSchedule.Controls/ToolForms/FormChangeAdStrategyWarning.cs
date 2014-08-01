@@ -1,13 +1,12 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using DevComponents.DotNetBar.Metro;
 
 namespace NewBizWiz.AdSchedule.Controls.ToolForms
 {
-    public partial class FormChangeAdStrategyWarning : Form
-    {
-        public FormChangeAdStrategyWarning()
-        {
-            InitializeComponent();
-        }
-    }
+	public partial class FormChangeAdStrategyWarning : MetroForm
+	{
+		public FormChangeAdStrategyWarning()
+		{
+			InitializeComponent();
+		}
+	}
 }

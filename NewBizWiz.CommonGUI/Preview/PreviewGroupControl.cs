@@ -25,19 +25,22 @@ namespace NewBizWiz.CommonGUI.Preview
 			laSlideSize.Text = String.Format("{0} {1} x {2}", SettingsManager.Instance.Orientation, SettingsManager.Instance.SizeWidth.ToString("#.##"), SettingsManager.Instance.SizeHeght.ToString("#.##"));
 			GetPreviewImages();
 			Resize += OnResize;
-
 			if (_previewImages.Any())
 			{
 				comboBoxEditSlides.SelectedIndexChanged -= comboBoxEditSlides_SelectedIndexChanged;
 				comboBoxEditSlides.Properties.Items.Clear();
 				for (var i = 1; i <= _previewImages.Count; i++)
 					comboBoxEditSlides.Properties.Items.Add(i.ToString());
-				if (_previewImages.Any())
-					comboBoxEditSlides.SelectedIndex = 0;
-				comboBoxEditSlides_SelectedIndexChanged(null, null);
-				comboBoxEditSlides.SelectedIndexChanged += comboBoxEditSlides_SelectedIndexChanged;
 			}
 			pnNavigationArea.Visible = _previewImages.Count > 1;
+		}
+
+		public void Load()
+		{
+			if (!_previewImages.Any()) return;
+			comboBoxEditSlides.SelectedIndex = 0;
+			comboBoxEditSlides_SelectedIndexChanged(null, null);
+			comboBoxEditSlides.SelectedIndexChanged += comboBoxEditSlides_SelectedIndexChanged;
 		}
 
 		#region Other Event Handlers
@@ -48,6 +51,7 @@ namespace NewBizWiz.CommonGUI.Preview
 
 		private void comboBoxEditSlides_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			pictureBoxPreview.BackColor = Color.WhiteSmoke;
 			pictureBoxPreview.Image = _previewImages[comboBoxEditSlides.SelectedIndex];
 			laSlideNumber.Text = String.Format("Slide {0} of {1}", (comboBoxEditSlides.SelectedIndex + 1), _previewImages.Count);
 		}

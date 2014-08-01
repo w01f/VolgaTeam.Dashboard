@@ -28,38 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnMain = new System.Windows.Forms.Panel();
-            this.laTitle = new System.Windows.Forms.Label();
-            this.SuspendLayout();
-            // 
-            // pnMain
-            // 
-            this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnMain.Location = new System.Drawing.Point(0, 72);
-            this.pnMain.Name = "pnMain";
-            this.pnMain.Size = new System.Drawing.Size(665, 389);
-            this.pnMain.TabIndex = 0;
-            // 
-            // laTitle
-            // 
-            this.laTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.laTitle.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laTitle.Location = new System.Drawing.Point(0, 0);
-            this.laTitle.Name = "laTitle";
-            this.laTitle.Size = new System.Drawing.Size(665, 72);
-            this.laTitle.TabIndex = 2;
-            this.laTitle.Text = "Main Dashboard Slides";
-            this.laTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // BasicMainPage
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.Controls.Add(this.pnMain);
-            this.Controls.Add(this.laTitle);
-            this.Name = "BasicMainPage";
-            this.Size = new System.Drawing.Size(665, 461);
-            this.ResumeLayout(false);
+			this.pnMain = new System.Windows.Forms.Panel();
+			this.laTitle = new System.Windows.Forms.Label();
+			this.SuspendLayout();
+			// 
+			// pnMain
+			// 
+			this.pnMain.BackColor = System.Drawing.Color.Transparent;
+			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnMain.Location = new System.Drawing.Point(0, 72);
+			this.pnMain.Name = "pnMain";
+			this.pnMain.Size = new System.Drawing.Size(665, 389);
+			this.pnMain.TabIndex = 0;
+			// 
+			// laTitle
+			// 
+			this.laTitle.Dock = System.Windows.Forms.DockStyle.Top;
+			this.laTitle.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laTitle.Location = new System.Drawing.Point(0, 0);
+			this.laTitle.Name = "laTitle";
+			this.laTitle.Size = new System.Drawing.Size(665, 72);
+			this.laTitle.TabIndex = 2;
+			this.laTitle.Text = "Main Dashboard Slides";
+			this.laTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// MainDashboardPage
+			// 
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.pnMain);
+			this.Controls.Add(this.laTitle);
+			this.Name = "MainDashboardPage";
+			this.Size = new System.Drawing.Size(665, 461);
+			this.ResumeLayout(false);
 
         }
 

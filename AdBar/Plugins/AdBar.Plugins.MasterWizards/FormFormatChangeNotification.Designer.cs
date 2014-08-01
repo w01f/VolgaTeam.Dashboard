@@ -57,9 +57,11 @@
 			// labelControlCurrentState
 			// 
 			this.labelControlCurrentState.AllowHtmlString = true;
+			this.labelControlCurrentState.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlCurrentState.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlCurrentState.Location = new System.Drawing.Point(109, 12);
 			this.labelControlCurrentState.Name = "labelControlCurrentState";
-			this.labelControlCurrentState.Size = new System.Drawing.Size(92, 19);
+			this.labelControlCurrentState.Size = new System.Drawing.Size(92, 18);
 			this.labelControlCurrentState.StyleController = this.styleController;
 			this.labelControlCurrentState.TabIndex = 1;
 			this.labelControlCurrentState.Text = "labelControl1";
@@ -73,6 +75,7 @@
 			this.buttonXCancel.Location = new System.Drawing.Point(496, 176);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(122, 32);
+			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCancel.TabIndex = 14;
 			this.buttonXCancel.Text = "CANCEL";
 			this.buttonXCancel.TextColor = System.Drawing.Color.Black;
@@ -86,6 +89,7 @@
 			this.buttonXSave.Location = new System.Drawing.Point(344, 176);
 			this.buttonXSave.Name = "buttonXSave";
 			this.buttonXSave.Size = new System.Drawing.Size(122, 32);
+			this.buttonXSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXSave.TabIndex = 13;
 			this.buttonXSave.Text = "YES!";
 			this.buttonXSave.TextColor = System.Drawing.Color.Black;
@@ -93,9 +97,11 @@
 			// labelControlFutureState
 			// 
 			this.labelControlFutureState.AllowHtmlString = true;
+			this.labelControlFutureState.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlFutureState.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlFutureState.Location = new System.Drawing.Point(109, 56);
 			this.labelControlFutureState.Name = "labelControlFutureState";
-			this.labelControlFutureState.Size = new System.Drawing.Size(92, 19);
+			this.labelControlFutureState.Size = new System.Drawing.Size(92, 18);
 			this.labelControlFutureState.StyleController = this.styleController;
 			this.labelControlFutureState.TabIndex = 15;
 			this.labelControlFutureState.Text = "labelControl1";
@@ -103,10 +109,11 @@
 			// labelControlDescripption
 			// 
 			this.labelControlDescripption.AllowHtmlString = true;
-			this.labelControlDescripption.Appearance.ForeColor = System.Drawing.Color.Red;
+			this.labelControlDescripption.Appearance.BackColor = System.Drawing.Color.White;
+			this.labelControlDescripption.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlDescripption.Location = new System.Drawing.Point(109, 103);
 			this.labelControlDescripption.Name = "labelControlDescripption";
-			this.labelControlDescripption.Size = new System.Drawing.Size(462, 57);
+			this.labelControlDescripption.Size = new System.Drawing.Size(462, 54);
 			this.labelControlDescripption.StyleController = this.styleController;
 			this.labelControlDescripption.TabIndex = 16;
 			this.labelControlDescripption.Text = "Changing your Slide Format size COULD distort items on the slide.\r\n\r\nDO YOU STILL" +
@@ -114,6 +121,8 @@
 			// 
 			// pbLogo
 			// 
+			this.pbLogo.BackColor = System.Drawing.Color.White;
+			this.pbLogo.ForeColor = System.Drawing.Color.Black;
 			this.pbLogo.Image = global::AdBar.Plugins.MasterWizards.Properties.Resources.Warning;
 			this.pbLogo.Location = new System.Drawing.Point(8, 0);
 			this.pbLogo.Name = "pbLogo";
@@ -125,7 +134,7 @@
 			// FormFormatChangeNotification
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(626, 220);
 			this.Controls.Add(this.labelControlDescripption);
 			this.Controls.Add(this.labelControlFutureState);
@@ -133,6 +142,7 @@
 			this.Controls.Add(this.buttonXSave);
 			this.Controls.Add(this.labelControlCurrentState);
 			this.Controls.Add(this.pbLogo);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

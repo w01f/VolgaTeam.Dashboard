@@ -41,7 +41,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			checkedListBoxControlGeographicResidence.Items.AddRange(ListManager.Instance.TargetCustomersLists.Geographies.ToArray());
 
 			checkEditSolutionNew.EditValueChanged += EditValueChanged;
-			checkEditSolutionOld.EditValueChanged += EditValueChanged;
 
 			FormMain.Instance.FormClosed += (sender1, e1) =>
 			{
@@ -72,7 +71,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			_allowToSave = false;
 			checkEditSolutionNew.Checked = ViewSettingsManager.Instance.TargetCustomersState.IsNewSolution;
-			checkEditSolutionOld.Checked = !ViewSettingsManager.Instance.TargetCustomersState.IsNewSolution;
 			if (string.IsNullOrEmpty(ViewSettingsManager.Instance.TargetCustomersState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)

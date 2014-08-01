@@ -44,7 +44,7 @@
 			// HomeControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pictureBox1);
 			this.Name = "HomeControl";
 			this.Size = new System.Drawing.Size(1005, 624);

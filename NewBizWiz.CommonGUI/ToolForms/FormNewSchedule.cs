@@ -1,8 +1,9 @@
 ﻿using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 
 namespace NewBizWiz.CommonGUI.ToolForms
 {
-	public partial class FormNewSchedule : Form
+	public partial class FormNewSchedule : MetroForm
 	{
 		public FormNewSchedule()
 		{

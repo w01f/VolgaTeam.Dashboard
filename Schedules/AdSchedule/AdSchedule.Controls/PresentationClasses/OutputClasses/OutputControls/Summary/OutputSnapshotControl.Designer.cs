@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.comboBoxEditSchedule = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.checkEditSchedule = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditDate = new DevExpress.XtraEditors.CheckEdit();
@@ -89,10 +87,6 @@
 			this.pnSlideInfo.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// comboBoxEditSchedule
 			// 
 			this.comboBoxEditSchedule.Location = new System.Drawing.Point(26, 72);
@@ -126,7 +120,7 @@
 			this.checkEditDate.Properties.Appearance.Options.UseFont = true;
 			this.checkEditDate.Properties.AutoWidth = true;
 			this.checkEditDate.Properties.Caption = "Date Tag";
-			this.checkEditDate.Size = new System.Drawing.Size(75, 21);
+			this.checkEditDate.Size = new System.Drawing.Size(74, 20);
 			this.checkEditDate.TabIndex = 21;
 			this.checkEditDate.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditDate.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -141,7 +135,7 @@
 			this.checkEditDecisionMaker.Properties.AutoWidth = true;
 			this.checkEditDecisionMaker.Properties.Caption = "Decision-Maker Tag";
 			this.checkEditDecisionMaker.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-			this.checkEditDecisionMaker.Size = new System.Drawing.Size(138, 21);
+			this.checkEditDecisionMaker.Size = new System.Drawing.Size(137, 20);
 			this.checkEditDecisionMaker.TabIndex = 20;
 			this.checkEditDecisionMaker.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditDecisionMaker.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -156,7 +150,7 @@
 			this.checkEditFlightDates.Properties.AutoWidth = true;
 			this.checkEditFlightDates.Properties.Caption = "Flight Dates";
 			this.checkEditFlightDates.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-			this.checkEditFlightDates.Size = new System.Drawing.Size(93, 21);
+			this.checkEditFlightDates.Size = new System.Drawing.Size(92, 20);
 			this.checkEditFlightDates.TabIndex = 19;
 			this.checkEditFlightDates.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditFlightDates.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -171,21 +165,20 @@
 			this.checkEditBusinessName.Properties.AutoWidth = true;
 			this.checkEditBusinessName.Properties.Caption = "Business Name Tag";
 			this.checkEditBusinessName.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-			this.checkEditBusinessName.Size = new System.Drawing.Size(140, 21);
+			this.checkEditBusinessName.Size = new System.Drawing.Size(139, 20);
 			this.checkEditBusinessName.TabIndex = 18;
 			this.checkEditBusinessName.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditBusinessName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
 			// 
 			// pnTopHeader
 			// 
-			this.pnTopHeader.BackColor = System.Drawing.Color.AliceBlue;
-			this.pnTopHeader.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnTopHeader.BackColor = System.Drawing.Color.White;
 			this.pnTopHeader.Controls.Add(this.hyperLinkEditReset);
 			this.pnTopHeader.Controls.Add(this.laDescription);
 			this.pnTopHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTopHeader.Location = new System.Drawing.Point(0, 0);
 			this.pnTopHeader.Name = "pnTopHeader";
-			this.pnTopHeader.Size = new System.Drawing.Size(536, 30);
+			this.pnTopHeader.Size = new System.Drawing.Size(526, 30);
 			this.pnTopHeader.TabIndex = 4;
 			// 
 			// hyperLinkEditReset
@@ -220,30 +213,33 @@
 			// xtraScrollableControl
 			// 
 			this.xtraScrollableControl.AlwaysScrollActiveControlIntoView = false;
+			this.xtraScrollableControl.Appearance.BackColor = System.Drawing.Color.White;
+			this.xtraScrollableControl.Appearance.Options.UseBackColor = true;
 			this.xtraScrollableControl.Controls.Add(this.outputSnapshotContainer);
 			this.xtraScrollableControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraScrollableControl.Location = new System.Drawing.Point(0, 0);
+			this.xtraScrollableControl.Location = new System.Drawing.Point(0, 1);
 			this.xtraScrollableControl.Name = "xtraScrollableControl";
-			this.xtraScrollableControl.Size = new System.Drawing.Size(532, 503);
+			this.xtraScrollableControl.Size = new System.Drawing.Size(526, 502);
 			this.xtraScrollableControl.TabIndex = 6;
 			// 
 			// outputSnapshotContainer
 			// 
-			this.outputSnapshotContainer.BackColor = System.Drawing.Color.AliceBlue;
+			this.outputSnapshotContainer.BackColor = System.Drawing.Color.White;
 			this.outputSnapshotContainer.Dock = System.Windows.Forms.DockStyle.Top;
 			this.outputSnapshotContainer.Location = new System.Drawing.Point(0, 0);
 			this.outputSnapshotContainer.Name = "outputSnapshotContainer";
-			this.outputSnapshotContainer.Size = new System.Drawing.Size(532, 290);
+			this.outputSnapshotContainer.Size = new System.Drawing.Size(526, 290);
 			this.outputSnapshotContainer.TabIndex = 5;
 			// 
 			// pnMain
 			// 
-			this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnMain.BackColor = System.Drawing.Color.DimGray;
 			this.pnMain.Controls.Add(this.xtraScrollableControl);
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnMain.Location = new System.Drawing.Point(0, 30);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(536, 507);
+			this.pnMain.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
+			this.pnMain.Size = new System.Drawing.Size(526, 503);
 			this.pnMain.TabIndex = 7;
 			// 
 			// splitContainerControl
@@ -254,6 +250,7 @@
 			this.splitContainerControl.Panel1.Controls.Add(this.xtraTabControlOptions);
 			this.splitContainerControl.Panel1.MinSize = 250;
 			this.splitContainerControl.Panel1.Text = "Panel1";
+			this.splitContainerControl.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
 			this.splitContainerControl.Panel2.Controls.Add(this.pnMain);
 			this.splitContainerControl.Panel2.Controls.Add(this.pnTopHeader);
 			this.splitContainerControl.Panel2.Text = "Panel2";
@@ -264,7 +261,7 @@
 			// 
 			// xtraTabControlOptions
 			// 
-			this.xtraTabControlOptions.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.xtraTabControlOptions.Appearance.BackColor = System.Drawing.Color.White;
 			this.xtraTabControlOptions.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.xtraTabControlOptions.Appearance.Options.UseBackColor = true;
 			this.xtraTabControlOptions.Appearance.Options.UseFont = true;
@@ -293,12 +290,12 @@
 			// 
 			this.xtraTabPagePrint.Controls.Add(this.pnPrint);
 			this.xtraTabPagePrint.Name = "xtraTabPagePrint";
-			this.xtraTabPagePrint.Size = new System.Drawing.Size(248, 511);
+			this.xtraTabPagePrint.Size = new System.Drawing.Size(248, 509);
 			this.xtraTabPagePrint.Text = "Slide Options";
 			// 
 			// pnPrint
 			// 
-			this.pnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnPrint.BackColor = System.Drawing.Color.White;
 			this.pnPrint.Controls.Add(this.pbPrintHelp);
 			this.pnPrint.Controls.Add(this.laTitle);
 			this.pnPrint.Controls.Add(this.buttonXAvgFinalCost);
@@ -319,7 +316,7 @@
 			this.pnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnPrint.Location = new System.Drawing.Point(0, 0);
 			this.pnPrint.Name = "pnPrint";
-			this.pnPrint.Size = new System.Drawing.Size(248, 511);
+			this.pnPrint.Size = new System.Drawing.Size(248, 509);
 			this.pnPrint.TabIndex = 0;
 			// 
 			// pbPrintHelp
@@ -353,9 +350,8 @@
 			// buttonXAvgFinalCost
 			// 
 			this.buttonXAvgFinalCost.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXAvgFinalCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAvgFinalCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXAvgFinalCost.Location = new System.Drawing.Point(7, 346);
+			this.buttonXAvgFinalCost.Location = new System.Drawing.Point(3, 346);
 			this.buttonXAvgFinalCost.Name = "buttonXAvgFinalCost";
 			this.buttonXAvgFinalCost.Size = new System.Drawing.Size(112, 27);
 			this.buttonXAvgFinalCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -368,8 +364,9 @@
 			// buttonXAvgAdCost
 			// 
 			this.buttonXAvgAdCost.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXAvgAdCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAvgAdCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXAvgAdCost.Location = new System.Drawing.Point(130, 289);
+			this.buttonXAvgAdCost.Location = new System.Drawing.Point(134, 289);
 			this.buttonXAvgAdCost.Name = "buttonXAvgAdCost";
 			this.buttonXAvgAdCost.Size = new System.Drawing.Size(112, 27);
 			this.buttonXAvgAdCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -382,9 +379,8 @@
 			// buttonXSquare
 			// 
 			this.buttonXSquare.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXSquare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSquare.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSquare.Location = new System.Drawing.Point(7, 232);
+			this.buttonXSquare.Location = new System.Drawing.Point(3, 232);
 			this.buttonXSquare.Name = "buttonXSquare";
 			this.buttonXSquare.Size = new System.Drawing.Size(112, 27);
 			this.buttonXSquare.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -397,8 +393,9 @@
 			// buttonXDimensions
 			// 
 			this.buttonXDimensions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXDimensions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDimensions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDimensions.Location = new System.Drawing.Point(130, 175);
+			this.buttonXDimensions.Location = new System.Drawing.Point(134, 175);
 			this.buttonXDimensions.Name = "buttonXDimensions";
 			this.buttonXDimensions.Size = new System.Drawing.Size(112, 27);
 			this.buttonXDimensions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -411,8 +408,9 @@
 			// buttonXReadership
 			// 
 			this.buttonXReadership.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXReadership.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXReadership.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXReadership.Location = new System.Drawing.Point(130, 403);
+			this.buttonXReadership.Location = new System.Drawing.Point(134, 403);
 			this.buttonXReadership.Name = "buttonXReadership";
 			this.buttonXReadership.Size = new System.Drawing.Size(112, 27);
 			this.buttonXReadership.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -425,8 +423,9 @@
 			// buttonXTotalColorRate
 			// 
 			this.buttonXTotalColorRate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXTotalColorRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTotalColorRate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTotalColorRate.Location = new System.Drawing.Point(130, 346);
+			this.buttonXTotalColorRate.Location = new System.Drawing.Point(134, 346);
 			this.buttonXTotalColorRate.Name = "buttonXTotalColorRate";
 			this.buttonXTotalColorRate.Size = new System.Drawing.Size(112, 27);
 			this.buttonXTotalColorRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -439,8 +438,9 @@
 			// buttonXTotalSquare
 			// 
 			this.buttonXTotalSquare.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXTotalSquare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTotalSquare.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTotalSquare.Location = new System.Drawing.Point(130, 232);
+			this.buttonXTotalSquare.Location = new System.Drawing.Point(134, 232);
 			this.buttonXTotalSquare.Name = "buttonXTotalSquare";
 			this.buttonXTotalSquare.Size = new System.Drawing.Size(112, 27);
 			this.buttonXTotalSquare.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -468,9 +468,8 @@
 			// buttonXTotalDiscounts
 			// 
 			this.buttonXTotalDiscounts.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXTotalDiscounts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXTotalDiscounts.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTotalDiscounts.Location = new System.Drawing.Point(7, 403);
+			this.buttonXTotalDiscounts.Location = new System.Drawing.Point(3, 403);
 			this.buttonXTotalDiscounts.Name = "buttonXTotalDiscounts";
 			this.buttonXTotalDiscounts.Size = new System.Drawing.Size(112, 27);
 			this.buttonXTotalDiscounts.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -483,9 +482,8 @@
 			// buttonXDelivery
 			// 
 			this.buttonXDelivery.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXDelivery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDelivery.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDelivery.Location = new System.Drawing.Point(7, 460);
+			this.buttonXDelivery.Location = new System.Drawing.Point(3, 460);
 			this.buttonXDelivery.Name = "buttonXDelivery";
 			this.buttonXDelivery.Size = new System.Drawing.Size(112, 27);
 			this.buttonXDelivery.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -498,9 +496,8 @@
 			// buttonXAvgPCI
 			// 
 			this.buttonXAvgPCI.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXAvgPCI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXAvgPCI.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXAvgPCI.Location = new System.Drawing.Point(7, 289);
+			this.buttonXAvgPCI.Location = new System.Drawing.Point(3, 289);
 			this.buttonXAvgPCI.Name = "buttonXAvgPCI";
 			this.buttonXAvgPCI.Size = new System.Drawing.Size(112, 27);
 			this.buttonXAvgPCI.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -571,12 +568,12 @@
 			// 
 			this.xtraTabPageSlideInfo.Controls.Add(this.pnSlideInfo);
 			this.xtraTabPageSlideInfo.Name = "xtraTabPageSlideInfo";
-			this.xtraTabPageSlideInfo.Size = new System.Drawing.Size(248, 511);
+			this.xtraTabPageSlideInfo.Size = new System.Drawing.Size(248, 509);
 			this.xtraTabPageSlideInfo.Text = "Basic Info";
 			// 
 			// pnSlideInfo
 			// 
-			this.pnSlideInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnSlideInfo.BackColor = System.Drawing.Color.White;
 			this.pnSlideInfo.Controls.Add(this.checkEditFlightDates);
 			this.pnSlideInfo.Controls.Add(this.checkEditDecisionMaker);
 			this.pnSlideInfo.Controls.Add(this.checkEditBusinessName);
@@ -586,17 +583,18 @@
 			this.pnSlideInfo.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnSlideInfo.Location = new System.Drawing.Point(0, 0);
 			this.pnSlideInfo.Name = "pnSlideInfo";
-			this.pnSlideInfo.Size = new System.Drawing.Size(248, 511);
+			this.pnSlideInfo.Size = new System.Drawing.Size(248, 509);
 			this.pnSlideInfo.TabIndex = 0;
 			// 
 			// superTooltip
 			// 
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
 			// OutputSnapshotControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.AliceBlue;
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.splitContainerControl);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "OutputSnapshotControl";
@@ -627,8 +625,7 @@
 
         #endregion
 
-		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        public DevExpress.XtraEditors.CheckEdit checkEditBusinessName;
+		public DevExpress.XtraEditors.CheckEdit checkEditBusinessName;
         public DevExpress.XtraEditors.CheckEdit checkEditFlightDates;
         public DevExpress.XtraEditors.CheckEdit checkEditDate;
         public DevExpress.XtraEditors.CheckEdit checkEditDecisionMaker;

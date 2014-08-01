@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			this.checkEditShowAdNotes = new DevExpress.XtraEditors.CheckEdit();
 			this.checkedListBoxAdNotes = new DevExpress.XtraEditors.CheckedListBoxControl();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pbHelp = new System.Windows.Forms.PictureBox();
 			this.buttonXDown = new DevComponents.DotNetBar.ButtonX();
@@ -69,17 +67,15 @@
 			this.checkedListBoxAdNotes.ItemHeight = 45;
 			this.checkedListBoxAdNotes.Location = new System.Drawing.Point(9, 62);
 			this.checkedListBoxAdNotes.Name = "checkedListBoxAdNotes";
+			this.checkedListBoxAdNotes.SelectionMode = System.Windows.Forms.SelectionMode.None;
 			this.checkedListBoxAdNotes.Size = new System.Drawing.Size(217, 512);
 			this.checkedListBoxAdNotes.TabIndex = 18;
 			this.checkedListBoxAdNotes.ItemChecking += new DevExpress.XtraEditors.Controls.ItemCheckingEventHandler(this.checkedListBoxAdNotes_ItemChecking);
 			this.checkedListBoxAdNotes.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxAdNotes_ItemCheck);
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// superTooltip
 			// 
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
 			// pbHelp
@@ -107,6 +103,7 @@
 			this.buttonXDown.Location = new System.Drawing.Point(232, 110);
 			this.buttonXDown.Name = "buttonXDown";
 			this.buttonXDown.Size = new System.Drawing.Size(42, 42);
+			this.buttonXDown.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXDown.TabIndex = 20;
 			this.buttonXDown.Click += new System.EventHandler(this.buttonXDown_Click);
 			// 
@@ -120,13 +117,14 @@
 			this.buttonXUp.Location = new System.Drawing.Point(232, 62);
 			this.buttonXUp.Name = "buttonXUp";
 			this.buttonXUp.Size = new System.Drawing.Size(42, 42);
+			this.buttonXUp.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXUp.TabIndex = 19;
 			this.buttonXUp.Click += new System.EventHandler(this.buttonXUp_Click);
 			// 
 			// AdNotesControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pbHelp);
 			this.Controls.Add(this.checkEditShowAdNotes);
 			this.Controls.Add(this.buttonXDown);
@@ -147,8 +145,7 @@
         private DevExpress.XtraEditors.CheckEdit checkEditShowAdNotes;
         private DevComponents.DotNetBar.ButtonX buttonXDown;
         private DevComponents.DotNetBar.ButtonX buttonXUp;
-        public DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxAdNotes;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
+		public DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxAdNotes;
         private System.Windows.Forms.PictureBox pbHelp;
         private DevComponents.DotNetBar.SuperTooltip superTooltip;
     }

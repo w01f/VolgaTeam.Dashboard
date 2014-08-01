@@ -120,7 +120,7 @@
 			this.barDockControlTop.CausesValidation = false;
 			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-			this.barDockControlTop.Size = new System.Drawing.Size(667, 82);
+			this.barDockControlTop.Size = new System.Drawing.Size(667, 84);
 			// 
 			// barDockControlBottom
 			// 
@@ -133,15 +133,15 @@
 			// 
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 82);
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 521);
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 84);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 519);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.barDockControlRight.Location = new System.Drawing.Point(667, 82);
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 521);
+			this.barDockControlRight.Location = new System.Drawing.Point(667, 84);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 519);
 			// 
 			// gridControlCalendar
 			// 
@@ -282,7 +282,7 @@
 			// FormOpenCalendar
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(667, 603);
 			this.Controls.Add(this.gridControlCalendar);
 			this.Controls.Add(this.barDockControlLeft);

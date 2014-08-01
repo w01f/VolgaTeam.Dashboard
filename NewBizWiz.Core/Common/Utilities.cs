@@ -330,8 +330,21 @@ namespace NewBizWiz.Core.Common
 		public object GetControlInstance(Type baseType, Type intendedClass, params object[] parameters)
 		{
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-			return assemblies.Select(assembly =>
-				FindControlInTypes(baseType, intendedClass, assembly.GetTypes(), parameters)).FirstOrDefault(control => control != null);
+			var assemblyTypes = new List<Type>();
+			foreach (var assembly in assemblies)
+			{
+				assemblyTypes.Clear();
+				try
+				{
+					assemblyTypes.AddRange(assembly.GetTypes());
+				}
+				catch { continue; }
+				if (!assemblyTypes.Any()) continue;
+				var targetObject = FindControlInTypes(baseType, intendedClass, assemblyTypes, parameters);
+				if (targetObject == null) continue;
+				return targetObject;
+			}
+			return null;
 		}
 		#endregion
 	}
@@ -369,6 +382,24 @@ namespace NewBizWiz.Core.Common
 			{
 				graphicsHandle.InterpolationMode = InterpolationMode.HighQualityBicubic;
 				graphicsHandle.DrawImage(image, 0, 0, newWidth, newHeight);
+			}
+			return newImage;
+		}
+
+		public static Image DrawBorder(this Image image)
+		{
+			const int borderWidth = 1;
+			var originalWidth = image.Width;
+			var originalHeight = image.Height;
+			var newWidth = (originalWidth + borderWidth * 4);
+			var newHeight = (originalHeight + borderWidth * 4);
+			Image newImage = new Bitmap(newWidth, newHeight);
+			using (var graphicsHandle = Graphics.FromImage(newImage))
+			using (var pen = new Pen(Color.DimGray, borderWidth))
+			{
+				graphicsHandle.InterpolationMode = InterpolationMode.HighQualityBicubic;
+				graphicsHandle.DrawImage(image, borderWidth, borderWidth);
+				graphicsHandle.DrawRectangle(pen, 0, 0, originalWidth, originalHeight);
 			}
 			return newImage;
 		}

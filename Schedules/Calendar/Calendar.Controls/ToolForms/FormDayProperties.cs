@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using NewBizWiz.Core.Calendar;
 
 namespace NewBizWiz.Calendar.Controls.ToolForms
 {
-	public partial class FormDayProperties : Form
+	public partial class FormDayProperties : MetroForm
 	{
 		private readonly CalendarDay _day;
 

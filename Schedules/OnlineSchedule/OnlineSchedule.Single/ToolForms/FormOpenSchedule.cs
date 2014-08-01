@@ -2,17 +2,18 @@
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
-using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
+using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
 
 namespace NewBizWiz.OnlineSchedule.Single
 {
-	public partial class FormOpenSchedule : Form
+	public partial class FormOpenSchedule : MetroForm
 	{
 		private ShortSchedule[] _scheduleList;
 

@@ -113,7 +113,7 @@
 			// 
 			// pnDigitalProductBottomBar
 			// 
-			this.pnDigitalProductBottomBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnDigitalProductBottomBar.BackColor = System.Drawing.Color.White;
 			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXTargeting);
 			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXRichMedia);
 			this.pnDigitalProductBottomBar.Controls.Add(this.buttonXLocation);
@@ -273,6 +273,7 @@
             this.gridBandRichMedia,
             this.gridBandTarget,
             this.gridBandDelete});
+			this.advBandedGridView.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.advBandedGridView.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
             this.gridColumnPosition,
             this.gridColumnName,
@@ -328,6 +329,7 @@
 			this.gridBandNumber.Name = "gridBandNumber";
 			this.gridBandNumber.OptionsBand.AllowSize = false;
 			this.gridBandNumber.OptionsBand.FixedWidth = true;
+			this.gridBandNumber.VisibleIndex = 0;
 			this.gridBandNumber.Width = 120;
 			// 
 			// gridColumnPosition
@@ -376,6 +378,7 @@
 			this.gridBandType.MinWidth = 20;
 			this.gridBandType.Name = "gridBandType";
 			this.gridBandType.RowCount = 2;
+			this.gridBandType.VisibleIndex = 1;
 			this.gridBandType.Width = 143;
 			// 
 			// gridColumnCategory
@@ -435,6 +438,7 @@
 			this.gridBandName.MinWidth = 20;
 			this.gridBandName.Name = "gridBandName";
 			this.gridBandName.RowCount = 2;
+			this.gridBandName.VisibleIndex = 2;
 			this.gridBandName.Width = 148;
 			// 
 			// gridColumnName
@@ -511,6 +515,7 @@
 			this.gridBandWidth.Name = "gridBandWidth";
 			this.gridBandWidth.OptionsBand.AllowSize = false;
 			this.gridBandWidth.OptionsBand.FixedWidth = true;
+			this.gridBandWidth.VisibleIndex = 3;
 			this.gridBandWidth.Width = 60;
 			// 
 			// gridColumnWidth
@@ -564,6 +569,7 @@
 			this.gridBandHeight.Name = "gridBandHeight";
 			this.gridBandHeight.OptionsBand.AllowSize = false;
 			this.gridBandHeight.OptionsBand.FixedWidth = true;
+			this.gridBandHeight.VisibleIndex = 4;
 			this.gridBandHeight.Width = 60;
 			// 
 			// gridColumnHeight
@@ -590,6 +596,7 @@
 			this.gridBandRate.Name = "gridBandRate";
 			this.gridBandRate.OptionsBand.AllowSize = false;
 			this.gridBandRate.OptionsBand.FixedWidth = true;
+			this.gridBandRate.VisibleIndex = 5;
 			this.gridBandRate.Width = 195;
 			// 
 			// gridColumnRateType
@@ -675,6 +682,7 @@
 			this.gridBandRichMedia.OptionsBand.FixedWidth = true;
 			this.gridBandRichMedia.RowCount = 2;
 			this.gridBandRichMedia.Visible = false;
+			this.gridBandRichMedia.VisibleIndex = -1;
 			this.gridBandRichMedia.Width = 56;
 			// 
 			// gridColumnRichMedia
@@ -712,6 +720,7 @@
 			this.gridBandTarget.OptionsBand.FixedWidth = true;
 			this.gridBandTarget.RowCount = 2;
 			this.gridBandTarget.Visible = false;
+			this.gridBandTarget.VisibleIndex = -1;
 			this.gridBandTarget.Width = 56;
 			// 
 			// gridColumnTarget
@@ -746,6 +755,7 @@
 			this.gridBandDelete.Name = "gridBandDelete";
 			this.gridBandDelete.OptionsBand.AllowSize = false;
 			this.gridBandDelete.OptionsBand.FixedWidth = true;
+			this.gridBandDelete.VisibleIndex = 6;
 			this.gridBandDelete.Width = 48;
 			// 
 			// gridColumnDelete

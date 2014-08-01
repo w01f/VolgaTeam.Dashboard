@@ -82,14 +82,13 @@
 			this.panelExMain.Controls.Add(this.memoEditDetails);
 			this.panelExMain.Controls.Add(this.spinEditMonthly);
 			this.panelExMain.Controls.Add(this.spinEditTotal);
+			this.panelExMain.DisabledBackColor = System.Drawing.Color.Empty;
 			this.panelExMain.Location = new System.Drawing.Point(45, 12);
 			this.panelExMain.Name = "panelExMain";
 			this.panelExMain.Size = new System.Drawing.Size(509, 99);
 			this.panelExMain.Style.Alignment = System.Drawing.StringAlignment.Center;
-			this.panelExMain.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-			this.panelExMain.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-			this.panelExMain.Style.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-			this.panelExMain.Style.BorderColor.Color = System.Drawing.Color.White;
+			this.panelExMain.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+			this.panelExMain.Style.BorderColor.Color = System.Drawing.Color.LightGray;
 			this.panelExMain.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
 			this.panelExMain.Style.GradientAngle = 90;
 			this.panelExMain.TabIndex = 30;
@@ -100,7 +99,7 @@
 			this.textEditItem.Name = "textEditItem";
 			this.textEditItem.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.textEditItem.Properties.Appearance.Options.UseFont = true;
-			this.textEditItem.Size = new System.Drawing.Size(264, 21);
+			this.textEditItem.Size = new System.Drawing.Size(264, 22);
 			this.textEditItem.TabIndex = 38;
 			this.textEditItem.EditValueChanged += new System.EventHandler(this.textEditItem_EditValueChanged);
 			// 
@@ -179,6 +178,7 @@
 			this.memoEditDetails.Properties.NullText = "Brief Overview...";
 			this.memoEditDetails.Size = new System.Drawing.Size(182, 84);
 			this.memoEditDetails.TabIndex = 3;
+			this.memoEditDetails.UseOptimizedRendering = true;
 			this.memoEditDetails.EditValueChanged += new System.EventHandler(this.memoEditDetails_EditValueChanged);
 			// 
 			// spinEditMonthly
@@ -199,7 +199,7 @@
 			this.spinEditMonthly.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditMonthly.Properties.EditFormat.FormatString = "$#,###.00";
 			this.spinEditMonthly.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditMonthly.Size = new System.Drawing.Size(106, 21);
+			this.spinEditMonthly.Size = new System.Drawing.Size(106, 22);
 			this.spinEditMonthly.TabIndex = 1;
 			this.spinEditMonthly.EditValueChanged += new System.EventHandler(this.spinEditMonthly_EditValueChanged);
 			// 
@@ -221,7 +221,7 @@
 			this.spinEditTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditTotal.Properties.EditFormat.FormatString = "$#,###.00";
 			this.spinEditTotal.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-			this.spinEditTotal.Size = new System.Drawing.Size(106, 21);
+			this.spinEditTotal.Size = new System.Drawing.Size(106, 22);
 			this.spinEditTotal.TabIndex = 2;
 			this.spinEditTotal.EditValueChanged += new System.EventHandler(this.spinEditTotal_EditValueChanged);
 			// 
@@ -264,16 +264,16 @@
 			this.pbDelete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
 			this.pbDelete.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
-			// SimpleSummaryItemControl
+			// SummaryCustomItemControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pbUp);
 			this.Controls.Add(this.pbDown);
 			this.Controls.Add(this.pbDelete);
 			this.Controls.Add(this.panelExMain);
 			this.Controls.Add(this.laNumber);
-			this.Name = "SimpleSummaryItemControl";
+			this.Name = "SummaryCustomItemControl";
 			this.Size = new System.Drawing.Size(595, 123);
 			this.panelExMain.ResumeLayout(false);
 			this.panelExMain.PerformLayout();

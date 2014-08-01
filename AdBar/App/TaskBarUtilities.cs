@@ -17,7 +17,7 @@ namespace AdBAR
 
         public sealed class Taskbar
         {
-            private const string ClassName = "Shell_TrayWnd";
+            private const string ClassName = "Shell_TrayWnd", SecondaryClassName = "Shell_SecondaryTrayWnd";
 
             public Rectangle VisibleBounds
             {
@@ -62,33 +62,37 @@ namespace AdBAR
                 private set;
             }
 
-            public Taskbar()
+            public Taskbar(bool secondary)
             {
-                IntPtr taskbarHandle = User32.FindWindow(Taskbar.ClassName, null);
+                Handle = User32.FindWindow(!secondary ? ClassName : SecondaryClassName, null);
 
-                APPBARDATA data = new APPBARDATA();
-                data.cbSize = (uint)Marshal.SizeOf(typeof(APPBARDATA));
-                data.hWnd = taskbarHandle;
-                IntPtr result = Shell32.SHAppBarMessage(ABM.GetTaskbarPos, ref data);
+                if (Handle == IntPtr.Zero)
+                    return;
+
+                var data = new APPBARDATA {cbSize = (uint) Marshal.SizeOf(typeof (APPBARDATA)), hWnd = Handle};
+                var result = Shell32.SHAppBarMessage(ABM.GetTaskbarPos, ref data);
+                
                 if (result == IntPtr.Zero)
                     throw new InvalidOperationException();
 
-                this.Position = (TaskbarPosition)data.uEdge;
-                this.Bounds = Rectangle.FromLTRB(data.rc.left, data.rc.top, data.rc.right, data.rc.bottom);
+                Position = (TaskbarPosition)data.uEdge;
+                Bounds = Rectangle.FromLTRB(data.rc.left, data.rc.top, data.rc.right, data.rc.bottom);
 
                 data.cbSize = (uint)Marshal.SizeOf(typeof(APPBARDATA));
                 result = Shell32.SHAppBarMessage(ABM.GetState, ref data);
                 int state = result.ToInt32();
-                this.AlwaysOnTop = (state & ABS.AlwaysOnTop) == ABS.AlwaysOnTop;
-                this.AutoHide = (state & ABS.Autohide) == ABS.Autohide;
+                AlwaysOnTop = (state & ABS.AlwaysOnTop) == ABS.AlwaysOnTop;
+                AutoHide = (state & ABS.Autohide) == ABS.Autohide;
                 
                 var lpRect = new RECT();
-                User32.GetWindowRect(taskbarHandle, ref lpRect);
-                this.VisibleBounds = Rectangle.FromLTRB(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
+                User32.GetWindowRect(Handle, ref lpRect);
+                VisibleBounds = Rectangle.FromLTRB(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
 
                 /*Debug.WriteLine(this.Bounds);
                 Debug.WriteLine(lpRect.top + "-------------------");*/
             }
+
+            public IntPtr Handle { get; private set; }
         }
 
         public enum ABM : uint

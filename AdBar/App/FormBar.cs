@@ -1,4 +1,8 @@
-﻿using AdBAR.App;
+﻿using System.Drawing;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml;
+using System.Xml.Serialization;
+using AdBAR.App;
 using AdBAR.Properties;
 using DevComponents.DotNetBar;
 using Microsoft.Win32;
@@ -41,26 +45,43 @@ namespace AdBAR
         private UInt16 _currentIteration;
         private const UInt16 Delay = 100, Iterations = 10; // With every event, the application will iterate with a specified delay checking for changes
         private readonly Dictionary<int, IntPtr> _processesAndMaximizedWindows = new Dictionary<int, IntPtr>();
-        private int _lastYVisible, _lastY=-1, _uncollapsedHeight = 200, _maxShortButtons = 4,_collapsedHeight = 24, _multiHorizontalPadding = 40, _multiVerticalPadding = 40;
+        private int _lastYVisible, _uncollapsedHeight = 200, _maxShortButtons = 4,_collapsedHeight = 24, _multiHorizontalPadding = 40, _multiVerticalPadding = 40;
         private readonly ApplicationStructure _structure;
-        internal static Dictionary<string, string> _browsersPaths;
-        internal static string _currentBrowser;
+        internal static Dictionary<string, string> BrowsersPaths;
+        internal static string CurrentBrowser;
         private List<RibbonBar> _browsersPanels;
         private List<WatchedProcess> _watchedProcesses, _hideFromProcesses;
-        private static BarStatus newStatus, lastStatus;
+        private static BarStatus _newStatus, _lastStatus;
         private bool _disableNonAvailableButtons;
+        private SyncronizationHelper _sync;
+        private bool _skipCollapse;
+        private readonly float _virtualDpi; // TODO: Clean this
+        private int _lastMonitorCount;
+        private int _preferedMonitor;
+        private readonly Settings _settings
+            ;
 
         public FormBar()
         {
             InitializeComponent();
 
+            _settings = new Settings();
             _structure = new ApplicationStructure("tab_names.xml");
-            lastStatus = BarStatus.NotOnTop;
-            newStatus = BarStatus.Hidden;
-
+            _lastStatus = BarStatus.NotOnTop;
+            _newStatus = BarStatus.Hidden;
+            
             CheckBrowsers();
+
+            _virtualDpi = 1/(96/CreateGraphics().DpiX);
             LoadSettings();
             CreateInterface();
+            LoadSecondMonitorSettings();
+        }
+
+        private void LoadSecondMonitorSettings()
+        {
+            _preferedMonitor = _settings.Default.PreferedMonitor;
+            CheckMultipleMonitors(true);
         }
 
         #region "Windows Management"
@@ -82,14 +103,18 @@ namespace AdBAR
 
         public void CollapseWindow()
         {
-            superTabControlMain.SelectedTab = null;
-            ChangeWindowHeight(_collapsedHeight);
+            if (!_skipCollapse)
+            {
+                superTabControlMain.SelectedTab = null;
+                ChangeWindowHeight(_collapsedHeight);
+            }
         }
 
         private void ChangeWindowHeight(int i)
         {
             Height = i;
             _lastYVisible--;
+
             AdjustPosition(true);
         }
 
@@ -98,25 +123,48 @@ namespace AdBAR
             ChangeWindowHeight(_uncollapsedHeight);
         }
 
+        private void colorPickerDropDownInterface_SelectedColorChanged(object sender, EventArgs e)
+        {
+            ChangeAccentColor(colorPickerDropDownInterface.SelectedColor);
+        }
+
+        private void colorPickerDropDownInterface_ColorPreview(object sender, ColorPreviewEventArgs e)
+        {
+            ChangeAccentColor(e.Color, false);
+        }
+
+        private void colorPickerDropDownInterface_PopupClose(object sender, EventArgs e)
+        {
+            ChangeAccentColor(_settings.Default.AccentColor);
+        }
+
+        private void ChangeAccentColor(Color color, bool save = true)
+        {
+            styleManagerMain.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(
+                    styleManagerMain.MetroColorParameters.CanvasColor, color);
+
+            if (save)
+            {
+                _settings.Default.AccentColor = color;
+                _settings.Save();
+            }
+        }
         public void AdjustPosition(bool forced = false)
         {
-            var t = new TaskBarUtilities.Taskbar();
+            var s = Screen.AllScreens.Count()-1 >= _preferedMonitor ? _preferedMonitor : 0;
+            var screen = Screen.AllScreens[s];
+            var t = new TaskBarUtilities.Taskbar(!Screen.PrimaryScreen.Equals(screen));
 
-            if (t.VisibleBounds.Y == _lastYVisible)
+            var y = t.Handle == IntPtr.Zero ? screen.Bounds.Bottom - Height : t.Location.Y - Height;
+
+            if (y == _lastYVisible && !forced)
                 return;
 
-            if (forced || t.VisibleBounds.Y == t.Bounds.Y || t.VisibleBounds.Y < t.Bounds.Y + t.Size.Height)
-            {
-                _lastYVisible = t.VisibleBounds.Y;
-                _lastY = _lastYVisible > 1 ? Math.Max(_lastYVisible, t.Bounds.Y) : _lastYVisible;
+            Top = y;
 
-                if (_lastY != 0)
-                    Top = _lastY - Height;
-                else
-                    Top = t.VisibleBounds.Y == 0 ? t.Bounds.Bottom : t.VisibleBounds.Bottom - Height;
+            Left = screen.Bounds.X + (screen.Bounds.Width / 2) - (Width / 2);
 
-                Left = (Screen.PrimaryScreen.Bounds.Width / 2) - (Width / 2);
-            }
+            _lastYVisible = y;
         }
 
         void WinEventProc(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
@@ -173,12 +221,12 @@ namespace AdBAR
         {
             timerChecker.Stop();
             _currentIteration = 0;
-            newStatus = BarStatus.OnTop;
+            _newStatus = BarStatus.OnTop;
 
             // Check by processes first
             if ((from p in Process.GetProcesses() from s in _hideFromProcesses where p.ProcessName.ToLower().Equals(s.Name) select p).Any())
             {
-                newStatus = BarStatus.Hidden;
+                _newStatus = BarStatus.Hidden;
                 backgroundWorkerChecker.ReportProgress(-1);
                 return;
             }
@@ -193,7 +241,7 @@ namespace AdBAR
                 var processName = p.ProcessName.ToLower();
 
                 if (processName == "idle") continue; // Ignore Idle process
-                newStatus = BarStatus.OnTop;
+                _newStatus = BarStatus.OnTop;
 
                 foreach (var s in _watchedProcesses)
                 {
@@ -204,16 +252,16 @@ namespace AdBAR
                         switch (s.Behaviour)
                         {
                             case WatchedProcessBehaviour.HideIfIsActive:
-                                newStatus = BarStatus.Hidden;
+                                _newStatus = BarStatus.Hidden;
                                 break;
 
                             case WatchedProcessBehaviour.HideIfIsActiveAndMaximized:
                                 if (IsMaximized(p))
-                                    newStatus = BarStatus.Hidden;
+                                    _newStatus = BarStatus.Hidden;
                                 break;
 
                             case WatchedProcessBehaviour.SetNotOnTopIfIsActive:
-                                newStatus = BarStatus.NotOnTop;
+                                _newStatus = BarStatus.NotOnTop;
                                 break;
                         }
                     }
@@ -223,7 +271,7 @@ namespace AdBAR
                     }
                 }
 
-                if (newStatus != lastStatus)
+                if (_newStatus != _lastStatus)
                 {
                     backgroundWorkerChecker.ReportProgress(-1);
                     return;
@@ -240,7 +288,7 @@ namespace AdBAR
 
         private void UpdateApplicationStatus()
         {
-            switch (newStatus)
+            switch (_newStatus)
             {
                 case BarStatus.OnTop:
                     Opacity = 100;
@@ -259,7 +307,7 @@ namespace AdBAR
                     break;
             }
 
-            lastStatus = newStatus;
+            _lastStatus = _newStatus;
         }
         #endregion
 
@@ -268,55 +316,83 @@ namespace AdBAR
         /// </summary>
         private void CheckBrowsers()
         {
-            // Check browser availability
-            _browsersPanels = new List<RibbonBar>();
-            _browsersPaths = new Dictionary<String, String>();
-            _currentBrowser = Settings.Default.SelectedBrowser;
-
-            var browsers = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Clients\StartMenuInternet");
-            foreach (var br in Utilities.GetButtonItems(ribbonBarBrowsers.Items))
+            try
             {
-                if (browsers == null)
+                // Check browser availability
+                _browsersPanels = new List<RibbonBar>();
+                BrowsersPaths = new Dictionary<String, String>();
+                CurrentBrowser = _settings.Default.SelectedBrowser;
+
+                var browsers = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Clients\StartMenuInternet");
+                foreach (var br in Utilities.GetItems<ButtonItem>(ribbonBarBrowsers.Items))
                 {
-                    // No browsers in registry, using just the default one
-                    _currentBrowser = String.Empty;
-                    break;
-                }
-
-                foreach (var key in browsers.GetSubKeyNames())
-                {
-                    var tag = (String)br.Tag;
-                    if (!key.ToLower().Contains(tag)) continue;
-
-                    var browserPath = browsers.OpenSubKey(key).OpenSubKey(@"shell\open\command").GetValue(null) as string;
-                    if (browserPath == null) continue;
-
-                    var path = browserPath.Replace("\"", "");
-                    if (File.Exists(path))
+                    if (browsers == null)
                     {
-                        if (!_browsersPaths.ContainsKey(tag))
-                        {
-                            _browsersPaths.Add(tag, path);
-                            br.Enabled = true;
+                        // No browsers in registry, using just the default one
+                        CurrentBrowser = String.Empty;
+                        break;
+                    }
 
-                            if (tag == _currentBrowser || String.IsNullOrEmpty(_currentBrowser))
+                    foreach (var key in browsers.GetSubKeyNames())
+                    {
+                        var tag = (String) br.Tag;
+                        if (!key.ToLower().Contains(tag)) continue;
+
+                        // Check if path exists
+                        var browserKey = browsers.OpenSubKey(key).OpenSubKey(@"shell\open\command");
+
+
+                        if (browserKey != null)
+                        {
+                            var browserPath = browserKey.GetValue(null) as string;
+                            if (browserPath == null) continue;
+
+                            var path = browserPath.Replace("\"", "");
+                            if (File.Exists(path))
                             {
-                                _currentBrowser = tag;
-                                br.Checked = true;
+                                if (!BrowsersPaths.ContainsKey(tag))
+                                {
+                                    BrowsersPaths.Add(tag, path);
+                                    br.Enabled = true;
+
+                                    if (tag == CurrentBrowser || String.IsNullOrEmpty(CurrentBrowser))
+                                    {
+                                        CurrentBrowser = tag;
+                                        br.Checked = true;
+                                    }
+                                }
                             }
                         }
                     }
                 }
+
+                // Select first available browser if none was selected
+                if (!String.IsNullOrEmpty(CurrentBrowser)) return;
+
+                foreach (var tag in BrowsersPaths)
+                {
+                    SwitchSelectedBrowser(tag.Key);
+                    break;
+                }
             }
-
-            // Select first available browser if none was selected
-            if (!String.IsNullOrEmpty(_currentBrowser)) return;
-
-            foreach (var tag in _browsersPaths)
+            catch(Exception ex)
             {
-                SwitchSelectedBrowser(tag.Key);
-                break;
+                MessageBox.Show("This is the detail: " + GetExceptionDetails(ex));
             }
+        }
+
+        public static string GetExceptionDetails(Exception exception)
+        {
+            var properties = exception.GetType()
+                .GetProperties();
+            var fields = properties
+                .Select(property => new
+                {
+                    property.Name,
+                    Value = property.GetValue(exception, null)
+                })
+                .Select(x => String.Format("{0} = {1}", x.Name, x.Value != null ? x.Value.ToString() : String.Empty));
+            return String.Join("\n", fields);
         }
 
         private void FormBar_Load(object sender, EventArgs e)
@@ -353,7 +429,7 @@ namespace AdBAR
                         var r = new RibbonBar
                         {
                             Name = g.Name,
-                            Width = w, Height = h,
+                            Width = w, Height = (int)((1f/(0.9f+(0.1f*_virtualDpi)))*h),
                             Left = left, Text = g.Name,
                             HorizontalItemAlignment = eHorizontalItemsAlignment.Center,
                             VerticalItemAlignment = eVerticalItemsAlignment.Middle,
@@ -367,10 +443,38 @@ namespace AdBAR
                                 left += w;
                                 break;
 
+                            case TabGroupType.SyncButton:
+                                var btn = new ButtonItem {Image = Resources.sync};
+                                btn.Tooltip = "Update adSALESapps files";
+                                btn.Click += (o, args) => SyncronizeNow(false, true);
+                                r.Items.Add(btn);
+                                r.Text = g.Name;
+                                tab.AttachedControl.Controls.Add(r);
+                                left += w;
+                                break;
+
                             case TabGroupType.BrowserPanel:
                                 Utilities.CreateRibbonBarFromTemplate(ribbonBarBrowsers.Items, ref r, ref tab);
                                 _browsersPanels.Add(r); // Reference to each browser panel 
                                 left += w;
+                                break;
+
+                            case TabGroupType.SyncPanel:
+                                if (!timerSyncronization.Enabled) // Only the first instance
+                                {
+                                    //Utilities.CreateRibbonBarFromTemplate(ribbonBarSync.Items, ref r, ref tab);
+                                    ribbonBarSync.Text = g.Name;
+                                    ribbonBarSync.Height = r.Height;
+                                    ribbonBarSync.Width = w2;
+                                    ribbonBarSync.Left = r.Left;
+                                    ribbonBarSync.Top = r.Top;
+                                    r.Dispose();
+
+                                    tab.AttachedControl.Controls.Add(ribbonBarSync);
+                                    //_syncPanel = r;
+                                    SyncronizeNow(true);
+                                }
+                                left += w2;
                                 break;
 
                             case TabGroupType.LongButton:
@@ -378,6 +482,7 @@ namespace AdBAR
                                 Utilities.CreateButtonOrGallery(g.Items, ref r, ref tab, _multiHorizontalPadding, _multiVerticalPadding, _disableNonAvailableButtons);
                                 left += w2;
                                 break;
+
 
 							case TabGroupType.CustomControls:
 								var pluginName = g.GetCustomOption("content").ToLower();
@@ -388,7 +493,7 @@ namespace AdBAR
 								foreach (var ribbonBar in plugin.RibbonBars)
 								{
 									ribbonBar.Name = g.Name;
-									ribbonBar.Height = h;
+									ribbonBar.Height = (int)((1f/(0.9f+(0.1f*_virtualDpi)))*h); // DPI Hack
 									ribbonBar.Width = w2;
 									ribbonBar.Left = left;
 									ribbonBar.Text = g.Name;
@@ -404,6 +509,74 @@ namespace AdBAR
                 }
         }
 
+        private void SyncronizeNow(Boolean fromTimer=false, Boolean forceSync=false)
+        {
+            if (_sync == null) return;
+
+            if (fromTimer)
+            {
+                if (timerSyncronization.Interval == 1)
+                    timerSyncronization.Interval = 1000*(60 - (DateTime.Now.Second)); // First syncronization
+                else
+                    timerSyncronization.Interval = 60*1000;
+            }
+            timerSyncronization.Start();
+
+            if(_sync.DoSyncronization(forceSync))
+                _structure.Tracker.WriteEvent(Activities.ApplicationSync);
+
+            checkBoxItemSyncHourly.Checked = _sync.Hourly;
+            checkBoxItemSyncEnable.Checked = _sync.Enabled;
+            labelItemSyncLast.Text = _sync.Last == null ? "---" : _sync.Last.Value.ToString("MM/dd/yy h:mm tt");
+
+            if (_sync.Enabled)
+            {
+                //checkBoxItemSyncEnable.Text = "Sync Enabled";
+                checkBoxItemSyncHourly.Enabled = true;
+                labelItemSyncNext.ForeColor = SystemColors.HotTrack;
+                labelItemSyncNext.Font = new Font(Font.FontFamily, Font.SizeInPoints,FontStyle.Underline);
+                labelItemSyncNext.Cursor = Cursors.Hand;
+                labelItemSyncNext.Tooltip = "Change your Sync Schedule";
+                labelItemSyncLabelNext.ForeColor = Color.Empty;
+                labelItemSyncNext.Text = _sync.Next.ToString("MM/dd/yy h:mm tt");
+                checkBoxItemSyncEnable.Tooltip = "AdSync is Scheduled to Run";
+            }
+            else
+            {
+                //checkBoxItemSyncEnable.Text = "Sync Disabled";
+                checkBoxItemSyncHourly.Enabled = false;
+                labelItemSyncNext.ForeColor = SystemColors.GrayText;
+                labelItemSyncNext.Font = new Font(Font.FontFamily, Font.SizeInPoints,FontStyle.Regular);
+                labelItemSyncNext.Cursor = Cursors.Arrow;
+                labelItemSyncNext.Tooltip = null;
+                labelItemSyncLabelNext.ForeColor = SystemColors.GrayText;
+                labelItemSyncNext.Text = "---";
+                checkBoxItemSyncEnable.Tooltip = "AdSync is Disabled";
+                
+            }
+
+            //checkBoxItemSyncHourly.Text = "Sync " +(checkBoxItemSyncHourly.Checked?"Hourly":"Daily");
+            checkBoxItemSyncHourly.Tooltip = checkBoxItemSyncHourly.Checked ? "AdSync runs once per hour" : "AdSync runs once each day";
+            ribbonBarSync.RecalcLayout();
+        }
+
+        private void checkBoxItemSyncEnable_Click(object sender, EventArgs e)
+        {
+            if (_sync == null) return;
+            _sync.Enabled = checkBoxItemSyncEnable.Checked;
+            _sync.SaveSettings();
+            SyncronizeNow();
+        }
+
+        private void checkBoxItemSyncHourly_Click(object sender, EventArgs e)
+        {
+            if (_sync == null) return;
+            _sync.Hourly = checkBoxItemSyncHourly.Checked;
+            _sync.Next = _sync.Hourly ? DateTime.Now.AddHours(1) : DateTime.Now.AddDays(1);
+            _sync.SaveSettings();
+            SyncronizeNow();
+        }
+
         private void LoadSettings()
         {
             try
@@ -413,14 +586,14 @@ namespace AdBAR
 
                 // Program configuration
                 var f = Utilities.GetTextFromFile("config.xml");
-                _uncollapsedHeight = int.Parse(Utilities.GetValueRegex("<height>(.*)</height>", f));
-                _collapsedHeight = int.Parse(Utilities.GetValueRegex("<collapsedheight>(.*)</collapsedheight>", f));
-                Width = int.Parse(Utilities.GetValueRegex("<width>(.*)</width>", f));
+                _uncollapsedHeight = (int)((0.5 + (0.5 * _virtualDpi)) * float.Parse(Utilities.GetValueRegex("<height>(.*)</height>", f)));
+                _collapsedHeight = (int)(((0.25 + (0.75 * _virtualDpi))) * float.Parse(Utilities.GetValueRegex("<collapsedheight>(.*)</collapsedheight>", f)));
+                Width = (int)((0.5+(0.5*_virtualDpi))*float.Parse(Utilities.GetValueRegex("<width>(.*)</width>", f)));
                 _multiHorizontalPadding = int.Parse(Utilities.GetValueRegex("<multihorizontalpadding>(.*)</multihorizontalpadding>", f));
                 _multiVerticalPadding = int.Parse(Utilities.GetValueRegex("<multiverticalpadding>(.*)</multiverticalpadding>", f));
                 _disableNonAvailableButtons = Utilities.GetValueRegex("<grayoutnonapproveduser>(.*)</grayoutnonapproveduser>", f) != "false";
-
-                var g = CreateGraphics();
+                
+                /*var g = CreateGraphics();
                 try
                 {
                     if (g.DpiX > 96)
@@ -433,16 +606,30 @@ namespace AdBAR
                 finally
                 {
                     g.Dispose();
-                }
+                }*/
 
                 Height = _uncollapsedHeight;
 
                 // Theme
                 superTabControlMain.TabStyle = (eSuperTabStyle)(Enum.GetValues(typeof (eSuperTabStyle)).GetValue(Math.Min(5,Math.Max(0,int.Parse(Utilities.GetValueRegex("<theme>(.*)</theme>", f))))));
                 styleManagerMain.ManagerStyle = (eStyle)(Enum.GetValues(typeof (eStyle)).GetValue(Math.Min(10,Math.Max(0,int.Parse(Utilities.GetValueRegex("<subtheme>(.*)</subtheme>", f))))));
+
+                if (_settings.Default.AccentColor == Color.Transparent)
+                {
+                    // Load default color from file
+                    ChangeAccentColor(ParseColorOrDefault(Utilities.GetValueRegex("<accent>(.*)</accent>", f), Color.Chocolate), false);
+                }
+                else
+                    ChangeAccentColor(_settings.Default.AccentColor, false);
+
                 timerUpdate.Interval = int.Parse(Utilities.GetValueRegex("<checktime>(.*)</checktime>", f));
                 timerChecker.Interval = int.Parse(Utilities.GetValueRegex("<inactivitychecktime>(.*)</inactivitychecktime>", f));
                 _maxShortButtons = int.Parse(Utilities.GetValueRegex("<maxshortbuttons>(.*)</maxshortbuttons>", f));
+
+                _sync = new SyncronizationHelper(Utilities.GetValueRegex("<silentsyncsettings>(.*)</silentsyncsettings>", f),
+                    Utilities.GetValueRegex("<silentsynctemplate>(.*)</silentsynctemplate>", f),
+                    Utilities.GetValueRegex("<silentsyncexe>(.*)</silentsyncexe>", f),
+                    Utilities.GetValueRegex("<syncexe>(.*)</syncexe>", f));
 
                 // File updates
                 try
@@ -470,9 +657,24 @@ namespace AdBAR
             catch { }
         }
 
+
+        internal static Color ParseColorOrDefault(string colorName, Color defaultColor)
+        {
+            try
+            {
+                if (!String.IsNullOrEmpty(colorName))
+                    return Color.FromName(colorName);
+            }
+            catch
+            {
+            }
+            return defaultColor;
+        }
+
         private void superTabControlMain_SelectedTabChanged(object sender, SuperTabStripSelectedTabChangedEventArgs e)
         {
             UncollapseWindow();
+            _structure.Tracker.WriteEvent(Activities.ApplicationSwitchTab, e.OldValue == null ? e.NewValue.Text : e.OldValue.Text + "->" + e.NewValue.Text);
         }
 
         private void FormBar_Deactivate(object sender, EventArgs e)
@@ -504,26 +706,39 @@ namespace AdBAR
         /// <param name="browser"></param>
         private void SwitchSelectedBrowser(string browser)
         {
-            _currentBrowser = browser;
+            _structure.Tracker.WriteEvent(Activities.BrowserSwitch, browser);
+            CurrentBrowser = browser;
 
             // Other panels
             foreach (var ribbon in _browsersPanels)
             {
-                foreach (var b in Utilities.GetButtonItems(ribbon.Items))
+                foreach (var b in Utilities.GetItems<ButtonItem>(ribbon.Items))
                 {
                     if (b.Enabled)
                     {
-                        var enabled = b.Tag as String == _currentBrowser;
+                        var enabled = b.Tag as String == CurrentBrowser;
                         b.Checked = enabled;
                     }
                 }
             }
+
+            SaveSettings();
         }
 
         private void FormBar_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Settings.Default.SelectedBrowser = _currentBrowser;
-            Settings.Default.Save();
+            SaveSettings();
+
+            _structure.Tracker.WriteEvent(Activities.ApplicationClose);
+            Application.Exit();
+        }
+
+        private void SaveSettings()
+        {
+            _settings.Default.SelectedBrowser = CurrentBrowser;
+            _settings.Default.PreferedMonitor = _preferedMonitor;
+
+            _settings.Save();
         }
 
         private void timerChecker_Tick(object sender, EventArgs e)
@@ -541,7 +756,203 @@ namespace AdBAR
         private void superTabControlMain_ControlBox_CloseBox_Click(object sender, EventArgs e)
         {
             UnhookWinEvent(_hook);
-            Application.Exit();
+            Close();
+        }
+
+        private void timerSyncronization_Tick(object sender, EventArgs e)
+        {
+            SyncronizeNow(true);
+        }
+
+        private void labelItemSyncNext_Click(object sender, EventArgs e)
+        {
+            if (_sync != null && _sync.Enabled)
+            {
+                var f = new FormDateSelector(_sync.Next) { TopMost = true };
+                f.Location = Utilities.GetCenterLocation(f.Size, ((Control)((LabelItem) sender).ContainerControl));
+
+                _skipCollapse = true;
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    _sync.Next = f.DateTime;
+                    _sync.SaveSettings();
+                    SyncronizeNow();
+                }
+                _skipCollapse = false;
+            }
+        }
+
+        private void FormBar_Shown(object sender, EventArgs e)
+        {
+            _structure.Tracker.WriteEvent(Activities.ApplicationOpen);
+        }
+
+        private void timerMonitorWatcher_Tick(object sender, EventArgs e)
+        {
+            CheckMultipleMonitors();
+        }
+
+        private void CheckMultipleMonitors(bool force = false)
+        {
+            if (force || _lastMonitorCount != Screen.AllScreens.Count())
+            {
+                _lastMonitorCount = Screen.AllScreens.Count();
+                
+
+                // Create monitor buttons
+                if (_lastMonitorCount > 1)
+                {
+                    buttonItemScreen1.Checked = _preferedMonitor == 0;
+                    buttonItemScreen2.Visible = _lastMonitorCount > 1;
+                    buttonItemScreen2.Checked = _preferedMonitor == 1;
+                    buttonItemScreen3.Visible = _lastMonitorCount > 2;
+                    buttonItemScreen3.Checked = _preferedMonitor == 2;
+                    buttonItemScreen4.Visible = _lastMonitorCount > 3;
+                    buttonItemScreen4.Checked = _preferedMonitor == 3;
+                    buttonItemScreen5.Visible = _lastMonitorCount > 4;
+                    buttonItemScreen5.Checked = _preferedMonitor == 4;
+                    buttonItemScreen6.Visible = _lastMonitorCount > 5;
+                    buttonItemScreen6.Checked = _preferedMonitor == 5;
+                }
+                else
+                    itemContainerMonitors.Visible = false;
+
+
+                //_preferedMonitor = (checkBoxItemMonitor.Checked && _lastMonitorCount > 1) ? 1 : 0;
+                AdjustPosition(true);
+            }
+        }
+
+        private void buttonItemScreen_Click(object sender, EventArgs e)
+        {
+            var monitor = int.Parse(((ButtonItem) sender).Text)-1;
+
+            if (monitor != _preferedMonitor)
+            {
+                _preferedMonitor = monitor;
+                CheckMultipleMonitors(true);
+                SaveSettings();
+            }
+        }
+    }
+
+    [Serializable]
+    public struct ColorEx
+    {
+        private Color m_color;
+
+        public ColorEx(Color color)
+        {
+            m_color = color;
+        }
+
+        [XmlIgnore]
+        public Color Color
+        { get { return m_color; } set { m_color = value; } }
+
+        [XmlAttribute]
+        public string ColorHtml
+        {
+            get { return ColorTranslator.ToHtml(Color); }
+            set { Color = ColorTranslator.FromHtml(value); }
+        }
+
+        public static implicit operator Color(ColorEx colorEx)
+        {
+            return colorEx.Color;
+        }
+
+        public static implicit operator ColorEx(Color color)
+        {
+            return new ColorEx(color);
+        }
+    }
+
+    /// <summary>
+    /// Quick and dirty replacement to avoid permissions problems with the settings
+    /// </summary>
+    public class Settings
+    {
+        private readonly string[] _location = { @"C:\Program Files (x86)\newlocaldirect.com", @"C:\Program Files\newlocaldirect.com" };
+        private readonly string _settingsFile;
+        public readonly SerializedSettings Default;
+        private const string Filename = "adbar.xml", Path = @"xml\adbar_settings";
+
+        internal void Save()
+        {
+            if (String.IsNullOrEmpty(_settingsFile)) return;
+
+            try
+            {
+                using (var stream = File.CreateText(_settingsFile))
+                {
+                    var bf = new XmlSerializer(typeof(SerializedSettings));
+                    bf.Serialize(stream, Default);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        public class SerializedSettings
+        {
+            public string SelectedBrowser { get; set; }
+            public int PreferedMonitor { get; set; }
+            public ColorEx AccentColor { get; set; }
+        }
+
+        public Settings()
+        {
+            Default = new SerializedSettings();
+            Reset();
+
+            // Load file
+            foreach (var l in _location)
+            {
+                if (!Directory.Exists(l)) continue;
+
+                try
+                {
+                    var tmp = System.IO.Path.Combine(l, Path);
+                    _settingsFile = System.IO.Path.Combine(tmp, Filename);
+
+                    if (Directory.Exists(tmp))
+                    {
+                        // Load settings
+                        if (File.Exists(_settingsFile))
+                        {
+                            try
+                            {
+                                using (var stream = File.OpenRead(_settingsFile))
+                                {
+                                    var bf = new XmlSerializer(typeof (SerializedSettings));
+                                    Default = (SerializedSettings)bf.Deserialize(stream);
+                                }
+                            }
+                            catch
+                            {
+                            }
+                        }
+                    }
+                    else
+                        Directory.CreateDirectory(tmp);
+                }
+                catch
+                {
+                    _settingsFile = String.Empty;
+                }
+                break;
+            }
+
+            Save();
+        }
+
+        internal void Reset()
+        {
+            Default.PreferedMonitor = 0;
+            Default.AccentColor = Color.Transparent;
+            Default.SelectedBrowser = null;
         }
     }
 

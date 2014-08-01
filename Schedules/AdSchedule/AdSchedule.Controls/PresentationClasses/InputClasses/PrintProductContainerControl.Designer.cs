@@ -31,7 +31,6 @@
 			this.pnHeader = new System.Windows.Forms.Panel();
 			this.laScheduleWindow = new System.Windows.Forms.Label();
 			this.laAdvertiser = new System.Windows.Forms.Label();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.xtraTabControlPublications = new DevExpress.XtraTab.XtraTabControl();
 			this.pnHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPublications)).BeginInit();
@@ -65,10 +64,6 @@
 			this.laAdvertiser.TabIndex = 2;
 			this.laAdvertiser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// xtraTabControlPublications
 			// 
 			this.xtraTabControlPublications.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -87,7 +82,7 @@
 			// PrintProductContainerControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.xtraTabControlPublications);
 			this.Controls.Add(this.pnHeader);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -103,8 +98,7 @@
         #endregion
 
 		private System.Windows.Forms.Panel pnHeader;
-        private System.Windows.Forms.Label laScheduleWindow;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
+		private System.Windows.Forms.Label laScheduleWindow;
         public DevExpress.XtraTab.XtraTabControl xtraTabControlPublications;
         private System.Windows.Forms.Label laAdvertiser;
 

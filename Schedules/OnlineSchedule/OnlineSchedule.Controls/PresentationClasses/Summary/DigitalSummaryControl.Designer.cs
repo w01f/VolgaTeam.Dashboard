@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
@@ -36,7 +35,7 @@
 			this.pnSummaryInt = new System.Windows.Forms.Panel();
 			this.spinEditTotalInvestment = new DevExpress.XtraEditors.SpinEdit();
 			this.checkEditTotalInvestment = new DevExpress.XtraEditors.CheckEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.spinEditMonthlyInvestment = new DevExpress.XtraEditors.SpinEdit();
 			this.checkEditMonthlyInvestment = new DevExpress.XtraEditors.CheckEdit();
 			this.labelControlInvestmentTitle = new DevExpress.XtraEditors.LabelControl();
@@ -55,7 +54,7 @@
 			// 
 			// xtraScrollableControl
 			// 
-			this.xtraScrollableControl.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.xtraScrollableControl.Appearance.BackColor = System.Drawing.Color.White;
 			this.xtraScrollableControl.Appearance.Options.UseBackColor = true;
 			this.xtraScrollableControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControl.Location = new System.Drawing.Point(0, 0);
@@ -65,7 +64,7 @@
 			// 
 			// pnSummaryExt
 			// 
-			this.pnSummaryExt.BackColor = System.Drawing.Color.White;
+			this.pnSummaryExt.BackColor = System.Drawing.Color.LightGray;
 			this.pnSummaryExt.Controls.Add(this.pnSummaryInt);
 			this.pnSummaryExt.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnSummaryExt.Location = new System.Drawing.Point(0, 341);
@@ -76,7 +75,7 @@
 			// 
 			// pnSummaryInt
 			// 
-			this.pnSummaryInt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnSummaryInt.BackColor = System.Drawing.Color.White;
 			this.pnSummaryInt.Controls.Add(this.spinEditTotalInvestment);
 			this.pnSummaryInt.Controls.Add(this.checkEditTotalInvestment);
 			this.pnSummaryInt.Controls.Add(this.spinEditMonthlyInvestment);
@@ -116,11 +115,11 @@
 			// checkEditTotalInvestment
 			// 
 			this.checkEditTotalInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditTotalInvestment.Location = new System.Drawing.Point(429, 55);
+			this.checkEditTotalInvestment.Location = new System.Drawing.Point(421, 55);
 			this.checkEditTotalInvestment.Name = "checkEditTotalInvestment";
 			this.checkEditTotalInvestment.Properties.AutoWidth = true;
 			this.checkEditTotalInvestment.Properties.Caption = "Total:";
-			this.checkEditTotalInvestment.Size = new System.Drawing.Size(55, 21);
+			this.checkEditTotalInvestment.Size = new System.Drawing.Size(54, 20);
 			this.checkEditTotalInvestment.StyleController = this.styleController;
 			this.checkEditTotalInvestment.TabIndex = 5;
 			this.checkEditTotalInvestment.CheckedChanged += new System.EventHandler(this.checkEditTotalInvestment_CheckedChanged);
@@ -178,11 +177,11 @@
 			// checkEditMonthlyInvestment
 			// 
 			this.checkEditMonthlyInvestment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(429, 13);
+			this.checkEditMonthlyInvestment.Location = new System.Drawing.Point(413, 13);
 			this.checkEditMonthlyInvestment.Name = "checkEditMonthlyInvestment";
 			this.checkEditMonthlyInvestment.Properties.AutoWidth = true;
 			this.checkEditMonthlyInvestment.Properties.Caption = "Monthly:";
-			this.checkEditMonthlyInvestment.Size = new System.Drawing.Size(73, 21);
+			this.checkEditMonthlyInvestment.Size = new System.Drawing.Size(72, 20);
 			this.checkEditMonthlyInvestment.StyleController = this.styleController;
 			this.checkEditMonthlyInvestment.TabIndex = 3;
 			this.checkEditMonthlyInvestment.CheckedChanged += new System.EventHandler(this.checkEditMonthlyInvestment_CheckedChanged);
@@ -210,6 +209,7 @@
 			this.memoEditStatement.Size = new System.Drawing.Size(241, 63);
 			this.memoEditStatement.StyleController = this.styleController;
 			this.memoEditStatement.TabIndex = 1;
+			this.memoEditStatement.UseOptimizedRendering = true;
 			this.memoEditStatement.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// checkEditStatement
@@ -218,7 +218,7 @@
 			this.checkEditStatement.Name = "checkEditStatement";
 			this.checkEditStatement.Properties.AutoWidth = true;
 			this.checkEditStatement.Properties.Caption = "";
-			this.checkEditStatement.Size = new System.Drawing.Size(23, 19);
+			this.checkEditStatement.Size = new System.Drawing.Size(19, 19);
 			this.checkEditStatement.StyleController = this.styleController;
 			this.checkEditStatement.TabIndex = 0;
 			this.checkEditStatement.CheckedChanged += new System.EventHandler(this.checkEditStatement_CheckedChanged);
@@ -227,7 +227,6 @@
 			// 
 			this.Controls.Add(this.xtraScrollableControl);
 			this.Controls.Add(this.pnSummaryExt);
-			this.Name = "DigitalSummaryControl";
 			this.Size = new System.Drawing.Size(627, 445);
 			this.pnSummaryExt.ResumeLayout(false);
 			this.pnSummaryInt.ResumeLayout(false);

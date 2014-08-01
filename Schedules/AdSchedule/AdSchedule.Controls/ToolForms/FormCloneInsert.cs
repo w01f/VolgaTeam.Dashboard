@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.Core.AdSchedule;
@@ -12,7 +13,7 @@ using Pabo.Calendar;
 
 namespace NewBizWiz.AdSchedule.Controls.ToolForms
 {
-	public partial class FormCloneInsert : Form
+	public partial class FormCloneInsert : MetroForm
 	{
 		private readonly Insert _originalInsert;
 		private readonly List<DateItem> _selectedDates = new List<DateItem>();

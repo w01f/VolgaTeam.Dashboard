@@ -1,9 +1,10 @@
 ﻿using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
 
 namespace NewBizWiz.CommonGUI.ToolForms
 {
-	public partial class FormSelectOutputItems : Form
+	public partial class FormSelectOutputItems : MetroForm
 	{
 		public FormSelectOutputItems()
 		{

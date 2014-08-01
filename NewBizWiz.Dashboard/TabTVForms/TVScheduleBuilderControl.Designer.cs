@@ -63,6 +63,7 @@
 			this.pnNoSlidesWarning.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.pnNoSlidesWarning.BackColor = System.Drawing.Color.Transparent;
 			this.pnNoSlidesWarning.Controls.Add(this.laNoSlidesWarningText3);
 			this.pnNoSlidesWarning.Controls.Add(this.laNoSlidesWarningText2);
 			this.pnNoSlidesWarning.Controls.Add(this.pbNoSlidesWarning);
@@ -262,6 +263,7 @@
 			this.pnNoDataWarning.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.pnNoDataWarning.BackColor = System.Drawing.Color.Transparent;
 			this.pnNoDataWarning.Controls.Add(this.pbNoDataWarning);
 			this.pnNoDataWarning.Controls.Add(this.laNoDataWarning);
 			this.pnNoDataWarning.Location = new System.Drawing.Point(16, 92);
@@ -313,7 +315,7 @@
 			// TVScheduleBuilderControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pbWaterMark);
 			this.Controls.Add(this.pbTitle);
 			this.Controls.Add(this.gridControlSchedules);

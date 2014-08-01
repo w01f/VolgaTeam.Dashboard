@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 
 namespace NewBizWiz.CommonGUI.ToolForms
 {
-	public partial class FormProgress : Form
+	public partial class FormProgress : MetroForm
 	{
 		public FormProgress()
 		{

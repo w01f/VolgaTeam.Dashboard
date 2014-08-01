@@ -60,6 +60,7 @@
 			// 
 			// layoutViewSlides
 			// 
+			this.layoutViewSlides.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.layoutViewSlides.CardHorzInterval = 16;
 			this.layoutViewSlides.CardMinSize = new System.Drawing.Size(255, 170);
 			this.layoutViewSlides.CardVertInterval = 10;

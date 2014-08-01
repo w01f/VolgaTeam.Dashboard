@@ -28,47 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.xtraTabControlRateCards = new DevExpress.XtraTab.XtraTabControl();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlRateCards)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // defaultLookAndFeel
-            // 
-            this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-            // 
-            // xtraTabControlRateCards
-            // 
-            this.xtraTabControlRateCards.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.xtraTabControlRateCards.Appearance.Options.UseFont = true;
-            this.xtraTabControlRateCards.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.xtraTabControlRateCards.AppearancePage.Header.Options.UseFont = true;
-            this.xtraTabControlRateCards.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.xtraTabControlRateCards.AppearancePage.HeaderActive.Options.UseFont = true;
-            this.xtraTabControlRateCards.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControlRateCards.Location = new System.Drawing.Point(0, 0);
-            this.xtraTabControlRateCards.Name = "xtraTabControlRateCards";
-            this.xtraTabControlRateCards.Size = new System.Drawing.Size(737, 430);
-            this.xtraTabControlRateCards.TabIndex = 3;
-            // 
-            // RateFolderControl
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.Controls.Add(this.xtraTabControlRateCards);
-            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Name = "RateFolderControl";
-            this.Size = new System.Drawing.Size(737, 430);
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlRateCards)).EndInit();
-            this.ResumeLayout(false);
+			this.xtraTabControlRateCards = new DevExpress.XtraTab.XtraTabControl();
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlRateCards)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// xtraTabControlRateCards
+			// 
+			this.xtraTabControlRateCards.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlRateCards.Appearance.Options.UseFont = true;
+			this.xtraTabControlRateCards.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlRateCards.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControlRateCards.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlRateCards.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControlRateCards.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.xtraTabControlRateCards.Location = new System.Drawing.Point(0, 0);
+			this.xtraTabControlRateCards.Name = "xtraTabControlRateCards";
+			this.xtraTabControlRateCards.Size = new System.Drawing.Size(737, 430);
+			this.xtraTabControlRateCards.TabIndex = 3;
+			// 
+			// RateFolderControl
+			// 
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.xtraTabControlRateCards);
+			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.Name = "RateFolderControl";
+			this.Size = new System.Drawing.Size(737, 430);
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlRateCards)).EndInit();
+			this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        public DevExpress.XtraTab.XtraTabControl xtraTabControlRateCards;
+		public DevExpress.XtraTab.XtraTabControl xtraTabControlRateCards;
 
     }
 }

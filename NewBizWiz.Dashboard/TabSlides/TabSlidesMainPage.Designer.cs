@@ -40,7 +40,7 @@
 			// 
 			// pnBottom
 			// 
-			this.pnBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnBottom.BackColor = System.Drawing.Color.Transparent;
 			this.pnBottom.Controls.Add(this.pbVersion);
 			this.pnBottom.Controls.Add(this.laUserName);
 			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -62,17 +62,17 @@
 			this.laUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.laUserName.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laUserName.ForeColor = System.Drawing.Color.White;
-			this.laUserName.Location = new System.Drawing.Point(531, 6);
+			this.laUserName.ForeColor = System.Drawing.Color.Black;
+			this.laUserName.Location = new System.Drawing.Point(535, 6);
 			this.laUserName.Name = "laUserName";
-			this.laUserName.Size = new System.Drawing.Size(342, 41);
+			this.laUserName.Size = new System.Drawing.Size(342, 45);
 			this.laUserName.TabIndex = 0;
 			this.laUserName.Text = "laSlideSize";
 			this.laUserName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// pnMain
 			// 
-			this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnMain.BackColor = System.Drawing.Color.Transparent;
 			this.pnMain.Controls.Add(this.laSlideSize);
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnMain.Location = new System.Drawing.Point(0, 0);
@@ -84,10 +84,10 @@
 			// 
 			this.laSlideSize.Dock = System.Windows.Forms.DockStyle.Top;
 			this.laSlideSize.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laSlideSize.ForeColor = System.Drawing.Color.White;
+			this.laSlideSize.ForeColor = System.Drawing.Color.Black;
 			this.laSlideSize.Location = new System.Drawing.Point(0, 0);
 			this.laSlideSize.Name = "laSlideSize";
-			this.laSlideSize.Size = new System.Drawing.Size(890, 41);
+			this.laSlideSize.Size = new System.Drawing.Size(894, 41);
 			this.laSlideSize.TabIndex = 1;
 			this.laSlideSize.Text = "Slide Size: {0}";
 			this.laSlideSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -95,7 +95,7 @@
 			// TabSlidesMainPage
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pnMain);
 			this.Controls.Add(this.pnBottom);
 			this.Name = "TabSlidesMainPage";

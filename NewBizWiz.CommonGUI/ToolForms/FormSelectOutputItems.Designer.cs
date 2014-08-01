@@ -46,6 +46,7 @@
 			this.buttonXContinue.Location = new System.Drawing.Point(14, 370);
 			this.buttonXContinue.Name = "buttonXContinue";
 			this.buttonXContinue.Size = new System.Drawing.Size(148, 43);
+			this.buttonXContinue.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXContinue.TabIndex = 9;
 			this.buttonXContinue.Text = "Continue";
 			this.buttonXContinue.TextColor = System.Drawing.Color.Black;
@@ -59,6 +60,7 @@
 			this.buttonXClose.Location = new System.Drawing.Point(188, 370);
 			this.buttonXClose.Name = "buttonXClose";
 			this.buttonXClose.Size = new System.Drawing.Size(148, 43);
+			this.buttonXClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXClose.TabIndex = 11;
 			this.buttonXClose.Text = "Cancel";
 			this.buttonXClose.TextColor = System.Drawing.Color.Black;
@@ -68,10 +70,12 @@
 			this.checkedListBoxControlOutputItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkedListBoxControlOutputItems.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.checkedListBoxControlOutputItems.Appearance.BackColor = System.Drawing.Color.White;
 			this.checkedListBoxControlOutputItems.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkedListBoxControlOutputItems.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkedListBoxControlOutputItems.Appearance.Options.UseBackColor = true;
 			this.checkedListBoxControlOutputItems.Appearance.Options.UseFont = true;
+			this.checkedListBoxControlOutputItems.Appearance.Options.UseForeColor = true;
 			this.checkedListBoxControlOutputItems.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
 			this.checkedListBoxControlOutputItems.CheckOnClick = true;
 			this.checkedListBoxControlOutputItems.ItemHeight = 25;
@@ -90,6 +94,7 @@
 			this.buttonXSelectAll.Location = new System.Drawing.Point(14, 9);
 			this.buttonXSelectAll.Name = "buttonXSelectAll";
 			this.buttonXSelectAll.Size = new System.Drawing.Size(96, 35);
+			this.buttonXSelectAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXSelectAll.TabIndex = 16;
 			this.buttonXSelectAll.Text = "All";
 			this.buttonXSelectAll.TextColor = System.Drawing.Color.Black;
@@ -103,6 +108,7 @@
 			this.buttonXSelectCurrent.Location = new System.Drawing.Point(130, 9);
 			this.buttonXSelectCurrent.Name = "buttonXSelectCurrent";
 			this.buttonXSelectCurrent.Size = new System.Drawing.Size(96, 35);
+			this.buttonXSelectCurrent.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXSelectCurrent.TabIndex = 17;
 			this.buttonXSelectCurrent.Text = "Current";
 			this.buttonXSelectCurrent.TextColor = System.Drawing.Color.Black;
@@ -116,6 +122,7 @@
 			this.buttonXSelectNone.Location = new System.Drawing.Point(240, 9);
 			this.buttonXSelectNone.Name = "buttonXSelectNone";
 			this.buttonXSelectNone.Size = new System.Drawing.Size(96, 35);
+			this.buttonXSelectNone.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXSelectNone.TabIndex = 18;
 			this.buttonXSelectNone.Text = "Clear";
 			this.buttonXSelectNone.TextColor = System.Drawing.Color.Black;
@@ -124,7 +131,7 @@
 			// FormSelectOutputItems
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(350, 420);
 			this.Controls.Add(this.buttonXSelectNone);
 			this.Controls.Add(this.buttonXSelectCurrent);
@@ -132,6 +139,7 @@
 			this.Controls.Add(this.checkedListBoxControlOutputItems);
 			this.Controls.Add(this.buttonXClose);
 			this.Controls.Add(this.buttonXContinue);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;

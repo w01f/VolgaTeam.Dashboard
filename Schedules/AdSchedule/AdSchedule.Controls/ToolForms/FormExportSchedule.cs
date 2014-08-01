@@ -1,9 +1,10 @@
 ﻿using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using NewBizWiz.Core.Common;
 
 namespace NewBizWiz.AdSchedule.Controls.ToolForms
 {
-	public partial class FormExportSchedule : Form
+	public partial class FormExportSchedule : MetroForm
 	{
 		public FormExportSchedule()
 		{

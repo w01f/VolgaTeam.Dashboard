@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			this.laSmallDayCaption = new System.Windows.Forms.Label();
-			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
 			this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemPaste = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,11 +45,10 @@
 			this.pnData = new System.Windows.Forms.Panel();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.memoEditSimpleComment = new DevExpress.XtraEditors.MemoEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.labelControlData = new DevExpress.XtraEditors.LabelControl();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.pnCalendarNoteArea = new System.Windows.Forms.Panel();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.contextMenuStrip.SuspendLayout();
 			this.pnData.SuspendLayout();
 			this.xtraScrollableControl.SuspendLayout();
@@ -61,7 +59,7 @@
 			// 
 			// laSmallDayCaption
 			// 
-			this.laSmallDayCaption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.laSmallDayCaption.BackColor = System.Drawing.Color.White;
 			this.laSmallDayCaption.ContextMenuStrip = this.contextMenuStrip;
 			this.laSmallDayCaption.Dock = System.Windows.Forms.DockStyle.Top;
 			this.laSmallDayCaption.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -205,7 +203,7 @@
 			// 
 			// pnData
 			// 
-			this.pnData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnData.BackColor = System.Drawing.Color.White;
 			this.pnData.Controls.Add(this.xtraScrollableControl);
 			this.pnData.Controls.Add(this.pnCalendarNoteArea);
 			this.pnData.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -244,6 +242,7 @@
 			this.memoEditSimpleComment.Size = new System.Drawing.Size(268, 122);
 			this.memoEditSimpleComment.StyleController = this.styleController;
 			this.memoEditSimpleComment.TabIndex = 2;
+			this.memoEditSimpleComment.UseOptimizedRendering = true;
 			this.memoEditSimpleComment.Visible = false;
 			this.memoEditSimpleComment.EditValueChanged += new System.EventHandler(this.memoEditSimpleComment_EditValueChanged);
 			this.memoEditSimpleComment.Leave += new System.EventHandler(this.memoEditSimpleComment_Leave);
@@ -306,10 +305,6 @@
 			this.pnCalendarNoteArea.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseMove);
 			this.pnCalendarNoteArea.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DayControl_MouseUp);
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// DayControl
 			// 
 			this.AllowDrop = true;
@@ -342,8 +337,7 @@
         private System.Windows.Forms.Panel pnData;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl;
         private DevExpress.XtraEditors.LabelControl labelControlData;
-        private DevExpress.XtraEditors.StyleController styleController;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
+		private DevExpress.XtraEditors.StyleController styleController;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopy;
         public System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPaste;

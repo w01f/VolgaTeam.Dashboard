@@ -39,7 +39,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditC.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditB.Properties)).BeginInit();
@@ -54,13 +53,6 @@
 			this.pnMain.Controls.Add(this.memoEditA);
 			this.pnMain.Controls.Add(this.memoEditB);
 			this.pnMain.Controls.Add(this.memoEditC);
-			this.pnMain.Controls.SetChildIndex(this.pnTop, 0);
-			this.pnMain.Controls.SetChildIndex(this.memoEditC, 0);
-			this.pnMain.Controls.SetChildIndex(this.memoEditB, 0);
-			this.pnMain.Controls.SetChildIndex(this.memoEditA, 0);
-			this.pnMain.Controls.SetChildIndex(this.ckB, 0);
-			this.pnMain.Controls.SetChildIndex(this.ckA, 0);
-			this.pnMain.Controls.SetChildIndex(this.ckC, 0);
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -79,16 +71,10 @@
 			// checkEditSolutionNew
 			// 
 			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
-			// 
-			// checkEditSolutionOld
-			// 
-			this.checkEditSolutionOld.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditSolutionOld.Properties.Appearance.ForeColor = System.Drawing.Color.White;
-			this.checkEditSolutionOld.Properties.Appearance.Options.UseFont = true;
-			this.checkEditSolutionOld.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditSolutionNew.Size = new System.Drawing.Size(146, 20);
 			// 
 			// pbDescription
 			// 
@@ -99,7 +85,7 @@
 			this.ckC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckC.AutoSize = true;
 			this.ckC.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ckC.Location = new System.Drawing.Point(11, 350);
+			this.ckC.Location = new System.Drawing.Point(11, 298);
 			this.ckC.Name = "ckC";
 			this.ckC.Size = new System.Drawing.Size(44, 28);
 			this.ckC.TabIndex = 17;
@@ -113,7 +99,7 @@
 			this.ckB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckB.AutoSize = true;
 			this.ckB.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ckB.Location = new System.Drawing.Point(11, 234);
+			this.ckB.Location = new System.Drawing.Point(11, 182);
 			this.ckB.Name = "ckB";
 			this.ckB.Size = new System.Drawing.Size(44, 28);
 			this.ckB.TabIndex = 15;
@@ -127,7 +113,7 @@
 			this.ckA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckA.AutoSize = true;
 			this.ckA.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.ckA.Location = new System.Drawing.Point(11, 115);
+			this.ckA.Location = new System.Drawing.Point(11, 63);
 			this.ckA.Name = "ckA";
 			this.ckA.Size = new System.Drawing.Size(44, 28);
 			this.ckA.TabIndex = 13;
@@ -142,12 +128,13 @@
 			this.memoEditC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.memoEditC.Enabled = false;
-			this.memoEditC.Location = new System.Drawing.Point(62, 321);
+			this.memoEditC.Location = new System.Drawing.Point(62, 269);
 			this.memoEditC.Name = "memoEditC";
 			this.memoEditC.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.memoEditC.Properties.Appearance.Options.UseFont = true;
 			this.memoEditC.Size = new System.Drawing.Size(700, 80);
 			this.memoEditC.TabIndex = 3;
+			this.memoEditC.UseOptimizedRendering = true;
 			this.memoEditC.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// memoEditB
@@ -155,12 +142,13 @@
 			this.memoEditB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.memoEditB.Enabled = false;
-			this.memoEditB.Location = new System.Drawing.Point(62, 205);
+			this.memoEditB.Location = new System.Drawing.Point(62, 153);
 			this.memoEditB.Name = "memoEditB";
 			this.memoEditB.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.memoEditB.Properties.Appearance.Options.UseFont = true;
 			this.memoEditB.Size = new System.Drawing.Size(700, 81);
 			this.memoEditB.TabIndex = 2;
+			this.memoEditB.UseOptimizedRendering = true;
 			this.memoEditB.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// memoEditA
@@ -168,12 +156,13 @@
 			this.memoEditA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.memoEditA.Enabled = false;
-			this.memoEditA.Location = new System.Drawing.Point(62, 90);
+			this.memoEditA.Location = new System.Drawing.Point(62, 38);
 			this.memoEditA.Name = "memoEditA";
 			this.memoEditA.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.memoEditA.Properties.Appearance.Options.UseFont = true;
 			this.memoEditA.Size = new System.Drawing.Size(700, 80);
 			this.memoEditA.TabIndex = 1;
+			this.memoEditA.UseOptimizedRendering = true;
 			this.memoEditA.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
 			// SlideLeadoffStatementControl
@@ -186,7 +175,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditC.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditB.Properties)).EndInit();

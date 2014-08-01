@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.pnTopHeader = new System.Windows.Forms.Panel();
 			this.checkEditProductName = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
@@ -40,13 +38,9 @@
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPublications)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// pnTopHeader
 			// 
-			this.pnTopHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnTopHeader.BackColor = System.Drawing.Color.White;
 			this.pnTopHeader.Controls.Add(this.checkEditProductName);
 			this.pnTopHeader.Controls.Add(this.checkEditFlightDates);
 			this.pnTopHeader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -66,7 +60,7 @@
 			this.checkEditProductName.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.checkEditProductName.Properties.Caption = "Product Name";
 			this.checkEditProductName.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-			this.checkEditProductName.Size = new System.Drawing.Size(310, 21);
+			this.checkEditProductName.Size = new System.Drawing.Size(310, 19);
 			this.checkEditProductName.TabIndex = 29;
 			this.checkEditProductName.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditProductName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -79,7 +73,7 @@
 			this.checkEditFlightDates.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFlightDates.Properties.Caption = "Flight Dates";
 			this.checkEditFlightDates.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-			this.checkEditFlightDates.Size = new System.Drawing.Size(228, 21);
+			this.checkEditFlightDates.Size = new System.Drawing.Size(228, 20);
 			this.checkEditFlightDates.TabIndex = 28;
 			this.checkEditFlightDates.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditFlightDates.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -102,7 +96,7 @@
 			// OutputMultiSummaryControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.xtraTabControlPublications);
 			this.Controls.Add(this.pnTopHeader);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -118,7 +112,6 @@
 
         #endregion
 
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		private System.Windows.Forms.Panel pnTopHeader;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControlPublications;
 		public DevExpress.XtraEditors.CheckEdit checkEditProductName;

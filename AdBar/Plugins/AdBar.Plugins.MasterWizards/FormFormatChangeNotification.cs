@@ -1,8 +1,8 @@
-﻿using System.Windows.Forms;
+﻿using DevComponents.DotNetBar.Metro;
 
 namespace AdBar.Plugins.MasterWizards
 {
-	public partial class FormFormatChangeNotification : Form
+	public partial class FormFormatChangeNotification : MetroForm
 	{
 		public FormFormatChangeNotification()
 		{

@@ -2,7 +2,9 @@
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
@@ -15,11 +17,12 @@ using NewBizWiz.Dashboard.TabOnlineForms;
 using NewBizWiz.Dashboard.TabRadioForms;
 using NewBizWiz.Dashboard.TabSlides;
 using NewBizWiz.Dashboard.TabTVForms;
+using NewBizWiz.Dashboard.ToolForms;
 using SettingsManager = NewBizWiz.Core.Dashboard.SettingsManager;
 
 namespace NewBizWiz.Dashboard
 {
-	public partial class FormMain : Form
+	public partial class FormMain : RibbonForm
 	{
 		private static FormMain _instance;
 		private FormMain()
@@ -56,11 +59,12 @@ namespace NewBizWiz.Dashboard
 		{
 			Text = AppManager.FormCaption;
 
-			ribbonBarHomeOverview.Text = Core.Common.SettingsManager.Instance.DashboardText;
-			ribbonBarOnlineLogo.Text = Core.Common.SettingsManager.Instance.DashboardText;
-			ribbonBarNewspaperLogo.Text = Core.Common.SettingsManager.Instance.DashboardText;
-			ribbonBarTVLogo.Text = Core.Common.SettingsManager.Instance.DashboardText;
-			ribbonBarRadioLogo.Text = Core.Common.SettingsManager.Instance.DashboardText;
+			var userName = Environment.UserName;
+			ribbonBarHomeOverview.Text = userName;
+			ribbonBarOnlineLogo.Text = userName;
+			ribbonBarNewspaperLogo.Text = userName;
+			ribbonBarTVLogo.Text = userName;
+			ribbonBarRadioLogo.Text = userName;
 
 			var masterWizardLogo = MasterWizardManager.Instance.DefaultLogo;
 			buttonItemHomeOverview.Image = masterWizardLogo;
@@ -113,8 +117,11 @@ namespace NewBizWiz.Dashboard
 		public void Init()
 		{
 			timer.Start();
+			Application.DoEvents();
 			ApplyMasterWizard();
+			Application.DoEvents();
 			SetDashboardCode();
+			Application.DoEvents();
 		}
 
 		public void HideThemeButtons()
@@ -135,28 +142,40 @@ namespace NewBizWiz.Dashboard
 
 		private void FormMain_Load(object sender, EventArgs e)
 		{
-			if (File.Exists(SettingsManager.Instance.IconPath))
-				Icon = new Icon(SettingsManager.Instance.IconPath);
-			buttonItemNewspaperNew.Click += PrintScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
-			buttonItemNewspaperOpen.Click += PrintScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
-			buttonItemNewspaperDelete.Click += PrintScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
-			buttonItemOnlineNew.Click += OnlineScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
-			buttonItemOnlineOpen.Click += OnlineScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
-			buttonItemOnlineDelete.Click += OnlineScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
-			buttonItemTVNew.Click += TVScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
-			buttonItemTVOpen.Click += TVScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
-			buttonItemTVDelete.Click += TVScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
-			buttonItemRadioNew.Click += RadioScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
-			buttonItemRadioOpen.Click += RadioScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
-			buttonItemRadioDelete.Click += RadioScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
-			buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
-			buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
-			ribbonControl_SelectedRibbonTabChanged(ribbonControl, EventArgs.Empty);
-			ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+			using (var form = new FormLoadSplash())
+			{
+				form.TopMost = true;
+				form.Show();
+				var thread = new Thread(() => DashboardPowerPointHelper.Instance.SetPresentationSettings());
+				thread.Start();
+				while (thread.IsAlive)
+					Application.DoEvents();
+				Init();
+				if (File.Exists(SettingsManager.Instance.IconPath))
+					Icon = new Icon(SettingsManager.Instance.IconPath);
+				buttonItemNewspaperNew.Click += PrintScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
+				buttonItemNewspaperOpen.Click += PrintScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
+				buttonItemNewspaperDelete.Click += PrintScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
+				buttonItemOnlineNew.Click += OnlineScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
+				buttonItemOnlineOpen.Click += OnlineScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
+				buttonItemOnlineDelete.Click += OnlineScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
+				buttonItemTVNew.Click += TVScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
+				buttonItemTVOpen.Click += TVScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
+				buttonItemTVDelete.Click += TVScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
+				buttonItemRadioNew.Click += RadioScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
+				buttonItemRadioOpen.Click += RadioScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
+				buttonItemRadioDelete.Click += RadioScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;
+				buttonItemSlidesPowerPoint.Click += TabSlidesMainPage.Instance.buttonItemSlidesPowerPoint_Click;
+				buttonItemSlidesPreview.Click += TabSlidesMainPage.Instance.buttonItemSlidesPreview_Click;
+				ribbonControl_SelectedRibbonTabChanged(ribbonControl, EventArgs.Empty);
+				ribbonControl.SelectedRibbonTabChanged += ribbonControl_SelectedRibbonTabChanged;
+				form.Close();
+			}
 		}
 
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
+			Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
 			RegistryHelper.MainFormHandle = Handle;
 			AppManager.Instance.ActivateMainForm();
 		}

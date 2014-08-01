@@ -28,61 +28,44 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.comboBoxEditSlideHeader = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.pnBottom = new System.Windows.Forms.Panel();
-			this.checkEditSolutionOld = new DevExpress.XtraEditors.CheckEdit();
+			this.simpleButtonSaveTemplate = new DevExpress.XtraEditors.SimpleButton();
+			this.pbDescription = new System.Windows.Forms.PictureBox();
 			this.checkEditSolutionNew = new DevExpress.XtraEditors.CheckEdit();
 			this.pnSlideSelector = new System.Windows.Forms.Panel();
-			this.simpleButtonSummary = new DevExpress.XtraEditors.SimpleButton();
-			this.simpleButtonTargetCustomers = new DevExpress.XtraEditors.SimpleButton();
-			this.simpleButtonClientGoals = new DevExpress.XtraEditors.SimpleButton();
-			this.simpleButtonLeadoff = new DevExpress.XtraEditors.SimpleButton();
-			this.simpleButtonCover = new DevExpress.XtraEditors.SimpleButton();
-			this.pbDescription = new System.Windows.Forms.PictureBox();
-			this.pictureEditSaveTemplate = new DevExpress.XtraEditors.PictureEdit();
-			this.pnMain.SuspendLayout();
+			this.buttonXLeadoff = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXCover = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXClientGoals = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXTargetCustomers = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXSummary = new DevComponents.DotNetBar.ButtonX();
+			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnBottom.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
 			this.pnSlideSelector.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditSaveTemplate.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pnMain
 			// 
-			this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pnMain.Controls.Add(this.pnTop);
+			this.pnMain.BackColor = System.Drawing.Color.Transparent;
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnMain.Location = new System.Drawing.Point(0, 0);
+			this.pnMain.Location = new System.Drawing.Point(0, 51);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(824, 438);
+			this.pnMain.Size = new System.Drawing.Size(789, 387);
 			this.pnMain.TabIndex = 0;
 			// 
 			// pnTop
 			// 
-			this.pnTop.Controls.Add(this.pictureEditSaveTemplate);
 			this.pnTop.Controls.Add(this.comboBoxEditSlideHeader);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(0, 0);
 			this.pnTop.Name = "pnTop";
-			this.pnTop.Size = new System.Drawing.Size(820, 51);
+			this.pnTop.Size = new System.Drawing.Size(789, 51);
 			this.pnTop.TabIndex = 29;
 			// 
 			// comboBoxEditSlideHeader
@@ -106,134 +89,25 @@
 			// 
 			// pnBottom
 			// 
-			this.pnBottom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnBottom.Controls.Add(this.simpleButtonSaveTemplate);
 			this.pnBottom.Controls.Add(this.pbDescription);
-			this.pnBottom.Controls.Add(this.checkEditSolutionOld);
 			this.pnBottom.Controls.Add(this.checkEditSolutionNew);
 			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnBottom.Location = new System.Drawing.Point(0, 438);
 			this.pnBottom.Name = "pnBottom";
-			this.pnBottom.Size = new System.Drawing.Size(919, 74);
+			this.pnBottom.Size = new System.Drawing.Size(789, 74);
 			this.pnBottom.TabIndex = 1;
 			// 
-			// checkEditSolutionOld
+			// simpleButtonSaveTemplate
 			// 
-			this.checkEditSolutionOld.Location = new System.Drawing.Point(679, 25);
-			this.checkEditSolutionOld.Name = "checkEditSolutionOld";
-			this.checkEditSolutionOld.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditSolutionOld.Properties.Appearance.ForeColor = System.Drawing.Color.White;
-			this.checkEditSolutionOld.Properties.Appearance.Options.UseFont = true;
-			this.checkEditSolutionOld.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditSolutionOld.Properties.Caption = "I am updating an old presentation";
-			this.checkEditSolutionOld.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
-			this.checkEditSolutionOld.Properties.RadioGroupIndex = 1;
-			this.checkEditSolutionOld.Size = new System.Drawing.Size(230, 21);
-			this.checkEditSolutionOld.TabIndex = 106;
-			this.checkEditSolutionOld.TabStop = false;
-			// 
-			// checkEditSolutionNew
-			// 
-			this.checkEditSolutionNew.Location = new System.Drawing.Point(443, 25);
-			this.checkEditSolutionNew.Name = "checkEditSolutionNew";
-			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.White;
-			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
-			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditSolutionNew.Properties.Caption = "I am building a new client solution";
-			this.checkEditSolutionNew.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
-			this.checkEditSolutionNew.Properties.RadioGroupIndex = 1;
-			this.checkEditSolutionNew.Size = new System.Drawing.Size(230, 21);
-			this.checkEditSolutionNew.TabIndex = 105;
-			this.checkEditSolutionNew.TabStop = false;
-			// 
-			// pnSlideSelector
-			// 
-			this.pnSlideSelector.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pnSlideSelector.Controls.Add(this.simpleButtonSummary);
-			this.pnSlideSelector.Controls.Add(this.simpleButtonTargetCustomers);
-			this.pnSlideSelector.Controls.Add(this.simpleButtonClientGoals);
-			this.pnSlideSelector.Controls.Add(this.simpleButtonLeadoff);
-			this.pnSlideSelector.Controls.Add(this.simpleButtonCover);
-			this.pnSlideSelector.Dock = System.Windows.Forms.DockStyle.Right;
-			this.pnSlideSelector.Location = new System.Drawing.Point(824, 0);
-			this.pnSlideSelector.Name = "pnSlideSelector";
-			this.pnSlideSelector.Size = new System.Drawing.Size(95, 438);
-			this.pnSlideSelector.TabIndex = 2;
-			// 
-			// simpleButtonSummary
-			// 
-			this.simpleButtonSummary.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.simpleButtonSummary.Appearance.Options.UseBackColor = true;
-			this.simpleButtonSummary.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-			this.simpleButtonSummary.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideSummary;
-			this.simpleButtonSummary.Location = new System.Drawing.Point(5, 357);
-			this.simpleButtonSummary.Name = "simpleButtonSummary";
-			this.simpleButtonSummary.Size = new System.Drawing.Size(81, 72);
-			toolTipItem2.Text = "Wrap up with a Summary Slide";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.simpleButtonSummary.SuperTip = superToolTip2;
-			this.simpleButtonSummary.TabIndex = 4;
-			this.simpleButtonSummary.Click += new System.EventHandler(this.SlideType_Click);
-			// 
-			// simpleButtonTargetCustomers
-			// 
-			this.simpleButtonTargetCustomers.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.simpleButtonTargetCustomers.Appearance.Options.UseBackColor = true;
-			this.simpleButtonTargetCustomers.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-			this.simpleButtonTargetCustomers.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideTargetCustomers;
-			this.simpleButtonTargetCustomers.Location = new System.Drawing.Point(5, 270);
-			this.simpleButtonTargetCustomers.Name = "simpleButtonTargetCustomers";
-			this.simpleButtonTargetCustomers.Size = new System.Drawing.Size(81, 72);
-			toolTipItem3.Text = "Who is your client’s target audience?";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.simpleButtonTargetCustomers.SuperTip = superToolTip3;
-			this.simpleButtonTargetCustomers.TabIndex = 3;
-			this.simpleButtonTargetCustomers.Click += new System.EventHandler(this.SlideType_Click);
-			// 
-			// simpleButtonClientGoals
-			// 
-			this.simpleButtonClientGoals.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.simpleButtonClientGoals.Appearance.Options.UseBackColor = true;
-			this.simpleButtonClientGoals.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-			this.simpleButtonClientGoals.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideClientGoals;
-			this.simpleButtonClientGoals.Location = new System.Drawing.Point(4, 183);
-			this.simpleButtonClientGoals.Name = "simpleButtonClientGoals";
-			this.simpleButtonClientGoals.Size = new System.Drawing.Size(81, 72);
-			toolTipItem4.Text = "What are your Client’s Needs and Goals?";
-			superToolTip4.Items.Add(toolTipItem4);
-			this.simpleButtonClientGoals.SuperTip = superToolTip4;
-			this.simpleButtonClientGoals.TabIndex = 2;
-			this.simpleButtonClientGoals.Click += new System.EventHandler(this.SlideType_Click);
-			// 
-			// simpleButtonLeadoff
-			// 
-			this.simpleButtonLeadoff.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.simpleButtonLeadoff.Appearance.Options.UseBackColor = true;
-			this.simpleButtonLeadoff.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-			this.simpleButtonLeadoff.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideLeadoff;
-			this.simpleButtonLeadoff.Location = new System.Drawing.Point(4, 96);
-			this.simpleButtonLeadoff.Name = "simpleButtonLeadoff";
-			this.simpleButtonLeadoff.Size = new System.Drawing.Size(81, 72);
-			toolTipItem5.Text = "Set the Tone with an Intro Slide";
-			superToolTip5.Items.Add(toolTipItem5);
-			this.simpleButtonLeadoff.SuperTip = superToolTip5;
-			this.simpleButtonLeadoff.TabIndex = 1;
-			this.simpleButtonLeadoff.Click += new System.EventHandler(this.SlideType_Click);
-			// 
-			// simpleButtonCover
-			// 
-			this.simpleButtonCover.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.simpleButtonCover.Appearance.Options.UseBackColor = true;
-			this.simpleButtonCover.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-			this.simpleButtonCover.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideCover;
-			this.simpleButtonCover.Location = new System.Drawing.Point(5, 9);
-			this.simpleButtonCover.Name = "simpleButtonCover";
-			this.simpleButtonCover.Size = new System.Drawing.Size(81, 72);
-			toolTipItem6.Text = "Start with a Simple Cover Slide";
-			superToolTip6.Items.Add(toolTipItem6);
-			this.simpleButtonCover.SuperTip = superToolTip6;
-			this.simpleButtonCover.TabIndex = 0;
-			this.simpleButtonCover.Click += new System.EventHandler(this.SlideType_Click);
+			this.simpleButtonSaveTemplate.AllowFocus = false;
+			this.simpleButtonSaveTemplate.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+			this.simpleButtonSaveTemplate.Image = global::NewBizWiz.Dashboard.Properties.Resources.SaveTemplate;
+			this.simpleButtonSaveTemplate.Location = new System.Drawing.Point(712, 11);
+			this.simpleButtonSaveTemplate.Name = "simpleButtonSaveTemplate";
+			this.simpleButtonSaveTemplate.Size = new System.Drawing.Size(75, 48);
+			this.simpleButtonSaveTemplate.TabIndex = 111;
+			this.simpleButtonSaveTemplate.Click += new System.EventHandler(this.SaveTemplate_Click);
 			// 
 			// pbDescription
 			// 
@@ -243,45 +117,130 @@
 			this.pbDescription.TabIndex = 107;
 			this.pbDescription.TabStop = false;
 			// 
-			// pictureEditSaveTemplate
+			// checkEditSolutionNew
 			// 
-			this.pictureEditSaveTemplate.EditValue = global::NewBizWiz.Dashboard.Properties.Resources.SaveTemplate;
-			this.pictureEditSaveTemplate.Location = new System.Drawing.Point(641, 9);
-			this.pictureEditSaveTemplate.Name = "pictureEditSaveTemplate";
-			this.pictureEditSaveTemplate.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-			this.pictureEditSaveTemplate.Properties.Appearance.Options.UseBackColor = true;
-			this.pictureEditSaveTemplate.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.pictureEditSaveTemplate.Size = new System.Drawing.Size(175, 32);
-			toolTipItem1.Text = "Save this template for future  presentations…";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.pictureEditSaveTemplate.SuperTip = superToolTip1;
-			this.pictureEditSaveTemplate.TabIndex = 30;
-			this.pictureEditSaveTemplate.Click += new System.EventHandler(this.pictureEditSaveTemplate_Click);
-			this.pictureEditSaveTemplate.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pictureEditSaveTemplate.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+			this.checkEditSolutionNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkEditSolutionNew.Location = new System.Drawing.Point(528, 27);
+			this.checkEditSolutionNew.Name = "checkEditSolutionNew";
+			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
+			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditSolutionNew.Properties.AutoWidth = true;
+			this.checkEditSolutionNew.Properties.Caption = "This is a NEW Solution";
+			this.checkEditSolutionNew.Properties.RadioGroupIndex = 1;
+			this.checkEditSolutionNew.Size = new System.Drawing.Size(157, 19);
+			this.checkEditSolutionNew.TabIndex = 105;
+			this.checkEditSolutionNew.TabStop = false;
+			// 
+			// pnSlideSelector
+			// 
+			this.pnSlideSelector.Controls.Add(this.buttonXLeadoff);
+			this.pnSlideSelector.Controls.Add(this.buttonXCover);
+			this.pnSlideSelector.Controls.Add(this.buttonXClientGoals);
+			this.pnSlideSelector.Controls.Add(this.buttonXTargetCustomers);
+			this.pnSlideSelector.Controls.Add(this.buttonXSummary);
+			this.pnSlideSelector.Dock = System.Windows.Forms.DockStyle.Right;
+			this.pnSlideSelector.Location = new System.Drawing.Point(789, 0);
+			this.pnSlideSelector.Name = "pnSlideSelector";
+			this.pnSlideSelector.Size = new System.Drawing.Size(130, 512);
+			this.pnSlideSelector.TabIndex = 2;
+			// 
+			// buttonXLeadoff
+			// 
+			this.buttonXLeadoff.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXLeadoff.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXLeadoff.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXLeadoff.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideLeadoff;
+			this.buttonXLeadoff.Location = new System.Drawing.Point(42, 116);
+			this.buttonXLeadoff.Name = "buttonXLeadoff";
+			this.buttonXLeadoff.Size = new System.Drawing.Size(80, 72);
+			this.buttonXLeadoff.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.superTooltip.SetSuperTooltip(this.buttonXLeadoff, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Set the Tone with an Intro Slide", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonXLeadoff.TabIndex = 31;
+			this.buttonXLeadoff.Click += new System.EventHandler(this.SlideType_Click);
+			// 
+			// buttonXCover
+			// 
+			this.buttonXCover.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXCover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXCover.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXCover.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideCover;
+			this.buttonXCover.Location = new System.Drawing.Point(42, 12);
+			this.buttonXCover.Name = "buttonXCover";
+			this.buttonXCover.Size = new System.Drawing.Size(80, 72);
+			this.buttonXCover.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.superTooltip.SetSuperTooltip(this.buttonXCover, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Start with a Simple Cover Slide", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonXCover.TabIndex = 30;
+			this.buttonXCover.Click += new System.EventHandler(this.SlideType_Click);
+			// 
+			// buttonXClientGoals
+			// 
+			this.buttonXClientGoals.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXClientGoals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXClientGoals.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXClientGoals.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideClientGoals;
+			this.buttonXClientGoals.Location = new System.Drawing.Point(42, 220);
+			this.buttonXClientGoals.Name = "buttonXClientGoals";
+			this.buttonXClientGoals.Size = new System.Drawing.Size(80, 72);
+			this.buttonXClientGoals.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.superTooltip.SetSuperTooltip(this.buttonXClientGoals, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "What are your Client’s Needs and Goals?", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonXClientGoals.TabIndex = 32;
+			this.buttonXClientGoals.Click += new System.EventHandler(this.SlideType_Click);
+			// 
+			// buttonXTargetCustomers
+			// 
+			this.buttonXTargetCustomers.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXTargetCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXTargetCustomers.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXTargetCustomers.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideTargetCustomers;
+			this.buttonXTargetCustomers.Location = new System.Drawing.Point(42, 324);
+			this.buttonXTargetCustomers.Name = "buttonXTargetCustomers";
+			this.buttonXTargetCustomers.Size = new System.Drawing.Size(80, 72);
+			this.buttonXTargetCustomers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.superTooltip.SetSuperTooltip(this.buttonXTargetCustomers, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Who is your client’s target audience?", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonXTargetCustomers.TabIndex = 33;
+			this.buttonXTargetCustomers.Click += new System.EventHandler(this.SlideType_Click);
+			// 
+			// buttonXSummary
+			// 
+			this.buttonXSummary.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXSummary.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSummary.Image = global::NewBizWiz.Dashboard.Properties.Resources.SlideSummary;
+			this.buttonXSummary.Location = new System.Drawing.Point(42, 428);
+			this.buttonXSummary.Name = "buttonXSummary";
+			this.buttonXSummary.Size = new System.Drawing.Size(80, 72);
+			this.buttonXSummary.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.superTooltip.SetSuperTooltip(this.buttonXSummary, new DevComponents.DotNetBar.SuperTooltipInfo("", "", "Wrap up with a Summary Slide", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.buttonXSummary.TabIndex = 34;
+			this.buttonXSummary.Click += new System.EventHandler(this.SlideType_Click);
+			// 
+			// superTooltip
+			// 
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
+			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
 			// SlideBaseControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pnMain);
-			this.Controls.Add(this.pnSlideSelector);
+			this.Controls.Add(this.pnTop);
 			this.Controls.Add(this.pnBottom);
+			this.Controls.Add(this.pnSlideSelector);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.MaximumSize = new System.Drawing.Size(919, 512);
 			this.MinimumSize = new System.Drawing.Size(919, 512);
 			this.Name = "SlideBaseControl";
 			this.Size = new System.Drawing.Size(919, 512);
-			this.pnMain.ResumeLayout(false);
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnBottom.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
 			this.pnSlideSelector.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureEditSaveTemplate.Properties)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -289,18 +248,18 @@
 		#endregion
 
 		private System.Windows.Forms.Panel pnSlideSelector;
-		private DevExpress.XtraEditors.SimpleButton simpleButtonCover;
-		private DevExpress.XtraEditors.SimpleButton simpleButtonLeadoff;
-		private DevExpress.XtraEditors.SimpleButton simpleButtonSummary;
-		private DevExpress.XtraEditors.SimpleButton simpleButtonTargetCustomers;
-		private DevExpress.XtraEditors.SimpleButton simpleButtonClientGoals;
 		protected System.Windows.Forms.Panel pnMain;
 		protected System.Windows.Forms.Panel pnBottom;
 		protected DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSlideHeader;
 		protected System.Windows.Forms.Panel pnTop;
 		protected DevExpress.XtraEditors.CheckEdit checkEditSolutionNew;
-		protected DevExpress.XtraEditors.CheckEdit checkEditSolutionOld;
 		protected System.Windows.Forms.PictureBox pbDescription;
-		private DevExpress.XtraEditors.PictureEdit pictureEditSaveTemplate;
+		private DevComponents.DotNetBar.ButtonX buttonXCover;
+		private DevComponents.DotNetBar.SuperTooltip superTooltip;
+		private DevComponents.DotNetBar.ButtonX buttonXLeadoff;
+		private DevComponents.DotNetBar.ButtonX buttonXClientGoals;
+		private DevComponents.DotNetBar.ButtonX buttonXTargetCustomers;
+		private DevComponents.DotNetBar.ButtonX buttonXSummary;
+		protected DevExpress.XtraEditors.SimpleButton simpleButtonSaveTemplate;
 	}
 }

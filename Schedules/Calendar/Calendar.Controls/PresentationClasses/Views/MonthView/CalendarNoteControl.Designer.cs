@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
 			this.styleController = new DevExpress.XtraEditors.StyleController();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel();
 			this.memoEdit = new DevExpress.XtraEditors.MemoEdit();
 			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
 			this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,10 +58,6 @@
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// memoEdit
 			// 
 			this.memoEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -78,6 +73,7 @@
 			this.memoEdit.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.memoEdit.Size = new System.Drawing.Size(463, 27);
 			this.memoEdit.TabIndex = 3;
+			this.memoEdit.UseOptimizedRendering = true;
 			this.memoEdit.Visible = false;
 			this.memoEdit.EditValueChanged += new System.EventHandler(this.memoEdit_EditValueChanged);
 			this.memoEdit.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.memoEdit_EditValueChanging);
@@ -172,8 +168,8 @@
 			this.BackColor = System.Drawing.Color.LemonChiffon;
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.ContextMenuStrip = this.contextMenuStrip;
-			this.Controls.Add(this.labelControl);
 			this.Controls.Add(this.pbClose);
+			this.Controls.Add(this.labelControl);
 			this.Controls.Add(this.memoEdit);
 			this.Controls.Add(this.textBox);
 			this.Name = "CalendarNoteControl";
@@ -191,8 +187,7 @@
         #endregion
 
 	    protected System.Windows.Forms.PictureBox pbClose;
-        private DevExpress.XtraEditors.StyleController styleController;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
+		private DevExpress.XtraEditors.StyleController styleController;
 	    protected DevExpress.XtraEditors.MemoEdit memoEdit;
 	    protected System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;

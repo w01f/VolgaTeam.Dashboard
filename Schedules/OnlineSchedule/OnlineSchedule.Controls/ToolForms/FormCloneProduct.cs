@@ -1,9 +1,9 @@
 ﻿using System.Drawing;
-using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 
 namespace NewBizWiz.OnlineSchedule.Controls.ToolForms
 {
-	public partial class FormCloneProduct : Form
+	public partial class FormCloneProduct : MetroForm
 	{
 		public FormCloneProduct()
 		{

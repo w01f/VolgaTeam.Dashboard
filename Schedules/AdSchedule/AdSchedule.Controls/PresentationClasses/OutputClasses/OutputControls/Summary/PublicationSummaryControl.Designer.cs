@@ -99,7 +99,7 @@
 			// 
 			// pnMainExt
 			// 
-			this.pnMainExt.BackColor = System.Drawing.Color.White;
+			this.pnMainExt.BackColor = System.Drawing.Color.DimGray;
 			this.pnMainExt.Controls.Add(this.pnBody);
 			this.pnMainExt.Controls.Add(this.pnFooter);
 			this.pnMainExt.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -126,14 +126,16 @@
 			this.memoEditDescription.Location = new System.Drawing.Point(418, 0);
 			this.memoEditDescription.Name = "memoEditDescription";
 			this.memoEditDescription.Properties.AllowFocused = false;
-			this.memoEditDescription.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.memoEditDescription.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.memoEditDescription.Properties.Appearance.Options.UseBackColor = true;
+			this.memoEditDescription.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.memoEditDescription.Properties.ReadOnly = true;
 			this.memoEditDescription.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.memoEditDescription.Properties.WordWrap = false;
 			this.memoEditDescription.Size = new System.Drawing.Size(351, 93);
 			this.memoEditDescription.StyleController = this.styleController;
 			this.memoEditDescription.TabIndex = 1;
+			this.memoEditDescription.UseOptimizedRendering = true;
 			this.memoEditDescription.EditValueChanged += new System.EventHandler(this.memoEditDescription_EditValueChanged);
 			// 
 			// pnLeft
@@ -150,7 +152,7 @@
 			// labelFlightDates
 			// 
 			this.labelFlightDates.AllowHtmlString = true;
-			this.labelFlightDates.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.labelFlightDates.Appearance.BackColor = System.Drawing.Color.White;
 			this.labelFlightDates.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelFlightDates.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelFlightDates.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -178,7 +180,7 @@
 			// labelControlTitle
 			// 
 			this.labelControlTitle.AllowHtmlString = true;
-			this.labelControlTitle.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.labelControlTitle.Appearance.BackColor = System.Drawing.Color.White;
 			this.labelControlTitle.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlTitle.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
 			this.labelControlTitle.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
@@ -194,7 +196,7 @@
 			// 
 			// pnFooter
 			// 
-			this.pnFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnFooter.BackColor = System.Drawing.Color.White;
 			this.pnFooter.Controls.Add(this.checkEditTotalCost);
 			this.pnFooter.Controls.Add(this.checkEditAvgPCIRate);
 			this.pnFooter.Controls.Add(this.checkEditTotalDiscounts);
@@ -211,7 +213,7 @@
 			this.checkEditTotalCost.Location = new System.Drawing.Point(605, 0);
 			this.checkEditTotalCost.Name = "checkEditTotalCost";
 			this.checkEditTotalCost.Properties.AllowFocused = false;
-			this.checkEditTotalCost.Properties.AllowHtmlString = true;
+			this.checkEditTotalCost.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditTotalCost.Properties.Appearance.ForeColor = System.Drawing.Color.Gray;
 			this.checkEditTotalCost.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditTotalCost.Properties.AutoHeight = false;
@@ -227,7 +229,7 @@
 			this.checkEditAvgPCIRate.Location = new System.Drawing.Point(422, 0);
 			this.checkEditAvgPCIRate.Name = "checkEditAvgPCIRate";
 			this.checkEditAvgPCIRate.Properties.AllowFocused = false;
-			this.checkEditAvgPCIRate.Properties.AllowHtmlString = true;
+			this.checkEditAvgPCIRate.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditAvgPCIRate.Properties.Appearance.ForeColor = System.Drawing.Color.Gray;
 			this.checkEditAvgPCIRate.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditAvgPCIRate.Properties.AutoHeight = false;
@@ -243,7 +245,7 @@
 			this.checkEditTotalDiscounts.Location = new System.Drawing.Point(211, 0);
 			this.checkEditTotalDiscounts.Name = "checkEditTotalDiscounts";
 			this.checkEditTotalDiscounts.Properties.AllowFocused = false;
-			this.checkEditTotalDiscounts.Properties.AllowHtmlString = true;
+			this.checkEditTotalDiscounts.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditTotalDiscounts.Properties.Appearance.ForeColor = System.Drawing.Color.Gray;
 			this.checkEditTotalDiscounts.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditTotalDiscounts.Properties.AutoHeight = false;
@@ -259,7 +261,7 @@
 			this.checkEditAvgADRate.Location = new System.Drawing.Point(0, 0);
 			this.checkEditAvgADRate.Name = "checkEditAvgADRate";
 			this.checkEditAvgADRate.Properties.AllowFocused = false;
-			this.checkEditAvgADRate.Properties.AllowHtmlString = true;
+			this.checkEditAvgADRate.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditAvgADRate.Properties.Appearance.ForeColor = System.Drawing.Color.Gray;
 			this.checkEditAvgADRate.Properties.Appearance.Options.UseForeColor = true;
 			this.checkEditAvgADRate.Properties.AutoHeight = false;
@@ -273,7 +275,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pnMainExt);
 			this.Controls.Add(this.labelControlNumber);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));

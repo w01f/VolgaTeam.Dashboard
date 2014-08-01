@@ -70,7 +70,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			comboBoxEditGoal5.Properties.Items.AddRange(ListManager.Instance.ClientGoalsLists.Goals);
 
 			checkEditSolutionNew.EditValueChanged += EditValueChanged;
-			checkEditSolutionOld.EditValueChanged += EditValueChanged;
 
 			FormMain.Instance.FormClosed += (sender1, e1) =>
 			{
@@ -101,7 +100,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			_allowToSave = false;
 			checkEditSolutionNew.Checked = ViewSettingsManager.Instance.ClientGoalsState.IsNewSolution;
-			checkEditSolutionOld.Checked = !ViewSettingsManager.Instance.ClientGoalsState.IsNewSolution;
 			if (string.IsNullOrEmpty(ViewSettingsManager.Instance.ClientGoalsState.SlideHeader))
 			{
 				if (comboBoxEditSlideHeader.Properties.Items.Count > 0)

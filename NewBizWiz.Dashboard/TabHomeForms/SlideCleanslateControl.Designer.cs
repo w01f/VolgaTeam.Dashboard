@@ -28,34 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.toolTip = new System.Windows.Forms.ToolTip();
-			this.laUserName = new System.Windows.Forms.Label();
+			this.components = new System.ComponentModel.Container();
+			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.pbVersion = new System.Windows.Forms.PictureBox();
-			this.pnMain.SuspendLayout();
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbVersion)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pnMain
 			// 
-			this.pnMain.Size = new System.Drawing.Size(824, 437);
+			this.pnMain.Size = new System.Drawing.Size(789, 386);
 			// 
 			// pnBottom
 			// 
 			this.pnBottom.Controls.Add(this.pbVersion);
-			this.pnBottom.Controls.Add(this.laUserName);
 			this.pnBottom.Location = new System.Drawing.Point(0, 437);
-			this.pnBottom.Size = new System.Drawing.Size(919, 75);
+			this.pnBottom.Size = new System.Drawing.Size(789, 75);
+			this.pnBottom.Controls.SetChildIndex(this.simpleButtonSaveTemplate, 0);
 			this.pnBottom.Controls.SetChildIndex(this.pbDescription, 0);
-			this.pnBottom.Controls.SetChildIndex(this.checkEditSolutionNew, 0);
-			this.pnBottom.Controls.SetChildIndex(this.checkEditSolutionOld, 0);
-			this.pnBottom.Controls.SetChildIndex(this.laUserName, 0);
 			this.pnBottom.Controls.SetChildIndex(this.pbVersion, 0);
+			this.pnBottom.Controls.SetChildIndex(this.checkEditSolutionNew, 0);
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -77,40 +73,25 @@
 			// 
 			// checkEditSolutionNew
 			// 
+			this.checkEditSolutionNew.Location = new System.Drawing.Point(575, 27);
 			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditSolutionNew.Size = new System.Drawing.Size(157, 20);
 			this.checkEditSolutionNew.Visible = false;
-			// 
-			// checkEditSolutionOld
-			// 
-			this.checkEditSolutionOld.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditSolutionOld.Properties.Appearance.ForeColor = System.Drawing.Color.White;
-			this.checkEditSolutionOld.Properties.Appearance.Options.UseFont = true;
-			this.checkEditSolutionOld.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditSolutionOld.Visible = false;
 			// 
 			// pbDescription
 			// 
 			this.pbDescription.Visible = false;
 			// 
+			// simpleButtonSaveTemplate
+			// 
+			this.simpleButtonSaveTemplate.Visible = false;
+			// 
 			// toolTip
 			// 
 			this.toolTip.IsBalloon = true;
-			// 
-			// laUserName
-			// 
-			this.laUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.laUserName.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laUserName.ForeColor = System.Drawing.Color.White;
-			this.laUserName.Location = new System.Drawing.Point(556, 9);
-			this.laUserName.Name = "laUserName";
-			this.laUserName.Size = new System.Drawing.Size(353, 52);
-			this.laUserName.TabIndex = 0;
-			this.laUserName.Text = "label1";
-			this.laUserName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// pbVersion
 			// 
@@ -123,14 +104,12 @@
 			// SlideCleanslateControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Name = "SlideCleanslateControl";
-			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbVersion)).EndInit();
 			this.ResumeLayout(false);
@@ -139,8 +118,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolTip toolTip;
-		private System.Windows.Forms.Label laUserName;
+		private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.PictureBox pbVersion;
     }
 }

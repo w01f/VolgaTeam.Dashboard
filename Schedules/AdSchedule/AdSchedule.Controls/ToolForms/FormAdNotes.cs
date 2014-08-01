@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses;
@@ -15,7 +15,7 @@ using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
 
 namespace NewBizWiz.AdSchedule.Controls.ToolForms
 {
-	public partial class FormAdNotes : Form
+	public partial class FormAdNotes : MetroForm
 	{
 		private int _selectedCommentRecordNumber = -1;
 		private int _selectedDeadlineRecordNumber = -1;

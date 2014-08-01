@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using DevExpress.XtraTab;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
@@ -12,7 +13,7 @@ using NewBizWiz.Core.Common;
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls
 {
 	[ToolboxItem(false)]
-	//public partial class DigitalSummaryControl : UserControl
+	//public partial class BasicOverviewSummaryControl : UserControl
 	public partial class BasicOverviewSummaryControl : XtraTabPage, IBasicOverviewOutputControl
 	{
 		private readonly List<PublicationSummaryControl> _summaryControls = new List<PublicationSummaryControl>();

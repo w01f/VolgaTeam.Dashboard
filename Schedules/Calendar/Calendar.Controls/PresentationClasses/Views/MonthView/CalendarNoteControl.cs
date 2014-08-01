@@ -93,6 +93,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			memoEdit.Visible = false;
 			labelControl.Text = CalendarNote.Note.FormattedText;
 			labelControl.Visible = true;
+			labelControl.BringToFront();
 		}
 
 		private void labelControl_Click(object sender, EventArgs e)

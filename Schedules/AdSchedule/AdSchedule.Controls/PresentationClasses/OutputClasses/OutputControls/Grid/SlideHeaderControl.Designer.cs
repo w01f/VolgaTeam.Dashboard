@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.checkEditAdvertiser = new DevExpress.XtraEditors.CheckEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.checkEditLogo1 = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditPublicationName = new DevExpress.XtraEditors.CheckEdit();
@@ -54,10 +52,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEnableSlideHeader.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
 			// 
 			// checkEditAdvertiser
 			// 
@@ -229,7 +223,7 @@
 			this.checkEditEnableSlideHeader.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
 			this.checkEditEnableSlideHeader.Properties.Appearance.Options.UseFont = true;
 			this.checkEditEnableSlideHeader.Properties.Caption = "Slide Header Options";
-			this.checkEditEnableSlideHeader.Size = new System.Drawing.Size(202, 24);
+			this.checkEditEnableSlideHeader.Size = new System.Drawing.Size(202, 23);
 			this.checkEditEnableSlideHeader.TabIndex = 33;
 			this.checkEditEnableSlideHeader.CheckedChanged += new System.EventHandler(this.checkEditEnableSlideHeader_CheckedChanged);
 			// 
@@ -250,12 +244,13 @@
 			// 
 			// superTooltip
 			// 
+			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
 			// SlideHeaderControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pbHelp);
 			this.Controls.Add(this.pnMain);
 			this.Controls.Add(this.checkEditEnableSlideHeader);
@@ -279,8 +274,7 @@
 
         #endregion
 
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        public DevExpress.XtraEditors.CheckEdit checkEditAdvertiser;
+		public DevExpress.XtraEditors.CheckEdit checkEditAdvertiser;
         private System.Windows.Forms.Panel pnMain;
 		private DevExpress.XtraEditors.StyleController styleController;
         public DevExpress.XtraEditors.CheckEdit checkEditLogo1;

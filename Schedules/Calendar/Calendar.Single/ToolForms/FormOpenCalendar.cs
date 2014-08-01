@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Base;
@@ -14,7 +15,7 @@ using ShortSchedule = NewBizWiz.Core.Calendar.ShortSchedule;
 
 namespace NewBizWiz.Calendar.Single
 {
-	public partial class FormOpenCalendar : Form
+	public partial class FormOpenCalendar : MetroForm
 	{
 		private readonly List<ShortSchedule> _scheduleList = new List<ShortSchedule>();
 

@@ -53,6 +53,7 @@
 			// gridControlLogoGallery
 			// 
 			this.gridControlLogoGallery.AllowDrop = true;
+			this.gridControlLogoGallery.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControlLogoGallery.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridControlLogoGallery.Location = new System.Drawing.Point(0, 0);
 			this.gridControlLogoGallery.MainView = this.layoutViewLogoGallery;
@@ -70,6 +71,7 @@
 			this.layoutViewLogoGallery.Appearance.SelectionFrame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
 			this.layoutViewLogoGallery.Appearance.SelectionFrame.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
 			this.layoutViewLogoGallery.Appearance.SelectionFrame.Options.UseBackColor = true;
+			this.layoutViewLogoGallery.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.layoutViewLogoGallery.CardMinSize = new System.Drawing.Size(110, 125);
 			this.layoutViewLogoGallery.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] {
             this.gridColumnLogoGallery,
@@ -189,12 +191,12 @@
             this.toolStripMenuItemDelete});
 			this.contextMenuStrip.Name = "contextMenuStrip";
 			this.contextMenuStrip.ShowImageMargin = false;
-			this.contextMenuStrip.Size = new System.Drawing.Size(128, 98);
+			this.contextMenuStrip.Size = new System.Drawing.Size(102, 76);
 			// 
 			// toolStripMenuItemCopy
 			// 
 			this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
-			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(127, 22);
+			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(101, 22);
 			this.toolStripMenuItemCopy.Text = "Copy";
 			this.toolStripMenuItemCopy.Click += new System.EventHandler(this.toolStripMenuItemCopy_Click);
 			// 
@@ -202,25 +204,26 @@
 			// 
 			this.toolStripMenuItemRename.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemRename.Name = "toolStripMenuItemRename";
-			this.toolStripMenuItemRename.Size = new System.Drawing.Size(127, 22);
+			this.toolStripMenuItemRename.Size = new System.Drawing.Size(101, 22);
 			this.toolStripMenuItemRename.Text = "Rename...";
 			this.toolStripMenuItemRename.Click += new System.EventHandler(this.toolStripMenuItemRename_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(124, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(98, 6);
 			// 
 			// toolStripMenuItemDelete
 			// 
 			this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
-			this.toolStripMenuItemDelete.Size = new System.Drawing.Size(127, 22);
+			this.toolStripMenuItemDelete.Size = new System.Drawing.Size(101, 22);
 			this.toolStripMenuItemDelete.Text = "Delete";
 			this.toolStripMenuItemDelete.Click += new System.EventHandler(this.toolStripMenuItemDelete_Click);
 			// 
 			// FavoriteImagesControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.gridControlLogoGallery);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "FavoriteImagesControl";

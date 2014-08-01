@@ -27,6 +27,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			foreach (Control control in pnMain.Controls)
 				if (control.Visible && control.Bottom > bottom)
 					bottom = control.Bottom;
+			bottom += pnMainBorder.Padding.Top + pnMainBorder.Padding.Bottom;
 			Height = bottom + Padding.Top + Padding.Bottom;
 		}
 
@@ -81,8 +82,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void RefreshOrder()
 		{
-			pnMain.SuspendLayout();
-			pnMain.Visible = false;
+			pnMainBorder.SuspendLayout();
+			pnMainBorder.Visible = false;
 			if (pictureBoxLogo.Visible)
 				pictureBoxLogo.BringToFront();
 			if (pnTotalInserts.Visible)
@@ -113,8 +114,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				pnReadership.BringToFront();
 			if (pnDelivery.Visible)
 				pnDelivery.BringToFront();
-			pnMain.Visible = true;
-			pnMain.ResumeLayout();
+			pnMainBorder.Visible = true;
+			pnMainBorder.ResumeLayout();
 		}
 
 		private void laPageSizeValue_MouseMove(object sender, MouseEventArgs e)

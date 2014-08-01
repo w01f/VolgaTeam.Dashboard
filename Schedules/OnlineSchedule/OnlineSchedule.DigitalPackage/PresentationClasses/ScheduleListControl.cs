@@ -9,7 +9,6 @@ using DevExpress.Utils;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses;
 
 namespace NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses

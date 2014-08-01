@@ -15,9 +15,6 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 	[ToolboxItem(false)]
 	public partial class SlideBaseControl : UserControl
 	{
-		private readonly Color _selectedButtonColor = Color.FromArgb(255, 218, 150);
-		private readonly Color _regularButtonColor = Color.FromArgb(175, 210, 255);
-
 		public bool SettingsNotSaved { get; set; }
 
 		public virtual string SlideName
@@ -98,8 +95,8 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 
 		public void SelectSlideType(SlideType slideType)
 		{
-			foreach (var button in pnSlideSelector.Controls.OfType<SimpleButton>())
-				button.Appearance.BackColor = _regularButtonColor;
+			foreach (var button in pnSlideSelector.Controls.OfType<ButtonX>())
+				button.Checked = false;
 			FormMain.Instance.buttonItemHomeOverview.Checked = false;
 			switch (slideType)
 			{
@@ -107,19 +104,19 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 					FormMain.Instance.buttonItemHomeOverview.Checked = true;
 					break;
 				case SlideType.Cover:
-					simpleButtonCover.Appearance.BackColor = _selectedButtonColor;
+					buttonXCover.Checked = true;
 					break;
 				case SlideType.LeadoffStatement:
-					simpleButtonLeadoff.Appearance.BackColor = _selectedButtonColor;
+					buttonXLeadoff.Checked = true;
 					break;
 				case SlideType.ClientGoals:
-					simpleButtonClientGoals.Appearance.BackColor = _selectedButtonColor;
+					buttonXClientGoals.Checked = true;
 					break;
 				case SlideType.TargetCustomers:
-					simpleButtonTargetCustomers.Appearance.BackColor = _selectedButtonColor;
+					buttonXTargetCustomers.Checked = true;
 					break;
 				case SlideType.SimpleSummary:
-					simpleButtonSummary.Appearance.BackColor = _selectedButtonColor;
+					buttonXSummary.Checked = true;
 					break;
 			}
 			LoadThemes(slideType);
@@ -130,20 +127,20 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 		{
 			if (SlideChanged == null) return;
 			var slideType = SlideType.None;
-			if (sender == simpleButtonCover)
+			if (sender == buttonXCover)
 				slideType = SlideType.Cover;
-			else if (sender == simpleButtonLeadoff)
+			else if (sender == buttonXLeadoff)
 				slideType = SlideType.LeadoffStatement;
-			else if (sender == simpleButtonClientGoals)
+			else if (sender == buttonXClientGoals)
 				slideType = SlideType.ClientGoals;
-			else if (sender == simpleButtonTargetCustomers)
+			else if (sender == buttonXTargetCustomers)
 				slideType = SlideType.TargetCustomers;
-			else if (sender == simpleButtonSummary)
+			else if (sender == buttonXSummary)
 				slideType = SlideType.SimpleSummary;
 			SlideChanged(this, new SlideEventArgs { SlideType = slideType });
 		}
 
-		private void pictureEditSaveTemplate_Click(object sender, EventArgs e)
+		private void SaveTemplate_Click(object sender, EventArgs e)
 		{
 			using (var form = new FormSaveTemplate())
 			{

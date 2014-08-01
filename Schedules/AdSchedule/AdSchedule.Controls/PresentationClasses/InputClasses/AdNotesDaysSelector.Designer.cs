@@ -40,13 +40,14 @@
 			this.buttonXApplyOtherDays.Location = new System.Drawing.Point(179, 0);
 			this.buttonXApplyOtherDays.Name = "buttonXApplyOtherDays";
 			this.buttonXApplyOtherDays.Size = new System.Drawing.Size(263, 61);
+			this.buttonXApplyOtherDays.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXApplyOtherDays.TabIndex = 8;
 			this.buttonXApplyOtherDays.TextColor = System.Drawing.Color.Black;
 			// 
 			// AdNotesDaysSelector
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.buttonXApplyOtherDays);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "AdNotesDaysSelector";

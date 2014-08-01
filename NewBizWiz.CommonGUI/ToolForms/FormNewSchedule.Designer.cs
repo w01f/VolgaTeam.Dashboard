@@ -39,6 +39,8 @@
 			// 
 			// pbLogo
 			// 
+			this.pbLogo.BackColor = System.Drawing.Color.White;
+			this.pbLogo.ForeColor = System.Drawing.Color.Black;
 			this.pbLogo.Image = global::NewBizWiz.CommonGUI.Properties.Resources.NewSchedule;
 			this.pbLogo.Location = new System.Drawing.Point(12, 12);
 			this.pbLogo.Name = "pbLogo";
@@ -48,6 +50,8 @@
 			// 
 			// laLogo
 			// 
+			this.laLogo.BackColor = System.Drawing.Color.White;
+			this.laLogo.ForeColor = System.Drawing.Color.Black;
 			this.laLogo.Location = new System.Drawing.Point(90, 12);
 			this.laLogo.Name = "laLogo";
 			this.laLogo.Size = new System.Drawing.Size(282, 41);
@@ -62,6 +66,7 @@
 			this.buttonXOK.Location = new System.Drawing.Point(168, 96);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(92, 32);
+			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOK.TabIndex = 1;
 			this.buttonXOK.Text = "OK";
 			this.buttonXOK.TextColor = System.Drawing.Color.Black;
@@ -74,6 +79,7 @@
 			this.buttonXCancel.Location = new System.Drawing.Point(280, 96);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(92, 32);
+			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCancel.TabIndex = 2;
 			this.buttonXCancel.Text = "Cancel";
 			this.buttonXCancel.TextColor = System.Drawing.Color.Black;
@@ -82,8 +88,12 @@
 			// 
 			this.textEditScheduleName.Location = new System.Drawing.Point(90, 65);
 			this.textEditScheduleName.Name = "textEditScheduleName";
+			this.textEditScheduleName.Properties.Appearance.BackColor = System.Drawing.Color.White;
 			this.textEditScheduleName.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.textEditScheduleName.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.textEditScheduleName.Properties.Appearance.Options.UseBackColor = true;
 			this.textEditScheduleName.Properties.Appearance.Options.UseFont = true;
+			this.textEditScheduleName.Properties.Appearance.Options.UseForeColor = true;
 			this.textEditScheduleName.Properties.NullText = "Type here";
 			this.textEditScheduleName.Size = new System.Drawing.Size(282, 22);
 			this.textEditScheduleName.TabIndex = 0;
@@ -92,13 +102,14 @@
 			// FormNewSchedule
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(384, 131);
 			this.Controls.Add(this.textEditScheduleName);
 			this.Controls.Add(this.buttonXCancel);
 			this.Controls.Add(this.buttonXOK);
 			this.Controls.Add(this.laLogo);
 			this.Controls.Add(this.pbLogo);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;

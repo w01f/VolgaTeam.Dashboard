@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using NewBizWiz.Core.MediaSchedule;
 
 namespace NewBizWiz.MediaSchedule.Single
 {
-	public partial class FormStart : Form
+	public partial class FormStart : MetroForm
 	{
 		public FormStart()
 		{

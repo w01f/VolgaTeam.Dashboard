@@ -49,9 +49,6 @@
 			this.checkEditSquare = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditTotalSquare = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditTotalAds = new DevExpress.XtraEditors.CheckEdit();
-			this.pnItemsFooter = new System.Windows.Forms.Panel();
-			this.buttonXItemsDefault = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXItemsClear = new DevComponents.DotNetBar.ButtonX();
 			this.laAdItems = new System.Windows.Forms.Label();
 			this.checkEditComments = new DevExpress.XtraEditors.CheckEdit();
 			this.memoEditComments = new DevExpress.XtraEditors.MemoEdit();
@@ -77,6 +74,9 @@
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.pictureBoxDates = new System.Windows.Forms.PictureBox();
 			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
+			this.pnItemsFooter = new System.Windows.Forms.Panel();
+			this.buttonXItemsDefault = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXItemsClear = new DevComponents.DotNetBar.ButtonX();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).BeginInit();
 			this.pnItems.SuspendLayout();
 			this.xtraScrollableControl.SuspendLayout();
@@ -94,7 +94,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSquare.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalSquare.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalAds.Properties)).BeginInit();
-			this.pnItemsFooter.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditComments.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditComments.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
@@ -111,6 +110,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbComments)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDates)).BeginInit();
+			this.pnItemsFooter.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// checkEditFlightDates
@@ -123,25 +123,25 @@
 			this.checkEditFlightDates.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFlightDates.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFlightDates.Properties.Caption = "Flight Dates";
-			this.checkEditFlightDates.Size = new System.Drawing.Size(360, 21);
+			this.checkEditFlightDates.Size = new System.Drawing.Size(364, 19);
 			this.checkEditFlightDates.TabIndex = 52;
 			this.checkEditFlightDates.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditFlightDates.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
 			// 
 			// pnItems
 			// 
-			this.pnItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnItems.BackColor = System.Drawing.Color.Transparent;
 			this.pnItems.Controls.Add(this.xtraScrollableControl);
-			this.pnItems.Controls.Add(this.pnItemsFooter);
 			this.pnItems.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnItems.Location = new System.Drawing.Point(2, 48);
+			this.pnItems.Location = new System.Drawing.Point(1, 47);
 			this.pnItems.Name = "pnItems";
-			this.pnItems.Size = new System.Drawing.Size(265, 396);
+			this.pnItems.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+			this.pnItems.Size = new System.Drawing.Size(267, 356);
 			this.pnItems.TabIndex = 51;
 			// 
 			// xtraScrollableControl
 			// 
-			this.xtraScrollableControl.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.xtraScrollableControl.Appearance.BackColor = System.Drawing.Color.White;
 			this.xtraScrollableControl.Appearance.BorderColor = System.Drawing.Color.Black;
 			this.xtraScrollableControl.Appearance.Options.UseBackColor = true;
 			this.xtraScrollableControl.Appearance.Options.UseBorderColor = true;
@@ -161,7 +161,7 @@
 			this.xtraScrollableControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControl.Location = new System.Drawing.Point(0, 0);
 			this.xtraScrollableControl.Name = "xtraScrollableControl";
-			this.xtraScrollableControl.Size = new System.Drawing.Size(265, 350);
+			this.xtraScrollableControl.Size = new System.Drawing.Size(267, 355);
 			this.xtraScrollableControl.TabIndex = 47;
 			// 
 			// pnSections
@@ -171,7 +171,7 @@
 			this.pnSections.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnSections.Location = new System.Drawing.Point(0, 360);
 			this.pnSections.Name = "pnSections";
-			this.pnSections.Size = new System.Drawing.Size(248, 106);
+			this.pnSections.Size = new System.Drawing.Size(250, 106);
 			this.pnSections.TabIndex = 56;
 			// 
 			// checkEditSections
@@ -214,7 +214,7 @@
 			this.checkEditMechanicals.Properties.Appearance.Options.UseFont = true;
 			this.checkEditMechanicals.Properties.AutoHeight = false;
 			this.checkEditMechanicals.Properties.Caption = "Mechanicals Tag";
-			this.checkEditMechanicals.Size = new System.Drawing.Size(248, 30);
+			this.checkEditMechanicals.Size = new System.Drawing.Size(250, 30);
 			this.checkEditMechanicals.TabIndex = 53;
 			this.checkEditMechanicals.Visible = false;
 			this.checkEditMechanicals.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -230,7 +230,7 @@
 			this.checkEditDiscounts.Properties.Appearance.Options.UseFont = true;
 			this.checkEditDiscounts.Properties.AutoHeight = false;
 			this.checkEditDiscounts.Properties.Caption = "Discounts Tag";
-			this.checkEditDiscounts.Size = new System.Drawing.Size(248, 30);
+			this.checkEditDiscounts.Size = new System.Drawing.Size(250, 30);
 			this.checkEditDiscounts.TabIndex = 52;
 			this.checkEditDiscounts.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditDiscounts.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -245,7 +245,7 @@
 			this.checkEditAvgFinalCost.Properties.Appearance.Options.UseFont = true;
 			this.checkEditAvgFinalCost.Properties.AutoHeight = false;
 			this.checkEditAvgFinalCost.Properties.Caption = "Avg Final Cost Tag";
-			this.checkEditAvgFinalCost.Size = new System.Drawing.Size(248, 30);
+			this.checkEditAvgFinalCost.Size = new System.Drawing.Size(250, 30);
 			this.checkEditAvgFinalCost.TabIndex = 51;
 			this.checkEditAvgFinalCost.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditAvgFinalCost.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -268,7 +268,7 @@
 			this.checkEditAvgAdCost.Properties.AppearanceReadOnly.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.Hide;
 			this.checkEditAvgAdCost.Properties.AutoHeight = false;
 			this.checkEditAvgAdCost.Properties.Caption = "Avg Ad Cost Tag";
-			this.checkEditAvgAdCost.Size = new System.Drawing.Size(248, 30);
+			this.checkEditAvgAdCost.Size = new System.Drawing.Size(250, 30);
 			this.checkEditAvgAdCost.TabIndex = 50;
 			this.checkEditAvgAdCost.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditAvgAdCost.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -283,7 +283,7 @@
 			this.checkEditAvgPCI.Properties.Appearance.Options.UseFont = true;
 			this.checkEditAvgPCI.Properties.AutoHeight = false;
 			this.checkEditAvgPCI.Properties.Caption = "Avg PCI Tag";
-			this.checkEditAvgPCI.Size = new System.Drawing.Size(248, 30);
+			this.checkEditAvgPCI.Size = new System.Drawing.Size(250, 30);
 			this.checkEditAvgPCI.TabIndex = 49;
 			this.checkEditAvgPCI.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditAvgPCI.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -299,7 +299,7 @@
 			this.checkEditColor.Properties.Appearance.Options.UseFont = true;
 			this.checkEditColor.Properties.AutoHeight = false;
 			this.checkEditColor.Properties.Caption = "Color Tag";
-			this.checkEditColor.Size = new System.Drawing.Size(248, 30);
+			this.checkEditColor.Size = new System.Drawing.Size(250, 30);
 			this.checkEditColor.TabIndex = 46;
 			this.checkEditColor.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditColor.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -315,7 +315,7 @@
 			this.checkEditPercentOfPage.Properties.Appearance.Options.UseFont = true;
 			this.checkEditPercentOfPage.Properties.AutoHeight = false;
 			this.checkEditPercentOfPage.Properties.Caption = "Percent of PageTag";
-			this.checkEditPercentOfPage.Size = new System.Drawing.Size(248, 30);
+			this.checkEditPercentOfPage.Size = new System.Drawing.Size(250, 30);
 			this.checkEditPercentOfPage.TabIndex = 57;
 			this.checkEditPercentOfPage.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
@@ -329,7 +329,7 @@
 			this.checkEditPageSize.Properties.Appearance.Options.UseFont = true;
 			this.checkEditPageSize.Properties.AutoHeight = false;
 			this.checkEditPageSize.Properties.Caption = "Page Size Tag";
-			this.checkEditPageSize.Size = new System.Drawing.Size(248, 30);
+			this.checkEditPageSize.Size = new System.Drawing.Size(250, 30);
 			this.checkEditPageSize.TabIndex = 45;
 			this.checkEditPageSize.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditPageSize.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -345,7 +345,7 @@
 			this.checkEditDimensions.Properties.Appearance.Options.UseFont = true;
 			this.checkEditDimensions.Properties.AutoHeight = false;
 			this.checkEditDimensions.Properties.Caption = "Dimensions Tag";
-			this.checkEditDimensions.Size = new System.Drawing.Size(248, 30);
+			this.checkEditDimensions.Size = new System.Drawing.Size(250, 30);
 			this.checkEditDimensions.TabIndex = 48;
 			this.checkEditDimensions.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditDimensions.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -361,7 +361,7 @@
 			this.checkEditSquare.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSquare.Properties.AutoHeight = false;
 			this.checkEditSquare.Properties.Caption = "Column Inches Tag";
-			this.checkEditSquare.Size = new System.Drawing.Size(248, 30);
+			this.checkEditSquare.Size = new System.Drawing.Size(250, 30);
 			this.checkEditSquare.TabIndex = 47;
 			this.checkEditSquare.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditSquare.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -377,7 +377,7 @@
 			this.checkEditTotalSquare.Properties.Appearance.Options.UseFont = true;
 			this.checkEditTotalSquare.Properties.AutoHeight = false;
 			this.checkEditTotalSquare.Properties.Caption = "Total Square Tag";
-			this.checkEditTotalSquare.Size = new System.Drawing.Size(248, 30);
+			this.checkEditTotalSquare.Size = new System.Drawing.Size(250, 30);
 			this.checkEditTotalSquare.TabIndex = 44;
 			this.checkEditTotalSquare.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditTotalSquare.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -393,58 +393,20 @@
 			this.checkEditTotalAds.Properties.Appearance.Options.UseFont = true;
 			this.checkEditTotalAds.Properties.AutoHeight = false;
 			this.checkEditTotalAds.Properties.Caption = "Total Ads Tag";
-			this.checkEditTotalAds.Size = new System.Drawing.Size(248, 30);
+			this.checkEditTotalAds.Size = new System.Drawing.Size(250, 30);
 			this.checkEditTotalAds.TabIndex = 43;
 			this.checkEditTotalAds.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditTotalAds.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
 			this.checkEditTotalAds.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
 			// 
-			// pnItemsFooter
-			// 
-			this.pnItemsFooter.Controls.Add(this.buttonXItemsDefault);
-			this.pnItemsFooter.Controls.Add(this.buttonXItemsClear);
-			this.pnItemsFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnItemsFooter.Location = new System.Drawing.Point(0, 350);
-			this.pnItemsFooter.Name = "pnItemsFooter";
-			this.pnItemsFooter.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-			this.pnItemsFooter.Size = new System.Drawing.Size(265, 46);
-			this.pnItemsFooter.TabIndex = 53;
-			// 
-			// buttonXItemsDefault
-			// 
-			this.buttonXItemsDefault.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXItemsDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonXItemsDefault.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXItemsDefault.Location = new System.Drawing.Point(142, 9);
-			this.buttonXItemsDefault.Name = "buttonXItemsDefault";
-			this.buttonXItemsDefault.Size = new System.Drawing.Size(119, 28);
-			this.buttonXItemsDefault.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXItemsDefault.TabIndex = 61;
-			this.buttonXItemsDefault.Text = "Reset Defaults";
-			this.buttonXItemsDefault.TextColor = System.Drawing.Color.Black;
-			this.buttonXItemsDefault.Click += new System.EventHandler(this.buttonXItemsDefault_Click);
-			// 
-			// buttonXItemsClear
-			// 
-			this.buttonXItemsClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXItemsClear.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXItemsClear.Location = new System.Drawing.Point(3, 9);
-			this.buttonXItemsClear.Name = "buttonXItemsClear";
-			this.buttonXItemsClear.Size = new System.Drawing.Size(119, 28);
-			this.buttonXItemsClear.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXItemsClear.TabIndex = 60;
-			this.buttonXItemsClear.Text = "Clear All";
-			this.buttonXItemsClear.TextColor = System.Drawing.Color.Black;
-			this.buttonXItemsClear.Click += new System.EventHandler(this.buttonXItemsClear_Click);
-			// 
 			// laAdItems
 			// 
-			this.laAdItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.laAdItems.BackColor = System.Drawing.Color.White;
 			this.laAdItems.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.laAdItems.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laAdItems.Location = new System.Drawing.Point(0, 0);
 			this.laAdItems.Name = "laAdItems";
-			this.laAdItems.Size = new System.Drawing.Size(265, 44);
+			this.laAdItems.Size = new System.Drawing.Size(267, 45);
 			this.laAdItems.TabIndex = 48;
 			this.laAdItems.Text = "Select up to 6 Items Below:";
 			this.laAdItems.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -468,9 +430,10 @@
 			this.memoEditComments.Location = new System.Drawing.Point(317, 281);
 			this.memoEditComments.Name = "memoEditComments";
 			this.memoEditComments.Properties.NullText = "Type Comments Here";
-			this.memoEditComments.Size = new System.Drawing.Size(615, 62);
+			this.memoEditComments.Size = new System.Drawing.Size(619, 62);
 			this.memoEditComments.StyleController = this.styleController;
 			this.memoEditComments.TabIndex = 41;
+			this.memoEditComments.UseOptimizedRendering = true;
 			this.memoEditComments.EditValueChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
 			// styleController
@@ -511,9 +474,10 @@
 			this.memoEditDates.Location = new System.Drawing.Point(317, 146);
 			this.memoEditDates.Name = "memoEditDates";
 			this.memoEditDates.Properties.ReadOnly = true;
-			this.memoEditDates.Size = new System.Drawing.Size(615, 62);
+			this.memoEditDates.Size = new System.Drawing.Size(619, 62);
 			this.memoEditDates.StyleController = this.styleController;
 			this.memoEditDates.TabIndex = 39;
+			this.memoEditDates.UseOptimizedRendering = true;
 			this.memoEditDates.EditValueChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
 			// laDates
@@ -528,8 +492,7 @@
 			// 
 			// pnMain
 			// 
-			this.pnMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnMain.BackColor = System.Drawing.Color.White;
 			this.pnMain.Controls.Add(this.buttonXNotOutput);
 			this.pnMain.Controls.Add(this.pbProductTypeLogo);
 			this.pnMain.Controls.Add(this.buttonXEditInvestment);
@@ -563,7 +526,7 @@
 			this.buttonXNotOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXNotOutput.AutoCheckOnClick = true;
 			this.buttonXNotOutput.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXNotOutput.Location = new System.Drawing.Point(735, 414);
+			this.buttonXNotOutput.Location = new System.Drawing.Point(739, 418);
 			this.buttonXNotOutput.Name = "buttonXNotOutput";
 			this.buttonXNotOutput.Size = new System.Drawing.Size(119, 28);
 			this.buttonXNotOutput.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -576,7 +539,7 @@
 			// 
 			this.pbProductTypeLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbProductTypeLogo.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.AdPlanPrintProduct;
-			this.pbProductTypeLogo.Location = new System.Drawing.Point(860, 381);
+			this.pbProductTypeLogo.Location = new System.Drawing.Point(864, 385);
 			this.pbProductTypeLogo.Name = "pbProductTypeLogo";
 			this.pbProductTypeLogo.Size = new System.Drawing.Size(72, 72);
 			this.pbProductTypeLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -588,9 +551,9 @@
 			this.buttonXEditInvestment.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXEditInvestment.AutoCheckOnClick = true;
 			this.buttonXEditInvestment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXEditInvestment.Location = new System.Drawing.Point(434, 413);
+			this.buttonXEditInvestment.Location = new System.Drawing.Point(434, 415);
 			this.buttonXEditInvestment.Name = "buttonXEditInvestment";
-			this.buttonXEditInvestment.Size = new System.Drawing.Size(88, 24);
+			this.buttonXEditInvestment.Size = new System.Drawing.Size(88, 22);
 			this.buttonXEditInvestment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			toolTipItem1.Text = "Click to change Investment";
 			superToolTip1.Items.Add(toolTipItem1);
@@ -664,7 +627,7 @@
 			this.buttonXEditDates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXEditDates.AutoCheckOnClick = true;
 			this.buttonXEditDates.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXEditDates.Location = new System.Drawing.Point(844, 110);
+			this.buttonXEditDates.Location = new System.Drawing.Point(848, 110);
 			this.buttonXEditDates.Name = "buttonXEditDates";
 			this.buttonXEditDates.Size = new System.Drawing.Size(88, 24);
 			this.buttonXEditDates.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -679,9 +642,9 @@
 			this.buttonXEditName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXEditName.AutoCheckOnClick = true;
 			this.buttonXEditName.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXEditName.Location = new System.Drawing.Point(844, 19);
+			this.buttonXEditName.Location = new System.Drawing.Point(848, 21);
 			this.buttonXEditName.Name = "buttonXEditName";
-			this.buttonXEditName.Size = new System.Drawing.Size(88, 24);
+			this.buttonXEditName.Size = new System.Drawing.Size(88, 22);
 			this.buttonXEditName.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXEditName.TabIndex = 58;
 			this.buttonXEditName.Text = "Edit";
@@ -695,7 +658,7 @@
 			this.textEditName.Location = new System.Drawing.Point(480, 21);
 			this.textEditName.Name = "textEditName";
 			this.textEditName.Properties.ReadOnly = true;
-			this.textEditName.Size = new System.Drawing.Size(358, 22);
+			this.textEditName.Size = new System.Drawing.Size(362, 22);
 			this.textEditName.StyleController = this.styleController;
 			this.textEditName.TabIndex = 57;
 			this.textEditName.EditValueChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -704,23 +667,24 @@
 			// 
 			this.pnItemsBorder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-			this.pnItemsBorder.BackColor = System.Drawing.Color.White;
+			this.pnItemsBorder.BackColor = System.Drawing.Color.DimGray;
 			this.pnItemsBorder.Controls.Add(this.pnItems);
+			this.pnItemsBorder.Controls.Add(this.pnItemsFooter);
 			this.pnItemsBorder.Controls.Add(this.pnItemsHeader);
 			this.pnItemsBorder.Location = new System.Drawing.Point(7, 7);
 			this.pnItemsBorder.Name = "pnItemsBorder";
-			this.pnItemsBorder.Padding = new System.Windows.Forms.Padding(2);
-			this.pnItemsBorder.Size = new System.Drawing.Size(269, 446);
+			this.pnItemsBorder.Padding = new System.Windows.Forms.Padding(1);
+			this.pnItemsBorder.Size = new System.Drawing.Size(269, 450);
 			this.pnItemsBorder.TabIndex = 56;
 			// 
 			// pnItemsHeader
 			// 
 			this.pnItemsHeader.Controls.Add(this.laAdItems);
 			this.pnItemsHeader.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnItemsHeader.Location = new System.Drawing.Point(2, 2);
+			this.pnItemsHeader.Location = new System.Drawing.Point(1, 1);
 			this.pnItemsHeader.Name = "pnItemsHeader";
-			this.pnItemsHeader.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-			this.pnItemsHeader.Size = new System.Drawing.Size(265, 46);
+			this.pnItemsHeader.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+			this.pnItemsHeader.Size = new System.Drawing.Size(267, 46);
 			this.pnItemsHeader.TabIndex = 52;
 			// 
 			// pbComments
@@ -772,6 +736,44 @@
 			this.toolTipController.ToolTipLocation = DevExpress.Utils.ToolTipLocation.RightTop;
 			this.toolTipController.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
 			// 
+			// pnItemsFooter
+			// 
+			this.pnItemsFooter.BackColor = System.Drawing.Color.White;
+			this.pnItemsFooter.Controls.Add(this.buttonXItemsDefault);
+			this.pnItemsFooter.Controls.Add(this.buttonXItemsClear);
+			this.pnItemsFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnItemsFooter.Location = new System.Drawing.Point(1, 403);
+			this.pnItemsFooter.Name = "pnItemsFooter";
+			this.pnItemsFooter.Size = new System.Drawing.Size(267, 46);
+			this.pnItemsFooter.TabIndex = 54;
+			// 
+			// buttonXItemsDefault
+			// 
+			this.buttonXItemsDefault.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXItemsDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonXItemsDefault.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXItemsDefault.Location = new System.Drawing.Point(144, 7);
+			this.buttonXItemsDefault.Name = "buttonXItemsDefault";
+			this.buttonXItemsDefault.Size = new System.Drawing.Size(119, 28);
+			this.buttonXItemsDefault.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXItemsDefault.TabIndex = 61;
+			this.buttonXItemsDefault.Text = "Reset Defaults";
+			this.buttonXItemsDefault.TextColor = System.Drawing.Color.Black;
+			this.buttonXItemsDefault.Click += new System.EventHandler(this.buttonXItemsDefault_Click);
+			// 
+			// buttonXItemsClear
+			// 
+			this.buttonXItemsClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXItemsClear.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXItemsClear.Location = new System.Drawing.Point(3, 9);
+			this.buttonXItemsClear.Name = "buttonXItemsClear";
+			this.buttonXItemsClear.Size = new System.Drawing.Size(119, 28);
+			this.buttonXItemsClear.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXItemsClear.TabIndex = 60;
+			this.buttonXItemsClear.Text = "Clear All";
+			this.buttonXItemsClear.TextColor = System.Drawing.Color.Black;
+			this.buttonXItemsClear.Click += new System.EventHandler(this.buttonXItemsClear_Click);
+			// 
 			// AdPlanPrintProductControl
 			// 
 			this.Controls.Add(this.pnMain);
@@ -795,7 +797,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSquare.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalSquare.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalAds.Properties)).EndInit();
-			this.pnItemsFooter.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditComments.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditComments.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
@@ -813,6 +814,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbComments)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDates)).EndInit();
+			this.pnItemsFooter.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -859,12 +861,12 @@
 		private DevComponents.DotNetBar.ButtonX buttonXEditDates;
 		private DevComponents.DotNetBar.ButtonX buttonXEditName;
 		private DevExpress.XtraEditors.TextEdit textEditName;
-		private System.Windows.Forms.Panel pnItemsFooter;
-		private DevComponents.DotNetBar.ButtonX buttonXItemsDefault;
-		private DevComponents.DotNetBar.ButtonX buttonXItemsClear;
 		private System.Windows.Forms.PictureBox pbProductTypeLogo;
 		private DevComponents.DotNetBar.ButtonX buttonXNotOutput;
 		private DevExpress.Utils.ToolTipController toolTipController;
+		private System.Windows.Forms.Panel pnItemsFooter;
+		private DevComponents.DotNetBar.ButtonX buttonXItemsDefault;
+		private DevComponents.DotNetBar.ButtonX buttonXItemsClear;
 
     }
 }

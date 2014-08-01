@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using NewBizWiz.Calendar.Controls;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.InteropClasses;
@@ -14,7 +15,7 @@ using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.Calendar.Single
 {
-	public partial class FormMain : Form
+	public partial class FormMain : RibbonForm
 	{
 		private static FormMain _instance;
 		private Control _currentControl;

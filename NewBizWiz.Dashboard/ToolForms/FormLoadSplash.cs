@@ -1,9 +1,9 @@
 ﻿using System.Drawing;
-using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 
 namespace NewBizWiz.Dashboard.ToolForms
 {
-	public partial class FormLoadSplash : Form
+	public partial class FormLoadSplash : MetroForm
 	{
 		public FormLoadSplash()
 		{

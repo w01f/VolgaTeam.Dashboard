@@ -1,8 +1,8 @@
-﻿using System.Windows.Forms;
+﻿using DevComponents.DotNetBar.Metro;
 
 namespace NewBizWiz.CommonGUI.ToolForms
 {
-	public partial class FormEmailFileName : Form
+	public partial class FormEmailFileName : MetroForm
 	{
 		public FormEmailFileName()
 		{

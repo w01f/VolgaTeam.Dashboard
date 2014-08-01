@@ -44,6 +44,7 @@
 			this.buttonXYes.Location = new System.Drawing.Point(103, 103);
 			this.buttonXYes.Name = "buttonXYes";
 			this.buttonXYes.Size = new System.Drawing.Size(75, 29);
+			this.buttonXYes.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXYes.TabIndex = 7;
 			this.buttonXYes.Text = "Yes";
 			this.buttonXYes.TextColor = System.Drawing.Color.Black;
@@ -57,6 +58,7 @@
 			this.buttonXNo.Location = new System.Drawing.Point(189, 103);
 			this.buttonXNo.Name = "buttonXNo";
 			this.buttonXNo.Size = new System.Drawing.Size(75, 29);
+			this.buttonXNo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXNo.TabIndex = 8;
 			this.buttonXNo.Text = "No";
 			this.buttonXNo.TextColor = System.Drawing.Color.Black;
@@ -66,7 +68,9 @@
 			this.labelControlText.AllowHtmlString = true;
 			this.labelControlText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelControlText.Appearance.BackColor = System.Drawing.Color.White;
 			this.labelControlText.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.labelControlText.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.labelControlText.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
 			this.labelControlText.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.labelControlText.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
@@ -78,6 +82,8 @@
 			// 
 			// pictureBoxImage
 			// 
+			this.pictureBoxImage.BackColor = System.Drawing.Color.White;
+			this.pictureBoxImage.ForeColor = System.Drawing.Color.Black;
 			this.pictureBoxImage.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.SharePageBig;
 			this.pictureBoxImage.Location = new System.Drawing.Point(12, 12);
 			this.pictureBoxImage.Name = "pictureBoxImage";
@@ -88,12 +94,13 @@
 			// FormChangeAdStrategyWarning
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(366, 141);
 			this.Controls.Add(this.pictureBoxImage);
 			this.Controls.Add(this.labelControlText);
 			this.Controls.Add(this.buttonXNo);
 			this.Controls.Add(this.buttonXYes);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

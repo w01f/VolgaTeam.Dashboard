@@ -33,6 +33,7 @@
 			// 
 			// pnEmpty
 			// 
+			this.pnEmpty.BackColor = System.Drawing.Color.Transparent;
 			this.pnEmpty.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnEmpty.Location = new System.Drawing.Point(0, 0);
 			this.pnEmpty.Name = "pnEmpty";
@@ -42,7 +43,7 @@
 			// TabHomeMainPage
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.pnEmpty);
 			this.Name = "TabHomeMainPage";
 			this.Size = new System.Drawing.Size(894, 487);

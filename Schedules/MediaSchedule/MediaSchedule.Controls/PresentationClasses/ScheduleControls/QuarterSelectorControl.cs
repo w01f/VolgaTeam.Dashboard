@@ -67,7 +67,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		private static void UnelectQuarter(Label label)
 		{
-			label.ForeColor = Color.White;
+			label.ForeColor = Color.FromArgb(4, 34, 196);
 			label.Font = new Font(label.Font.Name, label.Font.Size, FontStyle.Regular);
 		}
 

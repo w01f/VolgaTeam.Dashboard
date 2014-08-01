@@ -28,37 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnEmpty = new System.Windows.Forms.Panel();
-            this.pnMain = new System.Windows.Forms.Panel();
-            this.SuspendLayout();
-            // 
-            // pnEmpty
-            // 
-            this.pnEmpty.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnEmpty.Location = new System.Drawing.Point(0, 0);
-            this.pnEmpty.Name = "pnEmpty";
-            this.pnEmpty.Size = new System.Drawing.Size(453, 359);
-            this.pnEmpty.TabIndex = 0;
-            // 
-            // pnMain
-            // 
-            this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnMain.Location = new System.Drawing.Point(0, 0);
-            this.pnMain.Name = "pnMain";
-            this.pnMain.Size = new System.Drawing.Size(453, 359);
-            this.pnMain.TabIndex = 1;
-            // 
-            // SummariesControl
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.Controls.Add(this.pnMain);
-            this.Controls.Add(this.pnEmpty);
-            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "SummariesControl";
-            this.Size = new System.Drawing.Size(453, 359);
-            this.ResumeLayout(false);
+			this.pnEmpty = new System.Windows.Forms.Panel();
+			this.pnMain = new System.Windows.Forms.Panel();
+			this.SuspendLayout();
+			// 
+			// pnEmpty
+			// 
+			this.pnEmpty.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnEmpty.Location = new System.Drawing.Point(0, 0);
+			this.pnEmpty.Name = "pnEmpty";
+			this.pnEmpty.Size = new System.Drawing.Size(453, 359);
+			this.pnEmpty.TabIndex = 0;
+			// 
+			// pnMain
+			// 
+			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnMain.Location = new System.Drawing.Point(0, 0);
+			this.pnMain.Name = "pnMain";
+			this.pnMain.Size = new System.Drawing.Size(453, 359);
+			this.pnMain.TabIndex = 1;
+			// 
+			// SummariesControl
+			// 
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.pnMain);
+			this.Controls.Add(this.pnEmpty);
+			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.Name = "SummariesControl";
+			this.Size = new System.Drawing.Size(453, 359);
+			this.ResumeLayout(false);
 
         }
 

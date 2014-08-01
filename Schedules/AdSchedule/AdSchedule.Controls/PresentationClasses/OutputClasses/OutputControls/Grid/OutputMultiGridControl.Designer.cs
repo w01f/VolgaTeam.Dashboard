@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
 			this.laFlightDates = new System.Windows.Forms.Label();
 			this.laBusinessName = new System.Windows.Forms.Label();
 			this.textEditHeader = new DevExpress.XtraEditors.TextEdit();
@@ -71,7 +69,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPublication)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewPublications)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDate)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDate.VistaTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDate.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditPCIRate)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditADRate)).BeginInit();
@@ -79,10 +77,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditColor)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
 			// 
 			// laFlightDates
 			// 
@@ -125,7 +119,7 @@
 			// 
 			// pnTopHeader
 			// 
-			this.pnTopHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.pnTopHeader.BackColor = System.Drawing.Color.White;
 			this.pnTopHeader.Controls.Add(this.laFlightDates);
 			this.pnTopHeader.Controls.Add(this.hyperLinkEditReset);
 			this.pnTopHeader.Controls.Add(this.laBusinessName);
@@ -283,6 +277,8 @@
 			this.repositoryItemDate.AppearanceFocused.Options.UseTextOptions = true;
 			this.repositoryItemDate.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.repositoryItemDate.AutoHeight = false;
+			this.repositoryItemDate.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.repositoryItemDate.DisplayFormat.FormatString = "ddd, MM/dd/yy";
 			this.repositoryItemDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.repositoryItemDate.EditFormat.FormatString = "ddd, MM/dd/yy";
@@ -290,8 +286,6 @@
 			this.repositoryItemDate.Name = "repositoryItemDate";
 			this.repositoryItemDate.NullText = "Select Date First";
 			this.repositoryItemDate.ShowToday = false;
-			this.repositoryItemDate.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
 			// 
 			// gridColumnDimensions
 			// 
@@ -615,7 +609,7 @@
 			// OutputMultiGridControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.AliceBlue;
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.gridControlPublication);
 			this.Controls.Add(this.textEditHeader);
 			this.Controls.Add(this.pnTopHeader);
@@ -627,7 +621,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlPublication)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewPublications)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDate.VistaTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDate.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDate)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditPCIRate)).EndInit();
@@ -641,7 +635,6 @@
 
         #endregion
 
-		private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
 		private System.Windows.Forms.Panel pnTopHeader;
         public DevExpress.XtraGrid.GridControl gridControlPublication;
         public DevExpress.XtraGrid.Views.Grid.GridView gridViewPublications;

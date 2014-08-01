@@ -93,6 +93,7 @@
 			this.ribbonTabItemSalesPro = new DevComponents.DotNetBar.RibbonTabItem();
 			this.ribbonTabItemSalesDepot = new DevComponents.DotNetBar.RibbonTabItem();
 			this.pnMain = new System.Windows.Forms.Panel();
+			this.styleManager = new DevComponents.DotNetBar.StyleManager();
 			this.ribbonControl.SuspendLayout();
 			this.ribbonPanelMainDashboard.SuspendLayout();
 			this.ribbonPanelSalesDepot.SuspendLayout();
@@ -103,29 +104,31 @@
 			// ribbonControl
 			// 
 			this.ribbonControl.AutoExpand = false;
+			this.ribbonControl.BackColor = System.Drawing.Color.White;
 			// 
 			// 
 			// 
 			this.ribbonControl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonControl.CanCustomize = false;
+			this.ribbonControl.CaptionVisible = true;
 			this.ribbonControl.Controls.Add(this.ribbonPanelMainDashboard);
-			this.ribbonControl.Controls.Add(this.ribbonPanelSalesDepot);
-			this.ribbonControl.Controls.Add(this.ribbonPanelSalesPro);
 			this.ribbonControl.Controls.Add(this.ribbonPanelMarketPro);
+			this.ribbonControl.Controls.Add(this.ribbonPanelSalesPro);
+			this.ribbonControl.Controls.Add(this.ribbonPanelSalesDepot);
 			this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
 			this.ribbonControl.EnableQatPlacement = false;
+			this.ribbonControl.ForeColor = System.Drawing.Color.Black;
 			this.ribbonControl.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.ribbonTabItemMainDashboard,
             this.ribbonTabItemMarketPro,
             this.ribbonTabItemSalesPro,
             this.ribbonTabItemSalesDepot});
 			this.ribbonControl.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
-			this.ribbonControl.Location = new System.Drawing.Point(0, 0);
+			this.ribbonControl.Location = new System.Drawing.Point(5, 1);
 			this.ribbonControl.MdiSystemItemVisible = false;
 			this.ribbonControl.Name = "ribbonControl";
-			this.ribbonControl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-			this.ribbonControl.Size = new System.Drawing.Size(1004, 128);
-			this.ribbonControl.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonControl.Size = new System.Drawing.Size(1010, 165);
+			this.ribbonControl.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonControl.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
 			this.ribbonControl.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon";
 			this.ribbonControl.SystemText.QatAddItemText = "&Add to Quick Access Toolbar";
@@ -146,7 +149,7 @@
 			// 
 			// ribbonPanelMainDashboard
 			// 
-			this.ribbonPanelMainDashboard.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonPanelMainDashboard.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonPanelMainDashboard.Controls.Add(this.ribbonBarQuickListSource);
 			this.ribbonPanelMainDashboard.Controls.Add(this.ribbonBarOnlineSource);
 			this.ribbonPanelMainDashboard.Controls.Add(this.ribbonBarRadioSource);
@@ -156,10 +159,10 @@
 			this.ribbonPanelMainDashboard.Controls.Add(this.ribbonBarUsers);
 			this.ribbonPanelMainDashboard.Controls.Add(this.ribbonBarMainDashboardData);
 			this.ribbonPanelMainDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelMainDashboard.Location = new System.Drawing.Point(0, 26);
+			this.ribbonPanelMainDashboard.Location = new System.Drawing.Point(0, 53);
 			this.ribbonPanelMainDashboard.Name = "ribbonPanelMainDashboard";
-			this.ribbonPanelMainDashboard.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelMainDashboard.Size = new System.Drawing.Size(1004, 100);
+			this.ribbonPanelMainDashboard.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
+			this.ribbonPanelMainDashboard.Size = new System.Drawing.Size(1010, 112);
 			// 
 			// 
 			// 
@@ -187,13 +190,14 @@
 			this.ribbonBarQuickListSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarQuickListSource.ContainerControlProcessDialogKey = true;
 			this.ribbonBarQuickListSource.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarQuickListSource.DragDropSupport = true;
 			this.ribbonBarQuickListSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemQuickList});
 			this.ribbonBarQuickListSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarQuickListSource.Location = new System.Drawing.Point(733, 0);
 			this.ribbonBarQuickListSource.Name = "ribbonBarQuickListSource";
-			this.ribbonBarQuickListSource.Size = new System.Drawing.Size(68, 97);
-			this.ribbonBarQuickListSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarQuickListSource.Size = new System.Drawing.Size(68, 110);
+			this.ribbonBarQuickListSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarQuickListSource.TabIndex = 26;
 			this.ribbonBarQuickListSource.Text = "Quick List";
 			// 
@@ -225,13 +229,14 @@
 			this.ribbonBarOnlineSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarOnlineSource.ContainerControlProcessDialogKey = true;
 			this.ribbonBarOnlineSource.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarOnlineSource.DragDropSupport = true;
 			this.ribbonBarOnlineSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemOnlineStrategy});
 			this.ribbonBarOnlineSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarOnlineSource.Location = new System.Drawing.Point(674, 0);
 			this.ribbonBarOnlineSource.Name = "ribbonBarOnlineSource";
-			this.ribbonBarOnlineSource.Size = new System.Drawing.Size(59, 97);
-			this.ribbonBarOnlineSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarOnlineSource.Size = new System.Drawing.Size(59, 110);
+			this.ribbonBarOnlineSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarOnlineSource.TabIndex = 22;
 			this.ribbonBarOnlineSource.Text = "Online";
 			// 
@@ -263,13 +268,14 @@
 			this.ribbonBarRadioSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarRadioSource.ContainerControlProcessDialogKey = true;
 			this.ribbonBarRadioSource.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarRadioSource.DragDropSupport = true;
 			this.ribbonBarRadioSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemRadioStrategy});
 			this.ribbonBarRadioSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarRadioSource.Location = new System.Drawing.Point(615, 0);
 			this.ribbonBarRadioSource.Name = "ribbonBarRadioSource";
-			this.ribbonBarRadioSource.Size = new System.Drawing.Size(59, 97);
-			this.ribbonBarRadioSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarRadioSource.Size = new System.Drawing.Size(59, 110);
+			this.ribbonBarRadioSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarRadioSource.TabIndex = 21;
 			this.ribbonBarRadioSource.Text = "Radio";
 			// 
@@ -301,13 +307,14 @@
 			this.ribbonBarTVSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarTVSource.ContainerControlProcessDialogKey = true;
 			this.ribbonBarTVSource.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarTVSource.DragDropSupport = true;
 			this.ribbonBarTVSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemTVStrategy});
 			this.ribbonBarTVSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarTVSource.Location = new System.Drawing.Point(547, 0);
 			this.ribbonBarTVSource.Name = "ribbonBarTVSource";
-			this.ribbonBarTVSource.Size = new System.Drawing.Size(68, 97);
-			this.ribbonBarTVSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarTVSource.Size = new System.Drawing.Size(68, 110);
+			this.ribbonBarTVSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarTVSource.TabIndex = 25;
 			this.ribbonBarTVSource.Text = "TV";
 			// 
@@ -339,13 +346,14 @@
 			this.ribbonBarNewspaperSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarNewspaperSource.ContainerControlProcessDialogKey = true;
 			this.ribbonBarNewspaperSource.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarNewspaperSource.DragDropSupport = true;
 			this.ribbonBarNewspaperSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemNewspaperStrategy});
 			this.ribbonBarNewspaperSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarNewspaperSource.Location = new System.Drawing.Point(473, 0);
 			this.ribbonBarNewspaperSource.Name = "ribbonBarNewspaperSource";
-			this.ribbonBarNewspaperSource.Size = new System.Drawing.Size(74, 97);
-			this.ribbonBarNewspaperSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarNewspaperSource.Size = new System.Drawing.Size(74, 110);
+			this.ribbonBarNewspaperSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarNewspaperSource.TabIndex = 19;
 			this.ribbonBarNewspaperSource.Text = "Newspaper";
 			// 
@@ -377,6 +385,7 @@
 			this.ribbonBarBasicSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarBasicSource.ContainerControlProcessDialogKey = true;
 			this.ribbonBarBasicSource.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarBasicSource.DragDropSupport = true;
 			this.ribbonBarBasicSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemBasicCover,
             this.buttonItemBasicIntroSlide,
@@ -386,8 +395,8 @@
 			this.ribbonBarBasicSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarBasicSource.Location = new System.Drawing.Point(187, 0);
 			this.ribbonBarBasicSource.Name = "ribbonBarBasicSource";
-			this.ribbonBarBasicSource.Size = new System.Drawing.Size(286, 97);
-			this.ribbonBarBasicSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarBasicSource.Size = new System.Drawing.Size(286, 110);
+			this.ribbonBarBasicSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarBasicSource.TabIndex = 15;
 			this.ribbonBarBasicSource.Text = "Basic Slides";
 			// 
@@ -452,13 +461,14 @@
 			this.ribbonBarUsers.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarUsers.ContainerControlProcessDialogKey = true;
 			this.ribbonBarUsers.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarUsers.DragDropSupport = true;
 			this.ribbonBarUsers.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemUsers});
 			this.ribbonBarUsers.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarUsers.Location = new System.Drawing.Point(105, 0);
 			this.ribbonBarUsers.Name = "ribbonBarUsers";
-			this.ribbonBarUsers.Size = new System.Drawing.Size(82, 97);
-			this.ribbonBarUsers.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarUsers.Size = new System.Drawing.Size(82, 110);
+			this.ribbonBarUsers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarUsers.TabIndex = 16;
 			this.ribbonBarUsers.Text = "Users";
 			// 
@@ -491,14 +501,15 @@
 			this.ribbonBarMainDashboardData.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarMainDashboardData.ContainerControlProcessDialogKey = true;
 			this.ribbonBarMainDashboardData.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarMainDashboardData.DragDropSupport = true;
 			this.ribbonBarMainDashboardData.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemMainDashboardViewFile,
             this.buttonItemMainDashboardUpdate});
 			this.ribbonBarMainDashboardData.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarMainDashboardData.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarMainDashboardData.Name = "ribbonBarMainDashboardData";
-			this.ribbonBarMainDashboardData.Size = new System.Drawing.Size(102, 97);
-			this.ribbonBarMainDashboardData.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarMainDashboardData.Size = new System.Drawing.Size(102, 110);
+			this.ribbonBarMainDashboardData.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarMainDashboardData.TabIndex = 1;
 			this.ribbonBarMainDashboardData.Text = "Data";
 			// 
@@ -530,15 +541,15 @@
 			// 
 			// ribbonPanelSalesDepot
 			// 
-			this.ribbonPanelSalesDepot.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonPanelSalesDepot.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonPanelSalesDepot.Controls.Add(this.ribbonBarSalesDepotAccessRights);
 			this.ribbonPanelSalesDepot.Controls.Add(this.ribbonBarSalesDepotSearch);
 			this.ribbonPanelSalesDepot.Controls.Add(this.ribbonBarSalesDepotData);
 			this.ribbonPanelSalesDepot.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelSalesDepot.Location = new System.Drawing.Point(0, 26);
+			this.ribbonPanelSalesDepot.Location = new System.Drawing.Point(0, 53);
 			this.ribbonPanelSalesDepot.Name = "ribbonPanelSalesDepot";
-			this.ribbonPanelSalesDepot.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelSalesDepot.Size = new System.Drawing.Size(1004, 100);
+			this.ribbonPanelSalesDepot.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
+			this.ribbonPanelSalesDepot.Size = new System.Drawing.Size(1010, 112);
 			// 
 			// 
 			// 
@@ -567,13 +578,14 @@
 			this.ribbonBarSalesDepotAccessRights.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarSalesDepotAccessRights.ContainerControlProcessDialogKey = true;
 			this.ribbonBarSalesDepotAccessRights.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarSalesDepotAccessRights.DragDropSupport = true;
 			this.ribbonBarSalesDepotAccessRights.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemSalesDepotAccessRights});
 			this.ribbonBarSalesDepotAccessRights.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSalesDepotAccessRights.Location = new System.Drawing.Point(195, 0);
 			this.ribbonBarSalesDepotAccessRights.Name = "ribbonBarSalesDepotAccessRights";
-			this.ribbonBarSalesDepotAccessRights.Size = new System.Drawing.Size(83, 97);
-			this.ribbonBarSalesDepotAccessRights.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarSalesDepotAccessRights.Size = new System.Drawing.Size(83, 110);
+			this.ribbonBarSalesDepotAccessRights.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSalesDepotAccessRights.TabIndex = 4;
 			this.ribbonBarSalesDepotAccessRights.Text = "Access Rights";
 			// 
@@ -606,13 +618,14 @@
 			this.ribbonBarSalesDepotSearch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarSalesDepotSearch.ContainerControlProcessDialogKey = true;
 			this.ribbonBarSalesDepotSearch.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarSalesDepotSearch.DragDropSupport = true;
 			this.ribbonBarSalesDepotSearch.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemSalesDepotSearch});
 			this.ribbonBarSalesDepotSearch.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSalesDepotSearch.Location = new System.Drawing.Point(105, 0);
 			this.ribbonBarSalesDepotSearch.Name = "ribbonBarSalesDepotSearch";
-			this.ribbonBarSalesDepotSearch.Size = new System.Drawing.Size(90, 97);
-			this.ribbonBarSalesDepotSearch.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarSalesDepotSearch.Size = new System.Drawing.Size(90, 110);
+			this.ribbonBarSalesDepotSearch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSalesDepotSearch.TabIndex = 3;
 			this.ribbonBarSalesDepotSearch.Text = "SD Search";
 			// 
@@ -645,14 +658,15 @@
 			this.ribbonBarSalesDepotData.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarSalesDepotData.ContainerControlProcessDialogKey = true;
 			this.ribbonBarSalesDepotData.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarSalesDepotData.DragDropSupport = true;
 			this.ribbonBarSalesDepotData.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemSalesDepotViewFile,
             this.buttonItemSalesDepotUpdate});
 			this.ribbonBarSalesDepotData.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSalesDepotData.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarSalesDepotData.Name = "ribbonBarSalesDepotData";
-			this.ribbonBarSalesDepotData.Size = new System.Drawing.Size(102, 97);
-			this.ribbonBarSalesDepotData.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarSalesDepotData.Size = new System.Drawing.Size(102, 110);
+			this.ribbonBarSalesDepotData.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSalesDepotData.TabIndex = 2;
 			this.ribbonBarSalesDepotData.Text = "Data";
 			// 
@@ -682,14 +696,14 @@
 			// 
 			// ribbonPanelSalesPro
 			// 
-			this.ribbonPanelSalesPro.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonPanelSalesPro.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonPanelSalesPro.Controls.Add(this.ribbonBarSalesProSource);
 			this.ribbonPanelSalesPro.Controls.Add(this.ribbonBarSalesProData);
 			this.ribbonPanelSalesPro.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelSalesPro.Location = new System.Drawing.Point(0, 26);
+			this.ribbonPanelSalesPro.Location = new System.Drawing.Point(0, 53);
 			this.ribbonPanelSalesPro.Name = "ribbonPanelSalesPro";
-			this.ribbonPanelSalesPro.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelSalesPro.Size = new System.Drawing.Size(1004, 100);
+			this.ribbonPanelSalesPro.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
+			this.ribbonPanelSalesPro.Size = new System.Drawing.Size(1010, 112);
 			// 
 			// 
 			// 
@@ -718,6 +732,7 @@
 			this.ribbonBarSalesProSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarSalesProSource.ContainerControlProcessDialogKey = true;
 			this.ribbonBarSalesProSource.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarSalesProSource.DragDropSupport = true;
 			this.ribbonBarSalesProSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemSalesProClientBenefits,
             this.buttonItemSalesProBigIdea,
@@ -730,8 +745,8 @@
 			this.ribbonBarSalesProSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSalesProSource.Location = new System.Drawing.Point(105, 0);
 			this.ribbonBarSalesProSource.Name = "ribbonBarSalesProSource";
-			this.ribbonBarSalesProSource.Size = new System.Drawing.Size(445, 97);
-			this.ribbonBarSalesProSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarSalesProSource.Size = new System.Drawing.Size(445, 110);
+			this.ribbonBarSalesProSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSalesProSource.TabIndex = 16;
 			this.ribbonBarSalesProSource.Text = "Source";
 			// 
@@ -821,14 +836,15 @@
 			this.ribbonBarSalesProData.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarSalesProData.ContainerControlProcessDialogKey = true;
 			this.ribbonBarSalesProData.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarSalesProData.DragDropSupport = true;
 			this.ribbonBarSalesProData.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemSalesProViewFile,
             this.buttonItemSalesProUpdate});
 			this.ribbonBarSalesProData.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarSalesProData.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarSalesProData.Name = "ribbonBarSalesProData";
-			this.ribbonBarSalesProData.Size = new System.Drawing.Size(102, 97);
-			this.ribbonBarSalesProData.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarSalesProData.Size = new System.Drawing.Size(102, 110);
+			this.ribbonBarSalesProData.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarSalesProData.TabIndex = 2;
 			this.ribbonBarSalesProData.Text = "Data";
 			// 
@@ -858,14 +874,14 @@
 			// 
 			// ribbonPanelMarketPro
 			// 
-			this.ribbonPanelMarketPro.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonPanelMarketPro.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonPanelMarketPro.Controls.Add(this.ribbonBarMarketProSource);
 			this.ribbonPanelMarketPro.Controls.Add(this.ribbonBarMarketProData);
 			this.ribbonPanelMarketPro.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ribbonPanelMarketPro.Location = new System.Drawing.Point(0, 26);
+			this.ribbonPanelMarketPro.Location = new System.Drawing.Point(0, 53);
 			this.ribbonPanelMarketPro.Name = "ribbonPanelMarketPro";
-			this.ribbonPanelMarketPro.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.ribbonPanelMarketPro.Size = new System.Drawing.Size(1004, 100);
+			this.ribbonPanelMarketPro.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
+			this.ribbonPanelMarketPro.Size = new System.Drawing.Size(1010, 112);
 			// 
 			// 
 			// 
@@ -894,6 +910,7 @@
 			this.ribbonBarMarketProSource.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarMarketProSource.ContainerControlProcessDialogKey = true;
 			this.ribbonBarMarketProSource.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarMarketProSource.DragDropSupport = true;
 			this.ribbonBarMarketProSource.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemMarketProTV,
             this.buttonItemMarketProWeb,
@@ -908,8 +925,8 @@
 			this.ribbonBarMarketProSource.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarMarketProSource.Location = new System.Drawing.Point(105, 0);
 			this.ribbonBarMarketProSource.Name = "ribbonBarMarketProSource";
-			this.ribbonBarMarketProSource.Size = new System.Drawing.Size(528, 97);
-			this.ribbonBarMarketProSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarMarketProSource.Size = new System.Drawing.Size(528, 110);
+			this.ribbonBarMarketProSource.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarMarketProSource.TabIndex = 17;
 			this.ribbonBarMarketProSource.Text = "Source";
 			// 
@@ -1025,14 +1042,15 @@
 			this.ribbonBarMarketProData.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.ribbonBarMarketProData.ContainerControlProcessDialogKey = true;
 			this.ribbonBarMarketProData.Dock = System.Windows.Forms.DockStyle.Left;
+			this.ribbonBarMarketProData.DragDropSupport = true;
 			this.ribbonBarMarketProData.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItemMarketProViewFile,
             this.buttonItemMarketProUpdate});
 			this.ribbonBarMarketProData.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			this.ribbonBarMarketProData.Location = new System.Drawing.Point(3, 0);
 			this.ribbonBarMarketProData.Name = "ribbonBarMarketProData";
-			this.ribbonBarMarketProData.Size = new System.Drawing.Size(102, 97);
-			this.ribbonBarMarketProData.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+			this.ribbonBarMarketProData.Size = new System.Drawing.Size(102, 110);
+			this.ribbonBarMarketProData.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.ribbonBarMarketProData.TabIndex = 3;
 			this.ribbonBarMarketProData.Text = "Data";
 			// 
@@ -1087,21 +1105,29 @@
 			// 
 			// pnMain
 			// 
+			this.pnMain.BackColor = System.Drawing.Color.Transparent;
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnMain.Location = new System.Drawing.Point(0, 128);
+			this.pnMain.Location = new System.Drawing.Point(5, 166);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(1004, 511);
+			this.pnMain.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+			this.pnMain.Size = new System.Drawing.Size(1010, 509);
 			this.pnMain.TabIndex = 1;
+			// 
+			// styleManager
+			// 
+			this.styleManager.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
+			this.styleManager.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))));
 			// 
 			// FormMain
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-			this.ClientSize = new System.Drawing.Size(1004, 639);
+			this.BackColor = System.Drawing.Color.White;
+			this.ClientSize = new System.Drawing.Size(1020, 677);
 			this.Controls.Add(this.pnMain);
 			this.Controls.Add(this.ribbonControl);
 			this.MinimumSize = new System.Drawing.Size(1020, 677);
 			this.Name = "FormMain";
+			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Command Central      ";
 			this.Load += new System.EventHandler(this.FormMain_Load);
@@ -1181,6 +1207,7 @@
         public DevComponents.DotNetBar.ButtonItem buttonItemQuickList;
         private DevComponents.DotNetBar.RibbonBar ribbonBarSalesDepotAccessRights;
         public DevComponents.DotNetBar.ButtonItem buttonItemSalesDepotAccessRights;
+		private DevComponents.DotNetBar.StyleManager styleManager;
     }
 }
 

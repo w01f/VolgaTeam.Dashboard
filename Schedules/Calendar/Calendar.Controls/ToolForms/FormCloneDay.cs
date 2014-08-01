@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Core.Calendar;
@@ -12,7 +13,7 @@ using Pabo.Calendar;
 
 namespace NewBizWiz.Calendar.Controls.ToolForms
 {
-	public partial class FormCloneDay : Form
+	public partial class FormCloneDay : MetroForm
 	{
 		private readonly CalendarDay _day;
 		private readonly DateTime _flightDateEnd;

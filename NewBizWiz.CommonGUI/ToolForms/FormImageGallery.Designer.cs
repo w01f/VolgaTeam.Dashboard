@@ -48,9 +48,11 @@
 			// 
 			// pnBottom
 			// 
+			this.pnBottom.BackColor = System.Drawing.Color.Transparent;
 			this.pnBottom.Controls.Add(this.buttonXCancel);
 			this.pnBottom.Controls.Add(this.buttonXOK);
 			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.pnBottom.ForeColor = System.Drawing.Color.Black;
 			this.pnBottom.Location = new System.Drawing.Point(0, 361);
 			this.pnBottom.Name = "pnBottom";
 			this.pnBottom.Size = new System.Drawing.Size(411, 43);
@@ -65,6 +67,7 @@
 			this.buttonXCancel.Location = new System.Drawing.Point(324, 6);
 			this.buttonXCancel.Name = "buttonXCancel";
 			this.buttonXCancel.Size = new System.Drawing.Size(75, 31);
+			this.buttonXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXCancel.TabIndex = 1;
 			this.buttonXCancel.Text = "Cancel";
 			this.buttonXCancel.TextColor = System.Drawing.Color.Black;
@@ -78,13 +81,19 @@
 			this.buttonXOK.Location = new System.Drawing.Point(241, 6);
 			this.buttonXOK.Name = "buttonXOK";
 			this.buttonXOK.Size = new System.Drawing.Size(75, 31);
+			this.buttonXOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXOK.TabIndex = 0;
 			this.buttonXOK.Text = "OK";
 			this.buttonXOK.TextColor = System.Drawing.Color.Black;
 			// 
 			// gridControlLogoGallery
 			// 
+			this.gridControlLogoGallery.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControlLogoGallery.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gridControlLogoGallery.EmbeddedNavigator.Appearance.BackColor = System.Drawing.Color.White;
+			this.gridControlLogoGallery.EmbeddedNavigator.Appearance.ForeColor = System.Drawing.Color.Black;
+			this.gridControlLogoGallery.EmbeddedNavigator.Appearance.Options.UseBackColor = true;
+			this.gridControlLogoGallery.EmbeddedNavigator.Appearance.Options.UseForeColor = true;
 			this.gridControlLogoGallery.Location = new System.Drawing.Point(0, 0);
 			this.gridControlLogoGallery.MainView = this.layoutViewLogoGallery;
 			this.gridControlLogoGallery.Name = "gridControlLogoGallery";
@@ -205,16 +214,17 @@
 			// FormImageGallery
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(411, 404);
 			this.Controls.Add(this.gridControlLogoGallery);
 			this.Controls.Add(this.pnBottom);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(400, 430);
 			this.Name = "FormImageGallery";
+			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Select Logo";

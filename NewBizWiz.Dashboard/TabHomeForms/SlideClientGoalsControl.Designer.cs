@@ -43,7 +43,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal5.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal4.Properties)).BeginInit();
@@ -64,17 +63,6 @@
 			this.pnMain.Controls.Add(this.laGoal5);
 			this.pnMain.Controls.Add(this.laGoal3);
 			this.pnMain.Controls.Add(this.laGoal4);
-			this.pnMain.Controls.SetChildIndex(this.pnTop, 0);
-			this.pnMain.Controls.SetChildIndex(this.laGoal4, 0);
-			this.pnMain.Controls.SetChildIndex(this.laGoal3, 0);
-			this.pnMain.Controls.SetChildIndex(this.laGoal5, 0);
-			this.pnMain.Controls.SetChildIndex(this.laGoal2, 0);
-			this.pnMain.Controls.SetChildIndex(this.laGoal1, 0);
-			this.pnMain.Controls.SetChildIndex(this.comboBoxEditGoal2, 0);
-			this.pnMain.Controls.SetChildIndex(this.comboBoxEditGoal1, 0);
-			this.pnMain.Controls.SetChildIndex(this.comboBoxEditGoal3, 0);
-			this.pnMain.Controls.SetChildIndex(this.comboBoxEditGoal4, 0);
-			this.pnMain.Controls.SetChildIndex(this.comboBoxEditGoal5, 0);
 			// 
 			// comboBoxEditSlideHeader
 			// 
@@ -93,16 +81,10 @@
 			// checkEditSolutionNew
 			// 
 			this.checkEditSolutionNew.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
-			// 
-			// checkEditSolutionOld
-			// 
-			this.checkEditSolutionOld.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.checkEditSolutionOld.Properties.Appearance.ForeColor = System.Drawing.Color.White;
-			this.checkEditSolutionOld.Properties.Appearance.Options.UseFont = true;
-			this.checkEditSolutionOld.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditSolutionNew.Size = new System.Drawing.Size(146, 20);
 			// 
 			// pbDescription
 			// 
@@ -110,7 +92,7 @@
 			// 
 			// comboBoxEditGoal5
 			// 
-			this.comboBoxEditGoal5.Location = new System.Drawing.Point(35, 367);
+			this.comboBoxEditGoal5.Location = new System.Drawing.Point(35, 314);
 			this.comboBoxEditGoal5.Name = "comboBoxEditGoal5";
 			this.comboBoxEditGoal5.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditGoal5.Properties.Appearance.Options.UseFont = true;
@@ -131,7 +113,7 @@
 			// 
 			// comboBoxEditGoal4
 			// 
-			this.comboBoxEditGoal4.Location = new System.Drawing.Point(35, 299);
+			this.comboBoxEditGoal4.Location = new System.Drawing.Point(35, 246);
 			this.comboBoxEditGoal4.Name = "comboBoxEditGoal4";
 			this.comboBoxEditGoal4.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditGoal4.Properties.Appearance.Options.UseFont = true;
@@ -152,7 +134,7 @@
 			// 
 			// comboBoxEditGoal3
 			// 
-			this.comboBoxEditGoal3.Location = new System.Drawing.Point(35, 231);
+			this.comboBoxEditGoal3.Location = new System.Drawing.Point(35, 178);
 			this.comboBoxEditGoal3.Name = "comboBoxEditGoal3";
 			this.comboBoxEditGoal3.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditGoal3.Properties.Appearance.Options.UseFont = true;
@@ -173,7 +155,7 @@
 			// 
 			// comboBoxEditGoal2
 			// 
-			this.comboBoxEditGoal2.Location = new System.Drawing.Point(35, 163);
+			this.comboBoxEditGoal2.Location = new System.Drawing.Point(35, 110);
 			this.comboBoxEditGoal2.Name = "comboBoxEditGoal2";
 			this.comboBoxEditGoal2.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditGoal2.Properties.Appearance.Options.UseFont = true;
@@ -194,7 +176,7 @@
 			// 
 			// comboBoxEditGoal1
 			// 
-			this.comboBoxEditGoal1.Location = new System.Drawing.Point(35, 95);
+			this.comboBoxEditGoal1.Location = new System.Drawing.Point(35, 42);
 			this.comboBoxEditGoal1.Name = "comboBoxEditGoal1";
 			this.comboBoxEditGoal1.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditGoal1.Properties.Appearance.Options.UseFont = true;
@@ -216,7 +198,7 @@
 			// laGoal5
 			// 
 			this.laGoal5.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laGoal5.Location = new System.Drawing.Point(7, 358);
+			this.laGoal5.Location = new System.Drawing.Point(7, 305);
 			this.laGoal5.Name = "laGoal5";
 			this.laGoal5.Size = new System.Drawing.Size(25, 40);
 			this.laGoal5.TabIndex = 22;
@@ -226,7 +208,7 @@
 			// laGoal4
 			// 
 			this.laGoal4.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laGoal4.Location = new System.Drawing.Point(7, 290);
+			this.laGoal4.Location = new System.Drawing.Point(7, 237);
 			this.laGoal4.Name = "laGoal4";
 			this.laGoal4.Size = new System.Drawing.Size(25, 40);
 			this.laGoal4.TabIndex = 20;
@@ -236,7 +218,7 @@
 			// laGoal3
 			// 
 			this.laGoal3.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laGoal3.Location = new System.Drawing.Point(7, 222);
+			this.laGoal3.Location = new System.Drawing.Point(7, 169);
 			this.laGoal3.Name = "laGoal3";
 			this.laGoal3.Size = new System.Drawing.Size(25, 40);
 			this.laGoal3.TabIndex = 18;
@@ -246,7 +228,7 @@
 			// laGoal2
 			// 
 			this.laGoal2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laGoal2.Location = new System.Drawing.Point(7, 154);
+			this.laGoal2.Location = new System.Drawing.Point(7, 101);
 			this.laGoal2.Name = "laGoal2";
 			this.laGoal2.Size = new System.Drawing.Size(25, 40);
 			this.laGoal2.TabIndex = 16;
@@ -256,7 +238,7 @@
 			// laGoal1
 			// 
 			this.laGoal1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laGoal1.Location = new System.Drawing.Point(7, 86);
+			this.laGoal1.Location = new System.Drawing.Point(7, 33);
 			this.laGoal1.Name = "laGoal1";
 			this.laGoal1.Size = new System.Drawing.Size(25, 40);
 			this.laGoal1.TabIndex = 14;
@@ -272,7 +254,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionOld.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal5.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditGoal4.Properties)).EndInit();

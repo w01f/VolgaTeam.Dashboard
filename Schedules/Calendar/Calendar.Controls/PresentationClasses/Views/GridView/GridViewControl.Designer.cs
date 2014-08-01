@@ -28,23 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GridViewControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.pnGrid = new System.Windows.Forms.Panel();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageComment = new DevExpress.XtraTab.XtraTabPage();
 			this.gridControlComment = new DevExpress.XtraGrid.GridControl();
-			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
 			this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemPaste = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemClone = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
-			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository(this.components);
+			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository();
 			this.repositoryItemDateEdit = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
 			this.repositoryItemTextEditCustomComment = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.repositoryItemButtonEditCustomCommentFirstRow = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
@@ -66,8 +65,7 @@
 			this.bandedGridColumnBigImage = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnSmallImage = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.bandedGridColumnTinyLogo = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
-			this.defaultLookAndFeel = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.pnGrid.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			this.xtraTabControl.SuspendLayout();
@@ -75,7 +73,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridControlComment)).BeginInit();
 			this.contextMenuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit.VistaTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit.CalendarTimeProperties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditCustomComment)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditCustomCommentFirstRow)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
@@ -90,7 +88,7 @@
 			// 
 			// pnGrid
 			// 
-			this.pnGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnGrid.BackColor = System.Drawing.Color.Transparent;
 			this.pnGrid.Controls.Add(this.xtraTabControl);
 			this.pnGrid.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnGrid.Location = new System.Drawing.Point(0, 0);
@@ -116,7 +114,7 @@
 			this.xtraTabControl.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageComment;
-			this.xtraTabControl.Size = new System.Drawing.Size(818, 404);
+			this.xtraTabControl.Size = new System.Drawing.Size(822, 408);
 			this.xtraTabControl.TabIndex = 4;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageComment,
@@ -126,7 +124,7 @@
 			// 
 			this.xtraTabPageComment.Controls.Add(this.gridControlComment);
 			this.xtraTabPageComment.Name = "xtraTabPageComment";
-			this.xtraTabPageComment.Size = new System.Drawing.Size(816, 378);
+			this.xtraTabPageComment.Size = new System.Drawing.Size(816, 377);
 			this.xtraTabPageComment.Text = "Comments";
 			// 
 			// gridControlComment
@@ -137,7 +135,7 @@
 			this.gridControlComment.Location = new System.Drawing.Point(0, 0);
 			this.gridControlComment.MainView = this.gridViewComment;
 			this.gridControlComment.Name = "gridControlComment";
-			this.gridControlComment.Size = new System.Drawing.Size(816, 378);
+			this.gridControlComment.Size = new System.Drawing.Size(816, 377);
 			this.gridControlComment.TabIndex = 2;
 			this.gridControlComment.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewComment});
@@ -150,7 +148,7 @@
             this.toolStripMenuItemClone,
             this.toolStripMenuItemDelete});
 			this.contextMenuStrip.Name = "contextMenuStrip";
-			this.contextMenuStrip.Size = new System.Drawing.Size(162, 164);
+			this.contextMenuStrip.Size = new System.Drawing.Size(160, 156);
 			// 
 			// toolStripMenuItemCopy
 			// 
@@ -159,7 +157,7 @@
 			this.toolStripMenuItemCopy.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CopySmall;
 			this.toolStripMenuItemCopy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
-			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(161, 40);
+			this.toolStripMenuItemCopy.Size = new System.Drawing.Size(159, 38);
 			this.toolStripMenuItemCopy.Text = "Copy Data";
 			this.toolStripMenuItemCopy.Click += new System.EventHandler(this.toolStripMenuItemCopy_Click);
 			// 
@@ -170,7 +168,7 @@
 			this.toolStripMenuItemPaste.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.PasteSmall;
 			this.toolStripMenuItemPaste.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemPaste.Name = "toolStripMenuItemPaste";
-			this.toolStripMenuItemPaste.Size = new System.Drawing.Size(161, 40);
+			this.toolStripMenuItemPaste.Size = new System.Drawing.Size(159, 38);
 			this.toolStripMenuItemPaste.Text = "Paste Data";
 			this.toolStripMenuItemPaste.Click += new System.EventHandler(this.toolStripMenuItemPaste_Click);
 			// 
@@ -181,7 +179,7 @@
 			this.toolStripMenuItemClone.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.CloneSmall;
 			this.toolStripMenuItemClone.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemClone.Name = "toolStripMenuItemClone";
-			this.toolStripMenuItemClone.Size = new System.Drawing.Size(161, 40);
+			this.toolStripMenuItemClone.Size = new System.Drawing.Size(159, 38);
 			this.toolStripMenuItemClone.Text = "Clone Day";
 			this.toolStripMenuItemClone.Click += new System.EventHandler(this.toolStripMenuItemClone_Click);
 			// 
@@ -192,7 +190,7 @@
 			this.toolStripMenuItemDelete.Image = global::NewBizWiz.Calendar.Controls.Properties.Resources.DeleteData;
 			this.toolStripMenuItemDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
-			this.toolStripMenuItemDelete.Size = new System.Drawing.Size(161, 40);
+			this.toolStripMenuItemDelete.Size = new System.Drawing.Size(159, 38);
 			this.toolStripMenuItemDelete.Text = "Delete Data";
 			this.toolStripMenuItemDelete.Click += new System.EventHandler(this.toolStripMenuItemDelete_Click);
 			// 
@@ -229,14 +227,14 @@
 			this.repositoryItemDateEdit.AutoHeight = false;
 			this.repositoryItemDateEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.repositoryItemDateEdit.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.repositoryItemDateEdit.DisplayFormat.FormatString = "dddd, MM/dd/yyyy";
 			this.repositoryItemDateEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
 			this.repositoryItemDateEdit.EditFormat.FormatString = "dddd, MM/dd/yyyy";
 			this.repositoryItemDateEdit.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
 			this.repositoryItemDateEdit.Name = "repositoryItemDateEdit";
 			this.repositoryItemDateEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.repositoryItemDateEdit.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
 			// 
 			// repositoryItemTextEditCustomComment
 			// 
@@ -264,7 +262,7 @@
 			this.repositoryItemButtonEditCustomCommentFirstRow.AppearanceReadOnly.Options.UseFont = true;
 			this.repositoryItemButtonEditCustomCommentFirstRow.AutoHeight = false;
 			this.repositoryItemButtonEditCustomCommentFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditCustomCommentFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditCustomCommentFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject8, "", null, null, true)});
 			this.repositoryItemButtonEditCustomCommentFirstRow.Name = "repositoryItemButtonEditCustomCommentFirstRow";
 			this.repositoryItemButtonEditCustomCommentFirstRow.NullText = "Type Custom Comment...";
 			this.repositoryItemButtonEditCustomCommentFirstRow.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemComboBoxCustomNoteFirstRow_ButtonClick);
@@ -292,8 +290,8 @@
 			// 
 			this.repositoryItemButtonEditLogoSelector.AutoHeight = false;
 			this.repositoryItemButtonEditLogoSelector.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 30, true, false, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditLogoSelector.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", 30, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 30, true, false, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditLogoSelector.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", 30, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject10, "", null, null, true)});
 			this.repositoryItemButtonEditLogoSelector.Name = "repositoryItemButtonEditLogoSelector";
 			this.repositoryItemButtonEditLogoSelector.ReadOnly = true;
 			this.repositoryItemButtonEditLogoSelector.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -303,8 +301,8 @@
 			// 
 			this.repositoryItemButtonEditLogoSelectorFirstRow.AutoHeight = false;
 			this.repositoryItemButtonEditLogoSelectorFirstRow.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 30, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditLogoSelectorFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", 30, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", 30, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEditLogoSelectorFirstRow.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", 30, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject7, "", null, null, true)});
 			this.repositoryItemButtonEditLogoSelectorFirstRow.Name = "repositoryItemButtonEditLogoSelectorFirstRow";
 			this.repositoryItemButtonEditLogoSelectorFirstRow.ReadOnly = true;
 			this.repositoryItemButtonEditLogoSelectorFirstRow.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -342,13 +340,13 @@
 			this.gridViewComment.OptionsView.ColumnAutoWidth = false;
 			this.gridViewComment.OptionsView.EnableAppearanceEvenRow = true;
 			this.gridViewComment.OptionsView.EnableAppearanceOddRow = true;
+			this.gridViewComment.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
 			this.gridViewComment.OptionsView.ShowDetailButtons = false;
 			this.gridViewComment.OptionsView.ShowGroupExpandCollapseButtons = false;
 			this.gridViewComment.OptionsView.ShowGroupPanel = false;
 			this.gridViewComment.OptionsView.ShowIndicator = false;
 			this.gridViewComment.RowHeight = 40;
 			this.gridViewComment.RowSeparatorHeight = 5;
-			this.gridViewComment.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
 			this.gridViewComment.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView_RowCellStyle);
 			this.gridViewComment.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.gridViewComment_CustomRowCellEdit);
 			this.gridViewComment.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.gridViewComment_CustomRowCellEdit);
@@ -393,7 +391,7 @@
 			// 
 			this.xtraTabPageLogo.Controls.Add(this.gridControlLogo);
 			this.xtraTabPageLogo.Name = "xtraTabPageLogo";
-			this.xtraTabPageLogo.Size = new System.Drawing.Size(816, 378);
+			this.xtraTabPageLogo.Size = new System.Drawing.Size(816, 377);
 			this.xtraTabPageLogo.Text = "Logo";
 			// 
 			// gridControlLogo
@@ -404,7 +402,7 @@
 			this.gridControlLogo.Location = new System.Drawing.Point(0, 0);
 			this.gridControlLogo.MainView = this.bandedGridViewLogo;
 			this.gridControlLogo.Name = "gridControlLogo";
-			this.gridControlLogo.Size = new System.Drawing.Size(816, 378);
+			this.gridControlLogo.Size = new System.Drawing.Size(816, 377);
 			this.gridControlLogo.TabIndex = 3;
 			this.gridControlLogo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridViewLogo});
@@ -449,15 +447,15 @@
 			this.bandedGridViewLogo.OptionsSelection.MultiSelect = true;
 			this.bandedGridViewLogo.OptionsView.EnableAppearanceEvenRow = true;
 			this.bandedGridViewLogo.OptionsView.EnableAppearanceOddRow = true;
+			this.bandedGridViewLogo.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
 			this.bandedGridViewLogo.OptionsView.ShowColumnHeaders = false;
 			this.bandedGridViewLogo.OptionsView.ShowDetailButtons = false;
 			this.bandedGridViewLogo.OptionsView.ShowGroupExpandCollapseButtons = false;
 			this.bandedGridViewLogo.OptionsView.ShowGroupPanel = false;
 			this.bandedGridViewLogo.OptionsView.ShowIndicator = false;
-			this.bandedGridViewLogo.OptionsView.ShowVertLines = false;
+			this.bandedGridViewLogo.OptionsView.ShowVerticalLines = DevExpress.Utils.DefaultBoolean.False;
 			this.bandedGridViewLogo.RowHeight = 40;
 			this.bandedGridViewLogo.RowSeparatorHeight = 5;
-			this.bandedGridViewLogo.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
 			this.bandedGridViewLogo.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.bandedGridViewLogo_RowCellStyle);
 			this.bandedGridViewLogo.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.bandedGridViewLogo_CustomRowCellEdit);
 			this.bandedGridViewLogo.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.bandedGridViewLogo_CustomRowCellEdit);
@@ -472,6 +470,7 @@
 			this.gridBandDay.Columns.Add(this.bandedGridColumnDay);
 			this.gridBandDay.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
 			this.gridBandDay.Name = "gridBandDay";
+			this.gridBandDay.VisibleIndex = 0;
 			this.gridBandDay.Width = 180;
 			// 
 			// bandedGridColumnDay
@@ -492,6 +491,7 @@
 			this.gridBandLogo.Columns.Add(this.bandedGridColumnXtraTinyImage);
 			this.gridBandLogo.MinWidth = 20;
 			this.gridBandLogo.Name = "gridBandLogo";
+			this.gridBandLogo.VisibleIndex = 1;
 			this.gridBandLogo.Width = 630;
 			// 
 			// bandedGridColumnLogoSelector
@@ -545,14 +545,10 @@
 			this.styleController.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.styleController.AppearanceReadOnly.Options.UseFont = true;
 			// 
-			// defaultLookAndFeel
-			// 
-			this.defaultLookAndFeel.LookAndFeel.SkinName = "Money Twins";
-			// 
 			// GridViewControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.Controls.Add(this.pnGrid);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -564,7 +560,7 @@
 			this.xtraTabPageComment.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlComment)).EndInit();
 			this.contextMenuStrip.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit.VistaTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditCustomComment)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditCustomCommentFirstRow)).EndInit();
@@ -582,8 +578,7 @@
 
         #endregion
 
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel;
-        private DevExpress.XtraEditors.StyleController styleController;
+		private DevExpress.XtraEditors.StyleController styleController;
         private System.Windows.Forms.Panel pnGrid;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
         private DevExpress.XtraEditors.Repository.PersistentRepository persistentRepository;

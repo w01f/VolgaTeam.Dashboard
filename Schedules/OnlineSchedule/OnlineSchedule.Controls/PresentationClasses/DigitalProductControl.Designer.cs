@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -36,7 +35,7 @@
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
+			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.hyperLinkEditResetProductName = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.memoEditDescription = new DevExpress.XtraEditors.MemoEdit();
 			this.memoEditProductName = new DevExpress.XtraEditors.MemoEdit();
@@ -162,6 +161,7 @@
 			this.memoEditDescription.Size = new System.Drawing.Size(293, 110);
 			this.memoEditDescription.StyleController = this.styleController;
 			this.memoEditDescription.TabIndex = 2;
+			this.memoEditDescription.UseOptimizedRendering = true;
 			this.memoEditDescription.EditValueChanged += new System.EventHandler(this.Edit_EditValueChanged);
 			// 
 			// memoEditProductName
@@ -174,6 +174,7 @@
 			this.memoEditProductName.Size = new System.Drawing.Size(313, 147);
 			this.memoEditProductName.StyleController = this.styleController;
 			this.memoEditProductName.TabIndex = 1;
+			this.memoEditProductName.UseOptimizedRendering = true;
 			this.memoEditProductName.EditValueChanged += new System.EventHandler(this.memoEditProductName_EditValueChanged);
 			// 
 			// checkedListBoxControlWebsite
@@ -208,7 +209,7 @@
 			this.checkEditComments.Location = new System.Drawing.Point(504, 310);
 			this.checkEditComments.Name = "checkEditComments";
 			this.checkEditComments.Properties.Caption = "";
-			this.checkEditComments.Size = new System.Drawing.Size(18, 21);
+			this.checkEditComments.Size = new System.Drawing.Size(18, 19);
 			this.checkEditComments.StyleController = this.styleController;
 			this.checkEditComments.TabIndex = 16;
 			this.checkEditComments.CheckedChanged += new System.EventHandler(this.checkEditComments_CheckedChanged);
@@ -233,7 +234,7 @@
 			this.checkEditStrengths1.Location = new System.Drawing.Point(504, 254);
 			this.checkEditStrengths1.Name = "checkEditStrengths1";
 			this.checkEditStrengths1.Properties.Caption = "";
-			this.checkEditStrengths1.Size = new System.Drawing.Size(18, 21);
+			this.checkEditStrengths1.Size = new System.Drawing.Size(18, 19);
 			this.checkEditStrengths1.StyleController = this.styleController;
 			this.checkEditStrengths1.TabIndex = 12;
 			this.checkEditStrengths1.CheckedChanged += new System.EventHandler(this.checkEditStrengths1_CheckedChanged);
@@ -258,7 +259,7 @@
 			this.checkEditStrengths2.Location = new System.Drawing.Point(504, 282);
 			this.checkEditStrengths2.Name = "checkEditStrengths2";
 			this.checkEditStrengths2.Properties.Caption = "";
-			this.checkEditStrengths2.Size = new System.Drawing.Size(18, 21);
+			this.checkEditStrengths2.Size = new System.Drawing.Size(18, 19);
 			this.checkEditStrengths2.StyleController = this.styleController;
 			this.checkEditStrengths2.TabIndex = 14;
 			this.checkEditStrengths2.CheckedChanged += new System.EventHandler(this.checkEditStrengths2_CheckedChanged);
@@ -273,6 +274,7 @@
 			this.memoEditComments.Size = new System.Drawing.Size(399, 108);
 			this.memoEditComments.StyleController = this.styleController;
 			this.memoEditComments.TabIndex = 17;
+			this.memoEditComments.UseOptimizedRendering = true;
 			this.memoEditComments.EditValueChanged += new System.EventHandler(this.Edit_EditValueChanged);
 			// 
 			// spinEditCPM
@@ -396,14 +398,14 @@
 			// 
 			this.checkEditFormulaImpressions.Location = new System.Drawing.Point(10, 9);
 			this.checkEditFormulaImpressions.Name = "checkEditFormulaImpressions";
-			this.checkEditFormulaImpressions.Properties.AllowHtmlString = true;
+			this.checkEditFormulaImpressions.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditFormulaImpressions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFormulaImpressions.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFormulaImpressions.Properties.AutoWidth = true;
 			this.checkEditFormulaImpressions.Properties.Caption = "Impressions";
 			this.checkEditFormulaImpressions.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaImpressions.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(92, 20);
+			this.checkEditFormulaImpressions.Size = new System.Drawing.Size(92, 19);
 			this.checkEditFormulaImpressions.TabIndex = 4;
 			this.checkEditFormulaImpressions.TabStop = false;
 			this.checkEditFormulaImpressions.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
@@ -412,14 +414,14 @@
 			// 
 			this.checkEditFormulaInvestment.Location = new System.Drawing.Point(167, 9);
 			this.checkEditFormulaInvestment.Name = "checkEditFormulaInvestment";
-			this.checkEditFormulaInvestment.Properties.AllowHtmlString = true;
+			this.checkEditFormulaInvestment.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditFormulaInvestment.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFormulaInvestment.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFormulaInvestment.Properties.AutoWidth = true;
 			this.checkEditFormulaInvestment.Properties.Caption = "Investment";
 			this.checkEditFormulaInvestment.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaInvestment.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(84, 20);
+			this.checkEditFormulaInvestment.Size = new System.Drawing.Size(84, 19);
 			this.checkEditFormulaInvestment.TabIndex = 5;
 			this.checkEditFormulaInvestment.TabStop = false;
 			this.checkEditFormulaInvestment.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
@@ -428,14 +430,14 @@
 			// 
 			this.checkEditFormulaCPM.Location = new System.Drawing.Point(325, 9);
 			this.checkEditFormulaCPM.Name = "checkEditFormulaCPM";
-			this.checkEditFormulaCPM.Properties.AllowHtmlString = true;
+			this.checkEditFormulaCPM.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditFormulaCPM.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFormulaCPM.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFormulaCPM.Properties.AutoWidth = true;
 			this.checkEditFormulaCPM.Properties.Caption = "CPM";
 			this.checkEditFormulaCPM.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
 			this.checkEditFormulaCPM.Properties.RadioGroupIndex = 1;
-			this.checkEditFormulaCPM.Size = new System.Drawing.Size(51, 20);
+			this.checkEditFormulaCPM.Size = new System.Drawing.Size(51, 19);
 			this.checkEditFormulaCPM.TabIndex = 6;
 			this.checkEditFormulaCPM.TabStop = false;
 			this.checkEditFormulaCPM.CheckedChanged += new System.EventHandler(this.checkEditFormula_CheckedChanged);
@@ -526,11 +528,11 @@
 			// checkEditInvestmentDetails
 			// 
 			this.checkEditInvestmentDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditInvestmentDetails.Location = new System.Drawing.Point(20, 389);
+			this.checkEditInvestmentDetails.Location = new System.Drawing.Point(20, 388);
 			this.checkEditInvestmentDetails.Name = "checkEditInvestmentDetails";
 			this.checkEditInvestmentDetails.Properties.AutoWidth = true;
 			this.checkEditInvestmentDetails.Properties.Caption = "Other Investment Details?";
-			this.checkEditInvestmentDetails.Size = new System.Drawing.Size(172, 21);
+			this.checkEditInvestmentDetails.Size = new System.Drawing.Size(171, 20);
 			this.checkEditInvestmentDetails.StyleController = this.styleController;
 			this.checkEditInvestmentDetails.TabIndex = 10;
 			this.checkEditInvestmentDetails.CheckedChanged += new System.EventHandler(this.checkEditInvestmentDetails_CheckedChanged);
@@ -697,7 +699,7 @@
 			this.checkEditDescriptionManualEdit.Location = new System.Drawing.Point(6, 9);
 			this.checkEditDescriptionManualEdit.Name = "checkEditDescriptionManualEdit";
 			this.checkEditDescriptionManualEdit.Properties.Caption = "Manual Edit";
-			this.checkEditDescriptionManualEdit.Size = new System.Drawing.Size(134, 21);
+			this.checkEditDescriptionManualEdit.Size = new System.Drawing.Size(134, 19);
 			this.checkEditDescriptionManualEdit.StyleController = this.styleController;
 			this.checkEditDescriptionManualEdit.TabIndex = 108;
 			this.checkEditDescriptionManualEdit.CheckedChanged += new System.EventHandler(this.checkEditDescriptionManualEdit_CheckedChanged);
@@ -711,6 +713,7 @@
 			this.buttonXShowDescriptionTargeting.Location = new System.Drawing.Point(217, 3);
 			this.buttonXShowDescriptionTargeting.Name = "buttonXShowDescriptionTargeting";
 			this.buttonXShowDescriptionTargeting.Size = new System.Drawing.Size(32, 32);
+			this.buttonXShowDescriptionTargeting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXShowDescriptionTargeting.TabIndex = 110;
 			this.buttonXShowDescriptionTargeting.TextColor = System.Drawing.Color.Black;
 			this.buttonXShowDescriptionTargeting.CheckedChanged += new System.EventHandler(this.buttonXShowDescriptionAdditionalInfo_CheckedChanged);
@@ -724,6 +727,7 @@
 			this.buttonXShowDescriptionRichMedia.Location = new System.Drawing.Point(255, 3);
 			this.buttonXShowDescriptionRichMedia.Name = "buttonXShowDescriptionRichMedia";
 			this.buttonXShowDescriptionRichMedia.Size = new System.Drawing.Size(32, 32);
+			this.buttonXShowDescriptionRichMedia.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXShowDescriptionRichMedia.TabIndex = 111;
 			this.buttonXShowDescriptionRichMedia.TextColor = System.Drawing.Color.Black;
 			this.buttonXShowDescriptionRichMedia.CheckedChanged += new System.EventHandler(this.buttonXShowDescriptionAdditionalInfo_CheckedChanged);
@@ -756,7 +760,7 @@
 			this.checkEditCommentManualEdit.Location = new System.Drawing.Point(6, 9);
 			this.checkEditCommentManualEdit.Name = "checkEditCommentManualEdit";
 			this.checkEditCommentManualEdit.Properties.Caption = "Manual Edit";
-			this.checkEditCommentManualEdit.Size = new System.Drawing.Size(134, 21);
+			this.checkEditCommentManualEdit.Size = new System.Drawing.Size(134, 19);
 			this.checkEditCommentManualEdit.StyleController = this.styleController;
 			this.checkEditCommentManualEdit.TabIndex = 108;
 			this.checkEditCommentManualEdit.CheckedChanged += new System.EventHandler(this.checkEditCommentManualEdit_CheckedChanged);
@@ -771,6 +775,7 @@
 			this.buttonXShowCommentTargeting.Location = new System.Drawing.Point(322, 3);
 			this.buttonXShowCommentTargeting.Name = "buttonXShowCommentTargeting";
 			this.buttonXShowCommentTargeting.Size = new System.Drawing.Size(32, 32);
+			this.buttonXShowCommentTargeting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXShowCommentTargeting.TabIndex = 110;
 			this.buttonXShowCommentTargeting.TextColor = System.Drawing.Color.Black;
 			this.buttonXShowCommentTargeting.CheckedChanged += new System.EventHandler(this.buttonXShowCommentAdditonalInfo_CheckedChanged);
@@ -785,6 +790,7 @@
 			this.buttonXShowCommentRichMedia.Location = new System.Drawing.Point(360, 3);
 			this.buttonXShowCommentRichMedia.Name = "buttonXShowCommentRichMedia";
 			this.buttonXShowCommentRichMedia.Size = new System.Drawing.Size(32, 32);
+			this.buttonXShowCommentRichMedia.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXShowCommentRichMedia.TabIndex = 111;
 			this.buttonXShowCommentRichMedia.TextColor = System.Drawing.Color.Black;
 			this.buttonXShowCommentRichMedia.CheckedChanged += new System.EventHandler(this.buttonXShowCommentAdditonalInfo_CheckedChanged);
@@ -837,7 +843,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditInvestmentDetails.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditInvestmentDetails.Properties)).EndInit();
 			this.pnPricyTypeAll.ResumeLayout(false);
-			this.pnPricyTypeAll.PerformLayout();
 			this.pnPriceTypeContainer.ResumeLayout(false);
 			this.pnPriceTypeImpressions.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.spinEditImpressionsOnly.Properties)).EndInit();

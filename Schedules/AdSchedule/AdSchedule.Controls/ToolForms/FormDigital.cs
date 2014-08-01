@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
 using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ViewInfo;
@@ -8,7 +9,7 @@ using NewBizWiz.Core.AdSchedule;
 
 namespace NewBizWiz.AdSchedule.Controls.ToolForms
 {
-	public partial class FormDigital : Form
+	public partial class FormDigital : MetroForm
 	{
 		private bool _loading;
 		private readonly DigitalLegend _digitalLegend;

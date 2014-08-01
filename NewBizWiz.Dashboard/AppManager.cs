@@ -10,7 +10,6 @@ using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
-using NewBizWiz.Dashboard.ToolForms;
 
 namespace NewBizWiz.Dashboard
 {
@@ -47,19 +46,6 @@ namespace NewBizWiz.Dashboard
 		{
 			SetCultureSettings();
 			LicenseHelper.Register();
-			using (var form = new FormLoadSplash())
-			{
-				form.TopMost = true;
-				var thread = new Thread(() => DashboardPowerPointHelper.Instance.SetPresentationSettings());
-				form.Show();
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
-				form.Close();
-			}
-			Utilities.Instance.ActivatePowerPoint(DashboardPowerPointHelper.Instance.PowerPointObject);
-			FormMain.Instance.Init();
-			RegistryHelper.MainFormHandle = FormMain.Instance.Handle;
 			ActivityManager.AddActivity(new UserActivity("Application started"));
 			Application.Run(FormMain.Instance);
 		}
@@ -136,6 +122,7 @@ namespace NewBizWiz.Dashboard
 			{
 				control.Click += ControlClick;
 			}
+			Application.DoEvents();
 		}
 
 		private void ControlClick(object sender, EventArgs e)

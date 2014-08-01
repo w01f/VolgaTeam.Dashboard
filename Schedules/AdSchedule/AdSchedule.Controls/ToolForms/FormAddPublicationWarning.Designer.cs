@@ -44,7 +44,9 @@
 			// 
 			this.laTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.laTitle.BackColor = System.Drawing.Color.White;
 			this.laTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laTitle.ForeColor = System.Drawing.Color.Black;
 			this.laTitle.Location = new System.Drawing.Point(56, 12);
 			this.laTitle.Name = "laTitle";
 			this.laTitle.Size = new System.Drawing.Size(296, 61);
@@ -55,7 +57,9 @@
 			// 
 			this.laAdvertiserProfile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.laAdvertiserProfile.BackColor = System.Drawing.Color.White;
 			this.laAdvertiserProfile.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laAdvertiserProfile.ForeColor = System.Drawing.Color.Black;
 			this.laAdvertiserProfile.Location = new System.Drawing.Point(57, 86);
 			this.laAdvertiserProfile.Name = "laAdvertiserProfile";
 			this.laAdvertiserProfile.Size = new System.Drawing.Size(285, 40);
@@ -67,7 +71,9 @@
 			// 
 			this.laAdCampaign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.laAdCampaign.BackColor = System.Drawing.Color.White;
 			this.laAdCampaign.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laAdCampaign.ForeColor = System.Drawing.Color.Black;
 			this.laAdCampaign.Location = new System.Drawing.Point(57, 148);
 			this.laAdCampaign.Name = "laAdCampaign";
 			this.laAdCampaign.Size = new System.Drawing.Size(285, 40);
@@ -83,12 +89,15 @@
 			this.buttonX1.Location = new System.Drawing.Point(115, 202);
 			this.buttonX1.Name = "buttonX1";
 			this.buttonX1.Size = new System.Drawing.Size(126, 36);
+			this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonX1.TabIndex = 8;
 			this.buttonX1.Text = "OK";
 			this.buttonX1.TextColor = System.Drawing.Color.Black;
 			// 
 			// pbAdCampaign
 			// 
+			this.pbAdCampaign.BackColor = System.Drawing.Color.White;
+			this.pbAdCampaign.ForeColor = System.Drawing.Color.Black;
 			this.pbAdCampaign.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Calendar;
 			this.pbAdCampaign.Location = new System.Drawing.Point(10, 148);
 			this.pbAdCampaign.Name = "pbAdCampaign";
@@ -99,6 +108,8 @@
 			// 
 			// pbAdvertiserProfile
 			// 
+			this.pbAdvertiserProfile.BackColor = System.Drawing.Color.White;
+			this.pbAdvertiserProfile.ForeColor = System.Drawing.Color.Black;
 			this.pbAdvertiserProfile.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.BasicInfo;
 			this.pbAdvertiserProfile.Location = new System.Drawing.Point(10, 86);
 			this.pbAdvertiserProfile.Name = "pbAdvertiserProfile";
@@ -109,6 +120,8 @@
 			// 
 			// pbWarning
 			// 
+			this.pbWarning.BackColor = System.Drawing.Color.White;
+			this.pbWarning.ForeColor = System.Drawing.Color.Black;
 			this.pbWarning.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Warning;
 			this.pbWarning.Location = new System.Drawing.Point(2, 12);
 			this.pbWarning.Name = "pbWarning";
@@ -120,7 +133,7 @@
 			// FormAddPublicationWarning
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(356, 251);
 			this.Controls.Add(this.buttonX1);
 			this.Controls.Add(this.laAdCampaign);
@@ -129,11 +142,13 @@
 			this.Controls.Add(this.pbAdvertiserProfile);
 			this.Controls.Add(this.laTitle);
 			this.Controls.Add(this.pbWarning);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "FormAddPublicationWarning";
+			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Not So Fast…";

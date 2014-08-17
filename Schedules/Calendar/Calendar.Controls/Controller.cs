@@ -69,7 +69,6 @@ namespace NewBizWiz.Calendar.Controls
 
 			CalendarVisualizer = new CalendarVisualizer();
 			CalendarMonthsList.SelectedIndexChanged += CalendarVisualizer.imageListBoxEditCalendar_SelectedIndexChanged;
-			CalendarSlideInfo.CheckedChanged += CalendarVisualizer.buttonItemCalendarSlideInfo_CheckedChanged;
 			CalendarCopy.Click += CalendarVisualizer.buttonItemCalendarCopy_Click;
 			CalendarPaste.Click += CalendarVisualizer.buttonItemCalendarPaste_Click;
 			CalendarClone.Click += CalendarVisualizer.buttonItemCalendarClone_Click;
@@ -81,7 +80,6 @@ namespace NewBizWiz.Calendar.Controls
 			CalendarHelp.Click += CalendarVisualizer.buttonItemCalendarHelp_Click;
 
 			GridMonthsList.SelectedIndexChanged += CalendarVisualizer.imageListBoxEditCalendar_SelectedIndexChanged;
-			GridSlideInfo.CheckedChanged += CalendarVisualizer.buttonItemCalendarSlideInfo_CheckedChanged;
 			GridCopy.Click += CalendarVisualizer.buttonItemCalendarCopy_Click;
 			GridPaste.Click += CalendarVisualizer.buttonItemCalendarPaste_Click;
 			GridClone.Click += CalendarVisualizer.buttonItemCalendarClone_Click;
@@ -272,7 +270,6 @@ namespace NewBizWiz.Calendar.Controls
 		#region Calendar
 		public RibbonBar CalendarSpecialButtons { get; set; }
 		public ImageListBoxControl CalendarMonthsList { get; set; }
-		public ButtonItem CalendarSlideInfo { get; set; }
 		public ButtonItem CalendarCopy { get; set; }
 		public ButtonItem CalendarPaste { get; set; }
 		public ButtonItem CalendarClone { get; set; }
@@ -287,7 +284,6 @@ namespace NewBizWiz.Calendar.Controls
 		#region Calendar
 		public RibbonBar GridSpecialButtons { get; set; }
 		public ImageListBoxControl GridMonthsList { get; set; }
-		public ButtonItem GridSlideInfo { get; set; }
 		public ButtonItem GridCopy { get; set; }
 		public ButtonItem GridPaste { get; set; }
 		public ButtonItem GridClone { get; set; }

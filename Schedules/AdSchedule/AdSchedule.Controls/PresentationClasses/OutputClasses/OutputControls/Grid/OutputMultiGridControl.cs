@@ -77,7 +77,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get { return LocalSchedule.ViewSettings.MultiGridViewSettings.SlideHeaderState; }
 		}
 
-		public DigitalLegend DigitalLegend
+		public Core.OnlineSchedule.DigitalLegend DigitalLegend
 		{
 			get { return LocalSchedule.ViewSettings.MultiGridViewSettings.DigitalLegend; }
 		}
@@ -92,6 +92,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				form.RequestDefaultInfo += (o, e) =>
 				{
 					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
+					e.Editor.Tag = e.Editor.EditValue;
 				};
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (digitalLegend.ApplyForAll)
@@ -829,8 +830,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (!DigitalLegend.Enabled) return String.Empty;
 				if (!DigitalLegend.AllowEdit)
 					return String.Format("Digital Product Info: {0}", LocalSchedule.GetDigitalInfo(DigitalLegend.RequestOptions));
-				if (!String.IsNullOrEmpty(DigitalLegend.Info))
-					return String.Format("Digital Product Info: {0}", DigitalLegend.Info);
+				if (!String.IsNullOrEmpty(DigitalLegend.CompiledInfo))
+					return String.Format("Digital Product Info: {0}", DigitalLegend.CompiledInfo);
 				return String.Empty;
 			}
 		}

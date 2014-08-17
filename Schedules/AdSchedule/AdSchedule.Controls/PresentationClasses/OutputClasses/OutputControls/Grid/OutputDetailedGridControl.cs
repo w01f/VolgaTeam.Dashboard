@@ -63,7 +63,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			get { return LocalSchedule.ViewSettings.DetailedGridViewSettings.SlideHeaderState; }
 		}
 
-		public DigitalLegend DigitalLegend
+		public Core.OnlineSchedule.DigitalLegend DigitalLegend
 		{
 			get { return LocalSchedule.ViewSettings.DetailedGridViewSettings.DigitalLegend; }
 		}
@@ -945,6 +945,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				form.RequestDefaultInfo += (o, e) =>
 				{
 					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
+					e.Editor.Tag = e.Editor.EditValue;
 				};
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (digitalLegend.ApplyForAll)

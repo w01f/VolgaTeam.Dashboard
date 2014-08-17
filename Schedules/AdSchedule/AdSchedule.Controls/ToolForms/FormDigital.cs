@@ -5,7 +5,7 @@ using DevComponents.DotNetBar.Metro;
 using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ViewInfo;
-using NewBizWiz.Core.AdSchedule;
+using NewBizWiz.Core.OnlineSchedule;
 
 namespace NewBizWiz.AdSchedule.Controls.ToolForms
 {
@@ -52,8 +52,8 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			checkEditOutputOnlyOnce.Checked = _digitalLegend.OutputOnlyOnce;
 
 
-			if (_digitalLegend.AllowEdit && !String.IsNullOrEmpty(_digitalLegend.Info))
-				memoEditManual.EditValue = _digitalLegend.Info;
+			if (_digitalLegend.AllowEdit && !String.IsNullOrEmpty(_digitalLegend.Info1))
+				memoEditManual.EditValue = _digitalLegend.Info1;
 			if (RequestDefaultInfo != null)
 			{
 				RequestDefaultInfo(this, new RequestDigitalInfoEventArgs(memoEditAuto1, true, true, false, false, false, false, false));
@@ -104,7 +104,7 @@ namespace NewBizWiz.AdSchedule.Controls.ToolForms
 			}
 			_digitalLegend.ApplyForAll = checkEditApplyAll.Checked;
 			_digitalLegend.OutputOnlyOnce = checkEditOutputOnlyOnce.Checked;
-			_digitalLegend.Info = memoEditManual.EditValue as String;
+			_digitalLegend.Info1 = memoEditManual.EditValue as String;
 		}
 
 		private void checkEditEnable_CheckedChanged(object sender, EventArgs e)

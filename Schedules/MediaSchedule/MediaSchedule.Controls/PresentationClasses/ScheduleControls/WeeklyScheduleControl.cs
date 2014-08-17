@@ -25,10 +25,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			get { return _localSchedule.WeeklySchedule; }
 		}
-		public override ButtonItem OptionsButton
-		{
-			get { return Controller.Instance.WeeklyScheduleOptions; }
-		}
 		public override ButtonItem ThemeButton
 		{
 			get { return Controller.Instance.WeeklyScheduleTheme; }

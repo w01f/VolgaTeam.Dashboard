@@ -98,7 +98,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 			WeeklySchedulePreview.Click += WeeklySchedule.Preview_Click;
 			WeeklyScheduleEmail.Click += WeeklySchedule.Email_Click;
 			WeeklyScheduleHelp.Click += WeeklySchedule.Help_Click;
-			WeeklyScheduleOptions.CheckedChanged += WeeklySchedule.Options_CheckedChaged;
 			WeeklyScheduleProgramAdd.Click += WeeklySchedule.AddProgram_Click;
 			WeeklyScheduleProgramDelete.Click += WeeklySchedule.DeleteProgram_Click;
 			WeeklyScheduleQuarterButton.CheckedChanged += WeeklySchedule.QuarterCheckedChanged;
@@ -112,7 +111,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 			MonthlySchedulePreview.Click += MonthlySchedule.Preview_Click;
 			MonthlyScheduleEmail.Click += MonthlySchedule.Email_Click;
 			MonthlyScheduleHelp.Click += MonthlySchedule.Help_Click;
-			MonthlyScheduleOptions.CheckedChanged += MonthlySchedule.Options_CheckedChaged;
 			MonthlyScheduleProgramAdd.Click += MonthlySchedule.AddProgram_Click;
 			MonthlyScheduleProgramDelete.Click += MonthlySchedule.DeleteProgram_Click;
 			MonthlyScheduleQuarterButton.CheckedChanged += MonthlySchedule.QuarterCheckedChanged;
@@ -142,7 +140,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 			#region Calendar1
 			BroadcastCalendar = new BroadcastCalendarControl();
 			Calendar1MonthsList.SelectedIndexChanged += BroadcastCalendar.MonthList_SelectedIndexChanged;
-			Calendar1SlideInfo.CheckedChanged += BroadcastCalendar.SlideInfo_CheckedChanged;
 			Calendar1Copy.Click += BroadcastCalendar.CalendarCopy_Click;
 			Calendar1Paste.Click += BroadcastCalendar.CalendarPaste_Click;
 			Calendar1Clone.Click += BroadcastCalendar.CalendarClone_Click;
@@ -157,7 +154,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 			#region Calendar2
 			CustomCalendar = new CustomCalendarControl();
 			Calendar2MonthsList.SelectedIndexChanged += CustomCalendar.MonthList_SelectedIndexChanged;
-			Calendar2SlideInfo.CheckedChanged += CustomCalendar.SlideInfo_CheckedChanged;
 			Calendar2Copy.Click += CustomCalendar.CalendarCopy_Click;
 			Calendar2Paste.Click += CustomCalendar.CalendarPaste_Click;
 			Calendar2Clone.Click += CustomCalendar.CalendarClone_Click;
@@ -197,7 +193,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 			StrategyPowerPoint.Click += Strategy.PowerPoint_Click;
 			StrategyEmail.Click += Strategy.Email_Click;
 			StrategyPreview.Click += Strategy.Preview_Click;
-			StrategyFavorites.CheckedChanged += Strategy.Favorites_ChackedChanged;
 			#endregion
 
 			#region Rate Card Events
@@ -557,7 +552,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public RibbonBar WeeklyScheduleSpecialButtons { get; set; }
 		public ButtonItem WeeklyScheduleProgramAdd { get; set; }
 		public ButtonItem WeeklyScheduleProgramDelete { get; set; }
-		public ButtonItem WeeklyScheduleOptions { get; set; }
 		public ButtonItem WeeklySchedulePreview { get; set; }
 		public ButtonItem WeeklySchedulePowerPoint { get; set; }
 		public ButtonItem WeeklyScheduleEmail { get; set; }
@@ -573,7 +567,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public RibbonBar MonthlyScheduleSpecialButtons { get; set; }
 		public ButtonItem MonthlyScheduleProgramAdd { get; set; }
 		public ButtonItem MonthlyScheduleProgramDelete { get; set; }
-		public ButtonItem MonthlyScheduleOptions { get; set; }
 		public ButtonItem MonthlySchedulePreview { get; set; }
 		public ButtonItem MonthlySchedulePowerPoint { get; set; }
 		public ButtonItem MonthlyScheduleEmail { get; set; }
@@ -611,7 +604,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#region Calendar 1
 		public RibbonBar Calendar1SpecialButtons { get; set; }
 		public ImageListBoxControl Calendar1MonthsList { get; set; }
-		public ButtonItem Calendar1SlideInfo { get; set; }
 		public ButtonItem Calendar1Copy { get; set; }
 		public ButtonItem Calendar1Paste { get; set; }
 		public ButtonItem Calendar1Clone { get; set; }
@@ -626,7 +618,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 		#region Calendar 2
 		public RibbonBar Calendar2SpecialButtons { get; set; }
 		public ImageListBoxControl Calendar2MonthsList { get; set; }
-		public ButtonItem Calendar2SlideInfo { get; set; }
 		public ButtonItem Calendar2Copy { get; set; }
 		public ButtonItem Calendar2Paste { get; set; }
 		public ButtonItem Calendar2Clone { get; set; }
@@ -673,7 +664,6 @@ namespace NewBizWiz.MediaSchedule.Controls
 		public ButtonItem StrategyEmail { get; set; }
 		public ButtonItem StrategyPowerPoint { get; set; }
 		public ButtonItem StrategyTheme { get; set; }
-		public ButtonItem StrategyFavorites { get; set; }
 		public CheckEdit StrategyShowStationToggle { get; set; }
 		public CheckEdit StrategyShowDescriptionToggle { get; set; }
 		#endregion

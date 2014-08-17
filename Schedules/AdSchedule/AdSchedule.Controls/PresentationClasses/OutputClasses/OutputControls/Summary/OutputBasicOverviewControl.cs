@@ -167,6 +167,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				form.RequestDefaultInfo += (o, e) =>
 				{
 					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
+					e.Editor.Tag = e.Editor.EditValue;
 				};
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (digitalLegend.ApplyForAll)

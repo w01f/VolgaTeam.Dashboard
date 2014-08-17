@@ -42,7 +42,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 				if (SettingsNotSaved || (SelectedView != null && SelectedView.SettingsNotSaved) || SlideInfo.SettingsNotSaved)
 				{
 					SaveCalendarData(false);
-					SlideInfo.Close(false);
 					result = true;
 				}
 				else
@@ -276,23 +275,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			SelectedView.ChangeMonth(CalendarData.Months[MonthList.SelectedIndex].Date);
 			Splash(false);
 			CalendarSettings.SelectedMonth = CalendarData.Months[MonthList.SelectedIndex].Date;
-		}
-
-		public void SlideInfo_CheckedChanged(object sender, EventArgs e)
-		{
-			if (!AllowToSave) return;
-			if (SlideInfoButton.Checked)
-			{
-				Splash(true);
-				SlideInfo.Show();
-				Splash(false);
-			}
-			else
-			{
-				Splash(true);
-				SlideInfo.Close();
-				Splash(false);
-			}
 		}
 
 		public void Save_Click(object sender, EventArgs e)

@@ -53,11 +53,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			get { return Controller.Instance.CalendarVisualizer.MonthsListBoxControl; }
 		}
 
-		public override ButtonItem SlideInfoButton
-		{
-			get { return Controller.Instance.CalendarVisualizer.SlideInfoButtonItem; }
-		}
-
 		public override ButtonItem PreviewButton
 		{
 			get { return Controller.Instance.CalendarVisualizer.PreviewButtonItem; }

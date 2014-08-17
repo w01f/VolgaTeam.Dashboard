@@ -31,22 +31,10 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalendarSlideInfoControl));
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
 			this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPageComments = new DevExpress.XtraTab.XtraTabPage();
 			this.pnComment = new System.Windows.Forms.Panel();
 			this.memoEditComment = new DevExpress.XtraEditors.MemoEdit();
-			this.barManager = new DevExpress.XtraBars.BarManager();
-			this.barToolbar = new DevExpress.XtraBars.Bar();
-			this.barLargeButtonItemHelp = new DevExpress.XtraBars.BarLargeButtonItem();
-			this.barLargeButtonItemClose = new DevExpress.XtraBars.BarLargeButtonItem();
-			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.styleController = new DevExpress.XtraEditors.StyleController();
 			this.laCommentMonth = new System.Windows.Forms.Label();
 			this.checkEditCommentApplyForAll = new DevExpress.XtraEditors.CheckEdit();
@@ -80,7 +68,6 @@
 			this.xtraTabPageComments.SuspendLayout();
 			this.pnComment.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.memoEditComment.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditCommentApplyForAll.Properties)).BeginInit();
 			this.xtraTabPageStyle.SuspendLayout();
@@ -114,11 +101,11 @@
 			this.xtraTabControl.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
 			this.xtraTabControl.AppearancePage.PageClient.Options.UseFont = true;
 			this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.xtraTabControl.Location = new System.Drawing.Point(0, 44);
+			this.xtraTabControl.Location = new System.Drawing.Point(0, 0);
 			this.xtraTabControl.MultiLine = DevExpress.Utils.DefaultBoolean.True;
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageComments;
-			this.xtraTabControl.Size = new System.Drawing.Size(300, 445);
+			this.xtraTabControl.Size = new System.Drawing.Size(304, 493);
 			this.xtraTabControl.TabIndex = 10;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageComments,
@@ -131,7 +118,7 @@
 			// 
 			this.xtraTabPageComments.Controls.Add(this.pnComment);
 			this.xtraTabPageComments.Name = "xtraTabPageComments";
-			this.xtraTabPageComments.Size = new System.Drawing.Size(298, 417);
+			this.xtraTabPageComments.Size = new System.Drawing.Size(302, 465);
 			this.xtraTabPageComments.Text = "Comments";
 			// 
 			// pnComment
@@ -144,7 +131,7 @@
 			this.pnComment.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnComment.Location = new System.Drawing.Point(0, 0);
 			this.pnComment.Name = "pnComment";
-			this.pnComment.Size = new System.Drawing.Size(298, 417);
+			this.pnComment.Size = new System.Drawing.Size(302, 465);
 			this.pnComment.TabIndex = 0;
 			// 
 			// memoEditComment
@@ -154,97 +141,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.memoEditComment.Enabled = false;
 			this.memoEditComment.Location = new System.Drawing.Point(14, 94);
-			this.memoEditComment.MenuManager = this.barManager;
 			this.memoEditComment.Name = "memoEditComment";
-			this.memoEditComment.Size = new System.Drawing.Size(271, 265);
+			this.memoEditComment.Size = new System.Drawing.Size(275, 313);
 			this.memoEditComment.StyleController = this.styleController;
 			this.memoEditComment.TabIndex = 10;
 			this.memoEditComment.UseOptimizedRendering = true;
-			// 
-			// barManager
-			// 
-			this.barManager.AllowCustomization = false;
-			this.barManager.AllowMoveBarOnToolbar = false;
-			this.barManager.AllowQuickCustomization = false;
-			this.barManager.AllowShowToolbarsPopup = false;
-			this.barManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.barToolbar});
-			this.barManager.DockControls.Add(this.barDockControlTop);
-			this.barManager.DockControls.Add(this.barDockControlBottom);
-			this.barManager.DockControls.Add(this.barDockControlLeft);
-			this.barManager.DockControls.Add(this.barDockControlRight);
-			this.barManager.Form = this;
-			this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barLargeButtonItemClose,
-            this.barLargeButtonItemHelp});
-			this.barManager.MaxItemId = 11;
-			// 
-			// barToolbar
-			// 
-			this.barToolbar.BarName = "Toolbar";
-			this.barToolbar.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Top;
-			this.barToolbar.DockCol = 0;
-			this.barToolbar.DockRow = 0;
-			this.barToolbar.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-			this.barToolbar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemHelp),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barLargeButtonItemClose)});
-			this.barToolbar.OptionsBar.AllowQuickCustomization = false;
-			this.barToolbar.OptionsBar.DrawDragBorder = false;
-			this.barToolbar.OptionsBar.UseWholeRow = true;
-			this.barToolbar.Text = "Toolbar";
-			// 
-			// barLargeButtonItemHelp
-			// 
-			this.barLargeButtonItemHelp.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
-			this.barLargeButtonItemHelp.Caption = "Help";
-			this.barLargeButtonItemHelp.Glyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItemHelp.Glyph")));
-			this.barLargeButtonItemHelp.Id = 10;
-			this.barLargeButtonItemHelp.Name = "barLargeButtonItemHelp";
-			toolTipItem1.Text = "Help";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.barLargeButtonItemHelp.SuperTip = superToolTip1;
-			this.barLargeButtonItemHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemHelp_ItemClick);
-			// 
-			// barLargeButtonItemClose
-			// 
-			this.barLargeButtonItemClose.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-			this.barLargeButtonItemClose.Caption = "Close";
-			this.barLargeButtonItemClose.Glyph = ((System.Drawing.Image)(resources.GetObject("barLargeButtonItemClose.Glyph")));
-			this.barLargeButtonItemClose.Id = 9;
-			this.barLargeButtonItemClose.Name = "barLargeButtonItemClose";
-			toolTipItem2.Text = "Exit";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.barLargeButtonItemClose.SuperTip = superToolTip2;
-			this.barLargeButtonItemClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barLargeButtonItemClose_ItemClick);
-			// 
-			// barDockControlTop
-			// 
-			this.barDockControlTop.CausesValidation = false;
-			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-			this.barDockControlTop.Size = new System.Drawing.Size(300, 44);
-			// 
-			// barDockControlBottom
-			// 
-			this.barDockControlBottom.CausesValidation = false;
-			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.barDockControlBottom.Location = new System.Drawing.Point(0, 521);
-			this.barDockControlBottom.Size = new System.Drawing.Size(300, 0);
-			// 
-			// barDockControlLeft
-			// 
-			this.barDockControlLeft.CausesValidation = false;
-			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 44);
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 477);
-			// 
-			// barDockControlRight
-			// 
-			this.barDockControlRight.CausesValidation = false;
-			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.barDockControlRight.Location = new System.Drawing.Point(300, 44);
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 477);
 			// 
 			// styleController
 			// 
@@ -267,7 +168,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.laCommentMonth.Location = new System.Drawing.Point(14, 70);
 			this.laCommentMonth.Name = "laCommentMonth";
-			this.laCommentMonth.Size = new System.Drawing.Size(271, 21);
+			this.laCommentMonth.Size = new System.Drawing.Size(275, 21);
 			this.laCommentMonth.TabIndex = 9;
 			this.laCommentMonth.Text = "label1";
 			// 
@@ -275,12 +176,12 @@
 			// 
 			this.checkEditCommentApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditCommentApplyForAll.Location = new System.Drawing.Point(12, 376);
+			this.checkEditCommentApplyForAll.Location = new System.Drawing.Point(12, 424);
 			this.checkEditCommentApplyForAll.Name = "checkEditCommentApplyForAll";
 			this.checkEditCommentApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditCommentApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditCommentApplyForAll.Properties.Caption = "Show this Comment on all calendar slides";
-			this.checkEditCommentApplyForAll.Size = new System.Drawing.Size(273, 19);
+			this.checkEditCommentApplyForAll.Size = new System.Drawing.Size(277, 20);
 			this.checkEditCommentApplyForAll.StyleController = this.styleController;
 			this.checkEditCommentApplyForAll.TabIndex = 8;
 			// 
@@ -293,7 +194,7 @@
 			this.buttonXComment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXComment.Location = new System.Drawing.Point(14, 18);
 			this.buttonXComment.Name = "buttonXComment";
-			this.buttonXComment.Size = new System.Drawing.Size(271, 29);
+			this.buttonXComment.Size = new System.Drawing.Size(275, 29);
 			this.buttonXComment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXComment.TabIndex = 0;
 			this.buttonXComment.Text = "Add a Comment to this slide";
@@ -304,7 +205,7 @@
 			// 
 			this.xtraTabPageStyle.Controls.Add(this.pnStyleTop);
 			this.xtraTabPageStyle.Name = "xtraTabPageStyle";
-			this.xtraTabPageStyle.Size = new System.Drawing.Size(298, 417);
+			this.xtraTabPageStyle.Size = new System.Drawing.Size(298, 461);
 			this.xtraTabPageStyle.Text = "Style";
 			// 
 			// pnStyleTop
@@ -322,7 +223,7 @@
 			this.pnStyleTop.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnStyleTop.Location = new System.Drawing.Point(0, 0);
 			this.pnStyleTop.Name = "pnStyleTop";
-			this.pnStyleTop.Size = new System.Drawing.Size(298, 417);
+			this.pnStyleTop.Size = new System.Drawing.Size(298, 461);
 			this.pnStyleTop.TabIndex = 12;
 			// 
 			// checkEditStyleBigDate
@@ -462,7 +363,7 @@
 			// 
 			this.xtraTabPageLogo.Controls.Add(this.pnLogoTop);
 			this.xtraTabPageLogo.Name = "xtraTabPageLogo";
-			this.xtraTabPageLogo.Size = new System.Drawing.Size(298, 417);
+			this.xtraTabPageLogo.Size = new System.Drawing.Size(298, 461);
 			this.xtraTabPageLogo.Text = "Logo";
 			// 
 			// pnLogoTop
@@ -474,7 +375,7 @@
 			this.pnLogoTop.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnLogoTop.Location = new System.Drawing.Point(0, 0);
 			this.pnLogoTop.Name = "pnLogoTop";
-			this.pnLogoTop.Size = new System.Drawing.Size(298, 417);
+			this.pnLogoTop.Size = new System.Drawing.Size(298, 461);
 			this.pnLogoTop.TabIndex = 0;
 			// 
 			// gridControlLogoGallery
@@ -488,7 +389,7 @@
 			this.gridControlLogoGallery.Name = "gridControlLogoGallery";
 			this.gridControlLogoGallery.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit});
-			this.gridControlLogoGallery.Size = new System.Drawing.Size(298, 317);
+			this.gridControlLogoGallery.Size = new System.Drawing.Size(298, 361);
 			this.gridControlLogoGallery.TabIndex = 37;
 			this.gridControlLogoGallery.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.layoutViewLogoGallery});
@@ -612,7 +513,7 @@
 			// checkEditLogoApplyForAll
 			// 
 			this.checkEditLogoApplyForAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditLogoApplyForAll.Location = new System.Drawing.Point(12, 372);
+			this.checkEditLogoApplyForAll.Location = new System.Drawing.Point(12, 414);
 			this.checkEditLogoApplyForAll.Name = "checkEditLogoApplyForAll";
 			this.checkEditLogoApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditLogoApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -626,7 +527,7 @@
 			// 
 			this.xtraTabPageFavorites.Controls.Add(this.favoriteImagesControl);
 			this.xtraTabPageFavorites.Name = "xtraTabPageFavorites";
-			this.xtraTabPageFavorites.Size = new System.Drawing.Size(298, 417);
+			this.xtraTabPageFavorites.Size = new System.Drawing.Size(298, 461);
 			this.xtraTabPageFavorites.Text = "Favorites";
 			// 
 			// favoriteImagesControl
@@ -636,14 +537,14 @@
 			this.favoriteImagesControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.favoriteImagesControl.Location = new System.Drawing.Point(0, 0);
 			this.favoriteImagesControl.Name = "favoriteImagesControl";
-			this.favoriteImagesControl.Size = new System.Drawing.Size(298, 417);
+			this.favoriteImagesControl.Size = new System.Drawing.Size(298, 461);
 			this.favoriteImagesControl.TabIndex = 0;
 			// 
 			// hyperLinkEditReset
 			// 
 			this.hyperLinkEditReset.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.hyperLinkEditReset.EditValue = "Reset Calendar Schedule";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(0, 489);
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(0, 493);
 			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
 			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -655,10 +556,10 @@
 			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 			this.hyperLinkEditReset.Properties.AutoHeight = false;
 			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-			this.hyperLinkEditReset.Size = new System.Drawing.Size(300, 32);
-			toolTipItem3.Text = "Reset original default data";
-			superToolTip3.Items.Add(toolTipItem3);
-			this.hyperLinkEditReset.SuperTip = superToolTip3;
+			this.hyperLinkEditReset.Size = new System.Drawing.Size(304, 32);
+			toolTipItem1.Text = "Reset original default data";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditReset.SuperTip = superToolTip1;
 			this.hyperLinkEditReset.TabIndex = 105;
 			this.hyperLinkEditReset.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEditReset_OpenLink);
 			// 
@@ -666,22 +567,16 @@
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.Controls.Add(this.xtraTabControl);
 			this.Controls.Add(this.hyperLinkEditReset);
-			this.Controls.Add(this.barDockControlLeft);
-			this.Controls.Add(this.barDockControlRight);
-			this.Controls.Add(this.barDockControlBottom);
-			this.Controls.Add(this.barDockControlTop);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "CalendarSlideInfoControl";
-			this.Size = new System.Drawing.Size(300, 521);
+			this.Size = new System.Drawing.Size(304, 525);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			this.xtraTabControl.ResumeLayout(false);
 			this.xtraTabPageComments.ResumeLayout(false);
 			this.pnComment.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.memoEditComment.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditCommentApplyForAll.Properties)).EndInit();
 			this.xtraTabPageStyle.ResumeLayout(false);
@@ -717,16 +612,8 @@
         private DevComponents.DotNetBar.ButtonX buttonXThemeColorGreen;
 		private DevComponents.DotNetBar.ButtonX buttonXThemeColorOrange;
 		private DevExpress.XtraTab.XtraTabControl xtraTabControl;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPageStyle;
-        private DevExpress.XtraBars.BarManager barManager;
-        private DevExpress.XtraBars.BarDockControl barDockControlTop;
-        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-        private DevExpress.XtraBars.BarDockControl barDockControlRight;
-		private DevExpress.XtraBars.Bar barToolbar;
-        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemClose;
-        private System.Windows.Forms.Label laThemeColor;
-		private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItemHelp;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageStyle;
+		private System.Windows.Forms.Label laThemeColor;
 		private DevExpress.XtraTab.XtraTabPage xtraTabPageLogo;
 		private System.Windows.Forms.Panel pnLogoTop;
 		private DevExpress.XtraGrid.GridControl gridControlLogoGallery;

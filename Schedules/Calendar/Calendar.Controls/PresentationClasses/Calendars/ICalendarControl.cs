@@ -17,7 +17,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		CalendarSettings CalendarSettings { get; }
 		IView SelectedView { get; }
 		SlideInfoWrapper SlideInfo { get; }
-		ButtonItem SlideInfoButton { get; }
 		ButtonItem CopyButton { get; }
 		ButtonItem PasteButton { get; }
 		ButtonItem CloneButton { get; }

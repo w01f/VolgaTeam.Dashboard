@@ -101,7 +101,6 @@
     <Compile Include="Interop\ShellLink.cs" />
     <Compile Include="Common\TabPageManager.cs" />
     <Compile Include="AdSchedule\ListManager.cs" />
-    <Compile Include="AdSchedule\RequestDigitalInfoEventArgs.cs" />
     <Compile Include="AdSchedule\ScheduleManager.cs" />
     <Compile Include="AdSchedule\SettingsManager.cs" />
     <Compile Include="AdSchedule\ViewSettings.cs" />
@@ -133,6 +132,7 @@
     <Compile Include="MediaSchedule\ScheduleSaveEventArgs.cs" />
     <Compile Include="MediaSchedule\SettingsManager.cs" />
     <Compile Include="OnlineSchedule\Activities.cs" />
+    <Compile Include="OnlineSchedule\DigitalLegend.cs" />
     <Compile Include="OnlineSchedule\ListManager.cs" />
     <Compile Include="OnlineSchedule\ProductInfo.cs" />
     <Compile Include="OnlineSchedule\ScheduleManager.cs" />

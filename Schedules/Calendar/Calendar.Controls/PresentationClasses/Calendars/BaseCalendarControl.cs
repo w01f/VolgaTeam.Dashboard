@@ -83,7 +83,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		{
 			if (SettingsNotSaved || (SelectedView != null && SelectedView.SettingsNotSaved) || SlideInfo.SettingsNotSaved)
 				SaveCalendarData(false);
-			SlideInfo.Close(false);
 		}
 
 		public void ShowCalendar(bool gridView)
@@ -153,24 +152,10 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 
 		protected void InitSlideInfo<TControl>() where TControl : ISlideInfoControl
 		{
-			SlideInfo = new SlideInfoWrapper(this, dockPanelSlideInfo);
+			SlideInfo = new SlideInfoWrapper(this, retractableBarControl);
 			SlideInfo.InitControl<TControl>();
 			AssignCloseActiveEditorsonOutSideClick(SlideInfo.ContainedControl);
-			dockPanelSlideInfo.Controls.Add(SlideInfo.ContainedControl);
-			SlideInfo.Shown += (sender, e) =>
-			{
-				bool temp = AllowToSave;
-				AllowToSave = false;
-				SlideInfoButton.Checked = true;
-				AllowToSave = temp;
-			};
-			SlideInfo.Closed += (sender, e) =>
-			{
-				var temp = AllowToSave;
-				AllowToSave = false;
-				SlideInfoButton.Checked = false;
-				AllowToSave = temp;
-			};
+			retractableBarControl.Content.Controls.Add(SlideInfo.ContainedControl);
 			SlideInfo.PropertyChanged += (sender, e) =>
 			{
 				MonthView.RefreshData();
@@ -285,14 +270,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		}
 		#endregion
 
-		#region Common Event Handlers
-		private void dockManager_Sizing(object sender, SizingEventArgs e)
-		{
-			if ((e.Panel.Name.Equals("dockPanelDayProperties") || e.Panel.Name.Equals("dockPanelSlideInfo")) && (e.NewSize.Width < 300 || e.NewSize.Height < 650))
-				e.Cancel = true;
-		}
-		#endregion
-
 		public MonthViewControl MonthView { get; private set; }
 		public GridViewControl GridView { get; private set; }
 
@@ -331,11 +308,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		}
 
 		public virtual ImageListBoxControl MonthList
-		{
-			get { return null; }
-		}
-
-		public virtual ButtonItem SlideInfoButton
 		{
 			get { return null; }
 		}

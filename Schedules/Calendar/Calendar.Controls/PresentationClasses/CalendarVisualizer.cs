@@ -16,7 +16,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 		public ImageListBoxControl MonthsListBoxControl { get; set; }
 		public ButtonItem MonthViewButtonItem { get; set; }
 		public ButtonItem GridViewButtonItem { get; set; }
-		public ButtonItem SlideInfoButtonItem { get; set; }
 		public ButtonItem CopyButtonItem { get; set; }
 		public ButtonItem PasteButtonItem { get; set; }
 		public ButtonItem CloneButtonItem { get; set; }
@@ -50,7 +49,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 			if (gridView)
 			{
 				MonthsListBoxControl = Controller.Instance.GridMonthsList;
-				SlideInfoButtonItem = Controller.Instance.GridSlideInfo;
 				CopyButtonItem = Controller.Instance.GridCopy;
 				PasteButtonItem = Controller.Instance.GridPaste;
 				CloneButtonItem = Controller.Instance.GridClone;
@@ -61,7 +59,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 			else
 			{
 				MonthsListBoxControl = Controller.Instance.CalendarMonthsList;
-				SlideInfoButtonItem = Controller.Instance.CalendarSlideInfo;
 				CopyButtonItem = Controller.Instance.CalendarCopy;
 				PasteButtonItem = Controller.Instance.CalendarPaste;
 				CloneButtonItem = Controller.Instance.CalendarClone;
@@ -104,25 +101,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 				SelectedCalendarControl.SelectedView.ChangeMonth(SelectedCalendarControl.CalendarData.Months[MonthsListBoxControl.SelectedIndex].Date);
 				SelectedCalendarControl.Splash(false);
 				SelectedCalendarControl.CalendarSettings.SelectedMonth = SelectedCalendarControl.CalendarData.Months[MonthsListBoxControl.SelectedIndex].Date;
-			}
-		}
-
-		public void buttonItemCalendarSlideInfo_CheckedChanged(object sender, EventArgs e)
-		{
-			if (SelectedCalendarControl.AllowToSave)
-			{
-				if (SlideInfoButtonItem.Checked)
-				{
-					SelectedCalendarControl.Splash(true);
-					SelectedCalendarControl.SlideInfo.Show();
-					SelectedCalendarControl.Splash(false);
-				}
-				else
-				{
-					SelectedCalendarControl.Splash(true);
-					SelectedCalendarControl.SlideInfo.Close();
-					SelectedCalendarControl.Splash(false);
-				}
 			}
 		}
 

@@ -57,7 +57,6 @@ namespace NewBizWiz.Calendar.Single
 			#region Calendar
 			Controller.Instance.CalendarSpecialButtons = ribbonBarCalendarSpecialButtons;
 			Controller.Instance.CalendarMonthsList = listBoxControlCalendar;
-			Controller.Instance.CalendarSlideInfo = buttonItemCalendarSlideInfo;
 			Controller.Instance.CalendarCopy = buttonItemCalendarCopy;
 			Controller.Instance.CalendarPaste = buttonItemCalendarPaste;
 			Controller.Instance.CalendarClone = buttonItemCalendarClone;
@@ -72,7 +71,6 @@ namespace NewBizWiz.Calendar.Single
 			#region Grid
 			Controller.Instance.GridSpecialButtons = ribbonBarGridSpecialButtons;
 			Controller.Instance.GridMonthsList = listBoxControlGrid;
-			Controller.Instance.GridSlideInfo = buttonItemGridSlideInfo;
 			Controller.Instance.GridCopy = buttonItemGridCopy;
 			Controller.Instance.GridPaste = buttonItemGridPaste;
 			Controller.Instance.GridClone = buttonItemGridClone;

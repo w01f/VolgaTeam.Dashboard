@@ -76,7 +76,6 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.WeeklyScheduleEmail = buttonItemWeeklyScheduleEmail;
 			Controller.Instance.WeeklySchedulePowerPoint = buttonItemWeeklySchedulePowerPoint;
 			Controller.Instance.WeeklyScheduleTheme = buttonItemWeeklyScheduleTheme;
-			Controller.Instance.WeeklyScheduleOptions = buttonItemWeeklyScheduleSettings;
 			Controller.Instance.WeeklyScheduleProgramAdd = buttonItemWeeklyScheduleProgramAdd;
 			Controller.Instance.WeeklyScheduleProgramDelete = buttonItemWeeklyScheduleProgramDelete;
 			Controller.Instance.WeeklyScheduleQuarterBar = ribbonBarWeeklyScheduleQuarter;
@@ -92,7 +91,6 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.MonthlyScheduleEmail = buttonItemMonthlyScheduleEmail;
 			Controller.Instance.MonthlySchedulePowerPoint = buttonItemMonthlySchedulePowerPoint;
 			Controller.Instance.MonthlyScheduleTheme = buttonItemMonthlyScheduleTheme;
-			Controller.Instance.MonthlyScheduleOptions = buttonItemMonthlyScheduleSettings;
 			Controller.Instance.MonthlyScheduleProgramAdd = buttonItemMonthlyScheduleProgramAdd;
 			Controller.Instance.MonthlyScheduleProgramDelete = buttonItemMonthlyScheduleProgramDelete;
 			Controller.Instance.MonthlyScheduleQuarterBar = ribbonBarWeeklyScheduleQuarter;
@@ -125,7 +123,6 @@ namespace NewBizWiz.MediaSchedule.Single
 			#region Calendar 1
 			Controller.Instance.Calendar1SpecialButtons = ribbonBarCalendar1SpecialButtons;
 			Controller.Instance.Calendar1MonthsList = listBoxControlCalendar1;
-			Controller.Instance.Calendar1SlideInfo = buttonItemCalendar1SlideInfo;
 			Controller.Instance.Calendar1Copy = buttonItemCalendar1Copy;
 			Controller.Instance.Calendar1Paste = buttonItemCalendar1Paste;
 			Controller.Instance.Calendar1Clone = buttonItemCalendar1Clone;
@@ -140,7 +137,6 @@ namespace NewBizWiz.MediaSchedule.Single
 			#region Calendar 2
 			Controller.Instance.Calendar2SpecialButtons = ribbonBarCalendar2SpecialButtons;
 			Controller.Instance.Calendar2MonthsList = listBoxControlCalendar2;
-			Controller.Instance.Calendar2SlideInfo = buttonItemCalendar2SlideInfo;
 			Controller.Instance.Calendar2Copy = buttonItemCalendar2Copy;
 			Controller.Instance.Calendar2Paste = buttonItemCalendar2Paste;
 			Controller.Instance.Calendar2Clone = buttonItemCalendar2Clone;
@@ -187,7 +183,6 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.StrategyEmail = buttonItemStrategyEmail;
 			Controller.Instance.StrategyPowerPoint = buttonItemStrategyPowerPoint;
 			Controller.Instance.StrategyTheme = buttonItemStrategyTheme;
-			Controller.Instance.StrategyFavorites = buttonItemStrategyFavorites;
 			Controller.Instance.StrategyShowStationToggle = checkEditStrategyShowStation;
 			Controller.Instance.StrategyShowDescriptionToggle = checkEditStrategyShowDescription;
 			#endregion

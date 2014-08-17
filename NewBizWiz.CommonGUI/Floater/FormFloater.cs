@@ -2,11 +2,11 @@
 using System.Drawing;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using DevComponents.DotNetBar.Metro;
+using NewBizWiz.Core.Interop;
 
 namespace NewBizWiz.CommonGUI.Floater
 {
-	public partial class FormFloater : MetroForm
+	public partial class FormFloater : Form
 	{
 		public FormFloater(int x, int y, Image logo, string text)
 		{
@@ -14,7 +14,7 @@ namespace NewBizWiz.CommonGUI.Floater
 			Top = y;
 			Left = x - Width;
 			buttonXBack.Image = logo;
-			Text = String.IsNullOrEmpty(text) ? "GO GET YOUR BIZ!" : text;
+			labelCaption.Text = String.IsNullOrEmpty(text) ? "GO GET YOUR BIZ!" : text;
 			superTooltip.SetSuperTooltip(buttonXBack, new SuperTooltipInfo("Restore", "", String.Format("Restore {0} Application", String.IsNullOrEmpty(text) ? "adSALESapps Dashboard" : text), null, null, eTooltipColor.Gray));
 		}
 
@@ -28,10 +28,11 @@ namespace NewBizWiz.CommonGUI.Floater
 			DialogResult = DialogResult.Yes;
 		}
 
-		private void FormFloater_Shown(object sender, EventArgs e)
+		private void labelCaption_MouseDown(object sender, MouseEventArgs e)
 		{
-			ControlBox = false;
-			Size = new Size(345, 144);
+			if (e.Button != MouseButtons.Left) return;
+			WinAPIHelper.ReleaseCapture();
+			WinAPIHelper.SendMessage(Handle, WinAPIHelper.WM_NCLBUTTONDOWN, WinAPIHelper.HTCAPTION, IntPtr.Zero);
 		}
 	}
 }

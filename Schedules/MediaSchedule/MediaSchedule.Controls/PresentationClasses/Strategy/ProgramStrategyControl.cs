@@ -52,6 +52,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			});
 			Controller.Instance.StrategyShowStationToggle.CheckStateChanged += UpdateRows;
 			Controller.Instance.StrategyShowDescriptionToggle.CheckStateChanged += UpdateRows;
+			retractableBarRight.StateChanged += Favorites_StateChanged;
 		}
 
 		#region Methods
@@ -79,7 +80,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			SetDataSource();
 			if (!quickLoad)
 			{
-				Controller.Instance.StrategyFavorites.Checked = _localSchedule.ProgramStrategy.ShowFavorites;
+				if (_localSchedule.ProgramStrategy.ShowFavorites)
+					retractableBarRight.Expand(true);
+				else
+					retractableBarRight.Collapse(true);
 				Controller.Instance.StrategyShowStationToggle.Checked = _localSchedule.ProgramStrategy.ShowStation;
 				Controller.Instance.StrategyShowDescriptionToggle.Checked = _localSchedule.ProgramStrategy.ShowDescription;
 			}
@@ -156,11 +160,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			}
 		}
 
-		public void Favorites_ChackedChanged(object sender, EventArgs e)
+		private void Favorites_StateChanged(object sender, CommonGUI.RetractableBar.StateChangedEventArgs e)
 		{
-			splitContainerControl.PanelVisibility = Controller.Instance.StrategyFavorites.Checked ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel1;
 			if (!_allowToSave) return;
-			_localSchedule.ProgramStrategy.ShowFavorites = Controller.Instance.StrategyFavorites.Checked;
+			_localSchedule.ProgramStrategy.ShowFavorites = e.Expaned;
 			SettingsNotSaved = true;
 		}
 

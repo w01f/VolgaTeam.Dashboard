@@ -66,6 +66,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
@@ -165,6 +166,24 @@
       <DependentUpon>WordViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\LicenseHelper.cs" />
+    <Compile Include="RetractableBar\RetractableBarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RetractableBar\RetractableBarControl.Designer.cs">
+      <DependentUpon>RetractableBarControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RetractableBar\RetractableBarLeft.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RetractableBar\RetractableBarLeft.Designer.cs">
+      <DependentUpon>RetractableBarLeft.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RetractableBar\RetractableBarRight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RetractableBar\RetractableBarRight.Designer.cs">
+      <DependentUpon>RetractableBarRight.cs</DependentUpon>
+    </Compile>
     <Compile Include="Slides\FormSlideSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +299,7 @@
     <EmbeddedResource Include="Preview\PreviewGroupControl.resx">
       <DependentUpon>PreviewGroupControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -304,6 +324,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RateCard\WordViewer.resx">
       <DependentUpon>WordViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetractableBar\RetractableBarControl.resx">
+      <DependentUpon>RetractableBarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetractableBar\RetractableBarLeft.resx">
+      <DependentUpon>RetractableBarLeft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetractableBar\RetractableBarRight.resx">
+      <DependentUpon>RetractableBarRight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Slides\FormSlideSelector.resx">
       <DependentUpon>FormSlideSelector.cs</DependentUpon>
@@ -478,7 +507,15 @@
   <ItemGroup>
     <None Include="Resources\UpArrow.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\RetractableBarExpand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RetractableBarLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RetractableBarCollapse.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

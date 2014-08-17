@@ -91,6 +91,7 @@ namespace NewBizWiz.CommonGUI.Preview
 		{
 			try
 			{
+				pictureBoxPreview.Image = null;
 				foreach (var image in _previewImages)
 					image.Dispose();
 				_previewImages.Clear();

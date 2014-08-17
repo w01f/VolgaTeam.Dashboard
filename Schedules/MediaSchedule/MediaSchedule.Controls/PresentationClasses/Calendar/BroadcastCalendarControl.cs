@@ -18,11 +18,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			get { return Controller.Instance.Calendar1MonthsList; }
 		}
 
-		public override ButtonItem SlideInfoButton
-		{
-			get { return Controller.Instance.Calendar1SlideInfo; }
-		}
-
 		public override ButtonItem PreviewButton
 		{
 			get { return Controller.Instance.Calendar1Preview; }
@@ -72,11 +67,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			var schedueSection = _localSchedule.SelectedSpotType == SpotType.Week ? (ScheduleSection)_localSchedule.WeeklySchedule : _localSchedule.MonthlySchedule;
 			var enable = schedueSection.Programs.Any();
 			MonthList.Enabled = enable;
-			SlideInfoButton.Enabled = enable;
 			pnTop.Visible = enable;
 			pnMain.Visible = enable;
-			if (!enable)
-				SlideInfo.Close();
 			pictureBoxNoData.Image = Properties.Resources.CalendarDisabled;
 			pictureBoxNoData.Visible = !enable;
 			pictureBoxNoData.BringToFront();

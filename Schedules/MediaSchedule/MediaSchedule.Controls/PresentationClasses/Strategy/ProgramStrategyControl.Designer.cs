@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgramStrategyControl));
 			this.gridControlItems = new DevExpress.XtraGrid.GridControl();
 			this.persistentRepository = new DevExpress.XtraEditors.Repository.PersistentRepository();
 			this.repositoryItemCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -43,40 +43,24 @@
 			this.bandedGridColumnItemsDescription = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.favoriteImagesControl = new NewBizWiz.CommonGUI.FavoriteImages.FavoriteImagesControl();
-			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
-			this.splitContainerControl.SuspendLayout();
+			this.retractableBarRight = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarRight();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+			this.retractableBarRight.Content.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// splitContainerControl
-			// 
-			this.splitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainerControl.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2;
-			this.splitContainerControl.Location = new System.Drawing.Point(0, 0);
-			this.splitContainerControl.Name = "splitContainerControl";
-			this.splitContainerControl.Panel1.Controls.Add(this.gridControlItems);
-			this.splitContainerControl.Panel1.Text = "Panel1";
-			this.splitContainerControl.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-			this.splitContainerControl.Panel2.Controls.Add(this.favoriteImagesControl);
-			this.splitContainerControl.Panel2.MinSize = 300;
-			this.splitContainerControl.Panel2.Text = "Panel2";
-			this.splitContainerControl.Size = new System.Drawing.Size(835, 623);
-			this.splitContainerControl.SplitterPosition = 300;
-			this.splitContainerControl.TabIndex = 0;
-			this.splitContainerControl.Text = "splitContainerControl1";
 			// 
 			// gridControlItems
 			// 
+			this.gridControlItems.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControlItems.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridControlItems.ExternalRepository = this.persistentRepository;
 			this.gridControlItems.Location = new System.Drawing.Point(0, 0);
 			this.gridControlItems.MainView = this.advBandedGridViewItems;
 			this.gridControlItems.Name = "gridControlItems";
-			this.gridControlItems.Size = new System.Drawing.Size(523, 623);
+			this.gridControlItems.Size = new System.Drawing.Size(476, 623);
 			this.gridControlItems.TabIndex = 0;
 			this.gridControlItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridViewItems,
@@ -248,30 +232,52 @@
 			this.favoriteImagesControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.favoriteImagesControl.Location = new System.Drawing.Point(0, 0);
 			this.favoriteImagesControl.Name = "favoriteImagesControl";
-			this.favoriteImagesControl.Size = new System.Drawing.Size(296, 619);
+			this.favoriteImagesControl.Size = new System.Drawing.Size(355, 579);
 			this.favoriteImagesControl.TabIndex = 0;
+			// 
+			// retractableBarRight
+			// 
+			this.retractableBarRight.AnimationDelay = 0;
+			this.retractableBarRight.BackColor = System.Drawing.Color.Transparent;
+			// 
+			// retractableBarRight.Content
+			// 
+			this.retractableBarRight.Content.Controls.Add(this.favoriteImagesControl);
+			this.retractableBarRight.Content.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.retractableBarRight.Content.Location = new System.Drawing.Point(2, 42);
+			this.retractableBarRight.Content.Name = "Content";
+			this.retractableBarRight.Content.Size = new System.Drawing.Size(355, 579);
+			this.retractableBarRight.Content.TabIndex = 1;
+			this.retractableBarRight.ContentSize = 300;
+			this.retractableBarRight.Dock = System.Windows.Forms.DockStyle.Right;
+			this.retractableBarRight.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.retractableBarRight.Location = new System.Drawing.Point(476, 0);
+			this.retractableBarRight.Logo = ((System.Drawing.Image)(resources.GetObject("retractableBarRight.Logo")));
+			this.retractableBarRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.retractableBarRight.Name = "retractableBarRight";
+			this.retractableBarRight.Size = new System.Drawing.Size(359, 623);
+			this.retractableBarRight.TabIndex = 1;
 			// 
 			// ProgramStrategyControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.Controls.Add(this.splitContainerControl);
+			this.Controls.Add(this.gridControlItems);
+			this.Controls.Add(this.retractableBarRight);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "ProgramStrategyControl";
 			this.Size = new System.Drawing.Size(835, 623);
-			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
-			this.splitContainerControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+			this.retractableBarRight.Content.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
 		private DevExpress.XtraGrid.GridControl gridControlItems;
 		private DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView advBandedGridViewItems;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
@@ -286,5 +292,6 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandItemsEnabled;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandItemsLogo;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandItemsInfo;
+		private CommonGUI.RetractableBar.RetractableBarRight retractableBarRight;
 	}
 }

@@ -424,8 +424,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (!ShowDigitalLegend) return String.Empty;
 				if (!LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.AllowEdit)
 					return String.Format("Digital Product Info: {0}", LocalSchedule.GetDigitalInfo(LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.RequestOptions));
-				if (!String.IsNullOrEmpty(LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.Info))
-					return String.Format("Digital Product Info: {0}", LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.Info);
+				if (!String.IsNullOrEmpty(LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.CompiledInfo))
+					return String.Format("Digital Product Info: {0}", LocalSchedule.ViewSettings.MultiSummaryViewSettings.DigitalLegend.CompiledInfo);
 				return String.Empty;
 			}
 		}
@@ -440,6 +440,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				form.RequestDefaultInfo += (o, e) =>
 				{
 					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
+					e.Editor.Tag = e.Editor.EditValue;
 				};
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (digitalLegend.ApplyForAll)

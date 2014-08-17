@@ -54,15 +54,7 @@ namespace NewBizWiz.Core.Calendar
 
 		#region Slide Info
 		public bool SlideInfoVisible { get; set; }
-		public bool SlideInfoDocked { get; set; }
-		public int SlideInfoFloatLeft { get; set; }
-		public int SlideInfoFloatTop { get; set; }
 		#endregion
-
-		public CalendarSettings()
-		{
-			SlideInfoDocked = true;
-		}
 
 		public string Serialize()
 		{
@@ -70,9 +62,6 @@ namespace NewBizWiz.Core.Calendar
 
 			#region Slide Info Properties
 			result.AppendLine(@"<SlideInfoVisible>" + SlideInfoVisible + @"</SlideInfoVisible>");
-			result.AppendLine(@"<SlideInfoDocked>" + SlideInfoDocked + @"</SlideInfoDocked>");
-			result.AppendLine(@"<SlideInfoFloatLeft>" + SlideInfoFloatLeft + @"</SlideInfoFloatLeft>");
-			result.AppendLine(@"<SlideInfoFloatTop>" + SlideInfoFloatTop + @"</SlideInfoFloatTop>");
 			#endregion
 
 			return result.ToString();
@@ -80,29 +69,15 @@ namespace NewBizWiz.Core.Calendar
 
 		public void Deserialize(XmlNode node)
 		{
-			bool tempBool = false;
-			int tempInt;
-
 			foreach (XmlNode childNode in node.ChildNodes)
 			{
 				switch (childNode.Name)
 				{
 					#region Slide Info Properties
 					case "SlideInfoVisible":
+						bool tempBool = false;
 						if (bool.TryParse(childNode.InnerText, out tempBool))
 							SlideInfoVisible = tempBool;
-						break;
-					case "SlideInfoDocked":
-						if (bool.TryParse(childNode.InnerText, out tempBool))
-							SlideInfoDocked = tempBool;
-						break;
-					case "SlideInfoFloatLeft":
-						if (int.TryParse(childNode.InnerText, out tempInt))
-							SlideInfoFloatLeft = tempInt;
-						break;
-					case "SlideInfoFloatTop":
-						if (int.TryParse(childNode.InnerText, out tempInt))
-							SlideInfoFloatTop = tempInt;
 						break;
 					#endregion
 				}

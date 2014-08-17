@@ -100,6 +100,7 @@ namespace NewBizWiz.AdSchedule.Internal
 			Controller.Instance.PrintProductPercentOfPage = comboBoxEditPercentOfPage;
 			Controller.Instance.PrintProductStandartHeight = spinEditStandartHeight;
 			Controller.Instance.PrintProductStandartWidth = spinEditStandartWidth;
+			Controller.Instance.PrintProductSharePageSquareContainer = controlContainerItemSharePageSquare;
 			Controller.Instance.PrintProductSharePageSquare = checkedListBoxControlSharePageSquare;
 			Controller.Instance.PrintProductDimensionsRibbonBar = ribbonBarPrintScheduleDimensions;
 			Controller.Instance.PrintProductPanel = ribbonPanelPrintSchedule;
@@ -212,7 +213,6 @@ namespace NewBizWiz.AdSchedule.Internal
 
 			#region Calendar
 			Controller.Instance.CalendarSpecialButtons = ribbonBarCalendarSpecialButtons;
-			Controller.Instance.CalendarSlideInfo = buttonItemCalendarSlideInfo;
 			Controller.Instance.CalendarCopy = buttonItemCalendarCopy;
 			Controller.Instance.CalendarPaste = buttonItemCalendarPaste;
 			Controller.Instance.CalendarClone = buttonItemCalendarClone;

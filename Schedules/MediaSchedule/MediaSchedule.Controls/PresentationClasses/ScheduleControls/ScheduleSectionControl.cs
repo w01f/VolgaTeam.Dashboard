@@ -103,7 +103,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
 			});
-			digitalInfoControl.RequestDefaultInfo += (o, args) => { args.Editor.EditValue = _localSchedule.GetDigitalInfo(args); };
+			digitalInfoControl.RequestDefaultInfo += (o, args) =>
+			{
+				args.Editor.EditValue = _localSchedule.GetDigitalInfo(args);
+				args.Editor.Tag = args.Editor.EditValue;
+			};
 			digitalInfoControl.SettingsChanged += (o, args) =>
 			{
 				TrackOptionChanged();
@@ -122,10 +126,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public virtual ScheduleSection ScheduleSection
 		{
 			get { return _localSchedule.WeeklySchedule; }
-		}
-		public virtual ButtonItem OptionsButton
-		{
-			get { return null; }
 		}
 		public virtual ButtonItem ThemeButton
 		{
@@ -195,7 +195,18 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (!quickLoad)
 				BuildSpotColumns();
 			if (ScheduleSection.Programs.Count > 0)
+			{
+				pbNoPrograms.Visible = false;
+				gridControlSchedule.Visible = true;
+				gridControlSchedule.BringToFront();
 				gridControlSchedule.DataSource = ScheduleSection.DataSource;
+			}
+			else
+			{
+				gridControlSchedule.Visible = false;
+				pbNoPrograms.Visible = true;
+				pbNoPrograms.BringToFront();
+			}
 			advBandedGridViewSchedule.EndUpdate();
 			if (focussedRow >= 0 && focussedRow < advBandedGridViewSchedule.RowCount)
 				advBandedGridViewSchedule.FocusedRowHandle = focussedRow;
@@ -308,7 +319,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			if (ScheduleSection.Programs.Any())
 			{
-				pnBottom.Enabled = true;
+				pnBottom.Visible = true;
 				laTotalPeriodsValue.Text = ScheduleSection.TotalActivePeriods.ToString("#,##0");
 				laTotalSpotsValue.Text = ScheduleSection.TotalSpots.ToString("#,##0");
 				laTotalGRPValue.Text = ScheduleSection.TotalGRP.ToString(_localSchedule.DemoType == DemoType.Rtg ? "#,###.0" : "#,##0");
@@ -320,7 +331,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			}
 			else
 			{
-				pnBottom.Enabled = false;
+				pnBottom.Visible = false;
 				laTotalPeriodsValue.Text =
 				laTotalSpotsValue.Text =
 				laTotalGRPValue.Text =
@@ -536,9 +547,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				button.CheckedChanged += colorButton_CheckedChanged;
 				xtraScrollableControlColors.Controls.Add(button);
 				button.Location = new Point(20, topPosition);
-				topPosition += (button.Height + 40);
+				topPosition += (button.Height + 20);
 			}
-			buttonXUseSlideMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
+			checkEditLockToMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
 
 			_allowToSave = true;
 			SettingsNotSaved = false;
@@ -554,7 +565,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 			var checkedColorItem = xtraScrollableControlColors.Controls.OfType<ButtonX>().FirstOrDefault(b => b.Checked);
 			MediaMetaData.Instance.SettingsManager.SelectedColor = checkedColorItem != null ? ((ColorFolder)checkedColorItem.Tag).Name : String.Empty;
-			MediaMetaData.Instance.SettingsManager.UseSlideMaster = buttonXUseSlideMaster.Checked;
+			MediaMetaData.Instance.SettingsManager.UseSlideMaster = checkEditLockToMaster.Checked;
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
 
 			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, false, false, this);
@@ -681,11 +692,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateTotalsValues();
 			UpdateOutputStatus(ScheduleSection.Programs.Any());
 			SettingsNotSaved = true;
-		}
-
-		public void Options_CheckedChaged(object sender, EventArgs e)
-		{
-			splitContainerControl.PanelVisibility = OptionsButton.Checked ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
 		}
 		#endregion
 
@@ -817,12 +823,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (!_allowToSave) return;
 			TrackOptionChanged();
 			SettingsNotSaved = true;
-		}
-
-		private void pbOptionsHelp_Click(object sender, EventArgs e)
-		{
-			if (xtraTabControlOptions.SelectedTabPage == xtraTabPageOptionsSecurity)
-				BusinessWrapper.Instance.HelpManager.OpenHelpLink("navsecurity");
 		}
 
 		public void QuarterCheckedChanged(object sender, EventArgs e)
@@ -989,8 +989,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 					requestOptions.Separator = " ";
 					return String.Format("Digital Product Info: {0}{1}{2}", _localSchedule.GetDigitalInfo(requestOptions), requestOptions.Separator, ScheduleSection.DigitalLegend.GetAdditionalData(" "));
 				}
-				if (!String.IsNullOrEmpty(ScheduleSection.DigitalLegend.Info))
-					return String.Format("Digital Product Info: {0}{1}{2}", ScheduleSection.DigitalLegend.Info, requestOptions.Separator, ScheduleSection.DigitalLegend.GetAdditionalData(" "));
+				if (!String.IsNullOrEmpty(ScheduleSection.DigitalLegend.CompiledInfo))
+					return String.Format("Digital Product Info: {0}{1}{2}", ScheduleSection.DigitalLegend.CompiledInfo, requestOptions.Separator, ScheduleSection.DigitalLegend.GetAdditionalData(" "));
 				return String.Empty;
 			}
 		}
@@ -1286,27 +1286,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
 				}
 			}
-		}
-
-		#endregion
-
-		#region Picture Box Clicks Habdlers
-
-		/// <summary>
-		///     Buttonize the PictureBox
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top += 1;
-		}
-
-		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top -= 1;
 		}
 
 		#endregion

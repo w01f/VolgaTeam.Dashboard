@@ -113,6 +113,9 @@ namespace NewBizWiz.Core.Interop
 		private static readonly IntPtr HWND_NOTOPMOST = new IntPtr(-2);
 		private static readonly IntPtr HWND_TOP = new IntPtr(0);
 		private static readonly IntPtr HWND_BOTTOM = new IntPtr(1);
+
+		public static readonly UInt32 WM_NCLBUTTONDOWN = 0xA1;
+		public static readonly IntPtr HTCAPTION = new IntPtr(0x2);
 		#endregion
 
 		#region API imports
@@ -210,6 +213,9 @@ namespace NewBizWiz.Core.Interop
 
 		[DllImport("user32.dll")]
 		public static extern int GetSystemMetrics(SystemMetric smIndex);
+
+		[DllImport("User32.dll")]
+		public static extern bool ReleaseCapture();
 		#endregion
 
 		public static void MakeTopMost(IntPtr handle)

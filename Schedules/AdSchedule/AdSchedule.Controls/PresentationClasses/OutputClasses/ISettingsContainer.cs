@@ -1,4 +1,5 @@
 ﻿using NewBizWiz.Core.AdSchedule;
+using NewBizWiz.Core.OnlineSchedule;
 
 namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses
 {

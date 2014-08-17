@@ -181,10 +181,6 @@
       <Project>{164AB808-DBD3-4D71-9431-5A5B44B70593}</Project>
       <Name>NewBizWiz.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\AdSchedule\AdSchedule.Controls\NewBizWiz.AdSchedule.Controls.csproj">
-      <Project>{B096C96B-E96F-4223-AE01-B32D3730DC82}</Project>
-      <Name>NewBizWiz.AdSchedule.Controls</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Calendar\Calendar.Controls\NewBizWiz.Calendar.Controls.csproj">
       <Project>{167bc40b-c87e-4972-b8a2-903f6f160b6b}</Project>
       <Name>NewBizWiz.Calendar.Controls</Name>
@@ -219,6 +215,7 @@
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ScheduleSectionControl.resx">
       <DependentUpon>ScheduleSectionControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -342,6 +339,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Favorites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoPrograms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FavoritesLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

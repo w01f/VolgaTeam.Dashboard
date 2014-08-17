@@ -15,11 +15,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			get { return Controller.Instance.Calendar2MonthsList; }
 		}
 
-		public override ButtonItem SlideInfoButton
-		{
-			get { return Controller.Instance.Calendar2SlideInfo; }
-		}
-
 		public override ButtonItem PreviewButton
 		{
 			get { return Controller.Instance.Calendar2Preview; }

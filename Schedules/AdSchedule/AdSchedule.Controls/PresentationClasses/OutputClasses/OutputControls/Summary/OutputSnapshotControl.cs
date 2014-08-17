@@ -579,8 +579,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (!LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Enabled) return String.Empty;
 				if (!LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.AllowEdit)
 					return String.Format("Digital Product Info: {0}", LocalSchedule.GetDigitalInfo(LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.RequestOptions));
-				if (!String.IsNullOrEmpty(LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Info))
-					return String.Format("Digital Product Info: {0}", LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.Info);
+				if (!String.IsNullOrEmpty(LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.CompiledInfo))
+					return String.Format("Digital Product Info: {0}", LocalSchedule.ViewSettings.SnapshotViewSettings.DigitalLegend.CompiledInfo);
 				return String.Empty;
 			}
 		}
@@ -595,6 +595,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				form.RequestDefaultInfo += (o, e) =>
 				{
 					e.Editor.EditValue = LocalSchedule.GetDigitalInfo(e);
+					e.Editor.Tag = e.Editor.EditValue;
 				};
 				if (form.ShowDialog() != DialogResult.OK) return;
 				if (digitalLegend.ApplyForAll)

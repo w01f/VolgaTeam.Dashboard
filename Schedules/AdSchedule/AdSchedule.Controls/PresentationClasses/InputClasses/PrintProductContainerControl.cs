@@ -177,8 +177,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			Controller.Instance.PrintProductRateCard.EditValue = null;
 			Controller.Instance.PrintProductPercentOfPage.EditValue = null;
 			Controller.Instance.PrintProductPercentOfPage.Enabled = false;
+			Controller.Instance.PrintProductSharePageSquareContainer.Visible = false;
 			Controller.Instance.PrintProductSharePageSquare.Items.Clear();
-			Controller.Instance.PrintProductSharePageSquare.Enabled = false;
 			#endregion
 
 			#region Clear Color
@@ -735,8 +735,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 			}
 			Controller.Instance.PrintProductColorOptionsPCI.Enabled = sizeOptions.EnableSquare & printProductControl.PrintProduct.AdPricingStrategy != AdPricingStrategies.SharePage & printProductControl.PrintProduct.ColorOption != ColorOptions.BlackWhite;
 			Controller.Instance.PrintProductPercentOfPage.Enabled = !string.IsNullOrEmpty(sizeOptions.RateCard);
-			Controller.Instance.PrintProductSharePageSquare.Enabled = Controller.Instance.PrintProductSharePageSquare.ItemCount > 0;
-			Controller.Instance.PrintProductSharePageSquare.BackColor = Controller.Instance.PrintProductSharePageSquare.ItemCount > 0 ? Color.White : Color.FromArgb(197, 214, 232);
+			Controller.Instance.PrintProductSharePageSquareContainer.Visible = Controller.Instance.PrintProductSharePageSquare.Items.Count > 0;
 			Controller.Instance.PrintProductDimensionsRibbonBar.RecalcLayout();
 			Controller.Instance.PrintProductPanel.PerformLayout();
 		}
@@ -822,14 +821,14 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.InputClasses
 		public void comboBoxEditRateCard_EditValueChanged(object sender, EventArgs e)
 		{
 			var publicationControl = xtraTabControlPublications.SelectedTabPage as PrintProductControl;
-			if (publicationControl != null && _allowToSave)
+			if (publicationControl == null || !_allowToSave) return;
+			var oldValue = Controller.Instance.PrintProductPercentOfPage.EditValue;
+			Controller.Instance.PrintProductPercentOfPage.EditValue = null;
+			Controller.Instance.PrintProductPercentOfPage.Properties.Items.Clear();
+			if (Controller.Instance.PrintProductRateCard.EditValue != null)
+				Controller.Instance.PrintProductPercentOfPage.Properties.Items.AddRange(ListManager.Instance.ShareUnits.Where(x => x.RateCard.Equals(Controller.Instance.PrintProductRateCard.EditValue.ToString())).Select(x => x.PercentOfPage).Distinct().ToArray());
+			if (oldValue == null)
 			{
-				_allowToSave = false;
-				Controller.Instance.PrintProductPercentOfPage.EditValue = null;
-				Controller.Instance.PrintProductPercentOfPage.Properties.Items.Clear();
-				if (Controller.Instance.PrintProductRateCard.EditValue != null)
-					Controller.Instance.PrintProductPercentOfPage.Properties.Items.AddRange(ListManager.Instance.ShareUnits.Where(x => x.RateCard.Equals(Controller.Instance.PrintProductRateCard.EditValue.ToString())).Select(x => x.PercentOfPage).Distinct().ToArray());
-				_allowToSave = true;
 				SetSizeOptions(publicationControl);
 				SettingsNotSaved = true;
 			}

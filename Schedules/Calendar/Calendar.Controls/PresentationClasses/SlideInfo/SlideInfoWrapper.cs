@@ -1,77 +1,43 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using DevExpress.XtraBars.Docking;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
+using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.Core.Calendar;
 
 namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 {
 	public class SlideInfoWrapper
 	{
-		private readonly DockPanel _container;
+		private readonly RetractableBarControl _container;
 		private readonly ICalendarControl _parentCalendar;
-		private bool _allowToSave;
 
-		public SlideInfoWrapper(ICalendarControl parentCalendar, DockPanel container)
+		public SlideInfoWrapper(ICalendarControl parentCalendar, RetractableBarControl container)
 		{
 			_parentCalendar = parentCalendar;
 
 			_container = container;
-			_container.ClosingPanel += ClosingPanel;
-			_container.ClosedPanel += ClosedPanel;
-			_container.DockChanged += PanelDockChanged;
-			_container.DoubleClick += PanelDoubleClick;
+			_container.StateChanged += Container_StateChanged;
 		}
 
 		#region Container Event Handlers
-		private void ClosedPanel(object sender, DockPanelEventArgs e)
-		{
-			if (_allowToSave)
-				SaveVisibilitySettings();
-			if (Closed != null)
-				Closed(this, new EventArgs());
-			_parentCalendar.Splash(false);
-		}
-
-		private void ClosingPanel(object sender, DockPanelCancelEventArgs e)
+		private void Container_StateChanged(object sender, StateChangedEventArgs e)
 		{
 			_parentCalendar.Splash(true);
 			SaveData();
-			SaveLocationSettings();
-		}
-
-		private void PanelDockChanged(object sender, EventArgs e)
-		{
-			if (_allowToSave)
-				SaveLocationSettings();
-		}
-
-		private void PanelDoubleClick(object sender, EventArgs e)
-		{
-			_allowToSave = false;
-			if (_container.Dock == DockingStyle.Float)
-			{
-				_container.Dock = DockingStyle.Left;
-			}
-			else
-			{
-				_container.Dock = DockingStyle.Float;
-				if (_parentCalendar.CalendarSettings.SlideInfoFloatLeft != 0 && _parentCalendar.CalendarSettings.SlideInfoFloatTop != 0)
-					_container.FloatLocation = new Point(_parentCalendar.CalendarSettings.SlideInfoFloatLeft, _parentCalendar.CalendarSettings.SlideInfoFloatTop);
-				else
-					_container.FloatLocation = new Point(200, 200);
-			}
-			_allowToSave = true;
-			SaveLocationSettings();
+			_parentCalendar.CalendarSettings.SlideInfoVisible = e.Expaned;
+			_parentCalendar.SaveSettings();
+			_parentCalendar.Splash(false);
 		}
 		#endregion
 
 		#region Contained Control Event Handlers
 		private void PropertiesClosed(object sender, EventArgs e)
 		{
-			Close();
+			_container.Collapse();
 		}
 
 		private void OnPropertyChanged(object sender, EventArgs e)
@@ -95,45 +61,20 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			if (_parentCalendar.CalendarSettings.SlideInfoVisible)
 			{
 				_parentCalendar.Splash(true);
-				Show();
+				_container.Expand(true);
 				_parentCalendar.Splash(false);
 			}
 			else
 			{
 				_parentCalendar.Splash(true);
-				Close();
+				_container.Collapse(true);
 				_parentCalendar.Splash(false);
 			}
-			_parentCalendar.SlideInfoButton.Checked = _parentCalendar.CalendarSettings.SlideInfoVisible;
-		}
-
-		private void LoadLocationSettings()
-		{
-			_container.Dock = _parentCalendar.CalendarSettings.SlideInfoDocked ? DockingStyle.Left : DockingStyle.Float;
-			if (_parentCalendar.CalendarSettings.SlideInfoFloatLeft != 0 && _parentCalendar.CalendarSettings.SlideInfoFloatTop != 0)
-				_container.FloatLocation = new Point(_parentCalendar.CalendarSettings.SlideInfoFloatLeft, _parentCalendar.CalendarSettings.SlideInfoFloatTop);
-			else
-				_container.FloatLocation = new Point(200, 200);
-		}
-
-		private void SaveVisibilitySettings()
-		{
-			_parentCalendar.CalendarSettings.SlideInfoVisible = _container.Visibility == DockVisibility.Visible;
-			_parentCalendar.SaveSettings();
-		}
-
-		private void SaveLocationSettings()
-		{
-			if (_container.Visibility == DockVisibility.Visible)
-				_parentCalendar.CalendarSettings.SlideInfoDocked = _container.Dock == DockingStyle.Left;
-			_parentCalendar.CalendarSettings.SlideInfoFloatLeft = _container.FloatLocation.X;
-			_parentCalendar.CalendarSettings.SlideInfoFloatTop = _container.FloatLocation.Y;
-			_parentCalendar.SaveSettings();
 		}
 
 		public void LoadData(CalendarMonth month = null, bool allowToSave = true)
 		{
-			if(allowToSave)
+			if (allowToSave)
 				SaveData();
 			if (month == null)
 				_containedControl.LoadCurrentMonthData();
@@ -145,23 +86,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 		public void SaveData()
 		{
 			_containedControl.SaveData();
-		}
-
-		public void Show()
-		{
-			_allowToSave = false;
-			_container.Visibility = DockVisibility.Visible;
-			LoadLocationSettings();
-			_allowToSave = true;
-			SaveVisibilitySettings();
-			if (Shown != null)
-				Shown(this, new EventArgs());
-		}
-
-		public void Close(bool allowToSave = true)
-		{
-			_allowToSave = allowToSave;
-			_container.Close();
 		}
 		#endregion
 
@@ -176,8 +100,6 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo
 			get { return _containedControl.SettingsNotSaved; }
 		}
 
-		public event EventHandler<EventArgs> Shown;
-		public event EventHandler<EventArgs> Closed;
 		public event EventHandler<EventArgs> PropertyChanged;
 	}
 

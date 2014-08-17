@@ -28,28 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.hyperLinkEditReset = new DevExpress.XtraEditors.HyperLinkEdit();
 			this.laCalendarWindow = new System.Windows.Forms.Label();
 			this.laCalendarName = new System.Windows.Forms.Label();
 			this.laAdvertiser = new System.Windows.Forms.Label();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnEmpty = new System.Windows.Forms.Panel();
-			this.dockManager = new DevExpress.XtraBars.Docking.DockManager();
-			this.dockPanelSlideInfo = new DevExpress.XtraBars.Docking.DockPanel();
-			this.dockPanelSlideInfo_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-			this.dockPanelDayProperties = new DevExpress.XtraBars.Docking.DockPanel();
-			this.dockPanelDayProperties_Container = new DevExpress.XtraBars.Docking.ControlContainer();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.pictureBoxNoData = new System.Windows.Forms.PictureBox();
+			this.retractableBarControl = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
-			this.dockPanelSlideInfo.SuspendLayout();
-			this.dockPanelDayProperties.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxNoData)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -60,16 +54,16 @@
 			this.pnTop.Controls.Add(this.laCalendarName);
 			this.pnTop.Controls.Add(this.laAdvertiser);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnTop.Location = new System.Drawing.Point(0, 0);
+			this.pnTop.Location = new System.Drawing.Point(270, 0);
 			this.pnTop.Name = "pnTop";
-			this.pnTop.Size = new System.Drawing.Size(653, 35);
+			this.pnTop.Size = new System.Drawing.Size(383, 35);
 			this.pnTop.TabIndex = 1;
 			// 
 			// hyperLinkEditReset
 			// 
 			this.hyperLinkEditReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.hyperLinkEditReset.EditValue = "Reset";
-			this.hyperLinkEditReset.Location = new System.Drawing.Point(586, 4);
+			this.hyperLinkEditReset.Location = new System.Drawing.Point(316, 4);
 			this.hyperLinkEditReset.Name = "hyperLinkEditReset";
 			this.hyperLinkEditReset.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.hyperLinkEditReset.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -81,9 +75,9 @@
 			this.hyperLinkEditReset.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.hyperLinkEditReset.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.hyperLinkEditReset.Size = new System.Drawing.Size(64, 22);
-			toolTipItem2.Text = "Reset original default data";
-			superToolTip2.Items.Add(toolTipItem2);
-			this.hyperLinkEditReset.SuperTip = superToolTip2;
+			toolTipItem1.Text = "Reset original default data";
+			superToolTip1.Items.Add(toolTipItem1);
+			this.hyperLinkEditReset.SuperTip = superToolTip1;
 			this.hyperLinkEditReset.TabIndex = 104;
 			this.hyperLinkEditReset.Visible = false;
 			// 
@@ -94,7 +88,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.laCalendarWindow.Location = new System.Drawing.Point(248, 0);
 			this.laCalendarWindow.Name = "laCalendarWindow";
-			this.laCalendarWindow.Size = new System.Drawing.Size(187, 35);
+			this.laCalendarWindow.Size = new System.Drawing.Size(0, 35);
 			this.laCalendarWindow.TabIndex = 3;
 			this.laCalendarWindow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
@@ -102,7 +96,7 @@
 			// 
 			this.laCalendarName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.laCalendarName.Location = new System.Drawing.Point(441, 0);
+			this.laCalendarName.Location = new System.Drawing.Point(171, 0);
 			this.laCalendarName.Name = "laCalendarName";
 			this.laCalendarName.Size = new System.Drawing.Size(211, 35);
 			this.laCalendarName.TabIndex = 1;
@@ -135,103 +129,49 @@
 			// 
 			// pnEmpty
 			// 
-			this.pnEmpty.Location = new System.Drawing.Point(404, 59);
+			this.pnEmpty.Location = new System.Drawing.Point(485, 60);
 			this.pnEmpty.Name = "pnEmpty";
-			this.pnEmpty.Size = new System.Drawing.Size(246, 175);
+			this.pnEmpty.Size = new System.Drawing.Size(139, 175);
 			this.pnEmpty.TabIndex = 3;
-			// 
-			// dockManager
-			// 
-			this.dockManager.DockingOptions.FloatOnDblClick = false;
-			this.dockManager.DockingOptions.ShowAutoHideButton = false;
-			this.dockManager.Form = this;
-			this.dockManager.HiddenPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
-            this.dockPanelSlideInfo,
-            this.dockPanelDayProperties});
-			this.dockManager.TopZIndexControls.AddRange(new string[] {
-            "DevExpress.XtraBars.BarDockControl",
-            "DevExpress.XtraBars.StandaloneBarDockControl",
-            "System.Windows.Forms.StatusBar",
-            "DevExpress.XtraBars.Ribbon.RibbonStatusBar",
-            "DevExpress.XtraBars.Ribbon.RibbonControl"});
-			this.dockManager.Sizing += new DevExpress.XtraBars.Docking.SizingEventHandler(this.dockManager_Sizing);
-			// 
-			// dockPanelSlideInfo
-			// 
-			this.dockPanelSlideInfo.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.dockPanelSlideInfo.Appearance.Options.UseFont = true;
-			this.dockPanelSlideInfo.Controls.Add(this.dockPanelSlideInfo_Container);
-			this.dockPanelSlideInfo.Dock = DevExpress.XtraBars.Docking.DockingStyle.Float;
-			this.dockPanelSlideInfo.FloatLocation = new System.Drawing.Point(200, 200);
-			this.dockPanelSlideInfo.FloatSize = new System.Drawing.Size(300, 650);
-			this.dockPanelSlideInfo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.dockPanelSlideInfo.ID = new System.Guid("2d8b0597-b069-4719-bcbe-3171d0a38c9c");
-			this.dockPanelSlideInfo.Location = new System.Drawing.Point(-32768, -32768);
-			this.dockPanelSlideInfo.Name = "dockPanelSlideInfo";
-			this.dockPanelSlideInfo.Options.AllowDockBottom = false;
-			this.dockPanelSlideInfo.Options.AllowDockFill = false;
-			this.dockPanelSlideInfo.Options.AllowDockRight = false;
-			this.dockPanelSlideInfo.Options.AllowDockTop = false;
-			this.dockPanelSlideInfo.Options.ShowAutoHideButton = false;
-			this.dockPanelSlideInfo.Options.ShowMaximizeButton = false;
-			this.dockPanelSlideInfo.OriginalSize = new System.Drawing.Size(300, 200);
-			this.dockPanelSlideInfo.SavedIndex = 0;
-			this.dockPanelSlideInfo.Size = new System.Drawing.Size(300, 650);
-			this.dockPanelSlideInfo.Text = "Slide Info";
-			this.dockPanelSlideInfo.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Hidden;
-			// 
-			// dockPanelSlideInfo_Container
-			// 
-			this.dockPanelSlideInfo_Container.Location = new System.Drawing.Point(1, 23);
-			this.dockPanelSlideInfo_Container.Name = "dockPanelSlideInfo_Container";
-			this.dockPanelSlideInfo_Container.Size = new System.Drawing.Size(298, 626);
-			this.dockPanelSlideInfo_Container.TabIndex = 0;
-			// 
-			// dockPanelDayProperties
-			// 
-			this.dockPanelDayProperties.Controls.Add(this.dockPanelDayProperties_Container);
-			this.dockPanelDayProperties.Dock = DevExpress.XtraBars.Docking.DockingStyle.Float;
-			this.dockPanelDayProperties.FloatLocation = new System.Drawing.Point(500, 200);
-			this.dockPanelDayProperties.FloatSize = new System.Drawing.Size(300, 650);
-			this.dockPanelDayProperties.ID = new System.Guid("5efc064b-cdb3-4a88-a882-a8a8d5885097");
-			this.dockPanelDayProperties.Location = new System.Drawing.Point(-32768, -32768);
-			this.dockPanelDayProperties.Name = "dockPanelDayProperties";
-			this.dockPanelDayProperties.Options.AllowDockBottom = false;
-			this.dockPanelDayProperties.Options.AllowDockFill = false;
-			this.dockPanelDayProperties.Options.AllowDockLeft = false;
-			this.dockPanelDayProperties.Options.AllowDockTop = false;
-			this.dockPanelDayProperties.Options.ShowAutoHideButton = false;
-			this.dockPanelDayProperties.Options.ShowMaximizeButton = false;
-			this.dockPanelDayProperties.OriginalSize = new System.Drawing.Size(300, 200);
-			this.dockPanelDayProperties.SavedIndex = 0;
-			this.dockPanelDayProperties.Size = new System.Drawing.Size(300, 650);
-			this.dockPanelDayProperties.Text = "Day Properties";
-			this.dockPanelDayProperties.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Hidden;
-			// 
-			// dockPanelDayProperties_Container
-			// 
-			this.dockPanelDayProperties_Container.Location = new System.Drawing.Point(1, 23);
-			this.dockPanelDayProperties_Container.Name = "dockPanelDayProperties_Container";
-			this.dockPanelDayProperties_Container.Size = new System.Drawing.Size(298, 626);
-			this.dockPanelDayProperties_Container.TabIndex = 0;
 			// 
 			// pnMain
 			// 
-			this.pnMain.Location = new System.Drawing.Point(5, 59);
+			this.pnMain.Location = new System.Drawing.Point(485, 287);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(277, 175);
+			this.pnMain.Size = new System.Drawing.Size(139, 175);
 			this.pnMain.TabIndex = 4;
 			// 
 			// pictureBoxNoData
 			// 
 			this.pictureBoxNoData.BackColor = System.Drawing.Color.White;
-			this.pictureBoxNoData.Location = new System.Drawing.Point(239, 279);
+			this.pictureBoxNoData.Location = new System.Drawing.Point(322, 279);
 			this.pictureBoxNoData.Name = "pictureBoxNoData";
-			this.pictureBoxNoData.Size = new System.Drawing.Size(194, 183);
+			this.pictureBoxNoData.Size = new System.Drawing.Size(111, 183);
 			this.pictureBoxNoData.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pictureBoxNoData.TabIndex = 5;
 			this.pictureBoxNoData.TabStop = false;
 			this.pictureBoxNoData.Visible = false;
+			// 
+			// retractableBarControl
+			// 
+			this.retractableBarControl.AnimationDelay = 0;
+			this.retractableBarControl.BackColor = System.Drawing.Color.Transparent;
+			// 
+			// retractableBarControl.Content
+			// 
+			this.retractableBarControl.Content.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.retractableBarControl.Content.Location = new System.Drawing.Point(2, 42);
+			this.retractableBarControl.Content.Name = "Content";
+			this.retractableBarControl.Content.Size = new System.Drawing.Size(266, 475);
+			this.retractableBarControl.Content.TabIndex = 1;
+			this.retractableBarControl.ContentSize = 300;
+			this.retractableBarControl.Dock = System.Windows.Forms.DockStyle.Left;
+			this.retractableBarControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.retractableBarControl.Location = new System.Drawing.Point(0, 0);
+			this.retractableBarControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.retractableBarControl.Name = "retractableBarControl";
+			this.retractableBarControl.Size = new System.Drawing.Size(270, 519);
+			this.retractableBarControl.TabIndex = 6;
 			// 
 			// BaseCalendarControl
 			// 
@@ -241,15 +181,13 @@
 			this.Controls.Add(this.pnMain);
 			this.Controls.Add(this.pnTop);
 			this.Controls.Add(this.pnEmpty);
+			this.Controls.Add(this.retractableBarControl);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "BaseCalendarControl";
 			this.Size = new System.Drawing.Size(653, 519);
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.hyperLinkEditReset.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dockManager)).EndInit();
-			this.dockPanelSlideInfo.ResumeLayout(false);
-			this.dockPanelDayProperties.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxNoData)).EndInit();
 			this.ResumeLayout(false);
 
@@ -259,17 +197,13 @@
 
 		protected System.Windows.Forms.Panel pnTop;
 		private DevExpress.XtraEditors.StyleController styleController;
-        private System.Windows.Forms.Panel pnEmpty;
-        private DevExpress.XtraBars.Docking.DockManager dockManager;
-        private DevExpress.XtraBars.Docking.DockPanel dockPanelDayProperties;
-        private DevExpress.XtraBars.Docking.ControlContainer dockPanelDayProperties_Container;
-        private DevExpress.XtraBars.Docking.DockPanel dockPanelSlideInfo;
-        private DevExpress.XtraBars.Docking.ControlContainer dockPanelSlideInfo_Container;
+		private System.Windows.Forms.Panel pnEmpty;
 		protected System.Windows.Forms.Panel pnMain;
 		protected System.Windows.Forms.PictureBox pictureBoxNoData;
 		protected System.Windows.Forms.Label laCalendarName;
 		protected System.Windows.Forms.Label laCalendarWindow;
 		protected System.Windows.Forms.Label laAdvertiser;
 		protected DevExpress.XtraEditors.HyperLinkEdit hyperLinkEditReset;
+		private CommonGUI.RetractableBar.RetractableBarLeft retractableBarControl;
     }
 }

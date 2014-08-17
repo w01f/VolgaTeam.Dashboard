@@ -173,6 +173,16 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap FavoritesLogo {
+            get {
+                object obj = ResourceManager.GetObject("FavoritesLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Floater {
             get {
                 object obj = ResourceManager.GetObject("Floater", resourceCulture);
@@ -236,6 +246,16 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
         public static System.Drawing.Bitmap NewScheduleRibbon {
             get {
                 object obj = ResourceManager.GetObject("NewScheduleRibbon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap NoPrograms {
+            get {
+                object obj = ResourceManager.GetObject("NoPrograms", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

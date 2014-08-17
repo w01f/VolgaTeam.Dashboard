@@ -253,6 +253,36 @@ namespace NewBizWiz.CommonGUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap RetractableBarCollapse {
+            get {
+                object obj = ResourceManager.GetObject("RetractableBarCollapse", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap RetractableBarExpand {
+            get {
+                object obj = ResourceManager.GetObject("RetractableBarExpand", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap RetractableBarLogo {
+            get {
+                object obj = ResourceManager.GetObject("RetractableBarLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap SummaryDigital {
             get {
                 object obj = ResourceManager.GetObject("SummaryDigital", resourceCulture);

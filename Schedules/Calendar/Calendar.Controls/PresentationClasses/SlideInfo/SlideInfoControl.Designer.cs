@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
 			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
 			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
@@ -37,7 +38,7 @@
 			this.pnBasicTop = new System.Windows.Forms.Panel();
 			this.xtraScrollableControlBasic = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.labelControlDecisionMaker = new DevExpress.XtraEditors.LabelControl();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.labelControlAdvertiser = new DevExpress.XtraEditors.LabelControl();
 			this.checkEditNotesCustomCommentApplyFoAll = new DevExpress.XtraEditors.CheckEdit();
 			this.buttonXBasicDecisionMaker = new DevComponents.DotNetBar.ButtonX();
@@ -91,7 +92,7 @@
 			this.checkEditLogoApplyForAll = new DevExpress.XtraEditors.CheckEdit();
 			this.xtraTabPageFavorites = new DevExpress.XtraTab.XtraTabPage();
 			this.favoriteImagesControl = new NewBizWiz.CommonGUI.FavoriteImages.FavoriteImagesControl();
-			this.barManager = new DevExpress.XtraBars.BarManager();
+			this.barManager = new DevExpress.XtraBars.BarManager(this.components);
 			this.barToolbar = new DevExpress.XtraBars.Bar();
 			this.barLargeButtonItemHelp = new DevExpress.XtraBars.BarLargeButtonItem();
 			this.barLargeButtonItemClose = new DevExpress.XtraBars.BarLargeButtonItem();
@@ -158,7 +159,7 @@
 			this.xtraTabControl.MultiLine = DevExpress.Utils.DefaultBoolean.True;
 			this.xtraTabControl.Name = "xtraTabControl";
 			this.xtraTabControl.SelectedTabPage = this.xtraTabPageBasic;
-			this.xtraTabControl.Size = new System.Drawing.Size(300, 497);
+			this.xtraTabControl.Size = new System.Drawing.Size(304, 501);
 			this.xtraTabControl.TabIndex = 10;
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageBasic,
@@ -174,7 +175,7 @@
 			this.xtraTabPageBasic.Controls.Add(this.pnBasicTop);
 			this.xtraTabPageBasic.Controls.Add(this.pnBasicBottom);
 			this.xtraTabPageBasic.Name = "xtraTabPageBasic";
-			this.xtraTabPageBasic.Size = new System.Drawing.Size(298, 443);
+			this.xtraTabPageBasic.Size = new System.Drawing.Size(302, 447);
 			this.xtraTabPageBasic.Text = "Info";
 			// 
 			// pnBasicTop
@@ -184,7 +185,7 @@
 			this.pnBasicTop.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnBasicTop.Location = new System.Drawing.Point(0, 0);
 			this.pnBasicTop.Name = "pnBasicTop";
-			this.pnBasicTop.Size = new System.Drawing.Size(298, 406);
+			this.pnBasicTop.Size = new System.Drawing.Size(302, 410);
 			this.pnBasicTop.TabIndex = 3;
 			// 
 			// xtraScrollableControlBasic
@@ -203,7 +204,7 @@
 			this.xtraScrollableControlBasic.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControlBasic.Location = new System.Drawing.Point(0, 0);
 			this.xtraScrollableControlBasic.Name = "xtraScrollableControlBasic";
-			this.xtraScrollableControlBasic.Size = new System.Drawing.Size(298, 406);
+			this.xtraScrollableControlBasic.Size = new System.Drawing.Size(302, 410);
 			this.xtraScrollableControlBasic.TabIndex = 2;
 			// 
 			// labelControlDecisionMaker
@@ -250,7 +251,7 @@
 			this.checkEditNotesCustomCommentApplyFoAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditNotesCustomCommentApplyFoAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditNotesCustomCommentApplyFoAll.Properties.Caption = "Show this Comment on all slides";
-			this.checkEditNotesCustomCommentApplyFoAll.Size = new System.Drawing.Size(277, 19);
+			this.checkEditNotesCustomCommentApplyFoAll.Size = new System.Drawing.Size(281, 20);
 			this.checkEditNotesCustomCommentApplyFoAll.StyleController = this.styleController;
 			this.checkEditNotesCustomCommentApplyFoAll.TabIndex = 8;
 			// 
@@ -263,7 +264,7 @@
 			this.buttonXBasicDecisionMaker.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXBasicDecisionMaker.Location = new System.Drawing.Point(12, 188);
 			this.buttonXBasicDecisionMaker.Name = "buttonXBasicDecisionMaker";
-			this.buttonXBasicDecisionMaker.Size = new System.Drawing.Size(275, 29);
+			this.buttonXBasicDecisionMaker.Size = new System.Drawing.Size(279, 29);
 			this.buttonXBasicDecisionMaker.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXBasicDecisionMaker.TabIndex = 6;
 			this.buttonXBasicDecisionMaker.Text = "   Decision Maker";
@@ -280,7 +281,7 @@
 			this.buttonXNotesCustomComment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXNotesCustomComment.Location = new System.Drawing.Point(12, 275);
 			this.buttonXNotesCustomComment.Name = "buttonXNotesCustomComment";
-			this.buttonXNotesCustomComment.Size = new System.Drawing.Size(275, 29);
+			this.buttonXNotesCustomComment.Size = new System.Drawing.Size(279, 29);
 			this.buttonXNotesCustomComment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXNotesCustomComment.TabIndex = 0;
 			this.buttonXNotesCustomComment.Text = "   Comment";
@@ -295,7 +296,7 @@
 			this.memoEditNotesCustomComment.Enabled = false;
 			this.memoEditNotesCustomComment.Location = new System.Drawing.Point(34, 310);
 			this.memoEditNotesCustomComment.Name = "memoEditNotesCustomComment";
-			this.memoEditNotesCustomComment.Size = new System.Drawing.Size(253, 55);
+			this.memoEditNotesCustomComment.Size = new System.Drawing.Size(257, 55);
 			this.memoEditNotesCustomComment.StyleController = this.styleController;
 			this.memoEditNotesCustomComment.TabIndex = 1;
 			this.memoEditNotesCustomComment.UseOptimizedRendering = true;
@@ -309,7 +310,7 @@
 			this.buttonXBasicBusinessName.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXBasicBusinessName.Location = new System.Drawing.Point(12, 105);
 			this.buttonXBasicBusinessName.Name = "buttonXBasicBusinessName";
-			this.buttonXBasicBusinessName.Size = new System.Drawing.Size(275, 29);
+			this.buttonXBasicBusinessName.Size = new System.Drawing.Size(279, 29);
 			this.buttonXBasicBusinessName.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXBasicBusinessName.TabIndex = 4;
 			this.buttonXBasicBusinessName.Text = "   Advertiser";
@@ -327,7 +328,7 @@
 			this.comboBoxEditBasicSlideTitle.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.comboBoxEditBasicSlideTitle.Properties.NullText = "Monthly Advertising Planner";
-			this.comboBoxEditBasicSlideTitle.Size = new System.Drawing.Size(244, 22);
+			this.comboBoxEditBasicSlideTitle.Size = new System.Drawing.Size(248, 22);
 			this.comboBoxEditBasicSlideTitle.StyleController = this.styleController;
 			this.comboBoxEditBasicSlideTitle.TabIndex = 3;
 			// 
@@ -340,7 +341,7 @@
 			this.buttonXBasicSlideTitle.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 			this.buttonXBasicSlideTitle.Location = new System.Drawing.Point(12, 16);
 			this.buttonXBasicSlideTitle.Name = "buttonXBasicSlideTitle";
-			this.buttonXBasicSlideTitle.Size = new System.Drawing.Size(275, 29);
+			this.buttonXBasicSlideTitle.Size = new System.Drawing.Size(279, 29);
 			this.buttonXBasicSlideTitle.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 			this.buttonXBasicSlideTitle.TabIndex = 2;
 			this.buttonXBasicSlideTitle.Text = "   Slide Header Title";
@@ -354,9 +355,9 @@
 			this.pnBasicBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pnBasicBottom.Controls.Add(this.checkEditBasicApplyForAll);
 			this.pnBasicBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnBasicBottom.Location = new System.Drawing.Point(0, 406);
+			this.pnBasicBottom.Location = new System.Drawing.Point(0, 410);
 			this.pnBasicBottom.Name = "pnBasicBottom";
-			this.pnBasicBottom.Size = new System.Drawing.Size(298, 37);
+			this.pnBasicBottom.Size = new System.Drawing.Size(302, 37);
 			this.pnBasicBottom.TabIndex = 4;
 			// 
 			// checkEditBasicApplyForAll
@@ -1044,7 +1045,7 @@
 			this.checkEditLogoApplyForAll.Properties.Appearance.Options.UseTextOptions = true;
 			this.checkEditLogoApplyForAll.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditLogoApplyForAll.Properties.Caption = "Show this LOGO on all calendar slides";
-			this.checkEditLogoApplyForAll.Size = new System.Drawing.Size(273, 20);
+			this.checkEditLogoApplyForAll.Size = new System.Drawing.Size(273, 19);
 			this.checkEditLogoApplyForAll.StyleController = this.styleController;
 			this.checkEditLogoApplyForAll.TabIndex = 8;
 			// 
@@ -1127,34 +1128,33 @@
 			this.barDockControlTop.CausesValidation = false;
 			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-			this.barDockControlTop.Size = new System.Drawing.Size(300, 44);
+			this.barDockControlTop.Size = new System.Drawing.Size(304, 44);
 			// 
 			// barDockControlBottom
 			// 
 			this.barDockControlBottom.CausesValidation = false;
 			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.barDockControlBottom.Location = new System.Drawing.Point(0, 541);
-			this.barDockControlBottom.Size = new System.Drawing.Size(300, 0);
+			this.barDockControlBottom.Location = new System.Drawing.Point(0, 545);
+			this.barDockControlBottom.Size = new System.Drawing.Size(304, 0);
 			// 
 			// barDockControlLeft
 			// 
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
 			this.barDockControlLeft.Location = new System.Drawing.Point(0, 44);
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 497);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 501);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.barDockControlRight.Location = new System.Drawing.Point(300, 44);
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 497);
+			this.barDockControlRight.Location = new System.Drawing.Point(304, 44);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 501);
 			// 
 			// SlideInfoControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.Controls.Add(this.xtraTabControl);
 			this.Controls.Add(this.barDockControlLeft);
 			this.Controls.Add(this.barDockControlRight);
@@ -1162,7 +1162,7 @@
 			this.Controls.Add(this.barDockControlTop);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Name = "SlideInfoControl";
-			this.Size = new System.Drawing.Size(300, 541);
+			this.Size = new System.Drawing.Size(304, 545);
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
 			this.xtraTabControl.ResumeLayout(false);
 			this.xtraTabPageBasic.ResumeLayout(false);

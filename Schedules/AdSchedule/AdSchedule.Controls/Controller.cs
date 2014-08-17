@@ -243,7 +243,6 @@ namespace NewBizWiz.AdSchedule.Controls
 			#region Calendars
 			Calendar = new AdCalendarControl();
 			CalendarMonthList.SelectedIndexChanged += Calendar.MonthList_SelectedIndexChanged;
-			CalendarSlideInfo.CheckedChanged += Calendar.SlideInfo_CheckedChanged;
 			CalendarCopy.Click += Calendar.CalendarCopy_Click;
 			CalendarPaste.Click += Calendar.CalendarPaste_Click;
 			CalendarClone.Click += Calendar.CalendarClone_Click;
@@ -713,6 +712,7 @@ namespace NewBizWiz.AdSchedule.Controls
 		public ComboBoxEdit PrintProductColor { get; set; }
 		public SpinEdit PrintProductStandartHeight { get; set; }
 		public SpinEdit PrintProductStandartWidth { get; set; }
+		public ControlContainerItem PrintProductSharePageSquareContainer { get; set; }
 		public CheckedListBoxControl PrintProductSharePageSquare { get; set; }
 		#endregion
 
@@ -823,7 +823,6 @@ namespace NewBizWiz.AdSchedule.Controls
 
 		#region Calendar
 		public ImageListBoxControl CalendarMonthList { get; set; }
-		public ButtonItem CalendarSlideInfo { get; set; }
 		public ButtonItem CalendarCopy { get; set; }
 		public ButtonItem CalendarPaste { get; set; }
 		public ButtonItem CalendarClone { get; set; }

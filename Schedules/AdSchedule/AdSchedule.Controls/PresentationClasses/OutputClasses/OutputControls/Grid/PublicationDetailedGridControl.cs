@@ -436,8 +436,8 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (!Controller.Instance.Grids.DetailedGrid.DigitalLegend.Enabled) return String.Empty;
 				if (!Controller.Instance.Grids.DetailedGrid.DigitalLegend.AllowEdit)
 					return String.Format("Digital Product Info: {0}", Controller.Instance.Grids.DetailedGrid.LocalSchedule.GetDigitalInfo(Controller.Instance.Grids.DetailedGrid.DigitalLegend.RequestOptions));
-				if (!String.IsNullOrEmpty(Controller.Instance.Grids.DetailedGrid.DigitalLegend.Info))
-					return String.Format("Digital Product Info: {0}", Controller.Instance.Grids.DetailedGrid.DigitalLegend.Info);
+				if (!String.IsNullOrEmpty(Controller.Instance.Grids.DetailedGrid.DigitalLegend.CompiledInfo))
+					return String.Format("Digital Product Info: {0}", Controller.Instance.Grids.DetailedGrid.DigitalLegend.CompiledInfo);
 				return String.Empty;
 			}
 		}

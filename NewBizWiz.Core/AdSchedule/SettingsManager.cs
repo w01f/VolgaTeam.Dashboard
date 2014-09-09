@@ -14,8 +14,8 @@ namespace NewBizWiz.Core.AdSchedule
 				Directory.CreateDirectory(defaultSaveFolderPath);
 			SaveFolder = defaultSaveFolderPath;
 
-			ViewSettingsPath = String.Format(@"{0}\newlocaldirect.com\xml\app\AdScheduleViewSetings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			LocalSettingsPath = String.Format(@"{0}\newlocaldirect.com\xml\app\AdScheduleSetings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			ViewSettingsPath = Path.Combine(Common.SettingsManager.Instance.SettingsPath, "AdScheduleViewSetings.xml");
+			LocalSettingsPath = Path.Combine(Common.SettingsManager.Instance.SettingsPath, "AdScheduleSetings.xml");
 			HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\AdScheduleHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			IconPath = Path.Combine(Path.GetDirectoryName(typeof(SettingsManager).Assembly.Location), "icon.ico");
 		}

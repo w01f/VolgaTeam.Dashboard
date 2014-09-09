@@ -15,9 +15,10 @@ namespace NewBizWiz.Core.Common
 
 		private SettingsManager()
 		{
-			_sharedSettingsFile = String.Format(@"{0}\newlocaldirect.com\xml\app\SharedSettings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			SettingsPath = String.Format(@"{0}\newlocaldirect.com\xml\app", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			_sharedSettingsFile = Path.Combine(SettingsPath, "SharedSettings.xml");
 			_dashboardCodeFilePath = String.Format(@"{0}\newlocaldirect.com\app\dashboard.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			_appIDFile = String.Format(@"{0}\newlocaldirect.com\xml\app\AppID.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			_appIDFile = Path.Combine(SettingsPath, "AppID.xml");
 			_dashboardNamePath = String.Format(@"{0}\newlocaldirect.com\app\Minibar\Tab2Name.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			TempPath = String.Format(@"{0}\newlocaldirect.com\Sync\Temp", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			if (!Directory.Exists(TempPath))
@@ -51,6 +52,7 @@ namespace NewBizWiz.Core.Common
 			}
 		}
 
+		public string SettingsPath { get; set; }
 		public string TempPath { get; set; }
 		public string MinibarApplicationPath { get; set; }
 		public string OneDomainApplicationPath { get; set; }

@@ -130,6 +130,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 	}
 
 	[IntendForClass(typeof(CalendarMonthSundayBased))]
+	[IntendForClass(typeof(CalendarMonthBroadcastSundayBased))]
 	public class MonthControlSundayBased : MonthControl
 	{
 		public MonthControlSundayBased()
@@ -140,7 +141,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 	}
 
 	[IntendForClass(typeof(CalendarMonthMondayBased))]
-	[IntendForClass(typeof(CalendarMonthBroadcast))]
+	[IntendForClass(typeof(CalendarMonthBroadcastMondayBased))]
 	public class MonthControlMondayBased : MonthControl
 	{
 		public MonthControlMondayBased()

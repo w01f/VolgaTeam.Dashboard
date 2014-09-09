@@ -24,7 +24,7 @@ namespace NewBizWiz.Calendar.Single
 		{
 			InitializeComponent();
 
-			FormStateHelper.Init(this, Path.GetDirectoryName(typeof(FormMain).Assembly.Location), true);
+			FormStateHelper.Init(this, Core.Common.SettingsManager.Instance.SettingsPath, "Calendar", true);
 
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;
@@ -364,7 +364,7 @@ namespace NewBizWiz.Calendar.Single
 			bool result = true;
 			if (_currentControl != null && _currentControl == Controller.Instance.HomeControl)
 				result = Controller.Instance.HomeControl.AllowToLeaveControl;
-			else if (_currentControl!= null && _currentControl == Controller.Instance.CalendarVisualizer.SelectedCalendarControl)
+			else if (_currentControl != null && _currentControl == Controller.Instance.CalendarVisualizer.SelectedCalendarControl)
 				Controller.Instance.CalendarVisualizer.SelectedCalendarControl.LeaveCalendar();
 			CalendarPowerPointHelper.Instance.Disconnect(false);
 		}

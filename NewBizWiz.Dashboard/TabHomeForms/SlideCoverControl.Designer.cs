@@ -30,11 +30,10 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlideCoverControl));
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			this.pbSalesQuotes = new System.Windows.Forms.PictureBox();
 			this.checkEditPresentationDate = new DevExpress.XtraEditors.CheckEdit();
 			this.comboBoxEditDecisionMaker = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.comboBoxEditAdvertiser = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.buttonXDeleteSalesQuote = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXSalesQuote = new DevComponents.DotNetBar.ButtonX();
 			this.memoEditSalesQuote = new DevExpress.XtraEditors.MemoEdit();
 			this.textEditSalesQuoteAuthor = new DevExpress.XtraEditors.TextEdit();
 			this.laAdvertiser = new System.Windows.Forms.Label();
@@ -49,13 +48,13 @@
 			this.checkEditUseEmptyCover = new DevExpress.XtraEditors.CheckEdit();
 			this.comboBoxEditSalesRep = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.laSalesRepDetails = new System.Windows.Forms.Label();
+			this.laSalesQuotesHint = new System.Windows.Forms.Label();
 			this.pnMain.SuspendLayout();
 			this.pnBottom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).BeginInit();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbSalesQuotes)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditAdvertiser.Properties)).BeginInit();
@@ -77,7 +76,6 @@
 			// 
 			this.pnMain.Controls.Add(this.laSalesRepDetails);
 			this.pnMain.Controls.Add(this.comboBoxEditSalesRep);
-			this.pnMain.Controls.Add(this.pbSalesQuotes);
 			this.pnMain.Controls.Add(this.pbAdvertiser);
 			this.pnMain.Controls.Add(this.checkEditSalesRep);
 			this.pnMain.Controls.Add(this.checkEditPresentationDate);
@@ -88,15 +86,17 @@
 			this.pnMain.Controls.Add(this.dateEditPresentationDate);
 			this.pnMain.Controls.Add(this.comboBoxEditAdvertiser);
 			this.pnMain.Controls.Add(this.pbSalesRep);
-			this.pnMain.Controls.Add(this.buttonXDeleteSalesQuote);
+			this.pnMain.Controls.Add(this.buttonXSalesQuote);
 			this.pnMain.Controls.Add(this.laAdvertiser);
 			this.pnMain.Controls.Add(this.memoEditSalesQuote);
 			this.pnMain.Controls.Add(this.textEditSalesQuoteAuthor);
+			this.pnMain.Controls.Add(this.laSalesQuotesHint);
 			// 
 			// pnBottom
 			// 
 			this.pnBottom.Controls.Add(this.checkEditUseEmptyCover);
 			this.pnBottom.Controls.Add(this.checkEditFirstSlide);
+			this.pnBottom.Controls.SetChildIndex(this.simpleButtonSaveTemplate, 0);
 			this.pnBottom.Controls.SetChildIndex(this.checkEditSolutionNew, 0);
 			this.pnBottom.Controls.SetChildIndex(this.pbDescription, 0);
 			this.pnBottom.Controls.SetChildIndex(this.checkEditFirstSlide, 0);
@@ -122,29 +122,17 @@
 			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
+			this.checkEditSolutionNew.Size = new System.Drawing.Size(157, 20);
 			// 
 			// pbDescription
 			// 
 			this.pbDescription.Image = global::NewBizWiz.Dashboard.Properties.Resources.DescriptionCover;
 			this.pbDescription.Size = new System.Drawing.Size(255, 48);
 			// 
-			// pbSalesQuotes
-			// 
-			this.pbSalesQuotes.Image = global::NewBizWiz.Dashboard.Properties.Resources.SalesQuotes;
-			this.pbSalesQuotes.Location = new System.Drawing.Point(11, 259);
-			this.pbSalesQuotes.Name = "pbSalesQuotes";
-			this.pbSalesQuotes.Size = new System.Drawing.Size(72, 72);
-			this.pbSalesQuotes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbSalesQuotes.TabIndex = 98;
-			this.pbSalesQuotes.TabStop = false;
-			this.pbSalesQuotes.Click += new System.EventHandler(this.buttonXSalesQuotes_Click);
-			this.pbSalesQuotes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbSalesQuotes.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
 			// checkEditPresentationDate
 			// 
 			this.checkEditPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditPresentationDate.Location = new System.Drawing.Point(501, 148);
+			this.checkEditPresentationDate.Location = new System.Drawing.Point(501, 168);
 			this.checkEditPresentationDate.Name = "checkEditPresentationDate";
 			this.checkEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F);
 			this.checkEditPresentationDate.Properties.Appearance.Options.UseFont = true;
@@ -155,7 +143,7 @@
 			// 
 			// comboBoxEditDecisionMaker
 			// 
-			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(70, 179);
+			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(70, 199);
 			this.comboBoxEditDecisionMaker.Name = "comboBoxEditDecisionMaker";
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
@@ -195,31 +183,31 @@
 			this.comboBoxEditAdvertiser.TabIndex = 1;
 			this.comboBoxEditAdvertiser.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
-			// buttonXDeleteSalesQuote
+			// buttonXSalesQuote
 			// 
-			this.buttonXDeleteSalesQuote.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-			this.buttonXDeleteSalesQuote.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDeleteSalesQuote.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonXDeleteSalesQuote.Location = new System.Drawing.Point(11, 337);
-			this.buttonXDeleteSalesQuote.Name = "buttonXDeleteSalesQuote";
-			this.buttonXDeleteSalesQuote.Size = new System.Drawing.Size(72, 29);
-			this.buttonXDeleteSalesQuote.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.buttonXDeleteSalesQuote.TabIndex = 91;
-			this.buttonXDeleteSalesQuote.TabStop = false;
-			this.buttonXDeleteSalesQuote.Text = "Remove";
-			this.buttonXDeleteSalesQuote.TextColor = System.Drawing.Color.Black;
-			this.buttonXDeleteSalesQuote.Visible = false;
-			this.buttonXDeleteSalesQuote.Click += new System.EventHandler(this.buttonXDeleteSalesQuote_Click);
+			this.buttonXSalesQuote.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+			this.buttonXSalesQuote.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+			this.buttonXSalesQuote.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.buttonXSalesQuote.Image = global::NewBizWiz.Dashboard.Properties.Resources.SalesQuotes;
+			this.buttonXSalesQuote.Location = new System.Drawing.Point(11, 285);
+			this.buttonXSalesQuote.Name = "buttonXSalesQuote";
+			this.buttonXSalesQuote.Size = new System.Drawing.Size(181, 48);
+			this.buttonXSalesQuote.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+			this.buttonXSalesQuote.TabIndex = 91;
+			this.buttonXSalesQuote.TabStop = false;
+			this.buttonXSalesQuote.TextColor = System.Drawing.Color.Black;
+			this.buttonXSalesQuote.Click += new System.EventHandler(this.buttonXSalesQuote_Click);
 			// 
 			// memoEditSalesQuote
 			// 
 			this.memoEditSalesQuote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+			this.memoEditSalesQuote.EditValue = "";
 			this.memoEditSalesQuote.Enabled = false;
-			this.memoEditSalesQuote.Location = new System.Drawing.Point(89, 289);
+			this.memoEditSalesQuote.Location = new System.Drawing.Point(198, 315);
 			this.memoEditSalesQuote.Name = "memoEditSalesQuote";
 			this.memoEditSalesQuote.Properties.Appearance.BackColor = System.Drawing.Color.White;
-			this.memoEditSalesQuote.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+			this.memoEditSalesQuote.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.memoEditSalesQuote.Properties.Appearance.ForeColor = System.Drawing.Color.Gray;
 			this.memoEditSalesQuote.Properties.Appearance.Options.UseBackColor = true;
 			this.memoEditSalesQuote.Properties.Appearance.Options.UseFont = true;
@@ -241,18 +229,20 @@
     "reat first impression with your client…";
 			this.memoEditSalesQuote.Properties.ReadOnly = true;
 			this.memoEditSalesQuote.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
-			this.memoEditSalesQuote.Size = new System.Drawing.Size(673, 77);
+			this.memoEditSalesQuote.Size = new System.Drawing.Size(564, 58);
 			this.memoEditSalesQuote.TabIndex = 90;
 			this.memoEditSalesQuote.TabStop = false;
 			this.memoEditSalesQuote.UseOptimizedRendering = true;
+			this.memoEditSalesQuote.Visible = false;
 			// 
 			// textEditSalesQuoteAuthor
 			// 
+			this.textEditSalesQuoteAuthor.EditValue = "";
 			this.textEditSalesQuoteAuthor.Enabled = false;
-			this.textEditSalesQuoteAuthor.Location = new System.Drawing.Point(89, 257);
+			this.textEditSalesQuoteAuthor.Location = new System.Drawing.Point(198, 285);
 			this.textEditSalesQuoteAuthor.Name = "textEditSalesQuoteAuthor";
 			this.textEditSalesQuoteAuthor.Properties.Appearance.BackColor = System.Drawing.Color.White;
-			this.textEditSalesQuoteAuthor.Properties.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.textEditSalesQuoteAuthor.Properties.Appearance.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.textEditSalesQuoteAuthor.Properties.Appearance.Options.UseBackColor = true;
 			this.textEditSalesQuoteAuthor.Properties.Appearance.Options.UseFont = true;
 			this.textEditSalesQuoteAuthor.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White;
@@ -270,9 +260,10 @@
 			this.textEditSalesQuoteAuthor.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.textEditSalesQuoteAuthor.Properties.NullText = "Sales Quotes";
 			this.textEditSalesQuoteAuthor.Properties.ReadOnly = true;
-			this.textEditSalesQuoteAuthor.Size = new System.Drawing.Size(673, 26);
+			this.textEditSalesQuoteAuthor.Size = new System.Drawing.Size(564, 24);
 			this.textEditSalesQuoteAuthor.TabIndex = 89;
 			this.textEditSalesQuoteAuthor.TabStop = false;
+			this.textEditSalesQuoteAuthor.Visible = false;
 			// 
 			// laAdvertiser
 			// 
@@ -301,7 +292,7 @@
 			this.dateEditPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateEditPresentationDate.EditValue = null;
 			this.dateEditPresentationDate.Enabled = false;
-			this.dateEditPresentationDate.Location = new System.Drawing.Point(502, 180);
+			this.dateEditPresentationDate.Location = new System.Drawing.Point(502, 200);
 			this.dateEditPresentationDate.Name = "dateEditPresentationDate";
 			this.dateEditPresentationDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -326,7 +317,7 @@
 			// 
 			this.laDecisionMaker.BackColor = System.Drawing.Color.White;
 			this.laDecisionMaker.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laDecisionMaker.Location = new System.Drawing.Point(67, 150);
+			this.laDecisionMaker.Location = new System.Drawing.Point(67, 170);
 			this.laDecisionMaker.Name = "laDecisionMaker";
 			this.laDecisionMaker.Size = new System.Drawing.Size(261, 27);
 			this.laDecisionMaker.TabIndex = 74;
@@ -337,7 +328,7 @@
 			this.pbPresentationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pbPresentationDate.BackColor = System.Drawing.Color.White;
 			this.pbPresentationDate.Image = global::NewBizWiz.Dashboard.Properties.Resources.Date;
-			this.pbPresentationDate.Location = new System.Drawing.Point(443, 150);
+			this.pbPresentationDate.Location = new System.Drawing.Point(443, 170);
 			this.pbPresentationDate.Name = "pbPresentationDate";
 			this.pbPresentationDate.Size = new System.Drawing.Size(50, 51);
 			this.pbPresentationDate.TabIndex = 77;
@@ -347,7 +338,7 @@
 			// 
 			this.pbDecisionMaker.BackColor = System.Drawing.Color.White;
 			this.pbDecisionMaker.Image = global::NewBizWiz.Dashboard.Properties.Resources.DecisionMaker;
-			this.pbDecisionMaker.Location = new System.Drawing.Point(11, 150);
+			this.pbDecisionMaker.Location = new System.Drawing.Point(11, 170);
 			this.pbDecisionMaker.Name = "pbDecisionMaker";
 			this.pbDecisionMaker.Size = new System.Drawing.Size(50, 51);
 			this.pbDecisionMaker.TabIndex = 75;
@@ -442,7 +433,7 @@
 			this.checkEditUseEmptyCover.Properties.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditUseEmptyCover.Properties.AutoWidth = true;
 			this.checkEditUseEmptyCover.Properties.Caption = "Empty Cover";
-			this.checkEditUseEmptyCover.Size = new System.Drawing.Size(97, 20);
+			this.checkEditUseEmptyCover.Size = new System.Drawing.Size(97, 19);
 			this.checkEditUseEmptyCover.TabIndex = 92;
 			this.checkEditUseEmptyCover.CheckedChanged += new System.EventHandler(this.checkEditUseEmptyCover_CheckedChanged);
 			// 
@@ -477,6 +468,16 @@
 			this.laSalesRepDetails.TabIndex = 100;
 			this.laSalesRepDetails.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
+			// laSalesQuotesHint
+			// 
+			this.laSalesQuotesHint.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laSalesQuotesHint.Location = new System.Drawing.Point(198, 285);
+			this.laSalesQuotesHint.Name = "laSalesQuotesHint";
+			this.laSalesQuotesHint.Size = new System.Drawing.Size(564, 48);
+			this.laSalesQuotesHint.TabIndex = 101;
+			this.laSalesQuotesHint.Text = "Add “Words of Wisdom” to your cover page…";
+			this.laSalesQuotesHint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
 			// SlideCoverControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -488,7 +489,6 @@
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbDescription)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbSalesQuotes)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditPresentationDate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDecisionMaker.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditAdvertiser.Properties)).EndInit();
@@ -518,7 +518,7 @@
         private System.Windows.Forms.PictureBox pbAdvertiser;
         private System.Windows.Forms.Label laAdvertiser;
         private DevExpress.XtraEditors.TextEdit textEditSalesQuoteAuthor;
-        private DevComponents.DotNetBar.ButtonX buttonXDeleteSalesQuote;
+        private DevComponents.DotNetBar.ButtonX buttonXSalesQuote;
         private DevExpress.XtraEditors.MemoEdit memoEditSalesQuote;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditDecisionMaker;
 		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditAdvertiser;
@@ -526,9 +526,9 @@
 		private DevExpress.XtraEditors.CheckEdit checkEditUseEmptyCover;
         private DevExpress.XtraEditors.CheckEdit checkEditPresentationDate;
 		private DevExpress.XtraEditors.CheckEdit checkEditSalesRep;
-        private System.Windows.Forms.PictureBox pbSalesQuotes;
 		private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditSalesRep;
 		private System.Windows.Forms.Label laSalesRepDetails;
+		private System.Windows.Forms.Label laSalesQuotesHint;
 
     }
 }

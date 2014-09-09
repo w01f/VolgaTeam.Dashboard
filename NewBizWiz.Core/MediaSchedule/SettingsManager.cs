@@ -113,7 +113,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		protected override string LocalSettingsPath
 		{
-			get { return String.Format(@"{0}\newlocaldirect.com\xml\app\TVScheduleSettings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
+			get { return Path.Combine(Common.SettingsManager.Instance.SettingsPath, "TVScheduleSettings.xml"); }
 		}
 	}
 
@@ -132,7 +132,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		protected override string LocalSettingsPath
 		{
-			get { return String.Format(@"{0}\newlocaldirect.com\xml\app\RadioScheduleSettings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)); }
+			get { return Path.Combine(Common.SettingsManager.Instance.SettingsPath, "RadioScheduleSettings.xml"); }
 		}
 	}
 }

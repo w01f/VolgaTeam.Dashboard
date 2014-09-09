@@ -112,7 +112,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Plugins\AdBar.Plugins.Core\AdBar.Plugins.Core.csproj">
       <Project>{d506b009-76da-45be-9f1b-c3124fe82eec}</Project>
-      <Name>Plugins.Core</Name>
+      <Name>AdBar.Plugins.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

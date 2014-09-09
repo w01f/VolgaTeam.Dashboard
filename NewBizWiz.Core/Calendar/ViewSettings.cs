@@ -9,7 +9,7 @@ namespace NewBizWiz.Core.Calendar
 	{
 		public LocalSettings()
 		{
-			LocalSettingsPath = string.Format(@"{0}\newlocaldirect.com\xml\app\CalendarSettings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			LocalSettingsPath = Path.Combine(Common.SettingsManager.Instance.SettingsPath, "CalendarSettings.xml");
 			GraphicCalendarSettings = new CalendarSettings();
 			Load();
 		}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -54,6 +55,8 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		public void Init()
 		{
+			SetDefaultCulture();
+
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Application Started"));
 
 			#region Schedule Settings
@@ -237,6 +240,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			Gallery2.Dispose();
 			RateCard.Dispose();
 			FloaterRequested = null;
+			SetDefaultCulture();
 		}
 
 		public void LoadData()
@@ -330,13 +334,13 @@ namespace NewBizWiz.MediaSchedule.Controls
 			Ribbon.Items.AddRange(tabPages.ToArray());
 		}
 
-		public void SaveSchedule(Schedule localSchedule, bool nameChanged, bool quickSave, bool updateDigital, Control sender)
+		public void SaveSchedule(Schedule localSchedule, bool nameChanged, bool quickSave, bool updateDigital, bool calendarTypeChanged, Control sender)
 		{
 			using (var form = new FormProgress())
 			{
 				form.laProgress.Text = "Chill-Out for a few seconds...\nSaving settings...";
 				form.TopMost = true;
-				var thread = new Thread(() => BusinessWrapper.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, updateDigital, sender));
+				var thread = new Thread(() => BusinessWrapper.Instance.ScheduleManager.SaveSchedule(localSchedule, quickSave, updateDigital, calendarTypeChanged, sender));
 				form.Show();
 				thread.Start();
 				while (thread.IsAlive)
@@ -373,11 +377,15 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		public void UpdateOutputTabs(bool enable)
 		{
-			TabCalendar1.Enabled = enable;
-			TabCalendar2.Enabled = enable;
 			TabSummaryLight.Enabled = enable;
 			TabSummaryFull.Enabled = enable;
 			TabStrategy.Enabled = enable;
+			TabCalendar2.Enabled = enable;
+		}
+
+		public void UpdateCalendarTabs(bool enable)
+		{
+			TabCalendar1.Enabled = enable;
 		}
 
 		public void UpdateDigitalProductTab(bool enable)
@@ -527,6 +535,14 @@ namespace NewBizWiz.MediaSchedule.Controls
 				Gallery1.InitControl();
 			else if (Ribbon.SelectedRibbonTabItem == TabGallery2)
 				Gallery2.InitControl();
+		}
+
+		public void SetDefaultCulture()
+		{
+			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Monday;
+			Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = @"MM/dd/yyyy";
+			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 		}
 		#region Command Controls
 

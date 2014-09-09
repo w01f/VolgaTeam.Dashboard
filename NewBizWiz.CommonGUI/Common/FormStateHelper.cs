@@ -11,27 +11,29 @@ namespace NewBizWiz.CommonGUI.Common
 	{
 		private const string StorageName = "Location.xml";
 		private readonly string _storagePath;
+		private readonly string _filePrefix;
 		private readonly Form _form;
 		private readonly bool _showMaximized;
 
-		private FormStateHelper(Form targetForm, string storagePath, bool showMaximized)
+		private FormStateHelper(Form targetForm, string storagePath, string filePrefix, bool showMaximized)
 		{
 			_form = targetForm;
 			_storagePath = storagePath;
+			_filePrefix = filePrefix;
 			_showMaximized = showMaximized;
 			_form.WindowState = FormWindowState.Normal;
 			_form.Load += (o, e) => LoadState();
 			_form.FormClosed += (o, e) => SaveState();
 		}
 
-		public static void Init(Form targetForm, string storagePath, bool showMaximized)
+		public static void Init(Form targetForm, string storagePath, string filePrefix, bool showMaximized)
 		{
-			new FormStateHelper(targetForm, storagePath, showMaximized);
+			new FormStateHelper(targetForm, storagePath, filePrefix, showMaximized);
 		}
 
 		private void LoadState()
 		{
-			var filePath = Path.Combine(_storagePath, StorageName);
+			var filePath = Path.Combine(_storagePath, String.Format("{0}-{1}", _filePrefix, StorageName));
 			int? x = null, y = null;
 			if (File.Exists(filePath))
 			{
@@ -69,7 +71,7 @@ namespace NewBizWiz.CommonGUI.Common
 			xml.AppendLine(@"<X>" + _form.Location.X + @"</X>");
 			xml.AppendLine(@"<Y>" + _form.Location.Y + @"</Y>");
 			xml.AppendLine(@"</Location>");
-			var filePath = Path.Combine(_storagePath, StorageName);
+			var filePath = Path.Combine(_storagePath, String.Format("{0}-{1}", _filePrefix, StorageName));
 			if (!Directory.Exists(_storagePath))
 				Directory.CreateDirectory(_storagePath);
 			using (var sw = new StreamWriter(filePath, false))

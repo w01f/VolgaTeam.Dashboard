@@ -24,7 +24,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 		{
 			InitializeComponent();
 
-			FormStateHelper.Init(this, Path.GetDirectoryName(typeof(FormMain).Assembly.Location), true);
+			FormStateHelper.Init(this, SettingsManager.Instance.SettingsPath, "Digital", true);
 
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;
@@ -92,7 +92,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.AdPlanPowerPoint = buttonItemAdPlanPowerPoint;
 			Controller.Instance.AdPlanTheme = buttonItemAdPlanTheme;
 			#endregion
-			
+
 			#region Summary Light
 			Controller.Instance.SummaryLightSpecialButtons = ribbonBarSummaryLightSpecialButtons;
 			Controller.Instance.SummaryLightHelp = buttonItemSummaryLightHelp;

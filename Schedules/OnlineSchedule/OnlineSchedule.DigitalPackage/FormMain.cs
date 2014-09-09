@@ -37,7 +37,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		{
 			InitializeComponent();
 
-			FormStateHelper.Init(this, Path.GetDirectoryName(typeof(FormMain).Assembly.Location), true);
+			FormStateHelper.Init(this, Core.Common.SettingsManager.Instance.SettingsPath, "WebQuick", true);
 
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;

@@ -21,12 +21,12 @@ namespace NewBizWiz.MediaSchedule.Single
 		private static FormMain _instance;
 		private Control _currentControl;
 		public event EventHandler<FloaterRequestedEventArgs> FloaterRequested;
-		
+
 		private FormMain()
 		{
 			InitializeComponent();
 
-			FormStateHelper.Init(this, Path.GetDirectoryName(typeof(FormMain).Assembly.Location), true);
+			FormStateHelper.Init(this, SettingsManager.Instance.SettingsPath, MediaMetaData.Instance.DataTypeString, true);
 
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;
@@ -292,7 +292,7 @@ namespace NewBizWiz.MediaSchedule.Single
 		{
 			if (string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard)) return;
 			var shortSchedule = BusinessWrapper.Instance.ScheduleManager.GetShortSchedule();
-			Text = String.Format("{0} Seller - {1} - {2} {3}", MediaMetaData.Instance.DataTypeString, SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, String.Format("({0})",shortSchedule!= null?shortSchedule.ShortFileName:String.Empty));
+			Text = String.Format("{0} Seller - {1} - {2} {3}", MediaMetaData.Instance.DataTypeString, SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, String.Format("({0})", shortSchedule != null ? shortSchedule.ShortFileName : String.Empty));
 		}
 
 		private void LoadData()
@@ -304,7 +304,7 @@ namespace NewBizWiz.MediaSchedule.Single
 				form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Schedule...";
 				form.TopMost = true;
 				form.Show();
-				var thread = new Thread(() => Invoke((MethodInvoker) (() => Controller.Instance.LoadData())));
+				var thread = new Thread(() => Invoke((MethodInvoker)(() => Controller.Instance.LoadData())));
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();

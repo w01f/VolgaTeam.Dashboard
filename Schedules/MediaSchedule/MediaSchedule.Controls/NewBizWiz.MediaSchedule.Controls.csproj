@@ -335,9 +335,6 @@
     <None Include="Resources\Quarter.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\WideOrbitSchedule.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Favorites.png" />
   </ItemGroup>
   <ItemGroup>

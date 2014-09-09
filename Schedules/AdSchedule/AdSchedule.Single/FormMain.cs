@@ -26,7 +26,7 @@ namespace NewBizWiz.AdSchedule.Single
 		{
 			InitializeComponent();
 
-			FormStateHelper.Init(this, Path.GetDirectoryName(typeof(FormMain).Assembly.Location), true);
+			FormStateHelper.Init(this, SettingsManager.Instance.SettingsPath, "Newspaper", true);
 
 			Controller.Instance.FormMain = this;
 			Controller.Instance.Supertip = superTooltip;

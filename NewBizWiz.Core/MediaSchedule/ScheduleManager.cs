@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
-using NewBizWiz.Core.AdSchedule;
+using DevComponents.DotNetBar;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.Core.OnlineSchedule;
@@ -73,12 +73,12 @@ namespace NewBizWiz.Core.MediaSchedule
 			return _currentSchedule != null ? new ShortSchedule(_currentSchedule.ScheduleFile) : null;
 		}
 
-		public void SaveSchedule(Schedule localSchedule, bool quickSave, bool updateDigital, Control sender)
+		public void SaveSchedule(Schedule localSchedule, bool quickSave, bool updateDigital, bool calendarTypeChanged, Control sender)
 		{
 			localSchedule.Save();
 			_currentSchedule = localSchedule;
 			if (SettingsSaved != null)
-				SettingsSaved(sender, new ScheduleSaveEventArgs(quickSave, updateDigital));
+				SettingsSaved(sender, new ScheduleSaveEventArgs(quickSave, updateDigital, calendarTypeChanged));
 		}
 
 		public static ShortSchedule[] GetShortScheduleList()
@@ -188,6 +188,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			UseDemo = false;
 			ImportDemo = false;
 			DemoType = DemoType.Imp;
+			MondayBased = true;
 			WeeklySchedule = new WeeklySection(this);
 			MonthlySchedule = new MonthlySection(this);
 
@@ -241,6 +242,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public string Demo { get; set; }
 		public string Source { get; set; }
 		public DemoType DemoType { get; set; }
+		public bool MondayBased { get; private set; }
 
 		public SpotType SelectedSpotType { get; set; }
 		public WeeklySection WeeklySchedule { get; set; }
@@ -249,7 +251,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public List<Daypart> Dayparts { get; private set; }
 		public List<Station> Stations { get; private set; }
 
-		public OnlineSchedule.ScheduleBuilderViewSettings ViewSettings { get; set; }
+		public ScheduleBuilderViewSettings ViewSettings { get; set; }
 		public IScheduleViewSettings SharedViewSettings
 		{
 			get { return ViewSettings; }
@@ -286,6 +288,16 @@ namespace NewBizWiz.Core.MediaSchedule
 					return FlightDateStart.Value.ToString("MM/dd/yy") + " - " + FlightDateEnd.Value.ToString("MM/dd/yy");
 				return string.Empty;
 			}
+		}
+
+		public DayOfWeek StartDayOfWeek
+		{
+			get { return MondayBased ? DayOfWeek.Monday : DayOfWeek.Sunday; }
+		}
+
+		public DayOfWeek EndDayOfWeek
+		{
+			get { return MondayBased ? DayOfWeek.Sunday : DayOfWeek.Saturday; }
 		}
 
 		public ScheduleSection SelectedSection
@@ -374,6 +386,14 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (node != null)
 				if (int.TryParse(node.InnerText, out tempInt))
 					DemoType = (DemoType)tempInt;
+
+			node = document.SelectSingleNode(@"/Schedule/MondayBased");
+			if (node != null)
+			{
+				bool temp;
+				if (Boolean.TryParse(node.InnerText, out temp))
+					MondayBased = temp;
+			}
 
 			node = document.SelectSingleNode(@"/Schedule/Demo");
 			if (node != null)
@@ -491,6 +511,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			xml.AppendLine(@"<UseDemo>" + UseDemo + @"</UseDemo>");
 			xml.AppendLine(@"<ImportDemo>" + ImportDemo + @"</ImportDemo>");
 			xml.AppendLine(@"<DemoType>" + (int)DemoType + @"</DemoType>");
+			xml.AppendLine(@"<MondayBased>" + MondayBased + @"</MondayBased>");
 			if (!String.IsNullOrEmpty(Demo))
 				xml.AppendLine(@"<Demo>" + Demo.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Demo>");
 			if (!String.IsNullOrEmpty(Source))
@@ -531,6 +552,14 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 		}
 
+		public void ResetCalendarType(bool isMondayBased)
+		{
+			MondayBased = isMondayBased;
+			LoadQuarters();
+			BroadcastCalendar.Reset();
+			CustomCalendar.Reset();
+		}
+
 		private void LoadCalendars()
 		{
 			BroadcastCalendar = new BroadcastCalendar(this);
@@ -569,7 +598,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			Quarters = new List<Quarter>();
 			if (!FlightDateStart.HasValue || !FlightDateEnd.HasValue) return;
-			var targetMonths = MediaMetaData.Instance.ListManager.MonthTemplates.Where(m => m.StartDate >= FlightDateStart && m.EndDate <= FlightDateEnd).ToList();
+			var targetMonths = (MondayBased ? MediaMetaData.Instance.ListManager.MonthTemplatesMondayBased : MediaMetaData.Instance.ListManager.MonthTemplatesSundayBased).Where(m => m.StartDate >= FlightDateStart && m.EndDate <= FlightDateEnd).ToList();
 			if (!targetMonths.Any()) return;
 			var startDate = FlightDateStart.Value;
 			if (startDate.Month >= 1 && startDate.Month <= 3)
@@ -947,6 +976,7 @@ namespace NewBizWiz.Core.MediaSchedule
 					var columnName = ProgramSpotDataColumnNamePrefix + spotIndex;
 					column = new DataColumn(columnName, typeof(int)) { Caption = spot.ColumnName };
 					totalSpotsExpression.Add(string.Format("ISNULL({0},0)", columnName));
+					column.ExtendedProperties.Add("FullName", spot.FullColumnName);
 					column.ExtendedProperties.Add("Quarter", spot.Quarter);
 					table.Columns.Add(column);
 					spotIndex++;
@@ -1687,7 +1717,23 @@ namespace NewBizWiz.Core.MediaSchedule
 					case SpotType.Week:
 						return String.Format("{0}\n{1}", GetMonthAbbreviation(Date.Month), Date.Day.ToString("00"));
 					default:
-						return string.Empty;
+						return String.Empty;
+				}
+			}
+		}
+
+		public string FullColumnName
+		{
+			get
+			{
+				switch (_parent.Parent.SpotType)
+				{
+					case SpotType.Month:
+						return Date.ToString("MMMM");
+					case SpotType.Week:
+						return String.Format("Week {0} {1}", GetMonthAbbreviation(Date.Month), Date.Day.ToString("00"));
+					default:
+						return String.Empty;
 				}
 			}
 		}
@@ -1803,14 +1849,32 @@ namespace NewBizWiz.Core.MediaSchedule
 		}
 	}
 
-	public abstract class MediaCalendar : CalendarMondayBased
+	public abstract class MediaCalendar : Calendar.Calendar
 	{
 		protected readonly Schedule _parentSchedule;
 
-		public MediaCalendar(ISchedule parent)
+		protected MediaCalendar(ISchedule parent)
 			: base(parent)
 		{
 			_parentSchedule = parent as Schedule;
+		}
+
+		public override void UpdateDaysCollection()
+		{
+			if (_parentSchedule.MondayBased)
+				UpdateDaysCollection<CalendarDayMondayBased>(_parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
+			else
+				UpdateDaysCollection<CalendarDaySundayBased>(_parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
+		}
+
+		public override IEnumerable<DateRange> CalculateDateRange(IEnumerable<DateTime> dates)
+		{
+			return CalculateDateRange(dates, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
+		}
+
+		public override DateTime[][] GetDaysByWeek(DateTime start, DateTime end)
+		{
+			return GetDaysByWeek(start, end, _parentSchedule.EndDayOfWeek);
 		}
 
 		public override void UpdateMonthCollection()
@@ -1822,10 +1886,17 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 			var months = new List<CalendarMonth>();
 			var startDate = Schedule.FlightDateStart.Value;
-			var monthTemplates = MediaMetaData.Instance.ListManager.MonthTemplates;
+			var monthTemplates = _parentSchedule.MondayBased ? MediaMetaData.Instance.ListManager.MonthTemplatesMondayBased : MediaMetaData.Instance.ListManager.MonthTemplatesSundayBased;
 			while (startDate <= Schedule.FlightDateEnd.Value)
 			{
-				var month = Months.FirstOrDefault(x => x.Date.Equals(startDate)) ?? new CalendarMonthBroadcast(this);
+				var month = Months.FirstOrDefault(x => x.Date.Equals(startDate));
+				if (month == null)
+				{
+					if (_parentSchedule.MondayBased)
+						month = new CalendarMonthBroadcastMondayBased(this);
+					else
+						month = new CalendarMonthBroadcastSundayBased(this);
+				}
 				var monthTemplate = monthTemplates.FirstOrDefault(mt => startDate >= mt.StartDate && startDate <= mt.EndDate);
 				if (monthTemplate == null) continue;
 				startDate = monthTemplate.Month.Value;
@@ -1863,7 +1934,10 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public override void Deserialize(XmlNode node)
 		{
-			Deserialize<CalendarMonthBroadcast, CalendarDayMondayBased, MediaDataNote>(node, DayOfWeek.Monday, DayOfWeek.Sunday);
+			if (_parentSchedule.MondayBased)
+				Deserialize<CalendarMonthBroadcastMondayBased, CalendarDayMondayBased, MediaDataNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
+			else
+				Deserialize<CalendarMonthBroadcastSundayBased, CalendarDaySundayBased, MediaDataNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
 		}
 
 		public override void UpdateNotesCollection()
@@ -1947,15 +2021,23 @@ namespace NewBizWiz.Core.MediaSchedule
 	{
 		public CustomCalendar(ISchedule parent) : base(parent) { }
 
+		public override bool AllowCustomNotes
+		{
+			get { return true; }
+		}
+
 		public override void Deserialize(XmlNode node)
 		{
-			Deserialize<CalendarMonthBroadcast, CalendarDayMondayBased, CommonCalendarNote>(node, DayOfWeek.Monday, DayOfWeek.Sunday);
+			if (_parentSchedule.MondayBased)
+				Deserialize<CalendarMonthBroadcastMondayBased, CalendarDayMondayBased, CommonCalendarNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
+			else
+				Deserialize<CalendarMonthBroadcastSundayBased, CalendarDaySundayBased, CommonCalendarNote>(node, _parentSchedule.StartDayOfWeek, _parentSchedule.EndDayOfWeek);
 		}
 	}
 
-	public class CalendarMonthBroadcast : CalendarMonth
+	public abstract class CalendarMonthBroadcast : CalendarMonth
 	{
-		public CalendarMonthBroadcast(Calendar.Calendar parent)
+		protected CalendarMonthBroadcast(Calendar.Calendar parent)
 			: base(parent)
 		{
 			OutputData = new BroadcastCalendarOutputData(this);
@@ -1966,6 +2048,16 @@ namespace NewBizWiz.Core.MediaSchedule
 			get { return _date; }
 			set { _date = value; }
 		}
+	}
+
+	public class CalendarMonthBroadcastMondayBased : CalendarMonthBroadcast
+	{
+		public CalendarMonthBroadcastMondayBased(Calendar.Calendar parent) : base(parent) { }
+	}
+
+	public class CalendarMonthBroadcastSundayBased : CalendarMonthBroadcast
+	{
+		public CalendarMonthBroadcastSundayBased(Calendar.Calendar parent) : base(parent) { }
 	}
 
 	public class BroadcastCalendarOutputData : CalendarOutputData

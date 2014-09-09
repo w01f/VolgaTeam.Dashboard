@@ -30,7 +30,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
 			{
 				if (sender != this)
-					LoadCalendar(e.QuickSave && !e.UpdateDigital);
+					LoadCalendar(e.QuickSave && !e.UpdateDigital && !e.CalendarTypeChanged);
 			});
 		}
 
@@ -87,7 +87,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 		{
 			var result = base.SaveCalendarData(byUser, scheduleName);
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
-			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, false, this);
+			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, false, false, this);
 			return result;
 		}
 

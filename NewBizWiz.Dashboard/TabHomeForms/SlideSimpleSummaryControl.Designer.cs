@@ -28,21 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlideSimpleSummaryControl));
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
 			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlideSimpleSummaryControl));
+			DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
 			this.dateEditFligtDatesStart = new DevExpress.XtraEditors.DateEdit();
 			this.ckFlightDates = new System.Windows.Forms.CheckBox();
 			this.dateEditFligtDatesEnd = new DevExpress.XtraEditors.DateEdit();
 			this.laFlightDatesStart = new System.Windows.Forms.Label();
 			this.laFlightDatesEnd = new System.Windows.Forms.Label();
-			this.tabItemCampaign = new DevComponents.DotNetBar.TabItem(this.components);
+			this.tabItemCampaign = new DevComponents.DotNetBar.TabItem();
 			this.comboBoxEditDecisionMaker = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.comboBoxEditAdvertiser = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.dateEditDate = new DevExpress.XtraEditors.DateEdit();
@@ -110,6 +109,7 @@
 			// pnBottom
 			// 
 			this.pnBottom.Controls.Add(this.checkEditTableOutput);
+			this.pnBottom.Controls.SetChildIndex(this.simpleButtonSaveTemplate, 0);
 			this.pnBottom.Controls.SetChildIndex(this.pbDescription, 0);
 			this.pnBottom.Controls.SetChildIndex(this.checkEditSolutionNew, 0);
 			this.pnBottom.Controls.SetChildIndex(this.checkEditTableOutput, 0);
@@ -134,7 +134,6 @@
 			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditSolutionNew.Size = new System.Drawing.Size(157, 20);
 			// 
 			// pbDescription
 			// 
@@ -151,7 +150,7 @@
 			this.dateEditFligtDatesStart.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditFligtDatesStart.Properties.Appearance.Options.UseFont = true;
 			this.dateEditFligtDatesStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFligtDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFligtDatesStart.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true)});
 			this.dateEditFligtDatesStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditFligtDatesStart.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
@@ -162,7 +161,7 @@
 			this.dateEditFligtDatesStart.Properties.ShowPopupShadow = false;
 			this.dateEditFligtDatesStart.Properties.ShowToday = false;
 			this.dateEditFligtDatesStart.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.dateEditFligtDatesStart.Size = new System.Drawing.Size(123, 22);
+			this.dateEditFligtDatesStart.Size = new System.Drawing.Size(123, 20);
 			this.dateEditFligtDatesStart.TabIndex = 76;
 			this.dateEditFligtDatesStart.EditValueChanged += new System.EventHandler(this.dateEditFligtDatesStart_EditValueChanged);
 			// 
@@ -191,7 +190,7 @@
 			this.dateEditFligtDatesEnd.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditFligtDatesEnd.Properties.Appearance.Options.UseFont = true;
 			this.dateEditFligtDatesEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFligtDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditFligtDatesEnd.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
 			this.dateEditFligtDatesEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditFligtDatesEnd.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
@@ -202,7 +201,7 @@
 			this.dateEditFligtDatesEnd.Properties.ShowPopupShadow = false;
 			this.dateEditFligtDatesEnd.Properties.ShowToday = false;
 			this.dateEditFligtDatesEnd.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-			this.dateEditFligtDatesEnd.Size = new System.Drawing.Size(123, 22);
+			this.dateEditFligtDatesEnd.Size = new System.Drawing.Size(123, 20);
 			this.dateEditFligtDatesEnd.TabIndex = 75;
 			this.dateEditFligtDatesEnd.EditValueChanged += new System.EventHandler(this.EditValueChanged);
 			// 
@@ -285,7 +284,7 @@
 			this.dateEditDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateEditDate.Properties.Appearance.Options.UseFont = true;
 			this.dateEditDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("dateEditDate.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
 			this.dateEditDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.dateEditDate.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
@@ -350,7 +349,7 @@
 			this.simpleSummaryItemContainer.Location = new System.Drawing.Point(0, 0);
 			this.simpleSummaryItemContainer.Name = "simpleSummaryItemContainer";
 			this.simpleSummaryItemContainer.SelectedIndex = -1;
-			this.simpleSummaryItemContainer.Size = new System.Drawing.Size(758, 308);
+			this.simpleSummaryItemContainer.Size = new System.Drawing.Size(777, 308);
 			this.simpleSummaryItemContainer.TabIndex = 37;
 			this.simpleSummaryItemContainer.TabStop = false;
 			// 
@@ -375,8 +374,8 @@
 			this.spinEditTotal.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.spinEditTotal.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.spinEditTotal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject6, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditTotal.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject7, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditTotal.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
 			this.spinEditTotal.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditTotal.Properties.EditFormat.FormatString = "$#,###.00";
@@ -407,8 +406,8 @@
 			this.spinEditMonthly.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black;
 			this.spinEditMonthly.Properties.AppearanceReadOnly.Options.UseForeColor = true;
 			this.spinEditMonthly.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditMonthly.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject8, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("spinEditMonthly.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, "", null, null, true)});
 			this.spinEditMonthly.Properties.DisplayFormat.FormatString = "$#,###.00";
 			this.spinEditMonthly.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
 			this.spinEditMonthly.Properties.EditFormat.FormatString = "$#,###.00";
@@ -461,6 +460,7 @@
 			this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageBasicInfo,
             this.xtraTabPagePaymentDetails});
+			this.xtraTabControl.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl_SelectedPageChanged);
 			// 
 			// xtraTabPageBasicInfo
 			// 
@@ -581,7 +581,7 @@
 			// 
 			this.xtraTabPagePaymentDetails.Controls.Add(this.simpleSummaryItemContainer);
 			this.xtraTabPagePaymentDetails.Name = "xtraTabPagePaymentDetails";
-			this.xtraTabPagePaymentDetails.Size = new System.Drawing.Size(758, 308);
+			this.xtraTabPagePaymentDetails.Size = new System.Drawing.Size(777, 308);
 			this.xtraTabPagePaymentDetails.Text = "What are you Selling?";
 			// 
 			// checkEditTotalInvestment
@@ -625,7 +625,7 @@
 			this.checkEditTableOutput.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
 			this.checkEditTableOutput.Properties.AutoWidth = true;
 			this.checkEditTableOutput.Properties.Caption = "Output 1 Slide Table Grid";
-			this.checkEditTableOutput.Size = new System.Drawing.Size(168, 20);
+			this.checkEditTableOutput.Size = new System.Drawing.Size(168, 19);
 			this.checkEditTableOutput.TabIndex = 121;
 			this.checkEditTableOutput.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
@@ -642,6 +642,7 @@
 			this.pnTotals.Name = "pnTotals";
 			this.pnTotals.Size = new System.Drawing.Size(779, 51);
 			this.pnTotals.TabIndex = 85;
+			this.pnTotals.Visible = false;
 			// 
 			// SlideSimpleSummaryControl
 			// 
@@ -650,6 +651,7 @@
 			this.Name = "SlideSimpleSummaryControl";
 			this.pnMain.ResumeLayout(false);
 			this.pnBottom.ResumeLayout(false);
+			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();

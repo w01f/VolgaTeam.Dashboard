@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DevComponents.DotNetBar;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
@@ -51,6 +52,56 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public override SlideType SlideType
 		{
 			get { return MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVMonthlySchedule : SlideType.RadioMonthlySchedule; }
+		}
+
+		public override void LoadSchedule(bool quickLoad)
+		{
+			base.LoadSchedule(quickLoad);
+			if (_localSchedule.SelectedSpotType == SpotType.Month)
+			{
+				Controller.Instance.UpdateOutputTabs(_localSchedule.MonthlySchedule.Programs.Any(p => p.TotalSpots > 0));
+				Controller.Instance.UpdateCalendarTabs(false);
+			}
+		}
+
+		public override void CloneProgram(int sourceIndex, bool fullClone)
+		{
+			base.CloneProgram(sourceIndex, fullClone);
+			if (_localSchedule.SelectedSpotType == SpotType.Month)
+			{
+				Controller.Instance.UpdateOutputTabs(_localSchedule.MonthlySchedule.Programs.Any(p => p.TotalSpots > 0));
+				Controller.Instance.UpdateCalendarTabs(false);
+			}
+		}
+
+		public override void AddProgram_Click(object sender, EventArgs e)
+		{
+			base.AddProgram_Click(sender, e);
+			if (_localSchedule.SelectedSpotType == SpotType.Month)
+			{
+				Controller.Instance.UpdateOutputTabs(_localSchedule.MonthlySchedule.Programs.Any(p => p.TotalSpots > 0));
+				Controller.Instance.UpdateCalendarTabs(false);
+			}
+		}
+
+		public override void DeleteProgram_Click(object sender, EventArgs e)
+		{
+			base.DeleteProgram_Click(sender, e);
+			if (_localSchedule.SelectedSpotType == SpotType.Month)
+			{
+				Controller.Instance.UpdateOutputTabs(_localSchedule.MonthlySchedule.Programs.Any(p => p.TotalSpots > 0));
+				Controller.Instance.UpdateCalendarTabs(false);
+			}
+		}
+
+		protected override void ScheduleSection_DataChanged(object sender, EventArgs e)
+		{
+			base.ScheduleSection_DataChanged(sender, e);
+			if (_localSchedule.SelectedSpotType == SpotType.Month)
+			{
+				Controller.Instance.UpdateOutputTabs(_localSchedule.MonthlySchedule.Programs.Any(p => p.TotalSpots > 0));
+				Controller.Instance.UpdateCalendarTabs(false);
+			}
 		}
 	}
 }

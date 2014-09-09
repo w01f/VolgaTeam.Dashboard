@@ -35,7 +35,7 @@ namespace NewBizWiz.Dashboard
 			{
 				ribbonControl.Font = new Font(ribbonControl.Font.FontFamily, ribbonControl.Font.Size - 1, ribbonControl.Font.Style);
 			}
-			FormStateHelper.Init(this, Path.GetDirectoryName(typeof(FormMain).Assembly.Location), false);
+			FormStateHelper.Init(this, Core.Common.SettingsManager.Instance.SettingsPath, "Dashboard", false);
 		}
 
 		public AppManager.EmptyParametersDelegate OutputClick { get; set; }

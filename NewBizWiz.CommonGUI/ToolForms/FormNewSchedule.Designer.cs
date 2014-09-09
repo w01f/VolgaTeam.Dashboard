@@ -51,12 +51,14 @@
 			// laLogo
 			// 
 			this.laLogo.BackColor = System.Drawing.Color.White;
+			this.laLogo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laLogo.ForeColor = System.Drawing.Color.Black;
 			this.laLogo.Location = new System.Drawing.Point(90, 12);
 			this.laLogo.Name = "laLogo";
 			this.laLogo.Size = new System.Drawing.Size(282, 41);
 			this.laLogo.TabIndex = 1;
-			this.laLogo.Text = "Before you begin, you must set a name for your new Schedule:";
+			this.laLogo.Text = "File Name:";
+			this.laLogo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// buttonXOK
 			// 

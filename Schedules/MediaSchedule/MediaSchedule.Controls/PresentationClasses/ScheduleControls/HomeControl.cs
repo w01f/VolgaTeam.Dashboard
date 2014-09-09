@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
@@ -21,7 +22,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 	{
 		private bool _allowToSave;
 		private bool _digitalChanged;
+		private bool _calendarTypeChanged;
 		private Schedule _localSchedule;
+		private SpotType _loadedScheduleType;
 
 		public HomeControl()
 		{
@@ -105,6 +108,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			_allowToSave = false;
 			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
 			_digitalChanged = false;
+			_calendarTypeChanged = false;
 			digitalProductListControl.UpdateData(_localSchedule,
 				() =>
 				{
@@ -147,6 +151,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				Controller.Instance.HomeFlightDatesStart.EditValue = _localSchedule.FlightDateStart;
 				Controller.Instance.HomeFlightDatesEnd.EditValue = _localSchedule.FlightDateEnd;
 
+				_loadedScheduleType = _localSchedule.SelectedSpotType;
 				switch (_localSchedule.SelectedSpotType)
 				{
 					case SpotType.Week:
@@ -251,6 +256,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				stationsControl.LoadData(_localSchedule);
 				daypartsControl.LoadData(_localSchedule);
 
+				buttonXCalendarTypeMondayBased.Checked = _localSchedule.MondayBased;
+				buttonXCalendarTypeSundayBased.Checked = !_localSchedule.MondayBased;
+				Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = _localSchedule.StartDayOfWeek;
 				#endregion
 
 				#region Digital tab
@@ -329,13 +337,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			{
 				var startDate = Controller.Instance.HomeFlightDatesStart.DateTime;
 				var endDate = Controller.Instance.HomeFlightDatesEnd.DateTime;
-				if (startDate.DayOfWeek != DayOfWeek.Monday)
+				if (startDate.DayOfWeek != _localSchedule.StartDayOfWeek)
 				{
 					if (!quiet)
 						Utilities.Instance.ShowWarning("Flight Start Date must be Monday\nFlight End Date must be Sunday\nFlight Start Date must be less then Flight End Date.");
 					return false;
 				}
-				if (endDate.DayOfWeek != DayOfWeek.Sunday || _localSchedule.FlightDateEnd < _localSchedule.FlightDateStart)
+				if (endDate.DayOfWeek != _localSchedule.EndDayOfWeek || _localSchedule.FlightDateEnd < _localSchedule.FlightDateStart)
 				{
 					if (!quiet)
 						Utilities.Instance.ShowWarning("Flight Start Date must be Monday\nFlight End Date must be Sunday\nFlight Start Date must be less then Flight End Date.");
@@ -405,6 +413,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				return false;
 			}
 
+			quickSave &= _localSchedule.SelectedSpotType == _loadedScheduleType;
+
 			if (stationsControl.HasChanged)
 			{
 				_localSchedule.Stations.Clear();
@@ -431,7 +441,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			Controller.Instance.HomeDecisionMaker.Properties.Items.Clear();
 			Controller.Instance.HomeDecisionMaker.Properties.Items.AddRange(Core.Common.ListManager.Instance.DecisionMakers.ToArray());
 			UpdateScheduleControls();
-			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, quickSave, _digitalChanged, this);
+			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, quickSave, _digitalChanged, _calendarTypeChanged, this);
 			SettingsNotSaved = false;
 			stationsControl.HasChanged = false;
 			daypartsControl.HasChanged = false;
@@ -472,7 +482,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				SettingsNotSaved = true;
 				if (Controller.Instance.HomeFlightDatesEnd.EditValue == null)
 				{
-					while (dateStart.DayOfWeek != DayOfWeek.Sunday)
+					while (dateStart.DayOfWeek != _localSchedule.EndDayOfWeek)
 						dateStart = dateStart.AddDays(1);
 					Controller.Instance.HomeFlightDatesEnd.EditValue = dateStart;
 				}
@@ -504,7 +514,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			{
 				DateTime temp = DateTime.MinValue;
 				if (!DateTime.TryParse(e.Value.ToString(), out temp)) return;
-				while (temp.DayOfWeek != DayOfWeek.Monday)
+				while (temp.DayOfWeek != _localSchedule.StartDayOfWeek)
 					temp = temp.AddDays(-1);
 				e.Value = temp;
 			}
@@ -516,7 +526,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			{
 				DateTime temp = DateTime.MinValue;
 				if (!DateTime.TryParse(e.Value.ToString(), out temp)) return;
-				while (temp.DayOfWeek != DayOfWeek.Sunday)
+				while (temp.DayOfWeek != _localSchedule.EndDayOfWeek)
 					temp = temp.AddDays(1);
 				e.Value = temp;
 			}
@@ -662,6 +672,34 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		}
 		#endregion
 
+		#region Calendar processing
+		private void buttonXCalendarType_Click(object sender, EventArgs e)
+		{
+			var button = sender as ButtonX;
+			if (button == null) return;
+			if (button.Checked) return;
+			if (Utilities.Instance.ShowWarningQuestion(String.Format("Your current schedule will be reset.{0}Do you want to continue and change calendar type?", Environment.NewLine)) != DialogResult.Yes) return;
+			buttonXCalendarTypeMondayBased.Checked = false;
+			buttonXCalendarTypeSundayBased.Checked = false;
+			button.Checked = true;
+		}
+
+		private void buttonXCalendarType_CheckedChanged(object sender, EventArgs e)
+		{
+			var button = sender as ButtonX;
+			if (button == null) return;
+			if (!button.Checked) return;
+			if (!_allowToSave) return;
+			_localSchedule.ResetCalendarType(buttonXCalendarTypeMondayBased.Checked);
+			Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = _localSchedule.StartDayOfWeek;
+			Controller.Instance.HomeFlightDatesStart.EditValue = null;
+			Controller.Instance.HomeFlightDatesEnd.EditValue = null;
+			Controller.Instance.HomeWeeks.Text = String.Empty;
+			_calendarTypeChanged = true;
+			SettingsNotSaved = true;
+		}
+		#endregion
+
 		#region Buttons Clicks Events
 		private void buttonXScheduleType_Click(object sender, EventArgs e)
 		{
@@ -670,7 +708,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (button.Checked) return;
 			buttonXWeeklySchedule.Checked = false;
 			buttonXMonthlySchedule.Checked = false;
-			buttonXWideOrbitSchedule.Checked = false;
 			button.Checked = true;
 		}
 
@@ -685,16 +722,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			else if (buttonXMonthlySchedule.Checked)
 				_localSchedule.SelectedSpotType = SpotType.Month;
 			UpdateScheduleType(_localSchedule.SelectedSpotType);
-		}
-
-		private void pbOptionsHelp_Click(object sender, EventArgs e)
-		{
-			if (xtraTabControlOptions.SelectedTabPage == xtraTabPageStations)
-				BusinessWrapper.Instance.HelpManager.OpenHelpLink("stations");
-			else if (xtraTabControlOptions.SelectedTabPage == xtraTabPageDayparts)
-				BusinessWrapper.Instance.HelpManager.OpenHelpLink("dayparts");
-			else if (xtraTabControlOptions.SelectedTabPage == xtraTabPageDemos)
-				BusinessWrapper.Instance.HelpManager.OpenHelpLink("demos");
+			SettingsNotSaved = true;
 		}
 
 		public void SchedulePropertiesEditor_KeyDown(object sender, KeyEventArgs e)

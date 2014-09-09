@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 using System.Xml;
 using NewBizWiz.Core.Common;
 
@@ -10,7 +9,6 @@ namespace NewBizWiz.Core.Dashboard
 {
 	public class SettingsManager
 	{
-		private const string DashboardCodeFile = @"dashboard.xml";
 		private static readonly SettingsManager _instance = new SettingsManager();
 
 		private readonly string _dashboardSettingsFile = string.Empty;
@@ -18,7 +16,7 @@ namespace NewBizWiz.Core.Dashboard
 
 		private SettingsManager()
 		{
-			_dashboardSettingsFile = string.Format(@"{0}\newlocaldirect.com\xml\app\DashboardSettings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			_dashboardSettingsFile = Path.Combine(Common.SettingsManager.Instance.SettingsPath, "DashboardSettings.xml");
 			IconPath = string.Format(@"{0}\newlocaldirect.com\app\tab2icon.ico", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\DashboardHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			DashboardSaveFolder = string.Empty;

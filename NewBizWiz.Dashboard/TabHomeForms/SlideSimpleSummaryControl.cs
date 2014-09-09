@@ -223,6 +223,11 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			base.LoadClick();
 		}
 
+		private void xtraTabControl_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+		{
+			pnTotals.Visible = e.Page == xtraTabPagePaymentDetails;
+		}
+
 		private void buttonXAddItem_Click(object sender, EventArgs e)
 		{
 			simpleSummaryItemContainer.AddItem();

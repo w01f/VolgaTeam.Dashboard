@@ -11,6 +11,7 @@ using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Dashboard;
 using NewBizWiz.Dashboard.InteropClasses;
+using NewBizWiz.Dashboard.Properties;
 using ListManager = NewBizWiz.Core.Dashboard.ListManager;
 
 namespace NewBizWiz.Dashboard.TabHomeForms
@@ -36,7 +37,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				checkEditPresentationDate.Font = new Font(checkEditPresentationDate.Font.FontFamily, checkEditPresentationDate.Font.Size - 2, checkEditPresentationDate.Font.Style);
 				checkEditSalesRep.Font = new Font(checkEditSalesRep.Font.FontFamily, checkEditSalesRep.Font.Size - 2, checkEditSalesRep.Font.Style);
 				checkEditUseEmptyCover.Font = new Font(checkEditUseEmptyCover.Font.FontFamily, checkEditUseEmptyCover.Font.Size - 2, checkEditUseEmptyCover.Font.Style);
-				buttonXDeleteSalesQuote.Font = new Font(buttonXDeleteSalesQuote.Font.FontFamily, buttonXDeleteSalesQuote.Font.Size - 2, buttonXDeleteSalesQuote.Font.Style);
+				buttonXSalesQuote.Font = new Font(buttonXSalesQuote.Font.FontFamily, buttonXSalesQuote.Font.Size - 2, buttonXSalesQuote.Font.Style);
 				textEditSalesQuoteAuthor.Font = new Font(textEditSalesQuoteAuthor.Font.FontFamily, textEditSalesQuoteAuthor.Font.Size - 2, textEditSalesQuoteAuthor.Font.Style);
 				memoEditSalesQuote.Font = new Font(memoEditSalesQuote.Font.FontFamily, memoEditSalesQuote.Font.Size - 2, memoEditSalesQuote.Font.Style);
 			}
@@ -117,8 +118,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			comboBoxEditAdvertiser.Enabled = !checkEditUseEmptyCover.Checked;
 			comboBoxEditDecisionMaker.Enabled = !checkEditUseEmptyCover.Checked;
 			comboBoxEditSlideHeader.Enabled = !checkEditUseEmptyCover.Checked;
-			buttonXDeleteSalesQuote.Enabled = !checkEditUseEmptyCover.Checked;
-			pbSalesQuotes.Enabled = !checkEditUseEmptyCover.Checked;
+			buttonXSalesQuote.Enabled = !checkEditUseEmptyCover.Checked;
 			dateEditPresentationDate.Enabled = !checkEditUseEmptyCover.Checked && checkEditPresentationDate.Checked;
 			checkEditPresentationDate.Enabled = !checkEditUseEmptyCover.Checked;
 			checkEditSalesRep.Checked = !String.IsNullOrEmpty(ViewSettingsManager.Instance.CoverState.SalesRep);
@@ -130,13 +130,21 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			{
 				textEditSalesQuoteAuthor.EditValue = ViewSettingsManager.Instance.CoverState.Quote.Author;
 				memoEditSalesQuote.EditValue = ViewSettingsManager.Instance.CoverState.Quote.Text;
-				buttonXDeleteSalesQuote.Visible = true;
+				buttonXSalesQuote.Image = null;
+				buttonXSalesQuote.Text = "Remove";
+				textEditSalesQuoteAuthor.Visible = true;
+				memoEditSalesQuote.Visible = true;
+				laSalesQuotesHint.Visible = false;
 			}
 			else
 			{
 				textEditSalesQuoteAuthor.EditValue = null;
 				memoEditSalesQuote.EditValue = null;
-				buttonXDeleteSalesQuote.Visible = false;
+				buttonXSalesQuote.Image = Resources.SalesQuotes;
+				buttonXSalesQuote.Text = String.Empty;
+				textEditSalesQuoteAuthor.Visible = false;
+				memoEditSalesQuote.Visible = false;
+				laSalesQuotesHint.Visible = true;
 			}
 
 			comboBoxEditAdvertiser.EditValue = String.IsNullOrEmpty(ViewSettingsManager.Instance.CoverState.Advertiser) ? null : ViewSettingsManager.Instance.CoverState.Advertiser;
@@ -201,24 +209,36 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			SettingsNotSaved = true;
 		}
 
-		private void buttonXSalesQuotes_Click(object sender, EventArgs e)
+		private void buttonXSalesQuote_Click(object sender, EventArgs e)
 		{
-			using (var form = new FormQuotes())
+			if (textEditSalesQuoteAuthor.EditValue == null && memoEditSalesQuote.EditValue == null)
 			{
-				if (form.ShowDialog() != DialogResult.OK) return;
-				if (form.SelectedQuote == null) return;
-				textEditSalesQuoteAuthor.EditValue = form.SelectedQuote.Author;
-				memoEditSalesQuote.EditValue = "\"" + form.SelectedQuote.Text + "\"";
-				buttonXDeleteSalesQuote.Visible = true;
-				SettingsNotSaved = true;
-			}
-		}
+				using (var form = new FormQuotes())
+				{
+					if (form.ShowDialog() != DialogResult.OK) return;
+					if (form.SelectedQuote == null) return;
 
-		private void buttonXDeleteSalesQuote_Click(object sender, EventArgs e)
-		{
-			textEditSalesQuoteAuthor.EditValue = null;
-			memoEditSalesQuote.EditValue = null;
-			buttonXDeleteSalesQuote.Visible = false;
+					textEditSalesQuoteAuthor.EditValue = form.SelectedQuote.Author;
+					memoEditSalesQuote.EditValue = "\"" + form.SelectedQuote.Text + "\"";
+					textEditSalesQuoteAuthor.Visible = true;
+					memoEditSalesQuote.Visible = true;
+					laSalesQuotesHint.Visible = false;
+
+					buttonXSalesQuote.Image = null;
+					buttonXSalesQuote.Text = "Remove";
+				}
+			}
+			else
+			{
+				textEditSalesQuoteAuthor.EditValue = null;
+				memoEditSalesQuote.EditValue = null;
+				textEditSalesQuoteAuthor.Visible = false;
+				memoEditSalesQuote.Visible = false;
+				laSalesQuotesHint.Visible = true;
+
+				buttonXSalesQuote.Image = Resources.SalesQuotes;
+				buttonXSalesQuote.Text = String.Empty;
+			}
 			SettingsNotSaved = true;
 		}
 
@@ -229,8 +249,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 			comboBoxEditDecisionMaker.Enabled = !checkEditUseEmptyCover.Checked;
 			comboBoxEditSlideHeader.Enabled = !checkEditUseEmptyCover.Checked;
 			comboBoxEditSalesRep.Enabled = !checkEditUseEmptyCover.Checked;
-			buttonXDeleteSalesQuote.Enabled = !checkEditUseEmptyCover.Checked;
-			pbSalesQuotes.Enabled = !checkEditUseEmptyCover.Checked;
+			buttonXSalesQuote.Enabled = !checkEditUseEmptyCover.Checked;
 			dateEditPresentationDate.Enabled = !checkEditUseEmptyCover.Checked && checkEditPresentationDate.Checked;
 			checkEditPresentationDate.Enabled = !checkEditUseEmptyCover.Checked;
 			UpdateOutputState();

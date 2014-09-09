@@ -351,17 +351,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			PreviewButton.Enabled = enabled;
 		}
 
-		private void CloneSpots(int rowHandle, object valueToClone, bool everyOthere)
+		private void CloneSpots(int rowHandle, object valueToClone, int startIndex)
 		{
-			var i = 0;
 			foreach (var column in _spotColumns.Where(c => c.Visible))
-			{
-				if (i == 0)
+				if (column.VisibleIndex > startIndex || startIndex == -1)
 					advBandedGridViewSchedule.SetRowCellValue(rowHandle, column, valueToClone);
-				i++;
-				if (!everyOthere || i > 1)
-					i = 0;
-			}
 		}
 
 		private void BuildSpotColumns()
@@ -386,6 +380,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				bandedGridColumn.Caption = column.Caption;
 				bandedGridColumn.ColumnEdit = repositoryItemSpinEditSpot;
 				bandedGridColumn.FieldName = column.ColumnName;
+				bandedGridColumn.ToolTip = column.ExtendedProperties["FullName"] as String;
 				bandedGridColumn.Tag = column.ExtendedProperties["Quarter"];
 				bandedGridColumn.OptionsColumn.FixedWidth = true;
 				bandedGridColumn.RowCount = 2;
@@ -568,7 +563,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			MediaMetaData.Instance.SettingsManager.UseSlideMaster = checkEditLockToMaster.Checked;
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
 
-			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, false, false, this);
+			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, false, false, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}
@@ -952,12 +947,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private void advBandedGridViewSchedule_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
 		{
 			if (!e.HitInfo.InRowCell) return;
-			if (e.HitInfo.Column == _spotColumns.First(sc => sc.Visible))
+			if (_spotColumns.Any(sc => sc.Visible && sc == e.HitInfo.Column))
 			{
-				var valueToClone = advBandedGridViewSchedule.GetRowCellValue(e.HitInfo.RowHandle, _spotColumns.FirstOrDefault(c => c.Visible));
-				e.Menu.Items.Add(new DXMenuItem(String.Format("Clone {0} 1 to All {0}s", SpotTitle), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, false)));
-				e.Menu.Items.Add(new DXMenuItem(String.Format("Clone every other {0}", SpotTitle), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, true)));
-				e.Menu.Items.Add(new DXMenuItem("Wipe all Spots on this line", (o, args) => CloneSpots(e.HitInfo.RowHandle, null, false)));
+				var valueToClone = advBandedGridViewSchedule.GetRowCellValue(e.HitInfo.RowHandle, e.HitInfo.Column);
+				var columnName = e.HitInfo.Column.ToolTip;
+				e.Menu.Items.Add(new DXMenuItem(String.Format("Clone {1} to all {0}s", SpotTitle, columnName), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, -1)));
+				e.Menu.Items.Add(new DXMenuItem(String.Format("Clone {1} to all Remaining {0}s", SpotTitle, columnName), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, e.HitInfo.Column.VisibleIndex)));
+				e.Menu.Items.Add(new DXMenuItem("Wipe all Spots on this line", (o, args) => CloneSpots(e.HitInfo.RowHandle, null, -1)));
 			}
 			else if (e.HitInfo.Column == bandedGridColumnIndex ||
 					 e.HitInfo.Column == bandedGridColumnStation ||

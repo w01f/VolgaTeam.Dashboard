@@ -120,7 +120,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
 			if (nameChanged)
 				LocalSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule((Schedule)LocalSchedule, nameChanged, false, false, this);
+			Controller.Instance.SaveSchedule((Schedule)LocalSchedule, nameChanged, false, false, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}

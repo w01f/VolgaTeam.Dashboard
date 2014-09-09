@@ -96,7 +96,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
 			if (nameChanged)
 				_localSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, false, this);
+			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, false, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}

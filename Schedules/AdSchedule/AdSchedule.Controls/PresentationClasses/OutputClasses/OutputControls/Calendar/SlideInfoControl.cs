@@ -341,17 +341,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			SettingsNotSaved = false;
 		}
 
-		private void barLargeButtonItemHelp_ItemClick(object sender, ItemClickEventArgs e)
-		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink(_helpKey);
-		}
-
-		private void barLargeButtonItemClose_ItemClick(object sender, ItemClickEventArgs e)
-		{
-			if (Closed != null)
-				Closed(sender, e);
-		}
-
 		private void propertiesControl_PropertiesChanged(object sender, EventArgs e)
 		{
 			SettingsNotSaved = true;

@@ -215,7 +215,6 @@
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ScheduleSectionControl.resx">
       <DependentUpon>ScheduleSectionControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

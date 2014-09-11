@@ -15,6 +15,7 @@ using NewBizWiz.AdSchedule.Controls.InteropClasses;
 using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.AdSchedule.Controls.ToolForms;
 using NewBizWiz.CommonGUI.Preview;
+using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
@@ -40,6 +41,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				if (sender != this)
 					UpdateOutput(e.QuickSave);
 			});
+			retractableBar.StateChanged += retractableBar_StateChanged;
 		}
 
 		#region ISummaryOutputControl Members
@@ -125,7 +127,12 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		private void LoadView()
 		{
 			_allowToSave = false;
-			Controller.Instance.SnapshotOptions.Checked = LocalSchedule.ViewSettings.SnapshotViewSettings.ShowOptions;
+
+			if (LocalSchedule.ViewSettings.SnapshotViewSettings.ShowOptions)
+				retractableBar.Expand(true);
+			else
+				retractableBar.Collapse(true);
+
 			xtraTabControlOptions.SelectedTabPageIndex = LocalSchedule.ViewSettings.SnapshotViewSettings.SelectedOptionChapterIndex;
 
 			buttonXLogo.Enabled = LocalSchedule.ViewSettings.SnapshotViewSettings.EnableLogo;
@@ -165,28 +172,25 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void SaveView()
 		{
-			if (_allowToSave)
-			{
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowOptions = Controller.Instance.SnapshotOptions.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.SelectedOptionChapterIndex = xtraTabControlOptions.SelectedTabPageIndex;
+			if (!_allowToSave) return;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.SelectedOptionChapterIndex = xtraTabControlOptions.SelectedTabPageIndex;
 
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgCost = buttonXAvgAdCost.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgFinalCost = buttonXAvgFinalCost.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgPCI = buttonXAvgPCI.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDelivery = buttonXDelivery.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDimensions = buttonXDimensions.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowLogo = buttonXLogo.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPageSize = buttonXPageSize.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPercentOfPage = buttonXPercentOfPage.Checked & buttonXPercentOfPage.Enabled;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowReadership = buttonXReadership.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowSquare = buttonXSquare.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalColor = buttonXTotalColorRate.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalDiscounts = buttonXTotalDiscounts.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalFinalCost = buttonXTotalFinalCost.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalInserts = buttonXTotalInserts.Checked;
-				LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalSquare = buttonXTotalSquare.Checked;
-				SettingsNotSaved = true;
-			}
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgCost = buttonXAvgAdCost.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgFinalCost = buttonXAvgFinalCost.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowAvgPCI = buttonXAvgPCI.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDelivery = buttonXDelivery.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowDimensions = buttonXDimensions.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowLogo = buttonXLogo.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPageSize = buttonXPageSize.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowPercentOfPage = buttonXPercentOfPage.Checked & buttonXPercentOfPage.Enabled;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowReadership = buttonXReadership.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowSquare = buttonXSquare.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalColor = buttonXTotalColorRate.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalDiscounts = buttonXTotalDiscounts.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalFinalCost = buttonXTotalFinalCost.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalInserts = buttonXTotalInserts.Checked;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowTotalSquare = buttonXTotalSquare.Checked;
+			SettingsNotSaved = true;
 		}
 
 		private bool AllowShowColumn()
@@ -223,6 +227,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			return count < 5;
 		}
 
+		private void retractableBar_StateChanged(object sender, StateChangedEventArgs e)
+		{
+			if (!_allowToSave) return;
+			LocalSchedule.ViewSettings.SnapshotViewSettings.ShowOptions = e.Expaned;
+			SettingsNotSaved = true;
+		}
+
 		private void checkEditSchedule_CheckedChanged(object sender, EventArgs e)
 		{
 			comboBoxEditSchedule.Enabled = checkEditSchedule.Checked;
@@ -236,13 +247,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				LocalSchedule.ViewSettings.SnapshotViewSettings.SlideHeader = comboBoxEditSchedule.EditValue != null ? comboBoxEditSchedule.EditValue.ToString() : string.Empty;
 				SettingsNotSaved = true;
 			}
-		}
-
-		public void buttonItemSnapshotOptions_CheckedChanged(object sender, EventArgs e)
-		{
-			if (_allowToSave)
-				SaveView();
-			splitContainerControl.PanelVisibility = LocalSchedule.ViewSettings.SnapshotViewSettings.ShowOptions ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
 		}
 
 		private void checkEdit_CheckedChanged(object sender, EventArgs e)
@@ -304,11 +308,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			}
 			else
 				button.Checked = false;
-		}
-
-		private void pbPrintHelp_Click(object sender, EventArgs e)
-		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("snapshotnavbar");
 		}
 		#endregion
 

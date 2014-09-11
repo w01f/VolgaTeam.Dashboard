@@ -29,7 +29,13 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		}
 
 		public AdPlanControl Container { get; set; }
+		
 		public PrintProduct PrintProduct { get; set; }
+
+		public Control SettingsContainer
+		{
+			get { return pnItemsBorder; }
+		}
 
 		public bool SettingsNotSaved
 		{

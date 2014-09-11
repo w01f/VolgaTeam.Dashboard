@@ -31,12 +31,10 @@
 			this.checkEditShowAdNotes = new DevExpress.XtraEditors.CheckEdit();
 			this.checkedListBoxAdNotes = new DevExpress.XtraEditors.CheckedListBoxControl();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
-			this.pbHelp = new System.Windows.Forms.PictureBox();
 			this.buttonXDown = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXUp = new DevComponents.DotNetBar.ButtonX();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowAdNotes.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxAdNotes)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// checkEditShowAdNotes
@@ -78,21 +76,6 @@
 			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
 			this.superTooltip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
 			// 
-			// pbHelp
-			// 
-			this.pbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbHelp.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.HelpSmall;
-			this.pbHelp.Location = new System.Drawing.Point(244, 5);
-			this.pbHelp.Name = "pbHelp";
-			this.pbHelp.Size = new System.Drawing.Size(30, 30);
-			this.pbHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.superTooltip.SetSuperTooltip(this.pbHelp, new DevComponents.DotNetBar.SuperTooltipInfo("Ad-Notes Help", "", "Learn more about adding comments and other notes to your Ad Schedule", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.pbHelp.TabIndex = 37;
-			this.pbHelp.TabStop = false;
-			this.pbHelp.Click += new System.EventHandler(this.pbHelp_Click);
-			this.pbHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
 			// buttonXDown
 			// 
 			this.buttonXDown.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -125,7 +108,6 @@
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.pbHelp);
 			this.Controls.Add(this.checkEditShowAdNotes);
 			this.Controls.Add(this.buttonXDown);
 			this.Controls.Add(this.buttonXUp);
@@ -135,7 +117,6 @@
 			this.Size = new System.Drawing.Size(282, 591);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditShowAdNotes.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkedListBoxAdNotes)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbHelp)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -146,7 +127,6 @@
         private DevComponents.DotNetBar.ButtonX buttonXDown;
         private DevComponents.DotNetBar.ButtonX buttonXUp;
 		public DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxAdNotes;
-        private System.Windows.Forms.PictureBox pbHelp;
         private DevComponents.DotNetBar.SuperTooltip superTooltip;
     }
 }

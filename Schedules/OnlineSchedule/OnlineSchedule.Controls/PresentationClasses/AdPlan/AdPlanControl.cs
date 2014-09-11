@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using DevExpress.XtraTab;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
@@ -72,12 +73,25 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 			FillProducts(quickLoad);
 			UpdateSlidesNumberSelector();
+			xtraTabControlProducts_SelectedPageChanged(xtraTabControlProducts, new TabPageChangedEventArgs(null, xtraTabControlProducts.SelectedTabPage));
 			SettingsNotSaved = false;
-
 		}
 
 		protected abstract void FillProducts(bool quickLoad);
 		protected abstract void SaveSchedule(string scheduleName = "");
+
+		private void xtraTabControlProducts_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
+		{
+			var currentControl = e.Page as IAdPlanItem;
+			if (currentControl == null) return;
+			if (!retractableBar.Content.Controls.Contains(currentControl.SettingsContainer))
+			{
+				currentControl.SettingsContainer.Parent = null;
+				currentControl.SettingsContainer.Dock = DockStyle.Fill;
+				retractableBar.Content.Controls.Add(currentControl.SettingsContainer);
+			}
+			currentControl.SettingsContainer.BringToFront();
+		}
 
 		private void checkEditMoreSlides_CheckedChanged(object sender, EventArgs e)
 		{

@@ -202,7 +202,6 @@ namespace NewBizWiz.AdSchedule.Controls
 			#endregion
 
 			#region Snapshot
-			SnapshotOptions.CheckedChanged += Summaries.Snapshot.buttonItemSnapshotOptions_CheckedChanged;
 			SnapshotPreview.Click += Summaries.Preview_Click;
 			SnapshotEmail.Click += Summaries.Email_Click;
 			SnapshotHelp.Click += Summaries.Help_Click;
@@ -220,7 +219,6 @@ namespace NewBizWiz.AdSchedule.Controls
 			DetailedGridHelp.Click += Grids.Help_Click;
 			DetailedGridSave.Click += Grids.Save_Click;
 			DetailedGridSaveAs.Click += Grids.SaveAs_Click;
-			DetailedGridOptions.CheckedChanged += Grids.Details_CheckedChanged;
 			DetailedGridPowerPoint.Click += Grids.PowerPoint_Click;
 			DetailedGridEmail.Click += Grids.Email_Click;
 			DetailedGridPreview.Click += Grids.Preview_Click;
@@ -231,7 +229,6 @@ namespace NewBizWiz.AdSchedule.Controls
 			MultiGridHelp.Click += Grids.Help_Click;
 			MultiGridSave.Click += Grids.Save_Click;
 			MultiGridSaveAs.Click += Grids.SaveAs_Click;
-			MultiGridOptions.CheckedChanged += Grids.Details_CheckedChanged;
 			MultiGridPowerPoint.Click += Grids.PowerPoint_Click;
 			MultiGridEmail.Click += Grids.Email_Click;
 			MultiGridPreview.Click += Grids.Preview_Click;
@@ -773,7 +770,6 @@ namespace NewBizWiz.AdSchedule.Controls
 
 		#region Snapshot
 		public RibbonBar SnapshotSpecialButtons { get; set; }
-		public ButtonItem SnapshotOptions { get; set; }
 		public ButtonItem SnapshotHelp { get; set; }
 		public ButtonItem SnapshotSave { get; set; }
 		public ButtonItem SnapshotSaveAs { get; set; }
@@ -797,7 +793,6 @@ namespace NewBizWiz.AdSchedule.Controls
 
 		#region Detailed Grid
 		public RibbonBar DetailedGridSpecialButtons { get; set; }
-		public ButtonItem DetailedGridOptions { get; set; }
 		public ButtonItem DetailedGridHelp { get; set; }
 		public ButtonItem DetailedGridSave { get; set; }
 		public ButtonItem DetailedGridSaveAs { get; set; }
@@ -810,7 +805,6 @@ namespace NewBizWiz.AdSchedule.Controls
 
 		#region Multi Grid
 		public RibbonBar MultiGridSpecialButtons { get; set; }
-		public ButtonItem MultiGridOptions { get; set; }
 		public ButtonItem MultiGridHelp { get; set; }
 		public ButtonItem MultiGridSave { get; set; }
 		public ButtonItem MultiGridSaveAs { get; set; }

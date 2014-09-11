@@ -86,29 +86,27 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void SaveColumnsState()
 		{
-			if (_allowToSave)
-			{
-				_settingsContainer.ShowColorHeader = buttonXColor.Checked;
-				_settingsContainer.ShowCostHeader = buttonXCost.Checked;
-				_settingsContainer.ShowDateHeader = buttonXDate.Checked;
-				_settingsContainer.ShowDeadlineHeader = buttonXDeadline.Checked;
-				_settingsContainer.ShowDeliveryHeader = buttonXDelivery.Checked;
-				_settingsContainer.ShowDiscountHeader = buttonXDiscounts.Checked;
-				_settingsContainer.ShowFinalCostHeader = buttonXTotalCost.Checked;
-				_settingsContainer.ShowIDHeader = buttonXID.Checked;
-				_settingsContainer.ShowIndexHeader = buttonXIndex.Checked;
-				_settingsContainer.ShowMechanicalsHeader = buttonXMechanicals.Checked;
-				_settingsContainer.ShowPageSizeHeader = buttonXPageSize.Checked;
-				_settingsContainer.ShowPercentOfPageHeader = buttonXPercentOfPage.Checked;
-				_settingsContainer.ShowPCIHeader = buttonXPCI.Checked;
-				_settingsContainer.ShowPublicationHeader = buttonXPublication.Checked;
-				_settingsContainer.ShowDimensionsHeader = buttonXDimensions.Checked;
-				_settingsContainer.ShowReadershipHeader = buttonXReadership.Checked;
-				_settingsContainer.ShowSectionHeader = buttonXSection.Checked;
-				_settingsContainer.ShowSquareHeader = buttonXSquare.Checked;
-				_settingsContainer.UpdateColumnsAccordingToggles();
-				_settingsContainer.SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			_settingsContainer.ShowColorHeader = buttonXColor.Checked;
+			_settingsContainer.ShowCostHeader = buttonXCost.Checked;
+			_settingsContainer.ShowDateHeader = buttonXDate.Checked;
+			_settingsContainer.ShowDeadlineHeader = buttonXDeadline.Checked;
+			_settingsContainer.ShowDeliveryHeader = buttonXDelivery.Checked;
+			_settingsContainer.ShowDiscountHeader = buttonXDiscounts.Checked;
+			_settingsContainer.ShowFinalCostHeader = buttonXTotalCost.Checked;
+			_settingsContainer.ShowIDHeader = buttonXID.Checked;
+			_settingsContainer.ShowIndexHeader = buttonXIndex.Checked;
+			_settingsContainer.ShowMechanicalsHeader = buttonXMechanicals.Checked;
+			_settingsContainer.ShowPageSizeHeader = buttonXPageSize.Checked;
+			_settingsContainer.ShowPercentOfPageHeader = buttonXPercentOfPage.Checked;
+			_settingsContainer.ShowPCIHeader = buttonXPCI.Checked;
+			_settingsContainer.ShowPublicationHeader = buttonXPublication.Checked;
+			_settingsContainer.ShowDimensionsHeader = buttonXDimensions.Checked;
+			_settingsContainer.ShowReadershipHeader = buttonXReadership.Checked;
+			_settingsContainer.ShowSectionHeader = buttonXSection.Checked;
+			_settingsContainer.ShowSquareHeader = buttonXSquare.Checked;
+			_settingsContainer.UpdateColumnsAccordingToggles();
+			_settingsContainer.SettingsNotSaved = true;
 		}
 
 		private void button_CheckedChanged(object sender, EventArgs e)
@@ -124,30 +122,5 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			else
 				Utilities.Instance.ShowWarning("You may select between 3 and 10 Columns");
 		}
-
-		private void pbHelp_Click(object sender, EventArgs e)
-		{
-			if (OnHelp != null)
-				OnHelp(this, EventArgs.Empty);
-		}
-
-		#region Picture Box Clicks Habdlers
-		/// <summary>
-		/// Buttonize the PictureBox 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top += 1;
-		}
-
-		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top -= 1;
-		}
-		#endregion
 	}
 }

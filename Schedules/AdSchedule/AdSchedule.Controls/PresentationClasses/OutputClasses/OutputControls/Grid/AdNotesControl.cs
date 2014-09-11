@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.Core.Common;
 using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
 using ListManager = NewBizWiz.Core.AdSchedule.ListManager;
@@ -174,46 +173,42 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void buttonXUp_Click(object sender, EventArgs e)
 		{
-			if (checkedListBoxAdNotes.SelectedIndex >= 1)
-			{
-				checkedListBoxAdNotes.ItemChecking -= checkedListBoxAdNotes_ItemChecking;
-				CheckedListBoxItem currentItem = checkedListBoxAdNotes.Items[checkedListBoxAdNotes.SelectedIndex];
-				CheckedListBoxItem nextItem = checkedListBoxAdNotes.Items[checkedListBoxAdNotes.SelectedIndex - 1];
-				string tempValue = nextItem.Value.ToString();
-				string tempDescription = nextItem.Description;
-				CheckState tempState = nextItem.CheckState;
-				nextItem.Value = currentItem.Value;
-				nextItem.Description = currentItem.Description;
-				nextItem.CheckState = currentItem.CheckState;
-				currentItem.Value = tempValue;
-				currentItem.Description = tempDescription;
-				currentItem.CheckState = tempState;
-				checkedListBoxAdNotes.SelectedItem = nextItem;
-				checkedListBoxAdNotes.ItemChecking += checkedListBoxAdNotes_ItemChecking;
-				SaveAdNotes();
-			}
+			if (checkedListBoxAdNotes.SelectedIndex < 1) return;
+			checkedListBoxAdNotes.ItemChecking -= checkedListBoxAdNotes_ItemChecking;
+			CheckedListBoxItem currentItem = checkedListBoxAdNotes.Items[checkedListBoxAdNotes.SelectedIndex];
+			CheckedListBoxItem nextItem = checkedListBoxAdNotes.Items[checkedListBoxAdNotes.SelectedIndex - 1];
+			string tempValue = nextItem.Value.ToString();
+			string tempDescription = nextItem.Description;
+			CheckState tempState = nextItem.CheckState;
+			nextItem.Value = currentItem.Value;
+			nextItem.Description = currentItem.Description;
+			nextItem.CheckState = currentItem.CheckState;
+			currentItem.Value = tempValue;
+			currentItem.Description = tempDescription;
+			currentItem.CheckState = tempState;
+			checkedListBoxAdNotes.SelectedItem = nextItem;
+			checkedListBoxAdNotes.ItemChecking += checkedListBoxAdNotes_ItemChecking;
+			SaveAdNotes();
 		}
 
 		private void buttonXDown_Click(object sender, EventArgs e)
 		{
-			if (checkedListBoxAdNotes.SelectedIndex >= 0 && checkedListBoxAdNotes.SelectedIndex < checkedListBoxAdNotes.Items.Count - 1)
-			{
-				checkedListBoxAdNotes.ItemChecking -= checkedListBoxAdNotes_ItemChecking;
-				CheckedListBoxItem currentItem = checkedListBoxAdNotes.Items[checkedListBoxAdNotes.SelectedIndex];
-				CheckedListBoxItem nextItem = checkedListBoxAdNotes.Items[checkedListBoxAdNotes.SelectedIndex + 1];
-				string tempValue = nextItem.Value.ToString();
-				string tempDescription = nextItem.Description;
-				CheckState tempState = nextItem.CheckState;
-				nextItem.Value = currentItem.Value;
-				nextItem.Description = currentItem.Description;
-				nextItem.CheckState = currentItem.CheckState;
-				currentItem.Value = tempValue;
-				currentItem.Description = tempDescription;
-				currentItem.CheckState = tempState;
-				checkedListBoxAdNotes.SelectedItem = nextItem;
-				checkedListBoxAdNotes.ItemChecking += checkedListBoxAdNotes_ItemChecking;
-				SaveAdNotes();
-			}
+			if (checkedListBoxAdNotes.SelectedIndex < 0 || checkedListBoxAdNotes.SelectedIndex >= checkedListBoxAdNotes.Items.Count - 1) return;
+			checkedListBoxAdNotes.ItemChecking -= checkedListBoxAdNotes_ItemChecking;
+			CheckedListBoxItem currentItem = checkedListBoxAdNotes.Items[checkedListBoxAdNotes.SelectedIndex];
+			CheckedListBoxItem nextItem = checkedListBoxAdNotes.Items[checkedListBoxAdNotes.SelectedIndex + 1];
+			string tempValue = nextItem.Value.ToString();
+			string tempDescription = nextItem.Description;
+			CheckState tempState = nextItem.CheckState;
+			nextItem.Value = currentItem.Value;
+			nextItem.Description = currentItem.Description;
+			nextItem.CheckState = currentItem.CheckState;
+			currentItem.Value = tempValue;
+			currentItem.Description = tempDescription;
+			currentItem.CheckState = tempState;
+			checkedListBoxAdNotes.SelectedItem = nextItem;
+			checkedListBoxAdNotes.ItemChecking += checkedListBoxAdNotes_ItemChecking;
+			SaveAdNotes();
 		}
 
 		private void checkedListBoxAdNotes_ItemChecking(object sender, ItemCheckingEventArgs e)
@@ -233,30 +228,5 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 		{
 			SaveAdNotes();
 		}
-
-		private void pbHelp_Click(object sender, EventArgs e)
-		{
-			if (OnHelp != null)
-				OnHelp(this, EventArgs.Empty);
-		}
-
-		#region Picture Box Clicks Habdlers
-		/// <summary>
-		/// Buttonize the PictureBox 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top += 1;
-		}
-
-		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top -= 1;
-		}
-		#endregion
 	}
 }

@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.components = new System.ComponentModel.Container();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.buttonXID = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXIndex = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXDate = new DevComponents.DotNetBar.ButtonX();
@@ -47,11 +48,8 @@
 			this.buttonXSquare = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXDeadline = new DevComponents.DotNetBar.ButtonX();
 			this.buttonXReadership = new DevComponents.DotNetBar.ButtonX();
-			this.laTitle = new System.Windows.Forms.Label();
-			this.pbHelp = new System.Windows.Forms.PictureBox();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// styleController
@@ -77,7 +75,7 @@
 			// 
 			this.buttonXID.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXID.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXID.Location = new System.Drawing.Point(11, 73);
+			this.buttonXID.Location = new System.Drawing.Point(11, 15);
 			this.buttonXID.Name = "buttonXID";
 			this.buttonXID.Size = new System.Drawing.Size(116, 27);
 			this.buttonXID.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -92,7 +90,7 @@
 			this.buttonXIndex.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXIndex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXIndex.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXIndex.Location = new System.Drawing.Point(159, 73);
+			this.buttonXIndex.Location = new System.Drawing.Point(159, 15);
 			this.buttonXIndex.Name = "buttonXIndex";
 			this.buttonXIndex.Size = new System.Drawing.Size(116, 27);
 			this.buttonXIndex.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -106,7 +104,7 @@
 			// 
 			this.buttonXDate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXDate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDate.Location = new System.Drawing.Point(11, 122);
+			this.buttonXDate.Location = new System.Drawing.Point(11, 64);
 			this.buttonXDate.Name = "buttonXDate";
 			this.buttonXDate.Size = new System.Drawing.Size(116, 27);
 			this.buttonXDate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -121,7 +119,7 @@
 			this.buttonXColor.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXColor.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXColor.Location = new System.Drawing.Point(159, 122);
+			this.buttonXColor.Location = new System.Drawing.Point(159, 64);
 			this.buttonXColor.Name = "buttonXColor";
 			this.buttonXColor.Size = new System.Drawing.Size(116, 27);
 			this.buttonXColor.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -135,7 +133,7 @@
 			// 
 			this.buttonXTotalCost.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXTotalCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXTotalCost.Location = new System.Drawing.Point(11, 220);
+			this.buttonXTotalCost.Location = new System.Drawing.Point(11, 162);
 			this.buttonXTotalCost.Name = "buttonXTotalCost";
 			this.buttonXTotalCost.Size = new System.Drawing.Size(116, 27);
 			this.buttonXTotalCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -150,7 +148,7 @@
 			this.buttonXPCI.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXPCI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXPCI.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXPCI.Location = new System.Drawing.Point(159, 171);
+			this.buttonXPCI.Location = new System.Drawing.Point(159, 113);
 			this.buttonXPCI.Name = "buttonXPCI";
 			this.buttonXPCI.Size = new System.Drawing.Size(116, 27);
 			this.buttonXPCI.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -164,7 +162,7 @@
 			// 
 			this.buttonXDimensions.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXDimensions.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDimensions.Location = new System.Drawing.Point(11, 318);
+			this.buttonXDimensions.Location = new System.Drawing.Point(11, 260);
 			this.buttonXDimensions.Name = "buttonXDimensions";
 			this.buttonXDimensions.Size = new System.Drawing.Size(116, 27);
 			this.buttonXDimensions.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -178,7 +176,7 @@
 			// 
 			this.buttonXPercentOfPage.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXPercentOfPage.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXPercentOfPage.Location = new System.Drawing.Point(11, 269);
+			this.buttonXPercentOfPage.Location = new System.Drawing.Point(11, 211);
 			this.buttonXPercentOfPage.Name = "buttonXPercentOfPage";
 			this.buttonXPercentOfPage.Size = new System.Drawing.Size(116, 27);
 			this.buttonXPercentOfPage.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -193,7 +191,7 @@
 			this.buttonXCost.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXCost.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXCost.Location = new System.Drawing.Point(159, 269);
+			this.buttonXCost.Location = new System.Drawing.Point(159, 211);
 			this.buttonXCost.Name = "buttonXCost";
 			this.buttonXCost.Size = new System.Drawing.Size(116, 27);
 			this.buttonXCost.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -207,7 +205,7 @@
 			// 
 			this.buttonXSection.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSection.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSection.Location = new System.Drawing.Point(11, 171);
+			this.buttonXSection.Location = new System.Drawing.Point(11, 113);
 			this.buttonXSection.Name = "buttonXSection";
 			this.buttonXSection.Size = new System.Drawing.Size(116, 27);
 			this.buttonXSection.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -222,7 +220,7 @@
 			this.buttonXPublication.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXPublication.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXPublication.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXPublication.Location = new System.Drawing.Point(159, 220);
+			this.buttonXPublication.Location = new System.Drawing.Point(159, 162);
 			this.buttonXPublication.Name = "buttonXPublication";
 			this.buttonXPublication.Size = new System.Drawing.Size(116, 27);
 			this.buttonXPublication.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -237,7 +235,7 @@
 			this.buttonXMechanicals.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXMechanicals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXMechanicals.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXMechanicals.Location = new System.Drawing.Point(159, 318);
+			this.buttonXMechanicals.Location = new System.Drawing.Point(159, 260);
 			this.buttonXMechanicals.Name = "buttonXMechanicals";
 			this.buttonXMechanicals.Size = new System.Drawing.Size(116, 27);
 			this.buttonXMechanicals.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -251,7 +249,7 @@
 			// 
 			this.buttonXDelivery.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXDelivery.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDelivery.Location = new System.Drawing.Point(11, 367);
+			this.buttonXDelivery.Location = new System.Drawing.Point(11, 309);
 			this.buttonXDelivery.Name = "buttonXDelivery";
 			this.buttonXDelivery.Size = new System.Drawing.Size(116, 27);
 			this.buttonXDelivery.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -266,7 +264,7 @@
 			this.buttonXDiscounts.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXDiscounts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXDiscounts.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDiscounts.Location = new System.Drawing.Point(159, 367);
+			this.buttonXDiscounts.Location = new System.Drawing.Point(159, 309);
 			this.buttonXDiscounts.Name = "buttonXDiscounts";
 			this.buttonXDiscounts.Size = new System.Drawing.Size(116, 27);
 			this.buttonXDiscounts.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -280,7 +278,7 @@
 			// 
 			this.buttonXPageSize.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXPageSize.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXPageSize.Location = new System.Drawing.Point(11, 416);
+			this.buttonXPageSize.Location = new System.Drawing.Point(11, 358);
 			this.buttonXPageSize.Name = "buttonXPageSize";
 			this.buttonXPageSize.Size = new System.Drawing.Size(116, 27);
 			this.buttonXPageSize.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -295,7 +293,7 @@
 			this.buttonXSquare.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXSquare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXSquare.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXSquare.Location = new System.Drawing.Point(159, 416);
+			this.buttonXSquare.Location = new System.Drawing.Point(159, 358);
 			this.buttonXSquare.Name = "buttonXSquare";
 			this.buttonXSquare.Size = new System.Drawing.Size(116, 27);
 			this.buttonXSquare.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -309,7 +307,7 @@
 			// 
 			this.buttonXDeadline.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXDeadline.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXDeadline.Location = new System.Drawing.Point(11, 465);
+			this.buttonXDeadline.Location = new System.Drawing.Point(11, 407);
 			this.buttonXDeadline.Name = "buttonXDeadline";
 			this.buttonXDeadline.Size = new System.Drawing.Size(116, 27);
 			this.buttonXDeadline.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -324,7 +322,7 @@
 			this.buttonXReadership.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXReadership.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXReadership.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXReadership.Location = new System.Drawing.Point(159, 465);
+			this.buttonXReadership.Location = new System.Drawing.Point(159, 407);
 			this.buttonXReadership.Name = "buttonXReadership";
 			this.buttonXReadership.Size = new System.Drawing.Size(116, 27);
 			this.buttonXReadership.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -333,34 +331,6 @@
 			this.buttonXReadership.TextColor = System.Drawing.Color.Black;
 			this.buttonXReadership.CheckedChanged += new System.EventHandler(this.button_CheckedChanged);
 			this.buttonXReadership.Click += new System.EventHandler(this.button_Click);
-			// 
-			// laTitle
-			// 
-			this.laTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.laTitle.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laTitle.ForeColor = System.Drawing.Color.Black;
-			this.laTitle.Location = new System.Drawing.Point(7, 3);
-			this.laTitle.Name = "laTitle";
-			this.laTitle.Size = new System.Drawing.Size(231, 40);
-			this.laTitle.TabIndex = 18;
-			this.laTitle.Text = "Grid Column Options:";
-			this.laTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// pbHelp
-			// 
-			this.pbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbHelp.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.HelpSmall;
-			this.pbHelp.Location = new System.Drawing.Point(244, 5);
-			this.pbHelp.Name = "pbHelp";
-			this.pbHelp.Size = new System.Drawing.Size(30, 30);
-			this.pbHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.superTooltip.SetSuperTooltip(this.pbHelp, new DevComponents.DotNetBar.SuperTooltipInfo("Grid Columns Help", "", "Learn more about how you can customize the columns in your Schedule grid", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.pbHelp.TabIndex = 36;
-			this.pbHelp.TabStop = false;
-			this.pbHelp.Click += new System.EventHandler(this.pbHelp_Click);
-			this.pbHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
 			// superTooltip
 			// 
@@ -371,8 +341,6 @@
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.pbHelp);
-			this.Controls.Add(this.laTitle);
 			this.Controls.Add(this.buttonXReadership);
 			this.Controls.Add(this.buttonXDeadline);
 			this.Controls.Add(this.buttonXSquare);
@@ -395,7 +363,6 @@
 			this.Name = "ColumnsControl";
 			this.Size = new System.Drawing.Size(282, 531);
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbHelp)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -420,9 +387,7 @@
         private DevComponents.DotNetBar.ButtonX buttonXPageSize;
         private DevComponents.DotNetBar.ButtonX buttonXSquare;
         private DevComponents.DotNetBar.ButtonX buttonXDeadline;
-        private DevComponents.DotNetBar.ButtonX buttonXReadership;
-        private System.Windows.Forms.Label laTitle;
-        private System.Windows.Forms.PictureBox pbHelp;
+		private DevComponents.DotNetBar.ButtonX buttonXReadership;
         private DevComponents.DotNetBar.SuperTooltip superTooltip;
     }
 }

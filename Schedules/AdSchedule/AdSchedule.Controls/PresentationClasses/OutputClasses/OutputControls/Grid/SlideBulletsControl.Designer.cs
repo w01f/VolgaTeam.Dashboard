@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.checkEditReadership = new DevExpress.XtraEditors.CheckEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.checkEditDelivery = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditTotalDiscounts = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditTotalColor = new DevExpress.XtraEditors.CheckEdit();
@@ -46,7 +47,6 @@
 			this.checkEditTotalFinalCost = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditTotalInserts = new DevExpress.XtraEditors.CheckEdit();
 			this.pnSlideOptions = new System.Windows.Forms.Panel();
-			this.pbHelp = new System.Windows.Forms.PictureBox();
 			this.checkEditAllSlides = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditLastSlide = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditEnableSlideBullets = new DevExpress.XtraEditors.CheckEdit();
@@ -71,7 +71,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalFinalCost.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalInserts.Properties)).BeginInit();
 			this.pnSlideOptions.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAllSlides.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLastSlide.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEnableSlideBullets.Properties)).BeginInit();
@@ -384,7 +383,6 @@
 			// 
 			// pnSlideOptions
 			// 
-			this.pnSlideOptions.Controls.Add(this.pbHelp);
 			this.pnSlideOptions.Controls.Add(this.checkEditAllSlides);
 			this.pnSlideOptions.Controls.Add(this.checkEditLastSlide);
 			this.pnSlideOptions.Controls.Add(this.checkEditEnableSlideBullets);
@@ -393,22 +391,6 @@
 			this.pnSlideOptions.Name = "pnSlideOptions";
 			this.pnSlideOptions.Size = new System.Drawing.Size(282, 67);
 			this.pnSlideOptions.TabIndex = 52;
-			// 
-			// pbHelp
-			// 
-			this.pbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbHelp.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.HelpSmall;
-			this.pbHelp.Location = new System.Drawing.Point(246, 3);
-			this.pbHelp.Name = "pbHelp";
-			this.pbHelp.Size = new System.Drawing.Size(30, 30);
-			this.pbHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.superTooltip.SetSuperTooltip(this.pbHelp, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Totals Help", "", "Learn more about adding financial info and schedule totals to your schedule slide" +
-            "s", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.pbHelp.TabIndex = 38;
-			this.pbHelp.TabStop = false;
-			this.pbHelp.Click += new System.EventHandler(this.pbHelp_Click);
-			this.pbHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
 			// checkEditAllSlides
 			// 
@@ -512,7 +494,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditTotalInserts.Properties)).EndInit();
 			this.pnSlideOptions.ResumeLayout(false);
 			this.pnSlideOptions.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pbHelp)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAllSlides.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLastSlide.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEnableSlideBullets.Properties)).EndInit();
@@ -547,8 +528,7 @@
         private DevExpress.XtraEditors.CheckEdit checkEditEnableSlideBullets;
         private DevExpress.XtraEditors.CheckEdit checkEditAllSlides;
         private DevExpress.XtraEditors.CheckEdit checkEditLastSlide;
-        private DevExpress.XtraEditors.StyleController styleController;
-		private System.Windows.Forms.PictureBox pbHelp;
+		private DevExpress.XtraEditors.StyleController styleController;
 		private DevComponents.DotNetBar.SuperTooltip superTooltip;
     }
 }

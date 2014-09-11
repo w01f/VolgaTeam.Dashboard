@@ -107,7 +107,7 @@
       <DependentUpon>AdPlanControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\AdPlan\AdPlanDigitalProductControl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PresentationClasses\AdPlan\AdPlanDigitalProductControl.Designer.cs">
       <DependentUpon>AdPlanDigitalProductControl.cs</DependentUpon>
@@ -230,6 +230,7 @@
     <EmbeddedResource Include="PresentationClasses\WebPackageControl.resx">
       <DependentUpon>WebPackageControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="ToolForms\FormCloneProduct.resx">
       <DependentUpon>FormCloneProduct.cs</DependentUpon>
     </EmbeddedResource>

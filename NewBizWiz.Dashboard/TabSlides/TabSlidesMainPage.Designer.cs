@@ -30,7 +30,6 @@
         {
 			this.pnBottom = new System.Windows.Forms.Panel();
 			this.pbVersion = new System.Windows.Forms.PictureBox();
-			this.laUserName = new System.Windows.Forms.Label();
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.laSlideSize = new System.Windows.Forms.Label();
 			this.pnBottom.SuspendLayout();
@@ -42,7 +41,6 @@
 			// 
 			this.pnBottom.BackColor = System.Drawing.Color.Transparent;
 			this.pnBottom.Controls.Add(this.pbVersion);
-			this.pnBottom.Controls.Add(this.laUserName);
 			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.pnBottom.Location = new System.Drawing.Point(0, 504);
 			this.pnBottom.Name = "pnBottom";
@@ -56,19 +54,6 @@
 			this.pbVersion.Size = new System.Drawing.Size(526, 45);
 			this.pbVersion.TabIndex = 1;
 			this.pbVersion.TabStop = false;
-			// 
-			// laUserName
-			// 
-			this.laUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.laUserName.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laUserName.ForeColor = System.Drawing.Color.Black;
-			this.laUserName.Location = new System.Drawing.Point(535, 6);
-			this.laUserName.Name = "laUserName";
-			this.laUserName.Size = new System.Drawing.Size(342, 45);
-			this.laUserName.TabIndex = 0;
-			this.laUserName.Text = "laSlideSize";
-			this.laUserName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// pnMain
 			// 
@@ -111,7 +96,6 @@
 
 		private System.Windows.Forms.Panel pnBottom;
 		private System.Windows.Forms.PictureBox pbVersion;
-		private System.Windows.Forms.Label laUserName;
 		private System.Windows.Forms.Panel pnMain;
 		private System.Windows.Forms.Label laSlideSize;
 

@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.AdSchedule;
@@ -21,7 +20,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		#region Operation Buttons
 		public ButtonItem HelpButtonItem { get; set; }
-		public ButtonItem OptionsButtonItem { get; set; }
 		#endregion
 
 		public GridsControl()
@@ -30,6 +28,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			Dock = DockStyle.Fill;
 			DetailedGrid = new OutputDetailedGridControl();
 			MultiGrid = new OutputMultiGridControl();
+			pnMain.Dock = DockStyle.Fill;
+			pnEmpty.Dock = DockStyle.Fill;
+			retractableBar.StateChanged += retractableBar_StateChanged;
 		}
 
 		public bool AllowToLeaveControl
@@ -67,12 +68,10 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				case GridType.DetailedGrid:
 					_selectedOutput = DetailedGrid;
 					HelpButtonItem = Controller.Instance.DetailedGridHelp;
-					OptionsButtonItem = Controller.Instance.DetailedGridOptions;
 					break;
 				case GridType.MultiGrid:
 					_selectedOutput = MultiGrid;
 					HelpButtonItem = Controller.Instance.MultiGridHelp;
-					OptionsButtonItem = Controller.Instance.MultiGridOptions;
 					break;
 				default:
 					_selectedOutput = null;
@@ -137,22 +136,21 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			if (_selectedOutput != null)
 			{
 				_selectedOutput.AllowToSave = false;
-				OptionsButtonItem.Checked = _selectedOutput.ShowOptions;
 				xtraTabControlOptions.SelectedTabPageIndex = _selectedOutput.SelectedOptionChapterIndex;
 				_selectedOutput.AllowToSave = true;
 
-				splitContainerControl.PanelVisibility = _selectedOutput.ShowOptions ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
+				if (_selectedOutput.ShowOptions)
+					retractableBar.Expand(true);
+				else
+					retractableBar.Collapse(true);
 			}
 		}
 
-		public void Details_CheckedChanged(object sender, EventArgs e)
+		private void retractableBar_StateChanged(object sender, CommonGUI.RetractableBar.StateChangedEventArgs e)
 		{
-			if (_selectedOutput.AllowToSave)
-			{
-				_selectedOutput.ShowOptions = OptionsButtonItem.Checked;
-				_selectedOutput.SaveView();
-				splitContainerControl.PanelVisibility = _selectedOutput.ShowOptions ? SplitPanelVisibility.Both : SplitPanelVisibility.Panel2;
-			}
+			if (!_selectedOutput.AllowToSave) return;
+			_selectedOutput.ShowOptions = e.Expaned;
+			_selectedOutput.SaveView();
 		}
 
 		public void Preview_Click(object sender, EventArgs e)

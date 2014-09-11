@@ -65,6 +65,7 @@ namespace NewBizWiz.Dashboard
 			ribbonBarNewspaperLogo.Text = userName;
 			ribbonBarTVLogo.Text = userName;
 			ribbonBarRadioLogo.Text = userName;
+			ribbonBarSlidesLogo.Text = userName;
 
 			var masterWizardLogo = MasterWizardManager.Instance.DefaultLogo;
 			buttonItemHomeOverview.Image = masterWizardLogo;

@@ -226,27 +226,25 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		private void SaveSlideBullets()
 		{
-			if (_allowToSave)
-			{
-				_settingsContainer.SlideBulletsState.ShowSlideBullets = checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowAvgAdCost = checkEditAvgAdCost.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowAvgFinalCost = checkEditAvgFinalCost.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowAvgPCI = checkEditAvgPCI.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowColumnInches = checkEditColumnInches.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowDelivery = checkEditDelivery.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowDimensions = checkEditDimensions.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowPageSize = checkEditPageSize.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowPercentOfPage = checkEditPercentOfPage.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowReadership = checkEditReadership.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowSignature = checkEditSignature.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowTotalColor = checkEditTotalColor.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowDiscounts = checkEditTotalDiscounts.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowTotalFinalCost = checkEditTotalFinalCost.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowTotalInserts = checkEditTotalInserts.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowTotalSquare = checkEditTotalSquare.Checked & checkEditEnableSlideBullets.Checked;
-				_settingsContainer.SlideBulletsState.ShowOnlyOnLastSlide = checkEditLastSlide.Checked;
-				_settingsContainer.SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			_settingsContainer.SlideBulletsState.ShowSlideBullets = checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowAvgAdCost = checkEditAvgAdCost.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowAvgFinalCost = checkEditAvgFinalCost.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowAvgPCI = checkEditAvgPCI.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowColumnInches = checkEditColumnInches.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowDelivery = checkEditDelivery.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowDimensions = checkEditDimensions.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowPageSize = checkEditPageSize.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowPercentOfPage = checkEditPercentOfPage.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowReadership = checkEditReadership.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowSignature = checkEditSignature.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowTotalColor = checkEditTotalColor.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowDiscounts = checkEditTotalDiscounts.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowTotalFinalCost = checkEditTotalFinalCost.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowTotalInserts = checkEditTotalInserts.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowTotalSquare = checkEditTotalSquare.Checked & checkEditEnableSlideBullets.Checked;
+			_settingsContainer.SlideBulletsState.ShowOnlyOnLastSlide = checkEditLastSlide.Checked;
+			_settingsContainer.SettingsNotSaved = true;
 		}
 
 		private void checkEdit_EditValueChanging(object sender, ChangingEventArgs e)
@@ -275,30 +273,5 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			checkEditSignature.Enabled = checkEditEnableSlideBullets.Checked;
 			SaveSlideBullets();
 		}
-
-		private void pbHelp_Click(object sender, EventArgs e)
-		{
-			if (OnHelp != null)
-				OnHelp(this, EventArgs.Empty);
-		}
-
-		#region Picture Box Clicks Habdlers
-		/// <summary>
-		/// Buttonize the PictureBox 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top += 1;
-		}
-
-		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
-		{
-			var pic = (PictureBox)(sender);
-			pic.Top -= 1;
-		}
-		#endregion
 	}
 }

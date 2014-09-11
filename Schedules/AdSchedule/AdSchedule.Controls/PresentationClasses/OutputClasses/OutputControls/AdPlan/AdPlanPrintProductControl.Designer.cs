@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+			DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
+			DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
 			this.checkEditFlightDates = new DevExpress.XtraEditors.CheckEdit();
 			this.pnItems = new System.Windows.Forms.Panel();
 			this.xtraScrollableControl = new DevExpress.XtraEditors.XtraScrollableControl();
@@ -68,15 +68,15 @@
 			this.buttonXEditName = new DevComponents.DotNetBar.ButtonX();
 			this.textEditName = new DevExpress.XtraEditors.TextEdit();
 			this.pnItemsBorder = new System.Windows.Forms.Panel();
+			this.pnItemsFooter = new System.Windows.Forms.Panel();
+			this.buttonXItemsDefault = new DevComponents.DotNetBar.ButtonX();
+			this.buttonXItemsClear = new DevComponents.DotNetBar.ButtonX();
 			this.pnItemsHeader = new System.Windows.Forms.Panel();
 			this.pbComments = new System.Windows.Forms.PictureBox();
 			this.laComments = new System.Windows.Forms.Label();
 			this.pbLogo = new System.Windows.Forms.PictureBox();
 			this.pictureBoxDates = new System.Windows.Forms.PictureBox();
 			this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
-			this.pnItemsFooter = new System.Windows.Forms.Panel();
-			this.buttonXItemsDefault = new DevComponents.DotNetBar.ButtonX();
-			this.buttonXItemsClear = new DevComponents.DotNetBar.ButtonX();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditFlightDates.Properties)).BeginInit();
 			this.pnItems.SuspendLayout();
 			this.xtraScrollableControl.SuspendLayout();
@@ -106,11 +106,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbInvestment)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditName.Properties)).BeginInit();
 			this.pnItemsBorder.SuspendLayout();
+			this.pnItemsFooter.SuspendLayout();
 			this.pnItemsHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbComments)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDates)).BeginInit();
-			this.pnItemsFooter.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// checkEditFlightDates
@@ -118,12 +118,12 @@
 			this.checkEditFlightDates.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkEditFlightDates.EditValue = true;
-			this.checkEditFlightDates.Location = new System.Drawing.Point(478, 103);
+			this.checkEditFlightDates.Location = new System.Drawing.Point(199, 103);
 			this.checkEditFlightDates.Name = "checkEditFlightDates";
 			this.checkEditFlightDates.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditFlightDates.Properties.Appearance.Options.UseFont = true;
 			this.checkEditFlightDates.Properties.Caption = "Flight Dates";
-			this.checkEditFlightDates.Size = new System.Drawing.Size(364, 19);
+			this.checkEditFlightDates.Size = new System.Drawing.Size(364, 20);
 			this.checkEditFlightDates.TabIndex = 52;
 			this.checkEditFlightDates.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditFlightDates.MouseDown += new System.Windows.Forms.MouseEventHandler(this.checkEdit_MouseDown);
@@ -133,10 +133,10 @@
 			this.pnItems.BackColor = System.Drawing.Color.Transparent;
 			this.pnItems.Controls.Add(this.xtraScrollableControl);
 			this.pnItems.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnItems.Location = new System.Drawing.Point(1, 47);
+			this.pnItems.Location = new System.Drawing.Point(0, 46);
 			this.pnItems.Name = "pnItems";
 			this.pnItems.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-			this.pnItems.Size = new System.Drawing.Size(267, 356);
+			this.pnItems.Size = new System.Drawing.Size(252, 291);
 			this.pnItems.TabIndex = 51;
 			// 
 			// xtraScrollableControl
@@ -161,7 +161,8 @@
 			this.xtraScrollableControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.xtraScrollableControl.Location = new System.Drawing.Point(0, 0);
 			this.xtraScrollableControl.Name = "xtraScrollableControl";
-			this.xtraScrollableControl.Size = new System.Drawing.Size(267, 355);
+			this.xtraScrollableControl.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.xtraScrollableControl.Size = new System.Drawing.Size(252, 290);
 			this.xtraScrollableControl.TabIndex = 47;
 			// 
 			// pnSections
@@ -169,9 +170,9 @@
 			this.pnSections.Controls.Add(this.checkEditSections);
 			this.pnSections.Controls.Add(this.labelControlSections);
 			this.pnSections.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnSections.Location = new System.Drawing.Point(0, 360);
+			this.pnSections.Location = new System.Drawing.Point(5, 360);
 			this.pnSections.Name = "pnSections";
-			this.pnSections.Size = new System.Drawing.Size(250, 106);
+			this.pnSections.Size = new System.Drawing.Size(230, 106);
 			this.pnSections.TabIndex = 56;
 			// 
 			// checkEditSections
@@ -208,13 +209,13 @@
 			// checkEditMechanicals
 			// 
 			this.checkEditMechanicals.Dock = System.Windows.Forms.DockStyle.Top;
-			this.checkEditMechanicals.Location = new System.Drawing.Point(0, 330);
+			this.checkEditMechanicals.Location = new System.Drawing.Point(5, 330);
 			this.checkEditMechanicals.Name = "checkEditMechanicals";
 			this.checkEditMechanicals.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditMechanicals.Properties.Appearance.Options.UseFont = true;
 			this.checkEditMechanicals.Properties.AutoHeight = false;
 			this.checkEditMechanicals.Properties.Caption = "Mechanicals Tag";
-			this.checkEditMechanicals.Size = new System.Drawing.Size(250, 30);
+			this.checkEditMechanicals.Size = new System.Drawing.Size(230, 30);
 			this.checkEditMechanicals.TabIndex = 53;
 			this.checkEditMechanicals.Visible = false;
 			this.checkEditMechanicals.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
@@ -224,13 +225,13 @@
 			// checkEditDiscounts
 			// 
 			this.checkEditDiscounts.Dock = System.Windows.Forms.DockStyle.Top;
-			this.checkEditDiscounts.Location = new System.Drawing.Point(0, 300);
+			this.checkEditDiscounts.Location = new System.Drawing.Point(5, 300);
 			this.checkEditDiscounts.Name = "checkEditDiscounts";
 			this.checkEditDiscounts.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditDiscounts.Properties.Appearance.Options.UseFont = true;
 			this.checkEditDiscounts.Properties.AutoHeight = false;
 			this.checkEditDiscounts.Properties.Caption = "Discounts Tag";
-			this.checkEditDiscounts.Size = new System.Drawing.Size(250, 30);
+			this.checkEditDiscounts.Size = new System.Drawing.Size(230, 30);
 			this.checkEditDiscounts.TabIndex = 52;
 			this.checkEditDiscounts.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditDiscounts.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -239,13 +240,13 @@
 			// checkEditAvgFinalCost
 			// 
 			this.checkEditAvgFinalCost.Dock = System.Windows.Forms.DockStyle.Top;
-			this.checkEditAvgFinalCost.Location = new System.Drawing.Point(0, 270);
+			this.checkEditAvgFinalCost.Location = new System.Drawing.Point(5, 270);
 			this.checkEditAvgFinalCost.Name = "checkEditAvgFinalCost";
 			this.checkEditAvgFinalCost.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditAvgFinalCost.Properties.Appearance.Options.UseFont = true;
 			this.checkEditAvgFinalCost.Properties.AutoHeight = false;
 			this.checkEditAvgFinalCost.Properties.Caption = "Avg Final Cost Tag";
-			this.checkEditAvgFinalCost.Size = new System.Drawing.Size(250, 30);
+			this.checkEditAvgFinalCost.Size = new System.Drawing.Size(230, 30);
 			this.checkEditAvgFinalCost.TabIndex = 51;
 			this.checkEditAvgFinalCost.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditAvgFinalCost.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -254,7 +255,7 @@
 			// checkEditAvgAdCost
 			// 
 			this.checkEditAvgAdCost.Dock = System.Windows.Forms.DockStyle.Top;
-			this.checkEditAvgAdCost.Location = new System.Drawing.Point(0, 240);
+			this.checkEditAvgAdCost.Location = new System.Drawing.Point(5, 240);
 			this.checkEditAvgAdCost.Name = "checkEditAvgAdCost";
 			this.checkEditAvgAdCost.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditAvgAdCost.Properties.Appearance.Options.UseFont = true;
@@ -268,7 +269,7 @@
 			this.checkEditAvgAdCost.Properties.AppearanceReadOnly.TextOptions.HotkeyPrefix = DevExpress.Utils.HKeyPrefix.Hide;
 			this.checkEditAvgAdCost.Properties.AutoHeight = false;
 			this.checkEditAvgAdCost.Properties.Caption = "Avg Ad Cost Tag";
-			this.checkEditAvgAdCost.Size = new System.Drawing.Size(250, 30);
+			this.checkEditAvgAdCost.Size = new System.Drawing.Size(230, 30);
 			this.checkEditAvgAdCost.TabIndex = 50;
 			this.checkEditAvgAdCost.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditAvgAdCost.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -277,13 +278,13 @@
 			// checkEditAvgPCI
 			// 
 			this.checkEditAvgPCI.Dock = System.Windows.Forms.DockStyle.Top;
-			this.checkEditAvgPCI.Location = new System.Drawing.Point(0, 210);
+			this.checkEditAvgPCI.Location = new System.Drawing.Point(5, 210);
 			this.checkEditAvgPCI.Name = "checkEditAvgPCI";
 			this.checkEditAvgPCI.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditAvgPCI.Properties.Appearance.Options.UseFont = true;
 			this.checkEditAvgPCI.Properties.AutoHeight = false;
 			this.checkEditAvgPCI.Properties.Caption = "Avg PCI Tag";
-			this.checkEditAvgPCI.Size = new System.Drawing.Size(250, 30);
+			this.checkEditAvgPCI.Size = new System.Drawing.Size(230, 30);
 			this.checkEditAvgPCI.TabIndex = 49;
 			this.checkEditAvgPCI.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditAvgPCI.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -293,13 +294,13 @@
 			// 
 			this.checkEditColor.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditColor.EditValue = true;
-			this.checkEditColor.Location = new System.Drawing.Point(0, 180);
+			this.checkEditColor.Location = new System.Drawing.Point(5, 180);
 			this.checkEditColor.Name = "checkEditColor";
 			this.checkEditColor.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditColor.Properties.Appearance.Options.UseFont = true;
 			this.checkEditColor.Properties.AutoHeight = false;
 			this.checkEditColor.Properties.Caption = "Color Tag";
-			this.checkEditColor.Size = new System.Drawing.Size(250, 30);
+			this.checkEditColor.Size = new System.Drawing.Size(230, 30);
 			this.checkEditColor.TabIndex = 46;
 			this.checkEditColor.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditColor.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -309,13 +310,13 @@
 			// 
 			this.checkEditPercentOfPage.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditPercentOfPage.EditValue = true;
-			this.checkEditPercentOfPage.Location = new System.Drawing.Point(0, 150);
+			this.checkEditPercentOfPage.Location = new System.Drawing.Point(5, 150);
 			this.checkEditPercentOfPage.Name = "checkEditPercentOfPage";
 			this.checkEditPercentOfPage.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditPercentOfPage.Properties.Appearance.Options.UseFont = true;
 			this.checkEditPercentOfPage.Properties.AutoHeight = false;
 			this.checkEditPercentOfPage.Properties.Caption = "Percent of PageTag";
-			this.checkEditPercentOfPage.Size = new System.Drawing.Size(250, 30);
+			this.checkEditPercentOfPage.Size = new System.Drawing.Size(230, 30);
 			this.checkEditPercentOfPage.TabIndex = 57;
 			this.checkEditPercentOfPage.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
@@ -323,13 +324,13 @@
 			// 
 			this.checkEditPageSize.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditPageSize.EditValue = true;
-			this.checkEditPageSize.Location = new System.Drawing.Point(0, 120);
+			this.checkEditPageSize.Location = new System.Drawing.Point(5, 120);
 			this.checkEditPageSize.Name = "checkEditPageSize";
 			this.checkEditPageSize.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditPageSize.Properties.Appearance.Options.UseFont = true;
 			this.checkEditPageSize.Properties.AutoHeight = false;
 			this.checkEditPageSize.Properties.Caption = "Page Size Tag";
-			this.checkEditPageSize.Size = new System.Drawing.Size(250, 30);
+			this.checkEditPageSize.Size = new System.Drawing.Size(230, 30);
 			this.checkEditPageSize.TabIndex = 45;
 			this.checkEditPageSize.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditPageSize.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -339,13 +340,13 @@
 			// 
 			this.checkEditDimensions.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditDimensions.EditValue = true;
-			this.checkEditDimensions.Location = new System.Drawing.Point(0, 90);
+			this.checkEditDimensions.Location = new System.Drawing.Point(5, 90);
 			this.checkEditDimensions.Name = "checkEditDimensions";
 			this.checkEditDimensions.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditDimensions.Properties.Appearance.Options.UseFont = true;
 			this.checkEditDimensions.Properties.AutoHeight = false;
 			this.checkEditDimensions.Properties.Caption = "Dimensions Tag";
-			this.checkEditDimensions.Size = new System.Drawing.Size(250, 30);
+			this.checkEditDimensions.Size = new System.Drawing.Size(230, 30);
 			this.checkEditDimensions.TabIndex = 48;
 			this.checkEditDimensions.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditDimensions.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -355,13 +356,13 @@
 			// 
 			this.checkEditSquare.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditSquare.EditValue = true;
-			this.checkEditSquare.Location = new System.Drawing.Point(0, 60);
+			this.checkEditSquare.Location = new System.Drawing.Point(5, 60);
 			this.checkEditSquare.Name = "checkEditSquare";
 			this.checkEditSquare.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditSquare.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSquare.Properties.AutoHeight = false;
 			this.checkEditSquare.Properties.Caption = "Column Inches Tag";
-			this.checkEditSquare.Size = new System.Drawing.Size(250, 30);
+			this.checkEditSquare.Size = new System.Drawing.Size(230, 30);
 			this.checkEditSquare.TabIndex = 47;
 			this.checkEditSquare.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditSquare.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -371,13 +372,13 @@
 			// 
 			this.checkEditTotalSquare.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditTotalSquare.EditValue = true;
-			this.checkEditTotalSquare.Location = new System.Drawing.Point(0, 30);
+			this.checkEditTotalSquare.Location = new System.Drawing.Point(5, 30);
 			this.checkEditTotalSquare.Name = "checkEditTotalSquare";
 			this.checkEditTotalSquare.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditTotalSquare.Properties.Appearance.Options.UseFont = true;
 			this.checkEditTotalSquare.Properties.AutoHeight = false;
 			this.checkEditTotalSquare.Properties.Caption = "Total Square Tag";
-			this.checkEditTotalSquare.Size = new System.Drawing.Size(250, 30);
+			this.checkEditTotalSquare.Size = new System.Drawing.Size(230, 30);
 			this.checkEditTotalSquare.TabIndex = 44;
 			this.checkEditTotalSquare.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditTotalSquare.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -387,13 +388,13 @@
 			// 
 			this.checkEditTotalAds.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkEditTotalAds.EditValue = true;
-			this.checkEditTotalAds.Location = new System.Drawing.Point(0, 0);
+			this.checkEditTotalAds.Location = new System.Drawing.Point(5, 0);
 			this.checkEditTotalAds.Name = "checkEditTotalAds";
 			this.checkEditTotalAds.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.checkEditTotalAds.Properties.Appearance.Options.UseFont = true;
 			this.checkEditTotalAds.Properties.AutoHeight = false;
 			this.checkEditTotalAds.Properties.Caption = "Total Ads Tag";
-			this.checkEditTotalAds.Size = new System.Drawing.Size(250, 30);
+			this.checkEditTotalAds.Size = new System.Drawing.Size(230, 30);
 			this.checkEditTotalAds.TabIndex = 43;
 			this.checkEditTotalAds.CheckedChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			this.checkEditTotalAds.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.checkEditAdItems_EditValueChanging);
@@ -406,7 +407,7 @@
 			this.laAdItems.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laAdItems.Location = new System.Drawing.Point(0, 0);
 			this.laAdItems.Name = "laAdItems";
-			this.laAdItems.Size = new System.Drawing.Size(267, 45);
+			this.laAdItems.Size = new System.Drawing.Size(252, 45);
 			this.laAdItems.TabIndex = 48;
 			this.laAdItems.Text = "Select up to 6 Items Below:";
 			this.laAdItems.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -414,7 +415,7 @@
 			// checkEditComments
 			// 
 			this.checkEditComments.AutoSizeInLayoutControl = true;
-			this.checkEditComments.Location = new System.Drawing.Point(292, 281);
+			this.checkEditComments.Location = new System.Drawing.Point(13, 281);
 			this.checkEditComments.Name = "checkEditComments";
 			this.checkEditComments.Properties.Caption = "";
 			this.checkEditComments.Size = new System.Drawing.Size(19, 19);
@@ -427,10 +428,10 @@
 			this.memoEditComments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.memoEditComments.Enabled = false;
-			this.memoEditComments.Location = new System.Drawing.Point(317, 281);
+			this.memoEditComments.Location = new System.Drawing.Point(38, 281);
 			this.memoEditComments.Name = "memoEditComments";
 			this.memoEditComments.Properties.NullText = "Type Comments Here";
-			this.memoEditComments.Size = new System.Drawing.Size(619, 62);
+			this.memoEditComments.Size = new System.Drawing.Size(898, 62);
 			this.memoEditComments.StyleController = this.styleController;
 			this.memoEditComments.TabIndex = 41;
 			this.memoEditComments.UseOptimizedRendering = true;
@@ -459,7 +460,7 @@
 			// 
 			this.checkEditDates.AutoSizeInLayoutControl = true;
 			this.checkEditDates.EditValue = true;
-			this.checkEditDates.Location = new System.Drawing.Point(292, 146);
+			this.checkEditDates.Location = new System.Drawing.Point(13, 146);
 			this.checkEditDates.Name = "checkEditDates";
 			this.checkEditDates.Properties.Caption = "";
 			this.checkEditDates.Size = new System.Drawing.Size(19, 19);
@@ -471,10 +472,10 @@
 			// 
 			this.memoEditDates.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.memoEditDates.Location = new System.Drawing.Point(317, 146);
+			this.memoEditDates.Location = new System.Drawing.Point(38, 146);
 			this.memoEditDates.Name = "memoEditDates";
 			this.memoEditDates.Properties.ReadOnly = true;
-			this.memoEditDates.Size = new System.Drawing.Size(619, 62);
+			this.memoEditDates.Size = new System.Drawing.Size(898, 62);
 			this.memoEditDates.StyleController = this.styleController;
 			this.memoEditDates.TabIndex = 39;
 			this.memoEditDates.UseOptimizedRendering = true;
@@ -484,7 +485,7 @@
 			// 
 			this.laDates.AutoSize = true;
 			this.laDates.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laDates.Location = new System.Drawing.Point(365, 103);
+			this.laDates.Location = new System.Drawing.Point(86, 103);
 			this.laDates.Name = "laDates";
 			this.laDates.Size = new System.Drawing.Size(95, 19);
 			this.laDates.TabIndex = 35;
@@ -551,13 +552,13 @@
 			this.buttonXEditInvestment.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXEditInvestment.AutoCheckOnClick = true;
 			this.buttonXEditInvestment.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXEditInvestment.Location = new System.Drawing.Point(434, 415);
+			this.buttonXEditInvestment.Location = new System.Drawing.Point(155, 415);
 			this.buttonXEditInvestment.Name = "buttonXEditInvestment";
 			this.buttonXEditInvestment.Size = new System.Drawing.Size(88, 22);
 			this.buttonXEditInvestment.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			toolTipItem1.Text = "Click to change Investment";
-			superToolTip1.Items.Add(toolTipItem1);
-			this.toolTipController.SetSuperTip(this.buttonXEditInvestment, superToolTip1);
+			toolTipItem3.Text = "Click to change Investment";
+			superToolTip3.Items.Add(toolTipItem3);
+			this.toolTipController.SetSuperTip(this.buttonXEditInvestment, superToolTip3);
 			this.buttonXEditInvestment.TabIndex = 64;
 			this.buttonXEditInvestment.Text = "Edit";
 			this.buttonXEditInvestment.TextColor = System.Drawing.Color.Black;
@@ -570,7 +571,7 @@
             0,
             0,
             0});
-			this.spinEditInvestment.Location = new System.Drawing.Point(317, 415);
+			this.spinEditInvestment.Location = new System.Drawing.Point(38, 415);
 			this.spinEditInvestment.Name = "spinEditInvestment";
 			this.spinEditInvestment.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.spinEditInvestment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -594,7 +595,7 @@
 			// 
 			this.checkEditInvestment.AutoSizeInLayoutControl = true;
 			this.checkEditInvestment.EditValue = true;
-			this.checkEditInvestment.Location = new System.Drawing.Point(292, 416);
+			this.checkEditInvestment.Location = new System.Drawing.Point(13, 416);
 			this.checkEditInvestment.Name = "checkEditInvestment";
 			this.checkEditInvestment.Properties.Caption = "";
 			this.checkEditInvestment.Size = new System.Drawing.Size(19, 19);
@@ -604,7 +605,7 @@
 			// pbInvestment
 			// 
 			this.pbInvestment.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.InvestmentDetails;
-			this.pbInvestment.Location = new System.Drawing.Point(317, 364);
+			this.pbInvestment.Location = new System.Drawing.Point(38, 364);
 			this.pbInvestment.Name = "pbInvestment";
 			this.pbInvestment.Size = new System.Drawing.Size(41, 41);
 			this.pbInvestment.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -615,7 +616,7 @@
 			// 
 			this.laInvestment.AutoSize = true;
 			this.laInvestment.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laInvestment.Location = new System.Drawing.Point(365, 374);
+			this.laInvestment.Location = new System.Drawing.Point(86, 374);
 			this.laInvestment.Name = "laInvestment";
 			this.laInvestment.Size = new System.Drawing.Size(149, 19);
 			this.laInvestment.TabIndex = 61;
@@ -655,86 +656,24 @@
 			// 
 			this.textEditName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textEditName.Location = new System.Drawing.Point(480, 21);
+			this.textEditName.Location = new System.Drawing.Point(201, 21);
 			this.textEditName.Name = "textEditName";
 			this.textEditName.Properties.ReadOnly = true;
-			this.textEditName.Size = new System.Drawing.Size(362, 22);
+			this.textEditName.Size = new System.Drawing.Size(641, 22);
 			this.textEditName.StyleController = this.styleController;
 			this.textEditName.TabIndex = 57;
 			this.textEditName.EditValueChanged += new System.EventHandler(this.checkEdit_CheckedChanged);
 			// 
 			// pnItemsBorder
 			// 
-			this.pnItemsBorder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
 			this.pnItemsBorder.BackColor = System.Drawing.Color.DimGray;
 			this.pnItemsBorder.Controls.Add(this.pnItems);
 			this.pnItemsBorder.Controls.Add(this.pnItemsFooter);
 			this.pnItemsBorder.Controls.Add(this.pnItemsHeader);
-			this.pnItemsBorder.Location = new System.Drawing.Point(7, 7);
+			this.pnItemsBorder.Location = new System.Drawing.Point(398, 63);
 			this.pnItemsBorder.Name = "pnItemsBorder";
-			this.pnItemsBorder.Padding = new System.Windows.Forms.Padding(1);
-			this.pnItemsBorder.Size = new System.Drawing.Size(269, 450);
+			this.pnItemsBorder.Size = new System.Drawing.Size(252, 383);
 			this.pnItemsBorder.TabIndex = 56;
-			// 
-			// pnItemsHeader
-			// 
-			this.pnItemsHeader.Controls.Add(this.laAdItems);
-			this.pnItemsHeader.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnItemsHeader.Location = new System.Drawing.Point(1, 1);
-			this.pnItemsHeader.Name = "pnItemsHeader";
-			this.pnItemsHeader.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-			this.pnItemsHeader.Size = new System.Drawing.Size(267, 46);
-			this.pnItemsHeader.TabIndex = 52;
-			// 
-			// pbComments
-			// 
-			this.pbComments.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Notes;
-			this.pbComments.Location = new System.Drawing.Point(317, 229);
-			this.pbComments.Name = "pbComments";
-			this.pbComments.Size = new System.Drawing.Size(41, 41);
-			this.pbComments.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbComments.TabIndex = 54;
-			this.pbComments.TabStop = false;
-			// 
-			// laComments
-			// 
-			this.laComments.AutoSize = true;
-			this.laComments.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.laComments.Location = new System.Drawing.Point(365, 239);
-			this.laComments.Name = "laComments";
-			this.laComments.Size = new System.Drawing.Size(136, 19);
-			this.laComments.TabIndex = 55;
-			this.laComments.Text = "Schedule Notes:";
-			// 
-			// pbLogo
-			// 
-			this.pbLogo.BackColor = System.Drawing.Color.White;
-			this.pbLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pbLogo.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.pbLogo.Location = new System.Drawing.Point(294, 7);
-			this.pbLogo.Name = "pbLogo";
-			this.pbLogo.Size = new System.Drawing.Size(165, 75);
-			this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbLogo.TabIndex = 53;
-			this.pbLogo.TabStop = false;
-			this.pbLogo.Click += new System.EventHandler(this.pbLogo_Click);
-			// 
-			// pictureBoxDates
-			// 
-			this.pictureBoxDates.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Calendar;
-			this.pictureBoxDates.Location = new System.Drawing.Point(317, 93);
-			this.pictureBoxDates.Name = "pictureBoxDates";
-			this.pictureBoxDates.Size = new System.Drawing.Size(41, 41);
-			this.pictureBoxDates.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pictureBoxDates.TabIndex = 32;
-			this.pictureBoxDates.TabStop = false;
-			// 
-			// toolTipController
-			// 
-			this.toolTipController.Rounded = true;
-			this.toolTipController.ToolTipLocation = DevExpress.Utils.ToolTipLocation.RightTop;
-			this.toolTipController.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
 			// 
 			// pnItemsFooter
 			// 
@@ -742,9 +681,9 @@
 			this.pnItemsFooter.Controls.Add(this.buttonXItemsDefault);
 			this.pnItemsFooter.Controls.Add(this.buttonXItemsClear);
 			this.pnItemsFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnItemsFooter.Location = new System.Drawing.Point(1, 403);
+			this.pnItemsFooter.Location = new System.Drawing.Point(0, 337);
 			this.pnItemsFooter.Name = "pnItemsFooter";
-			this.pnItemsFooter.Size = new System.Drawing.Size(267, 46);
+			this.pnItemsFooter.Size = new System.Drawing.Size(252, 46);
 			this.pnItemsFooter.TabIndex = 54;
 			// 
 			// buttonXItemsDefault
@@ -752,7 +691,7 @@
 			this.buttonXItemsDefault.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 			this.buttonXItemsDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonXItemsDefault.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-			this.buttonXItemsDefault.Location = new System.Drawing.Point(144, 7);
+			this.buttonXItemsDefault.Location = new System.Drawing.Point(130, 9);
 			this.buttonXItemsDefault.Name = "buttonXItemsDefault";
 			this.buttonXItemsDefault.Size = new System.Drawing.Size(119, 28);
 			this.buttonXItemsDefault.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -773,6 +712,65 @@
 			this.buttonXItemsClear.Text = "Clear All";
 			this.buttonXItemsClear.TextColor = System.Drawing.Color.Black;
 			this.buttonXItemsClear.Click += new System.EventHandler(this.buttonXItemsClear_Click);
+			// 
+			// pnItemsHeader
+			// 
+			this.pnItemsHeader.Controls.Add(this.laAdItems);
+			this.pnItemsHeader.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnItemsHeader.Location = new System.Drawing.Point(0, 0);
+			this.pnItemsHeader.Name = "pnItemsHeader";
+			this.pnItemsHeader.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+			this.pnItemsHeader.Size = new System.Drawing.Size(252, 46);
+			this.pnItemsHeader.TabIndex = 52;
+			// 
+			// pbComments
+			// 
+			this.pbComments.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Notes;
+			this.pbComments.Location = new System.Drawing.Point(38, 229);
+			this.pbComments.Name = "pbComments";
+			this.pbComments.Size = new System.Drawing.Size(41, 41);
+			this.pbComments.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pbComments.TabIndex = 54;
+			this.pbComments.TabStop = false;
+			// 
+			// laComments
+			// 
+			this.laComments.AutoSize = true;
+			this.laComments.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laComments.Location = new System.Drawing.Point(86, 239);
+			this.laComments.Name = "laComments";
+			this.laComments.Size = new System.Drawing.Size(136, 19);
+			this.laComments.TabIndex = 55;
+			this.laComments.Text = "Schedule Notes:";
+			// 
+			// pbLogo
+			// 
+			this.pbLogo.BackColor = System.Drawing.Color.White;
+			this.pbLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pbLogo.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pbLogo.Location = new System.Drawing.Point(15, 7);
+			this.pbLogo.Name = "pbLogo";
+			this.pbLogo.Size = new System.Drawing.Size(165, 75);
+			this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pbLogo.TabIndex = 53;
+			this.pbLogo.TabStop = false;
+			this.pbLogo.Click += new System.EventHandler(this.pbLogo_Click);
+			// 
+			// pictureBoxDates
+			// 
+			this.pictureBoxDates.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.Calendar;
+			this.pictureBoxDates.Location = new System.Drawing.Point(38, 93);
+			this.pictureBoxDates.Name = "pictureBoxDates";
+			this.pictureBoxDates.Size = new System.Drawing.Size(41, 41);
+			this.pictureBoxDates.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBoxDates.TabIndex = 32;
+			this.pictureBoxDates.TabStop = false;
+			// 
+			// toolTipController
+			// 
+			this.toolTipController.Rounded = true;
+			this.toolTipController.ToolTipLocation = DevExpress.Utils.ToolTipLocation.RightTop;
+			this.toolTipController.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
 			// 
 			// AdPlanPrintProductControl
 			// 
@@ -810,11 +808,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbInvestment)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.textEditName.Properties)).EndInit();
 			this.pnItemsBorder.ResumeLayout(false);
+			this.pnItemsFooter.ResumeLayout(false);
 			this.pnItemsHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbComments)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxDates)).EndInit();
-			this.pnItemsFooter.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }

@@ -30,6 +30,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 		public AdPlanControl Container { get; set; }
 		public DigitalProduct DigitalProduct { get; set; }
 
+		public Control SettingsContainer
+		{
+			get { return pnItemsBorder; }
+		}
+
 		public bool SettingsNotSaved
 		{
 			get { return Container.SettingsNotSaved; }

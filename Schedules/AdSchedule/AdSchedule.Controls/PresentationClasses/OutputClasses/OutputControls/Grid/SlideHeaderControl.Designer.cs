@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.checkEditAdvertiser = new DevExpress.XtraEditors.CheckEdit();
-			this.styleController = new DevExpress.XtraEditors.StyleController();
+			this.styleController = new DevExpress.XtraEditors.StyleController(this.components);
 			this.pnMain = new System.Windows.Forms.Panel();
 			this.checkEditLogo1 = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditPublicationName = new DevExpress.XtraEditors.CheckEdit();
@@ -38,7 +39,6 @@
 			this.checkEditDecisionMaker = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditSlideTitle = new DevExpress.XtraEditors.CheckEdit();
 			this.checkEditEnableSlideHeader = new DevExpress.XtraEditors.CheckEdit();
-			this.pbHelp = new System.Windows.Forms.PictureBox();
 			this.superTooltip = new DevComponents.DotNetBar.SuperTooltip();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditAdvertiser.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.styleController)).BeginInit();
@@ -50,7 +50,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDecisionMaker.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSlideTitle.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEnableSlideHeader.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// checkEditAdvertiser
@@ -227,21 +226,6 @@
 			this.checkEditEnableSlideHeader.TabIndex = 33;
 			this.checkEditEnableSlideHeader.CheckedChanged += new System.EventHandler(this.checkEditEnableSlideHeader_CheckedChanged);
 			// 
-			// pbHelp
-			// 
-			this.pbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbHelp.Image = global::NewBizWiz.AdSchedule.Controls.Properties.Resources.HelpSmall;
-			this.pbHelp.Location = new System.Drawing.Point(244, 5);
-			this.pbHelp.Name = "pbHelp";
-			this.pbHelp.Size = new System.Drawing.Size(30, 30);
-			this.pbHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.superTooltip.SetSuperTooltip(this.pbHelp, new DevComponents.DotNetBar.SuperTooltipInfo("Slide Headers Help", "", "Learn more about adding Slide Header information to your schedule slides", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
-			this.pbHelp.TabIndex = 34;
-			this.pbHelp.TabStop = false;
-			this.pbHelp.Click += new System.EventHandler(this.pbHelp_Click);
-			this.pbHelp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-			this.pbHelp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-			// 
 			// superTooltip
 			// 
 			this.superTooltip.DefaultTooltipSettings = new DevComponents.DotNetBar.SuperTooltipInfo("", "", "", null, null, DevComponents.DotNetBar.eTooltipColor.Gray);
@@ -251,7 +235,6 @@
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.pbHelp);
 			this.Controls.Add(this.pnMain);
 			this.Controls.Add(this.checkEditEnableSlideHeader);
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -267,7 +250,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.checkEditDecisionMaker.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSlideTitle.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.checkEditEnableSlideHeader.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbHelp)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -283,8 +265,7 @@
         public DevExpress.XtraEditors.CheckEdit checkEditSlideTitle;
         public DevExpress.XtraEditors.CheckEdit checkEditPresentationDate;
         public DevExpress.XtraEditors.CheckEdit checkEditDecisionMaker;
-        private DevExpress.XtraEditors.CheckEdit checkEditEnableSlideHeader;
-		private System.Windows.Forms.PictureBox pbHelp;
+		private DevExpress.XtraEditors.CheckEdit checkEditEnableSlideHeader;
 		private DevComponents.DotNetBar.SuperTooltip superTooltip;
     }
 }

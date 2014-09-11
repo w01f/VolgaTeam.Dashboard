@@ -24,7 +24,6 @@ namespace NewBizWiz.Dashboard.TabSlides
 			Dock = DockStyle.Fill;
 
 			laSlideSize.Text = String.Format(laSlideSize.Text, SettingsManager.Instance.Size);
-			laUserName.Text = Environment.UserName;
 			pbVersion.Image = MasterWizardManager.Instance.Version;
 
 			LoadSlides();

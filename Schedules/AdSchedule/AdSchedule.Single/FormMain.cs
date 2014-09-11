@@ -169,7 +169,6 @@ namespace NewBizWiz.AdSchedule.Single
 
 			#region Snapshot
 			Controller.Instance.SnapshotSpecialButtons = ribbonBarSnapshotSpecialButtons;
-			Controller.Instance.SnapshotOptions = buttonItemSnapshotSettings;
 			Controller.Instance.SnapshotHelp = buttonItemSnapshotHelp;
 			Controller.Instance.SnapshotSave = buttonItemSnapshotSave;
 			Controller.Instance.SnapshotSaveAs = buttonItemSnapshotSaveAs;
@@ -193,7 +192,6 @@ namespace NewBizWiz.AdSchedule.Single
 
 			#region Detailed Grid
 			Controller.Instance.DetailedGridSpecialButtons = ribbonBarDetailedGridSpecialButtons;
-			Controller.Instance.DetailedGridOptions = buttonItemDetailedGridDetails;
 			Controller.Instance.DetailedGridHelp = buttonItemDetailedGridHelp;
 			Controller.Instance.DetailedGridSave = buttonItemDetailedGridSave;
 			Controller.Instance.DetailedGridSaveAs = buttonItemDetailedGridSaveAs;
@@ -206,7 +204,6 @@ namespace NewBizWiz.AdSchedule.Single
 
 			#region Multi Grid
 			Controller.Instance.MultiGridSpecialButtons = ribbonBarMultiGridSpecialButtons;
-			Controller.Instance.MultiGridOptions = buttonItemMultiGridDetails;
 			Controller.Instance.MultiGridHelp = buttonItemMultiGridHelp;
 			Controller.Instance.MultiGridSave = buttonItemMultiGridSave;
 			Controller.Instance.MultiGridSaveAs = buttonItemMultiGridSaveAs;
@@ -357,7 +354,6 @@ namespace NewBizWiz.AdSchedule.Single
 				ribbonBarPrintScheduleOptions.RecalcLayout();
 				ribbonBarSnapshotExit.RecalcLayout();
 				ribbonBarSnapshotPowerPoint.RecalcLayout();
-				ribbonBarSnapshotSettings.RecalcLayout();
 				ribbonPanelPrintSchedule.PerformLayout();
 				ribbonPanelScheduleSettings.PerformLayout();
 				ribbonPanelCalendars.PerformLayout();

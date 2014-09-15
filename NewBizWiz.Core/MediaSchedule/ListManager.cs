@@ -73,6 +73,8 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public ImageSource DefaultStrategyLogo { get; set; }
 
+		public bool FlexFlightDatesAllowed { get; private set; }
+
 		private void LoadStrategy()
 		{
 			SlideHeaders.Clear();
@@ -117,6 +119,13 @@ namespace NewBizWiz.Core.MediaSchedule
 												ClientTypes.Add(attribute.Value);
 											break;
 									}
+								break;
+							case "FlexFlightDatesAllowed":
+								{
+									bool temp;
+									if (Boolean.TryParse(childeNode.InnerText, out temp))
+										FlexFlightDatesAllowed = temp;
+								}
 								break;
 							case "Daypart":
 								var daypart = new Daypart();

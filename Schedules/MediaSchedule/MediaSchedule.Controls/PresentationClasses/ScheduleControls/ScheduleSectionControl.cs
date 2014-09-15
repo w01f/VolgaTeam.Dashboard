@@ -303,7 +303,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				var selectedQuarter = quarterSelectorControl.SelectedQuarter;
 				foreach (var column in _spotColumns)
 				{
-					var quarter = column.Tag as Quarter;
+					var quarter = ((object[])column.Tag)[0] as Quarter;
 					column.Visible = (quarter != null && selectedQuarter != null && quarter.ToString() == selectedQuarter.ToString()) || !QuarterButton.Checked;
 				}
 			}
@@ -380,14 +380,22 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				bandedGridColumn.Caption = column.Caption;
 				bandedGridColumn.ColumnEdit = repositoryItemSpinEditSpot;
 				bandedGridColumn.FieldName = column.ColumnName;
-				bandedGridColumn.ToolTip = column.ExtendedProperties["FullName"] as String;
-				bandedGridColumn.Tag = column.ExtendedProperties["Quarter"];
+				bandedGridColumn.ToolTip = column.ExtendedProperties["Tooltip"] as String;
+				bandedGridColumn.Tag = column.ExtendedProperties["SpotSettings"];
 				bandedGridColumn.OptionsColumn.FixedWidth = true;
 				bandedGridColumn.RowCount = 2;
 				bandedGridColumn.Width = 45;
 				bandedGridColumn.Visible = true;
 				bandedGridColumn.SummaryItem.FieldName = column.ColumnName;
 				bandedGridColumn.SummaryItem.SummaryType = SummaryItemType.Sum;
+				var isFullSpot = (Boolean)((object[])column.ExtendedProperties["SpotSettings"])[2];
+				if (!isFullSpot)
+				{
+					bandedGridColumn.AppearanceHeader.BackColor = Color.Red;
+					bandedGridColumn.AppearanceHeader.ForeColor = Color.White;
+					bandedGridColumn.AppearanceHeader.Options.UseBackColor = true;
+					bandedGridColumn.AppearanceHeader.Options.UseForeColor = true;
+				}
 				_spotColumns.Add(bandedGridColumn);
 				advBandedGridViewSchedule.Columns.Add(bandedGridColumn);
 				gridBandSpots.Columns.Add(bandedGridColumn);
@@ -410,9 +418,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 			laScheduleInfo.Text = String.Format("{0}{3}{1} ({2})",
 				_localSchedule.BusinessName,
-				_localSchedule.FlightDateStart.HasValue && _localSchedule.FlightDateEnd.HasValue ? string.Format("{0} - {1}", new object[] { _localSchedule.FlightDateStart.Value.ToString("MM/dd/yy"), _localSchedule.FlightDateEnd.Value.ToString("MM/dd/yy") }) : string.Empty,
+				_localSchedule.FlightDates,
 				String.Format("{0} {1}s", ScheduleSection.TotalPeriods, SpotTitle),
 				Environment.NewLine);
+			if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed &&
+				(_localSchedule.FlightDateStart != _localSchedule.UserFlightDateStart || _localSchedule.FlightDateEnd != _localSchedule.UserFlightDateEnd))
+				labelControlFlexFlightDatesWarning.Visible = true;
+			else
+				labelControlFlexFlightDatesWarning.Visible = false;
 			buttonXRating.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 			buttonXCPP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 			buttonXGRP.Enabled = _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
@@ -825,6 +838,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			quarterSelectorControl.Enabled = QuarterButton.Checked;
 			button_CheckedChanged(sender, e);
 		}
+
+		private void labelControlFlexFlightDatesWarning_Click(object sender, EventArgs e)
+		{
+			using (var form = new FormFlexFlightDatesWarning())
+			{
+				form.ShowDialog();
+			}
+		}
 		#endregion
 
 		#region Grid Events
@@ -841,6 +862,29 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), ScheduleSection.TotalCost);
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Program Line Updated", options));
 			SettingsNotSaved = true;
+		}
+
+		private void advBandedGridViewSchedule_CustomDrawColumnHeader(object sender, ColumnHeaderCustomDrawEventArgs e)
+		{
+			if (e.Column == null) return;
+			if (!e.Column.AppearanceHeader.Options.UseBackColor) return;
+			var rect = e.Bounds;
+			ControlPaint.DrawBorder3D(e.Graphics, e.Bounds);
+			var brush =
+				e.Cache.GetGradientBrush(rect, e.Column.AppearanceHeader.BackColor,
+				e.Column.AppearanceHeader.BackColor2, e.Column.AppearanceHeader.GradientMode);
+			rect.Inflate(-1, -1);
+			// Fill column headers with the specified colors.
+			e.Graphics.FillRectangle(brush, rect);
+			e.Appearance.DrawString(e.Cache, e.Info.Caption, e.Info.CaptionRect);
+			// Draw the filter and sort buttons.
+			foreach (DevExpress.Utils.Drawing.DrawElementInfo info in e.Info.InnerElements)
+			{
+				if (!info.Visible) continue;
+				DevExpress.Utils.Drawing.ObjectPainter.DrawObject(e.Cache, info.ElementPainter,
+					info.ElementInfo);
+			}
+			e.Handled = true;
 		}
 
 		private void advBandedGridViewSchedule_CustomDrawFooter(object sender, RowObjectCustomDrawEventArgs e)
@@ -950,7 +994,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			if (_spotColumns.Any(sc => sc.Visible && sc == e.HitInfo.Column))
 			{
 				var valueToClone = advBandedGridViewSchedule.GetRowCellValue(e.HitInfo.RowHandle, e.HitInfo.Column);
-				var columnName = e.HitInfo.Column.ToolTip;
+				var columnName = ((object[])e.HitInfo.Column.Tag)[1];
 				e.Menu.Items.Add(new DXMenuItem(String.Format("Clone {1} to all {0}s", SpotTitle, columnName), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, -1)));
 				e.Menu.Items.Add(new DXMenuItem(String.Format("Clone {1} to all Remaining {0}s", SpotTitle, columnName), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, e.HitInfo.Column.VisibleIndex)));
 				e.Menu.Items.Add(new DXMenuItem("Wipe all Spots on this line", (o, args) => CloneSpots(e.HitInfo.RowHandle, null, -1)));

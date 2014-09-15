@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading;
@@ -103,6 +104,39 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			xtraTabPageDigital.Text = String.Format("Digital Strategy({0})", _localSchedule.DigitalProducts.Count);
 		}
+
+		private void UpdateFlexFlightDatesWarning()
+		{
+			if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed)
+			{
+				var warningText = new List<string>();
+				if (Controller.Instance.HomeFlightDatesStart.EditValue != null)
+				{
+					var startDate = Controller.Instance.HomeFlightDatesStart.DateTime;
+					if (startDate.DayOfWeek != _localSchedule.StartDayOfWeek)
+					{
+						var weekEnd = startDate;
+						while (weekEnd.DayOfWeek != _localSchedule.EndDayOfWeek)
+							weekEnd = weekEnd.AddDays(1);
+						warningText.Add(String.Format("*The FIRST WEEK of your schedule STARTS on a {0}.{1}({2} - {3})", startDate.DayOfWeek, Environment.NewLine, startDate.ToString("M/d/yy"), weekEnd.ToString("M/d/yy")));
+					}
+				}
+				if (Controller.Instance.HomeFlightDatesEnd.EditValue != null)
+				{
+					var endDate = Controller.Instance.HomeFlightDatesEnd.DateTime;
+					if (endDate.DayOfWeek != _localSchedule.EndDayOfWeek)
+					{
+						var weekStart = endDate;
+						while (weekStart.DayOfWeek != _localSchedule.StartDayOfWeek)
+							weekStart = weekStart.AddDays(-1);
+						warningText.Add(String.Format("*The LAST WEEK of your schedule ENDS on a {0}.{1}({2} - {3})", endDate.DayOfWeek, Environment.NewLine, weekStart.ToString("M/d/yy"), endDate.ToString("M/d/yy")));
+					}
+				}
+				laFlexDateWarning.Text = String.Join(String.Format("{0}{0}", Environment.NewLine), warningText);
+			}
+			else
+				laFlexDateWarning.Text = String.Empty;
+		}
 		public void LoadSchedule(bool quickLoad)
 		{
 			_allowToSave = false;
@@ -132,6 +166,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				Controller.Instance.HomeAccountNumberCheck.Enabled = _localSchedule.ViewSettings.SharedHomeViewSettings.EnableAccountNumber;
 
 				xtraTabPageMedia.Text = String.Format("{0} Strategy", MediaMetaData.Instance.DataTypeString);
+				pbMediaLogo.Image = MediaMetaData.Instance.DataType == MediaDataType.TV ? Properties.Resources.HomeTVLogo : Properties.Resources.HomeRadioLogo;
 
 				Controller.Instance.HomeBusinessName.Properties.Items.Clear();
 				Controller.Instance.HomeBusinessName.Properties.Items.AddRange(Core.Common.ListManager.Instance.Advertisers.ToArray());
@@ -148,8 +183,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				Controller.Instance.HomeAccountNumberText.EditValue = _localSchedule.AccountNumber;
 
 				Controller.Instance.HomePresentationDate.EditValue = _localSchedule.PresentationDate;
-				Controller.Instance.HomeFlightDatesStart.EditValue = _localSchedule.FlightDateStart;
-				Controller.Instance.HomeFlightDatesEnd.EditValue = _localSchedule.FlightDateEnd;
+				Controller.Instance.HomeFlightDatesStart.EditValue = _localSchedule.UserFlightDateStart;
+				Controller.Instance.HomeFlightDatesEnd.EditValue = _localSchedule.UserFlightDateEnd;
 
 				_loadedScheduleType = _localSchedule.SelectedSpotType;
 				switch (_localSchedule.SelectedSpotType)
@@ -171,7 +206,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 					pnDemosCustom.Visible = false;
 					pnDemosImport.Visible = false;
 					pnSelectSource.Visible = false;
-					pnDemosInfo.Visible = true;
 				}
 
 				comboBoxEditSource.Properties.Items.Clear();
@@ -268,6 +302,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			}
 			UpdateScheduleType(_localSchedule.SelectedSpotType);
 			UpdateScheduleControls();
+			UpdateFlexFlightDatesWarning();
 			SettingsNotSaved = false;
 			_allowToSave = true;
 		}
@@ -337,18 +372,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			{
 				var startDate = Controller.Instance.HomeFlightDatesStart.DateTime;
 				var endDate = Controller.Instance.HomeFlightDatesEnd.DateTime;
-				if (startDate.DayOfWeek != _localSchedule.StartDayOfWeek)
-				{
-					if (!quiet)
-						Utilities.Instance.ShowWarning("Flight Start Date must be Monday\nFlight End Date must be Sunday\nFlight Start Date must be less then Flight End Date.");
-					return false;
-				}
-				if (endDate.DayOfWeek != _localSchedule.EndDayOfWeek || _localSchedule.FlightDateEnd < _localSchedule.FlightDateStart)
-				{
-					if (!quiet)
-						Utilities.Instance.ShowWarning("Flight Start Date must be Monday\nFlight End Date must be Sunday\nFlight Start Date must be less then Flight End Date.");
-					return false;
-				}
+
 				if (_localSchedule.FlightDateStart.HasValue && _localSchedule.FlightDateEnd.HasValue)
 				{
 					if (_localSchedule.FlightDateStart.Value != startDate || _localSchedule.FlightDateEnd.Value != endDate)
@@ -367,8 +391,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				else
 					quickSave = false;
 
-				_localSchedule.FlightDateStart = startDate;
-				_localSchedule.FlightDateEnd = endDate;
+				_localSchedule.UserFlightDateStart = startDate;
+				_localSchedule.UserFlightDateEnd = endDate;
 
 				_localSchedule.UseDemo = buttonXUseDemos.Checked;
 				_localSchedule.ImportDemo = buttonXDemosImport.Checked;
@@ -478,14 +502,17 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			if (Controller.Instance.HomeFlightDatesStart.EditValue != null && _allowToSave)
 			{
-				DateTime dateStart = Controller.Instance.HomeFlightDatesStart.DateTime;
+				var dateStart = Controller.Instance.HomeFlightDatesStart.DateTime;
 				SettingsNotSaved = true;
 				if (Controller.Instance.HomeFlightDatesEnd.EditValue == null)
 				{
 					while (dateStart.DayOfWeek != _localSchedule.EndDayOfWeek)
 						dateStart = dateStart.AddDays(1);
+					_allowToSave = false;
 					Controller.Instance.HomeFlightDatesEnd.EditValue = dateStart;
+					_allowToSave = true;
 				}
+				UpdateFlexFlightDatesWarning();
 			}
 			SchedulePropertyEditValueChanged(null, null);
 		}
@@ -493,7 +520,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public void FlightDateEndEditValueChanged(object sender, EventArgs e)
 		{
 			if (Controller.Instance.HomeFlightDatesStart.EditValue != null && _allowToSave)
+			{
+				UpdateFlexFlightDatesWarning();
 				SettingsNotSaved = true;
+			}
 			SchedulePropertyEditValueChanged(null, null);
 		}
 
@@ -501,8 +531,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			Controller.Instance.HomeWeeks.Text = "";
 			Controller.Instance.HomeWeeks.Visible = false;
-			if (Controller.Instance.HomeFlightDatesStart.DateTime == null || Controller.Instance.HomeFlightDatesEnd.DateTime == null) return;
-			var datesRange = Controller.Instance.HomeFlightDatesEnd.DateTime - Controller.Instance.HomeFlightDatesStart.DateTime;
+			if (Controller.Instance.HomeFlightDatesStart.EditValue == null || Controller.Instance.HomeFlightDatesEnd.EditValue == null) return;
+			var startDate = Controller.Instance.HomeFlightDatesStart.DateTime;
+			while (startDate.DayOfWeek != _localSchedule.StartDayOfWeek)
+				startDate = startDate.AddDays(-1);
+			var endDate = Controller.Instance.HomeFlightDatesEnd.DateTime;
+			while (endDate.DayOfWeek != _localSchedule.EndDayOfWeek)
+				endDate = endDate.AddDays(1);
+			var datesRange = endDate - startDate;
 			var weeksCount = datesRange.Days / 7 + 1;
 			Controller.Instance.HomeWeeks.Text = weeksCount + (weeksCount > 1 ? " Weeks" : " Week");
 			Controller.Instance.HomeWeeks.Visible = true;
@@ -510,10 +546,21 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		public void dateEditFlightDatesStart_CloseUp(object sender, CloseUpEventArgs e)
 		{
-			if (e.Value != null)
+			var dateEdit = sender as DateEdit;
+			if (dateEdit == null) return;
+			if (dateEdit.EditValue == e.Value) return;
+			if (e.Value == null) return;
+			DateTime temp;
+			if (!DateTime.TryParse(e.Value.ToString(), out temp)) return;
+			var moveDateToWeekStart = true;
+			if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed)
 			{
-				DateTime temp = DateTime.MinValue;
-				if (!DateTime.TryParse(e.Value.ToString(), out temp)) return;
+				if (temp.DayOfWeek != _localSchedule.StartDayOfWeek)
+					if (Utilities.Instance.ShowWarningQuestion(String.Format("Are you sure you want to start your schedule on a {0}?{1}{1}The broadcast week normally starts on a {2}.", temp.DayOfWeek, Environment.NewLine, _localSchedule.StartDayOfWeek)) == DialogResult.Yes)
+						moveDateToWeekStart = false;
+			}
+			if (moveDateToWeekStart)
+			{
 				while (temp.DayOfWeek != _localSchedule.StartDayOfWeek)
 					temp = temp.AddDays(-1);
 				e.Value = temp;
@@ -522,10 +569,21 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		public void dateEditFlightDatesEnd_CloseUp(object sender, CloseUpEventArgs e)
 		{
-			if (e.Value != null)
+			var dateEdit = sender as DateEdit;
+			if (dateEdit == null) return;
+			if (dateEdit.EditValue == e.Value) return;
+			if (e.Value == null) return;
+			DateTime temp;
+			if (!DateTime.TryParse(e.Value.ToString(), out temp)) return;
+			var moveDateToWeekEnd = true;
+			if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed)
 			{
-				DateTime temp = DateTime.MinValue;
-				if (!DateTime.TryParse(e.Value.ToString(), out temp)) return;
+				if (temp.DayOfWeek != _localSchedule.EndDayOfWeek)
+					if (Utilities.Instance.ShowWarningQuestion(String.Format("Are you sure you want to end your schedule on a {0}?{1}{1}The broadcast week normally ends on a {2}.", temp.DayOfWeek, Environment.NewLine, _localSchedule.EndDayOfWeek)) == DialogResult.Yes)
+						moveDateToWeekEnd = false;
+			}
+			if (moveDateToWeekEnd)
+			{
 				while (temp.DayOfWeek != _localSchedule.EndDayOfWeek)
 					temp = temp.AddDays(1);
 				e.Value = temp;

@@ -220,15 +220,28 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
             }
         }
         
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap HomeLogo {
+        public static System.Drawing.Bitmap HomeTVLogo {
             get {
-                object obj = ResourceManager.GetObject("HomeLogo", resourceCulture);
+                object obj = ResourceManager.GetObject("HomeTVLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap HomeRadioLogo
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("HomeRadioLogo", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.

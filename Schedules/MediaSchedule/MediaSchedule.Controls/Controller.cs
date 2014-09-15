@@ -71,9 +71,10 @@ namespace NewBizWiz.MediaSchedule.Controls
 			HomeAccountNumberCheck.CheckedChanged += HomeControl.checkBoxItemAccountNumber_CheckedChanged;
 			HomeFlightDatesStart.EditValueChanged += HomeControl.SchedulePropertyEditValueChanged;
 			HomeFlightDatesStart.EditValueChanged += HomeControl.FlightDateStartEditValueChanged;
-			HomeFlightDatesEnd.EditValueChanged += HomeControl.SchedulePropertyEditValueChanged;
 			HomeFlightDatesStart.EditValueChanged += HomeControl.CalcWeeksOnFlightDatesChange;
+			HomeFlightDatesEnd.EditValueChanged += HomeControl.SchedulePropertyEditValueChanged;
 			HomeFlightDatesEnd.EditValueChanged += HomeControl.CalcWeeksOnFlightDatesChange;
+			HomeFlightDatesEnd.EditValueChanged += HomeControl.FlightDateEndEditValueChanged;
 			HomeFlightDatesStart.CloseUp += HomeControl.dateEditFlightDatesStart_CloseUp;
 			HomeFlightDatesEnd.CloseUp += HomeControl.dateEditFlightDatesEnd_CloseUp;
 			HomeProductClone.Click += HomeControl.DigitalProductClone;

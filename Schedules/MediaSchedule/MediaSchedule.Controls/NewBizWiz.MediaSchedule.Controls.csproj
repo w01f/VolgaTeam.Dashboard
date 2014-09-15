@@ -93,6 +93,12 @@
     <Compile Include="PresentationClasses\Calendar\MediaDataNoteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\FormFlexFlightDatesWarning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\FormFlexFlightDatesWarning.Designer.cs">
+      <DependentUpon>FormFlexFlightDatesWarning.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationClasses\Summary\MediaSummaryFull.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -197,6 +203,9 @@
     <EmbeddedResource Include="PresentationClasses\Digital\DigitalInfoControl.resx">
       <DependentUpon>DigitalInfoControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\FormFlexFlightDatesWarning.resx">
+      <DependentUpon>FormFlexFlightDatesWarning.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\HomeControl.resx">
       <DependentUpon>HomeControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -217,8 +226,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -325,9 +334,6 @@
     <None Include="Resources\MonthlySchedule.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\HomeLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\CalendarDisabled.png" />
   </ItemGroup>
   <ItemGroup>
@@ -341,6 +347,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FavoritesLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeTVLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HomeRadioLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

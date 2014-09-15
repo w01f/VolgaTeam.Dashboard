@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
-using DevComponents.DotNetBar;
+using DevExpress.Data.PLinq.Helpers;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.Core.OnlineSchedule;
@@ -178,13 +178,17 @@ namespace NewBizWiz.Core.MediaSchedule
 
 	public class Schedule : IDigitalSchedule, ISummarySchedule
 	{
+		private DateTime? _userFlightDateStart;
+		private DateTime? _userFlightDateEnd;
+
 		public Schedule(string fileName)
 		{
 			BusinessName = string.Empty;
 			DecisionMaker = string.Empty;
-			ClientType = string.Empty;
+			ClientType = MediaMetaData.Instance.ListManager.ClientTypes.FirstOrDefault();
 			AccountNumber = string.Empty;
 			Status = MediaMetaData.Instance.ListManager.Statuses.FirstOrDefault();
+			PresentationDate = DateTime.Now;
 			UseDemo = false;
 			ImportDemo = false;
 			DemoType = DemoType.Imp;
@@ -195,7 +199,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			Dayparts = new List<Daypart>();
 			Stations = new List<Station>();
 
-			ViewSettings = new OnlineSchedule.ScheduleBuilderViewSettings();
+			ViewSettings = new ScheduleBuilderViewSettings();
 			DigitalProducts = new List<DigitalProduct>();
 			DigitalProductSummary = new DigitalProductSummary();
 
@@ -280,12 +284,44 @@ namespace NewBizWiz.Core.MediaSchedule
 			get { return _scheduleFile; }
 		}
 
+		public DateTime? UserFlightDateStart
+		{
+			get
+			{
+				return _userFlightDateStart;
+			}
+			set
+			{
+				_userFlightDateStart = value;
+				FlightDateStart = value;
+				if (!FlightDateStart.HasValue) return;
+				while (FlightDateStart.Value.DayOfWeek != StartDayOfWeek)
+					FlightDateStart = FlightDateStart.Value.AddDays(-1);
+			}
+		}
+
+		public DateTime? UserFlightDateEnd
+		{
+			get
+			{
+				return _userFlightDateEnd;
+			}
+			set
+			{
+				_userFlightDateEnd = value;
+				FlightDateEnd = value;
+				if (!FlightDateEnd.HasValue) return;
+				while (FlightDateEnd.Value.DayOfWeek != EndDayOfWeek)
+					FlightDateEnd = FlightDateEnd.Value.AddDays(1);
+			}
+		}
+
 		public string FlightDates
 		{
 			get
 			{
-				if (FlightDateStart.HasValue && FlightDateEnd.HasValue)
-					return FlightDateStart.Value.ToString("MM/dd/yy") + " - " + FlightDateEnd.Value.ToString("MM/dd/yy");
+				if (UserFlightDateStart.HasValue && UserFlightDateEnd.HasValue)
+					return UserFlightDateStart.Value.ToString("MM/dd/yy") + " - " + UserFlightDateEnd.Value.ToString("MM/dd/yy");
 				return string.Empty;
 			}
 		}
@@ -298,6 +334,39 @@ namespace NewBizWiz.Core.MediaSchedule
 		public DayOfWeek EndDayOfWeek
 		{
 			get { return MondayBased ? DayOfWeek.Sunday : DayOfWeek.Saturday; }
+		}
+
+		public string StartWeekDays
+		{
+			get
+			{
+				if (!UserFlightDateStart.HasValue || UserFlightDateStart.Value.DayOfWeek == StartDayOfWeek) return String.Empty;
+				var list = new List<string>();
+				var date = UserFlightDateStart.Value;
+				while (date.DayOfWeek != StartDayOfWeek)
+				{
+					list.Add(date.ToString("ddd"));
+					date = date.AddDays(1);
+				}
+				return String.Join(", ", list);
+			}
+		}
+
+		public string EndWeekDays
+		{
+			get
+			{
+				if (!UserFlightDateEnd.HasValue || UserFlightDateEnd.Value.DayOfWeek == EndDayOfWeek) return String.Empty;
+				var list = new List<string>();
+				var date = UserFlightDateEnd.Value;
+				while (date.DayOfWeek != EndDayOfWeek)
+				{
+					list.Add(date.ToString("ddd"));
+					date = date.AddDays(-1);
+				}
+				list.Reverse();
+				return String.Join(", ", list);
+			}
 		}
 
 		public ScheduleSection SelectedSection
@@ -369,6 +438,20 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (node != null)
 				if (DateTime.TryParse(node.InnerText, out tempDateTime))
 					FlightDateEnd = tempDateTime;
+
+			node = document.SelectSingleNode(@"/Schedule/UserFlightDateStart");
+			if (node != null)
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
+					_userFlightDateStart = tempDateTime;
+			if (!_userFlightDateStart.HasValue)
+				_userFlightDateEnd = FlightDateStart;
+
+			node = document.SelectSingleNode(@"/Schedule/UserFlightDateEnd");
+			if (node != null)
+				if (DateTime.TryParse(node.InnerText, out tempDateTime))
+					_userFlightDateEnd = tempDateTime;
+			if (!_userFlightDateEnd.HasValue)
+				_userFlightDateEnd = FlightDateEnd;
 
 			node = document.SelectSingleNode(@"/Schedule/UseDemo");
 			bool tempBool;
@@ -508,6 +591,10 @@ namespace NewBizWiz.Core.MediaSchedule
 				xml.AppendLine(@"<FlightDateStart>" + FlightDateStart.Value + @"</FlightDateStart>");
 			if (FlightDateEnd.HasValue)
 				xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd.Value + @"</FlightDateEnd>");
+			if (_userFlightDateStart.HasValue)
+				xml.AppendLine(@"<UserFlightDateStart>" + _userFlightDateStart.Value + @"</UserFlightDateStart>");
+			if (_userFlightDateEnd.HasValue)
+				xml.AppendLine(@"<UserFlightDateEnd>" + _userFlightDateEnd.Value + @"</UserFlightDateEnd>");
 			xml.AppendLine(@"<UseDemo>" + UseDemo + @"</UseDemo>");
 			xml.AppendLine(@"<ImportDemo>" + ImportDemo + @"</ImportDemo>");
 			xml.AppendLine(@"<DemoType>" + (int)DemoType + @"</DemoType>");
@@ -598,7 +685,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			Quarters = new List<Quarter>();
 			if (!FlightDateStart.HasValue || !FlightDateEnd.HasValue) return;
-			var targetMonths = (MondayBased ? MediaMetaData.Instance.ListManager.MonthTemplatesMondayBased : MediaMetaData.Instance.ListManager.MonthTemplatesSundayBased).Where(m => m.StartDate >= FlightDateStart && m.EndDate <= FlightDateEnd).ToList();
+			var targetMonths = (MondayBased ? MediaMetaData.Instance.ListManager.MonthTemplatesMondayBased : MediaMetaData.Instance.ListManager.MonthTemplatesSundayBased).Where(m => (m.StartDate <= FlightDateStart && m.EndDate >= FlightDateStart) || (m.StartDate <= FlightDateEnd && m.EndDate >= FlightDateEnd) || (m.StartDate >= FlightDateStart && m.EndDate <= FlightDateEnd)).ToList();
 			if (!targetMonths.Any()) return;
 			var startDate = FlightDateStart.Value;
 			if (startDate.Month >= 1 && startDate.Month <= 3)
@@ -971,13 +1058,27 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (Programs.Any())
 			{
 				var spotIndex = 0;
-				foreach (var spot in Programs.First().Spots)
+				var spots = Programs.First().Spots.ToList();
+				var spotsCount = spots.Count;
+				foreach (var spot in spots)
 				{
 					var columnName = ProgramSpotDataColumnNamePrefix + spotIndex;
+					var tooltip = spot.FullColumnName;
+					var isFullSpot = true;
+					if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed && spotIndex == 0 && Parent.FlightDateStart != Parent.UserFlightDateStart)
+					{
+						isFullSpot = false;
+						tooltip = String.Format("Partial Week Warning: {0}{2}The FIRST WEEK of your schedule is NOT a full 7 day week.{2}The Only Active Days in this week are {1}.", spot.Name, Parent.StartWeekDays, Environment.NewLine);
+					}
+					else if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed && spotIndex == spotsCount - 1 && Parent.FlightDateEnd != Parent.UserFlightDateEnd)
+					{
+						isFullSpot = false;
+						tooltip = String.Format("Partial Week Warning: {0}{2}The LAST WEEK of your schedule is NOT a full 7 day week.{2}The Only Active Days in this week are {1}.", spot.Name, Parent.EndWeekDays, Environment.NewLine);
+					}
 					column = new DataColumn(columnName, typeof(int)) { Caption = spot.ColumnName };
 					totalSpotsExpression.Add(string.Format("ISNULL({0},0)", columnName));
-					column.ExtendedProperties.Add("FullName", spot.FullColumnName);
-					column.ExtendedProperties.Add("Quarter", spot.Quarter);
+					column.ExtendedProperties.Add("Tooltip", tooltip);
+					column.ExtendedProperties.Add("SpotSettings", new object[] { spot.Quarter, spot.FullColumnName, isFullSpot });
 					table.Columns.Add(column);
 					spotIndex++;
 				}
@@ -1706,6 +1807,22 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 		}
 
+		public string Name
+		{
+			get
+			{
+				switch (_parent.Parent.SpotType)
+				{
+					case SpotType.Month:
+						return Date.ToString("MMMM");
+					case SpotType.Week:
+						return String.Format("{0} {1}", GetMonthAbbreviation(Date.Month), Date.Day.ToString("00"));
+					default:
+						return String.Empty;
+				}
+			}
+		}
+
 		public string ColumnName
 		{
 			get
@@ -1728,12 +1845,10 @@ namespace NewBizWiz.Core.MediaSchedule
 			{
 				switch (_parent.Parent.SpotType)
 				{
-					case SpotType.Month:
-						return Date.ToString("MMMM");
 					case SpotType.Week:
-						return String.Format("Week {0} {1}", GetMonthAbbreviation(Date.Month), Date.Day.ToString("00"));
+						return String.Format("Week {0}", GetMonthAbbreviation(Date.Month), Name);
 					default:
-						return String.Empty;
+						return Name;
 				}
 			}
 		}

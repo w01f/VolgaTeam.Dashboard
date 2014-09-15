@@ -43,6 +43,7 @@ namespace CommandCentral.TabMainDashboard
 						"Dayparts",
 						"Stations",
 						"Client Type",
+						"Date",
 						"Custom Demos",
 						"Sources",
 						"File-Status"
@@ -71,6 +72,7 @@ namespace CommandCentral.TabMainDashboard
 			var positioningPoints = new List<string>();
 			var lenghts = new List<string>();
 			var clientTypes = new List<string>();
+			var flexFlightDatesAllowed = false;
 			var customDemos = new List<string>();
 			var statuses = new List<SlideHeader>();
 			var stations = new List<Station>();
@@ -223,6 +225,30 @@ namespace CommandCentral.TabMainDashboard
 						var clientType = row[0].ToString().Trim();
 						if (!string.IsNullOrEmpty(clientType))
 							clientTypes.Add(clientType);
+					}
+			}
+			catch
+			{
+			}
+			finally
+			{
+				dataAdapter.Dispose();
+				dataTable.Dispose();
+			}
+
+			//Load Date Settings
+			dataAdapter = new OleDbDataAdapter("SELECT * FROM [Date$]", connection);
+			dataTable = new DataTable();
+			try
+			{
+				dataAdapter.Fill(dataTable);
+				if (dataTable.Rows.Count > 0 && dataTable.Columns.Count > 0)
+					foreach (DataRow row in dataTable.Rows)
+					{
+						bool temp;
+						if (row[1] != null && Boolean.TryParse(row[1].ToString().Trim(), out temp))
+							flexFlightDatesAllowed = temp;
+						break;
 					}
 			}
 			catch
@@ -426,6 +452,7 @@ namespace CommandCentral.TabMainDashboard
 				xml.Append("Value = \"" + clientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + "\" ");
 				xml.AppendLine(@"/>");
 			}
+			xml.AppendLine(String.Format(@"<FlexFlightDatesAllowed>{0}</FlexFlightDatesAllowed> ", flexFlightDatesAllowed));
 			foreach (var customDemo in customDemos)
 			{
 				xml.Append(@"<CustomDemo ");

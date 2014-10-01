@@ -120,7 +120,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
 			if (nameChanged)
 				LocalSchedule.Name = scheduleName;
-			Controller.Instance.SaveSchedule((Schedule)LocalSchedule, nameChanged, false, false, false, this);
+			Controller.Instance.SaveSchedule((RegularSchedule)LocalSchedule, nameChanged, false, false, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}
@@ -183,7 +183,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 
 		public override void ShowPreview(IEnumerable<PreviewGroup> previewGroups, Action trackOutput)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackOutput))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, trackOutput))
 			{
 				formPreview.Text = "Preview Digital Product";
 				formPreview.LoadGroups(previewGroups);

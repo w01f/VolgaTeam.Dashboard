@@ -29,7 +29,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 			});
 		}
 
-		public Schedule LocalSchedule { get; set; }
+		public RegularSchedule LocalSchedule { get; set; }
 
 		public override Theme SelectedTheme
 		{
@@ -113,7 +113,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 
 		public override void ShowPreview(string tempFileName)
 		{
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater))
 			{
 				formPreview.Text = "Preview Digital Package";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

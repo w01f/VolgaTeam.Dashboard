@@ -15,7 +15,6 @@ namespace NewBizWiz.Calendar.Single
 	{
 		private static readonly AppManager _instance = new AppManager();
 		private readonly FloaterManager _floater = new FloaterManager();
-		public NBWLink AppConfig { get; private set; }
 
 		private AppManager() { }
 
@@ -29,7 +28,6 @@ namespace NewBizWiz.Calendar.Single
 			LicenseHelper.Register();
 			BusinessWrapper.Instance.OutputManager.TemplatesManager.LoadCalendarTemplates();
 			CalendarPowerPointHelper.Instance.SetPresentationSettings();
-			AppConfig = NBWLink.CreateLink(new DirectoryInfo(Application.StartupPath));
 			Application.Run(FormMain.Instance);
 		}
 
@@ -51,11 +49,10 @@ namespace NewBizWiz.Calendar.Single
 			}
 		}
 
-		public void ShowFloater(Form sender, Action afterShow)
+		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)
 		{
-			var defaultText = !String.IsNullOrEmpty(AppConfig.Title) ? AppConfig.Title : "Ninja Calendar";
 			var afterBack = new Action(ActivateMainForm);
-			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, AppConfig.Image, afterShow, null, afterBack);
+			_floater.ShowFloater(sender ?? FormMain.Instance, e.Logo, e.AfterShow, null, afterBack);
 		}
 	}
 }

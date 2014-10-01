@@ -7,21 +7,23 @@ namespace NewBizWiz.CommonGUI.Floater
 {
 	public class FloaterManager
 	{
+		public const string FloatedMarker = "Floated";
 		private int _floaterPositionX = int.MinValue;
 		private int _floaterPositionY = int.MinValue;
 
-		public void ShowFloater(Form sender, string ribbonText, Image logo, Action afterShow, Action afterHide, Action afterBack)
+		public void ShowFloater(Form sender, Image logo, Action afterShow, Action afterHide, Action afterBack)
 		{
 			var x = _floaterPositionX == Int32.MinValue ? sender.Left + sender.Width - 40 : _floaterPositionX;
 			var y = _floaterPositionY == Int32.MinValue ? (sender.Top + (sender.Height - 65) / 2) : _floaterPositionY;
-			
-			using (var form = new FormFloater(x, y, logo, ribbonText))
+
+			using (var form = new FormFloater(x, y, logo))
 			{
 				if (afterShow != null)
 					form.Shown += (o, e) => afterShow();
 				var formStyle = sender.FormBorderStyle;
 				var minSize = sender.MinimumSize;
 				var size = sender.Size;
+				sender.Tag = FloatedMarker;
 				sender.FormBorderStyle = FormBorderStyle.None;
 				sender.MinimumSize = new Size(0, 0);
 				sender.Size = new Size(0, 0);
@@ -31,6 +33,7 @@ namespace NewBizWiz.CommonGUI.Floater
 				_floaterPositionX = form.Left + form.Width;
 				if (result != DialogResult.Yes)
 					Utilities.Instance.MinimizeForm(sender.Handle);
+				sender.Tag = null;
 				sender.FormBorderStyle = formStyle;
 				sender.MinimumSize = minSize;
 				sender.Size = size;

@@ -107,7 +107,7 @@
       <DependentUpon>AdPlanControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationClasses\AdPlan\AdPlanDigitalProductControl.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PresentationClasses\AdPlan\AdPlanDigitalProductControl.Designer.cs">
       <DependentUpon>AdPlanDigitalProductControl.cs</DependentUpon>
@@ -418,6 +418,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RichMediaButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RibbonLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

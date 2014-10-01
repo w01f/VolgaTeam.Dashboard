@@ -117,6 +117,25 @@ namespace NewBizWiz.Core.MediaSchedule
 		}
 	}
 
+	public class TVPackageSettingsManager : MediaSettingsManager
+	{
+		public TVPackageSettingsManager()
+		{
+			var defaultSaveFolderPath = Path.Combine(Common.SettingsManager.Instance.OutgoingFolderPath, @"Saved_Schedules\TV QuickShare");
+			if (!Directory.Exists(defaultSaveFolderPath))
+				Directory.CreateDirectory(defaultSaveFolderPath);
+			SaveFolder = defaultSaveFolderPath;
+			HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\TVHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			IconPath = Path.Combine(Path.GetDirectoryName(typeof(TVPackageSettingsManager).Assembly.Location), "icon.ico");
+			ActivityTrackName = "tv_package";
+		}
+
+		protected override string LocalSettingsPath
+		{
+			get { return Path.Combine(Common.SettingsManager.Instance.SettingsPath, "TVPackageSettings.xml"); }
+		}
+	}
+
 	public class RadioSettingsManager : MediaSettingsManager
 	{
 		public RadioSettingsManager()
@@ -133,6 +152,25 @@ namespace NewBizWiz.Core.MediaSchedule
 		protected override string LocalSettingsPath
 		{
 			get { return Path.Combine(Common.SettingsManager.Instance.SettingsPath, "RadioScheduleSettings.xml"); }
+		}
+	}
+
+	public class RadioPackageSettingsManager : MediaSettingsManager
+	{
+		public RadioPackageSettingsManager()
+		{
+			var defaultSaveFolderPath = Path.Combine(Common.SettingsManager.Instance.OutgoingFolderPath, @"Saved_Schedules\Radio QuickShare");
+			if (!Directory.Exists(defaultSaveFolderPath))
+				Directory.CreateDirectory(defaultSaveFolderPath);
+			SaveFolder = defaultSaveFolderPath;
+			HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\RadioHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+			IconPath = Path.Combine(Path.GetDirectoryName(typeof(RadioPackageSettingsManager).Assembly.Location), "icon.ico");
+			ActivityTrackName = "radio_package";
+		}
+
+		protected override string LocalSettingsPath
+		{
+			get { return Path.Combine(Common.SettingsManager.Instance.SettingsPath, "RadioPackageSettings.xml"); }
 		}
 	}
 }

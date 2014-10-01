@@ -14,7 +14,6 @@ using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using ListManager = NewBizWiz.Core.OnlineSchedule.ListManager;
-using Schedule = NewBizWiz.Core.MediaSchedule.Schedule;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
@@ -24,7 +23,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private bool _allowToSave;
 		private bool _digitalChanged;
 		private bool _calendarTypeChanged;
-		private Schedule _localSchedule;
+		private RegularSchedule _localSchedule;
 		private SpotType _loadedScheduleType;
 
 		public HomeControl()
@@ -40,6 +39,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
 			});
+			stationsControl.Changed += (o, e) => { SettingsNotSaved = true; };
+			daypartsControl.Changed += (o, e) => { SettingsNotSaved = true; };
 		}
 
 		public bool SettingsNotSaved { get; set; }
@@ -47,7 +48,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public bool AllowToLeaveControl(bool quiet = false)
 		{
 			bool result = true;
-			if (SettingsNotSaved || stationsControl.HasChanged || daypartsControl.HasChanged)
+			if (SettingsNotSaved)
 				result = SaveSchedule(quiet);
 			return result;
 		}
@@ -287,12 +288,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 					buttonXDemosImps.Enabled = false;
 					buttonXDemosImps.Checked = true;
 				}
-				stationsControl.LoadData(_localSchedule);
-				daypartsControl.LoadData(_localSchedule);
 
 				buttonXCalendarTypeMondayBased.Checked = _localSchedule.MondayBased;
 				buttonXCalendarTypeSundayBased.Checked = !_localSchedule.MondayBased;
 				Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek = _localSchedule.StartDayOfWeek;
+
+				stationsControl.LoadData(_localSchedule);
+				daypartsControl.LoadData(_localSchedule);
 				#endregion
 
 				#region Digital tab
@@ -412,22 +414,15 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 					_localSchedule.Demo = comboBoxEditDemos.EditValue as String;
 				}
 
-				_localSchedule.WeeklySchedule.ShowRating = _localSchedule.WeeklySchedule.ShowRating & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-				_localSchedule.WeeklySchedule.ShowCPP = _localSchedule.WeeklySchedule.ShowCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-				_localSchedule.WeeklySchedule.ShowGRP = _localSchedule.WeeklySchedule.ShowGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-				_localSchedule.WeeklySchedule.ShowTotalCPP = _localSchedule.WeeklySchedule.ShowTotalCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-				_localSchedule.WeeklySchedule.ShowTotalGRP = _localSchedule.WeeklySchedule.ShowTotalGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-
-				_localSchedule.MonthlySchedule.ShowRating = _localSchedule.MonthlySchedule.ShowRating & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-				_localSchedule.MonthlySchedule.ShowCPP = _localSchedule.MonthlySchedule.ShowCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-				_localSchedule.MonthlySchedule.ShowGRP = _localSchedule.MonthlySchedule.ShowGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-				_localSchedule.MonthlySchedule.ShowTotalCPP = _localSchedule.MonthlySchedule.ShowTotalCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
-				_localSchedule.MonthlySchedule.ShowTotalGRP = _localSchedule.MonthlySchedule.ShowTotalGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+				_localSchedule.Section.ShowRating = _localSchedule.Section.ShowRating & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+				_localSchedule.Section.ShowCPP = _localSchedule.Section.ShowCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+				_localSchedule.Section.ShowGRP = _localSchedule.Section.ShowGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+				_localSchedule.Section.ShowTotalCPP = _localSchedule.Section.ShowTotalCPP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
+				_localSchedule.Section.ShowTotalGRP = _localSchedule.Section.ShowTotalGRP & _localSchedule.UseDemo & !String.IsNullOrEmpty(_localSchedule.Demo);
 
 				if (!quickSave)
 				{
-					_localSchedule.WeeklySchedule.RebuildSpots();
-					_localSchedule.MonthlySchedule.RebuildSpots();
+					_localSchedule.Section.RebuildSpots();
 				}
 			}
 			else
@@ -437,7 +432,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				return false;
 			}
 
-			quickSave &= _localSchedule.SelectedSpotType == _loadedScheduleType;
+			if (_localSchedule.SelectedSpotType != _loadedScheduleType)
+			{
+				_localSchedule.ResetSection();
+				quickSave = false;
+			}
 
 			if (stationsControl.HasChanged)
 			{
@@ -467,7 +466,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateScheduleControls();
 			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, quickSave, _digitalChanged, _calendarTypeChanged, this);
 			SettingsNotSaved = false;
-			stationsControl.HasChanged = false;
 			daypartsControl.HasChanged = false;
 			return true;
 		}
@@ -485,11 +483,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		public void SchedulePropertyEditValueChanged(object sender, EventArgs e)
 		{
-			if (_allowToSave)
-			{
-				UpdateScheduleControls();
-				SettingsNotSaved = true;
-			}
+			if (!_allowToSave) return;
+			UpdateScheduleControls();
+			SettingsNotSaved = true;
 		}
 
 		public void checkBoxItemAccountNumber_CheckedChanged(object sender, CheckBoxChangeEventArgs e)
@@ -590,6 +586,23 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			}
 		}
 
+		public void SchedulePropertiesEditor_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode != Keys.Tab) return;
+			if (sender == Controller.Instance.HomeBusinessName)
+				Controller.Instance.HomeDecisionMaker.Focus();
+			else if (sender == Controller.Instance.HomeDecisionMaker)
+				Controller.Instance.HomeClientType.Focus();
+			else if (sender == Controller.Instance.HomeClientType)
+				Controller.Instance.HomePresentationDate.Focus();
+			else if (sender == Controller.Instance.HomePresentationDate)
+				Controller.Instance.HomeFlightDatesStart.Focus();
+			else if (sender == Controller.Instance.HomeFlightDatesStart)
+				Controller.Instance.HomeFlightDatesEnd.Focus();
+			else if (sender == Controller.Instance.HomeFlightDatesEnd)
+				Controller.Instance.HomeBusinessName.Focus();
+			e.Handled = true;
+		}
 		#endregion
 
 		#region Ribbon Operations Events
@@ -781,24 +794,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				_localSchedule.SelectedSpotType = SpotType.Month;
 			UpdateScheduleType(_localSchedule.SelectedSpotType);
 			SettingsNotSaved = true;
-		}
-
-		public void SchedulePropertiesEditor_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode != Keys.Tab) return;
-			if (sender == Controller.Instance.HomeBusinessName)
-				Controller.Instance.HomeDecisionMaker.Focus();
-			else if (sender == Controller.Instance.HomeDecisionMaker)
-				Controller.Instance.HomeClientType.Focus();
-			else if (sender == Controller.Instance.HomeClientType)
-				Controller.Instance.HomePresentationDate.Focus();
-			else if (sender == Controller.Instance.HomePresentationDate)
-				Controller.Instance.HomeFlightDatesStart.Focus();
-			else if (sender == Controller.Instance.HomeFlightDatesStart)
-				Controller.Instance.HomeFlightDatesEnd.Focus();
-			else if (sender == Controller.Instance.HomeFlightDatesEnd)
-				Controller.Instance.HomeBusinessName.Focus();
-			e.Handled = true;
 		}
 		#endregion
 

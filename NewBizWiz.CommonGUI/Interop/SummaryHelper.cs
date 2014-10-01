@@ -10,7 +10,7 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace NewBizWiz.CommonGUI.Interop
 {
-	public partial class CommonPowerPointHelper<T> where T : class,new()
+	public partial class CommonPowerPointHelper<T> where T : class, new()
 	{
 		public void AppendSummary(ISummaryControl summary, Presentation destinationPresentation = null)
 		{

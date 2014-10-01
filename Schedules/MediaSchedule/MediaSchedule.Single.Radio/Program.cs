@@ -32,7 +32,7 @@ namespace NewBizWiz.MediaSchedule.Single.Radio
 			else
 			{
 				if (!AppManager.Instance.RunPowerPoint()) return;
-				Utilities.Instance.ActivatePowerPoint(MediaSchedulePowerPointHelper.Instance.PowerPointObject);
+				Utilities.Instance.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
 				AppManager.Instance.ActivateMainForm();
 			}
 		}

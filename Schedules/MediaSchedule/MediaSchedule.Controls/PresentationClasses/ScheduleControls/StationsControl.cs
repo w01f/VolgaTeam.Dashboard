@@ -17,6 +17,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		}
 
 		public bool HasChanged { get; set; }
+		public EventHandler<EventArgs> Changed;
 
 		public void LoadData(Schedule schedule)
 		{
@@ -34,6 +35,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private void gridViewItems_CellValueChanged(object sender, CellValueChangedEventArgs e)
 		{
 			HasChanged = true;
+			if (Changed != null)
+				Changed(this, EventArgs.Empty);
 		}
 
 		private void repositoryItemCheckEdit_CheckedChanged(object sender, EventArgs e)

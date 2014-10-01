@@ -19,7 +19,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 {
 	public abstract class MediaCalendarControl : BaseCalendarControl
 	{
-		protected Schedule _localSchedule;
+		protected RegularSchedule _localSchedule;
 
 		protected MediaCalendarControl()
 		{
@@ -119,17 +119,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			var options = new Dictionary<string, object>();
 			options.Add("Slide", CalendarTab.Text);
 			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.WeeklySchedule.Programs.Any())
+			if (_localSchedule.Section.Programs.Any())
 			{
-				options.Add("WeeklyTotalSpots", _localSchedule.WeeklySchedule.TotalSpots);
-				options.Add("WeeklyAverageRate", _localSchedule.WeeklySchedule.AvgRate);
-				options.Add("WeeklyGrossInvestment", _localSchedule.WeeklySchedule.TotalCost);
-			}
-			if (_localSchedule.MonthlySchedule.Programs.Any())
-			{
-				options.Add("MonthlyTotalSpots", _localSchedule.MonthlySchedule.TotalSpots);
-				options.Add("MonthlyAverageRate", _localSchedule.MonthlySchedule.AvgRate);
-				options.Add("MonthlyGrossInvestment", _localSchedule.MonthlySchedule.TotalCost);
+				options.Add("TotalSpots", _localSchedule.Section.TotalSpots);
+				options.Add("AverageRate", _localSchedule.Section.AvgRate);
+				options.Add("GrossInvestment", _localSchedule.Section.TotalCost);
 			}
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
 		}
@@ -146,7 +140,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 					formProgress.laProgress.Text = outputData.Count() == 2 ? "Creating 2 (two) Calendar slides…\nThis will take about a minute…" : "Creating Calendar slides…\nThis will take a few minutes…";
 					formProgress.Show();
 					Enabled = false;
-					MediaSchedulePowerPointHelper.Instance.AppendCalendar(outputData.ToArray());
+					RegularMediaSchedulePowerPointHelper.Instance.AppendCalendar(outputData.ToArray());
 					Enabled = true;
 					formProgress.Close();
 				});
@@ -170,14 +164,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 						Name = outputItem.MonthText,
 						PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
 					};
-					MediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+					RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 					previewGroups.Add(previewGroup);
 				}
 				Enabled = true;
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formEmail = new FormEmail(MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Calendar";
 				formEmail.LoadGroups(previewGroups);
@@ -195,17 +189,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			var options = new Dictionary<string, object>();
 			options.Add("Slide", CalendarTab.Text);
 			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.WeeklySchedule.Programs.Any())
+			if (_localSchedule.Section.Programs.Any())
 			{
-				options.Add("WeeklyTotalSpots", _localSchedule.WeeklySchedule.TotalSpots);
-				options.Add("WeeklyAverageRate", _localSchedule.WeeklySchedule.AvgRate);
-				options.Add("WeeklyGrossInvestment", _localSchedule.WeeklySchedule.TotalCost);
-			}
-			if (_localSchedule.MonthlySchedule.Programs.Any())
-			{
-				options.Add("MonthlyTotalSpots", _localSchedule.MonthlySchedule.TotalSpots);
-				options.Add("MonthlyAverageRate", _localSchedule.MonthlySchedule.AvgRate);
-				options.Add("MonthlyGrossInvestment", _localSchedule.MonthlySchedule.TotalCost);
+				options.Add("TotalSpots", _localSchedule.Section.TotalSpots);
+				options.Add("AverageRate", _localSchedule.Section.AvgRate);
+				options.Add("GrossInvestment", _localSchedule.Section.TotalCost);
 			}
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
 		}
@@ -227,7 +215,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 						Name = outputItem.MonthText,
 						PresentationSourcePath = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()))
 					};
-					MediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
+					RegularMediaSchedulePowerPointHelper.Instance.PrepareCalendarEmail(previewGroup.PresentationSourcePath, new[] { outputItem });
 					previewGroups.Add(previewGroup);
 				}
 				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
@@ -235,7 +223,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 				formProgress.Close();
 			}
 			if (!(previewGroups.Any() && previewGroups.All(pg => File.Exists(pg.PresentationSourcePath)))) return;
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
 			{
 				formPreview.Text = "Preview this Calendar";
 				formPreview.LoadGroups(previewGroups);

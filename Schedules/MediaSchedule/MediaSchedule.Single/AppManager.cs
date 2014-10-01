@@ -17,8 +17,6 @@ namespace NewBizWiz.MediaSchedule.Single
 		private static readonly AppManager _instance = new AppManager();
 		private readonly FloaterManager _floater = new FloaterManager();
 
-		public NBWLink AppConfig { get; private set; }
-
 		private AppManager() { }
 
 		public static AppManager Instance
@@ -30,14 +28,13 @@ namespace NewBizWiz.MediaSchedule.Single
 		{
 			LicenseHelper.Register();
 			MasterWizardManager.Instance.SetMasterWizard();
-			MediaSchedulePowerPointHelper.Instance.SetPresentationSettings();
-			AppConfig = NBWLink.CreateLink(new DirectoryInfo(Application.StartupPath));
+			RegularMediaSchedulePowerPointHelper.Instance.SetPresentationSettings();
 			Application.Run(FormMain.Instance);
 		}
 
 		public bool RunPowerPoint()
 		{
-			return MediaSchedulePowerPointHelper.Instance.Connect() && OnlineSchedulePowerPointHelper.Instance.Connect();
+			return RegularMediaSchedulePowerPointHelper.Instance.Connect() && OnlineSchedulePowerPointHelper.Instance.Connect();
 		}
 
 		public void ActivateMainForm()
@@ -53,11 +50,10 @@ namespace NewBizWiz.MediaSchedule.Single
 			}
 		}
 
-		public void ShowFloater(Form sender, Action afterShow)
+		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)
 		{
-			var defaultText = !String.IsNullOrEmpty(AppConfig.Title) ? AppConfig.Title : String.Format("{0} Seller", MediaMetaData.Instance.DataTypeString);
 			var afterBack = new Action(ActivateMainForm);
-			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, AppConfig.Image, afterShow, null, afterBack);
+			_floater.ShowFloater(sender ?? FormMain.Instance, e.Logo, e.AfterShow, null, afterBack);
 		}
 	}
 }

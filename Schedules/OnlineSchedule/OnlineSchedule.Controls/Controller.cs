@@ -13,6 +13,7 @@ using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
+using NewBizWiz.OnlineSchedule.Controls.Properties;
 
 namespace NewBizWiz.OnlineSchedule.Controls
 {
@@ -363,7 +364,7 @@ namespace NewBizWiz.OnlineSchedule.Controls
 
 		public void ShowFloater(Action afterShow)
 		{
-			var args = new FloaterRequestedEventArgs { AfterShow = afterShow };
+			var args = new FloaterRequestedEventArgs { AfterShow = afterShow, Logo = Resources.RibbonLogo };
 			if (FloaterRequested != null)
 				FloaterRequested(null, args);
 		}

@@ -8,6 +8,7 @@ using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
+using NewBizWiz.OnlineSchedule.Controls.Properties;
 
 namespace NewBizWiz.OnlineSchedule.Internal
 {
@@ -459,7 +460,7 @@ namespace NewBizWiz.OnlineSchedule.Internal
 
 		private void buttonItemFloater_Click(object sender, EventArgs e)
 		{
-			ShowFloater(new FloaterRequestedEventArgs());
+			ShowFloater(new FloaterRequestedEventArgs() { Logo = Resources.RibbonLogo });
 		}
 
 		private void buttonItemHomeExit_Click(object sender, EventArgs e)

@@ -7,7 +7,9 @@ using DevComponents.DotNetBar;
 using NewBizWiz.Calendar.Controls;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.InteropClasses;
+using NewBizWiz.Calendar.Controls.Properties;
 using NewBizWiz.CommonGUI.Common;
+using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
@@ -132,7 +134,7 @@ namespace NewBizWiz.Calendar.Single
 			Controller.Instance.Init();
 
 			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
-			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e.AfterShow);
+			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e);
 
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
@@ -245,7 +247,7 @@ namespace NewBizWiz.Calendar.Single
 		private void FormMain_Resize(object sender, EventArgs e)
 		{
 			var f = sender as Form;
-			if (f.WindowState != FormWindowState.Minimized)
+			if (f.WindowState != FormWindowState.Minimized && f.Tag != FloaterManager.FloatedMarker)
 				Opacity = 1;
 		}
 
@@ -415,7 +417,7 @@ namespace NewBizWiz.Calendar.Single
 		private void buttonItemFloater_Click(object sender, EventArgs e)
 		{
 			var formSender = sender as Form;
-			AppManager.Instance.ShowFloater(formSender ?? this, null);
+			AppManager.Instance.ShowFloater(formSender ?? this, new FloaterRequestedEventArgs { Logo = Resources.RibbonLogo });
 		}
 
 		private void pnMain_Click(object sender, EventArgs e)

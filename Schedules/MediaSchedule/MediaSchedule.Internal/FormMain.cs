@@ -9,6 +9,7 @@ using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
+using NewBizWiz.MediaSchedule.Controls.Properties;
 
 namespace NewBizWiz.MediaSchedule.Internal
 {
@@ -621,7 +622,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 
 		private void buttonItemFloater_Click(object sender, EventArgs e)
 		{
-			ShowFloater(new FloaterRequestedEventArgs());
+			ShowFloater(new FloaterRequestedEventArgs { Logo = MediaMetaData.Instance.DataType == MediaDataType.TV ? Resources.TVRibbonLogo : Resources.RadioRibbonLogo });
 		}
 
 		private void buttonItemHomeExit_Click(object sender, EventArgs e)

@@ -56,7 +56,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 		public override void LoadCalendar(bool quickLoad)
 		{
 			base.LoadCalendar(quickLoad);
-			if (!_localSchedule.WeeklySchedule.Programs.Any()) return;
+			if (!_localSchedule.Section.Programs.Any()) return;
 			if (!quickLoad)
 				CalendarData.UpdateNotesCollection();
 		}
@@ -64,7 +64,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 		public override void UpdateOutputFunctions()
 		{
 			base.UpdateOutputFunctions();
-			var schedueSection = _localSchedule.SelectedSpotType == SpotType.Week ? (ScheduleSection)_localSchedule.WeeklySchedule : _localSchedule.MonthlySchedule;
+			var schedueSection = _localSchedule.Section;
 			var enable = schedueSection.Programs.Any();
 			MonthList.Enabled = enable;
 			pnTop.Visible = enable;

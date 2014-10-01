@@ -5,9 +5,11 @@ using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.Common;
+using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
+using NewBizWiz.OnlineSchedule.Controls.Properties;
 using NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses;
 
 namespace NewBizWiz.OnlineSchedule.DigitalPackage
@@ -77,7 +79,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 			Controller.Instance.FloaterRequested += (o, e) =>
 			{
 				Resize -= FormMain_Resize;
-				AppManager.Instance.ShowFloater(this, e.AfterShow);
+				AppManager.Instance.ShowFloater(this, e);
 				Resize += FormMain_Resize;
 			};
 
@@ -212,14 +214,14 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		private void FormMain_Resize(object sender, EventArgs e)
 		{
 			var f = sender as Form;
-			if (f.WindowState != FormWindowState.Minimized)
+			if (f.WindowState != FormWindowState.Minimized && f.Tag != FloaterManager.FloatedMarker)
 				Opacity = 1;
 		}
 
 		private void buttonItemFloater_Click(object sender, EventArgs e)
 		{
 			Resize -= FormMain_Resize;
-			AppManager.Instance.ShowFloater(this, null);
+			AppManager.Instance.ShowFloater(this, new FloaterRequestedEventArgs { Logo = Resources.RibbonLogo });
 			Resize += FormMain_Resize;
 		}
 

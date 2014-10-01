@@ -30,7 +30,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 	public sealed partial class ProgramStrategyControl : UserControl
 	{
 		private bool _allowToSave;
-		private Schedule _localSchedule;
+		private RegularSchedule _localSchedule;
 		private GridDragDropHelper _dragDropHelper;
 		public bool SettingsNotSaved { get; set; }
 
@@ -412,17 +412,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			var options = new Dictionary<string, object>();
 			options.Add("Slide", Controller.Instance.TabStrategy.Text);
 			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.WeeklySchedule.Programs.Any())
+			if (_localSchedule.Section.Programs.Any())
 			{
-				options.Add("WeeklyTotalSpots", _localSchedule.WeeklySchedule.TotalSpots);
-				options.Add("WeeklyAverageRate", _localSchedule.WeeklySchedule.AvgRate);
-				options.Add("WeeklyGrossInvestment", _localSchedule.WeeklySchedule.TotalCost);
-			}
-			if (_localSchedule.MonthlySchedule.Programs.Any())
-			{
-				options.Add("MonthlyTotalSpots", _localSchedule.MonthlySchedule.TotalSpots);
-				options.Add("MonthlyAverageRate", _localSchedule.MonthlySchedule.AvgRate);
-				options.Add("MonthlyGrossInvestment", _localSchedule.MonthlySchedule.TotalCost);
+				options.Add("TotalSpots", _localSchedule.Section.TotalSpots);
+				options.Add("AverageRate", _localSchedule.Section.AvgRate);
+				options.Add("GrossInvestment", _localSchedule.Section.TotalCost);
 			}
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
 		}
@@ -432,24 +426,18 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			var options = new Dictionary<string, object>();
 			options.Add("Slide", Controller.Instance.TabStrategy.Text);
 			options.Add("Advertiser", _localSchedule.BusinessName);
-			if (_localSchedule.WeeklySchedule.Programs.Any())
+			if (_localSchedule.Section.Programs.Any())
 			{
-				options.Add("WeeklyTotalSpots", _localSchedule.WeeklySchedule.TotalSpots);
-				options.Add("WeeklyAverageRate", _localSchedule.WeeklySchedule.AvgRate);
-				options.Add("WeeklyGrossInvestment", _localSchedule.WeeklySchedule.TotalCost);
-			}
-			if (_localSchedule.MonthlySchedule.Programs.Any())
-			{
-				options.Add("MonthlyTotalSpots", _localSchedule.MonthlySchedule.TotalSpots);
-				options.Add("MonthlyAverageRate", _localSchedule.MonthlySchedule.AvgRate);
-				options.Add("MonthlyGrossInvestment", _localSchedule.MonthlySchedule.TotalCost);
+				options.Add("TotalSpots", _localSchedule.Section.TotalSpots);
+				options.Add("AverageRate", _localSchedule.Section.AvgRate);
+				options.Add("GrossInvestment", _localSchedule.Section.TotalCost);
 			}
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
 		}
 
 		private void PreparePreview(string tempFileName)
 		{
-			MediaSchedulePowerPointHelper.Instance.PrepareStrategyEmail(tempFileName, this);
+			RegularMediaSchedulePowerPointHelper.Instance.PrepareStrategyEmail(tempFileName, this);
 		}
 
 		private void Output()
@@ -464,7 +452,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 				Controller.Instance.ShowFloater(() =>
 				{
 					formProgress.Show();
-					MediaSchedulePowerPointHelper.Instance.AppendStrategy(this);
+					RegularMediaSchedulePowerPointHelper.Instance.AppendStrategy(this);
 					formProgress.Close();
 				});
 			}
@@ -484,7 +472,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 				formProgress.Close();
 			}
 			if (!File.Exists(tempFileName)) return;
-			using (var formEmail = new FormEmail(MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Strategy";
 				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
@@ -512,7 +500,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			}
 			if (!File.Exists(tempFileName)) return;
 			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
 			{
 				formPreview.Text = "Preview Strategy";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

@@ -16,7 +16,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 {
 	public class MediaSummaryLight : SummaryLightControl
 	{
-		public Schedule LocalSchedule { get; set; }
+		public RegularSchedule LocalSchedule { get; set; }
 
 		public MediaSummaryLight()
 		{
@@ -32,17 +32,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 			var options = new Dictionary<string, object>();
 			options.Add("Slide", Controller.Instance.TabSummaryLight.Text);
 			options.Add("Advertiser", LocalSchedule.BusinessName);
-			if (LocalSchedule.WeeklySchedule.Programs.Any())
+			if (LocalSchedule.Section.Programs.Any())
 			{
-				options.Add("WeeklyTotalSpots", LocalSchedule.WeeklySchedule.TotalSpots);
-				options.Add("WeeklyAverageRate", LocalSchedule.WeeklySchedule.AvgRate);
-				options.Add("WeeklyGrossInvestment", LocalSchedule.WeeklySchedule.TotalCost);
-			}
-			if (LocalSchedule.MonthlySchedule.Programs.Any())
-			{
-				options.Add("MonthlyTotalSpots", LocalSchedule.MonthlySchedule.TotalSpots);
-				options.Add("MonthlyAverageRate", LocalSchedule.MonthlySchedule.AvgRate);
-				options.Add("MonthlyGrossInvestment", LocalSchedule.MonthlySchedule.TotalCost);
+				options.Add("TotalSpots", LocalSchedule.Section.TotalSpots);
+				options.Add("AverageRate", LocalSchedule.Section.AvgRate);
+				options.Add("GrossInvestment", LocalSchedule.Section.TotalCost);
 			}
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
 		}
@@ -142,7 +136,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 				Controller.Instance.ShowFloater(() =>
 				{
 					formProgress.Show();
-					MediaSchedulePowerPointHelper.Instance.AppendSummary(this);
+					RegularMediaSchedulePowerPointHelper.Instance.AppendSummary(this);
 					formProgress.Close();
 				});
 			}
@@ -150,12 +144,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 
 		protected override void PreparePreview(string tempFileName)
 		{
-			MediaSchedulePowerPointHelper.Instance.PrepareSummaryEmail(tempFileName, this);
+			RegularMediaSchedulePowerPointHelper.Instance.PrepareSummaryEmail(tempFileName, this);
 		}
 
 		protected override void ShowEmail(string tempFileName)
 		{
-			using (var formEmail = new FormEmail(MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
+			using (var formEmail = new FormEmail(RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
 			{
 				formEmail.Text = "Email this Summary";
 				formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
@@ -173,17 +167,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 			var options = new Dictionary<string, object>();
 			options.Add("Slide", Controller.Instance.TabSummaryLight.Text);
 			options.Add("Advertiser", LocalSchedule.BusinessName);
-			if (LocalSchedule.WeeklySchedule.Programs.Any())
+			if (LocalSchedule.Section.Programs.Any())
 			{
-				options.Add("WeeklyTotalSpots", LocalSchedule.WeeklySchedule.TotalSpots);
-				options.Add("WeeklyAverageRate", LocalSchedule.WeeklySchedule.AvgRate);
-				options.Add("WeeklyGrossInvestment", LocalSchedule.WeeklySchedule.TotalCost);
-			}
-			if (LocalSchedule.MonthlySchedule.Programs.Any())
-			{
-				options.Add("MonthlyTotalSpots", LocalSchedule.MonthlySchedule.TotalSpots);
-				options.Add("MonthlyAverageRate", LocalSchedule.MonthlySchedule.AvgRate);
-				options.Add("MonthlyGrossInvestment", LocalSchedule.MonthlySchedule.TotalCost);
+				options.Add("TotalSpots", LocalSchedule.Section.TotalSpots);
+				options.Add("AverageRate", LocalSchedule.Section.AvgRate);
+				options.Add("GrossInvestment", LocalSchedule.Section.TotalCost);
 			}
 			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
 		}
@@ -191,7 +179,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 		protected override void ShowPreview(string tempFileName)
 		{
 			Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-			using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
+			using (var formPreview = new FormPreview(Controller.Instance.FormMain, RegularMediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
 			{
 				formPreview.Text = "Preview Summary";
 				formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });

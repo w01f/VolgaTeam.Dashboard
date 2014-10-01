@@ -10,6 +10,7 @@ using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
+using NewBizWiz.Dashboard.Properties;
 
 namespace NewBizWiz.Dashboard
 {
@@ -134,14 +135,13 @@ namespace NewBizWiz.Dashboard
 
 		public void ShowFloater(Action afterShow)
 		{
-			ShowFloater(null, afterShow);
+			ShowFloater(null, new FloaterRequestedEventArgs() { AfterShow = afterShow });
 		}
 
-		public void ShowFloater(Form sender, Action afterShow)
+		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)
 		{
-			var defaultText = SettingsManager.Instance.DashboardText;
 			var afterBack = new Action(ActivateMainForm);
-			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, MasterWizardManager.Instance.DefaultLogo, afterShow, null, afterBack);
+			_floater.ShowFloater(sender ?? FormMain.Instance, e.Logo ?? Resources.RibbonLogo, e.AfterShow, null, afterBack);
 		}
 	}
 }

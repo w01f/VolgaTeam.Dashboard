@@ -5,12 +5,14 @@ using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.Common;
+using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.OnlineSchedule.Controls;
 using NewBizWiz.OnlineSchedule.Controls.BusinessClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
+using NewBizWiz.OnlineSchedule.Controls.Properties;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.OnlineSchedule.Single
@@ -169,7 +171,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 			Controller.Instance.Init();
 
 			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
-			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e.AfterShow);
+			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e);
 
 			if ((CreateGraphics()).DpiX > 96)
 			{
@@ -354,7 +356,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 		private void FormMain_Resize(object sender, EventArgs e)
 		{
 			var f = sender as Form;
-			if (f.WindowState != FormWindowState.Minimized)
+			if (f.WindowState != FormWindowState.Minimized && f.Tag != FloaterManager.FloatedMarker)
 				Opacity = 1;
 		}
 
@@ -537,7 +539,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 		private void buttonItemFloater_Click(object sender, EventArgs e)
 		{
 			var formSender = sender as Form;
-			AppManager.Instance.ShowFloater(formSender ?? this, null);
+			AppManager.Instance.ShowFloater(formSender ?? this, new FloaterRequestedEventArgs { Logo = Resources.RibbonLogo });
 		}
 
 		private void pnMain_Click(object sender, EventArgs e)

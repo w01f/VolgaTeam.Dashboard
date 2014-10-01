@@ -22,11 +22,9 @@ namespace NewBizWiz.CommonGUI.ToolForms
 
 		private void textEditScheduleName_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Enter)
-			{
-				DialogResult = DialogResult.OK;
-				Close();
-			}
+			if (e.KeyCode != Keys.Enter) return;
+			DialogResult = DialogResult.OK;
+			Close();
 		}
 	}
 }

@@ -177,10 +177,10 @@ namespace NewBizWiz.Dashboard
 			this.ribbonControl.CaptionVisible = true;
 			this.ribbonControl.Controls.Add(this.ribbonPanelHome);
 			this.ribbonControl.Controls.Add(this.ribbonPanelSlides);
-			this.ribbonControl.Controls.Add(this.ribbonPanelNewspaper);
-			this.ribbonControl.Controls.Add(this.ribbonPanelTV);
-			this.ribbonControl.Controls.Add(this.ribbonPanelRadio);
 			this.ribbonControl.Controls.Add(this.ribbonPanelOnline);
+			this.ribbonControl.Controls.Add(this.ribbonPanelRadio);
+			this.ribbonControl.Controls.Add(this.ribbonPanelTV);
+			this.ribbonControl.Controls.Add(this.ribbonPanelNewspaper);
 			this.ribbonControl.Dock = System.Windows.Forms.DockStyle.Top;
 			this.ribbonControl.EnableQatPlacement = false;
 			this.ribbonControl.ForeColor = System.Drawing.Color.Black;

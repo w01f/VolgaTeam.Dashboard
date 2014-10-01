@@ -26,8 +26,6 @@ namespace NewBizWiz.Core.Common
 		public static string MasterWizardsFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\Dashboard", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 		public static string ScheduleBuildersFolder = string.Format(@"{0}\newlocaldirect.com\sync\Incoming\Slides\ScheduleBuilders", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 
-		public static string NoRibbonLogoPath = string.Format(@"{0}\newlocaldirect.com\app\no_ribbon_logo.png", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-		public static string RibbonLogoPath = string.Format(@"{0}\newlocaldirect.com\app\ribbon_logo.png", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 		public static string WatermarkLogoPath = string.Format(@"{0}\newlocaldirect.com\app\dbwatermark.png", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 		public static string VersionLogoPath = string.Format(@"{0}\newlocaldirect.com\app\version.png", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 
@@ -51,12 +49,6 @@ namespace NewBizWiz.Core.Common
 		private MasterWizardManager()
 		{
 			MasterWizards = new Dictionary<string, MasterWizard>();
-			if (File.Exists(RibbonLogoPath))
-				DefaultLogo = new Bitmap(RibbonLogoPath);
-			else if (File.Exists(NoRibbonLogoPath))
-				DefaultLogo = new Bitmap(NoRibbonLogoPath);
-			else
-				DefaultLogo = Resources.MasterWizardLogo;
 
 			if (File.Exists(WatermarkLogoPath))
 				Watermark = new Bitmap(WatermarkLogoPath);
@@ -68,10 +60,8 @@ namespace NewBizWiz.Core.Common
 		}
 
 		public Dictionary<string, MasterWizard> MasterWizards { get; set; }
-		public Image DefaultLogo { get; set; }
 		public Image Watermark { get; set; }
 		public Image Version { get; set; }
-
 
 		public static MasterWizardManager Instance
 		{

@@ -9,11 +9,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
-using DevExpress.Data.PLinq.Helpers;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.Interop;
 using NewBizWiz.Core.OnlineSchedule;
 using NewBizWiz.Core.Calendar;
+using DataTable = System.Data.DataTable;
 
 namespace NewBizWiz.Core.MediaSchedule
 {
@@ -31,7 +31,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 	public class ScheduleManager
 	{
-		private Schedule _currentSchedule;
+		private RegularSchedule _currentSchedule;
 
 		public bool ScheduleLoaded { get; set; }
 
@@ -48,13 +48,13 @@ namespace NewBizWiz.Core.MediaSchedule
 			if (create && File.Exists(scheduleFilePath))
 				if (Utilities.Instance.ShowWarningQuestion(string.Format("An older Schedule is already saved with this same file name.\nDo you want to replace this file with a newer schedule?", scheduleName)) == DialogResult.Yes)
 					File.Delete(scheduleFilePath);
-			_currentSchedule = new Schedule(scheduleFilePath);
+			_currentSchedule = new RegularSchedule(scheduleFilePath);
 			ScheduleLoaded = true;
 		}
 
 		public void OpenSchedule(string scheduleFilePath)
 		{
-			_currentSchedule = new Schedule(scheduleFilePath);
+			_currentSchedule = new RegularSchedule(scheduleFilePath);
 			ScheduleLoaded = true;
 		}
 
@@ -63,9 +63,9 @@ namespace NewBizWiz.Core.MediaSchedule
 			return Path.Combine(MediaMetaData.Instance.SettingsManager.SaveFolder, scheduleName + ".xml");
 		}
 
-		public Schedule GetLocalSchedule()
+		public RegularSchedule GetLocalSchedule()
 		{
-			return new Schedule(_currentSchedule.ScheduleFile.FullName);
+			return new RegularSchedule(_currentSchedule.ScheduleFile.FullName);
 		}
 
 		public ShortSchedule GetShortSchedule()
@@ -73,7 +73,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			return _currentSchedule != null ? new ShortSchedule(_currentSchedule.ScheduleFile) : null;
 		}
 
-		public void SaveSchedule(Schedule localSchedule, bool quickSave, bool updateDigital, bool calendarTypeChanged, Control sender)
+		public void SaveSchedule(RegularSchedule localSchedule, bool quickSave, bool updateDigital, bool calendarTypeChanged, Control sender)
 		{
 			localSchedule.Save();
 			_currentSchedule = localSchedule;
@@ -134,54 +134,50 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		private void Load()
 		{
-			if (_scheduleFile.Exists)
-			{
-				var document = new XmlDocument();
-				document.Load(_scheduleFile.FullName);
+			if (!_scheduleFile.Exists) return;
+			var document = new XmlDocument();
+			document.Load(_scheduleFile.FullName);
 
-				var node = document.SelectSingleNode(@"/Schedule/BusinessName");
-				if (node != null)
-					BusinessName = node.InnerText;
+			var node = document.SelectSingleNode(@"/Schedule/BusinessName");
+			if (node != null)
+				BusinessName = node.InnerText;
 
-				node = document.SelectSingleNode(@"/Schedule/Status");
-				if (node != null)
-					Status = node.InnerText;
-			}
+			node = document.SelectSingleNode(@"/Schedule/Status");
+			if (node != null)
+				Status = node.InnerText;
 		}
 
 		public void Save()
 		{
-			if (_scheduleFile.Exists)
+			if (!_scheduleFile.Exists) return;
+			try
 			{
-				try
-				{
-					var document = new XmlDocument();
-					document.Load(_scheduleFile.FullName);
+				var document = new XmlDocument();
+				document.Load(_scheduleFile.FullName);
 
-					var node = document.SelectSingleNode(@"/Schedule/Status");
-					if (node != null)
-						node.InnerText = Status;
-					else
-					{
-						node = document.SelectSingleNode(@"/Schedule");
-						if (node != null)
-							node.InnerXml += (@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
-					}
-					document.Save(_scheduleFile.FullName);
-				}
-				catch
+				var node = document.SelectSingleNode(@"/Schedule/Status");
+				if (node != null)
+					node.InnerText = Status;
+				else
 				{
+					node = document.SelectSingleNode(@"/Schedule");
+					if (node != null)
+						node.InnerXml += (@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
 				}
+				document.Save(_scheduleFile.FullName);
+			}
+			catch
+			{
 			}
 		}
 	}
 
-	public class Schedule : IDigitalSchedule, ISummarySchedule
+	public abstract class Schedule : ISchedule
 	{
 		private DateTime? _userFlightDateStart;
 		private DateTime? _userFlightDateEnd;
 
-		public Schedule(string fileName)
+		protected Schedule()
 		{
 			BusinessName = string.Empty;
 			DecisionMaker = string.Empty;
@@ -193,45 +189,15 @@ namespace NewBizWiz.Core.MediaSchedule
 			ImportDemo = false;
 			DemoType = DemoType.Imp;
 			MondayBased = true;
-			WeeklySchedule = new WeeklySection(this);
-			MonthlySchedule = new MonthlySection(this);
+			ResetSection();
 
 			Dayparts = new List<Daypart>();
 			Stations = new List<Station>();
 
 			ViewSettings = new ScheduleBuilderViewSettings();
-			DigitalProducts = new List<DigitalProduct>();
-			DigitalProductSummary = new DigitalProductSummary();
-
-			ProductSummary = new BaseSummarySettings();
-			CustomSummary = new MediaFullSummarySettings(this);
-
-			ProgramStrategy = new ProgramStrategy(this);
-
-			_scheduleFile = new FileInfo(fileName);
-			if (!File.Exists(fileName))
-			{
-				var xml = new StringBuilder();
-				xml.AppendLine(@"<Schedule>");
-				xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
-				xml.AppendLine(@"</Schedule>");
-				using (var sw = new StreamWriter(_scheduleFile.FullName, false))
-				{
-					sw.Write(xml);
-					sw.Flush();
-				}
-				_scheduleFile = new FileInfo(fileName);
-			}
-			else
-				Load();
-			LoadCalendars();
-			LoadQuarters();
-
-			Dayparts.AddRange(MediaMetaData.Instance.ListManager.Dayparts.Where(x => !Dayparts.Select(y => y.Name).Contains(x.Name)));
-			Stations.AddRange(MediaMetaData.Instance.ListManager.Stations.Where(x => !Stations.Select(y => y.Name).Contains(x.Name)));
 		}
 
-		private FileInfo _scheduleFile { get; set; }
+		public abstract string Name { get; set; }
 		public bool IsNew { get; set; }
 		public string BusinessName { get; set; }
 		public string DecisionMaker { get; set; }
@@ -249,9 +215,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		public bool MondayBased { get; private set; }
 
 		public SpotType SelectedSpotType { get; set; }
-		public WeeklySection WeeklySchedule { get; set; }
-		public MonthlySection MonthlySchedule { get; set; }
-
+		public ScheduleSection Section { get; set; }
 		public List<Daypart> Dayparts { get; private set; }
 		public List<Station> Stations { get; private set; }
 
@@ -261,28 +225,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			get { return ViewSettings; }
 		}
 
-		public List<DigitalProduct> DigitalProducts { get; private set; }
-		public DigitalProductSummary DigitalProductSummary { get; private set; }
-
 		public List<Quarter> Quarters { get; private set; }
-		public BroadcastCalendar BroadcastCalendar { get; set; }
-		public CustomCalendar CustomCalendar { get; set; }
-
-		public BaseSummarySettings ProductSummary { get; private set; }
-		public CustomSummarySettings CustomSummary { get; private set; }
-
-		public ProgramStrategy ProgramStrategy { get; private set; }
-
-		public string Name
-		{
-			get { return _scheduleFile.Name.Replace(_scheduleFile.Extension, ""); }
-			set { _scheduleFile = new FileInfo(Path.Combine(_scheduleFile.Directory.FullName, value + ".xml")); }
-		}
-
-		public FileInfo ScheduleFile
-		{
-			get { return _scheduleFile; }
-		}
 
 		public DateTime? UserFlightDateStart
 		{
@@ -369,108 +312,89 @@ namespace NewBizWiz.Core.MediaSchedule
 			}
 		}
 
-		public ScheduleSection SelectedSection
+		public string DisplayedSpotType
 		{
-			get
+			get { return String.Format("{0}ly", SelectedSpotType); }
+			set
 			{
-				switch (SelectedSpotType)
-				{
-					case SpotType.Week:
-						return WeeklySchedule;
-					case SpotType.Month:
-						return MonthlySchedule;
-					default:
-						return null;
-				}
+				SpotType temp;
+				if (!String.IsNullOrEmpty(value) && Enum.TryParse(value.Replace("ly", ""), true, out temp))
+					SelectedSpotType = temp;
+				else
+					SelectedSpotType = SpotType.Week;
 			}
 		}
 
-		public IEnumerable<ISummaryProduct> ProductSummaries
+		public virtual void Deserialize(XmlNode rootNode)
 		{
-			get
-			{
-				var result = new List<ISummaryProduct>();
-				result.AddRange(WeeklySchedule.Programs);
-				result.AddRange(MonthlySchedule.Programs);
-				result.AddRange(DigitalProducts);
-				return result;
-			}
-		}
-
-		private void Load()
-		{
-			if (!_scheduleFile.Exists) return;
-			var document = new XmlDocument();
-			document.Load(_scheduleFile.FullName);
-
-			var node = document.SelectSingleNode(@"/Schedule/BusinessName");
+			var node = rootNode.SelectSingleNode(@"BusinessName");
 			if (node != null)
 				BusinessName = node.InnerText;
 
-			node = document.SelectSingleNode(@"/Schedule/DecisionMaker");
+			node = rootNode.SelectSingleNode(@"DecisionMaker");
 			if (node != null)
 				DecisionMaker = node.InnerText;
 
-			node = document.SelectSingleNode(@"/Schedule/ClientType");
+			node = rootNode.SelectSingleNode(@"ClientType");
 			if (node != null)
 				ClientType = node.InnerText;
 
-			node = document.SelectSingleNode(@"/Schedule/AccountNumber");
+			node = rootNode.SelectSingleNode(@"AccountNumber");
 			if (node != null)
 				AccountNumber = node.InnerText;
 
-			node = document.SelectSingleNode(@"/Schedule/Status");
+			node = rootNode.SelectSingleNode(@"Status");
 			if (node != null)
 				Status = node.InnerText;
 
-			node = document.SelectSingleNode(@"/Schedule/PresentationDate");
+			node = rootNode.SelectSingleNode(@"PresentationDate");
 			DateTime tempDateTime;
 			if (node != null)
 				if (DateTime.TryParse(node.InnerText, out tempDateTime))
 					PresentationDate = tempDateTime;
 
-			node = document.SelectSingleNode(@"/Schedule/FlightDateStart");
+			node = rootNode.SelectSingleNode(@"FlightDateStart");
 			if (node != null)
 				if (DateTime.TryParse(node.InnerText, out tempDateTime))
 					FlightDateStart = tempDateTime;
 
-			node = document.SelectSingleNode(@"/Schedule/FlightDateEnd");
+			node = rootNode.SelectSingleNode(@"FlightDateEnd");
 			if (node != null)
 				if (DateTime.TryParse(node.InnerText, out tempDateTime))
 					FlightDateEnd = tempDateTime;
 
-			node = document.SelectSingleNode(@"/Schedule/UserFlightDateStart");
+			node = rootNode.SelectSingleNode(@"UserFlightDateStart");
 			if (node != null)
 				if (DateTime.TryParse(node.InnerText, out tempDateTime))
 					_userFlightDateStart = tempDateTime;
 			if (!_userFlightDateStart.HasValue)
 				_userFlightDateEnd = FlightDateStart;
 
-			node = document.SelectSingleNode(@"/Schedule/UserFlightDateEnd");
+			node = rootNode.SelectSingleNode(@"UserFlightDateEnd");
 			if (node != null)
 				if (DateTime.TryParse(node.InnerText, out tempDateTime))
 					_userFlightDateEnd = tempDateTime;
 			if (!_userFlightDateEnd.HasValue)
 				_userFlightDateEnd = FlightDateEnd;
 
-			node = document.SelectSingleNode(@"/Schedule/UseDemo");
+			node = rootNode.SelectSingleNode(@"UseDemo");
 			bool tempBool;
 			if (node != null)
 				if (bool.TryParse(node.InnerText, out tempBool))
 					UseDemo = tempBool;
 
-			node = document.SelectSingleNode(@"/Schedule/ImportDemo");
+			node = rootNode.SelectSingleNode(@"ImportDemo");
 			if (node != null)
 				if (bool.TryParse(node.InnerText, out tempBool))
 					ImportDemo = tempBool;
 
-			node = document.SelectSingleNode(@"/Schedule/DemoType");
+			node = rootNode.SelectSingleNode(@"DemoType");
 			int tempInt;
 			if (node != null)
 				if (int.TryParse(node.InnerText, out tempInt))
 					DemoType = (DemoType)tempInt;
 
-			node = document.SelectSingleNode(@"/Schedule/MondayBased");
+			node = rootNode.SelectSingleNode(@"MondayBased");
 			if (node != null)
 			{
 				bool temp;
@@ -478,28 +402,31 @@ namespace NewBizWiz.Core.MediaSchedule
 					MondayBased = temp;
 			}
 
-			node = document.SelectSingleNode(@"/Schedule/Demo");
+			node = rootNode.SelectSingleNode(@"Demo");
 			if (node != null)
 				Demo = node.InnerText;
 
-			node = document.SelectSingleNode(@"/Schedule/Source");
+			node = rootNode.SelectSingleNode(@"Source");
 			if (node != null)
 				Source = node.InnerText;
 
-			node = document.SelectSingleNode(@"/Schedule/SelectedSpotType");
+			node = rootNode.SelectSingleNode(@"SelectedSpotType");
 			if (node != null)
 				if (int.TryParse(node.InnerText, out tempInt))
 					SelectedSpotType = (SpotType)tempInt;
+			ResetSection();
 
-			node = document.SelectSingleNode(@"/Schedule/WeeklySection");
+			node = rootNode.SelectSingleNode(@"WeeklySection");
+			if (node != null && SelectedSpotType == SpotType.Week)
+				Section.Deserialize(node);
+			node = rootNode.SelectSingleNode(@"MonthlySection");
+			if (node != null && SelectedSpotType == SpotType.Month)
+				Section.Deserialize(node);
+			node = rootNode.SelectSingleNode(@"Section");
 			if (node != null)
-				WeeklySchedule.Deserialize(node);
+				Section.Deserialize(node);
 
-			node = document.SelectSingleNode(@"/Schedule/MonthlySection");
-			if (node != null)
-				MonthlySchedule.Deserialize(node);
-
-			node = document.SelectSingleNode(@"/Schedule/Dayparts");
+			node = rootNode.SelectSingleNode(@"Dayparts");
 			if (node != null)
 			{
 				Dayparts.Clear();
@@ -511,7 +438,7 @@ namespace NewBizWiz.Core.MediaSchedule
 				}
 			}
 
-			node = document.SelectSingleNode(@"/Schedule/Stations");
+			node = rootNode.SelectSingleNode(@"Stations");
 			if (node != null)
 			{
 				Stations.Clear();
@@ -523,13 +450,182 @@ namespace NewBizWiz.Core.MediaSchedule
 				}
 			}
 
-			node = document.SelectSingleNode(@"/Schedule/ViewSettings");
+			node = rootNode.SelectSingleNode(@"ViewSettings");
 			if (node != null)
 			{
 				ViewSettings.Deserialize(node);
 			}
+		}
 
-			node = document.SelectSingleNode(@"/Schedule/DigitalProducts");
+		public virtual StringBuilder Serialize()
+		{
+			var result = new StringBuilder();
+			result.AppendLine(@"<BusinessName>" + BusinessName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</BusinessName>");
+			if (!Common.ListManager.Instance.Advertisers.Contains(BusinessName))
+			{
+				Common.ListManager.Instance.Advertisers.Add(BusinessName);
+				Common.ListManager.Instance.SaveAdvertisers();
+			}
+			result.AppendLine(@"<DecisionMaker>" + DecisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
+			if (!Common.ListManager.Instance.DecisionMakers.Contains(DecisionMaker))
+			{
+				Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
+				Common.ListManager.Instance.SaveDecisionMakers();
+			}
+			result.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
+			result.AppendLine(@"<ClientType>" + ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
+			result.AppendLine(@"<AccountNumber>" + AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");
+			if (PresentationDate.HasValue)
+				result.AppendLine(@"<PresentationDate>" + PresentationDate.Value + @"</PresentationDate>");
+			if (FlightDateStart.HasValue)
+				result.AppendLine(@"<FlightDateStart>" + FlightDateStart.Value + @"</FlightDateStart>");
+			if (FlightDateEnd.HasValue)
+				result.AppendLine(@"<FlightDateEnd>" + FlightDateEnd.Value + @"</FlightDateEnd>");
+			if (_userFlightDateStart.HasValue)
+				result.AppendLine(@"<UserFlightDateStart>" + _userFlightDateStart.Value + @"</UserFlightDateStart>");
+			if (_userFlightDateEnd.HasValue)
+				result.AppendLine(@"<UserFlightDateEnd>" + _userFlightDateEnd.Value + @"</UserFlightDateEnd>");
+			result.AppendLine(@"<UseDemo>" + UseDemo + @"</UseDemo>");
+			result.AppendLine(@"<ImportDemo>" + ImportDemo + @"</ImportDemo>");
+			result.AppendLine(@"<DemoType>" + (int)DemoType + @"</DemoType>");
+			result.AppendLine(@"<MondayBased>" + MondayBased + @"</MondayBased>");
+			if (!String.IsNullOrEmpty(Demo))
+				result.AppendLine(@"<Demo>" + Demo.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Demo>");
+			if (!String.IsNullOrEmpty(Source))
+				result.AppendLine(@"<Source>" + Source.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Source>");
+			result.AppendLine(@"<SelectedSpotType>" + (Int32)SelectedSpotType + @"</SelectedSpotType>");
+			result.AppendLine(@"<Section>" + Section.Serialize() + @"</Section>");
+
+			result.AppendLine(@"<Dayparts>");
+			foreach (var daypart in Dayparts)
+				result.AppendLine(daypart.Serialize());
+			result.AppendLine(@"</Dayparts>");
+
+			result.AppendLine(@"<Stations>");
+			foreach (var station in Stations)
+				result.AppendLine(station.Serialize());
+			result.AppendLine(@"</Stations>");
+
+			result.AppendLine(@"<ViewSettings>" + ViewSettings.Serialize() + @"</ViewSettings>");
+
+			return result;
+		}
+
+		public virtual void ResetCalendarType(bool isMondayBased)
+		{
+			MondayBased = isMondayBased;
+			LoadQuarters();
+		}
+
+		public void ResetSection()
+		{
+			Section = ScheduleSection.GetSectionByType(this);
+		}
+
+		protected void LoadQuarters()
+		{
+			Quarters = new List<Quarter>();
+			if (!FlightDateStart.HasValue || !FlightDateEnd.HasValue) return;
+			var targetMonths = (MondayBased ? MediaMetaData.Instance.ListManager.MonthTemplatesMondayBased : MediaMetaData.Instance.ListManager.MonthTemplatesSundayBased).Where(m => (m.StartDate <= FlightDateStart && m.EndDate >= FlightDateStart) || (m.StartDate <= FlightDateEnd && m.EndDate >= FlightDateEnd) || (m.StartDate >= FlightDateStart && m.EndDate <= FlightDateEnd)).ToList();
+			if (!targetMonths.Any()) return;
+			var startDate = FlightDateStart.Value;
+			if (startDate.Month >= 1 && startDate.Month <= 3)
+				startDate = new DateTime(startDate.Year, 1, 1);
+			else if (startDate.Month >= 4 && startDate.Month <= 6)
+				startDate = new DateTime(startDate.Year, 4, 1);
+			else if (startDate.Month >= 7 && startDate.Month <= 9)
+				startDate = new DateTime(startDate.Year, 7, 1);
+			else if (startDate.Month >= 10 && startDate.Month <= 12)
+				startDate = new DateTime(startDate.Year, 10, 1);
+			while (startDate <= FlightDateEnd.Value)
+			{
+				var endDate = startDate.AddMonths(3);
+				var quarter = new Quarter { DateAnchor = startDate };
+				var quarterMonths = targetMonths.Where(m => (m.StartDate.Value.Day < 15 && m.StartDate.Value >= startDate && m.StartDate <= endDate) ||
+					(m.StartDate.Value.Day > 15 && m.EndDate >= startDate && m.EndDate <= endDate)
+					).OrderBy(m => m.Month).ToList();
+				startDate = endDate;
+				if (!quarterMonths.Any()) continue;
+				quarter.DateStart = quarterMonths.First().StartDate.Value;
+				quarter.DateEnd = quarterMonths.Last().EndDate.Value;
+				Quarters.Add(quarter);
+			}
+		}
+	}
+
+	public class RegularSchedule : Schedule, IDigitalSchedule, ISummarySchedule
+	{
+		private FileInfo _scheduleFile { get; set; }
+		public List<DigitalProduct> DigitalProducts { get; private set; }
+		public DigitalProductSummary DigitalProductSummary { get; private set; }
+
+		public BroadcastCalendar BroadcastCalendar { get; set; }
+		public CustomCalendar CustomCalendar { get; set; }
+
+		public BaseSummarySettings ProductSummary { get; private set; }
+		public CustomSummarySettings CustomSummary { get; private set; }
+
+		public ProgramStrategy ProgramStrategy { get; private set; }
+
+		public override string Name
+		{
+			get { return _scheduleFile.Name.Replace(_scheduleFile.Extension, ""); }
+			set { _scheduleFile = new FileInfo(Path.Combine(_scheduleFile.Directory.FullName, value + ".xml")); }
+		}
+
+		public FileInfo ScheduleFile
+		{
+			get { return _scheduleFile; }
+		}
+
+		public IEnumerable<ISummaryProduct> ProductSummaries
+		{
+			get
+			{
+				var result = new List<ISummaryProduct>();
+				result.AddRange(Section.Programs);
+				result.AddRange(DigitalProducts);
+				return result;
+			}
+		}
+
+		public RegularSchedule(string fileName)
+		{
+			DigitalProducts = new List<DigitalProduct>();
+			DigitalProductSummary = new DigitalProductSummary();
+
+			ProductSummary = new BaseSummarySettings();
+			CustomSummary = new MediaFullSummarySettings(this);
+
+			ProgramStrategy = new ProgramStrategy(this);
+
+			_scheduleFile = new FileInfo(fileName);
+			if (!File.Exists(fileName))
+			{
+				var xml = new StringBuilder();
+				xml.AppendLine(@"<Schedule>");
+				xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
+				xml.AppendLine(@"</Schedule>");
+				using (var sw = new StreamWriter(_scheduleFile.FullName, false))
+				{
+					sw.Write(xml);
+					sw.Flush();
+				}
+				_scheduleFile = new FileInfo(fileName);
+			}
+			else
+				Load();
+			LoadCalendars();
+			LoadQuarters();
+
+			Dayparts.AddRange(MediaMetaData.Instance.ListManager.Dayparts.Where(x => !Dayparts.Select(y => y.Name).Contains(x.Name)));
+			Stations.AddRange(MediaMetaData.Instance.ListManager.Stations.Where(x => !Stations.Select(y => y.Name).Contains(x.Name)));
+		}
+
+		public override void Deserialize(XmlNode rootNode)
+		{
+			base.Deserialize(rootNode);
+			var node = rootNode.SelectSingleNode(@"DigitalProducts");
 			if (node != null)
 			{
 				foreach (XmlNode productNode in node.ChildNodes)
@@ -540,114 +636,73 @@ namespace NewBizWiz.Core.MediaSchedule
 				}
 			}
 
-			node = document.SelectSingleNode(@"/Schedule/DigitalProductSummary");
+			node = rootNode.SelectSingleNode(@"DigitalProductSummary");
 			if (node != null)
 			{
 				DigitalProductSummary.Deserialize(node);
 			}
 
-			node = document.SelectSingleNode(@"/Schedule/ProductSummary");
+			node = rootNode.SelectSingleNode(@"ProductSummary");
 			if (node != null)
 			{
 				ProductSummary.Deserialize(node);
 			}
 
-			node = document.SelectSingleNode(@"/Schedule/CustomSummary");
+			node = rootNode.SelectSingleNode(@"CustomSummary");
 			if (node != null)
 			{
 				CustomSummary.Deserialize(node);
 			}
 
-			node = document.SelectSingleNode(@"/Schedule/ProgramStrategy");
+			node = rootNode.SelectSingleNode(@"ProgramStrategy");
 			if (node != null)
 			{
 				ProgramStrategy.Deserialize(node);
 			}
 		}
 
-		public void Save()
+		public override StringBuilder Serialize()
 		{
-			var xml = new StringBuilder();
-
-			xml.AppendLine(@"<Schedule>");
-			xml.AppendLine(@"<BusinessName>" + BusinessName.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</BusinessName>");
-			if (!Common.ListManager.Instance.Advertisers.Contains(BusinessName))
-			{
-				Common.ListManager.Instance.Advertisers.Add(BusinessName);
-				Common.ListManager.Instance.SaveAdvertisers();
-			}
-			xml.AppendLine(@"<DecisionMaker>" + DecisionMaker.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</DecisionMaker>");
-			if (!Common.ListManager.Instance.DecisionMakers.Contains(DecisionMaker))
-			{
-				Common.ListManager.Instance.DecisionMakers.Add(DecisionMaker);
-				Common.ListManager.Instance.SaveDecisionMakers();
-			}
-			xml.AppendLine(@"<Status>" + (Status != null ? Status.Replace(@"&", "&#38;").Replace("\"", "&quot;") : string.Empty) + @"</Status>");
-			xml.AppendLine(@"<ClientType>" + ClientType.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</ClientType>");
-			xml.AppendLine(@"<AccountNumber>" + AccountNumber.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</AccountNumber>");
-			if (PresentationDate.HasValue)
-				xml.AppendLine(@"<PresentationDate>" + PresentationDate.Value + @"</PresentationDate>");
-			if (FlightDateStart.HasValue)
-				xml.AppendLine(@"<FlightDateStart>" + FlightDateStart.Value + @"</FlightDateStart>");
-			if (FlightDateEnd.HasValue)
-				xml.AppendLine(@"<FlightDateEnd>" + FlightDateEnd.Value + @"</FlightDateEnd>");
-			if (_userFlightDateStart.HasValue)
-				xml.AppendLine(@"<UserFlightDateStart>" + _userFlightDateStart.Value + @"</UserFlightDateStart>");
-			if (_userFlightDateEnd.HasValue)
-				xml.AppendLine(@"<UserFlightDateEnd>" + _userFlightDateEnd.Value + @"</UserFlightDateEnd>");
-			xml.AppendLine(@"<UseDemo>" + UseDemo + @"</UseDemo>");
-			xml.AppendLine(@"<ImportDemo>" + ImportDemo + @"</ImportDemo>");
-			xml.AppendLine(@"<DemoType>" + (int)DemoType + @"</DemoType>");
-			xml.AppendLine(@"<MondayBased>" + MondayBased + @"</MondayBased>");
-			if (!String.IsNullOrEmpty(Demo))
-				xml.AppendLine(@"<Demo>" + Demo.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Demo>");
-			if (!String.IsNullOrEmpty(Source))
-				xml.AppendLine(@"<Source>" + Source.Replace(@"&", "&#38;").Replace("\"", "&quot;") + @"</Source>");
-			xml.AppendLine(@"<SelectedSpotType>" + (Int32)SelectedSpotType + @"</SelectedSpotType>");
-			xml.AppendLine(@"<WeeklySection>" + WeeklySchedule.Serialize() + @"</WeeklySection>");
-			xml.AppendLine(@"<MonthlySection>" + MonthlySchedule.Serialize() + @"</MonthlySection>");
-
-			xml.AppendLine(@"<Dayparts>");
-			foreach (var daypart in Dayparts)
-				xml.AppendLine(daypart.Serialize());
-			xml.AppendLine(@"</Dayparts>");
-
-			xml.AppendLine(@"<Stations>");
-			foreach (var station in Stations)
-				xml.AppendLine(station.Serialize());
-			xml.AppendLine(@"</Stations>");
-
-			xml.AppendLine(@"<ViewSettings>" + ViewSettings.Serialize() + @"</ViewSettings>");
-
-			xml.AppendLine(@"<DigitalProducts>");
+			var result = base.Serialize();
+			result.AppendLine(@"<DigitalProducts>");
 			foreach (var digitalProduct in DigitalProducts)
-				xml.AppendLine(digitalProduct.Serialize());
-			xml.AppendLine(@"</DigitalProducts>");
+				result.AppendLine(digitalProduct.Serialize());
+			result.AppendLine(@"</DigitalProducts>");
 
-			xml.AppendLine(@"<BroadcastCalendar>" + BroadcastCalendar.Serialize() + @"</BroadcastCalendar>");
-			xml.AppendLine(@"<CustomCalendar>" + CustomCalendar.Serialize() + @"</CustomCalendar>");
-			xml.AppendLine(@"<DigitalProductSummary>" + DigitalProductSummary.Serialize() + @"</DigitalProductSummary>");
-			xml.AppendLine(@"<ProductSummary>" + ProductSummary.Serialize() + @"</ProductSummary>");
-			xml.AppendLine(@"<CustomSummary>" + CustomSummary.Serialize() + @"</CustomSummary>");
-			xml.AppendLine(@"<ProgramStrategy>" + ProgramStrategy.Serialize() + @"</ProgramStrategy>");
-			xml.AppendLine(@"</Schedule>");
-
-			using (var sw = new StreamWriter(_scheduleFile.FullName, false))
-			{
-				sw.Write(xml);
-				sw.Flush();
-			}
+			result.AppendLine(@"<BroadcastCalendar>" + BroadcastCalendar.Serialize() + @"</BroadcastCalendar>");
+			result.AppendLine(@"<CustomCalendar>" + CustomCalendar.Serialize() + @"</CustomCalendar>");
+			result.AppendLine(@"<DigitalProductSummary>" + DigitalProductSummary.Serialize() + @"</DigitalProductSummary>");
+			result.AppendLine(@"<ProductSummary>" + ProductSummary.Serialize() + @"</ProductSummary>");
+			result.AppendLine(@"<CustomSummary>" + CustomSummary.Serialize() + @"</CustomSummary>");
+			result.AppendLine(@"<ProgramStrategy>" + ProgramStrategy.Serialize() + @"</ProgramStrategy>");
+			return result;
 		}
 
-		public void ResetCalendarType(bool isMondayBased)
+		public override void ResetCalendarType(bool isMondayBased)
 		{
-			MondayBased = isMondayBased;
-			LoadQuarters();
+			base.ResetCalendarType(isMondayBased);
 			BroadcastCalendar.Reset();
 			CustomCalendar.Reset();
 		}
 
-		private void LoadCalendars()
+		private void Load()
+		{
+			if (!_scheduleFile.Exists) return;
+			var document = new XmlDocument();
+			document.Load(_scheduleFile.FullName);
+			Deserialize(document.SelectSingleNode(@"/Schedule"));
+		}
+
+		public void Save()
+		{
+			using (var sw = new StreamWriter(_scheduleFile.FullName, false))
+			{
+				sw.Write(@"<Schedule>{0}</Schedule>", Serialize());
+				sw.Flush();
+			}
+		}
+
+		protected void LoadCalendars()
 		{
 			BroadcastCalendar = new BroadcastCalendar(this);
 			CustomCalendar = new CustomCalendar(this);
@@ -678,36 +733,6 @@ namespace NewBizWiz.Core.MediaSchedule
 				CustomCalendar.UpdateDaysCollection();
 				CustomCalendar.UpdateMonthCollection();
 				CustomCalendar.UpdateNotesCollection();
-			}
-		}
-
-		private void LoadQuarters()
-		{
-			Quarters = new List<Quarter>();
-			if (!FlightDateStart.HasValue || !FlightDateEnd.HasValue) return;
-			var targetMonths = (MondayBased ? MediaMetaData.Instance.ListManager.MonthTemplatesMondayBased : MediaMetaData.Instance.ListManager.MonthTemplatesSundayBased).Where(m => (m.StartDate <= FlightDateStart && m.EndDate >= FlightDateStart) || (m.StartDate <= FlightDateEnd && m.EndDate >= FlightDateEnd) || (m.StartDate >= FlightDateStart && m.EndDate <= FlightDateEnd)).ToList();
-			if (!targetMonths.Any()) return;
-			var startDate = FlightDateStart.Value;
-			if (startDate.Month >= 1 && startDate.Month <= 3)
-				startDate = new DateTime(startDate.Year, 1, 1);
-			else if (startDate.Month >= 4 && startDate.Month <= 6)
-				startDate = new DateTime(startDate.Year, 4, 1);
-			else if (startDate.Month >= 7 && startDate.Month <= 9)
-				startDate = new DateTime(startDate.Year, 7, 1);
-			else if (startDate.Month >= 10 && startDate.Month <= 12)
-				startDate = new DateTime(startDate.Year, 10, 1);
-			while (startDate <= FlightDateEnd.Value)
-			{
-				var endDate = startDate.AddMonths(3);
-				var quarter = new Quarter { DateAnchor = startDate };
-				var quarterMonths = targetMonths.Where(m => (m.StartDate.Value.Day < 15 && m.StartDate.Value >= startDate && m.StartDate <= endDate) ||
-					(m.StartDate.Value.Day > 15 && m.EndDate >= startDate && m.EndDate <= endDate)
-					).OrderBy(m => m.Month).ToList();
-				startDate = endDate;
-				if (!quarterMonths.Any()) continue;
-				quarter.DateStart = quarterMonths.First().StartDate.Value;
-				quarter.DateEnd = quarterMonths.Last().EndDate.Value;
-				Quarters.Add(quarter);
 			}
 		}
 
@@ -788,8 +813,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public void ApplyDigitalLegendForAllViews(DigitalLegend digitalLegend)
 		{
-			WeeklySchedule.DigitalLegend = digitalLegend.Clone();
-			MonthlySchedule.DigitalLegend = digitalLegend.Clone();
+			Section.DigitalLegend = digitalLegend.Clone();
 		}
 	}
 
@@ -856,6 +880,19 @@ namespace NewBizWiz.Core.MediaSchedule
 		public DigitalLegend DigitalLegend { get; set; }
 
 		public event EventHandler<EventArgs> DataChanged;
+
+		public static ScheduleSection GetSectionByType(Schedule parent)
+		{
+			switch (parent.SelectedSpotType)
+			{
+				case SpotType.Week:
+					return new WeeklySection(parent);
+				case SpotType.Month:
+					return new MonthlySection(parent);
+				default:
+					return null;
+			}
+		}
 
 		public string Serialize()
 		{
@@ -1218,8 +1255,17 @@ namespace NewBizWiz.Core.MediaSchedule
 			RebuildProgramIndexes();
 		}
 
+		public void ChangeProgramPosition(int programIndex, int newIndex)
+		{
+			if (programIndex < 0 || programIndex >= Programs.Count) return;
+			var program = Programs[programIndex];
+			program.Index = newIndex + 0.5m;
+			RebuildProgramIndexes();
+		}
+
 		private void RebuildProgramIndexes()
 		{
+			Programs.Sort((x, y) => x.Index.CompareTo(y.Index));
 			for (int i = 0; i < Programs.Count; i++)
 				Programs[i].Index = i + 1;
 		}
@@ -1360,7 +1406,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		public ScheduleSection Parent { get; set; }
 		public Guid UniqueID { get; set; }
-		public int Index { get; set; }
+		public decimal Index { get; set; }
 		public string Station { get; set; }
 		public string Daypart { get; set; }
 		public string Time { get; set; }
@@ -1846,7 +1892,7 @@ namespace NewBizWiz.Core.MediaSchedule
 				switch (_parent.Parent.SpotType)
 				{
 					case SpotType.Week:
-						return String.Format("Week {0}", GetMonthAbbreviation(Date.Month), Name);
+						return String.Format("Week {0}", Name);
 					default:
 						return Name;
 				}
@@ -2059,7 +2105,7 @@ namespace NewBizWiz.Core.MediaSchedule
 		{
 			const string noteSeparator = "   ";
 			var notes = new List<MediaDataNote>();
-			var scheduleSection = _parentSchedule.SelectedSpotType == SpotType.Month ? (ScheduleSection)_parentSchedule.MonthlySchedule : _parentSchedule.WeeklySchedule;
+			var scheduleSection = _parentSchedule.Section;
 			if (Schedule.FlightDateStart.HasValue && Schedule.FlightDateEnd.HasValue)
 			{
 				notes.AddRange(scheduleSection.Programs.SelectMany(p => p.Spots)
@@ -2336,10 +2382,10 @@ namespace NewBizWiz.Core.MediaSchedule
 
 	public class MediaFullSummarySettings : CustomSummarySettings
 	{
-		private readonly Schedule _parent;
+		private readonly RegularSchedule _parent;
 		public bool IsDefaultSate { get; set; }
 
-		public MediaFullSummarySettings(Schedule parent)
+		public MediaFullSummarySettings(RegularSchedule parent)
 		{
 			_parent = parent;
 			IsDefaultSate = true;
@@ -2380,11 +2426,11 @@ namespace NewBizWiz.Core.MediaSchedule
 				mediaSummaryItem.ShowValue = true;
 				mediaSummaryItem.Value = String.Format("Local {0} Campaign", MediaMetaData.Instance.DataTypeString);
 				var description = new List<string>();
-				description.Add(String.Format("Stations: {0}", String.Join(", ", _parent.SelectedSection.Programs.Select(p => p.Station).Distinct())));
-				description.Add(String.Format("Dayparts: {0}", String.Join(", ", _parent.SelectedSection.Programs.Select(p => p.Daypart).Distinct())));
-				description.Add(String.Format("Total Spots: {0}x", _parent.SelectedSection.Programs.Sum(p => p.Spots.Sum(sp => sp.Count))));
-				if (_parent.SelectedSection.Programs.Any(p => p.Rate.HasValue))
-					description.Add(String.Format("Avg Rate: {0}", _parent.SelectedSection.Programs.Where(p => p.Rate.HasValue).Average(p => p.Rate.Value).ToString("$#,##0")));
+				description.Add(String.Format("Stations: {0}", String.Join(", ", _parent.Section.Programs.Select(p => p.Station).Distinct())));
+				description.Add(String.Format("Dayparts: {0}", String.Join(", ", _parent.Section.Programs.Select(p => p.Daypart).Distinct())));
+				description.Add(String.Format("Total Spots: {0}x", _parent.Section.Programs.Sum(p => p.Spots.Sum(sp => sp.Count))));
+				if (_parent.Section.Programs.Any(p => p.Rate.HasValue))
+					description.Add(String.Format("Avg Rate: {0}", _parent.Section.Programs.Where(p => p.Rate.HasValue).Average(p => p.Rate.Value).ToString("$#,##0")));
 				mediaSummaryItem.Description = String.Join("  ", description);
 				mediaSummaryItem.ShowDescription = true;
 				mediaSummaryItem.ShowMonthly = false;

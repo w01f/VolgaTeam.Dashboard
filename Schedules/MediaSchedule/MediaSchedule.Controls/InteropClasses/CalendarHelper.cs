@@ -13,13 +13,16 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 {
-	public partial class MediaSchedulePowerPointHelper
+	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
 	{
+		protected abstract string CalendarTemplatePath { get; }
+		protected abstract string CalendarBackgroundPath { get; }
+
 		public void AppendCalendar(CalendarOutputData[] monthOutputDatas, Presentation destinationPresentation = null)
 		{
 			foreach (var monthOutputData in monthOutputDatas)
 			{
-				var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.BroadcastCalendarTemlatesFolderPath,
+				var presentationTemplatePath = Path.Combine(CalendarTemplatePath,
 						String.Format(OutputManager.CalendarSlideTemplate,
 							monthOutputData.ShowLogo ? "logo" : "no_logo",
 							monthOutputData.DayOutput.Length,
@@ -297,7 +300,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 							}
 						}
 
-						var backgroundFilePath = Path.Combine(BusinessWrapper.Instance.OutputManager.CalendarBackgroundFolderPath, String.Format(OutputManager.BackgroundFilePath, monthOutputData.SlideColor, monthOutputData.Parent.Date.ToString("yyyy")), monthOutputData.BackgroundFileName);
+						var backgroundFilePath = Path.Combine(CalendarBackgroundPath, String.Format(OutputManager.BackgroundFilePath, monthOutputData.SlideColor, monthOutputData.Parent.Date.ToString("yyyy")), monthOutputData.BackgroundFileName);
 						if (!String.IsNullOrEmpty(backgroundFilePath) && File.Exists(backgroundFilePath))
 							presentation.SlideMaster.Shapes.AddPicture(backgroundFilePath, MsoTriState.msoFalse, MsoTriState.msoCTrue, 0, 0, presentation.SlideMaster.Width, presentation.SlideMaster.Height);
 						presentation.SlideMaster.Design.Name = GetSlideMasterName(monthOutputData);

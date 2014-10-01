@@ -7,6 +7,7 @@ using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Calendar.Controls.PresentationClasses;
+using NewBizWiz.Calendar.Controls.Properties;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.Gallery;
 using NewBizWiz.CommonGUI.RateCard;
@@ -232,7 +233,7 @@ namespace NewBizWiz.Calendar.Controls
 
 		public void ShowFloater(Action afterShow)
 		{
-			var args = new FloaterRequestedEventArgs { AfterShow = afterShow };
+			var args = new FloaterRequestedEventArgs { AfterShow = afterShow, Logo = Resources.RibbonLogo };
 			if (FloaterRequested != null)
 				FloaterRequested(null, args);
 		}

@@ -11,11 +11,13 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 {
-	public partial class MediaSchedulePowerPointHelper
+	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
 	{
+		protected abstract string StrategyTemplatePath { get; }
+
 		public void AppendStrategy(ProgramStrategyControl strategy, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(BusinessWrapper.Instance.OutputManager.StrategyTemplatesFolderPath)) return;
+			if (!Directory.Exists(StrategyTemplatePath)) return;
 			try
 			{
 				var thread = new Thread(delegate()
@@ -24,7 +26,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 					var slidesCount = strategy.OutputReplacementsLists.Count;
 					for (var k = 0; k < slidesCount; k++)
 					{
-						var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.StrategyTemplatesFolderPath, String.Format(OutputManager.StrategyTemplateFileName, strategy.ItemsPerSlide));
+						var presentationTemplatePath = Path.Combine(StrategyTemplatePath, String.Format(OutputManager.StrategyTemplateFileName, strategy.ItemsPerSlide));
 						if (!File.Exists(presentationTemplatePath)) continue;
 						var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						foreach (Slide slide in presentation.Slides)

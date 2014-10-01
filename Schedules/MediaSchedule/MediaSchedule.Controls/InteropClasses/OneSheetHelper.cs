@@ -14,11 +14,13 @@ using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 {
-	public partial class MediaSchedulePowerPointHelper
+	public partial class MediaSchedulePowerPointHelper<T> where T : class,new()
 	{
+		protected abstract string OneSheetTemplatePath { get; }
+
 		public void AppendOneSheetTableBased(IEnumerable<OutputScheduleGridBased> pages, Theme selectedTheme, bool pasteToSlideMaster, Presentation destinationPresentation = null)
 		{
-			if (!Directory.Exists(BusinessWrapper.Instance.OutputManager.OneSheetTableBasedTemplatesFolderPath)) return;
+			if (!Directory.Exists(OneSheetTemplatePath)) return;
 			try
 			{
 				var thread = new Thread(delegate()
@@ -27,7 +29,7 @@ namespace NewBizWiz.MediaSchedule.Controls.InteropClasses
 					foreach (var page in pages)
 					{
 						var copyOfReplacementList = new Dictionary<string, string>(page.ReplacementsList);
-						var presentationTemplatePath = Path.Combine(BusinessWrapper.Instance.OutputManager.OneSheetTableBasedTemplatesFolderPath, string.Format(OutputManager.OneSheetTableBasedTemplateFileName, page.Color, page.ProgramsPerSlide, page.SpotsPerSlide));
+						var presentationTemplatePath = Path.Combine(OneSheetTemplatePath, string.Format(OutputManager.OneSheetTableBasedTemplateFileName, page.Color, page.ProgramsPerSlide, page.SpotsPerSlide));
 						if (!File.Exists(presentationTemplatePath)) return;
 						var presentation = _powerPointObject.Presentations.Open(presentationTemplatePath, WithWindow: MsoTriState.msoFalse);
 						var tagedSlide = presentation.Slides.Count > 0 ? presentation.Slides[1] : null;

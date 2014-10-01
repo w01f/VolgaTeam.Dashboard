@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using NewBizWiz.AdSchedule.Controls.InteropClasses;
+using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.Core.Common;
@@ -15,7 +16,6 @@ namespace NewBizWiz.AdSchedule.Single
 	{
 		private static readonly AppManager _instance = new AppManager();
 		private readonly FloaterManager _floater = new FloaterManager();
-		public NBWLink AppConfig { get; private set; }
 
 		private AppManager() { }
 
@@ -31,7 +31,6 @@ namespace NewBizWiz.AdSchedule.Single
 			Controls.BusinessClasses.BusinessWrapper.Instance.OutputManager.TemplatesManager.LoadCalendarTemplates();
 			AdSchedulePowerPointHelper.Instance.SetPresentationSettings();
 			OnlineSchedulePowerPointHelper.Instance.SetPresentationSettings();
-			AppConfig = NBWLink.CreateLink(new DirectoryInfo(Application.StartupPath));
 			Application.Run(FormMain.Instance);
 		}
 
@@ -42,7 +41,7 @@ namespace NewBizWiz.AdSchedule.Single
 
 		public void ActivateMainForm()
 		{
-			Process[] processList = Process.GetProcesses();
+			var processList = Process.GetProcesses();
 			foreach (Process process in processList.Where(x => x.ProcessName.ToLower().Contains("adseller")))
 			{
 				if (process.MainWindowHandle.ToInt32() != 0)
@@ -53,11 +52,10 @@ namespace NewBizWiz.AdSchedule.Single
 			}
 		}
 
-		public void ShowFloater(Form sender, Action afterShow)
+		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)
 		{
-			var defaultText = !String.IsNullOrEmpty(AppConfig.Title) ? AppConfig.Title : "SellerPoint Media Schedules"; 
 			var afterBack = new Action(ActivateMainForm);
-			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, AppConfig.Image, afterShow, null, afterBack);
+			_floater.ShowFloater(sender ?? FormMain.Instance, e.Logo, e.AfterShow, null, afterBack);
 		}
 	}
 }

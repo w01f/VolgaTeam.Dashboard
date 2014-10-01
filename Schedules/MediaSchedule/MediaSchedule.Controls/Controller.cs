@@ -335,7 +335,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 			Ribbon.Items.AddRange(tabPages.ToArray());
 		}
 
-		public void SaveSchedule(Schedule localSchedule, bool nameChanged, bool quickSave, bool updateDigital, bool calendarTypeChanged, Control sender)
+		public void SaveSchedule(RegularSchedule localSchedule, bool nameChanged, bool quickSave, bool updateDigital, bool calendarTypeChanged, Control sender)
 		{
 			using (var form = new FormProgress())
 			{
@@ -352,17 +352,11 @@ namespace NewBizWiz.MediaSchedule.Controls
 			{
 				var options = new Dictionary<string, object>();
 				options.Add("Advertiser", localSchedule.BusinessName);
-				if (localSchedule.WeeklySchedule.Programs.Any())
+				if (localSchedule.Section.Programs.Any())
 				{
-					options.Add("WeeklyTotalSpots", localSchedule.WeeklySchedule.TotalSpots);
-					options.Add("WeeklyAverageRate", localSchedule.WeeklySchedule.AvgRate);
-					options.Add("WeeklyGrossInvestment", localSchedule.WeeklySchedule.TotalCost);
-				}
-				if (localSchedule.MonthlySchedule.Programs.Any())
-				{
-					options.Add("MonthlyTotalSpots", localSchedule.MonthlySchedule.TotalSpots);
-					options.Add("MonthlyAverageRate", localSchedule.MonthlySchedule.AvgRate);
-					options.Add("MonthlyGrossInvestment", localSchedule.MonthlySchedule.TotalCost);
+					options.Add("TotalSpots", localSchedule.Section.TotalSpots);
+					options.Add("AverageRate", localSchedule.Section.AvgRate);
+					options.Add("GrossInvestment", localSchedule.Section.TotalCost);
 				}
 				BusinessWrapper.Instance.ActivityManager.AddActivity(new ScheduleActivity("Saved As", localSchedule.Name));
 			}
@@ -522,7 +516,7 @@ namespace NewBizWiz.MediaSchedule.Controls
 
 		public void ShowFloater(Action afterShow)
 		{
-			var args = new FloaterRequestedEventArgs { AfterShow = afterShow };
+			var args = new FloaterRequestedEventArgs { AfterShow = afterShow, Logo = MediaMetaData.Instance.DataType == MediaDataType.TV ? Properties.Resources.TVRibbonLogo : Properties.Resources.RadioRibbonLogo };
 			if (FloaterRequested != null)
 				FloaterRequested(null, args);
 		}

@@ -370,14 +370,14 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				form.TopMost = true;
 				form.Show();
 				if (checkEditUseEmptyCover.Checked)
-					AppManager.Instance.ShowFloater(null, () =>
+					AppManager.Instance.ShowFloater(() =>
 					{
 						DashboardPowerPointHelper.Instance.AppendGenericCover(checkEditFirstSlide.Checked);
 						form.Close();
 					});
 
 				else
-					AppManager.Instance.ShowFloater(null, () =>
+					AppManager.Instance.ShowFloater(() =>
 					{
 						DashboardPowerPointHelper.Instance.AppendCover(checkEditFirstSlide.Checked);
 						form.Close();

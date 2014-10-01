@@ -8,12 +8,13 @@ namespace NewBizWiz.CommonGUI.Floater
 {
 	public partial class FormFloater : Form
 	{
-		public FormFloater(int x, int y, Image logo, string text)
+		public FormFloater(int x, int y, Image logo)
 		{
 			InitializeComponent();
 			Top = y;
 			Left = x - Width;
 			buttonXBack.Image = logo;
+			const string text = "adSALESapps.com";
 			labelCaption.Text = String.IsNullOrEmpty(text) ? "GO GET YOUR BIZ!" : text;
 			superTooltip.SetSuperTooltip(buttonXBack, new SuperTooltipInfo("Restore", "", String.Format("Restore {0} Application", String.IsNullOrEmpty(text) ? "adSALESapps Dashboard" : text), null, null, eTooltipColor.Gray));
 		}

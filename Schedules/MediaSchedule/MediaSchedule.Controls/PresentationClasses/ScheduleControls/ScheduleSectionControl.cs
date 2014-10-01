@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -18,15 +17,16 @@ using DevExpress.XtraGrid.Views.BandedGrid;
 using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
-using NewBizWiz.CommonGUI.Preview;
-using NewBizWiz.CommonGUI.Themes;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
-using NewBizWiz.MediaSchedule.Controls.InteropClasses;
+using Application = System.Windows.Forms.Application;
+using Font = System.Drawing.Font;
+using Point = System.Drawing.Point;
 using Schedule = NewBizWiz.Core.MediaSchedule.Schedule;
-using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
@@ -35,6 +35,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 	{
 		private readonly List<BandedGridColumn> _spotColumns = new List<BandedGridColumn>();
 		private bool _allowToSave;
+		protected GridDragDropHelper _dragDropHelper;
 		protected Schedule _localSchedule;
 		protected string _helpKey;
 
@@ -98,34 +99,27 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			spinEditOutputLimitPeriods.Enter += Utilities.Instance.Editor_Enter;
 			spinEditOutputLimitPeriods.MouseDown += Utilities.Instance.Editor_MouseDown;
 			spinEditOutputLimitPeriods.MouseUp += Utilities.Instance.Editor_MouseUp;
-			BusinessWrapper.Instance.ScheduleManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
-			{
-				if (sender != this)
-					LoadSchedule(e.QuickSave);
-			});
-			digitalInfoControl.RequestDefaultInfo += (o, args) =>
-			{
-				args.Editor.EditValue = _localSchedule.GetDigitalInfo(args);
-				args.Editor.Tag = args.Editor.EditValue;
-			};
-			digitalInfoControl.SettingsChanged += (o, args) =>
-			{
-				TrackOptionChanged();
-				SettingsNotSaved = true;
-			};
 			quarterSelectorControl.QuarterSelected += QuarterCheckedChanged;
 		}
-
-		protected virtual string SpotTitle
+		public bool AllowToLeaveControl
 		{
-			get { return null; }
+			get
+			{
+				if (SettingsNotSaved)
+					SaveSchedule();
+				return true;
+			}
+		}
+		protected string SpotTitle
+		{
+			get { return _localSchedule.SelectedSpotType.ToString(); }
 		}
 
 		public bool SettingsNotSaved { get; set; }
 
-		public virtual ScheduleSection ScheduleSection
+		public ScheduleSection ScheduleSection
 		{
-			get { return _localSchedule.WeeklySchedule; }
+			get { return _localSchedule.Section; }
 		}
 		public virtual ButtonItem ThemeButton
 		{
@@ -151,22 +145,29 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			get { return null; }
 		}
-		public virtual SlideType SlideType
-		{
-			get { return SlideType.None; }
-		}
-
-		public bool AllowToLeaveControl
+		public SlideType SlideType
 		{
 			get
 			{
-				if (SettingsNotSaved)
-					SaveSchedule();
-				return true;
+				if (_localSchedule == null) return SlideType.None;
+				switch (_localSchedule.SelectedSpotType)
+				{
+					case SpotType.Week:
+						return MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVWeeklySchedule : SlideType.RadioWeeklySchedule;
+					case SpotType.Month:
+						return MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVMonthlySchedule : SlideType.RadioMonthlySchedule;
+					default:
+						return SlideType.None;
+				}
 			}
 		}
-
 		#region Methods
+		private void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
+		{
+			laScheduleInfo.Focus();
+			advBandedGridViewSchedule.CloseEditor();
+			advBandedGridViewSchedule.FocusedColumn = null;
+		}
 
 		private void UpdateGrid(bool quickLoad)
 		{
@@ -208,6 +209,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				pbNoPrograms.BringToFront();
 			}
 			advBandedGridViewSchedule.EndUpdate();
+			if (_dragDropHelper == null && ScheduleSection.Programs.Count > 0)
+			{
+				_dragDropHelper = new GridDragDropHelper(advBandedGridViewSchedule, true, 25);
+				_dragDropHelper.AfterDrop += gridControlSchedule_AfterDrop;
+			}
 			if (focussedRow >= 0 && focussedRow < advBandedGridViewSchedule.RowCount)
 				advBandedGridViewSchedule.FocusedRowHandle = focussedRow;
 		}
@@ -406,21 +412,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public virtual void LoadSchedule(bool quickLoad)
 		{
 			_allowToSave = false;
-
-			_localSchedule = BusinessWrapper.Instance.ScheduleManager.GetLocalSchedule();
+			_helpKey = SpotTitle.ToLower();
+			laTotalPeriodsTitle.Text = String.Format("Total {0}s:", SpotTitle);
+			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, String.Format("{0}s:", SpotTitle));
 			ScheduleSection.DataChanged += ScheduleSection_DataChanged;
-			FormThemeSelector.Link(ThemeButton, BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType), MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType), (t =>
-			{
-				MediaMetaData.Instance.SettingsManager.SetSelectedTheme(SlideType, t.Name);
-				MediaMetaData.Instance.SettingsManager.SaveSettings();
-				SettingsNotSaved = true;
-			}));
-
-			laScheduleInfo.Text = String.Format("{0}{3}{1} ({2})",
-				_localSchedule.BusinessName,
-				_localSchedule.FlightDates,
-				String.Format("{0} {1}s", ScheduleSection.TotalPeriods, SpotTitle),
-				Environment.NewLine);
 			if (MediaMetaData.Instance.ListManager.FlexFlightDatesAllowed &&
 				(_localSchedule.FlightDateStart != _localSchedule.UserFlightDateStart || _localSchedule.FlightDateEnd != _localSchedule.UserFlightDateEnd))
 				labelControlFlexFlightDatesWarning.Visible = true;
@@ -533,30 +528,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateTotalsValues();
 			UpdateOutputStatus(ScheduleSection.Programs.Any());
 
-			xtraTabPageOptionsDigital.PageEnabled = _localSchedule.DigitalProducts.Any();
-			digitalInfoControl.InitData(ScheduleSection.DigitalLegend);
 
-			xtraScrollableControlColors.Controls.Clear();
-			var selectedColor = BusinessWrapper.Instance.OutputManager.AvailableColors.FirstOrDefault(c => c.Name.Equals(MediaMetaData.Instance.SettingsManager.SelectedColor)) ?? BusinessWrapper.Instance.OutputManager.AvailableColors.FirstOrDefault();
-			var topPosition = 20;
-			foreach (var color in BusinessWrapper.Instance.OutputManager.AvailableColors)
-			{
-				var button = new ButtonX();
-				button.Height = 50;
-				button.Width = pnColors.Width - 40;
-				button.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-				button.TextAlignment = eButtonTextAlignment.Center;
-				button.ColorTable = eButtonColor.OrangeWithBackground;
-				button.Style = eDotNetBarStyle.StyleManagerControlled;
-				button.Image = color.Logo;
-				button.Tag = color;
-				button.Checked = color.Name.Equals(selectedColor.Name);
-				button.Click += buttonColor_Click;
-				button.CheckedChanged += colorButton_CheckedChanged;
-				xtraScrollableControlColors.Controls.Add(button);
-				button.Location = new Point(20, topPosition);
-				topPosition += (button.Height + 20);
-			}
 			checkEditLockToMaster.Checked = MediaMetaData.Instance.SettingsManager.UseSlideMaster;
 
 			_allowToSave = true;
@@ -565,18 +537,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		protected virtual bool SaveSchedule(string scheduleName = "")
 		{
-			var nameChanged = !string.IsNullOrEmpty(scheduleName);
-			if (nameChanged)
-				_localSchedule.Name = scheduleName;
 			advBandedGridViewSchedule.CloseEditor();
-			digitalInfoControl.SaveData();
-
 			var checkedColorItem = xtraScrollableControlColors.Controls.OfType<ButtonX>().FirstOrDefault(b => b.Checked);
 			MediaMetaData.Instance.SettingsManager.SelectedColor = checkedColorItem != null ? ((ColorFolder)checkedColorItem.Tag).Name : String.Empty;
 			MediaMetaData.Instance.SettingsManager.UseSlideMaster = checkEditLockToMaster.Checked;
 			MediaMetaData.Instance.SettingsManager.SaveSettings();
-
-			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, false, false, false, this);
 			SettingsNotSaved = false;
 			return true;
 		}
@@ -595,7 +560,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), ScheduleSection.TotalSpots);
 			options.Add(String.Format("{0}lyAverageRate", SpotTitle), ScheduleSection.AvgRate);
 			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), ScheduleSection.TotalCost);
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("New Program Added", options));
+			AddActivity(new UserActivity("New Program Added", options));
 			SettingsNotSaved = true;
 		}
 
@@ -604,71 +569,17 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			UpdateTotalsValues();
 		}
 
-		private void AssignCloseActiveEditorsonOutSideClick(Control control)
-		{
-			if (control != Controller.Instance.HomeBusinessName
-				&& control != Controller.Instance.HomeClientType
-				&& control != Controller.Instance.HomeDecisionMaker
-				&& control != Controller.Instance.HomeFlightDatesEnd
-				&& control != Controller.Instance.HomeFlightDatesStart
-				&& control != Controller.Instance.HomePresentationDate
-				&& control.GetType() != typeof(CheckEdit)
-				&& control.GetType() != typeof(SpinEdit)
-				&& control.GetType() != typeof(ComboBoxEdit))
-			{
-				control.Click += CloseActiveEditorsonOutSideClick;
-				foreach (Control childControl in control.Controls)
-					AssignCloseActiveEditorsonOutSideClick(childControl);
-			}
-		}
-
-		private void CloseActiveEditorsonOutSideClick(object sender, EventArgs e)
-		{
-			laScheduleInfo.Focus();
-			advBandedGridViewSchedule.CloseEditor();
-			advBandedGridViewSchedule.FocusedColumn = null;
-		}
+		protected virtual void AddActivity(UserActivity activity) { }
 
 		#endregion
 
-		private void ScheduleControl_Load(object sender, EventArgs e)
-		{
-			AssignCloseActiveEditorsonOutSideClick(Controller.Instance.Ribbon);
-			AssignCloseActiveEditorsonOutSideClick(pnBottom);
-			AssignCloseActiveEditorsonOutSideClick(pnTop);
-			AssignCloseActiveEditorsonOutSideClick(xtraTabControlOptions);
-			AssignCloseActiveEditorsonOutSideClick(pnOptionsLine);
-		}
-
 		#region Ribbon Operations Events
 
-		public void Help_Click(object sender, EventArgs e)
-		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink(_helpKey);
-		}
+		public virtual void Help_Click(object sender, EventArgs e) { }
 
-		public void Save_Click(object sender, EventArgs e)
-		{
-			if (SaveSchedule())
-				Utilities.Instance.ShowInformation("Schedule Saved");
-		}
+		public virtual void Save_Click(object sender, EventArgs e) { }
 
-		public void SaveAs_Click(object sender, EventArgs e)
-		{
-			using (var form = new FormNewSchedule())
-			{
-				form.Text = "Save Schedule";
-				form.laLogo.Text = "Please set a new name for your Schedule:";
-				if (form.ShowDialog() != DialogResult.OK) return;
-				if (!string.IsNullOrEmpty(form.ScheduleName))
-				{
-					if (SaveSchedule(form.ScheduleName))
-						Utilities.Instance.ShowInformation("Schedule was saved");
-				}
-				else
-					Utilities.Instance.ShowWarning("Schedule Name can't be empty");
-			}
-		}
+		public virtual void SaveAs_Click(object sender, EventArgs e) { }
 
 		public virtual void AddProgram_Click(object sender, EventArgs e)
 		{
@@ -684,7 +595,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), ScheduleSection.TotalSpots);
 			options.Add(String.Format("{0}lyAverageRate", SpotTitle), ScheduleSection.AvgRate);
 			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), ScheduleSection.TotalCost);
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("New Program Added", options));
+			AddActivity(new UserActivity("New Program Added", options));
 			SettingsNotSaved = true;
 		}
 
@@ -704,11 +615,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		#endregion
 
 		#region Options Events
-		private void TrackOptionChanged()
+		protected void TrackOptionChanged()
 		{
 			var options = new Dictionary<string, object>();
 			options.Add("Advertiser", ScheduleSection.Parent.BusinessName);
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Navbar Schedule Cleanup", options));
+			AddActivity(new UserActivity("Navbar Schedule Cleanup", options));
 		}
 
 		private void button_CheckedChanged(object sender, EventArgs e)
@@ -817,7 +728,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			SettingsNotSaved = true;
 		}
 
-		private void buttonColor_Click(object sender, EventArgs e)
+		protected void buttonColor_Click(object sender, EventArgs e)
 		{
 			var button = sender as ButtonX;
 			if (button.Checked) return;
@@ -826,7 +737,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			button.Checked = true;
 		}
 
-		private void colorButton_CheckedChanged(object sender, EventArgs e)
+		protected void colorButton_CheckedChanged(object sender, EventArgs e)
 		{
 			if (!_allowToSave) return;
 			TrackOptionChanged();
@@ -860,7 +771,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), ScheduleSection.TotalSpots);
 			options.Add(String.Format("{0}lyAverageRate", SpotTitle), ScheduleSection.AvgRate);
 			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), ScheduleSection.TotalCost);
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Program Line Updated", options));
+			AddActivity(new UserActivity("Program Line Updated", options));
 			SettingsNotSaved = true;
 		}
 
@@ -1009,6 +920,31 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				e.Menu.Items.Add(new DXMenuItem("Clone Just this Program", (o, args) => CloneProgram(sourceIndex, false)));
 			}
 		}
+
+		private void gridControlSchedule_AfterDrop(object sender, DragEventArgs e)
+		{
+			var grid = sender as GridControl;
+			var view = grid.MainView as GridView;
+			var hitInfo = view.CalcHitInfo(grid.PointToClient(new Point(e.X, e.Y)));
+			var downHitInfo = e.Data.GetData(typeof(BandedGridHitInfo)) as BandedGridHitInfo;
+			if (downHitInfo == null) return;
+			var sourceRow = downHitInfo.RowHandle;
+			var targetRow = hitInfo.HitTest == GridHitTest.EmptyRow ? view.DataRowCount : hitInfo.RowHandle;
+			ScheduleSection.ChangeProgramPosition(sourceRow, targetRow);
+			UpdateGrid(false);
+			UpdateSpotsStatus();
+			UpdateTotalsValues();
+			UpdateOutputStatus(ScheduleSection.Programs.Any());
+			if (advBandedGridViewSchedule.RowCount > 0)
+				advBandedGridViewSchedule.FocusedRowHandle = targetRow;
+			var options = new Dictionary<string, object>();
+			options.Add("Advertiser", ScheduleSection.Parent.BusinessName);
+			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), ScheduleSection.TotalSpots);
+			options.Add(String.Format("{0}lyAverageRate", SpotTitle), ScheduleSection.AvgRate);
+			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), ScheduleSection.TotalCost);
+			AddActivity(new UserActivity("Change Program Position", options));
+			SettingsNotSaved = true;
+		}
 		#endregion
 
 		#region Output Staff
@@ -1018,26 +954,14 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			get { return ScheduleSection.DigitalLegend.OutputOnlyOnce; }
 		}
 
-		public string DigitalLegend
+		public virtual string DigitalLegend
 		{
-			get
-			{
-				if (!ScheduleSection.DigitalLegend.Enabled) return String.Empty;
-				var requestOptions = ScheduleSection.DigitalLegend.RequestOptions;
-				if (!ScheduleSection.DigitalLegend.AllowEdit)
-				{
-					requestOptions.Separator = " ";
-					return String.Format("Digital Product Info: {0}{1}{2}", _localSchedule.GetDigitalInfo(requestOptions), requestOptions.Separator, ScheduleSection.DigitalLegend.GetAdditionalData(" "));
-				}
-				if (!String.IsNullOrEmpty(ScheduleSection.DigitalLegend.CompiledInfo))
-					return String.Format("Digital Product Info: {0}{1}{2}", ScheduleSection.DigitalLegend.CompiledInfo, requestOptions.Separator, ScheduleSection.DigitalLegend.GetAdditionalData(" "));
-				return String.Empty;
-			}
+			get { return String.Empty; }
 		}
 
-		public Theme SelectedTheme
+		public virtual Theme SelectedTheme
 		{
-			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType))); }
+			get { return null; }
 		}
 
 		private IEnumerable<OutputScheduleGridBased> PrepareOutputTableBased()
@@ -1212,7 +1136,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			return outputPages;
 		}
 
-		private void TrackOutput()
+		protected void TrackOutput()
 		{
 			var options = new Dictionary<string, object>();
 			options.Add("Slide", String.Format("{0}ly Schedule", SpotTitle));
@@ -1220,34 +1144,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), ScheduleSection.TotalSpots);
 			options.Add(String.Format("{0}lyAverageRate", SpotTitle), ScheduleSection.AvgRate);
 			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), ScheduleSection.TotalCost);
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Output", options));
+			AddActivity(new UserActivity("Output", options));
 		}
 
-		public void PowerPoint_Click(object sender, EventArgs e)
-		{
-			SaveSchedule();
-			if (_localSchedule == null) return;
-			if (!ScheduleSection.Programs.Any()) return;
-			using (var formProgress = new FormProgress())
-			{
-				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
-				formProgress.TopMost = true;
-				Controller.Instance.ShowFloater(() =>
-				{
-					formProgress.Show();
-					IEnumerable<OutputScheduleGridBased> outputPages = null;
-					var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutputTableBased(); }));
-					thread.Start();
-					while (thread.IsAlive)
-						Application.DoEvents();
-					TrackOutput();
-					MediaSchedulePowerPointHelper.Instance.AppendOneSheetTableBased(outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-					formProgress.Close();
-				});
-			}
-		}
-
-		private void TrackPreview()
+		protected void TrackPreview()
 		{
 			var options = new Dictionary<string, object>();
 			options.Add("Slide", String.Format("{0}ly Schedule", SlideType));
@@ -1255,7 +1155,31 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			options.Add(String.Format("{0}lyTotalSpots", SpotTitle), ScheduleSection.TotalSpots);
 			options.Add(String.Format("{0}lyAverageRate", SpotTitle), ScheduleSection.AvgRate);
 			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), ScheduleSection.TotalCost);
-			BusinessWrapper.Instance.ActivityManager.AddActivity(new UserActivity("Preview", options));
+			AddActivity(new UserActivity("Preview", options));
+		}
+
+		protected virtual void PowerPointInternal(IEnumerable<OutputScheduleGridBased> outputPages) { }
+		protected virtual void EmailInternal(IEnumerable<OutputScheduleGridBased> outputPages) { }
+		protected virtual void PreviewInternal(IEnumerable<OutputScheduleGridBased> outputData) { }
+
+		public void PowerPoint_Click(object sender, EventArgs e)
+		{
+			SaveSchedule();
+			if (_localSchedule == null) return;
+			if (!ScheduleSection.Programs.Any()) return;
+			IEnumerable<OutputScheduleGridBased> outputPages = null;
+			using (var formProgress = new FormProgress())
+			{
+				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing slides so your presentation can look AWESOME!";
+				formProgress.TopMost = true;
+				formProgress.Show();
+				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutputTableBased(); }));
+				thread.Start();
+				while (thread.IsAlive)
+					Application.DoEvents();
+				formProgress.Close();
+			}
+			PowerPointInternal(outputPages);
 		}
 
 		public void Preview_Click(object sender, EventArgs e)
@@ -1263,35 +1187,19 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			SaveSchedule();
 			if (_localSchedule == null) return;
 			if (!ScheduleSection.Programs.Any()) return;
+			IEnumerable<OutputScheduleGridBased> outputPages = null;
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Preview...";
 				formProgress.TopMost = true;
-				string tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				formProgress.Show();
-				formProgress.Show();
-				IEnumerable<OutputScheduleGridBased> outputPages = null;
 				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutputTableBased(); }));
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
-				MediaSchedulePowerPointHelper.Instance.PrepareOneSheetEmailTableBased(tempFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
-				Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
 				formProgress.Close();
-				if (!File.Exists(tempFileName)) return;
-				using (var formPreview = new FormPreview(Controller.Instance.FormMain, MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager, Controller.Instance.ShowFloater, TrackPreview))
-				{
-					formPreview.Text = "Preview Schedule";
-					formPreview.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-					RegistryHelper.MainFormHandle = formPreview.Handle;
-					RegistryHelper.MaximizeMainForm = false;
-					var previewResult = formPreview.ShowDialog();
-					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-					if (previewResult != DialogResult.OK)
-						Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-				}
 			}
+			PreviewInternal(outputPages);
 		}
 
 		public void Email_Click(object sender, EventArgs e)
@@ -1299,35 +1207,20 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			SaveSchedule();
 			if (_localSchedule == null) return;
 			if (!ScheduleSection.Programs.Any()) return;
+			IEnumerable<OutputScheduleGridBased> outputPages = null;
 			using (var formProgress = new FormProgress())
 			{
 				formProgress.laProgress.Text = "Chill-Out for a few seconds...\nPreparing Email...";
 				formProgress.TopMost = true;
-				var tempFileName = Path.Combine(SettingsManager.Instance.TempPath, Path.GetFileName(Path.GetTempFileName()));
 				formProgress.Show();
-				formProgress.Show();
-				IEnumerable<OutputScheduleGridBased> outputPages = null;
 				var thread = new Thread(() => Invoke((MethodInvoker)delegate { outputPages = PrepareOutputTableBased(); }));
 				thread.Start();
 				while (thread.IsAlive)
 					Application.DoEvents();
-				MediaSchedulePowerPointHelper.Instance.PrepareOneSheetEmailTableBased(tempFileName, outputPages, SelectedTheme, MediaMetaData.Instance.SettingsManager.UseSlideMaster);
 				formProgress.Close();
-				if (!File.Exists(tempFileName)) return;
-				using (var formEmail = new FormEmail(MediaSchedulePowerPointHelper.Instance, BusinessWrapper.Instance.HelpManager))
-				{
-					formEmail.Text = "Email this Schedule";
-					formEmail.LoadGroups(new[] { new PreviewGroup { Name = "Preview", PresentationSourcePath = tempFileName } });
-					Utilities.Instance.ActivateForm(Controller.Instance.FormMain.Handle, true, false);
-					RegistryHelper.MainFormHandle = formEmail.Handle;
-					RegistryHelper.MaximizeMainForm = false;
-					formEmail.ShowDialog();
-					RegistryHelper.MaximizeMainForm = Controller.Instance.FormMain.WindowState == FormWindowState.Maximized;
-					RegistryHelper.MainFormHandle = Controller.Instance.FormMain.Handle;
-				}
 			}
+			EmailInternal(outputPages);
 		}
-
 		#endregion
 	}
 }

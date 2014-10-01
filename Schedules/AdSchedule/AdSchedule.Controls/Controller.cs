@@ -13,6 +13,7 @@ using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputCont
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.AdPlan;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls.Calendar;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.Summary;
+using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.Gallery;
 using NewBizWiz.CommonGUI.RateCard;
@@ -634,7 +635,7 @@ namespace NewBizWiz.AdSchedule.Controls
 
 		public void ShowFloater(Action afterShow)
 		{
-			var args = new FloaterRequestedEventArgs { AfterShow = afterShow };
+			var args = new FloaterRequestedEventArgs { AfterShow = afterShow, Logo = Resources.RibbonLogo };
 			if (FloaterRequested != null)
 				FloaterRequested(null, args);
 		}

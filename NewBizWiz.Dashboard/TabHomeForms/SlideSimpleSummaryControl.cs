@@ -570,7 +570,7 @@ namespace NewBizWiz.Dashboard.TabHomeForms
 				form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
 				form.TopMost = true;
 				form.Show();
-				AppManager.Instance.ShowFloater(null, () =>
+				AppManager.Instance.ShowFloater(() =>
 				{
 					DashboardPowerPointHelper.Instance.AppendSummary(this);
 					form.Close();

@@ -9,7 +9,6 @@ namespace NewBizWiz.Core.Common
 	{
 		private static SettingsManager _instance;
 		private readonly string _appIDFile = string.Empty;
-		private readonly string _dashboardNamePath = string.Empty;
 		private readonly string _sharedSettingsFile = string.Empty;
 		private readonly string _dashboardCodeFilePath = String.Empty;
 
@@ -19,7 +18,6 @@ namespace NewBizWiz.Core.Common
 			_sharedSettingsFile = Path.Combine(SettingsPath, "SharedSettings.xml");
 			_dashboardCodeFilePath = String.Format(@"{0}\newlocaldirect.com\app\dashboard.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			_appIDFile = Path.Combine(SettingsPath, "AppID.xml");
-			_dashboardNamePath = String.Format(@"{0}\newlocaldirect.com\app\Minibar\Tab2Name.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			TempPath = String.Format(@"{0}\newlocaldirect.com\Sync\Temp", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			if (!Directory.Exists(TempPath))
 				Directory.CreateDirectory(TempPath);
@@ -35,7 +33,6 @@ namespace NewBizWiz.Core.Common
 
 			DashboardName = "Schedule APP";
 			DashboardCode = String.Empty;
-			DashboardText = "GO GET YOUR BIZ!";
 
 			SelectedWizard = String.Empty;
 
@@ -74,8 +71,7 @@ namespace NewBizWiz.Core.Common
 
 		public string DashboardName { get; set; }
 		public string DashboardCode { get; set; }
-		public string DashboardText { get; set; }
-
+		
 		public string Size
 		{
 			get
@@ -198,7 +194,6 @@ namespace NewBizWiz.Core.Common
 					Orientation = node.InnerText;
 			}
 			LoadAppID();
-			LoadDashboardName();
 			LoadDashdoardCode();
 			ActivityDataPath = Path.Combine(OutgoingFolderPath, "user_data");
 		}
@@ -253,20 +248,6 @@ namespace NewBizWiz.Core.Common
 			{
 				sw.Write(xml);
 				sw.Flush();
-			}
-		}
-
-		private void LoadDashboardName()
-		{
-			XmlNode node;
-			if (File.Exists(_dashboardNamePath))
-			{
-				var document = new XmlDocument();
-				document.Load(_dashboardNamePath);
-
-				node = document.SelectSingleNode(@"/Tab2Name");
-				if (node != null)
-					DashboardName = node.InnerText;
 			}
 		}
 
@@ -350,12 +331,6 @@ namespace NewBizWiz.Core.Common
 			{
 				DashboardCode = node.InnerText.Trim().ToLower();
 			}
-			node = document.SelectSingleNode(@"/Settings/dashboard/Group1");
-			if (node != null)
-			{
-				DashboardText = node.InnerText.Trim();
-			}
 		}
-
 	}
 }

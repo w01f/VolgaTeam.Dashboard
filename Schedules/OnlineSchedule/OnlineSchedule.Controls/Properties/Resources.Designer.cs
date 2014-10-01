@@ -323,6 +323,16 @@ namespace NewBizWiz.OnlineSchedule.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap RibbonLogo {
+            get {
+                object obj = ResourceManager.GetObject("RibbonLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap RichMediaButton {
             get {
                 object obj = ResourceManager.GetObject("RichMediaButton", resourceCulture);

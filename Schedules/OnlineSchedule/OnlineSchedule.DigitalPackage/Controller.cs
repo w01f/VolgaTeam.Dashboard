@@ -9,6 +9,7 @@ using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.RateCard;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
+using NewBizWiz.OnlineSchedule.Controls.Properties;
 using NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses;
 using NewBizWiz.OnlineSchedule.DigitalPackage.PresentationClasses;
 
@@ -191,7 +192,7 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 
 		public void ShowFloater(Action afterShow)
 		{
-			var args = new FloaterRequestedEventArgs { AfterShow = afterShow };
+			var args = new FloaterRequestedEventArgs { AfterShow = afterShow, Logo = Resources.RibbonLogo };
 			if (FloaterRequested != null)
 				FloaterRequested(null, args);
 		}

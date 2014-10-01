@@ -92,7 +92,7 @@ namespace NewBizWiz.Core.MediaSchedule
 
 		private void UpdateItems()
 		{
-			var sourceCollection = _parent.SelectedSpotType == SpotType.Week ? _parent.WeeklySchedule.Programs : _parent.MonthlySchedule.Programs;
+			var sourceCollection = _parent.Section.Programs;
 			var maxOrder = Items.Any() ? Items.Max(i => i.Order) : 0;
 			var groupedPrograms = sourceCollection.GroupBy(p => p.Name, (key, g) => new { Name = key, Station = String.Join(", ", g.Select(i => i.Station)), Spots = g.SelectMany(i => i.Spots).Sum(s => s.Count) });
 			foreach (var program in groupedPrograms)

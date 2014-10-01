@@ -99,6 +99,9 @@
     <Compile Include="PresentationClasses\ScheduleControls\FormFlexFlightDatesWarning.Designer.cs">
       <DependentUpon>FormFlexFlightDatesWarning.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\RegularScheduleSectionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="PresentationClasses\Summary\MediaSummaryFull.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -224,6 +227,7 @@
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ScheduleSectionControl.resx">
       <DependentUpon>ScheduleSectionControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -353,6 +357,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HomeRadioLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RadioRibbonLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TVRibbonLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -17,14 +17,16 @@ namespace NewBizWiz.CommonGUI.Common
 		private GridHitInfo _downHitInfo;
 		private Cursor _dragRowCursor;
 		private int _dropTargetRowHandle = -1;
+		private readonly int _rowVerticalOffset;
 		private readonly bool _underlineHoverRow;
 
 		public event DragEventHandler AfterDrop;
 
-		public GridDragDropHelper(GridView view, bool underlineHoverRow)
+		public GridDragDropHelper(GridView view, bool underlineHoverRow, int rowVerticalOffset = 0)
 			: base(view)
 		{
 			_view = view;
+			_rowVerticalOffset = rowVerticalOffset;
 			_underlineHoverRow = underlineHoverRow;
 			SubscribeEvents(view);
 		}
@@ -178,7 +180,7 @@ namespace NewBizWiz.CommonGUI.Common
 					colorMatrix,
 					ColorMatrixFlag.Default,
 					ColorAdjustType.Bitmap);
-				resultGraphics.DrawImage(gridBitmap, imageBounds, rowInfo.TotalBounds.X, rowInfo.TotalBounds.Y, rowInfo.TotalBounds.Width, rowInfo.TotalBounds.Height, GraphicsUnit.Pixel, imageAttributes);
+				resultGraphics.DrawImage(gridBitmap, imageBounds, rowInfo.TotalBounds.X, rowInfo.TotalBounds.Y + _rowVerticalOffset, rowInfo.TotalBounds.Width, rowInfo.TotalBounds.Height, GraphicsUnit.Pixel, imageAttributes);
 				var offset = new Point(e.X - rowInfo.TotalBounds.X, e.Y - rowInfo.TotalBounds.Y);
 				return CreateCursor(result, offset);
 			}

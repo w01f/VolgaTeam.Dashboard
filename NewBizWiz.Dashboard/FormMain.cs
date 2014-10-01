@@ -67,12 +67,13 @@ namespace NewBizWiz.Dashboard
 			ribbonBarRadioLogo.Text = userName;
 			ribbonBarSlidesLogo.Text = userName;
 
-			var masterWizardLogo = MasterWizardManager.Instance.DefaultLogo;
+			var masterWizardLogo = Resources.RibbonLogo;
 			buttonItemHomeOverview.Image = masterWizardLogo;
 			buttonItemOnlineLogo.Image = masterWizardLogo;
 			buttonItemNewspaperLogo.Image = masterWizardLogo;
 			buttonItemTVLogo.Image = masterWizardLogo;
 			buttonItemRadioLogo.Image = masterWizardLogo;
+			buttonItemSlidesLogo.Image = masterWizardLogo;
 			ribbonBarHomeOverview.RecalcLayout();
 			ribbonPanelHome.PerformLayout();
 		}
@@ -189,7 +190,7 @@ namespace NewBizWiz.Dashboard
 		private void FormMain_Resize(object sender, EventArgs e)
 		{
 			var f = sender as Form;
-			if (f.WindowState != FormWindowState.Minimized)
+			if (f.WindowState != FormWindowState.Minimized && f.Tag != FloaterManager.FloatedMarker)
 				Opacity = 1;
 		}
 
@@ -197,7 +198,7 @@ namespace NewBizWiz.Dashboard
 		{
 			var f = sender as Form;
 			if (f == null || f.IsDisposed) return;
-			f.Opacity = f.WindowState == FormWindowState.Minimized ? 0 : 1;
+			f.Opacity = f.WindowState != FormWindowState.Minimized && f.Tag != FloaterManager.FloatedMarker ? 1 : f.Opacity;
 		}
 
 		public void FormScheduleClosed(object sender, EventArgs e)
@@ -278,14 +279,14 @@ namespace NewBizWiz.Dashboard
 		{
 			var formSender = sender as Form;
 			if (formSender.IsDisposed) return;
-			AppManager.Instance.ShowFloater(formSender, e.AfterShow);
+			AppManager.Instance.ShowFloater(formSender, e);
 		}
 
 		public void buttonItemFloater_Click(object sender, EventArgs e)
 		{
 			var formSender = sender as Form;
 			if (formSender != null && formSender.IsDisposed) return;
-			AppManager.Instance.ShowFloater(formSender, null);
+			AppManager.Instance.ShowFloater(formSender, new FloaterRequestedEventArgs { Logo = Resources.RibbonLogo });
 		}
 
 		public void buttonItemExit_Click(object sender, EventArgs e)

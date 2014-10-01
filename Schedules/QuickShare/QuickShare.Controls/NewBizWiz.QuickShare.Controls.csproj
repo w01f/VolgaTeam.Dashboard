@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{033681DE-725F-4E62-BE35-7762D758433D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NewBizWiz.QuickShare.Controls</RootNamespace>
+    <AssemblyName>NewBizWiz.QuickShare.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=11.7.0.10, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessClasses\BusinessWrapper.cs" />
+    <Compile Include="Controller.cs" />
+    <Compile Include="InteropClasses\PowerPointHelper.cs" />
+    <Compile Include="PresentationClasses\ScheduleControls\HomeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\HomeControl.Designer.cs">
+      <DependentUpon>HomeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\PackageScheduleSectionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\SchedulePage.cs" />
+    <Compile Include="PresentationClasses\ScheduleControls\ScheduleSettingsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\ScheduleSettingsControl.Designer.cs">
+      <DependentUpon>ScheduleSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationClasses\ScheduleControls\SchedulePageManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\NewBizWiz.CommonGUI\NewBizWiz.CommonGUI.csproj">
+      <Project>{A97255F0-74B3-4C03-B623-EC0E37E80A3C}</Project>
+      <Name>NewBizWiz.CommonGUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\NewBizWiz.Core\NewBizWiz.Core.csproj">
+      <Project>{164ab808-dbd3-4d71-9431-5a5b44b70593}</Project>
+      <Name>NewBizWiz.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MediaSchedule\MediaSchedule.Controls\NewBizWiz.MediaSchedule.Controls.csproj">
+      <Project>{F3572A95-E99D-485F-B4F3-EF26F49C094B}</Project>
+      <Name>NewBizWiz.MediaSchedule.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QuickShareLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\HomeControl.resx">
+      <DependentUpon>HomeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\ScheduleSettingsControl.resx">
+      <DependentUpon>ScheduleSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DateNotAssigned.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloneSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeletePackage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Floater.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewPackageRibbon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenPackage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenPackageRibbon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PowerPoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Quarter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveAs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EmailBig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddProgram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteProgram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HelpMiddle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FloaterSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.PowerPoint">
+      <Guid>{91493440-5A91-11CF-8700-00AA0060263B}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>10</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RibbonLogo.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

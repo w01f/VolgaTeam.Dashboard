@@ -6,25 +6,8 @@ using NewBizWiz.Core.MediaSchedule;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
-	public class MonthlyScheduleControl : ScheduleSectionControl
+	public class MonthlyScheduleControl : RegularScheduleSectionControl
 	{
-		public MonthlyScheduleControl()
-			: base()
-		{
-			_helpKey = SpotTitle.ToLower();
-			laTotalPeriodsTitle.Text = String.Format("Total {0}s:", SpotTitle);
-			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, String.Format("{0}s:", SpotTitle));
-		}
-
-		protected override sealed string SpotTitle
-		{
-			get { return "Month"; }
-		}
-
-		public override ScheduleSection ScheduleSection
-		{
-			get { return _localSchedule.MonthlySchedule; }
-		}
 		public override ButtonItem ThemeButton
 		{
 			get { return Controller.Instance.MonthlyScheduleTheme; }
@@ -49,17 +32,13 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		{
 			get { return Controller.Instance.MonthlyScheduleQuarterButton; }
 		}
-		public override SlideType SlideType
-		{
-			get { return MediaMetaData.Instance.DataType == MediaDataType.TV ? SlideType.TVMonthlySchedule : SlideType.RadioMonthlySchedule; }
-		}
 
 		public override void LoadSchedule(bool quickLoad)
 		{
 			base.LoadSchedule(quickLoad);
 			if (_localSchedule.SelectedSpotType == SpotType.Month)
 			{
-				Controller.Instance.UpdateOutputTabs(_localSchedule.MonthlySchedule.Programs.Any(p => p.TotalSpots > 0));
+				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
 				Controller.Instance.UpdateCalendarTabs(false);
 			}
 		}
@@ -69,7 +48,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			base.CloneProgram(sourceIndex, fullClone);
 			if (_localSchedule.SelectedSpotType == SpotType.Month)
 			{
-				Controller.Instance.UpdateOutputTabs(_localSchedule.MonthlySchedule.Programs.Any(p => p.TotalSpots > 0));
+				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
 				Controller.Instance.UpdateCalendarTabs(false);
 			}
 		}
@@ -79,7 +58,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			base.AddProgram_Click(sender, e);
 			if (_localSchedule.SelectedSpotType == SpotType.Month)
 			{
-				Controller.Instance.UpdateOutputTabs(_localSchedule.MonthlySchedule.Programs.Any(p => p.TotalSpots > 0));
+				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
 				Controller.Instance.UpdateCalendarTabs(false);
 			}
 		}
@@ -89,7 +68,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			base.DeleteProgram_Click(sender, e);
 			if (_localSchedule.SelectedSpotType == SpotType.Month)
 			{
-				Controller.Instance.UpdateOutputTabs(_localSchedule.MonthlySchedule.Programs.Any(p => p.TotalSpots > 0));
+				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
 				Controller.Instance.UpdateCalendarTabs(false);
 			}
 		}
@@ -99,7 +78,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			base.ScheduleSection_DataChanged(sender, e);
 			if (_localSchedule.SelectedSpotType == SpotType.Month)
 			{
-				Controller.Instance.UpdateOutputTabs(_localSchedule.MonthlySchedule.Programs.Any(p => p.TotalSpots > 0));
+				Controller.Instance.UpdateOutputTabs(ScheduleSection.Programs.Any(p => p.TotalSpots > 0));
 				Controller.Instance.UpdateCalendarTabs(false);
 			}
 		}

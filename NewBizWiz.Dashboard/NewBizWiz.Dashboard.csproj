@@ -423,6 +423,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewBizWiz.ico" />
+    <None Include="Resources\RibbonLogo.png" />
     <None Include="Resources\SaveTemplate.png" />
     <None Include="Resources\SummaryFlightDates.png" />
     <None Include="Resources\SummaryPresentationDate.png" />

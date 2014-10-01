@@ -14,8 +14,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		private static readonly AppManager _instance = new AppManager();
 		private FloaterManager _floater = new FloaterManager();
 
-		public NBWLink AppConfig { get; private set; }
-
 		private AppManager() { }
 
 		public static AppManager Instance
@@ -26,7 +24,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		public void RunForm()
 		{
 			OnlineSchedulePowerPointHelper.Instance.SetPresentationSettings();
-			AppConfig = NBWLink.CreateLink(new DirectoryInfo(Application.StartupPath));
 			Application.Run(FormMain.Instance);
 		}
 
@@ -48,15 +45,14 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 			}
 		}
 
-		public void ShowFloater(Form sender, Action afterShow)
+		public void ShowFloater(Form sender, FloaterRequestedEventArgs e)
 		{
-			var defaultText = !String.IsNullOrEmpty(AppConfig.Title) ? AppConfig.Title : "Web Quick";
 			var afterBack = new Action(() =>
 			{
 				(sender ?? FormMain.Instance).Opacity = 1;
 				ActivateMainForm();
 			});
-			_floater.ShowFloater(sender ?? FormMain.Instance, defaultText, AppConfig.Image, afterShow, null, afterBack);
+			_floater.ShowFloater(sender ?? FormMain.Instance, e.Logo, e.AfterShow, null, afterBack);
 		}
 	}
 }

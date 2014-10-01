@@ -12,6 +12,7 @@ using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
+using NewBizWiz.MediaSchedule.Controls.Properties;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 
 namespace NewBizWiz.MediaSchedule.Single
@@ -238,7 +239,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			Controller.Instance.Init();
 
 			Controller.Instance.ScheduleChanged += (o, e) => UpdateFormTitle();
-			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e.AfterShow);
+			Controller.Instance.FloaterRequested += (o, e) => AppManager.Instance.ShowFloater(this, e);
 
 			if ((base.CreateGraphics()).DpiX > 96)
 			{
@@ -441,7 +442,7 @@ namespace NewBizWiz.MediaSchedule.Single
 			if (File.Exists(MediaMetaData.Instance.SettingsManager.IconPath))
 				Icon = new Icon(Core.OnlineSchedule.SettingsManager.Instance.IconPath);
 
-			Utilities.Instance.ActivatePowerPoint(MediaSchedulePowerPointHelper.Instance.PowerPointObject);
+			Utilities.Instance.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
 			AppManager.Instance.ActivateMainForm();
 
 			using (var formStart = new FormStart())
@@ -463,7 +464,7 @@ namespace NewBizWiz.MediaSchedule.Single
 		private void FormMain_Resize(object sender, EventArgs e)
 		{
 			var f = sender as Form;
-			if (f.WindowState != FormWindowState.Minimized)
+			if (f.WindowState != FormWindowState.Minimized && f.Tag != FloaterManager.FloatedMarker)
 				Opacity = 1;
 		}
 
@@ -650,7 +651,7 @@ namespace NewBizWiz.MediaSchedule.Single
 				result = Controller.Instance.SummaryFull.AllowToLeaveControl;
 			else if (_currentControl == Controller.Instance.Strategy)
 				result = Controller.Instance.Strategy.AllowToLeaveControl;
-			MediaSchedulePowerPointHelper.Instance.Disconnect(false);
+			RegularMediaSchedulePowerPointHelper.Instance.Disconnect(false);
 			OnlineSchedulePowerPointHelper.Instance.Disconnect(false);
 		}
 
@@ -708,7 +709,7 @@ namespace NewBizWiz.MediaSchedule.Single
 		private void buttonItemFloater_Click(object sender, EventArgs e)
 		{
 			var formSender = sender as Form;
-			AppManager.Instance.ShowFloater(formSender ?? this, null);
+			AppManager.Instance.ShowFloater(formSender ?? this, new FloaterRequestedEventArgs { Logo = MediaMetaData.Instance.DataType == MediaDataType.TV ? Resources.TVRibbonLogo : Resources.RadioRibbonLogo });
 		}
 	}
 }

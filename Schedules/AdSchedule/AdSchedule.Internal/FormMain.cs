@@ -6,6 +6,7 @@ using DevComponents.DotNetBar;
 using NewBizWiz.AdSchedule.Controls;
 using NewBizWiz.AdSchedule.Controls.BusinessClasses;
 using NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.OutputControls;
+using NewBizWiz.AdSchedule.Controls.Properties;
 using NewBizWiz.CommonGUI.Floater;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
@@ -853,7 +854,7 @@ namespace NewBizWiz.AdSchedule.Internal
 
 		private void buttonItemFloater_Click(object sender, EventArgs e)
 		{
-			ShowFloater(new FloaterRequestedEventArgs());
+			ShowFloater(new FloaterRequestedEventArgs { Logo = Resources.RibbonLogo });
 		}
 
 		private void buttonItemExit_Click(object sender, EventArgs e)

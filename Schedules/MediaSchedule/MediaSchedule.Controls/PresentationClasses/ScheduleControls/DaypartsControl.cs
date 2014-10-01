@@ -9,7 +9,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 {
 	public partial class DaypartsControl : UserControl
 	{
-		private readonly List<Daypart> dayparts = new List<Daypart>();
+		private readonly List<Daypart> _dayparts = new List<Daypart>();
 
 		public DaypartsControl()
 		{
@@ -17,23 +17,26 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		}
 
 		public bool HasChanged { get; set; }
+		public EventHandler<EventArgs> Changed;
 
 		public void LoadData(Schedule schedule)
 		{
-			dayparts.Clear();
-			dayparts.AddRange(schedule.Dayparts);
-			gridControlItems.DataSource = new BindingList<Daypart>(dayparts);
+			_dayparts.Clear();
+			_dayparts.AddRange(schedule.Dayparts);
+			gridControlItems.DataSource = new BindingList<Daypart>(_dayparts);
 			HasChanged = false;
 		}
 
 		public Daypart[] GetData()
 		{
-			return dayparts.ToArray();
+			return _dayparts.ToArray();
 		}
 
 		private void gridViewItems_CellValueChanged(object sender, CellValueChangedEventArgs e)
 		{
 			HasChanged = true;
+			if (Changed != null)
+				Changed(this, EventArgs.Empty);
 		}
 
 		private void repositoryItemCheckEdit_CheckedChanged(object sender, EventArgs e)

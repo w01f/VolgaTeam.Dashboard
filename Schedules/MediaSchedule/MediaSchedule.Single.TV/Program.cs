@@ -10,8 +10,6 @@ namespace NewBizWiz.MediaSchedule.Single.TV
 {
 	static class Program
 	{
-		private static Mutex mutex; //Used to determine if the application is already open
-
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -19,8 +17,8 @@ namespace NewBizWiz.MediaSchedule.Single.TV
 		private static void Main()
 		{
 			bool firstInstance;
-			string uniqueIdentifier = "Local\\TVSellerApplication";
-			mutex = new Mutex(false, uniqueIdentifier, out firstInstance);
+			const string uniqueIdentifier = "Local\\TVSellerApplication";
+			new Mutex(false, uniqueIdentifier, out firstInstance);
 			if (firstInstance)
 			{
 				Application.EnableVisualStyles();
@@ -32,7 +30,7 @@ namespace NewBizWiz.MediaSchedule.Single.TV
 			else
 			{
 				if (!AppManager.Instance.RunPowerPoint()) return;
-				Utilities.Instance.ActivatePowerPoint(MediaSchedulePowerPointHelper.Instance.PowerPointObject);
+				Utilities.Instance.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
 				AppManager.Instance.ActivateMainForm();
 			}
 		}

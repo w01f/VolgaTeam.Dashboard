@@ -60,12 +60,12 @@ namespace NewBizWiz.Dashboard.TabSlides
 			{
 				form.laProgress.Text = "Chill-Out for a few seconds...\nGenerating slides so your presentation can look AWESOME!";
 				form.TopMost = true;
-				AppManager.Instance.ShowFloater(null, (() =>
+				AppManager.Instance.ShowFloater(() =>
 				{
 					form.Show();
 					DashboardPowerPointHelper.Instance.AppendSlideMaster(selectedSlideMaster.MasterPath);
 					form.Close();
-				}));
+				});
 			}
 		}
 

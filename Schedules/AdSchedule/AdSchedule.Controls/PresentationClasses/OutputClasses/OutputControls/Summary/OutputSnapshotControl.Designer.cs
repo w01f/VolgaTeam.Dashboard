@@ -557,7 +557,6 @@
 			this.retractableBar.Dock = System.Windows.Forms.DockStyle.Left;
 			this.retractableBar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.retractableBar.Location = new System.Drawing.Point(0, 0);
-			this.retractableBar.Logo = ((System.Drawing.Image)(resources.GetObject("retractableBar.Logo")));
 			this.retractableBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.retractableBar.Name = "retractableBar";
 			this.retractableBar.Size = new System.Drawing.Size(260, 537);

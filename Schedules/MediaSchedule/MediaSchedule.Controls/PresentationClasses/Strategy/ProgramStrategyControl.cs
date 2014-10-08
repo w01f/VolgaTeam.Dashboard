@@ -9,7 +9,6 @@ using System.Xml;
 using DevExpress.Utils;
 using DevExpress.Utils.Menu;
 using DevExpress.Utils.Paint;
-using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.BandedGrid.ViewInfo;
 using DevExpress.XtraGrid.Views.Base;
@@ -17,12 +16,14 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using NewBizWiz.CommonGUI.Common;
 using NewBizWiz.CommonGUI.Preview;
+using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
+using NewBizWiz.MediaSchedule.Controls.Properties;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 {
@@ -53,6 +54,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			Controller.Instance.StrategyShowStationToggle.CheckStateChanged += UpdateRows;
 			Controller.Instance.StrategyShowDescriptionToggle.CheckStateChanged += UpdateRows;
 			retractableBarRight.StateChanged += Favorites_StateChanged;
+			retractableBarRight.AddButtons(new[] { new ButtonInfo { Logo = Resources.FavoritesLogo, Tooltip = "Expand bar" } });
 		}
 
 		#region Methods

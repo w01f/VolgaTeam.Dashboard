@@ -276,9 +276,6 @@ namespace NewBizWiz.Calendar.Single
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
 				Text = String.Format("Ninja Calendar BETA - {0} - {1}", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size);
 
-			if (File.Exists(Core.Calendar.SettingsManager.Instance.IconPath))
-				Icon = new Icon(Core.Calendar.SettingsManager.Instance.IconPath);
-
 			Utilities.Instance.ActivatePowerPoint(CalendarPowerPointHelper.Instance.PowerPointObject);
 			AppManager.ActivateMainForm();
 

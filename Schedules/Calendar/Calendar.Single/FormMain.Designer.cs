@@ -1958,7 +1958,7 @@
 			this.buttonItemGallery2Exit.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemGallery2Exit.Image")));
 			this.buttonItemGallery2Exit.Name = "buttonItemGallery2Exit";
 			this.buttonItemGallery2Exit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemGallery2Exit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Ad Schedule Builder", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemGallery2Exit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemGallery2Exit.Text = "buttonItem1";
 			this.buttonItemGallery2Exit.Click += new System.EventHandler(this.buttonItemExit_Click);
 			// 
@@ -2489,7 +2489,7 @@
 			this.buttonItemGallery1Exit.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemGallery1Exit.Image")));
 			this.buttonItemGallery1Exit.Name = "buttonItemGallery1Exit";
 			this.buttonItemGallery1Exit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemGallery1Exit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Ad Schedule Builder", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemGallery1Exit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemGallery1Exit.Text = "buttonItem1";
 			this.buttonItemGallery1Exit.Click += new System.EventHandler(this.buttonItemExit_Click);
 			// 

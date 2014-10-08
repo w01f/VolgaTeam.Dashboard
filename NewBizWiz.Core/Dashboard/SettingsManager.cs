@@ -17,7 +17,6 @@ namespace NewBizWiz.Core.Dashboard
 		private SettingsManager()
 		{
 			_dashboardSettingsFile = Path.Combine(Common.SettingsManager.Instance.SettingsPath, "DashboardSettings.xml");
-			IconPath = string.Format(@"{0}\newlocaldirect.com\app\tab2icon.ico", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\DashboardHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			DashboardSaveFolder = string.Empty;
 			ThemeManager = new ThemeManager(Path.Combine(Common.SettingsManager.Instance.ThemeCollectionPath, Common.SettingsManager.Instance.SlideMasterFolder));
@@ -27,7 +26,6 @@ namespace NewBizWiz.Core.Dashboard
 
 		public string HelpLinksPath { get; set; }
 		public string DashboardSaveFolder { get; set; }
-		public string IconPath { get; set; }
 		public ThemeManager ThemeManager { get; private set; }
 		public SlideManager SlideManager { get; private set; }
 

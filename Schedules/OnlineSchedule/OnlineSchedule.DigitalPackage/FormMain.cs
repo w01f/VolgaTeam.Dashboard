@@ -164,9 +164,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
 			UpdateFormTitle();
-			if (File.Exists(Core.OnlineSchedule.SettingsManager.Instance.IconPath))
-				Icon = new Icon(Core.OnlineSchedule.SettingsManager.Instance.IconPath);
-
 			Utilities.Instance.ActivatePowerPoint(OnlineSchedulePowerPointHelper.Instance.PowerPointObject);
 			AppManager.Instance.ActivateMainForm();
 

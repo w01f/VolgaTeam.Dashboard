@@ -1,9 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using DevExpress.XtraBars.Docking;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
 using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.Core.Calendar;

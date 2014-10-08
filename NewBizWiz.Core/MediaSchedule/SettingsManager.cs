@@ -13,7 +13,6 @@ namespace NewBizWiz.Core.MediaSchedule
 		string SaveFolder { get; set; }
 		string HelpLinksPath { get; set; }
 		string ActivityTrackName { get; set; }
-		string IconPath { get; set; }
 		string SelectedColor { get; set; }
 		bool UseSlideMaster { get; set; }
 		CalendarSettings BroadcastCalendarSettings { get; }
@@ -92,7 +91,6 @@ namespace NewBizWiz.Core.MediaSchedule
 		public string SaveFolder { get; set; }
 		public string HelpLinksPath { get; set; }
 		public string ActivityTrackName { get; set; }
-		public string IconPath { get; set; }
 		public string SelectedColor { get; set; }
 		public bool UseSlideMaster { get; set; }
 		public CalendarSettings BroadcastCalendarSettings { get; private set; }
@@ -107,7 +105,6 @@ namespace NewBizWiz.Core.MediaSchedule
 				Directory.CreateDirectory(defaultSaveFolderPath);
 			SaveFolder = defaultSaveFolderPath;
 			HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\TVHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			IconPath = Path.Combine(Path.GetDirectoryName(typeof(TVSettingsManager).Assembly.Location), "icon.ico");
 			ActivityTrackName = "tv_schedule";
 		}
 
@@ -126,7 +123,6 @@ namespace NewBizWiz.Core.MediaSchedule
 				Directory.CreateDirectory(defaultSaveFolderPath);
 			SaveFolder = defaultSaveFolderPath;
 			HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\TVHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			IconPath = Path.Combine(Path.GetDirectoryName(typeof(TVPackageSettingsManager).Assembly.Location), "icon.ico");
 			ActivityTrackName = "tv_package";
 		}
 
@@ -145,7 +141,6 @@ namespace NewBizWiz.Core.MediaSchedule
 				Directory.CreateDirectory(defaultSaveFolderPath);
 			SaveFolder = defaultSaveFolderPath;
 			HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\RadioHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			IconPath = Path.Combine(Path.GetDirectoryName(typeof(RadioSettingsManager).Assembly.Location), "icon.ico");
 			ActivityTrackName = "radio_schedule";
 		}
 
@@ -164,7 +159,6 @@ namespace NewBizWiz.Core.MediaSchedule
 				Directory.CreateDirectory(defaultSaveFolderPath);
 			SaveFolder = defaultSaveFolderPath;
 			HelpLinksPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\RadioHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			IconPath = Path.Combine(Path.GetDirectoryName(typeof(RadioPackageSettingsManager).Assembly.Location), "icon.ico");
 			ActivityTrackName = "radio_package";
 		}
 

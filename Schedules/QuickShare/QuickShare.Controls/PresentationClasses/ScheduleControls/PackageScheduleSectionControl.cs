@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using NewBizWiz.CommonGUI.Preview;
+using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.CommonGUI.Themes;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
@@ -14,6 +15,7 @@ using NewBizWiz.Core.QuickShare;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls;
 using NewBizWiz.QuickShare.Controls.InteropClasses;
+using NewBizWiz.QuickShare.Controls.Properties;
 using BusinessWrapper = NewBizWiz.QuickShare.Controls.BusinessClasses.BusinessWrapper;
 
 namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
@@ -67,12 +69,17 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 			_parent.PreviewButton.Click += Preview_Click;
 			_parent.ProgramAddButton.Click += AddProgram_Click;
 			_parent.ProgramDeleteButton.Click += DeleteProgram_Click;
-
 			BusinessWrapper.Instance.PackageManager.SettingsSaved += (sender, e) => Controller.Instance.FormMain.Invoke((MethodInvoker)delegate
 			{
 				if (sender != this)
 					LoadSchedule(e.QuickSave);
 			});
+			var buttonInfos = new List<ButtonInfo>();
+			buttonInfos.Add(new ButtonInfo { Logo = Resources.SectionSettingsShare, Tooltip = "Open My Share Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsQuickShare; } });
+			buttonInfos.Add(new ButtonInfo { Logo = MediaMetaData.Instance.DataType == MediaDataType.TV ? MediaSchedule.Controls.Properties.Resources.SectionSettingsTV : MediaSchedule.Controls.Properties.Resources.SectionSettingsRadio, Tooltip = String.Format("Open {0} Schedule Settings", MediaMetaData.Instance.DataTypeString), Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsLine; } });
+			buttonInfos.Add(new ButtonInfo { Logo = MediaSchedule.Controls.Properties.Resources.SectionSettingsInfo, Tooltip = "Open Schedule Info", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsTotals; } });
+			buttonInfos.Add(new ButtonInfo { Logo = MediaSchedule.Controls.Properties.Resources.SectionSettingsOptions, Tooltip = "Open Options", Action = () => { xtraTabControlOptions.SelectedTabPage = xtraTabPageOptionsStyle; } });
+			retractableBarControl.AddButtons(buttonInfos);
 		}
 
 		#region Methods

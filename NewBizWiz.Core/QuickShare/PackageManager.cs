@@ -356,6 +356,16 @@ namespace NewBizWiz.Core.QuickShare
 		{
 			get { return Index + 1; }
 		}
+
+		public string TotalPeriods
+		{
+			get
+			{
+				if (Section == null) return null;
+				if (Section.TotalPeriods == 0) return null;
+				return String.Format("{0} {1}{2}", Section.TotalPeriods, SelectedSpotType, Section.TotalPeriods > 1 ? "s" : String.Empty);
+			}
+		}
 		#endregion
 
 		public PackageSchedule(Package parent, XmlNode node = null)

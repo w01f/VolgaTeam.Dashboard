@@ -36,19 +36,14 @@
 			this.xtraTabPagePackageList = new DevExpress.XtraTab.XtraTabPage();
 			this.gridControlSchedules = new DevExpress.XtraGrid.GridControl();
 			this.advBandedGridViewSchedules = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
-			this.gridBandSchedulesNumber = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnScheduleIndex = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.gridBandSchedulesName = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnScheduleName = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.gridBandSchedulesType = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.repositoryItemTextEditScheduleName = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 			this.bandedGridColumnScheduleSpotType = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemComboBoxSpotType = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-			this.gridBandSchedulesStartDate = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnScheduleFlightDateStart = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemDateEditEnabled = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
-			this.gridBandSchedulesEndDate = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnScheduleFlightDateEnd = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-			this.gridBandOperation = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			this.bandedGridColumnScheduleOperations = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
 			this.repositoryItemButtonEditScheduleOperations = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
 			this.repositoryItemDateEditDisabled = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
@@ -56,12 +51,20 @@
 			this.pnTop = new System.Windows.Forms.Panel();
 			this.pbPackageListLogo = new System.Windows.Forms.PictureBox();
 			this.labelControlPackageListDescription = new DevExpress.XtraEditors.LabelControl();
-			this.repositoryItemTextEditScheduleName = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+			this.bandedGridColumnScheduleDuration = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+			this.gridBandSchedulesNumber = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandSchedulesName = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandSchedulesType = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandSchedulesStartDate = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandSchedulesEndDate = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandScheduleDuration = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+			this.gridBandOperation = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
 			this.xtraTabControl.SuspendLayout();
 			this.xtraTabPagePackageList.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedules)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewSchedules)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditScheduleName)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxSpotType)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditEnabled)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditEnabled.CalendarTimeProperties)).BeginInit();
@@ -71,7 +74,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditDefault)).BeginInit();
 			this.pnTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbPackageListLogo)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditScheduleName)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// xtraTabControl
@@ -102,7 +104,7 @@
 			this.xtraTabPagePackageList.Controls.Add(this.gridControlSchedules);
 			this.xtraTabPagePackageList.Controls.Add(this.pnTop);
 			this.xtraTabPagePackageList.Name = "xtraTabPagePackageList";
-			this.xtraTabPagePackageList.Size = new System.Drawing.Size(810, 492);
+			this.xtraTabPagePackageList.Size = new System.Drawing.Size(806, 489);
 			this.xtraTabPagePackageList.Text = "Ad Specs";
 			// 
 			// gridControlSchedules
@@ -119,7 +121,7 @@
             this.repositoryItemDateEditDisabled,
             this.repositoryItemTextEditDefault,
             this.repositoryItemTextEditScheduleName});
-			this.gridControlSchedules.Size = new System.Drawing.Size(810, 414);
+			this.gridControlSchedules.Size = new System.Drawing.Size(806, 411);
 			this.gridControlSchedules.TabIndex = 5;
 			this.gridControlSchedules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridViewSchedules});
@@ -146,6 +148,7 @@
             this.gridBandSchedulesType,
             this.gridBandSchedulesStartDate,
             this.gridBandSchedulesEndDate,
+            this.gridBandScheduleDuration,
             this.gridBandOperation});
 			this.advBandedGridViewSchedules.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
             this.bandedGridColumnScheduleIndex,
@@ -153,6 +156,7 @@
             this.bandedGridColumnScheduleSpotType,
             this.bandedGridColumnScheduleFlightDateStart,
             this.bandedGridColumnScheduleFlightDateEnd,
+            this.bandedGridColumnScheduleDuration,
             this.bandedGridColumnScheduleOperations});
 			this.advBandedGridViewSchedules.GridControl = this.gridControlSchedules;
 			this.advBandedGridViewSchedules.Name = "advBandedGridViewSchedules";
@@ -189,17 +193,6 @@
 			this.advBandedGridViewSchedules.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.advBandedGridViewSchedules_ShowingEditor);
 			this.advBandedGridViewSchedules.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.advBandedGridViewSchedules_CellValueChanged);
 			// 
-			// gridBandSchedulesNumber
-			// 
-			this.gridBandSchedulesNumber.Caption = "#";
-			this.gridBandSchedulesNumber.Columns.Add(this.bandedGridColumnScheduleIndex);
-			this.gridBandSchedulesNumber.MinWidth = 20;
-			this.gridBandSchedulesNumber.Name = "gridBandSchedulesNumber";
-			this.gridBandSchedulesNumber.OptionsBand.FixedWidth = true;
-			this.gridBandSchedulesNumber.RowCount = 2;
-			this.gridBandSchedulesNumber.VisibleIndex = 0;
-			this.gridBandSchedulesNumber.Width = 37;
-			// 
 			// bandedGridColumnScheduleIndex
 			// 
 			this.bandedGridColumnScheduleIndex.AppearanceCell.Options.UseTextOptions = true;
@@ -212,18 +205,6 @@
 			this.bandedGridColumnScheduleIndex.Visible = true;
 			this.bandedGridColumnScheduleIndex.Width = 37;
 			// 
-			// gridBandSchedulesName
-			// 
-			this.gridBandSchedulesName.AppearanceHeader.Options.UseTextOptions = true;
-			this.gridBandSchedulesName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-			this.gridBandSchedulesName.Caption = "Schedule/Campaign";
-			this.gridBandSchedulesName.Columns.Add(this.bandedGridColumnScheduleName);
-			this.gridBandSchedulesName.MinWidth = 20;
-			this.gridBandSchedulesName.Name = "gridBandSchedulesName";
-			this.gridBandSchedulesName.RowCount = 2;
-			this.gridBandSchedulesName.VisibleIndex = 1;
-			this.gridBandSchedulesName.Width = 373;
-			// 
 			// bandedGridColumnScheduleName
 			// 
 			this.bandedGridColumnScheduleName.AppearanceCell.Options.UseTextOptions = true;
@@ -235,17 +216,11 @@
 			this.bandedGridColumnScheduleName.Visible = true;
 			this.bandedGridColumnScheduleName.Width = 373;
 			// 
-			// gridBandSchedulesType
+			// repositoryItemTextEditScheduleName
 			// 
-			this.gridBandSchedulesType.Caption = "Pkg Type";
-			this.gridBandSchedulesType.Columns.Add(this.bandedGridColumnScheduleSpotType);
-			this.gridBandSchedulesType.MinWidth = 20;
-			this.gridBandSchedulesType.Name = "gridBandSchedulesType";
-			this.gridBandSchedulesType.OptionsBand.AllowSize = false;
-			this.gridBandSchedulesType.OptionsBand.FixedWidth = true;
-			this.gridBandSchedulesType.RowCount = 2;
-			this.gridBandSchedulesType.VisibleIndex = 2;
-			this.gridBandSchedulesType.Width = 120;
+			this.repositoryItemTextEditScheduleName.AutoHeight = false;
+			this.repositoryItemTextEditScheduleName.Name = "repositoryItemTextEditScheduleName";
+			this.repositoryItemTextEditScheduleName.NullText = "Type name of package here…";
 			// 
 			// bandedGridColumnScheduleSpotType
 			// 
@@ -281,17 +256,6 @@
 			this.repositoryItemComboBoxSpotType.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
 			this.repositoryItemComboBoxSpotType.EditValueChanged += new System.EventHandler(this.repositoryItem_EditValueChanged);
 			// 
-			// gridBandSchedulesStartDate
-			// 
-			this.gridBandSchedulesStartDate.Caption = "Start Date";
-			this.gridBandSchedulesStartDate.Columns.Add(this.bandedGridColumnScheduleFlightDateStart);
-			this.gridBandSchedulesStartDate.MinWidth = 20;
-			this.gridBandSchedulesStartDate.Name = "gridBandSchedulesStartDate";
-			this.gridBandSchedulesStartDate.OptionsBand.FixedWidth = true;
-			this.gridBandSchedulesStartDate.RowCount = 2;
-			this.gridBandSchedulesStartDate.VisibleIndex = 3;
-			this.gridBandSchedulesStartDate.Width = 120;
-			// 
 			// bandedGridColumnScheduleFlightDateStart
 			// 
 			this.bandedGridColumnScheduleFlightDateStart.AppearanceCell.Options.UseTextOptions = true;
@@ -324,18 +288,6 @@
 			this.repositoryItemDateEditEnabled.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this.repositoryItemDateEditEnabled_CloseUp);
 			this.repositoryItemDateEditEnabled.EditValueChanged += new System.EventHandler(this.repositoryItem_EditValueChanged);
 			// 
-			// gridBandSchedulesEndDate
-			// 
-			this.gridBandSchedulesEndDate.Caption = "End Date";
-			this.gridBandSchedulesEndDate.Columns.Add(this.bandedGridColumnScheduleFlightDateEnd);
-			this.gridBandSchedulesEndDate.MinWidth = 20;
-			this.gridBandSchedulesEndDate.Name = "gridBandSchedulesEndDate";
-			this.gridBandSchedulesEndDate.OptionsBand.AllowSize = false;
-			this.gridBandSchedulesEndDate.OptionsBand.FixedWidth = true;
-			this.gridBandSchedulesEndDate.RowCount = 2;
-			this.gridBandSchedulesEndDate.VisibleIndex = 4;
-			this.gridBandSchedulesEndDate.Width = 120;
-			// 
 			// bandedGridColumnScheduleFlightDateEnd
 			// 
 			this.bandedGridColumnScheduleFlightDateEnd.AppearanceCell.Options.UseTextOptions = true;
@@ -347,17 +299,6 @@
 			this.bandedGridColumnScheduleFlightDateEnd.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
 			this.bandedGridColumnScheduleFlightDateEnd.Visible = true;
 			this.bandedGridColumnScheduleFlightDateEnd.Width = 120;
-			// 
-			// gridBandOperation
-			// 
-			this.gridBandOperation.Columns.Add(this.bandedGridColumnScheduleOperations);
-			this.gridBandOperation.MinWidth = 20;
-			this.gridBandOperation.Name = "gridBandOperation";
-			this.gridBandOperation.OptionsBand.AllowSize = false;
-			this.gridBandOperation.OptionsBand.FixedWidth = true;
-			this.gridBandOperation.RowCount = 2;
-			this.gridBandOperation.VisibleIndex = 5;
-			this.gridBandOperation.Width = 40;
 			// 
 			// bandedGridColumnScheduleOperations
 			// 
@@ -404,7 +345,7 @@
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnTop.Location = new System.Drawing.Point(0, 0);
 			this.pnTop.Name = "pnTop";
-			this.pnTop.Size = new System.Drawing.Size(810, 78);
+			this.pnTop.Size = new System.Drawing.Size(806, 78);
 			this.pnTop.TabIndex = 0;
 			// 
 			// pbPackageListLogo
@@ -425,17 +366,103 @@
 			this.labelControlPackageListDescription.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.labelControlPackageListDescription.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
 			this.labelControlPackageListDescription.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-			this.labelControlPackageListDescription.Location = new System.Drawing.Point(385, 3);
+			this.labelControlPackageListDescription.Location = new System.Drawing.Point(381, 3);
 			this.labelControlPackageListDescription.Name = "labelControlPackageListDescription";
 			this.labelControlPackageListDescription.Size = new System.Drawing.Size(411, 72);
 			this.labelControlPackageListDescription.TabIndex = 1;
 			this.labelControlPackageListDescription.Text = "Create up to TEN (10) QuickSHARE Packages for this client:";
 			// 
-			// repositoryItemTextEditScheduleName
+			// bandedGridColumnScheduleDuration
 			// 
-			this.repositoryItemTextEditScheduleName.AutoHeight = false;
-			this.repositoryItemTextEditScheduleName.Name = "repositoryItemTextEditScheduleName";
-			this.repositoryItemTextEditScheduleName.NullText = "Type name of package here…";
+			this.bandedGridColumnScheduleDuration.AppearanceCell.Options.UseTextOptions = true;
+			this.bandedGridColumnScheduleDuration.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+			this.bandedGridColumnScheduleDuration.Caption = "Duration";
+			this.bandedGridColumnScheduleDuration.FieldName = "TotalPeriods";
+			this.bandedGridColumnScheduleDuration.Name = "bandedGridColumnScheduleDuration";
+			this.bandedGridColumnScheduleDuration.OptionsColumn.AllowEdit = false;
+			this.bandedGridColumnScheduleDuration.OptionsColumn.ReadOnly = true;
+			this.bandedGridColumnScheduleDuration.Visible = true;
+			this.bandedGridColumnScheduleDuration.Width = 120;
+			// 
+			// gridBandSchedulesNumber
+			// 
+			this.gridBandSchedulesNumber.Caption = "#";
+			this.gridBandSchedulesNumber.Columns.Add(this.bandedGridColumnScheduleIndex);
+			this.gridBandSchedulesNumber.MinWidth = 20;
+			this.gridBandSchedulesNumber.Name = "gridBandSchedulesNumber";
+			this.gridBandSchedulesNumber.OptionsBand.FixedWidth = true;
+			this.gridBandSchedulesNumber.RowCount = 2;
+			this.gridBandSchedulesNumber.VisibleIndex = 0;
+			this.gridBandSchedulesNumber.Width = 37;
+			// 
+			// gridBandSchedulesName
+			// 
+			this.gridBandSchedulesName.AppearanceHeader.Options.UseTextOptions = true;
+			this.gridBandSchedulesName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+			this.gridBandSchedulesName.Caption = "Schedule/Campaign";
+			this.gridBandSchedulesName.Columns.Add(this.bandedGridColumnScheduleName);
+			this.gridBandSchedulesName.MinWidth = 20;
+			this.gridBandSchedulesName.Name = "gridBandSchedulesName";
+			this.gridBandSchedulesName.RowCount = 2;
+			this.gridBandSchedulesName.VisibleIndex = 1;
+			this.gridBandSchedulesName.Width = 373;
+			// 
+			// gridBandSchedulesType
+			// 
+			this.gridBandSchedulesType.Caption = "Pkg Type";
+			this.gridBandSchedulesType.Columns.Add(this.bandedGridColumnScheduleSpotType);
+			this.gridBandSchedulesType.MinWidth = 20;
+			this.gridBandSchedulesType.Name = "gridBandSchedulesType";
+			this.gridBandSchedulesType.OptionsBand.AllowSize = false;
+			this.gridBandSchedulesType.OptionsBand.FixedWidth = true;
+			this.gridBandSchedulesType.RowCount = 2;
+			this.gridBandSchedulesType.VisibleIndex = 2;
+			this.gridBandSchedulesType.Width = 120;
+			// 
+			// gridBandSchedulesStartDate
+			// 
+			this.gridBandSchedulesStartDate.Caption = "Start Date";
+			this.gridBandSchedulesStartDate.Columns.Add(this.bandedGridColumnScheduleFlightDateStart);
+			this.gridBandSchedulesStartDate.MinWidth = 20;
+			this.gridBandSchedulesStartDate.Name = "gridBandSchedulesStartDate";
+			this.gridBandSchedulesStartDate.OptionsBand.FixedWidth = true;
+			this.gridBandSchedulesStartDate.RowCount = 2;
+			this.gridBandSchedulesStartDate.VisibleIndex = 3;
+			this.gridBandSchedulesStartDate.Width = 120;
+			// 
+			// gridBandSchedulesEndDate
+			// 
+			this.gridBandSchedulesEndDate.Caption = "End Date";
+			this.gridBandSchedulesEndDate.Columns.Add(this.bandedGridColumnScheduleFlightDateEnd);
+			this.gridBandSchedulesEndDate.MinWidth = 20;
+			this.gridBandSchedulesEndDate.Name = "gridBandSchedulesEndDate";
+			this.gridBandSchedulesEndDate.OptionsBand.AllowSize = false;
+			this.gridBandSchedulesEndDate.OptionsBand.FixedWidth = true;
+			this.gridBandSchedulesEndDate.RowCount = 2;
+			this.gridBandSchedulesEndDate.VisibleIndex = 4;
+			this.gridBandSchedulesEndDate.Width = 120;
+			// 
+			// gridBandScheduleDuration
+			// 
+			this.gridBandScheduleDuration.Caption = "Duration";
+			this.gridBandScheduleDuration.Columns.Add(this.bandedGridColumnScheduleDuration);
+			this.gridBandScheduleDuration.MinWidth = 20;
+			this.gridBandScheduleDuration.Name = "gridBandScheduleDuration";
+			this.gridBandScheduleDuration.OptionsBand.FixedWidth = true;
+			this.gridBandScheduleDuration.RowCount = 2;
+			this.gridBandScheduleDuration.VisibleIndex = 5;
+			this.gridBandScheduleDuration.Width = 120;
+			// 
+			// gridBandOperation
+			// 
+			this.gridBandOperation.Columns.Add(this.bandedGridColumnScheduleOperations);
+			this.gridBandOperation.MinWidth = 20;
+			this.gridBandOperation.Name = "gridBandOperation";
+			this.gridBandOperation.OptionsBand.AllowSize = false;
+			this.gridBandOperation.OptionsBand.FixedWidth = true;
+			this.gridBandOperation.RowCount = 2;
+			this.gridBandOperation.VisibleIndex = 6;
+			this.gridBandOperation.Width = 40;
 			// 
 			// HomeControl
 			// 
@@ -450,6 +477,7 @@
 			this.xtraTabPagePackageList.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedules)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewSchedules)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditScheduleName)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxSpotType)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditEnabled.CalendarTimeProperties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEditEnabled)).EndInit();
@@ -459,7 +487,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditDefault)).EndInit();
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbPackageListLogo)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditScheduleName)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -482,14 +509,16 @@
 		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnScheduleOperations;
 		private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEditEnabled;
 		private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditScheduleOperations;
+		private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEditDisabled;
+		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditDefault;
+		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditScheduleName;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandSchedulesNumber;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandSchedulesName;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandSchedulesType;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandSchedulesStartDate;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandSchedulesEndDate;
+		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandScheduleDuration;
+		private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumnScheduleDuration;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandOperation;
-		private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEditDisabled;
-		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditDefault;
-		private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditScheduleName;
 	}
 }

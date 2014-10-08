@@ -28,14 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-			DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-			DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
-			DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
 			this.pnClosed = new DevExpress.XtraEditors.PanelControl();
-			this.pictureBoxImage = new System.Windows.Forms.PictureBox();
+			this.pnAdditionalButtons = new System.Windows.Forms.Panel();
 			this.simpleButtonExpand = new DevExpress.XtraEditors.SimpleButton();
 			this.pnOpened = new DevExpress.XtraEditors.PanelControl();
 			this.pnContent = new System.Windows.Forms.Panel();
@@ -43,7 +37,6 @@
 			this.simpleButtonCollapse = new DevExpress.XtraEditors.SimpleButton();
 			((System.ComponentModel.ISupportInitialize)(this.pnClosed)).BeginInit();
 			this.pnClosed.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pnOpened)).BeginInit();
 			this.pnOpened.SuspendLayout();
 			this.pnTop.SuspendLayout();
@@ -54,40 +47,35 @@
 			this.pnClosed.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.pnClosed.Appearance.Options.UseBackColor = true;
 			this.pnClosed.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-			this.pnClosed.Controls.Add(this.pictureBoxImage);
+			this.pnClosed.Controls.Add(this.pnAdditionalButtons);
 			this.pnClosed.Controls.Add(this.simpleButtonExpand);
 			this.pnClosed.Location = new System.Drawing.Point(0, 149);
 			this.pnClosed.Name = "pnClosed";
+			this.pnClosed.Padding = new System.Windows.Forms.Padding(2);
 			this.pnClosed.Size = new System.Drawing.Size(55, 485);
 			this.pnClosed.TabIndex = 0;
 			this.pnClosed.Visible = false;
 			// 
-			// pictureBoxImage
+			// pnAdditionalButtons
 			// 
-			this.pictureBoxImage.BackColor = System.Drawing.Color.Transparent;
-			this.pictureBoxImage.Image = global::NewBizWiz.CommonGUI.Properties.Resources.RetractableBarLogo;
-			this.pictureBoxImage.Location = new System.Drawing.Point(4, 42);
-			this.pictureBoxImage.Name = "pictureBoxImage";
-			this.pictureBoxImage.Size = new System.Drawing.Size(47, 420);
-			this.pictureBoxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-			this.pictureBoxImage.TabIndex = 1;
-			this.pictureBoxImage.TabStop = false;
-			this.pictureBoxImage.Click += new System.EventHandler(this.simpleButtonExpand_Click);
+			this.pnAdditionalButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnAdditionalButtons.Location = new System.Drawing.Point(4, 36);
+			this.pnAdditionalButtons.Name = "pnAdditionalButtons";
+			this.pnAdditionalButtons.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+			this.pnAdditionalButtons.Size = new System.Drawing.Size(47, 445);
+			this.pnAdditionalButtons.TabIndex = 1;
+			this.pnAdditionalButtons.Resize += new System.EventHandler(this.pnAdditionalButtons_Resize);
 			// 
 			// simpleButtonExpand
 			// 
 			this.simpleButtonExpand.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+			this.simpleButtonExpand.Dock = System.Windows.Forms.DockStyle.Top;
 			this.simpleButtonExpand.Image = global::NewBizWiz.CommonGUI.Properties.Resources.RetractableBarExpand;
-			this.simpleButtonExpand.Location = new System.Drawing.Point(4, 5);
+			this.simpleButtonExpand.Location = new System.Drawing.Point(4, 4);
 			this.simpleButtonExpand.Name = "simpleButtonExpand";
 			this.simpleButtonExpand.Size = new System.Drawing.Size(47, 32);
-			toolTipTitleItem1.Text = "Expand";
-			toolTipItem1.LeftIndent = 6;
-			toolTipItem1.Text = "Expand bar";
-			superToolTip1.Items.Add(toolTipTitleItem1);
-			superToolTip1.Items.Add(toolTipItem1);
-			this.simpleButtonExpand.SuperTip = superToolTip1;
 			this.simpleButtonExpand.TabIndex = 0;
+			this.simpleButtonExpand.ToolTip = "Expand bar";
 			this.simpleButtonExpand.Click += new System.EventHandler(this.simpleButtonExpand_Click);
 			// 
 			// pnOpened
@@ -123,16 +111,11 @@
 			// 
 			this.simpleButtonCollapse.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
 			this.simpleButtonCollapse.Image = global::NewBizWiz.CommonGUI.Properties.Resources.RetractableBarCollapse;
-			this.simpleButtonCollapse.Location = new System.Drawing.Point(4, 3);
+			this.simpleButtonCollapse.Location = new System.Drawing.Point(4, 4);
 			this.simpleButtonCollapse.Name = "simpleButtonCollapse";
 			this.simpleButtonCollapse.Size = new System.Drawing.Size(45, 32);
-			toolTipTitleItem2.Text = "Collapse";
-			toolTipItem2.LeftIndent = 6;
-			toolTipItem2.Text = "Collapse bar";
-			superToolTip2.Items.Add(toolTipTitleItem2);
-			superToolTip2.Items.Add(toolTipItem2);
-			this.simpleButtonCollapse.SuperTip = superToolTip2;
 			this.simpleButtonCollapse.TabIndex = 1;
+			this.simpleButtonCollapse.ToolTip = "Collapse bar";
 			this.simpleButtonCollapse.Click += new System.EventHandler(this.simpleButtonCollapse_Click);
 			// 
 			// RetractableBarControl
@@ -147,7 +130,6 @@
 			this.Size = new System.Drawing.Size(359, 655);
 			((System.ComponentModel.ISupportInitialize)(this.pnClosed)).EndInit();
 			this.pnClosed.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pnOpened)).EndInit();
 			this.pnOpened.ResumeLayout(false);
 			this.pnTop.ResumeLayout(false);
@@ -159,11 +141,11 @@
 
 		protected DevExpress.XtraEditors.PanelControl pnClosed;
 		protected DevExpress.XtraEditors.PanelControl pnOpened;
-		protected System.Windows.Forms.PictureBox pictureBoxImage;
 		protected DevExpress.XtraEditors.SimpleButton simpleButtonExpand;
 		protected System.Windows.Forms.Panel pnTop;
 		protected System.Windows.Forms.Panel pnContent;
 		protected DevExpress.XtraEditors.SimpleButton simpleButtonCollapse;
+		private System.Windows.Forms.Panel pnAdditionalButtons;
 
 	}
 }

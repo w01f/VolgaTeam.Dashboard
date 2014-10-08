@@ -36,7 +36,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NewBizWiz.QuickShare.Controls.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap AddProgram {
+        public static System.Drawing.Bitmap AddProgram {
             get {
                 object obj = ResourceManager.GetObject("AddProgram", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap AddSchedule {
+        public static System.Drawing.Bitmap AddSchedule {
             get {
                 object obj = ResourceManager.GetObject("AddSchedule", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CloneSchedule {
+        public static System.Drawing.Bitmap CloneSchedule {
             get {
                 object obj = ResourceManager.GetObject("CloneSchedule", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DateNotAssigned {
+        public static System.Drawing.Bitmap DateNotAssigned {
             get {
                 object obj = ResourceManager.GetObject("DateNotAssigned", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DeleteButton {
+        public static System.Drawing.Bitmap DeleteButton {
             get {
                 object obj = ResourceManager.GetObject("DeleteButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DeletePackage {
+        public static System.Drawing.Bitmap DeletePackage {
             get {
                 object obj = ResourceManager.GetObject("DeletePackage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DeleteProgram {
+        public static System.Drawing.Bitmap DeleteProgram {
             get {
                 object obj = ResourceManager.GetObject("DeleteProgram", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +133,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap EmailBig {
+        public static System.Drawing.Bitmap EmailBig {
             get {
                 object obj = ResourceManager.GetObject("EmailBig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +143,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Exit {
+        public static System.Drawing.Bitmap Exit {
             get {
                 object obj = ResourceManager.GetObject("Exit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +153,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Floater {
+        public static System.Drawing.Bitmap Floater {
             get {
                 object obj = ResourceManager.GetObject("Floater", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +163,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FloaterSmall {
+        public static System.Drawing.Bitmap FloaterSmall {
             get {
                 object obj = ResourceManager.GetObject("FloaterSmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,7 +173,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Help {
+        public static System.Drawing.Bitmap Help {
             get {
                 object obj = ResourceManager.GetObject("Help", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +183,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap HelpMiddle {
+        public static System.Drawing.Bitmap HelpMiddle {
             get {
                 object obj = ResourceManager.GetObject("HelpMiddle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +193,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NewPackageRibbon {
+        public static System.Drawing.Bitmap NewPackageRibbon {
             get {
                 object obj = ResourceManager.GetObject("NewPackageRibbon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -203,7 +203,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap OpenPackage {
+        public static System.Drawing.Bitmap OpenPackage {
             get {
                 object obj = ResourceManager.GetObject("OpenPackage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,7 +213,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap OpenPackageRibbon {
+        public static System.Drawing.Bitmap OpenPackageRibbon {
             get {
                 object obj = ResourceManager.GetObject("OpenPackageRibbon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -223,7 +223,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap PowerPoint {
+        public static System.Drawing.Bitmap PowerPoint {
             get {
                 object obj = ResourceManager.GetObject("PowerPoint", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -233,7 +233,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Preview {
+        public static System.Drawing.Bitmap Preview {
             get {
                 object obj = ResourceManager.GetObject("Preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -243,7 +243,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Quarter {
+        public static System.Drawing.Bitmap Quarter {
             get {
                 object obj = ResourceManager.GetObject("Quarter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -253,7 +253,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap QuickShareLogo {
+        public static System.Drawing.Bitmap QuickShareLogo {
             get {
                 object obj = ResourceManager.GetObject("QuickShareLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -273,7 +273,7 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SaveAs {
+        public static System.Drawing.Bitmap SaveAs {
             get {
                 object obj = ResourceManager.GetObject("SaveAs", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -283,9 +283,19 @@ namespace NewBizWiz.QuickShare.Controls.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SaveSmall {
+        public static System.Drawing.Bitmap SaveSmall {
             get {
                 object obj = ResourceManager.GetObject("SaveSmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap SectionSettingsShare {
+            get {
+                object obj = ResourceManager.GetObject("SectionSettingsShare", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

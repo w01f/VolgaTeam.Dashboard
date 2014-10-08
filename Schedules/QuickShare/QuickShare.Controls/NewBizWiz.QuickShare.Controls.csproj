@@ -107,9 +107,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ScheduleSettingsControl.resx">
       <DependentUpon>ScheduleSettingsControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
@@ -209,6 +210,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RibbonLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionSettingsShare.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

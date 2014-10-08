@@ -32,7 +32,6 @@
 			this.pnClosed.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pnOpened)).BeginInit();
 			this.pnOpened.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).BeginInit();
 			this.pnTop.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -79,7 +78,6 @@
 			this.pnClosed.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pnOpened)).EndInit();
 			this.pnOpened.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).EndInit();
 			this.pnTop.ResumeLayout(false);
 			this.ResumeLayout(false);
 

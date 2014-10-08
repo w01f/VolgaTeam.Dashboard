@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using DevExpress.XtraEditors;
+using NewBizWiz.CommonGUI.Properties;
 
 namespace NewBizWiz.CommonGUI.RetractableBar
 {
@@ -27,19 +31,25 @@ namespace NewBizWiz.CommonGUI.RetractableBar
 		[Browsable(true), DefaultValue(1500), Category("Appearance")]
 		public int AnimationDelay { get; set; }
 
-		[Browsable(true), Category("Appearance")]
-		
-		public Image Logo
-		{
-			get { return pictureBoxImage.Image; }
-			set { pictureBoxImage.Image = value; }
-		}
-
 		protected RetractableBarControl()
 		{
 			InitializeComponent();
 			ContentSize = DefaultContentSize;
 			AnimationDelay = DefaultAnimationDelay;
+			AddButtons(new[] { new ButtonInfo { Logo = Resources.RetractableBarLogo, Tooltip = "Expand bar" } });
+		}
+
+		public void AddButtons(IEnumerable<ButtonInfo> buttonInfos)
+		{
+			pnAdditionalButtons.Controls.Clear();
+			var buttons = buttonInfos.Select(ButtonInfo.CreateButton).Reverse().ToList();
+			var buttonHeight = (pnAdditionalButtons.Height - pnAdditionalButtons.Padding.Top - pnAdditionalButtons.Padding.Bottom) / buttons.Count;
+			buttons.ForEach(b =>
+			{
+				b.Height = buttonHeight;
+				b.Click += (o, e) => Expand();
+			});
+			pnAdditionalButtons.Controls.AddRange(buttons.ToArray());
 		}
 
 		public void Collapse(bool silent = false)
@@ -108,7 +118,7 @@ namespace NewBizWiz.CommonGUI.RetractableBar
 				StateChanged(this, new StateChangedEventArgs(true));
 		}
 
-		private void simpleButtonExpand_Click(object sender, System.EventArgs e)
+		private void simpleButtonExpand_Click(object sender, EventArgs e)
 		{
 			Expand();
 		}
@@ -116,6 +126,13 @@ namespace NewBizWiz.CommonGUI.RetractableBar
 		private void simpleButtonCollapse_Click(object sender, EventArgs e)
 		{
 			Collapse();
+		}
+
+		private void pnAdditionalButtons_Resize(object sender, EventArgs e)
+		{
+			var buttonHeight = (pnAdditionalButtons.Height - pnAdditionalButtons.Padding.Top - pnAdditionalButtons.Padding.Bottom) / pnAdditionalButtons.Controls.Count;
+			foreach (var button in pnAdditionalButtons.Controls.OfType<Control>())
+				button.Height = buttonHeight;
 		}
 	}
 
@@ -138,6 +155,26 @@ namespace NewBizWiz.CommonGUI.RetractableBar
 		public StateChangedEventArgs(bool expaned)
 		{
 			Expaned = expaned;
+		}
+	}
+
+	public class ButtonInfo
+	{
+		public Image Logo { get; set; }
+		public string Tooltip { get; set; }
+		public Action Action { get; set; }
+
+		public static SimpleButton CreateButton(ButtonInfo info)
+		{
+			var button = new SimpleButton();
+			button.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+			button.Dock = DockStyle.Top;
+			button.Image = info.Logo;
+			button.ImageLocation = ImageLocation.MiddleCenter;
+			button.ToolTip = info.Tooltip;
+			if (info.Action != null)
+				button.Click += (o, e) => info.Action();
+			return button;
 		}
 	}
 }

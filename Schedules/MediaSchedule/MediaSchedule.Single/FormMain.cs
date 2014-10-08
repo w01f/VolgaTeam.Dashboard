@@ -293,7 +293,7 @@ namespace NewBizWiz.MediaSchedule.Single
 		{
 			if (string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard)) return;
 			var shortSchedule = BusinessWrapper.Instance.ScheduleManager.GetShortSchedule();
-			Text = String.Format("{0} Seller - {1} - {2} {3}", MediaMetaData.Instance.DataTypeString, SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, String.Format("({0})", shortSchedule != null ? shortSchedule.ShortFileName : String.Empty));
+			Text = String.Format("SellerPoint for {0} - {1} - {2} {3}", MediaMetaData.Instance.DataTypeString, SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, String.Format("({0})", shortSchedule != null ? shortSchedule.ShortFileName : String.Empty));
 		}
 
 		private void LoadData()
@@ -439,9 +439,6 @@ namespace NewBizWiz.MediaSchedule.Single
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
 			UpdateFormTitle();
-			if (File.Exists(MediaMetaData.Instance.SettingsManager.IconPath))
-				Icon = new Icon(Core.OnlineSchedule.SettingsManager.Instance.IconPath);
-
 			Utilities.Instance.ActivatePowerPoint(RegularMediaSchedulePowerPointHelper.Instance.PowerPointObject);
 			AppManager.Instance.ActivateMainForm();
 

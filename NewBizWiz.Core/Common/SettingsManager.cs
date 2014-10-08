@@ -31,7 +31,7 @@ namespace NewBizWiz.Core.Common
 			HelpBrowserSettingsPath = String.Format(@"{0}\newlocaldirect.com\app\HelpUrls\!Help_Browser.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
 			SelectedWizard = String.Empty;
 
-			DashboardName = "Schedule APP";
+			DashboardName = "6 Minute Seller";
 			DashboardCode = String.Empty;
 
 			SelectedWizard = String.Empty;

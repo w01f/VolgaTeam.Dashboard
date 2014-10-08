@@ -115,6 +115,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 		public bool ShowCost { get; set; }
 		public bool ShowCPP { get; set; }
 		public bool ShowStation { get; set; }
+		public bool ShowStationInBrackets { get; set; }
 
 		#endregion
 
@@ -278,7 +279,7 @@ namespace NewBizWiz.MediaSchedule.Controls.BusinessClasses
 					var program = Programs[i];
 					temp.Clear();
 					if (ShowStation)
-						temp.Add(String.Format("[{0}]", program.Station));
+						temp.Add(ShowStationInBrackets ? String.Format("[{0}]", program.Station) : String.Format("{0} ", program.Station));
 					temp.Add(program.Name);
 					value = String.Join(" ", temp);
 					if (!ReplacementsList.Keys.Contains(key))

@@ -16,7 +16,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 		private SettingsManager()
 		{
 			HelpLinksPath = string.Format(@"{0}\newlocaldirect.com\app\HelpUrls\WebQuickHelp.xml", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-			IconPath = Path.Combine(Path.GetDirectoryName(typeof(SettingsManager).Assembly.Location), "icon.ico");
 			SaveFolder = Path.Combine(Core.Common.SettingsManager.Instance.OutgoingFolderPath, @"Saved_Schedules\Web Quick");
 			if (!Directory.Exists(SaveFolder))
 				Directory.CreateDirectory(SaveFolder);
@@ -24,7 +23,6 @@ namespace NewBizWiz.OnlineSchedule.DigitalPackage.BusinessClasses
 
 		public string SaveFolder { get; set; }
 		public string HelpLinksPath { get; set; }
-		public string IconPath { get; set; }
 
 		#region Local Settings
 		public string LastOpenSchedule { get; set; }

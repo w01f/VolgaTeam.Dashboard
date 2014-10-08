@@ -100,6 +100,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			spinEditOutputLimitPeriods.MouseDown += Utilities.Instance.Editor_MouseDown;
 			spinEditOutputLimitPeriods.MouseUp += Utilities.Instance.Editor_MouseUp;
 			quarterSelectorControl.QuarterSelected += QuarterCheckedChanged;
+			retractableBarControl.Collapse(true);
 		}
 		public bool AllowToLeaveControl
 		{
@@ -240,63 +241,21 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 
 		private void UpdateColumnsAccordingScreenSize()
 		{
-			if (Utilities.Instance.IsSmallScreen)
-			{
-				if (ScheduleSection.ShowStation && ScheduleSection.ShowDaypart)
-				{
-					bandedGridColumnStation.RowCount = 1;
-					advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnStation, 0, 0);
-					bandedGridColumnDaypart.RowCount = 1;
-					advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnDaypart, 0, 1);
-				}
-				else if (ScheduleSection.ShowStation)
-				{
-					bandedGridColumnStation.RowCount = 1;
-					advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnStation, 0, 0);
-				}
-				else if (ScheduleSection.ShowDaypart)
-				{
-					bandedGridColumnDaypart.RowCount = 1;
-					advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnDaypart, 0, 0);
-				}
-				bandedGridColumnName.RowCount = 1;
-				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnName, 1, 0);
-				gridBandProgram.Width = 238;
-
-				bandedGridColumnTotalSpots.Caption = "Spots";
-				gridBandTotals1.Width = 134;
-				gridBandTotals1.Visible = ScheduleSection.ShowTotalSpots || ScheduleSection.ShowCost;
-				gridBandTotals2.Width = 134;
-				gridBandTotals2.Visible = ScheduleSection.ShowGRP || ScheduleSection.ShowCPP;
-				gridBandTotals2.Columns.Add(bandedGridColumnGRP);
-				gridBandTotals2.Columns.Add(bandedGridColumnCPP);
-				if (ScheduleSection.ShowTotalSpots && ScheduleSection.ShowCost)
-				{
-					bandedGridColumnTotalSpots.RowCount = 1;
-					advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnTotalSpots, 0, 0);
-					bandedGridColumnCost.RowCount = 1;
-					advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnCost, 1, 0);
-				}
-				else
-				{
-					bandedGridColumnTotalSpots.RowCount = 2;
-					bandedGridColumnCost.RowCount = 2;
-				}
-				if (ScheduleSection.ShowGRP && ScheduleSection.ShowCPP)
-				{
-					bandedGridColumnGRP.RowCount = 1;
-					advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnGRP, 0, 1);
-					bandedGridColumnCPP.RowCount = 1;
-					advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnCPP, 1, 1);
-				}
-				else
-				{
-					bandedGridColumnGRP.RowCount = 2;
-					bandedGridColumnCPP.RowCount = 2;
-				}
-			}
-			else
-				gridBandTotals2.Visible = false;
+			gridBandStation.Visible = ScheduleSection.ShowStation || ScheduleSection.ShowDaypart;
+			if (ScheduleSection.ShowStation)
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnStation, 0, 0);
+			if (ScheduleSection.ShowDaypart)
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnDaypart, 1, 0);
+			gridBandTotals.Visible = ScheduleSection.ShowTotalSpots || ScheduleSection.ShowCost || ScheduleSection.ShowGRP || ScheduleSection.ShowCPP;
+			if (ScheduleSection.ShowTotalSpots)
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnTotalSpots, 0, 0);
+			if (ScheduleSection.ShowGRP)
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnGRP, 1, 0);
+			var secondColumnIndex = ScheduleSection.ShowTotalSpots || ScheduleSection.ShowGRP ? 1 : 0;
+			if (ScheduleSection.ShowCost)
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnCost, 0, secondColumnIndex);
+			if (ScheduleSection.ShowCPP)
+				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnCPP, 1, secondColumnIndex);
 		}
 
 		private void UpdateSpotsStatus()
@@ -357,11 +316,20 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			PreviewButton.Enabled = enabled;
 		}
 
-		private void CloneSpots(int rowHandle, object valueToClone, int startIndex)
+		private void CloneSpots(int rowHandle, object valueToClone, int startIndex, bool everyOthere)
 		{
+			if (everyOthere)
+				startIndex++;
+			var i = 0;
 			foreach (var column in _spotColumns.Where(c => c.Visible))
-				if (column.VisibleIndex > startIndex || startIndex == -1)
+			{
+				if (!(column.VisibleIndex > startIndex || startIndex == -1)) continue;
+				if (i == 0)
 					advBandedGridViewSchedule.SetRowCellValue(rowHandle, column, valueToClone);
+				i++;
+				if (!everyOthere || i > 1)
+					i = 0;
+			}
 		}
 
 		private void BuildSpotColumns()
@@ -455,6 +423,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			buttonXSpots.Checked = ScheduleSection.ShowSpots;
 			checkEditEmptySports.Enabled = ScheduleSection.ShowSpots;
 			checkEditEmptySports.Checked = !ScheduleSection.ShowEmptySpots;
+			checkEditOutputNoBrackets.Checked = ScheduleSection.OutputNoBrackets;
 
 			QuarterButton.Checked = ScheduleSection.ShowSelectedQuarter;
 			quarterSelectorControl.InitControls(ScheduleSection.Parent.Quarters, ScheduleSection.Parent.Quarters.FirstOrDefault(q => !ScheduleSection.SelectedQuarter.HasValue || q.DateAnchor == ScheduleSection.SelectedQuarter.Value));
@@ -484,22 +453,12 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnRate, 0, 0);
 			if (ScheduleSection.ShowRating)
 				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnRating, 1, 0);
-
-
 			bandedGridColumnCPP.Visible = ScheduleSection.ShowCPP;
 			bandedGridColumnGRP.Visible = ScheduleSection.ShowGRP;
 			bandedGridColumnCost.Visible = ScheduleSection.ShowCost;
-
 			bandedGridColumnLength.Visible = ScheduleSection.ShowLenght;
-			gridBandLength.Visible = ScheduleSection.ShowLenght;
-
 			bandedGridColumnDay.Visible = ScheduleSection.ShowDay;
 			bandedGridColumnTime.Visible = ScheduleSection.ShowTime;
-			gridBandDate.Visible = ScheduleSection.ShowDay | ScheduleSection.ShowTime;
-			if (ScheduleSection.ShowDay)
-				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnDay, 0, 0);
-			if (ScheduleSection.ShowTime)
-				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnTime, 1, 0);
 
 			bandedGridColumnStation.Visible = ScheduleSection.ShowStation;
 			bandedGridColumnDaypart.Visible = ScheduleSection.ShowDaypart;
@@ -640,6 +599,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			ScheduleSection.ShowSpots = buttonXSpots.Checked;
 			checkEditEmptySports.Enabled = ScheduleSection.ShowSpots;
 			ScheduleSection.ShowEmptySpots = !checkEditEmptySports.Checked;
+			ScheduleSection.OutputNoBrackets = checkEditOutputNoBrackets.Checked;
 
 			ScheduleSection.ShowTotalPeriods = buttonXTotalPeriods.Checked;
 			ScheduleSection.ShowTotalSpots = buttonXTotalSpots.Checked;
@@ -666,17 +626,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			bandedGridColumnGRP.Visible = ScheduleSection.ShowGRP;
 			bandedGridColumnCost.Visible = ScheduleSection.ShowCost;
 			bandedGridColumnCPP.Visible = ScheduleSection.ShowCPP;
-
 			bandedGridColumnLength.Visible = ScheduleSection.ShowLenght;
-			gridBandLength.Visible = ScheduleSection.ShowLenght;
-
 			bandedGridColumnDay.Visible = ScheduleSection.ShowDay;
 			bandedGridColumnTime.Visible = ScheduleSection.ShowTime;
-			gridBandDate.Visible = ScheduleSection.ShowDay | ScheduleSection.ShowTime;
-			if (ScheduleSection.ShowDay)
-				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnDay, 0, 0);
-			if (ScheduleSection.ShowTime)
-				advBandedGridViewSchedule.SetColumnPosition(bandedGridColumnTime, 1, 0);
 
 			bandedGridColumnStation.Visible = ScheduleSection.ShowStation;
 			bandedGridColumnDaypart.Visible = ScheduleSection.ShowDaypart;
@@ -906,9 +858,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			{
 				var valueToClone = advBandedGridViewSchedule.GetRowCellValue(e.HitInfo.RowHandle, e.HitInfo.Column);
 				var columnName = ((object[])e.HitInfo.Column.Tag)[1];
-				e.Menu.Items.Add(new DXMenuItem(String.Format("Clone {1} to all {0}s", SpotTitle, columnName), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, -1)));
-				e.Menu.Items.Add(new DXMenuItem(String.Format("Clone {1} to all Remaining {0}s", SpotTitle, columnName), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, e.HitInfo.Column.VisibleIndex)));
-				e.Menu.Items.Add(new DXMenuItem("Wipe all Spots on this line", (o, args) => CloneSpots(e.HitInfo.RowHandle, null, -1)));
+				e.Menu.Items.Add(new DXMenuItem(String.Format("Clone {1} to all {0}s", SpotTitle, columnName), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, -1, false)));
+				e.Menu.Items.Add(new DXMenuItem(String.Format("Clone {1} to all Remaining {0}s", SpotTitle, columnName), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, e.HitInfo.Column.VisibleIndex, false)));
+				e.Menu.Items.Add(new DXMenuItem(String.Format("Clone {1} to every other Remaining {0}s", SpotTitle, columnName), (o, args) => CloneSpots(e.HitInfo.RowHandle, valueToClone, e.HitInfo.Column.VisibleIndex, true)));
+				e.Menu.Items.Add(new DXMenuItem("Wipe all Spots on this line", (o, args) => CloneSpots(e.HitInfo.RowHandle, null, -1, false)));
 			}
 			else if (e.HitInfo.Column == bandedGridColumnIndex ||
 					 e.HitInfo.Column == bandedGridColumnStation ||
@@ -944,6 +897,16 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			options.Add(String.Format("{0}lyGrossInvestment", SpotTitle), ScheduleSection.TotalCost);
 			AddActivity(new UserActivity("Change Program Position", options));
 			SettingsNotSaved = true;
+		}
+
+		private void advBandedGridViewSchedule_CustomSummaryCalculate(object sender, CustomSummaryEventArgs e)
+		{
+			var item = e.Item as GridSummaryItem;
+			if(item == null) return;
+			if (item.Tag == "CPP")
+			{
+				
+			}
 		}
 		#endregion
 
@@ -1022,6 +985,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 						outputPage.ShowGRP = buttonXGRP.Checked;
 						outputPage.ShowCost = buttonXCost.Checked;
 						outputPage.ShowStation = buttonXStation.Checked;
+						outputPage.ShowStationInBrackets = !checkEditOutputNoBrackets.Checked;
 						outputPage.ShowDay = buttonXDay.Checked;
 						outputPage.ShowTime = buttonXTime.Checked;
 						outputPage.ShowLength = buttonXLength.Checked;

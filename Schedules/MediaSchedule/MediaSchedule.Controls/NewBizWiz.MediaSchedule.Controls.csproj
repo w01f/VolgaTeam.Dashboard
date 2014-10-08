@@ -211,12 +211,17 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\HomeControl.resx">
       <DependentUpon>HomeControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Calendar\CalendarSlideInfoControl.resx">
       <DependentUpon>CalendarSlideInfoControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationClasses\ScheduleControls\RegularScheduleSectionControl.resx">
+      <DependentUpon>RegularScheduleSectionControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\Strategy\ProgramStrategyControl.resx">
       <DependentUpon>ProgramStrategyControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\QuarterSelectorControl.resx">
       <DependentUpon>QuarterSelectorControl.cs</DependentUpon>
@@ -226,6 +231,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationClasses\ScheduleControls\ScheduleSectionControl.resx">
       <DependentUpon>ScheduleSectionControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -363,6 +369,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TVRibbonLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionSettingsDigital.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionSettingsInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionSettingsOptions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionSettingsRadio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SectionSettingsTV.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

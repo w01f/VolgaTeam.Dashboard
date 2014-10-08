@@ -38,7 +38,9 @@
 			// 
 			this.laTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.laTitle.BackColor = System.Drawing.Color.White;
 			this.laTitle.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laTitle.ForeColor = System.Drawing.Color.Black;
 			this.laTitle.Location = new System.Drawing.Point(8, 9);
 			this.laTitle.Name = "laTitle";
 			this.laTitle.Size = new System.Drawing.Size(419, 73);
@@ -92,12 +94,13 @@
 			// FormStart
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(434, 135);
 			this.Controls.Add(this.buttonXExit);
 			this.Controls.Add(this.buttonXOpen);
 			this.Controls.Add(this.buttonXNew);
 			this.Controls.Add(this.laTitle);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
@@ -105,7 +108,7 @@
 			this.Name = "FormStart";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Ad Seller";
+			this.Text = "SellerPoint for Newspaper";
 			this.ResumeLayout(false);
 
         }

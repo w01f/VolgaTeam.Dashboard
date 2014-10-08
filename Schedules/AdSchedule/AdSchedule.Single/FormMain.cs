@@ -382,7 +382,7 @@ namespace NewBizWiz.AdSchedule.Single
 		private void UpdateFormTitle()
 		{
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("SellerPoint Media Schedules - {0} ({1})", SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
+				Text = String.Format("SellerPoint for Newspaper - {0} ({1})", SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
 		}
 
 		private bool AllowToLeaveCurrentControl()
@@ -469,10 +469,7 @@ namespace NewBizWiz.AdSchedule.Single
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("SellerPoint Media Schedules - {0}", SettingsManager.Instance.Size);
-
-			if (File.Exists(Core.AdSchedule.SettingsManager.Instance.IconPath))
-				Icon = new Icon(Core.AdSchedule.SettingsManager.Instance.IconPath);
+				Text = String.Format("SellerPoint for Newspaper - {0}", SettingsManager.Instance.Size);
 
 			if (SettingsManager.Instance.SizeWidth == 10 && SettingsManager.Instance.SizeHeght == 5.63)
 				buttonItemCalendarPowerPoint.Enabled = false;

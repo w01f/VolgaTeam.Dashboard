@@ -286,7 +286,7 @@ namespace NewBizWiz.MediaSchedule.Internal
 		private void UpdateFormTitle()
 		{
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("{0} Schedule Builder - {1} - {2} ({3})", MediaMetaData.Instance.DataTypeString, SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
+				Text = String.Format("SellerPoint for {0} - {1} - {2} ({3})", MediaMetaData.Instance.DataTypeString, SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
 		}
 
 		private bool AllowToLeaveCurrentControl()

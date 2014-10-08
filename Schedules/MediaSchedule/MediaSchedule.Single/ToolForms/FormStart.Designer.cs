@@ -105,7 +105,7 @@
 			this.Name = "FormStart";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "{0} Seller";
+			this.Text = "SellerPoint for {0}";
 			this.ResumeLayout(false);
 
         }

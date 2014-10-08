@@ -297,7 +297,8 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 			if (e.Column == bandedGridColumnScheduleName ||
 				e.Column == bandedGridColumnScheduleSpotType ||
 				e.Column == bandedGridColumnScheduleFlightDateStart ||
-				e.Column == bandedGridColumnScheduleFlightDateEnd)
+				e.Column == bandedGridColumnScheduleFlightDateEnd ||
+				e.Column == bandedGridColumnScheduleDuration)
 			{
 				if (String.IsNullOrEmpty(targetSchedule.Name))
 					e.Appearance.ForeColor = Color.Gray;

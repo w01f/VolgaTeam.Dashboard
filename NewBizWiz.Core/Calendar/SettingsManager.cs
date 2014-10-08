@@ -14,13 +14,11 @@ namespace NewBizWiz.Core.Calendar
 			if (!Directory.Exists(defaultSaveFolderPath))
 				Directory.CreateDirectory(defaultSaveFolderPath);
 			SaveFolder = defaultSaveFolderPath;
-			IconPath = Path.Combine(Path.GetDirectoryName(typeof(SettingsManager).Assembly.Location), "icon.ico");
 			ViewSettings = new LocalSettings();
 		}
 
 		public string SaveFolder { get; set; }
 		public string HelpLinksPath { get; set; }
-		public string IconPath { get; set; }
 		public string AdScheduleFolder { get; set; }
 
 		public LocalSettings ViewSettings { get; private set; }

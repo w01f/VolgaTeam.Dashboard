@@ -153,8 +153,6 @@ namespace NewBizWiz.Dashboard
 				while (thread.IsAlive)
 					Application.DoEvents();
 				Init();
-				if (File.Exists(SettingsManager.Instance.IconPath))
-					Icon = new Icon(SettingsManager.Instance.IconPath);
 				buttonItemNewspaperNew.Click += PrintScheduleBuilderControl.Instance.buttonXNewSchedule_Click;
 				buttonItemNewspaperOpen.Click += PrintScheduleBuilderControl.Instance.buttonXOpenSchedule_Click;
 				buttonItemNewspaperDelete.Click += PrintScheduleBuilderControl.Instance.buttonXDeleteSchedule_Click;

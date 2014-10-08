@@ -867,7 +867,6 @@ namespace NewBizWiz.Core.MediaSchedule
 			ShowDiscount = false;
 
 			ShowSelectedQuarter = false;
-
 			#endregion
 		}
 
@@ -927,6 +926,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			result.AppendLine(@"<OutputPerQuater>" + OutputPerQuater + @"</OutputPerQuater>");
 			if (OutputMaxPeriods.HasValue)
 				result.AppendLine(@"<OutputMaxPeriods>" + OutputMaxPeriods.Value + @"</OutputMaxPeriods>");
+			result.AppendLine(@"<OutputNoBrackets>" + OutputNoBrackets + @"</OutputNoBrackets>");
 
 			#endregion
 
@@ -1046,6 +1046,10 @@ namespace NewBizWiz.Core.MediaSchedule
 								OutputMaxPeriods = temp;
 						}
 						break;
+					case "OutputNoBrackets":
+						if (bool.TryParse(childNode.InnerText, out tempBool))
+							OutputNoBrackets = tempBool;
+						break;
 					case "DigitalLegend":
 						DigitalLegend.Deserialize(childNode);
 						break;
@@ -1142,7 +1146,7 @@ namespace NewBizWiz.Core.MediaSchedule
 			table.Columns.Add(column);
 
 			column = new DataColumn(ProgramTotalCPPDataColumnName, typeof(double));
-			temp = string.Format("Sum({0})/(Sum({1})/{2})", ProgramCostDataColumnName, ProgramGRPDataColumnName, (Parent.DemoType == DemoType.Rtg ? "1" : "1000"));
+			temp = string.Format("IIF((Sum({1})/{2})<>0,Sum({0})/(Sum({1})/{2}),0)", ProgramCostDataColumnName, ProgramGRPDataColumnName, (Parent.DemoType == DemoType.Rtg ? "1" : "1000"));
 			column.Expression = temp;
 			table.Columns.Add(column);
 
@@ -1303,8 +1307,8 @@ namespace NewBizWiz.Core.MediaSchedule
 		public bool ShowSelectedQuarter { get; set; }
 		public DateTime? SelectedQuarter { get; set; }
 		public bool OutputPerQuater { get; set; }
-
 		public int? OutputMaxPeriods { get; set; }
+		public bool OutputNoBrackets { get; set; }
 		#endregion
 
 		#region Calculated Properies

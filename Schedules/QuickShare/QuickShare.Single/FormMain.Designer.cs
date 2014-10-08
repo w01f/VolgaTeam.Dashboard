@@ -191,7 +191,7 @@
 			this.buttonItemHomeExit.Image = ((System.Drawing.Image)(resources.GetObject("buttonItemHomeExit.Image")));
 			this.buttonItemHomeExit.Name = "buttonItemHomeExit";
 			this.buttonItemHomeExit.SubItemsExpandWidth = 14;
-			this.superTooltip.SetSuperTooltip(this.buttonItemHomeExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close the Ad Schedule Builder", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
+			this.superTooltip.SetSuperTooltip(this.buttonItemHomeExit, new DevComponents.DotNetBar.SuperTooltipInfo("EXIT", "", "Close", null, null, DevComponents.DotNetBar.eTooltipColor.Gray));
 			this.buttonItemHomeExit.Text = "buttonItem1";
 			this.buttonItemHomeExit.Click += new System.EventHandler(this.buttonItemHomeExit_Click);
 			// 
@@ -398,7 +398,7 @@
 			// 
 			// comboBoxEditBusinessName
 			// 
-			this.comboBoxEditBusinessName.Location = new System.Drawing.Point(4, 23);
+			this.comboBoxEditBusinessName.Location = new System.Drawing.Point(4, 22);
 			this.comboBoxEditBusinessName.Name = "comboBoxEditBusinessName";
 			this.comboBoxEditBusinessName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditBusinessName.Properties.Appearance.Options.UseFont = true;
@@ -411,7 +411,7 @@
 			// 
 			// comboBoxEditDecisionMaker
 			// 
-			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(4, 51);
+			this.comboBoxEditDecisionMaker.Location = new System.Drawing.Point(4, 50);
 			this.comboBoxEditDecisionMaker.Name = "comboBoxEditDecisionMaker";
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditDecisionMaker.Properties.Appearance.Options.UseFont = true;
@@ -424,7 +424,7 @@
 			// 
 			// comboBoxEditClientType
 			// 
-			this.comboBoxEditClientType.Location = new System.Drawing.Point(4, 79);
+			this.comboBoxEditClientType.Location = new System.Drawing.Point(4, 78);
 			this.comboBoxEditClientType.Name = "comboBoxEditClientType";
 			this.comboBoxEditClientType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.comboBoxEditClientType.Properties.Appearance.Options.UseFont = true;
@@ -439,7 +439,7 @@
 			// dateEditPresentationDate
 			// 
 			this.dateEditPresentationDate.EditValue = null;
-			this.dateEditPresentationDate.Location = new System.Drawing.Point(150, 23);
+			this.dateEditPresentationDate.Location = new System.Drawing.Point(150, 22);
 			this.dateEditPresentationDate.Name = "dateEditPresentationDate";
 			this.dateEditPresentationDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
 			this.dateEditPresentationDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -464,7 +464,7 @@
 			// textEditAccountNumber
 			// 
 			this.textEditAccountNumber.Enabled = false;
-			this.textEditAccountNumber.Location = new System.Drawing.Point(150, 79);
+			this.textEditAccountNumber.Location = new System.Drawing.Point(150, 78);
 			this.textEditAccountNumber.Name = "textEditAccountNumber";
 			this.textEditAccountNumber.Size = new System.Drawing.Size(103, 20);
 			this.textEditAccountNumber.StyleController = this.styleController;

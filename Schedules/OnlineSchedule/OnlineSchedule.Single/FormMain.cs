@@ -228,7 +228,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 		private void UpdateFormTitle()
 		{
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("WebPoint - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
+				Text = String.Format("WebPoint Digital Schedules - {0} - {1} ({2})", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size, BusinessWrapper.Instance.ScheduleManager.GetShortSchedule().ShortFileName);
 		}
 
 		private void LoadData()
@@ -330,10 +330,7 @@ namespace NewBizWiz.OnlineSchedule.Single
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
 			if (!string.IsNullOrEmpty(SettingsManager.Instance.SelectedWizard))
-				Text = String.Format("WebPoint - {0} - {1}", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size);
-			if (File.Exists(Core.OnlineSchedule.SettingsManager.Instance.IconPath))
-				Icon = new Icon(Core.OnlineSchedule.SettingsManager.Instance.IconPath);
-
+				Text = String.Format("WebPoint Digital Schedules - {0} - {1}", SettingsManager.Instance.SelectedWizard, SettingsManager.Instance.Size);
 			Utilities.Instance.ActivatePowerPoint(OnlineSchedulePowerPointHelper.Instance.PowerPointObject);
 			AppManager.Instance.ActivateMainForm();
 

@@ -366,6 +366,66 @@ namespace NewBizWiz.MediaSchedule.Controls.Properties {
 		/// <summary>
 		///   Looks up a localized resource of type System.Drawing.Bitmap.
 		/// </summary>
+		public static System.Drawing.Bitmap SectionSettingsDigital
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SectionSettingsDigital", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SectionSettingsInfo
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SectionSettingsInfo", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SectionSettingsOptions
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SectionSettingsOptions", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SectionSettingsRadio
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SectionSettingsRadio", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap SectionSettingsTV
+		{
+			get
+			{
+				object obj = ResourceManager.GetObject("SectionSettingsTV", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
 		public static System.Drawing.Bitmap TVRibbonLogo
 		{
 			get

@@ -82,7 +82,7 @@
 			this.laNoSlidesWarningText3.Size = new System.Drawing.Size(523, 173);
 			this.laNoSlidesWarningText3.TabIndex = 27;
 			this.laNoSlidesWarningText3.Text = "Go to the PowerPoint tab on the Minibar and change to another slide background th" +
-    "at will work with the TV Schedule Builder…";
+	"at will work with the SellerPoint for TV…";
 			this.laNoSlidesWarningText3.UseMnemonic = false;
 			// 
 			// laNoSlidesWarningText2
@@ -115,7 +115,7 @@
 			this.laNoSlidesWarningText1.Name = "laNoSlidesWarningText1";
 			this.laNoSlidesWarningText1.Size = new System.Drawing.Size(523, 88);
 			this.laNoSlidesWarningText1.TabIndex = 24;
-			this.laNoSlidesWarningText1.Text = "The TV Schedule Builder is not available for your current PowerPoint Slide Backgr" +
+			this.laNoSlidesWarningText1.Text = "The SellerPoint for TV is not available for your current PowerPoint Slide Backgr" +
     "ound:";
 			this.laNoSlidesWarningText1.UseMnemonic = false;
 			// 

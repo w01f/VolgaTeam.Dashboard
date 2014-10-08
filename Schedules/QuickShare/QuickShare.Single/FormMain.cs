@@ -144,9 +144,6 @@ namespace NewBizWiz.QuickShare.Single
 		private void FormMain_Shown(object sender, EventArgs e)
 		{
 			UpdateFormTitle();
-			if (File.Exists(MediaMetaData.Instance.SettingsManager.IconPath))
-				Icon = new Icon(Core.OnlineSchedule.SettingsManager.Instance.IconPath);
-
 			Utilities.Instance.ActivatePowerPoint(QuickSharePowerPointHelper.Instance.PowerPointObject);
 			AppManager.Instance.ActivateMainForm();
 
@@ -186,10 +183,13 @@ namespace NewBizWiz.QuickShare.Single
 				_currentControl.BringToFront();
 				pnMain.BringToFront();
 			}
-			else if (ribbonControl.SelectedRibbonTabItem.Tag == null)
+			else if (ribbonControl.SelectedRibbonTabItem.Tag != null)
 			{
-				_currentControl = null;
-				pnMain.BringToFront();
+				if (AllowToLeaveCurrentControl())
+				{
+					_currentControl = null;
+					pnMain.BringToFront();
+				}
 			}
 			else
 			{

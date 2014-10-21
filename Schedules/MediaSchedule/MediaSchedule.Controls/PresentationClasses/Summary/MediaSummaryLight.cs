@@ -120,6 +120,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Summary
 			}
 		}
 
+		public override void OpenHelp()
+		{
+			HelpManager.OpenHelpLink("summary1");
+		}
+
 		public override Theme SelectedTheme
 		{
 			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary1).FirstOrDefault(t => t.Name.Equals(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary1)) || String.IsNullOrEmpty(MediaMetaData.Instance.SettingsManager.GetSelectedTheme(SlideType.Summary1))); }

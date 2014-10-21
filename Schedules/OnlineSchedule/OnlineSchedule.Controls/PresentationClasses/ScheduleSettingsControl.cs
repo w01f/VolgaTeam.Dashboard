@@ -373,7 +373,7 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 
 		public void ScheduleSettingsHelp_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("home");
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink("homeweb");
 		}
 		#endregion
 

@@ -12,7 +12,6 @@ using NewBizWiz.Core.Common;
 using NewBizWiz.Core.MediaSchedule;
 using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
-using Schedule = NewBizWiz.Core.MediaSchedule.Schedule;
 using SettingsManager = NewBizWiz.Core.Common.SettingsManager;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
@@ -89,11 +88,6 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			var nameChanged = !string.IsNullOrEmpty(scheduleName);
 			Controller.Instance.SaveSchedule(_localSchedule, nameChanged, true, false, false, this);
 			return result;
-		}
-
-		public override void OpenHelp()
-		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("adcal");
 		}
 
 		public override void SaveSettings()
@@ -306,10 +300,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Calendar
 			Email();
 		}
 
-		public void Help_Click(object sender, EventArgs e)
-		{
-			OpenHelp();
-		}
+		public abstract void Help_Click(object sender, EventArgs e);
 		#endregion
 	}
 }

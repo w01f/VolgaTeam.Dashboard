@@ -8,7 +8,6 @@ using NewBizWiz.CommonGUI.Slides;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 using NewBizWiz.Dashboard.InteropClasses;
-using NewBizWiz.Dashboard.ToolForms;
 
 namespace NewBizWiz.Dashboard.TabSlides
 {

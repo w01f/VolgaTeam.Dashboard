@@ -138,12 +138,12 @@ namespace NewBizWiz.OnlineSchedule.Controls
 
 			#region Gallery 1
 			Gallery1 = new DigitalGallery1Control();
-			Gallery1Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
+			Gallery1Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery1");
 			#endregion
 
 			#region Gallery 2
 			Gallery2 = new DigitalGallery2Control();
-			Gallery2Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery");
+			Gallery2Help.Click += (o, e) => BusinessWrapper.Instance.HelpManager.OpenHelpLink("gallery2");
 			#endregion
 
 			ConfigureTabPages();

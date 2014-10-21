@@ -42,14 +42,14 @@
 			this.pnBottom.BackColor = System.Drawing.Color.Transparent;
 			this.pnBottom.Controls.Add(this.pbVersion);
 			this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnBottom.Location = new System.Drawing.Point(0, 504);
+			this.pnBottom.Location = new System.Drawing.Point(0, 490);
 			this.pnBottom.Name = "pnBottom";
-			this.pnBottom.Size = new System.Drawing.Size(894, 56);
+			this.pnBottom.Size = new System.Drawing.Size(894, 70);
 			this.pnBottom.TabIndex = 2;
 			// 
 			// pbVersion
 			// 
-			this.pbVersion.Location = new System.Drawing.Point(3, 4);
+			this.pbVersion.Location = new System.Drawing.Point(3, 10);
 			this.pbVersion.Name = "pbVersion";
 			this.pbVersion.Size = new System.Drawing.Size(526, 45);
 			this.pbVersion.TabIndex = 1;
@@ -62,17 +62,17 @@
 			this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnMain.Location = new System.Drawing.Point(0, 0);
 			this.pnMain.Name = "pnMain";
-			this.pnMain.Size = new System.Drawing.Size(894, 504);
+			this.pnMain.Size = new System.Drawing.Size(894, 490);
 			this.pnMain.TabIndex = 3;
 			// 
 			// laSlideSize
 			// 
 			this.laSlideSize.Dock = System.Windows.Forms.DockStyle.Top;
-			this.laSlideSize.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.laSlideSize.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.laSlideSize.ForeColor = System.Drawing.Color.Black;
 			this.laSlideSize.Location = new System.Drawing.Point(0, 0);
 			this.laSlideSize.Name = "laSlideSize";
-			this.laSlideSize.Size = new System.Drawing.Size(894, 41);
+			this.laSlideSize.Size = new System.Drawing.Size(894, 31);
 			this.laSlideSize.TabIndex = 1;
 			this.laSlideSize.Text = "Slide Size: {0}";
 			this.laSlideSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

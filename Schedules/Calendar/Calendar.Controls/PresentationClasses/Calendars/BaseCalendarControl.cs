@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using DevExpress.XtraBars.Docking;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using NewBizWiz.Calendar.Controls.PresentationClasses.SlideInfo;
@@ -347,7 +346,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			get { return null; }
 		}
 
-		public virtual void OpenHelp() { }
+		public virtual void OpenHelp(string key) { }
 		public virtual void SaveSettings() { }
 		public virtual void TrackActivity(UserActivity activity) { }
 		protected virtual void PowerPointInternal(IEnumerable<CalendarOutputData> outputData) { }

@@ -162,7 +162,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Strategy
 			}
 		}
 
-		private void Favorites_StateChanged(object sender, CommonGUI.RetractableBar.StateChangedEventArgs e)
+		private void Favorites_StateChanged(object sender, StateChangedEventArgs e)
 		{
 			if (!_allowToSave) return;
 			_localSchedule.ProgramStrategy.ShowFavorites = e.Expaned;

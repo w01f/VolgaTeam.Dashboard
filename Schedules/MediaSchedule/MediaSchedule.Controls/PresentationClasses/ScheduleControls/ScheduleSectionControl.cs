@@ -380,7 +380,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public virtual void LoadSchedule(bool quickLoad)
 		{
 			_allowToSave = false;
-			_helpKey = SpotTitle.ToLower();
+			_helpKey = String.Format("{0}ly", SpotTitle.ToLower());
 			laTotalPeriodsTitle.Text = String.Format("Total {0}s:", SpotTitle);
 			checkEditEmptySports.Text = String.Format(checkEditEmptySports.Text, String.Format("{0}s:", SpotTitle));
 			ScheduleSection.DataChanged += ScheduleSection_DataChanged;
@@ -902,10 +902,10 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private void advBandedGridViewSchedule_CustomSummaryCalculate(object sender, CustomSummaryEventArgs e)
 		{
 			var item = e.Item as GridSummaryItem;
-			if(item == null) return;
+			if (item == null) return;
 			if (item.Tag == "CPP")
 			{
-				
+
 			}
 		}
 		#endregion

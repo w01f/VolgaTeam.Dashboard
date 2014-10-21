@@ -108,6 +108,11 @@ namespace NewBizWiz.OnlineSchedule.Controls.PresentationClasses
 			}
 		}
 
+		public override void OpenHelp()
+		{
+			HelpManager.OpenHelpLink("summary1");
+		}
+
 		public override Theme SelectedTheme
 		{
 			get { return BusinessWrapper.Instance.ThemeManager.GetThemes(SlideType.Summary1).FirstOrDefault(t => t.Name.Equals(BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary1)) || String.IsNullOrEmpty(BusinessWrapper.Instance.GetSelectedTheme(SlideType.Summary1))); }

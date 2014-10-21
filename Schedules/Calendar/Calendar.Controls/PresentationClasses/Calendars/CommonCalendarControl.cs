@@ -115,9 +115,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 			return result;
 		}
 
-		public override void OpenHelp()
+		public override void OpenHelp(string key)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink(SelectedView.GetType() == typeof(GridViewControl) ? "list" : "ninja");
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink(key);
 		}
 
 		public override void SaveSettings()

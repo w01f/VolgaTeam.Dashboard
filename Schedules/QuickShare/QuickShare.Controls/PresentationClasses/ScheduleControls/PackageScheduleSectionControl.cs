@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using DevExpress.Utils;
 using NewBizWiz.CommonGUI.Preview;
 using NewBizWiz.CommonGUI.RetractableBar;
 using NewBizWiz.CommonGUI.Themes;
@@ -59,7 +60,8 @@ namespace NewBizWiz.QuickShare.Controls.PresentationClasses.ScheduleControls
 			_parent = parent;
 			_localSchedule = _parent.Schedule;
 			xtraTabPageOptionsDigital.PageVisible = false;
-
+			xtraTabControlData.ShowTabHeader = DefaultBoolean.True;
+			xtraTabPageDataSchedule.Text = String.Format("Schedule - {0}", _localSchedule.Name);
 			_parent.QuarterButton.CheckedChanged += QuarterCheckedChanged;
 			_parent.SaveButton.Click += Save_Click;
 			_parent.SaveAsButton.Click += SaveAs_Click;

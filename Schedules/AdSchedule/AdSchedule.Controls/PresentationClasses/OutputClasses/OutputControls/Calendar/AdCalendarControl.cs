@@ -116,9 +116,9 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 			return result;
 		}
 
-		public override void OpenHelp()
+		public override void OpenHelp(string key)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("calendars");
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink(key);
 		}
 
 		public override void SaveSettings()
@@ -345,7 +345,7 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 
 		public void Help_Click(object sender, EventArgs e)
 		{
-			OpenHelp();
+			OpenHelp("calendars");
 		}
 		#endregion
 	}

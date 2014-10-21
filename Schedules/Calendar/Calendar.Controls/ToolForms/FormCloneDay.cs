@@ -20,6 +20,8 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 		private readonly DateTime _flightDateStart;
 		private readonly List<DateItem> _selectedDates = new List<DateItem>();
 
+		public Action OnHelpClick { get; set; }
+
 		public FormCloneDay(CalendarDay day, DateTime flightDateStart, DateTime flightDateEnd)
 		{
 			InitializeComponent();
@@ -171,14 +173,10 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 			}
 		}
 
-		private void checkEditPCIRate_CheckedChanged(object sender, EventArgs e)
-		{
-			UpdateTotals();
-		}
-
 		private void pbHelp_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("ninjaclone");
+			if (OnHelpClick != null)
+				OnHelpClick();
 		}
 
 		#region Picture Box Clicks Habdlers

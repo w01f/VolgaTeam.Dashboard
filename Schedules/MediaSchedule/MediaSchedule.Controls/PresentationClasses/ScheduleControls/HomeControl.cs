@@ -609,9 +609,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		public void Help_Click(object sender, EventArgs e)
 		{
 			if (xtraTabControlMain.SelectedTabPage == xtraTabPageMedia)
-				BusinessWrapper.Instance.HelpManager.OpenHelpLink(String.Format("Home{0}", MediaMetaData.Instance.DataTypeString));
+				BusinessWrapper.Instance.HelpManager.OpenHelpLink(String.Format("home{0}", MediaMetaData.Instance.DataType == MediaDataType.TV ? "tv" : "rd"));
 			else if (xtraTabControlMain.SelectedTabPage == xtraTabPageDigital)
-				BusinessWrapper.Instance.HelpManager.OpenHelpLink(String.Format("Home{0}", "dig"));
+				BusinessWrapper.Instance.HelpManager.OpenHelpLink(String.Format("home{0}", "dg"));
 		}
 
 		public void Save_Click(object sender, EventArgs e)

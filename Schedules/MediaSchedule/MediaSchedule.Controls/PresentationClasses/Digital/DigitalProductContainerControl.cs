@@ -154,7 +154,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 
 		public void Help_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("digital");
+			BusinessWrapper.Instance.HelpManager.OpenHelpLink("digitalsl");
 		}
 
 		protected override IEnumerable<UserActivity> TrackOutput(IEnumerable<DigitalProductControl> tabsForOutput)

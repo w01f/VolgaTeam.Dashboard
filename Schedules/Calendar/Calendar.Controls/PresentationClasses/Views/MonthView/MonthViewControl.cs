@@ -338,6 +338,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 			if (selectedDay == null) return;
 			using (var form = new FormCloneDay(selectedDay, Calendar.CalendarData.Schedule.FlightDateStart.Value, Calendar.CalendarData.Schedule.FlightDateEnd.Value))
 			{
+				form.OnHelpClick = () => Calendar.OpenHelp("clone");
 				if (form.ShowDialog() == DialogResult.OK)
 				{
 					var clonedDays = Calendar.CalendarData.Days.Where(x => form.SelectedDates.Contains(x.Date)).ToList();
@@ -396,6 +397,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Views.MonthView
 					{
 						using (var form = new FormCloneNote(note, Calendar.CalendarData.Schedule.FlightDateStart.Value, Calendar.CalendarData.Schedule.FlightDateEnd.Value))
 						{
+							form.OnHelpClick = () => Calendar.OpenHelp("ninjanotesclone");
 							if (form.ShowDialog() != DialogResult.OK) return;
 							foreach (var range in form.SelectedRanges)
 								AddNote(range, note.Note.Clone());

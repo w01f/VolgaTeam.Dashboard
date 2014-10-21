@@ -6,7 +6,6 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 using DevExpress.XtraEditors.Controls;
-using NewBizWiz.Calendar.Controls.BusinessClasses;
 using NewBizWiz.Core.Calendar;
 using NewBizWiz.Core.Common;
 using Pabo.Calendar;
@@ -20,6 +19,8 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 		private readonly List<DateRange> _selectedRanges = new List<DateRange>();
 		private readonly CalendarNote _sourceNote;
 		private DateTime? _selectedDate;
+
+		public Action OnHelpClick { get; set; }
 
 		public FormCloneNote(CalendarNote sourceNote, DateTime flightDateStart, DateTime flightDateEnd)
 		{
@@ -154,7 +155,8 @@ namespace NewBizWiz.Calendar.Controls.ToolForms
 
 		private void pbHelp_Click(object sender, EventArgs e)
 		{
-			BusinessWrapper.Instance.HelpManager.OpenHelpLink("ninjanotesclone");
+			if (OnHelpClick != null)
+				OnHelpClick();
 		}
 
 		#region Picture Box Clicks Habdlers

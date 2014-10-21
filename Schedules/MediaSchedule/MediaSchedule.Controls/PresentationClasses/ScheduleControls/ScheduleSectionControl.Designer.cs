@@ -108,7 +108,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnTotalPeriods = new System.Windows.Forms.Panel();
 			this.laTotalPeriodsValue = new System.Windows.Forms.Label();
 			this.laTotalPeriodsTitle = new System.Windows.Forms.Label();
-			this.pnPageTV = new System.Windows.Forms.Panel();
+			this.pnPageSchedule = new System.Windows.Forms.Panel();
 			this.labelControlFlexFlightDatesWarning = new DevExpress.XtraEditors.LabelControl();
 			this.pbNoPrograms = new System.Windows.Forms.PictureBox();
 			this.xtraTabControlOptions = new DevExpress.XtraTab.XtraTabControl();
@@ -150,6 +150,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnColors = new System.Windows.Forms.Panel();
 			this.xtraScrollableControlColors = new DevExpress.XtraEditors.XtraScrollableControl();
 			this.retractableBarControl = new NewBizWiz.CommonGUI.RetractableBar.RetractableBarLeft();
+			this.xtraTabControlData = new DevExpress.XtraTab.XtraTabControl();
+			this.xtraTabPageDataSchedule = new DevExpress.XtraTab.XtraTabPage();
+			this.xtraTabPageDataSpecs = new DevExpress.XtraTab.XtraTabPage();
 			((System.ComponentModel.ISupportInitialize)(this.gridControlSchedule)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewSchedule)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxStations)).BeginInit();
@@ -178,7 +181,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnTotalGRP.SuspendLayout();
 			this.pnTotalSpots.SuspendLayout();
 			this.pnTotalPeriods.SuspendLayout();
-			this.pnPageTV.SuspendLayout();
+			this.pnPageSchedule.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbNoPrograms)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).BeginInit();
 			this.xtraTabControlOptions.SuspendLayout();
@@ -197,13 +200,16 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).BeginInit();
 			this.pnColors.SuspendLayout();
 			this.retractableBarControl.Content.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlData)).BeginInit();
+			this.xtraTabControlData.SuspendLayout();
+			this.xtraTabPageDataSchedule.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// gridControlSchedule
 			// 
 			this.gridControlSchedule.Cursor = System.Windows.Forms.Cursors.Default;
 			this.gridControlSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControlSchedule.Location = new System.Drawing.Point(0, 27);
+			this.gridControlSchedule.Location = new System.Drawing.Point(0, 67);
 			this.gridControlSchedule.MainView = this.advBandedGridViewSchedule;
 			this.gridControlSchedule.Name = "gridControlSchedule";
 			this.gridControlSchedule.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -218,7 +224,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
             this.repositoryItemComboBoxDayparts,
             this.repositoryItemPopupContainerEditProgram,
             this.repositoryItemTextEditProgram});
-			this.gridControlSchedule.Size = new System.Drawing.Size(832, 483);
+			this.gridControlSchedule.Size = new System.Drawing.Size(826, 477);
 			this.gridControlSchedule.TabIndex = 0;
 			this.gridControlSchedule.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridViewSchedule});
@@ -1063,9 +1069,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnTop.Controls.Add(this.quarterSelectorControl);
 			this.pnTop.Controls.Add(this.laScheduleInfo);
 			this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.pnTop.Location = new System.Drawing.Point(300, 0);
+			this.pnTop.Location = new System.Drawing.Point(0, 0);
 			this.pnTop.Name = "pnTop";
-			this.pnTop.Size = new System.Drawing.Size(832, 40);
+			this.pnTop.Size = new System.Drawing.Size(826, 40);
 			this.pnTop.TabIndex = 1;
 			// 
 			// quarterSelectorControl
@@ -1076,7 +1082,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.quarterSelectorControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.quarterSelectorControl.Location = new System.Drawing.Point(248, 0);
 			this.quarterSelectorControl.Name = "quarterSelectorControl";
-			this.quarterSelectorControl.Size = new System.Drawing.Size(584, 40);
+			this.quarterSelectorControl.Size = new System.Drawing.Size(578, 40);
 			this.quarterSelectorControl.TabIndex = 51;
 			// 
 			// laScheduleInfo
@@ -1375,17 +1381,18 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.laTotalPeriodsTitle.Text = "Total Weeks:";
 			this.laTotalPeriodsTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// pnPageTV
+			// pnPageSchedule
 			// 
-			this.pnPageTV.BackColor = System.Drawing.Color.White;
-			this.pnPageTV.Controls.Add(this.gridControlSchedule);
-			this.pnPageTV.Controls.Add(this.labelControlFlexFlightDatesWarning);
-			this.pnPageTV.Controls.Add(this.pbNoPrograms);
-			this.pnPageTV.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnPageTV.Location = new System.Drawing.Point(300, 40);
-			this.pnPageTV.Name = "pnPageTV";
-			this.pnPageTV.Size = new System.Drawing.Size(832, 510);
-			this.pnPageTV.TabIndex = 0;
+			this.pnPageSchedule.BackColor = System.Drawing.Color.White;
+			this.pnPageSchedule.Controls.Add(this.gridControlSchedule);
+			this.pnPageSchedule.Controls.Add(this.labelControlFlexFlightDatesWarning);
+			this.pnPageSchedule.Controls.Add(this.pbNoPrograms);
+			this.pnPageSchedule.Controls.Add(this.pnTop);
+			this.pnPageSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnPageSchedule.Location = new System.Drawing.Point(0, 0);
+			this.pnPageSchedule.Name = "pnPageSchedule";
+			this.pnPageSchedule.Size = new System.Drawing.Size(826, 544);
+			this.pnPageSchedule.TabIndex = 0;
 			// 
 			// labelControlFlexFlightDatesWarning
 			// 
@@ -1397,11 +1404,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.labelControlFlexFlightDatesWarning.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
 			this.labelControlFlexFlightDatesWarning.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.labelControlFlexFlightDatesWarning.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelControlFlexFlightDatesWarning.Location = new System.Drawing.Point(0, 0);
+			this.labelControlFlexFlightDatesWarning.Location = new System.Drawing.Point(0, 40);
 			this.labelControlFlexFlightDatesWarning.LookAndFeel.UseDefaultLookAndFeel = false;
 			this.labelControlFlexFlightDatesWarning.Name = "labelControlFlexFlightDatesWarning";
 			this.labelControlFlexFlightDatesWarning.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.labelControlFlexFlightDatesWarning.Size = new System.Drawing.Size(832, 27);
+			this.labelControlFlexFlightDatesWarning.Size = new System.Drawing.Size(826, 27);
 			this.labelControlFlexFlightDatesWarning.TabIndex = 4;
 			this.labelControlFlexFlightDatesWarning.Text = "*You have PARTIAL WEEKS in your schedule. <u><b><color=red>CLICK HERE</color></b>" +
     "</u>";
@@ -1411,9 +1418,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.pbNoPrograms.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pbNoPrograms.Image = ((System.Drawing.Image)(resources.GetObject("pbNoPrograms.Image")));
-			this.pbNoPrograms.Location = new System.Drawing.Point(0, 0);
+			this.pbNoPrograms.Location = new System.Drawing.Point(0, 40);
 			this.pbNoPrograms.Name = "pbNoPrograms";
-			this.pbNoPrograms.Size = new System.Drawing.Size(832, 510);
+			this.pbNoPrograms.Size = new System.Drawing.Size(826, 504);
 			this.pbNoPrograms.TabIndex = 1;
 			this.pbNoPrograms.TabStop = false;
 			// 
@@ -1490,7 +1497,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.checkEditOutputNoBrackets.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditOutputNoBrackets.Location = new System.Drawing.Point(15, 442);
+			this.checkEditOutputNoBrackets.Location = new System.Drawing.Point(15, 452);
 			this.checkEditOutputNoBrackets.Name = "checkEditOutputNoBrackets";
 			this.checkEditOutputNoBrackets.Properties.Caption = "No Brackets for Station on slide";
 			this.checkEditOutputNoBrackets.Size = new System.Drawing.Size(267, 19);
@@ -1507,7 +1514,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
             0,
             0});
 			this.spinEditOutputLimitPeriods.Enabled = false;
-			this.spinEditOutputLimitPeriods.Location = new System.Drawing.Point(227, 367);
+			this.spinEditOutputLimitPeriods.Location = new System.Drawing.Point(227, 391);
 			this.spinEditOutputLimitPeriods.Name = "spinEditOutputLimitPeriods";
 			this.spinEditOutputLimitPeriods.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
 			this.spinEditOutputLimitPeriods.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1532,7 +1539,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// checkEditOutputLimitPeriods
 			// 
 			this.checkEditOutputLimitPeriods.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(15, 367);
+			this.checkEditOutputLimitPeriods.Location = new System.Drawing.Point(15, 390);
 			this.checkEditOutputLimitPeriods.Name = "checkEditOutputLimitPeriods";
 			this.checkEditOutputLimitPeriods.Properties.AutoWidth = true;
 			this.checkEditOutputLimitPeriods.Properties.Caption = "Max Weeks Per PPT Slide";
@@ -1545,7 +1552,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.checkEditOutputLimitQuarters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditOutputLimitQuarters.Location = new System.Drawing.Point(15, 405);
+			this.checkEditOutputLimitQuarters.Location = new System.Drawing.Point(15, 423);
 			this.checkEditOutputLimitQuarters.Name = "checkEditOutputLimitQuarters";
 			this.checkEditOutputLimitQuarters.Properties.Caption = "Output each Quarter on a Slide";
 			this.checkEditOutputLimitQuarters.Size = new System.Drawing.Size(267, 19);
@@ -1557,7 +1564,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			// 
 			this.checkEditEmptySports.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEditEmptySports.Location = new System.Drawing.Point(15, 332);
+			this.checkEditEmptySports.Location = new System.Drawing.Point(15, 366);
 			this.checkEditEmptySports.Name = "checkEditEmptySports";
 			this.checkEditEmptySports.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.True;
 			this.checkEditEmptySports.Properties.Appearance.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -1981,12 +1988,49 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.retractableBarControl.Size = new System.Drawing.Size(300, 550);
 			this.retractableBarControl.TabIndex = 4;
 			// 
+			// xtraTabControlData
+			// 
+			this.xtraTabControlData.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlData.Appearance.Options.UseFont = true;
+			this.xtraTabControlData.AppearancePage.Header.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlData.AppearancePage.Header.Options.UseFont = true;
+			this.xtraTabControlData.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.xtraTabControlData.AppearancePage.HeaderActive.Options.UseFont = true;
+			this.xtraTabControlData.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlData.AppearancePage.HeaderDisabled.Options.UseFont = true;
+			this.xtraTabControlData.AppearancePage.HeaderHotTracked.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlData.AppearancePage.HeaderHotTracked.Options.UseFont = true;
+			this.xtraTabControlData.AppearancePage.PageClient.Font = new System.Drawing.Font("Arial", 9.75F);
+			this.xtraTabControlData.AppearancePage.PageClient.Options.UseFont = true;
+			this.xtraTabControlData.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.xtraTabControlData.Location = new System.Drawing.Point(300, 0);
+			this.xtraTabControlData.Name = "xtraTabControlData";
+			this.xtraTabControlData.SelectedTabPage = this.xtraTabPageDataSchedule;
+			this.xtraTabControlData.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
+			this.xtraTabControlData.Size = new System.Drawing.Size(832, 550);
+			this.xtraTabControlData.TabIndex = 5;
+			this.xtraTabControlData.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPageDataSchedule,
+            this.xtraTabPageDataSpecs});
+			// 
+			// xtraTabPageDataSchedule
+			// 
+			this.xtraTabPageDataSchedule.Controls.Add(this.pnPageSchedule);
+			this.xtraTabPageDataSchedule.Name = "xtraTabPageDataSchedule";
+			this.xtraTabPageDataSchedule.Size = new System.Drawing.Size(826, 544);
+			this.xtraTabPageDataSchedule.Text = "Schedule";
+			// 
+			// xtraTabPageDataSpecs
+			// 
+			this.xtraTabPageDataSpecs.Name = "xtraTabPageDataSpecs";
+			this.xtraTabPageDataSpecs.Size = new System.Drawing.Size(826, 519);
+			this.xtraTabPageDataSpecs.Text = "Pre-Buy Specs";
+			// 
 			// ScheduleSectionControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.pnPageTV);
-			this.Controls.Add(this.pnTop);
+			this.Controls.Add(this.xtraTabControlData);
 			this.Controls.Add(this.popupContainerControlProgramSource);
 			this.Controls.Add(this.retractableBarControl);
 			this.Controls.Add(this.pnBottom);
@@ -2021,7 +2065,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			this.pnTotalGRP.ResumeLayout(false);
 			this.pnTotalSpots.ResumeLayout(false);
 			this.pnTotalPeriods.ResumeLayout(false);
-			this.pnPageTV.ResumeLayout(false);
+			this.pnPageSchedule.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pbNoPrograms)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlOptions)).EndInit();
 			this.xtraTabControlOptions.ResumeLayout(false);
@@ -2042,6 +2086,9 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 			((System.ComponentModel.ISupportInitialize)(this.checkEditLockToMaster.Properties)).EndInit();
 			this.pnColors.ResumeLayout(false);
 			this.retractableBarControl.Content.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.xtraTabControlData)).EndInit();
+			this.xtraTabControlData.ResumeLayout(false);
+			this.xtraTabPageDataSchedule.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -2110,7 +2157,7 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnProgramSourceDay;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnProgramSourceTime;
 		private System.Windows.Forms.Label laProgramSourceInfo;
-		private System.Windows.Forms.Panel pnPageTV;
+		private System.Windows.Forms.Panel pnPageSchedule;
 	    protected DevExpress.XtraTab.XtraTabControl xtraTabControlOptions;
 	    protected DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsLine;
 	    protected DevExpress.XtraTab.XtraTabPage xtraTabPageOptionsTotals;
@@ -2161,5 +2208,8 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.ScheduleControls
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandSpots;
 		private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandTotals;
 		private DevExpress.XtraEditors.CheckEdit checkEditOutputNoBrackets;
+	    protected DevExpress.XtraTab.XtraTabControl xtraTabControlData;
+	    protected DevExpress.XtraTab.XtraTabPage xtraTabPageDataSchedule;
+		private DevExpress.XtraTab.XtraTabPage xtraTabPageDataSpecs;
     }
 }

@@ -248,6 +248,7 @@
 			this.Controls.Add(this.barDockControlTop);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ForeColor = System.Drawing.Color.Black;
 			this.Name = "FormEmail";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;

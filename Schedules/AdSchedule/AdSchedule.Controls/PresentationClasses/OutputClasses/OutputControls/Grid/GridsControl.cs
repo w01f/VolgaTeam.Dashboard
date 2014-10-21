@@ -138,7 +138,6 @@ namespace NewBizWiz.AdSchedule.Controls.PresentationClasses.OutputClasses.Output
 				_selectedOutput.AllowToSave = false;
 				xtraTabControlOptions.SelectedTabPageIndex = _selectedOutput.SelectedOptionChapterIndex;
 				_selectedOutput.AllowToSave = true;
-
 				if (_selectedOutput.ShowOptions)
 					retractableBar.Expand(true);
 				else

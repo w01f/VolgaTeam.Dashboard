@@ -78,7 +78,6 @@
 			this.checkEditSolutionNew.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseFont = true;
 			this.checkEditSolutionNew.Properties.Appearance.Options.UseForeColor = true;
-			this.checkEditSolutionNew.Size = new System.Drawing.Size(157, 20);
 			this.checkEditSolutionNew.Visible = false;
 			// 
 			// pbDescription
@@ -95,7 +94,7 @@
 			// 
 			// pbVersion
 			// 
-			this.pbVersion.Location = new System.Drawing.Point(3, 13);
+			this.pbVersion.Location = new System.Drawing.Point(3, 15);
 			this.pbVersion.Name = "pbVersion";
 			this.pbVersion.Size = new System.Drawing.Size(526, 45);
 			this.pbVersion.TabIndex = 1;
@@ -107,6 +106,7 @@
 			this.BackColor = System.Drawing.Color.White;
 			this.Name = "SlideCleanslateControl";
 			this.pnBottom.ResumeLayout(false);
+			this.pnBottom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.comboBoxEditSlideHeader.Properties)).EndInit();
 			this.pnTop.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.checkEditSolutionNew.Properties)).EndInit();

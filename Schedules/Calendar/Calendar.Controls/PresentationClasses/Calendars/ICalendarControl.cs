@@ -29,7 +29,7 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses.Calendars
 		void Preview();
 		void Print();
 		void Email();
-		void OpenHelp();
+		void OpenHelp(string key);
 		void Splash(bool show);
 		void SaveSettings();
 		void TrackActivity(UserActivity activity);

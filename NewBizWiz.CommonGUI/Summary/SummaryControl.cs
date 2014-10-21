@@ -199,7 +199,7 @@ namespace NewBizWiz.CommonGUI.Summary
 
 		protected abstract void UpdateTotals();
 
-		public void OpenHelp()
+		public virtual void OpenHelp()
 		{
 			HelpManager.OpenHelpLink("summary");
 		}

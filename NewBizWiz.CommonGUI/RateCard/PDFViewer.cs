@@ -1,13 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
-using System.Threading;
-using System.Windows.Forms;
 using DevExpress.XtraTab;
-using NewBizWiz.CommonGUI.ToolForms;
 
 namespace NewBizWiz.CommonGUI.RateCard
 {
 	[ToolboxItem(false)]
+	//public partial class PDFViewer : UserControl, IRateCardViewer
 	public partial class PDFViewer : XtraTabPage, IRateCardViewer
 	{
 		#region Properties
@@ -28,26 +28,25 @@ namespace NewBizWiz.CommonGUI.RateCard
 		public void LoadViewer()
 		{
 			if (Loaded) return;
-			using (var form = new FormProgress())
-			{
-				form.laProgress.Text = "Chill-Out for a few seconds...\nLoading Rate Card...";
-				form.TopMost = true;
-				var thread = new Thread(() => Invoke((MethodInvoker)delegate()
-				{
-					axAcroPDF.LoadFile(File.FullName);
-					axAcroPDF.setView("FitW");
-					Loaded = true;
-				}));
-				form.Show();
-				Application.DoEvents();
-				thread.Start();
-				while (thread.IsAlive)
-					Application.DoEvents();
-				form.Close();
-			}
+			pdfViewerControl.LoadDocument(File.FullName);
+			Loaded = true;
 		}
 
 		public void Email() { }
 		#endregion
+
+		private void pdfViewerControl_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+		{
+			pdfViewerControl.Focus();
+		}
+
+		private void pdfViewerControl_DoubleClick(object sender, EventArgs e)
+		{
+			try
+			{
+				Process.Start(File.FullName);
+			}
+			catch {}
+		}
 	}
 }

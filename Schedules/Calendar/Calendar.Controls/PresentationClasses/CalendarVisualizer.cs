@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevExpress.XtraEditors;
 using NewBizWiz.Calendar.Controls.PresentationClasses.Calendars;
+using NewBizWiz.Calendar.Controls.PresentationClasses.Views.GridView;
 using NewBizWiz.CommonGUI.ToolForms;
 using NewBizWiz.Core.Common;
 
@@ -151,7 +152,9 @@ namespace NewBizWiz.Calendar.Controls.PresentationClasses
 
 		public void buttonItemCalendarHelp_Click(object sender, EventArgs e)
 		{
-			SelectedCalendarControl.OpenHelp();
+			SelectedCalendarControl.OpenHelp(SelectedCalendarControl != null &&
+				SelectedCalendarControl.SelectedView != null &&
+				SelectedCalendarControl.SelectedView.GetType() == typeof(GridViewControl) ? "list" : "ninja");
 		}
 		#endregion
 	}

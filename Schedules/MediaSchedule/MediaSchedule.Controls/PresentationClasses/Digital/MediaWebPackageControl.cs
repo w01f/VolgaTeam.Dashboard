@@ -13,7 +13,6 @@ using NewBizWiz.MediaSchedule.Controls.BusinessClasses;
 using NewBizWiz.MediaSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.InteropClasses;
 using NewBizWiz.OnlineSchedule.Controls.PresentationClasses;
-using Schedule = NewBizWiz.Core.MediaSchedule.Schedule;
 
 namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 {
@@ -94,6 +93,11 @@ namespace NewBizWiz.MediaSchedule.Controls.PresentationClasses.Digital
 				LocalSchedule.Name = scheduleName;
 			Controller.Instance.SaveSchedule(LocalSchedule, nameChanged, false, false, false, this);
 			return base.SaveSchedule(scheduleName);
+		}
+
+		public override void Help_Click(object sender, EventArgs e)
+		{
+			HelpManager.OpenHelpLink("digitalpk");
 		}
 
 		public override void OutputSlides()
